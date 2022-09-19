@@ -1,4 +1,9 @@
 import 'dart:async';
+import 'package:async/async.dart' show StreamGroup;
+
+import 'dart:convert';
+import 'dart:io';
+import 'package:process_run/shell.dart';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +14,8 @@ import 'package:onix_flutter_bricks/presentation/widgets/switch_with_label.dart'
 import 'package:onix_flutter_bricks/presentation/widgets/text_field_with_label.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 import 'package:recase/recase.dart';
+
+//TODO: move logo to TopRight corner, fix output
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key, required this.projectPath}) : super(key: key);
@@ -24,10 +31,17 @@ class _MainPageState extends State<MainPage> {
   String projectName = 'new_project';
   String orgName = 'com.example';
   bool flavorize = true;
+  Set<String> flavors = {};
+
+  List<String> routers = ['goRouter', 'autoRouter'];
+  String router = '';
+
+  List<String> localizators = ['Intl', 'flutter_gen'];
+  String localization = '';
+
   bool generateSigningKey = true;
   bool useSonar = true;
   bool integrateDevicePreview = false;
-  Set<String> flavors = {};
 
   final TextEditingController projectNameController = TextEditingController();
   final FocusNode projectNameFocusNode = FocusNode();
@@ -35,8 +49,10 @@ class _MainPageState extends State<MainPage> {
   final FocusNode organizationFocusNode = FocusNode();
   final TextEditingController flavorsController = TextEditingController();
   final FocusNode flavorsFocusNode = FocusNode();
-  final outputStreamController = StreamController<String>();
-  late final outputStream = outputStreamController.stream;
+
+  //final outputStreamController = StreamController<String>();
+  //late final outputStream = outputStreamController.stream;
+  Stream<String>? outputStream;
   final pathStreamController = StreamController<String>();
   late final pathStream = pathStreamController.stream;
 
@@ -47,6 +63,8 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     projectPath = widget.projectPath;
+    router = routers.first;
+    localization = localizators.first;
     projectNameController.text = projectName;
     organizationController.text = orgName;
     pathStreamController.add(
@@ -58,10 +76,10 @@ class _MainPageState extends State<MainPage> {
     super.initState();
   }
 
-  void addLine(String line) {
-    outputText += '$line\n';
-    outputStreamController.add(outputText);
-  }
+  // void addLine(String line) {
+  //   outputText += '$line\n';
+  //   outputStreamController.add(outputText);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -200,14 +218,20 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                const LabeledSegmentedControl(
+                LabeledSegmentedControl(
                   label: 'Router:',
-                  values: ['goRouter', 'autoRouter'],
+                  values: routers,
+                  onChange: (value) {
+                    router = value;
+                  },
                 ),
                 const SizedBox(height: 20),
-                const LabeledSegmentedControl(
+                LabeledSegmentedControl(
                   label: 'Localization:',
-                  values: ['flutter_gen', 'Intl'],
+                  values: localizators,
+                  onChange: (value) {
+                    localization = value;
+                  },
                 ),
                 const SizedBox(height: 20),
                 SwitchWithLabel(
@@ -238,19 +262,45 @@ class _MainPageState extends State<MainPage> {
                 CupertinoButton(
                   color: AppColors.orange,
                   child: const Text('Generate!'),
-                  onPressed: () {
-                    outputText = '';
-                    addLine('''{
-'project_name': $projectName,
-'organization': $orgName,
-'flavorize': $flavorize,
-'flavors': $flavors,
-'router': '',
-'localization': '',
-'gen_sign': $generateSigningKey,
-'use_sonar': $useSonar,
-'integrate_dev_preview': $integrateDevicePreview
-}''');
+                  onPressed: () async {
+                    var configFile = await File('config.json').create();
+                    await configFile.writeAsString(jsonEncode({
+                      'withUI': true,
+                      'project_name_dirt': projectName,
+                      'project_org': orgName,
+                      'flavorizr': flavorize,
+                      'flavors': flavors.toList(),
+                      'navigation': router,
+                      'localization': localization,
+                      'use_keytool': generateSigningKey,
+                      'use_sonar': useSonar,
+                      'device_preview': integrateDevicePreview
+                    }).toString());
+                    print(configFile.absolute.path);
+                    var process = await Process.start(
+                        'mason',
+                        [
+                          'make',
+                          'flutter_clean_base',
+                          '-c',
+                          configFile.absolute.path,
+                          '--on-conflict',
+                          'overwrite'
+                        ],
+                        workingDirectory: projectPath);
+                    // process
+                    //   ..outLines.forEach((element) {
+                    //     print(element);
+                    //   })
+                    //   ..errLines.forEach((element) {
+                    //     print(element);
+                    //   });
+                    setState(() {
+                      outputStream = StreamGroup.merge([
+                        process.outLines.asBroadcastStream(),
+                        process.errLines.asBroadcastStream()
+                      ]);
+                    });
                   },
                 ),
               ],
@@ -286,18 +336,25 @@ class _MainPageState extends State<MainPage> {
                     child: SvgPicture.asset('assets/logo.svg'),
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  child: StreamBuilder<String>(
-                    stream: outputStream,
-                    builder: (context, snapshot) => Text(
-                      snapshot.data ?? '',
-                      style: const TextStyle(
-                        color: CupertinoColors.lightBackgroundGray,
-                      ),
+                if (outputStream != null)
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: StreamBuilder<String>(
+                      stream: outputStream,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          outputText += '${snapshot.data}\n';
+                          return Text(
+                            outputText,
+                            style: const TextStyle(
+                              color: CupertinoColors.lightBackgroundGray,
+                            ),
+                          );
+                        }
+                        return const Text('');
+                      },
                     ),
                   ),
-                ),
               ],
             ),
           ),

@@ -66,6 +66,8 @@ class _SplashScreenState extends State<SplashScreen> {
                                         projectPath: value,
                                       )),
                               (route) => false);
+                        } else {
+                          dialogIsOpen = false;
                         }
                       });
                     }

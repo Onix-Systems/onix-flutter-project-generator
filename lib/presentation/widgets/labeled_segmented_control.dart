@@ -3,11 +3,15 @@ import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 
 class LabeledSegmentedControl extends StatefulWidget {
   const LabeledSegmentedControl(
-      {Key? key, required this.label, required this.values})
+      {Key? key,
+      required this.label,
+      required this.values,
+      required this.onChange})
       : super(key: key);
 
   final String label;
   final List<String> values;
+  final ValueSetter<String> onChange;
 
   @override
   State<LabeledSegmentedControl> createState() =>
@@ -68,6 +72,7 @@ class _LabeledSegmentedControlState extends State<LabeledSegmentedControl> {
               setState(() {
                 route = value;
               });
+              widget.onChange.call(route);
             },
           ),
         ],
