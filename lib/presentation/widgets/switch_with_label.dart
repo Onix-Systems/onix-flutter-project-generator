@@ -2,18 +2,32 @@ import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 
 class SwitchWithLabel extends StatefulWidget {
-  const SwitchWithLabel({Key? key, required this.label, this.subLabel})
+  const SwitchWithLabel(
+      {Key? key,
+      required this.label,
+      this.subLabel,
+      required this.valueSetter,
+      required this.initialValue})
       : super(key: key);
 
   final String label;
   final String? subLabel;
+  final bool initialValue;
+
+  final ValueSetter<bool> valueSetter;
 
   @override
   State<SwitchWithLabel> createState() => _SwitchWithLabelState();
 }
 
 class _SwitchWithLabelState extends State<SwitchWithLabel> {
-  bool switchValue = false;
+  late bool switchValue;
+
+  @override
+  void initState() {
+    switchValue = widget.initialValue;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +62,7 @@ class _SwitchWithLabelState extends State<SwitchWithLabel> {
             onChanged: (value) {
               setState(() {
                 switchValue = value;
+                widget.valueSetter.call(value);
               });
             },
           ),

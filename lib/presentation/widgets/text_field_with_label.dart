@@ -8,8 +8,9 @@ class TextFieldWithLabel extends StatefulWidget {
     required this.label,
     required this.textController,
     required this.focusNode,
-    this.onSubmitted,
+    required this.onSubmitted,
     this.snakeCase = true,
+    this.toSet,
     this.subLabel,
   }) : super(key: key);
 
@@ -18,25 +19,43 @@ class TextFieldWithLabel extends StatefulWidget {
   final TextEditingController textController;
 
   final FocusNode focusNode;
-  final VoidCallback? onSubmitted;
+  final VoidCallback onSubmitted;
 
   final bool snakeCase;
+  final bool? toSet;
 
   @override
   State<TextFieldWithLabel> createState() => _TextFieldWithLabelState();
 }
 
 class _TextFieldWithLabelState extends State<TextFieldWithLabel> {
-  late bool inFocus = false;
+  late final bool? snakeCase;
 
   @override
   void initState() {
+    if (widget.toSet != null) {
+      snakeCase = null;
+    } else {
+      snakeCase = widget.snakeCase;
+    }
     widget.focusNode.addListener(() {
-      setState(() {
-        inFocus = widget.focusNode.hasFocus;
-      });
+      if (!widget.focusNode.hasFocus) {
+        _onSubmit();
+      }
     });
     super.initState();
+  }
+
+  _onSubmit() {
+    if (snakeCase != null) {
+      widget.textController.text = snakeCase!
+          ? widget.textController.text.snakeCase
+          : widget.textController.text.toLowerCase();
+    } else {
+      widget.textController.text =
+          widget.textController.text.paramCase.replaceAll('-', ' ');
+    }
+    widget.onSubmitted.call();
   }
 
   @override
@@ -70,13 +89,14 @@ class _TextFieldWithLabelState extends State<TextFieldWithLabel> {
             controller: widget.textController,
             focusNode: widget.focusNode,
             keyboardType: TextInputType.text,
-            onChanged: (value) {},
-            onSubmitted: (value) {
-              setState(() {
-                widget.textController.text =
-                    widget.snakeCase ? value.snakeCase : value.dotCase;
-                widget.onSubmitted;
-              });
+            onChanged: (value) {
+              var position = widget.textController.selection.base;
+              widget.textController.text = value;
+              widget.textController.selection =
+                  TextSelection.fromPosition(position);
+            },
+            onSubmitted: (_) {
+              _onSubmit();
             },
           ),
         ),

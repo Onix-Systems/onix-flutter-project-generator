@@ -14,6 +14,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   bool logoVisible = false;
   bool buttonVisible = false;
+  bool dialogIsOpen = false;
 
   @override
   void initState() {
@@ -55,19 +56,21 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: CupertinoButton(
                   color: AppColors.orange,
                   onPressed: () {
-                    FilePicker.platform.getDirectoryPath().then((value) {
-                      if (value != null) {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            CupertinoPageRoute(
-                                builder: (context) => MainPage(
-                                      projectPath: value,
-                                    )),
-                            (route) => false);
-                      }
-                    });
+                    if (!dialogIsOpen) {
+                      dialogIsOpen = true;
+                      FilePicker.platform.getDirectoryPath().then((value) {
+                        if (value != null) {
+                          Navigator.of(context).pushAndRemoveUntil(
+                              CupertinoPageRoute(
+                                  builder: (context) => MainPage(
+                                        projectPath: value,
+                                      )),
+                              (route) => false);
+                        }
+                      });
+                    }
                   },
-                  child: const Text(
-                      'Select folder where you want to create project'),
+                  child: const Text('Select folder with your projects'),
                 ),
               ),
             )
