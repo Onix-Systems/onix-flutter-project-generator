@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/main_page.dart';
 import 'package:onix_flutter_bricks/presentation/screens/splash_screen/splash_screen.dart';
-import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -12,9 +10,9 @@ class MyApp extends StatelessWidget {
     return const CupertinoApp(
       theme: CupertinoThemeData(
         scaffoldBackgroundColor: CupertinoColors.darkBackgroundGray,
+        brightness: Brightness.dark,
       ),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       home: SplashScreen(),
     );
   }

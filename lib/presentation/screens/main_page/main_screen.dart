@@ -5,18 +5,17 @@ import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-//TODO: fix output
+class MainScreen extends StatelessWidget {
+  MainScreen({Key? key, required this.projectPath}) : super(key: key);
 
-class MainPage extends StatelessWidget {
-  MainPage({Key? key, required this.projectPath}) : super(key: key);
-
-  String projectPath = '';
+  String projectPath;
   final pathStreamController = StreamController<String>();
-  late final pathStream = pathStreamController.stream;
+  late final pathStream = pathStreamController.stream.asBroadcastStream();
   final TextEditingController projectNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    pathStreamController.add(projectPath);
     return CupertinoPageScaffold(
       child: Center(
         child: Padding(
@@ -24,7 +23,7 @@ class MainPage extends StatelessWidget {
           child: Column(
             children: [
               BuildTop(
-                projectPath: projectPath,
+                //projectPath: projectPath,
                 pathStream: pathStream,
                 pathStreamController: pathStreamController,
                 projectNameController: projectNameController,

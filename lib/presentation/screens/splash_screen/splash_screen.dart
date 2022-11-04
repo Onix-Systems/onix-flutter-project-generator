@@ -1,7 +1,7 @@
-import 'package:file_picker/file_picker.dart';
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/main_page.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/main_screen.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   bool logoVisible = false;
   bool buttonVisible = false;
-  bool dialogIsOpen = false;
 
   @override
   void initState() {
@@ -56,23 +55,25 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: CupertinoButton(
                   color: AppColors.orange,
                   onPressed: () {
-                    if (!dialogIsOpen) {
-                      dialogIsOpen = true;
-                      FilePicker.platform.getDirectoryPath().then((value) {
+                    getDirectoryPath().then(
+                      (value) {
                         if (value != null) {
                           Navigator.of(context).pushAndRemoveUntil(
-                              CupertinoPageRoute(
-                                  builder: (context) => MainPage(
-                                        projectPath: value,
-                                      )),
-                              (route) => false);
-                        } else {
-                          dialogIsOpen = false;
+                            CupertinoPageRoute(
+                              builder: (context) => MainScreen(
+                                projectPath: value,
+                              ),
+                            ),
+                            (route) => false,
+                          );
                         }
-                      });
-                    }
+                      },
+                    );
                   },
-                  child: const Text('Select folder with your projects'),
+                  child: const Text(
+                    'Select folder with your projects',
+                    style: TextStyle(color: CupertinoColors.black),
+                  ),
                 ),
               ),
             )

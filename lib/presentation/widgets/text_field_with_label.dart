@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 import 'package:recase/recase.dart';
@@ -9,6 +11,8 @@ class TextFieldWithLabel extends StatefulWidget {
     required this.textController,
     required this.focusNode,
     required this.onSubmitted,
+    required this.onChanged,
+    this.error = false,
     this.snakeCase = true,
     this.toSet,
     this.subLabel,
@@ -20,9 +24,11 @@ class TextFieldWithLabel extends StatefulWidget {
 
   final FocusNode focusNode;
   final VoidCallback onSubmitted;
+  final VoidCallback onChanged;
 
   final bool snakeCase;
   final bool? toSet;
+  final bool error;
 
   @override
   State<TextFieldWithLabel> createState() => _TextFieldWithLabelState();
@@ -55,7 +61,7 @@ class _TextFieldWithLabelState extends State<TextFieldWithLabel> {
       widget.textController.text =
           widget.textController.text.paramCase.replaceAll('-', ' ');
     }
-    widget.onSubmitted.call();
+    widget.onSubmitted;
   }
 
   @override
@@ -86,6 +92,10 @@ class _TextFieldWithLabelState extends State<TextFieldWithLabel> {
         SizedBox(
           width: 300,
           child: CupertinoTextField(
+            style: TextStyle(
+                color: widget.error
+                    ? CupertinoColors.destructiveRed
+                    : AppColors.white),
             controller: widget.textController,
             focusNode: widget.focusNode,
             keyboardType: TextInputType.text,
@@ -94,6 +104,7 @@ class _TextFieldWithLabelState extends State<TextFieldWithLabel> {
               widget.textController.text = value;
               widget.textController.selection =
                   TextSelection.fromPosition(position);
+              widget.onChanged();
             },
             onSubmitted: (_) {
               _onSubmit();

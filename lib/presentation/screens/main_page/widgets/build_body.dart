@@ -1,15 +1,23 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:async/async.dart' show StreamGroup;
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_output.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/signing_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_segmented_control.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/switch_with_label.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/text_field_with_label.dart';
 import 'package:process_run/shell.dart';
 import 'package:recase/recase.dart';
+
+import '../../../../core/di/di.dart';
+import '../../../../utils/utils.dart';
+
+part '../utils/flutter_project_gen.dart';
 
 class BuildBody extends StatefulWidget {
   BuildBody(
@@ -21,8 +29,8 @@ class BuildBody extends StatefulWidget {
       : super(key: key);
 
   String projectPath;
-  final pathStreamController;
-  final pathStream;
+  final StreamController<String> pathStreamController;
+  final Stream<String> pathStream;
   final TextEditingController projectNameController;
 
   @override
@@ -30,7 +38,8 @@ class BuildBody extends StatefulWidget {
 }
 
 class _BuildBodyState extends State<BuildBody> {
-  late String projectPath;
+  bool isGenerating = false;
+
   String projectName = 'new_project';
   String orgName = 'com.example';
   bool flavorize = true;
@@ -51,33 +60,62 @@ class _BuildBodyState extends State<BuildBody> {
   final FocusNode organizationFocusNode = FocusNode();
   final TextEditingController flavorsController = TextEditingController();
   final FocusNode flavorsFocusNode = FocusNode();
+  bool projectExists = false;
 
-  //final outputStreamController = StreamController<String>();
-  //late final outputStream = outputStreamController.stream;
-  Stream<String>? outputStream;
+  final outputStreamController = StreamController<ColoredLine>();
+  late final Stream<ColoredLine> outputStream =
+      outputStreamController.stream.asBroadcastStream();
+  List<ColoredLine> outputText = [];
 
-  String outputText = '';
+  List<String> signingVars = [
+    'Some developer',
+    'Flutter dep',
+    'Onix-Systems',
+    'Kropyvnytskyi',
+    'Kirovohrad oblast',
+    'UA'
+  ];
 
   @override
   void initState() {
-    projectPath = widget.projectPath;
     router = routers.first;
     localization = localizators.first;
     widget.projectNameController.text = projectName;
     organizationController.text = orgName;
-    widget.pathStreamController.add(
-        '${widget.projectPath.replaceAll('/Volumes/Macintosh HD/Users', '')}/${widget.projectNameController.text}');
-    widget.projectNameController.addListener(() {
-      widget.pathStreamController.add(
-          '${widget.projectPath.replaceAll('/Volumes/Macintosh HD/Users', '')}/${widget.projectNameController.text}');
+    widget.pathStream.listen((event) {
+      widget.projectPath = event;
+      _isProjectExist();
     });
+    _isProjectExist();
+    widget.projectNameController.addListener(() {
+      projectName = widget.projectNameController.text;
+      widget.pathStreamController.add(widget.projectPath);
+    });
+
+    outputStream.listen((event) {
+      outputText.add(event);
+    });
+
     super.initState();
   }
 
-  // void addLine(String line) {
-  //   outputText += '$line\n';
-  //   outputStreamController.add(outputText);
-  // }
+  @override
+  void dispose() {
+    organizationController.dispose();
+    flavorsController.dispose();
+    outputStreamController.close();
+    super.dispose();
+  }
+
+  void _isProjectExist() {
+    Directory('${widget.projectPath}/$projectName').exists().then((value) {
+      if (projectExists != value) {
+        setState(() {
+          projectExists = value;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,10 +134,12 @@ class _BuildBodyState extends State<BuildBody> {
                   label: 'Project name:',
                   textController: widget.projectNameController,
                   focusNode: projectNameFocusNode,
+                  error: projectExists,
                   onSubmitted: () {
                     projectName = widget.projectNameController.text.snakeCase;
                     widget.projectNameController.text = projectName;
                   },
+                  onChanged: () {},
                 ),
                 const SizedBox(height: 20),
                 TextFieldWithLabel(
@@ -111,6 +151,7 @@ class _BuildBodyState extends State<BuildBody> {
                     orgName = organizationController.text.toLowerCase();
                     organizationController.text = orgName;
                   },
+                  onChanged: () {},
                 ),
                 const SizedBox(height: 20),
                 SwitchWithLabel(
@@ -132,6 +173,7 @@ class _BuildBodyState extends State<BuildBody> {
                     textController: flavorsController,
                     focusNode: flavorsFocusNode,
                     toSet: true,
+                    onChanged: () {},
                     onSubmitted: () {
                       flavors =
                           flavorsController.text.paramCase.split('-').toSet();
@@ -171,6 +213,25 @@ class _BuildBodyState extends State<BuildBody> {
                     generateSigningKey = value;
                   },
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    TextButton(
+                      onPressed: () async {
+                        signingVars = await showCupertinoModalPopup<void>(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) =>
+                              SigningDialog(vars: signingVars),
+                        ) as List<String>;
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                      ),
+                      child: const Text('Modify signing vars...'),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 20),
                 SwitchWithLabel(
                   label: 'Will you use Sonar?',
@@ -189,47 +250,59 @@ class _BuildBodyState extends State<BuildBody> {
                 ),
                 const Spacer(),
                 CupertinoButton(
-                  color: AppColors.orange,
-                  child: const Text('Generate!'),
+                  color: isGenerating || projectExists
+                      ? AppColors.orange.withOpacity(0.03)
+                      : AppColors.orange,
+                  child: Text(
+                    'Generate!',
+                    style: TextStyle(
+                        color: isGenerating || projectExists
+                            ? AppColors.inactiveText
+                            : CupertinoColors.black),
+                  ),
                   onPressed: () async {
-                    var configFile = await File('config.json').create();
-                    await configFile.writeAsString(jsonEncode({
-                      'withUI': true,
-                      'project_name_dirt': projectName,
-                      'project_org': orgName,
-                      'flavorizr': flavorize,
-                      'flavors': flavors.toList(),
-                      'navigation': router,
-                      'localization': localization,
-                      'use_keytool': generateSigningKey,
-                      'use_sonar': useSonar,
-                      'device_preview': integrateDevicePreview
-                    }).toString());
-                    print(configFile.absolute.path);
-                    var process = await Process.start(
-                        'mason',
-                        [
-                          'make',
-                          'flutter_clean_base',
-                          '-c',
-                          configFile.absolute.path,
-                          '--on-conflict',
-                          'overwrite'
-                        ],
-                        workingDirectory: projectPath);
-                    // process
-                    //   ..outLines.forEach((element) {
-                    //     print(element);
-                    //   })
-                    //   ..errLines.forEach((element) {
-                    //     print(element);
-                    //   });
-                    setState(() {
-                      outputStream = StreamGroup.merge([
-                        process.outLines.asBroadcastStream(),
-                        process.errLines.asBroadcastStream()
-                      ]);
-                    });
+                    if (!isGenerating && !projectExists) {
+                      outputText.clear();
+                      setState(() {
+                        isGenerating = true;
+                      });
+                      if (projectName.isNotEmpty && orgName.isNotEmpty) {
+                        var configFile =
+                            await File('${widget.projectPath}/config.json')
+                                .create();
+                        await configFile.writeAsString(jsonEncode({
+                          'withUI': true,
+                          'signingVars': signingVars,
+                          'project_name_dirt': projectName,
+                          'project_org': orgName,
+                          'flavorizr': flavorize,
+                          'flavors': flavors.toList(),
+                          'navigation': router,
+                          'localization': localization,
+                          'use_keytool': generateSigningKey,
+                          'use_sonar': useSonar,
+                          'device_preview': integrateDevicePreview
+                        }).toString());
+                        var generatingResult = await flutterProjectGen(
+                            projectPath: widget.projectPath,
+                            configFile: configFile,
+                            projectName: projectName,
+                            orgName: orgName,
+                            outputText: outputText,
+                            outputStreamController: outputStreamController);
+                        configFile.delete();
+                        setState(() {
+                          isGenerating = false;
+                          projectExists = true;
+                        });
+                      } else if (projectName.isEmpty) {
+                        FocusScope.of(context)
+                            .requestFocus(projectNameFocusNode);
+                      } else {
+                        FocusScope.of(context)
+                            .requestFocus(organizationFocusNode);
+                      }
+                    }
                   },
                 ),
               ],
