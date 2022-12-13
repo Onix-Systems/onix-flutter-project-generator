@@ -1,0 +1,13 @@
+Target dependency graph (5 targets)
+FlutterMacOS in Pods, no dependencies
+file_selector_macos in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+screen_retriever in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+window_manager in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+Pods-Runner in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+file_selector_macos in Pods (explicit)
+screen_retriever in Pods (explicit)
+window_manager in Pods (explicit)

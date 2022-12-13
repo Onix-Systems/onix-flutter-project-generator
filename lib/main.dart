@@ -10,8 +10,8 @@ void main() async {
   injections();
 
   WindowOptions windowOptions = const WindowOptions(
-    minimumSize: Size(1000, 720),
-    size: Size(1000, 720),
+    minimumSize: Size(1000, 800),
+    size: Size(1000, 800),
     center: true,
     skipTaskbar: false,
     titleBarStyle: TitleBarStyle.normal,

@@ -4,10 +4,14 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_output.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/platforms_selector.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/signing_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
+import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_segmented_control.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/switch_with_label.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/text_field_with_label.dart';
@@ -67,6 +71,9 @@ class _BuildBodyState extends State<BuildBody> {
       outputStreamController.stream.asBroadcastStream();
   List<ColoredLine> outputText = [];
 
+  final platformsStreamController = StreamController<PlatformsList>();
+  late final Stream<PlatformsList> platformsStream;
+
   List<String> signingVars = [
     'Some developer',
     'Flutter dep',
@@ -80,6 +87,7 @@ class _BuildBodyState extends State<BuildBody> {
   void initState() {
     router = routers.first;
     localization = localizators.first;
+    platformsStream = platformsStreamController.stream.asBroadcastStream();
     widget.projectNameController.text = projectName;
     organizationController.text = orgName;
     widget.pathStream.listen((event) {
@@ -92,6 +100,14 @@ class _BuildBodyState extends State<BuildBody> {
       widget.pathStreamController.add(widget.projectPath);
     });
 
+    organizationController.addListener(() {
+      orgName = organizationController.text;
+    });
+
+    platformsStream.listen((event) {
+      logger.d(event);
+    });
+
     outputStream.listen((event) {
       outputText.add(event);
     });
@@ -101,6 +117,7 @@ class _BuildBodyState extends State<BuildBody> {
 
   @override
   void dispose() {
+    platformsStreamController.close();
     organizationController.dispose();
     flavorsController.dispose();
     outputStreamController.close();
@@ -139,7 +156,6 @@ class _BuildBodyState extends State<BuildBody> {
                     projectName = widget.projectNameController.text.snakeCase;
                     widget.projectNameController.text = projectName;
                   },
-                  onChanged: () {},
                 ),
                 const SizedBox(height: 20),
                 TextFieldWithLabel(
@@ -150,8 +166,12 @@ class _BuildBodyState extends State<BuildBody> {
                   onSubmitted: () {
                     orgName = organizationController.text.toLowerCase();
                     organizationController.text = orgName;
+                    logger.i(orgName);
                   },
-                  onChanged: () {},
+                ),
+                const SizedBox(height: 20),
+                PlatformSelector(
+                  controller: platformsStreamController,
                 ),
                 const SizedBox(height: 20),
                 SwitchWithLabel(
@@ -173,7 +193,6 @@ class _BuildBodyState extends State<BuildBody> {
                     textController: flavorsController,
                     focusNode: flavorsFocusNode,
                     toSet: true,
-                    onChanged: () {},
                     onSubmitted: () {
                       flavors =
                           flavorsController.text.paramCase.split('-').toSet();

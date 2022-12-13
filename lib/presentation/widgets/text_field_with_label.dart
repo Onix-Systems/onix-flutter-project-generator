@@ -11,7 +11,6 @@ class TextFieldWithLabel extends StatefulWidget {
     required this.textController,
     required this.focusNode,
     required this.onSubmitted,
-    required this.onChanged,
     this.error = false,
     this.snakeCase = true,
     this.toSet,
@@ -24,7 +23,6 @@ class TextFieldWithLabel extends StatefulWidget {
 
   final FocusNode focusNode;
   final VoidCallback onSubmitted;
-  final VoidCallback onChanged;
 
   final bool snakeCase;
   final bool? toSet;
@@ -104,7 +102,6 @@ class _TextFieldWithLabelState extends State<TextFieldWithLabel> {
               widget.textController.text = value;
               widget.textController.selection =
                   TextSelection.fromPosition(position);
-              widget.onChanged();
             },
             onSubmitted: (_) {
               _onSubmit();
