@@ -17,15 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PlatformsList {
   bool get android => throw _privateConstructorUsedError;
-
   bool get ios => throw _privateConstructorUsedError;
-
   bool get web => throw _privateConstructorUsedError;
-
   bool get macos => throw _privateConstructorUsedError;
-
   bool get windows => throw _privateConstructorUsedError;
-
   bool get linux => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -38,7 +33,6 @@ abstract class $PlatformsListCopyWith<$Res> {
   factory $PlatformsListCopyWith(
           PlatformsList value, $Res Function(PlatformsList) then) =
       _$PlatformsListCopyWithImpl<$Res, PlatformsList>;
-
   @useResult
   $Res call(
       {bool android, bool ios, bool web, bool macos, bool windows, bool linux});
@@ -51,7 +45,6 @@ class _$PlatformsListCopyWithImpl<$Res, $Val extends PlatformsList>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -100,7 +93,6 @@ abstract class _$$_PlatformsListCopyWith<$Res>
   factory _$$_PlatformsListCopyWith(
           _$_PlatformsList value, $Res Function(_$_PlatformsList) then) =
       __$$_PlatformsListCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -222,27 +214,20 @@ abstract class _PlatformsList extends PlatformsList {
       final bool macos,
       final bool windows,
       final bool linux}) = _$_PlatformsList;
-
   const _PlatformsList._() : super._();
 
   @override
   bool get android;
-
   @override
   bool get ios;
-
   @override
   bool get web;
-
   @override
   bool get macos;
-
   @override
   bool get windows;
-
   @override
   bool get linux;
-
   @override
   @JsonKey(ignore: true)
   _$$_PlatformsListCopyWith<_$_PlatformsList> get copyWith =>

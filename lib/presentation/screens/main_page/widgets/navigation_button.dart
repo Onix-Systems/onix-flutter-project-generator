@@ -1,22 +1,18 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 
 class NavigationButton extends StatefulWidget {
   const NavigationButton(
-      {required this.index,
+      {required this.selected,
       required this.label,
-      required this.navigationStreamController,
-      required this.navigationStream,
+      required this.onTap,
       Key? key})
       : super(key: key);
 
   final String label;
-  final int index;
-  final StreamController<int> navigationStreamController;
-  final Stream<int> navigationStream;
+  final VoidCallback onTap;
+  final bool selected;
 
   @override
   State<NavigationButton> createState() => _NavigationButtonState();
@@ -24,15 +20,9 @@ class NavigationButton extends StatefulWidget {
 
 class _NavigationButtonState extends State<NavigationButton> {
   bool hovered = false;
-  bool pressed = false;
 
   @override
   void initState() {
-    widget.navigationStream.listen((event) {
-      setState(() {
-        pressed = event == widget.index;
-      });
-    });
     super.initState();
   }
 
@@ -40,12 +30,10 @@ class _NavigationButtonState extends State<NavigationButton> {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
-        setState(() {
-          widget.navigationStreamController.add(widget.index);
-        });
+        widget.onTap();
       },
       onHover: (value) {
-        if (!pressed) {
+        if (!widget.selected) {
           setState(() {
             hovered = value;
           });
@@ -53,7 +41,8 @@ class _NavigationButtonState extends State<NavigationButton> {
       },
       style: OutlinedButton.styleFrom(
         foregroundColor: hovered ? AppColors.orange : Colors.transparent,
-        backgroundColor: pressed ? AppColors.orange : Colors.transparent,
+        backgroundColor:
+            widget.selected ? AppColors.orange : Colors.transparent,
         side: BorderSide(
           color: hovered ? AppColors.orange : AppColors.inactiveText,
         ),
@@ -66,7 +55,7 @@ class _NavigationButtonState extends State<NavigationButton> {
         child: Text(
           widget.label,
           style: TextStyle(
-            color: pressed ? AppColors.grayBG : AppColors.orange,
+            color: widget.selected ? AppColors.grayBG : AppColors.orange,
             fontSize: 16,
             fontWeight: FontWeight.w500,
           ),

@@ -6,16 +6,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 
 class BuildTop extends StatelessWidget {
-  BuildTop(
+  const BuildTop(
       {Key? key,
-      required this.pathStreamController,
-      required this.pathStream,
-      required this.projectNameController})
+      required this.projectName,
+      required this.projectPath,
+      required this.onPathChange})
       : super(key: key);
 
-  StreamController<String> pathStreamController;
-  Stream<String> pathStream;
-  TextEditingController projectNameController;
+  final String projectPath;
+  final String projectName;
+  final void Function(String) onPathChange;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class BuildTop extends StatelessWidget {
           onPressed: () {
             getDirectoryPath().then((value) {
               if (value != null) {
-                pathStreamController.add(value);
+                onPathChange(value);
               }
             });
           },
@@ -44,15 +44,10 @@ class BuildTop extends StatelessWidget {
                 style: TextStyle(color: CupertinoColors.systemGrey),
               ),
               const SizedBox(height: 2),
-              StreamBuilder<String>(
-                  stream: pathStream,
-                  builder: (context, snapshot) {
-                    return Text(
-                      '${snapshot.data}/${projectNameController.text}' ??
-                          'null???',
-                      style: const TextStyle(color: CupertinoColors.systemGrey),
-                    );
-                  }),
+              Text(
+                '$projectPath/$projectName',
+                style: const TextStyle(color: CupertinoColors.systemGrey),
+              ),
             ],
           ),
         ),

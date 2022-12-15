@@ -23,28 +23,24 @@ import '../../../../utils/utils.dart';
 
 part '../utils/flutter_project_gen.dart';
 
-class BuildBody extends StatefulWidget {
-  BuildBody(
-      {Key? key,
-      required this.projectPath,
-      required this.projectNameController,
-      required this.pathStreamController,
-      required this.pathStream})
-      : super(key: key);
+class BuildBody extends StatelessWidget {
+  BuildBody({
+    Key? key,
+    required this.projectPath,
+    required this.projectName,
+    required this.projectNameController,
+    required this.onGenerate,
+  }) : super(key: key) {
+    init();
+  }
 
   String projectPath;
-  final StreamController<String> pathStreamController;
-  final Stream<String> pathStream;
+  String projectName;
   final TextEditingController projectNameController;
+  final VoidCallback onGenerate;
 
-  @override
-  State<BuildBody> createState() => _BuildBodyState();
-}
-
-class _BuildBodyState extends State<BuildBody> {
   bool isGenerating = false;
 
-  String projectName = 'new_project';
   String orgName = 'com.example';
   bool flavorize = true;
   Set<String> flavors = {};
@@ -83,22 +79,12 @@ class _BuildBodyState extends State<BuildBody> {
     'UA'
   ];
 
-  @override
-  void initState() {
+  void init() {
     router = routers.first;
     localization = localizators.first;
     platformsStream = platformsStreamController.stream.asBroadcastStream();
-    widget.projectNameController.text = projectName;
     organizationController.text = orgName;
-    widget.pathStream.listen((event) {
-      widget.projectPath = event;
-      _isProjectExist();
-    });
     _isProjectExist();
-    widget.projectNameController.addListener(() {
-      projectName = widget.projectNameController.text;
-      widget.pathStreamController.add(widget.projectPath);
-    });
 
     organizationController.addListener(() {
       orgName = organizationController.text;
@@ -111,25 +97,12 @@ class _BuildBodyState extends State<BuildBody> {
     outputStream.listen((event) {
       outputText.add(event);
     });
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    platformsStreamController.close();
-    organizationController.dispose();
-    flavorsController.dispose();
-    outputStreamController.close();
-    super.dispose();
   }
 
   void _isProjectExist() {
-    Directory('${widget.projectPath}/$projectName').exists().then((value) {
+    Directory('$projectPath/$projectName').exists().then((value) {
       if (projectExists != value) {
-        setState(() {
-          projectExists = value;
-        });
+        projectExists = value;
       }
     });
   }
@@ -149,12 +122,12 @@ class _BuildBodyState extends State<BuildBody> {
               children: [
                 TextFieldWithLabel(
                   label: 'Project name:',
-                  textController: widget.projectNameController,
+                  textController: projectNameController,
                   focusNode: projectNameFocusNode,
                   error: projectExists,
                   onSubmitted: () {
-                    projectName = widget.projectNameController.text.snakeCase;
-                    widget.projectNameController.text = projectName;
+                    projectName = projectNameController.text.snakeCase;
+                    projectNameController.text = projectName;
                   },
                 ),
                 const SizedBox(height: 20),
@@ -179,9 +152,7 @@ class _BuildBodyState extends State<BuildBody> {
                   initialValue: flavorize,
                   subLabel: '(DEV & PROD flavors will be added automatically)',
                   valueSetter: (value) {
-                    setState(() {
-                      flavorize = value;
-                    });
+                    flavorize = value;
                   },
                 ),
                 const SizedBox(height: 20),
@@ -279,50 +250,7 @@ class _BuildBodyState extends State<BuildBody> {
                             ? AppColors.inactiveText
                             : CupertinoColors.black),
                   ),
-                  onPressed: () async {
-                    if (!isGenerating && !projectExists) {
-                      outputText.clear();
-                      setState(() {
-                        isGenerating = true;
-                      });
-                      if (projectName.isNotEmpty && orgName.isNotEmpty) {
-                        var configFile =
-                            await File('${widget.projectPath}/config.json')
-                                .create();
-                        await configFile.writeAsString(jsonEncode({
-                          'withUI': true,
-                          'signingVars': signingVars,
-                          'project_name_dirt': projectName,
-                          'project_org': orgName,
-                          'flavorizr': flavorize,
-                          'flavors': flavors.toList(),
-                          'navigation': router,
-                          'localization': localization,
-                          'use_keytool': generateSigningKey,
-                          'use_sonar': useSonar,
-                          'device_preview': integrateDevicePreview
-                        }).toString());
-                        var generatingResult = await flutterProjectGen(
-                            projectPath: widget.projectPath,
-                            configFile: configFile,
-                            projectName: projectName,
-                            orgName: orgName,
-                            outputText: outputText,
-                            outputStreamController: outputStreamController);
-                        configFile.delete();
-                        setState(() {
-                          isGenerating = false;
-                          projectExists = true;
-                        });
-                      } else if (projectName.isEmpty) {
-                        FocusScope.of(context)
-                            .requestFocus(projectNameFocusNode);
-                      } else {
-                        FocusScope.of(context)
-                            .requestFocus(organizationFocusNode);
-                      }
-                    }
-                  },
+                  onPressed: onGenerate,
                 ),
               ],
             ),

@@ -1,4 +1,8 @@
 import 'dart:async';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/bloc/app_bloc.dart';
+import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_body.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_top.dart';
 
@@ -7,31 +11,41 @@ import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/navigation_button.dart';
 
 class MainScreen extends StatelessWidget {
-  MainScreen({Key? key, required this.projectPath}) : super(key: key);
+  MainScreen({Key? key}) : super(key: key);
 
-  String projectPath;
-  final pathStreamController = StreamController<String>();
-  late final pathStream = pathStreamController.stream.asBroadcastStream();
-  final TextEditingController projectNameController = TextEditingController();
-  final navigationStreamController = StreamController<int>();
-  late final navigationStream =
-      navigationStreamController.stream.asBroadcastStream();
+  final TextEditingController _projectNameController = TextEditingController();
+
+  void _init(BuildContext context) {
+    _projectNameController.text = context.read<AppBloc>().state.projectName;
+    _projectNameController.addListener(() {
+      context.read<AppBloc>().add(ProjectNameChange(
+            projectName: _projectNameController.text,
+          ));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    pathStreamController.add(projectPath);
-    navigationStreamController.add(0);
+    _init(context);
     return CupertinoPageScaffold(
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              BuildTop(
-                //projectPath: projectPath,
-                pathStream: pathStream,
-                pathStreamController: pathStreamController,
-                projectNameController: projectNameController,
+              BlocBuilder<AppBloc, AppState>(
+                builder: (context, state) {
+                  logger.d('state: $state');
+                  return BuildTop(
+                    projectPath: state.projectPath,
+                    projectName: state.projectName,
+                    onPathChange: (projectPath) {
+                      context
+                          .read<AppBloc>()
+                          .add(ProjectPathChange(projectPath: projectPath));
+                    },
+                  );
+                },
               ),
               const SizedBox(height: 10),
               Row(
@@ -45,18 +59,26 @@ class MainScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 5),
-                  NavigationButton(
-                    index: 0,
-                    label: 'Base',
-                    navigationStreamController: navigationStreamController,
-                    navigationStream: navigationStream,
-                  ),
-                  const SizedBox(width: 5),
-                  NavigationButton(
-                    index: 1,
-                    label: 'Screen',
-                    navigationStreamController: navigationStreamController,
-                    navigationStream: navigationStream,
+                  BlocBuilder<AppBloc, AppState>(
+                    builder: (context, state) => Row(
+                      children: [
+                        NavigationButton(
+                          selected: context.read<AppBloc>().state.tab == 0,
+                          label: 'Base',
+                          onTap: () => context
+                              .read<AppBloc>()
+                              .add(const TabChange(tabIndex: 0)),
+                        ),
+                        const SizedBox(width: 5),
+                        NavigationButton(
+                          selected: context.read<AppBloc>().state.tab == 1,
+                          label: 'Screen',
+                          onTap: () => context
+                              .read<AppBloc>()
+                              .add(const TabChange(tabIndex: 1)),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(width: 5),
                   const Expanded(
@@ -69,23 +91,60 @@ class MainScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              StreamBuilder<int>(
-                  stream: navigationStream,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      if (snapshot.data == 0) {
-                        return BuildBody(
-                          projectPath: projectPath,
-                          pathStream: pathStream,
-                          pathStreamController: pathStreamController,
-                          projectNameController: projectNameController,
-                        );
-                      } else {
-                        return const Text('Screen');
-                      }
-                    }
-                    return CircularProgressIndicator();
-                  }),
+              BlocBuilder<AppBloc, AppState>(builder: (context, state) {
+                if (state.tab == 0) {
+                  return BuildBody(
+                    projectPath: state.projectPath,
+                    projectName: state.projectName,
+                    projectNameController: _projectNameController,
+                    onGenerate: () async {
+                      // if (!isGenerating && !projectExists) {
+                      //   outputText.clear();
+                      //
+                      //   isGenerating = true;
+                      //
+                      //   if (projectName.isNotEmpty && orgName.isNotEmpty) {
+                      //     var configFile =
+                      //     await File('$projectPath/config.json').create();
+                      //     await configFile.writeAsString(jsonEncode({
+                      //       'withUI': true,
+                      //       'signingVars': signingVars,
+                      //       'project_name_dirt': projectName,
+                      //       'project_org': orgName,
+                      //       'flavorizr': flavorize,
+                      //       'flavors': flavors.toList(),
+                      //       'navigation': router,
+                      //       'localization': localization,
+                      //       'use_keytool': generateSigningKey,
+                      //       'use_sonar': useSonar,
+                      //       'device_preview': integrateDevicePreview
+                      //     }).toString());
+                      //     var generatingResult = await flutterProjectGen(
+                      //         projectPath: projectPath,
+                      //         configFile: configFile,
+                      //         projectName: projectName,
+                      //         orgName: orgName,
+                      //         outputText: outputText,
+                      //         outputStreamController: outputStreamController);
+                      //     configFile.delete();
+                      //
+                      //     isGenerating = false;
+                      //     projectExists = true;
+                      //   } else if (projectName.isEmpty) {
+                      //     FocusScope.of(context)
+                      //         .requestFocus(projectNameFocusNode);
+                      //   } else {
+                      //     FocusScope.of(context)
+                      //         .requestFocus(organizationFocusNode);
+                      //   }
+                      // }
+                    },
+                  );
+                } else {
+                  return const Text('Screen');
+                }
+                return CircularProgressIndicator();
+              }),
             ],
           ),
         ),

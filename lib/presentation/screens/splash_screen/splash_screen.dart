@@ -1,6 +1,8 @@
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:onix_flutter_bricks/core/bloc/app_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/main_screen.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 
@@ -60,8 +62,10 @@ class _SplashScreenState extends State<SplashScreen> {
                         if (value != null) {
                           Navigator.of(context).pushAndRemoveUntil(
                             CupertinoPageRoute(
-                              builder: (context) => MainScreen(
-                                projectPath: value,
+                              builder: (context) => BlocProvider(
+                                create: (context) =>
+                                    AppBloc(projectPath: value),
+                                child: MainScreen(),
                               ),
                             ),
                             (route) => false,
