@@ -1,66 +1,34 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 import 'package:recase/recase.dart';
 
-class TextFieldWithLabel extends StatefulWidget {
+import '../../core/di/di.dart';
+
+class TextFieldWithLabel extends StatelessWidget {
   const TextFieldWithLabel({
     Key? key,
     required this.label,
-    required this.textController,
+    required this.value,
     required this.focusNode,
-    required this.onSubmitted,
+    required this.textController,
+    required this.inputFormatters,
     this.error = false,
-    this.snakeCase = true,
-    this.toSet,
     this.subLabel,
   }) : super(key: key);
 
   final String label;
   final String? subLabel;
-  final TextEditingController textController;
+  final String value;
+  final List<TextInputFormatter> inputFormatters;
 
   final FocusNode focusNode;
-  final VoidCallback onSubmitted;
 
-  final bool snakeCase;
-  final bool? toSet;
   final bool error;
 
-  @override
-  State<TextFieldWithLabel> createState() => _TextFieldWithLabelState();
-}
-
-class _TextFieldWithLabelState extends State<TextFieldWithLabel> {
-  late final bool? snakeCase;
-
-  @override
-  void initState() {
-    if (widget.toSet != null) {
-      snakeCase = null;
-    } else {
-      snakeCase = widget.snakeCase;
-    }
-    widget.focusNode.addListener(() {
-      if (!widget.focusNode.hasFocus) {
-        _onSubmit();
-      }
-    });
-    super.initState();
-  }
-
-  _onSubmit() {
-    if (snakeCase != null) {
-      widget.textController.text = snakeCase!
-          ? widget.textController.text.snakeCase
-          : widget.textController.text.toLowerCase();
-    } else {
-      widget.textController.text =
-          widget.textController.text.paramCase.replaceAll('-', ' ');
-    }
-    widget.onSubmitted;
-  }
+  final TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {
@@ -74,12 +42,12 @@ class _TextFieldWithLabelState extends State<TextFieldWithLabel> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.label,
+                label,
                 style: const TextStyle(color: AppColors.white),
               ),
-              if (widget.subLabel != null)
+              if (subLabel != null)
                 Text(
-                  widget.subLabel ?? '',
+                  subLabel ?? '',
                   textAlign: TextAlign.left,
                   style: const TextStyle(color: AppColors.white, fontSize: 13),
                 ),
@@ -91,21 +59,12 @@ class _TextFieldWithLabelState extends State<TextFieldWithLabel> {
           width: 300,
           child: CupertinoTextField(
             style: TextStyle(
-                color: widget.error
-                    ? CupertinoColors.destructiveRed
-                    : AppColors.white),
-            controller: widget.textController,
-            focusNode: widget.focusNode,
+                color:
+                    error ? CupertinoColors.destructiveRed : AppColors.white),
+            controller: textController,
+            focusNode: focusNode,
             keyboardType: TextInputType.text,
-            onChanged: (value) {
-              var position = widget.textController.selection.base;
-              widget.textController.text = value;
-              widget.textController.selection =
-                  TextSelection.fromPosition(position);
-            },
-            onSubmitted: (_) {
-              _onSubmit();
-            },
+            inputFormatters: inputFormatters,
           ),
         ),
       ],

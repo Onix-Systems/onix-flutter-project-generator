@@ -1,42 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 
-class LabeledSegmentedControl extends StatefulWidget {
+class LabeledSegmentedControl extends StatelessWidget {
   const LabeledSegmentedControl(
       {Key? key,
       required this.label,
       required this.values,
-      required this.onChange})
+      required this.onChange,
+      required this.selectedValue})
       : super(key: key);
 
   final String label;
   final List<String> values;
   final ValueSetter<String> onChange;
 
-  @override
-  State<LabeledSegmentedControl> createState() =>
-      _LabeledSegmentedControlState();
-}
-
-class _LabeledSegmentedControlState extends State<LabeledSegmentedControl> {
-  late String route;
-
-  @override
-  initState() {
-    route = widget.values.first;
-    super.initState();
-  }
+  final String selectedValue;
 
   Map<String, Widget> mapValues() {
     Map<String, Widget> result = {};
-    for (String value in widget.values) {
+    for (String value in values) {
       result.addAll({
         value: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
             value,
             style: TextStyle(
-              color: route == value
+              color: selectedValue == value
                   ? CupertinoColors.black
                   : AppColors.inactiveText,
             ),
@@ -58,21 +47,18 @@ class _LabeledSegmentedControlState extends State<LabeledSegmentedControl> {
           SizedBox(
             width: 120,
             child: Text(
-              widget.label,
+              label,
               style: const TextStyle(color: AppColors.white),
             ),
           ),
           CupertinoSegmentedControl<String>(
             padding: EdgeInsets.zero,
-            groupValue: route,
+            groupValue: selectedValue,
             selectedColor: AppColors.green,
             borderColor: AppColors.white,
             children: mapValues(),
             onValueChanged: (value) {
-              setState(() {
-                route = value;
-              });
-              widget.onChange.call(route);
+              onChange.call(selectedValue);
             },
           ),
         ],

@@ -1,49 +1,47 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:msh_checkbox/msh_checkbox.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_output.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/platforms_selector.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/signing_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_segmented_control.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/switch_with_label.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/text_field_with_label.dart';
 import 'package:process_run/shell.dart';
-import 'package:recase/recase.dart';
 
-import '../../../../core/di/di.dart';
-import '../../../../utils/utils.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
 
 part '../utils/flutter_project_gen.dart';
 
 class BuildBody extends StatelessWidget {
   BuildBody({
     Key? key,
-    required this.projectPath,
-    required this.projectName,
+    required this.state,
     required this.projectNameController,
+    required this.organizationController,
+    required this.flavorsController,
     required this.onGenerate,
   }) : super(key: key) {
     init();
   }
 
-  String projectPath;
-  String projectName;
+  final AppState state;
+
   final TextEditingController projectNameController;
+  final TextEditingController organizationController;
+  final TextEditingController flavorsController;
+
   final VoidCallback onGenerate;
 
   bool isGenerating = false;
-
-  String orgName = 'com.example';
-  bool flavorize = true;
-  Set<String> flavors = {};
 
   List<String> routers = ['goRouter', 'autoRouter'];
   String router = '';
@@ -55,12 +53,10 @@ class BuildBody extends StatelessWidget {
   bool useSonar = true;
   bool integrateDevicePreview = false;
 
+  late final List<FocusNode> focusNodes;
   final FocusNode projectNameFocusNode = FocusNode();
-  final TextEditingController organizationController = TextEditingController();
   final FocusNode organizationFocusNode = FocusNode();
-  final TextEditingController flavorsController = TextEditingController();
   final FocusNode flavorsFocusNode = FocusNode();
-  bool projectExists = false;
 
   final outputStreamController = StreamController<ColoredLine>();
   late final Stream<ColoredLine> outputStream =
@@ -80,15 +76,14 @@ class BuildBody extends StatelessWidget {
   ];
 
   void init() {
+    focusNodes = [
+      projectNameFocusNode,
+      organizationFocusNode,
+      flavorsFocusNode,
+    ];
     router = routers.first;
     localization = localizators.first;
     platformsStream = platformsStreamController.stream.asBroadcastStream();
-    organizationController.text = orgName;
-    _isProjectExist();
-
-    organizationController.addListener(() {
-      orgName = organizationController.text;
-    });
 
     platformsStream.listen((event) {
       logger.d(event);
@@ -99,16 +94,9 @@ class BuildBody extends StatelessWidget {
     });
   }
 
-  void _isProjectExist() {
-    Directory('$projectPath/$projectName').exists().then((value) {
-      if (projectExists != value) {
-        projectExists = value;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    FocusScope.of(context).requestFocus(focusNodes[state.focusNode]);
     return Expanded(
       child: Row(
         mainAxisSize: MainAxisSize.max,
@@ -123,24 +111,22 @@ class BuildBody extends StatelessWidget {
                 TextFieldWithLabel(
                   label: 'Project name:',
                   textController: projectNameController,
+                  value: state.projectName,
                   focusNode: projectNameFocusNode,
-                  error: projectExists,
-                  onSubmitted: () {
-                    projectName = projectNameController.text.snakeCase;
-                    projectNameController.text = projectName;
-                  },
+                  error: state.projectExists,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
+                  ],
                 ),
                 const SizedBox(height: 20),
                 TextFieldWithLabel(
                   label: 'Organization:',
                   textController: organizationController,
                   focusNode: organizationFocusNode,
-                  snakeCase: false,
-                  onSubmitted: () {
-                    orgName = organizationController.text.toLowerCase();
-                    organizationController.text = orgName;
-                    logger.i(orgName);
-                  },
+                  value: state.organization,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[-a-zA-Z0-9.]')),
+                  ],
                 ),
                 const SizedBox(height: 20),
                 PlatformSelector(
@@ -149,58 +135,55 @@ class BuildBody extends StatelessWidget {
                 const SizedBox(height: 20),
                 SwitchWithLabel(
                   label: 'Flavorize?',
-                  initialValue: flavorize,
+                  initialValue: state.flavorize,
                   subLabel: '(DEV & PROD flavors will be added automatically)',
-                  valueSetter: (value) {
-                    flavorize = value;
+                  valueSetter: (_) {
+                    context.read<AppBloc>().add(const FlavorizeChange());
                   },
                 ),
                 const SizedBox(height: 20),
                 Visibility(
-                  visible: flavorize,
+                  visible: state.flavorize,
                   child: TextFieldWithLabel(
                     label: 'Add flavors:',
                     subLabel: '(space separated)',
                     textController: flavorsController,
                     focusNode: flavorsFocusNode,
-                    toSet: true,
-                    onSubmitted: () {
-                      flavors =
-                          flavorsController.text.paramCase.split('-').toSet();
-                      flavors
-                        ..remove('dev')
-                        ..remove('prod');
-                      flavorsController.text = flavors
-                          .toString()
-                          .replaceAll('{', '')
-                          .replaceAll('}', '')
-                          .replaceAll(',', '');
-                    },
+                    value: state.flavors.toString(),
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'[a-zA-Z0-9 ]')),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 20),
                 LabeledSegmentedControl(
                   label: 'Router:',
-                  values: routers,
-                  onChange: (value) {
-                    router = value;
+                  values: ProjectRouter.values.map((e) => e.name).toList(),
+                  onChange: (_) {
+                    context.read<AppBloc>().add(const RouterChange());
                   },
+                  selectedValue: state.router.name,
                 ),
                 const SizedBox(height: 20),
                 LabeledSegmentedControl(
                   label: 'Localization:',
-                  values: localizators,
-                  onChange: (value) {
-                    localization = value;
+                  values:
+                      ProjectLocalization.values.map((e) => e.name).toList(),
+                  onChange: (_) {
+                    context.read<AppBloc>().add(const LocalizationChange());
                   },
+                  selectedValue: state.localization.name,
                 ),
                 const SizedBox(height: 20),
                 SwitchWithLabel(
                   label: 'Generate signing key?',
-                  initialValue: generateSigningKey,
+                  initialValue: state.generateSigningKey,
                   subLabel: '(Dialog will open in separate window)',
-                  valueSetter: (value) {
-                    generateSigningKey = value;
+                  valueSetter: (_) {
+                    context
+                        .read<AppBloc>()
+                        .add(const GenerateSigningKeyChange());
                   },
                 ),
                 Row(
@@ -225,32 +208,34 @@ class BuildBody extends StatelessWidget {
                 const SizedBox(height: 20),
                 SwitchWithLabel(
                   label: 'Will you use Sonar?',
-                  initialValue: useSonar,
-                  valueSetter: (value) {
-                    useSonar = value;
+                  initialValue: state.useSonar,
+                  valueSetter: (_) {
+                    context.read<AppBloc>().add(const UseSonarChange());
                   },
                 ),
                 const SizedBox(height: 20),
                 SwitchWithLabel(
                   label: 'Integrate Device Preview?',
-                  initialValue: integrateDevicePreview,
-                  valueSetter: (value) {
-                    integrateDevicePreview = value;
+                  initialValue: state.integrateDevicePreview,
+                  valueSetter: (_) {
+                    context
+                        .read<AppBloc>()
+                        .add(const IntegrateDevicePreviewChange());
                   },
                 ),
                 const Spacer(),
                 CupertinoButton(
-                  color: isGenerating || projectExists
+                  color: isGenerating || state.projectExists
                       ? AppColors.orange.withOpacity(0.03)
                       : AppColors.orange,
+                  onPressed: onGenerate,
                   child: Text(
                     'Generate!',
                     style: TextStyle(
-                        color: isGenerating || projectExists
+                        color: isGenerating || state.projectExists
                             ? AppColors.inactiveText
                             : CupertinoColors.black),
                   ),
-                  onPressed: onGenerate,
                 ),
               ],
             ),
