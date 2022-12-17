@@ -30,7 +30,9 @@ mixin _$AppEvent {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,7 +49,9 @@ mixin _$AppEvent {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,7 +68,9 @@ mixin _$AppEvent {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -84,7 +90,9 @@ mixin _$AppEvent {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -103,7 +111,9 @@ mixin _$AppEvent {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -122,7 +132,9 @@ mixin _$AppEvent {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -219,7 +231,9 @@ class _$Init implements Init {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
     return init(projectPath);
   }
@@ -239,7 +253,9 @@ class _$Init implements Init {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
     return init?.call(projectPath);
   }
@@ -259,7 +275,9 @@ class _$Init implements Init {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -285,7 +303,9 @@ class _$Init implements Init {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
     return init(this);
   }
@@ -307,7 +327,9 @@ class _$Init implements Init {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
     return init?.call(this);
   }
@@ -329,7 +351,9 @@ class _$Init implements Init {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -424,7 +448,9 @@ class _$TabChange implements TabChange {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
     return onTabChange(tabIndex);
   }
@@ -444,7 +470,9 @@ class _$TabChange implements TabChange {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
     return onTabChange?.call(tabIndex);
   }
@@ -464,7 +492,9 @@ class _$TabChange implements TabChange {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onTabChange != null) {
@@ -490,7 +520,9 @@ class _$TabChange implements TabChange {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
     return onTabChange(this);
   }
@@ -512,7 +544,9 @@ class _$TabChange implements TabChange {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
     return onTabChange?.call(this);
   }
@@ -534,7 +568,9 @@ class _$TabChange implements TabChange {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onTabChange != null) {
@@ -548,7 +584,6 @@ abstract class TabChange implements AppEvent {
   const factory TabChange({required final int tabIndex}) = _$TabChange;
 
   int get tabIndex;
-
   @JsonKey(ignore: true)
   _$$TabChangeCopyWith<_$TabChange> get copyWith =>
       throw _privateConstructorUsedError;
@@ -559,7 +594,6 @@ abstract class _$$ProjectPathChangeCopyWith<$Res> {
   factory _$$ProjectPathChangeCopyWith(
           _$ProjectPathChange value, $Res Function(_$ProjectPathChange) then) =
       __$$ProjectPathChangeCopyWithImpl<$Res>;
-
   @useResult
   $Res call({String projectPath});
 }
@@ -632,7 +666,9 @@ class _$ProjectPathChange implements ProjectPathChange {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
     return onProjectPathChange(projectPath);
   }
@@ -652,7 +688,9 @@ class _$ProjectPathChange implements ProjectPathChange {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
     return onProjectPathChange?.call(projectPath);
   }
@@ -672,7 +710,9 @@ class _$ProjectPathChange implements ProjectPathChange {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onProjectPathChange != null) {
@@ -698,7 +738,9 @@ class _$ProjectPathChange implements ProjectPathChange {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
     return onProjectPathChange(this);
   }
@@ -720,7 +762,9 @@ class _$ProjectPathChange implements ProjectPathChange {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
     return onProjectPathChange?.call(this);
   }
@@ -742,7 +786,9 @@ class _$ProjectPathChange implements ProjectPathChange {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onProjectPathChange != null) {
@@ -757,7 +803,6 @@ abstract class ProjectPathChange implements AppEvent {
       _$ProjectPathChange;
 
   String get projectPath;
-
   @JsonKey(ignore: true)
   _$$ProjectPathChangeCopyWith<_$ProjectPathChange> get copyWith =>
       throw _privateConstructorUsedError;
@@ -768,7 +813,6 @@ abstract class _$$ProjectNameChangeCopyWith<$Res> {
   factory _$$ProjectNameChangeCopyWith(
           _$ProjectNameChange value, $Res Function(_$ProjectNameChange) then) =
       __$$ProjectNameChangeCopyWithImpl<$Res>;
-
   @useResult
   $Res call({String projectName});
 }
@@ -841,7 +885,9 @@ class _$ProjectNameChange implements ProjectNameChange {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
     return onProjectNameChange(projectName);
   }
@@ -861,7 +907,9 @@ class _$ProjectNameChange implements ProjectNameChange {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
     return onProjectNameChange?.call(projectName);
   }
@@ -881,7 +929,9 @@ class _$ProjectNameChange implements ProjectNameChange {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onProjectNameChange != null) {
@@ -907,7 +957,9 @@ class _$ProjectNameChange implements ProjectNameChange {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
     return onProjectNameChange(this);
   }
@@ -929,7 +981,9 @@ class _$ProjectNameChange implements ProjectNameChange {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
     return onProjectNameChange?.call(this);
   }
@@ -951,7 +1005,9 @@ class _$ProjectNameChange implements ProjectNameChange {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onProjectNameChange != null) {
@@ -966,7 +1022,6 @@ abstract class ProjectNameChange implements AppEvent {
       _$ProjectNameChange;
 
   String get projectName;
-
   @JsonKey(ignore: true)
   _$$ProjectNameChangeCopyWith<_$ProjectNameChange> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1022,7 +1077,9 @@ class _$ProjectCheck implements ProjectCheck {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
     return projectCheck();
   }
@@ -1042,7 +1099,9 @@ class _$ProjectCheck implements ProjectCheck {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
     return projectCheck?.call();
   }
@@ -1062,7 +1121,9 @@ class _$ProjectCheck implements ProjectCheck {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (projectCheck != null) {
@@ -1088,7 +1149,9 @@ class _$ProjectCheck implements ProjectCheck {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
     return projectCheck(this);
   }
@@ -1110,7 +1173,9 @@ class _$ProjectCheck implements ProjectCheck {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
     return projectCheck?.call(this);
   }
@@ -1132,7 +1197,9 @@ class _$ProjectCheck implements ProjectCheck {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (projectCheck != null) {
@@ -1151,7 +1218,6 @@ abstract class _$$OrganizationChangeCopyWith<$Res> {
   factory _$$OrganizationChangeCopyWith(_$OrganizationChange value,
           $Res Function(_$OrganizationChange) then) =
       __$$OrganizationChangeCopyWithImpl<$Res>;
-
   @useResult
   $Res call({String organization});
 }
@@ -1225,7 +1291,9 @@ class _$OrganizationChange implements OrganizationChange {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
     return onOrganizationChange(organization);
   }
@@ -1245,7 +1313,9 @@ class _$OrganizationChange implements OrganizationChange {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
     return onOrganizationChange?.call(organization);
   }
@@ -1265,7 +1335,9 @@ class _$OrganizationChange implements OrganizationChange {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onOrganizationChange != null) {
@@ -1291,7 +1363,9 @@ class _$OrganizationChange implements OrganizationChange {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
     return onOrganizationChange(this);
   }
@@ -1313,7 +1387,9 @@ class _$OrganizationChange implements OrganizationChange {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
     return onOrganizationChange?.call(this);
   }
@@ -1335,7 +1411,9 @@ class _$OrganizationChange implements OrganizationChange {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onOrganizationChange != null) {
@@ -1350,7 +1428,6 @@ abstract class OrganizationChange implements AppEvent {
       _$OrganizationChange;
 
   String get organization;
-
   @JsonKey(ignore: true)
   _$$OrganizationChangeCopyWith<_$OrganizationChange> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1406,7 +1483,9 @@ class _$FlavorizeChange implements FlavorizeChange {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
     return onFlavorizeChange();
   }
@@ -1426,7 +1505,9 @@ class _$FlavorizeChange implements FlavorizeChange {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
     return onFlavorizeChange?.call();
   }
@@ -1446,7 +1527,9 @@ class _$FlavorizeChange implements FlavorizeChange {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onFlavorizeChange != null) {
@@ -1472,7 +1555,9 @@ class _$FlavorizeChange implements FlavorizeChange {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
     return onFlavorizeChange(this);
   }
@@ -1494,7 +1579,9 @@ class _$FlavorizeChange implements FlavorizeChange {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
     return onFlavorizeChange?.call(this);
   }
@@ -1516,7 +1603,9 @@ class _$FlavorizeChange implements FlavorizeChange {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onFlavorizeChange != null) {
@@ -1535,7 +1624,6 @@ abstract class _$$FlavorsChangeCopyWith<$Res> {
   factory _$$FlavorsChangeCopyWith(
           _$FlavorsChange value, $Res Function(_$FlavorsChange) then) =
       __$$FlavorsChangeCopyWithImpl<$Res>;
-
   @useResult
   $Res call({String flavors});
 }
@@ -1607,7 +1695,9 @@ class _$FlavorsChange implements FlavorsChange {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
     return onFlavorsChange(flavors);
   }
@@ -1627,7 +1717,9 @@ class _$FlavorsChange implements FlavorsChange {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
     return onFlavorsChange?.call(flavors);
   }
@@ -1647,7 +1739,9 @@ class _$FlavorsChange implements FlavorsChange {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onFlavorsChange != null) {
@@ -1673,7 +1767,9 @@ class _$FlavorsChange implements FlavorsChange {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
     return onFlavorsChange(this);
   }
@@ -1695,7 +1791,9 @@ class _$FlavorsChange implements FlavorsChange {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
     return onFlavorsChange?.call(this);
   }
@@ -1717,7 +1815,9 @@ class _$FlavorsChange implements FlavorsChange {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onFlavorsChange != null) {
@@ -1732,7 +1832,6 @@ abstract class FlavorsChange implements AppEvent {
       _$FlavorsChange;
 
   String get flavors;
-
   @JsonKey(ignore: true)
   _$$FlavorsChangeCopyWith<_$FlavorsChange> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1788,7 +1887,9 @@ class _$RouterChange implements RouterChange {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
     return onRouterChange();
   }
@@ -1808,7 +1909,9 @@ class _$RouterChange implements RouterChange {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
     return onRouterChange?.call();
   }
@@ -1828,7 +1931,9 @@ class _$RouterChange implements RouterChange {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onRouterChange != null) {
@@ -1854,7 +1959,9 @@ class _$RouterChange implements RouterChange {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
     return onRouterChange(this);
   }
@@ -1876,7 +1983,9 @@ class _$RouterChange implements RouterChange {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
     return onRouterChange?.call(this);
   }
@@ -1898,7 +2007,9 @@ class _$RouterChange implements RouterChange {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onRouterChange != null) {
@@ -1962,7 +2073,9 @@ class _$LocalizationChange implements LocalizationChange {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
     return onLocalizationChange();
   }
@@ -1982,7 +2095,9 @@ class _$LocalizationChange implements LocalizationChange {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
     return onLocalizationChange?.call();
   }
@@ -2002,7 +2117,9 @@ class _$LocalizationChange implements LocalizationChange {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onLocalizationChange != null) {
@@ -2028,7 +2145,9 @@ class _$LocalizationChange implements LocalizationChange {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
     return onLocalizationChange(this);
   }
@@ -2050,7 +2169,9 @@ class _$LocalizationChange implements LocalizationChange {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
     return onLocalizationChange?.call(this);
   }
@@ -2072,7 +2193,9 @@ class _$LocalizationChange implements LocalizationChange {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onLocalizationChange != null) {
@@ -2137,7 +2260,9 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
     return onGenerateSigningKeyChange();
   }
@@ -2157,7 +2282,9 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
     return onGenerateSigningKeyChange?.call();
   }
@@ -2177,7 +2304,9 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onGenerateSigningKeyChange != null) {
@@ -2203,7 +2332,9 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
     return onGenerateSigningKeyChange(this);
   }
@@ -2225,7 +2356,9 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
     return onGenerateSigningKeyChange?.call(this);
   }
@@ -2247,7 +2380,9 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onGenerateSigningKeyChange != null) {
@@ -2311,7 +2446,9 @@ class _$UseSonarChange implements UseSonarChange {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
     return onUseSonarChange();
   }
@@ -2331,7 +2468,9 @@ class _$UseSonarChange implements UseSonarChange {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
     return onUseSonarChange?.call();
   }
@@ -2351,7 +2490,9 @@ class _$UseSonarChange implements UseSonarChange {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onUseSonarChange != null) {
@@ -2377,7 +2518,9 @@ class _$UseSonarChange implements UseSonarChange {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
     return onUseSonarChange(this);
   }
@@ -2399,7 +2542,9 @@ class _$UseSonarChange implements UseSonarChange {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
     return onUseSonarChange?.call(this);
   }
@@ -2421,7 +2566,9 @@ class _$UseSonarChange implements UseSonarChange {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (onUseSonarChange != null) {
@@ -2460,7 +2607,7 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
 
   @override
   String toString() {
-    return 'AppEvent.onintegrateDevicePreviewChange()';
+    return 'AppEvent.onIntegrateDevicePreviewChange()';
   }
 
   @override
@@ -2488,9 +2635,11 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
-    required TResult Function() onintegrateDevicePreviewChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
   }) {
-    return onintegrateDevicePreviewChange();
+    return onIntegrateDevicePreviewChange();
   }
 
   @override
@@ -2508,9 +2657,11 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
-    TResult? Function()? onintegrateDevicePreviewChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
   }) {
-    return onintegrateDevicePreviewChange?.call();
+    return onIntegrateDevicePreviewChange?.call();
   }
 
   @override
@@ -2528,11 +2679,13 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
-    TResult Function()? onintegrateDevicePreviewChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
     required TResult orElse(),
   }) {
-    if (onintegrateDevicePreviewChange != null) {
-      return onintegrateDevicePreviewChange();
+    if (onIntegrateDevicePreviewChange != null) {
+      return onIntegrateDevicePreviewChange();
     }
     return orElse();
   }
@@ -2554,9 +2707,11 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
   }) {
-    return onintegrateDevicePreviewChange(this);
+    return onIntegrateDevicePreviewChange(this);
   }
 
   @override
@@ -2576,9 +2731,11 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
   }) {
-    return onintegrateDevicePreviewChange?.call(this);
+    return onIntegrateDevicePreviewChange?.call(this);
   }
 
   @override
@@ -2598,11 +2755,13 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
-        onintegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
     required TResult orElse(),
   }) {
-    if (onintegrateDevicePreviewChange != null) {
-      return onintegrateDevicePreviewChange(this);
+    if (onIntegrateDevicePreviewChange != null) {
+      return onIntegrateDevicePreviewChange(this);
     }
     return orElse();
   }
@@ -2610,6 +2769,466 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
 
 abstract class IntegrateDevicePreviewChange implements AppEvent {
   const factory IntegrateDevicePreviewChange() = _$IntegrateDevicePreviewChange;
+}
+
+/// @nodoc
+abstract class _$$SigningVarsChangeCopyWith<$Res> {
+  factory _$$SigningVarsChangeCopyWith(
+          _$SigningVarsChange value, $Res Function(_$SigningVarsChange) then) =
+      __$$SigningVarsChangeCopyWithImpl<$Res>;
+
+  @useResult
+  $Res call({List<String> signingVars});
+}
+
+/// @nodoc
+class __$$SigningVarsChangeCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$SigningVarsChange>
+    implements _$$SigningVarsChangeCopyWith<$Res> {
+  __$$SigningVarsChangeCopyWithImpl(
+      _$SigningVarsChange _value, $Res Function(_$SigningVarsChange) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? signingVars = null,
+  }) {
+    return _then(_$SigningVarsChange(
+      signingVars: null == signingVars
+          ? _value._signingVars
+          : signingVars // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SigningVarsChange implements SigningVarsChange {
+  const _$SigningVarsChange({required final List<String> signingVars})
+      : _signingVars = signingVars;
+
+  final List<String> _signingVars;
+
+  @override
+  List<String> get signingVars {
+    if (_signingVars is EqualUnmodifiableListView) return _signingVars;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_signingVars);
+  }
+
+  @override
+  String toString() {
+    return 'AppEvent.onSigningVarsChange(signingVars: $signingVars)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SigningVarsChange &&
+            const DeepCollectionEquality()
+                .equals(other._signingVars, _signingVars));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_signingVars));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SigningVarsChangeCopyWith<_$SigningVarsChange> get copyWith =>
+      __$$SigningVarsChangeCopyWithImpl<_$SigningVarsChange>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String projectPath) init,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+  }) {
+    return onSigningVarsChange(signingVars);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String projectPath)? init,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  }) {
+    return onSigningVarsChange?.call(signingVars);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String projectPath)? init,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    required TResult orElse(),
+  }) {
+    if (onSigningVarsChange != null) {
+      return onSigningVarsChange(signingVars);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Init value) init,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+  }) {
+    return onSigningVarsChange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Init value)? init,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+  }) {
+    return onSigningVarsChange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Init value)? init,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    required TResult orElse(),
+  }) {
+    if (onSigningVarsChange != null) {
+      return onSigningVarsChange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SigningVarsChange implements AppEvent {
+  const factory SigningVarsChange({required final List<String> signingVars}) =
+      _$SigningVarsChange;
+
+  List<String> get signingVars;
+
+  @JsonKey(ignore: true)
+  _$$SigningVarsChangeCopyWith<_$SigningVarsChange> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PlatformsChangeCopyWith<$Res> {
+  factory _$$PlatformsChangeCopyWith(
+          _$PlatformsChange value, $Res Function(_$PlatformsChange) then) =
+      __$$PlatformsChangeCopyWithImpl<$Res>;
+
+  @useResult
+  $Res call({PlatformsList platforms});
+
+  $PlatformsListCopyWith<$Res> get platforms;
+}
+
+/// @nodoc
+class __$$PlatformsChangeCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$PlatformsChange>
+    implements _$$PlatformsChangeCopyWith<$Res> {
+  __$$PlatformsChangeCopyWithImpl(
+      _$PlatformsChange _value, $Res Function(_$PlatformsChange) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? platforms = null,
+  }) {
+    return _then(_$PlatformsChange(
+      platforms: null == platforms
+          ? _value.platforms
+          : platforms // ignore: cast_nullable_to_non_nullable
+              as PlatformsList,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlatformsListCopyWith<$Res> get platforms {
+    return $PlatformsListCopyWith<$Res>(_value.platforms, (value) {
+      return _then(_value.copyWith(platforms: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$PlatformsChange implements PlatformsChange {
+  const _$PlatformsChange({required this.platforms});
+
+  @override
+  final PlatformsList platforms;
+
+  @override
+  String toString() {
+    return 'AppEvent.onPlatformsChange(platforms: $platforms)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PlatformsChange &&
+            (identical(other.platforms, platforms) ||
+                other.platforms == platforms));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, platforms);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PlatformsChangeCopyWith<_$PlatformsChange> get copyWith =>
+      __$$PlatformsChangeCopyWithImpl<_$PlatformsChange>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String projectPath) init,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+  }) {
+    return onPlatformsChange(platforms);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String projectPath)? init,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  }) {
+    return onPlatformsChange?.call(platforms);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String projectPath)? init,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    required TResult orElse(),
+  }) {
+    if (onPlatformsChange != null) {
+      return onPlatformsChange(platforms);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Init value) init,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+  }) {
+    return onPlatformsChange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Init value)? init,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+  }) {
+    return onPlatformsChange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Init value)? init,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    required TResult orElse(),
+  }) {
+    if (onPlatformsChange != null) {
+      return onPlatformsChange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PlatformsChange implements AppEvent {
+  const factory PlatformsChange({required final PlatformsList platforms}) =
+      _$PlatformsChange;
+
+  PlatformsList get platforms;
+
+  @JsonKey(ignore: true)
+  _$$PlatformsChangeCopyWith<_$PlatformsChange> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2636,9 +3255,11 @@ mixin _$AppState {
 
   bool get integrateDevicePreview => throw _privateConstructorUsedError;
 
-  int get tab => throw _privateConstructorUsedError;
+  List<String> get signingVars => throw _privateConstructorUsedError;
 
-  int get focusNode => throw _privateConstructorUsedError;
+  PlatformsList get platforms => throw _privateConstructorUsedError;
+
+  int get tab => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -2654,8 +3275,9 @@ mixin _$AppState {
             bool generateSigningKey,
             bool useSonar,
             bool integrateDevicePreview,
-            int tab,
-            int focusNode)
+            List<String> signingVars,
+            PlatformsList platforms,
+            int tab)
         data,
   }) =>
       throw _privateConstructorUsedError;
@@ -2673,8 +3295,9 @@ mixin _$AppState {
             bool generateSigningKey,
             bool useSonar,
             bool integrateDevicePreview,
-            int tab,
-            int focusNode)?
+            List<String> signingVars,
+            PlatformsList platforms,
+            int tab)?
         data,
   }) =>
       throw _privateConstructorUsedError;
@@ -2692,8 +3315,9 @@ mixin _$AppState {
             bool generateSigningKey,
             bool useSonar,
             bool integrateDevicePreview,
-            int tab,
-            int focusNode)?
+            List<String> signingVars,
+            PlatformsList platforms,
+            int tab)?
         data,
     required TResult orElse(),
   }) =>
@@ -2724,7 +3348,6 @@ mixin _$AppState {
 abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
-
   @useResult
   $Res call(
       {String projectPath,
@@ -2738,8 +3361,11 @@ abstract class $AppStateCopyWith<$Res> {
       bool generateSigningKey,
       bool useSonar,
       bool integrateDevicePreview,
-      int tab,
-      int focusNode});
+      List<String> signingVars,
+      PlatformsList platforms,
+      int tab});
+
+  $PlatformsListCopyWith<$Res> get platforms;
 }
 
 /// @nodoc
@@ -2766,8 +3392,9 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? generateSigningKey = null,
     Object? useSonar = null,
     Object? integrateDevicePreview = null,
+    Object? signingVars = null,
+    Object? platforms = null,
     Object? tab = null,
-    Object? focusNode = null,
   }) {
     return _then(_value.copyWith(
       projectPath: null == projectPath
@@ -2814,15 +3441,27 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.integrateDevicePreview
           : integrateDevicePreview // ignore: cast_nullable_to_non_nullable
               as bool,
+      signingVars: null == signingVars
+          ? _value.signingVars
+          : signingVars // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      platforms: null == platforms
+          ? _value.platforms
+          : platforms // ignore: cast_nullable_to_non_nullable
+              as PlatformsList,
       tab: null == tab
           ? _value.tab
           : tab // ignore: cast_nullable_to_non_nullable
               as int,
-      focusNode: null == focusNode
-          ? _value.focusNode
-          : focusNode // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlatformsListCopyWith<$Res> get platforms {
+    return $PlatformsListCopyWith<$Res>(_value.platforms, (value) {
+      return _then(_value.copyWith(platforms: value) as $Val);
+    });
   }
 }
 
@@ -2830,7 +3469,6 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
 abstract class _$$DataCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   factory _$$DataCopyWith(_$Data value, $Res Function(_$Data) then) =
       __$$DataCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -2845,8 +3483,12 @@ abstract class _$$DataCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       bool generateSigningKey,
       bool useSonar,
       bool integrateDevicePreview,
-      int tab,
-      int focusNode});
+      List<String> signingVars,
+      PlatformsList platforms,
+      int tab});
+
+  @override
+  $PlatformsListCopyWith<$Res> get platforms;
 }
 
 /// @nodoc
@@ -2869,8 +3511,9 @@ class __$$DataCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _$Data>
     Object? generateSigningKey = null,
     Object? useSonar = null,
     Object? integrateDevicePreview = null,
+    Object? signingVars = null,
+    Object? platforms = null,
     Object? tab = null,
-    Object? focusNode = null,
   }) {
     return _then(_$Data(
       projectPath: null == projectPath
@@ -2917,13 +3560,17 @@ class __$$DataCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _$Data>
           ? _value.integrateDevicePreview
           : integrateDevicePreview // ignore: cast_nullable_to_non_nullable
               as bool,
+      signingVars: null == signingVars
+          ? _value._signingVars
+          : signingVars // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      platforms: null == platforms
+          ? _value.platforms
+          : platforms // ignore: cast_nullable_to_non_nullable
+              as PlatformsList,
       tab: null == tab
           ? _value.tab
           : tab // ignore: cast_nullable_to_non_nullable
-              as int,
-      focusNode: null == focusNode
-          ? _value.focusNode
-          : focusNode // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -2944,9 +3591,18 @@ class _$Data implements Data {
       this.generateSigningKey = true,
       this.useSonar = true,
       this.integrateDevicePreview = false,
-      this.tab = 0,
-      this.focusNode = 0})
-      : _flavors = flavors;
+      final List<String> signingVars = const [
+        'Some developer',
+        'Flutter dep',
+        'Onix-Systems',
+        'Kropyvnytskyi',
+        'Kirovohrad oblast',
+        'UA'
+      ],
+      this.platforms = const PlatformsList(),
+      this.tab = 0})
+      : _flavors = flavors,
+        _signingVars = signingVars;
 
   @override
   final String projectPath;
@@ -2963,7 +3619,6 @@ class _$Data implements Data {
   @JsonKey()
   final bool flavorize;
   final Set<String> _flavors;
-
   @override
   @JsonKey()
   Set<String> get flavors {
@@ -2987,16 +3642,26 @@ class _$Data implements Data {
   @override
   @JsonKey()
   final bool integrateDevicePreview;
+  final List<String> _signingVars;
+
+  @override
+  @JsonKey()
+  List<String> get signingVars {
+    if (_signingVars is EqualUnmodifiableListView) return _signingVars;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_signingVars);
+  }
+
+  @override
+  @JsonKey()
+  final PlatformsList platforms;
   @override
   @JsonKey()
   final int tab;
-  @override
-  @JsonKey()
-  final int focusNode;
 
   @override
   String toString() {
-    return 'AppState.data(projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, flavorize: $flavorize, flavors: $flavors, router: $router, localization: $localization, generateSigningKey: $generateSigningKey, useSonar: $useSonar, integrateDevicePreview: $integrateDevicePreview, tab: $tab, focusNode: $focusNode)';
+    return 'AppState.data(projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, flavorize: $flavorize, flavors: $flavors, router: $router, localization: $localization, generateSigningKey: $generateSigningKey, useSonar: $useSonar, integrateDevicePreview: $integrateDevicePreview, signingVars: $signingVars, platforms: $platforms, tab: $tab)';
   }
 
   @override
@@ -3024,9 +3689,11 @@ class _$Data implements Data {
                 other.useSonar == useSonar) &&
             (identical(other.integrateDevicePreview, integrateDevicePreview) ||
                 other.integrateDevicePreview == integrateDevicePreview) &&
-            (identical(other.tab, tab) || other.tab == tab) &&
-            (identical(other.focusNode, focusNode) ||
-                other.focusNode == focusNode));
+            const DeepCollectionEquality()
+                .equals(other._signingVars, _signingVars) &&
+            (identical(other.platforms, platforms) ||
+                other.platforms == platforms) &&
+            (identical(other.tab, tab) || other.tab == tab));
   }
 
   @override
@@ -3043,8 +3710,9 @@ class _$Data implements Data {
       generateSigningKey,
       useSonar,
       integrateDevicePreview,
-      tab,
-      focusNode);
+      const DeepCollectionEquality().hash(_signingVars),
+      platforms,
+      tab);
 
   @JsonKey(ignore: true)
   @override
@@ -3067,8 +3735,9 @@ class _$Data implements Data {
             bool generateSigningKey,
             bool useSonar,
             bool integrateDevicePreview,
-            int tab,
-            int focusNode)
+            List<String> signingVars,
+            PlatformsList platforms,
+            int tab)
         data,
   }) {
     return data(
@@ -3083,8 +3752,9 @@ class _$Data implements Data {
         generateSigningKey,
         useSonar,
         integrateDevicePreview,
-        tab,
-        focusNode);
+        signingVars,
+        platforms,
+        tab);
   }
 
   @override
@@ -3102,8 +3772,9 @@ class _$Data implements Data {
             bool generateSigningKey,
             bool useSonar,
             bool integrateDevicePreview,
-            int tab,
-            int focusNode)?
+            List<String> signingVars,
+            PlatformsList platforms,
+            int tab)?
         data,
   }) {
     return data?.call(
@@ -3118,8 +3789,9 @@ class _$Data implements Data {
         generateSigningKey,
         useSonar,
         integrateDevicePreview,
-        tab,
-        focusNode);
+        signingVars,
+        platforms,
+        tab);
   }
 
   @override
@@ -3137,8 +3809,9 @@ class _$Data implements Data {
             bool generateSigningKey,
             bool useSonar,
             bool integrateDevicePreview,
-            int tab,
-            int focusNode)?
+            List<String> signingVars,
+            PlatformsList platforms,
+            int tab)?
         data,
     required TResult orElse(),
   }) {
@@ -3155,8 +3828,9 @@ class _$Data implements Data {
           generateSigningKey,
           useSonar,
           integrateDevicePreview,
-          tab,
-          focusNode);
+          signingVars,
+          platforms,
+          tab);
     }
     return orElse();
   }
@@ -3203,27 +3877,22 @@ abstract class Data implements AppState {
       final bool generateSigningKey,
       final bool useSonar,
       final bool integrateDevicePreview,
-      final int tab,
-      final int focusNode}) = _$Data;
+      final List<String> signingVars,
+      final PlatformsList platforms,
+      final int tab}) = _$Data;
 
   @override
   String get projectPath;
-
   @override
   String get projectName;
-
   @override
   bool get projectExists;
-
   @override
   String get organization;
-
   @override
   bool get flavorize;
-
   @override
   Set<String> get flavors;
-
   @override
   ProjectRouter get router;
 
@@ -3240,10 +3909,13 @@ abstract class Data implements AppState {
   bool get integrateDevicePreview;
 
   @override
-  int get tab;
+  List<String> get signingVars;
 
   @override
-  int get focusNode;
+  PlatformsList get platforms;
+
+  @override
+  int get tab;
 
   @override
   @JsonKey(ignore: true)

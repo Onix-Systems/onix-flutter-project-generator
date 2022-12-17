@@ -26,6 +26,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<UseSonarChange>((event, emit) => _useSonarChange(event, emit));
     on<IntegrateDevicePreviewChange>(
         (event, emit) => _integrateDevicePreviewChange(event, emit));
+    on<SigningVarsChange>((event, emit) => _signingVarsChange(event, emit));
+    on<PlatformsChange>((event, emit) => _platformsChange(event, emit));
   }
 
   FutureOr<void> _init(Init event, Emitter<AppState> emit) {}
@@ -41,8 +43,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _projectNameChange(
       ProjectNameChange event, Emitter<AppState> emit) async {
-    emit(
-        state.copyWith(projectName: event.projectName.snakeCase, focusNode: 0));
+    emit(state.copyWith(projectName: event.projectName.snakeCase));
     add(const ProjectCheck());
   }
 
@@ -57,15 +58,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       OrganizationChange event, Emitter<AppState> emit) async {
     var org = event.organization.hostCase();
     logger.d('org: $org');
-    emit(state.copyWith(
-        organization: event.organization.hostCase(), focusNode: 1));
+    emit(state.copyWith(organization: event.organization.hostCase()));
   }
 
   FutureOr<void> _flavorizeChange(_, Emitter<AppState> emit) async {
     if (state.flavorize) {
       emit(state.copyWith(flavorize: false));
     } else {
-      emit(state.copyWith(flavorize: true, focusNode: 2));
+      emit(state.copyWith(flavorize: true));
     }
   }
 
@@ -75,7 +75,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     flavors
       ..remove('dev')
       ..remove('prod');
-    emit(state.copyWith(flavors: flavors, focusNode: 2));
+    emit(state.copyWith(flavors: flavors));
   }
 
   FutureOr<void> _routerChange(_, Emitter<AppState> emit) async {
@@ -117,6 +117,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     } else {
       emit(state.copyWith(integrateDevicePreview: true));
     }
+  }
+
+  FutureOr<void> _signingVarsChange(
+      SigningVarsChange event, Emitter<AppState> emit) async {
+    emit(state.copyWith(signingVars: event.signingVars));
+  }
+
+  FutureOr<void> _platformsChange(
+      PlatformsChange event, Emitter<AppState> emit) async {
+    emit(state.copyWith(platforms: event.platforms));
   }
 }
 

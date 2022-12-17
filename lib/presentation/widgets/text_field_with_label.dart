@@ -12,7 +12,6 @@ class TextFieldWithLabel extends StatelessWidget {
     Key? key,
     required this.label,
     required this.value,
-    required this.focusNode,
     required this.textController,
     required this.inputFormatters,
     this.error = false,
@@ -23,8 +22,6 @@ class TextFieldWithLabel extends StatelessWidget {
   final String? subLabel;
   final String value;
   final List<TextInputFormatter> inputFormatters;
-
-  final FocusNode focusNode;
 
   final bool error;
 
@@ -62,7 +59,6 @@ class TextFieldWithLabel extends StatelessWidget {
                 color:
                     error ? CupertinoColors.destructiveRed : AppColors.white),
             controller: textController,
-            focusNode: focusNode,
             keyboardType: TextInputType.text,
             inputFormatters: inputFormatters,
           ),

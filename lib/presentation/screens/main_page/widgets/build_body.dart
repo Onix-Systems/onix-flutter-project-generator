@@ -17,8 +17,6 @@ import 'package:onix_flutter_bricks/presentation/widgets/switch_with_label.dart'
 import 'package:onix_flutter_bricks/presentation/widgets/text_field_with_label.dart';
 import 'package:process_run/shell.dart';
 
-import 'package:onix_flutter_bricks/core/di/di.dart';
-
 part '../utils/flutter_project_gen.dart';
 
 class BuildBody extends StatelessWidget {
@@ -43,52 +41,12 @@ class BuildBody extends StatelessWidget {
 
   bool isGenerating = false;
 
-  List<String> routers = ['goRouter', 'autoRouter'];
-  String router = '';
-
-  List<String> localizators = ['Intl', 'flutter_gen'];
-  String localization = '';
-
-  bool generateSigningKey = true;
-  bool useSonar = true;
-  bool integrateDevicePreview = false;
-
-  late final List<FocusNode> focusNodes;
-  final FocusNode projectNameFocusNode = FocusNode();
-  final FocusNode organizationFocusNode = FocusNode();
-  final FocusNode flavorsFocusNode = FocusNode();
-
   final outputStreamController = StreamController<ColoredLine>();
   late final Stream<ColoredLine> outputStream =
       outputStreamController.stream.asBroadcastStream();
   List<ColoredLine> outputText = [];
 
-  final platformsStreamController = StreamController<PlatformsList>();
-  late final Stream<PlatformsList> platformsStream;
-
-  List<String> signingVars = [
-    'Some developer',
-    'Flutter dep',
-    'Onix-Systems',
-    'Kropyvnytskyi',
-    'Kirovohrad oblast',
-    'UA'
-  ];
-
   void init() {
-    focusNodes = [
-      projectNameFocusNode,
-      organizationFocusNode,
-      flavorsFocusNode,
-    ];
-    router = routers.first;
-    localization = localizators.first;
-    platformsStream = platformsStreamController.stream.asBroadcastStream();
-
-    platformsStream.listen((event) {
-      logger.d(event);
-    });
-
     outputStream.listen((event) {
       outputText.add(event);
     });
@@ -96,7 +54,6 @@ class BuildBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FocusScope.of(context).requestFocus(focusNodes[state.focusNode]);
     return Expanded(
       child: Row(
         mainAxisSize: MainAxisSize.max,
@@ -112,7 +69,6 @@ class BuildBody extends StatelessWidget {
                   label: 'Project name:',
                   textController: projectNameController,
                   value: state.projectName,
-                  focusNode: projectNameFocusNode,
                   error: state.projectExists,
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
@@ -122,7 +78,6 @@ class BuildBody extends StatelessWidget {
                 TextFieldWithLabel(
                   label: 'Organization:',
                   textController: organizationController,
-                  focusNode: organizationFocusNode,
                   value: state.organization,
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(RegExp(r'[-a-zA-Z0-9.]')),
@@ -130,7 +85,7 @@ class BuildBody extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 PlatformSelector(
-                  controller: platformsStreamController,
+                  state: state,
                 ),
                 const SizedBox(height: 20),
                 SwitchWithLabel(
@@ -148,7 +103,6 @@ class BuildBody extends StatelessWidget {
                     label: 'Add flavors:',
                     subLabel: '(space separated)',
                     textController: flavorsController,
-                    focusNode: flavorsFocusNode,
                     value: state.flavors.toString(),
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(
@@ -190,13 +144,15 @@ class BuildBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     TextButton(
-                      onPressed: () async {
-                        signingVars = await showCupertinoModalPopup<void>(
+                      onPressed: () {
+                        showCupertinoModalPopup<List<String>>(
                           context: context,
                           barrierDismissible: false,
-                          builder: (context) =>
-                              SigningDialog(vars: signingVars),
-                        ) as List<String>;
+                          builder: (context) => SigningDialog(state: state),
+                        ).then((signingVars) {
+                          context.read<AppBloc>().add(SigningVarsChange(
+                              signingVars: signingVars ?? state.signingVars));
+                        });
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,

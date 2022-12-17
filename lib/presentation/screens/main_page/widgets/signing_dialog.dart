@@ -1,16 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/text_field_with_label.dart';
+import 'package:flutter/services.dart';
+import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
 
-class SigningDialog extends StatefulWidget {
-  SigningDialog({Key? key, required this.vars}) : super(key: key);
+class SigningDialog extends StatelessWidget {
+  SigningDialog({Key? key, required this.state}) : super(key: key);
 
-  List<String> vars;
+  AppState state;
 
-  @override
-  State<SigningDialog> createState() => _SigningDialogState();
-}
-
-class _SigningDialogState extends State<SigningDialog> {
   final _nameController = TextEditingController();
   final _orgUnitController = TextEditingController();
   final _orgController = TextEditingController();
@@ -18,30 +15,18 @@ class _SigningDialogState extends State<SigningDialog> {
   final _stateController = TextEditingController();
   final _countryController = TextEditingController();
 
-  @override
-  void initState() {
-    _nameController.text = widget.vars[0];
-    _orgUnitController.text = widget.vars[1];
-    _orgController.text = widget.vars[2];
-    _cityController.text = widget.vars[3];
-    _stateController.text = widget.vars[4];
-    _countryController.text = widget.vars[5];
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _countryController.dispose();
-    _stateController.dispose();
-    _cityController.dispose();
-    _orgController.dispose();
-    _orgUnitController.dispose();
-    _nameController.dispose();
-    super.dispose();
+  void _init(BuildContext context) {
+    _nameController.text = state.signingVars[0];
+    _orgUnitController.text = state.signingVars[1];
+    _orgController.text = state.signingVars[2];
+    _cityController.text = state.signingVars[3];
+    _stateController.text = state.signingVars[4];
+    _countryController.text = state.signingVars[5];
   }
 
   @override
   Widget build(BuildContext context) {
+    _init(context);
     return CupertinoAlertDialog(
       title: const Text('Signing vars'),
       content: Column(
@@ -55,6 +40,10 @@ class _SigningDialogState extends State<SigningDialog> {
           const SizedBox(height: 5),
           CupertinoTextField(
             controller: _nameController,
+            autofocus: true,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9 ]')),
+            ],
           ),
           const SizedBox(height: 15),
           const Text(
@@ -64,6 +53,9 @@ class _SigningDialogState extends State<SigningDialog> {
           const SizedBox(height: 5),
           CupertinoTextField(
             controller: _orgUnitController,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9 ]')),
+            ],
           ),
           const SizedBox(height: 15),
           const Text(
@@ -73,6 +65,9 @@ class _SigningDialogState extends State<SigningDialog> {
           const SizedBox(height: 5),
           CupertinoTextField(
             controller: _orgController,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[-a-zA-Z0-9 ]')),
+            ],
           ),
           const SizedBox(height: 15),
           const Text(
@@ -82,6 +77,9 @@ class _SigningDialogState extends State<SigningDialog> {
           const SizedBox(height: 5),
           CupertinoTextField(
             controller: _cityController,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]')),
+            ],
           ),
           const SizedBox(height: 15),
           const Text(
@@ -91,6 +89,9 @@ class _SigningDialogState extends State<SigningDialog> {
           const SizedBox(height: 5),
           CupertinoTextField(
             controller: _stateController,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]')),
+            ],
           ),
           const SizedBox(height: 15),
           const Text(
@@ -100,6 +101,10 @@ class _SigningDialogState extends State<SigningDialog> {
           const SizedBox(height: 5),
           CupertinoTextField(
             controller: _countryController,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(2),
+              FilteringTextInputFormatter.allow(RegExp(r'[A-Z ]')),
+            ],
           ),
         ],
       ),
@@ -110,22 +115,22 @@ class _SigningDialogState extends State<SigningDialog> {
             Navigator.pop(context, [
               _nameController.text.isNotEmpty
                   ? _nameController.text
-                  : widget.vars[0],
+                  : state.signingVars[0],
               _orgUnitController.text.isNotEmpty
                   ? _orgUnitController.text
-                  : widget.vars[1],
+                  : state.signingVars[1],
               _orgController.text.isNotEmpty
                   ? _orgController.text
-                  : widget.vars[2],
+                  : state.signingVars[2],
               _cityController.text.isNotEmpty
                   ? _cityController.text
-                  : widget.vars[3],
+                  : state.signingVars[3],
               _stateController.text.isNotEmpty
                   ? _stateController.text
-                  : widget.vars[4],
+                  : state.signingVars[4],
               _countryController.text.isNotEmpty
                   ? _countryController.text
-                  : widget.vars[5],
+                  : state.signingVars[5],
             ]);
           },
           child: const Text('Ok'),
