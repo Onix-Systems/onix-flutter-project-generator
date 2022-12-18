@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
+import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_body.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_top.dart';
 
@@ -15,6 +18,11 @@ class MainScreen extends StatelessWidget {
   final TextEditingController _projectNameController = TextEditingController();
   final TextEditingController _projectOrgController = TextEditingController();
   final TextEditingController _flavorsController = TextEditingController();
+
+  final outputStreamController = StreamController<ColoredLine>();
+  late final Stream<ColoredLine> outputStream =
+      outputStreamController.stream.asBroadcastStream();
+  List<ColoredLine> outputText = [];
 
   void _init(BuildContext context) {
     _projectNameController.text = context.read<AppBloc>().state.projectName;
@@ -42,6 +50,10 @@ class MainScreen extends StatelessWidget {
             flavors: _flavorsController.text,
           ));
       _flavorsController.selection = TextSelection.fromPosition(position);
+    });
+
+    outputStream.listen((event) {
+      outputText.add(event);
     });
   }
 
@@ -128,47 +140,19 @@ class MainScreen extends StatelessWidget {
                       projectNameController: _projectNameController,
                       organizationController: _projectOrgController,
                       flavorsController: _flavorsController,
+                      outputStream: outputStream,
+                      outputText: outputText,
                       onGenerate: () async {
-                        // if (!isGenerating && !projectExists) {
-                        //   outputText.clear();
-                        //
-                        //   isGenerating = true;
-                        //
-                        //   if (projectName.isNotEmpty && orgName.isNotEmpty) {
-                        //     var configFile =
-                        //     await File('$projectPath/config.json').create();
-                        //     await configFile.writeAsString(jsonEncode({
-                        //       'withUI': true,
-                        //       'signingVars': signingVars,
-                        //       'project_name_dirt': projectName,
-                        //       'project_org': orgName,
-                        //       'flavorizr': flavorize,
-                        //       'flavors': flavors.toList(),
-                        //       'navigation': router,
-                        //       'localization': localization,
-                        //       'use_keytool': generateSigningKey,
-                        //       'use_sonar': useSonar,
-                        //       'device_preview': integrateDevicePreview
-                        //     }).toString());
-                        //     var generatingResult = await flutterProjectGen(
-                        //         projectPath: projectPath,
-                        //         configFile: configFile,
-                        //         projectName: projectName,
-                        //         orgName: orgName,
-                        //         outputText: outputText,
-                        //         outputStreamController: outputStreamController);
-                        //     configFile.delete();
-                        //
-                        //     isGenerating = false;
-                        //     projectExists = true;
-                        //   } else if (projectName.isEmpty) {
-                        //     FocusScope.of(context)
-                        //         .requestFocus(projectNameFocusNode);
-                        //   } else {
-                        //     FocusScope.of(context)
-                        //         .requestFocus(organizationFocusNode);
-                        //   }
-                        // }
+                        if (state.projectName.isEmpty ||
+                            state.organization.isEmpty) {
+                          //TODO: show error
+                        } else {
+                          outputText.clear();
+                          context.read<AppBloc>().add(GenerateProject(
+                                generateProject: true,
+                                outputStreamController: outputStreamController,
+                              ));
+                        }
                       },
                     )
                   else

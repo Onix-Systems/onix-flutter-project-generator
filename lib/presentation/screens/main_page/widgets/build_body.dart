@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_output.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/platforms_selector.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/signing_dialog.dart';
@@ -27,9 +26,9 @@ class BuildBody extends StatelessWidget {
     required this.organizationController,
     required this.flavorsController,
     required this.onGenerate,
-  }) : super(key: key) {
-    init();
-  }
+    required this.outputStream,
+    required this.outputText,
+  }) : super(key: key);
 
   final AppState state;
 
@@ -39,18 +38,8 @@ class BuildBody extends StatelessWidget {
 
   final VoidCallback onGenerate;
 
-  bool isGenerating = false;
-
-  final outputStreamController = StreamController<ColoredLine>();
-  late final Stream<ColoredLine> outputStream =
-      outputStreamController.stream.asBroadcastStream();
-  List<ColoredLine> outputText = [];
-
-  void init() {
-    outputStream.listen((event) {
-      outputText.add(event);
-    });
-  }
+  final Stream<ColoredLine> outputStream;
+  final List<ColoredLine> outputText;
 
   @override
   Widget build(BuildContext context) {
@@ -181,14 +170,14 @@ class BuildBody extends StatelessWidget {
                 ),
                 const Spacer(),
                 CupertinoButton(
-                  color: isGenerating || state.projectExists
+                  color: state.isGenerating || state.projectExists
                       ? AppColors.orange.withOpacity(0.03)
                       : AppColors.orange,
                   onPressed: onGenerate,
                   child: Text(
                     'Generate!',
                     style: TextStyle(
-                        color: isGenerating || state.projectExists
+                        color: state.isGenerating || state.projectExists
                             ? AppColors.inactiveText
                             : CupertinoColors.black),
                   ),

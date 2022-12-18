@@ -33,6 +33,9 @@ mixin _$AppEvent {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +55,9 @@ mixin _$AppEvent {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +77,9 @@ mixin _$AppEvent {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -93,6 +102,7 @@ mixin _$AppEvent {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -114,6 +124,7 @@ mixin _$AppEvent {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -135,6 +146,7 @@ mixin _$AppEvent {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -234,6 +246,9 @@ class _$Init implements Init {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return init(projectPath);
   }
@@ -256,6 +271,9 @@ class _$Init implements Init {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return init?.call(projectPath);
   }
@@ -278,6 +296,9 @@ class _$Init implements Init {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -306,6 +327,7 @@ class _$Init implements Init {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return init(this);
   }
@@ -330,6 +352,7 @@ class _$Init implements Init {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return init?.call(this);
   }
@@ -354,6 +377,7 @@ class _$Init implements Init {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -451,6 +475,9 @@ class _$TabChange implements TabChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onTabChange(tabIndex);
   }
@@ -473,6 +500,9 @@ class _$TabChange implements TabChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onTabChange?.call(tabIndex);
   }
@@ -495,6 +525,9 @@ class _$TabChange implements TabChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onTabChange != null) {
@@ -523,6 +556,7 @@ class _$TabChange implements TabChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onTabChange(this);
   }
@@ -547,6 +581,7 @@ class _$TabChange implements TabChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onTabChange?.call(this);
   }
@@ -571,6 +606,7 @@ class _$TabChange implements TabChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onTabChange != null) {
@@ -669,6 +705,9 @@ class _$ProjectPathChange implements ProjectPathChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onProjectPathChange(projectPath);
   }
@@ -691,6 +730,9 @@ class _$ProjectPathChange implements ProjectPathChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onProjectPathChange?.call(projectPath);
   }
@@ -713,6 +755,9 @@ class _$ProjectPathChange implements ProjectPathChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onProjectPathChange != null) {
@@ -741,6 +786,7 @@ class _$ProjectPathChange implements ProjectPathChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onProjectPathChange(this);
   }
@@ -765,6 +811,7 @@ class _$ProjectPathChange implements ProjectPathChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onProjectPathChange?.call(this);
   }
@@ -789,6 +836,7 @@ class _$ProjectPathChange implements ProjectPathChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onProjectPathChange != null) {
@@ -888,6 +936,9 @@ class _$ProjectNameChange implements ProjectNameChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onProjectNameChange(projectName);
   }
@@ -910,6 +961,9 @@ class _$ProjectNameChange implements ProjectNameChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onProjectNameChange?.call(projectName);
   }
@@ -932,6 +986,9 @@ class _$ProjectNameChange implements ProjectNameChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onProjectNameChange != null) {
@@ -960,6 +1017,7 @@ class _$ProjectNameChange implements ProjectNameChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onProjectNameChange(this);
   }
@@ -984,6 +1042,7 @@ class _$ProjectNameChange implements ProjectNameChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onProjectNameChange?.call(this);
   }
@@ -1008,6 +1067,7 @@ class _$ProjectNameChange implements ProjectNameChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onProjectNameChange != null) {
@@ -1080,6 +1140,9 @@ class _$ProjectCheck implements ProjectCheck {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return projectCheck();
   }
@@ -1102,6 +1165,9 @@ class _$ProjectCheck implements ProjectCheck {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return projectCheck?.call();
   }
@@ -1124,6 +1190,9 @@ class _$ProjectCheck implements ProjectCheck {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (projectCheck != null) {
@@ -1152,6 +1221,7 @@ class _$ProjectCheck implements ProjectCheck {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return projectCheck(this);
   }
@@ -1176,6 +1246,7 @@ class _$ProjectCheck implements ProjectCheck {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return projectCheck?.call(this);
   }
@@ -1200,6 +1271,7 @@ class _$ProjectCheck implements ProjectCheck {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (projectCheck != null) {
@@ -1294,6 +1366,9 @@ class _$OrganizationChange implements OrganizationChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onOrganizationChange(organization);
   }
@@ -1316,6 +1391,9 @@ class _$OrganizationChange implements OrganizationChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onOrganizationChange?.call(organization);
   }
@@ -1338,6 +1416,9 @@ class _$OrganizationChange implements OrganizationChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onOrganizationChange != null) {
@@ -1366,6 +1447,7 @@ class _$OrganizationChange implements OrganizationChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onOrganizationChange(this);
   }
@@ -1390,6 +1472,7 @@ class _$OrganizationChange implements OrganizationChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onOrganizationChange?.call(this);
   }
@@ -1414,6 +1497,7 @@ class _$OrganizationChange implements OrganizationChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onOrganizationChange != null) {
@@ -1486,6 +1570,9 @@ class _$FlavorizeChange implements FlavorizeChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onFlavorizeChange();
   }
@@ -1508,6 +1595,9 @@ class _$FlavorizeChange implements FlavorizeChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onFlavorizeChange?.call();
   }
@@ -1530,6 +1620,9 @@ class _$FlavorizeChange implements FlavorizeChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onFlavorizeChange != null) {
@@ -1558,6 +1651,7 @@ class _$FlavorizeChange implements FlavorizeChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onFlavorizeChange(this);
   }
@@ -1582,6 +1676,7 @@ class _$FlavorizeChange implements FlavorizeChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onFlavorizeChange?.call(this);
   }
@@ -1606,6 +1701,7 @@ class _$FlavorizeChange implements FlavorizeChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onFlavorizeChange != null) {
@@ -1698,6 +1794,9 @@ class _$FlavorsChange implements FlavorsChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onFlavorsChange(flavors);
   }
@@ -1720,6 +1819,9 @@ class _$FlavorsChange implements FlavorsChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onFlavorsChange?.call(flavors);
   }
@@ -1742,6 +1844,9 @@ class _$FlavorsChange implements FlavorsChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onFlavorsChange != null) {
@@ -1770,6 +1875,7 @@ class _$FlavorsChange implements FlavorsChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onFlavorsChange(this);
   }
@@ -1794,6 +1900,7 @@ class _$FlavorsChange implements FlavorsChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onFlavorsChange?.call(this);
   }
@@ -1818,6 +1925,7 @@ class _$FlavorsChange implements FlavorsChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onFlavorsChange != null) {
@@ -1890,6 +1998,9 @@ class _$RouterChange implements RouterChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onRouterChange();
   }
@@ -1912,6 +2023,9 @@ class _$RouterChange implements RouterChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onRouterChange?.call();
   }
@@ -1934,6 +2048,9 @@ class _$RouterChange implements RouterChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onRouterChange != null) {
@@ -1962,6 +2079,7 @@ class _$RouterChange implements RouterChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onRouterChange(this);
   }
@@ -1986,6 +2104,7 @@ class _$RouterChange implements RouterChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onRouterChange?.call(this);
   }
@@ -2010,6 +2129,7 @@ class _$RouterChange implements RouterChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onRouterChange != null) {
@@ -2076,6 +2196,9 @@ class _$LocalizationChange implements LocalizationChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onLocalizationChange();
   }
@@ -2098,6 +2221,9 @@ class _$LocalizationChange implements LocalizationChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onLocalizationChange?.call();
   }
@@ -2120,6 +2246,9 @@ class _$LocalizationChange implements LocalizationChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onLocalizationChange != null) {
@@ -2148,6 +2277,7 @@ class _$LocalizationChange implements LocalizationChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onLocalizationChange(this);
   }
@@ -2172,6 +2302,7 @@ class _$LocalizationChange implements LocalizationChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onLocalizationChange?.call(this);
   }
@@ -2196,6 +2327,7 @@ class _$LocalizationChange implements LocalizationChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onLocalizationChange != null) {
@@ -2263,6 +2395,9 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onGenerateSigningKeyChange();
   }
@@ -2285,6 +2420,9 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onGenerateSigningKeyChange?.call();
   }
@@ -2307,6 +2445,9 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onGenerateSigningKeyChange != null) {
@@ -2335,6 +2476,7 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onGenerateSigningKeyChange(this);
   }
@@ -2359,6 +2501,7 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onGenerateSigningKeyChange?.call(this);
   }
@@ -2383,6 +2526,7 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onGenerateSigningKeyChange != null) {
@@ -2449,6 +2593,9 @@ class _$UseSonarChange implements UseSonarChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onUseSonarChange();
   }
@@ -2471,6 +2618,9 @@ class _$UseSonarChange implements UseSonarChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onUseSonarChange?.call();
   }
@@ -2493,6 +2643,9 @@ class _$UseSonarChange implements UseSonarChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onUseSonarChange != null) {
@@ -2521,6 +2674,7 @@ class _$UseSonarChange implements UseSonarChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onUseSonarChange(this);
   }
@@ -2545,6 +2699,7 @@ class _$UseSonarChange implements UseSonarChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onUseSonarChange?.call(this);
   }
@@ -2569,6 +2724,7 @@ class _$UseSonarChange implements UseSonarChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onUseSonarChange != null) {
@@ -2638,6 +2794,9 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onIntegrateDevicePreviewChange();
   }
@@ -2660,6 +2819,9 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onIntegrateDevicePreviewChange?.call();
   }
@@ -2682,6 +2844,9 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onIntegrateDevicePreviewChange != null) {
@@ -2710,6 +2875,7 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onIntegrateDevicePreviewChange(this);
   }
@@ -2734,6 +2900,7 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onIntegrateDevicePreviewChange?.call(this);
   }
@@ -2758,6 +2925,7 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onIntegrateDevicePreviewChange != null) {
@@ -2858,6 +3026,9 @@ class _$SigningVarsChange implements SigningVarsChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onSigningVarsChange(signingVars);
   }
@@ -2880,6 +3051,9 @@ class _$SigningVarsChange implements SigningVarsChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onSigningVarsChange?.call(signingVars);
   }
@@ -2902,6 +3076,9 @@ class _$SigningVarsChange implements SigningVarsChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onSigningVarsChange != null) {
@@ -2930,6 +3107,7 @@ class _$SigningVarsChange implements SigningVarsChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onSigningVarsChange(this);
   }
@@ -2954,6 +3132,7 @@ class _$SigningVarsChange implements SigningVarsChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onSigningVarsChange?.call(this);
   }
@@ -2978,6 +3157,7 @@ class _$SigningVarsChange implements SigningVarsChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onSigningVarsChange != null) {
@@ -3087,6 +3267,9 @@ class _$PlatformsChange implements PlatformsChange {
     required TResult Function() onIntegrateDevicePreviewChange,
     required TResult Function(List<String> signingVars) onSigningVarsChange,
     required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
   }) {
     return onPlatformsChange(platforms);
   }
@@ -3109,6 +3292,9 @@ class _$PlatformsChange implements PlatformsChange {
     TResult? Function()? onIntegrateDevicePreviewChange,
     TResult? Function(List<String> signingVars)? onSigningVarsChange,
     TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
   }) {
     return onPlatformsChange?.call(platforms);
   }
@@ -3131,6 +3317,9 @@ class _$PlatformsChange implements PlatformsChange {
     TResult Function()? onIntegrateDevicePreviewChange,
     TResult Function(List<String> signingVars)? onSigningVarsChange,
     TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
     required TResult orElse(),
   }) {
     if (onPlatformsChange != null) {
@@ -3159,6 +3348,7 @@ class _$PlatformsChange implements PlatformsChange {
         onIntegrateDevicePreviewChange,
     required TResult Function(SigningVarsChange value) onSigningVarsChange,
     required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
   }) {
     return onPlatformsChange(this);
   }
@@ -3183,6 +3373,7 @@ class _$PlatformsChange implements PlatformsChange {
         onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
   }) {
     return onPlatformsChange?.call(this);
   }
@@ -3207,6 +3398,7 @@ class _$PlatformsChange implements PlatformsChange {
         onIntegrateDevicePreviewChange,
     TResult Function(SigningVarsChange value)? onSigningVarsChange,
     TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
     required TResult orElse(),
   }) {
     if (onPlatformsChange != null) {
@@ -3221,19 +3413,276 @@ abstract class PlatformsChange implements AppEvent {
       _$PlatformsChange;
 
   PlatformsList get platforms;
+
   @JsonKey(ignore: true)
   _$$PlatformsChangeCopyWith<_$PlatformsChange> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
+abstract class _$$GenerateProjectCopyWith<$Res> {
+  factory _$$GenerateProjectCopyWith(
+          _$GenerateProject value, $Res Function(_$GenerateProject) then) =
+      __$$GenerateProjectCopyWithImpl<$Res>;
+
+  @useResult
+  $Res call(
+      {bool generateProject,
+      StreamController<ColoredLine> outputStreamController});
+}
+
+/// @nodoc
+class __$$GenerateProjectCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$GenerateProject>
+    implements _$$GenerateProjectCopyWith<$Res> {
+  __$$GenerateProjectCopyWithImpl(
+      _$GenerateProject _value, $Res Function(_$GenerateProject) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? generateProject = null,
+    Object? outputStreamController = null,
+  }) {
+    return _then(_$GenerateProject(
+      generateProject: null == generateProject
+          ? _value.generateProject
+          : generateProject // ignore: cast_nullable_to_non_nullable
+              as bool,
+      outputStreamController: null == outputStreamController
+          ? _value.outputStreamController
+          : outputStreamController // ignore: cast_nullable_to_non_nullable
+              as StreamController<ColoredLine>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GenerateProject implements GenerateProject {
+  const _$GenerateProject(
+      {required this.generateProject, required this.outputStreamController});
+
+  @override
+  final bool generateProject;
+  @override
+  final StreamController<ColoredLine> outputStreamController;
+
+  @override
+  String toString() {
+    return 'AppEvent.onGenerateProject(generateProject: $generateProject, outputStreamController: $outputStreamController)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GenerateProject &&
+            (identical(other.generateProject, generateProject) ||
+                other.generateProject == generateProject) &&
+            (identical(other.outputStreamController, outputStreamController) ||
+                other.outputStreamController == outputStreamController));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, generateProject, outputStreamController);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GenerateProjectCopyWith<_$GenerateProject> get copyWith =>
+      __$$GenerateProjectCopyWithImpl<_$GenerateProject>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String projectPath) init,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
+  }) {
+    return onGenerateProject(generateProject, outputStreamController);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String projectPath)? init,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
+  }) {
+    return onGenerateProject?.call(generateProject, outputStreamController);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String projectPath)? init,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function(bool generateProject,
+            StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
+    required TResult orElse(),
+  }) {
+    if (onGenerateProject != null) {
+      return onGenerateProject(generateProject, outputStreamController);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Init value) init,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+  }) {
+    return onGenerateProject(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Init value)? init,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+  }) {
+    return onGenerateProject?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Init value)? init,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    required TResult orElse(),
+  }) {
+    if (onGenerateProject != null) {
+      return onGenerateProject(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GenerateProject implements AppEvent {
+  const factory GenerateProject(
+      {required final bool generateProject,
+      required final StreamController<ColoredLine>
+          outputStreamController}) = _$GenerateProject;
+
+  bool get generateProject;
+
+  StreamController<ColoredLine> get outputStreamController;
+
+  @JsonKey(ignore: true)
+  _$$GenerateProjectCopyWith<_$GenerateProject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AppState {
   String get projectPath => throw _privateConstructorUsedError;
+
   String get projectName => throw _privateConstructorUsedError;
+
   bool get projectExists => throw _privateConstructorUsedError;
+
   String get organization => throw _privateConstructorUsedError;
+
   bool get flavorize => throw _privateConstructorUsedError;
+
   Set<String> get flavors => throw _privateConstructorUsedError;
+
   ProjectRouter get router => throw _privateConstructorUsedError;
   ProjectLocalization get localization => throw _privateConstructorUsedError;
   bool get generateSigningKey => throw _privateConstructorUsedError;
@@ -3241,7 +3690,10 @@ mixin _$AppState {
   bool get integrateDevicePreview => throw _privateConstructorUsedError;
   List<String> get signingVars => throw _privateConstructorUsedError;
   PlatformsList get platforms => throw _privateConstructorUsedError;
+
   int get tab => throw _privateConstructorUsedError;
+
+  bool get isGenerating => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -3258,7 +3710,8 @@ mixin _$AppState {
             bool integrateDevicePreview,
             List<String> signingVars,
             PlatformsList platforms,
-            int tab)
+            int tab,
+            bool isGenerating)
         data,
   }) =>
       throw _privateConstructorUsedError;
@@ -3278,7 +3731,8 @@ mixin _$AppState {
             bool integrateDevicePreview,
             List<String> signingVars,
             PlatformsList platforms,
-            int tab)?
+            int tab,
+            bool isGenerating)?
         data,
   }) =>
       throw _privateConstructorUsedError;
@@ -3298,7 +3752,8 @@ mixin _$AppState {
             bool integrateDevicePreview,
             List<String> signingVars,
             PlatformsList platforms,
-            int tab)?
+            int tab,
+            bool isGenerating)?
         data,
     required TResult orElse(),
   }) =>
@@ -3344,7 +3799,8 @@ abstract class $AppStateCopyWith<$Res> {
       bool integrateDevicePreview,
       List<String> signingVars,
       PlatformsList platforms,
-      int tab});
+      int tab,
+      bool isGenerating});
 
   $PlatformsListCopyWith<$Res> get platforms;
 }
@@ -3376,6 +3832,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? signingVars = null,
     Object? platforms = null,
     Object? tab = null,
+    Object? isGenerating = null,
   }) {
     return _then(_value.copyWith(
       projectPath: null == projectPath
@@ -3434,6 +3891,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.tab
           : tab // ignore: cast_nullable_to_non_nullable
               as int,
+      isGenerating: null == isGenerating
+          ? _value.isGenerating
+          : isGenerating // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -3466,7 +3927,8 @@ abstract class _$$DataCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       bool integrateDevicePreview,
       List<String> signingVars,
       PlatformsList platforms,
-      int tab});
+      int tab,
+      bool isGenerating});
 
   @override
   $PlatformsListCopyWith<$Res> get platforms;
@@ -3495,6 +3957,7 @@ class __$$DataCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _$Data>
     Object? signingVars = null,
     Object? platforms = null,
     Object? tab = null,
+    Object? isGenerating = null,
   }) {
     return _then(_$Data(
       projectPath: null == projectPath
@@ -3553,6 +4016,10 @@ class __$$DataCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _$Data>
           ? _value.tab
           : tab // ignore: cast_nullable_to_non_nullable
               as int,
+      isGenerating: null == isGenerating
+          ? _value.isGenerating
+          : isGenerating // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -3581,7 +4048,8 @@ class _$Data implements Data {
         'UA'
       ],
       required this.platforms,
-      this.tab = 0})
+      this.tab = 0,
+      this.isGenerating = false})
       : _flavors = flavors,
         _signingVars = signingVars;
 
@@ -3637,10 +4105,13 @@ class _$Data implements Data {
   @override
   @JsonKey()
   final int tab;
+  @override
+  @JsonKey()
+  final bool isGenerating;
 
   @override
   String toString() {
-    return 'AppState.data(projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, flavorize: $flavorize, flavors: $flavors, router: $router, localization: $localization, generateSigningKey: $generateSigningKey, useSonar: $useSonar, integrateDevicePreview: $integrateDevicePreview, signingVars: $signingVars, platforms: $platforms, tab: $tab)';
+    return 'AppState.data(projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, flavorize: $flavorize, flavors: $flavors, router: $router, localization: $localization, generateSigningKey: $generateSigningKey, useSonar: $useSonar, integrateDevicePreview: $integrateDevicePreview, signingVars: $signingVars, platforms: $platforms, tab: $tab, isGenerating: $isGenerating)';
   }
 
   @override
@@ -3672,7 +4143,9 @@ class _$Data implements Data {
                 .equals(other._signingVars, _signingVars) &&
             (identical(other.platforms, platforms) ||
                 other.platforms == platforms) &&
-            (identical(other.tab, tab) || other.tab == tab));
+            (identical(other.tab, tab) || other.tab == tab) &&
+            (identical(other.isGenerating, isGenerating) ||
+                other.isGenerating == isGenerating));
   }
 
   @override
@@ -3691,7 +4164,8 @@ class _$Data implements Data {
       integrateDevicePreview,
       const DeepCollectionEquality().hash(_signingVars),
       platforms,
-      tab);
+      tab,
+      isGenerating);
 
   @JsonKey(ignore: true)
   @override
@@ -3716,7 +4190,8 @@ class _$Data implements Data {
             bool integrateDevicePreview,
             List<String> signingVars,
             PlatformsList platforms,
-            int tab)
+            int tab,
+            bool isGenerating)
         data,
   }) {
     return data(
@@ -3733,7 +4208,8 @@ class _$Data implements Data {
         integrateDevicePreview,
         signingVars,
         platforms,
-        tab);
+        tab,
+        isGenerating);
   }
 
   @override
@@ -3753,7 +4229,8 @@ class _$Data implements Data {
             bool integrateDevicePreview,
             List<String> signingVars,
             PlatformsList platforms,
-            int tab)?
+            int tab,
+            bool isGenerating)?
         data,
   }) {
     return data?.call(
@@ -3770,7 +4247,8 @@ class _$Data implements Data {
         integrateDevicePreview,
         signingVars,
         platforms,
-        tab);
+        tab,
+        isGenerating);
   }
 
   @override
@@ -3790,7 +4268,8 @@ class _$Data implements Data {
             bool integrateDevicePreview,
             List<String> signingVars,
             PlatformsList platforms,
-            int tab)?
+            int tab,
+            bool isGenerating)?
         data,
     required TResult orElse(),
   }) {
@@ -3809,7 +4288,8 @@ class _$Data implements Data {
           integrateDevicePreview,
           signingVars,
           platforms,
-          tab);
+          tab,
+          isGenerating);
     }
     return orElse();
   }
@@ -3858,7 +4338,8 @@ abstract class Data implements AppState {
       final bool integrateDevicePreview,
       final List<String> signingVars,
       required final PlatformsList platforms,
-      final int tab}) = _$Data;
+      final int tab,
+      final bool isGenerating}) = _$Data;
 
   @override
   String get projectPath;
@@ -3878,16 +4359,25 @@ abstract class Data implements AppState {
   ProjectLocalization get localization;
   @override
   bool get generateSigningKey;
+
   @override
   bool get useSonar;
+
   @override
   bool get integrateDevicePreview;
+
   @override
   List<String> get signingVars;
+
   @override
   PlatformsList get platforms;
+
   @override
   int get tab;
+
+  @override
+  bool get isGenerating;
+
   @override
   @JsonKey(ignore: true)
   _$$DataCopyWith<_$Data> get copyWith => throw _privateConstructorUsedError;

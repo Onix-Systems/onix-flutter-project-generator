@@ -2,11 +2,7 @@ part of '../widgets/build_body.dart';
 
 Future<bool> flutterProjectGen(
     {required String projectPath,
-    required String projectName,
-    required String orgName,
-    required File configFile,
-    required StreamController<ColoredLine> outputStreamController,
-    required List<ColoredLine> outputText}) async {
+    required StreamController<ColoredLine> outputStreamController}) async {
   try {
     outputStreamController
         .add(ColoredLine(line: '{#info}Getting mason & bricks...'));

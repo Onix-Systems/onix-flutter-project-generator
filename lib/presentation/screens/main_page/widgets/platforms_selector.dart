@@ -5,9 +5,9 @@ import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platfor
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 
 class PlatformSelector extends StatelessWidget {
-  PlatformSelector({required this.platforms, Key? key}) : super(key: key);
+  const PlatformSelector({required this.platforms, Key? key}) : super(key: key);
 
-  PlatformsList platforms;
+  final PlatformsList platforms;
 
   @override
   Widget build(BuildContext context) {

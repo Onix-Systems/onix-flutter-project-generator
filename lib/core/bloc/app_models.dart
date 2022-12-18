@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
 
 part 'app_models.freezed.dart';
@@ -52,6 +55,11 @@ class AppEvent with _$AppEvent {
   const factory AppEvent.onPlatformsChange({
     required PlatformsList platforms,
   }) = PlatformsChange;
+
+  const factory AppEvent.onGenerateProject(
+          {required bool generateProject,
+          required StreamController<ColoredLine> outputStreamController}) =
+      GenerateProject;
 }
 
 @freezed
@@ -90,6 +98,8 @@ class AppState with _$AppState {
     required PlatformsList platforms,
     @Default(0)
         int tab,
+    @Default(false)
+        bool isGenerating,
   }) = Data;
 }
 

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
@@ -6,6 +7,7 @@ import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
 import 'package:recase/recase.dart';
 
+import '../../presentation/screens/main_page/widgets/build_body.dart';
 import 'app_models.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
@@ -31,6 +33,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         (event, emit) => _integrateDevicePreviewChange(event, emit));
     on<SigningVarsChange>((event, emit) => _signingVarsChange(event, emit));
     on<PlatformsChange>((event, emit) => _platformsChange(event, emit));
+    on<GenerateProject>((event, emit) => _generateProject(event, emit));
   }
 
   FutureOr<void> _init(Init event, Emitter<AppState> emit) {}
@@ -130,6 +133,34 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   FutureOr<void> _platformsChange(
       PlatformsChange event, Emitter<AppState> emit) async {
     emit(state.copyWith(platforms: event.platforms));
+  }
+
+  FutureOr<void> _generateProject(
+      GenerateProject event, Emitter<AppState> emit) async {
+    emit(state.copyWith(isGenerating: true));
+    if (!state.projectExists && state.projectName.isNotEmpty) {
+      logger.d('generate with: ${state}');
+      var configFile = await File('${state.projectPath}/config.json').create();
+      await configFile.writeAsString(jsonEncode({
+        'withUI': true,
+        'signingVars': state.signingVars,
+        'project_name_dirt': state.projectName,
+        'project_org': state.organization,
+        'flavorizr': state.flavorize,
+        'flavors': state.flavors.toList(),
+        'navigation': state.router.name,
+        'localization': state.localization.name,
+        'use_keytool': state.generateSigningKey,
+        'use_sonar': state.useSonar,
+        'device_preview': state.integrateDevicePreview,
+        'platforms': state.platforms.toString(),
+      }).toString());
+      var generatingResult = await flutterProjectGen(
+          projectPath: projectPath,
+          outputStreamController: event.outputStreamController);
+      configFile.delete();
+      emit(state.copyWith(isGenerating: false, projectExists: true));
+    }
   }
 }
 

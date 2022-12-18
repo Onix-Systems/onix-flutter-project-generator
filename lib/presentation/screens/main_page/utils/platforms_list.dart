@@ -19,6 +19,6 @@ class PlatformsList with _$PlatformsList {
 
   @override
   String toString() {
-    return 'PlatformsList{android: $android, ios: $ios, web: $web, macos: $macos, windows: $windows, linux: $linux}';
+    return '${android ? 'android' : ''}${ios ? ',ios' : ''}${web ? ',web' : ''}${macos ? ',macos' : ''}${windows ? ',windows' : ''}${linux ? ',linux' : ''}';
   }
 }
