@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
 import 'package:recase/recase.dart';
 
 import 'app_models.dart';
@@ -10,7 +11,9 @@ import 'app_models.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   String projectPath;
 
-  AppBloc({required this.projectPath}) : super(Data(projectPath: projectPath)) {
+  AppBloc({required this.projectPath})
+      : super(
+            Data(projectPath: projectPath, platforms: const PlatformsList())) {
     on<Init>((event, emit) => _init(event, emit));
     on<TabChange>((event, emit) => _tabChange(event, emit));
     on<ProjectNameChange>((event, emit) => _projectNameChange(event, emit));

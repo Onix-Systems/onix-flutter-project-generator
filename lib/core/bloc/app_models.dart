@@ -87,7 +87,7 @@ class AppState with _$AppState {
       'UA'
     ])
         List<String> signingVars,
-    PlatformsList platforms,
+    required PlatformsList platforms,
     @Default(0)
         int tab,
   }) = Data;

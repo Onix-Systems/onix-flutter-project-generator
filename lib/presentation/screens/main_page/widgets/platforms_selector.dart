@@ -1,16 +1,13 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 
 class PlatformSelector extends StatelessWidget {
-  PlatformSelector({required this.state, Key? key}) : super(key: key);
+  PlatformSelector({required this.platforms, Key? key}) : super(key: key);
 
-  final AppState state;
+  PlatformsList platforms;
 
   @override
   Widget build(BuildContext context) {
@@ -23,36 +20,31 @@ class PlatformSelector extends StatelessWidget {
               Expanded(
                   child: LabeledCheckbox(
                 label: 'Android',
-                initialValue: state.platforms.android,
+                initialValue: platforms.android,
                 onAction: () {
                   context.read<AppBloc>().add(PlatformsChange(
-                        platforms: state.platforms.copyWith(
-                          android: !state.platforms.android,
-                        ),
+                        platforms:
+                            platforms.copyWith(android: !platforms.android),
                       ));
                 },
               )),
               Expanded(
                   child: LabeledCheckbox(
                 label: 'IOS',
-                initialValue: state.platforms.ios,
+                initialValue: platforms.ios,
                 onAction: () {
                   context.read<AppBloc>().add(PlatformsChange(
-                        platforms: state.platforms.copyWith(
-                          android: !state.platforms.ios,
-                        ),
+                        platforms: platforms.copyWith(ios: !platforms.ios),
                       ));
                 },
               )),
               Expanded(
                   child: LabeledCheckbox(
                 label: 'Web',
-                initialValue: state.platforms.web,
+                initialValue: platforms.web,
                 onAction: () {
                   context.read<AppBloc>().add(PlatformsChange(
-                        platforms: state.platforms.copyWith(
-                          android: !state.platforms.web,
-                        ),
+                        platforms: platforms.copyWith(web: !platforms.web),
                       ));
                 },
               )),
@@ -64,36 +56,31 @@ class PlatformSelector extends StatelessWidget {
               Expanded(
                   child: LabeledCheckbox(
                 label: 'MacOS',
-                initialValue: state.platforms.macos,
+                initialValue: platforms.macos,
                 onAction: () {
                   context.read<AppBloc>().add(PlatformsChange(
-                        platforms: state.platforms.copyWith(
-                          android: !state.platforms.macos,
-                        ),
+                        platforms: platforms.copyWith(macos: !platforms.macos),
                       ));
                 },
               )),
               Expanded(
                   child: LabeledCheckbox(
                 label: 'Windows',
-                initialValue: state.platforms.windows,
+                initialValue: platforms.windows,
                 onAction: () {
                   context.read<AppBloc>().add(PlatformsChange(
-                        platforms: state.platforms.copyWith(
-                          android: !state.platforms.windows,
-                        ),
+                        platforms:
+                            platforms.copyWith(windows: !platforms.windows),
                       ));
                 },
               )),
               Expanded(
                   child: LabeledCheckbox(
                 label: 'Linux',
-                initialValue: state.platforms.linux,
+                initialValue: platforms.linux,
                 onAction: () {
                   context.read<AppBloc>().add(PlatformsChange(
-                        platforms: state.platforms.copyWith(
-                          android: !state.platforms.linux,
-                        ),
+                        platforms: platforms.copyWith(linux: !platforms.linux),
                       ));
                 },
               )),

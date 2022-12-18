@@ -16,4 +16,9 @@ class PlatformsList with _$PlatformsList {
   }) = _PlatformsList;
 
   bool get selected => android || ios || web || macos || windows || linux;
+
+  @override
+  String toString() {
+    return 'PlatformsList{android: $android, ios: $ios, web: $web, macos: $macos, windows: $windows, linux: $linux}';
+  }
 }

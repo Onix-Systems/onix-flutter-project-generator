@@ -85,7 +85,7 @@ class BuildBody extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 PlatformSelector(
-                  state: state,
+                  platforms: state.platforms,
                 ),
                 const SizedBox(height: 20),
                 SwitchWithLabel(

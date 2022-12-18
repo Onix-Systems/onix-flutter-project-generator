@@ -2776,7 +2776,6 @@ abstract class _$$SigningVarsChangeCopyWith<$Res> {
   factory _$$SigningVarsChangeCopyWith(
           _$SigningVarsChange value, $Res Function(_$SigningVarsChange) then) =
       __$$SigningVarsChangeCopyWithImpl<$Res>;
-
   @useResult
   $Res call({List<String> signingVars});
 }
@@ -2810,7 +2809,6 @@ class _$SigningVarsChange implements SigningVarsChange {
       : _signingVars = signingVars;
 
   final List<String> _signingVars;
-
   @override
   List<String> get signingVars {
     if (_signingVars is EqualUnmodifiableListView) return _signingVars;
@@ -2994,7 +2992,6 @@ abstract class SigningVarsChange implements AppEvent {
       _$SigningVarsChange;
 
   List<String> get signingVars;
-
   @JsonKey(ignore: true)
   _$$SigningVarsChangeCopyWith<_$SigningVarsChange> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3005,7 +3002,6 @@ abstract class _$$PlatformsChangeCopyWith<$Res> {
   factory _$$PlatformsChangeCopyWith(
           _$PlatformsChange value, $Res Function(_$PlatformsChange) then) =
       __$$PlatformsChangeCopyWithImpl<$Res>;
-
   @useResult
   $Res call({PlatformsList platforms});
 
@@ -3225,7 +3221,6 @@ abstract class PlatformsChange implements AppEvent {
       _$PlatformsChange;
 
   PlatformsList get platforms;
-
   @JsonKey(ignore: true)
   _$$PlatformsChangeCopyWith<_$PlatformsChange> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3234,33 +3229,19 @@ abstract class PlatformsChange implements AppEvent {
 /// @nodoc
 mixin _$AppState {
   String get projectPath => throw _privateConstructorUsedError;
-
   String get projectName => throw _privateConstructorUsedError;
-
   bool get projectExists => throw _privateConstructorUsedError;
-
   String get organization => throw _privateConstructorUsedError;
-
   bool get flavorize => throw _privateConstructorUsedError;
-
   Set<String> get flavors => throw _privateConstructorUsedError;
-
   ProjectRouter get router => throw _privateConstructorUsedError;
-
   ProjectLocalization get localization => throw _privateConstructorUsedError;
-
   bool get generateSigningKey => throw _privateConstructorUsedError;
-
   bool get useSonar => throw _privateConstructorUsedError;
-
   bool get integrateDevicePreview => throw _privateConstructorUsedError;
-
   List<String> get signingVars => throw _privateConstructorUsedError;
-
   PlatformsList get platforms => throw _privateConstructorUsedError;
-
   int get tab => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -3599,7 +3580,7 @@ class _$Data implements Data {
         'Kirovohrad oblast',
         'UA'
       ],
-      this.platforms = const PlatformsList(),
+      required this.platforms,
       this.tab = 0})
       : _flavors = flavors,
         _signingVars = signingVars;
@@ -3643,7 +3624,6 @@ class _$Data implements Data {
   @JsonKey()
   final bool integrateDevicePreview;
   final List<String> _signingVars;
-
   @override
   @JsonKey()
   List<String> get signingVars {
@@ -3653,7 +3633,6 @@ class _$Data implements Data {
   }
 
   @override
-  @JsonKey()
   final PlatformsList platforms;
   @override
   @JsonKey()
@@ -3878,7 +3857,7 @@ abstract class Data implements AppState {
       final bool useSonar,
       final bool integrateDevicePreview,
       final List<String> signingVars,
-      final PlatformsList platforms,
+      required final PlatformsList platforms,
       final int tab}) = _$Data;
 
   @override
@@ -3895,28 +3874,20 @@ abstract class Data implements AppState {
   Set<String> get flavors;
   @override
   ProjectRouter get router;
-
   @override
   ProjectLocalization get localization;
-
   @override
   bool get generateSigningKey;
-
   @override
   bool get useSonar;
-
   @override
   bool get integrateDevicePreview;
-
   @override
   List<String> get signingVars;
-
   @override
   PlatformsList get platforms;
-
   @override
   int get tab;
-
   @override
   @JsonKey(ignore: true)
   _$$DataCopyWith<_$Data> get copyWith => throw _privateConstructorUsedError;

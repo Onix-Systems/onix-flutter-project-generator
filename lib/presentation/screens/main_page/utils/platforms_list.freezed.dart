@@ -178,11 +178,6 @@ class _$_PlatformsList extends _PlatformsList {
   final bool linux;
 
   @override
-  String toString() {
-    return 'PlatformsList(android: $android, ios: $ios, web: $web, macos: $macos, windows: $windows, linux: $linux)';
-  }
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
