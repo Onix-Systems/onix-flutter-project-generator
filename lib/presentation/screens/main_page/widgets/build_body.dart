@@ -170,7 +170,11 @@ class BuildBody extends StatelessWidget {
                 ),
                 const Spacer(),
                 CupertinoButton(
-                  color: state.isGenerating || state.projectExists
+                  color: state.projectName.isEmpty ||
+                          state.organization.isEmpty ||
+                          state.isGenerating ||
+                          !state.platforms.selected ||
+                          state.projectExists
                       ? AppColors.orange.withOpacity(0.03)
                       : AppColors.orange,
                   onPressed: onGenerate,

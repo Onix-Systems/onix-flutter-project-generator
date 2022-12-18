@@ -18,10 +18,10 @@ Future<bool> flutterProjectGen(
 
     mainProcess.stdin.writeln(
         'mason add -g flutter_clean_base --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_base');
-    mainProcess.stdin.writeln(
-        'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
-    mainProcess.stdin.writeln(
-        'mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_screen');
+    // mainProcess.stdin.writeln(
+    //     'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
+    // mainProcess.stdin.writeln(
+    //     'mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_screen');
     mainProcess.stdin.writeln(
         'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 

@@ -19,6 +19,15 @@ class PlatformsList with _$PlatformsList {
 
   @override
   String toString() {
-    return '${android ? 'android' : ''}${ios ? ',ios' : ''}${web ? ',web' : ''}${macos ? ',macos' : ''}${windows ? ',windows' : ''}${linux ? ',linux' : ''}';
+    List<String> platforms = [];
+
+    if (android) platforms.add('android');
+    if (ios) platforms.add('ios');
+    if (web) platforms.add('web');
+    if (macos) platforms.add('macos');
+    if (windows) platforms.add('windows');
+    if (linux) platforms.add('linux');
+
+    return platforms.join(',');
   }
 }

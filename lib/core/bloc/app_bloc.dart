@@ -139,7 +139,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       GenerateProject event, Emitter<AppState> emit) async {
     emit(state.copyWith(isGenerating: true));
     if (!state.projectExists && state.projectName.isNotEmpty) {
-      logger.d('generate with: ${state}');
       var configFile = await File('${state.projectPath}/config.json').create();
       await configFile.writeAsString(jsonEncode({
         'withUI': true,

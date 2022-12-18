@@ -144,7 +144,9 @@ class MainScreen extends StatelessWidget {
                       outputText: outputText,
                       onGenerate: () async {
                         if (state.projectName.isEmpty ||
-                            state.organization.isEmpty) {
+                            state.organization.isEmpty ||
+                            state.isGenerating ||
+                            !state.platforms.selected) {
                           //TODO: show error
                         } else {
                           outputText.clear();
