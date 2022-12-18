@@ -14,12 +14,9 @@ import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_segmented_control.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/switch_with_label.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/text_field_with_label.dart';
-import 'package:process_run/shell.dart';
-
-part '../utils/flutter_project_gen.dart';
 
 class BuildBody extends StatelessWidget {
-  BuildBody({
+  const BuildBody({
     Key? key,
     required this.state,
     required this.projectNameController,

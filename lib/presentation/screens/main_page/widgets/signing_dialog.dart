@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/core/di/di.dart';
 
 class SigningDialog extends StatelessWidget {
   SigningDialog({Key? key, required this.state}) : super(key: key);

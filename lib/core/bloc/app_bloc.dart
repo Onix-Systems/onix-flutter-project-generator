@@ -2,12 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
+import 'package:process_run/utils/process_result_extension.dart';
 import 'package:recase/recase.dart';
 
-import '../../presentation/screens/main_page/widgets/build_body.dart';
+import '../../data/model/local/colored_line.dart';
 import 'app_models.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
@@ -155,9 +156,32 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         'device_preview': state.integrateDevicePreview,
         'platforms': state.platforms.toString(),
       }).toString());
-      var generatingResult = await flutterProjectGen(
-          projectPath: projectPath,
-          outputStreamController: event.outputStreamController);
+      // var generatingResult = await flutterProjectGen(
+      //     projectPath: projectPath,
+      //     outputStreamController: event.outputStreamController);
+      event.outputStreamController
+          .add(ColoredLine(line: '{#info}Getting mason & bricks...'));
+
+      var mainProcess =
+          await Process.start('zsh', [], workingDirectory: state.projectPath);
+
+      mainProcess.log(event.outputStreamController);
+      mainProcess.stdin.writeln('source \$HOME/.zshrc');
+      mainProcess.stdin.writeln('source \$HOME/.bash_profile');
+      mainProcess.stdin.writeln('dart pub global activate mason_cli');
+      mainProcess.stdin.writeln('mason cache clear');
+
+      mainProcess.stdin.writeln(
+          'mason add -g flutter_clean_base --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_base');
+      // mainProcess.stdin.writeln(
+      //     'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
+      // mainProcess.stdin.writeln(
+      //     'mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_screen');
+      mainProcess.stdin.writeln(
+          'mason make flutter_clean_base -c config.json --on-conflict overwrite');
+
+      var exitCode = await mainProcess.exitCode;
+
       configFile.delete();
       emit(state.copyWith(isGenerating: false, projectExists: true));
     }
@@ -171,5 +195,25 @@ extension MyCase on String {
     strings = strings.map((e) => e.dotCase);
 
     return strings.join('-');
+  }
+}
+
+extension Logging on Process {
+  void log(StreamController<ColoredLine> outputStreamController) {
+    this
+      ..outLines.asBroadcastStream().listen((event) {
+        if (event.contains('Installing flutter_clean_') ||
+            event.contains('Making flutter_clean_')) {
+          outputStreamController.add(ColoredLine(line: '{#progress}$event'));
+        } else {
+          outputStreamController.add(ColoredLine(line: event));
+        }
+        if (event.contains('Complete with exit code:')) {
+          kill();
+        }
+      })
+      ..errLines.asBroadcastStream().listen((event) {
+        outputStreamController.add(ColoredLine(line: '{#error}$event'));
+      });
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 
@@ -35,7 +33,11 @@ class _LabeledCheckboxState extends State<LabeledCheckbox> {
         MSHCheckbox(
           value: _value,
           duration: const Duration(milliseconds: 200),
-          checkedColor: CupertinoColors.activeOrange,
+          colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
+            checkedColor: CupertinoColors.activeOrange,
+            uncheckedColor: CupertinoColors.systemGrey,
+            disabledColor: CupertinoColors.destructiveRed,
+          ),
           onChanged: (value) {
             setState(() {
               _value = value;
