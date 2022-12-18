@@ -34,6 +34,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<SigningVarsChange>((event, emit) => _signingVarsChange(event, emit));
     on<PlatformsChange>((event, emit) => _platformsChange(event, emit));
     on<GenerateProject>((event, emit) => _generateProject(event, emit));
+    add(const ProjectCheck());
   }
 
   FutureOr<void> _init(Init event, Emitter<AppState> emit) {}
