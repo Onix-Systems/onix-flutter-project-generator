@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -114,6 +113,15 @@ class BuildBody extends StatelessWidget {
                     context.read<AppBloc>().add(const LocalizationChange());
                   },
                   selectedValue: state.localization.name,
+                ),
+                const SizedBox(height: 20),
+                LabeledSegmentedControl(
+                  label: 'Theming:',
+                  values: ProjectTheming.values.map((e) => e.name).toList(),
+                  onChange: (_) {
+                    context.read<AppBloc>().add(const ThemingChange());
+                  },
+                  selectedValue: state.theming.name,
                 ),
                 const SizedBox(height: 20),
                 SwitchWithLabel(

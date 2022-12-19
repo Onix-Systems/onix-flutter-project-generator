@@ -114,14 +114,16 @@ class MainScreen extends StatelessWidget {
                             .read<AppBloc>()
                             .add(const TabChange(tabIndex: 0)),
                       ),
-                      const SizedBox(width: 5),
-                      NavigationButton(
-                        selected: context.read<AppBloc>().state.tab == 1,
-                        label: 'Screen',
-                        onTap: () => context
-                            .read<AppBloc>()
-                            .add(const TabChange(tabIndex: 1)),
-                      ),
+                      if (state.projectExists) ...[
+                        const SizedBox(width: 5),
+                        NavigationButton(
+                          selected: context.read<AppBloc>().state.tab == 1,
+                          label: 'Screen',
+                          onTap: () => context
+                              .read<AppBloc>()
+                              .add(const TabChange(tabIndex: 1)),
+                        ),
+                      ],
                       const SizedBox(width: 5),
                       const Expanded(
                         child: Divider(

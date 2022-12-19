@@ -27,6 +27,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<FlavorsChange>((event, emit) => _flavorsChange(event, emit));
     on<RouterChange>((event, emit) => _routerChange(event, emit));
     on<LocalizationChange>((event, emit) => _localizationChange(event, emit));
+    on<ThemingChange>((event, emit) => _themingChange(event, emit));
     on<GenerateSigningKeyChange>(
         (event, emit) => _generateSigningKeyChange(event, emit));
     on<UseSonarChange>((event, emit) => _useSonarChange(event, emit));
@@ -102,6 +103,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     }
   }
 
+  FutureOr<void> _themingChange(_, Emitter<AppState> emit) async {
+    if (state.theming == ProjectTheming.manual) {
+      emit(state.copyWith(theming: ProjectTheming.theme_tailor));
+    } else {
+      emit(state.copyWith(theming: ProjectTheming.manual));
+    }
+  }
+
   FutureOr<void> _generateSigningKeyChange(_, Emitter<AppState> emit) async {
     if (state.generateSigningKey) {
       emit(state.copyWith(generateSigningKey: false));
@@ -155,6 +164,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         'use_sonar': state.useSonar,
         'device_preview': state.integrateDevicePreview,
         'platforms': state.platforms.toString(),
+        'theme_generate': state.theming.name == 'theme_tailor',
       }).toString());
       // var generatingResult = await flutterProjectGen(
       //     projectPath: projectPath,

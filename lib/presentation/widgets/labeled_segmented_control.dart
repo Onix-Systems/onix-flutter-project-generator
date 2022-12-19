@@ -44,22 +44,22 @@ class LabeledSegmentedControl extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
-            width: 120,
-            child: Text(
-              label,
-              style: const TextStyle(color: AppColors.white),
-            ),
+          Text(
+            label,
+            style: const TextStyle(color: AppColors.white),
           ),
-          CupertinoSegmentedControl<String>(
-            padding: EdgeInsets.zero,
-            groupValue: selectedValue,
-            selectedColor: AppColors.green,
-            borderColor: AppColors.white,
-            children: mapValues(),
-            onValueChanged: (value) {
-              onChange.call(selectedValue);
-            },
+          SizedBox(
+            width: 280,
+            child: CupertinoSegmentedControl<String>(
+              padding: EdgeInsets.zero,
+              groupValue: selectedValue,
+              selectedColor: AppColors.green,
+              borderColor: AppColors.white,
+              children: mapValues(),
+              onValueChanged: (value) {
+                onChange.call(selectedValue);
+              },
+            ),
           ),
         ],
       ),

@@ -56,6 +56,8 @@ class AppEvent with _$AppEvent {
     required PlatformsList platforms,
   }) = PlatformsChange;
 
+  const factory AppEvent.onThemingChange() = ThemingChange;
+
   const factory AppEvent.onGenerateProject(
           {required bool generateProject,
           required StreamController<ColoredLine> outputStreamController}) =
@@ -100,9 +102,13 @@ class AppState with _$AppState {
         int tab,
     @Default(false)
         bool isGenerating,
+    @Default(ProjectTheming.manual)
+        ProjectTheming theming,
   }) = Data;
 }
 
 enum ProjectRouter { goRouter, autoRouter }
 
 enum ProjectLocalization { intl, flutter_gen }
+
+enum ProjectTheming { manual, theme_tailor }
