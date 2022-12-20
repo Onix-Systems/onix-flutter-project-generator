@@ -21,7 +21,8 @@ mixin _$AppEvent {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -44,7 +45,8 @@ mixin _$AppEvent {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -67,7 +69,8 @@ mixin _$AppEvent {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -240,7 +243,8 @@ class _$Init implements Init {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -266,7 +270,8 @@ class _$Init implements Init {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -292,7 +297,8 @@ class _$Init implements Init {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -475,7 +481,8 @@ class _$TabChange implements TabChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -501,7 +508,8 @@ class _$TabChange implements TabChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -527,7 +535,8 @@ class _$TabChange implements TabChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -711,7 +720,8 @@ class _$ProjectPathChange implements ProjectPathChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -737,7 +747,8 @@ class _$ProjectPathChange implements ProjectPathChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -763,7 +774,8 @@ class _$ProjectPathChange implements ProjectPathChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -885,8 +897,9 @@ abstract class _$$ProjectNameChangeCopyWith<$Res> {
   factory _$$ProjectNameChangeCopyWith(
           _$ProjectNameChange value, $Res Function(_$ProjectNameChange) then) =
       __$$ProjectNameChangeCopyWithImpl<$Res>;
+
   @useResult
-  $Res call({String projectName});
+  $Res call({String projectName, TextPosition textPosition});
 }
 
 /// @nodoc
@@ -901,12 +914,17 @@ class __$$ProjectNameChangeCopyWithImpl<$Res>
   @override
   $Res call({
     Object? projectName = null,
+    Object? textPosition = null,
   }) {
     return _then(_$ProjectNameChange(
       projectName: null == projectName
           ? _value.projectName
           : projectName // ignore: cast_nullable_to_non_nullable
               as String,
+      textPosition: null == textPosition
+          ? _value.textPosition
+          : textPosition // ignore: cast_nullable_to_non_nullable
+              as TextPosition,
     ));
   }
 }
@@ -914,14 +932,17 @@ class __$$ProjectNameChangeCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProjectNameChange implements ProjectNameChange {
-  const _$ProjectNameChange({required this.projectName});
+  const _$ProjectNameChange(
+      {required this.projectName, required this.textPosition});
 
   @override
   final String projectName;
+  @override
+  final TextPosition textPosition;
 
   @override
   String toString() {
-    return 'AppEvent.onProjectNameChange(projectName: $projectName)';
+    return 'AppEvent.onProjectNameChange(projectName: $projectName, textPosition: $textPosition)';
   }
 
   @override
@@ -930,11 +951,13 @@ class _$ProjectNameChange implements ProjectNameChange {
         (other.runtimeType == runtimeType &&
             other is _$ProjectNameChange &&
             (identical(other.projectName, projectName) ||
-                other.projectName == projectName));
+                other.projectName == projectName) &&
+            (identical(other.textPosition, textPosition) ||
+                other.textPosition == textPosition));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, projectName);
+  int get hashCode => Object.hash(runtimeType, projectName, textPosition);
 
   @JsonKey(ignore: true)
   @override
@@ -948,7 +971,8 @@ class _$ProjectNameChange implements ProjectNameChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -965,7 +989,7 @@ class _$ProjectNameChange implements ProjectNameChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
   }) {
-    return onProjectNameChange(projectName);
+    return onProjectNameChange(projectName, textPosition);
   }
 
   @override
@@ -974,7 +998,8 @@ class _$ProjectNameChange implements ProjectNameChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -991,7 +1016,7 @@ class _$ProjectNameChange implements ProjectNameChange {
             StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
   }) {
-    return onProjectNameChange?.call(projectName);
+    return onProjectNameChange?.call(projectName, textPosition);
   }
 
   @override
@@ -1000,7 +1025,8 @@ class _$ProjectNameChange implements ProjectNameChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -1019,7 +1045,7 @@ class _$ProjectNameChange implements ProjectNameChange {
     required TResult orElse(),
   }) {
     if (onProjectNameChange != null) {
-      return onProjectNameChange(projectName);
+      return onProjectNameChange(projectName, textPosition);
     }
     return orElse();
   }
@@ -1108,10 +1134,14 @@ class _$ProjectNameChange implements ProjectNameChange {
 }
 
 abstract class ProjectNameChange implements AppEvent {
-  const factory ProjectNameChange({required final String projectName}) =
-      _$ProjectNameChange;
+  const factory ProjectNameChange(
+      {required final String projectName,
+      required final TextPosition textPosition}) = _$ProjectNameChange;
 
   String get projectName;
+
+  TextPosition get textPosition;
+
   @JsonKey(ignore: true)
   _$$ProjectNameChangeCopyWith<_$ProjectNameChange> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1158,7 +1188,8 @@ class _$ProjectCheck implements ProjectCheck {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -1184,7 +1215,8 @@ class _$ProjectCheck implements ProjectCheck {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -1210,7 +1242,8 @@ class _$ProjectCheck implements ProjectCheck {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -1390,7 +1423,8 @@ class _$OrganizationChange implements OrganizationChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -1416,7 +1450,8 @@ class _$OrganizationChange implements OrganizationChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -1442,7 +1477,8 @@ class _$OrganizationChange implements OrganizationChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -1600,7 +1636,8 @@ class _$FlavorizeChange implements FlavorizeChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -1626,7 +1663,8 @@ class _$FlavorizeChange implements FlavorizeChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -1652,7 +1690,8 @@ class _$FlavorizeChange implements FlavorizeChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -1830,7 +1869,8 @@ class _$FlavorsChange implements FlavorsChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -1856,7 +1896,8 @@ class _$FlavorsChange implements FlavorsChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -1882,7 +1923,8 @@ class _$FlavorsChange implements FlavorsChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -2040,7 +2082,8 @@ class _$RouterChange implements RouterChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -2066,7 +2109,8 @@ class _$RouterChange implements RouterChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -2092,7 +2136,8 @@ class _$RouterChange implements RouterChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -2244,7 +2289,8 @@ class _$LocalizationChange implements LocalizationChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -2270,7 +2316,8 @@ class _$LocalizationChange implements LocalizationChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -2296,7 +2343,8 @@ class _$LocalizationChange implements LocalizationChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -2449,7 +2497,8 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -2475,7 +2524,8 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -2501,7 +2551,8 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -2653,7 +2704,8 @@ class _$UseSonarChange implements UseSonarChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -2679,7 +2731,8 @@ class _$UseSonarChange implements UseSonarChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -2705,7 +2758,8 @@ class _$UseSonarChange implements UseSonarChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -2860,7 +2914,8 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -2886,7 +2941,8 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -2912,7 +2968,8 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -3098,7 +3155,8 @@ class _$SigningVarsChange implements SigningVarsChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -3124,7 +3182,8 @@ class _$SigningVarsChange implements SigningVarsChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -3150,7 +3209,8 @@ class _$SigningVarsChange implements SigningVarsChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -3345,7 +3405,8 @@ class _$PlatformsChange implements PlatformsChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -3371,7 +3432,8 @@ class _$PlatformsChange implements PlatformsChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -3397,7 +3459,8 @@ class _$PlatformsChange implements PlatformsChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -3509,7 +3572,6 @@ abstract class PlatformsChange implements AppEvent {
       _$PlatformsChange;
 
   PlatformsList get platforms;
-
   @JsonKey(ignore: true)
   _$$PlatformsChangeCopyWith<_$PlatformsChange> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3556,7 +3618,8 @@ class _$ThemingChange implements ThemingChange {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -3582,7 +3645,8 @@ class _$ThemingChange implements ThemingChange {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -3608,7 +3672,8 @@ class _$ThemingChange implements ThemingChange {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -3724,7 +3789,6 @@ abstract class _$$GenerateProjectCopyWith<$Res> {
   factory _$$GenerateProjectCopyWith(
           _$GenerateProject value, $Res Function(_$GenerateProject) then) =
       __$$GenerateProjectCopyWithImpl<$Res>;
-
   @useResult
   $Res call(
       {bool generateProject,
@@ -3801,7 +3865,8 @@ class _$GenerateProject implements GenerateProject {
     required TResult Function(String projectPath) init,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName) onProjectNameChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
     required TResult Function() projectCheck,
     required TResult Function(String organization) onOrganizationChange,
     required TResult Function() onFlavorizeChange,
@@ -3827,7 +3892,8 @@ class _$GenerateProject implements GenerateProject {
     TResult? Function(String projectPath)? init,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName)? onProjectNameChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult? Function()? projectCheck,
     TResult? Function(String organization)? onOrganizationChange,
     TResult? Function()? onFlavorizeChange,
@@ -3853,7 +3919,8 @@ class _$GenerateProject implements GenerateProject {
     TResult Function(String projectPath)? init,
     TResult Function(int tabIndex)? onTabChange,
     TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName)? onProjectNameChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
     TResult Function()? projectCheck,
     TResult Function(String organization)? onOrganizationChange,
     TResult Function()? onFlavorizeChange,
@@ -3989,10 +4056,11 @@ mixin _$AppState {
   List<String> get signingVars => throw _privateConstructorUsedError;
   PlatformsList get platforms => throw _privateConstructorUsedError;
   int get tab => throw _privateConstructorUsedError;
-
   bool get isGenerating => throw _privateConstructorUsedError;
 
   ProjectTheming get theming => throw _privateConstructorUsedError;
+
+  TextPosition get textPosition => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -4011,7 +4079,8 @@ mixin _$AppState {
             PlatformsList platforms,
             int tab,
             bool isGenerating,
-            ProjectTheming theming)
+            ProjectTheming theming,
+            TextPosition textPosition)
         data,
   }) =>
       throw _privateConstructorUsedError;
@@ -4033,7 +4102,8 @@ mixin _$AppState {
             PlatformsList platforms,
             int tab,
             bool isGenerating,
-            ProjectTheming theming)?
+            ProjectTheming theming,
+            TextPosition textPosition)?
         data,
   }) =>
       throw _privateConstructorUsedError;
@@ -4055,7 +4125,8 @@ mixin _$AppState {
             PlatformsList platforms,
             int tab,
             bool isGenerating,
-            ProjectTheming theming)?
+            ProjectTheming theming,
+            TextPosition textPosition)?
         data,
     required TResult orElse(),
   }) =>
@@ -4103,7 +4174,8 @@ abstract class $AppStateCopyWith<$Res> {
       PlatformsList platforms,
       int tab,
       bool isGenerating,
-      ProjectTheming theming});
+      ProjectTheming theming,
+      TextPosition textPosition});
 
   $PlatformsListCopyWith<$Res> get platforms;
 }
@@ -4137,6 +4209,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? tab = null,
     Object? isGenerating = null,
     Object? theming = null,
+    Object? textPosition = null,
   }) {
     return _then(_value.copyWith(
       projectPath: null == projectPath
@@ -4203,6 +4276,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.theming
           : theming // ignore: cast_nullable_to_non_nullable
               as ProjectTheming,
+      textPosition: null == textPosition
+          ? _value.textPosition
+          : textPosition // ignore: cast_nullable_to_non_nullable
+              as TextPosition,
     ) as $Val);
   }
 
@@ -4237,7 +4314,8 @@ abstract class _$$DataCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       PlatformsList platforms,
       int tab,
       bool isGenerating,
-      ProjectTheming theming});
+      ProjectTheming theming,
+      TextPosition textPosition});
 
   @override
   $PlatformsListCopyWith<$Res> get platforms;
@@ -4268,6 +4346,7 @@ class __$$DataCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _$Data>
     Object? tab = null,
     Object? isGenerating = null,
     Object? theming = null,
+    Object? textPosition = null,
   }) {
     return _then(_$Data(
       projectPath: null == projectPath
@@ -4334,6 +4413,10 @@ class __$$DataCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _$Data>
           ? _value.theming
           : theming // ignore: cast_nullable_to_non_nullable
               as ProjectTheming,
+      textPosition: null == textPosition
+          ? _value.textPosition
+          : textPosition // ignore: cast_nullable_to_non_nullable
+              as TextPosition,
     ));
   }
 }
@@ -4364,7 +4447,8 @@ class _$Data implements Data {
       required this.platforms,
       this.tab = 0,
       this.isGenerating = false,
-      this.theming = ProjectTheming.manual})
+      this.theming = ProjectTheming.manual,
+      this.textPosition = const TextPosition(offset: 0)})
       : _flavors = flavors,
         _signingVars = signingVars;
 
@@ -4426,10 +4510,13 @@ class _$Data implements Data {
   @override
   @JsonKey()
   final ProjectTheming theming;
+  @override
+  @JsonKey()
+  final TextPosition textPosition;
 
   @override
   String toString() {
-    return 'AppState.data(projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, flavorize: $flavorize, flavors: $flavors, router: $router, localization: $localization, generateSigningKey: $generateSigningKey, useSonar: $useSonar, integrateDevicePreview: $integrateDevicePreview, signingVars: $signingVars, platforms: $platforms, tab: $tab, isGenerating: $isGenerating, theming: $theming)';
+    return 'AppState.data(projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, flavorize: $flavorize, flavors: $flavors, router: $router, localization: $localization, generateSigningKey: $generateSigningKey, useSonar: $useSonar, integrateDevicePreview: $integrateDevicePreview, signingVars: $signingVars, platforms: $platforms, tab: $tab, isGenerating: $isGenerating, theming: $theming, textPosition: $textPosition)';
   }
 
   @override
@@ -4464,7 +4551,9 @@ class _$Data implements Data {
             (identical(other.tab, tab) || other.tab == tab) &&
             (identical(other.isGenerating, isGenerating) ||
                 other.isGenerating == isGenerating) &&
-            (identical(other.theming, theming) || other.theming == theming));
+            (identical(other.theming, theming) || other.theming == theming) &&
+            (identical(other.textPosition, textPosition) ||
+                other.textPosition == textPosition));
   }
 
   @override
@@ -4485,7 +4574,8 @@ class _$Data implements Data {
       platforms,
       tab,
       isGenerating,
-      theming);
+      theming,
+      textPosition);
 
   @JsonKey(ignore: true)
   @override
@@ -4512,7 +4602,8 @@ class _$Data implements Data {
             PlatformsList platforms,
             int tab,
             bool isGenerating,
-            ProjectTheming theming)
+            ProjectTheming theming,
+            TextPosition textPosition)
         data,
   }) {
     return data(
@@ -4531,7 +4622,8 @@ class _$Data implements Data {
         platforms,
         tab,
         isGenerating,
-        theming);
+        theming,
+        textPosition);
   }
 
   @override
@@ -4553,7 +4645,8 @@ class _$Data implements Data {
             PlatformsList platforms,
             int tab,
             bool isGenerating,
-            ProjectTheming theming)?
+            ProjectTheming theming,
+            TextPosition textPosition)?
         data,
   }) {
     return data?.call(
@@ -4572,7 +4665,8 @@ class _$Data implements Data {
         platforms,
         tab,
         isGenerating,
-        theming);
+        theming,
+        textPosition);
   }
 
   @override
@@ -4594,7 +4688,8 @@ class _$Data implements Data {
             PlatformsList platforms,
             int tab,
             bool isGenerating,
-            ProjectTheming theming)?
+            ProjectTheming theming,
+            TextPosition textPosition)?
         data,
     required TResult orElse(),
   }) {
@@ -4615,7 +4710,8 @@ class _$Data implements Data {
           platforms,
           tab,
           isGenerating,
-          theming);
+          theming,
+          textPosition);
     }
     return orElse();
   }
@@ -4666,7 +4762,8 @@ abstract class Data implements AppState {
       required final PlatformsList platforms,
       final int tab,
       final bool isGenerating,
-      final ProjectTheming theming}) = _$Data;
+      final ProjectTheming theming,
+      final TextPosition textPosition}) = _$Data;
 
   @override
   String get projectPath;
@@ -4688,7 +4785,6 @@ abstract class Data implements AppState {
   bool get generateSigningKey;
   @override
   bool get useSonar;
-
   @override
   bool get integrateDevicePreview;
 
@@ -4706,6 +4802,9 @@ abstract class Data implements AppState {
 
   @override
   ProjectTheming get theming;
+
+  @override
+  TextPosition get textPosition;
 
   @override
   @JsonKey(ignore: true)

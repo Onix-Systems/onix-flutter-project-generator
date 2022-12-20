@@ -29,6 +29,7 @@ class MainScreen extends StatelessWidget {
       var position = _projectNameController.selection.base;
       context.read<AppBloc>().add(ProjectNameChange(
             projectName: _projectNameController.text,
+            textPosition: _projectNameController.selection.base,
           ));
       _projectNameController.selection = TextSelection.fromPosition(position);
     });
@@ -65,12 +66,23 @@ class MainScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: BlocBuilder<AppBloc, AppState>(
             builder: (context, state) {
-              logger.d('State: $state');
               if (state.projectName != _projectNameController.text) {
+                var offset = _projectNameController.selection.base.offset + 1;
+                if (_projectNameController.text.length == 1) offset--;
                 _projectNameController.text = state.projectName;
+                _projectNameController.selection = TextSelection.fromPosition(
+                    offset <= _projectNameController.text.length
+                        ? TextPosition(offset: offset)
+                        : TextPosition(offset: offset - 2));
               }
               if (state.organization != _projectOrgController.text) {
+                var offset = _projectOrgController.selection.base.offset + 1;
+                if (_projectOrgController.text.length == 1) offset++;
                 _projectOrgController.text = state.organization;
+                _projectOrgController.selection = TextSelection.fromPosition(
+                    offset <= _projectOrgController.text.length
+                        ? TextPosition(offset: offset)
+                        : TextPosition(offset: offset - 2));
               }
               if (state.flavors
                       .toString()
@@ -78,11 +90,16 @@ class MainScreen extends StatelessWidget {
                       .replaceAll('}', '')
                       .replaceAll(',', '') !=
                   _flavorsController.text) {
+                var offset = _flavorsController.selection.base.offset;
                 _flavorsController.text = state.flavors
                     .toString()
                     .replaceAll('{', '')
                     .replaceAll('}', '')
                     .replaceAll(',', '');
+                _flavorsController.selection = TextSelection.fromPosition(
+                    offset <= _flavorsController.text.length
+                        ? TextPosition(offset: offset)
+                        : TextPosition(offset: offset - 1));
               }
               return Column(
                 children: [

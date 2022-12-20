@@ -166,9 +166,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         'platforms': state.platforms.toString(),
         'theme_generate': state.theming.name == 'theme_tailor',
       }).toString());
-      // var generatingResult = await flutterProjectGen(
-      //     projectPath: projectPath,
-      //     outputStreamController: event.outputStreamController);
+
       event.outputStreamController
           .add(ColoredLine(line: '{#info}Getting mason & bricks...'));
 

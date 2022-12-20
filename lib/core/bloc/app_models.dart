@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
@@ -22,6 +23,7 @@ class AppEvent with _$AppEvent {
 
   const factory AppEvent.onProjectNameChange({
     required String projectName,
+    required TextPosition textPosition,
   }) = ProjectNameChange;
 
   const factory AppEvent.projectCheck() = ProjectCheck;
@@ -104,6 +106,8 @@ class AppState with _$AppState {
         bool isGenerating,
     @Default(ProjectTheming.manual)
         ProjectTheming theming,
+    @Default(TextPosition(offset: 5))
+        TextPosition textPosition,
   }) = Data;
 }
 
