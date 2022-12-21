@@ -36,6 +36,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<SigningVarsChange>((event, emit) => _signingVarsChange(event, emit));
     on<PlatformsChange>((event, emit) => _platformsChange(event, emit));
     on<GenerateProject>((event, emit) => _generateProject(event, emit));
+    on<ScreenProjectChange>((event, emit) => _screenProjectChange(event, emit));
+    on<ScreenAdd>((event, emit) => _screenAdd(event, emit));
+    on<ScreenDelete>((event, emit) => _screenDelete(event, emit));
+    on<StateUpdate>((event, emit) => _stateUpdate(event, emit));
+    on<ScreensGenerate>((event, emit) => _screensGenerate(event, emit));
     add(const ProjectCheck());
   }
 
@@ -60,7 +65,21 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       ProjectCheck event, Emitter<AppState> emit) async {
     var projectExists =
         await Directory('${state.projectPath}/${state.projectName}').exists();
-    emit(state.copyWith(projectExists: projectExists));
+    var projectIsClean = false;
+    if (projectExists) {
+      try {
+        File file =
+            File('${state.projectPath}/${state.projectName}/pubspec.yaml');
+        String content = await file.readAsString();
+        if (content.contains('#generated with mason')) {
+          projectIsClean = true;
+        }
+      } catch (e) {
+        projectIsClean = false;
+      }
+    }
+    emit(state.copyWith(
+        projectExists: projectExists, projectIsClean: projectIsClean));
   }
 
   FutureOr<void> _organizationChange(
@@ -193,6 +212,39 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       configFile.delete();
       emit(state.copyWith(isGenerating: false, projectExists: true));
     }
+  }
+
+  FutureOr<void> _screenProjectChange(
+      ScreenProjectChange event, Emitter<AppState> emit) async {
+    var path = event.screenProjectPath.split('/');
+    var projectName = path.last;
+    var projectPath = path.sublist(0, path.length - 1).join('/');
+
+    emit(state.copyWith(projectPath: projectPath, projectName: projectName));
+  }
+
+  FutureOr<void> _screenAdd(ScreenAdd event, Emitter<AppState> emit) async {
+    var screens = state.screens.toList();
+    screens.add(event.screen);
+    emit(state.copyWith(screens: screens.toSet()));
+  }
+
+  FutureOr<void> _screenDelete(
+      ScreenDelete event, Emitter<AppState> emit) async {
+    var screens = state.screens.toList();
+    screens.remove(event.screen);
+    emit(state.copyWith(screens: screens.toSet()));
+  }
+
+  FutureOr<void> _stateUpdate(_, Emitter<AppState> emit) async {
+    emit(state.copyWith(stateUpdate: DateTime.now().millisecondsSinceEpoch));
+  }
+
+  FutureOr<void> _screensGenerate(
+      ScreensGenerate event, Emitter<AppState> emit) async {
+    emit(state.copyWith(isGenerating: true));
+    //TODO generate screens
+    emit(state.copyWith(isGenerating: false));
   }
 }
 

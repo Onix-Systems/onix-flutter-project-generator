@@ -6,12 +6,14 @@ class LabeledCheckbox extends StatefulWidget {
     required this.label,
     required this.onAction,
     this.initialValue = false,
+    this.disabled = false,
     Key? key,
   }) : super(key: key);
 
   final String label;
   final bool? initialValue;
   final VoidCallback onAction;
+  final bool? disabled;
 
   @override
   State<LabeledCheckbox> createState() => _LabeledCheckboxState();
@@ -32,11 +34,12 @@ class _LabeledCheckboxState extends State<LabeledCheckbox> {
       children: [
         MSHCheckbox(
           value: _value,
+          isDisabled: widget.disabled ?? false,
           duration: const Duration(milliseconds: 200),
           colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
             checkedColor: CupertinoColors.activeOrange,
-            uncheckedColor: CupertinoColors.systemGrey,
-            disabledColor: CupertinoColors.destructiveRed,
+            uncheckedColor: CupertinoColors.activeOrange,
+            disabledColor: CupertinoColors.activeOrange,
           ),
           onChanged: (value) {
             setState(() {

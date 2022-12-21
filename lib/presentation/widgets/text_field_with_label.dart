@@ -10,6 +10,7 @@ class TextFieldWithLabel extends StatelessWidget {
     required this.textController,
     required this.inputFormatters,
     this.error = false,
+    this.centered = false,
     this.subLabel,
   }) : super(key: key);
 
@@ -17,6 +18,7 @@ class TextFieldWithLabel extends StatelessWidget {
   final String? subLabel;
   final String value;
   final List<TextInputFormatter> inputFormatters;
+  final bool centered;
 
   final bool error;
 
@@ -26,12 +28,14 @@ class TextFieldWithLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment:
+          centered ? MainAxisAlignment.center : MainAxisAlignment.start,
       children: [
         SizedBox(
           width: 120,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment:
+                centered ? CrossAxisAlignment.center : CrossAxisAlignment.start,
             children: [
               Text(
                 label,

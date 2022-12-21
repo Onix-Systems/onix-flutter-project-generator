@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_body.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_base.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/build_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_top.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -66,6 +67,7 @@ class MainScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: BlocBuilder<AppBloc, AppState>(
             builder: (context, state) {
+              //logger.i(state);
               if (state.projectName != _projectNameController.text) {
                 var offset = _projectNameController.selection.base.offset + 1;
                 if (_projectNameController.text.length == 1) offset--;
@@ -131,16 +133,14 @@ class MainScreen extends StatelessWidget {
                             .read<AppBloc>()
                             .add(const TabChange(tabIndex: 0)),
                       ),
-                      if (state.projectExists) ...[
-                        const SizedBox(width: 5),
-                        NavigationButton(
-                          selected: context.read<AppBloc>().state.tab == 1,
-                          label: 'Screen',
-                          onTap: () => context
-                              .read<AppBloc>()
-                              .add(const TabChange(tabIndex: 1)),
-                        ),
-                      ],
+                      const SizedBox(width: 5),
+                      NavigationButton(
+                        selected: context.read<AppBloc>().state.tab == 1,
+                        label: 'Screen',
+                        onTap: () => context
+                            .read<AppBloc>()
+                            .add(const TabChange(tabIndex: 1)),
+                      ),
                       const SizedBox(width: 5),
                       const Expanded(
                         child: Divider(
@@ -153,7 +153,7 @@ class MainScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   if (state.tab == 0)
-                    BuildBody(
+                    BuildBase(
                       state: state,
                       projectNameController: _projectNameController,
                       organizationController: _projectOrgController,
@@ -176,7 +176,10 @@ class MainScreen extends StatelessWidget {
                       },
                     )
                   else
-                    const Text('Screen'),
+                    BuildScreen(
+                      state: state,
+                      projectNameController: _projectNameController,
+                    ),
                 ],
               );
             },

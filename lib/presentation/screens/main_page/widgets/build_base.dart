@@ -14,8 +14,8 @@ import 'package:onix_flutter_bricks/presentation/widgets/labeled_segmented_contr
 import 'package:onix_flutter_bricks/presentation/widgets/switch_with_label.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/text_field_with_label.dart';
 
-class BuildBody extends StatelessWidget {
-  const BuildBody({
+class BuildBase extends StatelessWidget {
+  const BuildBase({
     Key? key,
     required this.state,
     required this.projectNameController,

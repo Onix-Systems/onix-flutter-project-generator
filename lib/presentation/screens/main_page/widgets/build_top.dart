@@ -30,7 +30,7 @@ class BuildTop extends StatelessWidget {
               }
             });
           },
-          child: const Text('Change project folder'),
+          child: const Text('Change projects folder'),
         ),
         const SizedBox(width: 20),
         Expanded(

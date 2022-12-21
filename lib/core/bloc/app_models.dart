@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
+import 'package:onix_flutter_bricks/data/model/local/screen_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
 
 part 'app_models.freezed.dart';
@@ -64,6 +65,22 @@ class AppEvent with _$AppEvent {
           {required bool generateProject,
           required StreamController<ColoredLine> outputStreamController}) =
       GenerateProject;
+
+  const factory AppEvent.onScreenProjectChange({
+    required String screenProjectPath,
+  }) = ScreenProjectChange;
+
+  const factory AppEvent.onScreenAdd({
+    required ScreenEntity screen,
+  }) = ScreenAdd;
+
+  const factory AppEvent.onScreenDelete({
+    required ScreenEntity screen,
+  }) = ScreenDelete;
+
+  const factory AppEvent.onStateUpdate() = StateUpdate;
+
+  const factory AppEvent.onScreensGenerate() = ScreensGenerate;
 }
 
 @freezed
@@ -74,6 +91,8 @@ class AppState with _$AppState {
         String projectName,
     @Default(false)
         bool projectExists,
+    @Default(false)
+        bool projectIsClean,
     @Default('com.example')
         String organization,
     @Default(false)
@@ -106,8 +125,10 @@ class AppState with _$AppState {
         bool isGenerating,
     @Default(ProjectTheming.manual)
         ProjectTheming theming,
-    @Default(TextPosition(offset: 5))
-        TextPosition textPosition,
+    @Default({})
+        Set<ScreenEntity> screens,
+    @Default(0)
+        int stateUpdate,
   }) = Data;
 }
 
