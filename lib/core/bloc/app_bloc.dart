@@ -36,11 +36,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<SigningVarsChange>((event, emit) => _signingVarsChange(event, emit));
     on<PlatformsChange>((event, emit) => _platformsChange(event, emit));
     on<GenerateProject>((event, emit) => _generateProject(event, emit));
+    on<GenerateComplete>((event, emit) => _generateComplete(event, emit));
     on<ScreenProjectChange>((event, emit) => _screenProjectChange(event, emit));
     on<ScreenAdd>((event, emit) => _screenAdd(event, emit));
     on<ScreenDelete>((event, emit) => _screenDelete(event, emit));
     on<StateUpdate>((event, emit) => _stateUpdate(event, emit));
     on<ScreensGenerate>((event, emit) => _screensGenerate(event, emit));
+    on<ErrorClear>((event, emit) => _errorClear(event, emit));
     add(const ProjectCheck());
   }
 
@@ -167,7 +169,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _generateProject(
       GenerateProject event, Emitter<AppState> emit) async {
-    emit(state.copyWith(isGenerating: true));
+    emit(state.copyWith(generatingState: GeneratingState.generating));
     if (!state.projectExists && state.projectName.isNotEmpty) {
       var configFile = await File('${state.projectPath}/config.json').create();
       await configFile.writeAsString(jsonEncode({
@@ -187,7 +189,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       }).toString());
 
       event.outputStreamController
-          .add(ColoredLine(line: '{#info}Getting mason & bricks...'));
+          .add(ColoredLine(line: '{#info}Getting mason & brick...'));
 
       var mainProcess =
           await Process.start('zsh', [], workingDirectory: state.projectPath);
@@ -210,8 +212,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       var exitCode = await mainProcess.exitCode;
 
       configFile.delete();
-      emit(state.copyWith(isGenerating: false, projectExists: true));
+      emit(state.copyWith(
+          projectExists: true, generatingState: GeneratingState.waiting));
     }
+  }
+
+  FutureOr<void> _generateComplete(
+      GenerateComplete event, Emitter<AppState> emit) async {
+    add(const ProjectCheck());
+    emit(state.copyWith(generatingState: GeneratingState.init));
   }
 
   FutureOr<void> _screenProjectChange(
@@ -225,6 +234,19 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _screenAdd(ScreenAdd event, Emitter<AppState> emit) async {
     var screens = state.screens.toList();
+    try {
+      File file = File(
+          '${state.projectPath}/${state.projectName}/lib/core/router/app_router.dart');
+      String content = await file.readAsString();
+
+      if (content.contains('${event.screen.name}Screen')) {
+        emit(state.copyWith(
+            screenError: 'Screen ${event.screen.name}Screen already exists'));
+        return;
+      }
+    } catch (e) {
+      logger.e(e);
+    }
     screens.add(event.screen);
     emit(state.copyWith(screens: screens.toSet()));
   }
@@ -242,9 +264,42 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _screensGenerate(
       ScreensGenerate event, Emitter<AppState> emit) async {
-    emit(state.copyWith(isGenerating: true));
-    //TODO generate screens
-    emit(state.copyWith(isGenerating: false));
+    emit(state.copyWith(generatingState: GeneratingState.generating));
+
+    event.outputStreamController
+        .add(ColoredLine(line: '{#info}Getting mason & brick...'));
+
+    var mainProcess = await Process.start('zsh', [],
+        workingDirectory: '${state.projectPath}/${state.projectName}');
+
+    mainProcess.log(event.outputStreamController);
+    mainProcess.stdin.writeln('source \$HOME/.zshrc');
+    mainProcess.stdin.writeln('source \$HOME/.bash_profile');
+    mainProcess.stdin.writeln('dart pub global activate mason_cli');
+    mainProcess.stdin.writeln('mason cache clear');
+
+    mainProcess.stdin.writeln(
+        'mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_screen');
+
+    for (var screen in state.screens) {
+      if (screen != state.screens.last) {
+        mainProcess.stdin.writeln(
+            'mason make flutter_clean_screen --build false --screen_name ${screen.name} --use_bloc ${screen.bloc} --on-conflict overwrite');
+      } else {
+        mainProcess.stdin.writeln(
+            'mason make flutter_clean_screen --build true --screen_name ${screen.name} --use_bloc ${screen.bloc} --on-conflict overwrite');
+      }
+    }
+
+    var exitCode = await mainProcess.exitCode;
+    event.outputStreamController
+        .add(ColoredLine(line: '{#info}Screens generated!'));
+
+    emit(state.copyWith(generatingState: GeneratingState.waiting, screens: {}));
+  }
+
+  FutureOr<void> _errorClear(_, Emitter<AppState> emit) async {
+    emit(state.copyWith(screenError: ''));
   }
 }
 

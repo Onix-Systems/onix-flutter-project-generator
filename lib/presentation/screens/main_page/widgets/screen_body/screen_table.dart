@@ -17,7 +17,6 @@ class ScreenTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    logger.d('ScreenTable build: $screens');
     return Container(
       //padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(

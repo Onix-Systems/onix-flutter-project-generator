@@ -62,9 +62,10 @@ class AppEvent with _$AppEvent {
   const factory AppEvent.onThemingChange() = ThemingChange;
 
   const factory AppEvent.onGenerateProject(
-          {required bool generateProject,
-          required StreamController<ColoredLine> outputStreamController}) =
+          {required StreamController<ColoredLine> outputStreamController}) =
       GenerateProject;
+
+  const factory AppEvent.onGenerateComplete() = GenerateComplete;
 
   const factory AppEvent.onScreenProjectChange({
     required String screenProjectPath,
@@ -80,7 +81,11 @@ class AppEvent with _$AppEvent {
 
   const factory AppEvent.onStateUpdate() = StateUpdate;
 
-  const factory AppEvent.onScreensGenerate() = ScreensGenerate;
+  const factory AppEvent.onScreensGenerate({
+    required StreamController<ColoredLine> outputStreamController,
+  }) = ScreensGenerate;
+
+  const factory AppEvent.onErrorClear() = ErrorClear;
 }
 
 @freezed
@@ -121,12 +126,14 @@ class AppState with _$AppState {
     required PlatformsList platforms,
     @Default(0)
         int tab,
-    @Default(false)
-        bool isGenerating,
+    @Default(GeneratingState.init)
+        GeneratingState generatingState,
     @Default(ProjectTheming.manual)
         ProjectTheming theming,
     @Default({})
         Set<ScreenEntity> screens,
+    @Default('')
+        String screenError,
     @Default(0)
         int stateUpdate,
   }) = Data;
@@ -137,3 +144,5 @@ enum ProjectRouter { goRouter, autoRouter }
 enum ProjectLocalization { intl, flutter_gen }
 
 enum ProjectTheming { manual, theme_tailor }
+
+enum GeneratingState { init, generating, waiting }

@@ -39,19 +39,23 @@ class BuildBase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          SizedBox(
-            width: 440,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                TextFieldWithLabel(
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            border: Border.all(color: CupertinoColors.systemOrange),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: TextFieldWithLabel(
                   label: 'Project name:',
+                  expanded: true,
                   textController: projectNameController,
                   value: state.projectName,
                   error: state.projectExists,
@@ -59,150 +63,192 @@ class BuildBase extends StatelessWidget {
                     FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
                   ],
                 ),
-                const SizedBox(height: 20),
-                TextFieldWithLabel(
+              ),
+              const SizedBox(width: 40),
+              Expanded(
+                child: TextFieldWithLabel(
                   label: 'Organization:',
+                  expanded: true,
                   textController: organizationController,
                   value: state.organization,
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(RegExp(r'[-a-zA-Z0-9.]')),
                   ],
                 ),
-                const SizedBox(height: 20),
-                PlatformSelector(
-                  platforms: state.platforms,
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            border: Border.all(color: CupertinoColors.systemOrange),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: PlatformSelector(
+            platforms: state.platforms,
+          ),
+        ),
+        const SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  border: Border.all(color: CupertinoColors.systemOrange),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                const SizedBox(height: 20),
-                SwitchWithLabel(
-                  label: 'Flavorize?',
-                  initialValue: state.flavorize,
-                  subLabel: '(DEV & PROD flavors will be added automatically)',
-                  valueSetter: (_) {
-                    context.read<AppBloc>().add(const FlavorizeChange());
-                  },
-                ),
-                const SizedBox(height: 20),
-                Visibility(
-                  visible: state.flavorize,
-                  child: TextFieldWithLabel(
-                    label: 'Add flavors:',
-                    subLabel: '(space separated)',
-                    textController: flavorsController,
-                    value: state.flavors.toString(),
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(
-                          RegExp(r'[a-zA-Z0-9 ]')),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                LabeledSegmentedControl(
-                  label: 'Router:',
-                  values: ProjectRouter.values.map((e) => e.name).toList(),
-                  onChange: (_) {
-                    context.read<AppBloc>().add(const RouterChange());
-                  },
-                  selectedValue: state.router.name,
-                ),
-                const SizedBox(height: 20),
-                LabeledSegmentedControl(
-                  label: 'Localization:',
-                  values:
-                      ProjectLocalization.values.map((e) => e.name).toList(),
-                  onChange: (_) {
-                    context.read<AppBloc>().add(const LocalizationChange());
-                  },
-                  selectedValue: state.localization.name,
-                ),
-                const SizedBox(height: 20),
-                LabeledSegmentedControl(
-                  label: 'Theming:',
-                  values: ProjectTheming.values.map((e) => e.name).toList(),
-                  onChange: (_) {
-                    context.read<AppBloc>().add(const ThemingChange());
-                  },
-                  selectedValue: state.theming.name,
-                ),
-                const SizedBox(height: 20),
-                SwitchWithLabel(
-                  label: 'Generate signing key?',
-                  initialValue: state.generateSigningKey,
-                  subLabel: '(Dialog will open in separate window)',
-                  valueSetter: (_) {
-                    context
-                        .read<AppBloc>()
-                        .add(const GenerateSigningKeyChange());
-                  },
-                ),
-                Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    TextButton(
-                      onPressed: () {
-                        showCupertinoModalPopup<List<String>>(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (context) => SigningDialog(state: state),
-                        ).then((signingVars) {
-                          context.read<AppBloc>().add(SigningVarsChange(
-                              signingVars: signingVars ?? state.signingVars));
-                        });
+                    SwitchWithLabel(
+                      label: 'Flavorize?',
+                      initialValue: state.flavorize,
+                      subLabel:
+                          '(DEV & PROD flavors will be added automatically)',
+                      valueSetter: (_) {
+                        context.read<AppBloc>().add(const FlavorizeChange());
                       },
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
+                    ),
+                    if (state.flavorize) ...[
+                      const SizedBox(height: 20),
+                      TextFieldWithLabel(
+                        label: 'Add flavors:',
+                        expanded: true,
+                        subLabel: '(space separated)',
+                        textController: flavorsController,
+                        value: state.flavors.toString(),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(
+                              RegExp(r'[a-zA-Z0-9 ]')),
+                        ],
                       ),
-                      child: const Text('Modify signing vars...'),
+                    ],
+                    const SizedBox(height: 20),
+                    SwitchWithLabel(
+                      label: 'Generate signing key?',
+                      initialValue: state.generateSigningKey,
+                      subLabel: '(Dialog will open in separate window)',
+                      valueSetter: (_) {
+                        context
+                            .read<AppBloc>()
+                            .add(const GenerateSigningKeyChange());
+                      },
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            showCupertinoModalPopup<List<String>>(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (context) => SigningDialog(state: state),
+                            ).then((signingVars) {
+                              context.read<AppBloc>().add(SigningVarsChange(
+                                  signingVars:
+                                      signingVars ?? state.signingVars));
+                            });
+                          },
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                          ),
+                          child: const Text('Modify signing vars...'),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    SwitchWithLabel(
+                      label: 'Will you use Sonar?',
+                      initialValue: state.useSonar,
+                      valueSetter: (_) {
+                        context.read<AppBloc>().add(const UseSonarChange());
+                      },
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-                SwitchWithLabel(
-                  label: 'Will you use Sonar?',
-                  initialValue: state.useSonar,
-                  valueSetter: (_) {
-                    context.read<AppBloc>().add(const UseSonarChange());
-                  },
-                ),
-                const SizedBox(height: 20),
-                SwitchWithLabel(
-                  label: 'Integrate Device Preview?',
-                  initialValue: state.integrateDevicePreview,
-                  valueSetter: (_) {
-                    context
-                        .read<AppBloc>()
-                        .add(const IntegrateDevicePreviewChange());
-                  },
-                ),
-                const Spacer(),
-                CupertinoButton(
-                  color: state.projectName.isEmpty ||
-                          state.organization.isEmpty ||
-                          state.isGenerating ||
-                          !state.platforms.selected ||
-                          state.projectExists
-                      ? AppColors.orange.withOpacity(0.03)
-                      : AppColors.orange,
-                  onPressed: onGenerate,
-                  child: Text(
-                    'Generate!',
-                    style: TextStyle(
-                        color: state.isGenerating || state.projectExists
-                            ? AppColors.inactiveText
-                            : CupertinoColors.black),
-                  ),
-                ),
-              ],
+              ),
             ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  border: Border.all(color: CupertinoColors.systemOrange),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    LabeledSegmentedControl(
+                      label: 'Router:',
+                      values: ProjectRouter.values.map((e) => e.name).toList(),
+                      onChange: (_) {
+                        context.read<AppBloc>().add(const RouterChange());
+                      },
+                      selectedValue: state.router.name,
+                    ),
+                    const SizedBox(height: 20),
+                    LabeledSegmentedControl(
+                      label: 'Localization:',
+                      values: ProjectLocalization.values
+                          .map((e) => e.name)
+                          .toList(),
+                      onChange: (_) {
+                        context.read<AppBloc>().add(const LocalizationChange());
+                      },
+                      selectedValue: state.localization.name,
+                    ),
+                    const SizedBox(height: 20),
+                    LabeledSegmentedControl(
+                      label: 'Theming:',
+                      values: ProjectTheming.values.map((e) => e.name).toList(),
+                      onChange: (_) {
+                        context.read<AppBloc>().add(const ThemingChange());
+                      },
+                      selectedValue: state.theming.name,
+                    ),
+                    const SizedBox(height: 20),
+                    SwitchWithLabel(
+                      label: 'Integrate Device Preview?',
+                      initialValue: state.integrateDevicePreview,
+                      valueSetter: (_) {
+                        context
+                            .read<AppBloc>()
+                            .add(const IntegrateDevicePreviewChange());
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+        const Spacer(),
+        CupertinoButton(
+          color: state.projectName.isEmpty ||
+                  state.organization.isEmpty ||
+                  state.generatingState == GeneratingState.generating ||
+                  !state.platforms.selected ||
+                  state.projectExists
+              ? AppColors.orange.withOpacity(0.03)
+              : AppColors.orange,
+          onPressed: onGenerate,
+          child: Text(
+            'Generate!',
+            style: TextStyle(
+                color: state.generatingState == GeneratingState.generating ||
+                        state.projectExists
+                    ? AppColors.inactiveText
+                    : CupertinoColors.black),
           ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: BuildOutput(
-              outputStream: outputStream,
-              outputText: outputText,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

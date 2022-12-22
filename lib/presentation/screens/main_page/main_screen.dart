@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_base.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_output.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/build_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_top.dart';
 
@@ -62,129 +63,157 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     _init(context);
     return CupertinoPageScaffold(
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: BlocBuilder<AppBloc, AppState>(
-            builder: (context, state) {
-              //logger.i(state);
-              if (state.projectName != _projectNameController.text) {
-                var offset = _projectNameController.selection.base.offset + 1;
-                if (_projectNameController.text.length == 1) offset--;
-                _projectNameController.text = state.projectName;
-                _projectNameController.selection = TextSelection.fromPosition(
-                    offset <= _projectNameController.text.length
-                        ? TextPosition(offset: offset)
-                        : TextPosition(offset: offset - 2));
-              }
-              if (state.organization != _projectOrgController.text) {
-                var offset = _projectOrgController.selection.base.offset + 1;
-                if (_projectOrgController.text.length == 1) offset++;
-                _projectOrgController.text = state.organization;
-                _projectOrgController.selection = TextSelection.fromPosition(
-                    offset <= _projectOrgController.text.length
-                        ? TextPosition(offset: offset)
-                        : TextPosition(offset: offset - 2));
-              }
-              if (state.flavors
-                      .toString()
-                      .replaceAll('{', '')
-                      .replaceAll('}', '')
-                      .replaceAll(',', '') !=
-                  _flavorsController.text) {
-                var offset = _flavorsController.selection.base.offset;
-                _flavorsController.text = state.flavors
-                    .toString()
-                    .replaceAll('{', '')
-                    .replaceAll('}', '')
-                    .replaceAll(',', '');
-                _flavorsController.selection = TextSelection.fromPosition(
-                    offset <= _flavorsController.text.length
-                        ? TextPosition(offset: offset)
-                        : TextPosition(offset: offset - 1));
-              }
-              return Column(
-                children: [
-                  BuildTop(
-                    projectPath: state.projectPath,
-                    projectName: state.projectName,
-                    onPathChange: (projectPath) {
-                      context
-                          .read<AppBloc>()
-                          .add(ProjectPathChange(projectPath: projectPath));
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Expanded(
-                        child: Divider(
-                          thickness: 1,
-                          height: 40,
-                          color: CupertinoColors.activeOrange,
+      child: BlocBuilder<AppBloc, AppState>(
+        builder: (context, state) {
+          logger.i(state);
+          if (state.projectName != _projectNameController.text) {
+            var offset = _projectNameController.selection.base.offset + 1;
+            if (_projectNameController.text.length == 1) offset--;
+            _projectNameController.text = state.projectName;
+            _projectNameController.selection = TextSelection.fromPosition(
+                offset <= _projectNameController.text.length
+                    ? TextPosition(offset: offset)
+                    : TextPosition(offset: offset - 2));
+          }
+          if (state.organization != _projectOrgController.text) {
+            var offset = _projectOrgController.selection.base.offset + 1;
+            if (_projectOrgController.text.length == 1) offset++;
+            _projectOrgController.text = state.organization;
+            _projectOrgController.selection = TextSelection.fromPosition(
+                offset <= _projectOrgController.text.length
+                    ? TextPosition(offset: offset)
+                    : TextPosition(offset: offset - 2));
+          }
+          if (state.flavors
+                  .toString()
+                  .replaceAll('{', '')
+                  .replaceAll('}', '')
+                  .replaceAll(',', '') !=
+              _flavorsController.text) {
+            var offset = _flavorsController.selection.base.offset;
+            _flavorsController.text = state.flavors
+                .toString()
+                .replaceAll('{', '')
+                .replaceAll('}', '')
+                .replaceAll(',', '');
+            _flavorsController.selection = TextSelection.fromPosition(
+                offset <= _flavorsController.text.length
+                    ? TextPosition(offset: offset)
+                    : TextPosition(offset: offset - 1));
+          }
+          return Padding(
+            padding: const EdgeInsets.all(10),
+            child: Center(
+              child: Stack(fit: StackFit.expand, children: [
+                Positioned.fill(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        BuildTop(
+                          projectPath: state.projectPath,
+                          projectName: state.projectName,
+                          onPathChange: (projectPath) {
+                            context.read<AppBloc>().add(
+                                ProjectPathChange(projectPath: projectPath));
+                          },
                         ),
-                      ),
-                      const SizedBox(width: 5),
-                      NavigationButton(
-                        selected: context.read<AppBloc>().state.tab == 0,
-                        label: 'Base',
-                        onTap: () => context
-                            .read<AppBloc>()
-                            .add(const TabChange(tabIndex: 0)),
-                      ),
-                      const SizedBox(width: 5),
-                      NavigationButton(
-                        selected: context.read<AppBloc>().state.tab == 1,
-                        label: 'Screen',
-                        onTap: () => context
-                            .read<AppBloc>()
-                            .add(const TabChange(tabIndex: 1)),
-                      ),
-                      const SizedBox(width: 5),
-                      const Expanded(
-                        child: Divider(
-                          thickness: 1,
-                          height: 40,
-                          color: CupertinoColors.activeOrange,
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Expanded(
+                              child: Divider(
+                                thickness: 1,
+                                height: 40,
+                                color: CupertinoColors.activeOrange,
+                              ),
+                            ),
+                            const SizedBox(width: 20),
+                            NavigationButton(
+                              selected: context.read<AppBloc>().state.tab == 0,
+                              label: 'Base',
+                              onTap: () => context
+                                  .read<AppBloc>()
+                                  .add(const TabChange(tabIndex: 0)),
+                            ),
+                            const SizedBox(width: 10),
+                            NavigationButton(
+                              selected: context.read<AppBloc>().state.tab == 1,
+                              label: 'Screen',
+                              onTap: () => context
+                                  .read<AppBloc>()
+                                  .add(const TabChange(tabIndex: 1)),
+                            ),
+                            const SizedBox(width: 20),
+                            const Expanded(
+                              child: Divider(
+                                thickness: 1,
+                                height: 40,
+                                color: CupertinoColors.activeOrange,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  if (state.tab == 0)
-                    BuildBase(
-                      state: state,
-                      projectNameController: _projectNameController,
-                      organizationController: _projectOrgController,
-                      flavorsController: _flavorsController,
-                      outputStream: outputStream,
-                      outputText: outputText,
-                      onGenerate: () async {
-                        if (state.projectName.isEmpty ||
-                            state.organization.isEmpty ||
-                            state.isGenerating ||
-                            !state.platforms.selected) {
-                          //TODO: show error
-                        } else {
-                          outputText.clear();
-                          context.read<AppBloc>().add(GenerateProject(
-                                generateProject: true,
-                                outputStreamController: outputStreamController,
-                              ));
-                        }
-                      },
-                    )
-                  else
-                    BuildScreen(
-                      state: state,
-                      projectNameController: _projectNameController,
+                        const SizedBox(height: 20),
+                        if (state.tab == 0)
+                          Expanded(
+                            child: BuildBase(
+                              state: state,
+                              projectNameController: _projectNameController,
+                              organizationController: _projectOrgController,
+                              flavorsController: _flavorsController,
+                              outputStream: outputStream,
+                              outputText: outputText,
+                              onGenerate: () async {
+                                if (state.projectName.isEmpty ||
+                                    state.organization.isEmpty ||
+                                    state.generatingState ==
+                                        GeneratingState.generating ||
+                                    !state.platforms.selected) {
+                                  //TODO: show error
+                                } else {
+                                  outputText.clear();
+                                  context.read<AppBloc>().add(GenerateProject(
+                                        outputStreamController:
+                                            outputStreamController,
+                                      ));
+                                }
+                              },
+                            ),
+                          )
+                        else
+                          Expanded(
+                            child: BuildScreen(
+                              state: state,
+                              projectNameController: _projectNameController,
+                              onGenerate: () {
+                                outputText.clear();
+                                context.read<AppBloc>().add(ScreensGenerate(
+                                      outputStreamController:
+                                          outputStreamController,
+                                    ));
+                              },
+                              outputStream: outputStream,
+                              outputText: outputText,
+                            ),
+                          ),
+                      ],
                     ),
-                ],
-              );
-            },
-          ),
-        ),
+                  ),
+                ),
+                if (state.generatingState == GeneratingState.generating ||
+                    state.generatingState == GeneratingState.waiting)
+                  BuildOutput(
+                    canClose: state.generatingState == GeneratingState.waiting,
+                    outputStream: outputStream,
+                    outputText: outputText,
+                  ),
+              ]),
+            ),
+          );
+        },
       ),
     );
   }

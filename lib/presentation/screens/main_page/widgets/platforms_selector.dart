@@ -48,11 +48,6 @@ class PlatformSelector extends StatelessWidget {
                       ));
                 },
               )),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
               Expanded(
                   child: LabeledCheckbox(
                 label: 'MacOS',
