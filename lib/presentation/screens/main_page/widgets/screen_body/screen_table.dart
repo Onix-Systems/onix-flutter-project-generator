@@ -73,7 +73,7 @@ class ScreenTable extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Cell(
-                    value: Text('${screen.name.titleCase}Screen'),
+                    value: Text('${screen.name.pascalCase}Screen'),
                     decorated: true,
                   ),
                   Cell(

@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/bloc/app_bloc.dart';
-import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen_entity.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
+import 'package:recase/recase.dart';
 
 class AddScreenDialog extends StatelessWidget {
   AddScreenDialog({Key? key, this.screen}) : super(key: key);
@@ -54,7 +52,7 @@ class AddScreenDialog extends StatelessWidget {
           onPressed: () {
             if (_screenNameController.text.isNotEmpty) {
               if (screen != null) {
-                screen!.name = _screenNameController.text;
+                screen!.name = _screenNameController.text.snakeCase;
                 Navigator.pop(context, screen);
               } else {
                 Navigator.pop(
