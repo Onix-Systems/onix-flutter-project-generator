@@ -8,11 +8,10 @@ import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/add_screen_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/screen_table.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/text_field_with_label.dart';
 
-class BuildScreen extends StatelessWidget {
-  const BuildScreen({
+class BuildEntity extends StatelessWidget {
+  const BuildEntity({
     required this.state,
     required this.projectNameController,
     required this.onGenerate,
@@ -61,50 +60,47 @@ class BuildScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ...[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextFieldWithLabel(
-                      label: 'Project name:',
-                      textController: projectNameController,
-                      value: state.projectName,
-                      centered: true,
-                      error: !state.projectExists,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(
-                            RegExp(r'[a-zA-Z0-9_]')),
-                      ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextFieldWithLabel(
+                    label: 'Project name:',
+                    textController: projectNameController,
+                    value: state.projectName,
+                    centered: true,
+                    error: !state.projectExists,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'[a-zA-Z0-9_]')),
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  SizedBox(
+                    height: 30,
+                    width: 50,
+                    child: CupertinoButton(
+                      color: CupertinoColors.activeOrange,
+                      padding: EdgeInsets.zero,
+                      onPressed: () {
+                        getDirectoryPath().then((value) {
+                          if (value != null) {
+                            context.read<AppBloc>().add(
+                                  ScreenProjectChange(
+                                    screenProjectPath: value,
+                                  ),
+                                );
+                          }
+                        });
+                      },
+                      child: const Text('...'),
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      height: 30,
-                      width: 50,
-                      child: CupertinoButton(
-                        color: CupertinoColors.activeOrange,
-                        padding: EdgeInsets.zero,
-                        onPressed: () {
-                          getDirectoryPath().then((value) {
-                            if (value != null) {
-                              context.read<AppBloc>().add(
-                                    ScreenProjectChange(
-                                      screenProjectPath: value,
-                                    ),
-                                  );
-                            }
-                          });
-                        },
-                        child: const Text('...'),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20)
-              ],
-              if ((state.projectExists && state.projectIsClean) ||
-                  state.generateScreensWithProject) ...[
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              if (state.projectExists && state.projectIsClean) ...[
                 CupertinoButton(
                   onPressed: () {
                     showCupertinoModalPopup<ScreenEntity>(
@@ -126,7 +122,7 @@ class BuildScreen extends StatelessWidget {
                     children: const [
                       Icon(CupertinoIcons.add),
                       SizedBox(width: 10),
-                      Text('Add screen'),
+                      Text('Add entity'),
                     ],
                   ),
                 ),
@@ -140,14 +136,13 @@ class BuildScreen extends StatelessWidget {
                         )
                       : const SizedBox(),
                 ),
-                if (state.screens.isNotEmpty &&
-                    (!state.generateScreensWithProject || state.projectExists))
+                if (state.screens.isNotEmpty)
                   CupertinoButton(
                     color: CupertinoColors.activeOrange,
                     onPressed: () {
                       onGenerate();
                     },
-                    child: const Text('Generate screens'),
+                    child: const Text('Generate entities'),
                   ),
               ] else ...[
                 if (state.projectExists)
@@ -159,21 +154,6 @@ class BuildScreen extends StatelessWidget {
                       style: TextStyle(color: CupertinoColors.destructiveRed)),
                 const Spacer(),
               ],
-              if (!state.projectExists)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    LabeledCheckbox(
-                        label: 'Generate with project?',
-                        initialValue: state.generateScreensWithProject,
-                        onAction: () {
-                          context.read<AppBloc>().add(
-                              OnGenerateScreensWithProject(
-                                  generateScreensWithProject:
-                                      !state.generateScreensWithProject));
-                        }),
-                  ],
-                ),
             ],
           ),
         ),

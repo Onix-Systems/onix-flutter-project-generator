@@ -238,7 +238,11 @@ class BuildBase extends StatelessWidget {
                   state.projectExists
               ? AppColors.orange.withOpacity(0.03)
               : AppColors.orange,
-          onPressed: onGenerate,
+          onPressed: () {
+            if (!state.projectExists) {
+              onGenerate();
+            }
+          },
           child: Text(
             'Generate!',
             style: TextStyle(

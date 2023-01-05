@@ -6,6 +6,7 @@ import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_base.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_output.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/build_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/build_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_top.dart';
 
@@ -146,6 +147,14 @@ class MainScreen extends StatelessWidget {
                                   .read<AppBloc>()
                                   .add(const TabChange(tabIndex: 1)),
                             ),
+                            const SizedBox(width: 10),
+                            NavigationButton(
+                              selected: context.read<AppBloc>().state.tab == 2,
+                              label: 'Entity',
+                              onTap: () => context
+                                  .read<AppBloc>()
+                                  .add(const TabChange(tabIndex: 2)),
+                            ),
                             const SizedBox(width: 20),
                             const Expanded(
                               child: Divider(
@@ -183,7 +192,7 @@ class MainScreen extends StatelessWidget {
                               },
                             ),
                           )
-                        else
+                        else if (state.tab == 1)
                           Expanded(
                             child: BuildScreen(
                               state: state,
@@ -198,7 +207,19 @@ class MainScreen extends StatelessWidget {
                               outputStream: outputStream,
                               outputText: outputText,
                             ),
-                          ),
+                          )
+                        else
+                          Expanded(
+                            child: BuildEntity(
+                              state: state,
+                              projectNameController: _projectNameController,
+                              onGenerate: () {
+                                outputText.clear();
+                              },
+                              outputStream: outputStream,
+                              outputText: outputText,
+                            ),
+                          )
                       ],
                     ),
                   ),

@@ -39,6 +39,8 @@ mixin _$AppEvent {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -71,6 +73,8 @@ mixin _$AppEvent {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -102,6 +106,8 @@ mixin _$AppEvent {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -134,6 +140,8 @@ mixin _$AppEvent {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -164,6 +172,8 @@ mixin _$AppEvent {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -194,6 +204,8 @@ mixin _$AppEvent {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -305,6 +317,8 @@ class _$Init implements Init {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -340,6 +354,8 @@ class _$Init implements Init {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -374,6 +390,8 @@ class _$Init implements Init {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -412,6 +430,8 @@ class _$Init implements Init {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -445,6 +465,8 @@ class _$Init implements Init {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -478,6 +500,8 @@ class _$Init implements Init {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -587,6 +611,8 @@ class _$TabChange implements TabChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -622,6 +648,8 @@ class _$TabChange implements TabChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -656,6 +684,8 @@ class _$TabChange implements TabChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -694,6 +724,8 @@ class _$TabChange implements TabChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -727,6 +759,8 @@ class _$TabChange implements TabChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -760,6 +794,8 @@ class _$TabChange implements TabChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -870,6 +906,8 @@ class _$ProjectPathChange implements ProjectPathChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -905,6 +943,8 @@ class _$ProjectPathChange implements ProjectPathChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -939,6 +979,8 @@ class _$ProjectPathChange implements ProjectPathChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -977,6 +1019,8 @@ class _$ProjectPathChange implements ProjectPathChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -1010,6 +1054,8 @@ class _$ProjectPathChange implements ProjectPathChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -1043,6 +1089,8 @@ class _$ProjectPathChange implements ProjectPathChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -1164,6 +1212,8 @@ class _$ProjectNameChange implements ProjectNameChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -1199,6 +1249,8 @@ class _$ProjectNameChange implements ProjectNameChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -1233,6 +1285,8 @@ class _$ProjectNameChange implements ProjectNameChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -1271,6 +1325,8 @@ class _$ProjectNameChange implements ProjectNameChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -1304,6 +1360,8 @@ class _$ProjectNameChange implements ProjectNameChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -1337,6 +1395,8 @@ class _$ProjectNameChange implements ProjectNameChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -1423,6 +1483,8 @@ class _$ProjectCheck implements ProjectCheck {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -1458,6 +1520,8 @@ class _$ProjectCheck implements ProjectCheck {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -1492,6 +1556,8 @@ class _$ProjectCheck implements ProjectCheck {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -1530,6 +1596,8 @@ class _$ProjectCheck implements ProjectCheck {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -1563,6 +1631,8 @@ class _$ProjectCheck implements ProjectCheck {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -1596,6 +1666,8 @@ class _$ProjectCheck implements ProjectCheck {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -1702,6 +1774,8 @@ class _$OrganizationChange implements OrganizationChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -1737,6 +1811,8 @@ class _$OrganizationChange implements OrganizationChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -1771,6 +1847,8 @@ class _$OrganizationChange implements OrganizationChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -1809,6 +1887,8 @@ class _$OrganizationChange implements OrganizationChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -1842,6 +1922,8 @@ class _$OrganizationChange implements OrganizationChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -1875,6 +1957,8 @@ class _$OrganizationChange implements OrganizationChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -1959,6 +2043,8 @@ class _$FlavorizeChange implements FlavorizeChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -1994,6 +2080,8 @@ class _$FlavorizeChange implements FlavorizeChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -2028,6 +2116,8 @@ class _$FlavorizeChange implements FlavorizeChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -2066,6 +2156,8 @@ class _$FlavorizeChange implements FlavorizeChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -2099,6 +2191,8 @@ class _$FlavorizeChange implements FlavorizeChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -2132,6 +2226,8 @@ class _$FlavorizeChange implements FlavorizeChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -2236,6 +2332,8 @@ class _$FlavorsChange implements FlavorsChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -2271,6 +2369,8 @@ class _$FlavorsChange implements FlavorsChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -2305,6 +2405,8 @@ class _$FlavorsChange implements FlavorsChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -2343,6 +2445,8 @@ class _$FlavorsChange implements FlavorsChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -2376,6 +2480,8 @@ class _$FlavorsChange implements FlavorsChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -2409,6 +2515,8 @@ class _$FlavorsChange implements FlavorsChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -2493,6 +2601,8 @@ class _$RouterChange implements RouterChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -2528,6 +2638,8 @@ class _$RouterChange implements RouterChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -2562,6 +2674,8 @@ class _$RouterChange implements RouterChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -2600,6 +2714,8 @@ class _$RouterChange implements RouterChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -2633,6 +2749,8 @@ class _$RouterChange implements RouterChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -2666,6 +2784,8 @@ class _$RouterChange implements RouterChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -2744,6 +2864,8 @@ class _$LocalizationChange implements LocalizationChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -2779,6 +2901,8 @@ class _$LocalizationChange implements LocalizationChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -2813,6 +2937,8 @@ class _$LocalizationChange implements LocalizationChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -2851,6 +2977,8 @@ class _$LocalizationChange implements LocalizationChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -2884,6 +3012,8 @@ class _$LocalizationChange implements LocalizationChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -2917,6 +3047,8 @@ class _$LocalizationChange implements LocalizationChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -2996,6 +3128,8 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -3031,6 +3165,8 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -3065,6 +3201,8 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -3103,6 +3241,8 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -3136,6 +3276,8 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -3169,6 +3311,8 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -3247,6 +3391,8 @@ class _$UseSonarChange implements UseSonarChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -3282,6 +3428,8 @@ class _$UseSonarChange implements UseSonarChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -3316,6 +3464,8 @@ class _$UseSonarChange implements UseSonarChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -3354,6 +3504,8 @@ class _$UseSonarChange implements UseSonarChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -3387,6 +3539,8 @@ class _$UseSonarChange implements UseSonarChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -3420,6 +3574,8 @@ class _$UseSonarChange implements UseSonarChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -3501,6 +3657,8 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -3536,6 +3694,8 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -3570,6 +3730,8 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -3608,6 +3770,8 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -3641,6 +3805,8 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -3674,6 +3840,8 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -3786,6 +3954,8 @@ class _$SigningVarsChange implements SigningVarsChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -3821,6 +3991,8 @@ class _$SigningVarsChange implements SigningVarsChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -3855,6 +4027,8 @@ class _$SigningVarsChange implements SigningVarsChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -3893,6 +4067,8 @@ class _$SigningVarsChange implements SigningVarsChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -3926,6 +4102,8 @@ class _$SigningVarsChange implements SigningVarsChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -3959,6 +4137,8 @@ class _$SigningVarsChange implements SigningVarsChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -4080,6 +4260,8 @@ class _$PlatformsChange implements PlatformsChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -4115,6 +4297,8 @@ class _$PlatformsChange implements PlatformsChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -4149,6 +4333,8 @@ class _$PlatformsChange implements PlatformsChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -4187,6 +4373,8 @@ class _$PlatformsChange implements PlatformsChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -4220,6 +4408,8 @@ class _$PlatformsChange implements PlatformsChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -4253,6 +4443,8 @@ class _$PlatformsChange implements PlatformsChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -4337,6 +4529,8 @@ class _$ThemingChange implements ThemingChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -4372,6 +4566,8 @@ class _$ThemingChange implements ThemingChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -4406,6 +4602,8 @@ class _$ThemingChange implements ThemingChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -4444,6 +4642,8 @@ class _$ThemingChange implements ThemingChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -4477,6 +4677,8 @@ class _$ThemingChange implements ThemingChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -4510,6 +4712,8 @@ class _$ThemingChange implements ThemingChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -4534,7 +4738,6 @@ abstract class _$$GenerateProjectCopyWith<$Res> {
   factory _$$GenerateProjectCopyWith(
           _$GenerateProject value, $Res Function(_$GenerateProject) then) =
       __$$GenerateProjectCopyWithImpl<$Res>;
-
   @useResult
   $Res call({StreamController<ColoredLine> outputStreamController});
 }
@@ -4616,6 +4819,8 @@ class _$GenerateProject implements GenerateProject {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -4651,6 +4856,8 @@ class _$GenerateProject implements GenerateProject {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -4685,6 +4892,8 @@ class _$GenerateProject implements GenerateProject {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -4723,6 +4932,8 @@ class _$GenerateProject implements GenerateProject {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -4756,6 +4967,8 @@ class _$GenerateProject implements GenerateProject {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -4789,6 +5002,8 @@ class _$GenerateProject implements GenerateProject {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -4810,7 +5025,6 @@ abstract class GenerateProject implements AppEvent {
           outputStreamController}) = _$GenerateProject;
 
   StreamController<ColoredLine> get outputStreamController;
-
   @JsonKey(ignore: true)
   _$$GenerateProjectCopyWith<_$GenerateProject> get copyWith =>
       throw _privateConstructorUsedError;
@@ -4875,6 +5089,8 @@ class _$GenerateComplete implements GenerateComplete {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -4910,6 +5126,8 @@ class _$GenerateComplete implements GenerateComplete {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -4944,6 +5162,8 @@ class _$GenerateComplete implements GenerateComplete {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -4982,6 +5202,8 @@ class _$GenerateComplete implements GenerateComplete {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -5015,6 +5237,8 @@ class _$GenerateComplete implements GenerateComplete {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -5048,6 +5272,8 @@ class _$GenerateComplete implements GenerateComplete {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -5065,6 +5291,311 @@ class _$GenerateComplete implements GenerateComplete {
 
 abstract class GenerateComplete implements AppEvent {
   const factory GenerateComplete() = _$GenerateComplete;
+}
+
+/// @nodoc
+abstract class _$$OnGenerateScreensWithProjectCopyWith<$Res> {
+  factory _$$OnGenerateScreensWithProjectCopyWith(
+          _$OnGenerateScreensWithProject value,
+          $Res Function(_$OnGenerateScreensWithProject) then) =
+      __$$OnGenerateScreensWithProjectCopyWithImpl<$Res>;
+
+  @useResult
+  $Res call({bool generateScreensWithProject});
+}
+
+/// @nodoc
+class __$$OnGenerateScreensWithProjectCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$OnGenerateScreensWithProject>
+    implements _$$OnGenerateScreensWithProjectCopyWith<$Res> {
+  __$$OnGenerateScreensWithProjectCopyWithImpl(
+      _$OnGenerateScreensWithProject _value,
+      $Res Function(_$OnGenerateScreensWithProject) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? generateScreensWithProject = null,
+  }) {
+    return _then(_$OnGenerateScreensWithProject(
+      generateScreensWithProject: null == generateScreensWithProject
+          ? _value.generateScreensWithProject
+          : generateScreensWithProject // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnGenerateScreensWithProject implements OnGenerateScreensWithProject {
+  const _$OnGenerateScreensWithProject(
+      {required this.generateScreensWithProject});
+
+  @override
+  final bool generateScreensWithProject;
+
+  @override
+  String toString() {
+    return 'AppEvent.onGenerateScreensWithProjectChange(generateScreensWithProject: $generateScreensWithProject)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnGenerateScreensWithProject &&
+            (identical(other.generateScreensWithProject,
+                    generateScreensWithProject) ||
+                other.generateScreensWithProject ==
+                    generateScreensWithProject));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, generateScreensWithProject);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnGenerateScreensWithProjectCopyWith<_$OnGenerateScreensWithProject>
+      get copyWith => __$$OnGenerateScreensWithProjectCopyWithImpl<
+          _$OnGenerateScreensWithProject>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String projectPath) init,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function(
+            StreamController<ColoredLine> outputStreamController)
+        onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(String screenProjectPath) onScreenProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function(
+            StreamController<ColoredLine> outputStreamController)
+        onScreensGenerate,
+    required TResult Function() onErrorClear,
+  }) {
+    return onGenerateScreensWithProjectChange(generateScreensWithProject);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String projectPath)? init,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function(StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(String screenProjectPath)? onScreenProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function(StreamController<ColoredLine> outputStreamController)?
+        onScreensGenerate,
+    TResult? Function()? onErrorClear,
+  }) {
+    return onGenerateScreensWithProjectChange?.call(generateScreensWithProject);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String projectPath)? init,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function(StreamController<ColoredLine> outputStreamController)?
+        onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(String screenProjectPath)? onScreenProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function(StreamController<ColoredLine> outputStreamController)?
+        onScreensGenerate,
+    TResult Function()? onErrorClear,
+    required TResult orElse(),
+  }) {
+    if (onGenerateScreensWithProjectChange != null) {
+      return onGenerateScreensWithProjectChange(generateScreensWithProject);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Init value) init,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(ScreenProjectChange value) onScreenProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+  }) {
+    return onGenerateScreensWithProjectChange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Init value)? init,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(ScreensGenerate value)? onScreensGenerate,
+    TResult? Function(ErrorClear value)? onErrorClear,
+  }) {
+    return onGenerateScreensWithProjectChange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Init value)? init,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(ScreenProjectChange value)? onScreenProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    required TResult orElse(),
+  }) {
+    if (onGenerateScreensWithProjectChange != null) {
+      return onGenerateScreensWithProjectChange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OnGenerateScreensWithProject implements AppEvent {
+  const factory OnGenerateScreensWithProject(
+          {required final bool generateScreensWithProject}) =
+      _$OnGenerateScreensWithProject;
+
+  bool get generateScreensWithProject;
+
+  @JsonKey(ignore: true)
+  _$$OnGenerateScreensWithProjectCopyWith<_$OnGenerateScreensWithProject>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -5155,6 +5686,8 @@ class _$ScreenProjectChange implements ScreenProjectChange {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -5190,6 +5723,8 @@ class _$ScreenProjectChange implements ScreenProjectChange {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -5224,6 +5759,8 @@ class _$ScreenProjectChange implements ScreenProjectChange {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -5262,6 +5799,8 @@ class _$ScreenProjectChange implements ScreenProjectChange {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -5295,6 +5834,8 @@ class _$ScreenProjectChange implements ScreenProjectChange {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -5328,6 +5869,8 @@ class _$ScreenProjectChange implements ScreenProjectChange {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -5438,6 +5981,8 @@ class _$ScreenAdd implements ScreenAdd {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -5473,6 +6018,8 @@ class _$ScreenAdd implements ScreenAdd {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -5507,6 +6054,8 @@ class _$ScreenAdd implements ScreenAdd {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -5545,6 +6094,8 @@ class _$ScreenAdd implements ScreenAdd {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -5578,6 +6129,8 @@ class _$ScreenAdd implements ScreenAdd {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -5611,6 +6164,8 @@ class _$ScreenAdd implements ScreenAdd {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -5720,6 +6275,8 @@ class _$ScreenDelete implements ScreenDelete {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -5755,6 +6312,8 @@ class _$ScreenDelete implements ScreenDelete {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -5789,6 +6348,8 @@ class _$ScreenDelete implements ScreenDelete {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -5827,6 +6388,8 @@ class _$ScreenDelete implements ScreenDelete {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -5860,6 +6423,8 @@ class _$ScreenDelete implements ScreenDelete {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -5893,6 +6458,8 @@ class _$ScreenDelete implements ScreenDelete {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -5977,6 +6544,8 @@ class _$StateUpdate implements StateUpdate {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -6012,6 +6581,8 @@ class _$StateUpdate implements StateUpdate {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -6046,6 +6617,8 @@ class _$StateUpdate implements StateUpdate {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -6084,6 +6657,8 @@ class _$StateUpdate implements StateUpdate {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -6117,6 +6692,8 @@ class _$StateUpdate implements StateUpdate {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -6150,6 +6727,8 @@ class _$StateUpdate implements StateUpdate {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -6174,7 +6753,6 @@ abstract class _$$ScreensGenerateCopyWith<$Res> {
   factory _$$ScreensGenerateCopyWith(
           _$ScreensGenerate value, $Res Function(_$ScreensGenerate) then) =
       __$$ScreensGenerateCopyWithImpl<$Res>;
-
   @useResult
   $Res call({StreamController<ColoredLine> outputStreamController});
 }
@@ -6256,6 +6834,8 @@ class _$ScreensGenerate implements ScreensGenerate {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -6291,6 +6871,8 @@ class _$ScreensGenerate implements ScreensGenerate {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -6325,6 +6907,8 @@ class _$ScreensGenerate implements ScreensGenerate {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -6363,6 +6947,8 @@ class _$ScreensGenerate implements ScreensGenerate {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -6396,6 +6982,8 @@ class _$ScreensGenerate implements ScreensGenerate {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -6429,6 +7017,8 @@ class _$ScreensGenerate implements ScreensGenerate {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -6450,7 +7040,6 @@ abstract class ScreensGenerate implements AppEvent {
           outputStreamController}) = _$ScreensGenerate;
 
   StreamController<ColoredLine> get outputStreamController;
-
   @JsonKey(ignore: true)
   _$$ScreensGenerateCopyWith<_$ScreensGenerate> get copyWith =>
       throw _privateConstructorUsedError;
@@ -6515,6 +7104,8 @@ class _$ErrorClear implements ErrorClear {
             StreamController<ColoredLine> outputStreamController)
         onGenerateProject,
     required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
     required TResult Function(String screenProjectPath) onScreenProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
@@ -6550,6 +7141,8 @@ class _$ErrorClear implements ErrorClear {
     TResult? Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(String screenProjectPath)? onScreenProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
@@ -6584,6 +7177,8 @@ class _$ErrorClear implements ErrorClear {
     TResult Function(StreamController<ColoredLine> outputStreamController)?
         onGenerateProject,
     TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
     TResult Function(String screenProjectPath)? onScreenProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
@@ -6622,6 +7217,8 @@ class _$ErrorClear implements ErrorClear {
     required TResult Function(ThemingChange value) onThemingChange,
     required TResult Function(GenerateProject value) onGenerateProject,
     required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
     required TResult Function(ScreenProjectChange value) onScreenProjectChange,
     required TResult Function(ScreenAdd value) onScreenAdd,
     required TResult Function(ScreenDelete value) onScreenDelete,
@@ -6655,6 +7252,8 @@ class _$ErrorClear implements ErrorClear {
     TResult? Function(ThemingChange value)? onThemingChange,
     TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult? Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult? Function(ScreenAdd value)? onScreenAdd,
     TResult? Function(ScreenDelete value)? onScreenDelete,
@@ -6688,6 +7287,8 @@ class _$ErrorClear implements ErrorClear {
     TResult Function(ThemingChange value)? onThemingChange,
     TResult Function(GenerateProject value)? onGenerateProject,
     TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
     TResult Function(ScreenProjectChange value)? onScreenProjectChange,
     TResult Function(ScreenAdd value)? onScreenAdd,
     TResult Function(ScreenDelete value)? onScreenDelete,
@@ -6710,15 +7311,10 @@ abstract class ErrorClear implements AppEvent {
 /// @nodoc
 mixin _$AppState {
   String get projectPath => throw _privateConstructorUsedError;
-
   String get projectName => throw _privateConstructorUsedError;
-
   bool get projectExists => throw _privateConstructorUsedError;
-
   bool get projectIsClean => throw _privateConstructorUsedError;
-
   String get organization => throw _privateConstructorUsedError;
-
   bool get flavorize => throw _privateConstructorUsedError;
   Set<String> get flavors => throw _privateConstructorUsedError;
   ProjectRouter get router => throw _privateConstructorUsedError;
@@ -6728,17 +7324,15 @@ mixin _$AppState {
   bool get integrateDevicePreview => throw _privateConstructorUsedError;
   List<String> get signingVars => throw _privateConstructorUsedError;
   PlatformsList get platforms => throw _privateConstructorUsedError;
-
   int get tab => throw _privateConstructorUsedError;
-
   GeneratingState get generatingState => throw _privateConstructorUsedError;
 
   ProjectTheming get theming => throw _privateConstructorUsedError;
 
+  bool get generateScreensWithProject => throw _privateConstructorUsedError;
+
   Set<ScreenEntity> get screens => throw _privateConstructorUsedError;
-
   String get screenError => throw _privateConstructorUsedError;
-
   int get stateUpdate => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -6760,6 +7354,7 @@ mixin _$AppState {
             int tab,
             GeneratingState generatingState,
             ProjectTheming theming,
+            bool generateScreensWithProject,
             Set<ScreenEntity> screens,
             String screenError,
             int stateUpdate)
@@ -6786,6 +7381,7 @@ mixin _$AppState {
             int tab,
             GeneratingState generatingState,
             ProjectTheming theming,
+            bool generateScreensWithProject,
             Set<ScreenEntity> screens,
             String screenError,
             int stateUpdate)?
@@ -6812,6 +7408,7 @@ mixin _$AppState {
             int tab,
             GeneratingState generatingState,
             ProjectTheming theming,
+            bool generateScreensWithProject,
             Set<ScreenEntity> screens,
             String screenError,
             int stateUpdate)?
@@ -6864,6 +7461,7 @@ abstract class $AppStateCopyWith<$Res> {
       int tab,
       GeneratingState generatingState,
       ProjectTheming theming,
+      bool generateScreensWithProject,
       Set<ScreenEntity> screens,
       String screenError,
       int stateUpdate});
@@ -6901,6 +7499,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? tab = null,
     Object? generatingState = null,
     Object? theming = null,
+    Object? generateScreensWithProject = null,
     Object? screens = null,
     Object? screenError = null,
     Object? stateUpdate = null,
@@ -6974,6 +7573,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.theming
           : theming // ignore: cast_nullable_to_non_nullable
               as ProjectTheming,
+      generateScreensWithProject: null == generateScreensWithProject
+          ? _value.generateScreensWithProject
+          : generateScreensWithProject // ignore: cast_nullable_to_non_nullable
+              as bool,
       screens: null == screens
           ? _value.screens
           : screens // ignore: cast_nullable_to_non_nullable
@@ -7022,6 +7625,7 @@ abstract class _$$DataCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       int tab,
       GeneratingState generatingState,
       ProjectTheming theming,
+      bool generateScreensWithProject,
       Set<ScreenEntity> screens,
       String screenError,
       int stateUpdate});
@@ -7056,6 +7660,7 @@ class __$$DataCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _$Data>
     Object? tab = null,
     Object? generatingState = null,
     Object? theming = null,
+    Object? generateScreensWithProject = null,
     Object? screens = null,
     Object? screenError = null,
     Object? stateUpdate = null,
@@ -7129,6 +7734,10 @@ class __$$DataCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _$Data>
           ? _value.theming
           : theming // ignore: cast_nullable_to_non_nullable
               as ProjectTheming,
+      generateScreensWithProject: null == generateScreensWithProject
+          ? _value.generateScreensWithProject
+          : generateScreensWithProject // ignore: cast_nullable_to_non_nullable
+              as bool,
       screens: null == screens
           ? _value._screens
           : screens // ignore: cast_nullable_to_non_nullable
@@ -7173,6 +7782,7 @@ class _$Data implements Data {
       this.tab = 0,
       this.generatingState = GeneratingState.init,
       this.theming = ProjectTheming.manual,
+      this.generateScreensWithProject = false,
       final Set<ScreenEntity> screens = const {},
       this.screenError = '',
       this.stateUpdate = 0})
@@ -7241,6 +7851,9 @@ class _$Data implements Data {
   @override
   @JsonKey()
   final ProjectTheming theming;
+  @override
+  @JsonKey()
+  final bool generateScreensWithProject;
   final Set<ScreenEntity> _screens;
 
   @override
@@ -7260,7 +7873,7 @@ class _$Data implements Data {
 
   @override
   String toString() {
-    return 'AppState.data(projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, projectIsClean: $projectIsClean, organization: $organization, flavorize: $flavorize, flavors: $flavors, router: $router, localization: $localization, generateSigningKey: $generateSigningKey, useSonar: $useSonar, integrateDevicePreview: $integrateDevicePreview, signingVars: $signingVars, platforms: $platforms, tab: $tab, generatingState: $generatingState, theming: $theming, screens: $screens, screenError: $screenError, stateUpdate: $stateUpdate)';
+    return 'AppState.data(projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, projectIsClean: $projectIsClean, organization: $organization, flavorize: $flavorize, flavors: $flavors, router: $router, localization: $localization, generateSigningKey: $generateSigningKey, useSonar: $useSonar, integrateDevicePreview: $integrateDevicePreview, signingVars: $signingVars, platforms: $platforms, tab: $tab, generatingState: $generatingState, theming: $theming, generateScreensWithProject: $generateScreensWithProject, screens: $screens, screenError: $screenError, stateUpdate: $stateUpdate)';
   }
 
   @override
@@ -7298,6 +7911,10 @@ class _$Data implements Data {
             (identical(other.generatingState, generatingState) ||
                 other.generatingState == generatingState) &&
             (identical(other.theming, theming) || other.theming == theming) &&
+            (identical(other.generateScreensWithProject,
+                    generateScreensWithProject) ||
+                other.generateScreensWithProject ==
+                    generateScreensWithProject) &&
             const DeepCollectionEquality().equals(other._screens, _screens) &&
             (identical(other.screenError, screenError) ||
                 other.screenError == screenError) &&
@@ -7325,6 +7942,7 @@ class _$Data implements Data {
         tab,
         generatingState,
         theming,
+        generateScreensWithProject,
         const DeepCollectionEquality().hash(_screens),
         screenError,
         stateUpdate
@@ -7357,6 +7975,7 @@ class _$Data implements Data {
             int tab,
             GeneratingState generatingState,
             ProjectTheming theming,
+            bool generateScreensWithProject,
             Set<ScreenEntity> screens,
             String screenError,
             int stateUpdate)
@@ -7380,6 +7999,7 @@ class _$Data implements Data {
         tab,
         generatingState,
         theming,
+        generateScreensWithProject,
         screens,
         screenError,
         stateUpdate);
@@ -7406,6 +8026,7 @@ class _$Data implements Data {
             int tab,
             GeneratingState generatingState,
             ProjectTheming theming,
+            bool generateScreensWithProject,
             Set<ScreenEntity> screens,
             String screenError,
             int stateUpdate)?
@@ -7429,6 +8050,7 @@ class _$Data implements Data {
         tab,
         generatingState,
         theming,
+        generateScreensWithProject,
         screens,
         screenError,
         stateUpdate);
@@ -7455,6 +8077,7 @@ class _$Data implements Data {
             int tab,
             GeneratingState generatingState,
             ProjectTheming theming,
+            bool generateScreensWithProject,
             Set<ScreenEntity> screens,
             String screenError,
             int stateUpdate)?
@@ -7480,6 +8103,7 @@ class _$Data implements Data {
           tab,
           generatingState,
           theming,
+          generateScreensWithProject,
           screens,
           screenError,
           stateUpdate);
@@ -7535,6 +8159,7 @@ abstract class Data implements AppState {
       final int tab,
       final GeneratingState generatingState,
       final ProjectTheming theming,
+      final bool generateScreensWithProject,
       final Set<ScreenEntity> screens,
       final String screenError,
       final int stateUpdate}) = _$Data;
@@ -7563,6 +8188,7 @@ abstract class Data implements AppState {
   bool get useSonar;
   @override
   bool get integrateDevicePreview;
+
   @override
   List<String> get signingVars;
 
@@ -7577,6 +8203,9 @@ abstract class Data implements AppState {
 
   @override
   ProjectTheming get theming;
+
+  @override
+  bool get generateScreensWithProject;
 
   @override
   Set<ScreenEntity> get screens;

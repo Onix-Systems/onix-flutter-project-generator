@@ -67,6 +67,10 @@ class AppEvent with _$AppEvent {
 
   const factory AppEvent.onGenerateComplete() = GenerateComplete;
 
+  const factory AppEvent.onGenerateScreensWithProjectChange({
+    required bool generateScreensWithProject,
+  }) = OnGenerateScreensWithProject;
+
   const factory AppEvent.onScreenProjectChange({
     required String screenProjectPath,
   }) = ScreenProjectChange;
@@ -130,6 +134,8 @@ class AppState with _$AppState {
         GeneratingState generatingState,
     @Default(ProjectTheming.manual)
         ProjectTheming theming,
+    @Default(false)
+        bool generateScreensWithProject,
     @Default({})
         Set<ScreenEntity> screens,
     @Default('')

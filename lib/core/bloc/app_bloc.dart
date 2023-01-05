@@ -37,6 +37,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<PlatformsChange>((event, emit) => _platformsChange(event, emit));
     on<GenerateProject>((event, emit) => _generateProject(event, emit));
     on<GenerateComplete>((event, emit) => _generateComplete(event, emit));
+    on<OnGenerateScreensWithProject>(
+        (event, emit) => _onGenerateScreensWithProject(event, emit));
     on<ScreenProjectChange>((event, emit) => _screenProjectChange(event, emit));
     on<ScreenAdd>((event, emit) => _screenAdd(event, emit));
     on<ScreenDelete>((event, emit) => _screenDelete(event, emit));
@@ -169,6 +171,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _generateProject(
       GenerateProject event, Emitter<AppState> emit) async {
+    logger.d('generateProject');
     emit(state.copyWith(generatingState: GeneratingState.generating));
     if (!state.projectExists && state.projectName.isNotEmpty) {
       var configFile = await File('${state.projectPath}/config.json').create();
@@ -208,10 +211,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
       var exitCode = await mainProcess.exitCode;
-
       configFile.delete();
-      emit(state.copyWith(
-          projectExists: true, generatingState: GeneratingState.waiting));
+
+      if (state.generateScreensWithProject && state.screens.isNotEmpty) {
+        add(ScreensGenerate(
+            outputStreamController: event.outputStreamController));
+      } else {
+        emit(state.copyWith(
+            projectExists: true, generatingState: GeneratingState.waiting));
+      }
     }
   }
 
@@ -219,6 +227,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       GenerateComplete event, Emitter<AppState> emit) async {
     add(const ProjectCheck());
     emit(state.copyWith(generatingState: GeneratingState.init));
+  }
+
+  FutureOr<void> _onGenerateScreensWithProject(
+      OnGenerateScreensWithProject event, Emitter<AppState> emit) async {
+    emit(state.copyWith(
+        generateScreensWithProject: event.generateScreensWithProject));
   }
 
   FutureOr<void> _screenProjectChange(
@@ -232,19 +246,21 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _screenAdd(ScreenAdd event, Emitter<AppState> emit) async {
     var screens = state.screens.toList();
-    try {
-      File file = File(
-          '${state.projectPath}/${state.projectName}/lib/core/router/app_router.dart');
-      String content = await file.readAsString();
+    if (!state.generateScreensWithProject && state.projectExists) {
+      try {
+        File file = File(
+            '${state.projectPath}/${state.projectName}/lib/core/router/app_router.dart');
+        String content = await file.readAsString();
 
-      if (content.contains('${event.screen.name.pascalCase}Screen')) {
-        emit(state.copyWith(
-            screenError:
-                'Screen ${event.screen.name.pascalCase}Screen already exists'));
-        return;
+        if (content.contains('${event.screen.name.pascalCase}Screen')) {
+          emit(state.copyWith(
+              screenError:
+                  'Screen ${event.screen.name.pascalCase}Screen already exists'));
+          return;
+        }
+      } catch (e) {
+        logger.e(e);
       }
-    } catch (e) {
-      logger.e(e);
     }
     screens.add(event.screen);
     emit(state.copyWith(screens: screens.toSet()));
@@ -294,7 +310,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     event.outputStreamController
         .add(ColoredLine(line: '{#info}Screens generated!'));
 
-    emit(state.copyWith(generatingState: GeneratingState.waiting, screens: {}));
+    emit(state.copyWith(
+        generatingState: GeneratingState.waiting,
+        screens: {},
+        generateScreensWithProject: false));
   }
 
   FutureOr<void> _errorClear(_, Emitter<AppState> emit) async {
