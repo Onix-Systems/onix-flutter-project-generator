@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/screen_entity.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/add_screen_dialog.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_entity.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/add_entity_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/screen_table_cell.dart';
 import 'package:recase/recase.dart';
 
-class ScreenTable extends StatelessWidget {
-  const ScreenTable({required this.screens, Key? key}) : super(key: key);
+class EntityTable extends StatelessWidget {
+  const EntityTable({required this.entities, Key? key}) : super(key: key);
 
-  final Set<ScreenEntity> screens;
+  final Set<EntityEntity> entities;
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +41,19 @@ class ScreenTable extends StatelessWidget {
             child: Row(
               children: const [
                 Cell(
-                  value: Text('Screen name', textAlign: TextAlign.center),
+                  value: Text('Entity', textAlign: TextAlign.center),
                   decorated: true,
                 ),
                 Cell(
-                  value: Text('Using BLoC', textAlign: TextAlign.center),
+                  value: Text('Gen request', textAlign: TextAlign.center),
+                  decorated: true,
+                ),
+                Cell(
+                  value: Text('Gen response', textAlign: TextAlign.center),
+                  decorated: true,
+                ),
+                Cell(
+                  value: Text('Gen repository', textAlign: TextAlign.center),
                   decorated: true,
                 ),
                 Cell(
@@ -54,12 +62,12 @@ class ScreenTable extends StatelessWidget {
               ],
             ),
           ),
-          ...screens.map(
-            (screen) => Container(
+          ...entities.map(
+            (entity) => Container(
               padding: const EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
                 border: Border(
-                  bottom: screen != screens.last
+                  bottom: entity != entities.last
                       ? const BorderSide(
                           color: CupertinoColors.systemGrey,
                           width: 1,
@@ -71,7 +79,7 @@ class ScreenTable extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Cell(
-                    value: Text('${screen.name.pascalCase}Screen'),
+                    value: Text('${entity.name.pascalCase}Entity'),
                     decorated: true,
                   ),
                   Cell(
@@ -79,7 +87,47 @@ class ScreenTable extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         MSHCheckbox(
-                          value: screen.bloc,
+                          value: entity.generateRequest,
+                          onChanged: (_) {},
+                          isDisabled: true,
+                          duration: const Duration(milliseconds: 200),
+                          colorConfig:
+                              MSHColorConfig.fromCheckedUncheckedDisabled(
+                            checkedColor: CupertinoColors.activeOrange,
+                            uncheckedColor: CupertinoColors.activeOrange,
+                            disabledColor: CupertinoColors.activeOrange,
+                          ),
+                        ),
+                      ],
+                    ),
+                    decorated: true,
+                  ),
+                  Cell(
+                    value: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MSHCheckbox(
+                          value: entity.generateResponse,
+                          onChanged: (_) {},
+                          isDisabled: true,
+                          duration: const Duration(milliseconds: 200),
+                          colorConfig:
+                              MSHColorConfig.fromCheckedUncheckedDisabled(
+                            checkedColor: CupertinoColors.activeOrange,
+                            uncheckedColor: CupertinoColors.activeOrange,
+                            disabledColor: CupertinoColors.activeOrange,
+                          ),
+                        ),
+                      ],
+                    ),
+                    decorated: true,
+                  ),
+                  Cell(
+                    value: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MSHCheckbox(
+                          value: entity.generateRepository,
                           onChanged: (_) {},
                           isDisabled: true,
                           duration: const Duration(milliseconds: 200),
@@ -107,13 +155,13 @@ class ScreenTable extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                showCupertinoModalPopup<ScreenEntity>(
+                                showCupertinoModalPopup<EntityEntity>(
                                   context: context,
                                   barrierDismissible: false,
                                   builder: (context) =>
-                                      AddScreenDialog(screen: screen),
-                                ).then((screen) {
-                                  if (screen != null) {
+                                      AddEntityDialog(entity: entity),
+                                ).then((entity) {
+                                  if (entity != null) {
                                     context.read<AppBloc>().add(
                                           const StateUpdate(),
                                         );
@@ -129,7 +177,7 @@ class ScreenTable extends StatelessWidget {
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
                                 context.read<AppBloc>().add(
-                                      ScreenDelete(screen: screen),
+                                      EntityDelete(entity: entity),
                                     );
                               },
                               child: const Text('Delete'),

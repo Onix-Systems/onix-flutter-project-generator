@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
 
@@ -71,23 +72,43 @@ class AppEvent with _$AppEvent {
     required bool generateScreensWithProject,
   }) = OnGenerateScreensWithProject;
 
+  const factory AppEvent.onGenerateRepositoriesWithProjectChange({
+    required bool generateRepositoriesWithProject,
+  }) = OnGenerateRepositoriesWithProject;
+
   const factory AppEvent.onScreenProjectChange({
     required String screenProjectPath,
   }) = ScreenProjectChange;
+
+  const factory AppEvent.onEntityProjectChange({
+    required String entityProjectPath,
+  }) = EntityProjectChange;
 
   const factory AppEvent.onScreenAdd({
     required ScreenEntity screen,
   }) = ScreenAdd;
 
+  const factory AppEvent.onEntityAdd({
+    required EntityEntity entity,
+  }) = EntityAdd;
+
   const factory AppEvent.onScreenDelete({
     required ScreenEntity screen,
   }) = ScreenDelete;
+
+  const factory AppEvent.onEntityDelete({
+    required EntityEntity entity,
+  }) = EntityDelete;
 
   const factory AppEvent.onStateUpdate() = StateUpdate;
 
   const factory AppEvent.onScreensGenerate({
     required StreamController<ColoredLine> outputStreamController,
   }) = ScreensGenerate;
+
+  const factory AppEvent.onEntitiesGenerate({
+    required StreamController<ColoredLine> outputStreamController,
+  }) = EntitiesGenerate;
 
   const factory AppEvent.onErrorClear() = ErrorClear;
 }
@@ -136,10 +157,16 @@ class AppState with _$AppState {
         ProjectTheming theming,
     @Default(false)
         bool generateScreensWithProject,
+    @Default(false)
+        bool generateEntitiesWithProject,
     @Default({})
         Set<ScreenEntity> screens,
+    @Default({})
+        Set<EntityEntity> entities,
     @Default('')
         String screenError,
+    @Default('')
+        String entityError,
     @Default(0)
         int stateUpdate,
   }) = Data;

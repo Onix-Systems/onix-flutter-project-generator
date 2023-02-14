@@ -32,7 +32,7 @@ class AddScreenDialog extends StatelessWidget {
               FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 15),
           LabeledCheckbox(
             label: 'Use BLoC?',
             initialValue: screen != null ? screen!.bloc : _useBloc,

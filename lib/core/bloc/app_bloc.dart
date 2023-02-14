@@ -39,11 +39,17 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<GenerateComplete>((event, emit) => _generateComplete(event, emit));
     on<OnGenerateScreensWithProject>(
         (event, emit) => _onGenerateScreensWithProject(event, emit));
+    on<OnGenerateRepositoriesWithProject>(
+        (event, emit) => _onGenerateRepositoriesWithProject(event, emit));
     on<ScreenProjectChange>((event, emit) => _screenProjectChange(event, emit));
+    on<EntityProjectChange>((event, emit) => _entityProjectChange(event, emit));
     on<ScreenAdd>((event, emit) => _screenAdd(event, emit));
+    on<EntityAdd>((event, emit) => _entityAdd(event, emit));
     on<ScreenDelete>((event, emit) => _screenDelete(event, emit));
+    on<EntityDelete>((event, emit) => _entityDelete(event, emit));
     on<StateUpdate>((event, emit) => _stateUpdate(event, emit));
     on<ScreensGenerate>((event, emit) => _screensGenerate(event, emit));
+    on<EntitiesGenerate>((event, emit) => _entitiesGenerate(event, emit));
     on<ErrorClear>((event, emit) => _errorClear(event, emit));
     add(const ProjectCheck());
   }
@@ -216,6 +222,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       if (state.generateScreensWithProject && state.screens.isNotEmpty) {
         add(ScreensGenerate(
             outputStreamController: event.outputStreamController));
+      } else if (state.generateEntitiesWithProject &&
+          state.entities.isNotEmpty) {
+        add(EntitiesGenerate(
+            outputStreamController: event.outputStreamController));
       } else {
         emit(state.copyWith(
             projectExists: true, generatingState: GeneratingState.waiting));
@@ -235,9 +245,24 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         generateScreensWithProject: event.generateScreensWithProject));
   }
 
+  FutureOr<void> _onGenerateRepositoriesWithProject(
+      OnGenerateRepositoriesWithProject event, Emitter<AppState> emit) async {
+    emit(state.copyWith(
+        generateEntitiesWithProject: event.generateRepositoriesWithProject));
+  }
+
   FutureOr<void> _screenProjectChange(
       ScreenProjectChange event, Emitter<AppState> emit) async {
     var path = event.screenProjectPath.split('/');
+    var projectName = path.last;
+    var projectPath = path.sublist(0, path.length - 1).join('/');
+
+    emit(state.copyWith(projectPath: projectPath, projectName: projectName));
+  }
+
+  FutureOr<void> _entityProjectChange(
+      EntityProjectChange event, Emitter<AppState> emit) async {
+    var path = event.entityProjectPath.split('/');
     var projectName = path.last;
     var projectPath = path.sublist(0, path.length - 1).join('/');
 
@@ -266,11 +291,41 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     emit(state.copyWith(screens: screens.toSet()));
   }
 
+  FutureOr<void> _entityAdd(EntityAdd event, Emitter<AppState> emit) async {
+    var entities = state.entities.toList();
+    if (!state.generateEntitiesWithProject && state.projectExists) {
+      // try {
+      //   File file = File(
+      //       '${state.projectPath}/${state
+      //           .projectName}/lib/core/router/app_router.dart');
+      //   String content = await file.readAsString();
+      //
+      //   if (content.contains('${event.screen.name.pascalCase}Screen')) {
+      //     emit(state.copyWith(
+      //         screenError:
+      //         'Screen ${event.screen.name.pascalCase}Screen already exists'));
+      //     return;
+      //   }
+      // } catch (e) {
+      //   logger.e(e);
+      // }
+    }
+    entities.add(event.entity);
+    emit(state.copyWith(entities: entities.toSet()));
+  }
+
   FutureOr<void> _screenDelete(
       ScreenDelete event, Emitter<AppState> emit) async {
     var screens = state.screens.toList();
     screens.remove(event.screen);
     emit(state.copyWith(screens: screens.toSet()));
+  }
+
+  FutureOr<void> _entityDelete(
+      EntityDelete event, Emitter<AppState> emit) async {
+    var entities = state.entities.toList();
+    entities.remove(event.entity);
+    emit(state.copyWith(entities: entities.toSet()));
   }
 
   FutureOr<void> _stateUpdate(_, Emitter<AppState> emit) async {
@@ -281,17 +336,20 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       ScreensGenerate event, Emitter<AppState> emit) async {
     emit(state.copyWith(generatingState: GeneratingState.generating));
 
-    event.outputStreamController
-        .add(ColoredLine(line: '{#info}Getting mason & brick...'));
-
     var mainProcess = await Process.start('zsh', [],
         workingDirectory: '${state.projectPath}/${state.projectName}');
 
     mainProcess.log(event.outputStreamController);
-    mainProcess.stdin.writeln('source \$HOME/.zshrc');
-    mainProcess.stdin.writeln('source \$HOME/.bash_profile');
-    mainProcess.stdin.writeln('dart pub global activate mason_cli');
-    mainProcess.stdin.writeln('mason cache clear');
+
+    if (!state.generateScreensWithProject) {
+      event.outputStreamController
+          .add(ColoredLine(line: '{#info}Getting mason & brick...'));
+
+      mainProcess.stdin.writeln('source \$HOME/.zshrc');
+      mainProcess.stdin.writeln('source \$HOME/.bash_profile');
+      mainProcess.stdin.writeln('dart pub global activate mason_cli');
+      mainProcess.stdin.writeln('mason cache clear');
+    }
 
     mainProcess.stdin.writeln(
         'mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_screen');
@@ -310,9 +368,57 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     event.outputStreamController
         .add(ColoredLine(line: '{#info}Screens generated!'));
 
+    if (state.generateEntitiesWithProject && state.entities.isNotEmpty) {
+      add(EntitiesGenerate(
+          outputStreamController: event.outputStreamController));
+      emit(state.copyWith(screens: {}, generateScreensWithProject: false));
+    } else {
+      emit(state.copyWith(
+          generatingState: GeneratingState.waiting,
+          screens: {},
+          generateScreensWithProject: false));
+    }
+  }
+
+  FutureOr<void> _entitiesGenerate(
+      EntitiesGenerate event, Emitter<AppState> emit) async {
+    emit(state.copyWith(generatingState: GeneratingState.generating));
+
+    var mainProcess = await Process.start('zsh', [],
+        workingDirectory: '${state.projectPath}/${state.projectName}');
+
+    mainProcess.log(event.outputStreamController);
+
+    if (!state.generateEntitiesWithProject) {
+      event.outputStreamController
+          .add(ColoredLine(line: '{#info}Getting mason & brick...'));
+
+      mainProcess.stdin.writeln('source \$HOME/.zshrc');
+      mainProcess.stdin.writeln('source \$HOME/.bash_profile');
+      mainProcess.stdin.writeln('dart pub global activate mason_cli');
+      mainProcess.stdin.writeln('mason cache clear');
+    }
+
+    mainProcess.stdin.writeln(
+        'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
+
+    for (var entity in state.entities) {
+      if (entity != state.entities.last) {
+        mainProcess.stdin.writeln(
+            'mason make flutter_clean_entity --build false --entity_name ${entity.name} --gen_request ${entity.generateRequest} --gen_response ${entity.generateResponse} --gen_repository ${entity.generateRepository} --on-conflict overwrite');
+      } else {
+        mainProcess.stdin.writeln(
+            'mason make flutter_clean_entity --build true --entity_name ${entity.name} --gen_request ${entity.generateRequest} --gen_response ${entity.generateResponse} --gen_repository ${entity.generateRepository} --on-conflict overwrite');
+      }
+    }
+
+    var exitCode = await mainProcess.exitCode;
+    event.outputStreamController
+        .add(ColoredLine(line: '{#info}Entities generated!'));
+
     emit(state.copyWith(
         generatingState: GeneratingState.waiting,
-        screens: {},
+        entities: {},
         generateScreensWithProject: false));
   }
 
@@ -341,7 +447,7 @@ extension Logging on Process {
         } else {
           outputStreamController.add(ColoredLine(line: event));
         }
-        if (event.contains('Complete with exit code:')) {
+        if (event.contains('with exit code')) {
           kill();
         }
       })

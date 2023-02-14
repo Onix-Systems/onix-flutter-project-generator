@@ -215,6 +215,10 @@ class MainScreen extends StatelessWidget {
                               projectNameController: _projectNameController,
                               onGenerate: () {
                                 outputText.clear();
+                                context.read<AppBloc>().add(EntitiesGenerate(
+                                      outputStreamController:
+                                          outputStreamController,
+                                    ));
                               },
                               outputStream: outputStream,
                               outputText: outputText,
