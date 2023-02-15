@@ -341,15 +341,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     mainProcess.log(event.outputStreamController);
 
-    if (!state.generateScreensWithProject) {
-      event.outputStreamController
-          .add(ColoredLine(line: '{#info}Getting mason & brick...'));
+    event.outputStreamController
+        .add(ColoredLine(line: '{#info}Getting mason & brick...'));
 
-      mainProcess.stdin.writeln('source \$HOME/.zshrc');
-      mainProcess.stdin.writeln('source \$HOME/.bash_profile');
-      mainProcess.stdin.writeln('dart pub global activate mason_cli');
-      mainProcess.stdin.writeln('mason cache clear');
-    }
+    mainProcess.stdin.writeln('source \$HOME/.zshrc');
+    mainProcess.stdin.writeln('source \$HOME/.bash_profile');
+    mainProcess.stdin.writeln('dart pub global activate mason_cli');
+    mainProcess.stdin.writeln('mason cache clear');
 
     mainProcess.stdin.writeln(
         'mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_screen');
@@ -389,15 +387,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     mainProcess.log(event.outputStreamController);
 
-    if (!state.generateEntitiesWithProject) {
-      event.outputStreamController
-          .add(ColoredLine(line: '{#info}Getting mason & brick...'));
+    event.outputStreamController
+        .add(ColoredLine(line: '{#info}Getting mason & brick...'));
 
-      mainProcess.stdin.writeln('source \$HOME/.zshrc');
-      mainProcess.stdin.writeln('source \$HOME/.bash_profile');
-      mainProcess.stdin.writeln('dart pub global activate mason_cli');
-      mainProcess.stdin.writeln('mason cache clear');
-    }
+    mainProcess.stdin.writeln('source \$HOME/.zshrc');
+    mainProcess.stdin.writeln('source \$HOME/.bash_profile');
+    mainProcess.stdin.writeln('dart pub global activate mason_cli');
+    mainProcess.stdin.writeln('mason cache clear');
 
     mainProcess.stdin.writeln(
         'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
