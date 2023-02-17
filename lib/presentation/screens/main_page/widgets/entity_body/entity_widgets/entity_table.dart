@@ -4,19 +4,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity_entity.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/add_entity_dialog.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_entity.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/add_entity_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/screen_table_cell.dart';
+import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 import 'package:recase/recase.dart';
 
 class EntityTable extends StatelessWidget {
-  const EntityTable({required this.entities, Key? key}) : super(key: key);
+  const EntityTable({required this.entities, this.source, Key? key})
+      : super(key: key);
 
   final Set<EntityEntity> entities;
+  final SourceEntity? source;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      //padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         border: Border.all(
           color: CupertinoColors.systemGrey,
@@ -33,30 +36,34 @@ class EntityTable extends StatelessWidget {
                 color: CupertinoColors.systemGrey,
                 strokeAlign: BorderSide.strokeAlignOutside,
               ),
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
-              ),
+              borderRadius: source == null
+                  ? const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    )
+                  : null,
+              color: CupertinoColors.activeBlue.withOpacity(0.1),
             ),
             child: Row(
-              children: const [
-                Cell(
+              children: [
+                const Cell(
                   value: Text('Entity', textAlign: TextAlign.center),
                   decorated: true,
                 ),
-                Cell(
+                const Cell(
                   value: Text('Gen request', textAlign: TextAlign.center),
                   decorated: true,
                 ),
-                Cell(
+                const Cell(
                   value: Text('Gen response', textAlign: TextAlign.center),
                   decorated: true,
                 ),
-                Cell(
-                  value: Text('Gen repository', textAlign: TextAlign.center),
-                  decorated: true,
-                ),
-                Cell(
+                if (source != null)
+                  const Cell(
+                    value: Text('Gen repository', textAlign: TextAlign.center),
+                    decorated: true,
+                  ),
+                const Cell(
                   value: Text('Actions', textAlign: TextAlign.center),
                 ),
               ],
@@ -66,14 +73,21 @@ class EntityTable extends StatelessWidget {
             (entity) => Container(
               padding: const EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
-                border: Border(
-                  bottom: entity != entities.last
-                      ? const BorderSide(
+                color: AppColors.grayBG,
+                borderRadius: entity == entities.last
+                    ? BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )
+                    : null,
+                border: entity == entities.last
+                    ? null
+                    : Border(
+                        bottom: BorderSide(
                           color: CupertinoColors.systemGrey,
                           width: 1,
-                        )
-                      : BorderSide.none,
-                ),
+                        ),
+                      ),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -122,26 +136,27 @@ class EntityTable extends StatelessWidget {
                     ),
                     decorated: true,
                   ),
-                  Cell(
-                    value: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        MSHCheckbox(
-                          value: entity.generateRepository,
-                          onChanged: (_) {},
-                          isDisabled: true,
-                          duration: const Duration(milliseconds: 200),
-                          colorConfig:
-                              MSHColorConfig.fromCheckedUncheckedDisabled(
-                            checkedColor: CupertinoColors.activeOrange,
-                            uncheckedColor: CupertinoColors.activeOrange,
-                            disabledColor: CupertinoColors.activeOrange,
+                  if (source != null)
+                    Cell(
+                      value: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          MSHCheckbox(
+                            value: entity.generateRepository,
+                            onChanged: (_) {},
+                            isDisabled: true,
+                            duration: const Duration(milliseconds: 200),
+                            colorConfig:
+                                MSHColorConfig.fromCheckedUncheckedDisabled(
+                              checkedColor: CupertinoColors.activeOrange,
+                              uncheckedColor: CupertinoColors.activeOrange,
+                              disabledColor: CupertinoColors.activeOrange,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
+                      decorated: true,
                     ),
-                    decorated: true,
-                  ),
                   Cell(
                     value: SizedBox(
                       height: 45,
@@ -158,8 +173,10 @@ class EntityTable extends StatelessWidget {
                                 showCupertinoModalPopup<EntityEntity>(
                                   context: context,
                                   barrierDismissible: false,
-                                  builder: (context) =>
-                                      AddEntityDialog(entity: entity),
+                                  builder: (context) => AddEntityDialog(
+                                    entity: entity,
+                                    standalone: source == null,
+                                  ),
                                 ).then((entity) {
                                   if (entity != null) {
                                     context.read<AppBloc>().add(
@@ -177,7 +194,8 @@ class EntityTable extends StatelessWidget {
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
                                 context.read<AppBloc>().add(
-                                      EntityDelete(entity: entity),
+                                      EntityDelete(
+                                          entity: entity, source: source),
                                     );
                               },
                               child: const Text('Delete'),

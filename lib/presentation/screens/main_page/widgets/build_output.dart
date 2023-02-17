@@ -59,16 +59,33 @@ class BuildOutput extends StatelessWidget {
                   Positioned(
                     top: 0,
                     right: 0,
-                    child: CupertinoButton(
-                      color: CupertinoColors.activeOrange,
-                      padding: EdgeInsets.zero,
-                      child: const Icon(
-                        CupertinoIcons.clear,
-                        color: CupertinoColors.white,
-                      ),
-                      onPressed: () {
-                        context.read<AppBloc>().add(const GenerateComplete());
-                      },
+                    child: Row(
+                      children: [
+                        CupertinoButton(
+                          color: CupertinoColors.activeOrange,
+                          child: const Text(
+                            'Open in Android Studio',
+                            style: TextStyle(color: CupertinoColors.white),
+                          ),
+                          onPressed: () {
+                            context.read<AppBloc>().add(const OpenProject());
+                          },
+                        ),
+                        const SizedBox(width: 10),
+                        CupertinoButton(
+                          color: CupertinoColors.activeOrange,
+                          padding: EdgeInsets.zero,
+                          child: const Icon(
+                            CupertinoIcons.clear,
+                            color: CupertinoColors.white,
+                          ),
+                          onPressed: () {
+                            context
+                                .read<AppBloc>()
+                                .add(const GenerateComplete());
+                          },
+                        ),
+                      ],
                     ),
                   ),
               ]),

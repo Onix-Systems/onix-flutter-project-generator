@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
 
 part 'app_models.freezed.dart';
@@ -90,7 +91,12 @@ class AppEvent with _$AppEvent {
 
   const factory AppEvent.onEntityAdd({
     required EntityEntity entity,
+    @Default(null) SourceEntity? source,
   }) = EntityAdd;
+
+  const factory AppEvent.onSourceAdd({
+    required SourceEntity source,
+  }) = SourceAdd;
 
   const factory AppEvent.onScreenDelete({
     required ScreenEntity screen,
@@ -98,7 +104,12 @@ class AppEvent with _$AppEvent {
 
   const factory AppEvent.onEntityDelete({
     required EntityEntity entity,
+    @Default(null) SourceEntity? source,
   }) = EntityDelete;
+
+  const factory AppEvent.onSourceDelete({
+    required SourceEntity source,
+  }) = SourceDelete;
 
   const factory AppEvent.onStateUpdate() = StateUpdate;
 
@@ -111,6 +122,8 @@ class AppEvent with _$AppEvent {
   }) = EntitiesGenerate;
 
   const factory AppEvent.onErrorClear() = ErrorClear;
+
+  const factory AppEvent.open() = OpenProject;
 }
 
 @freezed
@@ -163,6 +176,8 @@ class AppState with _$AppState {
         Set<ScreenEntity> screens,
     @Default({})
         Set<EntityEntity> entities,
+    @Default({})
+        Set<SourceEntity> sources,
     @Default('')
         String screenError,
     @Default('')

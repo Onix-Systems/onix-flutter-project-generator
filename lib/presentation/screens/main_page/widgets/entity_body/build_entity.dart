@@ -6,8 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity_entity.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/add_entity_dialog.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_table.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_entity.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/add_entity_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/source_widgets/add_source_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/entity_table_expansion_tile.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/source_widgets/source_table_expansion_title.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/text_field_with_label.dart';
 
@@ -105,40 +108,81 @@ class BuildEntity extends StatelessWidget {
               ],
               if ((state.projectExists && state.projectIsClean) ||
                   state.generateEntitiesWithProject) ...[
-                CupertinoButton(
-                  onPressed: () {
-                    showCupertinoModalPopup<EntityEntity>(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (context) => AddEntityDialog(),
-                    ).then((entity) {
-                      if (entity != null) {
-                        context.read<AppBloc>().add(
-                              EntityAdd(entity: entity),
-                            );
-                      }
-                    });
-                  },
-                  color: CupertinoColors.activeOrange,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(CupertinoIcons.add),
-                      SizedBox(width: 10),
-                      Text('Add entity'),
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CupertinoButton(
+                      onPressed: () {
+                        showCupertinoModalPopup<EntityEntity>(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) => AddEntityDialog(),
+                        ).then((entity) {
+                          if (entity != null) {
+                            context.read<AppBloc>().add(
+                                  EntityAdd(entity: entity),
+                                );
+                          }
+                        });
+                      },
+                      color: CupertinoColors.activeOrange,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Icon(CupertinoIcons.add),
+                          SizedBox(width: 10),
+                          Text('Add standalone entity'),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    CupertinoButton(
+                      onPressed: () {
+                        showCupertinoModalPopup<SourceEntity>(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) => AddSourceDialog(),
+                        ).then((source) {
+                          if (source != null) {
+                            context.read<AppBloc>().add(
+                                  SourceAdd(source: source),
+                                );
+                          }
+                        });
+                      },
+                      color: CupertinoColors.activeOrange,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Icon(CupertinoIcons.add),
+                          SizedBox(width: 10),
+                          Text('Add source'),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 20),
                 Expanded(
-                  child: state.entities.isNotEmpty
-                      ? SingleChildScrollView(
-                          child: EntityTable(
-                            entities: state.entities,
-                          ),
-                        )
-                      : const SizedBox(),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        state.sources.isNotEmpty
+                            ? SourceTableExpansionTile(
+                                sources: state.sources.toList(),
+                              )
+                            : const SizedBox(),
+                        const SizedBox(height: 20),
+                        state.entities.isNotEmpty
+                            ? EntityTableExpansionTile(
+                                entities: state.entities.toList(),
+                              )
+                            : const SizedBox(),
+                      ],
+                    ),
+                  ),
                 ),
                 if (state.entities.isNotEmpty &&
                     (!state.generateEntitiesWithProject || state.projectExists))
@@ -159,7 +203,8 @@ class BuildEntity extends StatelessWidget {
                       style: TextStyle(color: CupertinoColors.destructiveRed)),
                 const Spacer(),
               ],
-              if (!state.projectExists)
+              if (!state.projectExists) ...[
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -174,6 +219,7 @@ class BuildEntity extends StatelessWidget {
                         }),
                   ],
                 ),
+              ],
             ],
           ),
         ),

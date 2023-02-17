@@ -45,12 +45,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<EntityProjectChange>((event, emit) => _entityProjectChange(event, emit));
     on<ScreenAdd>((event, emit) => _screenAdd(event, emit));
     on<EntityAdd>((event, emit) => _entityAdd(event, emit));
+    on<SourceAdd>((event, emit) => _sourceAdd(event, emit));
     on<ScreenDelete>((event, emit) => _screenDelete(event, emit));
     on<EntityDelete>((event, emit) => _entityDelete(event, emit));
+    on<SourceDelete>((event, emit) => _sourceDelete(event, emit));
     on<StateUpdate>((event, emit) => _stateUpdate(event, emit));
     on<ScreensGenerate>((event, emit) => _screensGenerate(event, emit));
     on<EntitiesGenerate>((event, emit) => _entitiesGenerate(event, emit));
     on<ErrorClear>((event, emit) => _errorClear(event, emit));
+    on<OpenProject>((event, emit) => _openProject(event, emit));
     add(const ProjectCheck());
   }
 
@@ -292,26 +295,31 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _entityAdd(EntityAdd event, Emitter<AppState> emit) async {
-    var entities = state.entities.toList();
-    if (!state.generateEntitiesWithProject && state.projectExists) {
-      // try {
-      //   File file = File(
-      //       '${state.projectPath}/${state
-      //           .projectName}/lib/core/router/app_router.dart');
-      //   String content = await file.readAsString();
-      //
-      //   if (content.contains('${event.screen.name.pascalCase}Screen')) {
-      //     emit(state.copyWith(
-      //         screenError:
-      //         'Screen ${event.screen.name.pascalCase}Screen already exists'));
-      //     return;
-      //   }
-      // } catch (e) {
-      //   logger.e(e);
-      // }
+    if (event.source == null) {
+      var entities = state.entities.toList();
+      if (!state.generateEntitiesWithProject && state.projectExists) {
+        //TODO: get entities from existing project
+      }
+      entities.add(event.entity);
+      emit(state.copyWith(entities: entities.toSet()));
+    } else {
+      var entities = event.source?.entities.toList() ?? [];
+      entities.add(event.entity);
+      var sources = state.sources.toList();
+      sources.firstWhere((source) => source == event.source).entities =
+          entities;
+      emit(state.copyWith(sources: sources.toSet()));
+      add(const StateUpdate());
     }
-    entities.add(event.entity);
-    emit(state.copyWith(entities: entities.toSet()));
+  }
+
+  FutureOr<void> _sourceAdd(SourceAdd event, Emitter<AppState> emit) async {
+    var sources = state.sources.toList();
+    if (!state.generateEntitiesWithProject && state.projectExists) {
+      //TODO: get sources from existing project
+    }
+    sources.add(event.source);
+    emit(state.copyWith(sources: sources.toSet()));
   }
 
   FutureOr<void> _screenDelete(
@@ -323,9 +331,27 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _entityDelete(
       EntityDelete event, Emitter<AppState> emit) async {
-    var entities = state.entities.toList();
-    entities.remove(event.entity);
-    emit(state.copyWith(entities: entities.toSet()));
+    if (event.source == null) {
+      var entities = state.entities.toList();
+      entities.remove(event.entity);
+      emit(state.copyWith(entities: entities.toSet()));
+    } else {
+      var entities = event.source?.entities.toList() ?? [];
+      entities.remove(event.entity);
+      var sources = state.sources.toList();
+      sources.firstWhere((source) => source == event.source).entities =
+          entities;
+      emit(state.copyWith(sources: sources.toSet()));
+      add(const StateUpdate());
+    }
+    add(const StateUpdate());
+  }
+
+  FutureOr<void> _sourceDelete(
+      SourceDelete event, Emitter<AppState> emit) async {
+    var sources = state.sources.toList();
+    sources.remove(event.source);
+    emit(state.copyWith(sources: sources.toSet()));
   }
 
   FutureOr<void> _stateUpdate(_, Emitter<AppState> emit) async {
@@ -420,6 +446,22 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _errorClear(_, Emitter<AppState> emit) async {
     emit(state.copyWith(screenError: ''));
+  }
+
+  FutureOr<void> _openProject(OpenProject event, Emitter<AppState> emit) async {
+    var mainProcess = await Process.start('zsh', [],
+        workingDirectory: '${state.projectPath}/${state.projectName}');
+
+    mainProcess.stdin.writeln(
+        'open -a "Android Studio" ${state.projectPath}/${state.projectName}');
+
+    mainProcess
+      ..outLines.asBroadcastStream().listen((event) {
+        logger.d(event);
+      })
+      ..errLines.asBroadcastStream().listen((event) {
+        logger.e(event);
+      });
   }
 }
 
