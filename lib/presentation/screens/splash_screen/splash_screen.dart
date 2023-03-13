@@ -41,7 +41,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 tag: 'logo',
                 child: SvgPicture.asset(
                   'assets/logo.svg',
-                  color: AppColors.white,
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.white,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
               onEnd: () {

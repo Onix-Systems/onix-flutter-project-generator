@@ -26,7 +26,7 @@ class SourceExpansionTile extends StatefulWidget {
 }
 
 class _SourceExpansionTileState extends State<SourceExpansionTile> {
-  bool expanded = false;
+  bool expanded = true;
 
   @override
   Widget build(BuildContext context) {

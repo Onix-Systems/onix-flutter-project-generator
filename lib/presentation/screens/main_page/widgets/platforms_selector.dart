@@ -22,10 +22,10 @@ class PlatformSelector extends StatelessWidget {
                 label: 'Android',
                 initialValue: platforms.android,
                 onAction: () {
-                  // context.read<AppBloc>().add(PlatformsChange(
-                  //       platforms:
-                  //           platforms.copyWith(android: !platforms.android),
-                  //     ));
+                  context.read<AppBloc>().add(PlatformsChange(
+                        platforms:
+                            platforms.copyWith(android: !platforms.android),
+                      ));
                 },
               )),
               Expanded(

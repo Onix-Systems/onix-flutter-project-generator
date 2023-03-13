@@ -1,6 +1,5 @@
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
@@ -31,14 +30,14 @@ class BuildScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (state.screenError.isNotEmpty) {
-      WidgetsBinding.instance?.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         showCupertinoModalPopup(
           context: context,
           barrierDismissible: false,
           builder: (context) => CupertinoAlertDialog(
             title: Text(
               state.screenError,
-              style: TextStyle(color: CupertinoColors.destructiveRed),
+              style: const TextStyle(color: CupertinoColors.destructiveRed),
             ),
             actions: <CupertinoDialogAction>[
               CupertinoDialogAction(

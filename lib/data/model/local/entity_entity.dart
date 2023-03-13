@@ -1,18 +1,27 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'entity_entity.g.dart';
+
+@JsonSerializable()
 class EntityEntity {
+  @JsonKey(includeToJson: false)
   late int id;
   String name;
   bool generateRequest;
   bool generateResponse;
-  bool generateRepository;
 
   EntityEntity({
     required this.name,
     this.generateRequest = false,
     this.generateResponse = false,
-    this.generateRepository = false,
   }) {
     id = DateTime.now().millisecondsSinceEpoch;
   }
+
+  Map<String, dynamic> toJson() => _$EntityEntityToJson(this);
+
+  factory EntityEntity.fromJson(Map<String, dynamic> json) =>
+      _$EntityEntityFromJson(json);
 
   @override
   bool operator ==(Object other) =>
@@ -26,6 +35,6 @@ class EntityEntity {
 
   @override
   String toString() {
-    return 'EntityEntity{id: $id, name: $name, generateRequest: $generateRequest, generateResponse: $generateResponse, generateRepository: $generateRepository}';
+    return 'EntityEntity{id: $id, name: $name, generateRequest: $generateRequest, generateResponse: $generateResponse}';
   }
 }

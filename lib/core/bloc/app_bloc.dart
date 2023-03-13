@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
+import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
 import 'package:process_run/utils/process_result_extension.dart';
 import 'package:recase/recase.dart';
 
@@ -214,8 +215,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
       mainProcess.stdin.writeln(
           'mason add -g flutter_clean_base --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_base');
-      // mainProcess.stdin.writeln(
-      //     'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
@@ -424,13 +423,25 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     mainProcess.stdin.writeln(
         'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
 
-    for (var entity in state.entities) {
-      if (entity != state.entities.last) {
+    if (state.entities.isNotEmpty) {
+      var entities =
+          state.entities.map((e) => jsonEncode(e.toJson())).join(', ');
+
+      var build = state.sources.isNotEmpty ? 'false' : 'true';
+
+      mainProcess.stdin.writeln(
+          'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name \'\' --on-conflict overwrite');
+    }
+
+    if (state.sources.isNotEmpty) {
+      for (var source in state.sources) {
+        var entities =
+            source.entities.map((e) => jsonEncode(e.toJson())).join(', ');
+
+        var build = source == state.sources.last ? 'true' : 'false';
+
         mainProcess.stdin.writeln(
-            'mason make flutter_clean_entity --build false --entity_name ${entity.name} --gen_request ${entity.generateRequest} --gen_response ${entity.generateResponse} --gen_repository ${entity.generateRepository} --on-conflict overwrite');
-      } else {
-        mainProcess.stdin.writeln(
-            'mason make flutter_clean_entity --build true --entity_name ${entity.name} --gen_request ${entity.generateRequest} --gen_response ${entity.generateResponse} --gen_repository ${entity.generateRepository} --on-conflict overwrite');
+            'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name ${source.name} --on-conflict overwrite');
       }
     }
 
@@ -441,6 +452,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     emit(state.copyWith(
         generatingState: GeneratingState.waiting,
         entities: {},
+        sources: {},
         generateScreensWithProject: false));
   }
 
@@ -472,25 +484,5 @@ extension MyCase on String {
     strings = strings.map((e) => e.dotCase);
 
     return strings.join('-');
-  }
-}
-
-extension Logging on Process {
-  void log(StreamController<ColoredLine> outputStreamController) {
-    this
-      ..outLines.asBroadcastStream().listen((event) {
-        if (event.contains('Installing flutter_clean_') ||
-            event.contains('Making flutter_clean_')) {
-          outputStreamController.add(ColoredLine(line: '{#progress}$event'));
-        } else {
-          outputStreamController.add(ColoredLine(line: event));
-        }
-        if (event.contains('with exit code')) {
-          kill();
-        }
-      })
-      ..errLines.asBroadcastStream().listen((event) {
-        outputStreamController.add(ColoredLine(line: '{#error}$event'));
-      });
   }
 }

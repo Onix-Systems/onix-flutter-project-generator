@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
@@ -75,14 +74,14 @@ class EntityTable extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColors.grayBG,
                 borderRadius: entity == entities.last
-                    ? BorderRadius.only(
+                    ? const BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       )
                     : null,
                 border: entity == entities.last
                     ? null
-                    : Border(
+                    : const Border(
                         bottom: BorderSide(
                           color: CupertinoColors.systemGrey,
                           width: 1,
@@ -136,27 +135,6 @@ class EntityTable extends StatelessWidget {
                     ),
                     decorated: true,
                   ),
-                  if (source != null)
-                    Cell(
-                      value: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          MSHCheckbox(
-                            value: entity.generateRepository,
-                            onChanged: (_) {},
-                            isDisabled: true,
-                            duration: const Duration(milliseconds: 200),
-                            colorConfig:
-                                MSHColorConfig.fromCheckedUncheckedDisabled(
-                              checkedColor: CupertinoColors.activeOrange,
-                              uncheckedColor: CupertinoColors.activeOrange,
-                              disabledColor: CupertinoColors.activeOrange,
-                            ),
-                          ),
-                        ],
-                      ),
-                      decorated: true,
-                    ),
                   Cell(
                     value: SizedBox(
                       height: 45,

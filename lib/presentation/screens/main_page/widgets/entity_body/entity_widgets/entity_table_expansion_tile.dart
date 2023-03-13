@@ -15,7 +15,7 @@ class EntityTableExpansionTile extends StatefulWidget {
 }
 
 class _EntityTableExpansionTileState extends State<EntityTableExpansionTile> {
-  bool expanded = false;
+  bool expanded = true;
 
   @override
   Widget build(BuildContext context) {
@@ -40,27 +40,26 @@ class _EntityTableExpansionTileState extends State<EntityTableExpansionTile> {
                 expanded = !expanded;
               });
             },
-            child: Container(
-              child: CupertinoListTile(
-                padding: EdgeInsets.zero,
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        'Entities: ${widget.entities.length}',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: CupertinoColors.activeOrange),
-                      ),
+            child: CupertinoListTile(
+              padding: EdgeInsets.zero,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Standalone entities: ${widget.entities.length}',
+                      textAlign: TextAlign.center,
+                      style:
+                          const TextStyle(color: CupertinoColors.activeOrange),
                     ),
-                  ],
-                ),
-                trailing: Icon(
-                  expanded
-                      ? CupertinoIcons.chevron_up
-                      : CupertinoIcons.chevron_down,
-                  color: CupertinoColors.activeOrange,
-                ),
+                  ),
+                ],
+              ),
+              trailing: Icon(
+                expanded
+                    ? CupertinoIcons.chevron_up
+                    : CupertinoIcons.chevron_down,
+                color: CupertinoColors.activeOrange,
               ),
             ),
           ),

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/source_widgets/source_expansion_tile.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
@@ -16,7 +15,7 @@ class SourceTableExpansionTile extends StatefulWidget {
 }
 
 class _SourceTableExpansionTileState extends State<SourceTableExpansionTile> {
-  bool expanded = false;
+  bool expanded = true;
 
   @override
   Widget build(BuildContext context) {

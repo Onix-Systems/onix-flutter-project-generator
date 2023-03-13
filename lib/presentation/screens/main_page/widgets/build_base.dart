@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_output.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/platforms_selector.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/signing_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';

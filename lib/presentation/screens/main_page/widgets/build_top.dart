@@ -58,7 +58,10 @@ class BuildTop extends StatelessWidget {
               tag: 'logo',
               child: SvgPicture.asset(
                 'assets/logo.svg',
-                color: CupertinoColors.activeOrange,
+                colorFilter: const ColorFilter.mode(
+                  CupertinoColors.activeOrange,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ),

@@ -14,7 +14,6 @@ class AddEntityDialog extends StatelessWidget {
 
   bool _createRequest = false;
   bool _createResponse = false;
-  bool _createRepository = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,6 @@ class AddEntityDialog extends StatelessWidget {
       _entityNameController.text = entity!.name;
       _createRequest = entity!.generateRequest;
       _createResponse = entity!.generateResponse;
-      _createRepository = entity!.generateRepository;
     }
     return CupertinoAlertDialog(
       title: entity != null
@@ -65,22 +63,6 @@ class AddEntityDialog extends StatelessWidget {
               }
             },
           ),
-          if (!standalone) ...[
-            const SizedBox(height: 15),
-            LabeledCheckbox(
-              label: 'Create repository?',
-              initialValue: entity != null
-                  ? entity!.generateRepository
-                  : _createRepository,
-              onAction: () {
-                if (entity != null) {
-                  entity!.generateRepository = !entity!.generateRepository;
-                } else {
-                  _createRepository = !_createRepository;
-                }
-              },
-            ),
-          ],
         ],
       ),
       actions: <CupertinoDialogAction>[
@@ -95,10 +77,10 @@ class AddEntityDialog extends StatelessWidget {
                 Navigator.pop(
                     context,
                     EntityEntity(
-                        name: _entityNameController.text,
-                        generateRequest: _createRequest,
-                        generateResponse: _createResponse,
-                        generateRepository: _createRepository));
+                      name: _entityNameController.text,
+                      generateRequest: _createRequest,
+                      generateResponse: _createResponse,
+                    ));
               }
             } else {
               Navigator.pop(context);
