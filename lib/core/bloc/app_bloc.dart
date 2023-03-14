@@ -4,6 +4,8 @@ import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
 import 'package:process_run/utils/process_result_extension.dart';
@@ -55,10 +57,27 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<EntitiesGenerate>((event, emit) => _entitiesGenerate(event, emit));
     on<ErrorClear>((event, emit) => _errorClear(event, emit));
     on<OpenProject>((event, emit) => _openProject(event, emit));
+    add(const Init());
     add(const ProjectCheck());
   }
 
-  FutureOr<void> _init(Init event, Emitter<AppState> emit) {}
+  FutureOr<void> _init(Init event, Emitter<AppState> emit) {
+    logger.d('init');
+    emit(
+      state.copyWith(
+        sources: {
+          SourceEntity(
+            name: 'time',
+            exists: true,
+            entities: [EntityEntity(name: 'time', exists: true)],
+          )
+        },
+        entities: {
+          EntityEntity(name: 'auth', exists: true),
+        },
+      ),
+    );
+  }
 
   FutureOr<void> _tabChange(TabChange event, Emitter<AppState> emit) async {
     emit(state.copyWith(tab: event.tabIndex));
@@ -423,9 +442,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     mainProcess.stdin.writeln(
         'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
 
-    if (state.entities.isNotEmpty) {
-      var entities =
-          state.entities.map((e) => jsonEncode(e.toJson())).join(', ');
+    if (state.entities.where((entity) => !entity.exists).isNotEmpty) {
+      var entities = state.entities
+          .where((entity) => !entity.exists)
+          .map((e) => jsonEncode(e.toJson()))
+          .join(', ');
 
       var build = state.sources.isNotEmpty ? 'false' : 'true';
 
@@ -435,24 +456,43 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     if (state.sources.isNotEmpty) {
       for (var source in state.sources) {
-        var entities =
-            source.entities.map((e) => jsonEncode(e.toJson())).join(', ');
+        if (source.entities.where((entity) => !entity.exists).isEmpty) continue;
+        var entities = source.entities
+            .where((entity) => !entity.exists)
+            .map((e) => jsonEncode(e.toJson()))
+            .join(', ');
 
         var build = source == state.sources.last ? 'true' : 'false';
 
         mainProcess.stdin.writeln(
-            'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name ${source.name} --on-conflict overwrite');
+            'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name ${source.name} --source_exists ${source.exists} --on-conflict overwrite');
       }
     }
 
     var exitCode = await mainProcess.exitCode;
     event.outputStreamController
         .add(ColoredLine(line: '{#info}Entities generated!'));
+    event.outputStreamController
+        .add(ColoredLine(line: '{#info}Exit code: $exitCode'));
+
+    var entities = state.entities.map((EntityEntity e) {
+      e.exists = true;
+      return e;
+    }).toSet();
+
+    var sources = state.sources.map((source) {
+      source.entities = source.entities.map((entity) {
+        entity.exists = true;
+        return entity;
+      }).toList();
+      source.exists = true;
+      return source;
+    }).toSet();
 
     emit(state.copyWith(
         generatingState: GeneratingState.waiting,
-        entities: {},
-        sources: {},
+        entities: entities,
+        sources: sources,
         generateScreensWithProject: false));
   }
 

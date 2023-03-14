@@ -44,25 +44,20 @@ class EntityTable extends StatelessWidget {
               color: CupertinoColors.activeBlue.withOpacity(0.1),
             ),
             child: Row(
-              children: [
-                const Cell(
+              children: const [
+                Cell(
                   value: Text('Entity', textAlign: TextAlign.center),
                   decorated: true,
                 ),
-                const Cell(
+                Cell(
                   value: Text('Gen request', textAlign: TextAlign.center),
                   decorated: true,
                 ),
-                const Cell(
+                Cell(
                   value: Text('Gen response', textAlign: TextAlign.center),
                   decorated: true,
                 ),
-                if (source != null)
-                  const Cell(
-                    value: Text('Gen repository', textAlign: TextAlign.center),
-                    decorated: true,
-                  ),
-                const Cell(
+                Cell(
                   value: Text('Actions', textAlign: TextAlign.center),
                 ),
               ],
@@ -144,37 +139,45 @@ class EntityTable extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              color: CupertinoColors.activeOrange,
+                              color: entity.exists
+                                  ? CupertinoColors.inactiveGray
+                                  : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                showCupertinoModalPopup<EntityEntity>(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (context) => AddEntityDialog(
-                                    entity: entity,
-                                    standalone: source == null,
-                                  ),
-                                ).then((entity) {
-                                  if (entity != null) {
-                                    context.read<AppBloc>().add(
-                                          const StateUpdate(),
-                                        );
-                                  }
-                                });
+                                if (!entity.exists) {
+                                  showCupertinoModalPopup<EntityEntity>(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (context) => AddEntityDialog(
+                                      entity: entity,
+                                      standalone: source == null,
+                                    ),
+                                  ).then((entity) {
+                                    if (entity != null) {
+                                      context.read<AppBloc>().add(
+                                            const StateUpdate(),
+                                          );
+                                    }
+                                  });
+                                }
                               },
                               child: const Text('Modify'),
                             ),
                             const SizedBox(width: 10),
                             CupertinoButton(
-                              color: CupertinoColors.activeOrange,
+                              color: entity.exists
+                                  ? CupertinoColors.inactiveGray
+                                  : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                context.read<AppBloc>().add(
-                                      EntityDelete(
-                                          entity: entity, source: source),
-                                    );
+                                if (!entity.exists) {
+                                  context.read<AppBloc>().add(
+                                        EntityDelete(
+                                            entity: entity, source: source),
+                                      );
+                                }
                               },
                               child: const Text('Delete'),
                             ),

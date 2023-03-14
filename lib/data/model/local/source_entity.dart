@@ -4,10 +4,12 @@ class SourceEntity {
   late int id;
   String name;
   List<EntityEntity> entities;
+  bool exists;
 
   SourceEntity({
     required this.name,
     required this.entities,
+    this.exists = false,
   }) {
     id = DateTime.now().millisecondsSinceEpoch;
   }
@@ -17,13 +19,14 @@ class SourceEntity {
       identical(this, other) ||
       other is SourceEntity &&
           runtimeType == other.runtimeType &&
-          name == other.name;
+          name == other.name &&
+          exists == other.exists;
 
   @override
   int get hashCode => name.hashCode;
 
   @override
   String toString() {
-    return 'SourceEntity{id: $id, name: $name, entities: $entities}';
+    return 'SourceEntity{id: $id, name: $name, exists: $exists, entities: $entities}';
   }
 }

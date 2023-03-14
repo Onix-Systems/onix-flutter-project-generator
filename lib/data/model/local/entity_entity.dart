@@ -9,11 +9,13 @@ class EntityEntity {
   String name;
   bool generateRequest;
   bool generateResponse;
+  bool exists;
 
   EntityEntity({
     required this.name,
     this.generateRequest = false,
     this.generateResponse = false,
+    this.exists = false,
   }) {
     id = DateTime.now().millisecondsSinceEpoch;
   }
@@ -28,13 +30,14 @@ class EntityEntity {
       identical(this, other) ||
       other is EntityEntity &&
           runtimeType == other.runtimeType &&
-          name == other.name;
+          name == other.name &&
+          exists == other.exists;
 
   @override
   int get hashCode => name.hashCode;
 
   @override
   String toString() {
-    return 'EntityEntity{id: $id, name: $name, generateRequest: $generateRequest, generateResponse: $generateResponse}';
+    return 'EntityEntity{id: $id, name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse}';
   }
 }

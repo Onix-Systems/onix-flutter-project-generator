@@ -12,9 +12,8 @@ part 'app_models.freezed.dart';
 
 @freezed
 class AppEvent with _$AppEvent {
-  const factory AppEvent.init({
-    required String projectPath,
-  }) = Init;
+  const factory AppEvent.init(// {required String projectPath,}
+      ) = Init;
 
   const factory AppEvent.onTabChange({
     required int tabIndex,
