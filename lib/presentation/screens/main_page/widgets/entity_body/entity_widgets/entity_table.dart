@@ -87,7 +87,13 @@ class EntityTable extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Cell(
-                    value: Text('${entity.name.pascalCase}Entity'),
+                    value: Text(
+                      '${entity.name.pascalCase}Entity',
+                      style: TextStyle(
+                          color: entity.exists
+                              ? CupertinoColors.inactiveGray
+                              : CupertinoColors.white),
+                    ),
                     decorated: true,
                   ),
                   Cell(
@@ -99,12 +105,17 @@ class EntityTable extends StatelessWidget {
                           onChanged: (_) {},
                           isDisabled: true,
                           duration: const Duration(milliseconds: 200),
-                          colorConfig:
-                              MSHColorConfig.fromCheckedUncheckedDisabled(
-                            checkedColor: CupertinoColors.activeOrange,
-                            uncheckedColor: CupertinoColors.activeOrange,
-                            disabledColor: CupertinoColors.activeOrange,
-                          ),
+                          colorConfig: entity.exists
+                              ? MSHColorConfig.fromCheckedUncheckedDisabled(
+                                  checkedColor: CupertinoColors.inactiveGray,
+                                  uncheckedColor: CupertinoColors.inactiveGray,
+                                  disabledColor: CupertinoColors.inactiveGray,
+                                )
+                              : MSHColorConfig.fromCheckedUncheckedDisabled(
+                                  checkedColor: CupertinoColors.activeOrange,
+                                  uncheckedColor: CupertinoColors.activeOrange,
+                                  disabledColor: CupertinoColors.activeOrange,
+                                ),
                         ),
                       ],
                     ),
@@ -119,12 +130,17 @@ class EntityTable extends StatelessWidget {
                           onChanged: (_) {},
                           isDisabled: true,
                           duration: const Duration(milliseconds: 200),
-                          colorConfig:
-                              MSHColorConfig.fromCheckedUncheckedDisabled(
-                            checkedColor: CupertinoColors.activeOrange,
-                            uncheckedColor: CupertinoColors.activeOrange,
-                            disabledColor: CupertinoColors.activeOrange,
-                          ),
+                          colorConfig: entity.exists
+                              ? MSHColorConfig.fromCheckedUncheckedDisabled(
+                                  checkedColor: CupertinoColors.inactiveGray,
+                                  uncheckedColor: CupertinoColors.inactiveGray,
+                                  disabledColor: CupertinoColors.inactiveGray,
+                                )
+                              : MSHColorConfig.fromCheckedUncheckedDisabled(
+                                  checkedColor: CupertinoColors.activeOrange,
+                                  uncheckedColor: CupertinoColors.activeOrange,
+                                  disabledColor: CupertinoColors.activeOrange,
+                                ),
                         ),
                       ],
                     ),

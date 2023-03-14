@@ -464,8 +464,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
         var build = source == state.sources.last ? 'true' : 'false';
 
+        logger.d('--repository_exists ${source.entities.length > 1}');
+
         mainProcess.stdin.writeln(
-            'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name ${source.name} --source_exists ${source.exists} --on-conflict overwrite');
+            'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name ${source.name} --source_exists ${source.exists} --repository_exists ${source.entities.length > 1} --on-conflict overwrite');
       }
     }
 
