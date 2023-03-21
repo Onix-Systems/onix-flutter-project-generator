@@ -4,8 +4,6 @@ part 'entity_entity.g.dart';
 
 @JsonSerializable()
 class EntityEntity {
-  @JsonKey(includeToJson: false)
-  late int id;
   String name;
   bool generateRequest;
   bool generateResponse;
@@ -16,9 +14,15 @@ class EntityEntity {
     this.generateRequest = false,
     this.generateResponse = false,
     this.exists = false,
-  }) {
-    id = DateTime.now().millisecondsSinceEpoch;
-  }
+  });
+
+  EntityEntity.copyOf(EntityEntity entity)
+      : this(
+          name: entity.name,
+          generateRequest: entity.generateRequest,
+          generateResponse: entity.generateResponse,
+          exists: entity.exists,
+        );
 
   Map<String, dynamic> toJson() => _$EntityEntityToJson(this);
 
@@ -31,6 +35,8 @@ class EntityEntity {
       other is EntityEntity &&
           runtimeType == other.runtimeType &&
           name == other.name &&
+          generateRequest == other.generateRequest &&
+          generateResponse == other.generateResponse &&
           exists == other.exists;
 
   @override
@@ -38,6 +44,6 @@ class EntityEntity {
 
   @override
   String toString() {
-    return 'EntityEntity{id: $id, name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse}';
+    return 'EntityEntity{name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse}';
   }
 }

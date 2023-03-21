@@ -11,7 +11,7 @@ EntityEntity _$EntityEntityFromJson(Map<String, dynamic> json) => EntityEntity(
       generateRequest: json['generateRequest'] as bool? ?? false,
       generateResponse: json['generateResponse'] as bool? ?? false,
       exists: json['exists'] as bool? ?? false,
-    )..id = json['id'] as int;
+    );
 
 Map<String, dynamic> _$EntityEntityToJson(EntityEntity instance) =>
     <String, dynamic>{

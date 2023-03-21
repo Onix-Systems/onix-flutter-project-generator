@@ -58,7 +58,9 @@ class AddScreenDialog extends StatelessWidget {
                 Navigator.pop(
                     context,
                     ScreenEntity(
-                        name: _screenNameController.text, bloc: _useBloc));
+                        name: _screenNameController.text,
+                        bloc: _useBloc,
+                        exists: false));
               }
             } else {
               Navigator.pop(context);

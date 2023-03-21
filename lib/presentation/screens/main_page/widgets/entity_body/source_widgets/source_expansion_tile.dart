@@ -82,22 +82,26 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              color: CupertinoColors.activeOrange,
+                              color: widget.source.exists
+                                  ? CupertinoColors.inactiveGray
+                                  : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                showCupertinoModalPopup<SourceEntity>(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (context) =>
-                                      AddSourceDialog(source: widget.source),
-                                ).then((entity) {
-                                  if (entity != null) {
-                                    context.read<AppBloc>().add(
-                                          const StateUpdate(),
-                                        );
-                                  }
-                                });
+                                widget.source.exists
+                                    ? null
+                                    : showCupertinoModalPopup<SourceEntity>(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (context) => AddSourceDialog(
+                                            source: widget.source),
+                                      ).then((entity) {
+                                        if (entity != null) {
+                                          context.read<AppBloc>().add(
+                                                const StateUpdate(),
+                                              );
+                                        }
+                                      });
                               },
                               child: const Text('Modify'),
                             ),
@@ -128,13 +132,17 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                             ),
                             const SizedBox(width: 10),
                             CupertinoButton(
-                              color: CupertinoColors.activeOrange,
+                              color: widget.source.exists
+                                  ? CupertinoColors.inactiveGray
+                                  : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                context.read<AppBloc>().add(
-                                      SourceDelete(source: widget.source),
-                                    );
+                                widget.source.exists
+                                    ? null
+                                    : context.read<AppBloc>().add(
+                                          SourceDelete(source: widget.source),
+                                        );
                               },
                               child: const Text('Delete'),
                             ),
@@ -157,6 +165,7 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
               if (widget.source.entities.isNotEmpty && expanded) ...[
                 EntityTable(
                   entities: widget.source.entities.toSet(),
+                  source: widget.source,
                 ),
                 const SizedBox(height: 10),
               ],

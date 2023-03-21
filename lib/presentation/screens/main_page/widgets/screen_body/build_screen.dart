@@ -139,7 +139,9 @@ class BuildScreen extends StatelessWidget {
                         )
                       : const SizedBox(),
                 ),
-                if (state.screens.isNotEmpty &&
+                if (state.screens
+                        .where((screen) => !screen.exists)
+                        .isNotEmpty &&
                     (!state.generateScreensWithProject || state.projectExists))
                   CupertinoButton(
                     color: CupertinoColors.activeOrange,

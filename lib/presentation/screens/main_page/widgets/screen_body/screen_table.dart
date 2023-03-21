@@ -15,7 +15,6 @@ class ScreenTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         border: Border.all(
           color: CupertinoColors.systemGrey,
@@ -70,7 +69,13 @@ class ScreenTable extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Cell(
-                    value: Text('${screen.name.pascalCase}Screen'),
+                    value: Text(
+                      '${screen.name.pascalCase}Screen',
+                      style: TextStyle(
+                          color: screen.exists
+                              ? CupertinoColors.inactiveGray
+                              : CupertinoColors.white),
+                    ),
                     decorated: true,
                   ),
                   Cell(
@@ -82,12 +87,17 @@ class ScreenTable extends StatelessWidget {
                           onChanged: (_) {},
                           isDisabled: true,
                           duration: const Duration(milliseconds: 200),
-                          colorConfig:
-                              MSHColorConfig.fromCheckedUncheckedDisabled(
-                            checkedColor: CupertinoColors.activeOrange,
-                            uncheckedColor: CupertinoColors.activeOrange,
-                            disabledColor: CupertinoColors.activeOrange,
-                          ),
+                          colorConfig: screen.exists
+                              ? MSHColorConfig.fromCheckedUncheckedDisabled(
+                                  checkedColor: CupertinoColors.inactiveGray,
+                                  uncheckedColor: CupertinoColors.inactiveGray,
+                                  disabledColor: CupertinoColors.inactiveGray,
+                                )
+                              : MSHColorConfig.fromCheckedUncheckedDisabled(
+                                  checkedColor: CupertinoColors.activeOrange,
+                                  uncheckedColor: CupertinoColors.activeOrange,
+                                  disabledColor: CupertinoColors.activeOrange,
+                                ),
                         ),
                       ],
                     ),
@@ -102,34 +112,42 @@ class ScreenTable extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              color: CupertinoColors.activeOrange,
+                              color: screen.exists
+                                  ? CupertinoColors.inactiveGray
+                                  : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                showCupertinoModalPopup<ScreenEntity>(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (context) =>
-                                      AddScreenDialog(screen: screen),
-                                ).then((screen) {
-                                  if (screen != null) {
-                                    context.read<AppBloc>().add(
-                                          const StateUpdate(),
-                                        );
-                                  }
-                                });
+                                if (!screen.exists) {
+                                  showCupertinoModalPopup<ScreenEntity>(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (context) =>
+                                        AddScreenDialog(screen: screen),
+                                  ).then((screen) {
+                                    if (screen != null) {
+                                      context.read<AppBloc>().add(
+                                            const StateUpdate(),
+                                          );
+                                    }
+                                  });
+                                }
                               },
                               child: const Text('Modify'),
                             ),
                             const SizedBox(width: 10),
                             CupertinoButton(
-                              color: CupertinoColors.activeOrange,
+                              color: screen.exists
+                                  ? CupertinoColors.inactiveGray
+                                  : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                context.read<AppBloc>().add(
-                                      ScreenDelete(screen: screen),
-                                    );
+                                if (!screen.exists) {
+                                  context.read<AppBloc>().add(
+                                        ScreenDelete(screen: screen),
+                                      );
+                                }
                               },
                               child: const Text('Delete'),
                             ),

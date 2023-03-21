@@ -183,7 +183,10 @@ class BuildEntity extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (state.entities.isNotEmpty &&
+                if ((state.entities
+                            .where((element) => !element.exists)
+                            .isNotEmpty ||
+                        _needToGenerateSource(state)) &&
                     (!state.generateEntitiesWithProject || state.projectExists))
                   CupertinoButton(
                     color: CupertinoColors.activeOrange,
@@ -224,5 +227,21 @@ class BuildEntity extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  bool _needToGenerateSource(AppState state) {
+    var needToGenerateSources =
+        state.sources.where((source) => !source.exists).isNotEmpty;
+
+    if (!needToGenerateSources) {
+      for (var source in state.sources) {
+        if (source.entities.where((entity) => !entity.exists).isNotEmpty) {
+          needToGenerateSources = true;
+          break;
+        }
+      }
+    }
+
+    return needToGenerateSources;
   }
 }
