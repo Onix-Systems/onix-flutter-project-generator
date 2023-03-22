@@ -50,8 +50,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         (event, emit) => _onGenerateScreensWithProject(event, emit));
     on<OnGenerateRepositoriesWithProject>(
         (event, emit) => _onGenerateRepositoriesWithProject(event, emit));
-    on<ScreenProjectChange>((event, emit) => _screenProjectChange(event, emit));
-    on<EntityProjectChange>((event, emit) => _entityProjectChange(event, emit));
+    on<ProjectChange>((event, emit) => _projectChange(event, emit));
     on<ScreenAdd>((event, emit) => _screenAdd(event, emit));
     on<EntityAdd>((event, emit) => _entityAdd(event, emit));
     on<SourceAdd>((event, emit) => _sourceAdd(event, emit));
@@ -320,18 +319,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         generateEntitiesWithProject: event.generateRepositoriesWithProject));
   }
 
-  FutureOr<void> _screenProjectChange(
-      ScreenProjectChange event, Emitter<AppState> emit) async {
-    var path = event.screenProjectPath.split('/');
-    var projectName = path.last;
-    var projectPath = path.sublist(0, path.length - 1).join('/');
-
-    emit(state.copyWith(projectPath: projectPath, projectName: projectName));
-  }
-
-  FutureOr<void> _entityProjectChange(
-      EntityProjectChange event, Emitter<AppState> emit) async {
-    var path = event.entityProjectPath.split('/');
+  FutureOr<void> _projectChange(
+      ProjectChange event, Emitter<AppState> emit) async {
+    var path = event.projectPath.split('/');
     var projectName = path.last;
     var projectPath = path.sublist(0, path.length - 1).join('/');
 

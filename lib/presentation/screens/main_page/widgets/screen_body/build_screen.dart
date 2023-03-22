@@ -88,8 +88,8 @@ class BuildScreen extends StatelessWidget {
                           getDirectoryPath().then((value) {
                             if (value != null) {
                               context.read<AppBloc>().add(
-                                    ScreenProjectChange(
-                                      screenProjectPath: value,
+                                    ProjectChange(
+                                      projectPath: value,
                                     ),
                                   );
                             }

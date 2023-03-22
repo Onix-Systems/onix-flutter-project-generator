@@ -91,8 +91,8 @@ class BuildEntity extends StatelessWidget {
                           getDirectoryPath().then((value) {
                             if (value != null) {
                               context.read<AppBloc>().add(
-                                    EntityProjectChange(
-                                      entityProjectPath: value,
+                                    ProjectChange(
+                                      projectPath: value,
                                     ),
                                   );
                             }

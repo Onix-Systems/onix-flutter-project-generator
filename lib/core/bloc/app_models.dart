@@ -76,13 +76,13 @@ class AppEvent with _$AppEvent {
     required bool generateRepositoriesWithProject,
   }) = OnGenerateRepositoriesWithProject;
 
-  const factory AppEvent.onScreenProjectChange({
-    required String screenProjectPath,
-  }) = ScreenProjectChange;
+  const factory AppEvent.onProjectChange({
+    required String projectPath,
+  }) = ProjectChange;
 
-  const factory AppEvent.onEntityProjectChange({
-    required String entityProjectPath,
-  }) = EntityProjectChange;
+  // const factory AppEvent.onEntityProjectChange({
+  //   required String entityProjectPath,
+  // }) = EntityProjectChange;
 
   const factory AppEvent.onScreenAdd({
     required ScreenEntity screen,
