@@ -361,6 +361,26 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _entityAdd(EntityAdd event, Emitter<AppState> emit) async {
+    if (state.entities
+        .where((element) => element.name == event.entity.name)
+        .isNotEmpty) {
+      emit(state.copyWith(
+          entityError:
+              'Entity ${event.entity.name.pascalCase} already exists'));
+      return;
+    } else {
+      for (var source in state.sources) {
+        for (var entity in source.entities) {
+          if (entity.name == event.entity.name) {
+            emit(state.copyWith(
+                entityError:
+                    'Entity ${event.entity.name.pascalCase} already exists in ${source.name.titleCase}Source'));
+            return;
+          }
+        }
+      }
+    }
+
     if (event.source == null) {
       var entities = state.entities.toList();
       if (!state.generateEntitiesWithProject && state.projectExists) {
