@@ -163,17 +163,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _organizationChange(
       OrganizationChange event, Emitter<AppState> emit) async {
-    var org = event.organization.hostCase();
-    logger.d('org: $org');
     emit(state.copyWith(organization: event.organization.hostCase()));
   }
 
   FutureOr<void> _flavorizeChange(_, Emitter<AppState> emit) async {
-    if (state.flavorize) {
-      emit(state.copyWith(flavorize: false));
-    } else {
-      emit(state.copyWith(flavorize: true));
-    }
+    emit(state.copyWith(flavorize: !state.flavorize));
   }
 
   FutureOr<void> _flavorsChange(
@@ -380,9 +374,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     if (event.source == null) {
       var entities = state.entities.toList();
-      if (!state.generateEntitiesWithProject && state.projectExists) {
-        //TODO: get entities from existing project
-      }
+
       entities.add(event.entity);
       emit(state.copyWith(entities: entities.toSet()));
     } else {
@@ -397,10 +389,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _sourceAdd(SourceAdd event, Emitter<AppState> emit) async {
-    var sources = state.sources.toList();
-    if (!state.generateEntitiesWithProject && state.projectExists) {
-      //TODO: get sources from existing project
+    if (state.sources
+        .where((element) => element.name == event.source.name)
+        .isNotEmpty) {
+      emit(state.copyWith(
+          entityError: '${event.source.name.pascalCase}Source already exists'));
+      return;
     }
+
+    var sources = state.sources.toList();
+
     sources.add(event.source);
     emit(state.copyWith(sources: sources.toSet()));
   }
