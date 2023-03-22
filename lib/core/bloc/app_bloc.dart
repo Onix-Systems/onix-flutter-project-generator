@@ -340,6 +340,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _screenAdd(ScreenAdd event, Emitter<AppState> emit) async {
     var screens = state.screens.toList();
+    if (state.screens
+        .where((element) => element.name == event.screen.name)
+        .isNotEmpty) {
+      emit(state.copyWith(
+          screenError: '${event.screen.name.pascalCase}Screen already exists'));
+      return;
+    }
     if (!state.generateScreensWithProject && state.projectExists) {
       try {
         File file = File(
@@ -349,7 +356,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         if (content.contains('${event.screen.name.pascalCase}Screen')) {
           emit(state.copyWith(
               screenError:
-                  'Screen ${event.screen.name.pascalCase}Screen already exists'));
+                  '${event.screen.name.pascalCase}Screen already exists'));
           return;
         }
       } catch (e) {
