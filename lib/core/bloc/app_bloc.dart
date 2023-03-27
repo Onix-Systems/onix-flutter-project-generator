@@ -204,28 +204,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _generateSigningKeyChange(_, Emitter<AppState> emit) async {
-    if (state.generateSigningKey) {
-      emit(state.copyWith(generateSigningKey: false));
-    } else {
-      emit(state.copyWith(generateSigningKey: true));
-    }
+    emit(state.copyWith(generateSigningKey: !state.generateSigningKey));
   }
 
   FutureOr<void> _useSonarChange(_, Emitter<AppState> emit) async {
-    if (state.useSonar) {
-      emit(state.copyWith(useSonar: false));
-    } else {
-      emit(state.copyWith(useSonar: true));
-    }
+    emit(state.copyWith(useSonar: !state.useSonar));
   }
 
   FutureOr<void> _integrateDevicePreviewChange(
       _, Emitter<AppState> emit) async {
-    if (state.integrateDevicePreview) {
-      emit(state.copyWith(integrateDevicePreview: false));
-    } else {
-      emit(state.copyWith(integrateDevicePreview: true));
-    }
+    emit(state.copyWith(integrateDevicePreview: !state.integrateDevicePreview));
   }
 
   FutureOr<void> _signingVarsChange(
@@ -263,14 +251,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       event.outputStreamController
           .add(ColoredLine(line: '{#info}Getting mason & brick...'));
 
-      var mainProcess =
-          await Process.start('zsh', [], workingDirectory: state.projectPath);
-
-      mainProcess.log(event.outputStreamController);
-      mainProcess.stdin.writeln('source \$HOME/.zshrc');
-      mainProcess.stdin.writeln('source \$HOME/.bash_profile');
-      mainProcess.stdin.writeln('dart pub global activate mason_cli');
-      mainProcess.stdin.writeln('mason cache clear');
+      var mainProcess = await startProcess(
+          workingDirectory: state.projectPath,
+          outputStreamController: event.outputStreamController);
 
       mainProcess.stdin.writeln(
           'mason add -g flutter_clean_base --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_base');
@@ -443,18 +426,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       ScreensGenerate event, Emitter<AppState> emit) async {
     if (state.screens.where((element) => !element.exists).isNotEmpty) {
       emit(state.copyWith(generatingState: GeneratingState.generating));
-      var mainProcess = await Process.start('zsh', [],
-          workingDirectory: '${state.projectPath}/${state.projectName}');
-
-      mainProcess.log(event.outputStreamController);
-
-      event.outputStreamController
-          .add(ColoredLine(line: '{#info}Getting mason & brick...'));
-
-      mainProcess.stdin.writeln('source \$HOME/.zshrc');
-      mainProcess.stdin.writeln('source \$HOME/.bash_profile');
-      mainProcess.stdin.writeln('dart pub global activate mason_cli');
-      mainProcess.stdin.writeln('mason cache clear');
+      var mainProcess = await startProcess(
+          workingDirectory: state.projectPath,
+          outputStreamController: event.outputStreamController);
+      ;
 
       mainProcess.stdin.writeln(
           'mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_screen');
@@ -476,7 +451,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (state.generateEntitiesWithProject && state.entities.isNotEmpty) {
       add(EntitiesGenerate(
           outputStreamController: event.outputStreamController));
-      //emit(state.copyWith(screens: {}, generateScreensWithProject: false));
     } else {
       Config.saveConfig(state);
       emit(state.copyWith(
@@ -506,18 +480,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (needToGenerateEntities || needToGenerateSources) {
       emit(state.copyWith(generatingState: GeneratingState.generating));
 
-      var mainProcess = await Process.start('zsh', [],
-          workingDirectory: '${state.projectPath}/${state.projectName}');
-
-      mainProcess.log(event.outputStreamController);
-
-      event.outputStreamController
-          .add(ColoredLine(line: '{#info}Getting mason & brick...'));
-
-      mainProcess.stdin.writeln('source \$HOME/.zshrc');
-      mainProcess.stdin.writeln('source \$HOME/.bash_profile');
-      mainProcess.stdin.writeln('dart pub global activate mason_cli');
-      mainProcess.stdin.writeln('mason cache clear');
+      var mainProcess = await startProcess(
+          workingDirectory: state.projectPath,
+          outputStreamController: event.outputStreamController);
 
       mainProcess.stdin.writeln(
           'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
@@ -544,8 +509,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               .where((entity) => !entity.exists)
               .map((e) => jsonEncode(e.toJson()))
               .join(', ');
-
-          //var build = source == state.sources.last;
 
           mainProcess.stdin.writeln(
               'mason make flutter_clean_entity --build true --entities \'$entities\' --source_name ${source.name} --source_exists ${source.exists} --repository_exists ${source.entities.length > 1} --on-conflict overwrite');
@@ -585,6 +548,21 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       ..errLines.asBroadcastStream().listen((event) {
         logger.e(event);
       });
+  }
+
+  Future<Process> startProcess(
+      {required String workingDirectory,
+      required StreamController<ColoredLine> outputStreamController}) async {
+    var mainProcess =
+        await Process.start('zsh', [], workingDirectory: workingDirectory);
+
+    mainProcess.log(outputStreamController);
+    mainProcess.stdin.writeln('source \$HOME/.zshrc');
+    mainProcess.stdin.writeln('source \$HOME/.bash_profile');
+    mainProcess.stdin.writeln('dart pub global activate mason_cli');
+    mainProcess.stdin.writeln('mason cache clear');
+
+    return mainProcess;
   }
 }
 
