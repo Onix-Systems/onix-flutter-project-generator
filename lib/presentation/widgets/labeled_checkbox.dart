@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 
-class LabeledCheckbox extends StatefulWidget {
+class LabeledCheckbox extends StatelessWidget {
   const LabeledCheckbox({
     required this.label,
     required this.onAction,
     this.initialValue = false,
     this.disabled = false,
+    this.focused = false,
     Key? key,
   }) : super(key: key);
 
@@ -14,44 +15,41 @@ class LabeledCheckbox extends StatefulWidget {
   final bool? initialValue;
   final VoidCallback onAction;
   final bool? disabled;
-
-  @override
-  State<LabeledCheckbox> createState() => _LabeledCheckboxState();
-}
-
-class _LabeledCheckboxState extends State<LabeledCheckbox> {
-  bool _value = false;
-
-  @override
-  void initState() {
-    _value = widget.initialValue ?? false;
-    super.initState();
-  }
+  final bool focused;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        MSHCheckbox(
-          value: _value,
-          isDisabled: widget.disabled ?? false,
-          duration: const Duration(milliseconds: 200),
-          colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
-            checkedColor: CupertinoColors.activeOrange,
-            uncheckedColor: CupertinoColors.activeOrange,
-            disabledColor: CupertinoColors.activeOrange,
-          ),
-          onChanged: (value) {
-            setState(() {
-              _value = value;
-            });
-            widget.onAction();
-          },
-          size: 20,
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color:
+              focused ? CupertinoColors.activeOrange : const Color(0x00E5E5EA),
+          width: 1,
+          strokeAlign: BorderSide.strokeAlignInside,
         ),
-        const SizedBox(width: 10),
-        Text(widget.label),
-      ],
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Row(
+        children: [
+          MSHCheckbox(
+            value: initialValue ?? false,
+            isDisabled: disabled ?? false,
+            duration: const Duration(milliseconds: 200),
+            colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
+              checkedColor: CupertinoColors.activeOrange,
+              uncheckedColor: CupertinoColors.activeOrange,
+              disabledColor: CupertinoColors.activeOrange,
+            ),
+            onChanged: (value) {
+              onAction();
+            },
+            size: 20,
+          ),
+          const SizedBox(width: 10),
+          Text(label),
+        ],
+      ),
     );
   }
 }

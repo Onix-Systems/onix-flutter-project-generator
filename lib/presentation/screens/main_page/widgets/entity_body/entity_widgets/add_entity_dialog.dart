@@ -1,101 +1,204 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity_entity.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 import 'package:recase/recase.dart';
 
-class AddEntityDialog extends StatelessWidget {
-  AddEntityDialog({Key? key, this.entity, this.standalone = true})
+class AddEntityDialog extends StatefulWidget {
+  const AddEntityDialog({Key? key, this.entity, this.standalone = true})
       : super(key: key);
 
-  final TextEditingController _entityNameController = TextEditingController();
   final EntityEntity? entity;
   final bool standalone;
+
+  @override
+  State<AddEntityDialog> createState() => _AddEntityDialogState();
+}
+
+class _AddEntityDialogState extends State<AddEntityDialog> {
+  final TextEditingController _entityNameController = TextEditingController();
+
+  final _dialogFocusNode = FocusNode();
+  final _textFieldFocusNode = FocusNode();
+
+  int _currentFocusNode = 0;
 
   bool _createRequest = false;
   bool _createResponse = false;
 
   @override
-  Widget build(BuildContext context) {
-    if (entity != null) {
-      _entityNameController.text = entity!.name;
-      _createRequest = entity!.generateRequest;
-      _createResponse = entity!.generateResponse;
+  void initState() {
+    _textFieldFocusNode.requestFocus();
+    if (widget.entity != null) {
+      _entityNameController.text = widget.entity!.name;
+      _createRequest = widget.entity!.generateRequest;
+      _createResponse = widget.entity!.generateResponse;
     }
-    return CupertinoAlertDialog(
-      title: entity != null
-          ? const Text('Modify entity')
-          : const Text('Add entity'),
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 10),
-          CupertinoTextField(
-            controller: _entityNameController,
-            placeholder: 'Entity name',
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
-            ],
+    super.initState();
+  }
+
+  void _focusNext() {
+    setState(() {
+      if (_currentFocusNode < 3) {
+        _currentFocusNode++;
+      } else {
+        _currentFocusNode = 0;
+      }
+      if (_currentFocusNode == 0) {
+        _textFieldFocusNode.requestFocus();
+      } else {
+        _dialogFocusNode.requestFocus();
+      }
+    });
+  }
+
+  void _focusPrevious() {
+    setState(() {
+      if (_currentFocusNode > 0) {
+        _currentFocusNode--;
+      } else {
+        _currentFocusNode = 3;
+      }
+      if (_currentFocusNode == 0) {
+        _textFieldFocusNode.requestFocus();
+      } else {
+        _dialogFocusNode.requestFocus();
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Focus(
+      focusNode: _dialogFocusNode,
+      onKey: (node, event) {
+        logger.d('Key event: ${event.logicalKey}');
+        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+          _onOK(context);
+          return KeyEventResult.handled;
+        }
+        if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
+          Navigator.pop(context);
+          return KeyEventResult.handled;
+        }
+        if (event.isKeyPressed(LogicalKeyboardKey.space)) {
+          setState(() {
+            logger.d('Space pressed');
+            if (_currentFocusNode == 1) {
+              _createRequest = !_createRequest;
+              logger.d('Create request: $_createRequest');
+            } else if (_currentFocusNode == 2) {
+              _createResponse = !_createResponse;
+              logger.d('Create response: $_createResponse');
+            }
+          });
+
+          return KeyEventResult.handled;
+        }
+        if (event.isKeyPressed(LogicalKeyboardKey.tab)) {
+          if (event.isShiftPressed) {
+            _focusPrevious();
+          } else {
+            _focusNext();
+          }
+          // _currentFocusNode.requestFocus();
+          return KeyEventResult.handled;
+        }
+        return KeyEventResult.ignored;
+      },
+      child: CupertinoAlertDialog(
+        title: widget.entity != null
+            ? const Text('Modify entity')
+            : const Text('Add entity'),
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 10),
+            CupertinoTextField(
+              controller: _entityNameController,
+              focusNode: _textFieldFocusNode,
+              onTapOutside: (_) {
+                setState(() {
+                  _currentFocusNode = 3;
+                  _dialogFocusNode.requestFocus();
+                });
+              },
+              onTap: () {
+                setState(() {
+                  _currentFocusNode = 0;
+                  _textFieldFocusNode.requestFocus();
+                });
+              },
+              placeholder: 'Entity name',
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
+              ],
+              onSubmitted: (_) => _onOK(context),
+              onEditingComplete: () => logger.d('onEditingComplete'),
+            ),
+            const SizedBox(height: 15),
+            LabeledCheckbox(
+              focused: _currentFocusNode == 1,
+              label: 'Create request?',
+              initialValue: _createRequest,
+              onAction: () {
+                setState(() {
+                  _createRequest = !_createRequest;
+                });
+              },
+            ),
+            LabeledCheckbox(
+              focused: _currentFocusNode == 2,
+              label: 'Create response?',
+              initialValue: _createResponse,
+              onAction: () {
+                setState(() {
+                  _createResponse = !_createResponse;
+                });
+              },
+            ),
+          ],
+        ),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () => _onOK(context),
+            child: const Text('Ok'),
           ),
-          const SizedBox(height: 15),
-          LabeledCheckbox(
-            label: 'Create request?',
-            initialValue:
-                entity != null ? entity!.generateRequest : _createRequest,
-            onAction: () {
-              if (entity != null) {
-                entity!.generateRequest = !entity!.generateRequest;
-              } else {
-                _createRequest = !_createRequest;
-              }
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context);
             },
-          ),
-          const SizedBox(height: 15),
-          LabeledCheckbox(
-            label: 'Create response?',
-            initialValue:
-                entity != null ? entity!.generateResponse : _createResponse,
-            onAction: () {
-              if (entity != null) {
-                entity!.generateResponse = !entity!.generateResponse;
-              } else {
-                _createResponse = !_createResponse;
-              }
-            },
+            child: const Text('Cancel'),
           ),
         ],
       ),
-      actions: <CupertinoDialogAction>[
-        CupertinoDialogAction(
-          isDefaultAction: true,
-          onPressed: () {
-            if (_entityNameController.text.isNotEmpty) {
-              if (entity != null) {
-                entity!.name = _entityNameController.text.snakeCase;
-                Navigator.pop(context, entity);
-              } else {
-                Navigator.pop(
-                    context,
-                    EntityEntity(
-                      name: _entityNameController.text,
-                      generateRequest: _createRequest,
-                      generateResponse: _createResponse,
-                    ));
-              }
-            } else {
-              Navigator.pop(context);
-            }
-          },
-          child: const Text('Ok'),
-        ),
-        CupertinoDialogAction(
-          isDefaultAction: true,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Cancel'),
-        ),
-      ],
     );
+  }
+
+  Future<void> _onOK(BuildContext context) async {
+    if (_entityNameController.text.isNotEmpty) {
+      logger.d('onOk: ${_entityNameController.text}');
+      if (widget.entity != null) {
+        widget.entity!.name = _entityNameController.text.snakeCase;
+        widget.entity!.generateRequest = _createRequest;
+        widget.entity!.generateResponse = _createResponse;
+        Navigator.pop(context, widget.entity);
+      } else {
+        Navigator.pop(
+            context,
+            EntityEntity(
+              name: widget.entity != null
+                  ? _entityNameController.text.snakeCase
+                  : _entityNameController.text,
+              generateRequest: _createRequest,
+              generateResponse: _createResponse,
+            ));
+      }
+    } else {
+      Navigator.pop(context);
+    }
   }
 }
