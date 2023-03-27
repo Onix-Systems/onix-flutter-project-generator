@@ -129,7 +129,6 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
               ],
               onSubmitted: (_) => _onOK(context),
-              onEditingComplete: () => logger.d('onEditingComplete'),
             ),
             const SizedBox(height: 15),
             LabeledCheckbox(
