@@ -40,7 +40,7 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
 
   void _focusNext() {
     setState(() {
-      if (_currentFocusNode < 3) {
+      if (_currentFocusNode < 2) {
         _currentFocusNode++;
       } else {
         _currentFocusNode = 0;
@@ -58,7 +58,7 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
       if (_currentFocusNode > 0) {
         _currentFocusNode--;
       } else {
-        _currentFocusNode = 3;
+        _currentFocusNode = 2;
       }
       if (_currentFocusNode == 0) {
         _textFieldFocusNode.requestFocus();
@@ -118,12 +118,6 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
             CupertinoTextField(
               controller: _entityNameController,
               focusNode: _textFieldFocusNode,
-              onTapOutside: (_) {
-                setState(() {
-                  _currentFocusNode = 3;
-                  _dialogFocusNode.requestFocus();
-                });
-              },
               onTap: () {
                 setState(() {
                   _currentFocusNode = 0;
