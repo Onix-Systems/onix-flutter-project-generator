@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
 
-class BuildOutput extends StatelessWidget {
-  BuildOutput({
+class OutputWidget extends StatelessWidget {
+  const OutputWidget({
     Key? key,
     required this.outputStream,
     required this.outputText,
@@ -15,7 +15,7 @@ class BuildOutput extends StatelessWidget {
   }) : super(key: key);
 
   final Stream<ColoredLine>? outputStream;
-  List<ColoredLine> outputText;
+  final List<ColoredLine> outputText;
   final bool canClose;
 
   @override

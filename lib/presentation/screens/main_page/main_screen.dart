@@ -5,7 +5,7 @@ import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_base.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_output.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/output_widget.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/build_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/build_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_top.dart';
@@ -230,7 +230,7 @@ class MainScreen extends StatelessWidget {
                 ),
                 if (state.generatingState == GeneratingState.generating ||
                     state.generatingState == GeneratingState.waiting)
-                  BuildOutput(
+                  OutputWidget(
                     canClose: state.generatingState == GeneratingState.waiting,
                     outputStream: outputStream,
                     outputText: outputText,
