@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/screen_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/source_entity.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
+import 'package:onix_flutter_bricks/domain/service/output_service/colored_line.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
 
 part 'app_models.freezed.dart';
 
@@ -62,9 +62,7 @@ class AppEvent with _$AppEvent {
 
   const factory AppEvent.onThemingChange() = ThemingChange;
 
-  const factory AppEvent.onGenerateProject(
-          {required StreamController<ColoredLine> outputStreamController}) =
-      GenerateProject;
+  const factory AppEvent.onGenerateProject() = GenerateProject;
 
   const factory AppEvent.onGenerateComplete() = GenerateComplete;
 
@@ -79,10 +77,6 @@ class AppEvent with _$AppEvent {
   const factory AppEvent.onProjectChange({
     required String projectPath,
   }) = ProjectChange;
-
-  // const factory AppEvent.onEntityProjectChange({
-  //   required String entityProjectPath,
-  // }) = EntityProjectChange;
 
   const factory AppEvent.onScreenAdd({
     required ScreenEntity screen,
@@ -112,13 +106,9 @@ class AppEvent with _$AppEvent {
 
   const factory AppEvent.onStateUpdate() = StateUpdate;
 
-  const factory AppEvent.onScreensGenerate({
-    required StreamController<ColoredLine> outputStreamController,
-  }) = ScreensGenerate;
+  const factory AppEvent.onScreensGenerate() = ScreensGenerate;
 
-  const factory AppEvent.onEntitiesGenerate({
-    required StreamController<ColoredLine> outputStreamController,
-  }) = EntitiesGenerate;
+  const factory AppEvent.onEntitiesGenerate() = EntitiesGenerate;
 
   const factory AppEvent.onErrorClear() = ErrorClear;
 

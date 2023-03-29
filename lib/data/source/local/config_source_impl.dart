@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:onix_flutter_bricks/core/di/di.dart';
-import 'package:onix_flutter_bricks/data/model/local/config.dart';
+import 'package:onix_flutter_bricks/data/model/local/config/config.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 
 class ConfigSourceImpl implements ConfigSource {

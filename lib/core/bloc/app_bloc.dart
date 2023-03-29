@@ -4,18 +4,18 @@ import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
-import 'package:onix_flutter_bricks/data/model/local/config.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/screen_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/config/config.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
+import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
 import 'package:process_run/utils/process_result_extension.dart';
 import 'package:recase/recase.dart';
 
-import '../../data/model/local/colored_line.dart';
+import '../../domain/service/output_service/colored_line.dart';
 import 'app_models.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
@@ -248,12 +248,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         'theme_generate': state.theming.name == 'theme_tailor',
       }).toString());
 
-      event.outputStreamController
-          .add(ColoredLine(line: '{#info}Getting mason & brick...'));
+      outputService.add('{#info}Getting mason & brick...');
 
-      var mainProcess = await startProcess(
-          workingDirectory: state.projectPath,
-          outputStreamController: event.outputStreamController);
+      var mainProcess = await startProcess(workingDirectory: state.projectPath);
 
       mainProcess.stdin.writeln(
           'mason add -g flutter_clean_base --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_base');
@@ -264,12 +261,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       configFile.delete();
 
       if (state.generateScreensWithProject && state.screens.isNotEmpty) {
-        add(ScreensGenerate(
-            outputStreamController: event.outputStreamController));
+        add(const ScreensGenerate());
       } else if (state.generateEntitiesWithProject &&
           state.entities.isNotEmpty) {
-        add(EntitiesGenerate(
-            outputStreamController: event.outputStreamController));
+        add(const EntitiesGenerate());
       } else {
         Config.saveConfig(state);
         emit(state.copyWith(
@@ -427,9 +422,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (state.screens.where((element) => !element.exists).isNotEmpty) {
       emit(state.copyWith(generatingState: GeneratingState.generating));
       var mainProcess = await startProcess(
-          workingDirectory: state.projectPath,
-          outputStreamController: event.outputStreamController);
-      ;
+          workingDirectory: '${state.projectPath}/${state.projectName}');
 
       mainProcess.stdin.writeln(
           'mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_screen');
@@ -444,13 +437,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
       var exitCode = await mainProcess.exitCode;
 
-      event.outputStreamController
-          .add(ColoredLine(line: '{#info}Screens generated!'));
+      outputService.add('{#info}Screens generated!');
     }
 
     if (state.generateEntitiesWithProject && state.entities.isNotEmpty) {
-      add(EntitiesGenerate(
-          outputStreamController: event.outputStreamController));
+      add(const EntitiesGenerate());
     } else {
       Config.saveConfig(state);
       emit(state.copyWith(
@@ -481,8 +472,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       emit(state.copyWith(generatingState: GeneratingState.generating));
 
       var mainProcess = await startProcess(
-          workingDirectory: state.projectPath,
-          outputStreamController: event.outputStreamController);
+          workingDirectory: '${state.projectPath}/${state.projectName}');
 
       mainProcess.stdin.writeln(
           'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
@@ -516,10 +506,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       }
 
       var exitCode = await mainProcess.exitCode;
-      event.outputStreamController
-          .add(ColoredLine(line: '{#info}Entities generated!'));
-      event.outputStreamController
-          .add(ColoredLine(line: '{#info}Exit code: $exitCode'));
+      outputService.add('{#info}Entities generated!');
+      outputService.add('{#info}Exit code: $exitCode');
     }
 
     Config.saveConfig(state);
@@ -550,13 +538,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       });
   }
 
-  Future<Process> startProcess(
-      {required String workingDirectory,
-      required StreamController<ColoredLine> outputStreamController}) async {
+  Future<Process> startProcess({required String workingDirectory}) async {
     var mainProcess =
         await Process.start('zsh', [], workingDirectory: workingDirectory);
 
-    mainProcess.log(outputStreamController);
+    mainProcess.log();
     mainProcess.stdin.writeln('source \$HOME/.zshrc');
     mainProcess.stdin.writeln('source \$HOME/.bash_profile');
     mainProcess.stdin.writeln('dart pub global activate mason_cli');

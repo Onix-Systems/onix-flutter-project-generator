@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/screen_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/add_screen_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/screen_table_cell.dart';
 import 'package:recase/recase.dart';

@@ -21,10 +21,13 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Config {
   List<SourceEntity> get sources => throw _privateConstructorUsedError;
+
   List<ScreenEntity> get screens => throw _privateConstructorUsedError;
+
   List<EntityEntity> get entities => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
@@ -33,6 +36,7 @@ mixin _$Config {
 abstract class $ConfigCopyWith<$Res> {
   factory $ConfigCopyWith(Config value, $Res Function(Config) then) =
       _$ConfigCopyWithImpl<$Res, Config>;
+
   @useResult
   $Res call(
       {List<SourceEntity> sources,
@@ -47,6 +51,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -78,6 +83,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
 abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   factory _$$_ConfigCopyWith(_$_Config value, $Res Function(_$_Config) then) =
       __$$_ConfigCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -132,6 +138,7 @@ class _$_Config implements _Config {
       _$$_ConfigFromJson(json);
 
   final List<SourceEntity> _sources;
+
   @override
   List<SourceEntity> get sources {
     if (_sources is EqualUnmodifiableListView) return _sources;
@@ -140,6 +147,7 @@ class _$_Config implements _Config {
   }
 
   final List<ScreenEntity> _screens;
+
   @override
   List<ScreenEntity> get screens {
     if (_screens is EqualUnmodifiableListView) return _screens;
@@ -148,6 +156,7 @@ class _$_Config implements _Config {
   }
 
   final List<EntityEntity> _entities;
+
   @override
   List<EntityEntity> get entities {
     if (_entities is EqualUnmodifiableListView) return _entities;
@@ -202,10 +211,13 @@ abstract class _Config implements Config {
 
   @override
   List<SourceEntity> get sources;
+
   @override
   List<ScreenEntity> get screens;
+
   @override
   List<EntityEntity> get entities;
+
   @override
   @JsonKey(ignore: true)
   _$$_ConfigCopyWith<_$_Config> get copyWith =>

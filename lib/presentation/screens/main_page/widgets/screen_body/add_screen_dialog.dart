@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
-import 'package:onix_flutter_bricks/data/model/local/screen_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 import 'package:recase/recase.dart';
 
@@ -105,7 +105,9 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
               label: 'Use BLoC?',
               initialValue: _useBloc,
               onAction: () {
-                _useBloc = !_useBloc;
+                setState(() {
+                  _useBloc = !_useBloc;
+                });
               },
             ),
           ],

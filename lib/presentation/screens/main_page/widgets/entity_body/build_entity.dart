@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/source_entity.dart';
+import 'package:onix_flutter_bricks/domain/service/output_service/colored_line.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/add_entity_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/source_widgets/add_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/entity_table_expansion_tile.dart';
@@ -18,17 +18,12 @@ class BuildEntity extends StatelessWidget {
     required this.state,
     required this.projectNameController,
     required this.onGenerate,
-    required this.outputStream,
-    required this.outputText,
     Key? key,
   }) : super(key: key);
 
   final AppState state;
   final TextEditingController projectNameController;
   final VoidCallback onGenerate;
-
-  final Stream<ColoredLine> outputStream;
-  final List<ColoredLine> outputText;
 
   @override
   Widget build(BuildContext context) {

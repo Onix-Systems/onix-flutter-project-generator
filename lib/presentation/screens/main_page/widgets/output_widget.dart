@@ -4,18 +4,15 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
+import 'package:onix_flutter_bricks/domain/service/output_service/colored_line.dart';
 
 class OutputWidget extends StatelessWidget {
   const OutputWidget({
     Key? key,
-    required this.outputStream,
-    required this.outputText,
     required this.canClose,
   }) : super(key: key);
 
-  final Stream<ColoredLine>? outputStream;
-  final List<ColoredLine> outputText;
   final bool canClose;
 
   @override
@@ -34,19 +31,20 @@ class OutputWidget extends StatelessWidget {
               child: Stack(children: [
                 SizedBox.expand(
                   child: StreamBuilder<ColoredLine>(
-                    stream: outputStream,
+                    stream: outputService.outputStream,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        if (outputText.last.tag == '{#progress}') {
+                        if (outputService.outputLines.last.tag ==
+                            '{#progress}') {
                           Future.delayed(const Duration(microseconds: 10), () {
-                            outputText.removeLast();
+                            outputService.outputLines.removeLast();
                           });
                         }
                         var output = SingleChildScrollView(
                           reverse: true,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: outputText,
+                            children: outputService.outputLines,
                           ),
                         );
                         return output;

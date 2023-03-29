@@ -3,8 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
-import 'package:onix_flutter_bricks/data/model/local/screen_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/add_screen_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/screen_table.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
@@ -15,17 +14,12 @@ class BuildScreen extends StatelessWidget {
     required this.state,
     required this.projectNameController,
     required this.onGenerate,
-    required this.outputStream,
-    required this.outputText,
     Key? key,
   }) : super(key: key);
 
   final AppState state;
   final TextEditingController projectNameController;
   final VoidCallback onGenerate;
-
-  final Stream<ColoredLine> outputStream;
-  final List<ColoredLine> outputText;
 
   @override
   Widget build(BuildContext context) {

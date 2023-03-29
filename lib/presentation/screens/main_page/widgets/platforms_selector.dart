@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/presentation/screens/main_page/utils/platforms_list.dart';
+import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 
 class PlatformSelector extends StatelessWidget {

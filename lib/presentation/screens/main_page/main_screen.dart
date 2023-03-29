@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
-import 'package:onix_flutter_bricks/data/model/local/colored_line.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/build_base.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/output_widget.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/build_entity.dart';
@@ -20,11 +19,6 @@ class MainScreen extends StatelessWidget {
   final TextEditingController _projectNameController = TextEditingController();
   final TextEditingController _projectOrgController = TextEditingController();
   final TextEditingController _flavorsController = TextEditingController();
-
-  final outputStreamController = StreamController<ColoredLine>();
-  late final Stream<ColoredLine> outputStream =
-      outputStreamController.stream.asBroadcastStream();
-  List<ColoredLine> outputText = [];
 
   void _init(BuildContext context) {
     _projectNameController.text = context.read<AppBloc>().state.projectName;
@@ -53,10 +47,6 @@ class MainScreen extends StatelessWidget {
             flavors: _flavorsController.text,
           ));
       _flavorsController.selection = TextSelection.fromPosition(position);
-    });
-
-    outputStream.listen((event) {
-      outputText.add(event);
     });
   }
 
@@ -173,21 +163,19 @@ class MainScreen extends StatelessWidget {
                               projectNameController: _projectNameController,
                               organizationController: _projectOrgController,
                               flavorsController: _flavorsController,
-                              outputStream: outputStream,
-                              outputText: outputText,
+                              outputStream: outputService.outputStream,
+                              outputText: outputService.outputLines,
                               onGenerate: () async {
                                 if (state.projectName.isEmpty ||
                                     state.organization.isEmpty ||
                                     state.generatingState ==
                                         GeneratingState.generating ||
                                     !state.platforms.selected) {
-                                  //TODO: show error
                                 } else {
-                                  outputText.clear();
-                                  context.read<AppBloc>().add(GenerateProject(
-                                        outputStreamController:
-                                            outputStreamController,
-                                      ));
+                                  outputService.clear();
+                                  context
+                                      .read<AppBloc>()
+                                      .add(const GenerateProject());
                                 }
                               },
                             ),
@@ -198,14 +186,11 @@ class MainScreen extends StatelessWidget {
                               state: state,
                               projectNameController: _projectNameController,
                               onGenerate: () {
-                                outputText.clear();
-                                context.read<AppBloc>().add(ScreensGenerate(
-                                      outputStreamController:
-                                          outputStreamController,
-                                    ));
+                                outputService.clear();
+                                context
+                                    .read<AppBloc>()
+                                    .add(const ScreensGenerate());
                               },
-                              outputStream: outputStream,
-                              outputText: outputText,
                             ),
                           )
                         else
@@ -214,14 +199,11 @@ class MainScreen extends StatelessWidget {
                               state: state,
                               projectNameController: _projectNameController,
                               onGenerate: () {
-                                outputText.clear();
-                                context.read<AppBloc>().add(EntitiesGenerate(
-                                      outputStreamController:
-                                          outputStreamController,
-                                    ));
+                                outputService.clear();
+                                context
+                                    .read<AppBloc>()
+                                    .add(const EntitiesGenerate());
                               },
-                              outputStream: outputStream,
-                              outputText: outputText,
                             ),
                           )
                       ],
@@ -232,8 +214,6 @@ class MainScreen extends StatelessWidget {
                     state.generatingState == GeneratingState.waiting)
                   OutputWidget(
                     canClose: state.generatingState == GeneratingState.waiting,
-                    outputStream: outputStream,
-                    outputText: outputText,
                   ),
               ]),
             ),

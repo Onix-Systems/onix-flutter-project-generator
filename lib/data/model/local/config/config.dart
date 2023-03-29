@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/screen_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 

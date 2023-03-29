@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:onix_flutter_bricks/data/model/local/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
 import 'package:recase/recase.dart';
 
 class AddSourceDialog extends StatelessWidget {
@@ -23,11 +23,13 @@ class AddSourceDialog extends StatelessWidget {
         children: [
           const SizedBox(height: 10),
           CupertinoTextField(
+            autofocus: true,
             controller: _sourceNameController,
             placeholder: 'Source name',
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
             ],
+            onSubmitted: (_) => _onSubmitted(context),
           ),
           const SizedBox(height: 15),
         ],
@@ -35,21 +37,7 @@ class AddSourceDialog extends StatelessWidget {
       actions: <CupertinoDialogAction>[
         CupertinoDialogAction(
           isDefaultAction: true,
-          onPressed: () {
-            if (_sourceNameController.text.isNotEmpty) {
-              if (source != null) {
-                source!.name = _sourceNameController.text.snakeCase;
-                Navigator.pop(context, source);
-              } else {
-                Navigator.pop(
-                    context,
-                    SourceEntity(
-                        name: _sourceNameController.text, entities: []));
-              }
-            } else {
-              Navigator.pop(context);
-            }
-          },
+          onPressed: () => _onSubmitted(context),
           child: const Text('Ok'),
         ),
         CupertinoDialogAction(
@@ -61,5 +49,19 @@ class AddSourceDialog extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void _onSubmitted(BuildContext context) {
+    if (_sourceNameController.text.isNotEmpty) {
+      if (source != null) {
+        source!.name = _sourceNameController.text.snakeCase;
+        Navigator.pop(context, source);
+      } else {
+        Navigator.pop(context,
+            SourceEntity(name: _sourceNameController.text, entities: []));
+      }
+    } else {
+      Navigator.pop(context);
+    }
   }
 }
