@@ -13,7 +13,6 @@ import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
-import 'package:process_run/utils/process_result_extension.dart';
 import 'package:recase/recase.dart';
 
 import 'app_models.dart';
@@ -554,19 +553,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _openProject(OpenProject event, Emitter<AppState> emit) async {
-    var mainProcess = await Process.start('zsh', [],
+    var mainProcess = await startProcess(
+        activateMason: false,
         workingDirectory: '${state.projectPath}/${state.projectName}');
 
     mainProcess.stdin.writeln(
         'open -a "Android Studio" "${state.projectPath}/${state.projectName}"');
-
-    mainProcess
-      ..outLines.asBroadcastStream().listen((event) {
-        logger.d(event);
-      })
-      ..errLines.asBroadcastStream().listen((event) {
-        logger.e(event);
-      });
   }
 
   Future<Process> startProcess(
