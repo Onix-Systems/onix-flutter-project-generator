@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
@@ -15,7 +16,6 @@ import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
 import 'package:process_run/utils/process_result_extension.dart';
 import 'package:recase/recase.dart';
 
-import '../../domain/service/output_service/colored_line.dart';
 import 'app_models.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
@@ -90,6 +90,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _tabChange(TabChange event, Emitter<AppState> emit) async {
     emit(state.copyWith(tab: event.tabIndex));
+    add(const ProjectCheck());
   }
 
   FutureOr<void> _projectPathChange(
@@ -230,11 +231,18 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       GenerateProject event, Emitter<AppState> emit) async {
     logger.d('generateProject');
     emit(state.copyWith(generatingState: GeneratingState.generating));
+    var chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+    String genPass = List.generate(20, (index) {
+      return chars[(Random.secure().nextInt(chars.length))];
+    }).join();
+
     if (!state.projectExists && state.projectName.isNotEmpty) {
       var configFile = await File('${state.projectPath}/config.json').create();
       await configFile.writeAsString(jsonEncode({
         'withUI': true,
-        'signingVars': state.signingVars,
+        'signing_password': genPass,
         'project_name_dirt': state.projectName,
         'project_org': state.organization,
         'flavorizr': state.flavorize,
@@ -259,6 +267,21 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
       var exitCode = await mainProcess.exitCode;
       configFile.delete();
+
+      if (state.generateSigningKey) {
+        outputService.add('{info}Generated password: $genPass');
+
+        var signingProcess = await Process.start('zsh', [],
+            workingDirectory:
+                '${state.projectPath}/${state.projectName}/android/app/signing');
+
+        signingProcess.log();
+
+        signingProcess.stdin.writeln(
+            'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass $genPass -storepass $genPass -dname "CN=${state.signingVars[0]}, OU=${state.signingVars[1]}, O=${state.signingVars[2]}, L=${state.signingVars[3]}, S=${state.signingVars[4]}, C=${state.signingVars[5]}"');
+
+        await signingProcess.exitCode;
+      }
 
       if (state.generateScreensWithProject && state.screens.isNotEmpty) {
         add(const ScreensGenerate());
@@ -527,7 +550,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         workingDirectory: '${state.projectPath}/${state.projectName}');
 
     mainProcess.stdin.writeln(
-        'open -a "Android Studio" ${state.projectPath}/${state.projectName}');
+        'open -a "Android Studio" "${state.projectPath}/${state.projectName}"');
 
     mainProcess
       ..outLines.asBroadcastStream().listen((event) {

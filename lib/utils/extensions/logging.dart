@@ -13,7 +13,8 @@ extension Logging on Process {
         } else {
           outputService.add(event);
         }
-        if (event.contains('with exit code')) {
+        if (event.contains('with exit code') ||
+            event.contains('[Storing upload-keystore.jks]')) {
           kill();
         }
       })
