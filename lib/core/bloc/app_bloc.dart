@@ -280,11 +280,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       if (state.generateSigningKey) {
         outputService.add('{info}Keystore password: $genPass');
 
-        var signingProcess = await Process.start('zsh', [],
+        var signingProcess = await startProcess(
+            activateMason: false,
             workingDirectory:
                 '${state.projectPath}/${state.projectName}/android/app/signing');
-
-        signingProcess.log();
 
         signingProcess.stdin.writeln(
             'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass $genPass -storepass $genPass -dname "CN=${state.signingVars[0]}, OU=${state.signingVars[1]}, O=${state.signingVars[2]}, L=${state.signingVars[3]}, S=${state.signingVars[4]}, C=${state.signingVars[5]}"');
@@ -570,15 +569,19 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       });
   }
 
-  Future<Process> startProcess({required String workingDirectory}) async {
+  Future<Process> startProcess(
+      {required String workingDirectory, bool activateMason = true}) async {
     var mainProcess =
         await Process.start('zsh', [], workingDirectory: workingDirectory);
 
     mainProcess.log();
     mainProcess.stdin.writeln('source \$HOME/.zshrc');
     mainProcess.stdin.writeln('source \$HOME/.bash_profile');
-    mainProcess.stdin.writeln('dart pub global activate mason_cli');
-    mainProcess.stdin.writeln('mason cache clear');
+
+    if (activateMason) {
+      mainProcess.stdin.writeln('dart pub global activate mason_cli');
+      mainProcess.stdin.writeln('mason cache clear');
+    }
 
     return mainProcess;
   }
