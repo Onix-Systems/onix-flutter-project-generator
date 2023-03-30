@@ -231,12 +231,21 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       GenerateProject event, Emitter<AppState> emit) async {
     logger.d('generateProject');
     emit(state.copyWith(generatingState: GeneratingState.generating));
-    var chars =
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
-    String genPass = List.generate(20, (index) {
-      return chars[(Random.secure().nextInt(chars.length))];
-    }).join();
+    String genPass = '';
+
+    if (state.generateSigningKey) {
+      if (state.signingVars[6].isEmpty) {
+        var chars =
+            'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+        genPass = List.generate(20, (index) {
+          return chars[(Random.secure().nextInt(chars.length))];
+        }).join();
+      } else {
+        genPass = state.signingVars[6];
+      }
+    }
 
     if (!state.projectExists && state.projectName.isNotEmpty) {
       var configFile = await File('${state.projectPath}/config.json').create();
@@ -269,7 +278,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       configFile.delete();
 
       if (state.generateSigningKey) {
-        outputService.add('{info}Generated password: $genPass');
+        outputService.add('{info}Keystore password: $genPass');
 
         var signingProcess = await Process.start('zsh', [],
             workingDirectory:
@@ -280,7 +289,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         signingProcess.stdin.writeln(
             'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass $genPass -storepass $genPass -dname "CN=${state.signingVars[0]}, OU=${state.signingVars[1]}, O=${state.signingVars[2]}, L=${state.signingVars[3]}, S=${state.signingVars[4]}, C=${state.signingVars[5]}"');
 
-        await signingProcess.exitCode;
+        var exitCode = await signingProcess.exitCode;
       }
 
       if (state.generateScreensWithProject && state.screens.isNotEmpty) {

@@ -13,6 +13,7 @@ class SigningDialog extends StatelessWidget {
   final _cityController = TextEditingController();
   final _stateController = TextEditingController();
   final _countryController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   void _init(BuildContext context) {
     _nameController.text = state.signingVars[0];
@@ -21,6 +22,7 @@ class SigningDialog extends StatelessWidget {
     _cityController.text = state.signingVars[3];
     _stateController.text = state.signingVars[4];
     _countryController.text = state.signingVars[5];
+    _passwordController.text = state.signingVars[6];
   }
 
   @override
@@ -116,6 +118,18 @@ class SigningDialog extends StatelessWidget {
                 FilteringTextInputFormatter.allow(RegExp(r'[A-Z ]')),
               ],
             ),
+            const SizedBox(height: 15),
+            const Text(
+              ' Keystore password',
+              textAlign: TextAlign.left,
+            ),
+            const SizedBox(height: 5),
+            CupertinoTextField(
+              controller: _passwordController,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\d ]')),
+              ],
+            ),
           ],
         ),
         actions: <CupertinoDialogAction>[
@@ -154,6 +168,9 @@ class SigningDialog extends StatelessWidget {
       _countryController.text.isNotEmpty
           ? _countryController.text
           : state.signingVars[5],
+      _passwordController.text.isNotEmpty
+          ? _passwordController.text
+          : state.signingVars[6],
     ]);
   }
 }

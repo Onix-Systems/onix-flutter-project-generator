@@ -20,6 +20,9 @@ extension Logging on Process {
       })
       ..errLines.asBroadcastStream().listen((event) {
         outputService.add('{#error}$event');
+        if (event.contains('[Storing upload-keystore.jks]')) {
+          kill();
+        }
       });
   }
 }

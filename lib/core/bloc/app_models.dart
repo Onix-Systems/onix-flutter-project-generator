@@ -147,7 +147,8 @@ class AppState with _$AppState {
       'Onix-Systems',
       'Kropyvnytskyi',
       'Kirovohrad oblast',
-      'UA'
+      'UA',
+      '',
     ])
         List<String> signingVars,
     required PlatformsList platforms,
