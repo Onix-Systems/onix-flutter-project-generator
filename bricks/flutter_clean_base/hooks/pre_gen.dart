@@ -72,7 +72,7 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
   var flavors = [];
 
   if (context.vars['flavorizr'] == true) {
-    flavors = ['dev', 'prod'];
+    flavors = ['dev', 'prod', ...context.vars['flavors']];
 
     if (!withUI) {
       print('Add flavors?'.brightYellow().bold().blink());
