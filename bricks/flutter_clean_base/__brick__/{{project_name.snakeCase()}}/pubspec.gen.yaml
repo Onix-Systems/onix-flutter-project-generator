@@ -1,4 +1,4 @@
-  //@formatter:off
+#@formatter:off
 name: {{project_name}}
 description: A new Flutter project.
 
