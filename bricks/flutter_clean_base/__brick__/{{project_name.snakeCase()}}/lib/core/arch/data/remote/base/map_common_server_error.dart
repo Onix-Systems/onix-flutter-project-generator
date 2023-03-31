@@ -39,7 +39,7 @@ static Failure getServerFailureDetails<T>(DataResponse<T> failure) {
         ServerFailure.unknown,
         message: error.toString(),
       ),
-      apiError: (error) => _getResponseError(error),
+      apiError: _getResponseError,
       notConnected: () => ApiFailure(ServerFailure.noNetwork),
       unauthorized: () => ApiFailure(ServerFailure.unAuthorized),
       tooManyRequests: () => ApiFailure(ServerFailure.tooManyRequests),
