@@ -458,8 +458,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       var mainProcess = await startProcess(
           workingDirectory: '${state.projectPath}/${state.projectName}');
 
+      //GitHub
+      //mainProcess.stdin.writeln(
+      //    'mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_screen');
+
+      //GitLab
       mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_screen');
+          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_screen');
 
       logger.d('Generating screens... ${state.screens}');
 
@@ -507,10 +512,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
       var mainProcess = await startProcess(
           workingDirectory: '${state.projectPath}/${state.projectName}');
+      //GitHub
+      // mainProcess.stdin.writeln(
+      //     'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
 
+      //GitLab
       mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
-
+          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_entity');
       if (needToGenerateEntities) {
         var entities = state.entities
             .where((entity) => !entity.exists)
