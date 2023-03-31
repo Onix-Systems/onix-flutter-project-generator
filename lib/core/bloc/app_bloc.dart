@@ -269,7 +269,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       var mainProcess = await startProcess(workingDirectory: state.projectPath);
 
       mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_base --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_base');
+          //GitHub
+          //  'mason add -g flutter_clean_base --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_base');
+          //GitLab
+          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_base');
+
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
