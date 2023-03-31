@@ -1,3 +1,4 @@
+@formatter:off
 name: {{project_name}}
 description: A new Flutter project.
 
@@ -25,7 +26,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  { { #handLocalization}}generate: true{{/handLocalization}}
+  {{#handLocalization}}generate: true{{/handLocalization}}
 
     # To add assets to your application, add an assets section, like this:
     assets:
@@ -53,7 +54,7 @@ flutter:
       # For details regarding fonts from package dependencies,
       # see https://flutter.dev/custom-fonts/#from-packages
 
-      { { #flavorizr}}
+      {{#flavorizr}}
         flavorizr:
           app:
             android:
@@ -61,8 +62,8 @@ flutter:
             ios:
 
           flavors:
-            { { #flavors}}
-              { { #lowerCase}}{{.}}{{/lowerCase}}:
+            {{#flavors}}
+              {{#lowerCase}}{{.}}{{/lowerCase}}:
                 app:
                   name: "{{project_name}} {{.}}"
 
@@ -74,10 +75,10 @@ flutter:
                     bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
                     icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
 
-                  {{/flavors } }
-              {{/flavorizr } }
+                  {{/flavors}}
+              {{/flavorizr}}
 
-          {{^flavorizr } }
+          {{^flavorizr}}
       flutter_icons:
         image_path: "assets/launcher_icons/ic_launcher.png"
         android: true
@@ -93,7 +94,7 @@ flutter:
           generate: true
           image_path: "assets/launcher_icons/ic_launcher.png"
 
-      {{/flavorizr } }
+      {{/flavorizr}}
 
   {{^handLocalization}}flutter_intl:
 enabled: true
