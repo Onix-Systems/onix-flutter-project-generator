@@ -8,7 +8,7 @@ import 'package:{{project_name}}/core/arch/domain/entity/failure/failure.dart';
 import 'package:{{project_name}}/core/di/app.dart';
 
 class MapCommonServerError {
-static String getApiFailureMessage(ApiFailure failure) {
+static String getApiFailureMessage(ApiFailure failure{{#handLocalization}}, BuildContext context{{/handLocalization}}) {
 switch (failure.failure) {
 case ServerFailure.noNetwork:
 {{#handLocalization}}return context.str.apiFailureNoNetwork;{{/handLocalization}}
@@ -30,9 +30,7 @@ case ServerFailure.unknown:
 }
 }
 
-static Failure getServerFailureDetails<T>(
-DataResponse<T> failure,
-) {
+static Failure getServerFailureDetails<T>(DataResponse<T> failure) {
 try {
 return failure.maybeWhen(
 undefinedError: (error) => ApiFailure(
@@ -65,4 +63,5 @@ ServerFailure.response,
 message: '',
 );
 }
+
 }
