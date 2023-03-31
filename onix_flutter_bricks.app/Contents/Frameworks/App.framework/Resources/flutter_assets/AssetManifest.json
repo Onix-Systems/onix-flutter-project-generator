@@ -1,0 +1,38 @@
+{
+  "assets/.DS_Store": [
+    "assets/.DS_Store"
+  ],
+  "assets/icon.ai": [
+    "assets/icon.ai"
+  ],
+  "assets/icon.png": [
+    "assets/icon.png"
+  ],
+  "assets/logo.ai": [
+    "assets/logo.ai"
+  ],
+  "assets/logo.jpeg": [
+    "assets/logo.jpeg"
+  ],
+  "assets/logo.svg": [
+    "assets/logo.svg"
+  ],
+  "assets/logo_white.svg": [
+    "assets/logo_white.svg"
+  ],
+  "packages/cupertino_icons/assets/CupertinoIcons.ttf": [
+    "packages/cupertino_icons/assets/CupertinoIcons.ttf"
+  ],
+  "packages/window_manager/images/ic_chrome_close.png": [
+    "packages/window_manager/images/ic_chrome_close.png"
+  ],
+  "packages/window_manager/images/ic_chrome_maximize.png": [
+    "packages/window_manager/images/ic_chrome_maximize.png"
+  ],
+  "packages/window_manager/images/ic_chrome_minimize.png": [
+    "packages/window_manager/images/ic_chrome_minimize.png"
+  ],
+  "packages/window_manager/images/ic_chrome_unmaximize.png": [
+    "packages/window_manager/images/ic_chrome_unmaximize.png"
+  ]
+}
