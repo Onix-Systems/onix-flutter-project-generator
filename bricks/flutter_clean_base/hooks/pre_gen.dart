@@ -76,8 +76,16 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
 
     context.vars['flavors'].toString().log();
 
-    if (context.vars['flavors'].toString().isNotEmpty) {
-      flavors.addAll(context.vars['flavors'].toString().split(', '));
+    if (context.vars['flavors']
+        .toString()
+        .replaceAll('[', '')
+        .replaceAll(']', '')
+        .isNotEmpty) {
+      flavors.addAll(context.vars['flavors']
+          .toString()
+          .replaceAll('[', '')
+          .replaceAll(']', '')
+          .split(', '));
     }
 
     if (!withUI) {
