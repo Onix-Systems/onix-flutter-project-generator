@@ -172,11 +172,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _flavorsChange(
       FlavorsChange event, Emitter<AppState> emit) async {
-    var flavors = event.flavors.toLowerCase().trim().split(' ').toSet();
-    flavors
-      ..remove('dev')
-      ..remove('prod');
-    emit(state.copyWith(flavors: flavors));
+    emit(state.copyWith(flavors: event.flavors));
   }
 
   FutureOr<void> _routerChange(_, Emitter<AppState> emit) async {
@@ -248,13 +244,31 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     if (!state.projectExists && state.projectName.isNotEmpty) {
       var configFile = await File('${state.projectPath}/config.json').create();
+
+      var flavors = state.flavors
+          .toLowerCase()
+          .trim()
+          .replaceAll(RegExp(' +'), ' ')
+          .split(' ')
+          .toSet();
+
+      for (var flavor in flavors) {
+        if (flavor.isEmpty || flavor == ' ') {
+          flavors.remove(flavor);
+        }
+      }
+
+      flavors
+        ..remove('dev')
+        ..remove('prod');
+
       await configFile.writeAsString(jsonEncode({
         'withUI': true,
         'signing_password': genPass,
         'project_name_dirt': state.projectName,
         'project_org': state.organization,
         'flavorizr': state.flavorize,
-        'flavors': state.flavors.toList(),
+        'flavors': flavors.toList(),
         'navigation': state.router.name,
         'localization': state.localization.name,
         'use_keytool': state.generateSigningKey,

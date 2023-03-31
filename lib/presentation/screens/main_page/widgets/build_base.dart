@@ -125,6 +125,11 @@ class BuildBase extends StatelessWidget {
                           FilteringTextInputFormatter.allow(
                               RegExp(r'[a-zA-Z0-9 ]')),
                         ],
+                        onChanged: () {
+                          context.read<AppBloc>().add(FlavorsChange(
+                                flavors: flavorsController.text,
+                              ));
+                        },
                       ),
                     ],
                     const SizedBox(height: 20),

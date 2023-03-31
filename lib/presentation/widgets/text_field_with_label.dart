@@ -13,6 +13,7 @@ class TextFieldWithLabel extends StatelessWidget {
     this.centered = false,
     this.subLabel,
     this.expanded = false,
+    this.onChanged,
   }) : super(key: key);
 
   final String label;
@@ -20,6 +21,7 @@ class TextFieldWithLabel extends StatelessWidget {
   final String value;
   final List<TextInputFormatter> inputFormatters;
   final bool centered;
+  final VoidCallback? onChanged;
 
   final bool error;
 
@@ -83,6 +85,7 @@ class TextFieldWithLabel extends StatelessWidget {
               controller: textController,
               keyboardType: TextInputType.text,
               inputFormatters: inputFormatters,
+              onChanged: (_) => onChanged?.call(),
             ),
           )
         else

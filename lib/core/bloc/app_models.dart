@@ -1,8 +1,6 @@
-import 'dart:async';
 import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/domain/service/output_service/colored_line.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
@@ -129,8 +127,8 @@ class AppState with _$AppState {
         String organization,
     @Default(false)
         bool flavorize,
-    @Default({})
-        Set<String> flavors,
+    @Default('')
+        String flavors,
     @Default(ProjectRouter.goRouter)
         ProjectRouter router,
     @Default(ProjectLocalization.intl)
