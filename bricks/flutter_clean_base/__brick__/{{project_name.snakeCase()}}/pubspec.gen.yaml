@@ -54,47 +54,47 @@ flutter:
     # For details regarding fonts from package dependencies,
     # see https://flutter.dev/custom-fonts/#from-packages
 
-    {{#flavorizr}}
-      flavorizr:
-        app:
-          android:
-            flavorDimensions: "flavor-type"
-          ios:
+  {{#flavorizr}}
+    flavorizr:
+      app:
+        android:
+          flavorDimensions: "flavor-type"
+        ios:
 
-        flavors:
-          {{#flavors}}
-            {{#lowerCase}}{{.}}{{/lowerCase}}:
-              app:
-                name: "{{project_name}} {{.}}"
+      flavors:
+        {{#flavors}}
+          {{#lowerCase}}{{.}}{{/lowerCase}}:
+            app:
+              name: "{{project_name}} {{.}}"
 
-                android:
-                  applicationId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
-                  icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
+              android:
+                applicationId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
+                icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
 
-                ios:
-                  bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
-                  icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
+              ios:
+                bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
+                icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
 
-                {{/flavors}}
-            {{/flavorizr}}
+              {{/flavors}}
+  {{/flavorizr}}
 
-        {{^flavorizr}}
-      flutter_icons:
-        image_path: "assets/launcher_icons/ic_launcher.png"
-        android: true
-        ios: true
-        remove_alpha_ios: true
-        web:
-          generate: true
-          image_path: "assets/launcher_icons/ic_launcher.png"
-        windows:
-          generate: true
-          image_path: "assets/launcher_icons/ic_launcher.png"
-        macos:
-          generate: true
-          image_path: "assets/launcher_icons/ic_launcher.png"
+  {{^flavorizr}}
+  flutter_icons:
+    image_path: "assets/launcher_icons/ic_launcher.png"
+    android: true
+    ios: true
+    remove_alpha_ios: true
+    web:
+      generate: true
+      image_path: "assets/launcher_icons/ic_launcher.png"
+    windows:
+      generate: true
+      image_path: "assets/launcher_icons/ic_launcher.png"
+    macos:
+      generate: true
+      image_path: "assets/launcher_icons/ic_launcher.png"
 
-    {{/flavorizr}}
+  {{/flavorizr}}
 
   {{^handLocalization}}flutter_intl:
 enabled: true
