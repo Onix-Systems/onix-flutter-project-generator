@@ -1,0 +1,3 @@
+# analyzer:
+#   exclude:
+#     - flutter_clean_base/**

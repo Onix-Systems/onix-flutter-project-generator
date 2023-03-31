@@ -1,0 +1,13 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '${className.snakeCase}_response.freezed.dart';
+part '${className.snakeCase}_response.g.dart';
+
+@freezed
+class ${className.pascalCase}Response with _$${className.pascalCase}Response {
+    factory ${className.pascalCase}Response({
+        String? name,
+    }) = _${className.pascalCase}Response;
+
+    factory ${className.pascalCase}Response.fromJson(Map<String, dynamic> json) => _$${className.pascalCase}ResponseFromJson(json);
+}

@@ -1,0 +1,4 @@
+.gen/
+.mason/
+*/.DS_Store
+.DS_Store

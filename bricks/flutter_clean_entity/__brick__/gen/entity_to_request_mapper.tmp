@@ -1,0 +1,12 @@
+import 'package:${projectName}/data/model/remote/${className.snakeCase}/${className.snakeCase}_request.dart';
+import 'package:${projectName}/domain/entity/${className.snakeCase}/${className.snakeCase}_entity.dart';
+
+class ${className.pascalCase}EntityToRequestMapper{
+  
+  ${className.pascalCase}Request map(${className.pascalCase}Entity from) {
+    return ${className.pascalCase}Request(
+        name: from.name,
+    );
+  }
+  
+}

@@ -1,0 +1,31 @@
+name: flutter_clean_entity
+description: A new brick created with the Mason CLI.
+
+version: 0.1.2+3
+
+environment:
+  mason: ">=0.1.0-dev.26 <0.1.0"
+
+vars:
+  entities:
+    type: string
+    description: Entities
+    default:
+    prompt: Entity name?
+  source_name:
+    type: string
+    description: Source name
+    default:
+    prompt: Source name?
+  source_exists:
+    type: boolean
+    default: false
+    prompt: Source exists?
+  repository_exists:
+    type: boolean
+    default: false
+    prompt: Repository exists?
+  build:
+    type: boolean
+    default: false
+    prompt: build?

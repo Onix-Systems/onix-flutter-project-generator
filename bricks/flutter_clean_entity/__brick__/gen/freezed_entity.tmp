@@ -1,0 +1,10 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '${className.snakeCase}_entity.freezed.dart';
+
+@freezed
+class ${className.pascalCase}Entity with _$${className.pascalCase}Entity {
+    factory ${className.pascalCase}Entity({
+        required String name,
+    }) = _${className.pascalCase}Entity;
+}

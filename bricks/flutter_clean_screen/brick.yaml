@@ -1,0 +1,22 @@
+name: flutter_clean_screen
+description: A new brick created with the Mason CLI.
+
+version: 0.1.2+3
+
+environment:
+  mason: ">=0.1.0-dev.26 <0.1.0"
+
+vars:
+  screen_name:
+    type: string
+    description: Screen name
+    default: template
+    prompt: Screen name?
+  use_bloc:
+    type: boolean
+    default: true
+    prompt: Use BLoC?
+  build:
+    type: boolean
+    default: false
+    prompt: build?

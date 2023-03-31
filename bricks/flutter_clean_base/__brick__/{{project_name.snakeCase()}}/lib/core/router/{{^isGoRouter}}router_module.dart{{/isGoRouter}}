@@ -1,0 +1,26 @@
+import 'package:{{project_name}}/core/router/router_logging_observer.dart';
+import 'package:{{project_name}}/domain/repository/startup_repository.dart';
+
+import 'package:{{project_name}}/core/router/app_router.dart';
+import 'package:{{project_name}}/core/router/guard/init_guard.dart';
+
+abstract class RouterModule {
+  AppRouter appRouter(
+    InitGuard initGuard,
+  ) {
+    return AppRouter(
+      init: initGuard,
+    );
+  }
+
+  InitGuard initGuard(StartupRepository startupRepository) =>
+      InitGuard(isInited: startupRepository.isInited);
+
+  RouterLoggingObserver routerLoggingObserver(
+    AppRouter appRouter,
+  ) {
+    return RouterLoggingObserver(
+      appRouter: appRouter,
+    );
+  }
+}

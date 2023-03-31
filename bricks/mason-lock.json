@@ -1,0 +1,13 @@
+{
+  "bricks": {
+    "flutter_clean_base": {
+      "path": "flutter_clean_base"
+    },
+    "flutter_clean_entity": {
+      "path": "flutter_clean_entity"
+    },
+    "flutter_clean_screen": {
+      "path": "flutter_clean_screen"
+    }
+  }
+}

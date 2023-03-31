@@ -1,0 +1,13 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '${className.snakeCase}_request.freezed.dart';
+part '${className.snakeCase}_request.g.dart';
+
+@freezed
+class ${className.pascalCase}Request with _$${className.pascalCase}Request {
+    factory ${className.pascalCase}Request({
+        required String name,
+    }) = _${className.pascalCase}Request;
+
+    factory ${className.pascalCase}Request.fromJson(Map<String, dynamic> json) => _$${className.pascalCase}RequestFromJson(json);
+}

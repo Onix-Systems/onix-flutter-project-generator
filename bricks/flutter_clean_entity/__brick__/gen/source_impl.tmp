@@ -1,0 +1,34 @@
+import 'package:${projectName}/core/arch/data/remote/api_client.dart';
+import 'package:${projectName}/core/arch/data/remote/dio_request_processor/dio_request_processor.dart';
+import 'package:${projectName}/core/arch/domain/entity/common/data_response.dart';
+//import 'package:new_project/core/arch/domain/entity/common/operation_status.dart';
+import 'package:${projectName}/data/source/remote/${sourceName.snakeCase}/${sourceName.snakeCase}_source.dart';
+//{response_imports}
+//{request_imports}
+
+class ${sourceName.pascalCase}SourceImpl extends ${sourceName.pascalCase}Source {
+  final ApiClient _apiClient;
+  final DioRequestProcessor _dioRequestProcessor;
+  //final _get${className.pascalCase}Endpoint = '/get_${className.snakeCase}';
+  //final _post${className.pascalCase}Endpoint = '/post_${className.snakeCase}';
+
+  ${sourceName.pascalCase}SourceImpl(this._apiClient, this._dioRequestProcessor);
+
+  //@override
+  //Future<DataResponse<${className.pascalCase}Response>> get${className.pascalCase}() async {
+  //  final request = _apiClient.client.get(_get${className.pascalCase}Endpoint);
+  //  return _dioRequestProcessor.processRequest(
+  //    onRequest: () => request,
+  //    onResponse: (response) => ${className.pascalCase}Response.fromJson(response.data),
+  //  );
+  //}
+
+  //@override
+  //Future<DataResponse<OperationStatus>> post${className.pascalCase}(${className.pascalCase}Request ${className.snakeCase}Request,) async {
+  //  final request = _apiClient.client.post(_post${className.pascalCase}Endpoint, data: ${className.snakeCase}Request.toJson());
+  //  return _dioRequestProcessor.processRequest(
+  //    onRequest: () => request,
+  //    onResponse: (response) => OperationStatus.success,
+  //  );
+  //}
+}
