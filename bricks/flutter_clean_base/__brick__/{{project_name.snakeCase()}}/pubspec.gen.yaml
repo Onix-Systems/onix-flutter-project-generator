@@ -63,19 +63,19 @@ flavorizr:
 
   flavors:
     {{#flavors}}
-      {{#lowerCase}}{{.}}{{/lowerCase}}:
-        app:
-          name: "{{project_name}} {{.}}"
+    {{#lowerCase}}{{.}}{{/lowerCase}}:
+      app:
+        name: "{{project_name}} {{.}}"
 
-          android:
-            applicationId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
-            icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
+        android:
+          applicationId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
+          icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
 
-          ios:
-            bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
-            icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
+        ios:
+          bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
+          icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
 
-          {{/flavors}}
+        {{/flavors}}
       {{/flavorizr}}
 
 {{^flavorizr}}
@@ -97,8 +97,8 @@ flutter_icons:
 {{/flavorizr}}
 
 {{^handLocalization}}flutter_intl:
-enabled: true
-arb_dir: lib/core/app/localization/l10n
-output_dir: lib/core/app/localization/generated
+  enabled: true
+  arb_dir: lib/core/app/localization/l10n
+  output_dir: lib/core/app/localization/generated
   {{/handLocalization}}
 #generated with mason
