@@ -70,7 +70,8 @@ flutter:
 
       ios:
         bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
-        icon: "assets/launcher_icons/ic_launcher_{{.}}.png"{{/flavors}}{{/flavorizr}}
+        icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
+        {{/flavors}}{{/flavorizr}}
 
 {{^flavorizr}}flutter_icons:
   image_path: "assets/launcher_icons/ic_launcher.png"
