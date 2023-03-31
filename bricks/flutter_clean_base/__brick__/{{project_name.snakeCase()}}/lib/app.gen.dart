@@ -1,4 +1,4 @@
-#@formatter:off
+//@formatter:off
 {{#device_preview}}import 'package:device_preview/device_preview.dart';{{/device_preview}}
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
