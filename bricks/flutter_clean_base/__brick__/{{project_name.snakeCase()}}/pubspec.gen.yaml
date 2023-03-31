@@ -64,19 +64,19 @@ flavorizr:
   flavors:
     {{#flavors}}
     {{#lowerCase}}{{.}}{{/lowerCase}}:
-    app:
-      name: "{{project_name}} {{.}}"
+      app:
+        name: "{{project_name}} {{.}}"
 
-      android:
-        applicationId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
-        icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
+        android:
+          applicationId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
+          icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
 
-      ios:
-        bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
-        icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
+        ios:
+          bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
+          icon: "assets/launcher_icons/ic_launcher_{{.}}.png"
 
-      {{/flavors}}
-    {{/flavorizr}}
+        {{/flavors}}
+      {{/flavorizr}}
 
 {{^flavorizr}}
 flutter_icons:
