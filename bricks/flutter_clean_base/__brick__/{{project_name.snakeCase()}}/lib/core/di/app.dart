@@ -1,3 +1,4 @@
+//@formatter:off
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 {{^isGoRouter}}import 'package:{{project_name}}/core/router/app_router.dart';
@@ -9,9 +10,7 @@ import 'package:{{project_name}}/domain/repository/startup_repository.dart';{{/i
 void registerApp(GetIt getIt) {
   getIt.registerSingleton<Logger>(Logger());
 
-  {
-    {
-  ^isGoRouter}}final routerModule = _RouterModule();
+  {{^isGoRouter}}final routerModule = _RouterModule();
 
   getIt
   ..registerSingleton<InitGuard>(
