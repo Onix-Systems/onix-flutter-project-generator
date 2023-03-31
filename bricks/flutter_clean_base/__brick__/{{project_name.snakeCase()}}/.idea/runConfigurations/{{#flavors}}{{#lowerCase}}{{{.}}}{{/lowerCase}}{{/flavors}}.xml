@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="{{#flavors}}{{#lowerCase}}{{.}}{{/lowerCase}}{{/flavors}}" type="FlutterRunConfigurationType" factoryName="Flutter">
+    <option name="buildFlavor" value="{{#flavors}}{{#lowerCase}}{{.}}{{/lowerCase}}{{/flavors}}" />
+    <option name="filePath" value="$PROJECT_DIR$/lib/core/flavors/main_{{#flavors}}{{#lowerCase}}{{.}}{{/lowerCase}}{{/flavors}}.dart" />
+    <method v="2" />
+  </configuration>
+</component>
