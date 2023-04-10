@@ -245,22 +245,26 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (!state.projectExists && state.projectName.isNotEmpty) {
       var configFile = await File('${state.projectPath}/config.json').create();
 
-      var flavors = state.flavors
-          .toLowerCase()
-          .trim()
-          .replaceAll(RegExp(' +'), ' ')
-          .split(' ')
-          .toSet();
+      var flavors = <String>[];
 
-      for (var flavor in flavors) {
-        if (flavor.isEmpty || flavor == ' ') {
-          flavors.remove(flavor);
+      if (state.flavors.isNotEmpty) {
+        var flavors = state.flavors
+            .toLowerCase()
+            .trim()
+            .replaceAll(RegExp(' +'), ' ')
+            .split(' ')
+            .toSet();
+
+        for (var flavor in flavors) {
+          if (flavor.isEmpty || flavor == ' ') {
+            flavors.remove(flavor);
+          }
         }
-      }
 
-      flavors
-        ..remove('dev')
-        ..remove('prod');
+        flavors
+          ..remove('dev')
+          ..remove('prod');
+      }
 
       await configFile.writeAsString(jsonEncode({
         'withUI': true,
@@ -286,7 +290,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           //GitHub
           //  'mason add -g flutter_clean_base --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_base');
           //GitLab
-          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_base');
+          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_base --git-ref feat/native_splash');
 
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
@@ -478,7 +482,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
       //GitLab
       mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_screen');
+          'mason add -g flutter_clean_screen --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_screen --git-ref feat/native_splash');
 
       logger.d('Generating screens... ${state.screens}');
 
@@ -532,7 +536,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
       //GitLab
       mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_entity');
+          'mason add -g flutter_clean_entity --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_entity --git-ref feat/native_splash');
       if (needToGenerateEntities) {
         var entities = state.entities
             .where((entity) => !entity.exists)

@@ -114,7 +114,15 @@ void run(HookContext context) async {
 
   int sorterCode = await sorterProcess.exitCode;
 
-  exitCode += formatCode + sorterCode;
+  var splashProcess = await Process.start(
+      'flutter', ['pub', 'run', 'flutter_native_splash:create'],
+      workingDirectory: name);
+
+  splashProcess.log();
+
+  int splashCode = await splashProcess.exitCode;
+
+  exitCode += formatCode + sorterCode + splashCode;
 
   await correct(context);
   if (context.vars['use_keytool'] &&
