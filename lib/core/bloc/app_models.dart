@@ -13,6 +13,10 @@ class AppEvent with _$AppEvent {
   const factory AppEvent.init(// {required String projectPath,}
       ) = Init;
 
+  const factory AppEvent.onSwaggerParse({
+    required String url,
+  }) = SwaggerParse;
+
   const factory AppEvent.onTabChange({
     required int tabIndex,
   }) = TabChange;

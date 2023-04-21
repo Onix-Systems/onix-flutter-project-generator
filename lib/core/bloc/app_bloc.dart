@@ -13,7 +13,11 @@ import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/base_parser.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/openapi_parser.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
+import 'package:http/http.dart' as http;
 
 import 'app_models.dart';
 
@@ -61,8 +65,22 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<EntitiesGenerate>((event, emit) => _entitiesGenerate(event, emit));
     on<ErrorClear>((event, emit) => _errorClear(event, emit));
     on<OpenProject>((event, emit) => _openProject(event, emit));
+    on<SwaggerParse>((event, emit) => _swaggerParse(event, emit));
     add(const Init());
     add(const ProjectCheck());
+  }
+
+  FutureOr<void> _swaggerParse(
+      SwaggerParse event, Emitter<AppState> emit) async {
+    var response = await http.get(Uri.parse(event.url));
+
+    var json = jsonDecode(response.body) as Map<String, dynamic>;
+
+    if (json.keys.contains('swagger')) {
+      SwaggerParser().parse(json);
+    } else {
+      OpenApiParser().parse(json);
+    }
   }
 
   FutureOr<void> _init(_, Emitter<AppState> emit) {

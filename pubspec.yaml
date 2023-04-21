@@ -24,6 +24,7 @@ dependencies:
   freezed_annotation: ^2.2.0
   flutter_bloc: ^8.1.2
   json_annotation: ^4.8.0
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

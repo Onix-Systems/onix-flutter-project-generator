@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/domain/service/output_service/colored_line.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/add_entity_dialog.dart';
@@ -14,7 +13,7 @@ import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/text_field_with_label.dart';
 
 class BuildEntity extends StatelessWidget {
-  const BuildEntity({
+  BuildEntity({
     required this.state,
     required this.projectNameController,
     required this.onGenerate,
@@ -23,6 +22,7 @@ class BuildEntity extends StatelessWidget {
 
   final AppState state;
   final TextEditingController projectNameController;
+  final urlController = TextEditingController();
   final VoidCallback onGenerate;
 
   @override
@@ -217,6 +217,30 @@ class BuildEntity extends StatelessWidget {
                   ],
                 ),
               ],
+              Row(
+                children: [
+                  Expanded(
+                    child: CupertinoTextField(
+                      controller: urlController,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: CupertinoColors.systemGrey,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  CupertinoButton(
+                    color: CupertinoColors.activeOrange,
+                    onPressed: () {
+                      context.read<AppBloc>().add(
+                            SwaggerParse(url: urlController.text),
+                          );
+                    },
+                    child: const Text('Parse'),
+                  ),
+                ],
+              )
             ],
           ),
         ),

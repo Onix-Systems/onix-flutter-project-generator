@@ -19,6 +19,7 @@ mixin _$AppEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
     required TResult Function(int tabIndex) onTabChange,
     required TResult Function(String projectPath) onProjectPathChange,
     required TResult Function(String projectName, TextPosition textPosition)
@@ -60,6 +61,7 @@ mixin _$AppEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
     TResult? Function(int tabIndex)? onTabChange,
     TResult? Function(String projectPath)? onProjectPathChange,
     TResult? Function(String projectName, TextPosition textPosition)?
@@ -88,7 +90,7 @@ mixin _$AppEvent {
     TResult? Function(SourceEntity source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
     TResult? Function(EntityEntity entity, SourceEntity? source)?
-        onEntityDelete,
+    onEntityDelete,
     TResult? Function(SourceEntity source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
@@ -125,6 +127,24 @@ mixin _$AppEvent {
   ?
 
   init
+
+  ,
+
+  TResult
+
+  Function
+
+  (
+
+  String
+
+  url
+
+  )
+
+  ?
+
+  onSwaggerParse
 
   ,
 
@@ -670,6 +690,7 @@ mixin _$AppEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
     required TResult Function(TabChange value) onTabChange,
     required TResult Function(ProjectPathChange value) onProjectPathChange,
     required TResult Function(ProjectNameChange value) onProjectNameChange,
@@ -710,6 +731,7 @@ mixin _$AppEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
     TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
@@ -747,19 +769,117 @@ mixin _$AppEvent {
     TResult? Function(OpenProject value)? open,
   }) =>
       throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+@optionalTypeArgs
+TResult maybeMap
+<
+TResult extends Object?>(
+{
+TResult
+Function
+(
+Init
+value
+)
+?
+init
+,
+TResult
+Function
+(
+SwaggerParse
+value
+)
+?
+onSwaggerParse
+,
+TResult
+Function
+(
+TabChange
+value
+)
+?
+onTabChange
+,
+TResult
+Function
+(
+ProjectPathChange
+value
+)
+?
+onProjectPathChange
+,
+TResult
+Function
+(
+ProjectNameChange
+value
+)
+?
+onProjectNameChange
+,
+TResult
+Function
+(
+ProjectCheck
+value
+)
+?
+projectCheck
+,
+TResult
+Function
+(
+OrganizationChange
+value
+)
+?
+onOrganizationChange
+,
+TResult
+Function
+(
+FlavorizeChange
+value
+)
+?
+onFlavorizeChange
+,
+TResult
+Function
+(
+FlavorsChange
+value
+)
+?
+onFlavorsChange
+,
+TResult
+Function
+(
+RouterChange
+value
+)
+?
+onRouterChange
+,
+TResult
+Function
+(
+LocalizationChange
+value
+)
+?
+onLocalizationChange
+,
+TResult
+Function
+(
+GenerateSigningKeyChange
+value
+)
+?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -842,20 +962,21 @@ class _$Init implements Init {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-    onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
 required TResult Function(List<String> signingVars) onSigningVarsChange,
 required TResult Function(PlatformsList platforms) onPlatformsChange,
 required TResult Function() onThemingChange,
@@ -887,6 +1008,7 @@ return init();
 @optionalTypeArgs
 TResult? whenOrNull<TResult extends Object?>({
 TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
 TResult? Function(int tabIndex)? onTabChange,
 TResult? Function(String projectPath)? onProjectPathChange,
 TResult? Function(String projectName, TextPosition textPosition)?
@@ -908,16 +1030,16 @@ TResult? Function()? onGenerateComplete,
 TResult? Function(bool generateScreensWithProject)?
 onGenerateScreensWithProjectChange,
 TResult? Function(bool generateRepositoriesWithProject)?
-        onGenerateRepositoriesWithProjectChange,
-    TResult? Function(String projectPath)? onProjectChange,
-    TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
-    TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityEntity entity, SourceEntity? source)?
-        onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
-    TResult? Function()? onStateUpdate,
+onGenerateRepositoriesWithProjectChange,
+TResult? Function(String projectPath)? onProjectChange,
+TResult? Function(ScreenEntity screen)? onScreenAdd,
+TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+TResult? Function(SourceEntity source)? onSourceAdd,
+TResult? Function(ScreenEntity screen)? onScreenDelete,
+TResult? Function(EntityEntity entity, SourceEntity? source)?
+onEntityDelete,
+TResult? Function(SourceEntity source)? onSourceDelete,
+TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
     TResult? Function()? onErrorClear,
@@ -929,17 +1051,18 @@ TResult? Function(bool generateRepositoriesWithProject)?
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -975,17 +1098,18 @@ TResult? Function(bool generateRepositoriesWithProject)?
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -1018,8 +1142,9 @@ TResult? Function(bool generateRepositoriesWithProject)?
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -1061,17 +1186,18 @@ TResult? Function(bool generateRepositoriesWithProject)?
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -1100,10 +1226,10 @@ TResult? Function(bool generateRepositoriesWithProject)?
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(this);
-    }
-    return orElse();
-  }
+return init(this);
+}
+return orElse();
+}
 }
 
 abstract class Init implements AppEvent {
@@ -1111,341 +1237,690 @@ const factory Init() = _$Init;
 }
 
 /// @nodoc
+abstract class _$$SwaggerParseCopyWith<$Res> {
+factory _$$SwaggerParseCopyWith(
+_$SwaggerParse value, $Res Function(_$SwaggerParse) then) =
+__$$SwaggerParseCopyWithImpl<$Res>;
+@useResult
+$Res call({String url});
+}
+
+/// @nodoc
+class __$$SwaggerParseCopyWithImpl<$Res>
+extends _$AppEventCopyWithImpl<$Res, _$SwaggerParse>
+implements _$$SwaggerParseCopyWith<$Res> {
+__$$SwaggerParseCopyWithImpl(
+_$SwaggerParse _value, $Res Function(_$SwaggerParse) _then)
+    : super(_value, _then);
+
+@pragma('vm:prefer-inline')
+@override
+$Res call({
+Object? url = null,
+}) {
+return _then(_$SwaggerParse(
+url: null == url
+? _value.url
+    : url // ignore: cast_nullable_to_non_nullable
+as String,
+));
+}
+}
+
+/// @nodoc
+
+class _$SwaggerParse implements SwaggerParse {
+const _$SwaggerParse({required this.url});
+
+@override
+final String url;
+
+@override
+String toString() {
+return 'AppEvent.onSwaggerParse(url: $url)';
+}
+
+@override
+bool operator ==(dynamic other) {
+return identical(this, other) ||
+(other.runtimeType == runtimeType &&
+other is _$SwaggerParse &&
+(identical(other.url, url) || other.url == url));
+}
+
+@override
+int get hashCode => Object.hash(runtimeType, url);
+
+@JsonKey(ignore: true)
+@override
+@pragma('vm:prefer-inline')
+_$$SwaggerParseCopyWith<_$SwaggerParse> get copyWith =>
+__$$SwaggerParseCopyWithImpl<_$SwaggerParse>(this, _$identity);
+
+@override
+@optionalTypeArgs
+TResult when<TResult extends Object?>({
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
+required TResult Function(bool generateRepositoriesWithProject)
+onGenerateRepositoriesWithProjectChange,
+required TResult Function(String projectPath) onProjectChange,
+required TResult Function(ScreenEntity screen) onScreenAdd,
+required TResult Function(EntityEntity entity, SourceEntity? source)
+onEntityAdd,
+required TResult Function(SourceEntity source) onSourceAdd,
+required TResult Function(ScreenEntity screen) onScreenDelete,
+required TResult Function(EntityEntity entity, SourceEntity? source)
+onEntityDelete,
+required TResult Function(SourceEntity source) onSourceDelete,
+required TResult Function() onStateUpdate,
+required TResult Function() onScreensGenerate,
+required TResult Function() onEntitiesGenerate,
+required TResult Function() onErrorClear,
+required TResult Function() open,
+}) {
+return onSwaggerParse(url);
+}
+
+@override
+@optionalTypeArgs
+TResult? whenOrNull<TResult extends Object?>({
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
+TResult? Function(bool generateRepositoriesWithProject)?
+onGenerateRepositoriesWithProjectChange,
+TResult? Function(String projectPath)? onProjectChange,
+TResult? Function(ScreenEntity screen)? onScreenAdd,
+TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+TResult? Function(SourceEntity source)? onSourceAdd,
+TResult? Function(ScreenEntity screen)? onScreenDelete,
+TResult? Function(EntityEntity entity, SourceEntity? source)?
+onEntityDelete,
+TResult? Function(SourceEntity source)? onSourceDelete,
+TResult? Function()? onStateUpdate,
+TResult? Function()? onScreensGenerate,
+TResult? Function()? onEntitiesGenerate,
+TResult? Function()? onErrorClear,
+TResult? Function()? open,
+}) {
+return onSwaggerParse?.call(url);
+}
+
+@override
+@optionalTypeArgs
+TResult maybeWhen<TResult extends Object?>({
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
+TResult Function(bool generateRepositoriesWithProject)?
+onGenerateRepositoriesWithProjectChange,
+TResult Function(String projectPath)? onProjectChange,
+TResult Function(ScreenEntity screen)? onScreenAdd,
+TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+TResult Function(SourceEntity source)? onSourceAdd,
+TResult Function(ScreenEntity screen)? onScreenDelete,
+TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+TResult Function(SourceEntity source)? onSourceDelete,
+TResult Function()? onStateUpdate,
+TResult Function()? onScreensGenerate,
+TResult Function()? onEntitiesGenerate,
+TResult Function()? onErrorClear,
+TResult Function()? open,
+required TResult orElse(),
+}) {
+if (onSwaggerParse != null) {
+return onSwaggerParse(url);
+}
+return orElse();
+}
+
+@override
+@optionalTypeArgs
+TResult map<TResult extends Object?>({
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
+onGenerateScreensWithProjectChange,
+required TResult Function(OnGenerateRepositoriesWithProject value)
+onGenerateRepositoriesWithProjectChange,
+required TResult Function(ProjectChange value) onProjectChange,
+required TResult Function(ScreenAdd value) onScreenAdd,
+required TResult Function(EntityAdd value) onEntityAdd,
+required TResult Function(SourceAdd value) onSourceAdd,
+required TResult Function(ScreenDelete value) onScreenDelete,
+required TResult Function(EntityDelete value) onEntityDelete,
+required TResult Function(SourceDelete value) onSourceDelete,
+required TResult Function(StateUpdate value) onStateUpdate,
+required TResult Function(ScreensGenerate value) onScreensGenerate,
+required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+required TResult Function(ErrorClear value) onErrorClear,
+required TResult Function(OpenProject value) open,
+}) {
+return onSwaggerParse(this);
+}
+
+@override
+@optionalTypeArgs
+TResult? mapOrNull<TResult extends Object?>({
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
+TResult? Function(UseSonarChange value)? onUseSonarChange,
+TResult? Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+TResult? Function(PlatformsChange value)? onPlatformsChange,
+TResult? Function(ThemingChange value)? onThemingChange,
+TResult? Function(GenerateProject value)? onGenerateProject,
+TResult? Function(GenerateComplete value)? onGenerateComplete,
+TResult? Function(OnGenerateScreensWithProject value)?
+onGenerateScreensWithProjectChange,
+TResult? Function(OnGenerateRepositoriesWithProject value)?
+onGenerateRepositoriesWithProjectChange,
+TResult? Function(ProjectChange value)? onProjectChange,
+TResult? Function(ScreenAdd value)? onScreenAdd,
+TResult? Function(EntityAdd value)? onEntityAdd,
+TResult? Function(SourceAdd value)? onSourceAdd,
+TResult? Function(ScreenDelete value)? onScreenDelete,
+TResult? Function(EntityDelete value)? onEntityDelete,
+TResult? Function(SourceDelete value)? onSourceDelete,
+TResult? Function(StateUpdate value)? onStateUpdate,
+TResult? Function(ScreensGenerate value)? onScreensGenerate,
+TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
+TResult? Function(ErrorClear value)? onErrorClear,
+TResult? Function(OpenProject value)? open,
+}) {
+return onSwaggerParse?.call(this);
+}
+
+@override
+@optionalTypeArgs
+TResult maybeMap<TResult extends Object?>({
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
+onGenerateScreensWithProjectChange,
+TResult Function(OnGenerateRepositoriesWithProject value)?
+onGenerateRepositoriesWithProjectChange,
+TResult Function(ProjectChange value)? onProjectChange,
+TResult Function(ScreenAdd value)? onScreenAdd,
+TResult Function(EntityAdd value)? onEntityAdd,
+TResult Function(SourceAdd value)? onSourceAdd,
+TResult Function(ScreenDelete value)? onScreenDelete,
+TResult Function(EntityDelete value)? onEntityDelete,
+TResult Function(SourceDelete value)? onSourceDelete,
+TResult Function(StateUpdate value)? onStateUpdate,
+TResult Function(ScreensGenerate value)? onScreensGenerate,
+TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+TResult Function(ErrorClear value)? onErrorClear,
+TResult Function(OpenProject value)? open,
+required TResult orElse(),
+}) {
+if (onSwaggerParse != null) {
+return onSwaggerParse(this);
+}
+return orElse();
+}
+}
+
+abstract class SwaggerParse implements AppEvent {
+const factory SwaggerParse({required final String url}) = _$SwaggerParse;
+
+String get url;
+@JsonKey(ignore: true)
+_$$SwaggerParseCopyWith<_$SwaggerParse> get copyWith =>
+throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$TabChangeCopyWith<$Res> {
-  factory _$$TabChangeCopyWith(
-          _$TabChange value, $Res Function(_$TabChange) then) =
-      __$$TabChangeCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int tabIndex});
+factory _$$TabChangeCopyWith(
+_$TabChange value, $Res Function(_$TabChange) then) =
+__$$TabChangeCopyWithImpl<$Res>;
+@useResult
+$Res call({int tabIndex});
 }
 
 /// @nodoc
 class __$$TabChangeCopyWithImpl<$Res>
-    extends _$AppEventCopyWithImpl<$Res, _$TabChange>
-    implements _$$TabChangeCopyWith<$Res> {
-  __$$TabChangeCopyWithImpl(
-      _$TabChange _value, $Res Function(_$TabChange) _then)
-      : super(_value, _then);
+extends _$AppEventCopyWithImpl<$Res, _$TabChange>
+implements _$$TabChangeCopyWith<$Res> {
+__$$TabChangeCopyWithImpl(
+_$TabChange _value, $Res Function(_$TabChange) _then)
+    : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? tabIndex = null,
-  }) {
-    return _then(_$TabChange(
-      tabIndex: null == tabIndex
-          ? _value.tabIndex
-          : tabIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
+@pragma('vm:prefer-inline')
+@override
+$Res call({
+Object? tabIndex = null,
+}) {
+return _then(_$TabChange(
+tabIndex: null == tabIndex
+? _value.tabIndex
+    : tabIndex // ignore: cast_nullable_to_non_nullable
+as int,
+));
+}
 }
 
 /// @nodoc
 
 class _$TabChange implements TabChange {
-  const _$TabChange({required this.tabIndex});
+const _$TabChange({required this.tabIndex});
 
-  @override
-  final int tabIndex;
+@override
+final int tabIndex;
 
-  @override
-  String toString() {
-    return 'AppEvent.onTabChange(tabIndex: $tabIndex)';
-  }
+@override
+String toString() {
+return 'AppEvent.onTabChange(tabIndex: $tabIndex)';
+}
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TabChange &&
-            (identical(other.tabIndex, tabIndex) ||
-                other.tabIndex == tabIndex));
-  }
+@override
+bool operator ==(dynamic other) {
+return identical(this, other) ||
+(other.runtimeType == runtimeType &&
+other is _$TabChange &&
+(identical(other.tabIndex, tabIndex) ||
+other.tabIndex == tabIndex));
+}
 
-  @override
-  int get hashCode => Object.hash(runtimeType, tabIndex);
+@override
+int get hashCode => Object.hash(runtimeType, tabIndex);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TabChangeCopyWith<_$TabChange> get copyWith =>
-      __$$TabChangeCopyWithImpl<_$TabChange>(this, _$identity);
+@JsonKey(ignore: true)
+@override
+@pragma('vm:prefer-inline')
+_$$TabChangeCopyWith<_$TabChange> get copyWith =>
+__$$TabChangeCopyWithImpl<_$TabChange>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
-    required TResult Function(bool generateRepositoriesWithProject)
-        onGenerateRepositoriesWithProjectChange,
-    required TResult Function(String projectPath) onProjectChange,
-    required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityEntity entity, SourceEntity? source)
-        onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
-    required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityEntity entity, SourceEntity? source)
-        onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
-    required TResult Function() onStateUpdate,
-    required TResult Function() onScreensGenerate,
-    required TResult Function() onEntitiesGenerate,
-    required TResult Function() onErrorClear,
-    required TResult Function() open,
-  }) {
-    return onTabChange(tabIndex);
-  }
+@override
+@optionalTypeArgs
+TResult when<TResult extends Object?>({
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
+required TResult Function(bool generateRepositoriesWithProject)
+onGenerateRepositoriesWithProjectChange,
+required TResult Function(String projectPath) onProjectChange,
+required TResult Function(ScreenEntity screen) onScreenAdd,
+required TResult Function(EntityEntity entity, SourceEntity? source)
+onEntityAdd,
+required TResult Function(SourceEntity source) onSourceAdd,
+required TResult Function(ScreenEntity screen) onScreenDelete,
+required TResult Function(EntityEntity entity, SourceEntity? source)
+onEntityDelete,
+required TResult Function(SourceEntity source) onSourceDelete,
+required TResult Function() onStateUpdate,
+required TResult Function() onScreensGenerate,
+required TResult Function() onEntitiesGenerate,
+required TResult Function() onErrorClear,
+required TResult Function() open,
+}) {
+return onTabChange(tabIndex);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
-    TResult? Function(bool generateRepositoriesWithProject)?
-        onGenerateRepositoriesWithProjectChange,
-    TResult? Function(String projectPath)? onProjectChange,
-    TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
-    TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityEntity entity, SourceEntity? source)?
-        onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
-    TResult? Function()? onStateUpdate,
-    TResult? Function()? onScreensGenerate,
-    TResult? Function()? onEntitiesGenerate,
-    TResult? Function()? onErrorClear,
-    TResult? Function()? open,
-  }) {
-    return onTabChange?.call(tabIndex);
-  }
+@override
+@optionalTypeArgs
+TResult? whenOrNull<TResult extends Object?>({
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
+TResult? Function(bool generateRepositoriesWithProject)?
+onGenerateRepositoriesWithProjectChange,
+TResult? Function(String projectPath)? onProjectChange,
+TResult? Function(ScreenEntity screen)? onScreenAdd,
+TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+TResult? Function(SourceEntity source)? onSourceAdd,
+TResult? Function(ScreenEntity screen)? onScreenDelete,
+TResult? Function(EntityEntity entity, SourceEntity? source)?
+onEntityDelete,
+TResult? Function(SourceEntity source)? onSourceDelete,
+TResult? Function()? onStateUpdate,
+TResult? Function()? onScreensGenerate,
+TResult? Function()? onEntitiesGenerate,
+TResult? Function()? onErrorClear,
+TResult? Function()? open,
+}) {
+return onTabChange?.call(tabIndex);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
-    TResult Function(bool generateRepositoriesWithProject)?
-        onGenerateRepositoriesWithProjectChange,
-    TResult Function(String projectPath)? onProjectChange,
-    TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
-    TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
-    TResult Function()? onStateUpdate,
-    TResult Function()? onScreensGenerate,
-    TResult Function()? onEntitiesGenerate,
-    TResult Function()? onErrorClear,
-    TResult Function()? open,
-    required TResult orElse(),
-  }) {
-    if (onTabChange != null) {
-      return onTabChange(tabIndex);
-    }
-    return orElse();
-  }
+@override
+@optionalTypeArgs
+TResult maybeWhen<TResult extends Object?>({
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
+TResult Function(bool generateRepositoriesWithProject)?
+onGenerateRepositoriesWithProjectChange,
+TResult Function(String projectPath)? onProjectChange,
+TResult Function(ScreenEntity screen)? onScreenAdd,
+TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+TResult Function(SourceEntity source)? onSourceAdd,
+TResult Function(ScreenEntity screen)? onScreenDelete,
+TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+TResult Function(SourceEntity source)? onSourceDelete,
+TResult Function()? onStateUpdate,
+TResult Function()? onScreensGenerate,
+TResult Function()? onEntitiesGenerate,
+TResult Function()? onErrorClear,
+TResult Function()? open,
+required TResult orElse(),
+}) {
+if (onTabChange != null) {
+return onTabChange(tabIndex);
+}
+return orElse();
+}
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
-        onGenerateScreensWithProjectChange,
-    required TResult Function(OnGenerateRepositoriesWithProject value)
-        onGenerateRepositoriesWithProjectChange,
-    required TResult Function(ProjectChange value) onProjectChange,
-    required TResult Function(ScreenAdd value) onScreenAdd,
-    required TResult Function(EntityAdd value) onEntityAdd,
-    required TResult Function(SourceAdd value) onSourceAdd,
-    required TResult Function(ScreenDelete value) onScreenDelete,
-    required TResult Function(EntityDelete value) onEntityDelete,
-    required TResult Function(SourceDelete value) onSourceDelete,
-    required TResult Function(StateUpdate value) onStateUpdate,
-    required TResult Function(ScreensGenerate value) onScreensGenerate,
-    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-    required TResult Function(ErrorClear value) onErrorClear,
-    required TResult Function(OpenProject value) open,
-  }) {
-    return onTabChange(this);
-  }
+@override
+@optionalTypeArgs
+TResult map<TResult extends Object?>({
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
+onGenerateScreensWithProjectChange,
+required TResult Function(OnGenerateRepositoriesWithProject value)
+onGenerateRepositoriesWithProjectChange,
+required TResult Function(ProjectChange value) onProjectChange,
+required TResult Function(ScreenAdd value) onScreenAdd,
+required TResult Function(EntityAdd value) onEntityAdd,
+required TResult Function(SourceAdd value) onSourceAdd,
+required TResult Function(ScreenDelete value) onScreenDelete,
+required TResult Function(EntityDelete value) onEntityDelete,
+required TResult Function(SourceDelete value) onSourceDelete,
+required TResult Function(StateUpdate value) onStateUpdate,
+required TResult Function(ScreensGenerate value) onScreensGenerate,
+required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+required TResult Function(ErrorClear value) onErrorClear,
+required TResult Function(OpenProject value) open,
+}) {
+return onTabChange(this);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult? Function(UseSonarChange value)? onUseSonarChange,
-    TResult? Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult? Function(PlatformsChange value)? onPlatformsChange,
-    TResult? Function(ThemingChange value)? onThemingChange,
-    TResult? Function(GenerateProject value)? onGenerateProject,
-    TResult? Function(GenerateComplete value)? onGenerateComplete,
-    TResult? Function(OnGenerateScreensWithProject value)?
-        onGenerateScreensWithProjectChange,
-    TResult? Function(OnGenerateRepositoriesWithProject value)?
-        onGenerateRepositoriesWithProjectChange,
-    TResult? Function(ProjectChange value)? onProjectChange,
-    TResult? Function(ScreenAdd value)? onScreenAdd,
-    TResult? Function(EntityAdd value)? onEntityAdd,
-    TResult? Function(SourceAdd value)? onSourceAdd,
-    TResult? Function(ScreenDelete value)? onScreenDelete,
-    TResult? Function(EntityDelete value)? onEntityDelete,
-    TResult? Function(SourceDelete value)? onSourceDelete,
-    TResult? Function(StateUpdate value)? onStateUpdate,
-    TResult? Function(ScreensGenerate value)? onScreensGenerate,
-    TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
-    TResult? Function(ErrorClear value)? onErrorClear,
-    TResult? Function(OpenProject value)? open,
-  }) {
-    return onTabChange?.call(this);
-  }
+@override
+@optionalTypeArgs
+TResult? mapOrNull<TResult extends Object?>({
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
+TResult? Function(UseSonarChange value)? onUseSonarChange,
+TResult? Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+TResult? Function(PlatformsChange value)? onPlatformsChange,
+TResult? Function(ThemingChange value)? onThemingChange,
+TResult? Function(GenerateProject value)? onGenerateProject,
+TResult? Function(GenerateComplete value)? onGenerateComplete,
+TResult? Function(OnGenerateScreensWithProject value)?
+onGenerateScreensWithProjectChange,
+TResult? Function(OnGenerateRepositoriesWithProject value)?
+onGenerateRepositoriesWithProjectChange,
+TResult? Function(ProjectChange value)? onProjectChange,
+TResult? Function(ScreenAdd value)? onScreenAdd,
+TResult? Function(EntityAdd value)? onEntityAdd,
+TResult? Function(SourceAdd value)? onSourceAdd,
+TResult? Function(ScreenDelete value)? onScreenDelete,
+TResult? Function(EntityDelete value)? onEntityDelete,
+TResult? Function(SourceDelete value)? onSourceDelete,
+TResult? Function(StateUpdate value)? onStateUpdate,
+TResult? Function(ScreensGenerate value)? onScreensGenerate,
+TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
+TResult? Function(ErrorClear value)? onErrorClear,
+TResult? Function(OpenProject value)? open,
+}) {
+return onTabChange?.call(this);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
-        onGenerateScreensWithProjectChange,
-    TResult Function(OnGenerateRepositoriesWithProject value)?
-        onGenerateRepositoriesWithProjectChange,
-    TResult Function(ProjectChange value)? onProjectChange,
-    TResult Function(ScreenAdd value)? onScreenAdd,
-    TResult Function(EntityAdd value)? onEntityAdd,
-    TResult Function(SourceAdd value)? onSourceAdd,
-    TResult Function(ScreenDelete value)? onScreenDelete,
-    TResult Function(EntityDelete value)? onEntityDelete,
-    TResult Function(SourceDelete value)? onSourceDelete,
-    TResult Function(StateUpdate value)? onStateUpdate,
-    TResult Function(ScreensGenerate value)? onScreensGenerate,
-    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-    TResult Function(ErrorClear value)? onErrorClear,
-    TResult Function(OpenProject value)? open,
-    required TResult orElse(),
-  }) {
-    if (onTabChange != null) {
-      return onTabChange(this);
-    }
-    return orElse();
-  }
+@override
+@optionalTypeArgs
+TResult maybeMap<TResult extends Object?>({
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
+onGenerateScreensWithProjectChange,
+TResult Function(OnGenerateRepositoriesWithProject value)?
+onGenerateRepositoriesWithProjectChange,
+TResult Function(ProjectChange value)? onProjectChange,
+TResult Function(ScreenAdd value)? onScreenAdd,
+TResult Function(EntityAdd value)? onEntityAdd,
+TResult Function(SourceAdd value)? onSourceAdd,
+TResult Function(ScreenDelete value)? onScreenDelete,
+TResult Function(EntityDelete value)? onEntityDelete,
+TResult Function(SourceDelete value)? onSourceDelete,
+TResult Function(StateUpdate value)? onStateUpdate,
+TResult Function(ScreensGenerate value)? onScreensGenerate,
+TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+TResult Function(ErrorClear value)? onErrorClear,
+TResult Function(OpenProject value)? open,
+required TResult orElse(),
+}) {
+if (onTabChange != null) {
+return onTabChange(this);
+}
+return orElse();
+}
 }
 
 abstract class TabChange implements AppEvent {
-  const factory TabChange({required final int tabIndex}) = _$TabChange;
+const factory TabChange({required final int tabIndex}) = _$TabChange;
 
-  int get tabIndex;
-  @JsonKey(ignore: true)
-  _$$TabChangeCopyWith<_$TabChange> get copyWith =>
-      throw _privateConstructorUsedError;
+int get tabIndex;
+@JsonKey(ignore: true)
+_$$TabChangeCopyWith<_$TabChange> get copyWith =>
+throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1513,17 +1988,18 @@ class _$ProjectPathChange implements ProjectPathChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -1557,17 +2033,18 @@ class _$ProjectPathChange implements ProjectPathChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -1600,17 +2077,18 @@ class _$ProjectPathChange implements ProjectPathChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -1646,17 +2124,18 @@ class _$ProjectPathChange implements ProjectPathChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -1689,8 +2168,9 @@ class _$ProjectPathChange implements ProjectPathChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -1732,17 +2212,18 @@ class _$ProjectPathChange implements ProjectPathChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -1862,17 +2343,18 @@ class _$ProjectNameChange implements ProjectNameChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -1906,17 +2388,18 @@ class _$ProjectNameChange implements ProjectNameChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -1949,17 +2432,18 @@ class _$ProjectNameChange implements ProjectNameChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -1995,17 +2479,18 @@ class _$ProjectNameChange implements ProjectNameChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -2038,8 +2523,9 @@ class _$ProjectNameChange implements ProjectNameChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -2081,17 +2567,18 @@ class _$ProjectNameChange implements ProjectNameChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -2176,17 +2663,18 @@ class _$ProjectCheck implements ProjectCheck {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -2220,17 +2708,18 @@ class _$ProjectCheck implements ProjectCheck {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+  TResult? Function()? init,
+  TResult? Function(String url)? onSwaggerParse,
+  TResult? Function(int tabIndex)? onTabChange,
+  TResult? Function(String projectPath)? onProjectPathChange,
+  TResult? Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult? Function()? projectCheck,
+  TResult? Function(String organization)? onOrganizationChange,
+  TResult? Function()? onFlavorizeChange,
+  TResult? Function(String flavors)? onFlavorsChange,
+  TResult? Function()? onRouterChange,
+  TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -2263,17 +2752,18 @@ class _$ProjectCheck implements ProjectCheck {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+  TResult Function()? init,
+  TResult Function(String url)? onSwaggerParse,
+  TResult Function(int tabIndex)? onTabChange,
+  TResult Function(String projectPath)? onProjectPathChange,
+  TResult Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult Function()? projectCheck,
+  TResult Function(String organization)? onOrganizationChange,
+  TResult Function()? onFlavorizeChange,
+  TResult Function(String flavors)? onFlavorsChange,
+  TResult Function()? onRouterChange,
+  TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -2309,17 +2799,18 @@ class _$ProjectCheck implements ProjectCheck {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -2352,8 +2843,9 @@ class _$ProjectCheck implements ProjectCheck {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -2395,17 +2887,18 @@ class _$ProjectCheck implements ProjectCheck {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -2510,17 +3003,18 @@ class _$OrganizationChange implements OrganizationChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -2554,17 +3048,18 @@ class _$OrganizationChange implements OrganizationChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -2597,17 +3092,18 @@ class _$OrganizationChange implements OrganizationChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -2643,17 +3139,18 @@ class _$OrganizationChange implements OrganizationChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -2686,8 +3183,9 @@ class _$OrganizationChange implements OrganizationChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -2729,17 +3227,18 @@ class _$OrganizationChange implements OrganizationChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -2822,17 +3321,18 @@ class _$FlavorizeChange implements FlavorizeChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -2866,17 +3366,18 @@ class _$FlavorizeChange implements FlavorizeChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+  TResult? Function()? init,
+  TResult? Function(String url)? onSwaggerParse,
+  TResult? Function(int tabIndex)? onTabChange,
+  TResult? Function(String projectPath)? onProjectPathChange,
+  TResult? Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult? Function()? projectCheck,
+  TResult? Function(String organization)? onOrganizationChange,
+  TResult? Function()? onFlavorizeChange,
+  TResult? Function(String flavors)? onFlavorsChange,
+  TResult? Function()? onRouterChange,
+  TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -2909,17 +3410,18 @@ class _$FlavorizeChange implements FlavorizeChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+  TResult Function()? init,
+  TResult Function(String url)? onSwaggerParse,
+  TResult Function(int tabIndex)? onTabChange,
+  TResult Function(String projectPath)? onProjectPathChange,
+  TResult Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult Function()? projectCheck,
+  TResult Function(String organization)? onOrganizationChange,
+  TResult Function()? onFlavorizeChange,
+  TResult Function(String flavors)? onFlavorsChange,
+  TResult Function()? onRouterChange,
+  TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -2955,17 +3457,18 @@ class _$FlavorizeChange implements FlavorizeChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -2998,8 +3501,9 @@ class _$FlavorizeChange implements FlavorizeChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -3041,17 +3545,18 @@ class _$FlavorizeChange implements FlavorizeChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -3154,17 +3659,18 @@ class _$FlavorsChange implements FlavorsChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -3198,17 +3704,18 @@ class _$FlavorsChange implements FlavorsChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -3241,17 +3748,18 @@ class _$FlavorsChange implements FlavorsChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -3287,17 +3795,18 @@ class _$FlavorsChange implements FlavorsChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -3330,8 +3839,9 @@ class _$FlavorsChange implements FlavorsChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -3373,17 +3883,18 @@ class _$FlavorsChange implements FlavorsChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -3466,17 +3977,18 @@ class _$RouterChange implements RouterChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -3510,17 +4022,18 @@ class _$RouterChange implements RouterChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+  TResult? Function()? init,
+  TResult? Function(String url)? onSwaggerParse,
+  TResult? Function(int tabIndex)? onTabChange,
+  TResult? Function(String projectPath)? onProjectPathChange,
+  TResult? Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult? Function()? projectCheck,
+  TResult? Function(String organization)? onOrganizationChange,
+  TResult? Function()? onFlavorizeChange,
+  TResult? Function(String flavors)? onFlavorsChange,
+  TResult? Function()? onRouterChange,
+  TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -3553,17 +4066,18 @@ class _$RouterChange implements RouterChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+  TResult Function()? init,
+  TResult Function(String url)? onSwaggerParse,
+  TResult Function(int tabIndex)? onTabChange,
+  TResult Function(String projectPath)? onProjectPathChange,
+  TResult Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult Function()? projectCheck,
+  TResult Function(String organization)? onOrganizationChange,
+  TResult Function()? onFlavorizeChange,
+  TResult Function(String flavors)? onFlavorsChange,
+  TResult Function()? onRouterChange,
+  TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -3599,17 +4113,18 @@ class _$RouterChange implements RouterChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -3642,8 +4157,9 @@ class _$RouterChange implements RouterChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -3685,17 +4201,18 @@ class _$RouterChange implements RouterChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -3772,17 +4289,18 @@ class _$LocalizationChange implements LocalizationChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -3816,17 +4334,18 @@ class _$LocalizationChange implements LocalizationChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+  TResult? Function()? init,
+  TResult? Function(String url)? onSwaggerParse,
+  TResult? Function(int tabIndex)? onTabChange,
+  TResult? Function(String projectPath)? onProjectPathChange,
+  TResult? Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult? Function()? projectCheck,
+  TResult? Function(String organization)? onOrganizationChange,
+  TResult? Function()? onFlavorizeChange,
+  TResult? Function(String flavors)? onFlavorsChange,
+  TResult? Function()? onRouterChange,
+  TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -3859,17 +4378,18 @@ class _$LocalizationChange implements LocalizationChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+  TResult Function()? init,
+  TResult Function(String url)? onSwaggerParse,
+  TResult Function(int tabIndex)? onTabChange,
+  TResult Function(String projectPath)? onProjectPathChange,
+  TResult Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult Function()? projectCheck,
+  TResult Function(String organization)? onOrganizationChange,
+  TResult Function()? onFlavorizeChange,
+  TResult Function(String flavors)? onFlavorsChange,
+  TResult Function()? onRouterChange,
+  TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -3905,17 +4425,18 @@ class _$LocalizationChange implements LocalizationChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -3948,8 +4469,9 @@ class _$LocalizationChange implements LocalizationChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -3991,17 +4513,18 @@ class _$LocalizationChange implements LocalizationChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -4079,17 +4602,18 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -4123,17 +4647,18 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+  TResult? Function()? init,
+  TResult? Function(String url)? onSwaggerParse,
+  TResult? Function(int tabIndex)? onTabChange,
+  TResult? Function(String projectPath)? onProjectPathChange,
+  TResult? Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult? Function()? projectCheck,
+  TResult? Function(String organization)? onOrganizationChange,
+  TResult? Function()? onFlavorizeChange,
+  TResult? Function(String flavors)? onFlavorsChange,
+  TResult? Function()? onRouterChange,
+  TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -4166,17 +4691,18 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+  TResult Function()? init,
+  TResult Function(String url)? onSwaggerParse,
+  TResult Function(int tabIndex)? onTabChange,
+  TResult Function(String projectPath)? onProjectPathChange,
+  TResult Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult Function()? projectCheck,
+  TResult Function(String organization)? onOrganizationChange,
+  TResult Function()? onFlavorizeChange,
+  TResult Function(String flavors)? onFlavorsChange,
+  TResult Function()? onRouterChange,
+  TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -4212,17 +4738,18 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -4255,8 +4782,9 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -4298,17 +4826,18 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -4385,17 +4914,18 @@ class _$UseSonarChange implements UseSonarChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -4429,17 +4959,18 @@ class _$UseSonarChange implements UseSonarChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+  TResult? Function()? init,
+  TResult? Function(String url)? onSwaggerParse,
+  TResult? Function(int tabIndex)? onTabChange,
+  TResult? Function(String projectPath)? onProjectPathChange,
+  TResult? Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult? Function()? projectCheck,
+  TResult? Function(String organization)? onOrganizationChange,
+  TResult? Function()? onFlavorizeChange,
+  TResult? Function(String flavors)? onFlavorsChange,
+  TResult? Function()? onRouterChange,
+  TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -4472,17 +5003,18 @@ class _$UseSonarChange implements UseSonarChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+  TResult Function()? init,
+  TResult Function(String url)? onSwaggerParse,
+  TResult Function(int tabIndex)? onTabChange,
+  TResult Function(String projectPath)? onProjectPathChange,
+  TResult Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult Function()? projectCheck,
+  TResult Function(String organization)? onOrganizationChange,
+  TResult Function()? onFlavorizeChange,
+  TResult Function(String flavors)? onFlavorsChange,
+  TResult Function()? onRouterChange,
+  TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -4518,17 +5050,18 @@ class _$UseSonarChange implements UseSonarChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -4561,8 +5094,9 @@ class _$UseSonarChange implements UseSonarChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -4604,17 +5138,18 @@ class _$UseSonarChange implements UseSonarChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -4694,17 +5229,18 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -4738,17 +5274,18 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+  TResult? Function()? init,
+  TResult? Function(String url)? onSwaggerParse,
+  TResult? Function(int tabIndex)? onTabChange,
+  TResult? Function(String projectPath)? onProjectPathChange,
+  TResult? Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult? Function()? projectCheck,
+  TResult? Function(String organization)? onOrganizationChange,
+  TResult? Function()? onFlavorizeChange,
+  TResult? Function(String flavors)? onFlavorsChange,
+  TResult? Function()? onRouterChange,
+  TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -4781,17 +5318,18 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+  TResult Function()? init,
+  TResult Function(String url)? onSwaggerParse,
+  TResult Function(int tabIndex)? onTabChange,
+  TResult Function(String projectPath)? onProjectPathChange,
+  TResult Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult Function()? projectCheck,
+  TResult Function(String organization)? onOrganizationChange,
+  TResult Function()? onFlavorizeChange,
+  TResult Function(String flavors)? onFlavorsChange,
+  TResult Function()? onRouterChange,
+  TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -4827,17 +5365,18 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -4870,8 +5409,9 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -4913,17 +5453,18 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -5034,17 +5575,18 @@ class _$SigningVarsChange implements SigningVarsChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -5078,17 +5620,18 @@ class _$SigningVarsChange implements SigningVarsChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+  TResult? Function()? init,
+  TResult? Function(String url)? onSwaggerParse,
+  TResult? Function(int tabIndex)? onTabChange,
+  TResult? Function(String projectPath)? onProjectPathChange,
+  TResult? Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult? Function()? projectCheck,
+  TResult? Function(String organization)? onOrganizationChange,
+  TResult? Function()? onFlavorizeChange,
+  TResult? Function(String flavors)? onFlavorsChange,
+  TResult? Function()? onRouterChange,
+  TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -5121,17 +5664,18 @@ class _$SigningVarsChange implements SigningVarsChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+  TResult Function()? init,
+  TResult Function(String url)? onSwaggerParse,
+  TResult Function(int tabIndex)? onTabChange,
+  TResult Function(String projectPath)? onProjectPathChange,
+  TResult Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult Function()? projectCheck,
+  TResult Function(String organization)? onOrganizationChange,
+  TResult Function()? onFlavorizeChange,
+  TResult Function(String flavors)? onFlavorsChange,
+  TResult Function()? onRouterChange,
+  TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -5167,17 +5711,18 @@ class _$SigningVarsChange implements SigningVarsChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -5210,8 +5755,9 @@ class _$SigningVarsChange implements SigningVarsChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -5253,17 +5799,18 @@ class _$SigningVarsChange implements SigningVarsChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -5383,17 +5930,18 @@ class _$PlatformsChange implements PlatformsChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -5427,17 +5975,18 @@ class _$PlatformsChange implements PlatformsChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -5470,17 +6019,18 @@ class _$PlatformsChange implements PlatformsChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -5516,17 +6066,18 @@ class _$PlatformsChange implements PlatformsChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -5559,8 +6110,9 @@ class _$PlatformsChange implements PlatformsChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -5602,17 +6154,18 @@ class _$PlatformsChange implements PlatformsChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -5695,17 +6248,18 @@ class _$ThemingChange implements ThemingChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -5739,17 +6293,18 @@ class _$ThemingChange implements ThemingChange {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+  TResult? Function()? init,
+  TResult? Function(String url)? onSwaggerParse,
+  TResult? Function(int tabIndex)? onTabChange,
+  TResult? Function(String projectPath)? onProjectPathChange,
+  TResult? Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult? Function()? projectCheck,
+  TResult? Function(String organization)? onOrganizationChange,
+  TResult? Function()? onFlavorizeChange,
+  TResult? Function(String flavors)? onFlavorsChange,
+  TResult? Function()? onRouterChange,
+  TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -5782,17 +6337,18 @@ class _$ThemingChange implements ThemingChange {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+  TResult Function()? init,
+  TResult Function(String url)? onSwaggerParse,
+  TResult Function(int tabIndex)? onTabChange,
+  TResult Function(String projectPath)? onProjectPathChange,
+  TResult Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult Function()? projectCheck,
+  TResult Function(String organization)? onOrganizationChange,
+  TResult Function()? onFlavorizeChange,
+  TResult Function(String flavors)? onFlavorsChange,
+  TResult Function()? onRouterChange,
+  TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -5828,17 +6384,18 @@ class _$ThemingChange implements ThemingChange {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -5871,8 +6428,9 @@ class _$ThemingChange implements ThemingChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -5914,17 +6472,18 @@ class _$ThemingChange implements ThemingChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -6001,17 +6560,18 @@ class _$GenerateProject implements GenerateProject {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -6045,17 +6605,18 @@ class _$GenerateProject implements GenerateProject {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+  TResult? Function()? init,
+  TResult? Function(String url)? onSwaggerParse,
+  TResult? Function(int tabIndex)? onTabChange,
+  TResult? Function(String projectPath)? onProjectPathChange,
+  TResult? Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult? Function()? projectCheck,
+  TResult? Function(String organization)? onOrganizationChange,
+  TResult? Function()? onFlavorizeChange,
+  TResult? Function(String flavors)? onFlavorsChange,
+  TResult? Function()? onRouterChange,
+  TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -6088,17 +6649,18 @@ class _$GenerateProject implements GenerateProject {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+  TResult Function()? init,
+  TResult Function(String url)? onSwaggerParse,
+  TResult Function(int tabIndex)? onTabChange,
+  TResult Function(String projectPath)? onProjectPathChange,
+  TResult Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult Function()? projectCheck,
+  TResult Function(String organization)? onOrganizationChange,
+  TResult Function()? onFlavorizeChange,
+  TResult Function(String flavors)? onFlavorsChange,
+  TResult Function()? onRouterChange,
+  TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -6134,17 +6696,18 @@ class _$GenerateProject implements GenerateProject {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -6177,8 +6740,9 @@ class _$GenerateProject implements GenerateProject {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -6220,17 +6784,18 @@ class _$GenerateProject implements GenerateProject {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -6307,17 +6872,18 @@ class _$GenerateComplete implements GenerateComplete {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -6351,17 +6917,18 @@ class _$GenerateComplete implements GenerateComplete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+  TResult? Function()? init,
+  TResult? Function(String url)? onSwaggerParse,
+  TResult? Function(int tabIndex)? onTabChange,
+  TResult? Function(String projectPath)? onProjectPathChange,
+  TResult? Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult? Function()? projectCheck,
+  TResult? Function(String organization)? onOrganizationChange,
+  TResult? Function()? onFlavorizeChange,
+  TResult? Function(String flavors)? onFlavorsChange,
+  TResult? Function()? onRouterChange,
+  TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -6394,17 +6961,18 @@ class _$GenerateComplete implements GenerateComplete {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+  TResult Function()? init,
+  TResult Function(String url)? onSwaggerParse,
+  TResult Function(int tabIndex)? onTabChange,
+  TResult Function(String projectPath)? onProjectPathChange,
+  TResult Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult Function()? projectCheck,
+  TResult Function(String organization)? onOrganizationChange,
+  TResult Function()? onFlavorizeChange,
+  TResult Function(String flavors)? onFlavorsChange,
+  TResult Function()? onRouterChange,
+  TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -6440,17 +7008,18 @@ class _$GenerateComplete implements GenerateComplete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -6483,8 +7052,9 @@ class _$GenerateComplete implements GenerateComplete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -6526,17 +7096,18 @@ class _$GenerateComplete implements GenerateComplete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -6646,17 +7217,18 @@ class _$OnGenerateScreensWithProject implements OnGenerateScreensWithProject {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -6690,17 +7262,18 @@ class _$OnGenerateScreensWithProject implements OnGenerateScreensWithProject {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -6733,17 +7306,18 @@ class _$OnGenerateScreensWithProject implements OnGenerateScreensWithProject {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -6779,17 +7353,18 @@ class _$OnGenerateScreensWithProject implements OnGenerateScreensWithProject {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -6822,8 +7397,9 @@ class _$OnGenerateScreensWithProject implements OnGenerateScreensWithProject {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -6865,17 +7441,18 @@ class _$OnGenerateScreensWithProject implements OnGenerateScreensWithProject {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -6994,17 +7571,18 @@ class _$OnGenerateRepositoriesWithProject
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -7039,17 +7617,18 @@ class _$OnGenerateRepositoriesWithProject
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -7083,17 +7662,18 @@ class _$OnGenerateRepositoriesWithProject
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -7130,17 +7710,18 @@ class _$OnGenerateRepositoriesWithProject
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -7173,8 +7754,9 @@ class _$OnGenerateRepositoriesWithProject
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -7216,17 +7798,18 @@ class _$OnGenerateRepositoriesWithProject
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -7339,6 +7922,7 @@ __$$ProjectChangeCopyWithImpl<_$ProjectChange>(this, _$identity);
 @optionalTypeArgs
 TResult when<TResult extends Object?>({
 required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
 required TResult Function(int tabIndex) onTabChange,
 required TResult Function(String projectPath) onProjectPathChange,
 required TResult Function(String projectName, TextPosition textPosition)
@@ -7383,6 +7967,7 @@ return onProjectChange(projectPath);
 @optionalTypeArgs
 TResult? whenOrNull<TResult extends Object?>({
 TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
 TResult? Function(int tabIndex)? onTabChange,
 TResult? Function(String projectPath)? onProjectPathChange,
 TResult? Function(String projectName, TextPosition textPosition)?
@@ -7426,6 +8011,7 @@ return onProjectChange?.call(projectPath);
 @optionalTypeArgs
 TResult maybeWhen<TResult extends Object?>({
 TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
 TResult Function(int tabIndex)? onTabChange,
 TResult Function(String projectPath)? onProjectPathChange,
 TResult Function(String projectName, TextPosition textPosition)?
@@ -7472,6 +8058,7 @@ return orElse();
 @optionalTypeArgs
 TResult map<TResult extends Object?>({
 required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
 required TResult Function(TabChange value) onTabChange,
 required TResult Function(ProjectPathChange value) onProjectPathChange,
 required TResult Function(ProjectNameChange value) onProjectNameChange,
@@ -7515,6 +8102,7 @@ return onProjectChange(this);
 @optionalTypeArgs
 TResult? mapOrNull<TResult extends Object?>({
 TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
 TResult? Function(ProjectPathChange value)? onProjectPathChange,
 TResult? Function(ProjectNameChange value)? onProjectNameChange,
@@ -7558,6 +8146,7 @@ return onProjectChange?.call(this);
 @optionalTypeArgs
 TResult maybeMap<TResult extends Object?>({
 TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
 TResult Function(TabChange value)? onTabChange,
 TResult Function(ProjectPathChange value)? onProjectPathChange,
 TResult Function(ProjectNameChange value)? onProjectNameChange,
@@ -7676,17 +8265,18 @@ class _$ScreenAdd implements ScreenAdd {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -7720,17 +8310,18 @@ class _$ScreenAdd implements ScreenAdd {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -7763,17 +8354,18 @@ class _$ScreenAdd implements ScreenAdd {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -7809,17 +8401,18 @@ class _$ScreenAdd implements ScreenAdd {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -7852,8 +8445,9 @@ class _$ScreenAdd implements ScreenAdd {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -7895,17 +8489,18 @@ class _$ScreenAdd implements ScreenAdd {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -8023,6 +8618,7 @@ __$$EntityAddCopyWithImpl<_$EntityAdd>(this, _$identity);
 @optionalTypeArgs
 TResult when<TResult extends Object?>({
 required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
 required TResult Function(int tabIndex) onTabChange,
 required TResult Function(String projectPath) onProjectPathChange,
 required TResult Function(String projectName, TextPosition textPosition)
@@ -8067,6 +8663,7 @@ return onEntityAdd(entity, source);
 @optionalTypeArgs
 TResult? whenOrNull<TResult extends Object?>({
 TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
 TResult? Function(int tabIndex)? onTabChange,
 TResult? Function(String projectPath)? onProjectPathChange,
 TResult? Function(String projectName, TextPosition textPosition)?
@@ -8110,6 +8707,7 @@ return onEntityAdd?.call(entity, source);
 @optionalTypeArgs
 TResult maybeWhen<TResult extends Object?>({
 TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
 TResult Function(int tabIndex)? onTabChange,
 TResult Function(String projectPath)? onProjectPathChange,
 TResult Function(String projectName, TextPosition textPosition)?
@@ -8156,6 +8754,7 @@ return orElse();
 @optionalTypeArgs
 TResult map<TResult extends Object?>({
 required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
 required TResult Function(TabChange value) onTabChange,
 required TResult Function(ProjectPathChange value) onProjectPathChange,
 required TResult Function(ProjectNameChange value) onProjectNameChange,
@@ -8199,6 +8798,7 @@ return onEntityAdd(this);
 @optionalTypeArgs
 TResult? mapOrNull<TResult extends Object?>({
 TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
 TResult? Function(ProjectPathChange value)? onProjectPathChange,
 TResult? Function(ProjectNameChange value)? onProjectNameChange,
@@ -8242,6 +8842,7 @@ return onEntityAdd?.call(this);
 @optionalTypeArgs
 TResult maybeMap<TResult extends Object?>({
 TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
 TResult Function(TabChange value)? onTabChange,
 TResult Function(ProjectPathChange value)? onProjectPathChange,
 TResult Function(ProjectNameChange value)? onProjectNameChange,
@@ -8362,17 +8963,18 @@ class _$SourceAdd implements SourceAdd {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -8406,17 +9008,18 @@ class _$SourceAdd implements SourceAdd {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -8449,17 +9052,18 @@ class _$SourceAdd implements SourceAdd {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -8495,17 +9099,18 @@ class _$SourceAdd implements SourceAdd {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -8538,8 +9143,9 @@ class _$SourceAdd implements SourceAdd {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -8581,17 +9187,18 @@ class _$SourceAdd implements SourceAdd {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -8700,6 +9307,7 @@ __$$ScreenDeleteCopyWithImpl<_$ScreenDelete>(this, _$identity);
 @optionalTypeArgs
 TResult when<TResult extends Object?>({
 required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
 required TResult Function(int tabIndex) onTabChange,
 required TResult Function(String projectPath) onProjectPathChange,
 required TResult Function(String projectName, TextPosition textPosition)
@@ -8744,6 +9352,7 @@ return onScreenDelete(screen);
 @optionalTypeArgs
 TResult? whenOrNull<TResult extends Object?>({
 TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
 TResult? Function(int tabIndex)? onTabChange,
 TResult? Function(String projectPath)? onProjectPathChange,
 TResult? Function(String projectName, TextPosition textPosition)?
@@ -8787,6 +9396,7 @@ return onScreenDelete?.call(screen);
 @optionalTypeArgs
 TResult maybeWhen<TResult extends Object?>({
 TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
 TResult Function(int tabIndex)? onTabChange,
 TResult Function(String projectPath)? onProjectPathChange,
 TResult Function(String projectName, TextPosition textPosition)?
@@ -8833,6 +9443,7 @@ return orElse();
 @optionalTypeArgs
 TResult map<TResult extends Object?>({
 required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
 required TResult Function(TabChange value) onTabChange,
 required TResult Function(ProjectPathChange value) onProjectPathChange,
 required TResult Function(ProjectNameChange value) onProjectNameChange,
@@ -8876,6 +9487,7 @@ return onScreenDelete(this);
 @optionalTypeArgs
 TResult? mapOrNull<TResult extends Object?>({
 TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
 TResult? Function(ProjectPathChange value)? onProjectPathChange,
 TResult? Function(ProjectNameChange value)? onProjectNameChange,
@@ -8919,6 +9531,7 @@ return onScreenDelete?.call(this);
 @optionalTypeArgs
 TResult maybeMap<TResult extends Object?>({
 TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
 TResult Function(TabChange value)? onTabChange,
 TResult Function(ProjectPathChange value)? onProjectPathChange,
 TResult Function(ProjectNameChange value)? onProjectNameChange,
@@ -9047,6 +9660,7 @@ __$$EntityDeleteCopyWithImpl<_$EntityDelete>(this, _$identity);
 @optionalTypeArgs
 TResult when<TResult extends Object?>({
 required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
 required TResult Function(int tabIndex) onTabChange,
 required TResult Function(String projectPath) onProjectPathChange,
 required TResult Function(String projectName, TextPosition textPosition)
@@ -9091,6 +9705,7 @@ return onEntityDelete(entity, source);
 @optionalTypeArgs
 TResult? whenOrNull<TResult extends Object?>({
 TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
 TResult? Function(int tabIndex)? onTabChange,
 TResult? Function(String projectPath)? onProjectPathChange,
 TResult? Function(String projectName, TextPosition textPosition)?
@@ -9134,6 +9749,7 @@ return onEntityDelete?.call(entity, source);
 @optionalTypeArgs
 TResult maybeWhen<TResult extends Object?>({
 TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
 TResult Function(int tabIndex)? onTabChange,
 TResult Function(String projectPath)? onProjectPathChange,
 TResult Function(String projectName, TextPosition textPosition)?
@@ -9179,31 +9795,32 @@ return orElse();
 @override
 @optionalTypeArgs
 TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
         onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
-        onGenerateScreensWithProjectChange,
-    required TResult Function(OnGenerateRepositoriesWithProject value)
-        onGenerateRepositoriesWithProjectChange,
-    required TResult Function(ProjectChange value) onProjectChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
+onGenerateScreensWithProjectChange,
+required TResult Function(OnGenerateRepositoriesWithProject value)
+onGenerateRepositoriesWithProjectChange,
+required TResult Function(ProjectChange value) onProjectChange,
 required TResult Function(ScreenAdd value) onScreenAdd,
 required TResult Function(EntityAdd value) onEntityAdd,
 required TResult Function(SourceAdd value) onSourceAdd,
@@ -9222,15 +9839,16 @@ return onEntityDelete(this);
 @override
 @optionalTypeArgs
 TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
     TResult? Function(LocalizationChange value)? onLocalizationChange,
     TResult? Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
@@ -9265,17 +9883,18 @@ TResult? mapOrNull<TResult extends Object?>({
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -9290,24 +9909,24 @@ TResult? mapOrNull<TResult extends Object?>({
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(ProjectChange value)? onProjectChange,
-    TResult Function(ScreenAdd value)? onScreenAdd,
-    TResult Function(EntityAdd value)? onEntityAdd,
-    TResult Function(SourceAdd value)? onSourceAdd,
-    TResult Function(ScreenDelete value)? onScreenDelete,
-    TResult Function(EntityDelete value)? onEntityDelete,
-    TResult Function(SourceDelete value)? onSourceDelete,
-    TResult Function(StateUpdate value)? onStateUpdate,
-    TResult Function(ScreensGenerate value)? onScreensGenerate,
-    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-    TResult Function(ErrorClear value)? onErrorClear,
+TResult Function(ScreenAdd value)? onScreenAdd,
+TResult Function(EntityAdd value)? onEntityAdd,
+TResult Function(SourceAdd value)? onSourceAdd,
+TResult Function(ScreenDelete value)? onScreenDelete,
+TResult Function(EntityDelete value)? onEntityDelete,
+TResult Function(SourceDelete value)? onSourceDelete,
+TResult Function(StateUpdate value)? onStateUpdate,
+TResult Function(ScreensGenerate value)? onScreensGenerate,
+TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+TResult Function(ErrorClear value)? onErrorClear,
 TResult Function(OpenProject value)? open,
 required TResult orElse(),
 }) {
-    if (onEntityDelete != null) {
-      return onEntityDelete(this);
-    }
-    return orElse();
-  }
+if (onEntityDelete != null) {
+return onEntityDelete(this);
+}
+return orElse();
+}
 }
 
 abstract class EntityDelete implements AppEvent {
@@ -9386,17 +10005,18 @@ class _$SourceDelete implements SourceDelete {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -9430,17 +10050,18 @@ class _$SourceDelete implements SourceDelete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -9473,17 +10094,18 @@ class _$SourceDelete implements SourceDelete {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -9519,17 +10141,18 @@ class _$SourceDelete implements SourceDelete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -9562,8 +10185,9 @@ class _$SourceDelete implements SourceDelete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -9605,17 +10229,18 @@ class _$SourceDelete implements SourceDelete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -9698,20 +10323,21 @@ class _$StateUpdate implements StateUpdate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-    onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
 required TResult Function(List<String> signingVars) onSigningVarsChange,
 required TResult Function(PlatformsList platforms) onPlatformsChange,
 required TResult Function() onThemingChange,
@@ -9743,6 +10369,7 @@ return onStateUpdate();
 @optionalTypeArgs
 TResult? whenOrNull<TResult extends Object?>({
 TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
 TResult? Function(int tabIndex)? onTabChange,
 TResult? Function(String projectPath)? onProjectPathChange,
 TResult? Function(String projectName, TextPosition textPosition)?
@@ -9764,16 +10391,16 @@ TResult? Function()? onGenerateComplete,
 TResult? Function(bool generateScreensWithProject)?
 onGenerateScreensWithProjectChange,
 TResult? Function(bool generateRepositoriesWithProject)?
-        onGenerateRepositoriesWithProjectChange,
-    TResult? Function(String projectPath)? onProjectChange,
-    TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
-    TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityEntity entity, SourceEntity? source)?
-        onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
-    TResult? Function()? onStateUpdate,
+onGenerateRepositoriesWithProjectChange,
+TResult? Function(String projectPath)? onProjectChange,
+TResult? Function(ScreenEntity screen)? onScreenAdd,
+TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+TResult? Function(SourceEntity source)? onSourceAdd,
+TResult? Function(ScreenEntity screen)? onScreenDelete,
+TResult? Function(EntityEntity entity, SourceEntity? source)?
+onEntityDelete,
+TResult? Function(SourceEntity source)? onSourceDelete,
+TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
     TResult? Function()? onErrorClear,
@@ -9785,17 +10412,18 @@ TResult? Function(bool generateRepositoriesWithProject)?
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -9831,17 +10459,18 @@ TResult? Function(bool generateRepositoriesWithProject)?
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -9874,8 +10503,9 @@ TResult? Function(bool generateRepositoriesWithProject)?
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -9917,17 +10547,18 @@ TResult? Function(bool generateRepositoriesWithProject)?
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -10004,17 +10635,18 @@ class _$ScreensGenerate implements ScreensGenerate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
     required TResult Function() onGenerateSigningKeyChange,
     required TResult Function() onUseSonarChange,
     required TResult Function() onIntegrateDevicePreviewChange,
@@ -10048,17 +10680,18 @@ class _$ScreensGenerate implements ScreensGenerate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+  TResult? Function()? init,
+  TResult? Function(String url)? onSwaggerParse,
+  TResult? Function(int tabIndex)? onTabChange,
+  TResult? Function(String projectPath)? onProjectPathChange,
+  TResult? Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult? Function()? projectCheck,
+  TResult? Function(String organization)? onOrganizationChange,
+  TResult? Function()? onFlavorizeChange,
+  TResult? Function(String flavors)? onFlavorsChange,
+  TResult? Function()? onRouterChange,
+  TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -10091,17 +10724,18 @@ class _$ScreensGenerate implements ScreensGenerate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+  TResult Function()? init,
+  TResult Function(String url)? onSwaggerParse,
+  TResult Function(int tabIndex)? onTabChange,
+  TResult Function(String projectPath)? onProjectPathChange,
+  TResult Function(String projectName, TextPosition textPosition)?
+  onProjectNameChange,
+  TResult Function()? projectCheck,
+  TResult Function(String organization)? onOrganizationChange,
+  TResult Function()? onFlavorizeChange,
+  TResult Function(String flavors)? onFlavorsChange,
+  TResult Function()? onRouterChange,
+  TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -10137,17 +10771,18 @@ class _$ScreensGenerate implements ScreensGenerate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -10180,8 +10815,9 @@ class _$ScreensGenerate implements ScreensGenerate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -10223,17 +10859,18 @@ class _$ScreensGenerate implements ScreensGenerate {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -10311,6 +10948,7 @@ int get hashCode => runtimeType.hashCode;
 @optionalTypeArgs
 TResult when<TResult extends Object?>({
 required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
 required TResult Function(int tabIndex) onTabChange,
 required TResult Function(String projectPath) onProjectPathChange,
 required TResult Function(String projectName, TextPosition textPosition)
@@ -10355,6 +10993,7 @@ return onEntitiesGenerate();
 @optionalTypeArgs
 TResult? whenOrNull<TResult extends Object?>({
 TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
 TResult? Function(int tabIndex)? onTabChange,
 TResult? Function(String projectPath)? onProjectPathChange,
 TResult? Function(String projectName, TextPosition textPosition)?
@@ -10398,6 +11037,7 @@ return onEntitiesGenerate?.call();
 @optionalTypeArgs
 TResult maybeWhen<TResult extends Object?>({
 TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
 TResult Function(int tabIndex)? onTabChange,
 TResult Function(String projectPath)? onProjectPathChange,
 TResult Function(String projectName, TextPosition textPosition)?
@@ -10443,17 +11083,18 @@ return orElse();
 @override
 @optionalTypeArgs
 TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+required TResult Function(Init value) init,
+required TResult Function(SwaggerParse value) onSwaggerParse,
+required TResult Function(TabChange value) onTabChange,
+required TResult Function(ProjectPathChange value) onProjectPathChange,
+required TResult Function(ProjectNameChange value) onProjectNameChange,
+required TResult Function(ProjectCheck value) projectCheck,
+required TResult Function(OrganizationChange value) onOrganizationChange,
+required TResult Function(FlavorizeChange value) onFlavorizeChange,
+required TResult Function(FlavorsChange value) onFlavorsChange,
+required TResult Function(RouterChange value) onRouterChange,
+required TResult Function(LocalizationChange value) onLocalizationChange,
+required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -10486,8 +11127,9 @@ TResult map<TResult extends Object?>({
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+TResult? Function(Init value)? init,
+TResult? Function(SwaggerParse value)? onSwaggerParse,
+TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -10500,7 +11142,7 @@ TResult map<TResult extends Object?>({
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-    onIntegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
     TResult? Function(ThemingChange value)? onThemingChange,
@@ -10529,17 +11171,18 @@ TResult map<TResult extends Object?>({
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -10616,20 +11259,21 @@ class _$ErrorClear implements ErrorClear {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-    onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
 required TResult Function(List<String> signingVars) onSigningVarsChange,
 required TResult Function(PlatformsList platforms) onPlatformsChange,
 required TResult Function() onThemingChange,
@@ -10661,6 +11305,7 @@ return onErrorClear();
 @optionalTypeArgs
 TResult? whenOrNull<TResult extends Object?>({
 TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
 TResult? Function(int tabIndex)? onTabChange,
 TResult? Function(String projectPath)? onProjectPathChange,
 TResult? Function(String projectName, TextPosition textPosition)?
@@ -10682,16 +11327,16 @@ TResult? Function()? onGenerateComplete,
 TResult? Function(bool generateScreensWithProject)?
 onGenerateScreensWithProjectChange,
 TResult? Function(bool generateRepositoriesWithProject)?
-        onGenerateRepositoriesWithProjectChange,
-    TResult? Function(String projectPath)? onProjectChange,
-    TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
-    TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityEntity entity, SourceEntity? source)?
-        onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
-    TResult? Function()? onStateUpdate,
+onGenerateRepositoriesWithProjectChange,
+TResult? Function(String projectPath)? onProjectChange,
+TResult? Function(ScreenEntity screen)? onScreenAdd,
+TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+TResult? Function(SourceEntity source)? onSourceAdd,
+TResult? Function(ScreenEntity screen)? onScreenDelete,
+TResult? Function(EntityEntity entity, SourceEntity? source)?
+onEntityDelete,
+TResult? Function(SourceEntity source)? onSourceDelete,
+TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
     TResult? Function()? onErrorClear,
@@ -10703,17 +11348,18 @@ TResult? Function(bool generateRepositoriesWithProject)?
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -10749,17 +11395,18 @@ TResult? Function(bool generateRepositoriesWithProject)?
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -10792,8 +11439,9 @@ TResult? Function(bool generateRepositoriesWithProject)?
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -10835,17 +11483,18 @@ TResult? Function(bool generateRepositoriesWithProject)?
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -10922,18 +11571,19 @@ class _$OpenProject implements OpenProject {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(int tabIndex) onTabChange,
-    required TResult Function(String projectPath) onProjectPathChange,
-    required TResult Function(String projectName, TextPosition textPosition)
-        onProjectNameChange,
-    required TResult Function() projectCheck,
-    required TResult Function(String organization) onOrganizationChange,
-    required TResult Function() onFlavorizeChange,
-    required TResult Function(String flavors) onFlavorsChange,
-    required TResult Function() onRouterChange,
-    required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() init,
+required TResult Function(String url) onSwaggerParse,
+required TResult Function(int tabIndex) onTabChange,
+required TResult Function(String projectPath) onProjectPathChange,
+required TResult Function(String projectName, TextPosition textPosition)
+onProjectNameChange,
+required TResult Function() projectCheck,
+required TResult Function(String organization) onOrganizationChange,
+required TResult Function() onFlavorizeChange,
+required TResult Function(String flavors) onFlavorsChange,
+required TResult Function() onRouterChange,
+required TResult Function() onLocalizationChange,
+required TResult Function() onGenerateSigningKeyChange,
 required TResult Function() onUseSonarChange,
 required TResult Function() onIntegrateDevicePreviewChange,
 required TResult Function(List<String> signingVars) onSigningVarsChange,
@@ -10966,17 +11616,18 @@ return open();
 @override
 @optionalTypeArgs
 TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(int tabIndex)? onTabChange,
-    TResult? Function(String projectPath)? onProjectPathChange,
-    TResult? Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult? Function()? projectCheck,
-    TResult? Function(String organization)? onOrganizationChange,
-    TResult? Function()? onFlavorizeChange,
-    TResult? Function(String flavors)? onFlavorsChange,
-    TResult? Function()? onRouterChange,
-    TResult? Function()? onLocalizationChange,
+TResult? Function()? init,
+TResult? Function(String url)? onSwaggerParse,
+TResult? Function(int tabIndex)? onTabChange,
+TResult? Function(String projectPath)? onProjectPathChange,
+TResult? Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult? Function()? projectCheck,
+TResult? Function(String organization)? onOrganizationChange,
+TResult? Function()? onFlavorizeChange,
+TResult? Function(String flavors)? onFlavorsChange,
+TResult? Function()? onRouterChange,
+TResult? Function()? onLocalizationChange,
     TResult? Function()? onGenerateSigningKeyChange,
     TResult? Function()? onUseSonarChange,
     TResult? Function()? onIntegrateDevicePreviewChange,
@@ -11009,17 +11660,18 @@ TResult? whenOrNull<TResult extends Object?>({
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(int tabIndex)? onTabChange,
-    TResult Function(String projectPath)? onProjectPathChange,
-    TResult Function(String projectName, TextPosition textPosition)?
-        onProjectNameChange,
-    TResult Function()? projectCheck,
-    TResult Function(String organization)? onOrganizationChange,
-    TResult Function()? onFlavorizeChange,
-    TResult Function(String flavors)? onFlavorsChange,
-    TResult Function()? onRouterChange,
-    TResult Function()? onLocalizationChange,
+TResult Function()? init,
+TResult Function(String url)? onSwaggerParse,
+TResult Function(int tabIndex)? onTabChange,
+TResult Function(String projectPath)? onProjectPathChange,
+TResult Function(String projectName, TextPosition textPosition)?
+onProjectNameChange,
+TResult Function()? projectCheck,
+TResult Function(String organization)? onOrganizationChange,
+TResult Function()? onFlavorizeChange,
+TResult Function(String flavors)? onFlavorsChange,
+TResult Function()? onRouterChange,
+TResult Function()? onLocalizationChange,
     TResult Function()? onGenerateSigningKeyChange,
     TResult Function()? onUseSonarChange,
     TResult Function()? onIntegrateDevicePreviewChange,
@@ -11055,17 +11707,18 @@ TResult? whenOrNull<TResult extends Object?>({
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Init value) init,
-    required TResult Function(TabChange value) onTabChange,
-    required TResult Function(ProjectPathChange value) onProjectPathChange,
-    required TResult Function(ProjectNameChange value) onProjectNameChange,
-    required TResult Function(ProjectCheck value) projectCheck,
-    required TResult Function(OrganizationChange value) onOrganizationChange,
-    required TResult Function(FlavorizeChange value) onFlavorizeChange,
-    required TResult Function(FlavorsChange value) onFlavorsChange,
-    required TResult Function(RouterChange value) onRouterChange,
-    required TResult Function(LocalizationChange value) onLocalizationChange,
-    required TResult Function(GenerateSigningKeyChange value)
+  required TResult Function(Init value) init,
+  required TResult Function(SwaggerParse value) onSwaggerParse,
+  required TResult Function(TabChange value) onTabChange,
+  required TResult Function(ProjectPathChange value) onProjectPathChange,
+  required TResult Function(ProjectNameChange value) onProjectNameChange,
+  required TResult Function(ProjectCheck value) projectCheck,
+  required TResult Function(OrganizationChange value) onOrganizationChange,
+  required TResult Function(FlavorizeChange value) onFlavorizeChange,
+  required TResult Function(FlavorsChange value) onFlavorsChange,
+  required TResult Function(RouterChange value) onRouterChange,
+  required TResult Function(LocalizationChange value) onLocalizationChange,
+  required TResult Function(GenerateSigningKeyChange value)
         onGenerateSigningKeyChange,
     required TResult Function(UseSonarChange value) onUseSonarChange,
     required TResult Function(IntegrateDevicePreviewChange value)
@@ -11098,8 +11751,9 @@ TResult? whenOrNull<TResult extends Object?>({
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Init value)? init,
-    TResult? Function(TabChange value)? onTabChange,
+  TResult? Function(Init value)? init,
+  TResult? Function(SwaggerParse value)? onSwaggerParse,
+  TResult? Function(TabChange value)? onTabChange,
     TResult? Function(ProjectPathChange value)? onProjectPathChange,
     TResult? Function(ProjectNameChange value)? onProjectNameChange,
     TResult? Function(ProjectCheck value)? projectCheck,
@@ -11112,7 +11766,7 @@ TResult? whenOrNull<TResult extends Object?>({
         onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
-    onIntegrateDevicePreviewChange,
+        onIntegrateDevicePreviewChange,
     TResult? Function(SigningVarsChange value)? onSigningVarsChange,
     TResult? Function(PlatformsChange value)? onPlatformsChange,
     TResult? Function(ThemingChange value)? onThemingChange,
@@ -11141,17 +11795,18 @@ TResult? whenOrNull<TResult extends Object?>({
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Init value)? init,
-    TResult Function(TabChange value)? onTabChange,
-    TResult Function(ProjectPathChange value)? onProjectPathChange,
-    TResult Function(ProjectNameChange value)? onProjectNameChange,
-    TResult Function(ProjectCheck value)? projectCheck,
-    TResult Function(OrganizationChange value)? onOrganizationChange,
-    TResult Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult Function(FlavorsChange value)? onFlavorsChange,
-    TResult Function(RouterChange value)? onRouterChange,
-    TResult Function(LocalizationChange value)? onLocalizationChange,
-    TResult Function(GenerateSigningKeyChange value)?
+TResult Function(Init value)? init,
+TResult Function(SwaggerParse value)? onSwaggerParse,
+TResult Function(TabChange value)? onTabChange,
+TResult Function(ProjectPathChange value)? onProjectPathChange,
+TResult Function(ProjectNameChange value)? onProjectNameChange,
+TResult Function(ProjectCheck value)? projectCheck,
+TResult Function(OrganizationChange value)? onOrganizationChange,
+TResult Function(FlavorizeChange value)? onFlavorizeChange,
+TResult Function(FlavorsChange value)? onFlavorsChange,
+TResult Function(RouterChange value)? onRouterChange,
+TResult Function(LocalizationChange value)? onLocalizationChange,
+TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
