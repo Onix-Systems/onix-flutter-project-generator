@@ -81,9 +81,9 @@ mixin _$AppEvent {
     TResult? Function()? onGenerateProject,
     TResult? Function()? onGenerateComplete,
     TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+    onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
-        onGenerateRepositoriesWithProjectChange,
+    onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
@@ -880,16 +880,78 @@ GenerateSigningKeyChange
 value
 )
 ?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange
+,
+TResult
+Function
+(
+UseSonarChange
+value
+)
+?
+onUseSonarChange
+,
+TResult
+Function
+(
+IntegrateDevicePreviewChange
+value
+)
+?
+onIntegrateDevicePreviewChange
+,
+TResult
+Function
+(
+SigningVarsChange
+value
+)
+?
+onSigningVarsChange
+,
+TResult
+Function
+(
+PlatformsChange
+value
+)
+?
+onPlatformsChange
+,
+TResult
+Function
+(
+ThemingChange
+value
+)
+?
+onThemingChange
+,
+TResult
+Function
+(
+GenerateProject
+value
+)
+?
+onGenerateProject
+,
+TResult
+Function
+(
+GenerateComplete
+value
+)
+?
+onGenerateComplete
+,
+TResult
+Function
+(
+OnGenerateScreensWithProject
+value
+)
+?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -952,16 +1014,16 @@ class _$Init implements Init {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Init);
-  }
+return identical(this, other) ||
+(other.runtimeType == runtimeType && other is _$Init);
+}
 
-  @override
-  int get hashCode => runtimeType.hashCode;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult when<TResult extends Object?>({
 required TResult Function() init,
 required TResult Function(String url) onSwaggerParse,
 required TResult Function(int tabIndex) onTabChange,
@@ -1040,16 +1102,16 @@ TResult? Function(EntityEntity entity, SourceEntity? source)?
 onEntityDelete,
 TResult? Function(SourceEntity source)? onSourceDelete,
 TResult? Function()? onStateUpdate,
-    TResult? Function()? onScreensGenerate,
-    TResult? Function()? onEntitiesGenerate,
-    TResult? Function()? onErrorClear,
-    TResult? Function()? open,
-  }) {
-    return init?.call();
-  }
+TResult? Function()? onScreensGenerate,
+TResult? Function()? onEntitiesGenerate,
+TResult? Function()? onErrorClear,
+TResult? Function()? open,
+}) {
+return init?.call();
+}
 
-  @override
-  @optionalTypeArgs
+@override
+@optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
 TResult Function()? init,
 TResult Function(String url)? onSwaggerParse,
@@ -1063,16 +1125,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -1110,16 +1172,16 @@ TResult Function()? onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -1145,16 +1207,16 @@ TResult Function()? onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -1198,16 +1260,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -1225,7 +1287,7 @@ TResult Function(GenerateSigningKeyChange value)?
     TResult Function(OpenProject value)? open,
     required TResult orElse(),
   }) {
-    if (init != null) {
+if (init != null) {
 return init(this);
 }
 return orElse();
@@ -1238,33 +1300,33 @@ const factory Init() = _$Init;
 
 /// @nodoc
 abstract class _$$SwaggerParseCopyWith<$Res> {
-factory _$$SwaggerParseCopyWith(
-_$SwaggerParse value, $Res Function(_$SwaggerParse) then) =
-__$$SwaggerParseCopyWithImpl<$Res>;
-@useResult
-$Res call({String url});
+  factory _$$SwaggerParseCopyWith(
+          _$SwaggerParse value, $Res Function(_$SwaggerParse) then) =
+      __$$SwaggerParseCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String url});
 }
 
 /// @nodoc
 class __$$SwaggerParseCopyWithImpl<$Res>
-extends _$AppEventCopyWithImpl<$Res, _$SwaggerParse>
-implements _$$SwaggerParseCopyWith<$Res> {
-__$$SwaggerParseCopyWithImpl(
-_$SwaggerParse _value, $Res Function(_$SwaggerParse) _then)
-    : super(_value, _then);
+    extends _$AppEventCopyWithImpl<$Res, _$SwaggerParse>
+    implements _$$SwaggerParseCopyWith<$Res> {
+  __$$SwaggerParseCopyWithImpl(
+      _$SwaggerParse _value, $Res Function(_$SwaggerParse) _then)
+      : super(_value, _then);
 
-@pragma('vm:prefer-inline')
-@override
-$Res call({
-Object? url = null,
-}) {
-return _then(_$SwaggerParse(
-url: null == url
-? _value.url
-    : url // ignore: cast_nullable_to_non_nullable
-as String,
-));
-}
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+  }) {
+    return _then(_$SwaggerParse(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
@@ -1571,43 +1633,43 @@ return orElse();
 }
 
 abstract class SwaggerParse implements AppEvent {
-const factory SwaggerParse({required final String url}) = _$SwaggerParse;
+  const factory SwaggerParse({required final String url}) = _$SwaggerParse;
 
-String get url;
-@JsonKey(ignore: true)
-_$$SwaggerParseCopyWith<_$SwaggerParse> get copyWith =>
-throw _privateConstructorUsedError;
+  String get url;
+  @JsonKey(ignore: true)
+  _$$SwaggerParseCopyWith<_$SwaggerParse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$TabChangeCopyWith<$Res> {
-factory _$$TabChangeCopyWith(
-_$TabChange value, $Res Function(_$TabChange) then) =
-__$$TabChangeCopyWithImpl<$Res>;
-@useResult
-$Res call({int tabIndex});
+  factory _$$TabChangeCopyWith(
+          _$TabChange value, $Res Function(_$TabChange) then) =
+      __$$TabChangeCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int tabIndex});
 }
 
 /// @nodoc
 class __$$TabChangeCopyWithImpl<$Res>
-extends _$AppEventCopyWithImpl<$Res, _$TabChange>
-implements _$$TabChangeCopyWith<$Res> {
-__$$TabChangeCopyWithImpl(
-_$TabChange _value, $Res Function(_$TabChange) _then)
-    : super(_value, _then);
+    extends _$AppEventCopyWithImpl<$Res, _$TabChange>
+    implements _$$TabChangeCopyWith<$Res> {
+  __$$TabChangeCopyWithImpl(
+      _$TabChange _value, $Res Function(_$TabChange) _then)
+      : super(_value, _then);
 
-@pragma('vm:prefer-inline')
-@override
-$Res call({
-Object? tabIndex = null,
-}) {
-return _then(_$TabChange(
-tabIndex: null == tabIndex
-? _value.tabIndex
-    : tabIndex // ignore: cast_nullable_to_non_nullable
-as int,
-));
-}
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tabIndex = null,
+  }) {
+    return _then(_$TabChange(
+      tabIndex: null == tabIndex
+          ? _value.tabIndex
+          : tabIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
@@ -2000,16 +2062,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -2045,16 +2107,16 @@ TResult? Function()? onFlavorizeChange,
 TResult? Function(String flavors)? onFlavorsChange,
 TResult? Function()? onRouterChange,
 TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -2089,16 +2151,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -2136,16 +2198,16 @@ required TResult Function(FlavorsChange value) onFlavorsChange,
 required TResult Function(RouterChange value) onRouterChange,
 required TResult Function(LocalizationChange value) onLocalizationChange,
 required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -2171,16 +2233,16 @@ required TResult Function(GenerateSigningKeyChange value)
 TResult? Function(Init value)? init,
 TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -2224,16 +2286,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -2355,16 +2417,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -2400,16 +2462,16 @@ TResult? Function()? onFlavorizeChange,
 TResult? Function(String flavors)? onFlavorsChange,
 TResult? Function()? onRouterChange,
 TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -2444,16 +2506,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -2491,16 +2553,16 @@ required TResult Function(FlavorsChange value) onFlavorsChange,
 required TResult Function(RouterChange value) onRouterChange,
 required TResult Function(LocalizationChange value) onLocalizationChange,
 required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -2526,16 +2588,16 @@ required TResult Function(GenerateSigningKeyChange value)
 TResult? Function(Init value)? init,
 TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -2579,16 +2641,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -2675,16 +2737,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -2720,16 +2782,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(String flavors)? onFlavorsChange,
   TResult? Function()? onRouterChange,
   TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult? Function()? onGenerateSigningKeyChange,
+  TResult? Function()? onUseSonarChange,
+  TResult? Function()? onIntegrateDevicePreviewChange,
+  TResult? Function(List<String> signingVars)? onSigningVarsChange,
+  TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  TResult? Function()? onThemingChange,
+  TResult? Function()? onGenerateProject,
+  TResult? Function()? onGenerateComplete,
+  TResult? Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -2764,16 +2826,16 @@ required TResult Function() onLocalizationChange,
   TResult Function(String flavors)? onFlavorsChange,
   TResult Function()? onRouterChange,
   TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult Function()? onGenerateSigningKeyChange,
+  TResult Function()? onUseSonarChange,
+  TResult Function()? onIntegrateDevicePreviewChange,
+  TResult Function(List<String> signingVars)? onSigningVarsChange,
+  TResult Function(PlatformsList platforms)? onPlatformsChange,
+  TResult Function()? onThemingChange,
+  TResult Function()? onGenerateProject,
+  TResult Function()? onGenerateComplete,
+  TResult Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -2811,16 +2873,16 @@ required TResult Function() onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -2846,16 +2908,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -2899,16 +2961,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -3015,16 +3077,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -3060,16 +3122,16 @@ TResult? Function()? onFlavorizeChange,
 TResult? Function(String flavors)? onFlavorsChange,
 TResult? Function()? onRouterChange,
 TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -3104,16 +3166,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -3151,16 +3213,16 @@ required TResult Function(FlavorsChange value) onFlavorsChange,
 required TResult Function(RouterChange value) onRouterChange,
 required TResult Function(LocalizationChange value) onLocalizationChange,
 required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -3186,16 +3248,16 @@ required TResult Function(GenerateSigningKeyChange value)
 TResult? Function(Init value)? init,
 TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -3239,16 +3301,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -3333,16 +3395,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -3378,16 +3440,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(String flavors)? onFlavorsChange,
   TResult? Function()? onRouterChange,
   TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult? Function()? onGenerateSigningKeyChange,
+  TResult? Function()? onUseSonarChange,
+  TResult? Function()? onIntegrateDevicePreviewChange,
+  TResult? Function(List<String> signingVars)? onSigningVarsChange,
+  TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  TResult? Function()? onThemingChange,
+  TResult? Function()? onGenerateProject,
+  TResult? Function()? onGenerateComplete,
+  TResult? Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -3422,16 +3484,16 @@ required TResult Function() onLocalizationChange,
   TResult Function(String flavors)? onFlavorsChange,
   TResult Function()? onRouterChange,
   TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult Function()? onGenerateSigningKeyChange,
+  TResult Function()? onUseSonarChange,
+  TResult Function()? onIntegrateDevicePreviewChange,
+  TResult Function(List<String> signingVars)? onSigningVarsChange,
+  TResult Function(PlatformsList platforms)? onPlatformsChange,
+  TResult Function()? onThemingChange,
+  TResult Function()? onGenerateProject,
+  TResult Function()? onGenerateComplete,
+  TResult Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -3469,16 +3531,16 @@ required TResult Function() onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -3504,16 +3566,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -3557,16 +3619,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -3671,16 +3733,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -3716,16 +3778,16 @@ TResult? Function()? onFlavorizeChange,
 TResult? Function(String flavors)? onFlavorsChange,
 TResult? Function()? onRouterChange,
 TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -3760,16 +3822,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -3807,16 +3869,16 @@ required TResult Function(FlavorsChange value) onFlavorsChange,
 required TResult Function(RouterChange value) onRouterChange,
 required TResult Function(LocalizationChange value) onLocalizationChange,
 required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -3842,16 +3904,16 @@ required TResult Function(GenerateSigningKeyChange value)
 TResult? Function(Init value)? init,
 TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -3895,16 +3957,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -3989,16 +4051,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -4034,16 +4096,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(String flavors)? onFlavorsChange,
   TResult? Function()? onRouterChange,
   TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult? Function()? onGenerateSigningKeyChange,
+  TResult? Function()? onUseSonarChange,
+  TResult? Function()? onIntegrateDevicePreviewChange,
+  TResult? Function(List<String> signingVars)? onSigningVarsChange,
+  TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  TResult? Function()? onThemingChange,
+  TResult? Function()? onGenerateProject,
+  TResult? Function()? onGenerateComplete,
+  TResult? Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -4078,16 +4140,16 @@ required TResult Function() onLocalizationChange,
   TResult Function(String flavors)? onFlavorsChange,
   TResult Function()? onRouterChange,
   TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult Function()? onGenerateSigningKeyChange,
+  TResult Function()? onUseSonarChange,
+  TResult Function()? onIntegrateDevicePreviewChange,
+  TResult Function(List<String> signingVars)? onSigningVarsChange,
+  TResult Function(PlatformsList platforms)? onPlatformsChange,
+  TResult Function()? onThemingChange,
+  TResult Function()? onGenerateProject,
+  TResult Function()? onGenerateComplete,
+  TResult Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -4125,16 +4187,16 @@ required TResult Function() onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -4160,16 +4222,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -4213,16 +4275,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -4301,16 +4363,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -4346,16 +4408,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(String flavors)? onFlavorsChange,
   TResult? Function()? onRouterChange,
   TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult? Function()? onGenerateSigningKeyChange,
+  TResult? Function()? onUseSonarChange,
+  TResult? Function()? onIntegrateDevicePreviewChange,
+  TResult? Function(List<String> signingVars)? onSigningVarsChange,
+  TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  TResult? Function()? onThemingChange,
+  TResult? Function()? onGenerateProject,
+  TResult? Function()? onGenerateComplete,
+  TResult? Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -4390,16 +4452,16 @@ required TResult Function() onLocalizationChange,
   TResult Function(String flavors)? onFlavorsChange,
   TResult Function()? onRouterChange,
   TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult Function()? onGenerateSigningKeyChange,
+  TResult Function()? onUseSonarChange,
+  TResult Function()? onIntegrateDevicePreviewChange,
+  TResult Function(List<String> signingVars)? onSigningVarsChange,
+  TResult Function(PlatformsList platforms)? onPlatformsChange,
+  TResult Function()? onThemingChange,
+  TResult Function()? onGenerateProject,
+  TResult Function()? onGenerateComplete,
+  TResult Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -4437,16 +4499,16 @@ required TResult Function() onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -4472,16 +4534,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -4525,16 +4587,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -4614,16 +4676,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -4659,16 +4721,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(String flavors)? onFlavorsChange,
   TResult? Function()? onRouterChange,
   TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult? Function()? onGenerateSigningKeyChange,
+  TResult? Function()? onUseSonarChange,
+  TResult? Function()? onIntegrateDevicePreviewChange,
+  TResult? Function(List<String> signingVars)? onSigningVarsChange,
+  TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  TResult? Function()? onThemingChange,
+  TResult? Function()? onGenerateProject,
+  TResult? Function()? onGenerateComplete,
+  TResult? Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -4703,16 +4765,16 @@ required TResult Function() onLocalizationChange,
   TResult Function(String flavors)? onFlavorsChange,
   TResult Function()? onRouterChange,
   TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult Function()? onGenerateSigningKeyChange,
+  TResult Function()? onUseSonarChange,
+  TResult Function()? onIntegrateDevicePreviewChange,
+  TResult Function(List<String> signingVars)? onSigningVarsChange,
+  TResult Function(PlatformsList platforms)? onPlatformsChange,
+  TResult Function()? onThemingChange,
+  TResult Function()? onGenerateProject,
+  TResult Function()? onGenerateComplete,
+  TResult Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -4750,16 +4812,16 @@ required TResult Function() onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -4785,16 +4847,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -4838,16 +4900,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -4926,16 +4988,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -4971,16 +5033,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(String flavors)? onFlavorsChange,
   TResult? Function()? onRouterChange,
   TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult? Function()? onGenerateSigningKeyChange,
+  TResult? Function()? onUseSonarChange,
+  TResult? Function()? onIntegrateDevicePreviewChange,
+  TResult? Function(List<String> signingVars)? onSigningVarsChange,
+  TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  TResult? Function()? onThemingChange,
+  TResult? Function()? onGenerateProject,
+  TResult? Function()? onGenerateComplete,
+  TResult? Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -5015,16 +5077,16 @@ required TResult Function() onLocalizationChange,
   TResult Function(String flavors)? onFlavorsChange,
   TResult Function()? onRouterChange,
   TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult Function()? onGenerateSigningKeyChange,
+  TResult Function()? onUseSonarChange,
+  TResult Function()? onIntegrateDevicePreviewChange,
+  TResult Function(List<String> signingVars)? onSigningVarsChange,
+  TResult Function(PlatformsList platforms)? onPlatformsChange,
+  TResult Function()? onThemingChange,
+  TResult Function()? onGenerateProject,
+  TResult Function()? onGenerateComplete,
+  TResult Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -5062,16 +5124,16 @@ required TResult Function() onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -5097,16 +5159,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -5150,16 +5212,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -5241,16 +5303,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -5286,16 +5348,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(String flavors)? onFlavorsChange,
   TResult? Function()? onRouterChange,
   TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult? Function()? onGenerateSigningKeyChange,
+  TResult? Function()? onUseSonarChange,
+  TResult? Function()? onIntegrateDevicePreviewChange,
+  TResult? Function(List<String> signingVars)? onSigningVarsChange,
+  TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  TResult? Function()? onThemingChange,
+  TResult? Function()? onGenerateProject,
+  TResult? Function()? onGenerateComplete,
+  TResult? Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -5330,16 +5392,16 @@ required TResult Function() onLocalizationChange,
   TResult Function(String flavors)? onFlavorsChange,
   TResult Function()? onRouterChange,
   TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult Function()? onGenerateSigningKeyChange,
+  TResult Function()? onUseSonarChange,
+  TResult Function()? onIntegrateDevicePreviewChange,
+  TResult Function(List<String> signingVars)? onSigningVarsChange,
+  TResult Function(PlatformsList platforms)? onPlatformsChange,
+  TResult Function()? onThemingChange,
+  TResult Function()? onGenerateProject,
+  TResult Function()? onGenerateComplete,
+  TResult Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -5377,16 +5439,16 @@ required TResult Function() onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -5412,16 +5474,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -5465,16 +5527,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -5587,16 +5649,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -5632,16 +5694,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(String flavors)? onFlavorsChange,
   TResult? Function()? onRouterChange,
   TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult? Function()? onGenerateSigningKeyChange,
+  TResult? Function()? onUseSonarChange,
+  TResult? Function()? onIntegrateDevicePreviewChange,
+  TResult? Function(List<String> signingVars)? onSigningVarsChange,
+  TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  TResult? Function()? onThemingChange,
+  TResult? Function()? onGenerateProject,
+  TResult? Function()? onGenerateComplete,
+  TResult? Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -5676,16 +5738,16 @@ required TResult Function() onLocalizationChange,
   TResult Function(String flavors)? onFlavorsChange,
   TResult Function()? onRouterChange,
   TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult Function()? onGenerateSigningKeyChange,
+  TResult Function()? onUseSonarChange,
+  TResult Function()? onIntegrateDevicePreviewChange,
+  TResult Function(List<String> signingVars)? onSigningVarsChange,
+  TResult Function(PlatformsList platforms)? onPlatformsChange,
+  TResult Function()? onThemingChange,
+  TResult Function()? onGenerateProject,
+  TResult Function()? onGenerateComplete,
+  TResult Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -5723,16 +5785,16 @@ required TResult Function() onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -5758,16 +5820,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -5811,16 +5873,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -5942,16 +6004,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -5987,16 +6049,16 @@ TResult? Function()? onFlavorizeChange,
 TResult? Function(String flavors)? onFlavorsChange,
 TResult? Function()? onRouterChange,
 TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -6031,16 +6093,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -6078,16 +6140,16 @@ required TResult Function(FlavorsChange value) onFlavorsChange,
 required TResult Function(RouterChange value) onRouterChange,
 required TResult Function(LocalizationChange value) onLocalizationChange,
 required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -6113,16 +6175,16 @@ required TResult Function(GenerateSigningKeyChange value)
 TResult? Function(Init value)? init,
 TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -6166,16 +6228,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -6260,16 +6322,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -6305,16 +6367,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(String flavors)? onFlavorsChange,
   TResult? Function()? onRouterChange,
   TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult? Function()? onGenerateSigningKeyChange,
+  TResult? Function()? onUseSonarChange,
+  TResult? Function()? onIntegrateDevicePreviewChange,
+  TResult? Function(List<String> signingVars)? onSigningVarsChange,
+  TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  TResult? Function()? onThemingChange,
+  TResult? Function()? onGenerateProject,
+  TResult? Function()? onGenerateComplete,
+  TResult? Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -6349,16 +6411,16 @@ required TResult Function() onLocalizationChange,
   TResult Function(String flavors)? onFlavorsChange,
   TResult Function()? onRouterChange,
   TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult Function()? onGenerateSigningKeyChange,
+  TResult Function()? onUseSonarChange,
+  TResult Function()? onIntegrateDevicePreviewChange,
+  TResult Function(List<String> signingVars)? onSigningVarsChange,
+  TResult Function(PlatformsList platforms)? onPlatformsChange,
+  TResult Function()? onThemingChange,
+  TResult Function()? onGenerateProject,
+  TResult Function()? onGenerateComplete,
+  TResult Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -6396,16 +6458,16 @@ required TResult Function() onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -6431,16 +6493,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -6484,16 +6546,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -6572,16 +6634,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -6617,16 +6679,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(String flavors)? onFlavorsChange,
   TResult? Function()? onRouterChange,
   TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult? Function()? onGenerateSigningKeyChange,
+  TResult? Function()? onUseSonarChange,
+  TResult? Function()? onIntegrateDevicePreviewChange,
+  TResult? Function(List<String> signingVars)? onSigningVarsChange,
+  TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  TResult? Function()? onThemingChange,
+  TResult? Function()? onGenerateProject,
+  TResult? Function()? onGenerateComplete,
+  TResult? Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -6661,16 +6723,16 @@ required TResult Function() onLocalizationChange,
   TResult Function(String flavors)? onFlavorsChange,
   TResult Function()? onRouterChange,
   TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult Function()? onGenerateSigningKeyChange,
+  TResult Function()? onUseSonarChange,
+  TResult Function()? onIntegrateDevicePreviewChange,
+  TResult Function(List<String> signingVars)? onSigningVarsChange,
+  TResult Function(PlatformsList platforms)? onPlatformsChange,
+  TResult Function()? onThemingChange,
+  TResult Function()? onGenerateProject,
+  TResult Function()? onGenerateComplete,
+  TResult Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -6708,16 +6770,16 @@ required TResult Function() onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -6743,16 +6805,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -6796,16 +6858,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -6884,16 +6946,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -6929,16 +6991,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(String flavors)? onFlavorsChange,
   TResult? Function()? onRouterChange,
   TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult? Function()? onGenerateSigningKeyChange,
+  TResult? Function()? onUseSonarChange,
+  TResult? Function()? onIntegrateDevicePreviewChange,
+  TResult? Function(List<String> signingVars)? onSigningVarsChange,
+  TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  TResult? Function()? onThemingChange,
+  TResult? Function()? onGenerateProject,
+  TResult? Function()? onGenerateComplete,
+  TResult? Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -6973,16 +7035,16 @@ required TResult Function() onLocalizationChange,
   TResult Function(String flavors)? onFlavorsChange,
   TResult Function()? onRouterChange,
   TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult Function()? onGenerateSigningKeyChange,
+  TResult Function()? onUseSonarChange,
+  TResult Function()? onIntegrateDevicePreviewChange,
+  TResult Function(List<String> signingVars)? onSigningVarsChange,
+  TResult Function(PlatformsList platforms)? onPlatformsChange,
+  TResult Function()? onThemingChange,
+  TResult Function()? onGenerateProject,
+  TResult Function()? onGenerateComplete,
+  TResult Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -7020,16 +7082,16 @@ required TResult Function() onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -7055,16 +7117,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -7108,16 +7170,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -7229,16 +7291,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -7274,16 +7336,16 @@ TResult? Function()? onFlavorizeChange,
 TResult? Function(String flavors)? onFlavorsChange,
 TResult? Function()? onRouterChange,
 TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -7318,16 +7380,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -7365,16 +7427,16 @@ required TResult Function(FlavorsChange value) onFlavorsChange,
 required TResult Function(RouterChange value) onRouterChange,
 required TResult Function(LocalizationChange value) onLocalizationChange,
 required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -7400,16 +7462,16 @@ required TResult Function(GenerateSigningKeyChange value)
 TResult? Function(Init value)? init,
 TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -7453,16 +7515,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -7583,16 +7645,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -7629,16 +7691,16 @@ TResult? Function()? onFlavorizeChange,
 TResult? Function(String flavors)? onFlavorsChange,
 TResult? Function()? onRouterChange,
 TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -7674,16 +7736,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -7722,16 +7784,16 @@ required TResult Function(FlavorsChange value) onFlavorsChange,
 required TResult Function(RouterChange value) onRouterChange,
 required TResult Function(LocalizationChange value) onLocalizationChange,
 required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -7757,16 +7819,16 @@ required TResult Function(GenerateSigningKeyChange value)
 TResult? Function(Init value)? init,
 TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -7810,16 +7872,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -8277,16 +8339,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -8322,16 +8384,16 @@ TResult? Function()? onFlavorizeChange,
 TResult? Function(String flavors)? onFlavorsChange,
 TResult? Function()? onRouterChange,
 TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -8366,16 +8428,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -8413,16 +8475,16 @@ required TResult Function(FlavorsChange value) onFlavorsChange,
 required TResult Function(RouterChange value) onRouterChange,
 required TResult Function(LocalizationChange value) onLocalizationChange,
 required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -8448,16 +8510,16 @@ required TResult Function(GenerateSigningKeyChange value)
 TResult? Function(Init value)? init,
 TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -8501,16 +8563,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -8975,16 +9037,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -9020,16 +9082,16 @@ TResult? Function()? onFlavorizeChange,
 TResult? Function(String flavors)? onFlavorsChange,
 TResult? Function()? onRouterChange,
 TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -9064,16 +9126,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -9111,16 +9173,16 @@ required TResult Function(FlavorsChange value) onFlavorsChange,
 required TResult Function(RouterChange value) onRouterChange,
 required TResult Function(LocalizationChange value) onLocalizationChange,
 required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -9146,16 +9208,16 @@ required TResult Function(GenerateSigningKeyChange value)
 TResult? Function(Init value)? init,
 TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -9199,16 +9261,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -9807,10 +9869,10 @@ required TResult Function(FlavorsChange value) onFlavorsChange,
 required TResult Function(RouterChange value) onRouterChange,
 required TResult Function(LocalizationChange value) onLocalizationChange,
 required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
 required TResult Function(SigningVarsChange value) onSigningVarsChange,
 required TResult Function(PlatformsChange value) onPlatformsChange,
 required TResult Function(ThemingChange value) onThemingChange,
@@ -9849,16 +9911,16 @@ TResult? Function(OrganizationChange value)? onOrganizationChange,
 TResult? Function(FlavorizeChange value)? onFlavorizeChange,
 TResult? Function(FlavorsChange value)? onFlavorsChange,
 TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult? Function(UseSonarChange value)? onUseSonarChange,
-    TResult? Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult? Function(PlatformsChange value)? onPlatformsChange,
-    TResult? Function(ThemingChange value)? onThemingChange,
-    TResult? Function(GenerateProject value)? onGenerateProject,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
+TResult? Function(UseSonarChange value)? onUseSonarChange,
+TResult? Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+TResult? Function(PlatformsChange value)? onPlatformsChange,
+TResult? Function(ThemingChange value)? onThemingChange,
+TResult? Function(GenerateProject value)? onGenerateProject,
     TResult? Function(GenerateComplete value)? onGenerateComplete,
     TResult? Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
@@ -9883,18 +9945,18 @@ TResult? Function(RouterChange value)? onRouterChange,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
         onGenerateSigningKeyChange,
     TResult Function(UseSonarChange value)? onUseSonarChange,
     TResult Function(IntegrateDevicePreviewChange value)?
@@ -9909,24 +9971,24 @@ TResult Function(GenerateSigningKeyChange value)?
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
-if (onEntityDelete != null) {
-return onEntityDelete(this);
-}
-return orElse();
-}
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
+    if (onEntityDelete != null) {
+      return onEntityDelete(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class EntityDelete implements AppEvent {
@@ -10017,16 +10079,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -10062,16 +10124,16 @@ TResult? Function()? onFlavorizeChange,
 TResult? Function(String flavors)? onFlavorsChange,
 TResult? Function()? onRouterChange,
 TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -10106,16 +10168,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -10153,16 +10215,16 @@ required TResult Function(FlavorsChange value) onFlavorsChange,
 required TResult Function(RouterChange value) onRouterChange,
 required TResult Function(LocalizationChange value) onLocalizationChange,
 required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -10188,16 +10250,16 @@ required TResult Function(GenerateSigningKeyChange value)
 TResult? Function(Init value)? init,
 TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -10241,16 +10303,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -10313,16 +10375,16 @@ class _$StateUpdate implements StateUpdate {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StateUpdate);
-  }
+return identical(this, other) ||
+(other.runtimeType == runtimeType && other is _$StateUpdate);
+}
 
-  @override
-  int get hashCode => runtimeType.hashCode;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult when<TResult extends Object?>({
 required TResult Function() init,
 required TResult Function(String url) onSwaggerParse,
 required TResult Function(int tabIndex) onTabChange,
@@ -10401,16 +10463,16 @@ TResult? Function(EntityEntity entity, SourceEntity? source)?
 onEntityDelete,
 TResult? Function(SourceEntity source)? onSourceDelete,
 TResult? Function()? onStateUpdate,
-    TResult? Function()? onScreensGenerate,
-    TResult? Function()? onEntitiesGenerate,
-    TResult? Function()? onErrorClear,
-    TResult? Function()? open,
-  }) {
-    return onStateUpdate?.call();
-  }
+TResult? Function()? onScreensGenerate,
+TResult? Function()? onEntitiesGenerate,
+TResult? Function()? onErrorClear,
+TResult? Function()? open,
+}) {
+return onStateUpdate?.call();
+}
 
-  @override
-  @optionalTypeArgs
+@override
+@optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
 TResult Function()? init,
 TResult Function(String url)? onSwaggerParse,
@@ -10424,16 +10486,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -10471,16 +10533,16 @@ TResult Function()? onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -10506,16 +10568,16 @@ TResult Function()? onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -10559,16 +10621,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -10647,16 +10709,16 @@ required TResult Function() onFlavorizeChange,
 required TResult Function(String flavors) onFlavorsChange,
 required TResult Function() onRouterChange,
 required TResult Function() onLocalizationChange,
-    required TResult Function() onGenerateSigningKeyChange,
-    required TResult Function() onUseSonarChange,
-    required TResult Function() onIntegrateDevicePreviewChange,
-    required TResult Function(List<String> signingVars) onSigningVarsChange,
-    required TResult Function(PlatformsList platforms) onPlatformsChange,
-    required TResult Function() onThemingChange,
-    required TResult Function() onGenerateProject,
-    required TResult Function() onGenerateComplete,
-    required TResult Function(bool generateScreensWithProject)
-        onGenerateScreensWithProjectChange,
+required TResult Function() onGenerateSigningKeyChange,
+required TResult Function() onUseSonarChange,
+required TResult Function() onIntegrateDevicePreviewChange,
+required TResult Function(List<String> signingVars) onSigningVarsChange,
+required TResult Function(PlatformsList platforms) onPlatformsChange,
+required TResult Function() onThemingChange,
+required TResult Function() onGenerateProject,
+required TResult Function() onGenerateComplete,
+required TResult Function(bool generateScreensWithProject)
+onGenerateScreensWithProjectChange,
     required TResult Function(bool generateRepositoriesWithProject)
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
@@ -10692,16 +10754,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(String flavors)? onFlavorsChange,
   TResult? Function()? onRouterChange,
   TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult? Function()? onGenerateSigningKeyChange,
+  TResult? Function()? onUseSonarChange,
+  TResult? Function()? onIntegrateDevicePreviewChange,
+  TResult? Function(List<String> signingVars)? onSigningVarsChange,
+  TResult? Function(PlatformsList platforms)? onPlatformsChange,
+  TResult? Function()? onThemingChange,
+  TResult? Function()? onGenerateProject,
+  TResult? Function()? onGenerateComplete,
+  TResult? Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -10736,16 +10798,16 @@ required TResult Function() onLocalizationChange,
   TResult Function(String flavors)? onFlavorsChange,
   TResult Function()? onRouterChange,
   TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+  TResult Function()? onGenerateSigningKeyChange,
+  TResult Function()? onUseSonarChange,
+  TResult Function()? onIntegrateDevicePreviewChange,
+  TResult Function(List<String> signingVars)? onSigningVarsChange,
+  TResult Function(PlatformsList platforms)? onPlatformsChange,
+  TResult Function()? onThemingChange,
+  TResult Function()? onGenerateProject,
+  TResult Function()? onGenerateComplete,
+  TResult Function(bool generateScreensWithProject)?
+  onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -10783,16 +10845,16 @@ required TResult Function() onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -10818,16 +10880,16 @@ required TResult Function() onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -10871,16 +10933,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -11095,16 +11157,16 @@ required TResult Function(FlavorsChange value) onFlavorsChange,
 required TResult Function(RouterChange value) onRouterChange,
 required TResult Function(LocalizationChange value) onLocalizationChange,
 required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+onGenerateSigningKeyChange,
+required TResult Function(UseSonarChange value) onUseSonarChange,
+required TResult Function(IntegrateDevicePreviewChange value)
+onIntegrateDevicePreviewChange,
+required TResult Function(SigningVarsChange value) onSigningVarsChange,
+required TResult Function(PlatformsChange value) onPlatformsChange,
+required TResult Function(ThemingChange value) onThemingChange,
+required TResult Function(GenerateProject value) onGenerateProject,
+required TResult Function(GenerateComplete value) onGenerateComplete,
+required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -11130,16 +11192,16 @@ required TResult Function(GenerateSigningKeyChange value)
 TResult? Function(Init value)? init,
 TResult? Function(SwaggerParse value)? onSwaggerParse,
 TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+TResult? Function(ProjectPathChange value)? onProjectPathChange,
+TResult? Function(ProjectNameChange value)? onProjectNameChange,
+TResult? Function(ProjectCheck value)? projectCheck,
+TResult? Function(OrganizationChange value)? onOrganizationChange,
+TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+TResult? Function(FlavorsChange value)? onFlavorsChange,
+TResult? Function(RouterChange value)? onRouterChange,
+TResult? Function(LocalizationChange value)? onLocalizationChange,
+TResult? Function(GenerateSigningKeyChange value)?
+onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -11183,16 +11245,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -11249,16 +11311,16 @@ class _$ErrorClear implements ErrorClear {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ErrorClear);
-  }
+return identical(this, other) ||
+(other.runtimeType == runtimeType && other is _$ErrorClear);
+}
 
-  @override
-  int get hashCode => runtimeType.hashCode;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult when<TResult extends Object?>({
 required TResult Function() init,
 required TResult Function(String url) onSwaggerParse,
 required TResult Function(int tabIndex) onTabChange,
@@ -11337,16 +11399,16 @@ TResult? Function(EntityEntity entity, SourceEntity? source)?
 onEntityDelete,
 TResult? Function(SourceEntity source)? onSourceDelete,
 TResult? Function()? onStateUpdate,
-    TResult? Function()? onScreensGenerate,
-    TResult? Function()? onEntitiesGenerate,
-    TResult? Function()? onErrorClear,
-    TResult? Function()? open,
-  }) {
-    return onErrorClear?.call();
-  }
+TResult? Function()? onScreensGenerate,
+TResult? Function()? onEntitiesGenerate,
+TResult? Function()? onErrorClear,
+TResult? Function()? open,
+}) {
+return onErrorClear?.call();
+}
 
-  @override
-  @optionalTypeArgs
+@override
+@optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
 TResult Function()? init,
 TResult Function(String url)? onSwaggerParse,
@@ -11360,16 +11422,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -11407,16 +11469,16 @@ TResult Function()? onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -11442,16 +11504,16 @@ TResult Function()? onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -11495,16 +11557,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,
@@ -11561,16 +11623,16 @@ class _$OpenProject implements OpenProject {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OpenProject);
-  }
+return identical(this, other) ||
+(other.runtimeType == runtimeType && other is _$OpenProject);
+}
 
-  @override
-  int get hashCode => runtimeType.hashCode;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult when<TResult extends Object?>({
 required TResult Function() init,
 required TResult Function(String url) onSwaggerParse,
 required TResult Function(int tabIndex) onTabChange,
@@ -11628,16 +11690,16 @@ TResult? Function()? onFlavorizeChange,
 TResult? Function(String flavors)? onFlavorsChange,
 TResult? Function()? onRouterChange,
 TResult? Function()? onLocalizationChange,
-    TResult? Function()? onGenerateSigningKeyChange,
-    TResult? Function()? onUseSonarChange,
-    TResult? Function()? onIntegrateDevicePreviewChange,
-    TResult? Function(List<String> signingVars)? onSigningVarsChange,
-    TResult? Function(PlatformsList platforms)? onPlatformsChange,
-    TResult? Function()? onThemingChange,
-    TResult? Function()? onGenerateProject,
-    TResult? Function()? onGenerateComplete,
-    TResult? Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult? Function()? onGenerateSigningKeyChange,
+TResult? Function()? onUseSonarChange,
+TResult? Function()? onIntegrateDevicePreviewChange,
+TResult? Function(List<String> signingVars)? onSigningVarsChange,
+TResult? Function(PlatformsList platforms)? onPlatformsChange,
+TResult? Function()? onThemingChange,
+TResult? Function()? onGenerateProject,
+TResult? Function()? onGenerateComplete,
+TResult? Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
@@ -11672,16 +11734,16 @@ TResult Function()? onFlavorizeChange,
 TResult Function(String flavors)? onFlavorsChange,
 TResult Function()? onRouterChange,
 TResult Function()? onLocalizationChange,
-    TResult Function()? onGenerateSigningKeyChange,
-    TResult Function()? onUseSonarChange,
-    TResult Function()? onIntegrateDevicePreviewChange,
-    TResult Function(List<String> signingVars)? onSigningVarsChange,
-    TResult Function(PlatformsList platforms)? onPlatformsChange,
-    TResult Function()? onThemingChange,
-    TResult Function()? onGenerateProject,
-    TResult Function()? onGenerateComplete,
-    TResult Function(bool generateScreensWithProject)?
-        onGenerateScreensWithProjectChange,
+TResult Function()? onGenerateSigningKeyChange,
+TResult Function()? onUseSonarChange,
+TResult Function()? onIntegrateDevicePreviewChange,
+TResult Function(List<String> signingVars)? onSigningVarsChange,
+TResult Function(PlatformsList platforms)? onPlatformsChange,
+TResult Function()? onThemingChange,
+TResult Function()? onGenerateProject,
+TResult Function()? onGenerateComplete,
+TResult Function(bool generateScreensWithProject)?
+onGenerateScreensWithProjectChange,
     TResult Function(bool generateRepositoriesWithProject)?
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
@@ -11719,16 +11781,16 @@ TResult Function()? onLocalizationChange,
   required TResult Function(RouterChange value) onRouterChange,
   required TResult Function(LocalizationChange value) onLocalizationChange,
   required TResult Function(GenerateSigningKeyChange value)
-        onGenerateSigningKeyChange,
-    required TResult Function(UseSonarChange value) onUseSonarChange,
-    required TResult Function(IntegrateDevicePreviewChange value)
-        onIntegrateDevicePreviewChange,
-    required TResult Function(SigningVarsChange value) onSigningVarsChange,
-    required TResult Function(PlatformsChange value) onPlatformsChange,
-    required TResult Function(ThemingChange value) onThemingChange,
-    required TResult Function(GenerateProject value) onGenerateProject,
-    required TResult Function(GenerateComplete value) onGenerateComplete,
-    required TResult Function(OnGenerateScreensWithProject value)
+  onGenerateSigningKeyChange,
+  required TResult Function(UseSonarChange value) onUseSonarChange,
+  required TResult Function(IntegrateDevicePreviewChange value)
+  onIntegrateDevicePreviewChange,
+  required TResult Function(SigningVarsChange value) onSigningVarsChange,
+  required TResult Function(PlatformsChange value) onPlatformsChange,
+  required TResult Function(ThemingChange value) onThemingChange,
+  required TResult Function(GenerateProject value) onGenerateProject,
+  required TResult Function(GenerateComplete value) onGenerateComplete,
+  required TResult Function(OnGenerateScreensWithProject value)
         onGenerateScreensWithProjectChange,
     required TResult Function(OnGenerateRepositoriesWithProject value)
         onGenerateRepositoriesWithProjectChange,
@@ -11754,16 +11816,16 @@ TResult Function()? onLocalizationChange,
   TResult? Function(Init value)? init,
   TResult? Function(SwaggerParse value)? onSwaggerParse,
   TResult? Function(TabChange value)? onTabChange,
-    TResult? Function(ProjectPathChange value)? onProjectPathChange,
-    TResult? Function(ProjectNameChange value)? onProjectNameChange,
-    TResult? Function(ProjectCheck value)? projectCheck,
-    TResult? Function(OrganizationChange value)? onOrganizationChange,
-    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-    TResult? Function(FlavorsChange value)? onFlavorsChange,
-    TResult? Function(RouterChange value)? onRouterChange,
-    TResult? Function(LocalizationChange value)? onLocalizationChange,
-    TResult? Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
+  TResult? Function(ProjectPathChange value)? onProjectPathChange,
+  TResult? Function(ProjectNameChange value)? onProjectNameChange,
+  TResult? Function(ProjectCheck value)? projectCheck,
+  TResult? Function(OrganizationChange value)? onOrganizationChange,
+  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+  TResult? Function(FlavorsChange value)? onFlavorsChange,
+  TResult? Function(RouterChange value)? onRouterChange,
+  TResult? Function(LocalizationChange value)? onLocalizationChange,
+  TResult? Function(GenerateSigningKeyChange value)?
+  onGenerateSigningKeyChange,
     TResult? Function(UseSonarChange value)? onUseSonarChange,
     TResult? Function(IntegrateDevicePreviewChange value)?
         onIntegrateDevicePreviewChange,
@@ -11807,16 +11869,16 @@ TResult Function(FlavorsChange value)? onFlavorsChange,
 TResult Function(RouterChange value)? onRouterChange,
 TResult Function(LocalizationChange value)? onLocalizationChange,
 TResult Function(GenerateSigningKeyChange value)?
-        onGenerateSigningKeyChange,
-    TResult Function(UseSonarChange value)? onUseSonarChange,
-    TResult Function(IntegrateDevicePreviewChange value)?
-        onIntegrateDevicePreviewChange,
-    TResult Function(SigningVarsChange value)? onSigningVarsChange,
-    TResult Function(PlatformsChange value)? onPlatformsChange,
-    TResult Function(ThemingChange value)? onThemingChange,
-    TResult Function(GenerateProject value)? onGenerateProject,
-    TResult Function(GenerateComplete value)? onGenerateComplete,
-    TResult Function(OnGenerateScreensWithProject value)?
+onGenerateSigningKeyChange,
+TResult Function(UseSonarChange value)? onUseSonarChange,
+TResult Function(IntegrateDevicePreviewChange value)?
+onIntegrateDevicePreviewChange,
+TResult Function(SigningVarsChange value)? onSigningVarsChange,
+TResult Function(PlatformsChange value)? onPlatformsChange,
+TResult Function(ThemingChange value)? onThemingChange,
+TResult Function(GenerateProject value)? onGenerateProject,
+TResult Function(GenerateComplete value)? onGenerateComplete,
+TResult Function(OnGenerateScreensWithProject value)?
         onGenerateScreensWithProjectChange,
     TResult Function(OnGenerateRepositoriesWithProject value)?
         onGenerateRepositoriesWithProjectChange,

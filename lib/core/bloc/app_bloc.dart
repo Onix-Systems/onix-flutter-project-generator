@@ -72,15 +72,25 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _swaggerParse(
       SwaggerParse event, Emitter<AppState> emit) async {
-    var response = await http.get(Uri.parse(event.url));
+    //'https://dev.ranndomm.app/api/docs/?format=openapi'
+    //'https://petstore.swagger.io/v2/swagger.json'
+    //'https://vocadb.net/swagger/v1/swagger.json'
+
+    final url = event.url.isNotEmpty
+        ? event.url
+        : 'https://dev.ranndomm.app/api/docs/?format=openapi';
+
+    var response = await http.get(Uri.parse(url));
 
     var json = jsonDecode(response.body) as Map<String, dynamic>;
 
-    if (json.keys.contains('swagger')) {
-      SwaggerParser().parse(json);
-    } else {
-      OpenApiParser().parse(json);
+    BaseParser parser = SwaggerParser();
+
+    if (!json.keys.contains('swagger')) {
+      parser = OpenApiParser();
     }
+
+    parser.parse(json);
   }
 
   FutureOr<void> _init(_, Emitter<AppState> emit) {

@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/base_parser.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/json_writer.dart';
 
-class OpenApiParser implements BaseParser {
+class OpenApiParser extends BaseParser {
   String _basePath = '';
 
   @override
@@ -15,7 +13,5 @@ class OpenApiParser implements BaseParser {
     logger.d('OpenAPI Parser!');
 
     JsonWriter.write(json: data);
-
-    log(data.toString());
   }
 }

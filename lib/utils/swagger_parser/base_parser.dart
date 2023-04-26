@@ -1,5 +1,7 @@
-abstract class BaseParser {
-  String get basePath;
+class BaseParser {
+  String get basePath => '';
 
-  Future<void> parse(Map<String, dynamic> data);
+  Future<void> parse(Map<String, dynamic> data) async {
+    throw UnimplementedError();
+  }
 }

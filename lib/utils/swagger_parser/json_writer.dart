@@ -3,7 +3,7 @@ class JsonWriter {
     final prefix = '${'  ' * iteration}${iteration == 0 ? '' : ' ↪ '}';
     for (final key in json.keys) {
       final value = json[key];
-      print('$prefix$key');
+      print('${prefix}key: $key');
       if (value is Map<String, dynamic>) {
         write(json: value, iteration: iteration + 1);
       } else if (value is List) {
@@ -12,12 +12,12 @@ class JsonWriter {
           if (item is Map<String, dynamic>) {
             write(json: item, iteration: iteration + 1);
           } else {
-            print('  $prefix$item');
+            print('  ${prefix}value: $item');
           }
         }
         print('${prefix.replaceFirst(' ↪ ', '')}  ]');
       } else {
-        print('  $prefix$value');
+        print('  $prefix value: $value');
       }
     }
   }
