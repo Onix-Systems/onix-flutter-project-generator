@@ -56,7 +56,7 @@ class SwaggerParser {
             }
 
             if (TypeMatcher.getDartType(property.type) == 'Map') {
-              property.type = property.name.titleCase;
+              property.type = property.name.pascalCase;
 
               parseEntities({
                 'definitions': {
