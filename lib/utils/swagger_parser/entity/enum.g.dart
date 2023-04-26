@@ -1,19 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'entity.dart';
+part of 'enum.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Entity _$EntityFromJson(Map<String, dynamic> json) => Entity(
+EnumEntity _$EnumEntityFromJson(Map<String, dynamic> json) => EnumEntity(
       name: json['name'] as String,
       properties: (json['properties'] as List<dynamic>)
-          .map((e) => Property.fromJson(e as Map<String, dynamic>))
+          .map((e) => e as String)
           .toList(),
     );
 
-Map<String, dynamic> _$EntityToJson(Entity instance) => <String, dynamic>{
+Map<String, dynamic> _$EnumEntityToJson(EnumEntity instance) =>
+    <String, dynamic>{
       'name': instance.name,
       'properties': instance.properties,
     };

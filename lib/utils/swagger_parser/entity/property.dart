@@ -1,16 +1,16 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/domain/entity/type_matcher.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity/type_matcher.dart';
 
 part 'property.g.dart';
 
 @JsonSerializable()
 class Property {
-  final String? name;
+  final String name;
   late String type;
   final bool nullable;
 
   Property({
-    this.name,
+    required this.name,
     required this.type,
     this.nullable = false,
   });

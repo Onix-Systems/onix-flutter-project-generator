@@ -7,7 +7,7 @@ part of 'property.dart';
 // **************************************************************************
 
 Property _$PropertyFromJson(Map<String, dynamic> json) => Property(
-      name: json['name'] as String?,
+      name: json['name'] as String,
       type: json['type'] as String,
       nullable: json['nullable'] as bool? ?? false,
     );

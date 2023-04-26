@@ -1,19 +1,23 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/domain/entity/property.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity/entity.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity/property.dart';
 
-part 'entity.g.dart';
+part 'class_entity.g.dart';
 
 @JsonSerializable()
-class Entity {
+class ClassEntity implements Entity {
+  @override
   final String name;
+  @override
   final List<Property> properties;
 
-  Entity({
+  ClassEntity({
     required this.name,
     required this.properties,
   });
 
-  factory Entity.fromJson(Map<String, dynamic> json) => _$EntityFromJson(json);
+  factory ClassEntity.fromJson(Map<String, dynamic> json) =>
+      _$ClassEntityFromJson(json);
 
   @override
   String toString() {

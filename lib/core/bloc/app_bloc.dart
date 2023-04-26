@@ -13,8 +13,6 @@ import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/base_parser.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/openapi_parser.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
 import 'package:http/http.dart' as http;
@@ -23,6 +21,7 @@ import 'app_models.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   String projectPath;
+  final swaggerParser = SwaggerParser();
 
   final ConfigSource _configSource = ConfigSourceImpl();
 
@@ -75,42 +74,60 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     //'https://dev.ranndomm.app/api/docs/?format=openapi'
     //'https://petstore.swagger.io/v2/swagger.json'
     //'https://vocadb.net/swagger/v1/swagger.json'
+    //'https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json'
+
+    emit(state.copyWith(
+      entities: state.entities.where((element) => element.exists).toSet(),
+    ));
 
     final url = event.url.isNotEmpty
         ? event.url
-        : 'https://dev.ranndomm.app/api/docs/?format=openapi';
+        : 'https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json';
 
     var response = await http.get(Uri.parse(url));
 
     var json = jsonDecode(response.body) as Map<String, dynamic>;
 
-    BaseParser parser = SwaggerParser();
+    final parsedEntities = await swaggerParser.parseEntities(json);
 
-    if (!json.keys.contains('swagger')) {
-      parser = OpenApiParser();
+    final entities =
+        parsedEntities.map((e) => EntityEntity(name: e.name)).toList()
+          ..addAll(state.entities.toList())
+          ..sort((a, b) => a.name.compareTo(b.name));
+
+    for (var entity in parsedEntities) {
+      print(entity);
     }
 
-    parser.parse(json);
+    emit(state.copyWith(
+      entities: entities.toSet(),
+    ));
   }
 
   FutureOr<void> _init(_, Emitter<AppState> emit) {
     logger.d('init');
     emit(
       state.copyWith(
-        sources: {
-          SourceEntity(
-            name: 'time',
-            exists: true,
-            entities: [EntityEntity(name: 'time', exists: true)],
-          )
-        },
-        entities: {
-          EntityEntity(name: 'auth', exists: true),
-        },
-        screens: {
-          ScreenEntity(name: 'splash', exists: true),
-          ScreenEntity(name: 'home', exists: true)
-        },
+        sources: state.sources.isEmpty
+            ? {
+                SourceEntity(
+                  name: 'time',
+                  exists: true,
+                  entities: [EntityEntity(name: 'time', exists: true)],
+                )
+              }
+            : state.sources,
+        entities: state.entities.isEmpty
+            ? {
+                EntityEntity(name: 'auth', exists: true),
+              }
+            : state.entities,
+        screens: state.screens.isEmpty
+            ? {
+                ScreenEntity(name: 'splash', exists: true),
+                ScreenEntity(name: 'home', exists: true)
+              }
+            : state.screens,
       ),
     );
   }
@@ -172,20 +189,26 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     emit(state.copyWith(
       projectExists: projectExists,
       projectIsClean: projectIsClean,
-      sources: {
-        SourceEntity(
-          name: 'time',
-          exists: true,
-          entities: [EntityEntity(name: 'time', exists: true)],
-        )
-      },
-      entities: {
-        EntityEntity(name: 'auth', exists: true),
-      },
-      screens: {
-        ScreenEntity(name: 'splash', exists: true),
-        ScreenEntity(name: 'home', exists: true)
-      },
+      sources: state.sources.isNotEmpty
+          ? state.sources
+          : {
+              SourceEntity(
+                name: 'time',
+                exists: true,
+                entities: [EntityEntity(name: 'time', exists: true)],
+              )
+            },
+      entities: state.entities.isNotEmpty
+          ? state.entities
+          : {
+              EntityEntity(name: 'auth', exists: true),
+            },
+      screens: state.screens.isNotEmpty
+          ? state.screens
+          : {
+              ScreenEntity(name: 'splash', exists: true),
+              ScreenEntity(name: 'home', exists: true)
+            },
     ));
   }
 
@@ -607,7 +630,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _errorClear(_, Emitter<AppState> emit) async {
-    emit(state.copyWith(screenError: ''));
+    emit(state.copyWith(screenError: '', entityError: ''));
   }
 
   FutureOr<void> _openProject(OpenProject event, Emitter<AppState> emit) async {
