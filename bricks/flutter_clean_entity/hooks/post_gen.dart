@@ -117,7 +117,7 @@ Future<void> _genEntity(Entity entity) async {
       .replaceAll('\${className.snakeCase}', entity.name)
       .replaceAll('\${className.pascalCase}', entity.name.toPascalCase)
       .replaceAll('\${classBody}', entity.classBody)
-      .replaceAll('\${imports}', entity.imports));
+      .replaceAll('\${imports}', entity.imports.toString()));
 }
 
 Future<void> _genResponse(Entity entity) async {
