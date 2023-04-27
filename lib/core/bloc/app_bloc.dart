@@ -23,6 +23,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   String projectPath;
   final swaggerParser = SwaggerParser();
 
+  static const String gitRef = '--git-ref swagger_parser';
+
   final ConfigSource _configSource = ConfigSourceImpl();
 
   AppBloc({required this.projectPath})
@@ -339,11 +341,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       var mainProcess = await startProcess(workingDirectory: state.projectPath);
 
       mainProcess.stdin.writeln(
-          //GitHub
-          //  'mason add -g flutter_clean_base --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_base');
-          //GitLab
-          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_base --git-ref testing');
-
+          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
@@ -528,13 +526,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       var mainProcess = await startProcess(
           workingDirectory: '${state.projectPath}/${state.projectName}');
 
-      //GitHub
-      //mainProcess.stdin.writeln(
-      //    'mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_screen');
-
-      //GitLab
       mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_screen --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_screen --git-ref testing');
+          'mason add -g flutter_clean_screen --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_screen ${gitRef.isNotEmpty ? gitRef : ''}');
 
       logger.d('Generating screens... ${state.screens}');
 
@@ -582,13 +575,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
       var mainProcess = await startProcess(
           workingDirectory: '${state.projectPath}/${state.projectName}');
-      //GitHub
-      // mainProcess.stdin.writeln(
-      //     'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
 
-      //GitLab
       mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_entity --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_entity --git-ref testing');
+          'mason add -g flutter_clean_entity --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_entity ${gitRef.isNotEmpty ? gitRef : ''}');
+
       if (needToGenerateEntities) {
         var entities = state.entities
             .where((entity) => !entity.exists)

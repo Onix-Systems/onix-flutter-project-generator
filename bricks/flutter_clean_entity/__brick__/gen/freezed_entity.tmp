@@ -8,3 +8,5 @@ class ${className.pascalCase}Entity with _$${className.pascalCase}Entity {
         required String name,
     }) = _${className.pascalCase}Entity;
 }
+
+${classBody}
