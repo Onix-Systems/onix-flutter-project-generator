@@ -96,13 +96,15 @@ class SwaggerParser {
       List<Entity> entities, List<String> imports) {
     if (TypeMatcher.isReference(e.value['items'])) {
       property.type = 'List<${_getRefClassName(e.value['items'])}>';
-      imports.add(_getRefClassName(e.value['items']));
+      imports.add(_getRefClassName(e.value['items']).camelCase);
     } else {
       if ((e.value['items'] as Map<String, dynamic>).isEmpty) {
         property.type = 'List<${TypeMatcher.getDartType('dynamic')}>';
       } else {
         final className =
             property.name.substring(0, property.name.length - 1).pascalCase;
+
+        imports.add(className.camelCase);
 
         if (e.value['items'].containsKey('type') &&
             e.value['items']['type'] != 'object') {
