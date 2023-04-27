@@ -44,4 +44,7 @@ class EnumEntity implements Entity {
 
     return result;
   }
+
+  @override
+  Set<String> get imports => {};
 }

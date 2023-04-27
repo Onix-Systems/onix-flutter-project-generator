@@ -81,16 +81,16 @@ mixin _$AppEvent {
     TResult? Function()? onGenerateProject,
     TResult? Function()? onGenerateComplete,
     TResult? Function(bool generateScreensWithProject)?
-    onGenerateScreensWithProjectChange,
+        onGenerateScreensWithProjectChange,
     TResult? Function(bool generateRepositoriesWithProject)?
-    onGenerateRepositoriesWithProjectChange,
+        onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
     TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
     TResult? Function(SourceEntity source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
     TResult? Function(EntityEntity entity, SourceEntity? source)?
-    onEntityDelete,
+        onEntityDelete,
     TResult? Function(SourceEntity source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
@@ -100,591 +100,44 @@ mixin _$AppEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen
-
-  <
-
-  TResult
-
-  extends
-
-  Object?
-
-  >
-
-  (
-
-  {
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  init
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  String
-
-  url
-
-  )
-
-  ?
-
-  onSwaggerParse
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  int
-
-  tabIndex
-
-  )
-
-  ?
-
-  onTabChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  String
-
-  projectPath
-
-  )
-
-  ?
-
-  onProjectPathChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  String
-
-  projectName
-
-  ,
-
-  TextPosition
-
-  textPosition
-
-  )
-
-  ?
-
-  onProjectNameChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  projectCheck
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  String
-
-  organization
-
-  )
-
-  ?
-
-  onOrganizationChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onFlavorizeChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  String
-
-  flavors
-
-  )
-
-  ?
-
-  onFlavorsChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onRouterChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onLocalizationChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onGenerateSigningKeyChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onUseSonarChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onIntegrateDevicePreviewChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  List
-
-  <
-
-  String
-
-  >
-
-  signingVars
-
-  )
-
-  ?
-
-  onSigningVarsChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  PlatformsList
-
-  platforms
-
-  )
-
-  ?
-
-  onPlatformsChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onThemingChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onGenerateProject
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onGenerateComplete
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  bool
-
-  generateScreensWithProject
-
-  )
-
-  ?
-
-  onGenerateScreensWithProjectChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  bool
-
-  generateRepositoriesWithProject
-
-  )
-
-  ?
-
-  onGenerateRepositoriesWithProjectChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  String
-
-  projectPath
-
-  )
-
-  ?
-
-  onProjectChange
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  ScreenEntity
-
-  screen
-
-  )
-
-  ?
-
-  onScreenAdd
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  EntityEntity
-
-  entity
-
-  ,
-
-  SourceEntity
-
-  ?
-
-  source
-
-  )
-
-  ?
-
-  onEntityAdd
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  SourceEntity
-
-  source
-
-  )
-
-  ?
-
-  onSourceAdd
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  ScreenEntity
-
-  screen
-
-  )
-
-  ?
-
-  onScreenDelete
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  EntityEntity
-
-  entity
-
-  ,
-
-  SourceEntity
-
-  ?
-
-  source
-
-  )
-
-  ?
-
-  onEntityDelete
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  SourceEntity
-
-  source
-
-  )
-
-  ?
-
-  onSourceDelete
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onStateUpdate
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onScreensGenerate
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onEntitiesGenerate
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  onErrorClear
-
-  ,
-
-  TResult
-
-  Function
-
-  (
-
-  )
-
-  ?
-
-  open
-
-  ,
-
-  required
-
-  TResult
-
-  orElse
-
-  (
-
-  )
-
-  ,
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -824,9 +277,9 @@ class _$AppEventCopyWithImpl<$Res, $Val extends AppEvent>
     implements $AppEventCopyWith<$Res> {
   _$AppEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -846,156 +299,156 @@ class __$$InitCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res, _$Init>
 /// @nodoc
 
 class _$Init implements Init {
-const _$Init();
+  const _$Init();
 
-@override
-String toString() {
-return 'AppEvent.init()';
-}
+  @override
+  String toString() {
+    return 'AppEvent.init()';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType && other is _$Init);
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$Init);
+  }
 
-@override
-int get hashCode => runtimeType.hashCode;
+  @override
+  int get hashCode => runtimeType.hashCode;
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
-return init();
-}
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
+    return init();
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
-return init?.call();
-}
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
+    return init?.call();
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
-if (init != null) {
-return init();
-}
-return orElse();
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init();
+    }
+    return orElse();
   }
 
   @override
@@ -1045,39 +498,39 @@ return orElse();
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -1089,54 +542,54 @@ return orElse();
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
-if (init != null) {
-return init(this);
-}
-return orElse();
-}
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class Init implements AppEvent {
-const factory Init() = _$Init;
+  const factory Init() = _$Init;
 }
 
 /// @nodoc
@@ -1173,304 +626,304 @@ class __$$SwaggerParseCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SwaggerParse implements SwaggerParse {
-const _$SwaggerParse({required this.url});
+  const _$SwaggerParse({required this.url});
 
-@override
-final String url;
+  @override
+  final String url;
 
-@override
-String toString() {
-return 'AppEvent.onSwaggerParse(url: $url)';
-}
+  @override
+  String toString() {
+    return 'AppEvent.onSwaggerParse(url: $url)';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType &&
-other is _$SwaggerParse &&
-(identical(other.url, url) || other.url == url));
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SwaggerParse &&
+            (identical(other.url, url) || other.url == url));
+  }
 
-@override
-int get hashCode => Object.hash(runtimeType, url);
+  @override
+  int get hashCode => Object.hash(runtimeType, url);
 
-@JsonKey(ignore: true)
-@override
-@pragma('vm:prefer-inline')
-_$$SwaggerParseCopyWith<_$SwaggerParse> get copyWith =>
-__$$SwaggerParseCopyWithImpl<_$SwaggerParse>(this, _$identity);
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SwaggerParseCopyWith<_$SwaggerParse> get copyWith =>
+      __$$SwaggerParseCopyWithImpl<_$SwaggerParse>(this, _$identity);
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
-return onSwaggerParse(url);
-}
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
+    return onSwaggerParse(url);
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
-return onSwaggerParse?.call(url);
-}
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
+    return onSwaggerParse?.call(url);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
-if (onSwaggerParse != null) {
-return onSwaggerParse(url);
-}
-return orElse();
-}
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
+    if (onSwaggerParse != null) {
+      return onSwaggerParse(url);
+    }
+    return orElse();
+  }
 
-@override
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
-return onSwaggerParse(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
+    return onSwaggerParse(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
-TResult? Function(ScreensGenerate value)? onScreensGenerate,
-TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult? Function(ErrorClear value)? onErrorClear,
-TResult? Function(OpenProject value)? open,
-}) {
-return onSwaggerParse?.call(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(ScreensGenerate value)? onScreensGenerate,
+    TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult? Function(ErrorClear value)? onErrorClear,
+    TResult? Function(OpenProject value)? open,
+  }) {
+    return onSwaggerParse?.call(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
-if (onSwaggerParse != null) {
-return onSwaggerParse(this);
-}
-return orElse();
-}
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
+    if (onSwaggerParse != null) {
+      return onSwaggerParse(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class SwaggerParse implements AppEvent {
@@ -1516,314 +969,314 @@ class __$$TabChangeCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TabChange implements TabChange {
-const _$TabChange({required this.tabIndex});
+  const _$TabChange({required this.tabIndex});
 
-@override
-final int tabIndex;
+  @override
+  final int tabIndex;
 
-@override
-String toString() {
-return 'AppEvent.onTabChange(tabIndex: $tabIndex)';
-}
+  @override
+  String toString() {
+    return 'AppEvent.onTabChange(tabIndex: $tabIndex)';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType &&
-other is _$TabChange &&
-(identical(other.tabIndex, tabIndex) ||
-other.tabIndex == tabIndex));
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TabChange &&
+            (identical(other.tabIndex, tabIndex) ||
+                other.tabIndex == tabIndex));
+  }
 
-@override
-int get hashCode => Object.hash(runtimeType, tabIndex);
+  @override
+  int get hashCode => Object.hash(runtimeType, tabIndex);
 
-@JsonKey(ignore: true)
-@override
-@pragma('vm:prefer-inline')
-_$$TabChangeCopyWith<_$TabChange> get copyWith =>
-__$$TabChangeCopyWithImpl<_$TabChange>(this, _$identity);
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TabChangeCopyWith<_$TabChange> get copyWith =>
+      __$$TabChangeCopyWithImpl<_$TabChange>(this, _$identity);
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
-return onTabChange(tabIndex);
-}
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
+    return onTabChange(tabIndex);
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
-return onTabChange?.call(tabIndex);
-}
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
+    return onTabChange?.call(tabIndex);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
-if (onTabChange != null) {
-return onTabChange(tabIndex);
-}
-return orElse();
-}
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
+    if (onTabChange != null) {
+      return onTabChange(tabIndex);
+    }
+    return orElse();
+  }
 
-@override
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
-return onTabChange(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
+    return onTabChange(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
-TResult? Function(ScreensGenerate value)? onScreensGenerate,
-TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult? Function(ErrorClear value)? onErrorClear,
-TResult? Function(OpenProject value)? open,
-}) {
-return onTabChange?.call(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(ScreensGenerate value)? onScreensGenerate,
+    TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult? Function(ErrorClear value)? onErrorClear,
+    TResult? Function(OpenProject value)? open,
+  }) {
+    return onTabChange?.call(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
-if (onTabChange != null) {
-return onTabChange(this);
-}
-return orElse();
-}
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
+    if (onTabChange != null) {
+      return onTabChange(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class TabChange implements AppEvent {
-const factory TabChange({required final int tabIndex}) = _$TabChange;
+  const factory TabChange({required final int tabIndex}) = _$TabChange;
 
-int get tabIndex;
-@JsonKey(ignore: true)
-_$$TabChangeCopyWith<_$TabChange> get copyWith =>
-throw _privateConstructorUsedError;
+  int get tabIndex;
+  @JsonKey(ignore: true)
+  _$$TabChangeCopyWith<_$TabChange> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1891,133 +1344,133 @@ class _$ProjectPathChange implements ProjectPathChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onProjectPathChange(projectPath);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
     return onProjectPathChange?.call(projectPath);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
     if (onProjectPathChange != null) {
       return onProjectPathChange(projectPath);
     }
@@ -2027,83 +1480,83 @@ required TResult orElse(),
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
     return onProjectPathChange(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -2115,45 +1568,45 @@ TResult? Function(StateUpdate value)? onStateUpdate,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onProjectPathChange != null) {
       return onProjectPathChange(this);
     }
@@ -2246,133 +1699,133 @@ class _$ProjectNameChange implements ProjectNameChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onProjectNameChange(projectName, textPosition);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
     return onProjectNameChange?.call(projectName, textPosition);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
     if (onProjectNameChange != null) {
       return onProjectNameChange(projectName, textPosition);
     }
@@ -2382,83 +1835,83 @@ required TResult orElse(),
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
     return onProjectNameChange(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -2470,45 +1923,45 @@ TResult? Function(StateUpdate value)? onStateUpdate,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onProjectNameChange != null) {
       return onProjectNameChange(this);
     }
@@ -2566,45 +2019,45 @@ class _$ProjectCheck implements ProjectCheck {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return projectCheck();
   }
 
@@ -2746,39 +2199,39 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -2790,45 +2243,45 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (projectCheck != null) {
       return projectCheck(this);
     }
@@ -2906,133 +2359,133 @@ class _$OrganizationChange implements OrganizationChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onOrganizationChange(organization);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
     return onOrganizationChange?.call(organization);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
     if (onOrganizationChange != null) {
       return onOrganizationChange(organization);
     }
@@ -3042,83 +2495,83 @@ required TResult orElse(),
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
     return onOrganizationChange(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -3130,45 +2583,45 @@ TResult? Function(StateUpdate value)? onStateUpdate,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onOrganizationChange != null) {
       return onOrganizationChange(this);
     }
@@ -3224,45 +2677,45 @@ class _$FlavorizeChange implements FlavorizeChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onFlavorizeChange();
   }
 
@@ -3404,39 +2857,39 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -3448,45 +2901,45 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onFlavorizeChange != null) {
       return onFlavorizeChange(this);
     }
@@ -3562,133 +3015,133 @@ class _$FlavorsChange implements FlavorsChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onFlavorsChange(flavors);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
     return onFlavorsChange?.call(flavors);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
     if (onFlavorsChange != null) {
       return onFlavorsChange(flavors);
     }
@@ -3698,83 +3151,83 @@ required TResult orElse(),
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
     return onFlavorsChange(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -3786,45 +3239,45 @@ TResult? Function(StateUpdate value)? onStateUpdate,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onFlavorsChange != null) {
       return onFlavorsChange(this);
     }
@@ -3880,45 +3333,45 @@ class _$RouterChange implements RouterChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onRouterChange();
   }
 
@@ -4060,39 +3513,39 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -4104,45 +3557,45 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onRouterChange != null) {
       return onRouterChange(this);
     }
@@ -4192,45 +3645,45 @@ class _$LocalizationChange implements LocalizationChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onLocalizationChange();
   }
 
@@ -4372,39 +3825,39 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -4416,45 +3869,45 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onLocalizationChange != null) {
       return onLocalizationChange(this);
     }
@@ -4505,45 +3958,45 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onGenerateSigningKeyChange();
   }
 
@@ -4685,39 +4138,39 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -4729,45 +4182,45 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onGenerateSigningKeyChange != null) {
       return onGenerateSigningKeyChange(this);
     }
@@ -4817,45 +4270,45 @@ class _$UseSonarChange implements UseSonarChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onUseSonarChange();
   }
 
@@ -4997,39 +4450,39 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -5041,45 +4494,45 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onUseSonarChange != null) {
       return onUseSonarChange(this);
     }
@@ -5132,45 +4585,45 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onIntegrateDevicePreviewChange();
   }
 
@@ -5312,39 +4765,39 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -5356,45 +4809,45 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onIntegrateDevicePreviewChange != null) {
       return onIntegrateDevicePreviewChange(this);
     }
@@ -5658,39 +5111,39 @@ class _$SigningVarsChange implements SigningVarsChange {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -5702,45 +5155,45 @@ class _$SigningVarsChange implements SigningVarsChange {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onSigningVarsChange != null) {
       return onSigningVarsChange(this);
     }
@@ -5833,133 +5286,133 @@ class _$PlatformsChange implements PlatformsChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onPlatformsChange(platforms);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
     return onPlatformsChange?.call(platforms);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
     if (onPlatformsChange != null) {
       return onPlatformsChange(platforms);
     }
@@ -5969,83 +5422,83 @@ required TResult orElse(),
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
     return onPlatformsChange(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -6057,45 +5510,45 @@ TResult? Function(StateUpdate value)? onStateUpdate,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onPlatformsChange != null) {
       return onPlatformsChange(this);
     }
@@ -6151,45 +5604,45 @@ class _$ThemingChange implements ThemingChange {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onThemingChange();
   }
 
@@ -6331,39 +5784,39 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -6375,45 +5828,45 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onThemingChange != null) {
       return onThemingChange(this);
     }
@@ -6463,45 +5916,45 @@ class _$GenerateProject implements GenerateProject {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onGenerateProject();
   }
 
@@ -6643,39 +6096,39 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -6687,45 +6140,45 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onGenerateProject != null) {
       return onGenerateProject(this);
     }
@@ -6734,7 +6187,7 @@ required TResult orElse(),
 }
 
 abstract class GenerateProject implements AppEvent {
-const factory GenerateProject() = _$GenerateProject;
+  const factory GenerateProject() = _$GenerateProject;
 }
 
 /// @nodoc
@@ -6775,45 +6228,45 @@ class _$GenerateComplete implements GenerateComplete {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onGenerateComplete();
   }
 
@@ -6955,39 +6408,39 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -6999,45 +6452,45 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onGenerateComplete != null) {
       return onGenerateComplete(this);
     }
@@ -7120,133 +6573,133 @@ class _$OnGenerateScreensWithProject implements OnGenerateScreensWithProject {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onGenerateScreensWithProjectChange(generateScreensWithProject);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
     return onGenerateScreensWithProjectChange?.call(generateScreensWithProject);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
     if (onGenerateScreensWithProjectChange != null) {
       return onGenerateScreensWithProjectChange(generateScreensWithProject);
     }
@@ -7256,83 +6709,83 @@ required TResult orElse(),
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
     return onGenerateScreensWithProjectChange(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -7344,45 +6797,45 @@ TResult? Function(StateUpdate value)? onStateUpdate,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onGenerateScreensWithProjectChange != null) {
       return onGenerateScreensWithProjectChange(this);
     }
@@ -7474,45 +6927,45 @@ class _$OnGenerateRepositoriesWithProject
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onGenerateRepositoriesWithProjectChange(
         generateRepositoriesWithProject);
   }
@@ -7520,44 +6973,44 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
     return onGenerateRepositoriesWithProjectChange
         ?.call(generateRepositoriesWithProject);
   }
@@ -7565,44 +7018,44 @@ TResult? Function()? open,
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
     if (onGenerateRepositoriesWithProjectChange != null) {
       return onGenerateRepositoriesWithProjectChange(
           generateRepositoriesWithProject);
@@ -7613,83 +7066,83 @@ required TResult orElse(),
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
     return onGenerateRepositoriesWithProjectChange(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -7701,45 +7154,45 @@ TResult? Function(StateUpdate value)? onStateUpdate,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onGenerateRepositoriesWithProjectChange != null) {
       return onGenerateRepositoriesWithProjectChange(this);
     }
@@ -7793,315 +7246,315 @@ class __$$ProjectChangeCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProjectChange implements ProjectChange {
-const _$ProjectChange({required this.projectPath});
+  const _$ProjectChange({required this.projectPath});
 
-@override
-final String projectPath;
+  @override
+  final String projectPath;
 
-@override
-String toString() {
-return 'AppEvent.onProjectChange(projectPath: $projectPath)';
-}
+  @override
+  String toString() {
+    return 'AppEvent.onProjectChange(projectPath: $projectPath)';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType &&
-other is _$ProjectChange &&
-(identical(other.projectPath, projectPath) ||
-other.projectPath == projectPath));
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectChange &&
+            (identical(other.projectPath, projectPath) ||
+                other.projectPath == projectPath));
+  }
 
-@override
-int get hashCode => Object.hash(runtimeType, projectPath);
+  @override
+  int get hashCode => Object.hash(runtimeType, projectPath);
 
-@JsonKey(ignore: true)
-@override
-@pragma('vm:prefer-inline')
-_$$ProjectChangeCopyWith<_$ProjectChange> get copyWith =>
-__$$ProjectChangeCopyWithImpl<_$ProjectChange>(this, _$identity);
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectChangeCopyWith<_$ProjectChange> get copyWith =>
+      __$$ProjectChangeCopyWithImpl<_$ProjectChange>(this, _$identity);
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
-return onProjectChange(projectPath);
-}
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
+    return onProjectChange(projectPath);
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
-return onProjectChange?.call(projectPath);
-}
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
+    return onProjectChange?.call(projectPath);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
-if (onProjectChange != null) {
-return onProjectChange(projectPath);
-}
-return orElse();
-}
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
+    if (onProjectChange != null) {
+      return onProjectChange(projectPath);
+    }
+    return orElse();
+  }
 
-@override
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
-return onProjectChange(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
+    return onProjectChange(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
-TResult? Function(ScreensGenerate value)? onScreensGenerate,
-TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult? Function(ErrorClear value)? onErrorClear,
-TResult? Function(OpenProject value)? open,
-}) {
-return onProjectChange?.call(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(ScreensGenerate value)? onScreensGenerate,
+    TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult? Function(ErrorClear value)? onErrorClear,
+    TResult? Function(OpenProject value)? open,
+  }) {
+    return onProjectChange?.call(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
-if (onProjectChange != null) {
-return onProjectChange(this);
-}
-return orElse();
-}
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
+    if (onProjectChange != null) {
+      return onProjectChange(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class ProjectChange implements AppEvent {
-const factory ProjectChange({required final String projectPath}) =
-_$ProjectChange;
+  const factory ProjectChange({required final String projectPath}) =
+      _$ProjectChange;
 
-String get projectPath;
-@JsonKey(ignore: true)
-_$$ProjectChangeCopyWith<_$ProjectChange> get copyWith =>
-throw _privateConstructorUsedError;
+  String get projectPath;
+  @JsonKey(ignore: true)
+  _$$ProjectChangeCopyWith<_$ProjectChange> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -8168,133 +7621,133 @@ class _$ScreenAdd implements ScreenAdd {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onScreenAdd(screen);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
     return onScreenAdd?.call(screen);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
     if (onScreenAdd != null) {
       return onScreenAdd(screen);
     }
@@ -8304,83 +7757,83 @@ required TResult orElse(),
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
     return onScreenAdd(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -8392,45 +7845,45 @@ TResult? Function(StateUpdate value)? onStateUpdate,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onScreenAdd != null) {
       return onScreenAdd(this);
     }
@@ -8486,308 +7939,308 @@ class __$$EntityAddCopyWithImpl<$Res>
 /// @nodoc
 
 class _$EntityAdd implements EntityAdd {
-const _$EntityAdd({required this.entity, this.source = null});
+  const _$EntityAdd({required this.entity, this.source = null});
 
-@override
-final EntityEntity entity;
-@override
-@JsonKey()
-final SourceEntity? source;
+  @override
+  final EntityEntity entity;
+  @override
+  @JsonKey()
+  final SourceEntity? source;
 
-@override
-String toString() {
-return 'AppEvent.onEntityAdd(entity: $entity, source: $source)';
-}
+  @override
+  String toString() {
+    return 'AppEvent.onEntityAdd(entity: $entity, source: $source)';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType &&
-other is _$EntityAdd &&
-(identical(other.entity, entity) || other.entity == entity) &&
-(identical(other.source, source) || other.source == source));
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EntityAdd &&
+            (identical(other.entity, entity) || other.entity == entity) &&
+            (identical(other.source, source) || other.source == source));
+  }
 
-@override
-int get hashCode => Object.hash(runtimeType, entity, source);
+  @override
+  int get hashCode => Object.hash(runtimeType, entity, source);
 
-@JsonKey(ignore: true)
-@override
-@pragma('vm:prefer-inline')
-_$$EntityAddCopyWith<_$EntityAdd> get copyWith =>
-__$$EntityAddCopyWithImpl<_$EntityAdd>(this, _$identity);
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EntityAddCopyWith<_$EntityAdd> get copyWith =>
+      __$$EntityAddCopyWithImpl<_$EntityAdd>(this, _$identity);
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
-return onEntityAdd(entity, source);
-}
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
+    return onEntityAdd(entity, source);
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
-return onEntityAdd?.call(entity, source);
-}
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
+    return onEntityAdd?.call(entity, source);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
-if (onEntityAdd != null) {
-return onEntityAdd(entity, source);
-}
-return orElse();
-}
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
+    if (onEntityAdd != null) {
+      return onEntityAdd(entity, source);
+    }
+    return orElse();
+  }
 
-@override
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
-return onEntityAdd(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
+    return onEntityAdd(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
-TResult? Function(ScreensGenerate value)? onScreensGenerate,
-TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult? Function(ErrorClear value)? onErrorClear,
-TResult? Function(OpenProject value)? open,
-}) {
-return onEntityAdd?.call(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(ScreensGenerate value)? onScreensGenerate,
+    TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult? Function(ErrorClear value)? onErrorClear,
+    TResult? Function(OpenProject value)? open,
+  }) {
+    return onEntityAdd?.call(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
-if (onEntityAdd != null) {
-return onEntityAdd(this);
-}
-return orElse();
-}
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
+    if (onEntityAdd != null) {
+      return onEntityAdd(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class EntityAdd implements AppEvent {
@@ -8866,133 +8319,133 @@ class _$SourceAdd implements SourceAdd {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onSourceAdd(source);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
     return onSourceAdd?.call(source);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
     if (onSourceAdd != null) {
       return onSourceAdd(source);
     }
@@ -9002,83 +8455,83 @@ required TResult orElse(),
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
     return onSourceAdd(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -9090,45 +8543,45 @@ TResult? Function(StateUpdate value)? onStateUpdate,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onSourceAdd != null) {
       return onSourceAdd(this);
     }
@@ -9179,304 +8632,304 @@ class __$$ScreenDeleteCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ScreenDelete implements ScreenDelete {
-const _$ScreenDelete({required this.screen});
+  const _$ScreenDelete({required this.screen});
 
-@override
-final ScreenEntity screen;
+  @override
+  final ScreenEntity screen;
 
-@override
-String toString() {
-return 'AppEvent.onScreenDelete(screen: $screen)';
-}
+  @override
+  String toString() {
+    return 'AppEvent.onScreenDelete(screen: $screen)';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType &&
-other is _$ScreenDelete &&
-(identical(other.screen, screen) || other.screen == screen));
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ScreenDelete &&
+            (identical(other.screen, screen) || other.screen == screen));
+  }
 
-@override
-int get hashCode => Object.hash(runtimeType, screen);
+  @override
+  int get hashCode => Object.hash(runtimeType, screen);
 
-@JsonKey(ignore: true)
-@override
-@pragma('vm:prefer-inline')
-_$$ScreenDeleteCopyWith<_$ScreenDelete> get copyWith =>
-__$$ScreenDeleteCopyWithImpl<_$ScreenDelete>(this, _$identity);
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ScreenDeleteCopyWith<_$ScreenDelete> get copyWith =>
+      __$$ScreenDeleteCopyWithImpl<_$ScreenDelete>(this, _$identity);
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
-return onScreenDelete(screen);
-}
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
+    return onScreenDelete(screen);
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
-return onScreenDelete?.call(screen);
-}
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
+    return onScreenDelete?.call(screen);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
-if (onScreenDelete != null) {
-return onScreenDelete(screen);
-}
-return orElse();
-}
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
+    if (onScreenDelete != null) {
+      return onScreenDelete(screen);
+    }
+    return orElse();
+  }
 
-@override
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
-return onScreenDelete(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
+    return onScreenDelete(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
-TResult? Function(ScreensGenerate value)? onScreensGenerate,
-TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult? Function(ErrorClear value)? onErrorClear,
-TResult? Function(OpenProject value)? open,
-}) {
-return onScreenDelete?.call(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(ScreensGenerate value)? onScreensGenerate,
+    TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult? Function(ErrorClear value)? onErrorClear,
+    TResult? Function(OpenProject value)? open,
+  }) {
+    return onScreenDelete?.call(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
-if (onScreenDelete != null) {
-return onScreenDelete(this);
-}
-return orElse();
-}
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
+    if (onScreenDelete != null) {
+      return onScreenDelete(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class ScreenDelete implements AppEvent {
@@ -9528,260 +8981,260 @@ class __$$EntityDeleteCopyWithImpl<$Res>
 /// @nodoc
 
 class _$EntityDelete implements EntityDelete {
-const _$EntityDelete({required this.entity, this.source = null});
+  const _$EntityDelete({required this.entity, this.source = null});
 
-@override
-final EntityEntity entity;
-@override
-@JsonKey()
-final SourceEntity? source;
+  @override
+  final EntityEntity entity;
+  @override
+  @JsonKey()
+  final SourceEntity? source;
 
-@override
-String toString() {
-return 'AppEvent.onEntityDelete(entity: $entity, source: $source)';
-}
+  @override
+  String toString() {
+    return 'AppEvent.onEntityDelete(entity: $entity, source: $source)';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType &&
-other is _$EntityDelete &&
-(identical(other.entity, entity) || other.entity == entity) &&
-(identical(other.source, source) || other.source == source));
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EntityDelete &&
+            (identical(other.entity, entity) || other.entity == entity) &&
+            (identical(other.source, source) || other.source == source));
+  }
 
-@override
-int get hashCode => Object.hash(runtimeType, entity, source);
+  @override
+  int get hashCode => Object.hash(runtimeType, entity, source);
 
-@JsonKey(ignore: true)
-@override
-@pragma('vm:prefer-inline')
-_$$EntityDeleteCopyWith<_$EntityDelete> get copyWith =>
-__$$EntityDeleteCopyWithImpl<_$EntityDelete>(this, _$identity);
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EntityDeleteCopyWith<_$EntityDelete> get copyWith =>
+      __$$EntityDeleteCopyWithImpl<_$EntityDelete>(this, _$identity);
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
-return onEntityDelete(entity, source);
-}
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
+    return onEntityDelete(entity, source);
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
-return onEntityDelete?.call(entity, source);
-}
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
+    return onEntityDelete?.call(entity, source);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
-if (onEntityDelete != null) {
-return onEntityDelete(entity, source);
-}
-return orElse();
-}
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
+    if (onEntityDelete != null) {
+      return onEntityDelete(entity, source);
+    }
+    return orElse();
+  }
 
-@override
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
-return onEntityDelete(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
+    return onEntityDelete(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
-TResult? Function(ScreensGenerate value)? onScreensGenerate,
-TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult? Function(ErrorClear value)? onErrorClear,
-TResult? Function(OpenProject value)? open,
-}) {
-return onEntityDelete?.call(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(ScreensGenerate value)? onScreensGenerate,
+    TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult? Function(ErrorClear value)? onErrorClear,
+    TResult? Function(OpenProject value)? open,
+  }) {
+    return onEntityDelete?.call(this);
+  }
 
   @override
   @optionalTypeArgs
@@ -9908,133 +9361,133 @@ class _$SourceDelete implements SourceDelete {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onSourceDelete(source);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
     return onSourceDelete?.call(source);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
     if (onSourceDelete != null) {
       return onSourceDelete(source);
     }
@@ -10044,83 +9497,83 @@ required TResult orElse(),
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
     return onSourceDelete(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -10132,45 +9585,45 @@ TResult? Function(StateUpdate value)? onStateUpdate,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onSourceDelete != null) {
       return onSourceDelete(this);
     }
@@ -10207,156 +9660,156 @@ class __$$StateUpdateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$StateUpdate implements StateUpdate {
-const _$StateUpdate();
+  const _$StateUpdate();
 
-@override
-String toString() {
-return 'AppEvent.onStateUpdate()';
-}
+  @override
+  String toString() {
+    return 'AppEvent.onStateUpdate()';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType && other is _$StateUpdate);
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StateUpdate);
+  }
 
-@override
-int get hashCode => runtimeType.hashCode;
+  @override
+  int get hashCode => runtimeType.hashCode;
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
-return onStateUpdate();
-}
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
+    return onStateUpdate();
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
-return onStateUpdate?.call();
-}
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
+    return onStateUpdate?.call();
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
-if (onStateUpdate != null) {
-return onStateUpdate();
-}
-return orElse();
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
+    if (onStateUpdate != null) {
+      return onStateUpdate();
+    }
+    return orElse();
   }
 
   @override
@@ -10406,39 +9859,39 @@ return orElse();
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -10450,45 +9903,45 @@ return orElse();
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onStateUpdate != null) {
       return onStateUpdate(this);
     }
@@ -10497,7 +9950,7 @@ required TResult orElse(),
 }
 
 abstract class StateUpdate implements AppEvent {
-const factory StateUpdate() = _$StateUpdate;
+  const factory StateUpdate() = _$StateUpdate;
 }
 
 /// @nodoc
@@ -10538,45 +9991,45 @@ class _$ScreensGenerate implements ScreensGenerate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
     return onScreensGenerate();
   }
 
@@ -10718,39 +10171,39 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -10762,45 +10215,45 @@ required TResult Function() open,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onScreensGenerate != null) {
       return onScreensGenerate(this);
     }
@@ -10809,7 +10262,7 @@ required TResult orElse(),
 }
 
 abstract class ScreensGenerate implements AppEvent {
-const factory ScreensGenerate() = _$ScreensGenerate;
+  const factory ScreensGenerate() = _$ScreensGenerate;
 }
 
 /// @nodoc
@@ -10831,238 +10284,238 @@ class __$$EntitiesGenerateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$EntitiesGenerate implements EntitiesGenerate {
-const _$EntitiesGenerate();
+  const _$EntitiesGenerate();
 
-@override
-String toString() {
-return 'AppEvent.onEntitiesGenerate()';
-}
+  @override
+  String toString() {
+    return 'AppEvent.onEntitiesGenerate()';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType && other is _$EntitiesGenerate);
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EntitiesGenerate);
+  }
 
-@override
-int get hashCode => runtimeType.hashCode;
+  @override
+  int get hashCode => runtimeType.hashCode;
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
-return onEntitiesGenerate();
-}
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
+    return onEntitiesGenerate();
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
-return onEntitiesGenerate?.call();
-}
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
+    return onEntitiesGenerate?.call();
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
-if (onEntitiesGenerate != null) {
-return onEntitiesGenerate();
-}
-return orElse();
-}
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
+    if (onEntitiesGenerate != null) {
+      return onEntitiesGenerate();
+    }
+    return orElse();
+  }
 
-@override
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
-required TResult Function(Init value) init,
-required TResult Function(SwaggerParse value) onSwaggerParse,
-required TResult Function(TabChange value) onTabChange,
-required TResult Function(ProjectPathChange value) onProjectPathChange,
-required TResult Function(ProjectNameChange value) onProjectNameChange,
-required TResult Function(ProjectCheck value) projectCheck,
-required TResult Function(OrganizationChange value) onOrganizationChange,
-required TResult Function(FlavorizeChange value) onFlavorizeChange,
-required TResult Function(FlavorsChange value) onFlavorsChange,
-required TResult Function(RouterChange value) onRouterChange,
-required TResult Function(LocalizationChange value) onLocalizationChange,
-required TResult Function(GenerateSigningKeyChange value)
-onGenerateSigningKeyChange,
-required TResult Function(UseSonarChange value) onUseSonarChange,
-required TResult Function(IntegrateDevicePreviewChange value)
-onIntegrateDevicePreviewChange,
-required TResult Function(SigningVarsChange value) onSigningVarsChange,
-required TResult Function(PlatformsChange value) onPlatformsChange,
-required TResult Function(ThemingChange value) onThemingChange,
-required TResult Function(GenerateProject value) onGenerateProject,
-required TResult Function(GenerateComplete value) onGenerateComplete,
-required TResult Function(OnGenerateScreensWithProject value)
-onGenerateScreensWithProjectChange,
-required TResult Function(OnGenerateRepositoriesWithProject value)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(ProjectChange value) onProjectChange,
-required TResult Function(ScreenAdd value) onScreenAdd,
-required TResult Function(EntityAdd value) onEntityAdd,
-required TResult Function(SourceAdd value) onSourceAdd,
-required TResult Function(ScreenDelete value) onScreenDelete,
-required TResult Function(EntityDelete value) onEntityDelete,
-required TResult Function(SourceDelete value) onSourceDelete,
-required TResult Function(StateUpdate value) onStateUpdate,
-required TResult Function(ScreensGenerate value) onScreensGenerate,
-required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
-required TResult Function(ErrorClear value) onErrorClear,
-required TResult Function(OpenProject value) open,
-}) {
-return onEntitiesGenerate(this);
-}
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Init value) init,
+    required TResult Function(SwaggerParse value) onSwaggerParse,
+    required TResult Function(TabChange value) onTabChange,
+    required TResult Function(ProjectPathChange value) onProjectPathChange,
+    required TResult Function(ProjectNameChange value) onProjectNameChange,
+    required TResult Function(ProjectCheck value) projectCheck,
+    required TResult Function(OrganizationChange value) onOrganizationChange,
+    required TResult Function(FlavorizeChange value) onFlavorizeChange,
+    required TResult Function(FlavorsChange value) onFlavorsChange,
+    required TResult Function(RouterChange value) onRouterChange,
+    required TResult Function(LocalizationChange value) onLocalizationChange,
+    required TResult Function(GenerateSigningKeyChange value)
+        onGenerateSigningKeyChange,
+    required TResult Function(UseSonarChange value) onUseSonarChange,
+    required TResult Function(IntegrateDevicePreviewChange value)
+        onIntegrateDevicePreviewChange,
+    required TResult Function(SigningVarsChange value) onSigningVarsChange,
+    required TResult Function(PlatformsChange value) onPlatformsChange,
+    required TResult Function(ThemingChange value) onThemingChange,
+    required TResult Function(GenerateProject value) onGenerateProject,
+    required TResult Function(GenerateComplete value) onGenerateComplete,
+    required TResult Function(OnGenerateScreensWithProject value)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(OnGenerateRepositoriesWithProject value)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(ProjectChange value) onProjectChange,
+    required TResult Function(ScreenAdd value) onScreenAdd,
+    required TResult Function(EntityAdd value) onEntityAdd,
+    required TResult Function(SourceAdd value) onSourceAdd,
+    required TResult Function(ScreenDelete value) onScreenDelete,
+    required TResult Function(EntityDelete value) onEntityDelete,
+    required TResult Function(SourceDelete value) onSourceDelete,
+    required TResult Function(StateUpdate value) onStateUpdate,
+    required TResult Function(ScreensGenerate value) onScreensGenerate,
+    required TResult Function(EntitiesGenerate value) onEntitiesGenerate,
+    required TResult Function(ErrorClear value) onErrorClear,
+    required TResult Function(OpenProject value) open,
+  }) {
+    return onEntitiesGenerate(this);
+  }
 
-@override
+  @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Init value)? init,
-TResult? Function(SwaggerParse value)? onSwaggerParse,
-TResult? Function(TabChange value)? onTabChange,
-TResult? Function(ProjectPathChange value)? onProjectPathChange,
-TResult? Function(ProjectNameChange value)? onProjectNameChange,
-TResult? Function(ProjectCheck value)? projectCheck,
-TResult? Function(OrganizationChange value)? onOrganizationChange,
-TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-TResult? Function(FlavorsChange value)? onFlavorsChange,
-TResult? Function(RouterChange value)? onRouterChange,
-TResult? Function(LocalizationChange value)? onLocalizationChange,
-TResult? Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult? Function(UseSonarChange value)? onUseSonarChange,
-TResult? Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-TResult? Function(PlatformsChange value)? onPlatformsChange,
-TResult? Function(ThemingChange value)? onThemingChange,
-TResult? Function(GenerateProject value)? onGenerateProject,
-TResult? Function(GenerateComplete value)? onGenerateComplete,
-TResult? Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult? Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(ProjectChange value)? onProjectChange,
-TResult? Function(ScreenAdd value)? onScreenAdd,
-TResult? Function(EntityAdd value)? onEntityAdd,
-TResult? Function(SourceAdd value)? onSourceAdd,
-TResult? Function(ScreenDelete value)? onScreenDelete,
-TResult? Function(EntityDelete value)? onEntityDelete,
-TResult? Function(SourceDelete value)? onSourceDelete,
-TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -11074,45 +10527,45 @@ TResult? Function(StateUpdate value)? onStateUpdate,
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onEntitiesGenerate != null) {
       return onEntitiesGenerate(this);
     }
@@ -11121,7 +10574,7 @@ required TResult orElse(),
 }
 
 abstract class EntitiesGenerate implements AppEvent {
-const factory EntitiesGenerate() = _$EntitiesGenerate;
+  const factory EntitiesGenerate() = _$EntitiesGenerate;
 }
 
 /// @nodoc
@@ -11143,156 +10596,156 @@ class __$$ErrorClearCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ErrorClear implements ErrorClear {
-const _$ErrorClear();
+  const _$ErrorClear();
 
-@override
-String toString() {
-return 'AppEvent.onErrorClear()';
-}
+  @override
+  String toString() {
+    return 'AppEvent.onErrorClear()';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType && other is _$ErrorClear);
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ErrorClear);
+  }
 
-@override
-int get hashCode => runtimeType.hashCode;
+  @override
+  int get hashCode => runtimeType.hashCode;
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
-return onErrorClear();
-}
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
+    return onErrorClear();
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
-return onErrorClear?.call();
-}
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
+    return onErrorClear?.call();
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
-if (onErrorClear != null) {
-return onErrorClear();
-}
-return orElse();
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
+    if (onErrorClear != null) {
+      return onErrorClear();
+    }
+    return orElse();
   }
 
   @override
@@ -11342,39 +10795,39 @@ return orElse();
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -11386,45 +10839,45 @@ return orElse();
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (onErrorClear != null) {
       return onErrorClear(this);
     }
@@ -11433,7 +10886,7 @@ required TResult orElse(),
 }
 
 abstract class ErrorClear implements AppEvent {
-const factory ErrorClear() = _$ErrorClear;
+  const factory ErrorClear() = _$ErrorClear;
 }
 
 /// @nodoc
@@ -11455,152 +10908,152 @@ class __$$OpenProjectCopyWithImpl<$Res>
 /// @nodoc
 
 class _$OpenProject implements OpenProject {
-const _$OpenProject();
+  const _$OpenProject();
 
-@override
-String toString() {
-return 'AppEvent.open()';
-}
+  @override
+  String toString() {
+    return 'AppEvent.open()';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType && other is _$OpenProject);
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OpenProject);
+  }
 
-@override
-int get hashCode => runtimeType.hashCode;
+  @override
+  int get hashCode => runtimeType.hashCode;
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function() init,
-required TResult Function(String url) onSwaggerParse,
-required TResult Function(int tabIndex) onTabChange,
-required TResult Function(String projectPath) onProjectPathChange,
-required TResult Function(String projectName, TextPosition textPosition)
-onProjectNameChange,
-required TResult Function() projectCheck,
-required TResult Function(String organization) onOrganizationChange,
-required TResult Function() onFlavorizeChange,
-required TResult Function(String flavors) onFlavorsChange,
-required TResult Function() onRouterChange,
-required TResult Function() onLocalizationChange,
-required TResult Function() onGenerateSigningKeyChange,
-required TResult Function() onUseSonarChange,
-required TResult Function() onIntegrateDevicePreviewChange,
-required TResult Function(List<String> signingVars) onSigningVarsChange,
-required TResult Function(PlatformsList platforms) onPlatformsChange,
-required TResult Function() onThemingChange,
-required TResult Function() onGenerateProject,
-required TResult Function() onGenerateComplete,
-required TResult Function(bool generateScreensWithProject)
-onGenerateScreensWithProjectChange,
-required TResult Function(bool generateRepositoriesWithProject)
-onGenerateRepositoriesWithProjectChange,
-required TResult Function(String projectPath) onProjectChange,
-required TResult Function(ScreenEntity screen) onScreenAdd,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityAdd,
-required TResult Function(SourceEntity source) onSourceAdd,
-required TResult Function(ScreenEntity screen) onScreenDelete,
-required TResult Function(EntityEntity entity, SourceEntity? source)
-onEntityDelete,
-required TResult Function(SourceEntity source) onSourceDelete,
-required TResult Function() onStateUpdate,
-required TResult Function() onScreensGenerate,
-required TResult Function() onEntitiesGenerate,
-required TResult Function() onErrorClear,
-required TResult Function() open,
-}) {
-return open();
-}
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String url) onSwaggerParse,
+    required TResult Function(int tabIndex) onTabChange,
+    required TResult Function(String projectPath) onProjectPathChange,
+    required TResult Function(String projectName, TextPosition textPosition)
+        onProjectNameChange,
+    required TResult Function() projectCheck,
+    required TResult Function(String organization) onOrganizationChange,
+    required TResult Function() onFlavorizeChange,
+    required TResult Function(String flavors) onFlavorsChange,
+    required TResult Function() onRouterChange,
+    required TResult Function() onLocalizationChange,
+    required TResult Function() onGenerateSigningKeyChange,
+    required TResult Function() onUseSonarChange,
+    required TResult Function() onIntegrateDevicePreviewChange,
+    required TResult Function(List<String> signingVars) onSigningVarsChange,
+    required TResult Function(PlatformsList platforms) onPlatformsChange,
+    required TResult Function() onThemingChange,
+    required TResult Function() onGenerateProject,
+    required TResult Function() onGenerateComplete,
+    required TResult Function(bool generateScreensWithProject)
+        onGenerateScreensWithProjectChange,
+    required TResult Function(bool generateRepositoriesWithProject)
+        onGenerateRepositoriesWithProjectChange,
+    required TResult Function(String projectPath) onProjectChange,
+    required TResult Function(ScreenEntity screen) onScreenAdd,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityAdd,
+    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(ScreenEntity screen) onScreenDelete,
+    required TResult Function(EntityEntity entity, SourceEntity? source)
+        onEntityDelete,
+    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function() onStateUpdate,
+    required TResult Function() onScreensGenerate,
+    required TResult Function() onEntitiesGenerate,
+    required TResult Function() onErrorClear,
+    required TResult Function() open,
+  }) {
+    return open();
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function()? init,
-TResult? Function(String url)? onSwaggerParse,
-TResult? Function(int tabIndex)? onTabChange,
-TResult? Function(String projectPath)? onProjectPathChange,
-TResult? Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult? Function()? projectCheck,
-TResult? Function(String organization)? onOrganizationChange,
-TResult? Function()? onFlavorizeChange,
-TResult? Function(String flavors)? onFlavorsChange,
-TResult? Function()? onRouterChange,
-TResult? Function()? onLocalizationChange,
-TResult? Function()? onGenerateSigningKeyChange,
-TResult? Function()? onUseSonarChange,
-TResult? Function()? onIntegrateDevicePreviewChange,
-TResult? Function(List<String> signingVars)? onSigningVarsChange,
-TResult? Function(PlatformsList platforms)? onPlatformsChange,
-TResult? Function()? onThemingChange,
-TResult? Function()? onGenerateProject,
-TResult? Function()? onGenerateComplete,
-TResult? Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult? Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult? Function(String projectPath)? onProjectChange,
-TResult? Function(ScreenEntity screen)? onScreenAdd,
-TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult? Function(SourceEntity source)? onSourceAdd,
-TResult? Function(ScreenEntity screen)? onScreenDelete,
-TResult? Function(EntityEntity entity, SourceEntity? source)?
-onEntityDelete,
-TResult? Function(SourceEntity source)? onSourceDelete,
-TResult? Function()? onStateUpdate,
-TResult? Function()? onScreensGenerate,
-TResult? Function()? onEntitiesGenerate,
-TResult? Function()? onErrorClear,
-TResult? Function()? open,
-}) {
-return open?.call();
-}
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String url)? onSwaggerParse,
+    TResult? Function(int tabIndex)? onTabChange,
+    TResult? Function(String projectPath)? onProjectPathChange,
+    TResult? Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult? Function()? projectCheck,
+    TResult? Function(String organization)? onOrganizationChange,
+    TResult? Function()? onFlavorizeChange,
+    TResult? Function(String flavors)? onFlavorsChange,
+    TResult? Function()? onRouterChange,
+    TResult? Function()? onLocalizationChange,
+    TResult? Function()? onGenerateSigningKeyChange,
+    TResult? Function()? onUseSonarChange,
+    TResult? Function()? onIntegrateDevicePreviewChange,
+    TResult? Function(List<String> signingVars)? onSigningVarsChange,
+    TResult? Function(PlatformsList platforms)? onPlatformsChange,
+    TResult? Function()? onThemingChange,
+    TResult? Function()? onGenerateProject,
+    TResult? Function()? onGenerateComplete,
+    TResult? Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(String projectPath)? onProjectChange,
+    TResult? Function(ScreenEntity screen)? onScreenAdd,
+    TResult? Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(ScreenEntity screen)? onScreenDelete,
+    TResult? Function(EntityEntity entity, SourceEntity? source)?
+        onEntityDelete,
+    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function()? onStateUpdate,
+    TResult? Function()? onScreensGenerate,
+    TResult? Function()? onEntitiesGenerate,
+    TResult? Function()? onErrorClear,
+    TResult? Function()? open,
+  }) {
+    return open?.call();
+  }
 
-@override
+  @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-TResult Function()? init,
-TResult Function(String url)? onSwaggerParse,
-TResult Function(int tabIndex)? onTabChange,
-TResult Function(String projectPath)? onProjectPathChange,
-TResult Function(String projectName, TextPosition textPosition)?
-onProjectNameChange,
-TResult Function()? projectCheck,
-TResult Function(String organization)? onOrganizationChange,
-TResult Function()? onFlavorizeChange,
-TResult Function(String flavors)? onFlavorsChange,
-TResult Function()? onRouterChange,
-TResult Function()? onLocalizationChange,
-TResult Function()? onGenerateSigningKeyChange,
-TResult Function()? onUseSonarChange,
-TResult Function()? onIntegrateDevicePreviewChange,
-TResult Function(List<String> signingVars)? onSigningVarsChange,
-TResult Function(PlatformsList platforms)? onPlatformsChange,
-TResult Function()? onThemingChange,
-TResult Function()? onGenerateProject,
-TResult Function()? onGenerateComplete,
-TResult Function(bool generateScreensWithProject)?
-onGenerateScreensWithProjectChange,
-TResult Function(bool generateRepositoriesWithProject)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(String projectPath)? onProjectChange,
-TResult Function(ScreenEntity screen)? onScreenAdd,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
-TResult Function(SourceEntity source)? onSourceAdd,
-TResult Function(ScreenEntity screen)? onScreenDelete,
-TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
-TResult Function(SourceEntity source)? onSourceDelete,
-TResult Function()? onStateUpdate,
-TResult Function()? onScreensGenerate,
-TResult Function()? onEntitiesGenerate,
-TResult Function()? onErrorClear,
-TResult Function()? open,
-required TResult orElse(),
-}) {
+    TResult Function()? init,
+    TResult Function(String url)? onSwaggerParse,
+    TResult Function(int tabIndex)? onTabChange,
+    TResult Function(String projectPath)? onProjectPathChange,
+    TResult Function(String projectName, TextPosition textPosition)?
+        onProjectNameChange,
+    TResult Function()? projectCheck,
+    TResult Function(String organization)? onOrganizationChange,
+    TResult Function()? onFlavorizeChange,
+    TResult Function(String flavors)? onFlavorsChange,
+    TResult Function()? onRouterChange,
+    TResult Function()? onLocalizationChange,
+    TResult Function()? onGenerateSigningKeyChange,
+    TResult Function()? onUseSonarChange,
+    TResult Function()? onIntegrateDevicePreviewChange,
+    TResult Function(List<String> signingVars)? onSigningVarsChange,
+    TResult Function(PlatformsList platforms)? onPlatformsChange,
+    TResult Function()? onThemingChange,
+    TResult Function()? onGenerateProject,
+    TResult Function()? onGenerateComplete,
+    TResult Function(bool generateScreensWithProject)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(bool generateRepositoriesWithProject)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(String projectPath)? onProjectChange,
+    TResult Function(ScreenEntity screen)? onScreenAdd,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityAdd,
+    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(ScreenEntity screen)? onScreenDelete,
+    TResult Function(EntityEntity entity, SourceEntity? source)? onEntityDelete,
+    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function()? onStateUpdate,
+    TResult Function()? onScreensGenerate,
+    TResult Function()? onEntitiesGenerate,
+    TResult Function()? onErrorClear,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
     if (open != null) {
       return open();
     }
@@ -11654,39 +11107,39 @@ required TResult orElse(),
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-  TResult? Function(Init value)? init,
-  TResult? Function(SwaggerParse value)? onSwaggerParse,
-  TResult? Function(TabChange value)? onTabChange,
-  TResult? Function(ProjectPathChange value)? onProjectPathChange,
-  TResult? Function(ProjectNameChange value)? onProjectNameChange,
-  TResult? Function(ProjectCheck value)? projectCheck,
-  TResult? Function(OrganizationChange value)? onOrganizationChange,
-  TResult? Function(FlavorizeChange value)? onFlavorizeChange,
-  TResult? Function(FlavorsChange value)? onFlavorsChange,
-  TResult? Function(RouterChange value)? onRouterChange,
-  TResult? Function(LocalizationChange value)? onLocalizationChange,
-  TResult? Function(GenerateSigningKeyChange value)?
-  onGenerateSigningKeyChange,
-  TResult? Function(UseSonarChange value)? onUseSonarChange,
-  TResult? Function(IntegrateDevicePreviewChange value)?
-  onIntegrateDevicePreviewChange,
-  TResult? Function(SigningVarsChange value)? onSigningVarsChange,
-  TResult? Function(PlatformsChange value)? onPlatformsChange,
-  TResult? Function(ThemingChange value)? onThemingChange,
-  TResult? Function(GenerateProject value)? onGenerateProject,
-  TResult? Function(GenerateComplete value)? onGenerateComplete,
-  TResult? Function(OnGenerateScreensWithProject value)?
-  onGenerateScreensWithProjectChange,
-  TResult? Function(OnGenerateRepositoriesWithProject value)?
-  onGenerateRepositoriesWithProjectChange,
-  TResult? Function(ProjectChange value)? onProjectChange,
-  TResult? Function(ScreenAdd value)? onScreenAdd,
-  TResult? Function(EntityAdd value)? onEntityAdd,
-  TResult? Function(SourceAdd value)? onSourceAdd,
-  TResult? Function(ScreenDelete value)? onScreenDelete,
-  TResult? Function(EntityDelete value)? onEntityDelete,
-  TResult? Function(SourceDelete value)? onSourceDelete,
-  TResult? Function(StateUpdate value)? onStateUpdate,
+    TResult? Function(Init value)? init,
+    TResult? Function(SwaggerParse value)? onSwaggerParse,
+    TResult? Function(TabChange value)? onTabChange,
+    TResult? Function(ProjectPathChange value)? onProjectPathChange,
+    TResult? Function(ProjectNameChange value)? onProjectNameChange,
+    TResult? Function(ProjectCheck value)? projectCheck,
+    TResult? Function(OrganizationChange value)? onOrganizationChange,
+    TResult? Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult? Function(FlavorsChange value)? onFlavorsChange,
+    TResult? Function(RouterChange value)? onRouterChange,
+    TResult? Function(LocalizationChange value)? onLocalizationChange,
+    TResult? Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult? Function(UseSonarChange value)? onUseSonarChange,
+    TResult? Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult? Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult? Function(PlatformsChange value)? onPlatformsChange,
+    TResult? Function(ThemingChange value)? onThemingChange,
+    TResult? Function(GenerateProject value)? onGenerateProject,
+    TResult? Function(GenerateComplete value)? onGenerateComplete,
+    TResult? Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult? Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult? Function(ProjectChange value)? onProjectChange,
+    TResult? Function(ScreenAdd value)? onScreenAdd,
+    TResult? Function(EntityAdd value)? onEntityAdd,
+    TResult? Function(SourceAdd value)? onSourceAdd,
+    TResult? Function(ScreenDelete value)? onScreenDelete,
+    TResult? Function(EntityDelete value)? onEntityDelete,
+    TResult? Function(SourceDelete value)? onSourceDelete,
+    TResult? Function(StateUpdate value)? onStateUpdate,
     TResult? Function(ScreensGenerate value)? onScreensGenerate,
     TResult? Function(EntitiesGenerate value)? onEntitiesGenerate,
     TResult? Function(ErrorClear value)? onErrorClear,
@@ -11698,45 +11151,45 @@ required TResult orElse(),
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-TResult Function(Init value)? init,
-TResult Function(SwaggerParse value)? onSwaggerParse,
-TResult Function(TabChange value)? onTabChange,
-TResult Function(ProjectPathChange value)? onProjectPathChange,
-TResult Function(ProjectNameChange value)? onProjectNameChange,
-TResult Function(ProjectCheck value)? projectCheck,
-TResult Function(OrganizationChange value)? onOrganizationChange,
-TResult Function(FlavorizeChange value)? onFlavorizeChange,
-TResult Function(FlavorsChange value)? onFlavorsChange,
-TResult Function(RouterChange value)? onRouterChange,
-TResult Function(LocalizationChange value)? onLocalizationChange,
-TResult Function(GenerateSigningKeyChange value)?
-onGenerateSigningKeyChange,
-TResult Function(UseSonarChange value)? onUseSonarChange,
-TResult Function(IntegrateDevicePreviewChange value)?
-onIntegrateDevicePreviewChange,
-TResult Function(SigningVarsChange value)? onSigningVarsChange,
-TResult Function(PlatformsChange value)? onPlatformsChange,
-TResult Function(ThemingChange value)? onThemingChange,
-TResult Function(GenerateProject value)? onGenerateProject,
-TResult Function(GenerateComplete value)? onGenerateComplete,
-TResult Function(OnGenerateScreensWithProject value)?
-onGenerateScreensWithProjectChange,
-TResult Function(OnGenerateRepositoriesWithProject value)?
-onGenerateRepositoriesWithProjectChange,
-TResult Function(ProjectChange value)? onProjectChange,
-TResult Function(ScreenAdd value)? onScreenAdd,
-TResult Function(EntityAdd value)? onEntityAdd,
-TResult Function(SourceAdd value)? onSourceAdd,
-TResult Function(ScreenDelete value)? onScreenDelete,
-TResult Function(EntityDelete value)? onEntityDelete,
-TResult Function(SourceDelete value)? onSourceDelete,
-TResult Function(StateUpdate value)? onStateUpdate,
-TResult Function(ScreensGenerate value)? onScreensGenerate,
-TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
-TResult Function(ErrorClear value)? onErrorClear,
-TResult Function(OpenProject value)? open,
-required TResult orElse(),
-}) {
+    TResult Function(Init value)? init,
+    TResult Function(SwaggerParse value)? onSwaggerParse,
+    TResult Function(TabChange value)? onTabChange,
+    TResult Function(ProjectPathChange value)? onProjectPathChange,
+    TResult Function(ProjectNameChange value)? onProjectNameChange,
+    TResult Function(ProjectCheck value)? projectCheck,
+    TResult Function(OrganizationChange value)? onOrganizationChange,
+    TResult Function(FlavorizeChange value)? onFlavorizeChange,
+    TResult Function(FlavorsChange value)? onFlavorsChange,
+    TResult Function(RouterChange value)? onRouterChange,
+    TResult Function(LocalizationChange value)? onLocalizationChange,
+    TResult Function(GenerateSigningKeyChange value)?
+        onGenerateSigningKeyChange,
+    TResult Function(UseSonarChange value)? onUseSonarChange,
+    TResult Function(IntegrateDevicePreviewChange value)?
+        onIntegrateDevicePreviewChange,
+    TResult Function(SigningVarsChange value)? onSigningVarsChange,
+    TResult Function(PlatformsChange value)? onPlatformsChange,
+    TResult Function(ThemingChange value)? onThemingChange,
+    TResult Function(GenerateProject value)? onGenerateProject,
+    TResult Function(GenerateComplete value)? onGenerateComplete,
+    TResult Function(OnGenerateScreensWithProject value)?
+        onGenerateScreensWithProjectChange,
+    TResult Function(OnGenerateRepositoriesWithProject value)?
+        onGenerateRepositoriesWithProjectChange,
+    TResult Function(ProjectChange value)? onProjectChange,
+    TResult Function(ScreenAdd value)? onScreenAdd,
+    TResult Function(EntityAdd value)? onEntityAdd,
+    TResult Function(SourceAdd value)? onSourceAdd,
+    TResult Function(ScreenDelete value)? onScreenDelete,
+    TResult Function(EntityDelete value)? onEntityDelete,
+    TResult Function(SourceDelete value)? onSourceDelete,
+    TResult Function(StateUpdate value)? onStateUpdate,
+    TResult Function(ScreensGenerate value)? onScreensGenerate,
+    TResult Function(EntitiesGenerate value)? onEntitiesGenerate,
+    TResult Function(ErrorClear value)? onErrorClear,
+    TResult Function(OpenProject value)? open,
+    required TResult orElse(),
+  }) {
     if (open != null) {
       return open(this);
     }
@@ -11745,7 +11198,7 @@ required TResult orElse(),
 }
 
 abstract class OpenProject implements AppEvent {
-const factory OpenProject() = _$OpenProject;
+  const factory OpenProject() = _$OpenProject;
 }
 
 /// @nodoc
@@ -11931,9 +11384,9 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     implements $AppStateCopyWith<$Res> {
   _$AppStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')

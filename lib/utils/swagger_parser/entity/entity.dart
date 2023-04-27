@@ -6,5 +6,7 @@ abstract class Entity {
 
   String get name;
 
+  Set<String> get imports;
+
   String generateClassBody();
 }

@@ -93,8 +93,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     final parsedEntities = await swaggerParser.parseEntities(json);
 
     final entities = parsedEntities
-        .map(
-            (e) => EntityEntity(name: e.name, classBody: e.generateClassBody()))
+        .map((e) => EntityEntity(
+            name: e.name, classBody: e.generateClassBody(), imports: e.imports))
         .toList()
       ..addAll(state.entities.toList())
       ..sort((a, b) => a.name.compareTo(b.name));
