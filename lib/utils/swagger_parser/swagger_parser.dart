@@ -53,7 +53,7 @@ class SwaggerParser {
             }
 
             if (TypeMatcher.getDartType(property.type) == 'Map') {
-              imports.add(e.key);
+              imports.add(e.key.camelCase);
               _parseMap(property, e, entities);
             }
 
