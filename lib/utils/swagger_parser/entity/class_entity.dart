@@ -43,7 +43,7 @@ class ClassEntity implements Entity {
     result += '  const factory $name({\n';
 
     for (final property in properties) {
-      result += '\n     $property';
+      result += '\n     $property,';
     }
 
     result += '\n  }) = _\$$name;\n';
