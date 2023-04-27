@@ -49,7 +49,7 @@ class SwaggerParser {
             );
 
             if (property.type == 'array') {
-              _parseArray(e, property, entities);
+              _parseArray(e, property, entities, imports);
             }
 
             if (TypeMatcher.getDartType(property.type) == 'Map') {
@@ -60,9 +60,7 @@ class SwaggerParser {
             return property;
           }).toList(),
         );
-        print(entity);
         entity.addImports(imports);
-        print(imports);
         entities.add(entity);
       } else if (entry.value.containsKey('enum')) {
         final entity = EnumEntity(
@@ -94,10 +92,11 @@ class SwaggerParser {
     });
   }
 
-  void _parseArray(
-      MapEntry<String, dynamic> e, Property property, List<Entity> entities) {
+  void _parseArray(MapEntry<String, dynamic> e, Property property,
+      List<Entity> entities, List<String> imports) {
     if (TypeMatcher.isReference(e.value['items'])) {
       property.type = 'List<${_getRefClassName(e.value['items'])}>';
+      imports.add(_getRefClassName(e.value['items']));
     } else {
       if ((e.value['items'] as Map<String, dynamic>).isEmpty) {
         property.type = 'List<${TypeMatcher.getDartType('dynamic')}>';
