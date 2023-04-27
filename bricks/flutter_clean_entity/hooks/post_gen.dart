@@ -373,6 +373,7 @@ class Entity {
   bool generateResponse;
   bool exists;
   String classBody;
+  String imports;
 
   Entity({
     required this.name,
@@ -380,6 +381,7 @@ class Entity {
     required this.generateResponse,
     required this.exists,
     required this.classBody,
+    required this.imports,
   });
 
   @override
@@ -393,5 +395,6 @@ class Entity {
         generateRequest: json['generateRequest'],
         generateResponse: json['generateResponse'],
         classBody: json['classBody'],
+        imports: json['imports'] ?? '',
       );
 }
