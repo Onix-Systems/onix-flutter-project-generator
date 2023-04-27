@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part '${className.snakeCase}_entity.freezed.dart';
+part '${className.snakeCase}.freezed.dart';
 
 @freezed
 class ${className.pascalCase} with _$${className.pascalCase} {
