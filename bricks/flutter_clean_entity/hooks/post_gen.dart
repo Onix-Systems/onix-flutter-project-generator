@@ -103,9 +103,13 @@ Future<void> _genEntity(Entity entity) async {
   final path = await Directory(
           'lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName}/' : '/'}${entity.name}')
       .create();
-  var file = await File('${path.path}/${entity.name}_entity.dart').create();
+  var file = await File('${path.path}/${entity.name}.dart').create();
 
   String sourcePath = 'gen/freezed_entity.tmp';
+
+  if (entity.classBody.isEmpty) {
+    sourcePath = 'gen/swagger_entity.tmp';
+  }
 
   var sourceFile = await File(sourcePath).readAsString();
 

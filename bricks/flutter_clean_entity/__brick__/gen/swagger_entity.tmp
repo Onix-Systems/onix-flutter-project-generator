@@ -1,0 +1,5 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '${className.snakeCase}_entity.freezed.dart';
+
+${classBody}
