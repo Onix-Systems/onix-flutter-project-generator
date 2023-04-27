@@ -374,7 +374,7 @@ class Entity {
   bool generateResponse;
   bool exists;
   String classBody;
-  String imports;
+  List<String> imports;
 
   Entity({
     required this.name,
