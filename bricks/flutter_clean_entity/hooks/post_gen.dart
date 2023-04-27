@@ -51,7 +51,7 @@ void run(HookContext context) async {
   }
 
   for (var entity in entities) {
-    await _genEntity(entity);
+    await _genEntity(context, entity);
 
     if (entity.generateResponse) {
       await _genResponse(entity);
@@ -99,7 +99,7 @@ void run(HookContext context) async {
   await Process.run('rm', ['-r', 'gen']);
 }
 
-Future<void> _genEntity(Entity entity) async {
+Future<void> _genEntity(HookContext context, Entity entity) async {
   final path = await Directory(
           'lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName}/' : '/'}${entity.name}')
       .create();
