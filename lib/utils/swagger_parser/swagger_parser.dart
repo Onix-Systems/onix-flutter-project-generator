@@ -56,7 +56,7 @@ class SwaggerParser {
 
             return property;
           }).toList(),
-        )..imports.addAll(imports);
+        )..addImports(imports);
         entities.add(entity);
       } else if (entry.value.containsKey('enum')) {
         final entity = EnumEntity(

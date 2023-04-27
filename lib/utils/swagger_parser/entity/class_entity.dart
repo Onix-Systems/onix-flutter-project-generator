@@ -10,7 +10,7 @@ class ClassEntity implements Entity {
   final String name;
   @override
   final List<Property> properties;
-  final List<String> imports = [];
+  final Set<String> imports = {};
 
   ClassEntity({
     required this.name,
@@ -19,6 +19,10 @@ class ClassEntity implements Entity {
 
   factory ClassEntity.fromJson(Map<String, dynamic> json) =>
       _$ClassEntityFromJson(json);
+
+  void addImports(List<String> imports) {
+    this.imports.addAll(imports);
+  }
 
   @override
   String toString() {
