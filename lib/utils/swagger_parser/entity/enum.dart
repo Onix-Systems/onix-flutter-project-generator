@@ -31,6 +31,16 @@ class EnumEntity implements Entity {
 
   @override
   String generateClassBody() {
-    return toString();
+    var result = '';
+
+    result += 'enum $name{\n';
+
+    for (final property in properties) {
+      result += '\n     $property,';
+    }
+
+    result += '\n}';
+
+    return result;
   }
 }

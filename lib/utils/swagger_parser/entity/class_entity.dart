@@ -47,8 +47,7 @@ class ClassEntity implements Entity {
     }
 
     result += '\n  }) = _\$$name;\n';
-    result +=
-        '\n  factory $name.fromJson(Map<String, dynamic> json) => _\$${name}FromJson(json);\n';
+
     result += '\n}';
 
     return result;

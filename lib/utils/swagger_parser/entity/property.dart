@@ -20,6 +20,6 @@ class Property {
 
   @override
   String toString() {
-    return 'final ${TypeMatcher.getDartType(type)}${nullable ? '?' : ''} $name';
+    return 'required ${TypeMatcher.getDartType(type)}${nullable ? '?' : ''} $name';
   }
 }
