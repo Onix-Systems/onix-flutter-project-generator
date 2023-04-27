@@ -10,6 +10,7 @@ class ClassEntity implements Entity {
   final String name;
   @override
   final List<Property> properties;
+  final List<String> imports = [];
 
   ClassEntity({
     required this.name,

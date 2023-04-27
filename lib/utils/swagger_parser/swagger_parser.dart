@@ -29,11 +29,15 @@ class SwaggerParser {
     for (final entry in entries) {
       // logger.d('entry: ${entry.key} ${entry.value}');
       if (entry.value['type'] == 'object') {
+        var imports = <String>[];
         final entity = ClassEntity(
           name: entry.key,
           properties: (entry.value['properties'] as Map<String, dynamic>)
               .entries
               .map((e) {
+            if (TypeMatcher.isReference(e.value)) {
+              imports.add(_getRefClassName(e.value));
+            }
             var property = Property(
               name: e.key.camelCase,
               type: TypeMatcher.isReference(e.value)
@@ -52,7 +56,7 @@ class SwaggerParser {
 
             return property;
           }).toList(),
-        );
+        )..imports.addAll(imports);
         entities.add(entity);
       } else if (entry.value.containsKey('enum')) {
         final entity = EnumEntity(
