@@ -396,6 +396,6 @@ class Entity {
         generateRequest: json['generateRequest'],
         generateResponse: json['generateResponse'],
         classBody: json['classBody'],
-        imports: json['imports'] ?? '',
+        imports: json['imports'] as List<String> ?? '',
       );
 }
