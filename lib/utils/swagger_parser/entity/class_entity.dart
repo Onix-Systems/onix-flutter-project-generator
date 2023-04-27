@@ -46,7 +46,7 @@ class ClassEntity implements Entity {
       result += '\n     $property,';
     }
 
-    result += '\n  }) = _\$$name;\n';
+    result += '\n  }) = _$name;\n';
 
     result += '\n}';
 

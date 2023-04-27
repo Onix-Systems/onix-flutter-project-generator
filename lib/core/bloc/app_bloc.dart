@@ -84,7 +84,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     final url = event.url.isNotEmpty
         ? event.url
-        : 'https://vocadb.net/swagger/v1/swagger.json';
+        : 'https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json';
 
     var response = await http.get(Uri.parse(url));
 
