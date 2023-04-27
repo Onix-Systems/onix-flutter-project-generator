@@ -5,4 +5,6 @@ abstract class Entity {
   List get properties;
 
   String get name;
+
+  String generateClassBody();
 }

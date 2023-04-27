@@ -28,4 +28,9 @@ class EnumEntity implements Entity {
     result += '\n}';
     return result;
   }
+
+  @override
+  String generateClassBody() {
+    return toString();
+  }
 }

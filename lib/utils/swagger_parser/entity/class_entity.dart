@@ -32,4 +32,21 @@ class ClassEntity implements Entity {
     result += '\n}';
     return result;
   }
+
+  @override
+  String generateClassBody() {
+    var result = '';
+
+    result += '@freezed\n';
+
+    result += 'class $name with _\$$name {\n';
+    result += '  const factory $name({\n';
+
+    for (final property in properties) {
+      result += '\n     $property';
+    }
+
+    result += '\n  }) = _\$$name;\n';
+    return result;
+  }
 }
