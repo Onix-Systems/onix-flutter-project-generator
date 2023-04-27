@@ -368,14 +368,14 @@ class Entity {
   bool generateRequest;
   bool generateResponse;
   bool exists;
-  String? classBody;
+  String classBody;
 
   Entity({
     required this.name,
     required this.generateRequest,
     required this.generateResponse,
     required this.exists,
-    this.classBody,
+    required this.classBody,
   });
 
   @override

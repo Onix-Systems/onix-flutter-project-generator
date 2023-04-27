@@ -8,14 +8,14 @@ class EntityEntity {
   bool generateRequest;
   bool generateResponse;
   bool exists;
-  String? classBody;
+  String classBody;
 
   EntityEntity({
     required this.name,
     this.generateRequest = false,
     this.generateResponse = false,
     this.exists = false,
-    this.classBody,
+    this.classBody = '',
   });
 
   EntityEntity.copyOf(EntityEntity entity)
