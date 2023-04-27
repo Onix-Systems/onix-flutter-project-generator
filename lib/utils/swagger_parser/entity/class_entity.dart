@@ -36,6 +36,13 @@ class ClassEntity implements Entity {
 
     result += '\n}';
 
+    if (imports.isNotEmpty) {
+      result += '\n\n';
+      for (final import in imports) {
+        result += 'import \'$import\';\n';
+      }
+    }
+
     return result;
   }
 

@@ -100,7 +100,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       ..sort((a, b) => a.name.compareTo(b.name));
 
     for (var entity in parsedEntities) {
-      print(entity);
+      //print(entity);
     }
 
     emit(state.copyWith(

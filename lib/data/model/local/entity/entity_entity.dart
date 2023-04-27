@@ -9,7 +9,7 @@ class EntityEntity {
   bool generateResponse;
   bool exists;
   String classBody;
-  Set<String> imports;
+  final Set<String> imports;
 
   EntityEntity({
     required this.name,

@@ -36,7 +36,9 @@ class SwaggerParser {
               .entries
               .map((e) {
             if (TypeMatcher.isReference(e.value)) {
+              logger.wtf('isReference: ${e.value}');
               imports.add(_getRefClassName(e.value));
+              logger.wtf('imports: $imports');
             }
             var property = Property(
               name: e.key.camelCase,
@@ -51,12 +53,16 @@ class SwaggerParser {
             }
 
             if (TypeMatcher.getDartType(property.type) == 'Map') {
+              imports.add(e.key);
               _parseMap(property, e, entities);
             }
 
             return property;
           }).toList(),
-        )..addImports(imports);
+        );
+        print(entity);
+        entity.addImports(imports);
+        print(imports);
         entities.add(entity);
       } else if (entry.value.containsKey('enum')) {
         final entity = EnumEntity(
@@ -96,8 +102,6 @@ class SwaggerParser {
       if ((e.value['items'] as Map<String, dynamic>).isEmpty) {
         property.type = 'List<${TypeMatcher.getDartType('dynamic')}>';
       } else {
-        logger.wtf(e.value);
-
         final className =
             property.name.substring(0, property.name.length - 1).pascalCase;
 
@@ -106,8 +110,6 @@ class SwaggerParser {
           property.type =
               'List<${TypeMatcher.getDartType(e.value['items']['type'])}>';
         } else {
-          logger.wtf(className);
-
           final definitions = {
             'definitions': {
               className: {
