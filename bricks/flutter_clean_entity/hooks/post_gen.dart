@@ -374,7 +374,7 @@ class Entity {
   bool generateResponse;
   bool exists;
   String classBody;
-  List<String> imports;
+  List<dynamic> imports;
 
   Entity({
     required this.name,
@@ -396,6 +396,6 @@ class Entity {
         generateRequest: json['generateRequest'],
         generateResponse: json['generateResponse'],
         classBody: json['classBody'],
-        imports: json['imports'] as List<String>,
+        imports: json['imports'],
       );
 }
