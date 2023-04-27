@@ -43,32 +43,11 @@ class SwaggerParser {
             );
 
             if (property.type == 'array') {
-              if (TypeMatcher.isReference(e.value['items'])) {
-                property.type = 'List<${_getRefClassName(e.value['items'])}>';
-              } else {
-                if (e.value['items'].containsKey('type')) {
-                  property.type =
-                      'List<${TypeMatcher.getDartType(e.value['items']['type'])}>';
-                } else {
-                  property.type = 'List<${TypeMatcher.getDartType('dynamic')}>';
-                }
-              }
+              _parseArray(e, property, entities);
             }
 
             if (TypeMatcher.getDartType(property.type) == 'Map') {
-              property.type = property.name.pascalCase;
-
-              parseEntities({
-                'definitions': {
-                  property.type: {
-                    'type': 'object',
-                    'properties': e.value['properties'],
-                  }
-                }
-              }).then((innerEntities) {
-                entities.addAll(innerEntities);
-                logger.wtf(innerEntities);
-              });
+              _parseMap(property, e, entities);
             }
 
             return property;
@@ -87,6 +66,61 @@ class SwaggerParser {
     }
 
     return entities;
+  }
+
+  void _parseMap(
+      Property property, MapEntry<String, dynamic> e, List<Entity> entities) {
+    property.type = property.name.pascalCase;
+
+    parseEntities({
+      'definitions': {
+        property.type: {
+          'type': 'object',
+          'properties': e.value['properties'],
+        }
+      }
+    }).then((innerEntities) {
+      entities.addAll(innerEntities);
+    });
+  }
+
+  void _parseArray(
+      MapEntry<String, dynamic> e, Property property, List<Entity> entities) {
+    if (TypeMatcher.isReference(e.value['items'])) {
+      property.type = 'List<${_getRefClassName(e.value['items'])}>';
+    } else {
+      if ((e.value['items'] as Map<String, dynamic>).isEmpty) {
+        property.type = 'List<${TypeMatcher.getDartType('dynamic')}>';
+      } else {
+        logger.wtf(e.value);
+
+        final className =
+            property.name.substring(0, property.name.length - 1).pascalCase;
+
+        if (e.value['items'].containsKey('type') &&
+            e.value['items']['type'] != 'object') {
+          property.type =
+              'List<${TypeMatcher.getDartType(e.value['items']['type'])}>';
+        } else {
+          logger.wtf(className);
+
+          final definitions = {
+            'definitions': {
+              className: {
+                'type': 'object',
+                'properties': e.value['items']['properties'],
+              }
+            }
+          };
+
+          parseEntities(definitions).then((innerEntities) {
+            entities.addAll(innerEntities);
+          });
+
+          property.type = 'List<$className>';
+        }
+      }
+    }
   }
 
   String _getRefClassName(Map<String, dynamic> ref) {

@@ -8,12 +8,14 @@ class EntityEntity {
   bool generateRequest;
   bool generateResponse;
   bool exists;
+  String? classBody;
 
   EntityEntity({
     required this.name,
     this.generateRequest = false,
     this.generateResponse = false,
     this.exists = false,
+    this.classBody,
   });
 
   EntityEntity.copyOf(EntityEntity entity)
@@ -22,6 +24,7 @@ class EntityEntity {
           generateRequest: entity.generateRequest,
           generateResponse: entity.generateResponse,
           exists: entity.exists,
+          classBody: entity.classBody,
         );
 
   Map<String, dynamic> toJson() => _$EntityEntityToJson(this);
@@ -37,13 +40,14 @@ class EntityEntity {
           name == other.name &&
           generateRequest == other.generateRequest &&
           generateResponse == other.generateResponse &&
-          exists == other.exists;
+          exists == other.exists &&
+          classBody == other.classBody;
 
   @override
   int get hashCode => name.hashCode;
 
   @override
   String toString() {
-    return 'EntityEntity{name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse}';
+    return 'EntityEntity{name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse, classBody: $classBody}';
   }
 }

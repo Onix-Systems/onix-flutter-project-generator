@@ -367,17 +367,19 @@ class Entity {
   bool generateRequest;
   bool generateResponse;
   bool exists;
+  String? classBody;
 
   Entity({
     required this.name,
     required this.generateRequest,
     required this.generateResponse,
     required this.exists,
+    this.classBody,
   });
 
   @override
   String toString() {
-    return 'Entity{name: $name, exists: $exists, $generateRequest, generateResponse: $generateResponse}';
+    return 'Entity{name: $name, exists: $exists, $generateRequest, generateResponse: $generateResponse}, classBody: $classBody';
   }
 
   factory Entity.fromJson(Map<String, dynamic> json) => Entity(
@@ -385,5 +387,6 @@ class Entity {
         exists: json['exists'],
         generateRequest: json['generateRequest'],
         generateResponse: json['generateResponse'],
+        classBody: json['classBody'],
       );
 }

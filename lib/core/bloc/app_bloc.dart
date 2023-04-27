@@ -82,7 +82,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     final url = event.url.isNotEmpty
         ? event.url
-        : 'https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json';
+        : 'https://vocadb.net/swagger/v1/swagger.json';
 
     var response = await http.get(Uri.parse(url));
 
@@ -90,10 +90,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     final parsedEntities = await swaggerParser.parseEntities(json);
 
-    final entities =
-        parsedEntities.map((e) => EntityEntity(name: e.name)).toList()
-          ..addAll(state.entities.toList())
-          ..sort((a, b) => a.name.compareTo(b.name));
+    final entities = parsedEntities
+        .map((e) => EntityEntity(name: e.name, classBody: e.toString()))
+        .toList()
+      ..addAll(state.entities.toList())
+      ..sort((a, b) => a.name.compareTo(b.name));
 
     for (var entity in parsedEntities) {
       print(entity);

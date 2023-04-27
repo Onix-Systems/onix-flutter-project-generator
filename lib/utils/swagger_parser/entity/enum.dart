@@ -14,4 +14,18 @@ class EnumEntity implements Entity {
 
   factory EnumEntity.fromJson(Map<String, dynamic> json) =>
       _$EnumEntityFromJson(json);
+
+  @override
+  String toString() {
+    var result = '';
+
+    result += '$name {';
+
+    for (final property in properties) {
+      result += '\n     $property';
+    }
+
+    result += '\n}';
+    return result;
+  }
 }
