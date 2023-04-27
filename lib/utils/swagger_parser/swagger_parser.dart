@@ -35,7 +35,7 @@ class SwaggerParser {
               .entries
               .map((e) {
             var property = Property(
-              name: e.key.snakeCase,
+              name: e.key.camelCase,
               type: TypeMatcher.isReference(e.value)
                   ? _getRefClassName(e.value)
                   : e.value['type'],
@@ -68,8 +68,8 @@ class SwaggerParser {
     return entities;
   }
 
-  void _parseMap(Property property, MapEntry<String, dynamic> e,
-      List<Entity> entities) {
+  void _parseMap(
+      Property property, MapEntry<String, dynamic> e, List<Entity> entities) {
     property.type = property.name.pascalCase;
 
     parseEntities({
@@ -84,8 +84,8 @@ class SwaggerParser {
     });
   }
 
-  void _parseArray(MapEntry<String, dynamic> e, Property property,
-      List<Entity> entities) {
+  void _parseArray(
+      MapEntry<String, dynamic> e, Property property, List<Entity> entities) {
     if (TypeMatcher.isReference(e.value['items'])) {
       property.type = 'List<${_getRefClassName(e.value['items'])}>';
     } else {
@@ -95,14 +95,12 @@ class SwaggerParser {
         logger.wtf(e.value);
 
         final className =
-            property.name
-                .substring(0, property.name.length - 1)
-                .pascalCase;
+            property.name.substring(0, property.name.length - 1).pascalCase;
 
         if (e.value['items'].containsKey('type') &&
             e.value['items']['type'] != 'object') {
           property.type =
-          'List<${TypeMatcher.getDartType(e.value['items']['type'])}>';
+              'List<${TypeMatcher.getDartType(e.value['items']['type'])}>';
         } else {
           logger.wtf(className);
 
