@@ -37,7 +37,7 @@ class SwaggerParser {
               .map((e) {
             if (TypeMatcher.isReference(e.value)) {
               logger.wtf('isReference: ${e.value}');
-              imports.add(_getRefClassName(e.value));
+              imports.add(_getRefClassName(e.value).snakeCase);
               logger.wtf('imports: $imports');
             }
             var property = Property(
@@ -53,7 +53,7 @@ class SwaggerParser {
             }
 
             if (TypeMatcher.getDartType(property.type) == 'Map') {
-              imports.add(e.key.camelCase);
+              imports.add(e.key.snakeCase);
               _parseMap(property, e, entities);
             }
 
@@ -96,7 +96,7 @@ class SwaggerParser {
       List<Entity> entities, List<String> imports) {
     if (TypeMatcher.isReference(e.value['items'])) {
       property.type = 'List<${_getRefClassName(e.value['items'])}>';
-      imports.add(_getRefClassName(e.value['items']).camelCase);
+      imports.add(_getRefClassName(e.value['items']).snakeCase);
     } else {
       if ((e.value['items'] as Map<String, dynamic>).isEmpty) {
         property.type = 'List<${TypeMatcher.getDartType('dynamic')}>';
@@ -104,7 +104,7 @@ class SwaggerParser {
         final className =
             property.name.substring(0, property.name.length - 1).pascalCase;
 
-        imports.add(className.camelCase);
+        imports.add(className.snakeCase);
 
         if (e.value['items'].containsKey('type') &&
             e.value['items']['type'] != 'object') {
