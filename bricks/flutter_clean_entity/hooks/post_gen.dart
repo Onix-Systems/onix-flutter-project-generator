@@ -107,7 +107,7 @@ Future<void> _genEntity(Entity entity) async {
 
   String sourcePath = 'gen/freezed_entity.tmp';
 
-  if (entity.classBody.isEmpty) {
+  if (entity.classBody.isNotEmpty) {
     sourcePath = 'gen/swagger_entity.tmp';
   }
 
