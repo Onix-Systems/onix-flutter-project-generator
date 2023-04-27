@@ -27,9 +27,9 @@ class SwaggerParser {
         : data['components']['schemas'].entries;
 
     for (final entry in entries) {
+      var imports = <String>[];
       // logger.d('entry: ${entry.key} ${entry.value}');
       if (entry.value['type'] == 'object') {
-        var imports = <String>[];
         final entity = ClassEntity(
           name: entry.key,
           properties: (entry.value['properties'] as Map<String, dynamic>)
