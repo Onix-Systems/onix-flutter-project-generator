@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity/type_matcher.dart';
+import 'package:recase/recase.dart';
 
 part 'property.g.dart';
 
@@ -20,6 +21,6 @@ class Property {
 
   @override
   String toString() {
-    return 'required ${TypeMatcher.getDartType(type)}${nullable ? '?' : ''} $name';
+    return 'required ${TypeMatcher.getDartType(type)}${nullable ? '?' : ''} ${name.snakeCase}';
   }
 }
