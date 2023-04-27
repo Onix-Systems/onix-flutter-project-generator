@@ -34,7 +34,9 @@ class ClassEntity implements Entity {
       result += '\n     $property';
     }
 
-    result += '\n}';
+    result += '\n}\n';
+
+    result += '\nimports: $imports';
     return result;
   }
 
