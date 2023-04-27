@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity/entity.dart';
+import 'package:recase/recase.dart';
 
 part 'enum.g.dart';
 
@@ -36,7 +37,7 @@ class EnumEntity implements Entity {
     result += 'enum $name{\n';
 
     for (final property in properties) {
-      result += '\n     $property,';
+      result += '\n     ${property.camelCase},';
     }
 
     result += '\n}';
