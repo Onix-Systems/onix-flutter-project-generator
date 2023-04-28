@@ -6,8 +6,11 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/entity/type_matcher.dar
 import 'package:onix_flutter_bricks/utils/swagger_parser/json_writer.dart';
 import 'package:recase/recase.dart';
 
+import '../../core/di/di.dart';
+
 class SwaggerParser {
   String _basePath = '';
+  List<Map<String, dynamic>> _stack = [];
 
   String get basePath => _basePath;
 
@@ -25,9 +28,18 @@ class SwaggerParser {
         ? data['definitions'].entries
         : data['components']['schemas'].entries;
 
+    var stack = <MapEntry<String, dynamic>>[];
+
     for (final entry in entries) {
+      //logger.wtf('entry: ${entry.key} ${entry.value}');
+
       var imports = <String>[];
       if (entry.value['type'] == 'object') {
+        if (entry.value.containsKey('allOf')) {
+          stack.add(entry);
+          continue;
+        }
+
         final entity = ClassEntity(
           name: entry.key,
           properties: (entry.value['properties'] as Map<String, dynamic>)
@@ -68,6 +80,8 @@ class SwaggerParser {
         entities.add(entity);
       }
     }
+
+    _parseStack(stack, entities);
 
     return entities;
   }
@@ -133,5 +147,45 @@ class SwaggerParser {
         .replaceAll('}', '')
         .split('/')
         .last;
+  }
+
+  void _parseStack(
+      List<MapEntry<String, dynamic>> stack, List<Entity> entities) {
+    for (final entry in stack) {
+      logger.wtf('entryKey: ${entry.key} entryValue: ${entry.value}');
+
+      final Map<String, dynamic> properties = {};
+
+      for (var dependency in entry.value['allOf']) {
+        logger.wtf('dependency: $dependency');
+
+        if (TypeMatcher.isReference(dependency)) {
+          final className = _getRefClassName(dependency);
+
+          final entity =
+              entities.where((element) => element.name == className).first;
+
+          for (final property in entity.properties) {
+            logger.wtf(property.toJson());
+            properties['${property.name}'] = property.toJson();
+          }
+        } else {
+          properties.addEntries(dependency['properties'].entries);
+        }
+      }
+
+      logger.wtf('properties: $properties');
+
+      parseEntities({
+        'definitions': {
+          entry.key: {
+            'type': 'object',
+            'properties': properties,
+          }
+        }
+      }).then((innerEntities) {
+        entities.addAll(innerEntities);
+      });
+    }
   }
 }

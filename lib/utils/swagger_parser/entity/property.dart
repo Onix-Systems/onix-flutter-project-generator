@@ -19,6 +19,8 @@ class Property {
   factory Property.fromJson(Map<String, dynamic> json) =>
       _$PropertyFromJson(json);
 
+  Map<String, dynamic> toJson() => _$PropertyToJson(this);
+
   @override
   String toString() {
     return 'required ${TypeMatcher.getDartType(type)}${nullable ? '?' : ''} $name';

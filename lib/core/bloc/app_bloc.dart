@@ -85,9 +85,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     try {
       var response = await http.get(Uri.parse(event.url));
 
-      var json = jsonDecode(response.body) as Map<String, dynamic>;
+      var json = jsonDecode(response.body);
 
-      final parsedEntities = await swaggerParser.parseEntities(json);
+      final parsedEntities =
+          await swaggerParser.parseEntities(json as Map<String, dynamic>);
 
       final entities = state.entities.toList()
         ..addAll(parsedEntities
