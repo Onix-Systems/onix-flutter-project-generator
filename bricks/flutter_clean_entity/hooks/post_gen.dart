@@ -384,7 +384,7 @@ class Entity {
 
   @override
   String toString() {
-    return 'Entity{name: $name, exists: $exists, $generateRequest, generateResponse: $generateResponse}, classBody: $classBody, imports: $imports';
+    return 'Entity{name: $name, exists: $exists, $generateRequest, generateResponse: $generateResponse}, classBody: $classBody';
   }
 
   factory Entity.fromJson(Map<String, dynamic> json) => Entity(
