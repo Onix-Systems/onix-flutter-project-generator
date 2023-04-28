@@ -104,8 +104,6 @@ class SwaggerParser {
         final className =
             property.name.substring(0, property.name.length - 1).pascalCase;
 
-        imports.add(className.snakeCase);
-
         if (e.value['items'].containsKey('type') &&
             e.value['items']['type'] != 'object') {
           property.type =
@@ -119,6 +117,8 @@ class SwaggerParser {
               }
             }
           };
+
+          imports.add(className.snakeCase);
 
           parseEntities(definitions).then((innerEntities) {
             entities.addAll(innerEntities);
