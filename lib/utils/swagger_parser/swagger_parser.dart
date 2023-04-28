@@ -1,4 +1,3 @@
-import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity/class_entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity/enum.dart';
@@ -28,7 +27,6 @@ class SwaggerParser {
 
     for (final entry in entries) {
       var imports = <String>[];
-      // logger.d('entry: ${entry.key} ${entry.value}');
       if (entry.value['type'] == 'object') {
         final entity = ClassEntity(
           name: entry.key,
@@ -36,9 +34,7 @@ class SwaggerParser {
               .entries
               .map((e) {
             if (TypeMatcher.isReference(e.value)) {
-              logger.wtf('isReference: ${e.value}');
               imports.add(_getRefClassName(e.value).snakeCase);
-              logger.wtf('imports: $imports');
             }
             var property = Property(
               name: e.key.camelCase,

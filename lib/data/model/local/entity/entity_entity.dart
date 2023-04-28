@@ -39,9 +39,7 @@ class EntityEntity {
           runtimeType == other.runtimeType &&
           name == other.name &&
           generateRequest == other.generateRequest &&
-          generateResponse == other.generateResponse &&
-          exists == other.exists &&
-          classBody == other.classBody;
+          generateResponse == other.generateResponse;
 
   @override
   int get hashCode => name.hashCode;

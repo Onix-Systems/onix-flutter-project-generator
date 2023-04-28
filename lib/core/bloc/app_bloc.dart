@@ -78,9 +78,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     //'https://vocadb.net/swagger/v1/swagger.json'
     //'https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json'
 
-    emit(state.copyWith(
-      entities: state.entities.where((element) => element.exists).toSet(),
-    ));
+    // emit(state.copyWith(
+    //   entities: state.entities.where((element) => element.exists).toSet(),
+    // ));
 
     final url = event.url.isNotEmpty
         ? event.url
@@ -92,17 +92,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     final parsedEntities = await swaggerParser.parseEntities(json);
 
-    final entities = parsedEntities
-        .map((e) => EntityEntity(
-            name: e.name,
-            classBody: e.generateClassBody(projectName: state.projectName)))
-        .toList()
-      ..addAll(state.entities.toList())
+    final entities = state.entities.toList()
+      ..addAll(parsedEntities
+          .map((e) => EntityEntity(
+              name: e.name,
+              classBody: e.generateClassBody(projectName: state.projectName)))
+          .toList())
       ..sort((a, b) => a.name.compareTo(b.name));
-
-    for (var entity in parsedEntities) {
-      //print(entity);
-    }
 
     emit(state.copyWith(
       entities: entities.toSet(),
@@ -118,13 +114,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                 SourceEntity(
                   name: 'time',
                   exists: true,
-                  entities: [EntityEntity(name: 'time', exists: true)],
+                  entities: [EntityEntity(name: 'Time', exists: true)],
                 )
               }
             : state.sources,
         entities: state.entities.isEmpty
             ? {
-                EntityEntity(name: 'auth', exists: true),
+                EntityEntity(name: 'Auth', exists: true),
               }
             : state.entities,
         screens: state.screens.isEmpty
@@ -139,7 +135,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _tabChange(TabChange event, Emitter<AppState> emit) async {
     emit(state.copyWith(tab: event.tabIndex));
-    add(const ProjectCheck());
+    //add(const ProjectCheck());
   }
 
   FutureOr<void> _projectPathChange(
@@ -194,26 +190,20 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     emit(state.copyWith(
       projectExists: projectExists,
       projectIsClean: projectIsClean,
-      sources: state.sources.isNotEmpty
-          ? state.sources
-          : {
-              SourceEntity(
-                name: 'time',
-                exists: true,
-                entities: [EntityEntity(name: 'time', exists: true)],
-              )
-            },
-      entities: state.entities.isNotEmpty
-          ? state.entities
-          : {
-              EntityEntity(name: 'auth', exists: true),
-            },
-      screens: state.screens.isNotEmpty
-          ? state.screens
-          : {
-              ScreenEntity(name: 'splash', exists: true),
-              ScreenEntity(name: 'home', exists: true)
-            },
+      sources: {
+        SourceEntity(
+          name: 'time',
+          exists: true,
+          entities: [EntityEntity(name: 'time', exists: true)],
+        )
+      },
+      entities: {
+        EntityEntity(name: 'auth', exists: true),
+      },
+      screens: {
+        ScreenEntity(name: 'splash', exists: true),
+        ScreenEntity(name: 'home', exists: true)
+      },
     ));
   }
 
