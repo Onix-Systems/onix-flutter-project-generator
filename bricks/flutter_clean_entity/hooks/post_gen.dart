@@ -113,18 +113,10 @@ Future<void> _genEntity(HookContext context, Entity entity) async {
 
   var sourceFile = await File(sourcePath).readAsString();
 
-  //import 'package:new_project/domain/entity/clinic/clinic.dart';
-
-  final imports = entity.imports
-      .map((e) =>
-          'import \'package:${context.vars['projectName']}/domain/entity/$e/$e.dart\';')
-      .join('\n');
-
   await file.writeAsString(sourceFile
       .replaceAll('\${className.snakeCase}', entity.name)
       .replaceAll('\${className.pascalCase}', entity.name.toPascalCase)
-      .replaceAll('\${classBody}', entity.classBody)
-      .replaceAll('\${imports}', imports));
+      .replaceAll('\${classBody}', entity.classBody));
 }
 
 Future<void> _genResponse(Entity entity) async {

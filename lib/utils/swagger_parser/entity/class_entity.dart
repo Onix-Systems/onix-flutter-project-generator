@@ -48,23 +48,23 @@ class ClassEntity implements Entity {
   }
 
   @override
-  String generateClassBody() {
-    var result = '';
+  String generateClassBody({required String projectName}) {
+    final imports = this
+        .imports
+        .map((e) => 'import \'package:$projectName/domain/entity/$e/$e.dart\';')
+        .join('\n');
 
-    result += 'part \'${name.snakeCase}.freezed.dart\';\n\n';
+    final properties = this.properties.map((e) => '       $e').join('\n');
 
-    result += '@freezed\n';
-
-    result += 'class $name with _\$$name {\n';
-    result += '  factory $name({\n';
-
-    for (final property in properties) {
-      result += '\n     $property,';
-    }
-
-    result += '\n  }) = _$name;\n';
-
-    result += '\n}';
+    var result = '''
+    part '${name.snakeCase}.freezed.dart';
+    
+    @freezed
+    class $name with _\$$name {
+        factory $name({
+        $properties
+        }) = _$name;
+    ''';
 
     return result;
   }

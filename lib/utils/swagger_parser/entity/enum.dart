@@ -31,7 +31,7 @@ class EnumEntity implements Entity {
   }
 
   @override
-  String generateClassBody() {
+  String generateClassBody({required String projectName}) {
     var result = '';
 
     result += 'enum $name{\n';
