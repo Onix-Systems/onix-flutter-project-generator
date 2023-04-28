@@ -34,7 +34,7 @@ class EnumEntity implements Entity {
   String generateClassBody({required String projectName}) {
     var result = '';
 
-    result += 'enum $name{\n';
+    result += 'enum $name{';
 
     for (final property in properties) {
       result += '\n     ${property.camelCase},';

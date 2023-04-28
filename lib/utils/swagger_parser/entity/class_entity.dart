@@ -67,8 +67,7 @@ class $name with _\$$name {
     factory $name({
     $properties
     }) = _$name;
-}
-    ''';
+}''';
 
     return result;
   }
