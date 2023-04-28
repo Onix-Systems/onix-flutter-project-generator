@@ -78,31 +78,33 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     //'https://vocadb.net/swagger/v1/swagger.json'
     //'https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json'
 
-    // emit(state.copyWith(
-    //   entities: state.entities.where((element) => element.exists).toSet(),
-    // ));
+    // final url = event.url.isNotEmpty
+    //     ? event.url
+    //     : 'https://vocadb.net/swagger/v1/swagger.json';
 
-    final url = event.url.isNotEmpty
-        ? event.url
-        : 'https://vocadb.net/swagger/v1/swagger.json';
+    try {
+      var response = await http.get(Uri.parse(event.url));
 
-    var response = await http.get(Uri.parse(url));
+      var json = jsonDecode(response.body) as Map<String, dynamic>;
 
-    var json = jsonDecode(response.body) as Map<String, dynamic>;
+      final parsedEntities = await swaggerParser.parseEntities(json);
 
-    final parsedEntities = await swaggerParser.parseEntities(json);
+      final entities = state.entities.toList()
+        ..addAll(parsedEntities
+            .map((e) => EntityEntity(
+                name: e.name,
+                classBody: e.generateClassBody(projectName: state.projectName)))
+            .toList())
+        ..sort((a, b) => a.name.compareTo(b.name));
 
-    final entities = state.entities.toList()
-      ..addAll(parsedEntities
-          .map((e) => EntityEntity(
-              name: e.name,
-              classBody: e.generateClassBody(projectName: state.projectName)))
-          .toList())
-      ..sort((a, b) => a.name.compareTo(b.name));
-
-    emit(state.copyWith(
-      entities: entities.toSet(),
-    ));
+      emit(state.copyWith(
+        entities: entities.toSet(),
+      ));
+    } catch (e) {
+      emit(state.copyWith(
+        entityError: e.toString(),
+      ));
+    }
   }
 
   FutureOr<void> _init(_, Emitter<AppState> emit) {

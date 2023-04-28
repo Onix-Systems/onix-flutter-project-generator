@@ -6,6 +6,7 @@ import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/add_entity_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/swagger_file_parse_widget.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/source_widgets/add_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/entity_table_expansion_tile.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/source_widgets/source_table_expansion_title.dart';
@@ -217,30 +218,12 @@ class BuildEntity extends StatelessWidget {
                   ],
                 ),
               ],
-              Row(
-                children: [
-                  Expanded(
-                    child: CupertinoTextField(
-                      controller: urlController,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: CupertinoColors.systemGrey,
-                        ),
-                      ),
+              SwaggerFileParseWidget(
+                onParse: () => context.read<AppBloc>().add(
+                      SwaggerParse(url: urlController.text),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  CupertinoButton(
-                    color: CupertinoColors.activeOrange,
-                    onPressed: () {
-                      context.read<AppBloc>().add(
-                            SwaggerParse(url: urlController.text),
-                          );
-                    },
-                    child: const Text('Parse'),
-                  ),
-                ],
-              )
+                urlController: urlController,
+              ),
             ],
           ),
         ),
