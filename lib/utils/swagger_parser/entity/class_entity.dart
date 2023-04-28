@@ -22,6 +22,7 @@ class ClassEntity implements Entity {
       _$ClassEntityFromJson(json);
 
   void addImports(List<String> imports) {
+    imports.sort((a, b) => a.compareTo(b));
     this.imports.addAll(imports);
   }
 
@@ -57,7 +58,8 @@ class ClassEntity implements Entity {
 
     final properties = this.properties.map((e) => '       $e,').join('\n');
 
-    var result = '''
+    return '''
+import \$\$package:freezed_annotation/freezed_annotation.dart\$\$;
 $imports
 
 part \$\$${name.snakeCase}.freezed.dart\$\$;
@@ -68,7 +70,5 @@ class $name with _\$$name {
     $properties
     }) = _$name;
 }''';
-
-    return result;
   }
 }

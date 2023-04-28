@@ -32,17 +32,15 @@ class EnumEntity implements Entity {
 
   @override
   String generateClassBody({required String projectName}) {
-    var result = '';
+    final properties = this
+        .properties
+        .map((e) => '       ${e == 'default' ? '//' : ''}$e,')
+        .join('\n');
 
-    result += 'enum $name{';
-
-    for (final property in properties) {
-      result += '\n     ${property.camelCase},';
-    }
-
-    result += '\n}';
-
-    return result;
+    return '''
+enum $name{
+    $properties
+}''';
   }
 
   @override
