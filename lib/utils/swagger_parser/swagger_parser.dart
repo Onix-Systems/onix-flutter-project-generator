@@ -66,7 +66,7 @@ class SwaggerParser {
         final entity = EnumEntity(
           name: entry.key,
           properties: (entry.value['enum'] as List<dynamic>)
-              .map((e) => e.toString().snakeCase)
+              .map((e) => e.toString().camelCase)
               .toList(),
         );
         entities.add(entity);
