@@ -95,8 +95,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     final entities = parsedEntities
         .map((e) => EntityEntity(
             name: e.name,
-            classBody: e.generateClassBody(projectName: state.projectName),
-            imports: e.imports))
+            classBody: e.generateClassBody(projectName: state.projectName)))
         .toList()
       ..addAll(state.entities.toList())
       ..sort((a, b) => a.name.compareTo(b.name));
