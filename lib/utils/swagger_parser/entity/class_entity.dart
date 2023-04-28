@@ -51,14 +51,16 @@ class ClassEntity implements Entity {
   String generateClassBody({required String projectName}) {
     final imports = this
         .imports
-        .map((e) => 'import \'package:$projectName/domain/entity/$e/$e.dart\';')
+        .map((e) =>
+            'import \$\$package:$projectName/domain/entity/$e/$e.dart\$\$;')
         .join('\n');
 
     final properties = this.properties.map((e) => '       $e,').join('\n');
 
     var result = '''
 $imports
-part \'${name.snakeCase}.freezed.dart\';
+
+part \$\$${name.snakeCase}.freezed.dart\$\$;
 
 @freezed
 class $name with _\$$name {

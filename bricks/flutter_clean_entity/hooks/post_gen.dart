@@ -116,7 +116,7 @@ Future<void> _genEntity(HookContext context, Entity entity) async {
   await file.writeAsString(sourceFile
       .replaceAll('\${className.snakeCase}', entity.name)
       .replaceAll('\${className.pascalCase}', entity.name.toPascalCase)
-      .replaceAll('\${classBody}', entity.classBody));
+      .replaceAll('\${classBody}', entity.classBody.replaceAll('\$\$', '\'')));
 }
 
 Future<void> _genResponse(Entity entity) async {
