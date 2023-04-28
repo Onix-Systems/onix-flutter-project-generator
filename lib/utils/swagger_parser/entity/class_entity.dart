@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity/property.dart';
+import 'package:recase/recase.dart';
 
 part 'class_entity.g.dart';
 
@@ -49,6 +50,8 @@ class ClassEntity implements Entity {
   @override
   String generateClassBody() {
     var result = '';
+
+    result += 'part \'${name.snakeCase}.freezed.dart\';\n\n';
 
     result += '@freezed\n';
 

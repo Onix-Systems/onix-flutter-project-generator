@@ -1,6 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 ${imports}
 
-part '${className.snakeCase}.freezed.dart';
-
 ${classBody}
