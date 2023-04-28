@@ -54,16 +54,17 @@ class ClassEntity implements Entity {
         .map((e) => 'import \'package:$projectName/domain/entity/$e/$e.dart\';')
         .join('\n');
 
-    final properties = this.properties.map((e) => '       $e').join('\n');
+    final properties = this.properties.map((e) => '       $e,').join('\n');
 
     var result = '''
-    part '${name.snakeCase}.freezed.dart';
-    
-    @freezed
-    class $name with _\$$name {
-        factory $name({
-        $properties
-        }) = _$name;
+$imports
+part \'${name.snakeCase}.freezed.dart\';
+
+@freezed
+class $name with _\$$name {
+    factory $name({
+    $properties
+    }) = _$name;
     ''';
 
     return result;
