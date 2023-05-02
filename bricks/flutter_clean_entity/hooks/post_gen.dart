@@ -69,6 +69,7 @@ void run(HookContext context) async {
   }
 
   if (sourceName.isNotEmpty) {
+    print('Generating source files for $sourceName');
     await _genSource(entities);
     if (context.vars['repository_exists'] || entities.length > 1) {
       await _genRepository(entities);
