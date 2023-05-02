@@ -269,17 +269,25 @@ Future<void> _genSource(List<Entity> entities) async {
     await file.create();
   }
 
-  var responseImports = entities
-      .where((element) => element.generateResponse)
-      .map((e) =>
-          'import \'package:${projectName}/data/model/remote/${sourceName}/${e.name}/${e.name}_response.dart\';\n')
-      .join();
+  String responseImports = '';
 
-  var requestImports = entities
-      .where((element) => element.generateRequest)
-      .map((e) =>
-          'import \'package:${projectName}/data/model/remote/${sourceName}/${e.name}/${e.name}_request.dart\';\n')
-      .join();
+  if (entities.isNotEmpty) {
+    var responseImports = entities
+        .where((element) => element.generateResponse)
+        .map((e) =>
+            'import \'package:${projectName}/data/model/remote/${sourceName}/${e.name}/${e.name}_response.dart\';\n')
+        .join();
+  }
+
+  String requestImports = '';
+
+  if (entities.isNotEmpty) {
+    var requestImports = entities
+        .where((element) => element.generateRequest)
+        .map((e) =>
+            'import \'package:${projectName}/data/model/remote/${sourceName}/${e.name}/${e.name}_request.dart\';\n')
+        .join();
+  }
 
   String sourcePath = 'gen/source.tmp';
 
@@ -293,9 +301,10 @@ Future<void> _genSource(List<Entity> entities) async {
         .replaceAll('//{request_imports}', '$requestImports//{request_imports}')
         .replaceAll('\${sourceName.snakeCase}', sourceName)
         .replaceAll('\${sourceName.pascalCase}', sourceName.toPascalCase)
-        .replaceAll('\${className.snakeCase}', entities.first.name)
-        .replaceAll(
-            '\${className.pascalCase}', entities.first.name.toPascalCase)
+        .replaceAll('\${className.snakeCase}',
+            entities.isNotEmpty ? entities.first.name : '')
+        .replaceAll('\${className.pascalCase}',
+            entities.isNotEmpty ? entities.first.name.toPascalCase : '')
         .replaceAll('\${projectName}', projectName),
   );
 
