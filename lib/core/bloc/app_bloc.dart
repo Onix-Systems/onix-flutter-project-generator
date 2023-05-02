@@ -13,6 +13,7 @@ import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
 import 'package:http/http.dart' as http;
@@ -21,7 +22,6 @@ import 'app_models.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   String projectPath;
-  final swaggerParser = SwaggerParser();
 
   static const String gitRef = '--git-ref swagger_parser';
 
@@ -78,28 +78,35 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     //'https://vocadb.net/swagger/v1/swagger.json'
     //'https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json'
 
-    // final url = event.url.isNotEmpty
-    //     ? event.url
-    //     : 'https://vocadb.net/swagger/v1/swagger.json';
+    final url = event.url.isNotEmpty
+        ? event.url
+        : 'https://vocadb.net/swagger/v1/swagger.json';
 
     try {
-      var response = await http.get(Uri.parse(event.url));
+      var response = await http.get(Uri.parse(url));
 
       var json = jsonDecode(response.body);
 
-      final parsedEntities =
-          await swaggerParser.parseEntities(json as Map<String, dynamic>);
+      final parsedData =
+          await SwaggerParser.parse(json as Map<String, dynamic>);
 
       final entities = state.entities.toList()
-        ..addAll(parsedEntities
+        ..addAll(parsedData.entities
             .map((e) => EntityEntity(
                 name: e.name,
                 classBody: e.generateClassBody(projectName: state.projectName)))
             .toList())
         ..sort((a, b) => a.name.compareTo(b.name));
 
+      final sources = state.sources.toList()
+        ..addAll(parsedData.sources
+            .map((e) => SourceEntity(name: e.name, entities: []))
+            .toList())
+        ..sort((a, b) => a.name.compareTo(b.name));
+
       emit(state.copyWith(
         entities: entities.toSet(),
+        sources: sources.toSet(),
       ));
     } catch (e) {
       emit(state.copyWith(
@@ -564,6 +571,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         }
       }
     }
+
+    logger.wtf('needToGenerateSources: $needToGenerateSources');
 
     if (needToGenerateEntities || needToGenerateSources) {
       emit(state.copyWith(generatingState: GeneratingState.generating));

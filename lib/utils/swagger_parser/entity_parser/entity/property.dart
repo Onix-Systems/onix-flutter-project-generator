@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity/type_matcher.dart';
-import 'package:recase/recase.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 
 part 'property.g.dart';
 

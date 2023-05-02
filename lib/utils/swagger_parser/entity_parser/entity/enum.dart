@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity/entity.dart';
-import 'package:recase/recase.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
 
 part 'enum.g.dart';
 
