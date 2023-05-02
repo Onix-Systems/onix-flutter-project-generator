@@ -6,7 +6,7 @@ void run(HookContext context) async {
   var pwd = await Process.run('pwd', []);
   String projectName = pwd.outLines.first.split('/').last;
 
-  context.vars.toString().log();
+  context.vars['entities'].toString().log();
 
   context.vars = {
     ...context.vars,

@@ -30,17 +30,15 @@ void run(HookContext context) async {
     await Directory('lib/data/source/remote/${sourceName.toCamelCase}')
         .create();
 
-  if (context.vars['entities'].toString().isNotEmpty) {
-    await Directory(
-            'lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
-        .create();
-    await Directory(
-            'lib/data/mapper/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
-        .create();
-    await Directory(
-            'lib/data/model/remote/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
-        .create();
-  }
+  await Directory(
+          'lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
+      .create();
+  await Directory(
+          'lib/data/mapper/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
+      .create();
+  await Directory(
+          'lib/data/model/remote/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
+      .create();
 
   List<Entity> entities = [];
 
@@ -48,7 +46,7 @@ void run(HookContext context) async {
     var inputEntities = context.vars['entities'].toString().split(', ');
     entities.addAll(List.generate(inputEntities.length,
         (index) => Entity.fromJson(jsonDecode(inputEntities[index]))));
-  } else if (context.vars['entities'].toString().isNotEmpty) {
+  } else {
     entities.add(Entity.fromJson((context.vars['entities'])));
   }
 
@@ -69,7 +67,6 @@ void run(HookContext context) async {
   }
 
   if (sourceName.isNotEmpty) {
-    print('Generating source files for $sourceName');
     await _genSource(entities);
     if (context.vars['repository_exists'] || entities.length > 1) {
       await _genRepository(entities);
@@ -272,25 +269,17 @@ Future<void> _genSource(List<Entity> entities) async {
     await file.create();
   }
 
-  String responseImports = '';
+  var responseImports = entities
+      .where((element) => element.generateResponse)
+      .map((e) =>
+          'import \'package:${projectName}/data/model/remote/${sourceName}/${e.name}/${e.name}_response.dart\';\n')
+      .join();
 
-  if (entities.isNotEmpty) {
-    var responseImports = entities
-        .where((element) => element.generateResponse)
-        .map((e) =>
-            'import \'package:${projectName}/data/model/remote/${sourceName}/${e.name}/${e.name}_response.dart\';\n')
-        .join();
-  }
-
-  String requestImports = '';
-
-  if (entities.isNotEmpty) {
-    var requestImports = entities
-        .where((element) => element.generateRequest)
-        .map((e) =>
-            'import \'package:${projectName}/data/model/remote/${sourceName}/${e.name}/${e.name}_request.dart\';\n')
-        .join();
-  }
+  var requestImports = entities
+      .where((element) => element.generateRequest)
+      .map((e) =>
+          'import \'package:${projectName}/data/model/remote/${sourceName}/${e.name}/${e.name}_request.dart\';\n')
+      .join();
 
   String sourcePath = 'gen/source.tmp';
 
@@ -304,10 +293,9 @@ Future<void> _genSource(List<Entity> entities) async {
         .replaceAll('//{request_imports}', '$requestImports//{request_imports}')
         .replaceAll('\${sourceName.snakeCase}', sourceName)
         .replaceAll('\${sourceName.pascalCase}', sourceName.toPascalCase)
-        .replaceAll('\${className.snakeCase}',
-            entities.isNotEmpty ? entities.first.name : '')
-        .replaceAll('\${className.pascalCase}',
-            entities.isNotEmpty ? entities.first.name.toPascalCase : '')
+        .replaceAll('\${className.snakeCase}', entities.first.name)
+        .replaceAll(
+            '\${className.pascalCase}', entities.first.name.toPascalCase)
         .replaceAll('\${projectName}', projectName),
   );
 
