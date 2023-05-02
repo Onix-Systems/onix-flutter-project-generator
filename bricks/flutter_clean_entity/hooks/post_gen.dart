@@ -30,15 +30,17 @@ void run(HookContext context) async {
     await Directory('lib/data/source/remote/${sourceName.toCamelCase}')
         .create();
 
-  await Directory(
-          'lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
-      .create();
-  await Directory(
-          'lib/data/mapper/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
-      .create();
-  await Directory(
-          'lib/data/model/remote/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
-      .create();
+  if (context.vars['entities'].toString().isNotEmpty) {
+    await Directory(
+            'lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
+        .create();
+    await Directory(
+            'lib/data/mapper/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
+        .create();
+    await Directory(
+            'lib/data/model/remote/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
+        .create();
+  }
 
   List<Entity> entities = [];
 
@@ -46,7 +48,7 @@ void run(HookContext context) async {
     var inputEntities = context.vars['entities'].toString().split(', ');
     entities.addAll(List.generate(inputEntities.length,
         (index) => Entity.fromJson(jsonDecode(inputEntities[index]))));
-  } else {
+  } else if (context.vars['entities'].toString().isNotEmpty) {
     entities.add(Entity.fromJson((context.vars['entities'])));
   }
 
