@@ -87,26 +87,20 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
       var json = jsonDecode(response.body);
 
-      final parsedData =
-          await SwaggerParser.parse(json as Map<String, dynamic>);
+      final parsedData = await SwaggerParser.parse(
+          data: json as Map<String, dynamic>, projectName: state.projectName);
 
       final entities = state.entities.toList()
-        ..addAll(parsedData.entities
-            .map((e) => EntityEntity(
-                name: e.name,
-                classBody: e.generateClassBody(projectName: state.projectName)))
-            .toList())
+        ..addAll(parsedData.entities)
         ..sort((a, b) => a.name.compareTo(b.name));
 
-      // final sources = state.sources.toList()
-      //   ..addAll(parsedData.sources
-      //       .map((e) => SourceEntity(name: e.name, entities: []))
-      //       .toList())
-      //   ..sort((a, b) => a.name.compareTo(b.name));
+      final sources = state.sources.toList()
+        ..addAll(parsedData.sources)
+        ..sort((a, b) => a.name.compareTo(b.name));
 
       emit(state.copyWith(
         entities: entities.toSet(),
-        //sources: sources.toSet(),
+        sources: sources.toSet(),
       ));
     } catch (e) {
       emit(state.copyWith(

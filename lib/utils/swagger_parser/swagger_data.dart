@@ -1,10 +1,10 @@
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/source.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
 
 class SwaggerData {
   final String basePath;
-  final List<Entity> entities;
-  final List<Source> sources;
+  final List<EntityEntity> entities;
+  final List<SourceEntity> sources;
 
   SwaggerData({
     required this.basePath,
