@@ -1,4 +1,4 @@
-import 'package:onix_flutter_bricks/utils/swagger_parser/path_parser/entity/path.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/path.dart';
 import 'package:recase/recase.dart';
 
 class Source {

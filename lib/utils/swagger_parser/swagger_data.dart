@@ -1,5 +1,5 @@
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/path_parser/entity/source.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/source.dart';
 
 class SwaggerData {
   final String basePath;

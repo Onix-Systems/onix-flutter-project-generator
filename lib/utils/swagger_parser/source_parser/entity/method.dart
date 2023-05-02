@@ -1,4 +1,4 @@
-import 'package:onix_flutter_bricks/utils/swagger_parser/path_parser/entity/method_type.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
 
 class Method {
   final MethodType methodType;

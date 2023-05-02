@@ -1,9 +1,9 @@
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/json_writer.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/path_parser/entity/method.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/path_parser/entity/method_type.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/path_parser/entity/path.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/path_parser/entity/source.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/path.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/source.dart';
 
 class SourceParser {
   static Future<List<Source>> parse(Map<String, dynamic> data) async {
