@@ -22,7 +22,7 @@ class ${sourceName.pascalCase}RepositoryImpl extends ${sourceName.pascalCase}Rep
     try {
       final response = await _${sourceName.snakeCase}Source.get${className.pascalCase}();
       if (response.isSuccess()) {
-        final entities = _${className.pascalCase}Mappers.map${className.pascalCase}ResponseToEntity(response.data);
+        final entities = _${className.camelCase}Mappers.map${className.pascalCase}ResponseToEntity(response.data);
         return Result.success(entities);
       } else {
         final failure = MapCommonServerError.getServerFailureDetails(response);
@@ -41,9 +41,9 @@ class ${sourceName.pascalCase}RepositoryImpl extends ${sourceName.pascalCase}Rep
   }
 
   @override
-  Future<Result<OperationStatus>> post${className.pascalCase}(${className.pascalCase} ${className.snakeCase}) async {
+  Future<Result<OperationStatus>> post${className.pascalCase}(${className.pascalCase} ${className.camelCase}) async {
     try {
-      final response = await _${sourceName.snakeCase}Source.post${className.pascalCase}(_${className.snakeCase}Mappers.map${className.pascalCase}EntityToRequest(${className.snakeCase}Entity));
+      final response = await _${sourceName.snakeCase}Source.post${className.pascalCase}(_${className.camelCase}Mappers.map${className.pascalCase}EntityToRequest(${className.camelCase}));
       if (response.isSuccess()) {
         return const Result.success(OperationStatus.success);
       } else {
