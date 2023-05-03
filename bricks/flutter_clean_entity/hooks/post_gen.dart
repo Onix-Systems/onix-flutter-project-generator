@@ -163,6 +163,8 @@ Future<void> _genMapper(Entity entity) async {
     sourcePath = 'gen/request_mapper.tmp';
   }
 
+  entity.properties.log();
+
   var sourceFile = await File(sourcePath).readAsString();
 
   await file.writeAsString(
@@ -375,6 +377,7 @@ class Entity {
   bool generateResponse;
   bool exists;
   String classBody;
+  List<String> properties;
 
   Entity({
     required this.name,
@@ -382,11 +385,12 @@ class Entity {
     required this.generateResponse,
     required this.exists,
     required this.classBody,
+    required this.properties,
   });
 
   @override
   String toString() {
-    return 'Entity{name: $name, exists: $exists, $generateRequest, generateResponse: $generateResponse}, classBody: $classBody';
+    return 'Entity{name: $name, exists: $exists, $generateRequest, generateResponse: $generateResponse}, classBody: $classBody, properties: $properties}';
   }
 
   factory Entity.fromJson(Map<String, dynamic> json) => Entity(
@@ -395,5 +399,8 @@ class Entity {
         generateRequest: json['generateRequest'],
         generateResponse: json['generateResponse'],
         classBody: json['classBody'],
+        properties: json['properties']
+            .map<String>((e) => e['name'].toString())
+            .toList(),
       );
 }

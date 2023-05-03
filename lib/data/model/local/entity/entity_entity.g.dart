@@ -12,6 +12,10 @@ EntityEntity _$EntityEntityFromJson(Map<String, dynamic> json) => EntityEntity(
       generateResponse: json['generateResponse'] as bool? ?? false,
       exists: json['exists'] as bool? ?? false,
       classBody: json['classBody'] as String? ?? '',
+      properties: (json['properties'] as List<dynamic>?)
+              ?.map((e) => Property.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$EntityEntityToJson(EntityEntity instance) =>
@@ -21,4 +25,5 @@ Map<String, dynamic> _$EntityEntityToJson(EntityEntity instance) =>
       'generateResponse': instance.generateResponse,
       'exists': instance.exists,
       'classBody': instance.classBody,
+      'properties': instance.properties,
     };

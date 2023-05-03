@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 
 part 'entity_entity.g.dart';
 
@@ -9,6 +10,7 @@ class EntityEntity {
   bool generateResponse;
   bool exists;
   String classBody;
+  List<Property> properties;
 
   EntityEntity({
     required this.name,
@@ -16,6 +18,7 @@ class EntityEntity {
     this.generateResponse = false,
     this.exists = false,
     this.classBody = '',
+    this.properties = const [],
   });
 
   EntityEntity.copyOf(EntityEntity entity)
@@ -46,6 +49,6 @@ class EntityEntity {
 
   @override
   String toString() {
-    return 'EntityEntity{name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse, classBody: $classBody}';
+    return 'EntityEntity{name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse, classBody: $classBody, properties: $properties}';
   }
 }
