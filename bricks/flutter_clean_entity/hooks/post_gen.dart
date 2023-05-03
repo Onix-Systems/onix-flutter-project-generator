@@ -212,6 +212,7 @@ Future<void> _genRepository(List<Entity> entities) async {
         .replaceAll(
             '//{entities_imports}', '$entitiesImports//{entities_imports}')
         .replaceAll('\${className.snakeCase}', entities.first.name)
+        .replaceAll('\${className.camelCase}', entities.first.name.toCamelCase)
         .replaceAll('\${sourceName.snakeCase}', sourceName)
         .replaceAll('\${sourceName.pascalCase}', sourceName.toPascalCase)
         .replaceAll(
