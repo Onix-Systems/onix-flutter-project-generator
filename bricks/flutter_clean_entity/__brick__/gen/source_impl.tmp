@@ -9,8 +9,8 @@ import 'package:${projectName}/data/source/remote/${sourceName.snakeCase}/${sour
 class ${sourceName.pascalCase}SourceImpl extends ${sourceName.pascalCase}Source {
   final ApiClient _apiClient;
   final DioRequestProcessor _dioRequestProcessor;
-  //final _get${className.pascalCase}Endpoint = '/get_${className.snakeCase}';
-  //final _post${className.pascalCase}Endpoint = '/post_${className.snakeCase}';
+  final _get${className.pascalCase}Endpoint = '/get_${className.snakeCase}';
+  final _post${className.pascalCase}Endpoint = '/post_${className.snakeCase}';
 
   ${sourceName.pascalCase}SourceImpl(this._apiClient, this._dioRequestProcessor);
 
