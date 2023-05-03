@@ -7,7 +7,7 @@ class ${className.pascalCase}Mappers {
   final _${className.camelCase}ResponseToEntityMapper = _${className.pascalCase}ResponseToEntityMapper();
   final _${className.camelCase}EntityToRequestMapper = _${className.pascalCase}EntityToRequestMapper();
 
-  ${className.pascalCase}Entity map${className.pascalCase}ResponseToEntity(${className.pascalCase}Response response) =>
+  ${className.pascalCase} map${className.pascalCase}ResponseToEntity(${className.pascalCase}Response response) =>
       _${className.camelCase}ResponseToEntityMapper.map(response);
 
   ${className.pascalCase}Request map${className.pascalCase}EntityToRequest(${className.pascalCase} entity) =>
@@ -16,16 +16,16 @@ class ${className.pascalCase}Mappers {
 
 class _${className.pascalCase}ResponseToEntityMapper implements Mapper<${className.pascalCase}Response, ${className.pascalCase}>{
   @override
-  ${className.pascalCase}Entity map(${className.pascalCase}Response from) {
+  ${className.pascalCase} map(${className.pascalCase}Response from) {
     return ${className.pascalCase}(
         name: from.name ?? '',
     );
   } 
 }
 
-class _${className.pascalCase}EntityToRequestMapper implements Mapper<${className.pascalCase}Entity, ${className.pascalCase}Request>{
+class _${className.pascalCase}EntityToRequestMapper implements Mapper<${className.pascalCase}, ${className.pascalCase}Request>{
   @override
-  ${className.pascalCase}Request map(${className.pascalCase}Entity from) {
+  ${className.pascalCase}Request map(${className.pascalCase} from) {
     return ${className.pascalCase}Request(
         name: from.name,
     );

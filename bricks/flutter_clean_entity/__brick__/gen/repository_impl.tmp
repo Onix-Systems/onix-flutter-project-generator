@@ -22,7 +22,7 @@ class ${sourceName.pascalCase}RepositoryImpl extends ${sourceName.pascalCase}Rep
     try {
       final response = await _${sourceName.snakeCase}Source.get${className.pascalCase}();
       if (response.isSuccess()) {
-        final entities = _${className.snakeCase}Mappers.map${className.pascalCase}ResponseToEntity(response.data);
+        final entities = _${className.pascalCase}Mappers.map${className.pascalCase}ResponseToEntity(response.data);
         return Result.success(entities);
       } else {
         final failure = MapCommonServerError.getServerFailureDetails(response);
