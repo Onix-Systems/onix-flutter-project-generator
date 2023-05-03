@@ -14,6 +14,8 @@ class SwaggerParser {
     final entities = parsedEntities
         .map((e) => EntityEntity(
             name: e.name,
+            generateRequest: true,
+            generateResponse: true,
             classBody: e.generateClassBody(projectName: projectName)))
         .toList();
 

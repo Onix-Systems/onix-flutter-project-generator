@@ -1,9 +1,9 @@
 import 'package:${projectName}/core/arch/domain/entity/common/data_response.dart';
-//import 'package:new_project/core/arch/domain/entity/common/operation_status.dart';
+import 'package:new_project/core/arch/domain/entity/common/operation_status.dart';
 //{response_imports}
 //{request_imports}
 
 abstract class ${sourceName.pascalCase}Source {
-  //Future<DataResponse<${className.pascalCase}Response>> get${className.pascalCase}();
-  //Future<DataResponse<OperationStatus>> post${className.pascalCase}(${className.pascalCase}Request ${className.snakeCase}Request);
+  Future<DataResponse<${className.pascalCase}Response>> get${className.pascalCase}();
+  Future<DataResponse<OperationStatus>> post${className.pascalCase}(${className.pascalCase}Request ${className.snakeCase}Request);
 }

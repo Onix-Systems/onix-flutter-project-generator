@@ -186,7 +186,7 @@ Future<void> _genRepository(List<Entity> entities) async {
 
   var entitiesImports = entities
       .map((e) =>
-          'import \'package:${projectName}/domain/entity/${sourceName}/${e.name}/${e.name}_entity.dart\';\n')
+          'import \'package:${projectName}/domain/entity/${sourceName}/${e.name}/${e.name}.dart\';\n')
       .join();
 
   var mappersImports = entities

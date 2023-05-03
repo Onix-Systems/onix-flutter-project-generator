@@ -3,6 +3,6 @@ import 'package:${projectName}/core/arch/domain/entity/common/result.dart';
 //{entities_imports}
 
 abstract class ${sourceName.pascalCase}Repository {
-  //Future<Result<${className.pascalCase}Entity>> get${className.pascalCase}();
-  //Future<Result<OperationStatus>> post${className.pascalCase}(${className.pascalCase}Entity ${className.snakeCase}Entity);
+  //Future<Result<${className.pascalCase}>> get${className.pascalCase}();
+  //Future<Result<OperationStatus>> post${className.pascalCase}(${className.pascalCase} ${className.snakeCase});
 }

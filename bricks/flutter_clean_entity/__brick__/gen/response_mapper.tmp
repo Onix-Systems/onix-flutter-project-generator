@@ -1,6 +1,6 @@
 import 'package:{{projectName}}/core/arch/domain/common/converter/mapper.dart';
 import 'package:${projectName}/data/model/remote/${sourceName.snakeCase}/${className.snakeCase}/${className.snakeCase}_response.dart';
-import 'package:${projectName}/domain/entity/${sourceName.snakeCase}/${className.snakeCase}/${className.snakeCase}_entity.dart';
+import 'package:${projectName}/domain/entity/${sourceName.snakeCase}/${className.snakeCase}/${className.snakeCase}.dart';
 
 class ${className.pascalCase}Mappers {
   final _${className.snakeCase}ResponseToEntityMapper = _${className.pascalCase}ResponseToEntityMapper();
@@ -9,10 +9,10 @@ class ${className.pascalCase}Mappers {
       _${className.snakeCase}ResponseToEntityMapper.map(response);
 }
 
-class _${className.pascalCase}ResponseToEntityMapper implements Mapper<${className.pascalCase}Response, ${className.pascalCase}Entity>{
+class _${className.pascalCase}ResponseToEntityMapper implements Mapper<${className.pascalCase}Response, ${className.pascalCase}>{
   @override
   ${className.pascalCase}Entity map(${className.pascalCase}Response from) {
-    return ${className.pascalCase}Entity(
+    return ${className.pascalCase}(
         name: from.name ?? '',
     );
   } 
