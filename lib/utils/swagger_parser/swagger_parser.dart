@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/pr
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity_parser.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/source_parser.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_data.dart';
+import 'package:recase/recase.dart';
 
 class SwaggerParser {
   static Future<SwaggerData> parse(
@@ -30,17 +31,40 @@ class SwaggerParser {
     final sources = parsedSources.map((e) {
       final entitiesToMove = entities
           .where((element) => e.entities.contains(element.name))
-          .toList();
+          .toSet();
+
+      final importsToMove = <EntityEntity>{};
+
+      for (final entity in parsedEntities
+          .where((element) => e.entities.contains(element.name))) {
+        final imports = entity.imports.toSet();
+
+        for (final import in imports) {
+          final entityToMove = entities
+              .firstWhere((element) => element.name == import.pascalCase);
+
+          entitiesToMove.add(entityToMove);
+          importsToMove.add(entityToMove);
+        }
+      }
 
       entities.removeWhere((element) => e.entities.contains(element.name));
 
+      for (final import in importsToMove) {
+        if (entities
+            .where((element) => element.name == import.name)
+            .isNotEmpty) {
+          entities.removeWhere((element) => element.name == import.name);
+        }
+      }
+
       return SourceEntity(
         name: e.name,
-        entities: entitiesToMove,
+        entities: entitiesToMove.toList(),
       );
     }).toList();
 
-    logger.d('Entities: $entities');
+    //logger.d('Entities: $entities');
     return SwaggerData(
       basePath: basePath,
       entities: entities,

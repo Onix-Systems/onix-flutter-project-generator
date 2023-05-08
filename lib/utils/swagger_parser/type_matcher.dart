@@ -24,6 +24,9 @@ class TypeMatcher {
   static bool isReference(Map<String, dynamic> type) =>
       type.containsKey(r'$ref');
 
+  static bool isReferenceArray(Map<String, dynamic> type) =>
+      type.containsKey('items') && type['items'].containsKey(r'$ref');
+
   static String getDartType(String type) {
     if (isString(type)) {
       return 'String';

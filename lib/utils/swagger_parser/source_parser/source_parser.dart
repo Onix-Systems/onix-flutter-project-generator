@@ -16,6 +16,8 @@ class SourceParser {
       for (final entry in path.value.entries) {
         final entities = <String>[];
 
+        //logger.wtf('Entry: $entry');
+
         if (MethodType.values
             .where((element) => element.name == entry.key)
             .isEmpty) {
@@ -29,6 +31,17 @@ class SourceParser {
 
           String entityName = _getRefClassName(response.value['schema']);
           entities.add(entityName);
+        }
+
+        if (entry.value['parameters'] != null) {
+          for (final parameter in entry.value['parameters']) {
+            if (parameter['schema'] == null) {
+              continue;
+            }
+
+            String entityName = _getRefClassName(parameter['schema']);
+            entities.add(entityName);
+          }
         }
 
         methods.add(Method(
@@ -75,7 +88,7 @@ class SourceParser {
         entities: dependencies.toList(),
       );
       sources.add(source);
-      logger.wtf('Source: $source');
+      //logger.wtf('Source: $source');
     }
 
     return sources;

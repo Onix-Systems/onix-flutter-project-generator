@@ -54,7 +54,7 @@ class MainScreen extends StatelessWidget {
     return CupertinoPageScaffold(
       child: BlocBuilder<AppBloc, AppState>(
         builder: (context, state) {
-          logger.i(state);
+          //logger.i(state);
           if (state.projectName != _projectNameController.text) {
             var offset = _projectNameController.selection.base.offset + 1;
             if (_projectNameController.text.length == 1) offset--;
