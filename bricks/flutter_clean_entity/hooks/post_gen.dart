@@ -27,7 +27,7 @@ void run(HookContext context) async {
   repositoryExists = context.vars['repository_exists'];
 
   if (sourceName.isNotEmpty && !sourceExists)
-    await Directory('lib/data/source/remote/${sourceName.toCamelCase}')
+    await Directory('lib/data/source/remote/${sourceName.toSnakeCase}')
         .create();
 
   await Directory(
