@@ -586,15 +586,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name \'\' --source_exists false --repository_exists false --on-conflict overwrite');
       }
 
-      var exitCode = await mainProcess.exitCode;
-      outputService.add('{#info}Entities generated!');
-      outputService.add('{#info}Exit code: $exitCode');
-
       if (needToGenerateSources) {
         for (var source in state.sources) {
-          var sourceProcess = await startProcess(
-              workingDirectory: '${state.projectPath}/${state.projectName}');
-
           if (source.entities.where((entity) => !entity.exists).isEmpty) {
             continue;
           }
@@ -604,16 +597,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               .map((e) => jsonEncode(e.toJson()))
               .join(', ');
 
-          logger.wtf('source.entities to generate: $entities');
+          logger.wtf('source to generate: ${source.name}');
 
-          sourceProcess.stdin.writeln(
+          mainProcess.stdin.writeln(
               'mason make flutter_clean_entity --build true --entities \'$entities\' --source_name ${source.name} --source_exists ${source.exists} --repository_exists ${source.entities.length > 1} --on-conflict overwrite');
-
-          var exitCode = await sourceProcess.exitCode;
-          outputService.add('{#info}Source ${source.name} generated!');
-          outputService.add('{#info}Exit code: $exitCode');
         }
       }
+
+      var exitCode = await mainProcess.exitCode;
+      outputService.add('{#info}Entities generated!');
+      outputService.add('{#info}with exit code: $exitCode');
     }
 
     Config.saveConfig(state);
