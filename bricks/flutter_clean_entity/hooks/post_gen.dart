@@ -31,13 +31,13 @@ void run(HookContext context) async {
         .create();
 
   await Directory(
-          'lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
+          'lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName.toSnakeCase}' : ''}')
       .create();
   await Directory(
-          'lib/data/mapper/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
+          'lib/data/mapper/${sourceName.isNotEmpty ? '${sourceName.toSnakeCase}' : ''}')
       .create();
   await Directory(
-          'lib/data/model/remote/${sourceName.isNotEmpty ? '${sourceName}' : ''}')
+          'lib/data/model/remote/${sourceName.isNotEmpty ? '${sourceName.toSnakeCase}' : ''}')
       .create();
 
   List<Entity> entities = [];
