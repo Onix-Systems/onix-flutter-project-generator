@@ -301,9 +301,7 @@ Future<void> _genSource(List<Entity> entities) async {
         .replaceAll('\${className.snakeCase}', entities.first.name)
         .replaceAll(
             '\${className.pascalCase}', entities.first.name.toPascalCase)
-        .replaceAll('\${projectName}', projectName)
-        .replaceAll('//{response_imports}', '')
-        .replaceAll('//{request_imports}', ''),
+        .replaceAll('\${projectName}', projectName),
   );
 
   if (!sourceExists) {
