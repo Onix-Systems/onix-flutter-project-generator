@@ -266,7 +266,8 @@ Future<void> _genRepository(List<Entity> entities) async {
 }
 
 Future<void> _genSource(List<Entity> entities) async {
-  final path = await Directory('lib/data/source/remote/${sourceName}');
+  final path =
+      await Directory('lib/data/source/remote/${sourceName.toSnakeCase}');
   var file = File('${path.path}/${sourceName}_source.dart');
 
   if (!sourceExists) {
@@ -276,13 +277,13 @@ Future<void> _genSource(List<Entity> entities) async {
   var responseImports = entities
       .where((element) => element.generateResponse)
       .map((e) =>
-          'import \'package:${projectName}/data/model/remote/${sourceName}/${e.name}/${e.name}_response.dart\';\n')
+          'import \'package:${projectName}/data/model/remote/${sourceName.toSnakeCase}/${e.name}/${e.name}_response.dart\';\n')
       .join();
 
   var requestImports = entities
       .where((element) => element.generateRequest)
       .map((e) =>
-          'import \'package:${projectName}/data/model/remote/${sourceName}/${e.name}/${e.name}_request.dart\';\n')
+          'import \'package:${projectName}/data/model/remote/${sourceName.toSnakeCase}/${e.name}/${e.name}_request.dart\';\n')
       .join();
 
   String sourcePath = 'gen/source.tmp';
@@ -295,7 +296,7 @@ Future<void> _genSource(List<Entity> entities) async {
         .replaceAll(
             '//{response_imports}', '$responseImports//{response_imports}')
         .replaceAll('//{request_imports}', '$requestImports//{request_imports}')
-        .replaceAll('\${sourceName.snakeCase}', sourceName)
+        .replaceAll('\${sourceName.snakeCase}', sourceName.toSnakeCase)
         .replaceAll('\${sourceName.pascalCase}', sourceName.toPascalCase)
         .replaceAll('\${className.snakeCase}', entities.first.name)
         .replaceAll(
