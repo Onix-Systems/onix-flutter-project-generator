@@ -93,9 +93,10 @@ void run(HookContext context) async {
     buildProcess.exitCode.then((value) {
       print('{#info}Complete with exit code: $value');
     });
+  }
 
-    await Process.run('flutter', ['format', '.']);
-    await Process.run('rm', ['-r', 'gen']);
+  await Process.run('flutter', ['format', '.']);
+  await Process.run('rm', ['-r', 'gen']);
 }
 
 Future<void> _genEntity(HookContext context, Entity entity) async {
