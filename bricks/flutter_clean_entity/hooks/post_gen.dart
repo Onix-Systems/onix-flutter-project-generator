@@ -163,7 +163,7 @@ Future<void> _genMapper(Entity entity) async {
     sourcePath = 'gen/request_mapper.tmp';
   }
 
-  entity.properties.log();
+  entity.properties.toString().log();
 
   var sourceFile = await File(sourcePath).readAsString();
 
