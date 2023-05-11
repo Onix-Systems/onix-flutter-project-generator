@@ -13,7 +13,6 @@ import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
 import 'package:http/http.dart' as http;
@@ -566,8 +565,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       }
     }
 
-    logger.wtf('needToGenerateSources: $needToGenerateSources');
-
     if (needToGenerateEntities || needToGenerateSources) {
       emit(state.copyWith(generatingState: GeneratingState.generating));
 
@@ -589,8 +586,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name \'\' --source_exists false --repository_exists false --on-conflict overwrite');
       }
 
+      var exitCode = await mainProcess.exitCode;
+      outputService.add('{#info}Entities generated!');
+      outputService.add('{#info}Exit code: $exitCode');
+
       if (needToGenerateSources) {
         for (var source in state.sources) {
+          var sourceProcess = await startProcess(
+              workingDirectory: '${state.projectPath}/${state.projectName}');
+
           if (source.entities.where((entity) => !entity.exists).isEmpty) {
             continue;
           }
@@ -600,14 +604,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               .map((e) => jsonEncode(e.toJson()))
               .join(', ');
 
-          mainProcess.stdin.writeln(
+          logger.wtf('source.entities to generate: $entities');
+
+          sourceProcess.stdin.writeln(
               'mason make flutter_clean_entity --build true --entities \'$entities\' --source_name ${source.name} --source_exists ${source.exists} --repository_exists ${source.entities.length > 1} --on-conflict overwrite');
+
+          var exitCode = await sourceProcess.exitCode;
+          outputService.add('{#info}Source ${source.name} generated!');
+          outputService.add('{#info}Exit code: $exitCode');
         }
       }
-
-      var exitCode = await mainProcess.exitCode;
-      outputService.add('{#info}Entities generated!');
-      outputService.add('{#info}Exit code: $exitCode');
     }
 
     Config.saveConfig(state);

@@ -16,8 +16,6 @@ class SourceParser {
       for (final entry in path.value.entries) {
         final entities = <String>[];
 
-        //logger.wtf('Entry: $entry');
-
         if (MethodType.values
             .where((element) => element.name == entry.key)
             .isEmpty) {
