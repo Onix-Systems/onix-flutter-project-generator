@@ -91,7 +91,7 @@ void run(HookContext context) async {
     });
 
     buildProcess.exitCode.then((value) {
-      print('{#info}Exit code: $value');
+      print('{#info}with exit code: $value');
     });
   }
 
