@@ -587,19 +587,19 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       }
 
       if (needToGenerateSources) {
-        for (var source in state.sources) {
-          if (source.entities.where((entity) => !entity.exists).isEmpty) {
-            continue;
-          }
-
+        final sources = state.sources
+            .where((source) =>
+                source.entities.where((entity) => entity.exists).isEmpty)
+            .toList();
+        for (var source in sources) {
           var entities = source.entities
               .where((entity) => !entity.exists)
               .map((e) => jsonEncode(e.toJson()))
               .join(', ');
 
-          logger.wtf('source to generate: ${source.name}');
+          final build = source == sources.last;
 
-          final build = source == state.sources.last;
+          outputService.add('{#error}Generating ${source.name}! build: $build');
 
           mainProcess.stdin.writeln(
               'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name ${source.name} --source_exists ${source.exists} --repository_exists ${source.entities.length > 1} --on-conflict overwrite');
