@@ -97,6 +97,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ..addAll(parsedData.sources)
         ..sort((a, b) => a.name.compareTo(b.name));
 
+      for (final source in sources.where((s) => !s.exists)) {
+        for (final entity in source.entities.where((e) => !e.exists)) {
+          await entity.generateFile(
+            projectPath: '$projectPath/${state.projectName}',
+            sourceName: source.name,
+          );
+        }
+      }
+
       emit(state.copyWith(
         entities: entities.toSet(),
         sources: sources.toSet(),

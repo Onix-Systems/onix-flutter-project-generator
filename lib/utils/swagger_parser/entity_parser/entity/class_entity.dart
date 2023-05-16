@@ -60,8 +60,7 @@ class ClassEntity implements Entity {
 
     return '''
 import \$\$package:freezed_annotation/freezed_annotation.dart\$\$;
-$imports
-
+${imports.isNotEmpty ? '$imports\n' : ''}
 part \$\$${name.snakeCase}.freezed.dart\$\$;
 
 @freezed

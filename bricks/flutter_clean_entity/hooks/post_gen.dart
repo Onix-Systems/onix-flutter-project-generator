@@ -51,7 +51,7 @@ void run(HookContext context) async {
   }
 
   for (var entity in entities) {
-    await _genEntity(context, entity);
+    //await _genEntity(context, entity);
 
     if (entity.generateResponse) {
       await _genResponse(entity);

@@ -27,7 +27,7 @@ class SourceParser {
           continue;
         }
 
-        logger.wtf('Method: ${entry.key}: ${entry.value}');
+        //logger.wtf('Method: ${entry.key}: ${entry.value}');
 
         if (entry.value.containsKey('parameters') &&
             entry.value['parameters'].isNotEmpty) {
@@ -118,7 +118,7 @@ class SourceParser {
               response.value['content']['application/json']['schema']
           : response.value['schema'];
 
-      logger.wtf('Schema: $schema');
+      //logger.wtf('Schema: $schema');
 
       if (schema == null ||
           (!TypeMatcher.isReference(schema) &&

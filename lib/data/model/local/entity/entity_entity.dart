@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:json_annotation/json_annotation.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
+import 'package:recase/recase.dart';
 
 part 'entity_entity.g.dart';
 
@@ -50,5 +54,21 @@ class EntityEntity {
   @override
   String toString() {
     return 'EntityEntity{name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse, classBody: $classBody, properties: $properties}';
+  }
+
+  Future<void> generateFile(
+      {required String projectPath, String sourceName = ''}) async {
+    final fileContent = classBody.replaceAll('\$\$', '\'');
+    //logger.wtf('fileContent: $fileContent');
+
+    final path = await Directory(
+            '$projectPath/lib/domain/entity/${sourceName.isNotEmpty ? '$sourceName/' : '/'}${name.snakeCase}')
+        .create(recursive: true);
+
+    logger.wtf('path: ${path.path}');
+
+    var file = await File('${path.path}/${name.snakeCase}.dart').create();
+
+    await file.writeAsString(fileContent);
   }
 }
