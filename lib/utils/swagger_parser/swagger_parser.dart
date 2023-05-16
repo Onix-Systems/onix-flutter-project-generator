@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
@@ -19,8 +20,12 @@ class SwaggerParser {
 
     final sources = parsedSources.map((e) {
       final entitiesToMove = parsedEntities
-          .where((element) => e.entities.contains(element.name))
-          .toSet();
+              .where((element) => e.entities.contains(element.name))
+              .isNotEmpty
+          ? parsedEntities
+              .where((element) => e.entities.contains(element.name))
+              .toSet()
+          : <Entity>{};
 
       final importsToMove = <Entity>{};
 
@@ -28,11 +33,14 @@ class SwaggerParser {
           .where((element) => e.entities.contains(element.name))) {
         final imports = entity.imports.toSet();
 
-        for (final import in imports) {
+        for (final import in imports.toList()) {
           final entityToMove = parsedEntities
-              .firstWhere((element) => element.name == import.pascalCase);
+              .firstWhereOrNull((element) => element.name == import.pascalCase);
 
-          entitiesToMove.add(entityToMove);
+          if (entityToMove == null) {
+            continue;
+          }
+
           importsToMove.add(entityToMove);
         }
       }

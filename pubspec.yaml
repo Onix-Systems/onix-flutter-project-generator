@@ -25,6 +25,7 @@ dependencies:
   flutter_bloc: ^8.1.2
   json_annotation: ^4.8.0
   http: ^0.13.5
+  collection: ^1.17.0
 
 dev_dependencies:
   flutter_test:

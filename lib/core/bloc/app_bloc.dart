@@ -629,7 +629,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         workingDirectory: '${state.projectPath}/${state.projectName}');
 
     mainProcess.stdin.writeln(
-        'open -a "Android Studio" "${state.projectPath}/${state.projectName}"');
+        'open -a "Studio" "${state.projectPath}/${state.projectName}"');
   }
 
   Future<Process> startProcess(
