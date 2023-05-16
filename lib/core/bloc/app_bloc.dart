@@ -74,6 +74,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       SwaggerParse event, Emitter<AppState> emit) async {
     //'https://dev.ranndomm.app/api/docs/?format=openapi'
     //'https://petstore.swagger.io/v2/swagger.json'
+
     //'https://vocadb.net/swagger/v1/swagger.json'
     //'https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json'
 
@@ -96,15 +97,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       final sources = state.sources.toList()
         ..addAll(parsedData.sources)
         ..sort((a, b) => a.name.compareTo(b.name));
-
-      for (final source in sources.where((s) => !s.exists)) {
-        for (final entity in source.entities.where((e) => !e.exists)) {
-          await entity.generateFile(
-            projectPath: '$projectPath/${state.projectName}',
-            sourceName: source.name,
-          );
-        }
-      }
 
       emit(state.copyWith(
         entities: entities.toSet(),
@@ -605,6 +597,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               .where((entity) => !entity.exists)
               .map((e) => jsonEncode(e.toJson()))
               .join(', ');
+
+          for (final entity in source.entities.where((e) => !e.exists)) {
+            await entity.generateFile(
+              projectPath: '$projectPath/${state.projectName}',
+              sourceName: source.name,
+            );
+          }
 
           final build = source == sources.last;
 

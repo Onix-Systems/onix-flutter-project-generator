@@ -49,11 +49,11 @@ class ClassEntity implements Entity {
   }
 
   @override
-  String generateClassBody({required String projectName}) {
+  String generateClassBody({required String projectName, String? sourceName}) {
     final imports = this
         .imports
         .map((e) =>
-            'import \$\$package:$projectName/domain/entity/$e/$e.dart\$\$;')
+            'import \$\$package:$projectName/domain/entity/${sourceName != null ? '${sourceName.snakeCase}/' : '/'}$e/$e.dart\$\$;')
         .join('\n');
 
     final properties = this.properties.map((e) => '       $e,').join('\n');

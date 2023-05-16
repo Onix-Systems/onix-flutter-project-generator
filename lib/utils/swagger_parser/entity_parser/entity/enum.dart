@@ -30,7 +30,7 @@ class EnumEntity implements Entity {
   }
 
   @override
-  String generateClassBody({required String projectName}) {
+  String generateClassBody({required String projectName, String? sourceName}) {
     final properties = this
         .properties
         .map((e) => '       ${e == 'default' ? '//' : ''}$e,')

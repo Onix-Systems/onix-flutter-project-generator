@@ -18,19 +18,20 @@ class SwaggerParser {
 
     final parsedSources = await SourceParser.parse(data);
 
-    final sources = parsedSources.map((e) {
+    final sources = parsedSources.map((source) {
       final entitiesToMove = parsedEntities
-              .where((element) => e.entities.contains(element.name))
+              .where((element) => source.entities.contains(element.name))
               .isNotEmpty
           ? parsedEntities
-              .where((element) => e.entities.contains(element.name))
+              .where((element) => source.entities.contains(element.name))
               .toSet()
           : <Entity>{};
 
       final importsToMove = <Entity>{};
 
       for (final entity in parsedEntities
-          .where((element) => e.entities.contains(element.name))) {
+          .where((element) => source.entities.contains(element.name))
+          .toSet()) {
         final imports = entity.imports.toSet();
 
         for (final import in imports.toList()) {
@@ -41,12 +42,14 @@ class SwaggerParser {
             continue;
           }
 
+          logger.wtf(entityToMove.imports);
+
+          entitiesToMove.add(entityToMove);
           importsToMove.add(entityToMove);
         }
-      }
 
-      parsedEntities
-          .removeWhere((element) => e.entities.contains(element.name));
+        logger.wtf(entity.imports);
+      }
 
       for (final import in importsToMove) {
         if (parsedEntities
@@ -56,15 +59,19 @@ class SwaggerParser {
         }
       }
 
+      parsedEntities
+          .removeWhere((element) => source.entities.contains(element.name));
+
       return SourceEntity(
-        name: e.name,
+        name: source.name,
         entities: entitiesToMove
             .map(
               (e) => EntityEntity(
                   name: e.name,
                   generateRequest: e is! EnumEntity,
                   generateResponse: e is! EnumEntity,
-                  classBody: e.generateClassBody(projectName: projectName),
+                  classBody: e.generateClassBody(
+                      projectName: projectName, sourceName: source.name),
                   properties: e.properties is List<Property>
                       ? e.properties as List<Property>
                       : []),
@@ -72,6 +79,10 @@ class SwaggerParser {
             .toList(),
       );
     }).toList();
+
+    for (final source in sources) {
+      logger.wtf(source.entities);
+    }
 
     final entities = parsedEntities
         .map(

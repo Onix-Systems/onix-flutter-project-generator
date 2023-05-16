@@ -65,7 +65,7 @@ class EntityEntity {
             '$projectPath/lib/domain/entity/${sourceName.isNotEmpty ? '$sourceName/' : '/'}${name.snakeCase}')
         .create(recursive: true);
 
-    logger.wtf('path: ${path.path}');
+    //logger.wtf('path: ${path.path}');
 
     var file = await File('${path.path}/${name.snakeCase}.dart').create();
 
