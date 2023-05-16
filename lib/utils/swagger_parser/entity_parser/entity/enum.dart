@@ -9,11 +9,20 @@ class EnumEntity implements Entity {
   final String name;
   @override
   final List<String> properties;
+  @override
+  String sourceName = '';
 
   EnumEntity({required this.name, required this.properties});
 
   factory EnumEntity.fromJson(Map<String, dynamic> json) =>
       _$EnumEntityFromJson(json);
+
+  @override
+  void setSourceName(String sourceName) {
+    if (sourceName.isEmpty) {
+      this.sourceName = sourceName;
+    }
+  }
 
   @override
   String toString() {
@@ -44,4 +53,7 @@ enum $name{
 
   @override
   Set<String> get imports => {};
+
+  @override
+  Set<Entity> get entityImports => {};
 }

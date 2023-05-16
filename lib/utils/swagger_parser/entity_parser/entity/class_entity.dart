@@ -11,7 +11,12 @@ class ClassEntity implements Entity {
   final String name;
   @override
   final List<Property> properties;
+  @override
   final Set<String> imports = {};
+  @override
+  String sourceName = '';
+  @override
+  Set<Entity> entityImports = {};
 
   ClassEntity({
     required this.name,
@@ -27,33 +32,25 @@ class ClassEntity implements Entity {
   }
 
   @override
-  String toString() {
-    var result = '';
-
-    result += '$name {';
-
-    for (final property in properties) {
-      result += '\n     $property';
-    }
-
-    result += '\n}';
-
-    if (imports.isNotEmpty) {
-      result += '\n\n';
-      for (final import in imports) {
-        result += 'import \'$import\';\n';
+  void setSourceName(String sourceName) {
+    if (this.sourceName.isEmpty) {
+      this.sourceName = sourceName;
+      for (final import in entityImports) {
+        import.setSourceName(sourceName);
       }
     }
-
-    return result;
   }
 
   @override
-  String generateClassBody({required String projectName, String? sourceName}) {
-    final imports = this
-        .imports
+  String toString() {
+    return 'ClassEntity{name: $name, properties: $properties, imports: $imports, sourceName: $sourceName, entityImports: $entityImports}';
+  }
+
+  @override
+  String generateClassBody({required String projectName}) {
+    final imports = entityImports
         .map((e) =>
-            'import \$\$package:$projectName/domain/entity/${sourceName != null ? '${sourceName.snakeCase}/' : '/'}$e/$e.dart\$\$;')
+            'import \$\$package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\$\$;')
         .join('\n');
 
     final properties = this.properties.map((e) => '       $e,').join('\n');

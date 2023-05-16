@@ -59,13 +59,10 @@ class EntityEntity {
   Future<void> generateFile(
       {required String projectPath, String sourceName = ''}) async {
     final fileContent = classBody.replaceAll('\$\$', '\'');
-    //logger.wtf('fileContent: $fileContent');
 
     final path = await Directory(
-            '$projectPath/lib/domain/entity/${sourceName.isNotEmpty ? '$sourceName/' : '/'}${name.snakeCase}')
+            '$projectPath/lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.snakeCase}')
         .create(recursive: true);
-
-    //logger.wtf('path: ${path.path}');
 
     var file = await File('${path.path}/${name.snakeCase}.dart').create();
 

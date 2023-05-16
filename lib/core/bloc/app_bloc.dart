@@ -183,8 +183,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           ));
         }
 
-        logger.d('config: $config');
-
         return;
       } catch (e) {
         logger.e(e);
@@ -580,6 +578,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             .where((entity) => !entity.exists)
             .map((e) => jsonEncode(e.toJson()))
             .join(', ');
+
+        for (final entity in state.entities.where((e) => !e.exists)) {
+          await entity.generateFile(
+            projectPath: '$projectPath/${state.projectName}',
+          );
+        }
 
         var build = !needToGenerateSources;
 

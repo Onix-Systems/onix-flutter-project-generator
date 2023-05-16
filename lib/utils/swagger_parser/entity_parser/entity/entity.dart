@@ -8,5 +8,11 @@ abstract class Entity {
 
   Set<String> get imports;
 
-  String generateClassBody({required String projectName, String? sourceName});
+  Set<Entity> get entityImports;
+
+  String get sourceName;
+
+  String generateClassBody({required String projectName});
+
+  void setSourceName(String sourceName);
 }

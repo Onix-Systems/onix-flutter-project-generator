@@ -6,6 +6,7 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/en
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity_parser.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/source.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/source_parser.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_data.dart';
 import 'package:recase/recase.dart';
@@ -16,51 +17,21 @@ class SwaggerParser {
     final String basePath = data['basePath'] ?? '';
     final parsedEntities = await EntityParser.parse(data);
 
+    _addEntityImportClasses(parsedEntities);
+
     final parsedSources = await SourceParser.parse(data);
 
     final sources = parsedSources.map((source) {
-      final entitiesToMove = parsedEntities
-              .where((element) => source.entities.contains(element.name))
-              .isNotEmpty
-          ? parsedEntities
-              .where((element) => source.entities.contains(element.name))
-              .toSet()
-          : <Entity>{};
-
-      final importsToMove = <Entity>{};
-
-      for (final entity in parsedEntities
-          .where((element) => source.entities.contains(element.name))
-          .toSet()) {
-        final imports = entity.imports.toSet();
-
-        for (final import in imports.toList()) {
-          final entityToMove = parsedEntities
-              .firstWhereOrNull((element) => element.name == import.pascalCase);
-
-          if (entityToMove == null) {
-            continue;
-          }
-
-          logger.wtf(entityToMove.imports);
-
-          entitiesToMove.add(entityToMove);
-          importsToMove.add(entityToMove);
-        }
-
-        logger.wtf(entity.imports);
+      for (var entity
+          in parsedEntities.where((e) => source.entities.contains(e.name))) {
+        entity.setSourceName(source.name);
+        _setSourceNameForImports(parsedEntities, entity, source);
       }
 
-      for (final import in importsToMove) {
-        if (parsedEntities
-            .where((element) => element.name == import.name)
-            .isNotEmpty) {
-          parsedEntities.removeWhere((element) => element.name == import.name);
-        }
-      }
+      final entitiesToMove = List<Entity>.from(
+          parsedEntities.where((e) => e.sourceName == source.name).toList());
 
-      parsedEntities
-          .removeWhere((element) => source.entities.contains(element.name));
+      parsedEntities.removeWhere((e) => e.sourceName == source.name);
 
       return SourceEntity(
         name: source.name,
@@ -70,8 +41,7 @@ class SwaggerParser {
                   name: e.name,
                   generateRequest: e is! EnumEntity,
                   generateResponse: e is! EnumEntity,
-                  classBody: e.generateClassBody(
-                      projectName: projectName, sourceName: source.name),
+                  classBody: e.generateClassBody(projectName: projectName),
                   properties: e.properties is List<Property>
                       ? e.properties as List<Property>
                       : []),
@@ -79,10 +49,6 @@ class SwaggerParser {
             .toList(),
       );
     }).toList();
-
-    for (final source in sources) {
-      logger.wtf(source.entities);
-    }
 
     final entities = parsedEntities
         .map(
@@ -102,5 +68,29 @@ class SwaggerParser {
       entities: entities,
       sources: sources,
     );
+  }
+
+  static void _setSourceNameForImports(
+      List<Entity> parsedEntities, Entity entity, Source source) {
+    for (var import in parsedEntities
+        .where((e) => entity.imports.contains(e.name.snakeCase))) {
+      import.setSourceName(source.name);
+
+      if (import.imports.isNotEmpty) {
+        _setSourceNameForImports(parsedEntities, import, source);
+      }
+    }
+  }
+
+  static void _addEntityImportClasses(List<Entity> parsedEntities) {
+    for (var entity in parsedEntities) {
+      for (final import in entity.imports) {
+        if (entity.entityImports.isNotEmpty) {
+          entity.entityImports.add(parsedEntities
+              .firstWhere((element) => element.name == import.pascalCase));
+          _addEntityImportClasses(entity.entityImports.toList());
+        }
+      }
+    }
   }
 }
