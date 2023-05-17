@@ -61,8 +61,9 @@ class EntityEntity {
   Future<void> generateFiles(
       {required String projectPath, String sourceName = ''}) async {
     await _generateEntity(projectPath: projectPath, sourceName: sourceName);
-    if (!isEnum && generateRequest)
+    if (!isEnum && generateRequest) {
       _generateResponse(projectPath: projectPath, sourceName: sourceName);
+    }
   }
 
   Future<void> _generateEntity(

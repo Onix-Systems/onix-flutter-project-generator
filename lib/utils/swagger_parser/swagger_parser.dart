@@ -17,11 +17,6 @@ class SwaggerParser {
     final String basePath = data['basePath'] ?? '';
     final parsedEntities = await EntityParser.parse(data);
 
-    for (final entity in parsedEntities) {
-      logger.wtf(
-          '${entity.name}: ${entity.imports} - ${entity.entityImports.map((e) => e.name)}');
-    }
-
     final parsedSources = await SourceParser.parse(data);
 
     for (final source in parsedSources) {
