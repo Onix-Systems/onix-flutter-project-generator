@@ -81,8 +81,13 @@ class EntityEntity {
 
   Future<void> _generateResponse(
       {required String projectPath, String sourceName = ''}) async {
-    final fileContent =
-        '''import 'package:freezed_annotation/freezed_annotation.dart';
+    final imports = classBody
+        .replaceAll('\$\$', '\'')
+        .split('\n')
+        .where((element) => element.startsWith('import'))
+        .join('\n');
+
+    final fileContent = '''$imports
 
 part '${name.snakeCase}_response.freezed.dart';
 part '${name.snakeCase}_response.g.dart';
@@ -90,7 +95,7 @@ part '${name.snakeCase}_response.g.dart';
 @freezed
 class ${name.pascalCase}Response with _\$${name.pascalCase}Response {
     factory ${name.pascalCase}Response({
-            ${properties.map((e) => '${e.type} ${e.name},').join('\n')}
+            ${properties.map((e) => '${e.type.pascalCase}? ${e.name},').join('\n')}
     }) = _${name.pascalCase}Response;
 
     factory ${name.pascalCase}Response.fromJson(Map<String, dynamic> json) => _\$${name.pascalCase}ResponseFromJson(json);
