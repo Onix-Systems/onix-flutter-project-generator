@@ -5,5 +5,5 @@ import 'package:new_project/core/arch/domain/entity/common/operation_status.dart
 
 abstract class ${sourceName.pascalCase}Source {
   Future<DataResponse<${className.pascalCase}Response>> get${className.pascalCase}();
-  Future<DataResponse<OperationStatus>> post${className.pascalCase}(${className.pascalCase}Request ${className.snakeCase}Request);
+  Future<DataResponse<OperationStatus>> post${className.pascalCase}(${className.pascalCase}Request ${className.camelCase}Request);
 }
