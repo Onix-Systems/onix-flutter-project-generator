@@ -50,13 +50,15 @@ class SwaggerParser {
         entities: entitiesToMove
             .map(
               (e) => EntityEntity(
-                  name: e.name,
-                  generateRequest: e is! EnumEntity,
-                  generateResponse: e is! EnumEntity,
-                  classBody: e.generateClassBody(projectName: projectName),
-                  properties: e.properties is List<Property>
-                      ? e.properties as List<Property>
-                      : []),
+                name: e.name,
+                generateRequest: e is! EnumEntity,
+                generateResponse: e is! EnumEntity,
+                classBody: e.generateClassBody(projectName: projectName),
+                properties: e.properties is List<Property>
+                    ? e.properties as List<Property>
+                    : [],
+                isEnum: e is EnumEntity,
+              ),
             )
             .toList(),
       );
@@ -65,13 +67,15 @@ class SwaggerParser {
     final entities = parsedEntities
         .map(
           (e) => EntityEntity(
-              name: e.name,
-              generateRequest: e is! EnumEntity,
-              generateResponse: e is! EnumEntity,
-              classBody: e.generateClassBody(projectName: projectName),
-              properties: e.properties is List<Property>
-                  ? e.properties as List<Property>
-                  : []),
+            name: e.name,
+            generateRequest: e is! EnumEntity,
+            generateResponse: e is! EnumEntity,
+            classBody: e.generateClassBody(projectName: projectName),
+            properties: e.properties is List<Property>
+                ? e.properties as List<Property>
+                : [],
+            isEnum: e is EnumEntity,
+          ),
         )
         .toList();
 

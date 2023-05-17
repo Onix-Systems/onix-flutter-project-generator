@@ -15,6 +15,7 @@ class EntityEntity {
   bool exists;
   String classBody;
   List<Property> properties;
+  bool isEnum;
 
   EntityEntity({
     required this.name,
@@ -23,6 +24,7 @@ class EntityEntity {
     this.exists = false,
     this.classBody = '',
     this.properties = const [],
+    this.isEnum = false,
   });
 
   EntityEntity.copyOf(EntityEntity entity)
@@ -56,7 +58,14 @@ class EntityEntity {
     return 'EntityEntity{name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse, classBody: $classBody, properties: $properties}';
   }
 
-  Future<void> generateFile(
+  Future<void> generateFiles(
+      {required String projectPath, String sourceName = ''}) async {
+    await _generateEntity(projectPath: projectPath, sourceName: sourceName);
+    if (!isEnum && generateRequest)
+      _generateResponse(projectPath: projectPath, sourceName: sourceName);
+  }
+
+  Future<void> _generateEntity(
       {required String projectPath, String sourceName = ''}) async {
     final fileContent = classBody.replaceAll('\$\$', '\'');
 
@@ -65,6 +74,33 @@ class EntityEntity {
         .create(recursive: true);
 
     var file = await File('${path.path}/${name.snakeCase}.dart').create();
+
+    await file.writeAsString(fileContent);
+  }
+
+  Future<void> _generateResponse(
+      {required String projectPath, String sourceName = ''}) async {
+    final fileContent =
+        '''import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '${name.snakeCase}_response.freezed.dart';
+part '${name.snakeCase}_response.g.dart';
+
+@freezed
+class ${name.pascalCase}Response with _\$${name.pascalCase}Response {
+    factory ${name.pascalCase}Response({
+        String? name,
+    }) = _${name.pascalCase}Response;
+
+    factory ${name.pascalCase}Response.fromJson(Map<String, dynamic> json) => _\$${name.pascalCase}ResponseFromJson(json);
+}''';
+
+    final path = await Directory(
+            '$projectPath/lib/data/model/remote/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.snakeCase}')
+        .create(recursive: true);
+
+    var file =
+        await File('${path.path}/${name.snakeCase}_response.dart').create();
 
     await file.writeAsString(fileContent);
   }

@@ -580,7 +580,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             .join(', ');
 
         for (final entity in state.entities.where((e) => !e.exists)) {
-          await entity.generateFile(
+          await entity.generateFiles(
             projectPath: '$projectPath/${state.projectName}',
           );
         }
@@ -603,7 +603,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               .join(', ');
 
           for (final entity in source.entities.where((e) => !e.exists)) {
-            await entity.generateFile(
+            await entity.generateFiles(
               projectPath: '$projectPath/${state.projectName}',
               sourceName: source.name,
             );
