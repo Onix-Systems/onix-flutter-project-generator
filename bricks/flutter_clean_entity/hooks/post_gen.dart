@@ -301,7 +301,7 @@ Future<void> _genSource(List<Entity> entities) async {
         .replaceAll('\${sourceName.snakeCase}', sourceName.toSnakeCase)
         .replaceAll('\${sourceName.pascalCase}', sourceName.toPascalCase)
         .replaceAll('\${className.snakeCase}', entities.first.name)
-        .replaceAll('\${className.camelCase}', entities.first.toCamelCase)
+        .replaceAll('\${className.camelCase}', entities.first.name.toCamelCase)
         .replaceAll(
             '\${className.pascalCase}', entities.first.name.toPascalCase)
         .replaceAll('\${projectName}', projectName),
