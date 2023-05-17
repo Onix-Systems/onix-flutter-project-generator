@@ -90,7 +90,7 @@ part '${name.snakeCase}_response.g.dart';
 @freezed
 class ${name.pascalCase}Response with _\$${name.pascalCase}Response {
     factory ${name.pascalCase}Response({
-        String? name,
+        ${properties.map((e) => '${e.type} ${e.name},').join('\n')}
     }) = _${name.pascalCase}Response;
 
     factory ${name.pascalCase}Response.fromJson(Map<String, dynamic> json) => _\$${name.pascalCase}ResponseFromJson(json);
