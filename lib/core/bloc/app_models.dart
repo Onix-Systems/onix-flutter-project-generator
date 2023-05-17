@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
@@ -85,7 +85,7 @@ class AppEvent with _$AppEvent {
   }) = ScreenAdd;
 
   const factory AppEvent.onEntityAdd({
-    required EntityEntity entity,
+    required EntityWrapper entity,
     @Default(null) SourceEntity? source,
   }) = EntityAdd;
 
@@ -98,7 +98,7 @@ class AppEvent with _$AppEvent {
   }) = ScreenDelete;
 
   const factory AppEvent.onEntityDelete({
-    required EntityEntity entity,
+    required EntityWrapper entity,
     @Default(null) SourceEntity? source,
   }) = EntityDelete;
 
@@ -167,7 +167,7 @@ class AppState with _$AppState {
     @Default({})
         Set<ScreenEntity> screens,
     @Default({})
-        Set<EntityEntity> entities,
+        Set<EntityWrapper> entities,
     @Default({})
         Set<SourceEntity> sources,
     @Default('')

@@ -1,7 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
-
-@JsonSerializable()
 abstract class Entity {
+  Entity();
+
   List get properties;
 
   String get name;

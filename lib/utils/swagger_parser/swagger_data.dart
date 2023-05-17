@@ -1,9 +1,9 @@
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
 
 class SwaggerData {
   final String basePath;
-  final List<EntityEntity> entities;
+  final List<EntityWrapper> entities;
   final List<SourceEntity> sources;
 
   SwaggerData({

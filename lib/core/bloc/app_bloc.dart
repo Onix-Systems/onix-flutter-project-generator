@@ -6,7 +6,7 @@ import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/config/config.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
@@ -94,9 +94,21 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ..addAll(parsedData.entities)
         ..sort((a, b) => a.name.compareTo(b.name));
 
+      for (final entity in entities) {
+        entity.generateFiles(projectPath: '$projectPath/${state.projectName}');
+      }
+
       final sources = state.sources.toList()
         ..addAll(parsedData.sources)
         ..sort((a, b) => a.name.compareTo(b.name));
+
+      for (final source in sources) {
+        for (final entity in source.entities) {
+          entity.generateFiles(
+              projectPath: '$projectPath/${state.projectName}',
+              sourceName: source.name);
+        }
+      }
 
       emit(state.copyWith(
         entities: entities.toSet(),
@@ -118,13 +130,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                 SourceEntity(
                   name: 'time',
                   exists: true,
-                  entities: [EntityEntity(name: 'Time', exists: true)],
+                  entities: [EntityWrapper(name: 'Time', exists: true)],
                 )
               }
             : state.sources,
         entities: state.entities.isEmpty
             ? {
-                EntityEntity(name: 'Auth', exists: true),
+                EntityWrapper(name: 'Auth', exists: true),
               }
             : state.entities,
         screens: state.screens.isEmpty
@@ -196,11 +208,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         SourceEntity(
           name: 'time',
           exists: true,
-          entities: [EntityEntity(name: 'time', exists: true)],
+          entities: [EntityWrapper(name: 'time', exists: true)],
         )
       },
       entities: {
-        EntityEntity(name: 'auth', exists: true),
+        EntityWrapper(name: 'auth', exists: true),
       },
       screens: {
         ScreenEntity(name: 'splash', exists: true),

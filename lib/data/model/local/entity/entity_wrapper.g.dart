@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'entity_entity.dart';
+part of 'entity_wrapper.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-EntityEntity _$EntityEntityFromJson(Map<String, dynamic> json) => EntityEntity(
+EntityWrapper _$EntityWrapperFromJson(Map<String, dynamic> json) =>
+    EntityWrapper(
       name: json['name'] as String,
       generateRequest: json['generateRequest'] as bool? ?? false,
       generateResponse: json['generateResponse'] as bool? ?? false,
@@ -16,9 +17,10 @@ EntityEntity _$EntityEntityFromJson(Map<String, dynamic> json) => EntityEntity(
               ?.map((e) => Property.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      isEnum: json['isEnum'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$EntityEntityToJson(EntityEntity instance) =>
+Map<String, dynamic> _$EntityWrapperToJson(EntityWrapper instance) =>
     <String, dynamic>{
       'name': instance.name,
       'generateRequest': instance.generateRequest,
@@ -26,4 +28,5 @@ Map<String, dynamic> _$EntityEntityToJson(EntityEntity instance) =>
       'exists': instance.exists,
       'classBody': instance.classBody,
       'properties': instance.properties,
+      'isEnum': instance.isEnum,
     };

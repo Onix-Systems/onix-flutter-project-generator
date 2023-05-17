@@ -1,14 +1,14 @@
 import 'dart:io';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
-part 'entity_entity.g.dart';
+part 'entity_wrapper.g.dart';
 
 @JsonSerializable()
-class EntityEntity {
+class EntityWrapper {
   String name;
   bool generateRequest;
   bool generateResponse;
@@ -17,7 +17,7 @@ class EntityEntity {
   List<Property> properties;
   bool isEnum;
 
-  EntityEntity({
+  EntityWrapper({
     required this.name,
     this.generateRequest = false,
     this.generateResponse = false,
@@ -27,7 +27,7 @@ class EntityEntity {
     this.isEnum = false,
   });
 
-  EntityEntity.copyOf(EntityEntity entity)
+  EntityWrapper.copyOf(EntityWrapper entity)
       : this(
           name: entity.name,
           generateRequest: entity.generateRequest,
@@ -36,15 +36,15 @@ class EntityEntity {
           classBody: entity.classBody,
         );
 
-  Map<String, dynamic> toJson() => _$EntityEntityToJson(this);
+  Map<String, dynamic> toJson() => _$EntityWrapperToJson(this);
 
-  factory EntityEntity.fromJson(Map<String, dynamic> json) =>
-      _$EntityEntityFromJson(json);
+  factory EntityWrapper.fromJson(Map<String, dynamic> json) =>
+      _$EntityWrapperFromJson(json);
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is EntityEntity &&
+      other is EntityWrapper &&
           runtimeType == other.runtimeType &&
           name == other.name &&
           generateRequest == other.generateRequest &&
@@ -95,7 +95,7 @@ part '${name.snakeCase}_response.g.dart';
 @freezed
 class ${name.pascalCase}Response with _\$${name.pascalCase}Response {
     factory ${name.pascalCase}Response({
-            ${properties.map((e) => '${e.type.pascalCase}? ${e.name},').join('\n')}
+${properties.map((e) => '        ${TypeMatcher.getDartType(e.type)}? ${e.name},').join('\n')}
     }) = _${name.pascalCase}Response;
 
     factory ${name.pascalCase}Response.fromJson(Map<String, dynamic> json) => _\$${name.pascalCase}ResponseFromJson(json);

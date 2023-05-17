@@ -1,11 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:recase/recase.dart';
 
-part 'class_entity.g.dart';
-
-@JsonSerializable()
 class ClassEntity implements Entity {
   @override
   final String name;
@@ -22,9 +18,6 @@ class ClassEntity implements Entity {
     required this.name,
     required this.properties,
   });
-
-  factory ClassEntity.fromJson(Map<String, dynamic> json) =>
-      _$ClassEntityFromJson(json);
 
   void addImports(List<String> imports) {
     imports.sort((a, b) => a.compareTo(b));
@@ -59,12 +52,16 @@ class ClassEntity implements Entity {
 import \$\$package:freezed_annotation/freezed_annotation.dart\$\$;
 ${imports.isNotEmpty ? '$imports\n' : ''}
 part \$\$${name.snakeCase}.freezed.dart\$\$;
+part \$\$${name.snakeCase}.g.dart\$\$;
 
 @freezed
 class $name with _\$$name {
     factory $name({
     $properties
     }) = _$name;
-}''';
+
+    factory $name.fromJson(Map<String, dynamic> json) => _\$${name}FromJson(json);
+}
+''';
   }
 }

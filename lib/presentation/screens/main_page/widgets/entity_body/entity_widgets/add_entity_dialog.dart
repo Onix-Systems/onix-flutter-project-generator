@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 import 'package:recase/recase.dart';
 
@@ -9,7 +9,7 @@ class AddEntityDialog extends StatefulWidget {
   const AddEntityDialog({Key? key, this.entity, this.standalone = true})
       : super(key: key);
 
-  final EntityEntity? entity;
+  final EntityWrapper? entity;
   final bool standalone;
 
   @override
@@ -182,7 +182,7 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
       } else {
         Navigator.pop(
             context,
-            EntityEntity(
+            EntityWrapper(
               name: widget.entity != null
                   ? _entityNameController.text.snakeCase
                   : _entityNameController.text,

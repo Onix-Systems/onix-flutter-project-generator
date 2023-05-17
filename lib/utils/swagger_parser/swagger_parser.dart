@@ -1,12 +1,10 @@
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/core/di/di.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity_parser.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/source.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/source_parser.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_data.dart';
 import 'package:recase/recase.dart';
@@ -44,7 +42,7 @@ class SwaggerParser {
         name: source.name,
         entities: entitiesToMove
             .map(
-              (e) => EntityEntity(
+              (e) => EntityWrapper(
                 name: e.name,
                 generateRequest: e is! EnumEntity,
                 generateResponse: e is! EnumEntity,
@@ -61,7 +59,7 @@ class SwaggerParser {
 
     final entities = parsedEntities
         .map(
-          (e) => EntityEntity(
+          (e) => EntityWrapper(
             name: e.name,
             generateRequest: e is! EnumEntity,
             generateResponse: e is! EnumEntity,

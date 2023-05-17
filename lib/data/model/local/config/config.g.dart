@@ -14,7 +14,7 @@ _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
           .map((e) => ScreenEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
       entities: (json['entities'] as List<dynamic>)
-          .map((e) => EntityEntity.fromJson(e as Map<String, dynamic>))
+          .map((e) => EntityWrapper.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

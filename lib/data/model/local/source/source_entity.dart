@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
 
 part 'source_entity.g.dart';
 
 @JsonSerializable()
 class SourceEntity {
   String name;
-  List<EntityEntity> entities;
+  List<EntityWrapper> entities;
   bool exists;
 
   SourceEntity({
@@ -18,7 +18,8 @@ class SourceEntity {
   SourceEntity.copyOf(SourceEntity source)
       : this(
           name: source.name,
-          entities: source.entities.map((e) => EntityEntity.copyOf(e)).toList(),
+          entities:
+              source.entities.map((e) => EntityWrapper.copyOf(e)).toList(),
           exists: source.exists,
         );
 
