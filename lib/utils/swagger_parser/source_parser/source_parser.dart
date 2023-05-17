@@ -36,8 +36,10 @@ class SourceParser {
               continue;
             }
 
-            String entityName = _getRefClassName(parameter['schema']);
-            entities.add(entityName);
+            if (TypeMatcher.isReference(parameter['schema'])) {
+              String entityName = _getRefClassName(parameter['schema']);
+              entities.add(entityName);
+            }
           }
         }
 
@@ -49,8 +51,10 @@ class SourceParser {
               continue;
             }
 
-            String entityName = _getRefClassName(parameter['schema']);
-            entities.add(entityName);
+            if (TypeMatcher.isReference(parameter['schema'])) {
+              String entityName = _getRefClassName(parameter['schema']);
+              entities.add(entityName);
+            }
           }
         }
 

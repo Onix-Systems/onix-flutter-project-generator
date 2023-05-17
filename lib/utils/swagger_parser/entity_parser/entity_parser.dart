@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/class_entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
@@ -67,6 +68,15 @@ class EntityParser {
     }
 
     _parseStack(stack, entities);
+
+    for (final entity in entities) {
+      if (entity.imports.isEmpty) continue;
+
+      for (final import in entity.imports) {
+        entity.entityImports.add(
+            entities.firstWhere((element) => element.name.snakeCase == import));
+      }
+    }
 
     return entities;
   }

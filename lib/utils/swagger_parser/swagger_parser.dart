@@ -17,17 +17,29 @@ class SwaggerParser {
     final String basePath = data['basePath'] ?? '';
     final parsedEntities = await EntityParser.parse(data);
 
-    _addEntityImportClasses(parsedEntities);
+    for (final entity in parsedEntities) {
+      logger.wtf(
+          '${entity.name}: ${entity.imports} - ${entity.entityImports.map((e) => e.name)}');
+    }
 
     final parsedSources = await SourceParser.parse(data);
 
-    final sources = parsedSources.map((source) {
-      for (var entity
+    for (final source in parsedSources) {
+      for (final entity
           in parsedEntities.where((e) => source.entities.contains(e.name))) {
         entity.setSourceName(source.name);
-        _setSourceNameForImports(parsedEntities, entity, source);
       }
+    }
 
+    for (final entity in parsedEntities) {
+      if (entity.imports.isNotEmpty && entity.sourceName.isNotEmpty) {
+        _setSourceNameForImports(parsedEntities, entity, entity.sourceName);
+      } else {
+        _setEntitySourceNameFromParent(parsedEntities, entity);
+      }
+    }
+
+    final sources = parsedSources.map((source) {
       final entitiesToMove = List<Entity>.from(
           parsedEntities.where((e) => e.sourceName == source.name).toList());
 
@@ -71,26 +83,29 @@ class SwaggerParser {
   }
 
   static void _setSourceNameForImports(
-      List<Entity> parsedEntities, Entity entity, Source source) {
+      List<Entity> parsedEntities, Entity entity, String sourceName) {
     for (var import in parsedEntities
         .where((e) => entity.imports.contains(e.name.snakeCase))) {
-      import.setSourceName(source.name);
+      import.setSourceName(sourceName);
 
       if (import.imports.isNotEmpty) {
-        _setSourceNameForImports(parsedEntities, import, source);
+        _setSourceNameForImports(parsedEntities, import, sourceName);
       }
     }
   }
 
-  static void _addEntityImportClasses(List<Entity> parsedEntities) {
-    for (var entity in parsedEntities) {
-      for (final import in entity.imports) {
-        if (entity.entityImports.isNotEmpty) {
-          entity.entityImports.add(parsedEntities
-              .firstWhere((element) => element.name == import.pascalCase));
-          _addEntityImportClasses(entity.entityImports.toList());
-        }
-      }
+  static void _setEntitySourceNameFromParent(
+      List<Entity> parsedEntities, Entity entity) {
+    if (entity.sourceName.isNotEmpty) {
+      return;
+    }
+
+    final sourceName = parsedEntities
+        .firstWhereOrNull((e) => e.imports.contains(entity.name.snakeCase))
+        ?.sourceName;
+
+    if (sourceName != null) {
+      entity.setSourceName(sourceName);
     }
   }
 }

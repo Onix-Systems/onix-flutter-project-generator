@@ -19,7 +19,7 @@ class EnumEntity implements Entity {
 
   @override
   void setSourceName(String sourceName) {
-    if (sourceName.isEmpty) {
+    if (this.sourceName.isEmpty) {
       this.sourceName = sourceName;
     }
   }

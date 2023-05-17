@@ -9,18 +9,18 @@ import 'package:new_project/core/arch/domain/entity/common/operation_status.dart
 //{mappers_imports}
 
 class ${sourceName.pascalCase}RepositoryImpl extends ${sourceName.pascalCase}Repository {
-  final ${sourceName.pascalCase}Source _${sourceName.snakeCase}Source;
+  final ${sourceName.pascalCase}Source _${sourceName.camelCase}Source;
 
   //{mappers}
 
   ${sourceName.pascalCase}RepositoryImpl(
-    this._${sourceName.snakeCase}Source,
+    this._${sourceName.camelCase}Source,
   );
   
   @override
   Future<Result<${className.pascalCase}>> get${className.pascalCase}() async {
     try {
-      final response = await _${sourceName.snakeCase}Source.get${className.pascalCase}();
+      final response = await _${sourceName.camelCase}Source.get${className.pascalCase}();
       if (response.isSuccess()) {
         final entities = _${className.camelCase}Mappers.map${className.pascalCase}ResponseToEntity(response.data);
         return Result.success(entities);
@@ -43,7 +43,7 @@ class ${sourceName.pascalCase}RepositoryImpl extends ${sourceName.pascalCase}Rep
   @override
   Future<Result<OperationStatus>> post${className.pascalCase}(${className.pascalCase} ${className.camelCase}) async {
     try {
-      final response = await _${sourceName.snakeCase}Source.post${className.pascalCase}(_${className.camelCase}Mappers.map${className.pascalCase}EntityToRequest(${className.camelCase}));
+      final response = await _${sourceName.camelCase}Source.post${className.pascalCase}(_${className.camelCase}Mappers.map${className.pascalCase}EntityToRequest(${className.camelCase}));
       if (response.isSuccess()) {
         return const Result.success(OperationStatus.success);
       } else {
