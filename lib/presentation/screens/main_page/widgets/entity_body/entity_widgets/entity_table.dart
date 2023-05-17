@@ -88,13 +88,14 @@ class EntityTable extends StatelessWidget {
                 children: [
                   Cell(
                     value: Text(
-                      '${entity.name.pascalCase}Entity',
+                      entity.name.pascalCase,
                       style: TextStyle(
                           color: entity.exists
                               ? CupertinoColors.inactiveGray
                               : CupertinoColors.white),
                     ),
                     decorated: true,
+                    alignment: Alignment.centerLeft,
                   ),
                   Cell(
                     value: Row(
