@@ -217,6 +217,7 @@ Future<void> _genRepository(List<Entity> entities) async {
         .replaceAll('\${className.camelCase}', entities.first.name.toCamelCase)
         .replaceAll('\${sourceName.snakeCase}', sourceName)
         .replaceAll('\${sourceName.pascalCase}', sourceName.toPascalCase)
+        .replaceAll('\${sourceName.camelCase}', sourceName.toCamelCase)
         .replaceAll(
             '\${className.pascalCase}', entities.first.name.toPascalCase)
         .replaceAll('\${projectName}', projectName),
