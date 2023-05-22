@@ -7,12 +7,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/config/config.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper_file_generators.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/class_entity.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
 import 'package:http/http.dart' as http;
@@ -95,7 +98,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ..sort((a, b) => a.name.compareTo(b.name));
 
       for (final entity in entities) {
-        entity.generateFiles(projectPath: '$projectPath/${state.projectName}');
+        entity.generateFiles(
+            projectPath: projectPath, projectName: state.projectName);
       }
 
       final sources = state.sources.toList()
@@ -105,7 +109,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       for (final source in sources) {
         for (final entity in source.entities) {
           entity.generateFiles(
-              projectPath: '$projectPath/${state.projectName}',
+              projectPath: projectPath,
+              projectName: state.projectName,
               sourceName: source.name);
         }
       }
@@ -127,16 +132,42 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       state.copyWith(
         sources: state.sources.isEmpty
             ? {
-                SourceEntity(
-                  name: 'time',
-                  exists: true,
-                  entities: [EntityWrapper(name: 'Time', exists: true)],
-                )
+                SourceEntity(name: 'Time', exists: true, entities: [
+                  EntityWrapper(
+                    name: 'Time',
+                    exists: true,
+                    entity: ClassEntity(
+                      name: 'Time',
+                      properties: [
+                        Property(
+                          name: 'currentDateTime',
+                          type: 'DateTime',
+                        ),
+                      ],
+                    )..setSourceName('Time'),
+                  ),
+                ])
               }
             : state.sources,
         entities: state.entities.isEmpty
             ? {
-                EntityWrapper(name: 'Auth', exists: true),
+                EntityWrapper(
+                  name: 'Auth',
+                  exists: true,
+                  entity: ClassEntity(
+                    name: 'Auth',
+                    properties: [
+                      Property(
+                        name: 'accessToken',
+                        type: 'String',
+                      ),
+                      Property(
+                        name: 'refreshToken',
+                        type: 'String',
+                      ),
+                    ],
+                  ),
+                ),
               }
             : state.entities,
         screens: state.screens.isEmpty
@@ -208,11 +239,41 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         SourceEntity(
           name: 'time',
           exists: true,
-          entities: [EntityWrapper(name: 'time', exists: true)],
+          entities: [
+            EntityWrapper(
+              name: 'time',
+              exists: true,
+              entity: ClassEntity(
+                name: 'Time',
+                properties: [
+                  Property(
+                    name: 'currentDateTime',
+                    type: 'DateTime',
+                  ),
+                ],
+              ),
+            ),
+          ],
         )
       },
       entities: {
-        EntityWrapper(name: 'auth', exists: true),
+        EntityWrapper(
+          name: 'Auth',
+          exists: true,
+          entity: ClassEntity(
+            name: 'Auth',
+            properties: [
+              Property(
+                name: 'accessToken',
+                type: 'String',
+              ),
+              Property(
+                name: 'refreshToken',
+                type: 'String',
+              ),
+            ],
+          ),
+        ),
       },
       screens: {
         ScreenEntity(name: 'splash', exists: true),
@@ -579,11 +640,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (needToGenerateEntities || needToGenerateSources) {
       emit(state.copyWith(generatingState: GeneratingState.generating));
 
-      var mainProcess = await startProcess(
-          workingDirectory: '${state.projectPath}/${state.projectName}');
+      // var mainProcess = await startProcess(
+      //     workingDirectory: '${state.projectPath}/${state.projectName}');
 
-      mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_entity --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_entity ${gitRef.isNotEmpty ? gitRef : ''}');
+      // mainProcess.stdin.writeln(
+      //     'mason add -g flutter_clean_entity --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_entity ${gitRef.isNotEmpty ? gitRef : ''}');
 
       if (needToGenerateEntities) {
         var entities = state.entities
@@ -593,14 +654,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
         for (final entity in state.entities.where((e) => !e.exists)) {
           await entity.generateFiles(
-            projectPath: '$projectPath/${state.projectName}',
+            projectPath: projectPath,
+            projectName: state.projectName,
           );
         }
 
         var build = !needToGenerateSources;
 
-        mainProcess.stdin.writeln(
-            'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name \'\' --source_exists false --repository_exists false --on-conflict overwrite');
+        // mainProcess.stdin.writeln(
+        //     'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name \'\' --source_exists false --repository_exists false --on-conflict overwrite');
       }
 
       if (needToGenerateSources) {
@@ -616,7 +678,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
           for (final entity in source.entities.where((e) => !e.exists)) {
             await entity.generateFiles(
-              projectPath: '$projectPath/${state.projectName}',
+              projectPath: projectPath,
+              projectName: state.projectName,
               sourceName: source.name,
             );
           }
@@ -625,12 +688,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
           outputService.add('{#error}Generating ${source.name}! build: $build');
 
-          mainProcess.stdin.writeln(
-              'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name ${source.name} --source_exists ${source.exists} --repository_exists ${source.entities.length > 1} --on-conflict overwrite');
+          // mainProcess.stdin.writeln(
+          //     'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name ${source.name} --source_exists ${source.exists} --repository_exists ${source.entities.length > 1} --on-conflict overwrite');
         }
       }
 
-      var exitCode = await mainProcess.exitCode;
+      // var exitCode = await mainProcess.exitCode;
       outputService.add('{#info}Entities generated!');
       outputService.add('{#info}with exit code: $exitCode');
     }

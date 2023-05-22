@@ -12,7 +12,6 @@ EntityWrapper _$EntityWrapperFromJson(Map<String, dynamic> json) =>
       generateRequest: json['generateRequest'] as bool? ?? false,
       generateResponse: json['generateResponse'] as bool? ?? false,
       exists: json['exists'] as bool? ?? false,
-      classBody: json['classBody'] as String? ?? '',
       properties: (json['properties'] as List<dynamic>?)
               ?.map((e) => Property.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -26,7 +25,6 @@ Map<String, dynamic> _$EntityWrapperToJson(EntityWrapper instance) =>
       'generateRequest': instance.generateRequest,
       'generateResponse': instance.generateResponse,
       'exists': instance.exists,
-      'classBody': instance.classBody,
       'properties': instance.properties,
       'isEnum': instance.isEnum,
     };

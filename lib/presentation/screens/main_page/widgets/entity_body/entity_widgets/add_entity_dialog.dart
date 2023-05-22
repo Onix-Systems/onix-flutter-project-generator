@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/class_entity.dart';
 import 'package:recase/recase.dart';
 
 class AddEntityDialog extends StatefulWidget {
@@ -186,6 +187,10 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
               name: widget.entity != null
                   ? _entityNameController.text.snakeCase
                   : _entityNameController.text,
+              entity: ClassEntity(
+                name: _entityNameController.text.snakeCase,
+                properties: [],
+              ),
               generateRequest: _createRequest,
               generateResponse: _createResponse,
             ));

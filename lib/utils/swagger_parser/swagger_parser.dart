@@ -44,9 +44,9 @@ class SwaggerParser {
             .map(
               (e) => EntityWrapper(
                 name: e.name,
+                entity: e,
                 generateRequest: e is! EnumEntity,
                 generateResponse: e is! EnumEntity,
-                classBody: e.generateClassBody(projectName: projectName),
                 properties: e.properties is List<Property>
                     ? e.properties as List<Property>
                     : [],
@@ -61,9 +61,9 @@ class SwaggerParser {
         .map(
           (e) => EntityWrapper(
             name: e.name,
+            entity: e,
             generateRequest: e is! EnumEntity,
             generateResponse: e is! EnumEntity,
-            classBody: e.generateClassBody(projectName: projectName),
             properties: e.properties is List<Property>
                 ? e.properties as List<Property>
                 : [],

@@ -58,19 +58,19 @@ void run(HookContext context) async {
     }
 
     if (entity.generateRequest) {
-      await _genRequest(entity);
+      //await _genRequest(entity);
     }
 
     if (entity.generateRequest || entity.generateResponse) {
-      await _genMapper(entity);
+      //await _genMapper(entity);
     }
   }
 
   if (sourceName.isNotEmpty) {
-    await _genSource(entities);
-    if (context.vars['repository_exists'] || entities.length > 1) {
-      await _genRepository(entities);
-    }
+    // await _genSource(entities);
+    // if (context.vars['repository_exists'] || entities.length > 1) {
+    //   await _genRepository(entities);
+    // }
   }
 
   if (context.vars['build']) {
