@@ -98,6 +98,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ..sort((a, b) => a.name.compareTo(b.name));
 
       // for (final entity in entities) {
+      //   if (entity.exists) continue;
       //   entity.generateFiles(
       //       projectPath: projectPath, projectName: state.projectName);
       // }
@@ -107,6 +108,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ..sort((a, b) => a.name.compareTo(b.name));
 
       // for (final source in sources) {
+      //   if (source.exists) continue;
       //   for (final entity in source.entities) {
       //     entity.generateFiles(
       //         projectPath: projectPath,
@@ -187,10 +189,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               }
             : state.entities,
         screens: state.screens.isEmpty
-            ? {
-                ScreenEntity(name: 'splash', exists: true),
-                ScreenEntity(name: 'home', exists: true)
-              }
+            ? {ScreenEntity(name: 'home', exists: true)}
             : state.screens,
       ),
     );
@@ -308,10 +307,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           ),
         ),
       },
-      screens: {
-        ScreenEntity(name: 'splash', exists: true),
-        ScreenEntity(name: 'home', exists: true)
-      },
+      screens: {ScreenEntity(name: 'home', exists: true)},
     ));
   }
 

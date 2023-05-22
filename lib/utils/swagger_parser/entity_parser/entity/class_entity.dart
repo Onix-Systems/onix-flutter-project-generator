@@ -1,6 +1,5 @@
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
-import 'package:recase/recase.dart';
 
 class ClassEntity implements Entity {
   @override
@@ -37,31 +36,5 @@ class ClassEntity implements Entity {
   @override
   String toString() {
     return 'ClassEntity{name: $name, properties: $properties, imports: $imports, sourceName: $sourceName, entityImports: $entityImports}';
-  }
-
-  @override
-  String generateClassBody({required String projectName}) {
-    final imports = entityImports
-        .map((e) =>
-            'import \$\$package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\$\$;')
-        .join('\n');
-
-    final properties = this.properties.map((e) => '       $e,').join('\n');
-
-    return '''
-import \$\$package:freezed_annotation/freezed_annotation.dart\$\$;
-${imports.isNotEmpty ? '$imports\n' : ''}
-part \$\$${name.snakeCase}.freezed.dart\$\$;
-part \$\$${name.snakeCase}.g.dart\$\$;
-
-@freezed
-class $name with _\$$name {
-    factory $name({
-    $properties
-    }) = _$name;
-
-    factory $name.fromJson(Map<String, dynamic> json) => _\$${name}FromJson(json);
-}
-''';
   }
 }

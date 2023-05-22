@@ -11,7 +11,5 @@ abstract class Entity {
 
   String get sourceName;
 
-  String generateClassBody({required String projectName});
-
   void setSourceName(String sourceName);
 }

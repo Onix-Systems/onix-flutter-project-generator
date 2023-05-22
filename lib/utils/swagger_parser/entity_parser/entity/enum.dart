@@ -31,7 +31,6 @@ class EnumEntity implements Entity {
     return result;
   }
 
-  @override
   String generateClassBody({required String projectName, String? sourceName}) {
     final properties = this
         .properties

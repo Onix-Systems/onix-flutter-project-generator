@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
@@ -10,10 +9,17 @@ extension FileGenerator on EntityWrapper {
       {required String projectName,
       required String projectPath,
       String sourceName = ''}) async {
-    await _generateEntity(
-        projectName: projectName,
-        projectPath: projectPath,
-        sourceName: sourceName);
+    if (isEnum) {
+      _generateEnumEntity(
+          projectName: projectName,
+          projectPath: projectPath,
+          sourceName: sourceName);
+    } else {
+      _generateClassEntity(
+          projectName: projectName,
+          projectPath: projectPath,
+          sourceName: sourceName);
+    }
     if (!isEnum && generateResponse) {
       _generateResponse(
           projectName: projectName,
@@ -34,7 +40,7 @@ extension FileGenerator on EntityWrapper {
     }
   }
 
-  Future<void> _generateEntity(
+  Future<void> _generateClassEntity(
       {required String projectName,
       required String projectPath,
       String sourceName = ''}) async {
@@ -42,8 +48,6 @@ extension FileGenerator on EntityWrapper {
         .map((e) =>
             'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';')
         .join('\n');
-
-    final properties = this.properties.map((e) => '       $e,').join('\n');
 
     final fileContent = '''
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -54,12 +58,39 @@ part '${name.snakeCase}.g.dart';
 @freezed
 class $name with _\$$name {
     factory $name({
-    $properties
+    ${properties.map((e) => '       $e,').join('\n')}
     }) = _$name;
 
     factory $name.fromJson(Map<String, dynamic> json) => _\$${name}FromJson(json);
+    
+    factory $name.empty() => $name(
+        ${properties.map((e) => '        ${e.name}: ${TypeMatcher.defaultTypeValue(e.type)},').join('\n')}
+    );
 }
 ''';
+
+    final path = await Directory(
+            '$projectPath/$projectName/lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.snakeCase}')
+        .create(recursive: true);
+
+    var file = await File('${path.path}/${name.snakeCase}.dart').create();
+
+    await file.writeAsString(fileContent);
+  }
+
+  Future<void> _generateEnumEntity(
+      {required String projectName,
+      required String projectPath,
+      String sourceName = ''}) async {
+    final properties = this
+        .properties
+        .map((e) => '       ${e == 'default' ? '//' : ''}$e,')
+        .join('\n');
+
+    final fileContent = '''
+enum $name{
+    $properties
+}''';
 
     final path = await Directory(
             '$projectPath/$projectName/lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.snakeCase}')
@@ -76,7 +107,7 @@ class $name with _\$$name {
       String sourceName = ''}) async {
     final imports = entity?.entityImports
         .map((e) =>
-            'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';')
+            'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';')
         .join('\n');
 
     final fileContent =
@@ -89,7 +120,7 @@ part '${name.snakeCase}_response.g.dart';
 @freezed
 class ${name.pascalCase}Response with _\$${name.pascalCase}Response {
     factory ${name.pascalCase}Response({
-${properties.map((e) => '        ${TypeMatcher.getDartType(e.type)}${TypeMatcher.isObject(e.type) ? 'Response' : ''}? ${e.name},').join('\n')}
+${properties.map((e) => '        ${entity != null && entity!.imports.contains(e.name) ? '${e.name.pascalCase}Response' : TypeMatcher.getDartType(e.type)}? ${e.name},').join('\n')}
     }) = _${name.pascalCase}Response;
 
     factory ${name.pascalCase}Response.fromJson(Map<String, dynamic> json) => _\$${name.pascalCase}ResponseFromJson(json);
@@ -144,17 +175,23 @@ ${properties.map((e) => '        required ${TypeMatcher.getDartType(e.type)} ${e
       {required String projectName,
       required String projectPath,
       String sourceName = ''}) async {
+    final imports = entity?.entityImports
+        .map((e) =>
+            'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';')
+        .join('\n');
+
     final fileContent =
         '''import 'package:$projectName/core/arch/domain/common/converter/mapper.dart';
 import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${name.snakeCase}/${name.snakeCase}_request.dart';
 import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${name.snakeCase}/${name.snakeCase}_response.dart';
 import 'package:$projectName/domain/entity/${sourceName.snakeCase}/${name.snakeCase}/${name.snakeCase}.dart';
+$imports
 
 class _${name.pascalCase}ResponseToEntityMapper implements Mapper<${name.pascalCase}Response, ${name.pascalCase}>{
   @override
   ${name.pascalCase} map(${name.pascalCase}Response from) {
     return ${name.pascalCase}(
-    ${properties.map((e) => '        ${e.name}: from.${e.name} ?? \'\',').join('\n')}
+    ${properties.map((e) => '        ${e.name}: ${entity != null && entity!.imports.contains(e.name) ? '${e.name.pascalCase}Mappers().mapCategoryResponseToEntity(from.${e.name} ?? ${e.name.pascalCase}Response()),' : 'from.${e.name} ?? ${TypeMatcher.defaultTypeValue(e.type)},'}').join('\n')}
     );
   } 
 }

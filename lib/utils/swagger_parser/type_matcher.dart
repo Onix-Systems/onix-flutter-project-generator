@@ -1,3 +1,5 @@
+import 'package:onix_flutter_bricks/core/di/di.dart';
+
 class TypeMatcher {
   static const String _typeString = 'string';
   static const String _typeInteger = 'integer';
@@ -44,6 +46,23 @@ class TypeMatcher {
       return 'Map';
     } else {
       return type;
+    }
+  }
+
+  static String defaultTypeValue(String type) {
+    switch (type) {
+      case 'string':
+        return '\'\'';
+      case 'integer':
+        return '-1';
+      case 'number':
+        return '-1.0';
+      case 'boolean':
+        return 'false';
+      default:
+        if (type.startsWith('List')) return '[]';
+        logger.wtf(type);
+        return type;
     }
   }
 }
