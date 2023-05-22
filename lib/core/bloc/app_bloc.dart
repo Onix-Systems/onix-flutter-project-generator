@@ -97,23 +97,23 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ..addAll(parsedData.entities)
         ..sort((a, b) => a.name.compareTo(b.name));
 
-      for (final entity in entities) {
-        entity.generateFiles(
-            projectPath: projectPath, projectName: state.projectName);
-      }
+      // for (final entity in entities) {
+      //   entity.generateFiles(
+      //       projectPath: projectPath, projectName: state.projectName);
+      // }
 
       final sources = state.sources.toList()
         ..addAll(parsedData.sources)
         ..sort((a, b) => a.name.compareTo(b.name));
 
-      for (final source in sources) {
-        for (final entity in source.entities) {
-          entity.generateFiles(
-              projectPath: projectPath,
-              projectName: state.projectName,
-              sourceName: source.name);
-        }
-      }
+      // for (final source in sources) {
+      //   for (final entity in source.entities) {
+      //     entity.generateFiles(
+      //         projectPath: projectPath,
+      //         projectName: state.projectName,
+      //         sourceName: source.name);
+      //   }
+      // }
 
       emit(state.copyWith(
         entities: entities.toSet(),
@@ -136,6 +136,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                   EntityWrapper(
                     name: 'Time',
                     exists: true,
+                    properties: [
+                      Property(
+                        name: 'currentDateTime',
+                        type: 'DateTime',
+                      ),
+                    ],
                     entity: ClassEntity(
                       name: 'Time',
                       properties: [
@@ -154,6 +160,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                 EntityWrapper(
                   name: 'Auth',
                   exists: true,
+                  properties: [
+                    Property(
+                      name: 'accessToken',
+                      type: 'String',
+                    ),
+                    Property(
+                      name: 'refreshToken',
+                      type: 'String',
+                    ),
+                  ],
                   entity: ClassEntity(
                     name: 'Auth',
                     properties: [
@@ -229,6 +245,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         return;
       } catch (e) {
         logger.e(e);
+
         projectIsClean = false;
       }
     }
@@ -237,12 +254,18 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       projectIsClean: projectIsClean,
       sources: {
         SourceEntity(
-          name: 'time',
+          name: 'Time',
           exists: true,
           entities: [
             EntityWrapper(
-              name: 'time',
+              name: 'Time',
               exists: true,
+              properties: [
+                Property(
+                  name: 'currentDateTime',
+                  type: 'DateTime',
+                ),
+              ],
               entity: ClassEntity(
                 name: 'Time',
                 properties: [
@@ -251,7 +274,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                     type: 'DateTime',
                   ),
                 ],
-              ),
+              )..setSourceName('Time'),
             ),
           ],
         )
@@ -260,6 +283,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         EntityWrapper(
           name: 'Auth',
           exists: true,
+          properties: [
+            Property(
+              name: 'accessToken',
+              type: 'String',
+            ),
+            Property(
+              name: 'refreshToken',
+              type: 'String',
+            ),
+          ],
           entity: ClassEntity(
             name: 'Auth',
             properties: [
