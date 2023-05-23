@@ -4,7 +4,7 @@ import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:process_run/shell.dart';
 
 extension Logging on Process {
-  void log() {
+  void log({bool exitOnSucceeded = false}) {
     this
       ..outLines.asBroadcastStream().listen((event) {
         if (event.contains('Installing flutter_clean_') ||
@@ -13,8 +13,10 @@ extension Logging on Process {
         } else {
           outputService.add(event);
         }
+
         if (event.contains('with exit code') ||
-            event.contains('[Storing upload-keystore.jks]')) {
+            event.contains('[Storing upload-keystore.jks]') ||
+            (exitOnSucceeded && event.contains('[INFO] Succeeded after'))) {
           kill();
         }
       })

@@ -1,5 +1,3 @@
-import 'package:onix_flutter_bricks/core/di/di.dart';
-
 class TypeMatcher {
   static const String _typeString = 'string';
   static const String _typeInteger = 'integer';
@@ -61,7 +59,6 @@ class TypeMatcher {
         return 'false';
       default:
         if (type.startsWith('List')) return '[]';
-        logger.wtf(type);
         return type;
     }
   }

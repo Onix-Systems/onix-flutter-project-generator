@@ -17,6 +17,7 @@ import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/class_entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_parser.dart';
+import 'package:process_run/shell.dart';
 import 'package:recase/recase.dart';
 import 'package:http/http.dart' as http;
 
@@ -97,25 +98,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ..addAll(parsedData.entities)
         ..sort((a, b) => a.name.compareTo(b.name));
 
-      // for (final entity in entities) {
-      //   if (entity.exists) continue;
-      //   entity.generateFiles(
-      //       projectPath: projectPath, projectName: state.projectName);
-      // }
-
       final sources = state.sources.toList()
         ..addAll(parsedData.sources)
         ..sort((a, b) => a.name.compareTo(b.name));
-
-      // for (final source in sources) {
-      //   if (source.exists) continue;
-      //   for (final entity in source.entities) {
-      //     entity.generateFiles(
-      //         projectPath: projectPath,
-      //         projectName: state.projectName,
-      //         sourceName: source.name);
-      //   }
-      // }
 
       emit(state.copyWith(
         entities: entities.toSet(),
@@ -441,7 +426,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
-      var exitCode = await mainProcess.exitCode;
       configFile.delete();
 
       if (state.generateSigningKey) {
@@ -455,7 +439,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         signingProcess.stdin.writeln(
             'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass $genPass -storepass $genPass -dname "CN=${state.signingVars[0]}, OU=${state.signingVars[1]}, O=${state.signingVars[2]}, L=${state.signingVars[3]}, S=${state.signingVars[4]}, C=${state.signingVars[5]}"');
 
-        var exitCode = await signingProcess.exitCode;
+        //var exitCode = await signingProcess.exitCode;
       }
 
       if (state.generateScreensWithProject && state.screens.isNotEmpty) {
@@ -633,8 +617,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             'mason make flutter_clean_screen --build ${screen == state.screens.last} --screen_name ${screen.name} --use_bloc ${screen.bloc} --on-conflict overwrite');
       }
 
-      var exitCode = await mainProcess.exitCode;
-
       outputService.add('{#info}Screens generated!');
     }
 
@@ -669,29 +651,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (needToGenerateEntities || needToGenerateSources) {
       emit(state.copyWith(generatingState: GeneratingState.generating));
 
-      // var mainProcess = await startProcess(
-      //     workingDirectory: '${state.projectPath}/${state.projectName}');
-
-      // mainProcess.stdin.writeln(
-      //     'mason add -g flutter_clean_entity --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_entity ${gitRef.isNotEmpty ? gitRef : ''}');
-
       if (needToGenerateEntities) {
-        var entities = state.entities
-            .where((entity) => !entity.exists)
-            .map((e) => jsonEncode(e.toJson()))
-            .join(', ');
-
         for (final entity in state.entities.where((e) => !e.exists)) {
           await entity.generateFiles(
             projectPath: projectPath,
             projectName: state.projectName,
           );
         }
-
-        var build = !needToGenerateSources;
-
-        // mainProcess.stdin.writeln(
-        //     'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name \'\' --source_exists false --repository_exists false --on-conflict overwrite');
       }
 
       if (needToGenerateSources) {
@@ -700,11 +666,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                 source.entities.where((entity) => entity.exists).isEmpty)
             .toList();
         for (var source in sources) {
-          var entities = source.entities
-              .where((entity) => !entity.exists)
-              .map((e) => jsonEncode(e.toJson()))
-              .join(', ');
-
           for (final entity in source.entities.where((e) => !e.exists)) {
             await entity.generateFiles(
               projectPath: projectPath,
@@ -716,15 +677,34 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           final build = source == sources.last;
 
           outputService.add('{#error}Generating ${source.name}! build: $build');
-
-          // mainProcess.stdin.writeln(
-          //     'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name ${source.name} --source_exists ${source.exists} --repository_exists ${source.entities.length > 1} --on-conflict overwrite');
         }
       }
+      outputService.add('{#info}Generating entities!');
 
-      // var exitCode = await mainProcess.exitCode;
+      final mainProcess = await Process.run('dart',
+          ['run', 'build_runner', 'build', '--delete-conflicting-outputs'],
+          workingDirectory: '${state.projectPath}/${state.projectName}');
+
+      outputService.add(mainProcess.outText);
+      outputService.add(mainProcess.errText);
+
+      final sorterProcess = await Process.run(
+          'flutter', ['pub', 'run', 'import_sorter:main', '--no-comments'],
+          workingDirectory: '${state.projectPath}/${state.projectName}');
+
+      outputService.add(sorterProcess.outText);
+      outputService.add(sorterProcess.errText);
+
+      final formatProcess = await Process.run(
+        'dart',
+        ['format', '.'],
+        workingDirectory: '${state.projectPath}/${state.projectName}',
+      );
+
+      outputService.add(formatProcess.outText);
+      outputService.add(formatProcess.errText);
+
       outputService.add('{#info}Entities generated!');
-      outputService.add('{#info}with exit code: $exitCode');
     }
 
     Config.saveConfig(state);
@@ -749,11 +729,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   Future<Process> startProcess(
-      {required String workingDirectory, bool activateMason = true}) async {
+      {required String workingDirectory,
+      bool activateMason = true,
+      bool exitOnSucceeded = false}) async {
     var mainProcess =
         await Process.start('zsh', [], workingDirectory: workingDirectory);
 
-    mainProcess.log();
+    mainProcess.log(exitOnSucceeded: exitOnSucceeded);
     mainProcess.stdin.writeln('source \$HOME/.zshrc');
     mainProcess.stdin.writeln('source \$HOME/.bash_profile');
 
