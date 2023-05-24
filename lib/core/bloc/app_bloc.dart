@@ -440,7 +440,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
-      var exitCode = await mainProcess.exitCode;
+      await mainProcess.exitCode;
       configFile.delete();
 
       if (state.generateSigningKey) {
@@ -632,7 +632,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             'mason make flutter_clean_screen --build ${screen == state.screens.last} --screen_name ${screen.name} --use_bloc ${screen.bloc} --on-conflict overwrite');
       }
 
-      var exitCode = await mainProcess.exitCode;
+      await mainProcess.exitCode;
       outputService.add('{#info}Screens generated!');
     }
 
