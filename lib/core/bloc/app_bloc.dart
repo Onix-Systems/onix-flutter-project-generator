@@ -98,9 +98,23 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ..addAll(parsedData.entities)
         ..sort((a, b) => a.name.compareTo(b.name));
 
+      // for (final entity in entities) {
+      //   if (entity.isEnum) {
+      //     logger.wtf(entity.entity);
+      //   }
+      // }
+
       final sources = state.sources.toList()
         ..addAll(parsedData.sources)
         ..sort((a, b) => a.name.compareTo(b.name));
+
+      // for (final source in sources) {
+      //   for (final entity in source.entities) {
+      //     if (entity.isEnum) {
+      //       logger.wtf(entity.entity);
+      //     }
+      //   }
+      // }
 
       emit(state.copyWith(
         entities: entities.toSet(),
@@ -426,6 +440,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
+      var exitCode = await mainProcess.exitCode;
       configFile.delete();
 
       if (state.generateSigningKey) {
@@ -617,6 +632,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             'mason make flutter_clean_screen --build ${screen == state.screens.last} --screen_name ${screen.name} --use_bloc ${screen.bloc} --on-conflict overwrite');
       }
 
+      var exitCode = await mainProcess.exitCode;
       outputService.add('{#info}Screens generated!');
     }
 
@@ -720,12 +736,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _openProject(OpenProject event, Emitter<AppState> emit) async {
-    var mainProcess = await startProcess(
-        activateMason: false,
+    Process.run('studio', ['.'],
         workingDirectory: '${state.projectPath}/${state.projectName}');
-
-    mainProcess.stdin.writeln(
-        'open -a "Studio" "${state.projectPath}/${state.projectName}"');
   }
 
   Future<Process> startProcess(

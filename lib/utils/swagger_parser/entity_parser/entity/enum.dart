@@ -24,7 +24,7 @@ class EnumEntity implements Entity {
     result += '$name {';
 
     for (final property in properties) {
-      result += '\n     $property';
+      result += '\n     $property,';
     }
 
     result += '\n}';

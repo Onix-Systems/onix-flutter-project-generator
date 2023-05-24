@@ -8,20 +8,13 @@ class GenerateEnumEntity {
   FutureOr<void> call(
       {required String projectName,
       required String projectPath,
-      required EntityWrapper entityWrapper,
-      String sourceName = ''}) async {
+      required EntityWrapper entityWrapper}) async {
     final name = entityWrapper.name;
-
-    //TODO:
-
-    final properties = entityWrapper.properties
-        .map((e) => '       ${e == 'default' ? '//' : ''}$e,')
-        .join('\n');
+    final sourceName = entityWrapper.entity?.sourceName ?? '';
 
     final fileContent = '''
-enum $name{
-    $properties
-}''';
+enum ${entityWrapper.entity?.toString().replaceAll('default', '//default')}
+''';
 
     final path = await Directory(
             '$projectPath/$projectName/lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.snakeCase}')

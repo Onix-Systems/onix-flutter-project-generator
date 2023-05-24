@@ -155,6 +155,7 @@ Future<void> getDependencies(HookContext context) async {
     'loader_overlay',
     'fluttertoast',
     'flutter_native_splash',
+    'collection',
   ];
 
   if (!context.vars['web_only']) {

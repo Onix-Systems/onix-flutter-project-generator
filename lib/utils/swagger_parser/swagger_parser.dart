@@ -49,7 +49,9 @@ class SwaggerParser {
                 generateResponse: e is! EnumEntity,
                 properties: e.properties is List<Property>
                     ? e.properties as List<Property>
-                    : [],
+                    : e.properties
+                        .map((p) => Property(name: p, type: ''))
+                        .toList(),
                 isEnum: e is EnumEntity,
               ),
             )

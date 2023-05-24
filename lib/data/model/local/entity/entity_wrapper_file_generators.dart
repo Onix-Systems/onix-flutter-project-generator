@@ -12,10 +12,10 @@ extension FileGenerator on EntityWrapper {
       String sourceName = ''}) async {
     if (isEnum) {
       GenerateEnumEntity()(
-          projectName: projectName,
-          projectPath: projectPath,
-          entityWrapper: this,
-          sourceName: sourceName);
+        projectName: projectName,
+        projectPath: projectPath,
+        entityWrapper: this,
+      );
     } else {
       GenerateClassEntity()(
           projectName: projectName,

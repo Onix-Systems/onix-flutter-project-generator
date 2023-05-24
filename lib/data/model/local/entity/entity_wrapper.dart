@@ -53,6 +53,6 @@ class EntityWrapper {
 
   @override
   String toString() {
-    return 'EntityEntity{name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse, properties: $properties}';
+    return 'EntityEntity{name: $name, exists: $exists, isEnum: $isEnum, generateRequest: $generateRequest, generateResponse: $generateResponse, properties: $properties}';
   }
 }

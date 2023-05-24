@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
@@ -38,7 +40,7 @@ class $name with _\$$name {
     factory $name.fromJson(Map<String, dynamic> json) => _\$${name}FromJson(json);
     
     factory $name.empty() => $name(
-        ${entityWrapper.properties.map((e) => '        ${e.name}: ${TypeMatcher.defaultTypeValue(e.type) == (e.type) ? '${e.type}.empty()' : TypeMatcher.defaultTypeValue(e.type)},').join('\n')}
+${_getProperties(entityWrapper: entityWrapper)}
     );
 }
 ''';
@@ -50,5 +52,28 @@ class $name with _\$$name {
     var file = await File('${path.path}/${name.snakeCase}.dart').create();
 
     await file.writeAsString(fileContent);
+  }
+
+  String _getProperties({required EntityWrapper entityWrapper}) {
+    final properties = <String>[];
+
+    for (final property in entityWrapper.properties) {
+      if (TypeMatcher.defaultTypeValue(property.type) == (property.type)) {
+        final entity = entityWrapper.entity?.entityImports
+            .firstWhereOrNull((element) => element.name == property.type);
+
+        if (entity != null && entity is EnumEntity) {
+          properties
+              .add('        ${property.name}: ${property.type}.values.first,');
+        } else {
+          properties.add('        ${property.name}: ${property.type}.empty(),');
+        }
+      } else {
+        properties.add(
+            '        ${property.name}: ${TypeMatcher.defaultTypeValue(property.type)},');
+      }
+    }
+
+    return properties.join('\n');
   }
 }
