@@ -9,14 +9,15 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class GenerateMapper {
-  FutureOr<void> call(
-      {required String projectName,
-      required String projectPath,
-      required EntityWrapper entityWrapper,
-      String sourceName = ''}) async {
+  FutureOr<void> call({
+    required String projectName,
+    required String projectPath,
+    required EntityWrapper entityWrapper,
+  }) async {
     final entity = entityWrapper.entity;
     final name = entityWrapper.name;
     final properties = entityWrapper.properties;
+    final sourceName = entityWrapper.entity?.sourceName ?? '';
 
     final imports = entity?.entityImports
         .map((e) => e is EnumEntity
@@ -32,40 +33,39 @@ class GenerateMapper {
 
     final fileContent = '''import 'package:collection/collection.dart';
 import 'package:$projectName/core/arch/domain/common/converter/mapper.dart';
-import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${name.snakeCase}/${name.snakeCase}_request.dart';
-import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${name.snakeCase}/${name.snakeCase}_response.dart';
+${entityWrapper.generateRequest ? 'import \'package:$projectName/data/model/remote/${sourceName.snakeCase}/${name.snakeCase}/${name.snakeCase}_request.dart\';' : ''}
+${entityWrapper.generateResponse ? 'import \'package:$projectName/data/model/remote/${sourceName.snakeCase}/${name.snakeCase}/${name.snakeCase}_response.dart\';' : ''}
 import 'package:$projectName/domain/entity/${sourceName.snakeCase}/${name.snakeCase}/${name.snakeCase}.dart';
 $imports
 
-class _${name.pascalCase}ResponseToEntityMapper implements Mapper<${name.pascalCase}Response, ${name.pascalCase}>{
+${entityWrapper.generateResponse ? '''class _${name.pascalCase}ResponseToEntityMapper implements Mapper<${name.pascalCase}Response, ${name.pascalCase}>{
   @override
-  ${name.pascalCase} map(${name.pascalCase}Response from) {
+  ${name.pascalCase} map(${name.pascalCase}Response from,) {
 $importMappers
 
     return ${name.pascalCase}(
 ${_getProperties(entityWrapper: entityWrapper)}
     );
   } 
-}
+}''' : ''}
 
+${entityWrapper.generateRequest ? '''
 class _${name.pascalCase}EntityToRequestMapper implements Mapper<${name.pascalCase}, ${name.pascalCase}Request>{
   @override
-  ${name.pascalCase}Request map(${name.pascalCase} from) {
+  ${name.pascalCase}Request map(${name.pascalCase} from,) {
     return ${name.pascalCase}Request(
-${properties.map((e) => '        ${e.name}: from.${e.name},').join('\n')}
+${properties.map((e) => '        ${e.name}: from.${e.name}${e.nullable ? ' ?? ${TypeMatcher.defaultTypeValue(e.type)}' : ''},').join('\n')}
     );
   }
-}
+}''' : ''}
 
 class ${name.pascalCase}Mappers {
-  final _${name.camelCase}ResponseToEntityMapper = _${name.pascalCase}ResponseToEntityMapper();
-  final _${name.camelCase}EntityToRequestMapper = _${name.pascalCase}EntityToRequestMapper();
+  ${entityWrapper.generateResponse ? 'final _${name.camelCase}ResponseToEntityMapper = _${name.pascalCase}ResponseToEntityMapper();' : ''}
+  ${entityWrapper.generateRequest ? 'final _${name.camelCase}EntityToRequestMapper = _${name.pascalCase}EntityToRequestMapper();' : ''}
 
-  ${name.pascalCase} map${name.pascalCase}ResponseToEntity(${name.pascalCase}Response response) =>
-      _${name.camelCase}ResponseToEntityMapper.map(response);
+  ${entityWrapper.generateResponse ? '${name.pascalCase} map${name.pascalCase}ResponseToEntity(${name.pascalCase}Response response,) => _${name.camelCase}ResponseToEntityMapper.map(response);' : ''}
 
-  ${name.pascalCase}Request map${name.pascalCase}EntityToRequest(${name.pascalCase} entity) =>
-      _${name.camelCase}EntityToRequestMapper.map(entity);
+  ${entityWrapper.generateRequest ? '${name.pascalCase}Request map${name.pascalCase}EntityToRequest(${name.pascalCase} entity,) => _${name.camelCase}EntityToRequestMapper.map(entity);' : ''}
 }''';
 
     final path = await Directory(
@@ -86,7 +86,7 @@ class ${name.pascalCase}Mappers {
         final type = property.type.substring(5, property.type.length - 1);
         entityWrapper.entity!.imports.contains(type.snakeCase)
             ? properties.add(
-                '        ${property.name}: from.${property.name}?.map((e) => ${type.camelCase}Mapper.map${type}ResponseToEntity(e)).toList() ?? [],')
+                '        ${property.name}: from.${property.name}?.map(${type.camelCase}Mapper.map${type}ResponseToEntity).toList() ?? [],')
             : properties
                 .add('        ${property.name}: from.${property.name} ?? [],');
       } else {
@@ -95,9 +95,9 @@ class ${name.pascalCase}Mappers {
                         .firstWhereOrNull((e) => e.name == property.type)
                     is EnumEntity
                 ? properties.add(
-                    '        ${property.name}: ${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.editEvent) ?? ${property.type.pascalCase}.values.first,')
+                    '        ${property.name}: ${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name}) ?? ${property.type.pascalCase}.values.first,')
                 : properties.add(
-                    '        ${property.name}: ${property.type.camelCase}Mapper.map${property.type.pascalCase}ResponseToEntity(from.${property.name} ?? ${property.type.pascalCase}Response()),')
+                    '        ${property.name}: ${property.type.camelCase}Mapper.map${property.type.pascalCase}ResponseToEntity(from.${property.name} ?? ${property.type.pascalCase}Response(),),')
             : properties.add(
                 '        ${property.name}: from.${property.name} ?? ${TypeMatcher.defaultTypeValue(property.type)},');
       }

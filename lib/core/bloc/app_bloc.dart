@@ -128,7 +128,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _init(_, Emitter<AppState> emit) {
-    logger.d('init');
     emit(
       state.copyWith(
         sources: state.sources.isEmpty
@@ -373,7 +372,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _generateProject(
       GenerateProject event, Emitter<AppState> emit) async {
-    logger.d('generateProject');
     emit(state.copyWith(generatingState: GeneratingState.generating));
 
     String genPass = '';
@@ -624,8 +622,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       mainProcess.stdin.writeln(
           'mason add -g flutter_clean_screen --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_screen ${gitRef.isNotEmpty ? gitRef : ''}');
 
-      logger.d('Generating screens... ${state.screens}');
-
       for (var screen in state.screens.where((element) => !element.exists)) {
         logger.d('Generating screen ${screen.name}...');
         mainProcess.stdin.writeln(
@@ -686,13 +682,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             await entity.generateFiles(
               projectPath: projectPath,
               projectName: state.projectName,
-              sourceName: source.name,
             );
           }
 
           final build = source == sources.last;
-
-          outputService.add('{#error}Generating ${source.name}! build: $build');
         }
       }
       outputService.add('{#info}Generating entities!');

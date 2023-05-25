@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/path.dart';
 
 part 'source_entity.g.dart';
 
@@ -8,10 +9,12 @@ class SourceEntity {
   String name;
   List<EntityWrapper> entities;
   bool exists;
+  List<Path> paths;
 
   SourceEntity({
     required this.name,
     required this.entities,
+    this.paths = const [],
     this.exists = false,
   });
 

@@ -10,11 +10,12 @@ import 'package:recase/recase.dart';
 import '../../../../../core/di/di.dart';
 
 class GenerateResponse {
-  FutureOr<void> call(
-      {required String projectName,
-      required String projectPath,
-      required EntityWrapper entityWrapper,
-      String sourceName = ''}) async {
+  FutureOr<void> call({
+    required String projectName,
+    required String projectPath,
+    required EntityWrapper entityWrapper,
+  }) async {
+    final sourceName = entityWrapper.entity?.sourceName ?? '';
     final entity = entityWrapper.entity;
     final name = entityWrapper.name;
 
@@ -56,8 +57,6 @@ ${_getProperties(entityWrapper: entityWrapper)}
     for (final property in entityWrapper.properties) {
       if (property.type.startsWith('List')) {
         final type = property.type.substring(5, property.type.length - 1);
-        logger.wtf(property);
-        logger.wtf(entityWrapper.entity!.imports);
         entityWrapper.entity!.imports.contains(type.snakeCase)
             ? properties.add(
                 '        List<${type.pascalCase}Response>? ${property.name},')

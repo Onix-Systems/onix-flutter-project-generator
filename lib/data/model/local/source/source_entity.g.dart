@@ -12,11 +12,14 @@ SourceEntity _$SourceEntityFromJson(Map<String, dynamic> json) => SourceEntity(
           .map((e) => EntityWrapper.fromJson(e as Map<String, dynamic>))
           .toList(),
       exists: json['exists'] as bool? ?? false,
-    );
+    )..paths = (json['paths'] as List<dynamic>)
+        .map((e) => Path.fromJson(e as Map<String, dynamic>))
+        .toList();
 
 Map<String, dynamic> _$SourceEntityToJson(SourceEntity instance) =>
     <String, dynamic>{
       'name': instance.name,
       'entities': instance.entities,
       'exists': instance.exists,
+      'paths': instance.paths,
     };

@@ -6,13 +6,14 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class GenerateRequest {
-  FutureOr<void> call(
-      {required String projectName,
-      required String projectPath,
-      required EntityWrapper entityWrapper,
-      String sourceName = ''}) async {
+  FutureOr<void> call({
+    required String projectName,
+    required String projectPath,
+    required EntityWrapper entityWrapper,
+  }) async {
     final entity = entityWrapper.entity;
     final name = entityWrapper.name;
+    final sourceName = entityWrapper.entity?.sourceName ?? '';
 
     final imports = entity?.entityImports
         .map((e) =>

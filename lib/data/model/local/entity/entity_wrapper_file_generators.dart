@@ -6,10 +6,10 @@ import 'package:onix_flutter_bricks/data/model/local/entity/use_case/generate_re
 import 'package:onix_flutter_bricks/data/model/local/entity/use_case/generate_response.dart';
 
 extension FileGenerator on EntityWrapper {
-  Future<void> generateFiles(
-      {required String projectName,
-      required String projectPath,
-      String sourceName = ''}) async {
+  Future<void> generateFiles({
+    required String projectName,
+    required String projectPath,
+  }) async {
     if (isEnum) {
       GenerateEnumEntity()(
         projectName: projectName,
@@ -18,31 +18,31 @@ extension FileGenerator on EntityWrapper {
       );
     } else {
       GenerateClassEntity()(
-          projectName: projectName,
-          projectPath: projectPath,
-          entityWrapper: this,
-          sourceName: sourceName);
+        projectName: projectName,
+        projectPath: projectPath,
+        entityWrapper: this,
+      );
     }
     if (!isEnum && generateResponse) {
       GenerateResponse()(
-          projectName: projectName,
-          projectPath: projectPath,
-          entityWrapper: this,
-          sourceName: sourceName);
+        projectName: projectName,
+        projectPath: projectPath,
+        entityWrapper: this,
+      );
     }
     if (!isEnum && generateRequest) {
       GenerateRequest()(
-          projectName: projectName,
-          projectPath: projectPath,
-          entityWrapper: this,
-          sourceName: sourceName);
+        projectName: projectName,
+        projectPath: projectPath,
+        entityWrapper: this,
+      );
     }
-    if (!isEnum && generateRequest && generateResponse) {
+    if (!isEnum && (generateRequest || generateResponse)) {
       GenerateMapper()(
-          projectName: projectName,
-          projectPath: projectPath,
-          entityWrapper: this,
-          sourceName: sourceName);
+        projectName: projectName,
+        projectPath: projectPath,
+        entityWrapper: this,
+      );
     }
   }
 }

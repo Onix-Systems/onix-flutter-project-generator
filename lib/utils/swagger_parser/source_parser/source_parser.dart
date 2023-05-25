@@ -1,4 +1,5 @@
 import 'package:onix_flutter_bricks/core/di/di.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/path.dart';
@@ -19,15 +20,18 @@ class SourceParser {
       }
 
       for (final entry in path.value.entries) {
-        final entities = <String>{};
-
         if (MethodType.values
             .where((element) => element.name == entry.key)
             .isEmpty) {
           continue;
         }
 
-        //logger.wtf('Method: ${entry.key}: ${entry.value}');
+        final method = Method(
+          methodType:
+              MethodType.values.firstWhere((value) => value.name == entry.key),
+          tags: entry.value['tags'].cast<String>(),
+          entities: {},
+        );
 
         if (entry.value.containsKey('parameters') &&
             entry.value['parameters'].isNotEmpty) {
@@ -38,7 +42,14 @@ class SourceParser {
 
             if (TypeMatcher.isReference(parameter['schema'])) {
               String entityName = _getRefClassName(parameter['schema']);
-              entities.add(entityName);
+              method.entities.add(entityName);
+            } else {
+              method.params.add(Property(
+                  name: parameter['name'],
+                  type: parameter['schema']['type'],
+                  nullable: parameter['required'] != null
+                      ? !parameter['required']
+                      : true));
             }
           }
         }
@@ -53,21 +64,17 @@ class SourceParser {
 
             if (TypeMatcher.isReference(parameter['schema'])) {
               String entityName = _getRefClassName(parameter['schema']);
-              entities.add(entityName);
+              method.entities.add(entityName);
+              method.setRequestEntityName(entityName);
             }
           }
         }
 
         if (entry.value.containsKey('responses')) {
-          _getMethodSchemaReference(entry, entities);
+          _getMethodSchemaReference(entry, method);
         }
 
-        methods.add(Method(
-          methodType:
-              MethodType.values.firstWhere((value) => value.name == entry.key),
-          tags: entry.value['tags'].cast<String>(),
-          entities: entities.toList(),
-        ));
+        methods.add(method);
       }
 
       paths.add(Path(path: path.key, methods: methods));
@@ -106,13 +113,12 @@ class SourceParser {
         entities: dependencies.toList(),
       );
       sources.add(source);
-      // logger.wtf('Source: $source');
     }
 
     return sources;
   }
 
-  static void _getMethodSchemaReference(entry, Set<String> entities) {
+  static void _getMethodSchemaReference(entry, Method method) {
     final responses = entry.value['responses'].entries
         .where((response) => response.key == '200' || response.key == '201');
 
@@ -130,9 +136,13 @@ class SourceParser {
         return;
       }
 
+      if (method.methodType == MethodType.get) {
+        method.setResponseEntityName(_getRefClassName(schema));
+      }
+
       String entityName = _getRefClassName(schema);
 
-      entities.add(entityName);
+      method.entities.add(entityName);
     }
   }
 

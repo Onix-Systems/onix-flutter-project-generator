@@ -8,12 +8,13 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class GenerateClassEntity {
-  FutureOr<void> call(
-      {required String projectName,
-      required String projectPath,
-      required EntityWrapper entityWrapper,
-      String sourceName = ''}) async {
+  FutureOr<void> call({
+    required String projectName,
+    required String projectPath,
+    required EntityWrapper entityWrapper,
+  }) async {
     String imports = '';
+    final sourceName = entityWrapper.entity?.sourceName ?? '';
 
     final entity = entityWrapper.entity;
     final name = entityWrapper.name;

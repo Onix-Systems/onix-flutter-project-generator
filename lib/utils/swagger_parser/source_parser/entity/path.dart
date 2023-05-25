@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 
+part 'path.g.dart';
+
+@JsonSerializable()
 class Path {
   final String path;
   final List<Method> methods;
@@ -13,4 +17,8 @@ class Path {
   String toString() {
     return '\n{path: $path,\nmethods: $methods\n}';
   }
+
+  factory Path.fromJson(Map<String, dynamic> json) => _$PathFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PathToJson(this);
 }

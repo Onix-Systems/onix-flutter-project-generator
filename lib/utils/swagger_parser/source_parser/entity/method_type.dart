@@ -1,9 +1,9 @@
 enum MethodType {
   get,
   post,
-  put,
+  // put,
   delete,
-  patch,
-  head,
-  options,
+  // patch,
+  // head,
+  // options,
 }
