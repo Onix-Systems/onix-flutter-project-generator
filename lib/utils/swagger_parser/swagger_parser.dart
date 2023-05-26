@@ -1,13 +1,10 @@
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/class_entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity_parser.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/source_parser.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_data.dart';
 import 'package:recase/recase.dart';
@@ -40,6 +37,15 @@ class SwaggerParser {
           parsedEntities.where((e) => e.sourceName == source.name).toList());
 
       parsedEntities.removeWhere((e) => e.sourceName == source.name);
+
+      for (final path in source.paths) {
+        for (final method in path.methods) {
+          //if (method.params.isNotEmpty) {
+
+          //logger.wtf('${path.path} ${method.methodType.name} ${method.params}');
+          //}
+        }
+      }
 
       return SourceEntity(
         name: source.name,

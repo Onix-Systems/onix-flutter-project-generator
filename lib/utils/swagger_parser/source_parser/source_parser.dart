@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/me
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/path.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/source.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
+import 'package:recase/recase.dart';
 
 class SourceParser {
   static Future<List<Source>> parse(Map<String, dynamic> data) async {
@@ -36,21 +37,39 @@ class SourceParser {
         if (entry.value.containsKey('parameters') &&
             entry.value['parameters'].isNotEmpty) {
           for (final parameter in entry.value['parameters']) {
-            if (parameter['schema'] == null) {
-              continue;
-            }
+            logger.wtf('${path.key} ${method.methodType.name}: ${parameter}');
+            if (parameter['schema'] != null) {
+              final isArray = parameter['schema']['type'] == 'array';
 
-            if (TypeMatcher.isReference(parameter['schema'])) {
-              String entityName = _getRefClassName(parameter['schema']);
-              method.entities.add(entityName);
+              if (TypeMatcher.isReference(parameter['schema']) ||
+                  (isArray &&
+                      TypeMatcher.isReference(parameter['schema']['items']))) {
+                String entityName = isArray
+                    ? _getRefClassName(parameter['schema']['items'])
+                    : _getRefClassName(parameter['schema']);
+
+                method.entities.add(entityName);
+
+                method.params.add(Property(
+                    name: isArray
+                        ? '${entityName.camelCase}s'
+                        : entityName.camelCase,
+                    type: isArray ? 'List<$entityName>' : entityName,
+                    nullable: parameter['required'] != null
+                        ? !parameter['required']
+                        : true));
+
+                method.setRequestEntityName(entityName);
+              }
             } else {
               method.params.add(Property(
                   name: parameter['name'],
-                  type: parameter['schema']['type'],
+                  type: parameter['type'],
                   nullable: parameter['required'] != null
                       ? !parameter['required']
                       : true));
             }
+            logger.wtf(method);
           }
         }
 
@@ -127,8 +146,6 @@ class SourceParser {
           ? response.value['content']['schema'] ??
               response.value['content']['application/json']['schema']
           : response.value['schema'];
-
-      //logger.wtf('Schema: $schema');
 
       if (schema == null ||
           (!TypeMatcher.isReference(schema) &&

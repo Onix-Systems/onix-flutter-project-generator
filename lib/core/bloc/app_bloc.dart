@@ -81,6 +81,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     //'https://vocadb.net/swagger/v1/swagger.json'
     //'https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json'
+    //'https://onix-systems-savii-api-mvp.staging.onix.ua/api-doc/savii-public'
 
     final url = event.url.isNotEmpty
         ? event.url
@@ -684,8 +685,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               projectName: state.projectName,
             );
           }
-
-          final build = source == sources.last;
         }
       }
       outputService.add('{#info}Generating entities!');
