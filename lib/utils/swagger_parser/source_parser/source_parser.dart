@@ -1,4 +1,3 @@
-import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
@@ -37,7 +36,6 @@ class SourceParser {
         if (entry.value.containsKey('parameters') &&
             entry.value['parameters'].isNotEmpty) {
           for (final parameter in entry.value['parameters']) {
-            logger.wtf('${path.key} ${method.methodType.name}: ${parameter}');
             if (parameter['schema'] != null) {
               final isArray = parameter['schema']['type'] == 'array';
 
@@ -69,7 +67,6 @@ class SourceParser {
                       ? !parameter['required']
                       : true));
             }
-            logger.wtf(method);
           }
         }
 
@@ -123,7 +120,7 @@ class SourceParser {
       }
 
       final source = Source(
-        name: tag,
+        name: tag.replaceAll(RegExp('[^A-Za-z0-9_-]'), ''),
         tag: tag,
         paths: paths
             .where((element) =>
@@ -141,10 +138,16 @@ class SourceParser {
     final responses = entry.value['responses'].entries
         .where((response) => response.key == '200' || response.key == '201');
 
+    if (responses.isEmpty) {
+      return;
+    }
+
     for (final response in responses) {
       final schema = response.value.containsKey('content')
           ? response.value['content']['schema'] ??
-              response.value['content']['application/json']['schema']
+                  response.value['content'].containsKey('application/json')
+              ? response.value['content']['application/json']['schema']
+              : response.value['content']['*/*']['schema']
           : response.value['schema'];
 
       if (schema == null ||

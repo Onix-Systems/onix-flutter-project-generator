@@ -26,6 +26,10 @@ class EntityParser {
           continue;
         }
 
+        if (entry.value['properties'] == null) {
+          continue;
+        }
+
         final entity = ClassEntity(
           name: entry.key,
           properties: (entry.value['properties'] as Map<String, dynamic>)
@@ -104,15 +108,19 @@ class EntityParser {
       imports.add(_getRefClassName(e.value['items']).snakeCase);
     } else {
       if ((e.value['items'] as Map<String, dynamic>).isEmpty) {
-        property.type = 'List<${TypeMatcher.getDartType('dynamic')}>';
+        property.type = 'List<dynamic}>';
       } else {
         final className =
-            property.name.substring(0, property.name.length - 1).pascalCase;
+            property.name.substring(0, property.name.length).pascalCase;
 
         if (e.value['items'].containsKey('type') &&
             e.value['items']['type'] != 'object') {
           property.type =
               'List<${TypeMatcher.getDartType(e.value['items']['type'])}>';
+        } else if (e.value['items'].containsKey('type') &&
+            e.value['items']['type'] == 'object' &&
+            !e.value['items'].containsKey('properties')) {
+          property.type = 'List<dynamic>';
         } else {
           final definitions = {
             'definitions': {

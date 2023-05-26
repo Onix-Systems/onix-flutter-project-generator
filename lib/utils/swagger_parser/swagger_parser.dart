@@ -38,15 +38,6 @@ class SwaggerParser {
 
       parsedEntities.removeWhere((e) => e.sourceName == source.name);
 
-      for (final path in source.paths) {
-        for (final method in path.methods) {
-          //if (method.params.isNotEmpty) {
-
-          //logger.wtf('${path.path} ${method.methodType.name} ${method.params}');
-          //}
-        }
-      }
-
       return SourceEntity(
         name: source.name,
         paths: source.paths,
