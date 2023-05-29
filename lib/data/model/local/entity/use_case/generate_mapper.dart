@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
 
 import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
@@ -19,16 +20,20 @@ class GenerateMapper {
     final properties = entityWrapper.properties;
     final sourceName = entityWrapper.entity?.sourceName ?? '';
 
-    final imports = entity?.entityImports
-        .map((e) => e is EnumEntity
-            ? 'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';'
-            : 'import \'package:$projectName/data/model/remote/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';\n'
-                'import \'package:$projectName/data/mapper/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_mapper.dart\';\n')
-        .join('\n');
-
     final importMappers = entity?.entityImports
         .where((e) => e is! EnumEntity)
         .map((e) => '    final ${e.name.camelCase}Mapper = ${e.name}Mappers();')
+        .join('\n');
+
+    final imports = entity?.entityImports
+        .map((e) => e is EnumEntity
+            ? 'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';'
+            : importMappers != null &&
+                    importMappers.isNotEmpty &&
+                    entityWrapper.generateResponse
+                ? 'import \'package:$projectName/data/model/remote/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';\n'
+                    'import \'package:$projectName/data/mapper/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_mapper.dart\';\n'
+                : '')
         .join('\n');
 
     final fileContent = '''import 'package:collection/collection.dart';
