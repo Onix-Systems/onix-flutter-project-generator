@@ -1,9 +1,9 @@
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/use_case/generate_class_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/use_case/generate_enum_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/use_case/generate_mapper.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/use_case/generate_request.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/use_case/generate_response.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/use_case/entity/generate_class_entity.dart';
+import 'package:onix_flutter_bricks/domain/use_case/entity/generate_enum_entity.dart';
+import 'package:onix_flutter_bricks/domain/use_case/entity/generate_mapper.dart';
+import 'package:onix_flutter_bricks/domain/use_case/entity/generate_request.dart';
+import 'package:onix_flutter_bricks/domain/use_case/entity/generate_response.dart';
 
 extension FileGenerator on EntityWrapper {
   Future<void> generateFiles({

@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
 
 part 'app_models.freezed.dart';
@@ -86,11 +86,11 @@ class AppEvent with _$AppEvent {
 
   const factory AppEvent.onEntityAdd({
     required EntityWrapper entity,
-    @Default(null) SourceEntity? source,
+    @Default(null) SourceWrapper? source,
   }) = EntityAdd;
 
   const factory AppEvent.onSourceAdd({
-    required SourceEntity source,
+    required SourceWrapper source,
   }) = SourceAdd;
 
   const factory AppEvent.onScreenDelete({
@@ -99,11 +99,11 @@ class AppEvent with _$AppEvent {
 
   const factory AppEvent.onEntityDelete({
     required EntityWrapper entity,
-    @Default(null) SourceEntity? source,
+    @Default(null) SourceWrapper? source,
   }) = EntityDelete;
 
   const factory AppEvent.onSourceDelete({
-    required SourceEntity source,
+    required SourceWrapper source,
   }) = SourceDelete;
 
   const factory AppEvent.onStateUpdate() = StateUpdate;
@@ -150,7 +150,7 @@ class AppState with _$AppState {
     @Default(false) bool generateEntitiesWithProject,
     @Default({}) Set<ScreenEntity> screens,
     @Default({}) Set<EntityWrapper> entities,
-    @Default({}) Set<SourceEntity> sources,
+    @Default({}) Set<SourceWrapper> sources,
     @Default('') String screenError,
     @Default('') String entityError,
     @Default(0) int stateUpdate,

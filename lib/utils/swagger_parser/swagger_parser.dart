@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
-import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
@@ -38,7 +38,7 @@ class SwaggerParser {
 
       parsedEntities.removeWhere((e) => e.sourceName == source.name);
 
-      return SourceEntity(
+      return SourceWrapper(
         name: source.name,
         paths: source.paths,
         entities: entitiesToMove
@@ -123,7 +123,8 @@ class SwaggerParser {
     }
   }
 
-  static void _setGenRequest(List<SourceEntity> sources, EntityWrapper entity) {
+  static void _setGenRequest(
+      List<SourceWrapper> sources, EntityWrapper entity) {
     entity.generateRequest = true;
 
     final allEntities = <EntityWrapper>{};
@@ -148,7 +149,7 @@ class SwaggerParser {
   }
 
   static void _setGenResponse(
-      List<SourceEntity> sources, EntityWrapper entity) {
+      List<SourceWrapper> sources, EntityWrapper entity) {
     entity.generateResponse = true;
 
     final allEntities = <EntityWrapper>{};

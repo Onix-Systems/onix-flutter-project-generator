@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/class_entity.dart';
 import 'package:recase/recase.dart';

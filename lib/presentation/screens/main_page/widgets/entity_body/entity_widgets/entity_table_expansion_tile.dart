@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/entity_table.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 

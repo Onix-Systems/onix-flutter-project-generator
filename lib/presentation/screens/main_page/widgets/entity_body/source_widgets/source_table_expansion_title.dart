@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/source_widgets/source_expansion_tile.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 
@@ -7,7 +7,7 @@ class SourceTableExpansionTile extends StatefulWidget {
   const SourceTableExpansionTile({required this.sources, Key? key})
       : super(key: key);
 
-  final List<SourceEntity> sources;
+  final List<SourceWrapper> sources;
 
   @override
   State<SourceTableExpansionTile> createState() =>

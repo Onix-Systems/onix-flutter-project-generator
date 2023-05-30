@@ -44,13 +44,13 @@ mixin _$AppEvent {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -86,12 +86,12 @@ mixin _$AppEvent {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -127,12 +127,12 @@ mixin _$AppEvent {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -345,13 +345,13 @@ class _$Init implements Init {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -390,12 +390,12 @@ class _$Init implements Init {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -434,12 +434,12 @@ class _$Init implements Init {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -684,13 +684,13 @@ class _$SwaggerParse implements SwaggerParse {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -729,12 +729,12 @@ class _$SwaggerParse implements SwaggerParse {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -773,12 +773,12 @@ class _$SwaggerParse implements SwaggerParse {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -1029,13 +1029,13 @@ class _$TabChange implements TabChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -1074,12 +1074,12 @@ class _$TabChange implements TabChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -1118,12 +1118,12 @@ class _$TabChange implements TabChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -1374,13 +1374,13 @@ class _$ProjectPathChange implements ProjectPathChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -1419,12 +1419,12 @@ class _$ProjectPathChange implements ProjectPathChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -1463,12 +1463,12 @@ class _$ProjectPathChange implements ProjectPathChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -1730,13 +1730,13 @@ class _$ProjectNameChange implements ProjectNameChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -1775,12 +1775,12 @@ class _$ProjectNameChange implements ProjectNameChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -1819,12 +1819,12 @@ class _$ProjectNameChange implements ProjectNameChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -2051,13 +2051,13 @@ class _$ProjectCheck implements ProjectCheck {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -2096,12 +2096,12 @@ class _$ProjectCheck implements ProjectCheck {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -2140,12 +2140,12 @@ class _$ProjectCheck implements ProjectCheck {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -2392,13 +2392,13 @@ class _$OrganizationChange implements OrganizationChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -2437,12 +2437,12 @@ class _$OrganizationChange implements OrganizationChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -2481,12 +2481,12 @@ class _$OrganizationChange implements OrganizationChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -2711,13 +2711,13 @@ class _$FlavorizeChange implements FlavorizeChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -2756,12 +2756,12 @@ class _$FlavorizeChange implements FlavorizeChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -2800,12 +2800,12 @@ class _$FlavorizeChange implements FlavorizeChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -3050,13 +3050,13 @@ class _$FlavorsChange implements FlavorsChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -3095,12 +3095,12 @@ class _$FlavorsChange implements FlavorsChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -3139,12 +3139,12 @@ class _$FlavorsChange implements FlavorsChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -3369,13 +3369,13 @@ class _$RouterChange implements RouterChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -3414,12 +3414,12 @@ class _$RouterChange implements RouterChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -3458,12 +3458,12 @@ class _$RouterChange implements RouterChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -3682,13 +3682,13 @@ class _$LocalizationChange implements LocalizationChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -3727,12 +3727,12 @@ class _$LocalizationChange implements LocalizationChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -3771,12 +3771,12 @@ class _$LocalizationChange implements LocalizationChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -3996,13 +3996,13 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -4041,12 +4041,12 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -4085,12 +4085,12 @@ class _$GenerateSigningKeyChange implements GenerateSigningKeyChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -4309,13 +4309,13 @@ class _$UseSonarChange implements UseSonarChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -4354,12 +4354,12 @@ class _$UseSonarChange implements UseSonarChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -4398,12 +4398,12 @@ class _$UseSonarChange implements UseSonarChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -4625,13 +4625,13 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -4670,12 +4670,12 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -4714,12 +4714,12 @@ class _$IntegrateDevicePreviewChange implements IntegrateDevicePreviewChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -4972,13 +4972,13 @@ class _$SigningVarsChange implements SigningVarsChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -5017,12 +5017,12 @@ class _$SigningVarsChange implements SigningVarsChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -5061,12 +5061,12 @@ class _$SigningVarsChange implements SigningVarsChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -5328,13 +5328,13 @@ class _$PlatformsChange implements PlatformsChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -5373,12 +5373,12 @@ class _$PlatformsChange implements PlatformsChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -5417,12 +5417,12 @@ class _$PlatformsChange implements PlatformsChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -5647,13 +5647,13 @@ class _$ThemingChange implements ThemingChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -5692,12 +5692,12 @@ class _$ThemingChange implements ThemingChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -5736,12 +5736,12 @@ class _$ThemingChange implements ThemingChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -5960,13 +5960,13 @@ class _$GenerateProject implements GenerateProject {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -6005,12 +6005,12 @@ class _$GenerateProject implements GenerateProject {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -6049,12 +6049,12 @@ class _$GenerateProject implements GenerateProject {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -6273,13 +6273,13 @@ class _$GenerateComplete implements GenerateComplete {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -6318,12 +6318,12 @@ class _$GenerateComplete implements GenerateComplete {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -6362,12 +6362,12 @@ class _$GenerateComplete implements GenerateComplete {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -6619,13 +6619,13 @@ class _$OnGenerateScreensWithProject implements OnGenerateScreensWithProject {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -6664,12 +6664,12 @@ class _$OnGenerateScreensWithProject implements OnGenerateScreensWithProject {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -6708,12 +6708,12 @@ class _$OnGenerateScreensWithProject implements OnGenerateScreensWithProject {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -6974,13 +6974,13 @@ class _$OnGenerateRepositoriesWithProject
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -7020,12 +7020,12 @@ class _$OnGenerateRepositoriesWithProject
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -7065,12 +7065,12 @@ class _$OnGenerateRepositoriesWithProject
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -7325,13 +7325,13 @@ class _$ProjectChange implements ProjectChange {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -7370,12 +7370,12 @@ class _$ProjectChange implements ProjectChange {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -7414,12 +7414,12 @@ class _$ProjectChange implements ProjectChange {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -7670,13 +7670,13 @@ class _$ScreenAdd implements ScreenAdd {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -7715,12 +7715,12 @@ class _$ScreenAdd implements ScreenAdd {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -7759,12 +7759,12 @@ class _$ScreenAdd implements ScreenAdd {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -7930,7 +7930,7 @@ abstract class _$$EntityAddCopyWith<$Res> {
           _$EntityAdd value, $Res Function(_$EntityAdd) then) =
       __$$EntityAddCopyWithImpl<$Res>;
   @useResult
-  $Res call({EntityWrapper entity, SourceEntity? source});
+  $Res call({EntityWrapper entity, SourceWrapper? source});
 }
 
 /// @nodoc
@@ -7955,7 +7955,7 @@ class __$$EntityAddCopyWithImpl<$Res>
       source: freezed == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
-              as SourceEntity?,
+              as SourceWrapper?,
     ));
   }
 }
@@ -7969,7 +7969,7 @@ class _$EntityAdd implements EntityAdd {
   final EntityWrapper entity;
   @override
   @JsonKey()
-  final SourceEntity? source;
+  final SourceWrapper? source;
 
   @override
   String toString() {
@@ -8023,13 +8023,13 @@ class _$EntityAdd implements EntityAdd {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -8068,12 +8068,12 @@ class _$EntityAdd implements EntityAdd {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -8112,12 +8112,12 @@ class _$EntityAdd implements EntityAdd {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -8271,10 +8271,10 @@ class _$EntityAdd implements EntityAdd {
 abstract class EntityAdd implements AppEvent {
   const factory EntityAdd(
       {required final EntityWrapper entity,
-      final SourceEntity? source}) = _$EntityAdd;
+      final SourceWrapper? source}) = _$EntityAdd;
 
   EntityWrapper get entity;
-  SourceEntity? get source;
+  SourceWrapper? get source;
   @JsonKey(ignore: true)
   _$$EntityAddCopyWith<_$EntityAdd> get copyWith =>
       throw _privateConstructorUsedError;
@@ -8286,7 +8286,7 @@ abstract class _$$SourceAddCopyWith<$Res> {
           _$SourceAdd value, $Res Function(_$SourceAdd) then) =
       __$$SourceAddCopyWithImpl<$Res>;
   @useResult
-  $Res call({SourceEntity source});
+  $Res call({SourceWrapper source});
 }
 
 /// @nodoc
@@ -8306,7 +8306,7 @@ class __$$SourceAddCopyWithImpl<$Res>
       source: null == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
-              as SourceEntity,
+              as SourceWrapper,
     ));
   }
 }
@@ -8317,7 +8317,7 @@ class _$SourceAdd implements SourceAdd {
   const _$SourceAdd({required this.source});
 
   @override
-  final SourceEntity source;
+  final SourceWrapper source;
 
   @override
   String toString() {
@@ -8370,13 +8370,13 @@ class _$SourceAdd implements SourceAdd {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -8415,12 +8415,12 @@ class _$SourceAdd implements SourceAdd {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -8459,12 +8459,12 @@ class _$SourceAdd implements SourceAdd {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -8616,9 +8616,9 @@ class _$SourceAdd implements SourceAdd {
 }
 
 abstract class SourceAdd implements AppEvent {
-  const factory SourceAdd({required final SourceEntity source}) = _$SourceAdd;
+  const factory SourceAdd({required final SourceWrapper source}) = _$SourceAdd;
 
-  SourceEntity get source;
+  SourceWrapper get source;
   @JsonKey(ignore: true)
   _$$SourceAddCopyWith<_$SourceAdd> get copyWith =>
       throw _privateConstructorUsedError;
@@ -8714,13 +8714,13 @@ class _$ScreenDelete implements ScreenDelete {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -8759,12 +8759,12 @@ class _$ScreenDelete implements ScreenDelete {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -8803,12 +8803,12 @@ class _$ScreenDelete implements ScreenDelete {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -8975,7 +8975,7 @@ abstract class _$$EntityDeleteCopyWith<$Res> {
           _$EntityDelete value, $Res Function(_$EntityDelete) then) =
       __$$EntityDeleteCopyWithImpl<$Res>;
   @useResult
-  $Res call({EntityWrapper entity, SourceEntity? source});
+  $Res call({EntityWrapper entity, SourceWrapper? source});
 }
 
 /// @nodoc
@@ -9000,7 +9000,7 @@ class __$$EntityDeleteCopyWithImpl<$Res>
       source: freezed == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
-              as SourceEntity?,
+              as SourceWrapper?,
     ));
   }
 }
@@ -9014,7 +9014,7 @@ class _$EntityDelete implements EntityDelete {
   final EntityWrapper entity;
   @override
   @JsonKey()
-  final SourceEntity? source;
+  final SourceWrapper? source;
 
   @override
   String toString() {
@@ -9068,13 +9068,13 @@ class _$EntityDelete implements EntityDelete {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -9113,12 +9113,12 @@ class _$EntityDelete implements EntityDelete {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -9157,12 +9157,12 @@ class _$EntityDelete implements EntityDelete {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -9316,10 +9316,10 @@ class _$EntityDelete implements EntityDelete {
 abstract class EntityDelete implements AppEvent {
   const factory EntityDelete(
       {required final EntityWrapper entity,
-      final SourceEntity? source}) = _$EntityDelete;
+      final SourceWrapper? source}) = _$EntityDelete;
 
   EntityWrapper get entity;
-  SourceEntity? get source;
+  SourceWrapper? get source;
   @JsonKey(ignore: true)
   _$$EntityDeleteCopyWith<_$EntityDelete> get copyWith =>
       throw _privateConstructorUsedError;
@@ -9331,7 +9331,7 @@ abstract class _$$SourceDeleteCopyWith<$Res> {
           _$SourceDelete value, $Res Function(_$SourceDelete) then) =
       __$$SourceDeleteCopyWithImpl<$Res>;
   @useResult
-  $Res call({SourceEntity source});
+  $Res call({SourceWrapper source});
 }
 
 /// @nodoc
@@ -9351,7 +9351,7 @@ class __$$SourceDeleteCopyWithImpl<$Res>
       source: null == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
-              as SourceEntity,
+              as SourceWrapper,
     ));
   }
 }
@@ -9362,7 +9362,7 @@ class _$SourceDelete implements SourceDelete {
   const _$SourceDelete({required this.source});
 
   @override
-  final SourceEntity source;
+  final SourceWrapper source;
 
   @override
   String toString() {
@@ -9415,13 +9415,13 @@ class _$SourceDelete implements SourceDelete {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -9460,12 +9460,12 @@ class _$SourceDelete implements SourceDelete {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -9504,12 +9504,12 @@ class _$SourceDelete implements SourceDelete {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -9661,10 +9661,10 @@ class _$SourceDelete implements SourceDelete {
 }
 
 abstract class SourceDelete implements AppEvent {
-  const factory SourceDelete({required final SourceEntity source}) =
+  const factory SourceDelete({required final SourceWrapper source}) =
       _$SourceDelete;
 
-  SourceEntity get source;
+  SourceWrapper get source;
   @JsonKey(ignore: true)
   _$$SourceDeleteCopyWith<_$SourceDelete> get copyWith =>
       throw _privateConstructorUsedError;
@@ -9734,13 +9734,13 @@ class _$StateUpdate implements StateUpdate {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -9779,12 +9779,12 @@ class _$StateUpdate implements StateUpdate {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -9823,12 +9823,12 @@ class _$StateUpdate implements StateUpdate {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -10047,13 +10047,13 @@ class _$ScreensGenerate implements ScreensGenerate {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -10092,12 +10092,12 @@ class _$ScreensGenerate implements ScreensGenerate {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -10136,12 +10136,12 @@ class _$ScreensGenerate implements ScreensGenerate {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -10360,13 +10360,13 @@ class _$EntitiesGenerate implements EntitiesGenerate {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -10405,12 +10405,12 @@ class _$EntitiesGenerate implements EntitiesGenerate {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -10449,12 +10449,12 @@ class _$EntitiesGenerate implements EntitiesGenerate {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -10673,13 +10673,13 @@ class _$ErrorClear implements ErrorClear {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -10718,12 +10718,12 @@ class _$ErrorClear implements ErrorClear {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -10762,12 +10762,12 @@ class _$ErrorClear implements ErrorClear {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -10986,13 +10986,13 @@ class _$OpenProject implements OpenProject {
         onGenerateRepositoriesWithProjectChange,
     required TResult Function(String projectPath) onProjectChange,
     required TResult Function(ScreenEntity screen) onScreenAdd,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityAdd,
-    required TResult Function(SourceEntity source) onSourceAdd,
+    required TResult Function(SourceWrapper source) onSourceAdd,
     required TResult Function(ScreenEntity screen) onScreenDelete,
-    required TResult Function(EntityWrapper entity, SourceEntity? source)
+    required TResult Function(EntityWrapper entity, SourceWrapper? source)
         onEntityDelete,
-    required TResult Function(SourceEntity source) onSourceDelete,
+    required TResult Function(SourceWrapper source) onSourceDelete,
     required TResult Function() onStateUpdate,
     required TResult Function() onScreensGenerate,
     required TResult Function() onEntitiesGenerate,
@@ -11031,12 +11031,12 @@ class _$OpenProject implements OpenProject {
         onGenerateRepositoriesWithProjectChange,
     TResult? Function(String projectPath)? onProjectChange,
     TResult? Function(ScreenEntity screen)? onScreenAdd,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult? Function(SourceEntity source)? onSourceAdd,
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult? Function(SourceWrapper source)? onSourceAdd,
     TResult? Function(ScreenEntity screen)? onScreenDelete,
-    TResult? Function(EntityWrapper entity, SourceEntity? source)?
+    TResult? Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult? Function(SourceEntity source)? onSourceDelete,
+    TResult? Function(SourceWrapper source)? onSourceDelete,
     TResult? Function()? onStateUpdate,
     TResult? Function()? onScreensGenerate,
     TResult? Function()? onEntitiesGenerate,
@@ -11075,12 +11075,12 @@ class _$OpenProject implements OpenProject {
         onGenerateRepositoriesWithProjectChange,
     TResult Function(String projectPath)? onProjectChange,
     TResult Function(ScreenEntity screen)? onScreenAdd,
-    TResult Function(EntityWrapper entity, SourceEntity? source)? onEntityAdd,
-    TResult Function(SourceEntity source)? onSourceAdd,
+    TResult Function(EntityWrapper entity, SourceWrapper? source)? onEntityAdd,
+    TResult Function(SourceWrapper source)? onSourceAdd,
     TResult Function(ScreenEntity screen)? onScreenDelete,
-    TResult Function(EntityWrapper entity, SourceEntity? source)?
+    TResult Function(EntityWrapper entity, SourceWrapper? source)?
         onEntityDelete,
-    TResult Function(SourceEntity source)? onSourceDelete,
+    TResult Function(SourceWrapper source)? onSourceDelete,
     TResult Function()? onStateUpdate,
     TResult Function()? onScreensGenerate,
     TResult Function()? onEntitiesGenerate,
@@ -11258,7 +11258,7 @@ mixin _$AppState {
   bool get generateEntitiesWithProject => throw _privateConstructorUsedError;
   Set<ScreenEntity> get screens => throw _privateConstructorUsedError;
   Set<EntityWrapper> get entities => throw _privateConstructorUsedError;
-  Set<SourceEntity> get sources => throw _privateConstructorUsedError;
+  Set<SourceWrapper> get sources => throw _privateConstructorUsedError;
   String get screenError => throw _privateConstructorUsedError;
   String get entityError => throw _privateConstructorUsedError;
   int get stateUpdate => throw _privateConstructorUsedError;
@@ -11286,7 +11286,7 @@ mixin _$AppState {
             bool generateEntitiesWithProject,
             Set<ScreenEntity> screens,
             Set<EntityWrapper> entities,
-            Set<SourceEntity> sources,
+            Set<SourceWrapper> sources,
             String screenError,
             String entityError,
             int stateUpdate)
@@ -11317,7 +11317,7 @@ mixin _$AppState {
             bool generateEntitiesWithProject,
             Set<ScreenEntity> screens,
             Set<EntityWrapper> entities,
-            Set<SourceEntity> sources,
+            Set<SourceWrapper> sources,
             String screenError,
             String entityError,
             int stateUpdate)?
@@ -11348,7 +11348,7 @@ mixin _$AppState {
             bool generateEntitiesWithProject,
             Set<ScreenEntity> screens,
             Set<EntityWrapper> entities,
-            Set<SourceEntity> sources,
+            Set<SourceWrapper> sources,
             String screenError,
             String entityError,
             int stateUpdate)?
@@ -11405,7 +11405,7 @@ abstract class $AppStateCopyWith<$Res> {
       bool generateEntitiesWithProject,
       Set<ScreenEntity> screens,
       Set<EntityWrapper> entities,
-      Set<SourceEntity> sources,
+      Set<SourceWrapper> sources,
       String screenError,
       String entityError,
       int stateUpdate});
@@ -11540,7 +11540,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       sources: null == sources
           ? _value.sources
           : sources // ignore: cast_nullable_to_non_nullable
-              as Set<SourceEntity>,
+              as Set<SourceWrapper>,
       screenError: null == screenError
           ? _value.screenError
           : screenError // ignore: cast_nullable_to_non_nullable
@@ -11593,7 +11593,7 @@ abstract class _$$DataCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       bool generateEntitiesWithProject,
       Set<ScreenEntity> screens,
       Set<EntityWrapper> entities,
-      Set<SourceEntity> sources,
+      Set<SourceWrapper> sources,
       String screenError,
       String entityError,
       int stateUpdate});
@@ -11725,7 +11725,7 @@ class __$$DataCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _$Data>
       sources: null == sources
           ? _value._sources
           : sources // ignore: cast_nullable_to_non_nullable
-              as Set<SourceEntity>,
+              as Set<SourceWrapper>,
       screenError: null == screenError
           ? _value.screenError
           : screenError // ignore: cast_nullable_to_non_nullable
@@ -11775,7 +11775,7 @@ class _$Data implements Data {
       this.generateEntitiesWithProject = false,
       final Set<ScreenEntity> screens = const {},
       final Set<EntityWrapper> entities = const {},
-      final Set<SourceEntity> sources = const {},
+      final Set<SourceWrapper> sources = const {},
       this.screenError = '',
       this.entityError = '',
       this.stateUpdate = 0})
@@ -11859,16 +11859,16 @@ class _$Data implements Data {
   @JsonKey()
   Set<EntityWrapper> get entities {
     if (_entities is EqualUnmodifiableSetView) return _entities;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_entities);
   }
 
-  final Set<SourceEntity> _sources;
+  final Set<SourceWrapper> _sources;
   @override
   @JsonKey()
-  Set<SourceEntity> get sources {
+  Set<SourceWrapper> get sources {
     if (_sources is EqualUnmodifiableSetView) return _sources;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_sources);
   }
 
@@ -12002,7 +12002,7 @@ class _$Data implements Data {
             bool generateEntitiesWithProject,
             Set<ScreenEntity> screens,
             Set<EntityWrapper> entities,
-            Set<SourceEntity> sources,
+            Set<SourceWrapper> sources,
             String screenError,
             String entityError,
             int stateUpdate)
@@ -12061,7 +12061,7 @@ class _$Data implements Data {
             bool generateEntitiesWithProject,
             Set<ScreenEntity> screens,
             Set<EntityWrapper> entities,
-            Set<SourceEntity> sources,
+            Set<SourceWrapper> sources,
             String screenError,
             String entityError,
             int stateUpdate)?
@@ -12120,7 +12120,7 @@ class _$Data implements Data {
             bool generateEntitiesWithProject,
             Set<ScreenEntity> screens,
             Set<EntityWrapper> entities,
-            Set<SourceEntity> sources,
+            Set<SourceWrapper> sources,
             String screenError,
             String entityError,
             int stateUpdate)?
@@ -12210,7 +12210,7 @@ abstract class Data implements AppState {
       final bool generateEntitiesWithProject,
       final Set<ScreenEntity> screens,
       final Set<EntityWrapper> entities,
-      final Set<SourceEntity> sources,
+      final Set<SourceWrapper> sources,
       final String screenError,
       final String entityError,
       final int stateUpdate}) = _$Data;
@@ -12258,7 +12258,7 @@ abstract class Data implements AppState {
   @override
   Set<EntityWrapper> get entities;
   @override
-  Set<SourceEntity> get sources;
+  Set<SourceWrapper> get sources;
   @override
   String get screenError;
   @override

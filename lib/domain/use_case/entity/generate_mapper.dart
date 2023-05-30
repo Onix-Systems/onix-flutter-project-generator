@@ -2,9 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/core/di/di.dart';
 
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
@@ -18,7 +17,7 @@ class GenerateMapper {
     final entity = entityWrapper.entity;
     final name = entityWrapper.name;
     final properties = entityWrapper.properties;
-    final sourceName = entityWrapper.entity?.sourceName ?? '';
+    final sourceName = _getSourceName(entityWrapper.entity?.sourceName ?? '');
 
     final importMappers = entity?.entityImports
         .where((e) => e is! EnumEntity)
@@ -27,20 +26,20 @@ class GenerateMapper {
 
     final imports = entity?.entityImports
         .map((e) => e is EnumEntity
-            ? 'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';'
+            ? 'import \'package:$projectName/domain/entity/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}.dart\';'
             : importMappers != null &&
                     importMappers.isNotEmpty &&
                     entityWrapper.generateResponse
-                ? 'import \'package:$projectName/data/model/remote/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';\n'
-                    'import \'package:$projectName/data/mapper/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_mapper.dart\';\n'
+                ? 'import \'package:$projectName/data/model/remote/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';\n'
+                    'import \'package:$projectName/data/mapper/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}_mapper.dart\';\n'
                 : '')
         .join('\n');
 
     final fileContent = '''import 'package:collection/collection.dart';
 import 'package:$projectName/core/arch/domain/common/converter/mapper.dart';
-${entityWrapper.generateRequest ? 'import \'package:$projectName/data/model/remote/${sourceName.snakeCase}/${name.snakeCase}/${name.snakeCase}_request.dart\';' : ''}
-${entityWrapper.generateResponse ? 'import \'package:$projectName/data/model/remote/${sourceName.snakeCase}/${name.snakeCase}/${name.snakeCase}_response.dart\';' : ''}
-import 'package:$projectName/domain/entity/${sourceName.snakeCase}/${name.snakeCase}/${name.snakeCase}.dart';
+${entityWrapper.generateRequest ? 'import \'package:$projectName/data/model/remote/$sourceName${name.snakeCase}/${name.snakeCase}_request.dart\';' : ''}
+${entityWrapper.generateResponse ? 'import \'package:$projectName/data/model/remote/$sourceName${name.snakeCase}/${name.snakeCase}_response.dart\';' : ''}
+import 'package:$projectName/domain/entity/$sourceName${name.snakeCase}/${name.snakeCase}.dart';
 $imports
 
 ${entityWrapper.generateResponse ? '''class _${name.pascalCase}ResponseToEntityMapper implements Mapper<${name.pascalCase}Response, ${name.pascalCase}>{
@@ -74,7 +73,7 @@ class ${name.pascalCase}Mappers {
 }''';
 
     final path = await Directory(
-            '$projectPath/$projectName/lib/data/mapper/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.snakeCase}')
+            '$projectPath/$projectName/lib/data/mapper/$sourceName${name.snakeCase}')
         .create(recursive: true);
 
     var file =
@@ -108,5 +107,9 @@ class ${name.pascalCase}Mappers {
       }
     }
     return properties.join('\n');
+  }
+
+  String _getSourceName(String sourceName) {
+    return sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : '';
   }
 }

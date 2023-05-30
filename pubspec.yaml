@@ -23,7 +23,7 @@ dependencies:
   msh_checkbox: ^2.0.1
   freezed_annotation: ^2.2.0
   flutter_bloc: ^8.1.2
-  json_annotation: ^4.8.0
+  json_annotation: ^4.8.1
   http: ^0.13.5
   collection: ^1.17.0
 

@@ -58,6 +58,13 @@ class SourceParser {
                         : true));
 
                 method.setRequestEntityName(entityName);
+              } else {
+                method.params.add(Property(
+                    name: parameter['name'],
+                    type: parameter['schema']['type'],
+                    nullable: parameter['required'] != null
+                        ? !parameter['required']
+                        : true));
               }
             } else {
               method.params.add(Property(
@@ -120,7 +127,10 @@ class SourceParser {
       }
 
       final source = Source(
-        name: tag.replaceAll(RegExp('[^A-Za-z0-9_-]'), ''),
+        name: tag
+            .replaceAll(' ', '_')
+            .replaceAll(RegExp('[^A-Za-z0-9_-]'), '')
+            .pascalCase,
         tag: tag,
         paths: paths
             .where((element) =>

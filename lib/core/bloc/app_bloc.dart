@@ -6,10 +6,11 @@ import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/config/config.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper_file_generators.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper_file_generators.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper_file_generators.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
@@ -109,12 +110,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ..addAll(parsedData.sources)
         ..sort((a, b) => a.name.compareTo(b.name));
 
-      // for (final source in sources) {
-      //   for (final entity in source.entities) {
-      //     if (entity.isEnum) {
-      //       logger.wtf(entity.entity);
-      //     }
-      //   }
+      // for (final source in parsedData.sources) {
+      //   source.generateFiles(
+      //       projectName: state.projectName, projectPath: projectPath);
       // }
 
       emit(state.copyWith(
@@ -133,7 +131,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       state.copyWith(
         sources: state.sources.isEmpty
             ? {
-                SourceEntity(name: 'Time', exists: true, entities: [
+                SourceWrapper(name: 'Time', exists: true, entities: [
                   EntityWrapper(
                     name: 'Time',
                     exists: true,
@@ -251,7 +249,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       projectExists: projectExists,
       projectIsClean: projectIsClean,
       sources: {
-        SourceEntity(
+        SourceWrapper(
           name: 'Time',
           exists: true,
           entities: [
@@ -685,6 +683,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               projectName: state.projectName,
             );
           }
+          source.generateFiles(
+            projectPath: projectPath,
+            projectName: state.projectName,
+          );
         }
       }
       outputService.add('{#info}Generating entities!');

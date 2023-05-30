@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 
@@ -13,7 +13,7 @@ part 'config.g.dart';
 @freezed
 class Config with _$Config {
   const factory Config({
-    required List<SourceEntity> sources,
+    required List<SourceWrapper> sources,
     required List<ScreenEntity> screens,
     required List<EntityWrapper> entities,
   }) = _Config;
@@ -32,7 +32,7 @@ class Config with _$Config {
     final ConfigSource configSource = ConfigSourceImpl();
 
     List<ScreenEntity> screens = [];
-    List<SourceEntity> sources = [];
+    List<SourceWrapper> sources = [];
     List<EntityWrapper> entities = [];
 
     for (var element in state.screens) {
@@ -46,7 +46,7 @@ class Config with _$Config {
     }
 
     for (var element in state.sources) {
-      sources.add(SourceEntity.copyOf(element));
+      sources.add(SourceWrapper.copyOf(element));
       for (var entity in sources.last.entities) {
         entity.exists = true;
       }

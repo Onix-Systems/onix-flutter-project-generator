@@ -22,5 +22,6 @@ Map<String, dynamic> _$MethodToJson(Method instance) => <String, dynamic>{
 const _$MethodTypeEnumMap = {
   MethodType.get: 'get',
   MethodType.post: 'post',
+  MethodType.put: 'put',
   MethodType.delete: 'delete',
 };
