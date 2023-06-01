@@ -49,15 +49,13 @@ class SourceParser {
                 method.entities.add(entityName);
 
                 method.params.add(Property(
-                    name: isArray
-                        ? '${entityName.camelCase}s'
-                        : entityName.camelCase,
+                    name: entityName.camelCase,
                     type: isArray ? 'List<$entityName>' : entityName,
                     nullable: parameter['required'] != null
                         ? !parameter['required']
                         : true));
 
-                method.setRequestEntityName(entityName);
+                //method.setRequestEntityName(entityName);
               } else {
                 method.params.add(Property(
                     name: parameter['name'],
@@ -130,7 +128,8 @@ class SourceParser {
         name: tag
             .replaceAll(' ', '_')
             .replaceAll(RegExp('[^A-Za-z0-9_-]'), '')
-            .pascalCase,
+            .pascalCase
+            .replaceAll('Api', ''),
         tag: tag,
         paths: paths
             .where((element) =>
