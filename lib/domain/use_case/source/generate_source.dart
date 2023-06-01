@@ -161,6 +161,8 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
     methodParams =
         '{$methodParams${methodParamsNotRequired.isNotEmpty ? '${methodName.pascalCase}Params params,' : ''}}';
 
+    if (methodParams == '{}') methodParams = '';
+
     String generatedMethod =
         'Future<${method.responseEntityName.isNotEmpty ? 'DataResponse<${method.responseEntityName}>' : 'OperationStatus'}> $methodName($methodParams);';
 
