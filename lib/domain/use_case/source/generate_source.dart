@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
@@ -11,7 +10,7 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class GenerateSource {
-  Future<List<String>> call({
+  Future<void> call({
     required String projectName,
     required String projectPath,
     required SourceWrapper sourceWrapper,
@@ -54,8 +53,6 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
         .create();
 
     await file.writeAsString(fileContent);
-
-    return methods;
   }
 
   String _getPathsPrefix(List<Path> paths) {
@@ -88,8 +85,6 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
       pathParts.addAll(path.replaceFirst(prefix, '').split('/'));
     }
 
-    logger.wtf('path: $path, prefix: $prefix, pathParts: $pathParts');
-
     String result = pathParts.last.startsWith('{')
         ? '${pathParts.sublist(0, pathParts.length - 1).join('/').pascalCase}By${pathParts.last.replaceAll(RegExp('[{}]'), '').pascalCase}'
         : pathParts.join('/').pascalCase;
@@ -97,9 +92,6 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
     if (result.contains('{')) {
       final resultParts = result.split('{');
       final lastPart = resultParts.last.split('}').last;
-
-      logger.wtf('resultParts: $resultParts');
-      logger.wtf('lastPart: $lastPart');
 
       result =
           '${resultParts.first}${resultParts.first.endsWith(sourceWrapper.name) ? '' : sourceWrapper.name}$lastPart';

@@ -74,7 +74,6 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
     return Focus(
       focusNode: _dialogFocusNode,
       onKey: (node, event) {
-        logger.d('Key event: ${event.logicalKey}');
         if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
           _onOK(context);
           return KeyEventResult.handled;
