@@ -116,7 +116,7 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
           null);
 
       imports.add(
-          "import 'package:$projectName/domain/entity/${source.name.snakeCase}/${method.responseEntityName.snakeCase}/${method.responseEntityName.snakeCase}.dart';");
+          "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.responseEntityName.snakeCase}/${method.responseEntityName.snakeCase}_response.dart';");
     }
 
     if (method.requestEntityName.isNotEmpty) {
@@ -156,7 +156,7 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
     if (methodParams == '{}') methodParams = '';
 
     String generatedMethod =
-        'Future<${method.responseEntityName.isNotEmpty ? 'DataResponse<${method.responseEntityName}>' : 'OperationStatus'}> $methodName($methodParams);';
+        'Future<${method.responseEntityName.isNotEmpty ? 'DataResponse<${method.responseEntityName}Response>' : 'OperationStatus'}> $methodName($methodParams);';
 
     if (methodParamsNotRequired.isNotEmpty) {
       imports.add(
@@ -216,6 +216,8 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
   }) async {
     final imports = <String>{};
 
+    imports.add("import 'package:json_annotation/json_annotation.dart';");
+
     if (methodParamsNotRequired.isNotEmpty) {
       for (final parameter in methodParamsNotRequired) {
         if (parameter.type.isNotEmpty) {
@@ -237,10 +239,16 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
         .join(';\n');
 
     final fileContent = '''${imports.map((e) => e).join('')}
+    
+part '${methodName.snakeCase}_params.g.dart';
+
+@JsonSerializable()
 class ${methodName.pascalCase}Params{
   $parameters;
   
   ${methodName.pascalCase}Params({${methodParamsNotRequired.map((param) => 'this.${param.name.camelCase.replaceAll(RegExp('[\\[\\]]'), '')}').join(',\n')}});
+        
+  Map<String, dynamic> toJson() => _\$${methodName.pascalCase}ParamsToJson(this);
 }    
 ''';
 

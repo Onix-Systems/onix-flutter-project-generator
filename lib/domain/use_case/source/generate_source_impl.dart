@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:onix_flutter_bricks/core/di/di.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:recase/recase.dart';
 
 class GenerateSourceImpl {
@@ -20,18 +22,18 @@ class GenerateSourceImpl {
 
     for (final path in sourceWrapper.paths) {
       if (path.path.contains('{')) {
-        sourceDynamicPaths.add(path.path);
+        for (final method in path.methods) {
+          sourceDynamicPaths.add(_getDynamicPath(
+              dynamicPath: path.path, methodType: method.methodType.name));
+        }
       } else {
         final pathName = path.path.replaceAll('/', '_').replaceAll('-', '_');
         for (final method in path.methods) {
           sourceStaticPaths.add(
-              'final _${method.methodType.name}${pathName.pascalCase} = \'${path.path}\';');
+              'final _${method.methodType.name}${pathName.pascalCase}Path = \'${path.path}\';');
         }
       }
     }
-
-    logger.wtf(
-        'sourceStaticPaths: $sourceStaticPaths, sourceDynamicPaths: $sourceDynamicPaths');
 
     var file =
         await File('${path.path}/${sourceWrapper.name.snakeCase}_impl.dart')
@@ -40,7 +42,8 @@ class GenerateSourceImpl {
     final sourceFile =
         File('${path.path}/${sourceWrapper.name.snakeCase}.dart');
 
-    final sourceMethods = await _generateMethods(sourceFile: sourceFile);
+    final sourceMethods =
+        await _generateMethods(sourceFile: sourceFile, allSources: allSources);
 
     final imports = await _getImports(sourceFile, path);
 
@@ -55,34 +58,38 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
   final ApiClient _apiClient;
   final DioRequestProcessor _dioRequestProcessor;
   
-  ${sourceStaticPaths.join('\n  ')}
+  ${sourceStaticPaths.join('\n')}
   
   ${sourceWrapper.name.pascalCase}SourceImpl(this._apiClient, this._dioRequestProcessor);
   
-  ${sourceMethods.join('\n  ')}
+  ${sourceMethods.join('\n')}
+  
+  ${sourceDynamicPaths.join('\n')}
 }''';
 
     await file.writeAsString(fileContent);
   }
 
-  Future<List<String>> _generateMethods({required File sourceFile}) async {
+  Future<List<String>> _generateMethods(
+      {required File sourceFile,
+      required Set<SourceWrapper> allSources}) async {
     final methods = <String>[];
 
     final lines = await sourceFile.readAsLines();
 
     final filteredLines = lines.where((element) => element.contains('Future<'));
 
-    String getReturnType(String line) {
-      final returnType =
-          line.trim().split(' ').first.split('<').last.split('>').first;
-
-      return '\nreturn DataResponse.success($returnType.empty());';
-    }
-
     const operationStatusReturn = '\nreturn OperationStatus.success;';
 
-    methods.addAll(filteredLines.map((e) =>
-        '@override\n${e.trim().replaceFirst(';', ' async {${e.contains('OperationStatus') ? operationStatusReturn : getReturnType(e)}}').replaceAll(' params', '? params')}'));
+    for (final line in filteredLines) {
+      final methodBody = await getMethodBody(line, allSources);
+      methods.add(
+          '@override\n${line.trim().replaceFirst(';', ' async {${line.contains('OperationStatus') ? operationStatusReturn : methodBody}}').replaceAll(' params,', '? params,')}');
+    }
+
+    methods.addAll(filteredLines.map((e) {
+      return '';
+    }));
 
     return methods;
   }
@@ -93,5 +100,82 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
     final filteredLines = lines.where((element) => element.contains('import'));
 
     return filteredLines.join('\n');
+  }
+
+  Future<String> getMethodBody(
+      String line, Set<SourceWrapper> allSources) async {
+    final returnType =
+        line.trim().split(' ').first.split('<').last.split('>').first;
+
+    final isEnum = await _checkEntityIsEnum(
+        entityName: returnType, allSources: allSources);
+
+    final methodBody = '''
+final request = _apiClient.client.get(
+   _getApiActivityEntriesPath,
+   queryParameters: params?.toJson(),
+ );
+
+ return _dioRequestProcessor.processRequest(
+ onRequest: () => request,
+ onResponse: (response) => $returnType.${isEnum ? 'values.first' : 'fromJson(response.data)'},
+ );
+    ''';
+
+    return methodBody;
+
+    //return '\nreturn DataResponse.success($returnType.${isEnum ? 'values.first' : 'fromJson()'});';
+  }
+
+  Future<bool> _checkEntityIsEnum(
+      {required String entityName,
+      required Set<SourceWrapper> allSources}) async {
+    bool result = false;
+
+    for (final source in allSources) {
+      for (final entity in source.entities) {
+        if (entity.name == entityName) {
+          result = entity.isEnum;
+        }
+      }
+    }
+
+    return result;
+  }
+
+  String _getDynamicPath(
+      {required String dynamicPath, required String methodType}) {
+    String pathName = dynamicPath.replaceAll('/', '_').replaceAll('-', '_');
+
+    final splittedPath = dynamicPath.split('/');
+
+    final params = splittedPath
+        .where((element) => element.contains('{'))
+        .map((e) => e.replaceAll('{', '').replaceAll('}', ''))
+        .toList();
+
+    for (final part in splittedPath) {
+      if (part.contains('{')) {
+        dynamicPath = dynamicPath.replaceAll('{', '\$').replaceAll('}', '');
+      }
+    }
+
+    for (String part in pathName.split('_')) {
+      if (part.contains('{')) {
+        String partReplace = part;
+
+        if (part == pathName.split('_').last) {
+          partReplace = 'by_$partReplace';
+        } else {
+          partReplace = '';
+        }
+
+        partReplace =
+            partReplace.replaceAll('{', '').replaceAll('}', '').pascalCase;
+        pathName = pathName.replaceFirst(part, partReplace);
+      }
+    }
+
+    return 'String _$methodType${pathName.pascalCase}Path(${params.map((e) => 'String ${e.replaceAll('-', '_').camelCase}').join(', ')}) => \'${dynamicPath.split('/').map((e) => e.replaceAll('-', '_').camelCase).join('/')}\';';
   }
 }
