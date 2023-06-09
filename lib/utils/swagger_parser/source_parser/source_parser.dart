@@ -1,3 +1,4 @@
+import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
@@ -38,6 +39,8 @@ class SourceParser {
           for (final parameter in entry.value['parameters']) {
             if (parameter['schema'] != null) {
               final isArray = parameter['schema']['type'] == 'array';
+              final isEnum = parameter['schema']['type'] == 'string' &&
+                  parameter['schema']['enum'] != null;
 
               if (TypeMatcher.isReference(parameter['schema']) ||
                   (isArray &&
@@ -57,12 +60,24 @@ class SourceParser {
 
                 //method.setRequestEntityName(entityName);
               } else {
+                if (isEnum) {
+                  method.innerEnum =
+                      '''enum ${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase} {
+                    ${parameter['schema']['enum'].join(',\n')}
+                  }''';
+                }
                 method.params.add(Property(
-                    name: parameter['name'],
-                    type: parameter['schema']['type'],
+                    name: isEnum
+                        ? '${entry.value['operationId'].toString().camelCase}${parameter['name'].toString().pascalCase}'
+                        : parameter['name'],
+                    type: isEnum
+                        ? '${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase}'
+                        : parameter['schema']['type'],
                     nullable: parameter['required'] != null
                         ? !parameter['required']
                         : true));
+
+                if (isEnum) logger.wtf(method);
               }
             } else {
               method.params.add(Property(

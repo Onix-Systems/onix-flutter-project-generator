@@ -14,6 +14,7 @@ class Method {
   String _requestEntityName = '';
 
   final List<Property> params = [];
+  String innerEnum = '';
 
   Method({
     required this.methodType,
@@ -39,7 +40,7 @@ class Method {
 
   @override
   String toString() {
-    return 'methodType: $methodType\ntags: $tags\nentities: $entities\nparams: $params\nresponseEntityName: $responseEntityName\nrequestEntityName: $requestEntityName\n';
+    return 'methodType: $methodType\ntags: $tags\nentities: $entities\nparams: $params\nresponseEntityName: $responseEntityName\nrequestEntityName: $requestEntityName\ninnerEnum: $innerEnum\n';
   }
 
   factory Method.fromJson(Map<String, dynamic> json) => _$MethodFromJson(json);

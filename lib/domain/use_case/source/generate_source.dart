@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
@@ -16,14 +17,32 @@ class GenerateSource {
     required SourceWrapper sourceWrapper,
     required Set<SourceWrapper> allSources,
   }) async {
-    final methods = <String>[];
+    final path = await Directory(
+            '$projectPath/$projectName/lib/data/source/remote/${sourceWrapper.name.snakeCase}')
+        .create(recursive: true);
+
+    var file =
+        await File('${path.path}/${sourceWrapper.name.snakeCase}_source.dart')
+            .create();
+
+    var implFile = await File(
+            '${path.path}/${sourceWrapper.name.snakeCase}_source_impl.dart')
+        .create();
+
+    final sourceMethods = <String>[];
+    final implMethods = <GeneratedMethod>[];
     final pathPrefix = _getPathsPrefix(sourceWrapper.paths);
 
+    final mutatedPathPrefix =
+        pathPrefix.replaceAll('/', '_').replaceAll('-', '_').pascalCase;
+
     final imports = <String>{};
+    final sourceStaticPaths = <String>[];
+    final sourceDynamicPaths = <String>[];
 
     for (final path in sourceWrapper.paths) {
       for (final method in path.methods) {
-        methods.add(_generateMethod(
+        final sourceMethod = _generateMethod(
           method: method,
           path: path,
           pathPrefix: pathPrefix,
@@ -32,27 +51,107 @@ class GenerateSource {
           imports: imports,
           allSources: allSources,
           projectPath: projectPath,
+        );
+
+        sourceMethods.add(sourceMethod);
+
+        final endpoint = path.path.contains('{')
+            ? _getDynamicPath(
+                    dynamicPath: path.path, methodType: method.methodType.name)
+                .replaceAll(mutatedPathPrefix, '')
+            : 'final _${method.methodType.name}${path.path.replaceAll('/', '_').replaceAll('-', '_').replaceAll(mutatedPathPrefix, '').pascalCase}Path = \'${path.path}\';';
+
+        final params = sourceMethod
+            .split('(')
+            .last
+            .split(')')
+            .first
+            .split('{')
+            .last
+            .split('}')
+            .first
+            .split(',');
+
+        final responseIsEnum = _checkEntityIsEnum(
+            entityName: method.responseEntityName, allSources: allSources);
+
+        implMethods.add(GeneratedMethod(
+          path: path.path,
+          name: sourceMethod.split(' ')[1].split('(').first,
+          methodType: method.methodType.name,
+          endpoint: endpoint,
+          responseEntityName: method.responseEntityName.isNotEmpty
+              ? responseIsEnum
+                  ? method.responseEntityName
+                  : '${method.responseEntityName}Response'
+              : '',
+          requestEntityName: method.requestEntityName.isNotEmpty
+              ? '${method.requestEntityName}Request'
+              : '',
+          optionalParams: params
+              .where((e) => e.contains(' params'))
+              .join(', ')
+              .trim()
+              .replaceAll(' params', '? params'),
+          requiredParams:
+              params.where((e) => e.contains('required')).join(', ').trim(),
         ));
+
+        if (path.path.contains('{')) {
+          sourceDynamicPaths.add(_getDynamicPath(
+                  dynamicPath: path.path, methodType: method.methodType.name)
+              .replaceAll(mutatedPathPrefix, ''));
+        } else {
+          sourceStaticPaths.add(
+              'final _${method.methodType.name}${path.path.replaceAll('/', '_').replaceAll('-', '_').pascalCase}Path = \'${path.path}\';'
+                  .replaceAll(mutatedPathPrefix, ''));
+        }
       }
     }
 
-    final fileContent =
+    for (final method in implMethods) {
+      method.body =
+          await _getMethodImplBody(method, allSources, mutatedPathPrefix);
+    }
+
+    String fileContent =
         '''import 'package:$projectName/core/arch/domain/entity/common/data_response.dart';
 import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';
 ${imports.join('\n')}
 
 abstract class ${sourceWrapper.name.pascalCase}Source {
-  ${methods.join('\n  ')}
+  ${sourceMethods.join('\n  ')}
 }''';
 
-    final path = await Directory(
-            '$projectPath/$projectName/lib/data/source/remote/${sourceWrapper.name.snakeCase}')
-        .create(recursive: true);
-
-    var file = await File('${path.path}/${sourceWrapper.name.snakeCase}.dart')
-        .create();
-
     await file.writeAsString(fileContent);
+
+    fileContent =
+        '''import 'package:$projectName/core/arch/data/remote/api_client.dart';
+import 'package:$projectName/core/arch/data/remote/dio_request_processor/dio_request_processor.dart';
+import 'package:$projectName/core/arch/domain/entity/common/data_response.dart';
+import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';
+import 'package:$projectName/data/source/remote/${sourceWrapper.name.snakeCase}/${sourceWrapper.name.snakeCase}_source.dart';
+${imports.join('\n')}
+
+class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name.pascalCase}Source {
+
+  final ApiClient _apiClient;
+  final DioRequestProcessor _dioRequestProcessor;
+  
+  ${sourceStaticPaths.join('\n')}
+    
+  ${sourceWrapper.name.pascalCase}SourceImpl(this._apiClient, this._dioRequestProcessor);
+  
+  ${implMethods.map((e) => '''@override
+        ${e.responseEntityName.isNotEmpty ? 'Future<DataResponse<${e.responseEntityName}>>' : 'Future<DataResponse<OperationStatus>>'} ${e.name}({${e.requiredParams.isNotEmpty ? '${e.requiredParams}, ' : ''}${e.optionalParams}}) async {
+        ${e.body}
+        }
+    '''.replaceAll(('{}'), '')).join('\n')}
+    
+  ${sourceDynamicPaths.join('\n')}
+}''';
+
+    await implFile.writeAsString(fileContent);
   }
 
   String _getPathsPrefix(List<Path> paths) {
@@ -109,14 +208,22 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
       required String projectPath,
       required SourceWrapper sourceWrapper,
       required Set<SourceWrapper> allSources}) {
+    final responseIsEnum = _checkEntityIsEnum(
+        entityName: method.responseEntityName, allSources: allSources);
+
     if (method.responseEntityName.isNotEmpty) {
       final source = allSources.firstWhere((source) =>
           source.entities.firstWhereOrNull(
               (element) => element.name == method.responseEntityName) !=
           null);
 
-      imports.add(
-          "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.responseEntityName.snakeCase}/${method.responseEntityName.snakeCase}_response.dart';");
+      if (responseIsEnum) {
+        imports.add(
+            "import 'package:$projectName/domain/entity/${source.name.snakeCase}/${method.responseEntityName.snakeCase}/${method.responseEntityName.snakeCase}.dart';");
+      } else {
+        imports.add(
+            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.responseEntityName.snakeCase}/${method.responseEntityName.snakeCase}_response.dart';");
+      }
     }
 
     if (method.requestEntityName.isNotEmpty) {
@@ -126,14 +233,14 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
           null);
 
       imports.add(
-          "import 'package:$projectName/domain/entity/${source.name.snakeCase}/${method.requestEntityName.snakeCase}/${method.requestEntityName.snakeCase}.dart';");
+          "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.requestEntityName.snakeCase}/${method.requestEntityName.snakeCase}_request.dart';");
     }
 
     final methodParamsNotRequired = _generateMethodImports(
         method, allSources, imports, projectName, projectPath, sourceWrapper);
 
     final methodRequestBodyPart = method.requestEntityName.isNotEmpty
-        ? 'required ${method.requestEntityName} ${method.requestEntityName.camelCase}'
+        ? 'required ${method.requestEntityName}Request ${method.requestEntityName.camelCase}Request'
         : '';
 
     final methodRequestParamsPart = method.params.isNotEmpty
@@ -156,7 +263,7 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
     if (methodParams == '{}') methodParams = '';
 
     String generatedMethod =
-        'Future<${method.responseEntityName.isNotEmpty ? 'DataResponse<${method.responseEntityName}Response>' : 'OperationStatus'}> $methodName($methodParams);';
+        'Future<${method.responseEntityName.isNotEmpty ? 'DataResponse<${method.responseEntityName}${responseIsEnum ? '' : 'Response'}>' : 'DataResponse<OperationStatus>'}> $methodName($methodParams);';
 
     if (methodParamsNotRequired.isNotEmpty) {
       imports.add(
@@ -168,6 +275,18 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
         projectPath: projectPath,
         sourceWrapper: sourceWrapper,
         allSources: allSources,
+      );
+    }
+
+    if (method.innerEnum.isNotEmpty) {
+      imports.add(
+          "import 'package:$projectName/data/model/remote/${sourceWrapper.name.snakeCase}/enums/${method.innerEnum.split(' ')[1].snakeCase}.dart';");
+
+      _generateMethodInnerEnumFile(
+        innerEnum: method.innerEnum,
+        projectName: projectName,
+        projectPath: projectPath,
+        sourceWrapper: sourceWrapper,
       );
     }
 
@@ -260,5 +379,173 @@ class ${methodName.pascalCase}Params{
         await File('${path.path}/${methodName.snakeCase}_params.dart').create();
 
     await file.writeAsString(fileContent);
+  }
+
+  FutureOr<void> _generateMethodInnerEnumFile({
+    required String innerEnum,
+    required String projectName,
+    required String projectPath,
+    required SourceWrapper sourceWrapper,
+  }) async {
+    final path = await Directory(
+            '$projectPath/$projectName/lib/data/model/remote/${sourceWrapper.name.snakeCase}/enums')
+        .create(recursive: true);
+
+    logger.wtf(innerEnum.split(' ')[1].snakeCase);
+    logger.wtf(path.path);
+
+    var file =
+        await File('${path.path}/${innerEnum.split(' ')[1].snakeCase}.dart')
+            .create();
+
+    await file.writeAsString(innerEnum);
+  }
+
+  String _getDynamicPath(
+      {required String dynamicPath, required String methodType}) {
+    String pathName = dynamicPath.replaceAll('/', '_').replaceAll('-', '_');
+
+    final splittedPath = dynamicPath.split('/');
+
+    final params = splittedPath
+        .where((element) => element.contains('{'))
+        .map((e) => e.replaceAll('{', '').replaceAll('}', ''))
+        .toList();
+
+    for (final part in splittedPath) {
+      if (part.contains('{')) {
+        dynamicPath = dynamicPath.replaceAll('{', '\$').replaceAll('}', '');
+      }
+    }
+
+    for (String part in pathName.split('_')) {
+      if (part.contains('{')) {
+        String partReplace = part;
+
+        if (part == pathName.split('_').last) {
+          partReplace = 'by_$partReplace';
+        } else {
+          partReplace = '';
+        }
+
+        partReplace =
+            partReplace.replaceAll('{', '').replaceAll('}', '').pascalCase;
+        pathName = pathName.replaceFirst(part, partReplace);
+      }
+    }
+
+    return 'String _$methodType${pathName.pascalCase}Path(${params.map((e) => 'String ${e.replaceAll('-', '_').camelCase}').join(', ')}) => \'${dynamicPath.split('/').map((e) => e.replaceAll('-', '_').camelCase).join('/')}\';';
+  }
+
+  Future<String> _getMethodImplBody(GeneratedMethod method,
+      Set<SourceWrapper> allSources, String prefix) async {
+    final isEnum = _checkEntityIsEnum(
+        entityName: method.responseEntityName, allSources: allSources);
+
+    String requiredParams = '';
+    String data = '';
+
+    if (method.requiredParams.isNotEmpty) {
+      if (method.requiredParams.contains(',')) {
+        requiredParams = method.requiredParams
+            .split(',')
+            .where((e) =>
+                method.requestEntityName.isEmpty ||
+                !e.contains(method.requestEntityName.camelCase))
+            .map((e) => _checkEntityIsEnum(
+                    entityName: e.split(' ').last.pascalCase,
+                    allSources: allSources)
+                ? '${e.split(' ').last}.name'
+                : '${e.split(' ').last}.toString()')
+            .join(', ');
+
+        if (method.requestEntityName.isNotEmpty &&
+            method.requiredParams
+                .contains(method.requestEntityName.camelCase)) {
+          data = method.requiredParams
+              .split(',')
+              .where((e) =>
+                  method.requestEntityName.isNotEmpty &&
+                  e.contains(method.requestEntityName.camelCase))
+              .first
+              .split(' ')
+              .last;
+        }
+      } else {
+        if (method.requestEntityName.isNotEmpty &&
+            method.requiredParams
+                .contains(method.requestEntityName.camelCase)) {
+          data = method.requiredParams.split(' ').last;
+        } else {
+          requiredParams = _checkEntityIsEnum(
+                  entityName: method.requiredParams.split(' ').last.pascalCase,
+                  allSources: allSources)
+              ? '${method.requiredParams.split(' ').last}.name'
+              : '${method.requiredParams.split(' ').last}.toString()';
+        }
+      }
+    }
+
+    if (_checkEntityIsEnum(
+        entityName: data.pascalCase, allSources: allSources)) {
+      logger.wtf('Enum ${data.pascalCase} is not supported yet');
+    }
+
+    final methodBody = '''
+final request = _apiClient.client.${method.methodType}(
+   ${method.endpoint.split(' ').firstWhere((e) => e.startsWith('_')).split('(').first.replaceAll(prefix, '')}${requiredParams.isNotEmpty ? '(${requiredParams.split(',').map((e) => e.split(' ').last).join(', ')})' : ''},
+   ${method.optionalParams.isNotEmpty ? 'queryParameters: params?.toJson(),' : ''}
+   ${data.isNotEmpty ? 'data: $data.toJson(),' : ''}
+   );
+
+ return _dioRequestProcessor.processRequest(
+ onRequest: () => request,
+ onResponse: (response) => ${method.responseEntityName.isNotEmpty ? '${method.responseEntityName}.${isEnum ? 'values.first' : 'fromJson(response.data)'}' : 'OperationStatus.success'},);
+    ''';
+
+    return methodBody;
+  }
+
+  bool _checkEntityIsEnum(
+      {required String entityName, required Set<SourceWrapper> allSources}) {
+    bool result = false;
+
+    for (final source in allSources) {
+      for (final entity in source.entities) {
+        if (entity.name == entityName) {
+          result = entity.isEnum;
+        }
+      }
+    }
+
+    return result;
+  }
+}
+
+class GeneratedMethod {
+  final String path;
+  final String name;
+  final String endpoint;
+  final String methodType;
+  String body = '';
+  final String responseEntityName;
+  final String requestEntityName;
+  final String requiredParams;
+  final String optionalParams;
+
+  GeneratedMethod({
+    required this.path,
+    required this.name,
+    required this.endpoint,
+    required this.methodType,
+    required this.responseEntityName,
+    required this.requestEntityName,
+    required this.requiredParams,
+    required this.optionalParams,
+  });
+
+  @override
+  String toString() {
+    return 'Name: $name\nPath: $path\nEndpoint: $endpoint\nMethodType: $methodType\nResponseEntityName: $responseEntityName\nBody: $body\n';
   }
 }
