@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
 
+part 'enum.g.dart';
+
+@JsonSerializable()
 class EnumEntity implements Entity {
   @override
   final String name;
@@ -48,4 +52,9 @@ enum $name{
 
   @override
   Set<Entity> get entityImports => {};
+  
+  Map<String, dynamic> toJson() => _$EnumEntityToJson(this);
+
+  factory EnumEntity.fromJson(Map<String, dynamic> json) =>
+      _$EnumEntityFromJson(json);
 }

@@ -11,12 +11,15 @@ Method _$MethodFromJson(Map<String, dynamic> json) => Method(
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
       entities:
           (json['entities'] as List<dynamic>).map((e) => e as String).toSet(),
-    );
+    )..innerEnum = json['innerEnum'] == null
+        ? null
+        : EnumEntity.fromJson(json['innerEnum'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$MethodToJson(Method instance) => <String, dynamic>{
       'methodType': _$MethodTypeEnumMap[instance.methodType]!,
       'tags': instance.tags,
       'entities': instance.entities.toList(),
+      'innerEnum': instance.innerEnum,
     };
 
 const _$MethodTypeEnumMap = {

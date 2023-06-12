@@ -1,4 +1,4 @@
-import 'package:onix_flutter_bricks/core/di/di.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
@@ -53,6 +53,7 @@ class SourceParser {
 
                 method.params.add(Property(
                     name: entityName.camelCase,
+                    place: parameter['in'],
                     type: isArray ? 'List<$entityName>' : entityName,
                     nullable: parameter['required'] != null
                         ? !parameter['required']
@@ -61,27 +62,26 @@ class SourceParser {
                 //method.setRequestEntityName(entityName);
               } else {
                 if (isEnum) {
-                  method.innerEnum =
-                      '''enum ${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase} {
-                    ${parameter['schema']['enum'].join(',\n')}
-                  }''';
+                  method.innerEnum = EnumEntity(
+                      name: entry.value['operationId'].toString().pascalCase,
+                      properties:
+                          parameter['schema']['enum'].cast<String>().toList());
                 }
+
                 method.params.add(Property(
-                    name: isEnum
-                        ? '${entry.value['operationId'].toString().camelCase}${parameter['name'].toString().pascalCase}'
-                        : parameter['name'],
+                    name: parameter['name'],
+                    place: parameter['in'],
                     type: isEnum
-                        ? '${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase}'
+                        ? entry.value['operationId'].toString().pascalCase
                         : parameter['schema']['type'],
                     nullable: parameter['required'] != null
                         ? !parameter['required']
                         : true));
-
-                if (isEnum) logger.wtf(method);
               }
             } else {
               method.params.add(Property(
                   name: parameter['name'],
+                  place: parameter['in'],
                   type: parameter['type'],
                   nullable: parameter['required'] != null
                       ? !parameter['required']

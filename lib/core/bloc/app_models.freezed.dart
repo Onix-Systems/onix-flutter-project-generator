@@ -11859,7 +11859,7 @@ class _$Data implements Data {
   @JsonKey()
   Set<EntityWrapper> get entities {
     if (_entities is EqualUnmodifiableSetView) return _entities;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_entities);
   }
 
@@ -11868,7 +11868,7 @@ class _$Data implements Data {
   @JsonKey()
   Set<SourceWrapper> get sources {
     if (_sources is EqualUnmodifiableSetView) return _sources;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_sources);
   }
 

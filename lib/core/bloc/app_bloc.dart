@@ -139,6 +139,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                       Property(
                         name: 'currentDateTime',
                         type: 'DateTime',
+                        place: 'path',
                       ),
                     ],
                     entity: ClassEntity(
@@ -147,6 +148,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                         Property(
                           name: 'currentDateTime',
                           type: 'DateTime',
+                          place: 'path',
                         ),
                       ],
                     )..setSourceName('Time'),
@@ -163,10 +165,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                     Property(
                       name: 'accessToken',
                       type: 'String',
+                      place: 'header',
                     ),
                     Property(
                       name: 'refreshToken',
                       type: 'String',
+                      place: 'header',
                     ),
                   ],
                   entity: ClassEntity(
@@ -175,10 +179,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                       Property(
                         name: 'accessToken',
                         type: 'String',
+                        place: 'header',
                       ),
                       Property(
                         name: 'refreshToken',
                         type: 'String',
+                        place: 'header',
                       ),
                     ],
                   ),
@@ -260,6 +266,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                 Property(
                   name: 'currentDateTime',
                   type: 'DateTime',
+                  place: 'path',
                 ),
               ],
               entity: ClassEntity(
@@ -268,6 +275,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                   Property(
                     name: 'currentDateTime',
                     type: 'DateTime',
+                    place: 'path',
                   ),
                 ],
               )..setSourceName('Time'),
@@ -283,10 +291,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             Property(
               name: 'accessToken',
               type: 'String',
+              place: 'header',
             ),
             Property(
               name: 'refreshToken',
               type: 'String',
+              place: 'header',
             ),
           ],
           entity: ClassEntity(
@@ -295,10 +305,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               Property(
                 name: 'accessToken',
                 type: 'String',
+                place: 'header',
               ),
               Property(
                 name: 'refreshToken',
                 type: 'String',
+                place: 'header',
               ),
             ],
           ),

@@ -8,10 +8,12 @@ class Property {
   final String name;
   late String type;
   final bool nullable;
+  final String place;
 
   Property({
     required this.name,
     required this.type,
+    required this.place,
     this.nullable = false,
   });
 

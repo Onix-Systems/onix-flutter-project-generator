@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/path.dart';
@@ -42,6 +43,9 @@ class GenerateSource {
 
     for (final path in sourceWrapper.paths) {
       for (final method in path.methods) {
+        logger.wtf(
+            '${path.path}: ${method.params.map((e) => '${e.name}: ${e.type}, ${e.place}').join('\n')}');
+
         final sourceMethod = _generateMethod(
           method: method,
           path: path,
@@ -72,11 +76,28 @@ class GenerateSource {
             .first
             .split(',');
 
+        logger.wtf('params: $params');
+
         final responseIsEnum = _checkEntityIsEnum(
             entityName: method.responseEntityName, allSources: allSources);
 
+        final queryParams =
+            method.params.where((e) => e.place == 'query').isNotEmpty
+                ? '{\n${method.params.where((e) => e.place == 'query').map((e) {
+                    final parameter = params.firstWhereOrNull(
+                        (element) => element.contains(e.name.camelCase));
+
+                    if (parameter != null) {
+                      params.remove(parameter);
+                    }
+                    return '\'${e.name.camelCase}\': ${e.name.camelCase}';
+                  }).join(',\n')},\n}'
+                : '';
+
         implMethods.add(GeneratedMethod(
           path: path.path,
+          sourceMethod: sourceMethod,
+          innerEnum: method.innerEnum,
           name: sourceMethod.split(' ')[1].split('(').first,
           methodType: method.methodType.name,
           endpoint: endpoint,
@@ -88,6 +109,7 @@ class GenerateSource {
           requestEntityName: method.requestEntityName.isNotEmpty
               ? '${method.requestEntityName}Request'
               : '',
+          queryParams: queryParams,
           optionalParams: params
               .where((e) => e.contains(' params'))
               .join(', ')
@@ -110,6 +132,7 @@ class GenerateSource {
     }
 
     for (final method in implMethods) {
+      logger.wtf(method);
       method.body =
           await _getMethodImplBody(method, allSources, mutatedPathPrefix);
     }
@@ -143,7 +166,7 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
   ${sourceWrapper.name.pascalCase}SourceImpl(this._apiClient, this._dioRequestProcessor);
   
   ${implMethods.map((e) => '''@override
-        ${e.responseEntityName.isNotEmpty ? 'Future<DataResponse<${e.responseEntityName}>>' : 'Future<DataResponse<OperationStatus>>'} ${e.name}({${e.requiredParams.isNotEmpty ? '${e.requiredParams}, ' : ''}${e.optionalParams}}) async {
+        ${e.sourceMethod.replaceAll(' params', '? params').replaceAll(';', '')} async {
         ${e.body}
         }
     '''.replaceAll(('{}'), '')).join('\n')}
@@ -232,8 +255,11 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
               (element) => element.name == method.requestEntityName) !=
           null);
 
-      imports.add(
-          "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.requestEntityName.snakeCase}/${method.requestEntityName.snakeCase}_request.dart';");
+      if (!(method.innerEnum != null &&
+          method.requestEntityName != method.innerEnum!.name)) {
+        imports.add(
+            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.requestEntityName.snakeCase}/${method.requestEntityName.snakeCase}_request.dart';");
+      }
     }
 
     final methodParamsNotRequired = _generateMethodImports(
@@ -278,12 +304,12 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
       );
     }
 
-    if (method.innerEnum.isNotEmpty) {
+    if (method.innerEnum != null) {
       imports.add(
-          "import 'package:$projectName/data/model/remote/${sourceWrapper.name.snakeCase}/enums/${method.innerEnum.split(' ')[1].snakeCase}.dart';");
+          "import 'package:$projectName/data/model/remote/${sourceWrapper.name.snakeCase}/enums/${method.innerEnum!.name.snakeCase}.dart';");
 
       _generateMethodInnerEnumFile(
-        innerEnum: method.innerEnum,
+        innerEnum: method.innerEnum!,
         projectName: projectName,
         projectPath: projectPath,
         sourceWrapper: sourceWrapper,
@@ -311,7 +337,8 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
                     (element) => element.name == parameter.type) !=
                 null);
 
-            if (source != null) {
+            if (source != null &&
+                parameter.type.snakeCase != method.innerEnum?.name.snakeCase) {
               imports.add(
                   "import 'package:$projectName/domain/entity/${source.name.snakeCase}/${parameter.type.snakeCase}/${parameter.type.snakeCase}.dart';");
             }
@@ -382,7 +409,7 @@ class ${methodName.pascalCase}Params{
   }
 
   FutureOr<void> _generateMethodInnerEnumFile({
-    required String innerEnum,
+    required EnumEntity innerEnum,
     required String projectName,
     required String projectPath,
     required SourceWrapper sourceWrapper,
@@ -391,14 +418,14 @@ class ${methodName.pascalCase}Params{
             '$projectPath/$projectName/lib/data/model/remote/${sourceWrapper.name.snakeCase}/enums')
         .create(recursive: true);
 
-    logger.wtf(innerEnum.split(' ')[1].snakeCase);
-    logger.wtf(path.path);
-
     var file =
-        await File('${path.path}/${innerEnum.split(' ')[1].snakeCase}.dart')
-            .create();
+        await File('${path.path}/${innerEnum.name.snakeCase}.dart').create();
 
-    await file.writeAsString(innerEnum);
+    final fileContent = '''enum ${innerEnum.name.pascalCase}{
+      ${innerEnum.properties.join(',\n')}
+    }''';
+
+    await file.writeAsString(fileContent);
   }
 
   String _getDynamicPath(
@@ -478,7 +505,11 @@ class ${methodName.pascalCase}Params{
           data = method.requiredParams.split(' ').last;
         } else {
           requiredParams = _checkEntityIsEnum(
-                  entityName: method.requiredParams.split(' ').last.pascalCase,
+                  entityName: method.innerEnum != null &&
+                          method.innerEnum!.name ==
+                              method.requiredParams.split(' ')[1].pascalCase
+                      ? method.innerEnum!.name
+                      : method.requiredParams.split(' ').last.pascalCase,
                   allSources: allSources)
               ? '${method.requiredParams.split(' ').last}.name'
               : '${method.requiredParams.split(' ').last}.toString()';
@@ -486,15 +517,11 @@ class ${methodName.pascalCase}Params{
       }
     }
 
-    if (_checkEntityIsEnum(
-        entityName: data.pascalCase, allSources: allSources)) {
-      logger.wtf('Enum ${data.pascalCase} is not supported yet');
-    }
-
     final methodBody = '''
 final request = _apiClient.client.${method.methodType}(
    ${method.endpoint.split(' ').firstWhere((e) => e.startsWith('_')).split('(').first.replaceAll(prefix, '')}${requiredParams.isNotEmpty ? '(${requiredParams.split(',').map((e) => e.split(' ').last).join(', ')})' : ''},
    ${method.optionalParams.isNotEmpty ? 'queryParameters: params?.toJson(),' : ''}
+   ${method.optionalParams.isEmpty && method.queryParams.isNotEmpty ? 'queryParameters: ${method.queryParams},' : ''}
    ${data.isNotEmpty ? 'data: $data.toJson(),' : ''}
    );
 
@@ -527,25 +554,31 @@ class GeneratedMethod {
   final String name;
   final String endpoint;
   final String methodType;
+  final String sourceMethod;
   String body = '';
   final String responseEntityName;
   final String requestEntityName;
   final String requiredParams;
   final String optionalParams;
+  final String queryParams;
+  final EnumEntity? innerEnum;
 
   GeneratedMethod({
     required this.path,
     required this.name,
     required this.endpoint,
     required this.methodType,
+    required this.sourceMethod,
     required this.responseEntityName,
     required this.requestEntityName,
     required this.requiredParams,
     required this.optionalParams,
+    required this.queryParams,
+    this.innerEnum,
   });
 
   @override
   String toString() {
-    return 'Name: $name\nPath: $path\nEndpoint: $endpoint\nMethodType: $methodType\nResponseEntityName: $responseEntityName\nBody: $body\n';
+    return 'Name: $name\nPath: $path\nEndpoint: $endpoint\nMethodType: $methodType\nResponseEntityName: $responseEntityName\nBody: $body\nQueryParams: $queryParams\nRequiredParams: $requiredParams\nOptionalParams: $optionalParams';
   }
 }

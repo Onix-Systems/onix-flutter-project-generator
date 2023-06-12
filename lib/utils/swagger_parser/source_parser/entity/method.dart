@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
 
@@ -14,7 +15,7 @@ class Method {
   String _requestEntityName = '';
 
   final List<Property> params = [];
-  String innerEnum = '';
+  EnumEntity? innerEnum;
 
   Method({
     required this.methodType,

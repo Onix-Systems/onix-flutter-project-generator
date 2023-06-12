@@ -9,6 +9,7 @@ part of 'property.dart';
 Property _$PropertyFromJson(Map<String, dynamic> json) => Property(
       name: json['name'] as String,
       type: json['type'] as String,
+      place: json['place'] as String,
       nullable: json['nullable'] as bool? ?? false,
     );
 
@@ -16,4 +17,5 @@ Map<String, dynamic> _$PropertyToJson(Property instance) => <String, dynamic>{
       'name': instance.name,
       'type': instance.type,
       'nullable': instance.nullable,
+      'place': instance.place,
     };

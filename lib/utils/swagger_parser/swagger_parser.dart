@@ -36,6 +36,16 @@ class SwaggerParser {
       final entitiesToMove = List<Entity>.from(
           parsedEntities.where((e) => e.sourceName == source.name).toList());
 
+      for (final source in parsedSources) {
+        for (final path in source.paths) {
+          for (final method in path.methods) {
+            if (method.innerEnum != null) {
+              entitiesToMove.add(method.innerEnum!);
+            }
+          }
+        }
+      }
+
       parsedEntities.removeWhere((e) => e.sourceName == source.name);
 
       return SourceWrapper(
@@ -55,7 +65,7 @@ class SwaggerParser {
                 properties: e.properties is List<Property>
                     ? e.properties as List<Property>
                     : e.properties
-                        .map((p) => Property(name: p, type: ''))
+                        .map((p) => Property(name: p, type: '', place: 'query'))
                         .toList(),
                 isEnum: e is EnumEntity,
               ),
