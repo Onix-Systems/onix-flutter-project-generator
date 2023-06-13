@@ -1,6 +1,7 @@
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_parameter.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/path.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/source.dart';
@@ -51,7 +52,7 @@ class SourceParser {
 
                 method.entities.add(entityName);
 
-                method.params.add(Property(
+                method.params.add(MethodParameter(
                     name: entityName.camelCase,
                     place: parameter['in'],
                     type: isArray ? 'List<$entityName>' : entityName,
@@ -68,21 +69,25 @@ class SourceParser {
                           parameter['schema']['enum'].cast<String>().toList());
                 }
 
-                method.params.add(Property(
+                method.params.add(MethodParameter(
                     name: parameter['name'],
                     place: parameter['in'],
                     type: isEnum
                         ? entry.value['operationId'].toString().pascalCase
-                        : parameter['schema']['type'],
+                        : TypeMatcher.getDartType(parameter['schema']['type']),
                     nullable: parameter['required'] != null
                         ? !parameter['required']
                         : true));
               }
             } else {
-              method.params.add(Property(
+              final isArray = parameter['type'] == 'array';
+
+              method.params.add(MethodParameter(
                   name: parameter['name'],
                   place: parameter['in'],
-                  type: parameter['type'],
+                  type: isArray
+                      ? 'List<${TypeMatcher.getDartType(parameter['items']['type'])}>'
+                      : TypeMatcher.getDartType(parameter['type']),
                   nullable: parameter['required'] != null
                       ? !parameter['required']
                       : true));

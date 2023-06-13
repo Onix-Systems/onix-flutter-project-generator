@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
@@ -19,6 +20,9 @@ class GenerateClassEntity {
     final entity = entityWrapper.entity;
     final name = entityWrapper.name;
 
+    logger.wtf(
+        '${entityWrapper.name}: ${entityWrapper.properties.map((e) => e.type).toList()}');
+
     if (entity != null) {
       imports = entity.entityImports
           .map((e) =>
@@ -33,14 +37,14 @@ part '${name.snakeCase}.freezed.dart';
 part '${name.snakeCase}.g.dart';
 
 @freezed
-class $name with _\$$name {
-    factory $name({
+class ${name.pascalCase} with _\$${name.pascalCase} {
+    factory ${name.pascalCase}({
     ${entityWrapper.properties.map((e) => '       $e,').join('\n')}
-    }) = _$name;
+    }) = _${name.pascalCase};
 
-    factory $name.fromJson(Map<String, dynamic> json) => _\$${name}FromJson(json);
+    factory ${name.pascalCase}.fromJson(Map<String, dynamic> json) => _\$${name.pascalCase}FromJson(json);
     
-    factory $name.empty() => $name(
+    factory ${name.pascalCase}.empty() => ${name.pascalCase}(
 ${_getProperties(entityWrapper: entityWrapper)}
     );
 }

@@ -7,6 +7,7 @@ import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapp
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_parameter.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/path.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
@@ -43,9 +44,6 @@ class GenerateSource {
 
     for (final path in sourceWrapper.paths) {
       for (final method in path.methods) {
-        logger.wtf(
-            '${path.path}: ${method.params.map((e) => '${e.name}: ${e.type}, ${e.place}').join('\n')}');
-
         final sourceMethod = _generateMethod(
           method: method,
           path: path,
@@ -61,7 +59,10 @@ class GenerateSource {
 
         final endpoint = path.path.contains('{')
             ? _getDynamicPath(
-                    dynamicPath: path.path, methodType: method.methodType.name)
+                    dynamicPath: path.path,
+                    methodType: method.methodType.name,
+                    params:
+                        method.params.where((e) => e.place == 'path').toList())
                 .replaceAll(mutatedPathPrefix, '')
             : 'final _${method.methodType.name}${path.path.replaceAll('/', '_').replaceAll('-', '_').replaceAll(mutatedPathPrefix, '').pascalCase}Path = \'${path.path}\';';
 
@@ -76,23 +77,8 @@ class GenerateSource {
             .first
             .split(',');
 
-        logger.wtf('params: $params');
-
         final responseIsEnum = _checkEntityIsEnum(
             entityName: method.responseEntityName, allSources: allSources);
-
-        final queryParams =
-            method.params.where((e) => e.place == 'query').isNotEmpty
-                ? '{\n${method.params.where((e) => e.place == 'query').map((e) {
-                    final parameter = params.firstWhereOrNull(
-                        (element) => element.contains(e.name.camelCase));
-
-                    if (parameter != null) {
-                      params.remove(parameter);
-                    }
-                    return '\'${e.name.camelCase}\': ${e.name.camelCase}';
-                  }).join(',\n')},\n}'
-                : '';
 
         implMethods.add(GeneratedMethod(
           path: path.path,
@@ -109,7 +95,8 @@ class GenerateSource {
           requestEntityName: method.requestEntityName.isNotEmpty
               ? '${method.requestEntityName}Request'
               : '',
-          queryParams: queryParams,
+          queryParams: method.params.where((e) => e.place == 'query').toList(),
+          pathParams: method.params.where((e) => e.place == 'path').toList(),
           optionalParams: params
               .where((e) => e.contains(' params'))
               .join(', ')
@@ -121,7 +108,10 @@ class GenerateSource {
 
         if (path.path.contains('{')) {
           sourceDynamicPaths.add(_getDynamicPath(
-                  dynamicPath: path.path, methodType: method.methodType.name)
+                  dynamicPath: path.path,
+                  methodType: method.methodType.name,
+                  params:
+                      method.params.where((e) => e.place == 'path').toList())
               .replaceAll(mutatedPathPrefix, ''));
         } else {
           sourceStaticPaths.add(
@@ -132,7 +122,8 @@ class GenerateSource {
     }
 
     for (final method in implMethods) {
-      logger.wtf(method);
+      logger.wtf(
+          '${method.name}:\npathParams: ${method.pathParams}\nqueryParams: ${method.queryParams}');
       method.body =
           await _getMethodImplBody(method, allSources, mutatedPathPrefix);
     }
@@ -272,9 +263,8 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
     final methodRequestParamsPart = method.params.isNotEmpty
         ? method.params
             .where((param) => !param.nullable)
-            .toList()
-            .toString()
-            .replaceAll(RegExp('[\\[\\]()]'), '')
+            .map((param) => 'required ${param.type} ${param.name.camelCase}')
+            .join(', ')
         : '';
 
     String methodParams =
@@ -429,15 +419,12 @@ class ${methodName.pascalCase}Params{
   }
 
   String _getDynamicPath(
-      {required String dynamicPath, required String methodType}) {
+      {required String dynamicPath,
+      required String methodType,
+      required List<MethodParameter> params}) {
     String pathName = dynamicPath.replaceAll('/', '_').replaceAll('-', '_');
 
     final splittedPath = dynamicPath.split('/');
-
-    final params = splittedPath
-        .where((element) => element.contains('{'))
-        .map((e) => e.replaceAll('{', '').replaceAll('}', ''))
-        .toList();
 
     for (final part in splittedPath) {
       if (part.contains('{')) {
@@ -461,7 +448,7 @@ class ${methodName.pascalCase}Params{
       }
     }
 
-    return 'String _$methodType${pathName.pascalCase}Path(${params.map((e) => 'String ${e.replaceAll('-', '_').camelCase}').join(', ')}) => \'${dynamicPath.split('/').map((e) => e.replaceAll('-', '_').camelCase).join('/')}\';';
+    return 'String _$methodType${pathName.pascalCase}Path(${params.map((e) => '${e.type} ${e.name.replaceAll('-', '_').camelCase}').join(', ')}) => \'$dynamicPath\';';
   }
 
   Future<String> _getMethodImplBody(GeneratedMethod method,
@@ -519,9 +506,9 @@ class ${methodName.pascalCase}Params{
 
     final methodBody = '''
 final request = _apiClient.client.${method.methodType}(
-   ${method.endpoint.split(' ').firstWhere((e) => e.startsWith('_')).split('(').first.replaceAll(prefix, '')}${requiredParams.isNotEmpty ? '(${requiredParams.split(',').map((e) => e.split(' ').last).join(', ')})' : ''},
+   ${method.endpoint.split(' ').firstWhere((e) => e.startsWith('_')).split('(').first.replaceAll(prefix, '')}${method.pathParams.isNotEmpty ? '(${method.pathParams.map((e) => e.name).join(', ')})' : ''},
    ${method.optionalParams.isNotEmpty ? 'queryParameters: params?.toJson(),' : ''}
-   ${method.optionalParams.isEmpty && method.queryParams.isNotEmpty ? 'queryParameters: ${method.queryParams},' : ''}
+   ${method.optionalParams.isEmpty && method.queryParams.isNotEmpty ? 'queryParameters: {${method.queryParams.map((e) => '\'${e.name}\': ${e.name}${e.type == method.innerEnum?.name ? '.name' : ''}').join(',\n')},},' : ''}
    ${data.isNotEmpty ? 'data: $data.toJson(),' : ''}
    );
 
@@ -560,7 +547,8 @@ class GeneratedMethod {
   final String requestEntityName;
   final String requiredParams;
   final String optionalParams;
-  final String queryParams;
+  final List<MethodParameter> queryParams;
+  final List<MethodParameter> pathParams;
   final EnumEntity? innerEnum;
 
   GeneratedMethod({
@@ -574,6 +562,7 @@ class GeneratedMethod {
     required this.requiredParams,
     required this.optionalParams,
     required this.queryParams,
+    required this.pathParams,
     this.innerEnum,
   });
 

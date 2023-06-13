@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/class_entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
@@ -19,46 +20,8 @@ class EntityParser {
       var imports = <String>[];
 
       if (entry.value['type'] == 'object') {
-        if (entry.value.containsKey('allOf')) {
-          stack.add(entry);
-          continue;
-        }
-
-        if (entry.value['properties'] == null) {
-          continue;
-        }
-
-        final entity = ClassEntity(
-          name: entry.key,
-          properties: (entry.value['properties'] as Map<String, dynamic>)
-              .entries
-              .map((e) {
-            if (TypeMatcher.isReference(e.value)) {
-              imports.add(_getRefClassName(e.value).snakeCase);
-            }
-            var property = Property(
-              name: e.key.camelCase,
-              place: e.value['in'] ?? 'query',
-              type: TypeMatcher.isReference(e.value)
-                  ? _getRefClassName(e.value)
-                  : e.value['type'],
-              nullable: e.value['nullable'] ?? false,
-            );
-
-            if (property.type == 'array') {
-              _parseArray(e, property, entities, imports);
-            }
-
-            if (TypeMatcher.getDartType(property.type) == 'Map') {
-              imports.add(e.key.snakeCase);
-              _parseMap(property, e, entities);
-            }
-
-            return property;
-          }).toList(),
-        );
-        entity.addImports(imports);
-        entities.add(entity);
+        _parseObject(
+            entry: entry, entities: entities, imports: imports, stack: stack);
       } else if (entry.value.containsKey('enum')) {
         final entity = EnumEntity(
           name: entry.key,
@@ -76,12 +39,63 @@ class EntityParser {
       if (entity.imports.isEmpty) continue;
 
       for (final import in entity.imports) {
-        entity.entityImports.add(
-            entities.firstWhere((element) => element.name.snakeCase == import));
+        final importedEntity = entities.firstWhereOrNull(
+            (element) => element.name.snakeCase == import.snakeCase);
+
+        if (importedEntity == null) continue;
+
+        entity.entityImports.add(importedEntity);
       }
     }
 
     return entities;
+  }
+
+  static void _parseObject(
+      {required MapEntry<String, dynamic> entry,
+      required List<Entity> entities,
+      required List<String> imports,
+      required List<MapEntry<String, dynamic>> stack}) {
+    if (entry.value.containsKey('allOf')) {
+      stack.add(entry);
+      return;
+    }
+
+    if (entry.value['properties'] == null) {
+      return;
+    }
+
+    final entity = ClassEntity(
+      name: entry.key,
+      properties:
+          (entry.value['properties'] as Map<String, dynamic>).entries.map((e) {
+        if (TypeMatcher.isReference(e.value)) {
+          imports.add(_getRefClassName(e.value).snakeCase);
+        }
+        var property = Property(
+          name: e.key.camelCase,
+          type: TypeMatcher.isReference(e.value)
+              ? _getRefClassName(e.value)
+              : e.value['type'],
+          nullable: e.value['nullable'] ?? false,
+        );
+
+        if (property.type == 'array') {
+          _parseArray(e, property, entities, imports);
+        }
+
+        if (TypeMatcher.getDartType(property.type) == 'Map') {
+          imports.add(e.key.snakeCase);
+          _parseMap(property, e, entities);
+        }
+
+        return property;
+      }).toList(),
+    );
+
+    entity.addImports(imports);
+
+    entities.add(entity);
   }
 
   static void _parseMap(
@@ -107,7 +121,7 @@ class EntityParser {
       imports.add(_getRefClassName(e.value['items']).snakeCase);
     } else {
       if ((e.value['items'] as Map<String, dynamic>).isEmpty) {
-        property.type = 'List<dynamic}>';
+        property.type = 'List<dynamic>';
       } else {
         final className =
             property.name.substring(0, property.name.length).pascalCase;

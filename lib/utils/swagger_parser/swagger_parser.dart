@@ -9,10 +9,13 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/source_pa
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_data.dart';
 import 'package:recase/recase.dart';
 
+import '../../core/di/di.dart';
+
 class SwaggerParser {
   static Future<SwaggerData> parse(
       {required Map<String, dynamic> data, required String projectName}) async {
     final String basePath = data['basePath'] ?? '';
+
     final parsedEntities = await EntityParser.parse(data);
 
     final parsedSources = await SourceParser.parse(data);
@@ -65,7 +68,7 @@ class SwaggerParser {
                 properties: e.properties is List<Property>
                     ? e.properties as List<Property>
                     : e.properties
-                        .map((p) => Property(name: p, type: '', place: 'query'))
+                        .map((p) => Property(name: p, type: ''))
                         .toList(),
                 isEnum: e is EnumEntity,
               ),
@@ -75,12 +78,14 @@ class SwaggerParser {
     }).toList();
 
     for (final source in sources) {
-      for (final entity in source.entities.where((e) => e.generateRequest)) {
-        _setGenRequest(sources, entity);
-      }
+      for (final entity in source.entities) {
+        if (entity.generateRequest) {
+          _setGenRequest(sources, entity);
+        }
 
-      for (final entity in source.entities.where((e) => e.generateResponse)) {
-        _setGenResponse(sources, entity);
+        if (entity.generateResponse) {
+          _setGenResponse(sources, entity);
+        }
       }
     }
 

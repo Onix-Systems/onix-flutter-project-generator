@@ -101,23 +101,28 @@ class EntityTable extends StatelessWidget {
                     value: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        MSHCheckbox(
-                          value: entity.generateRequest,
-                          onChanged: (_) {},
-                          isDisabled: true,
-                          duration: const Duration(milliseconds: 200),
-                          colorConfig: entity.exists
-                              ? MSHColorConfig.fromCheckedUncheckedDisabled(
-                                  checkedColor: CupertinoColors.inactiveGray,
-                                  uncheckedColor: CupertinoColors.inactiveGray,
-                                  disabledColor: CupertinoColors.inactiveGray,
-                                )
-                              : MSHColorConfig.fromCheckedUncheckedDisabled(
-                                  checkedColor: CupertinoColors.activeOrange,
-                                  uncheckedColor: CupertinoColors.activeOrange,
-                                  disabledColor: CupertinoColors.activeOrange,
-                                ),
-                        ),
+                        if (entity.isEnum)
+                          Text('enum')
+                        else
+                          MSHCheckbox(
+                            value: entity.generateRequest,
+                            onChanged: (_) {},
+                            isDisabled: true,
+                            duration: const Duration(milliseconds: 200),
+                            colorConfig: entity.exists
+                                ? MSHColorConfig.fromCheckedUncheckedDisabled(
+                                    checkedColor: CupertinoColors.inactiveGray,
+                                    uncheckedColor:
+                                        CupertinoColors.inactiveGray,
+                                    disabledColor: CupertinoColors.inactiveGray,
+                                  )
+                                : MSHColorConfig.fromCheckedUncheckedDisabled(
+                                    checkedColor: CupertinoColors.activeOrange,
+                                    uncheckedColor:
+                                        CupertinoColors.activeOrange,
+                                    disabledColor: CupertinoColors.activeOrange,
+                                  ),
+                          ),
                       ],
                     ),
                     decorated: true,
@@ -126,23 +131,28 @@ class EntityTable extends StatelessWidget {
                     value: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        MSHCheckbox(
-                          value: entity.generateResponse,
-                          onChanged: (_) {},
-                          isDisabled: true,
-                          duration: const Duration(milliseconds: 200),
-                          colorConfig: entity.exists
-                              ? MSHColorConfig.fromCheckedUncheckedDisabled(
-                                  checkedColor: CupertinoColors.inactiveGray,
-                                  uncheckedColor: CupertinoColors.inactiveGray,
-                                  disabledColor: CupertinoColors.inactiveGray,
-                                )
-                              : MSHColorConfig.fromCheckedUncheckedDisabled(
-                                  checkedColor: CupertinoColors.activeOrange,
-                                  uncheckedColor: CupertinoColors.activeOrange,
-                                  disabledColor: CupertinoColors.activeOrange,
-                                ),
-                        ),
+                        if (entity.isEnum)
+                          Text('enum')
+                        else
+                          MSHCheckbox(
+                            value: entity.generateResponse,
+                            onChanged: (_) {},
+                            isDisabled: true,
+                            duration: const Duration(milliseconds: 200),
+                            colorConfig: entity.exists
+                                ? MSHColorConfig.fromCheckedUncheckedDisabled(
+                                    checkedColor: CupertinoColors.inactiveGray,
+                                    uncheckedColor:
+                                        CupertinoColors.inactiveGray,
+                                    disabledColor: CupertinoColors.inactiveGray,
+                                  )
+                                : MSHColorConfig.fromCheckedUncheckedDisabled(
+                                    checkedColor: CupertinoColors.activeOrange,
+                                    uncheckedColor:
+                                        CupertinoColors.activeOrange,
+                                    disabledColor: CupertinoColors.activeOrange,
+                                  ),
+                          ),
                       ],
                     ),
                     decorated: true,
@@ -156,13 +166,13 @@ class EntityTable extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              color: entity.exists
+                              color: entity.exists || entity.isEnum
                                   ? CupertinoColors.inactiveGray
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                if (!entity.exists) {
+                                if (!entity.exists && !entity.isEnum) {
                                   showCupertinoModalPopup<EntityWrapper>(
                                     context: context,
                                     barrierDismissible: false,
