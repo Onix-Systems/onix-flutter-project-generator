@@ -544,6 +544,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       }
     }
 
+    var entity = event.entity;
+
+    entity.properties = [Property(name: 'name', type: 'string')];
+
+    entity.entity = ClassEntity(
+      name: entity.name.pascalCase,
+      properties: entity.properties,
+    );
+
     if (event.source == null) {
       var entities = state.entities.toList();
 
@@ -551,8 +560,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       emit(state.copyWith(entities: entities.toSet()));
     } else {
       var entities = event.source?.entities.toList() ?? [];
+      var entity = event.entity;
+      (entity.entity as ClassEntity).sourceName = event.source?.name ?? '';
       entities.add(event.entity);
       var sources = state.sources.toList();
+
       sources.firstWhere((source) => source == event.source).entities =
           entities;
       emit(state.copyWith(sources: sources.toSet()));

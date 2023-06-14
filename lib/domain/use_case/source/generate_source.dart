@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
@@ -122,8 +121,6 @@ class GenerateSource {
     }
 
     for (final method in implMethods) {
-      logger.wtf(
-          '${method.name}:\npathParams: ${method.pathParams}\nqueryParams: ${method.queryParams}');
       method.body =
           await _getMethodImplBody(method, allSources, mutatedPathPrefix);
     }
@@ -456,22 +453,22 @@ class ${methodName.pascalCase}Params{
     final isEnum = _checkEntityIsEnum(
         entityName: method.responseEntityName, allSources: allSources);
 
-    String requiredParams = '';
+    // String requiredParams = '';
     String data = '';
 
     if (method.requiredParams.isNotEmpty) {
       if (method.requiredParams.contains(',')) {
-        requiredParams = method.requiredParams
-            .split(',')
-            .where((e) =>
-                method.requestEntityName.isEmpty ||
-                !e.contains(method.requestEntityName.camelCase))
-            .map((e) => _checkEntityIsEnum(
-                    entityName: e.split(' ').last.pascalCase,
-                    allSources: allSources)
-                ? '${e.split(' ').last}.name'
-                : '${e.split(' ').last}.toString()')
-            .join(', ');
+        // requiredParams = method.requiredParams
+        //     .split(',')
+        //     .where((e) =>
+        //         method.requestEntityName.isEmpty ||
+        //         !e.contains(method.requestEntityName.camelCase))
+        //     .map((e) => _checkEntityIsEnum(
+        //             entityName: e.split(' ').last.pascalCase,
+        //             allSources: allSources)
+        //         ? '${e.split(' ').last}.name'
+        //         : '${e.split(' ').last}.toString()')
+        //     .join(', ');
 
         if (method.requestEntityName.isNotEmpty &&
             method.requiredParams
@@ -491,15 +488,15 @@ class ${methodName.pascalCase}Params{
                 .contains(method.requestEntityName.camelCase)) {
           data = method.requiredParams.split(' ').last;
         } else {
-          requiredParams = _checkEntityIsEnum(
-                  entityName: method.innerEnum != null &&
-                          method.innerEnum!.name ==
-                              method.requiredParams.split(' ')[1].pascalCase
-                      ? method.innerEnum!.name
-                      : method.requiredParams.split(' ').last.pascalCase,
-                  allSources: allSources)
-              ? '${method.requiredParams.split(' ').last}.name'
-              : '${method.requiredParams.split(' ').last}.toString()';
+          // requiredParams = _checkEntityIsEnum(
+          //         entityName: method.innerEnum != null &&
+          //                 method.innerEnum!.name ==
+          //                     method.requiredParams.split(' ')[1].pascalCase
+          //             ? method.innerEnum!.name
+          //             : method.requiredParams.split(' ').last.pascalCase,
+          //         allSources: allSources)
+          //     ? '${method.requiredParams.split(' ').last}.name'
+          //     : '${method.requiredParams.split(' ').last}.toString()';
         }
       }
     }
