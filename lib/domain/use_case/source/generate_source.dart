@@ -453,23 +453,10 @@ class ${methodName.pascalCase}Params{
     final isEnum = _checkEntityIsEnum(
         entityName: method.responseEntityName, allSources: allSources);
 
-    // String requiredParams = '';
     String data = '';
 
     if (method.requiredParams.isNotEmpty) {
       if (method.requiredParams.contains(',')) {
-        // requiredParams = method.requiredParams
-        //     .split(',')
-        //     .where((e) =>
-        //         method.requestEntityName.isEmpty ||
-        //         !e.contains(method.requestEntityName.camelCase))
-        //     .map((e) => _checkEntityIsEnum(
-        //             entityName: e.split(' ').last.pascalCase,
-        //             allSources: allSources)
-        //         ? '${e.split(' ').last}.name'
-        //         : '${e.split(' ').last}.toString()')
-        //     .join(', ');
-
         if (method.requestEntityName.isNotEmpty &&
             method.requiredParams
                 .contains(method.requestEntityName.camelCase)) {
@@ -487,16 +474,6 @@ class ${methodName.pascalCase}Params{
             method.requiredParams
                 .contains(method.requestEntityName.camelCase)) {
           data = method.requiredParams.split(' ').last;
-        } else {
-          // requiredParams = _checkEntityIsEnum(
-          //         entityName: method.innerEnum != null &&
-          //                 method.innerEnum!.name ==
-          //                     method.requiredParams.split(' ')[1].pascalCase
-          //             ? method.innerEnum!.name
-          //             : method.requiredParams.split(' ').last.pascalCase,
-          //         allSources: allSources)
-          //     ? '${method.requiredParams.split(' ').last}.name'
-          //     : '${method.requiredParams.split(' ').last}.toString()';
         }
       }
     }
