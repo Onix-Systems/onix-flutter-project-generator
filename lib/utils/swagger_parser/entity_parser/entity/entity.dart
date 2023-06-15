@@ -12,4 +12,6 @@ abstract class Entity {
   String get sourceName;
 
   void setSourceName(String sourceName);
+
+  void setName(String name);
 }

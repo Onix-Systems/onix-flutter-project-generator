@@ -9,7 +9,7 @@ part of 'method.dart';
 Method _$MethodFromJson(Map<String, dynamic> json) => Method(
       methodType: $enumDecode(_$MethodTypeEnumMap, json['methodType']),
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
-      entities:
+      entitiesNames:
           (json['entities'] as List<dynamic>).map((e) => e as String).toSet(),
     )..innerEnum = json['innerEnum'] == null
         ? null
@@ -18,7 +18,7 @@ Method _$MethodFromJson(Map<String, dynamic> json) => Method(
 Map<String, dynamic> _$MethodToJson(Method instance) => <String, dynamic>{
       'methodType': _$MethodTypeEnumMap[instance.methodType]!,
       'tags': instance.tags,
-      'entities': instance.entities.toList(),
+      'entities': instance.entitiesNames.toList(),
       'innerEnum': instance.innerEnum,
     };
 

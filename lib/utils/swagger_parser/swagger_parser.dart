@@ -1,6 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
+import 'package:onix_flutter_bricks/utils/extensions/replace_last.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/class_entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
@@ -54,55 +56,106 @@ class SwaggerParser {
       return SourceWrapper(
         name: source.name,
         paths: source.paths,
-        entities: entitiesToMove
-            .map(
-              (e) => EntityWrapper(
-                name: e.name,
-                entity: e,
-                generateRequest: e is! EnumEntity &&
-                    source.paths.any((p) =>
-                        p.methods.any((m) => m.requestEntityName == e.name)),
-                generateResponse: e is! EnumEntity &&
-                    source.paths.any((p) =>
-                        p.methods.any((m) => m.responseEntityName == e.name)),
-                properties: e.properties is List<Property>
-                    ? e.properties as List<Property>
-                    : e.properties
-                        .map((p) => Property(name: p, type: ''))
-                        .toList(),
-                isEnum: e is EnumEntity,
-              ),
-            )
-            .toList(),
+        entities: entitiesToMove.map(
+          (e) {
+            final entityWrapper = EntityWrapper(
+              name: e.name,
+              entity: e,
+              generateRequest: e is! EnumEntity &&
+                  !e.name.endsWith('Request') &&
+                  source.paths.any((p) =>
+                      p.methods.any((m) => m.requestEntityName == e.name)),
+              generateResponse: e is! EnumEntity &&
+                  (!e.name.endsWith('Response') &&
+                      source.paths.any((p) => p.methods
+                          .any((m) => m.responseEntityName == e.name))),
+              properties: e.properties is List<Property>
+                  ? e.properties as List<Property>
+                  : e.properties
+                      .map((p) => Property(name: p, type: ''))
+                      .toList(),
+              isEnum: e is EnumEntity,
+            );
+
+            return entityWrapper;
+          },
+        ).toList(),
       );
     }).toList();
 
     for (final source in sources) {
       for (final entity in source.entities) {
-        if (entity.generateRequest) {
+        if (entity.generateRequest || entity.name.endsWith('Request')) {
           _setGenRequest(sources, entity);
         }
 
-        if (entity.generateResponse) {
+        if (entity.generateResponse || entity.name.endsWith('Response')) {
           _setGenResponse(sources, entity);
         }
       }
     }
 
-    final entities = parsedEntities
-        .map(
-          (e) => EntityWrapper(
-            name: e.name,
-            entity: e,
-            generateRequest: e is! EnumEntity,
-            generateResponse: e is! EnumEntity,
-            properties: e.properties is List<Property>
-                ? e.properties as List<Property>
-                : [],
-            isEnum: e is EnumEntity,
-          ),
-        )
-        .toList();
+    final entities = parsedEntities.map(
+      (e) {
+        final entityWrapper = EntityWrapper(
+          name: e.name,
+          entity: e,
+          generateRequest: e is! EnumEntity &&
+              !e.name.endsWith('Request') &&
+              sources.any((source) => source.paths.any(
+                  (p) => p.methods.any((m) => m.requestEntityName == e.name))),
+          generateResponse: e is! EnumEntity &&
+              !e.name.endsWith('Response') &&
+              sources.any((source) => source.paths.any(
+                  (p) => p.methods.any((m) => m.responseEntityName == e.name))),
+          properties: e.properties is List<Property>
+              ? e.properties as List<Property>
+              : [],
+          isEnum: e is EnumEntity,
+        );
+
+        return entityWrapper;
+      },
+    ).toList();
+
+    // final entitiesFromResponse = <EntityWrapper>[];
+    //
+    // for (final source in sources) {
+    //   for (final entity in source.entities) {
+    //     if (!entity.isEnum && entity.name.endsWith('Response')) {
+    //       if (!sources.any((s) =>
+    //           s.entities
+    //               .any((e) =>
+    //           e.name == entity.name.replaceLast('Response', '')))) {
+    //         final entityWrapper = EntityWrapper(
+    //           name: entity.name.replaceLast('Response', ''),
+    //           properties: entity.properties,
+    //           entity: ClassEntity(
+    //             name: entity.name.replaceLast('Response', ''),
+    //             properties: entity.properties.map((p) {
+    //               p.name = p.name.replaceLast('Response', '');
+    //               p.type = p.type.replaceLast('Response', '');
+    //               return p;
+    //             }).toList(),
+    //           )
+    //             ..addImports(entity.entity?.imports.toList() ?? [])
+    //             ..setSourceName(entity.entity?.sourceName ?? source.name),
+    //         );
+    //
+    //         logger.wtf(entityWrapper);
+    //
+    //         entitiesFromResponse.add(entityWrapper);
+    //       }
+    //     }
+    //   }
+    // }
+    //
+    // for (final entity in entitiesFromResponse) {
+    //   sources
+    //       .firstWhere((source) => source.name == entity.entity?.sourceName)
+    //       .entities
+    //       .add(entity);
+    // }
 
     return SwaggerData(
       basePath: basePath,
@@ -140,7 +193,7 @@ class SwaggerParser {
 
   static void _setGenRequest(
       List<SourceWrapper> sources, EntityWrapper entity) {
-    entity.generateRequest = true;
+    entity.generateRequest = !entity.name.endsWith('Request');
 
     final allEntities = <EntityWrapper>{};
 
@@ -165,7 +218,7 @@ class SwaggerParser {
 
   static void _setGenResponse(
       List<SourceWrapper> sources, EntityWrapper entity) {
-    entity.generateResponse = true;
+    entity.generateResponse = !entity.name.endsWith('Response');
 
     final allEntities = <EntityWrapper>{};
 

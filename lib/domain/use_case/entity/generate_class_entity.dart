@@ -20,14 +20,14 @@ class GenerateClassEntity {
     final entity = entityWrapper.entity;
     final name = entityWrapper.name;
 
-    logger.wtf(
-        '${entityWrapper.name}: ${entityWrapper.properties.map((e) => e.type).toList()}');
-
     if (entity != null) {
-      imports = entity.entityImports
-          .map((e) =>
-              'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';')
-          .join('\n');
+      imports = entity.entityImports.map((e) {
+        final layer = e.name.endsWith('Request') || e.name.endsWith('Response')
+            ? 'data/model/remote'
+            : 'domain/entity';
+
+        return 'import \'package:$projectName/$layer/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';';
+      }).join('\n');
     }
 
     final fileContent = '''
@@ -50,8 +50,13 @@ ${_getProperties(entityWrapper: entityWrapper)}
 }
 ''';
 
+    final layer = entityWrapper.name.endsWith('Request') ||
+            entityWrapper.name.endsWith('Response')
+        ? 'data/model/remote'
+        : 'domain/entity';
+
     final path = await Directory(
-            '$projectPath/$projectName/lib/domain/entity/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.snakeCase}')
+            '$projectPath/$projectName/lib/$layer/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.snakeCase}')
         .create(recursive: true);
 
     var file = await File('${path.path}/${name.snakeCase}.dart').create();

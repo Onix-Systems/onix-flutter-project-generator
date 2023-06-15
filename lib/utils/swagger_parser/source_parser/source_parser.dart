@@ -32,7 +32,7 @@ class SourceParser {
           methodType:
               MethodType.values.firstWhere((value) => value.name == entry.key),
           tags: entry.value['tags'].cast<String>(),
-          entities: {},
+          entitiesNames: {},
         );
 
         if (entry.value.containsKey('parameters') &&
@@ -50,7 +50,7 @@ class SourceParser {
                     ? _getRefClassName(parameter['schema']['items'])
                     : _getRefClassName(parameter['schema']);
 
-                method.entities.add(entityName);
+                method.entitiesNames.add(entityName);
 
                 method.params.add(MethodParameter(
                     name: entityName.camelCase,
@@ -105,7 +105,7 @@ class SourceParser {
 
             if (TypeMatcher.isReference(parameter['schema'])) {
               String entityName = _getRefClassName(parameter['schema']);
-              method.entities.add(entityName);
+              method.entitiesNames.add(entityName);
               method.setRequestEntityName(entityName);
             }
           }
@@ -139,7 +139,7 @@ class SourceParser {
       for (final path in paths) {
         for (final method in path.methods) {
           if (method.tags.contains(tag)) {
-            dependencies.addAll(method.entities);
+            dependencies.addAll(method.entitiesNames);
           }
         }
       }
@@ -191,7 +191,7 @@ class SourceParser {
 
       String entityName = _getRefClassName(schema);
 
-      method.entities.add(entityName);
+      method.entitiesNames.add(entityName);
     }
   }
 

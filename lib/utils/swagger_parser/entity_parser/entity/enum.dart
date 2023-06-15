@@ -6,7 +6,7 @@ part 'enum.g.dart';
 @JsonSerializable()
 class EnumEntity implements Entity {
   @override
-  final String name;
+  String name;
   @override
   final List<String> properties;
   @override
@@ -19,6 +19,11 @@ class EnumEntity implements Entity {
     if (this.sourceName.isEmpty) {
       this.sourceName = sourceName;
     }
+  }
+
+  @override
+  void setName(String name) {
+    this.name = name;
   }
 
   @override
@@ -52,7 +57,7 @@ enum $name{
 
   @override
   Set<Entity> get entityImports => {};
-  
+
   Map<String, dynamic> toJson() => _$EnumEntityToJson(this);
 
   factory EnumEntity.fromJson(Map<String, dynamic> json) =>

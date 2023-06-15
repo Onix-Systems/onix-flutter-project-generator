@@ -86,14 +86,8 @@ class GenerateSource {
           name: sourceMethod.split(' ')[1].split('(').first,
           methodType: method.methodType.name,
           endpoint: endpoint,
-          responseEntityName: method.responseEntityName.isNotEmpty
-              ? responseIsEnum
-                  ? method.responseEntityName
-                  : '${method.responseEntityName}Response'
-              : '',
-          requestEntityName: method.requestEntityName.isNotEmpty
-              ? '${method.requestEntityName}Request'
-              : '',
+          responseEntityName: method.responseEntityName,
+          requestEntityName: method.requestEntityName,
           queryParams: method.params.where((e) => e.place == 'query').toList(),
           pathParams: method.params.where((e) => e.place == 'path').toList(),
           optionalParams: params
@@ -233,7 +227,7 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
             "import 'package:$projectName/domain/entity/${source.name.snakeCase}/${method.responseEntityName.snakeCase}/${method.responseEntityName.snakeCase}.dart';");
       } else {
         imports.add(
-            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.responseEntityName.snakeCase}/${method.responseEntityName.snakeCase}_response.dart';");
+            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.responseEntityName.snakeCase}/${method.responseEntityName.snakeCase}${method.responseEntityName.endsWith('Response') ? '' : '_response'}.dart';");
       }
     }
 
@@ -246,7 +240,7 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
       if (!(method.innerEnum != null &&
           method.requestEntityName != method.innerEnum!.name)) {
         imports.add(
-            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.requestEntityName.snakeCase}/${method.requestEntityName.snakeCase}_request.dart';");
+            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.requestEntityName.snakeCase}/${method.requestEntityName.snakeCase}${method.requestEntityName.endsWith('Request') ? '' : '_request'}.dart';");
       }
     }
 
@@ -254,7 +248,7 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
         method, allSources, imports, projectName, projectPath, sourceWrapper);
 
     final methodRequestBodyPart = method.requestEntityName.isNotEmpty
-        ? 'required ${method.requestEntityName}Request ${method.requestEntityName.camelCase}Request'
+        ? 'required ${method.requestEntityName.endsWith('Request') ? method.requestEntityName : '${method.requestEntityName}Request'} ${method.requestEntityName.endsWith('Request') ? method.requestEntityName.camelCase : '${method.requestEntityName.camelCase}Request'}'
         : '';
 
     final methodRequestParamsPart = method.params.isNotEmpty
@@ -276,7 +270,7 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
     if (methodParams == '{}') methodParams = '';
 
     String generatedMethod =
-        'Future<${method.responseEntityName.isNotEmpty ? 'DataResponse<${method.responseEntityName}${responseIsEnum ? '' : 'Response'}>' : 'DataResponse<OperationStatus>'}> $methodName($methodParams);';
+        'Future<${method.responseEntityName.isNotEmpty ? 'DataResponse<${responseIsEnum || method.responseEntityName.endsWith('Response') ? method.responseEntityName : '${method.responseEntityName}Response'}>' : 'DataResponse<OperationStatus>'}> $methodName($methodParams);';
 
     if (methodParamsNotRequired.isNotEmpty) {
       imports.add(
@@ -488,7 +482,9 @@ final request = _apiClient.client.${method.methodType}(
 
  return _dioRequestProcessor.processRequest(
  onRequest: () => request,
- onResponse: (response) => ${method.responseEntityName.isNotEmpty ? '${method.responseEntityName}.${isEnum ? 'values.first' : 'fromJson(response.data)'}' : 'OperationStatus.success'},);
+ onResponse: (response) => ${method.responseEntityName.isNotEmpty ? '${isEnum || method.responseEntityName.endsWith('Response') ? method.responseEntityName : '${method.responseEntityName}Response'}.${isEnum ? '''values.firstWhere(
+      (e) => e.name == response.data,
+    )''' : 'fromJson(response.data)'}' : 'OperationStatus.success'},);
     ''';
 
     return methodBody;

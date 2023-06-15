@@ -3,7 +3,7 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/pr
 
 class ClassEntity implements Entity {
   @override
-  final String name;
+  String name;
   @override
   final List<Property> properties;
   @override
@@ -21,6 +21,11 @@ class ClassEntity implements Entity {
   void addImports(List<String> imports) {
     imports.sort((a, b) => a.compareTo(b));
     this.imports.addAll(imports);
+  }
+
+  @override
+  void setName(String name) {
+    this.name = name;
   }
 
   @override
