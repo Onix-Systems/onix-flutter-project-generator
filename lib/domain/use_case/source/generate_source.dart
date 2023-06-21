@@ -158,6 +158,10 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
   }
 
   String _getPathsPrefix(List<Path> paths) {
+    if (paths.isEmpty) {
+      return '/';
+    }
+
     final sortedPaths = paths.map((e) => e.path.replaceFirst('/', '')).toList();
 
     sortedPaths

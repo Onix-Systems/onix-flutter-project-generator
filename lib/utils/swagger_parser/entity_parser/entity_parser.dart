@@ -50,11 +50,6 @@ class EntityParser {
       }
     }
 
-    for (final entity in entities) {
-      logger.wtf(
-          '${entity.name}\n${entity.properties.map((e) => e.toString()).join('\n')}');
-    }
-
     return entities;
   }
 
@@ -102,8 +97,6 @@ class EntityParser {
     );
 
     entity.addImports(imports);
-
-    logger.wtf(entity.name);
 
     entities.add(entity);
   }

@@ -37,9 +37,6 @@ class SwaggerParser {
       }
     }
 
-    logger.wtf(parsedEntities.map((e) => '${e.name}: ${e.sourceName}').toList()
-      ..sort((a, b) => a.compareTo(b)));
-
     final sources = parsedSources.map((source) {
       final entitiesToMove = List<Entity>.from(
           parsedEntities.where((e) => e.sourceName == source.name).toList());
