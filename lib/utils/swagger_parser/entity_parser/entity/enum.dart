@@ -27,11 +27,6 @@ class EnumEntity implements Entity {
   }
 
   @override
-  void setName(String name) {
-    this.name = name;
-  }
-
-  @override
   String toString() {
     var result = '';
 
