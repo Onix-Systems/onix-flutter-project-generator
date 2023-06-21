@@ -1,4 +1,6 @@
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
+import 'package:onix_flutter_bricks/utils/extensions/replace_last.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/class_entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
@@ -7,8 +9,8 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class EntityParser {
-  static Future<List<Entity>> parse(Map<String, dynamic> data) async {
-    final entities = <Entity>[];
+  static Future<Set<Entity>> parse(Map<String, dynamic> data) async {
+    final entities = <Entity>{};
 
     final entries = data.containsKey('definitions')
         ? data['definitions'].entries
@@ -48,12 +50,17 @@ class EntityParser {
       }
     }
 
+    for (final entity in entities) {
+      logger.wtf(
+          '${entity.name}\n${entity.properties.map((e) => e.toString()).join('\n')}');
+    }
+
     return entities;
   }
 
   static void _parseObject(
       {required MapEntry<String, dynamic> entry,
-      required List<Entity> entities,
+      required Set<Entity> entities,
       required List<String> imports,
       required List<MapEntry<String, dynamic>> stack}) {
     if (entry.value.containsKey('allOf')) {
@@ -66,16 +73,17 @@ class EntityParser {
     }
 
     final entity = ClassEntity(
-      name: entry.key,
+      name: entry.key.stripRequestResponse(),
       properties:
           (entry.value['properties'] as Map<String, dynamic>).entries.map((e) {
         if (TypeMatcher.isReference(e.value)) {
-          imports.add(_getRefClassName(e.value).snakeCase);
+          imports
+              .add(_getRefClassName(e.value).stripRequestResponse().snakeCase);
         }
         var property = Property(
-          name: e.key.camelCase,
+          name: e.key.camelCase.stripRequestResponse(),
           type: TypeMatcher.isReference(e.value)
-              ? _getRefClassName(e.value)
+              ? _getRefClassName(e.value).stripRequestResponse().pascalCase
               : e.value['type'],
           nullable: e.value['nullable'] ?? false,
         );
@@ -95,11 +103,13 @@ class EntityParser {
 
     entity.addImports(imports);
 
+    logger.wtf(entity.name);
+
     entities.add(entity);
   }
 
   static void _parseMap(
-      Property property, MapEntry<String, dynamic> e, List<Entity> entities) {
+      Property property, MapEntry<String, dynamic> e, Set<Entity> entities) {
     property.type = property.name.pascalCase;
 
     parse({
@@ -115,10 +125,12 @@ class EntityParser {
   }
 
   static void _parseArray(MapEntry<String, dynamic> e, Property property,
-      List<Entity> entities, List<String> imports) {
+      Set<Entity> entities, List<String> imports) {
     if (TypeMatcher.isReference(e.value['items'])) {
-      property.type = 'List<${_getRefClassName(e.value['items'])}>';
-      imports.add(_getRefClassName(e.value['items']).snakeCase);
+      property.type =
+          'List<${_getRefClassName(e.value['items']).stripRequestResponse()}>';
+      imports.add(
+          _getRefClassName(e.value['items']).stripRequestResponse().snakeCase);
     } else {
       if ((e.value['items'] as Map<String, dynamic>).isEmpty) {
         property.type = 'List<dynamic>';
@@ -166,13 +178,13 @@ class EntityParser {
   }
 
   static void _parseStack(
-      List<MapEntry<String, dynamic>> stack, List<Entity> entities) {
+      List<MapEntry<String, dynamic>> stack, Set<Entity> entities) {
     for (final entry in stack) {
       final Map<String, dynamic> properties = {};
 
       for (var dependency in entry.value['allOf']) {
         if (TypeMatcher.isReference(dependency)) {
-          final className = _getRefClassName(dependency);
+          final className = _getRefClassName(dependency).stripRequestResponse();
 
           final entity =
               entities.where((element) => element.name == className).first;

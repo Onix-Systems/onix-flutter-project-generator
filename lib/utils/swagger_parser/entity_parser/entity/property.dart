@@ -6,7 +6,7 @@ part 'property.g.dart';
 @JsonSerializable()
 class Property {
   String name;
-  late String type;
+  String type;
   final bool nullable;
 
   Property({

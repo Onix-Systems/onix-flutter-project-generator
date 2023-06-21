@@ -15,6 +15,11 @@ class EnumEntity implements Entity {
   EnumEntity({required this.name, required this.properties});
 
   @override
+  void setName(String name) {
+    this.name = name;
+  }
+
+  @override
   void setSourceName(String sourceName) {
     if (this.sourceName.isEmpty) {
       this.sourceName = sourceName;
