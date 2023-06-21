@@ -13,7 +13,8 @@ class EntityWrapper {
   List<Property> properties;
   @JsonKey(includeFromJson: false, includeToJson: false)
   Entity? entity;
-  bool isEnum;
+
+  //bool isEnum;
 
   EntityWrapper({
     required this.name,
@@ -22,7 +23,7 @@ class EntityWrapper {
     this.generateResponse = false,
     this.exists = false,
     this.properties = const [],
-    this.isEnum = false,
+    //this.isEnum = false,
   });
 
   EntityWrapper.copyOf(EntityWrapper entity)
@@ -53,6 +54,6 @@ class EntityWrapper {
 
   @override
   String toString() {
-    return 'EntityEntity{name: $name, exists: $exists, isEnum: $isEnum, generateRequest: $generateRequest, generateResponse: $generateResponse, properties: $properties}';
+    return 'EntityEntity{name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse, properties: $properties}';
   }
 }

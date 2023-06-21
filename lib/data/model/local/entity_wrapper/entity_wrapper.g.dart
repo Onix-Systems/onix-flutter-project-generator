@@ -16,7 +16,6 @@ EntityWrapper _$EntityWrapperFromJson(Map<String, dynamic> json) =>
               ?.map((e) => Property.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      isEnum: json['isEnum'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$EntityWrapperToJson(EntityWrapper instance) =>
@@ -26,5 +25,4 @@ Map<String, dynamic> _$EntityWrapperToJson(EntityWrapper instance) =>
       'generateResponse': instance.generateResponse,
       'exists': instance.exists,
       'properties': instance.properties,
-      'isEnum': instance.isEnum,
     };

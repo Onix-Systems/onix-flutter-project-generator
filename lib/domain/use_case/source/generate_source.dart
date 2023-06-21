@@ -510,7 +510,7 @@ final request = _apiClient.client.${method.methodType}(
     for (final source in allSources) {
       for (final entity in source.entities) {
         if (entity.name == entityName) {
-          result = entity.isEnum;
+          result = entity.entity is EnumEntity;
         }
       }
     }

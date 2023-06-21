@@ -81,7 +81,6 @@ class SwaggerParser {
                   : e.properties
                       .map((p) => Property(name: p, type: ''))
                       .toList(),
-              isEnum: e is EnumEntity,
             );
           },
         ).toList(),
@@ -116,7 +115,6 @@ class SwaggerParser {
             properties: e.properties is List<Property>
                 ? e.properties as List<Property>
                 : [],
-            isEnum: e is EnumEntity,
           ),
         )
         .toList();

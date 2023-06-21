@@ -4,13 +4,14 @@ import 'package:onix_flutter_bricks/domain/use_case/entity/generate_enum_entity.
 import 'package:onix_flutter_bricks/domain/use_case/entity/generate_mapper.dart';
 import 'package:onix_flutter_bricks/domain/use_case/entity/generate_request.dart';
 import 'package:onix_flutter_bricks/domain/use_case/entity/generate_response.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 
 extension FileGenerator on EntityWrapper {
   Future<void> generateFiles({
     required String projectName,
     required String projectPath,
   }) async {
-    if (isEnum) {
+    if (entity is EnumEntity) {
       GenerateEnumEntity()(
         projectName: projectName,
         projectPath: projectPath,
@@ -23,21 +24,21 @@ extension FileGenerator on EntityWrapper {
         entityWrapper: this,
       );
     }
-    if (!isEnum && generateResponse) {
+    if (entity is! EnumEntity && generateResponse) {
       GenerateResponse()(
         projectName: projectName,
         projectPath: projectPath,
         entityWrapper: this,
       );
     }
-    if (!isEnum && generateRequest) {
+    if (entity is! EnumEntity && generateRequest) {
       GenerateRequest()(
         projectName: projectName,
         projectPath: projectPath,
         entityWrapper: this,
       );
     }
-    if (!isEnum && (generateRequest || generateResponse)) {
+    if (entity is! EnumEntity && (generateRequest || generateResponse)) {
       GenerateMapper()(
         projectName: projectName,
         projectPath: projectPath,
