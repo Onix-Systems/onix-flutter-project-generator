@@ -105,7 +105,7 @@ extension LogString on String {
 
 extension Log on Process {
   void log() {
-    this.outLines.forEach((element) => print('{#info}$element'));
+    this.outLines.forEach((element) => print('$element'));
     this.errLines.forEach((element) => print('{#error}$element'));
   }
 
