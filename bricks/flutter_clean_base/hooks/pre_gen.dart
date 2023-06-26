@@ -68,8 +68,6 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
   if (context.vars['flavorizr'] == true) {
     flavors = ['dev', 'prod'];
 
-    context.vars['flavors'].toString().log();
-
     if (context.vars['flavors']
         .toString()
         .replaceAll('[', '')
