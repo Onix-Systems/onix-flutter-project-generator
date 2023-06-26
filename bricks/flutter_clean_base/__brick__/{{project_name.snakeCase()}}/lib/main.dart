@@ -10,10 +10,7 @@ import 'package:{{project_name}}/core/arch/bloc/app_bloc_observer.dart';
 import 'package:{{project_name}}/app/app.dart';
 import 'package:{{project_name}}/core/app/app_initialization.dart';
 
-{{#flavorizr}}Future<void> mainApp() async {
-  {{/flavorizr}}
-  {{^flavorizr}}Future<void> main() async {
-  {{/flavorizr}}
+Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
     await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
 
