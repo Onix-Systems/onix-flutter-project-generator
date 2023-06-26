@@ -413,7 +413,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       }
 
       await configFile.writeAsString(jsonEncode({
-        'withUI': true,
         'signing_password': genPass,
         'project_name_dirt': state.projectName,
         'project_org': state.organization,

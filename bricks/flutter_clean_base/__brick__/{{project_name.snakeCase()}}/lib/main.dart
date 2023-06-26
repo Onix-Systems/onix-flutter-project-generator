@@ -17,7 +17,6 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
     await AppInitialization.I.initApp();
 
     // await SystemChrome.setPreferredOrientations([
-    //// TESSSSSTTTTTTT
     //   //DeviceOrientation.portraitUp,
     //   //DeviceOrientation.portraitDown,
     //   //DeviceOrientation.landscapeLeft,
