@@ -1,8 +1,0 @@
-import 'package:${projectName}/core/arch/domain/entity/common/result.dart';
-//import 'package:new_project/core/arch/domain/entity/common/operation_status.dart';
-//{entities_imports}
-
-abstract class ${sourceName.pascalCase}Repository {
-  //Future<Result<${className.pascalCase}>> get${className.pascalCase}();
-  //Future<Result<OperationStatus>> post${className.pascalCase}(${className.pascalCase} ${className.snakeCase});
-}
