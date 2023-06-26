@@ -37,7 +37,7 @@ import 'package:{{project_name}}/core/app/app_initialization.dart';
     ));
     {{/device_preview}}
     {{^device_preview}}
-    runApp(App());
+    runApp(const App());
     {{/device_preview}}
     }, (error, stackTrace) {
       if (kDebugMode) {
