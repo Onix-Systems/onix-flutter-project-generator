@@ -10,9 +10,11 @@ import 'package:{{project_name}}/core/arch/bloc/app_bloc_observer.dart';
 import 'package:{{project_name}}/app/app.dart';
 import 'package:{{project_name}}/core/app/app_initialization.dart';
 
-{{#flavorizr}}Future<void> mainApp() async {{{/flavorizr}}
-  {{^flavorizr}}Future<void> main() async {{{/flavorizr}}
-  unawaited(runZonedGuarded(() async {
+{{#flavorizr}}Future<void> mainApp() async {
+  {{/flavorizr}}
+  {{^flavorizr}}Future<void> main() async {
+  {{/flavorizr}}
+    await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
 
     await AppInitialization.I.initApp();
@@ -35,7 +37,7 @@ import 'package:{{project_name}}/core/app/app_initialization.dart';
     ));
     {{/device_preview}}
     {{^device_preview}}
-    runApp(const App());
+    runApp(App());
     {{/device_preview}}
     }, (error, stackTrace) {
       if (kDebugMode) {
@@ -49,5 +51,5 @@ import 'package:{{project_name}}/core/app/app_initialization.dart';
         print(trace);
         }
         exit(-1);
-    }));
+    });
   }
