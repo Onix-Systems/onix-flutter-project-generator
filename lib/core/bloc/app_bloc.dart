@@ -689,7 +689,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                 source.entities.where((entity) => entity.exists).isEmpty)
             .toList();
         for (var source in sources) {
-          for (final entity in source.entities.where((e) => !e.exists)) {
+          for (final entity in source.entities.where((e) =>
+              !e.exists &&
+              !source.paths.any((path) => path.methods
+                  .any((method) => method.innerEnum?.name == e.name)))) {
             await entity.generateFiles(
               projectPath: projectPath,
               projectName: state.projectName,

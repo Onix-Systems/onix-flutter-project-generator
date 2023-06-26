@@ -9,8 +9,6 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/source_pa
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_data.dart';
 import 'package:recase/recase.dart';
 
-import '../../core/di/di.dart';
-
 class SwaggerParser {
   static Future<SwaggerData> parse(
       {required Map<String, dynamic> data, required String projectName}) async {
@@ -38,18 +36,19 @@ class SwaggerParser {
     }
 
     final sources = parsedSources.map((source) {
-      final entitiesToMove = List<Entity>.from(
-          parsedEntities.where((e) => e.sourceName == source.name).toList());
-
       for (final source in parsedSources) {
         for (final path in source.paths) {
           for (final method in path.methods) {
             if (method.innerEnum != null) {
-              entitiesToMove.add(method.innerEnum!);
+              method.innerEnum!.setSourceName(source.name);
+              parsedEntities.add(method.innerEnum!);
             }
           }
         }
       }
+
+      final entitiesToMove = List<Entity>.from(
+          parsedEntities.where((e) => e.sourceName == source.name).toList());
 
       return SourceWrapper(
         name: source.name,
