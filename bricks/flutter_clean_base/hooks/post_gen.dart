@@ -86,6 +86,11 @@ void run(HookContext context) async {
 
   await Process.run('rm', ['app.dart'], workingDirectory: '$name/lib');
 
+  await Process.run('mv', ['main.gen.dart', 'main.dart'],
+      workingDirectory: '$name/lib');
+
+  //await Process.run('rm', ['main.gen.dar'], workingDirectory: '$name/lib');
+
   if (!context.vars['handLocalization']) {
     var localizationProcess = await Process.start(
         'flutter', ['pub', 'run', 'intl_utils:generate'],

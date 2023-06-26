@@ -314,11 +314,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _flavorizeChange(_, Emitter<AppState> emit) async {
+    logger.wtf(state.flavors);
     emit(state.copyWith(flavorize: !state.flavorize));
   }
 
   FutureOr<void> _flavorsChange(
       FlavorsChange event, Emitter<AppState> emit) async {
+    logger.wtf(event.flavors);
     emit(state.copyWith(flavors: event.flavors));
   }
 
@@ -391,15 +393,17 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (!state.projectExists && state.projectName.isNotEmpty) {
       var configFile = await File('${state.projectPath}/config.json').create();
 
-      var flavors = <String>[];
+      var flavors = <String>{};
 
       if (state.flavors.isNotEmpty) {
-        var flavors = state.flavors
-            .toLowerCase()
-            .trim()
-            .replaceAll(RegExp(' +'), ' ')
-            .split(' ')
-            .toSet();
+        flavors = state.flavors.contains(' ')
+            ? state.flavors
+                .toLowerCase()
+                .trim()
+                .replaceAll(RegExp(' +'), ' ')
+                .split(' ')
+                .toSet()
+            : {state.flavors.toLowerCase()};
 
         for (var flavor in flavors) {
           if (flavor.isEmpty || flavor == ' ') {
@@ -411,6 +415,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           ..remove('dev')
           ..remove('prod');
       }
+
+      logger.wtf(flavors);
 
       await configFile.writeAsString(jsonEncode({
         'signing_password': genPass,
