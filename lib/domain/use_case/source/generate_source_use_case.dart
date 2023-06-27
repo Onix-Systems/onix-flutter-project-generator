@@ -12,7 +12,7 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/pa
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
-class GenerateSource {
+class GenerateSourceUseCase {
   Future<void> call({
     required String projectName,
     required String projectPath,

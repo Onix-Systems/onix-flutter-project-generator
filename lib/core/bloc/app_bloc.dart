@@ -14,6 +14,7 @@ import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapp
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
+import 'package:onix_flutter_bricks/domain/use_case/screen/generate_screen_use_case.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/class_entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
@@ -30,6 +31,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   static const String gitRef = '--git-ref swagger_parser';
 
   final ConfigSource _configSource = ConfigSourceImpl();
+
+  final _generateScreenUseCase = GenerateScreenUseCase();
 
   AppBloc({required this.projectPath})
       : super(
@@ -416,8 +419,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           ..remove('prod');
       }
 
-      logger.wtf(flavors);
-
       await configFile.writeAsString(jsonEncode({
         'signing_password': genPass,
         'project_name_dirt': state.projectName,
@@ -632,19 +633,27 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       ScreensGenerate event, Emitter<AppState> emit) async {
     if (state.screens.where((element) => !element.exists).isNotEmpty) {
       emit(state.copyWith(generatingState: GeneratingState.generating));
-      var mainProcess = await startProcess(
-          workingDirectory: '${state.projectPath}/${state.projectName}');
-
-      mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_screen --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_screen ${gitRef.isNotEmpty ? gitRef : ''}');
+      // var mainProcess = await startProcess(
+      //     workingDirectory: '${state.projectPath}/${state.projectName}');
+      //
+      // mainProcess.stdin.writeln(
+      //     'mason add -g flutter_clean_screen --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_screen ${gitRef.isNotEmpty ? gitRef : ''}');
 
       for (var screen in state.screens.where((element) => !element.exists)) {
         logger.d('Generating screen ${screen.name}...');
-        mainProcess.stdin.writeln(
-            'mason make flutter_clean_screen --build ${screen == state.screens.last} --screen_name ${screen.name} --use_bloc ${screen.bloc} --on-conflict overwrite');
+
+        _generateScreenUseCase(
+          screen: screen,
+          projectPath: state.projectPath,
+          projectName: state.projectName,
+          router: state.router,
+        );
+
+        // mainProcess.stdin.writeln(
+        //     'mason make flutter_clean_screen --build ${screen == state.screens.last} --screen_name ${screen.name} --use_bloc ${screen.bloc} --on-conflict overwrite');
       }
 
-      await mainProcess.exitCode;
+      // await mainProcess.exitCode;
       outputService.add('{#info}Screens generated!');
     }
 
