@@ -317,13 +317,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _flavorizeChange(_, Emitter<AppState> emit) async {
-    logger.wtf(state.flavors);
     emit(state.copyWith(flavorize: !state.flavorize));
   }
 
   FutureOr<void> _flavorsChange(
       FlavorsChange event, Emitter<AppState> emit) async {
-    logger.wtf(event.flavors);
     emit(state.copyWith(flavors: event.flavors));
   }
 
@@ -633,27 +631,27 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       ScreensGenerate event, Emitter<AppState> emit) async {
     if (state.screens.where((element) => !element.exists).isNotEmpty) {
       emit(state.copyWith(generatingState: GeneratingState.generating));
-      // var mainProcess = await startProcess(
-      //     workingDirectory: '${state.projectPath}/${state.projectName}');
-      //
-      // mainProcess.stdin.writeln(
-      //     'mason add -g flutter_clean_screen --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_screen ${gitRef.isNotEmpty ? gitRef : ''}');
+      var mainProcess = await startProcess(
+          workingDirectory: '${state.projectPath}/${state.projectName}');
 
       for (var screen in state.screens.where((element) => !element.exists)) {
-        logger.d('Generating screen ${screen.name}...');
+        outputService.add('{#info}Generating screen ${screen.name}...');
 
-        _generateScreenUseCase(
+        await _generateScreenUseCase(
           screen: screen,
           projectPath: state.projectPath,
           projectName: state.projectName,
           router: state.router,
         );
 
-        // mainProcess.stdin.writeln(
-        //     'mason make flutter_clean_screen --build ${screen == state.screens.last} --screen_name ${screen.name} --use_bloc ${screen.bloc} --on-conflict overwrite');
+        if (screen == state.screens.last) {
+          mainProcess.stdin.writeln(
+              'dart run build_runner build --delete-conflicting-outputs && echo "Complete with exit code: 0"');
+          outputService.add('{#info}Complete with exit code: 0');
+        }
       }
 
-      // await mainProcess.exitCode;
+      await mainProcess.exitCode;
       outputService.add('{#info}Screens generated!');
     }
 

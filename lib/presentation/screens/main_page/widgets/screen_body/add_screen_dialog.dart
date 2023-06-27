@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 import 'package:recase/recase.dart';
@@ -51,7 +50,6 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
     return Focus(
       focusNode: _dialogFocusNode,
       onKey: (node, event) {
-        logger.d('Key event: ${event.logicalKey}');
         if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
           _onOk(context);
           return KeyEventResult.handled;
@@ -62,10 +60,8 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
         }
         if (event.isKeyPressed(LogicalKeyboardKey.space)) {
           setState(() {
-            logger.d('Space pressed');
             if (_currentFocusNode == _dialogFocusNode) {
               _useBloc = !_useBloc;
-              logger.d('Use Bloc: $_useBloc');
             }
           });
 

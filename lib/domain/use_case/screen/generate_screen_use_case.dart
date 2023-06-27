@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
 import 'package:onix_flutter_bricks/domain/use_case/screen/gen/file_content.dart';
-import 'package:process_run/process_run.dart';
 import 'package:recase/recase.dart';
 
 class GenerateScreenUseCase {
@@ -54,23 +53,6 @@ class GenerateScreenUseCase {
       );
     }
 
-    if (build) {
-      var buildProcess = await Process.start(
-          'flutter', ['pub', 'run', 'build_runner', 'build']);
-
-      buildProcess.outLines.forEach((element) {
-        print(element);
-      });
-
-      buildProcess.errLines.forEach((element) {
-        print(element);
-      });
-
-      if (await buildProcess.exitCode == 0) {
-        print('{#info}Complete with exit code: 0');
-      }
-    }
-
     await Process.run('flutter', ['format', '.']);
     await Process.run('rm', ['-r', 'gen']);
   }
@@ -84,11 +66,12 @@ class GenerateScreenUseCase {
 
     if (router == ProjectRouter.goRouter) {
       routesFile.writeAsString(routesContent.replaceAll('//{consts end}',
-          '''static const _${screenName.camelCase} = '/$screenName}';
+          '''static const _${screenName.camelCase} = '/$screenName';
       //{consts end}''').replaceAll('//{getters end}',
           '''static String get ${screenName.camelCase}Screen => _${screenName.camelCase};
       //{getters end}''').replaceAll('//{routes end}', '''GoRoute(
           path: _${screenName.camelCase},
+          name: '${screenName.pascalCase}Screen',
           builder: (context, state) =>
               const ${screenName.pascalCase}Screen(),
         ),
