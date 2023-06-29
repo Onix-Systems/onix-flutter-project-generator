@@ -31,6 +31,22 @@ class GenerateSourceUseCase {
             '${path.path}/${sourceWrapper.name.snakeCase}_source_impl.dart')
         .create();
 
+    final repositoryPath = await Directory(
+            '$projectPath/$projectName/lib/domain/repository/${sourceWrapper.name.snakeCase}')
+        .create(recursive: true);
+
+    final repositoryImplPath = await Directory(
+            '$projectPath/$projectName/lib/data/repository/${sourceWrapper.name.snakeCase}')
+        .create(recursive: true);
+
+    var repositoryFile = await File(
+            '${repositoryPath.path}/${sourceWrapper.name.snakeCase}_repository.dart')
+        .create();
+
+    var repositoryImplFile = await File(
+            '${repositoryImplPath.path}/${sourceWrapper.name.snakeCase}_repository_impl.dart')
+        .create();
+
     final sourceMethods = <String>[];
     final implMethods = <GeneratedMethod>[];
     final pathPrefix = _getPathsPrefix(sourceWrapper.paths);
@@ -127,6 +143,22 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
 }''';
 
     await file.writeAsString(fileContent);
+
+    fileContent = fileContent
+        .replaceAll('data_response.dart', 'result.dart')
+        .replaceAll('<DataResponse<', '<Result<')
+        .replaceAll('Response>>', '>>')
+        .split(';')
+        .map((e) {
+      if (e.contains('_response.dart')) {
+        return e
+            .replaceAll('_response.dart', '.dart')
+            .replaceAll('data/model/remote/', 'domain/entity/');
+      }
+      return e;
+    }).join(';');
+
+    await repositoryFile.writeAsString(fileContent);
 
     fileContent =
         '''import 'package:$projectName/core/arch/data/remote/api_client.dart';
