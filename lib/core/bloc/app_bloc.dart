@@ -710,7 +710,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               projectName: state.projectName,
             );
           }
-          source.generateFiles(
+
+          await source.generateFiles(
             projectPath: projectPath,
             projectName: state.projectName,
             allSources: state.sources,
