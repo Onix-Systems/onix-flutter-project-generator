@@ -3,7 +3,7 @@ enum MethodType {
   post,
   put,
   delete,
-  // patch,
+  patch,
   // head,
   // options,
 }

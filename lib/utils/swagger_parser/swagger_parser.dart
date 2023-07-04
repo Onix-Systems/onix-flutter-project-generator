@@ -40,9 +40,9 @@ class SwaggerParser {
       for (final source in parsedSources) {
         for (final path in source.paths) {
           for (final method in path.methods) {
-            if (method.innerEnum != null) {
-              method.innerEnum!.setSourceName(source.name);
-              parsedEntities.add(method.innerEnum!);
+            if (method.innerEnums.isNotEmpty) {
+              method.innerEnums.map((e) => e.setSourceName(source.name));
+              parsedEntities.addAll(method.innerEnums);
             }
           }
         }

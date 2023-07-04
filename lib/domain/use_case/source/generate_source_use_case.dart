@@ -103,7 +103,7 @@ class GenerateSourceUseCase {
         implMethods.add(GeneratedMethod(
           path: path.path,
           sourceMethod: sourceMethod,
-          innerEnum: method.innerEnum,
+          innerEnums: method.innerEnums,
           name: sourceMethod.split(' ')[1].split('(').first,
           methodType: method.methodType.name,
           endpoint: endpoint,
@@ -345,8 +345,9 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
               method.requestEntityName.stripRequestResponse()) !=
           null);
 
-      if (!(method.innerEnum != null &&
-          method.requestEntityName != method.innerEnum!.name)) {
+      if (!(method.innerEnums.isNotEmpty &&
+          !method.innerEnums
+              .any((element) => element.name == method.requestEntityName))) {
         imports.add(
             "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.requestEntityName.stripRequestResponse().snakeCase}/${requestEntityName.snakeCase}.dart';");
       }
@@ -393,16 +394,18 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
       );
     }
 
-    if (method.innerEnum != null) {
-      imports.add(
-          "import 'package:$projectName/data/model/remote/${sourceWrapper.name.snakeCase}/enums/${method.innerEnum!.name.snakeCase}.dart';");
+    if (method.innerEnums.isNotEmpty) {
+      for (final innerEnum in method.innerEnums) {
+        imports.add(
+            "import 'package:$projectName/data/model/remote/${sourceWrapper.name.snakeCase}/enums/${innerEnum.name.snakeCase}.dart';");
 
-      _generateMethodInnerEnumFile(
-        innerEnum: method.innerEnum!,
-        projectName: projectName,
-        projectPath: projectPath,
-        sourceWrapper: sourceWrapper,
-      );
+        _generateMethodInnerEnumFile(
+          innerEnum: innerEnum,
+          projectName: projectName,
+          projectPath: projectPath,
+          sourceWrapper: sourceWrapper,
+        );
+      }
     }
 
     return generatedMethod;
@@ -427,7 +430,8 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
                 null);
 
             if (source != null &&
-                parameter.type.snakeCase != method.innerEnum?.name.snakeCase) {
+                !method.innerEnums.any((element) =>
+                    element.name.snakeCase == parameter.type.snakeCase)) {
               imports.add(
                   "import 'package:$projectName/domain/entity/${source.name.snakeCase}/${parameter.type.snakeCase}/${parameter.type.snakeCase}.dart';");
             }
@@ -589,7 +593,7 @@ class ${methodName.pascalCase}Params{
 final request = _apiClient.client.${method.methodType}(
    ${method.endpoint.split(' ').firstWhere((e) => e.startsWith('_')).split('(').first.replaceAll(prefix, '')}${method.pathParams.isNotEmpty ? '(${method.pathParams.map((e) => e.name).join(', ')})' : ''},
    ${method.optionalParams.isNotEmpty ? 'queryParameters: params?.toJson(),' : ''}
-   ${method.optionalParams.isEmpty && method.queryParams.isNotEmpty ? 'queryParameters: {${method.queryParams.map((e) => '\'${e.name}\': ${e.name}${e.type == method.innerEnum?.name ? '.name' : ''}').join(',\n')},},' : ''}
+   ${method.optionalParams.isEmpty && method.queryParams.isNotEmpty ? 'queryParameters: {${method.queryParams.map((e) => '\'${e.name}\': ${e.name}${method.innerEnums.any((element) => element.name == e.type) ? '.name' : ''}').join(',\n')},},' : ''}
    ${data.isNotEmpty ? 'data: $data.toJson(),' : ''}
    );
 
@@ -741,7 +745,7 @@ class GeneratedMethod {
   final String optionalParams;
   final List<MethodParameter> queryParams;
   final List<MethodParameter> pathParams;
-  final EnumEntity? innerEnum;
+  final List<EnumEntity> innerEnums;
 
   GeneratedMethod({
     required this.path,
@@ -755,7 +759,7 @@ class GeneratedMethod {
     required this.optionalParams,
     required this.queryParams,
     required this.pathParams,
-    this.innerEnum,
+    this.innerEnums = const [],
   });
 
   @override

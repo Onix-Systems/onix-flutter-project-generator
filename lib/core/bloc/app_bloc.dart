@@ -704,8 +704,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         for (var source in sources) {
           for (final entity in source.entities.where((e) =>
               !e.exists &&
-              !source.paths.any((path) => path.methods
-                  .any((method) => method.innerEnum?.name == e.name)))) {
+              //TODO: fix this
+              !source.paths.any((path) => path.methods.any((method) => method
+                  .innerEnums
+                  .any((innerEnum) => innerEnum.name == e.name))))) {
             await entity.generateFiles(
               projectPath: projectPath,
               projectName: state.projectName,

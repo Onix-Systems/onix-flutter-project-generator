@@ -1,6 +1,5 @@
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_parameter.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
@@ -33,16 +32,12 @@ class SourceParser {
           continue;
         }
 
-        logger.wtf(entry);
-
         final method = Method(
           methodType:
               MethodType.values.firstWhere((value) => value.name == entry.key),
           tags: entry.value['tags'].cast<String>(),
           entitiesNames: {},
         );
-
-        logger.wtf(entry);
 
         if (entry.value.containsKey('parameters') &&
             entry.value['parameters'].isNotEmpty) {
@@ -72,19 +67,20 @@ class SourceParser {
                 //method.setRequestEntityName(entityName);
               } else {
                 if (isEnum) {
-                  method.innerEnum = EnumEntity(
-                      name: entry.value['operationId'].toString().pascalCase,
+                  method.innerEnums.add(EnumEntity(
+                      name:
+                          '${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase}',
                       properties: parameter['schema']['enum']
                           .map((e) => e.toString())
                           .cast<String>()
-                          .toList());
+                          .toList()));
                 }
 
                 method.params.add(MethodParameter(
                     name: parameter['name'],
                     place: parameter['in'],
                     type: isEnum
-                        ? entry.value['operationId'].toString().pascalCase
+                        ? '${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase}'
                         : TypeMatcher.getDartType(parameter['schema']['type']),
                     nullable: parameter['required'] != null
                         ? !parameter['required']
@@ -116,6 +112,7 @@ class SourceParser {
 
             if (TypeMatcher.isReference(parameter['schema'])) {
               String entityName = _getRefClassName(parameter['schema']);
+
               method.entitiesNames.add(entityName);
               method.setRequestEntityName(entityName);
             }
@@ -191,7 +188,8 @@ class SourceParser {
           : response.value['schema'];
 
       if (schema == null ||
-          (!TypeMatcher.isReference(schema) &&
+          (!schema.containsKey('type') &&
+              !TypeMatcher.isReference(schema) &&
               !TypeMatcher.isReferenceArray(schema))) {
         return;
       }
