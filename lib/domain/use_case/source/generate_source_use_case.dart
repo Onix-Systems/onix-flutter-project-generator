@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/utils/extensions/replace_last.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
@@ -113,8 +114,7 @@ class GenerateSourceUseCase {
           optionalParams: params
               .where((e) => e.contains(' params'))
               .join(', ')
-              .trim()
-              .replaceAll(' params', '? params'),
+              .trim() /*.replaceAll(' params', '? params')*/,
           requiredParams:
               params.where((e) => e.contains('required')).join(', ').trim(),
         ));
@@ -180,7 +180,7 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
   ${sourceWrapper.name.pascalCase}SourceImpl(this._apiClient, this._dioRequestProcessor);
   
   ${implMethods.map((e) => '''@override
-        ${e.sourceMethod.replaceAll(' params', '? params').replaceAll(';', '')} async {
+        ${e.sourceMethod /*.replaceAll(' params', '? params')*/ .replaceAll(';', '')} async {
         ${_getSourceImplBody(e, allSources, mutatedPathPrefix)}
         }
     '''.replaceAll(('{}'), '')).join('\n')}
@@ -195,12 +195,22 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
 
     for (final method in implMethods) {
       if (method.responseEntityName.isNotEmpty) {
+        if (_checkEntityIsEnum(
+            entityName: method.responseEntityName.replaceLast('Response', ''),
+            allSources: allSources)) {
+          continue;
+        }
+
         final mapper =
             method.responseEntityName.replaceLast('Response', '').camelCase;
+
         mappers.add(
             '''final _${mapper}Mappers = ${mapper.pascalCase}Mappers();''');
+
+        final sourceName = _getSourceName(mapper, allSources);
+
         mappersImports.add(
-            '''import 'package:$projectName/data/mapper/${sourceWrapper.name.snakeCase}/${mapper.snakeCase}/${mapper.snakeCase}_mapper.dart';''');
+            '''import 'package:$projectName/data/mapper/${sourceName.snakeCase}/${mapper.snakeCase}/${mapper.snakeCase}_mapper.dart';''');
       }
     }
 
@@ -235,7 +245,8 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
   }) : _${sourceWrapper.name.camelCase}Source = ${sourceWrapper.name.camelCase}Source;
   
   ${implMethods.map((e) => '''@override
-        ${e.sourceMethod.replaceAll('DataResponse', 'Result').replaceAll('Response>>', '>>').replaceAll(' params', '? params').replaceAll(';', '')} async {
+        ${e.sourceMethod.replaceAll('DataResponse', 'Result').replaceAll('Response>>', '>>') /*.replaceAll(' params', '? params')*/
+                .replaceAll(';', '')} async {
         ${_getRepositoryImplBody(e, allSources, mutatedPathPrefix, sourceWrapper.name.camelCase)}
         }
     '''.replaceAll(('{}'), '')).join('\n')}
@@ -316,18 +327,14 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
             : '${method.requestEntityName}Request';
 
     if (method.responseEntityName.isNotEmpty) {
-      final source = allSources.firstWhere((source) =>
-          source.entities.firstWhereOrNull((element) =>
-              element.name ==
-              method.responseEntityName.stripRequestResponse()) !=
-          null);
+      final sourceName = _getSourceName(method.responseEntityName, allSources);
 
       if (responseIsEnum) {
         imports.add(
-            "import 'package:$projectName/domain/entity/${source.name.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}.dart';");
+            "import 'package:$projectName/domain/entity/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}.dart';");
       } else {
         imports.add(
-            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${responseEntityName.snakeCase}.dart';");
+            "import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${responseEntityName.snakeCase}.dart';");
       }
     }
 
@@ -366,7 +373,7 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
         '${method.methodType.name}${_parsePathMethod(path.path, pathPrefix, sourceWrapper)}';
 
     methodParams =
-        '{$methodParams${methodParamsNotRequired.isNotEmpty ? '${methodName.pascalCase}Params params,' : ''}}';
+        '{$methodParams${methodParamsNotRequired.isNotEmpty ? '${methodName.pascalCase}Params? params,' : ''}}';
 
     if (methodParams == '{}') methodParams = '';
 
@@ -594,16 +601,28 @@ final request = _apiClient.client.${method.methodType}(
     return methodBody;
   }
 
+  String _getSourceName(String entityName, Set<SourceWrapper> allSources) {
+    return allSources
+        .firstWhere((source) =>
+            source.entities.firstWhereOrNull((element) =>
+                element.name.snakeCase ==
+                entityName.stripRequestResponse().snakeCase) !=
+            null)
+        .name;
+  }
+
   String _getRepositoryImplBody(GeneratedMethod method,
       Set<SourceWrapper> allSources, String prefix, String sourceName) {
     String sourceParams = method.sourceMethod
-        .replaceAll(' params', '? params')
+        /*.replaceAll(' params', '? params')*/
         .replaceAll(';', '')
         .split('(')
         .last
         .replaceAll('{required ', '')
         .replaceAll(', })', '')
-        .replaceLast(')', '');
+        .replaceLast(')', '')
+        .replaceLast('}', '')
+        .replaceLast(',', '');
 
     if (sourceParams.isNotEmpty) {
       if (sourceParams.contains(',')) {
@@ -625,7 +644,7 @@ final request = _apiClient.client.${method.methodType}(
 try {
       final response = await _${sourceName}Source.${method.name}($sourceParams);
       if (response.isSuccess()) {
-        ${method.sourceMethod.contains('<OperationStatus>') ? 'return Result.success(response.data);' : '''final result = _${responseName.camelCase}Mappers.map${responseName.pascalCase}ResponseToEntity(response.data);
+        ${method.sourceMethod.contains('<OperationStatus>') || _checkEntityIsEnum(entityName: responseName, allSources: allSources) ? 'return Result.success(response.data);' : '''final result = _${responseName.camelCase}Mappers.map${responseName.pascalCase}ResponseToEntity(response.data);
         return Result.success(result);'''}
       } else {
         final failure = MapCommonServerError.getServerFailureDetails(response);

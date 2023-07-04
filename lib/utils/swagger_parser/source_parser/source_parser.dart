@@ -1,3 +1,4 @@
+import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
@@ -21,6 +22,10 @@ class SourceParser {
         continue;
       }
 
+      if (!path.value.entries.toString().contains('tags')) {
+        continue;
+      }
+
       for (final entry in path.value.entries) {
         if (MethodType.values
             .where((element) => element.name == entry.key)
@@ -28,12 +33,16 @@ class SourceParser {
           continue;
         }
 
+        logger.wtf(entry);
+
         final method = Method(
           methodType:
               MethodType.values.firstWhere((value) => value.name == entry.key),
           tags: entry.value['tags'].cast<String>(),
           entitiesNames: {},
         );
+
+        logger.wtf(entry);
 
         if (entry.value.containsKey('parameters') &&
             entry.value['parameters'].isNotEmpty) {
@@ -65,8 +74,10 @@ class SourceParser {
                 if (isEnum) {
                   method.innerEnum = EnumEntity(
                       name: entry.value['operationId'].toString().pascalCase,
-                      properties:
-                          parameter['schema']['enum'].cast<String>().toList());
+                      properties: parameter['schema']['enum']
+                          .map((e) => e.toString())
+                          .cast<String>()
+                          .toList());
                 }
 
                 method.params.add(MethodParameter(

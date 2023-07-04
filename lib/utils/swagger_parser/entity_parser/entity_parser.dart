@@ -67,6 +67,18 @@ class EntityParser {
       return;
     }
 
+    if (entry.value['properties'].toString().contains('oneOf')) {
+      var property = entry.value['properties'].entries.firstWhere((element) {
+        return element.value.toString().contains('oneOf');
+      });
+
+      final item = (entry.value['properties'].values.firstWhere((element) {
+        return element.toString().contains('oneOf');
+      }) as Map<String, dynamic>)['oneOf'][0];
+
+      entry.value['properties'][property.key] = item;
+    }
+
     final entity = ClassEntity(
       name: entry.key.stripRequestResponse(),
       properties:
