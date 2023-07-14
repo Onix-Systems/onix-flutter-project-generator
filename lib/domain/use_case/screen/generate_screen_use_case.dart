@@ -17,14 +17,16 @@ class GenerateScreenUseCase {
         File('$projectPath/$projectName/lib/core/router/app_router.dart');
     var diFile = File('$projectPath/$projectName/lib/core/di/bloc.dart');
 
-    if (screen.name.endsWith('_screen')) {
-      screen.name = screen.name.substring(0, screen.name.length - 7);
+    String screenName = screen.name.snakeCase;
+
+    if (screenName.endsWith('_screen')) {
+      screenName = screenName.substring(0, screenName.length - 7);
     }
 
     //Post gen
 
     final screenPath =
-        '$projectPath/$projectName/lib/presentation/screen/${screen.name}_screen';
+        '$projectPath/$projectName/lib/presentation/screen/${screenName}_screen';
     await Directory(screenPath).create(recursive: true);
 
     if (screen.bloc) {
@@ -32,7 +34,7 @@ class GenerateScreenUseCase {
     }
 
     await _createFiles(
-      screenName: screen.name,
+      screenName: screenName,
       screenPath: screenPath,
       projectName: projectName,
       useBloc: screen.bloc,
@@ -40,7 +42,7 @@ class GenerateScreenUseCase {
     );
 
     await _createRoutes(
-        screenName: screen.name,
+        screenName: screenName,
         router: router,
         routesFile: routesFile,
         projectName: projectName);
@@ -48,7 +50,7 @@ class GenerateScreenUseCase {
     if (screen.bloc) {
       await _createDI(
         projectName: projectName,
-        screenName: screen.name,
+        screenName: screenName,
         diFile: diFile,
       );
     }
