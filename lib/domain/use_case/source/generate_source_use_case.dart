@@ -207,7 +207,7 @@ class ${sourceWrapper.name.pascalCase}SourceImpl implements ${sourceWrapper.name
         mappers.add(
             '''final _${mapper}Mappers = ${mapper.pascalCase}Mappers();''');
 
-        final sourceName = _getSourceName(mapper, allSources);
+        final sourceName = _getSourceName(mapper, allSources, sourceWrapper);
 
         mappersImports.add(
             '''import 'package:$projectName/data/mapper/${sourceName.snakeCase}/${mapper.snakeCase}/${mapper.snakeCase}_mapper.dart';''');
@@ -327,7 +327,8 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
             : '${method.requestEntityName}Request';
 
     if (method.responseEntityName.isNotEmpty) {
-      final sourceName = _getSourceName(method.responseEntityName, allSources);
+      final sourceName =
+          _getSourceName(method.responseEntityName, allSources, sourceWrapper);
 
       if (responseIsEnum) {
         imports.add(
@@ -462,7 +463,11 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
         if (parameter.type.isNotEmpty) {
           for (final source in allSources) {
             for (final entity in source.entities) {
-              if (parameter.type.contains(entity.name)) {
+              if (_checkEntityIsEnum(
+                  entityName: entity.name, allSources: allSources)) {
+                imports.add(
+                    "import 'package:$projectName/data/model/remote/${entity.entity?.sourceName.snakeCase}/enums/${entity.name.snakeCase}.dart';\n");
+              } else if (parameter.type.contains(entity.name)) {
                 imports.add(
                     "import 'package:$projectName/domain/entity/${entity.entity?.sourceName.snakeCase}/${entity.name.snakeCase}/${entity.name.snakeCase}.dart';\n");
               }
@@ -605,14 +610,17 @@ final request = _apiClient.client.${method.methodType}(
     return methodBody;
   }
 
-  String _getSourceName(String entityName, Set<SourceWrapper> allSources) {
-    return allSources
-        .firstWhere((source) =>
+  String _getSourceName(String entityName, Set<SourceWrapper> allSources,
+      SourceWrapper thisSource) {
+    final source = allSources.firstWhere(
+        (source) =>
             source.entities.firstWhereOrNull((element) =>
                 element.name.snakeCase ==
                 entityName.stripRequestResponse().snakeCase) !=
-            null)
-        .name;
+            null,
+        orElse: () => thisSource);
+
+    return source.name;
   }
 
   String _getRepositoryImplBody(GeneratedMethod method,
@@ -681,6 +689,11 @@ try {
       }
     }
 
+    if (allSources.any((element) => element.paths.any((path) => path.methods
+        .any((method) => method.innerEnums
+            .any((innerEnum) => innerEnum.name == entityName))))) {
+      result = true;
+    }
     return result;
   }
 
