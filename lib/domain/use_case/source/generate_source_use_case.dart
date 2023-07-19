@@ -104,11 +104,12 @@ class GenerateSourceUseCase {
           path: path.path,
           sourceMethod: sourceMethod,
           innerEnums: method.innerEnums,
-          name: sourceMethod.split(' ')[1].split('(').first,
+          name: sourceMethod.split('> ')[1].split('(').first,
           methodType: method.methodType.name,
           endpoint: endpoint,
           responseEntityName: method.responseEntityName,
           requestEntityName: method.requestEntityName,
+          responseRuntimeType: method.responseRuntimeType,
           queryParams: method.params.where((e) => e.place == 'query').toList(),
           pathParams: method.params.where((e) => e.place == 'path').toList(),
           optionalParams: params
@@ -380,7 +381,7 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
     if (methodParams == '{}') methodParams = '';
 
     String generatedMethod =
-        'Future<${method.responseEntityName.isNotEmpty ? 'DataResponse<$responseEntityName>' : 'DataResponse<OperationStatus>'}> $methodName($methodParams);';
+        'Future<${method.responseEntityName.isNotEmpty ? 'DataResponse<$responseEntityName>' : method.responseRuntimeType.isNotEmpty ? 'DataResponse<${method.responseRuntimeType}>' : 'DataResponse<OperationStatus>'}> $methodName($methodParams);';
 
     if (methodParamsNotRequired.isNotEmpty) {
       imports.add(
@@ -463,11 +464,7 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
         if (parameter.type.isNotEmpty) {
           for (final source in allSources) {
             for (final entity in source.entities) {
-              if (_checkEntityIsEnum(
-                  entityName: entity.name, allSources: allSources)) {
-                imports.add(
-                    "import 'package:$projectName/data/model/remote/${entity.entity?.sourceName.snakeCase}/enums/${entity.name.snakeCase}.dart';\n");
-              } else if (parameter.type.contains(entity.name)) {
+              if (parameter.type.contains(entity.name)) {
                 imports.add(
                     "import 'package:$projectName/domain/entity/${entity.entity?.sourceName.snakeCase}/${entity.name.snakeCase}/${entity.name.snakeCase}.dart';\n");
               }
@@ -604,7 +601,7 @@ final request = _apiClient.client.${method.methodType}(
 
  return _dioRequestProcessor.processRequest(
  onRequest: () => request,
- onResponse: (response) => ${method.responseEntityName.isNotEmpty ? '$responseEntityName.${isEnum ? 'values.first' : 'fromJson(response.data)'}' : 'OperationStatus.success'},);
+ onResponse: (response) => ${method.responseEntityName.isNotEmpty ? '$responseEntityName.${isEnum ? 'values.first' : 'fromJson(response.data)'}' : method.responseRuntimeType.isNotEmpty ? 'response.data' : 'OperationStatus.success'},);
     ''';
 
     return methodBody;
@@ -656,8 +653,8 @@ final request = _apiClient.client.${method.methodType}(
 try {
       final response = await _${sourceName}Source.${method.name}($sourceParams);
       if (response.isSuccess()) {
-        ${method.sourceMethod.contains('<OperationStatus>') || _checkEntityIsEnum(entityName: responseName, allSources: allSources) ? 'return Result.success(response.data);' : '''final result = _${responseName.camelCase}Mappers.map${responseName.pascalCase}ResponseToEntity(response.data);
-        return Result.success(result);'''}
+        ${method.sourceMethod.contains('<OperationStatus>') || _checkEntityIsEnum(entityName: responseName, allSources: allSources) ? 'return Result.success(response.data);' : responseName.isNotEmpty ? '''final result = _${responseName.camelCase}Mappers.map${responseName.pascalCase}ResponseToEntity(response.data);
+        return Result.success(result);''' : 'return Result.success(response.data);'}
       } else {
         final failure = MapCommonServerError.getServerFailureDetails(response);
         return Result.error(failure: failure);
@@ -754,6 +751,7 @@ class GeneratedMethod {
   final String sourceMethod;
   final String responseEntityName;
   final String requestEntityName;
+  final String responseRuntimeType;
   final String requiredParams;
   final String optionalParams;
   final List<MethodParameter> queryParams;
@@ -768,6 +766,7 @@ class GeneratedMethod {
     required this.sourceMethod,
     required this.responseEntityName,
     required this.requestEntityName,
+    this.responseRuntimeType = '',
     required this.requiredParams,
     required this.optionalParams,
     required this.queryParams,

@@ -16,7 +16,7 @@ class GenerateMapper {
   }) async {
     final entity = entityWrapper.entity;
     final name = entityWrapper.name;
-    final properties = entityWrapper.properties;
+
     final sourceName = _getSourceName(entityWrapper.entity?.sourceName ?? '');
 
     final importMappers = entity?.entityImports
@@ -57,8 +57,10 @@ ${entityWrapper.generateRequest ? '''
 class _${name.pascalCase}EntityToRequestMapper implements Mapper<${name.pascalCase}, ${name.pascalCase}Request>{
   @override
   ${name.pascalCase}Request map(${name.pascalCase} from,) {
+$importMappers
+
     return ${name.pascalCase}Request(
-${properties.map((e) => '        ${e.name}: from.${e.name}${e.nullable ? ' ?? ${TypeMatcher.defaultTypeValue(e.type)}' : ''},').join('\n')}
+${_getProperties(entityWrapper: entityWrapper, isRequest: true)}
     );
   }
 }''' : ''}
@@ -82,7 +84,8 @@ class ${name.pascalCase}Mappers {
     await file.writeAsString(fileContent);
   }
 
-  String _getProperties({required EntityWrapper entityWrapper}) {
+  String _getProperties(
+      {required EntityWrapper entityWrapper, bool isRequest = false}) {
     final properties = <String>[];
 
     for (final property in entityWrapper.properties) {
@@ -90,20 +93,20 @@ class ${name.pascalCase}Mappers {
         final type = property.type.substring(5, property.type.length - 1);
         entityWrapper.entity!.imports.contains(type.snakeCase)
             ? properties.add(
-                '        ${property.name}: from.${property.name}?.map(${type.camelCase}Mapper.map${type}ResponseToEntity).toList() ?? [],')
-            : properties
-                .add('        ${property.name}: from.${property.name} ?? [],');
+                '        ${property.name}: from.${property.name}${isRequest ? '' : '?'}.map(${type.camelCase}Mapper.map$type${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest ? '' : ' ?? []'},')
+            : properties.add(
+                '        ${property.name}: from.${property.name}${isRequest ? '' : ' ?? []'},');
       } else {
         entityWrapper.entity!.imports.contains(property.type.snakeCase)
             ? entityWrapper.entity!.entityImports
                         .firstWhereOrNull((e) => e.name == property.type)
                     is EnumEntity
                 ? properties.add(
-                    '        ${property.name}: ${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name}) ?? ${property.type.pascalCase}.values.first,')
+                    '        ${property.name}: ${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name})${isRequest ? '' : ' ?? ${property.type.pascalCase}.values.first'},')
                 : properties.add(
-                    '        ${property.name}: ${property.type.camelCase}Mapper.map${property.type.pascalCase}ResponseToEntity(from.${property.name} ?? ${property.type.pascalCase}Response(),),')
+                    '        ${property.name}: ${property.type.camelCase}Mapper.map${property.type.pascalCase}${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}(from.${property.name} ${isRequest ? '' : '?? ${property.type.pascalCase}Response(),'}),')
             : properties.add(
-                '        ${property.name}: from.${property.name} ?? ${TypeMatcher.defaultTypeValue(property.type)},');
+                '        ${property.name}: from.${property.name}${isRequest ? '' : ' ?? ${TypeMatcher.defaultTypeValue(property.type)}'},');
       }
     }
     return properties.join('\n');

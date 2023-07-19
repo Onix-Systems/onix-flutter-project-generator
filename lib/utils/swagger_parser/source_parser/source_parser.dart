@@ -187,10 +187,36 @@ class SourceParser {
               : response.value['content']['*/*']['schema']
           : response.value['schema'];
 
-      if (schema == null ||
-          (!schema.containsKey('type') &&
-              !TypeMatcher.isReference(schema) &&
-              !TypeMatcher.isReferenceArray(schema))) {
+      if (schema == null) {
+        return;
+      }
+
+      if (!TypeMatcher.isReference(schema) &&
+          !TypeMatcher.isReferenceArray(schema)) {
+        if (!schema.containsKey('type')) {
+          return;
+        }
+
+        if (schema['type'] == 'array') {
+          if (!schema.containsKey('items')) {
+            return;
+          }
+
+          if (!TypeMatcher.isReference(schema['items'])) {
+            method.setResponseRuntimeType(
+                'List<${TypeMatcher.getDartType(schema['items']['type'])}>');
+          }
+        } else {
+          if (schema is Map &&
+              (schema.containsKey('additionalProperties') ||
+                  schema.containsKey('properties'))) {
+            method.setResponseRuntimeType('Map<String, dynamic>');
+          } else {
+            method.setResponseRuntimeType(
+                TypeMatcher.getDartType(schema['type']));
+          }
+        }
+
         return;
       }
 

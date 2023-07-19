@@ -9,7 +9,7 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class EntityParser {
-  static Future<Set<Entity>> parse(Map<String, dynamic> data) async {
+  static Set<Entity> parse(Map<String, dynamic> data) {
     final entities = <Entity>{};
 
     final entries = data.containsKey('definitions')
@@ -42,7 +42,7 @@ class EntityParser {
 
       for (final import in entity.imports) {
         final importedEntity = entities.firstWhereOrNull(
-            (element) => element.name.snakeCase == import.snakeCase);
+            (element) => element.name.camelCase == import.camelCase);
 
         if (importedEntity == null) continue;
 
@@ -117,16 +117,16 @@ class EntityParser {
       Property property, MapEntry<String, dynamic> e, Set<Entity> entities) {
     property.type = property.name.pascalCase;
 
-    parse({
+    final innerEntities = parse({
       'definitions': {
         property.type: {
           'type': 'object',
           'properties': e.value['properties'],
         }
       }
-    }).then((innerEntities) {
-      entities.addAll(innerEntities);
     });
+
+    entities.addAll(innerEntities);
   }
 
   static void _parseArray(MapEntry<String, dynamic> e, Property property,
@@ -163,9 +163,8 @@ class EntityParser {
 
           imports.add(className.snakeCase);
 
-          parse(definitions).then((innerEntities) {
-            entities.addAll(innerEntities);
-          });
+          final innerEntities = parse(definitions);
+          entities.addAll(innerEntities);
 
           property.type = 'List<$className>';
         }
@@ -202,16 +201,15 @@ class EntityParser {
         }
       }
 
-      parse({
+      final innerEntities = parse({
         'definitions': {
           entry.key: {
             'type': 'object',
             'properties': properties,
           }
         }
-      }).then((innerEntities) {
-        entities.addAll(innerEntities);
       });
+      entities.addAll(innerEntities);
     }
   }
 }

@@ -81,9 +81,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   FutureOr<void> _swaggerParse(
       SwaggerParse event, Emitter<AppState> emit) async {
     //'https://petstore.swagger.io/v2/swagger.json'
-
     //'https://vocadb.net/swagger/v1/swagger.json'
     //'https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json'
+
     //'https://onix-systems-savii-api-mvp.staging.onix.ua/api-doc/savii-public'
     //'https://gist.githubusercontent.com/cozvtieg9/71b8c0be1a3d0b27ee390c726c2c5cbe/raw/6449c5fb25a4d161c357a396e3430f3b655ad1e2/.json'
 
