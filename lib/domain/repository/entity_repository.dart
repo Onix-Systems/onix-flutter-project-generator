@@ -8,4 +8,6 @@ abstract class EntityRepository {
   Set<String> getEnumNames();
 
   void parse(Map<String, dynamic> data);
+
+  Entity? getEntityByName(String name);
 }

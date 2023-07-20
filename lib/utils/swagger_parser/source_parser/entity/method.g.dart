@@ -9,15 +9,15 @@ part of 'method.dart';
 Method _$MethodFromJson(Map<String, dynamic> json) => Method(
       methodType: $enumDecode(_$MethodTypeEnumMap, json['methodType']),
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
-      entitiesNames: (json['entitiesNames'] as List<dynamic>)
-          .map((e) => e as String)
+      entities: (json['entities'] as List<dynamic>)
+          .map((e) => Entity.fromJson(e as Map<String, dynamic>))
           .toSet(),
     );
 
 Map<String, dynamic> _$MethodToJson(Method instance) => <String, dynamic>{
       'methodType': _$MethodTypeEnumMap[instance.methodType]!,
       'tags': instance.tags,
-      'entitiesNames': instance.entitiesNames.toList(),
+      'entities': instance.entities.toList(),
     };
 
 const _$MethodTypeEnumMap = {

@@ -7,8 +7,6 @@ import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapp
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
-import '../../entity_parser/enum.dart';
-
 class GenerateMapper {
   FutureOr<void> call({
     required String projectName,
@@ -18,19 +16,17 @@ class GenerateMapper {
     final entity = entityWrapper.entity;
     final name = entityWrapper.name;
 
-    final sourceName = _getSourceName(entityWrapper.entity?.sourceName ?? '');
+    final sourceName = _getSourceName(entityWrapper.entity.sourceName);
 
-    final importMappers = entity?.entityImports
-        .where((e) => e is! EnumEntity)
+    final importMappers = entity.entityImports
+        .where((e) => !e.isEnum)
         .map((e) => '    final ${e.name.camelCase}Mapper = ${e.name}Mappers();')
         .join('\n');
 
-    final imports = entity?.entityImports
-        .map((e) => e is EnumEntity
+    final imports = entity.entityImports
+        .map((e) => e.isEnum
             ? 'import \'package:$projectName/domain/entity/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}.dart\';'
-            : importMappers != null &&
-                    importMappers.isNotEmpty &&
-                    entityWrapper.generateResponse
+            : importMappers.isNotEmpty && entityWrapper.generateResponse
                 ? 'import \'package:$projectName/data/model/remote/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';\n'
                     'import \'package:$projectName/data/mapper/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}_mapper.dart\';\n'
                 : '')
@@ -92,16 +88,16 @@ class ${name.pascalCase}Mappers {
     for (final property in entityWrapper.properties) {
       if (property.type.startsWith('List')) {
         final type = property.type.substring(5, property.type.length - 1);
-        entityWrapper.entity!.imports.contains(type.snakeCase)
+        entityWrapper.entity.imports.contains(type.snakeCase)
             ? properties.add(
                 '        ${property.name}: from.${property.name}${isRequest ? '' : '?'}.map(${type.camelCase}Mapper.map$type${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest ? '' : ' ?? []'},')
             : properties.add(
                 '        ${property.name}: from.${property.name}${isRequest ? '' : ' ?? []'},');
       } else {
-        entityWrapper.entity!.imports.contains(property.type.snakeCase)
-            ? entityWrapper.entity!.entityImports
-                        .firstWhereOrNull((e) => e.name == property.type)
-                    is EnumEntity
+        entityWrapper.entity.imports.contains(property.type.snakeCase)
+            ? entityWrapper.entity.entityImports
+                    .firstWhereOrNull((e) => e.name == property.type)!
+                    .isEnum
                 ? properties.add(
                     '        ${property.name}: ${isRequest ? 'from.${property.name}' : '${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name}) ?? ${property.type.pascalCase}.values.first'},')
                 : properties.add(

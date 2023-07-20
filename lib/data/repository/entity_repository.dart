@@ -1,13 +1,10 @@
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/entity.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/property.dart';
 import 'package:onix_flutter_bricks/domain/repository/entity_repository.dart';
 import 'package:onix_flutter_bricks/utils/extensions/replace_last.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
-
-import '../../domain/entity_parser/class_entity.dart';
-import '../../domain/entity_parser/entity.dart';
-import '../../domain/entity_parser/enum.dart';
-import '../../domain/entity_parser/property.dart';
 
 class EntityRepositoryImpl implements EntityRepository {
   final Set<Entity> _entities = {};
@@ -16,14 +13,18 @@ class EntityRepositoryImpl implements EntityRepository {
   Set<Entity> get entities => _entities;
 
   @override
+  Entity? getEntityByName(String name) {
+    return entities.firstWhereOrNull((element) => element.name == name);
+  }
+
+  @override
   Set<String> getEnumNames() {
-    return entities.whereType<EnumEntity>().map((e) => e.name).toSet();
+    return entities.where((e) => e.isEnum).map((e) => e.name).toSet();
   }
 
   @override
   bool isEnum(String name) {
-    return entities
-        .any((element) => element.name == name && element is EnumEntity);
+    return entities.any((element) => element.name == name && element.isEnum);
   }
 
   @override
@@ -46,11 +47,12 @@ class EntityRepositoryImpl implements EntityRepository {
         _parseObject(
             entry: entry, entities: entities, imports: imports, stack: stack);
       } else if (entry.value.containsKey('enum')) {
-        final entity = EnumEntity(
+        final entity = Entity(
           name: entry.key,
           properties: (entry.value['enum'] as List<dynamic>)
-              .map((e) => e.toString().camelCase)
+              .map((e) => Property(name: e, type: 'string'))
               .toList(),
+          isEnum: true,
         );
         entities.add(entity);
       }
@@ -100,7 +102,7 @@ class EntityRepositoryImpl implements EntityRepository {
       entry.value['properties'][property.key] = item;
     }
 
-    final entity = ClassEntity(
+    final entity = Entity(
       name: entry.key.stripRequestResponse(),
       properties:
           (entry.value['properties'] as Map<String, dynamic>).entries.map((e) {

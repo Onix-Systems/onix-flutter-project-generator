@@ -6,8 +6,6 @@ import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapp
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
-import '../../entity_parser/enum.dart';
-
 class GenerateClassEntity {
   FutureOr<void> call({
     required String projectName,
@@ -15,17 +13,15 @@ class GenerateClassEntity {
     required EntityWrapper entityWrapper,
   }) async {
     String imports = '';
-    final sourceName = entityWrapper.entity?.sourceName ?? '';
+    final sourceName = entityWrapper.entity.sourceName ?? '';
 
     final entity = entityWrapper.entity;
     final name = entityWrapper.name;
 
-    if (entity != null) {
-      imports = entity.entityImports
-          .map((e) =>
-              'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';')
-          .join('\n');
-    }
+    imports = entity.entityImports
+        .map((e) =>
+            'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';')
+        .join('\n');
 
     final fileContent = '''
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -61,10 +57,10 @@ ${_getProperties(entityWrapper: entityWrapper)}
 
     for (final property in entityWrapper.properties) {
       if (TypeMatcher.defaultTypeValue(property.type) == (property.type)) {
-        final entity = entityWrapper.entity?.entityImports
+        final entity = entityWrapper.entity.entityImports
             .firstWhereOrNull((element) => element.name == property.type);
 
-        if (entity != null && entity is EnumEntity) {
+        if (entity != null && entity.isEnum) {
           properties
               .add('        ${property.name}: ${property.type}.values.first,');
         } else {

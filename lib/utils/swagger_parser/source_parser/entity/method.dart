@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/enum.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_parameter.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
 
@@ -9,19 +9,19 @@ part 'method.g.dart';
 class Method {
   final MethodType methodType;
   final List<String> tags;
-  final Set<String> entitiesNames;
+  final Set<Entity> entities;
 
   String _responseEntityName = '';
   String _responseRuntimeType = '';
   String _requestEntityName = '';
 
   final List<MethodParameter> params = [];
-  final List<EnumEntity> innerEnums = [];
+  final List<Entity> innerEnums = [];
 
   Method({
     required this.methodType,
     required this.tags,
-    required this.entitiesNames,
+    required this.entities,
   });
 
   String get responseEntityName => _responseEntityName;
@@ -50,7 +50,7 @@ class Method {
 
   @override
   String toString() {
-    return 'methodType: $methodType\ntags: $tags\nentities: $entitiesNames\nparams: $params\nresponseEntityName: $responseEntityName\nresponseEntityType: $responseRuntimeType\nrequestEntityName: $requestEntityName\ninnerEnum: $innerEnums\n';
+    return 'methodType: $methodType\ntags: $tags\nentities: $entities\nparams: $params\nresponseEntityName: $responseEntityName\nresponseEntityType: $responseRuntimeType\nrequestEntityName: $requestEntityName\ninnerEnum: $innerEnums\n';
   }
 
   factory Method.fromJson(Map<String, dynamic> json) => _$MethodFromJson(json);

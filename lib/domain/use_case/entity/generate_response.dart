@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
@@ -13,12 +12,12 @@ class GenerateResponse {
     required String projectPath,
     required EntityWrapper entityWrapper,
   }) async {
-    final sourceName = entityWrapper.entity?.sourceName ?? '';
+    final sourceName = entityWrapper.entity.sourceName;
     final entity = entityWrapper.entity;
     final name = entityWrapper.name;
 
-    final imports = entity?.entityImports
-        .where((e) => e is! EnumEntity)
+    final imports = entity.entityImports
+        .where((e) => !e.isEnum)
         .map((e) =>
             'import \'package:$projectName/data/model/remote/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';')
         .join('\n');
@@ -55,16 +54,16 @@ ${_getProperties(entityWrapper: entityWrapper)}
     for (final property in entityWrapper.properties) {
       if (property.type.startsWith('List')) {
         final type = property.type.substring(5, property.type.length - 1);
-        entityWrapper.entity!.imports.contains(type.snakeCase)
+        entityWrapper.entity.imports.contains(type.snakeCase)
             ? properties.add(
                 '        List<${type.pascalCase}Response>? ${property.name},')
             : properties.add(
                 '        List<${TypeMatcher.getDartType(type)}>? ${property.name},');
       } else {
-        entityWrapper.entity!.imports.contains(property.type.snakeCase)
-            ? entityWrapper.entity!.entityImports
-                        .firstWhereOrNull((e) => e.name == property.type)
-                    is EnumEntity
+        entityWrapper.entity.imports.contains(property.type.snakeCase)
+            ? entityWrapper.entity.entityImports
+                    .firstWhereOrNull((e) => e.name == property.type)!
+                    .isEnum
                 ? properties.add('        String? ${property.name},')
                 : properties.add(
                     '        ${property.type.pascalCase}Response? ${property.name},')

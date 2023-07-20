@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/class_entity.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/entity.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/labeled_checkbox.dart';
 import 'package:recase/recase.dart';
 
@@ -186,7 +186,7 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
               name: widget.entity != null
                   ? _entityNameController.text.snakeCase
                   : _entityNameController.text,
-              entity: ClassEntity(
+              entity: Entity(
                 name: _entityNameController.text.snakeCase,
                 properties: [],
               ),

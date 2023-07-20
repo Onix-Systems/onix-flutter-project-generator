@@ -7,8 +7,6 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_data.dart';
 import 'package:recase/recase.dart';
 
 import '../../domain/entity_parser/entity.dart';
-import '../../domain/entity_parser/enum.dart';
-import '../../domain/entity_parser/property.dart';
 
 class SwaggerParser {
   static Future<SwaggerData> parse(
@@ -63,17 +61,13 @@ class SwaggerParser {
             return EntityWrapper(
               name: e.name,
               entity: e,
-              generateRequest: e is! EnumEntity &&
+              generateRequest: !e.isEnum &&
                   !e.name.endsWith('Request') &&
                   !e.name.endsWith('Response'),
-              generateResponse: e is! EnumEntity &&
+              generateResponse: !e.isEnum &&
                   !e.name.endsWith('Request') &&
                   !e.name.endsWith('Response'),
-              properties: e.properties is List<Property>
-                  ? e.properties as List<Property>
-                  : e.properties
-                      .map((p) => Property(name: p, type: ''))
-                      .toList(),
+              properties: e.properties,
             );
           },
         ).toList(),
@@ -98,15 +92,13 @@ class SwaggerParser {
           (e) => EntityWrapper(
             name: e.name,
             entity: e,
-            generateRequest: e is! EnumEntity &&
+            generateRequest: !e.isEnum &&
                 !parsedEntities.any(
                     (parsedEntity) => parsedEntity.name == '${e.name}Request'),
-            generateResponse: e is! EnumEntity &&
+            generateResponse: !e.isEnum &&
                 !parsedEntities.any(
                     (parsedEntity) => parsedEntity.name == '${e.name}Response'),
-            properties: e.properties is List<Property>
-                ? e.properties as List<Property>
-                : [],
+            properties: e.properties,
           ),
         )
         .toList();
@@ -156,14 +148,12 @@ class SwaggerParser {
       allEntities.addAll(source.entities);
     }
 
-    if (entity.entity == null ||
-        entity.entity is EnumEntity ||
-        entity.entity!.entityImports.isEmpty) {
+    if (entity.entity.isEnum || entity.entity.entityImports.isEmpty) {
       return;
     }
 
-    for (final import in entity.entity!.entityImports) {
-      if (import is! EnumEntity &&
+    for (final import in entity.entity.entityImports) {
+      if (!import.isEnum &&
           !import.name.endsWith('Request') &&
           !import.name.endsWith('Response') &&
           allEntities.firstWhereOrNull((e) => e.name == import.name) != null) {
@@ -183,14 +173,12 @@ class SwaggerParser {
       allEntities.addAll(source.entities);
     }
 
-    if (entity.entity == null ||
-        entity.entity is EnumEntity ||
-        entity.entity!.entityImports.isEmpty) {
+    if (entity.entity.isEnum || entity.entity.entityImports.isEmpty) {
       return;
     }
 
-    for (final import in entity.entity!.entityImports) {
-      if (import is! EnumEntity &&
+    for (final import in entity.entity.entityImports) {
+      if (!import.isEnum &&
           !import.name.endsWith('Response') &&
           !import.name.endsWith('Request') &&
           allEntities.firstWhereOrNull((e) => e.name == import.name) != null) {

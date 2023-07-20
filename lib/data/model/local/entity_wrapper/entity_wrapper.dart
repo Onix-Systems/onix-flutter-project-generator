@@ -12,14 +12,14 @@ class EntityWrapper {
   bool generateResponse;
   bool exists;
   List<Property> properties;
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  Entity? entity;
+
+  Entity entity;
 
   //bool isEnum;
 
   EntityWrapper({
     required this.name,
-    this.entity,
+    required this.entity,
     this.generateRequest = false,
     this.generateResponse = false,
     this.exists = false,
@@ -55,6 +55,6 @@ class EntityWrapper {
 
   @override
   String toString() {
-    return 'EntityEntity{name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse, properties: $properties}';
+    return 'EntityWrapper{name: $name, exists: $exists, generateRequest: $generateRequest, generateResponse: $generateResponse, properties: $properties}';
   }
 }

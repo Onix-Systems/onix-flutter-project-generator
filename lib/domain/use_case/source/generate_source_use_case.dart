@@ -2,17 +2,15 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/entity.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/property.dart';
 import 'package:onix_flutter_bricks/utils/extensions/replace_last.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_parameter.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/path.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
-
-import '../../entity_parser/enum.dart';
-import '../../entity_parser/property.dart';
 
 class GenerateSourceUseCase {
   Future<void> call({
@@ -467,7 +465,7 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
             for (final entity in source.entities) {
               if (parameter.type.contains(entity.name)) {
                 imports.add(
-                    "import 'package:$projectName/domain/entity/${entity.entity?.sourceName.snakeCase}/${entity.name.snakeCase}/${entity.name.snakeCase}.dart';\n");
+                    "import 'package:$projectName/domain/entity/${entity.entity.sourceName.snakeCase}/${entity.name.snakeCase}/${entity.name.snakeCase}.dart';\n");
               }
             }
           }
@@ -505,7 +503,7 @@ class ${methodName.pascalCase}Params{
   }
 
   FutureOr<void> _generateMethodInnerEnumFile({
-    required EnumEntity innerEnum,
+    required Entity innerEnum,
     required String projectName,
     required String projectPath,
     required SourceWrapper sourceWrapper,
@@ -682,7 +680,7 @@ try {
     for (final source in allSources) {
       for (final entity in source.entities) {
         if (entity.name == entityName) {
-          result = entity.entity is EnumEntity;
+          result = entity.entity.isEnum;
         }
       }
     }
@@ -757,7 +755,7 @@ class GeneratedMethod {
   final String optionalParams;
   final List<MethodParameter> queryParams;
   final List<MethodParameter> pathParams;
-  final List<EnumEntity> innerEnums;
+  final List<Entity> innerEnums;
 
   GeneratedMethod({
     required this.path,

@@ -9,6 +9,7 @@ part of 'entity_wrapper.dart';
 EntityWrapper _$EntityWrapperFromJson(Map<String, dynamic> json) =>
     EntityWrapper(
       name: json['name'] as String,
+      entity: Entity.fromJson(json['entity'] as Map<String, dynamic>),
       generateRequest: json['generateRequest'] as bool? ?? false,
       generateResponse: json['generateResponse'] as bool? ?? false,
       exists: json['exists'] as bool? ?? false,
@@ -25,4 +26,5 @@ Map<String, dynamic> _$EntityWrapperToJson(EntityWrapper instance) =>
       'generateResponse': instance.generateResponse,
       'exists': instance.exists,
       'properties': instance.properties,
+      'entity': instance.entity,
     };

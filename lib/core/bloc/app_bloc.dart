@@ -14,7 +14,7 @@ import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapp
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/class_entity.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/entity.dart';
 import 'package:onix_flutter_bricks/domain/entity_parser/property.dart';
 import 'package:onix_flutter_bricks/domain/use_case/screen/generate_screen_use_case.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
@@ -144,7 +144,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                         type: 'DateTime',
                       ),
                     ],
-                    entity: ClassEntity(
+                    entity: Entity(
                       name: 'Time',
                       properties: [
                         Property(
@@ -172,7 +172,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                       type: 'String',
                     ),
                   ],
-                  entity: ClassEntity(
+                  entity: Entity(
                     name: 'Auth',
                     properties: [
                       Property(
@@ -265,7 +265,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                   type: 'DateTime',
                 ),
               ],
-              entity: ClassEntity(
+              entity: Entity(
                 name: 'Time',
                 properties: [
                   Property(
@@ -292,7 +292,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               type: 'String',
             ),
           ],
-          entity: ClassEntity(
+          entity: Entity(
             name: 'Auth',
             properties: [
               Property(
@@ -552,7 +552,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     entity.properties = [Property(name: 'name', type: 'string')];
 
-    entity.entity = ClassEntity(
+    entity.entity = Entity(
       name: entity.name.pascalCase,
       properties: entity.properties,
     );
@@ -565,7 +565,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     } else {
       var entities = event.source?.entities.toList() ?? [];
       var entity = event.entity;
-      (entity.entity as ClassEntity).sourceName = event.source?.name ?? '';
+      entity.entity.sourceName = event.source?.name ?? '';
       entities.add(event.entity);
       var sources = state.sources.toList();
 

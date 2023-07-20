@@ -1,4 +1,5 @@
 import 'package:onix_flutter_bricks/core/di/di.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_parameter.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
@@ -6,8 +7,6 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/pa
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/source.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
-
-import '../../../domain/entity_parser/enum.dart';
 
 class SourceParser {
   static Future<List<Source>> parse(Map<String, dynamic> data) async {
@@ -37,7 +36,7 @@ class SourceParser {
           methodType:
               MethodType.values.firstWhere((value) => value.name == entry.key),
           tags: entry.value['tags'].cast<String>(),
-          entitiesNames: {},
+          entities: {},
         );
 
         if (entry.value.containsKey('parameters') &&
@@ -55,7 +54,13 @@ class SourceParser {
                     ? _getRefClassName(parameter['schema']['items'])
                     : _getRefClassName(parameter['schema']);
 
-                method.entitiesNames.add(entityName);
+                final entity = entityRepository.getEntityByName(entityName);
+
+                if (entity == null) {
+                  continue;
+                }
+
+                method.entities.add(entity);
 
                 method.params.add(MethodParameter(
                     name: entityName.camelCase,
@@ -68,9 +73,10 @@ class SourceParser {
                 //method.setRequestEntityName(entityName);
               } else {
                 if (isEnum) {
-                  method.innerEnums.add(EnumEntity(
+                  method.innerEnums.add(Entity(
                       name:
                           '${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase}',
+                      isEnum: true,
                       properties: parameter['schema']['enum']
                           .map((e) => e.toString())
                           .cast<String>()
@@ -114,8 +120,14 @@ class SourceParser {
             if (TypeMatcher.isReference(parameter['schema'])) {
               String entityName = _getRefClassName(parameter['schema']);
 
-              method.entitiesNames.add(entityName);
-              method.setRequestEntityName(entityName);
+              final entity = entityRepository.getEntityByName(entityName);
+
+              if (entity == null) {
+                continue;
+              }
+
+              method.entities.add(entity);
+              method.setRequestEntityName(entity.name);
             }
           }
         }
@@ -148,7 +160,7 @@ class SourceParser {
       for (final path in paths) {
         for (final method in path.methods) {
           if (method.tags.contains(tag)) {
-            dependencies.addAll(method.entitiesNames);
+            dependencies.addAll(method.entities.map((e) => e.name));
           }
         }
       }
@@ -226,8 +238,13 @@ class SourceParser {
       }
 
       String entityName = _getRefClassName(schema);
+      final entity = entityRepository.getEntityByName(entityName);
 
-      method.entitiesNames.add(entityName);
+      if (entity == null) {
+        continue;
+      }
+
+      method.entities.add(entity);
     }
   }
 

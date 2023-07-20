@@ -4,7 +4,6 @@ import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/enum.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/add_entity_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/screen_table_cell.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
@@ -102,7 +101,7 @@ class EntityTable extends StatelessWidget {
                     value: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (entity.entity is EnumEntity)
+                        if (entity.entity.isEnum)
                           Text('enum')
                         else
                           MSHCheckbox(
@@ -132,7 +131,7 @@ class EntityTable extends StatelessWidget {
                     value: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (entity.entity is EnumEntity)
+                        if (entity.entity.isEnum)
                           Text('enum')
                         else
                           MSHCheckbox(
@@ -167,15 +166,13 @@ class EntityTable extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              color:
-                                  entity.exists || entity.entity is EnumEntity
-                                      ? CupertinoColors.inactiveGray
-                                      : CupertinoColors.activeOrange,
+                              color: entity.exists || entity.entity.isEnum
+                                  ? CupertinoColors.inactiveGray
+                                  : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                if (!entity.exists &&
-                                    entity.entity is! EnumEntity) {
+                                if (!entity.exists && !entity.entity.isEnum) {
                                   showCupertinoModalPopup<EntityWrapper>(
                                     context: context,
                                     barrierDismissible: false,

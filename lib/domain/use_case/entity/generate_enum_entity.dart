@@ -10,10 +10,10 @@ class GenerateEnumEntity {
       required String projectPath,
       required EntityWrapper entityWrapper}) async {
     final name = entityWrapper.name;
-    final sourceName = entityWrapper.entity?.sourceName ?? '';
+    final sourceName = entityWrapper.entity.sourceName ?? '';
 
     final fileContent = '''
-enum ${entityWrapper.entity?.toString().replaceAll('default', '//default')}
+enum ${entityWrapper.entity.toString().replaceAll('default', '//default')}
 ''';
 
     final path = await Directory(
