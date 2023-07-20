@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/entity.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/property.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
+import 'package:onix_flutter_bricks/domain/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/extensions/replace_last.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_parameter.dart';
@@ -465,7 +465,7 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
             for (final entity in source.entities) {
               if (parameter.type.contains(entity.name)) {
                 imports.add(
-                    "import 'package:$projectName/domain/entity/${entity.entity.sourceName.snakeCase}/${entity.name.snakeCase}/${entity.name.snakeCase}.dart';\n");
+                    "import 'package:$projectName/domain/entity/${entity.sourceName.snakeCase}/${entity.name.snakeCase}/${entity.name.snakeCase}.dart';\n");
               }
             }
           }
@@ -680,7 +680,7 @@ try {
     for (final source in allSources) {
       for (final entity in source.entities) {
         if (entity.name == entityName) {
-          result = entity.entity.isEnum;
+          result = entity.isEnum;
         }
       }
     }

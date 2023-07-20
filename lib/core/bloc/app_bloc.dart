@@ -6,16 +6,15 @@ import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/config/config.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper_file_generators.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_file_generators.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper_file_generators.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/entity.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/property.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
+import 'package:onix_flutter_bricks/domain/entity/property.dart';
 import 'package:onix_flutter_bricks/domain/use_case/screen/generate_screen_use_case.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_parser.dart';
@@ -135,31 +134,19 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         sources: state.sources.isEmpty
             ? {
                 SourceWrapper(name: 'Time', exists: true, entities: [
-                  EntityWrapper(
-                    name: 'Time',
-                    exists: true,
-                    properties: [
-                      Property(
-                        name: 'currentDateTime',
-                        type: 'DateTime',
-                      ),
-                    ],
-                    entity: Entity(
-                      name: 'Time',
-                      properties: [
-                        Property(
-                          name: 'currentDateTime',
-                          type: 'DateTime',
-                        ),
-                      ],
-                    )..setSourceName('Time'),
-                  ),
+                  Entity(name: 'Time', exists: true, properties: [
+                    Property(
+                      name: 'currentDateTime',
+                      type: 'DateTime',
+                    ),
+                  ])
+                    ..setSourceName('Time'),
                 ])
               }
             : state.sources,
         entities: state.entities.isEmpty
             ? {
-                EntityWrapper(
+                Entity(
                   name: 'Auth',
                   exists: true,
                   properties: [
@@ -172,19 +159,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                       type: 'String',
                     ),
                   ],
-                  entity: Entity(
-                    name: 'Auth',
-                    properties: [
-                      Property(
-                        name: 'accessToken',
-                        type: 'String',
-                      ),
-                      Property(
-                        name: 'refreshToken',
-                        type: 'String',
-                      ),
-                    ],
-                  ),
                 ),
               }
             : state.entities,
@@ -256,7 +230,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           name: 'Time',
           exists: true,
           entities: [
-            EntityWrapper(
+            Entity(
               name: 'Time',
               exists: true,
               properties: [
@@ -265,21 +239,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                   type: 'DateTime',
                 ),
               ],
-              entity: Entity(
-                name: 'Time',
-                properties: [
-                  Property(
-                    name: 'currentDateTime',
-                    type: 'DateTime',
-                  ),
-                ],
-              )..setSourceName('Time'),
-            ),
+            )..setSourceName('Time'),
           ],
         )
       },
       entities: {
-        EntityWrapper(
+        Entity(
           name: 'Auth',
           exists: true,
           properties: [
@@ -292,19 +257,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               type: 'String',
             ),
           ],
-          entity: Entity(
-            name: 'Auth',
-            properties: [
-              Property(
-                name: 'accessToken',
-                type: 'String',
-              ),
-              Property(
-                name: 'refreshToken',
-                type: 'String',
-              ),
-            ],
-          ),
         ),
       },
       screens: {ScreenEntity(name: 'home', exists: true)},
@@ -552,11 +504,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     entity.properties = [Property(name: 'name', type: 'string')];
 
-    entity.entity = Entity(
-      name: entity.name.pascalCase,
-      properties: entity.properties,
-    );
-
     if (event.source == null) {
       var entities = state.entities.toList();
 
@@ -565,7 +512,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     } else {
       var entities = event.source?.entities.toList() ?? [];
       var entity = event.entity;
-      entity.entity.sourceName = event.source?.name ?? '';
+      entity.sourceName = event.source?.name ?? '';
       entities.add(event.entity);
       var sources = state.sources.toList();
 

@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/add_entity_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/screen_table_cell.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
@@ -13,7 +13,7 @@ class EntityTable extends StatelessWidget {
   const EntityTable({required this.entities, this.source, Key? key})
       : super(key: key);
 
-  final Set<EntityWrapper> entities;
+  final Set<Entity> entities;
   final SourceWrapper? source;
 
   @override
@@ -43,8 +43,8 @@ class EntityTable extends StatelessWidget {
                   : null,
               color: CupertinoColors.activeBlue.withOpacity(0.1),
             ),
-            child: Row(
-              children: const [
+            child: const Row(
+              children: [
                 Cell(
                   value: Text('Entity', textAlign: TextAlign.center),
                   decorated: true,
@@ -101,8 +101,8 @@ class EntityTable extends StatelessWidget {
                     value: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (entity.entity.isEnum)
-                          Text('enum')
+                        if (entity.isEnum)
+                          const Text('enum')
                         else
                           MSHCheckbox(
                             value: entity.generateRequest,
@@ -131,8 +131,8 @@ class EntityTable extends StatelessWidget {
                     value: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (entity.entity.isEnum)
-                          Text('enum')
+                        if (entity.isEnum)
+                          const Text('enum')
                         else
                           MSHCheckbox(
                             value: entity.generateResponse,
@@ -166,14 +166,14 @@ class EntityTable extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              color: entity.exists || entity.entity.isEnum
+                              color: entity.exists || entity.isEnum
                                   ? CupertinoColors.inactiveGray
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                if (!entity.exists && !entity.entity.isEnum) {
-                                  showCupertinoModalPopup<EntityWrapper>(
+                                if (!entity.exists && !entity.isEnum) {
+                                  showCupertinoModalPopup<Entity>(
                                     context: context,
                                     barrierDismissible: false,
                                     builder: (context) => AddEntityDialog(

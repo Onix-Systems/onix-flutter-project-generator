@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 
 part 'app_models.freezed.dart';
 
@@ -85,7 +85,7 @@ class AppEvent with _$AppEvent {
   }) = ScreenAdd;
 
   const factory AppEvent.onEntityAdd({
-    required EntityWrapper entity,
+    required Entity entity,
     @Default(null) SourceWrapper? source,
   }) = EntityAdd;
 
@@ -98,7 +98,7 @@ class AppEvent with _$AppEvent {
   }) = ScreenDelete;
 
   const factory AppEvent.onEntityDelete({
-    required EntityWrapper entity,
+    required Entity entity,
     @Default(null) SourceWrapper? source,
   }) = EntityDelete;
 
@@ -149,7 +149,7 @@ class AppState with _$AppState {
     @Default(false) bool generateScreensWithProject,
     @Default(false) bool generateEntitiesWithProject,
     @Default({}) Set<ScreenEntity> screens,
-    @Default({}) Set<EntityWrapper> entities,
+    @Default({}) Set<Entity> entities,
     @Default({}) Set<SourceWrapper> sources,
     @Default('') String screenError,
     @Default('') String entityError,

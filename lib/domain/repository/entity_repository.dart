@@ -1,4 +1,4 @@
-import 'package:onix_flutter_bricks/domain/entity_parser/entity.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 
 abstract class EntityRepository {
   Set<Entity> get entities;

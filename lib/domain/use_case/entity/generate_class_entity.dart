@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
@@ -10,13 +10,12 @@ class GenerateClassEntity {
   FutureOr<void> call({
     required String projectName,
     required String projectPath,
-    required EntityWrapper entityWrapper,
+    required Entity entity,
   }) async {
     String imports = '';
-    final sourceName = entityWrapper.entity.sourceName ?? '';
+    final sourceName = entity.sourceName;
 
-    final entity = entityWrapper.entity;
-    final name = entityWrapper.name;
+    final name = entity.name;
 
     imports = entity.entityImports
         .map((e) =>
@@ -32,13 +31,13 @@ part '${name.snakeCase}.g.dart';
 @freezed
 class ${name.pascalCase} with _\$${name.pascalCase} {
     factory ${name.pascalCase}({
-    ${entityWrapper.properties.map((e) => '       $e,').join('\n')}
+    ${entity.properties.map((e) => '       $e,').join('\n')}
     }) = _${name.pascalCase};
 
     factory ${name.pascalCase}.fromJson(Map<String, dynamic> json) => _\$${name.pascalCase}FromJson(json);
     
     factory ${name.pascalCase}.empty() => ${name.pascalCase}(
-${_getProperties(entityWrapper: entityWrapper)}
+${_getProperties(entity: entity)}
     );
 }
 ''';
@@ -52,15 +51,15 @@ ${_getProperties(entityWrapper: entityWrapper)}
     await file.writeAsString(fileContent);
   }
 
-  String _getProperties({required EntityWrapper entityWrapper}) {
+  String _getProperties({required Entity entity}) {
     final properties = <String>[];
 
-    for (final property in entityWrapper.properties) {
+    for (final property in entity.properties) {
       if (TypeMatcher.defaultTypeValue(property.type) == (property.type)) {
-        final entity = entityWrapper.entity.entityImports
+        final importEntity = entity.entityImports
             .firstWhereOrNull((element) => element.name == property.type);
 
-        if (entity != null && entity.isEnum) {
+        if (importEntity != null && importEntity.isEnum) {
           properties
               .add('        ${property.name}: ${property.type}.values.first,');
         } else {

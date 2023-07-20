@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/add_entity_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/source_widgets/add_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/entity_table.dart';
@@ -111,10 +111,10 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                showCupertinoModalPopup<EntityWrapper>(
+                                showCupertinoModalPopup<Entity>(
                                   context: context,
                                   barrierDismissible: false,
-                                  builder: (context) => AddEntityDialog(
+                                  builder: (context) => const AddEntityDialog(
                                     entity: null,
                                     standalone: false,
                                   ),

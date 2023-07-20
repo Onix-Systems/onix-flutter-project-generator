@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/path.dart';
 
 part 'source_wrapper.g.dart';
@@ -7,7 +7,7 @@ part 'source_wrapper.g.dart';
 @JsonSerializable()
 class SourceWrapper {
   String name;
-  List<EntityWrapper> entities;
+  List<Entity> entities;
   bool exists;
   List<Path> paths;
 
@@ -21,8 +21,7 @@ class SourceWrapper {
   SourceWrapper.copyOf(SourceWrapper source)
       : this(
           name: source.name,
-          entities:
-              source.entities.map((e) => EntityWrapper.copyOf(e)).toList(),
+          entities: source.entities.map((e) => Entity.copyOf(e)).toList(),
           exists: source.exists,
         );
 

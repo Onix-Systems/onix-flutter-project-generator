@@ -1,5 +1,5 @@
 import 'package:onix_flutter_bricks/core/di/di.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/entity.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_parameter.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';

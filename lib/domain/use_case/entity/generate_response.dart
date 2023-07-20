@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
@@ -10,11 +10,10 @@ class GenerateResponse {
   FutureOr<void> call({
     required String projectName,
     required String projectPath,
-    required EntityWrapper entityWrapper,
+    required Entity entity,
   }) async {
-    final sourceName = entityWrapper.entity.sourceName;
-    final entity = entityWrapper.entity;
-    final name = entityWrapper.name;
+    final sourceName = entity.sourceName;
+    final name = entity.name;
 
     final imports = entity.entityImports
         .where((e) => !e.isEnum)
@@ -32,7 +31,7 @@ part '${name.snakeCase}_response.g.dart';
 @freezed
 class ${name.pascalCase}Response with _\$${name.pascalCase}Response {
     factory ${name.pascalCase}Response({
-${_getProperties(entityWrapper: entityWrapper)}
+${_getProperties(entity: entity)}
     }) = _${name.pascalCase}Response;
 
     factory ${name.pascalCase}Response.fromJson(Map<String, dynamic> json,) => _\$${name.pascalCase}ResponseFromJson(json);
@@ -48,20 +47,20 @@ ${_getProperties(entityWrapper: entityWrapper)}
     await file.writeAsString(fileContent);
   }
 
-  String _getProperties({required EntityWrapper entityWrapper}) {
+  String _getProperties({required Entity entity}) {
     final properties = <String>[];
 
-    for (final property in entityWrapper.properties) {
+    for (final property in entity.properties) {
       if (property.type.startsWith('List')) {
         final type = property.type.substring(5, property.type.length - 1);
-        entityWrapper.entity.imports.contains(type.snakeCase)
+        entity.imports.contains(type.snakeCase)
             ? properties.add(
                 '        List<${type.pascalCase}Response>? ${property.name},')
             : properties.add(
                 '        List<${TypeMatcher.getDartType(type)}>? ${property.name},');
       } else {
-        entityWrapper.entity.imports.contains(property.type.snakeCase)
-            ? entityWrapper.entity.entityImports
+        entity.imports.contains(property.type.snakeCase)
+            ? entity.entityImports
                     .firstWhereOrNull((e) => e.name == property.type)!
                     .isEnum
                 ? properties.add('        String? ${property.name},')

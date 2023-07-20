@@ -10,7 +10,7 @@ SourceWrapper _$SourceWrapperFromJson(Map<String, dynamic> json) =>
     SourceWrapper(
       name: json['name'] as String,
       entities: (json['entities'] as List<dynamic>)
-          .map((e) => EntityWrapper.fromJson(e as Map<String, dynamic>))
+          .map((e) => Entity.fromJson(e as Map<String, dynamic>))
           .toList(),
       paths: (json['paths'] as List<dynamic>?)
               ?.map((e) => Path.fromJson(e as Map<String, dynamic>))

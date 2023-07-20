@@ -1,12 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/source_parser.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_data.dart';
 import 'package:recase/recase.dart';
-
-import '../../domain/entity_parser/entity.dart';
 
 class SwaggerParser {
   static Future<SwaggerData> parse(
@@ -56,21 +54,7 @@ class SwaggerParser {
       return SourceWrapper(
         name: source.name,
         paths: source.paths,
-        entities: entitiesToMove.map(
-          (e) {
-            return EntityWrapper(
-              name: e.name,
-              entity: e,
-              generateRequest: !e.isEnum &&
-                  !e.name.endsWith('Request') &&
-                  !e.name.endsWith('Response'),
-              generateResponse: !e.isEnum &&
-                  !e.name.endsWith('Request') &&
-                  !e.name.endsWith('Response'),
-              properties: e.properties,
-            );
-          },
-        ).toList(),
+        entities: entitiesToMove.toList(),
       );
     }).toList();
 
@@ -86,22 +70,7 @@ class SwaggerParser {
       }
     }
 
-    final entities = parsedEntities
-        .where((e) => e.sourceName.isEmpty)
-        .map(
-          (e) => EntityWrapper(
-            name: e.name,
-            entity: e,
-            generateRequest: !e.isEnum &&
-                !parsedEntities.any(
-                    (parsedEntity) => parsedEntity.name == '${e.name}Request'),
-            generateResponse: !e.isEnum &&
-                !parsedEntities.any(
-                    (parsedEntity) => parsedEntity.name == '${e.name}Response'),
-            properties: e.properties,
-          ),
-        )
-        .toList();
+    final entities = parsedEntities.where((e) => e.sourceName.isEmpty).toList();
 
     return SwaggerData(
       basePath: basePath,
@@ -138,21 +107,20 @@ class SwaggerParser {
     }
   }
 
-  static void _setGenRequest(
-      List<SourceWrapper> sources, EntityWrapper entity) {
+  static void _setGenRequest(List<SourceWrapper> sources, Entity entity) {
     entity.generateRequest = true;
 
-    final allEntities = <EntityWrapper>{};
+    final allEntities = <Entity>{};
 
     for (final source in sources) {
       allEntities.addAll(source.entities);
     }
 
-    if (entity.entity.isEnum || entity.entity.entityImports.isEmpty) {
+    if (entity.isEnum || entity.entityImports.isEmpty) {
       return;
     }
 
-    for (final import in entity.entity.entityImports) {
+    for (final import in entity.entityImports) {
       if (!import.isEnum &&
           !import.name.endsWith('Request') &&
           !import.name.endsWith('Response') &&
@@ -163,21 +131,20 @@ class SwaggerParser {
     }
   }
 
-  static void _setGenResponse(
-      List<SourceWrapper> sources, EntityWrapper entity) {
+  static void _setGenResponse(List<SourceWrapper> sources, Entity entity) {
     entity.generateResponse = true;
 
-    final allEntities = <EntityWrapper>{};
+    final allEntities = <Entity>{};
 
     for (final source in sources) {
       allEntities.addAll(source.entities);
     }
 
-    if (entity.entity.isEnum || entity.entity.entityImports.isEmpty) {
+    if (entity.isEnum || entity.entityImports.isEmpty) {
       return;
     }
 
-    for (final import in entity.entity.entityImports) {
+    for (final import in entity.entityImports) {
       if (!import.isEnum &&
           !import.name.endsWith('Response') &&
           !import.name.endsWith('Request') &&

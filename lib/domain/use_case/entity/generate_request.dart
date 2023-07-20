@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/extensions/replace_last.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
@@ -12,13 +12,12 @@ class GenerateRequest {
   FutureOr<void> call({
     required String projectName,
     required String projectPath,
-    required EntityWrapper entityWrapper,
+    required Entity entity,
   }) async {
-    final entity = entityWrapper.entity;
-    final name = entityWrapper.name;
-    final sourceName = entityWrapper.entity?.sourceName ?? '';
+    final name = entity.name;
+    final sourceName = entity.sourceName;
 
-    final imports = entity?.entityImports.map((e) {
+    final imports = entity.entityImports.map((e) {
       if (entityRepository.isEnum(e.name)) {
         return 'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';';
       } else {
@@ -36,7 +35,7 @@ part '${name.snakeCase}_request.g.dart';
 @freezed
 class ${name.pascalCase}Request with _\$${name.pascalCase}Request {
     factory ${name.pascalCase}Request({
-${entityWrapper.properties.map((e) {
+${entity.properties.map((e) {
       String type = e.type;
       if (TypeMatcher.getDartType(type) == type && !type.contains('dynamic')) {
         if (type.startsWith('List')) {

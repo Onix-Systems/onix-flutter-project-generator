@@ -1,16 +1,14 @@
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/entity.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/property.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
+import 'package:onix_flutter_bricks/domain/entity/property.dart';
 import 'package:onix_flutter_bricks/domain/repository/entity_repository.dart';
 import 'package:onix_flutter_bricks/utils/extensions/replace_last.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class EntityRepositoryImpl implements EntityRepository {
-  final Set<Entity> _entities = {};
-
   @override
-  Set<Entity> get entities => _entities;
+  Set<Entity> entities = {};
 
   @override
   Entity? getEntityByName(String name) {
@@ -29,8 +27,8 @@ class EntityRepositoryImpl implements EntityRepository {
 
   @override
   void parse(Map<String, dynamic> data) {
-    _entities.clear();
-    _entities.addAll(_parse(data));
+    entities.clear();
+    entities.addAll(_parse(data));
   }
 
   Set<Entity> _parse(Map<String, dynamic> data) {

@@ -1,10 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 
 part 'config.freezed.dart';
 
@@ -15,7 +15,7 @@ class Config with _$Config {
   const factory Config({
     required List<SourceWrapper> sources,
     required List<ScreenEntity> screens,
-    required List<EntityWrapper> entities,
+    required List<Entity> entities,
   }) = _Config;
 
   factory Config.empty() {
@@ -33,7 +33,7 @@ class Config with _$Config {
 
     List<ScreenEntity> screens = [];
     List<SourceWrapper> sources = [];
-    List<EntityWrapper> entities = [];
+    List<Entity> entities = [];
 
     for (var element in state.screens) {
       screens.add(ScreenEntity.copyOf(element));
@@ -41,7 +41,7 @@ class Config with _$Config {
     }
 
     for (var element in state.entities) {
-      entities.add(EntityWrapper.copyOf(element));
+      entities.add(Entity.copyOf(element));
       entities.last.exists = true;
     }
 

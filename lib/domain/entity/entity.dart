@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onix_flutter_bricks/domain/entity_parser/property.dart';
+import 'package:onix_flutter_bricks/domain/entity/property.dart';
 import 'package:recase/recase.dart';
 
 part 'entity.g.dart';
@@ -10,7 +10,7 @@ class Entity {
   bool generateRequest;
   bool generateResponse;
   bool exists;
-  final List<Property> properties;
+  List<Property> properties;
   final Set<String> imports = {};
   String sourceName = '';
   Set<Entity> entityImports = {};
@@ -72,4 +72,15 @@ class Entity {
   factory Entity.fromJson(Map<String, dynamic> json) => _$EntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$EntityToJson(this);
+
+  static Entity copyOf(Entity entity) {
+    return Entity(
+      name: entity.name,
+      properties: entity.properties,
+      isEnum: entity.isEnum,
+      generateRequest: entity.generateRequest,
+      generateResponse: entity.generateResponse,
+      exists: entity.exists,
+    );
+  }
 }

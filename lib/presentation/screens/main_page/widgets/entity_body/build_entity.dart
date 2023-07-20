@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/add_entity_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/swagger_file_parse_widget.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/source_widgets/add_source_dialog.dart';
@@ -108,10 +108,10 @@ class BuildEntity extends StatelessWidget {
                   children: [
                     CupertinoButton(
                       onPressed: () {
-                        showCupertinoModalPopup<EntityWrapper>(
+                        showCupertinoModalPopup<Entity>(
                           context: context,
                           barrierDismissible: false,
-                          builder: (context) => AddEntityDialog(),
+                          builder: (context) => const AddEntityDialog(),
                         ).then((entity) {
                           if (entity != null) {
                             context.read<AppBloc>().add(
@@ -122,9 +122,9 @@ class BuildEntity extends StatelessWidget {
                       },
                       color: CupertinoColors.activeOrange,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: const [
+                        children: [
                           Icon(CupertinoIcons.add),
                           SizedBox(width: 10),
                           Text('Add standalone entity'),
@@ -148,9 +148,9 @@ class BuildEntity extends StatelessWidget {
                       },
                       color: CupertinoColors.activeOrange,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: const [
+                        children: [
                           Icon(CupertinoIcons.add),
                           SizedBox(width: 10),
                           Text('Add source'),

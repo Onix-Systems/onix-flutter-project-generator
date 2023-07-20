@@ -1,19 +1,19 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:recase/recase.dart';
 
 class GenerateEnumEntity {
   FutureOr<void> call(
       {required String projectName,
       required String projectPath,
-      required EntityWrapper entityWrapper}) async {
-    final name = entityWrapper.name;
-    final sourceName = entityWrapper.entity.sourceName ?? '';
+      required Entity entity}) async {
+    final name = entity.name;
+    final sourceName = entity.sourceName ?? '';
 
     final fileContent = '''
-enum ${entityWrapper.entity.toString().replaceAll('default', '//default')}
+enum ${entity.toString().replaceAll('default', '//default')}
 ''';
 
     final path = await Directory(

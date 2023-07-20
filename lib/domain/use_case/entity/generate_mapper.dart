@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 
-import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
@@ -11,12 +11,11 @@ class GenerateMapper {
   FutureOr<void> call({
     required String projectName,
     required String projectPath,
-    required EntityWrapper entityWrapper,
+    required Entity entity,
   }) async {
-    final entity = entityWrapper.entity;
-    final name = entityWrapper.name;
+    final name = entity.name;
 
-    final sourceName = _getSourceName(entityWrapper.entity.sourceName);
+    final sourceName = _getSourceName(entity.sourceName);
 
     final importMappers = entity.entityImports
         .where((e) => !e.isEnum)
@@ -26,7 +25,7 @@ class GenerateMapper {
     final imports = entity.entityImports
         .map((e) => e.isEnum
             ? 'import \'package:$projectName/domain/entity/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}.dart\';'
-            : importMappers.isNotEmpty && entityWrapper.generateResponse
+            : importMappers.isNotEmpty && entity.generateResponse
                 ? 'import \'package:$projectName/data/model/remote/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';\n'
                     'import \'package:$projectName/data/mapper/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}_mapper.dart\';\n'
                 : '')
@@ -34,41 +33,41 @@ class GenerateMapper {
 
     final fileContent = '''import 'package:collection/collection.dart';
 import 'package:$projectName/core/arch/domain/common/converter/mapper.dart';
-${entityWrapper.generateRequest ? 'import \'package:$projectName/data/model/remote/$sourceName${name.snakeCase}/${name.snakeCase}_request.dart\';' : ''}
-${entityWrapper.generateResponse ? 'import \'package:$projectName/data/model/remote/$sourceName${name.snakeCase}/${name.snakeCase}_response.dart\';' : ''}
+${entity.generateRequest ? 'import \'package:$projectName/data/model/remote/$sourceName${name.snakeCase}/${name.snakeCase}_request.dart\';' : ''}
+${entity.generateResponse ? 'import \'package:$projectName/data/model/remote/$sourceName${name.snakeCase}/${name.snakeCase}_response.dart\';' : ''}
 import 'package:$projectName/domain/entity/$sourceName${name.snakeCase}/${name.snakeCase}.dart';
 $imports
 
-${entityWrapper.generateResponse ? '''class _${name.pascalCase}ResponseToEntityMapper implements Mapper<${name.pascalCase}Response, ${name.pascalCase}>{
+${entity.generateResponse ? '''class _${name.pascalCase}ResponseToEntityMapper implements Mapper<${name.pascalCase}Response, ${name.pascalCase}>{
   @override
   ${name.pascalCase} map(${name.pascalCase}Response from,) {
 $importMappers
 
     return ${name.pascalCase}(
-${_getProperties(entityWrapper: entityWrapper)}
+${_getProperties(entity: entity)}
     );
   } 
 }''' : ''}
 
-${entityWrapper.generateRequest ? '''
+${entity.generateRequest ? '''
 class _${name.pascalCase}EntityToRequestMapper implements Mapper<${name.pascalCase}, ${name.pascalCase}Request>{
   @override
   ${name.pascalCase}Request map(${name.pascalCase} from,) {
 $importMappers
 
     return ${name.pascalCase}Request(
-${_getProperties(entityWrapper: entityWrapper, isRequest: true)}
+${_getProperties(entity: entity, isRequest: true)}
     );
   }
 }''' : ''}
 
 class ${name.pascalCase}Mappers {
-  ${entityWrapper.generateResponse ? 'final _${name.camelCase}ResponseToEntityMapper = _${name.pascalCase}ResponseToEntityMapper();' : ''}
-  ${entityWrapper.generateRequest ? 'final _${name.camelCase}EntityToRequestMapper = _${name.pascalCase}EntityToRequestMapper();' : ''}
+  ${entity.generateResponse ? 'final _${name.camelCase}ResponseToEntityMapper = _${name.pascalCase}ResponseToEntityMapper();' : ''}
+  ${entity.generateRequest ? 'final _${name.camelCase}EntityToRequestMapper = _${name.pascalCase}EntityToRequestMapper();' : ''}
 
-  ${entityWrapper.generateResponse ? '${name.pascalCase} map${name.pascalCase}ResponseToEntity(${name.pascalCase}Response response,) => _${name.camelCase}ResponseToEntityMapper.map(response);' : ''}
+  ${entity.generateResponse ? '${name.pascalCase} map${name.pascalCase}ResponseToEntity(${name.pascalCase}Response response,) => _${name.camelCase}ResponseToEntityMapper.map(response);' : ''}
 
-  ${entityWrapper.generateRequest ? '${name.pascalCase}Request map${name.pascalCase}EntityToRequest(${name.pascalCase} entity,) => _${name.camelCase}EntityToRequestMapper.map(entity);' : ''}
+  ${entity.generateRequest ? '${name.pascalCase}Request map${name.pascalCase}EntityToRequest(${name.pascalCase} entity,) => _${name.camelCase}EntityToRequestMapper.map(entity);' : ''}
 }''';
 
     final path = await Directory(
@@ -81,21 +80,20 @@ class ${name.pascalCase}Mappers {
     await file.writeAsString(fileContent);
   }
 
-  String _getProperties(
-      {required EntityWrapper entityWrapper, bool isRequest = false}) {
+  String _getProperties({required Entity entity, bool isRequest = false}) {
     final properties = <String>[];
 
-    for (final property in entityWrapper.properties) {
+    for (final property in entity.properties) {
       if (property.type.startsWith('List')) {
         final type = property.type.substring(5, property.type.length - 1);
-        entityWrapper.entity.imports.contains(type.snakeCase)
+        entity.imports.contains(type.snakeCase)
             ? properties.add(
                 '        ${property.name}: from.${property.name}${isRequest ? '' : '?'}.map(${type.camelCase}Mapper.map$type${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest ? '' : ' ?? []'},')
             : properties.add(
                 '        ${property.name}: from.${property.name}${isRequest ? '' : ' ?? []'},');
       } else {
-        entityWrapper.entity.imports.contains(property.type.snakeCase)
-            ? entityWrapper.entity.entityImports
+        entity.imports.contains(property.type.snakeCase)
+            ? entity.entityImports
                     .firstWhereOrNull((e) => e.name == property.type)!
                     .isEnum
                 ? properties.add(

@@ -21,10 +21,13 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Config {
   List<SourceWrapper> get sources => throw _privateConstructorUsedError;
+
   List<ScreenEntity> get screens => throw _privateConstructorUsedError;
-  List<EntityWrapper> get entities => throw _privateConstructorUsedError;
+
+  List<Entity> get entities => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
@@ -33,11 +36,12 @@ mixin _$Config {
 abstract class $ConfigCopyWith<$Res> {
   factory $ConfigCopyWith(Config value, $Res Function(Config) then) =
       _$ConfigCopyWithImpl<$Res, Config>;
+
   @useResult
   $Res call(
       {List<SourceWrapper> sources,
       List<ScreenEntity> screens,
-      List<EntityWrapper> entities});
+      List<Entity> entities});
 }
 
 /// @nodoc
@@ -47,6 +51,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -69,7 +74,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
       entities: null == entities
           ? _value.entities
           : entities // ignore: cast_nullable_to_non_nullable
-              as List<EntityWrapper>,
+              as List<Entity>,
     ) as $Val);
   }
 }
@@ -78,12 +83,13 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
 abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   factory _$$_ConfigCopyWith(_$_Config value, $Res Function(_$_Config) then) =
       __$$_ConfigCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
       {List<SourceWrapper> sources,
       List<ScreenEntity> screens,
-      List<EntityWrapper> entities});
+      List<Entity> entities});
 }
 
 /// @nodoc
@@ -112,7 +118,7 @@ class __$$_ConfigCopyWithImpl<$Res>
       entities: null == entities
           ? _value._entities
           : entities // ignore: cast_nullable_to_non_nullable
-              as List<EntityWrapper>,
+              as List<Entity>,
     ));
   }
 }
@@ -123,7 +129,7 @@ class _$_Config implements _Config {
   const _$_Config(
       {required final List<SourceWrapper> sources,
       required final List<ScreenEntity> screens,
-      required final List<EntityWrapper> entities})
+      required final List<Entity> entities})
       : _sources = sources,
         _screens = screens,
         _entities = entities;
@@ -132,6 +138,7 @@ class _$_Config implements _Config {
       _$$_ConfigFromJson(json);
 
   final List<SourceWrapper> _sources;
+
   @override
   List<SourceWrapper> get sources {
     if (_sources is EqualUnmodifiableListView) return _sources;
@@ -140,6 +147,7 @@ class _$_Config implements _Config {
   }
 
   final List<ScreenEntity> _screens;
+
   @override
   List<ScreenEntity> get screens {
     if (_screens is EqualUnmodifiableListView) return _screens;
@@ -147,9 +155,10 @@ class _$_Config implements _Config {
     return EqualUnmodifiableListView(_screens);
   }
 
-  final List<EntityWrapper> _entities;
+  final List<Entity> _entities;
+
   @override
-  List<EntityWrapper> get entities {
+  List<Entity> get entities {
     if (_entities is EqualUnmodifiableListView) return _entities;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_entities);
@@ -196,16 +205,19 @@ abstract class _Config implements Config {
   const factory _Config(
       {required final List<SourceWrapper> sources,
       required final List<ScreenEntity> screens,
-      required final List<EntityWrapper> entities}) = _$_Config;
+      required final List<Entity> entities}) = _$_Config;
 
   factory _Config.fromJson(Map<String, dynamic> json) = _$_Config.fromJson;
 
   @override
   List<SourceWrapper> get sources;
+
   @override
   List<ScreenEntity> get screens;
+
   @override
-  List<EntityWrapper> get entities;
+  List<Entity> get entities;
+
   @override
   @JsonKey(ignore: true)
   _$$_ConfigCopyWith<_$_Config> get copyWith =>
