@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 

@@ -1,5 +1,5 @@
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/entity.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/property.dart';
 
 class ClassEntity implements Entity {
   @override

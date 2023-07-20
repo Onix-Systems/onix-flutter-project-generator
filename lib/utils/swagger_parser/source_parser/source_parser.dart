@@ -1,5 +1,4 @@
 import 'package:onix_flutter_bricks/core/di/di.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_parameter.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
@@ -7,6 +6,8 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/pa
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/source.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
+
+import '../../../domain/entity_parser/enum.dart';
 
 class SourceParser {
   static Future<List<Source>> parse(Map<String, dynamic> data) async {

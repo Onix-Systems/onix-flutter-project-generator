@@ -4,7 +4,8 @@ import 'package:onix_flutter_bricks/domain/use_case/entity/generate_enum_entity.
 import 'package:onix_flutter_bricks/domain/use_case/entity/generate_mapper.dart';
 import 'package:onix_flutter_bricks/domain/use_case/entity/generate_request.dart';
 import 'package:onix_flutter_bricks/domain/use_case/entity/generate_response.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
+
+import '../../../../domain/entity_parser/enum.dart';
 
 extension FileGenerator on EntityWrapper {
   Future<void> generateFiles({

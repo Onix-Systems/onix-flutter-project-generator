@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
+
+import '../../../../domain/entity_parser/entity.dart';
+import '../../../../domain/entity_parser/property.dart';
 
 part 'entity_wrapper.g.dart';
 

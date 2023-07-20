@@ -18,10 +18,13 @@ class GenerateRequest {
     final name = entityWrapper.name;
     final sourceName = entityWrapper.entity?.sourceName ?? '';
 
-    final imports = entity?.entityImports
-        .map((e) =>
-            'import \'package:$projectName/data/model/remote/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_request.dart\';')
-        .join('\n');
+    final imports = entity?.entityImports.map((e) {
+      if (entityRepository.isEnum(e.name)) {
+        return 'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';';
+      } else {
+        return 'import \'package:$projectName/data/model/remote/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_request.dart\';';
+      }
+    }).join('\n');
 
     final fileContent =
         '''import 'package:freezed_annotation/freezed_annotation.dart';
@@ -44,8 +47,9 @@ ${entityWrapper.properties.map((e) {
             type = type.replaceLast('>', 'Request>');
           }
         } else {
-          //Process enums
-          type = '${type}Request';
+          if (!entityRepository.isEnum(type.pascalCase)) {
+            type = '${type}Request';
+          }
         }
       }
 

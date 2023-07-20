@@ -2,20 +2,22 @@ import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity_parser.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/source_parser.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_data.dart';
 import 'package:recase/recase.dart';
+
+import '../../domain/entity_parser/entity.dart';
+import '../../domain/entity_parser/enum.dart';
+import '../../domain/entity_parser/property.dart';
 
 class SwaggerParser {
   static Future<SwaggerData> parse(
       {required Map<String, dynamic> data, required String projectName}) async {
     final String basePath = data['basePath'] ?? '';
 
-    final parsedEntities = await EntityParser.parse(data);
+    entityRepository.parse(data);
+
+    final parsedEntities = entityRepository.entities;
 
     final parsedSources = await SourceParser.parse(data);
 
@@ -63,18 +65,10 @@ class SwaggerParser {
               entity: e,
               generateRequest: e is! EnumEntity &&
                   !e.name.endsWith('Request') &&
-                  !e.name.endsWith(
-                      'Response') /*&&
-                    source.paths.any((p) => p.methods
-                        .any((m) => m.requestEntityName == '${e.name}Request'))*/
-              ,
+                  !e.name.endsWith('Response'),
               generateResponse: e is! EnumEntity &&
                   !e.name.endsWith('Request') &&
-                  !e.name.endsWith(
-                      'Response') /*&&
-                    source.paths.any((p) => p.methods.any(
-                        (m) => m.responseEntityName == '${e.name}Response'))*/
-              ,
+                  !e.name.endsWith('Response'),
               properties: e.properties is List<Property>
                   ? e.properties as List<Property>
                   : e.properties
@@ -87,8 +81,6 @@ class SwaggerParser {
     }).toList();
 
     for (final source in sources) {
-      parsedEntities.removeWhere((e) => e.sourceName == source.name);
-
       for (final entity in source.entities) {
         if (entity.generateRequest) {
           _setGenRequest(sources, entity);
@@ -101,6 +93,7 @@ class SwaggerParser {
     }
 
     final entities = parsedEntities
+        .where((e) => e.sourceName.isEmpty)
         .map(
           (e) => EntityWrapper(
             name: e.name,

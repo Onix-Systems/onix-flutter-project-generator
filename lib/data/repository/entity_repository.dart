@@ -1,17 +1,38 @@
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/core/di/di.dart';
+import 'package:onix_flutter_bricks/domain/repository/entity_repository.dart';
 import 'package:onix_flutter_bricks/utils/extensions/replace_last.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/class_entity.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/entity.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
-class EntityParser {
-  static Set<Entity> parse(Map<String, dynamic> data) {
-    final entities = <Entity>{};
+import '../../domain/entity_parser/class_entity.dart';
+import '../../domain/entity_parser/entity.dart';
+import '../../domain/entity_parser/enum.dart';
+import '../../domain/entity_parser/property.dart';
 
+class EntityRepositoryImpl implements EntityRepository {
+  final Set<Entity> _entities = {};
+
+  @override
+  Set<Entity> get entities => _entities;
+
+  @override
+  Set<String> getEnumNames() {
+    return entities.whereType<EnumEntity>().map((e) => e.name).toSet();
+  }
+
+  @override
+  bool isEnum(String name) {
+    return entities
+        .any((element) => element.name == name && element is EnumEntity);
+  }
+
+  @override
+  void parse(Map<String, dynamic> data) {
+    _entities.clear();
+    _entities.addAll(_parse(data));
+  }
+
+  Set<Entity> _parse(Map<String, dynamic> data) {
     final entries = data.containsKey('definitions')
         ? data['definitions'].entries
         : data['components']['schemas'].entries;
@@ -53,7 +74,7 @@ class EntityParser {
     return entities;
   }
 
-  static void _parseObject(
+  void _parseObject(
       {required MapEntry<String, dynamic> entry,
       required Set<Entity> entities,
       required List<String> imports,
@@ -113,11 +134,11 @@ class EntityParser {
     entities.add(entity);
   }
 
-  static void _parseMap(
+  void _parseMap(
       Property property, MapEntry<String, dynamic> e, Set<Entity> entities) {
     property.type = property.name.pascalCase;
 
-    final innerEntities = parse({
+    final innerEntities = _parse({
       'definitions': {
         property.type: {
           'type': 'object',
@@ -129,7 +150,7 @@ class EntityParser {
     entities.addAll(innerEntities);
   }
 
-  static void _parseArray(MapEntry<String, dynamic> e, Property property,
+  void _parseArray(MapEntry<String, dynamic> e, Property property,
       Set<Entity> entities, List<String> imports) {
     if (TypeMatcher.isReference(e.value['items'])) {
       property.type =
@@ -163,7 +184,7 @@ class EntityParser {
 
           imports.add(className.snakeCase);
 
-          final innerEntities = parse(definitions);
+          final innerEntities = _parse(definitions);
           entities.addAll(innerEntities);
 
           property.type = 'List<$className>';
@@ -172,7 +193,7 @@ class EntityParser {
     }
   }
 
-  static String _getRefClassName(Map<String, dynamic> ref) {
+  String _getRefClassName(Map<String, dynamic> ref) {
     return ref
         .toString()
         .replaceAll('{', '')
@@ -181,7 +202,7 @@ class EntityParser {
         .last;
   }
 
-  static void _parseStack(
+  void _parseStack(
       List<MapEntry<String, dynamic>> stack, Set<Entity> entities) {
     for (final entry in stack) {
       final Map<String, dynamic> properties = {};
@@ -201,7 +222,7 @@ class EntityParser {
         }
       }
 
-      final innerEntities = parse({
+      final innerEntities = _parse({
         'definitions': {
           entry.key: {
             'type': 'object',

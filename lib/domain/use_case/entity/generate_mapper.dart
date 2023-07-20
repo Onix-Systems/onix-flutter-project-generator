@@ -4,9 +4,10 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 
 import 'package:onix_flutter_bricks/data/model/local/entity_wrapper/entity_wrapper.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/enum.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
+
+import '../../entity_parser/enum.dart';
 
 class GenerateMapper {
   FutureOr<void> call({
@@ -102,7 +103,7 @@ class ${name.pascalCase}Mappers {
                         .firstWhereOrNull((e) => e.name == property.type)
                     is EnumEntity
                 ? properties.add(
-                    '        ${property.name}: ${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name})${isRequest ? '' : ' ?? ${property.type.pascalCase}.values.first'},')
+                    '        ${property.name}: ${isRequest ? 'from.${property.name}' : '${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name}) ?? ${property.type.pascalCase}.values.first'},')
                 : properties.add(
                     '        ${property.name}: ${property.type.camelCase}Mapper.map${property.type.pascalCase}${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}(from.${property.name} ${isRequest ? '' : '?? ${property.type.pascalCase}Response(),'}),')
             : properties.add(

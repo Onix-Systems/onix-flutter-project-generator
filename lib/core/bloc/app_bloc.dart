@@ -14,10 +14,10 @@ import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapp
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/class_entity.dart';
+import 'package:onix_flutter_bricks/domain/entity_parser/property.dart';
 import 'package:onix_flutter_bricks/domain/use_case/screen/generate_screen_use_case.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/class_entity.dart';
-import 'package:onix_flutter_bricks/utils/swagger_parser/entity_parser/entity/property.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_parser.dart';
 import 'package:process_run/shell.dart';
 import 'package:recase/recase.dart';
