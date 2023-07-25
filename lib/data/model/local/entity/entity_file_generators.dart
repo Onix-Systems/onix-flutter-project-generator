@@ -12,12 +12,14 @@ extension FileGenerator on Entity {
     required String projectPath,
   }) async {
     if (isEnum) {
+      logger.wtf('Generate enum: $name');
       GenerateEnumEntity()(
         projectName: projectName,
         projectPath: projectPath,
         entity: this,
       );
     } else {
+      logger.wtf('Generate class: $name');
       GenerateClassEntity()(
         projectName: projectName,
         projectPath: projectPath,
@@ -25,6 +27,7 @@ extension FileGenerator on Entity {
       );
     }
     if (!isEnum && generateResponse) {
+      logger.wtf('Generate response: $name');
       GenerateResponse()(
         projectName: projectName,
         projectPath: projectPath,
@@ -32,6 +35,7 @@ extension FileGenerator on Entity {
       );
     }
     if (!isEnum && generateRequest) {
+      logger.wtf('Generate request: $name');
       GenerateRequest()(
         projectName: projectName,
         projectPath: projectPath,
@@ -39,6 +43,7 @@ extension FileGenerator on Entity {
       );
     }
     if (!isEnum && (generateRequest || generateResponse)) {
+      logger.wtf('Generate mapper: $name');
       GenerateMapper()(
         projectName: projectName,
         projectPath: projectPath,

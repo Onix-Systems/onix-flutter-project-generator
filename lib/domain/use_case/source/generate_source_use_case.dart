@@ -155,6 +155,7 @@ abstract class ${sourceWrapper.name.pascalCase}Source {
       if (e.contains('_response.dart')) {
         return e
             .replaceAll('_response.dart', '.dart')
+            .replaceAll('_response/', '/')
             .replaceAll('data/model/remote/', 'domain/entity/');
       }
       return e;
@@ -332,10 +333,10 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
 
       if (responseIsEnum) {
         imports.add(
-            "import 'package:$projectName/domain/entity/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}.dart';");
+            "import 'package:$projectName/domain/entity/${sourceName.snakeCase}/${method.responseEntityName. /*stripRequestResponse().*/ snakeCase}/${method.responseEntityName. /*stripRequestResponse().*/ snakeCase}.dart';");
       } else {
         imports.add(
-            "import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${responseEntityName.snakeCase}.dart';");
+            "import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${method.responseEntityName. /*stripRequestResponse().*/ snakeCase}/${responseEntityName.snakeCase}.dart';");
       }
     }
 
@@ -343,14 +344,15 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
       final source = allSources.firstWhere((source) =>
           source.entities.firstWhereOrNull((element) =>
               element.name ==
-              method.requestEntityName.stripRequestResponse()) !=
+              method.requestEntityName /*.stripRequestResponse()*/) !=
           null);
 
       if (!(method.innerEnums.isNotEmpty &&
           !method.innerEnums
               .any((element) => element.name == method.requestEntityName))) {
         imports.add(
-            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.requestEntityName.stripRequestResponse().snakeCase}/${requestEntityName.snakeCase}.dart';");
+            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.requestEntityName /*.stripRequestResponse()*/
+                .snakeCase}/${requestEntityName.snakeCase}.dart';");
       }
     }
 
@@ -612,7 +614,7 @@ final request = _apiClient.client.${method.methodType}(
         (source) =>
             source.entities.firstWhereOrNull((element) =>
                 element.name.snakeCase ==
-                entityName.stripRequestResponse().snakeCase) !=
+                entityName. /*stripRequestResponse().*/ snakeCase) !=
             null,
         orElse: () => thisSource);
 

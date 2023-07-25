@@ -15,7 +15,14 @@ class SwaggerParser {
 
     final parsedEntities = entityRepository.entities;
 
+    // logger.wtf(parsedEntities
+    //     .sorted((a, b) => a.name.compareTo(b.name))
+    //     .map((e) => e.name)
+    //     .toList());
+
     final parsedSources = await SourceParser.parse(data);
+
+    // logger.wtf(parsedSources.map((e) => "${e.name}: ${e.entities}").toList());
 
     for (final source in parsedSources) {
       for (final entity in parsedEntities.where((e) =>

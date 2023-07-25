@@ -14,7 +14,7 @@ class Entity {
   final Set<String> imports = {};
   String sourceName = '';
   Set<Entity> entityImports = {};
-  final bool isEnum;
+  bool isEnum;
 
   Entity({
     required this.name,

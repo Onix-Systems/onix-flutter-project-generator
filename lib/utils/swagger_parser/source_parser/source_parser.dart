@@ -1,5 +1,7 @@
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/domain/entity/entity.dart';
+import 'package:onix_flutter_bricks/domain/entity/property.dart';
+import 'package:onix_flutter_bricks/utils/extensions/replace_last.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_parameter.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/method_type.dart';
@@ -77,10 +79,11 @@ class SourceParser {
                       name:
                           '${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase}',
                       isEnum: true,
-                      properties: parameter['schema']['enum']
-                          .map((e) => e.toString())
-                          .cast<String>()
-                          .toList()));
+                      properties: List<Property>.generate(
+                          parameter['schema']['enum'].length,
+                          (index) => Property(
+                              name: parameter['schema']['enum'][index],
+                              type: "string"))));
                 }
 
                 method.params.add(MethodParameter(
@@ -238,7 +241,9 @@ class SourceParser {
       }
 
       String entityName = _getRefClassName(schema);
-      final entity = entityRepository.getEntityByName(entityName);
+
+      final entity =
+          entityRepository.getEntityByName(entityName.stripRequestResponse());
 
       if (entity == null) {
         continue;

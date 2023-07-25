@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/domain/entity/property.dart';
 import 'package:onix_flutter_bricks/domain/repository/entity_repository.dart';
@@ -42,8 +43,7 @@ class EntityRepositoryImpl implements EntityRepository {
       var imports = <String>[];
 
       if (entry.value['type'] == 'object') {
-        _parseObject(
-            entry: entry, entities: entities, imports: imports, stack: stack);
+        _parseObject(entry: entry, imports: imports, stack: stack);
       } else if (entry.value.containsKey('enum')) {
         final entity = Entity(
           name: entry.key,
@@ -52,11 +52,13 @@ class EntityRepositoryImpl implements EntityRepository {
               .toList(),
           isEnum: true,
         );
+        logger.wtf('${entity.name}: ${entity.properties}');
+
         entities.add(entity);
       }
     }
 
-    _parseStack(stack, entities);
+    _parseStack(stack);
 
     for (final entity in entities) {
       if (entity.imports.isEmpty) continue;
@@ -76,7 +78,6 @@ class EntityRepositoryImpl implements EntityRepository {
 
   void _parseObject(
       {required MapEntry<String, dynamic> entry,
-      required Set<Entity> entities,
       required List<String> imports,
       required List<MapEntry<String, dynamic>> stack}) {
     if (entry.value.containsKey('allOf')) {
@@ -89,40 +90,38 @@ class EntityRepositoryImpl implements EntityRepository {
     }
 
     if (entry.value['properties'].toString().contains('oneOf')) {
-      var property = entry.value['properties'].entries.firstWhere((element) {
-        return element.value.toString().contains('oneOf');
-      });
+      var property = entry.value['properties'].entries
+          .firstWhere((element) => element.value.toString().contains('oneOf'));
 
-      final item = (entry.value['properties'].values.firstWhere((element) {
-        return element.toString().contains('oneOf');
-      }) as Map<String, dynamic>)['oneOf'][0];
+      final item = (entry.value['properties'].values
+              .firstWhere((element) => element.toString().contains('oneOf'))
+          as Map<String, dynamic>)['oneOf'][0];
 
       entry.value['properties'][property.key] = item;
     }
 
     final entity = Entity(
-      name: entry.key.stripRequestResponse(),
+      name: entry.key,
       properties:
           (entry.value['properties'] as Map<String, dynamic>).entries.map((e) {
         if (TypeMatcher.isReference(e.value)) {
-          imports
-              .add(_getRefClassName(e.value).stripRequestResponse().snakeCase);
+          imports.add(_getRefClassName(e.value));
         }
         var property = Property(
-          name: e.key.camelCase.stripRequestResponse(),
+          name: e.key.camelCase,
           type: TypeMatcher.isReference(e.value)
-              ? _getRefClassName(e.value).stripRequestResponse().pascalCase
+              ? _getRefClassName(e.value).pascalCase
               : e.value['type'],
           nullable: e.value['nullable'] ?? false,
         );
 
         if (property.type == 'array') {
-          _parseArray(e, property, entities, imports);
+          _parseArray(e, property, imports);
         }
 
         if (TypeMatcher.getDartType(property.type) == 'Map') {
           imports.add(e.key.snakeCase);
-          _parseMap(property, e, entities);
+          _parseMap(property, e);
         }
 
         return property;
@@ -131,11 +130,35 @@ class EntityRepositoryImpl implements EntityRepository {
 
     entity.addImports(imports);
 
-    entities.add(entity);
+    if (entity.name.endsWith('Response')) {
+      final generatedEntity = Entity(
+        name: entity.name.replaceLast('Response', ''),
+        properties: entity.properties.map((e) {
+          if (e.type.endsWith('Response') || e.type.endsWith('Response>')) {
+            e.type = e.type
+                .replaceLast('Response', '')
+                .replaceLast('Response>', '>');
+          }
+          return e;
+        }).toList(),
+        isEnum: entity.isEnum,
+        generateResponse: true,
+      );
+
+      generatedEntity.addImports(imports.map((e) {
+        if (e.endsWith('_response') || e.endsWith('Response')) {
+          return e.stripRequestResponse();
+        }
+        return e;
+      }).toList());
+
+      entities.add(generatedEntity);
+    } else {
+      entities.add(entity);
+    }
   }
 
-  void _parseMap(
-      Property property, MapEntry<String, dynamic> e, Set<Entity> entities) {
+  void _parseMap(Property property, MapEntry<String, dynamic> e) {
     property.type = property.name.pascalCase;
 
     final innerEntities = _parse({
@@ -150,13 +173,13 @@ class EntityRepositoryImpl implements EntityRepository {
     entities.addAll(innerEntities);
   }
 
-  void _parseArray(MapEntry<String, dynamic> e, Property property,
-      Set<Entity> entities, List<String> imports) {
+  void _parseArray(
+      MapEntry<String, dynamic> e, Property property, List<String> imports) {
     if (TypeMatcher.isReference(e.value['items'])) {
       property.type =
-          'List<${_getRefClassName(e.value['items']).stripRequestResponse()}>';
-      imports.add(
-          _getRefClassName(e.value['items']).stripRequestResponse().snakeCase);
+          'List<${_getRefClassName(e.value['items']) /*.stripRequestResponse()*/}>';
+      imports.add(_getRefClassName(e.value['items']) /*.stripRequestResponse()*/
+          .snakeCase);
     } else {
       if ((e.value['items'] as Map<String, dynamic>).isEmpty) {
         property.type = 'List<dynamic>';
@@ -202,14 +225,14 @@ class EntityRepositoryImpl implements EntityRepository {
         .last;
   }
 
-  void _parseStack(
-      List<MapEntry<String, dynamic>> stack, Set<Entity> entities) {
+  void _parseStack(List<MapEntry<String, dynamic>> stack) {
     for (final entry in stack) {
       final Map<String, dynamic> properties = {};
 
       for (var dependency in entry.value['allOf']) {
         if (TypeMatcher.isReference(dependency)) {
-          final className = _getRefClassName(dependency).stripRequestResponse();
+          final className =
+              _getRefClassName(dependency) /*.stripRequestResponse()*/;
 
           final entity =
               entities.where((element) => element.name == className).first;

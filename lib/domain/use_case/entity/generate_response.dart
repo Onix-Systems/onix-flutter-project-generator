@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
@@ -12,6 +13,8 @@ class GenerateResponse {
     required String projectPath,
     required Entity entity,
   }) async {
+    logger.wtf('Generate response: ${entity.name}');
+
     final sourceName = entity.sourceName;
     final name = entity.name;
 
@@ -33,6 +36,10 @@ class ${name.pascalCase}Response with _\$${name.pascalCase}Response {
     factory ${name.pascalCase}Response({
 ${_getProperties(entity: entity)}
     }) = _${name.pascalCase}Response;
+    
+    factory ${name.pascalCase}Response.empty() => ${name.pascalCase}Response(
+    ${entity.properties.map((e) => '        ${e.name}: ${TypeMatcher.defaultTypeValue(e.type) == e.type ? '${e.type}Response.empty()' : TypeMatcher.defaultTypeValue(e.type)},').join('\n')}
+    );
 
     factory ${name.pascalCase}Response.fromJson(Map<String, dynamic> json,) => _\$${name.pascalCase}ResponseFromJson(json);
 }''';
@@ -59,7 +66,9 @@ ${_getProperties(entity: entity)}
             : properties.add(
                 '        List<${TypeMatcher.getDartType(type)}>? ${property.name},');
       } else {
-        entity.imports.contains(property.type.snakeCase)
+        entity.imports
+                .map((e) => e.pascalCase)
+                .contains(property.type.pascalCase)
             ? entity.entityImports
                     .firstWhereOrNull((e) => e.name == property.type)!
                     .isEnum
