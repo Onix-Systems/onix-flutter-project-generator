@@ -19,10 +19,14 @@ class GenerateResponse {
     final name = entity.name;
 
     final imports = entity.entityImports
-        .where((e) => !e.isEnum)
-        .map((e) =>
-            'import \'package:$projectName/data/model/remote/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';')
-        .join('\n');
+        /*.where((e) => !e.isEnum)*/
+        .map((e) {
+      if (!e.isEnum) {
+        return 'import \'package:$projectName/data/model/remote/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';';
+      } else {
+        return 'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';';
+      }
+    }).join('\n');
 
     final fileContent =
         '''import 'package:freezed_annotation/freezed_annotation.dart';
@@ -38,7 +42,7 @@ ${_getProperties(entity: entity)}
     }) = _${name.pascalCase}Response;
     
     factory ${name.pascalCase}Response.empty() => ${name.pascalCase}Response(
-    ${entity.properties.map((e) => '        ${e.name}: ${TypeMatcher.defaultTypeValue(e.type) == e.type ? '${e.type}Response.empty()' : TypeMatcher.defaultTypeValue(e.type)},').join('\n')}
+    ${entity.properties.map((e) => '        ${e.name}: ${entityRepository.isEnum(e.type) ? '${e.type}.values.first.toString()' : TypeMatcher.defaultTypeValue(e.type) == e.type ? '${e.type}Response.empty()' : TypeMatcher.defaultTypeValue(e.type)} ,').join('\n')}
     );
 
     factory ${name.pascalCase}Response.fromJson(Map<String, dynamic> json,) => _\$${name.pascalCase}ResponseFromJson(json);

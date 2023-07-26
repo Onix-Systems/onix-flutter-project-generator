@@ -83,14 +83,16 @@ class ${name.pascalCase}Mappers {
   String _getProperties({required Entity entity, bool isRequest = false}) {
     final properties = <String>[];
 
+    //TODO: refactor this
+
     for (final property in entity.properties) {
       if (property.type.startsWith('List')) {
         final type = property.type.substring(5, property.type.length - 1);
         entity.imports.contains(type.snakeCase)
             ? properties.add(
-                '        ${property.name}: from.${property.name}${isRequest ? '' : '?'}.map(${type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest ? '' : ' ?? []'},')
+                '        ${property.name}: from.${property.name}${isRequest ? '' : '?'}.map(${type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest && !property.type.endsWith('?') ? '' : ' ?? []'},')
             : properties.add(
-                '        ${property.name}: from.${property.name}${isRequest ? '' : ' ?? []'},');
+                '        ${property.name}: from.${property.name}${isRequest && !type.endsWith('?') ? '' : ' ?? []'},');
       } else {
         entity.imports
                 .map((e) => e.pascalCase)
@@ -101,9 +103,9 @@ class ${name.pascalCase}Mappers {
                 ? properties.add(
                     '        ${property.name}: ${isRequest ? 'from.${property.name}' : '${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name}) ?? ${property.type.pascalCase}.values.first'},')
                 : properties.add(
-                    '        ${property.name}: ${property.type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}(from.${property.name} ${isRequest ? '' : '?? ${property.type.pascalCase}Response(),'}),')
+                    '        ${property.name}: ${property.type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}(from.${property.name} ${isRequest && !property.type.endsWith('?') ? '' : '?? ${property.type.pascalCase}Response(),'}),')
             : properties.add(
-                '        ${property.name}: from.${property.name}${isRequest ? '' : ' ?? ${TypeMatcher.defaultTypeValue(property.type)}'},');
+                '        ${property.name}: from.${property.name}${isRequest && !property.type.endsWith('?') ? '' : ' ?? ${TypeMatcher.defaultTypeValue(property.type)}'},');
       }
     }
     return properties.join('\n');
