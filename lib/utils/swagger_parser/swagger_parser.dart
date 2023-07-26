@@ -15,14 +15,7 @@ class SwaggerParser {
 
     final parsedEntities = entityRepository.entities;
 
-    // logger.wtf(parsedEntities
-    //     .sorted((a, b) => a.name.compareTo(b.name))
-    //     .map((e) => e.name)
-    //     .toList());
-
     final parsedSources = await SourceParser.parse(data);
-
-    // logger.wtf(parsedSources.map((e) => "${e.name}: ${e.entities}").toList());
 
     for (final source in parsedSources) {
       for (final entity in parsedEntities.where((e) =>
@@ -79,6 +72,16 @@ class SwaggerParser {
 
     final entities = parsedEntities.where((e) => e.sourceName.isEmpty).toList();
 
+    for (final entity in entities) {
+      if (entity.generateRequest) {
+        _setGenRequest(sources, entity);
+      }
+
+      if (entity.generateResponse) {
+        _setGenResponse(sources, entity);
+      }
+    }
+
     return SwaggerData(
       basePath: basePath,
       entities: entities,
@@ -117,12 +120,6 @@ class SwaggerParser {
   static void _setGenRequest(List<SourceWrapper> sources, Entity entity) {
     entity.generateRequest = true;
 
-    final allEntities = <Entity>{};
-
-    for (final source in sources) {
-      allEntities.addAll(source.entities);
-    }
-
     if (entity.isEnum || entity.entityImports.isEmpty) {
       return;
     }
@@ -131,9 +128,11 @@ class SwaggerParser {
       if (!import.isEnum &&
           !import.name.endsWith('Request') &&
           !import.name.endsWith('Response') &&
-          allEntities.firstWhereOrNull((e) => e.name == import.name) != null) {
-        _setGenRequest(
-            sources, allEntities.firstWhere((e) => e.name == import.name));
+          entityRepository.entities
+                  .firstWhereOrNull((e) => e.name == import.name) !=
+              null) {
+        _setGenRequest(sources,
+            entityRepository.entities.firstWhere((e) => e.name == import.name));
       }
     }
   }
@@ -141,12 +140,6 @@ class SwaggerParser {
   static void _setGenResponse(List<SourceWrapper> sources, Entity entity) {
     entity.generateResponse = true;
 
-    final allEntities = <Entity>{};
-
-    for (final source in sources) {
-      allEntities.addAll(source.entities);
-    }
-
     if (entity.isEnum || entity.entityImports.isEmpty) {
       return;
     }
@@ -155,9 +148,11 @@ class SwaggerParser {
       if (!import.isEnum &&
           !import.name.endsWith('Response') &&
           !import.name.endsWith('Request') &&
-          allEntities.firstWhereOrNull((e) => e.name == import.name) != null) {
-        _setGenResponse(
-            sources, allEntities.firstWhere((e) => e.name == import.name));
+          entityRepository.entities
+                  .firstWhereOrNull((e) => e.name == import.name) !=
+              null) {
+        _setGenResponse(sources,
+            entityRepository.entities.firstWhere((e) => e.name == import.name));
       }
     }
   }

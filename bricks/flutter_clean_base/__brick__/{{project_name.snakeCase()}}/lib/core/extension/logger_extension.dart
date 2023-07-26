@@ -6,7 +6,7 @@ extension Crash on Logger {
     dynamic error,
     StackTrace? stackTrace,
   }) {
-    e(reason, error, stackTrace);
+    e(reason, error: error, stackTrace: stackTrace);
     //TODO Add here crash recognition system
     // FirebaseCrashlytics.instance.recordError(
     //   error,

@@ -123,10 +123,23 @@ class SourceParser {
             if (TypeMatcher.isReference(parameter['schema'])) {
               String entityName = _getRefClassName(parameter['schema']);
 
-              final entity = entityRepository.getEntityByName(entityName);
+              var entity = entityRepository.getEntityByName(entityName);
 
               if (entity == null) {
-                continue;
+                entity = entityRepository
+                    .getEntityByName(entityName.stripRequestResponse());
+
+                if (entity == null) {
+                  continue;
+                }
+              }
+
+              if (!entityName.contains('Request')) {
+                entity.generateRequest = true;
+              }
+
+              if (entityName.contains('NymUserStatusWebhook')) {
+                logger.wtf(entity.name, entity.generateRequest);
               }
 
               method.entities.add(entity);
@@ -183,6 +196,8 @@ class SourceParser {
       );
       sources.add(source);
     }
+
+    //logger.wtf('sources: $sources');
 
     return sources;
   }
@@ -248,6 +263,8 @@ class SourceParser {
       if (entity == null) {
         continue;
       }
+
+      entity.generateResponse = true;
 
       method.entities.add(entity);
     }

@@ -130,26 +130,32 @@ class EntityRepositoryImpl implements EntityRepository {
 
     entity.addImports(imports);
 
-    if (entity.name.endsWith('Response')) {
+    if (entity.name.endsWith('Response') || entity.name.endsWith('Request')) {
+      final generateResponse = entity.name.endsWith('Response');
+      final generateRequest = entity.name.endsWith('Request');
+
       final generatedEntity = Entity(
-        name: entity.name.replaceLast('Response', ''),
+        name: entity.name.stripRequestResponse(),
         properties: entity.properties.map((e) {
-          if (e.type.endsWith('Response') || e.type.endsWith('Response>')) {
+          if (e.type.endsWith('Response') ||
+              e.type.endsWith('Response>') ||
+              e.type.endsWith('Request') ||
+              e.type.endsWith('Request>')) {
             e.type = e.type
                 .replaceLast('Response', '')
-                .replaceLast('Response>', '>');
+                .replaceLast('Response>', '>')
+                .replaceLast('Request', '')
+                .replaceLast('Request>', '>');
           }
           return e;
         }).toList(),
         isEnum: entity.isEnum,
-        generateResponse: true,
+        generateResponse: generateResponse,
+        generateRequest: generateRequest,
       );
 
       generatedEntity.addImports(imports.map((e) {
-        if (e.endsWith('_response') || e.endsWith('Response')) {
-          return e.stripRequestResponse();
-        }
-        return e;
+        return e.stripRequestResponse();
       }).toList());
 
       entities.add(generatedEntity);
@@ -231,14 +237,13 @@ class EntityRepositoryImpl implements EntityRepository {
 
       for (var dependency in entry.value['allOf']) {
         if (TypeMatcher.isReference(dependency)) {
-          final className =
-              _getRefClassName(dependency) /*.stripRequestResponse()*/;
+          final className = _getRefClassName(dependency).stripRequestResponse();
 
           final entity =
               entities.where((element) => element.name == className).first;
 
           for (final property in entity.properties) {
-            properties['${property.name}'] = property.toJson();
+            properties[property.name] = property.toJson();
           }
         } else {
           properties.addEntries(dependency['properties'].entries);

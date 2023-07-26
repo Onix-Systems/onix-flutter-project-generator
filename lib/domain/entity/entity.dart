@@ -58,7 +58,7 @@ class Entity {
       return result;
     }
 
-    return 'ClassEntity{name: $name, properties: $properties, imports: $imports, sourceName: $sourceName, entityImports: $entityImports}';
+    return 'ClassEntity{name: $name, properties: $properties, imports: $imports, sourceName: $sourceName, entityImports: $entityImports, generateRequest: $generateRequest, generateResponse: $generateResponse, exists: $exists, isEnum: $isEnum}';
   }
 
   @override

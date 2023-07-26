@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/domain/entity/entity.dart';
+import 'package:onix_flutter_bricks/utils/extensions/replace_last.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
@@ -43,7 +44,7 @@ ${_getProperties(entity: entity)}
 ''';
 
     final path = await Directory(
-            '$projectPath/$projectName/lib/${name.endsWith('Request') || name.endsWith('Response') ? 'data/model/remote' : 'domain/entity'}/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.snakeCase}')
+            '$projectPath/$projectName/lib/${name.endsWith('Request') || name.endsWith('Response') ? 'data/model/remote' : 'domain/entity'}/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.endsWith('Request') || name.endsWith('Response') ? name.stripRequestResponse().snakeCase : name.snakeCase}')
         .create(recursive: true);
 
     var file = await File('${path.path}/${name.snakeCase}.dart').create();

@@ -12,6 +12,8 @@ import 'package:onix_flutter_bricks/utils/swagger_parser/source_parser/entity/pa
 import 'package:onix_flutter_bricks/utils/swagger_parser/type_matcher.dart';
 import 'package:recase/recase.dart';
 
+import '../../../core/di/di.dart';
+
 class GenerateSourceUseCase {
   Future<void> call({
     required String projectName,
@@ -333,26 +335,26 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
 
       if (responseIsEnum) {
         imports.add(
-            "import 'package:$projectName/domain/entity/${sourceName.snakeCase}/${method.responseEntityName. /*stripRequestResponse().*/ snakeCase}/${method.responseEntityName. /*stripRequestResponse().*/ snakeCase}.dart';");
+            "import 'package:$projectName/domain/entity/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${method.responseEntityName. /*stripRequestResponse().*/ snakeCase}.dart';");
       } else {
         imports.add(
-            "import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${method.responseEntityName. /*stripRequestResponse().*/ snakeCase}/${responseEntityName.snakeCase}.dart';");
+            "import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${responseEntityName.snakeCase}.dart';");
       }
     }
 
     if (method.requestEntityName.isNotEmpty) {
+      logger.wtf(method.requestEntityName);
       final source = allSources.firstWhere((source) =>
           source.entities.firstWhereOrNull((element) =>
               element.name ==
-              method.requestEntityName /*.stripRequestResponse()*/) !=
+              method.requestEntityName.stripRequestResponse()) !=
           null);
 
       if (!(method.innerEnums.isNotEmpty &&
           !method.innerEnums
               .any((element) => element.name == method.requestEntityName))) {
         imports.add(
-            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.requestEntityName /*.stripRequestResponse()*/
-                .snakeCase}/${requestEntityName.snakeCase}.dart';");
+            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.requestEntityName.stripRequestResponse().snakeCase}/${requestEntityName.snakeCase}.dart';");
       }
     }
 
@@ -518,7 +520,7 @@ class ${methodName.pascalCase}Params{
         await File('${path.path}/${innerEnum.name.snakeCase}.dart').create();
 
     final fileContent = '''enum ${innerEnum.name.pascalCase}{
-      ${innerEnum.properties.join(',\n')}
+      ${innerEnum.properties.map((e) => e.name.snakeCase).join(',\n')}
     }''';
 
     await file.writeAsString(fileContent);
@@ -654,7 +656,7 @@ final request = _apiClient.client.${method.methodType}(
 try {
       final response = await _${sourceName}Source.${method.name}($sourceParams);
       if (response.isSuccess()) {
-        ${method.sourceMethod.contains('<OperationStatus>') || _checkEntityIsEnum(entityName: responseName, allSources: allSources) ? 'return Result.success(response.data);' : responseName.isNotEmpty ? '''final result = _${responseName.camelCase}Mappers.map${responseName.pascalCase}ResponseToEntity(response.data);
+        ${method.sourceMethod.contains('<OperationStatus>') || _checkEntityIsEnum(entityName: responseName, allSources: allSources) ? 'return Result.success(response.data);' : responseName.isNotEmpty ? '''final result = _${responseName.camelCase}Mappers.mapResponseToEntity(response.data);
         return Result.success(result);''' : 'return Result.success(response.data);'}
       } else {
         final failure = MapCommonServerError.getServerFailureDetails(response);

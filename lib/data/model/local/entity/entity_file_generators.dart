@@ -1,4 +1,3 @@
-import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/domain/use_case/entity/generate_class_entity.dart';
 import 'package:onix_flutter_bricks/domain/use_case/entity/generate_enum_entity.dart';
@@ -12,14 +11,12 @@ extension FileGenerator on Entity {
     required String projectPath,
   }) async {
     if (isEnum) {
-      logger.wtf('Generate enum: $name');
       GenerateEnumEntity()(
         projectName: projectName,
         projectPath: projectPath,
         entity: this,
       );
     } else {
-      logger.wtf('Generate class: $name');
       GenerateClassEntity()(
         projectName: projectName,
         projectPath: projectPath,
@@ -27,7 +24,6 @@ extension FileGenerator on Entity {
       );
     }
     if (!isEnum && generateResponse) {
-      logger.wtf('Generate response: $name');
       GenerateResponse()(
         projectName: projectName,
         projectPath: projectPath,
@@ -35,7 +31,6 @@ extension FileGenerator on Entity {
       );
     }
     if (!isEnum && generateRequest) {
-      logger.wtf('Generate request: $name');
       GenerateRequest()(
         projectName: projectName,
         projectPath: projectPath,
@@ -43,7 +38,6 @@ extension FileGenerator on Entity {
       );
     }
     if (!isEnum && (generateRequest || generateResponse)) {
-      logger.wtf('Generate mapper: $name');
       GenerateMapper()(
         projectName: projectName,
         projectPath: projectPath,
