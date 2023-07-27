@@ -343,7 +343,6 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
     }
 
     if (method.requestEntityName.isNotEmpty) {
-      logger.wtf(method.requestEntityName);
       final source = allSources.firstWhere((source) =>
           source.entities.firstWhereOrNull((element) =>
               element.name ==
@@ -396,6 +395,7 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
         projectPath: projectPath,
         sourceWrapper: sourceWrapper,
         allSources: allSources,
+        innerEnums: method.innerEnums,
       );
     }
 
@@ -457,6 +457,7 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
     required String projectPath,
     required SourceWrapper sourceWrapper,
     required Set<SourceWrapper> allSources,
+    required List<Entity> innerEnums,
   }) async {
     final imports = <String>{};
 
@@ -468,8 +469,11 @@ class ${sourceWrapper.name.pascalCase}RepositoryImpl implements ${sourceWrapper.
           for (final source in allSources) {
             for (final entity in source.entities) {
               if (parameter.type.contains(entity.name)) {
-                imports.add(
-                    "import 'package:$projectName/domain/entity/${entity.sourceName.snakeCase}/${entity.name.snakeCase}/${entity.name.snakeCase}.dart';\n");
+                innerEnums.map((e) => e.name).contains(entity.name)
+                    ? imports.add(
+                        "import 'package:$projectName/data/model/remote/${entity.sourceName.snakeCase}/enums/${entity.name.snakeCase}.dart';\n")
+                    : imports.add(
+                        "import 'package:$projectName/domain/entity/${entity.sourceName.snakeCase}/${entity.name.snakeCase}/${entity.name.snakeCase}.dart';\n");
               }
             }
           }

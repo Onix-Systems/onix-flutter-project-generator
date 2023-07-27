@@ -13,8 +13,6 @@ class GenerateResponse {
     required String projectPath,
     required Entity entity,
   }) async {
-    logger.wtf('Generate response: ${entity.name}');
-
     final sourceName = entity.sourceName;
     final name = entity.name;
 

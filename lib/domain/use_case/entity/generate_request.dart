@@ -48,11 +48,13 @@ ${entity.properties.map((e) {
         } else {
           if (!entityRepository.isEnum(type.pascalCase)) {
             type = '${type}Request';
+          } else {
+            type = 'String';
           }
         }
       }
 
-      return '        required ${TypeMatcher.getDartType(type)} ${e.name},';
+      return '        ${e.nullable ? '@JsonKey(includeIfNull: false)' : 'required'} ${TypeMatcher.getDartType(type)}${e.nullable ? '?' : ''} ${e.name},';
     }).join('\n')}
     }) = _${name.pascalCase}Request;
 

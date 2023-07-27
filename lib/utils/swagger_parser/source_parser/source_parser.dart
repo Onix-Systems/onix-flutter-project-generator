@@ -76,14 +76,25 @@ class SourceParser {
               } else {
                 if (isEnum) {
                   method.innerEnums.add(Entity(
-                      name:
-                          '${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase}',
-                      isEnum: true,
-                      properties: List<Property>.generate(
-                          parameter['schema']['enum'].length,
-                          (index) => Property(
-                              name: parameter['schema']['enum'][index],
-                              type: "string"))));
+                    name:
+                        '${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase}',
+                    isEnum: true,
+                    properties: List<Property>.generate(
+                      parameter['schema']['enum']
+                          .where((e) => e.runtimeType.toString() == 'String')
+                          .toList()
+                          .length,
+                      (index) {
+                        return Property(
+                            name: parameter['schema']['enum']
+                                .where(
+                                    (e) => e.runtimeType.toString() == 'String')
+                                .toList()[index]
+                                .toString(),
+                            type: "string");
+                      },
+                    ),
+                  ));
                 }
 
                 method.params.add(MethodParameter(
@@ -136,10 +147,6 @@ class SourceParser {
 
               if (!entityName.contains('Request')) {
                 entity.generateRequest = true;
-              }
-
-              if (entityName.contains('NymUserStatusWebhook')) {
-                logger.wtf(entity.name, entity.generateRequest);
               }
 
               method.entities.add(entity);

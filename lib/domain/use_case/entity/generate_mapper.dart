@@ -25,8 +25,8 @@ class GenerateMapper {
     final imports = entity.entityImports
         .map((e) => e.isEnum
             ? 'import \'package:$projectName/domain/entity/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}.dart\';'
-            : importMappers.isNotEmpty && entity.generateResponse
-                ? 'import \'package:$projectName/data/model/remote/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';\n'
+            : importMappers.isNotEmpty
+                ? '${entity.generateResponse ? 'import \'package:$projectName/data/model/remote/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';\n' : ''}'
                     'import \'package:$projectName/data/mapper/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}_mapper.dart\';\n'
                 : '')
         .join('\n');
@@ -83,16 +83,15 @@ class ${name.pascalCase}Mappers {
   String _getProperties({required Entity entity, bool isRequest = false}) {
     final properties = <String>[];
 
-    //TODO: refactor this
-
     for (final property in entity.properties) {
       if (property.type.startsWith('List')) {
         final type = property.type.substring(5, property.type.length - 1);
+
         entity.imports.contains(type.snakeCase)
             ? properties.add(
-                '        ${property.name}: from.${property.name}${isRequest ? '' : '?'}.map(${type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest && !property.type.endsWith('?') ? '' : ' ?? []'},')
+                '        ${property.name}: from.${property.name}${isRequest && !property.nullable ? '' : '?'}.map(${type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest && !property.type.endsWith('?') ? '' : ' ?? []'},')
             : properties.add(
-                '        ${property.name}: from.${property.name}${isRequest && !type.endsWith('?') ? '' : ' ?? []'},');
+                '        ${property.name}: from.${property.name}${isRequest ? '' : ' ?? []'},');
       } else {
         entity.imports
                 .map((e) => e.pascalCase)
@@ -101,7 +100,7 @@ class ${name.pascalCase}Mappers {
                     .firstWhereOrNull((e) => e.name == property.type)!
                     .isEnum
                 ? properties.add(
-                    '        ${property.name}: ${isRequest ? 'from.${property.name}' : '${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name}) ?? ${property.type.pascalCase}.values.first'},')
+                    '        ${property.name}: ${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name}${isRequest ? '.name' : ''})${isRequest ? '?.name' : ''} ?? ${property.type.pascalCase}.values.first${isRequest ? '.name' : ''},')
                 : properties.add(
                     '        ${property.name}: ${property.type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}(from.${property.name} ${isRequest && !property.type.endsWith('?') ? '' : '?? ${property.type.pascalCase}Response(),'}),')
             : properties.add(
