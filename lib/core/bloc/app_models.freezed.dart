@@ -11748,7 +11748,7 @@ class _$Data implements Data {
   @JsonKey()
   Set<ScreenEntity> get screens {
     if (_screens is EqualUnmodifiableSetView) return _screens;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_screens);
   }
 
@@ -11757,7 +11757,7 @@ class _$Data implements Data {
   @JsonKey()
   Set<Entity> get entities {
     if (_entities is EqualUnmodifiableSetView) return _entities;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_entities);
   }
 

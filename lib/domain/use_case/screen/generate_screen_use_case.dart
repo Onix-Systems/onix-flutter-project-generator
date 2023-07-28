@@ -54,9 +54,6 @@ class GenerateScreenUseCase {
         diFile: diFile,
       );
     }
-
-    await Process.run('flutter', ['format', '.']);
-    await Process.run('rm', ['-r', 'gen']);
   }
 
   Future<void> _createRoutes(
@@ -97,9 +94,9 @@ class GenerateScreenUseCase {
     required String screenName,
     required File diFile,
   }) async {
-    String diContent = diFile.readAsStringSync();
+    String diContent = await diFile.readAsString();
 
-    diFile.writeAsString(diContent.replaceFirst(
+    await diFile.writeAsString(diContent.replaceFirst(
         'void registerBloc(GetIt getIt) {',
         'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_bloc.dart\';\n\nvoid registerBloc(GetIt getIt) {\n  getIt.registerFactory<${screenName.pascalCase}ScreenBloc>(${screenName.pascalCase}ScreenBloc.new);'));
   }

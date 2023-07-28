@@ -18,7 +18,6 @@ import 'package:onix_flutter_bricks/domain/entity/property.dart';
 import 'package:onix_flutter_bricks/domain/use_case/screen/generate_screen_use_case.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_parser.dart';
-import 'package:process_run/shell.dart';
 import 'package:recase/recase.dart';
 import 'package:http/http.dart' as http;
 
@@ -577,8 +576,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       ScreensGenerate event, Emitter<AppState> emit) async {
     if (state.screens.where((element) => !element.exists).isNotEmpty) {
       emit(state.copyWith(generatingState: GeneratingState.generating));
-      var mainProcess = await startProcess(
-          workingDirectory: '${state.projectPath}/${state.projectName}');
 
       for (var screen in state.screens.where((element) => !element.exists)) {
         outputService.add('{#info}Generating screen ${screen.name}...');
@@ -591,13 +588,22 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         );
 
         if (screen == state.screens.last) {
+          var mainProcess = await startProcess(
+              activateMason: false,
+              workingDirectory: '${state.projectPath}/${state.projectName}');
+
           mainProcess.stdin.writeln(
-              'dart run build_runner build --delete-conflicting-outputs && echo "Complete with exit code: 0"');
+              'dart run build_runner build --delete-conflicting-outputs');
+
+          mainProcess.stdin.writeln('dart format .');
+
+          mainProcess.stdin.writeln('echo "Complete with exit code: 0"');
+
           outputService.add('{#info}Complete with exit code: 0');
+          await mainProcess.exitCode;
         }
       }
 
-      await mainProcess.exitCode;
       outputService.add('{#info}Screens generated!');
     }
 
@@ -649,7 +655,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         for (var source in sources) {
           for (final entity in source.entities.where((e) =>
               !e.exists &&
-              //TODO: fix this
               !source.paths.any((path) => path.methods.any((method) => method
                   .innerEnums
                   .any((innerEnum) => innerEnum.name == e.name))))) {
@@ -668,28 +673,22 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       }
       outputService.add('{#info}Generating entities!');
 
-      final mainProcess = await Process.run('dart',
-          ['run', 'build_runner', 'build', '--delete-conflicting-outputs'],
+      var mainProcess = await startProcess(
+          activateMason: false,
           workingDirectory: '${state.projectPath}/${state.projectName}');
 
-      outputService.add(mainProcess.outText);
-      outputService.add(mainProcess.errText);
+      mainProcess.stdin
+          .writeln('dart run build_runner build --delete-conflicting-outputs');
 
-      final sorterProcess = await Process.run(
-          'flutter', ['pub', 'run', 'import_sorter:main', '--no-comments'],
-          workingDirectory: '${state.projectPath}/${state.projectName}');
+      mainProcess.stdin
+          .writeln('flutter pub run import_sorter:main --no-comments');
 
-      outputService.add(sorterProcess.outText);
-      outputService.add(sorterProcess.errText);
+      mainProcess.stdin.writeln('dart format .');
 
-      final formatProcess = await Process.run(
-        'dart',
-        ['format', '.'],
-        workingDirectory: '${state.projectPath}/${state.projectName}',
-      );
+      mainProcess.stdin.writeln('echo "Complete with exit code: 0"');
 
-      outputService.add(formatProcess.outText);
-      outputService.add(formatProcess.errText);
+      outputService.add('{#info}Complete with exit code: 0');
+      await mainProcess.exitCode;
 
       outputService.add('{#info}Entities generated!');
     }
@@ -707,8 +706,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _openProject(OpenProject event, Emitter<AppState> emit) async {
-    Process.run('studio', ['.'],
+    var mainProcess = await startProcess(
+        activateMason: false,
         workingDirectory: '${state.projectPath}/${state.projectName}');
+
+    mainProcess.stdin.writeln('Studio .');
+
+    await mainProcess.exitCode;
   }
 
   Future<Process> startProcess(
