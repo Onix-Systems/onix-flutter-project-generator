@@ -15,7 +15,7 @@ void main() async {
     center: true,
     skipTaskbar: false,
     titleBarStyle: TitleBarStyle.normal,
-    title: 'Onix Flutter Bricks',
+    title: 'Onix Flutter Project Generator',
   );
   await windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
