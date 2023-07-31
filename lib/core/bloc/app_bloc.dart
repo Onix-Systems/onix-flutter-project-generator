@@ -722,7 +722,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         activateMason: false,
         workingDirectory: '${state.projectPath}/${state.projectName}');
 
-    mainProcess.stdin.writeln('Studio .');
+    mainProcess.stdin.writeln('open -na \'Android Studio.app\' .');
 
     await mainProcess.exitCode;
   }
