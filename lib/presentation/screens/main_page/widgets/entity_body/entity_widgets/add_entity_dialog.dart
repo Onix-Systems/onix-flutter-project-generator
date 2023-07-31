@@ -186,6 +186,7 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
                   ? _entityNameController.text.snakeCase
                   : _entityNameController.text,
               properties: [],
+              isGenerated: false,
               generateRequest: _createRequest,
               generateResponse: _createResponse,
             ));

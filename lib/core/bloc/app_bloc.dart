@@ -131,15 +131,23 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       state.copyWith(
         sources: state.sources.isEmpty
             ? {
-                SourceWrapper(name: 'Time', exists: true, entities: [
-                  Entity(name: 'Time', exists: true, properties: [
-                    Property(
-                      name: 'currentDateTime',
-                      type: 'DateTime',
-                    ),
-                  ])
-                    ..setSourceName('Time'),
-                ])
+                SourceWrapper(
+                    name: 'Time',
+                    exists: true,
+                    isGenerated: false,
+                    entities: [
+                      Entity(
+                          name: 'Time',
+                          exists: true,
+                          isGenerated: false,
+                          properties: [
+                            Property(
+                              name: 'currentDateTime',
+                              type: 'DateTime',
+                            ),
+                          ])
+                        ..setSourceName('Time'),
+                    ])
               }
             : state.sources,
         entities: state.entities.isEmpty
@@ -147,6 +155,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                 Entity(
                   name: 'Auth',
                   exists: true,
+                  isGenerated: false,
                   properties: [
                     Property(
                       name: 'accessToken',
@@ -227,10 +236,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         SourceWrapper(
           name: 'Time',
           exists: true,
+          isGenerated: false,
           entities: [
             Entity(
               name: 'Time',
               exists: true,
+              isGenerated: false,
               properties: [
                 Property(
                   name: 'currentDateTime',
@@ -245,6 +256,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         Entity(
           name: 'Auth',
           exists: true,
+          isGenerated: false,
           properties: [
             Property(
               name: 'accessToken',

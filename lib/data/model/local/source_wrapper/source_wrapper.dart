@@ -9,6 +9,7 @@ class SourceWrapper {
   String name;
   List<Entity> entities;
   bool exists;
+  bool isGenerated;
   List<Path> paths;
 
   SourceWrapper({
@@ -16,6 +17,7 @@ class SourceWrapper {
     required this.entities,
     this.paths = const [],
     this.exists = false,
+    this.isGenerated = true,
   });
 
   SourceWrapper.copyOf(SourceWrapper source)
@@ -23,6 +25,8 @@ class SourceWrapper {
           name: source.name,
           entities: source.entities.map((e) => Entity.copyOf(e)).toList(),
           exists: source.exists,
+          isGenerated: source.isGenerated,
+          paths: source.paths.map((e) => Path.copyOf(e)).toList(),
         );
 
   @override

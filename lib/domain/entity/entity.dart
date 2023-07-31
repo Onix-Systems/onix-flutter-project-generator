@@ -10,6 +10,7 @@ class Entity {
   bool generateRequest;
   bool generateResponse;
   bool exists;
+  bool isGenerated;
   List<Property> properties;
   final Set<String> imports = {};
   String sourceName = '';
@@ -23,6 +24,7 @@ class Entity {
     this.generateRequest = false,
     this.generateResponse = false,
     this.exists = false,
+    this.isGenerated = true,
   });
 
   void addImports(List<String> imports) {
@@ -74,13 +76,18 @@ class Entity {
   Map<String, dynamic> toJson() => _$EntityToJson(this);
 
   static Entity copyOf(Entity entity) {
-    return Entity(
+    final copy = Entity(
       name: entity.name,
-      properties: entity.properties,
+      properties: entity.properties.map((e) => Property.copyOf(e)).toList(),
       isEnum: entity.isEnum,
       generateRequest: entity.generateRequest,
       generateResponse: entity.generateResponse,
       exists: entity.exists,
+      isGenerated: entity.isGenerated,
     );
+    copy.addImports(entity.imports.toList());
+    copy.entityImports.addAll(entity.entityImports);
+    copy.sourceName = entity.sourceName;
+    return copy;
   }
 }

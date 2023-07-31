@@ -56,4 +56,11 @@ class Method {
   factory Method.fromJson(Map<String, dynamic> json) => _$MethodFromJson(json);
 
   Map<String, dynamic> toJson() => _$MethodToJson(this);
+
+  Method.copyOf(Method source)
+      : this(
+          methodType: source.methodType,
+          tags: source.tags,
+          entities: source.entities.map((e) => Entity.copyOf(e)).toSet(),
+        );
 }

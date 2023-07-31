@@ -82,13 +82,15 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              color: widget.source.exists
+                              color: widget.source.exists ||
+                                      widget.source.isGenerated
                                   ? CupertinoColors.inactiveGray
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                widget.source.exists
+                                widget.source.exists ||
+                                        widget.source.isGenerated
                                     ? null
                                     : showCupertinoModalPopup<SourceWrapper>(
                                         context: context,
@@ -132,13 +134,15 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                             ),
                             const SizedBox(width: 10),
                             CupertinoButton(
-                              color: widget.source.exists
+                              color: widget.source.exists ||
+                                      widget.source.isGenerated
                                   ? CupertinoColors.inactiveGray
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                widget.source.exists
+                                widget.source.exists ||
+                                        widget.source.isGenerated
                                     ? null
                                     : context.read<AppBloc>().add(
                                           SourceDelete(source: widget.source),

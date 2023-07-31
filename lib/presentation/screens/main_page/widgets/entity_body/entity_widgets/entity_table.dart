@@ -166,13 +166,15 @@ class EntityTable extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              color: entity.exists || entity.isEnum
+                              color: entity.exists || entity.isGenerated
                                   ? CupertinoColors.inactiveGray
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                if (!entity.exists && !entity.isEnum) {
+                                if (!entity.exists &&
+                                    !entity.isEnum &&
+                                    !entity.isGenerated) {
                                   showCupertinoModalPopup<Entity>(
                                     context: context,
                                     barrierDismissible: false,
@@ -193,13 +195,13 @@ class EntityTable extends StatelessWidget {
                             ),
                             const SizedBox(width: 10),
                             CupertinoButton(
-                              color: entity.exists
+                              color: entity.exists || entity.isGenerated
                                   ? CupertinoColors.inactiveGray
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                if (!entity.exists) {
+                                if (!entity.exists && !entity.isGenerated) {
                                   context.read<AppBloc>().add(
                                         EntityDelete(
                                             entity: entity, source: source),

@@ -21,4 +21,10 @@ class Path {
   factory Path.fromJson(Map<String, dynamic> json) => _$PathFromJson(json);
 
   Map<String, dynamic> toJson() => _$PathToJson(this);
+
+  Path.copyOf(Path source)
+      : this(
+          path: source.path,
+          methods: source.methods.map((e) => Method.copyOf(e)).toList(),
+        );
 }

@@ -24,4 +24,11 @@ class Property {
   String toString() {
     return '${nullable ? '' : 'required '}${TypeMatcher.getDartType(type)}${nullable ? '?' : ''} $name';
   }
+
+  Property.copyOf(Property source)
+      : this(
+          name: source.name,
+          type: source.type,
+          nullable: source.nullable,
+        );
 }
