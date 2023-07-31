@@ -17,12 +17,12 @@ mobile development, and a full API reference.
 
 [master]:
 
-## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build/macos/Build/Products/Release/onix_flutter_bricks.app release/onix_flutter_bricks.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/master:master
+## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build'/macos/Build/Products/Release/Onix Flutter Project Generator.app' release/onix_flutter_proj_gen.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/master:master
 
 [testing]:
 
-## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build/macos/Build/Products/Release/onix_flutter_bricks.app release/onix_flutter_bricks.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/testing:testing
+## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build'/macos/Build/Products/Release/Onix Flutter Project Generator.app' release/onix_flutter_proj_gen.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/testing:testing
 
 [swagger_parser]:
 
-## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build/macos/Build/Products/Release/onix_flutter_bricks.app release/onix_flutter_bricks.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/swagger_parser:swagger_parser
+## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build'/macos/Build/Products/Release/Onix Flutter Project Generator.app' release/onix_flutter_proj_gen.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/swagger_parser:swagger_parser
