@@ -580,6 +580,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           router: state.router,
         );
 
+        screen.exists = true;
+
         if (screen == state.screens.last) {
           var mainProcess = await startProcess(
               workingDirectory: '${state.projectPath}/${state.projectName}');
@@ -612,6 +614,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _entitiesGenerate(
       EntitiesGenerate event, Emitter<AppState> emit) async {
+    if (state.screens.where((element) => !element.exists).isNotEmpty) {
+      add(const ScreensGenerate());
+      return;
+    }
+
     var needToGenerateEntities =
         state.entities.where((entity) => !entity.exists).isNotEmpty;
 
