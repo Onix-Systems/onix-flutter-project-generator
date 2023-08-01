@@ -26,3 +26,5 @@ mobile development, and a full API reference.
 [swagger_parser]:
 
 ## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build'/macos/Build/Products/Release/Onix Flutter Project Generator.app' release/onix_flutter_proj_gen.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/swagger_parser:swagger_parser
+
+## flutter clean && flutter build macos --release && appdmg installers/dmg_creator/config.json 'release/Onix Flutter Project Generator.dmg' && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/swagger_parser:swagger_parser
