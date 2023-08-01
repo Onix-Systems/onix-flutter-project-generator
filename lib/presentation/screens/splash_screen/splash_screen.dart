@@ -8,6 +8,7 @@ import 'package:onix_flutter_bricks/core/bloc/app_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/main_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screens/splash_screen/bloc/splash_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
+import 'package:onix_flutter_bricks/utils/consts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -133,7 +134,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _launchUrl() async {
     final url = Uri.parse(
-        'https://gitlab.onix.ua/onix-systems/flutter-project-generator/-/blob/swagger_parser/release/Onix%20Flutter%20Project%20Generator.dmg');
+        'https://gitlab.onix.ua/onix-systems/flutter-project-generator/-/blob/${Consts.gitBranch}/release/Onix%20Flutter%20Project%20Generator.dmg');
     if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }
