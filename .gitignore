@@ -7,7 +7,7 @@
 .atom/
 .buildlog/
 .history
-.installers/
+installers/
 .svn/
 migrate_working_dir/
 
