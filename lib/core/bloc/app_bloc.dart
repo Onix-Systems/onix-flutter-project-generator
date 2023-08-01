@@ -662,7 +662,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       if (needToGenerateSources) {
         final sources = state.sources
             .where((source) =>
-                source.entities.where((entity) => entity.exists).isEmpty)
+                source.entities.where((entity) => !entity.exists).isNotEmpty)
             .toList();
         for (var source in sources) {
           for (final entity in source.entities.where((e) =>
@@ -676,11 +676,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             );
           }
 
-          await source.generateFiles(
-            projectPath: projectPath,
-            projectName: state.projectName,
-            allSources: state.sources,
-          );
+          if (!source.exists) {
+            await source.generateFiles(
+              projectPath: projectPath,
+              projectName: state.projectName,
+              allSources: state.sources,
+            );
+          }
         }
       }
       outputService.add('{#info}Generating entities!');
