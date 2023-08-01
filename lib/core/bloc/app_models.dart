@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 
 part 'app_models.freezed.dart';
 
@@ -12,6 +12,10 @@ part 'app_models.freezed.dart';
 class AppEvent with _$AppEvent {
   const factory AppEvent.init(// {required String projectPath,}
       ) = Init;
+
+  const factory AppEvent.onSwaggerParse({
+    required String url,
+  }) = SwaggerParse;
 
   const factory AppEvent.onTabChange({
     required int tabIndex,
@@ -81,12 +85,12 @@ class AppEvent with _$AppEvent {
   }) = ScreenAdd;
 
   const factory AppEvent.onEntityAdd({
-    required EntityEntity entity,
-    @Default(null) SourceEntity? source,
+    required Entity entity,
+    @Default(null) SourceWrapper? source,
   }) = EntityAdd;
 
   const factory AppEvent.onSourceAdd({
-    required SourceEntity source,
+    required SourceWrapper source,
   }) = SourceAdd;
 
   const factory AppEvent.onScreenDelete({
@@ -94,12 +98,12 @@ class AppEvent with _$AppEvent {
   }) = ScreenDelete;
 
   const factory AppEvent.onEntityDelete({
-    required EntityEntity entity,
-    @Default(null) SourceEntity? source,
+    required Entity entity,
+    @Default(null) SourceWrapper? source,
   }) = EntityDelete;
 
   const factory AppEvent.onSourceDelete({
-    required SourceEntity source,
+    required SourceWrapper source,
   }) = SourceDelete;
 
   const factory AppEvent.onStateUpdate() = StateUpdate;
@@ -117,28 +121,17 @@ class AppEvent with _$AppEvent {
 class AppState with _$AppState {
   const factory AppState.data({
     required String projectPath,
-    @Default('new_project')
-        String projectName,
-    @Default(false)
-        bool projectExists,
-    @Default(false)
-        bool projectIsClean,
-    @Default('com.example')
-        String organization,
-    @Default(false)
-        bool flavorize,
-    @Default('')
-        String flavors,
-    @Default(ProjectRouter.goRouter)
-        ProjectRouter router,
-    @Default(ProjectLocalization.intl)
-        ProjectLocalization localization,
-    @Default(true)
-        bool generateSigningKey,
-    @Default(true)
-        bool useSonar,
-    @Default(false)
-        bool integrateDevicePreview,
+    @Default('new_project') String projectName,
+    @Default(false) bool projectExists,
+    @Default(false) bool projectIsClean,
+    @Default('com.example') String organization,
+    @Default(false) bool flavorize,
+    @Default('') String flavors,
+    @Default(ProjectRouter.goRouter) ProjectRouter router,
+    @Default(ProjectLocalization.intl) ProjectLocalization localization,
+    @Default(true) bool generateSigningKey,
+    @Default(true) bool useSonar,
+    @Default(false) bool integrateDevicePreview,
     @Default([
       'Some developer',
       'Flutter dep',
@@ -148,30 +141,19 @@ class AppState with _$AppState {
       'UA',
       '',
     ])
-        List<String> signingVars,
+    List<String> signingVars,
     required PlatformsList platforms,
-    @Default(0)
-        int tab,
-    @Default(GeneratingState.init)
-        GeneratingState generatingState,
-    @Default(ProjectTheming.manual)
-        ProjectTheming theming,
-    @Default(false)
-        bool generateScreensWithProject,
-    @Default(false)
-        bool generateEntitiesWithProject,
-    @Default({})
-        Set<ScreenEntity> screens,
-    @Default({})
-        Set<EntityEntity> entities,
-    @Default({})
-        Set<SourceEntity> sources,
-    @Default('')
-        String screenError,
-    @Default('')
-        String entityError,
-    @Default(0)
-        int stateUpdate,
+    @Default(0) int tab,
+    @Default(GeneratingState.init) GeneratingState generatingState,
+    @Default(ProjectTheming.manual) ProjectTheming theming,
+    @Default(false) bool generateScreensWithProject,
+    @Default(false) bool generateEntitiesWithProject,
+    @Default({}) Set<ScreenEntity> screens,
+    @Default({}) Set<Entity> entities,
+    @Default({}) Set<SourceWrapper> sources,
+    @Default('') String screenError,
+    @Default('') String entityError,
+    @Default(0) int stateUpdate,
   }) = Data;
 }
 

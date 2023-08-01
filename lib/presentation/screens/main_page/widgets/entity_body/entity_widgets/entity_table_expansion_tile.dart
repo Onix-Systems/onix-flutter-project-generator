@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/entity_table.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
 
@@ -7,7 +7,7 @@ class EntityTableExpansionTile extends StatefulWidget {
   const EntityTableExpansionTile({required this.entities, Key? key})
       : super(key: key);
 
-  final List<EntityEntity> entities;
+  final List<Entity> entities;
 
   @override
   State<EntityTableExpansionTile> createState() =>

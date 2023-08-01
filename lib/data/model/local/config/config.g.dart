@@ -8,13 +8,13 @@ part of 'config.dart';
 
 _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
       sources: (json['sources'] as List<dynamic>)
-          .map((e) => SourceEntity.fromJson(e as Map<String, dynamic>))
+          .map((e) => SourceWrapper.fromJson(e as Map<String, dynamic>))
           .toList(),
       screens: (json['screens'] as List<dynamic>)
           .map((e) => ScreenEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
       entities: (json['entities'] as List<dynamic>)
-          .map((e) => EntityEntity.fromJson(e as Map<String, dynamic>))
+          .map((e) => Entity.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

@@ -16,14 +16,12 @@ class ConfigSourceImpl implements ConfigSource {
     }
 
     var config = Config.fromJson(jsonDecode(file.readAsStringSync()));
-    logger.d('loadConfig: $config, $configPath');
     return config;
   }
 
   @override
   Future<void> saveConfig(
       {required Config config, required String configPath}) async {
-    logger.d('saveConfig: $config, $configPath');
     var file = await File(configPath).create();
     await file.writeAsString(jsonEncode(config.toJson()));
   }

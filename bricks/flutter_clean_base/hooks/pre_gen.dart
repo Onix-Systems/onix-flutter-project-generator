@@ -4,13 +4,7 @@ import 'package:process_run/shell.dart';
 import 'package:tint/tint.dart';
 import 'package:recase/recase.dart';
 
-bool withUI = false;
-
 void run(HookContext context) async {
-  if (context.vars['withUI'] != null) {
-    withUI = context.vars['withUI'];
-  }
-
   context.vars['platforms'].toString().log();
 
   'Creating flutter project...'.log();
@@ -74,8 +68,6 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
   if (context.vars['flavorizr'] == true) {
     flavors = ['dev', 'prod'];
 
-    context.vars['flavors'].toString().log();
-
     if (context.vars['flavors']
         .toString()
         .replaceAll('[', '')
@@ -86,26 +78,6 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
           .replaceAll('[', '')
           .replaceAll(']', '')
           .split(', '));
-    }
-
-    if (!withUI) {
-      print('Add flavors?'.brightYellow().bold().blink());
-      print(
-          'Type flavor names space separated (except DEV & PROD) or press enter to cancel:'
-              .brightCyan()
-              .bold());
-      print('\u001b[1A\u001b[93;1m');
-
-      String? result = stdin.readLineSync();
-
-      if (result != null && result.toLowerCase().trim().isNotEmpty) {
-        var flavorsArray = result.split(' ');
-        flavorsArray.forEach((element) {
-          if (element.isNotEmpty) {
-            flavors.add(element);
-          }
-        });
-      }
     }
   }
 
@@ -121,38 +93,22 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
 
 extension LogString on String {
   void log() {
-    if (withUI) {
-      print('{#info}$this');
-    } else {
-      print(this.green().bold());
-    }
+    print('{#info}$this');
   }
 
   void error() {
-    if (withUI) {
-      print('{#error}$this');
-    } else {
-      print(this.red().bold());
-    }
+    print('{#error}$this');
   }
 }
 
 extension Log on Process {
   void log() {
-    this.outLines.forEach((element) => print(element));
-    if (withUI) {
-      this.errLines.forEach((element) => print('{#error}$element'));
-    } else {
-      this.errLines.forEach((element) => print(element.red()));
-    }
+    this.outLines.forEach((element) => print('$element'));
+    this.errLines.forEach((element) => print('{#error}$element'));
   }
 
   void info() {
-    if (withUI) {
-      this.errLines.forEach((element) => print('{#info}$element'));
-    } else {
-      this.errLines.forEach((element) => print(element));
-    }
+    this.errLines.forEach((element) => print('{#info}$element'));
   }
 }
 

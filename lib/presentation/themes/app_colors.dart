@@ -6,4 +6,5 @@ class AppColors {
   static const Color green = CupertinoColors.activeGreen;
   static const Color orange = CupertinoColors.activeOrange;
   static const Color inactiveText = Color(0xff5e5e5e);
+  static const Color red = CupertinoColors.destructiveRed;
 }

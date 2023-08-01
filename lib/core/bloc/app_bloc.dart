@@ -6,21 +6,32 @@ import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/di.dart';
 import 'package:onix_flutter_bricks/data/model/local/config/config.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/entity/entity_file_generators.dart';
 import 'package:onix_flutter_bricks/data/model/local/screen/screen_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper_file_generators.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_list.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
+import 'package:onix_flutter_bricks/domain/entity/property.dart';
+import 'package:onix_flutter_bricks/domain/use_case/screen/generate_screen_use_case.dart';
+import 'package:onix_flutter_bricks/utils/consts.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
+import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
+import 'package:http/http.dart' as http;
 
 import 'app_models.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   String projectPath;
 
+  static const String gitRef = '--git-ref ${Consts.gitBranch}';
+
   final ConfigSource _configSource = ConfigSourceImpl();
+
+  final _generateScreenUseCase = GenerateScreenUseCase();
 
   AppBloc({required this.projectPath})
       : super(
@@ -61,35 +72,98 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<EntitiesGenerate>((event, emit) => _entitiesGenerate(event, emit));
     on<ErrorClear>((event, emit) => _errorClear(event, emit));
     on<OpenProject>((event, emit) => _openProject(event, emit));
+    on<SwaggerParse>((event, emit) => _swaggerParse(event, emit));
     add(const Init());
     add(const ProjectCheck());
   }
 
+  FutureOr<void> _swaggerParse(
+      SwaggerParse event, Emitter<AppState> emit) async {
+    //'https://petstore.swagger.io/v2/swagger.json'
+    //'https://vocadb.net/swagger/v1/swagger.json'
+    //'https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json' //post?
+    //'https://onix-systems-savii-api-mvp.staging.onix.ua/api-doc/savii-public'
+    //'https://gist.githubusercontent.com/cozvtieg9/71b8c0be1a3d0b27ee390c726c2c5cbe/raw/6449c5fb25a4d161c357a396e3430f3b655ad1e2/.json'
+
+    try {
+      var response = await http.get(Uri.parse(event.url));
+
+      var json = jsonDecode(response.body);
+
+      final parsedData = await SwaggerParser.parse(
+          data: json as Map<String, dynamic>, projectName: state.projectName);
+
+      final entities = state.entities.toList()
+        ..addAll(parsedData.entities)
+        ..sort((a, b) => a.name.compareTo(b.name));
+
+      final sources = state.sources.toList()
+        ..addAll(parsedData.sources)
+        ..sort((a, b) => a.name.compareTo(b.name));
+
+      emit(state.copyWith(
+        entities: entities.toSet(),
+        sources: sources.toSet(),
+      ));
+    } catch (e) {
+      emit(state.copyWith(
+        entityError: e.toString(),
+      ));
+    }
+  }
+
   FutureOr<void> _init(_, Emitter<AppState> emit) {
-    logger.d('init');
     emit(
       state.copyWith(
-        sources: {
-          SourceEntity(
-            name: 'time',
-            exists: true,
-            entities: [EntityEntity(name: 'time', exists: true)],
-          )
-        },
-        entities: {
-          EntityEntity(name: 'auth', exists: true),
-        },
-        screens: {
-          ScreenEntity(name: 'splash', exists: true),
-          ScreenEntity(name: 'home', exists: true)
-        },
+        sources: state.sources.isEmpty
+            ? {
+                SourceWrapper(
+                    name: 'Time',
+                    exists: true,
+                    isGenerated: false,
+                    entities: [
+                      Entity(
+                          name: 'Time',
+                          exists: true,
+                          isGenerated: false,
+                          properties: [
+                            Property(
+                              name: 'currentDateTime',
+                              type: 'DateTime',
+                            ),
+                          ])
+                        ..setSourceName('Time'),
+                    ])
+              }
+            : state.sources,
+        entities: state.entities.isEmpty
+            ? {
+                Entity(
+                  name: 'Auth',
+                  exists: true,
+                  isGenerated: false,
+                  properties: [
+                    Property(
+                      name: 'accessToken',
+                      type: 'String',
+                    ),
+                    Property(
+                      name: 'refreshToken',
+                      type: 'String',
+                    ),
+                  ],
+                ),
+              }
+            : state.entities,
+        screens: state.screens.isEmpty
+            ? {ScreenEntity(name: 'home', exists: true)}
+            : state.screens,
       ),
     );
   }
 
   FutureOr<void> _tabChange(TabChange event, Emitter<AppState> emit) async {
     emit(state.copyWith(tab: event.tabIndex));
-    add(const ProjectCheck());
   }
 
   FutureOr<void> _projectPathChange(
@@ -133,11 +207,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           ));
         }
 
-        logger.d('config: $config');
-
         return;
       } catch (e) {
         logger.e(e);
+
         projectIsClean = false;
       }
     }
@@ -145,19 +218,43 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       projectExists: projectExists,
       projectIsClean: projectIsClean,
       sources: {
-        SourceEntity(
-          name: 'time',
+        SourceWrapper(
+          name: 'Time',
           exists: true,
-          entities: [EntityEntity(name: 'time', exists: true)],
+          isGenerated: false,
+          entities: [
+            Entity(
+              name: 'Time',
+              exists: true,
+              isGenerated: false,
+              properties: [
+                Property(
+                  name: 'currentDateTime',
+                  type: 'DateTime',
+                ),
+              ],
+            )..setSourceName('Time'),
+          ],
         )
       },
       entities: {
-        EntityEntity(name: 'auth', exists: true),
+        Entity(
+          name: 'Auth',
+          exists: true,
+          isGenerated: false,
+          properties: [
+            Property(
+              name: 'accessToken',
+              type: 'String',
+            ),
+            Property(
+              name: 'refreshToken',
+              type: 'String',
+            ),
+          ],
+        ),
       },
-      screens: {
-        ScreenEntity(name: 'splash', exists: true),
-        ScreenEntity(name: 'home', exists: true)
-      },
+      screens: {ScreenEntity(name: 'home', exists: true)},
     ));
   }
 
@@ -224,18 +321,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _generateProject(
       GenerateProject event, Emitter<AppState> emit) async {
-    logger.d('generateProject');
     emit(state.copyWith(generatingState: GeneratingState.generating));
 
     String genPass = '';
 
     if (state.generateSigningKey) {
       if (state.signingVars[6].isEmpty) {
-        var chars =
-            'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
         genPass = List.generate(20, (index) {
-          return chars[(Random.secure().nextInt(chars.length))];
+          return Consts.signingKeyPassChars[
+              (Random.secure().nextInt(Consts.signingKeyPassChars.length))];
         }).join();
       } else {
         genPass = state.signingVars[6];
@@ -245,25 +339,30 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (!state.projectExists && state.projectName.isNotEmpty) {
       var configFile = await File('${state.projectPath}/config.json').create();
 
-      var flavors = state.flavors
-          .toLowerCase()
-          .trim()
-          .replaceAll(RegExp(' +'), ' ')
-          .split(' ')
-          .toSet();
+      var flavors = <String>{};
 
-      for (var flavor in flavors) {
-        if (flavor.isEmpty || flavor == ' ') {
-          flavors.remove(flavor);
+      if (state.flavors.isNotEmpty) {
+        flavors = state.flavors.contains(' ')
+            ? state.flavors
+                .toLowerCase()
+                .trim()
+                .replaceAll(RegExp(' +'), ' ')
+                .split(' ')
+                .toSet()
+            : {state.flavors.toLowerCase()};
+
+        for (var flavor in flavors) {
+          if (flavor.isEmpty || flavor == ' ') {
+            flavors.remove(flavor);
+          }
         }
+
+        flavors
+          ..remove('dev')
+          ..remove('prod');
       }
 
-      flavors
-        ..remove('dev')
-        ..remove('prod');
-
       await configFile.writeAsString(jsonEncode({
-        'withUI': true,
         'signing_password': genPass,
         'project_name_dirt': state.projectName,
         'project_org': state.organization,
@@ -280,32 +379,26 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
       outputService.add('{#info}Getting mason & brick...');
 
-      var mainProcess = await startProcess(workingDirectory: state.projectPath);
+      var mainProcess = await startProcess(
+          workingDirectory: state.projectPath, activateMason: true);
 
       mainProcess.stdin.writeln(
-          //GitHub
-          //  'mason add -g flutter_clean_base --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_base');
-          //GitLab
-          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_base');
-
+          'mason add -g flutter_clean_base --git-url ${Consts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
-      var exitCode = await mainProcess.exitCode;
+      await mainProcess.exitCode;
       configFile.delete();
 
       if (state.generateSigningKey) {
         outputService.add('{info}Keystore password: $genPass');
 
         var signingProcess = await startProcess(
-            activateMason: false,
             workingDirectory:
                 '${state.projectPath}/${state.projectName}/android/app/signing');
 
         signingProcess.stdin.writeln(
             'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass $genPass -storepass $genPass -dname "CN=${state.signingVars[0]}, OU=${state.signingVars[1]}, O=${state.signingVars[2]}, L=${state.signingVars[3]}, S=${state.signingVars[4]}, C=${state.signingVars[5]}"');
-
-        var exitCode = await signingProcess.exitCode;
       }
 
       if (state.generateScreensWithProject && state.screens.isNotEmpty) {
@@ -398,6 +491,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       }
     }
 
+    var entity = event.entity;
+
+    entity.properties = [Property(name: 'name', type: 'string')];
+
     if (event.source == null) {
       var entities = state.entities.toList();
 
@@ -405,8 +502,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       emit(state.copyWith(entities: entities.toSet()));
     } else {
       var entities = event.source?.entities.toList() ?? [];
+      var entity = event.entity;
+      entity.sourceName = event.source?.name ?? '';
       entities.add(event.entity);
       var sources = state.sources.toList();
+
       sources.firstWhere((source) => source == event.source).entities =
           entities;
       emit(state.copyWith(sources: sources.toSet()));
@@ -469,26 +569,31 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       ScreensGenerate event, Emitter<AppState> emit) async {
     if (state.screens.where((element) => !element.exists).isNotEmpty) {
       emit(state.copyWith(generatingState: GeneratingState.generating));
-      var mainProcess = await startProcess(
-          workingDirectory: '${state.projectPath}/${state.projectName}');
-
-      //GitHub
-      //mainProcess.stdin.writeln(
-      //    'mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_screen');
-
-      //GitLab
-      mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_screen');
-
-      logger.d('Generating screens... ${state.screens}');
 
       for (var screen in state.screens.where((element) => !element.exists)) {
-        logger.d('Generating screen ${screen.name}...');
-        mainProcess.stdin.writeln(
-            'mason make flutter_clean_screen --build ${screen == state.screens.last} --screen_name ${screen.name} --use_bloc ${screen.bloc} --on-conflict overwrite');
-      }
+        outputService.add('{#info}Generating screen ${screen.name}...');
 
-      var exitCode = await mainProcess.exitCode;
+        await _generateScreenUseCase(
+          screen: screen,
+          projectPath: state.projectPath,
+          projectName: state.projectName,
+          router: state.router,
+        );
+
+        if (screen == state.screens.last) {
+          var mainProcess = await startProcess(
+              workingDirectory: '${state.projectPath}/${state.projectName}');
+
+          mainProcess.stdin.writeln(Consts.buildCmd);
+
+          mainProcess.stdin.writeln('dart format .');
+
+          mainProcess.stdin.writeln('echo "Complete with exit code: 0"');
+
+          outputService.add('{#info}Complete with exit code: 0');
+          await mainProcess.exitCode;
+        }
+      }
 
       outputService.add('{#info}Screens generated!');
     }
@@ -524,46 +629,59 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     if (needToGenerateEntities || needToGenerateSources) {
       emit(state.copyWith(generatingState: GeneratingState.generating));
 
-      var mainProcess = await startProcess(
-          workingDirectory: '${state.projectPath}/${state.projectName}');
-      //GitHub
-      // mainProcess.stdin.writeln(
-      //     'mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template --git-path flutter_clean_entity');
-
-      //GitLab
-      mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_entity');
       if (needToGenerateEntities) {
-        var entities = state.entities
-            .where((entity) => !entity.exists)
-            .map((e) => jsonEncode(e.toJson()))
-            .join(', ');
-
-        var build = !needToGenerateSources;
-
-        mainProcess.stdin.writeln(
-            'mason make flutter_clean_entity --build $build --entities \'$entities\' --source_name \'\' --source_exists false --repository_exists false --on-conflict overwrite');
-      }
-
-      if (needToGenerateSources) {
-        for (var source in state.sources) {
-          if (source.entities.where((entity) => !entity.exists).isEmpty) {
-            continue;
-          }
-
-          var entities = source.entities
-              .where((entity) => !entity.exists)
-              .map((e) => jsonEncode(e.toJson()))
-              .join(', ');
-
-          mainProcess.stdin.writeln(
-              'mason make flutter_clean_entity --build true --entities \'$entities\' --source_name ${source.name} --source_exists ${source.exists} --repository_exists ${source.entities.length > 1} --on-conflict overwrite');
+        for (final entity in state.entities.where((e) => !e.exists)) {
+          await entity.generateFiles(
+            projectPath: projectPath,
+            projectName: state.projectName,
+          );
         }
       }
 
-      var exitCode = await mainProcess.exitCode;
+      if (needToGenerateSources) {
+        final sources = state.sources
+            .where((source) =>
+                source.entities.where((entity) => !entity.exists).isNotEmpty)
+            .toList();
+        for (var source in sources) {
+          for (final entity in source.entities.where((e) =>
+              !e.exists &&
+              !source.paths.any((path) => path.methods.any((method) => method
+                  .innerEnums
+                  .any((innerEnum) => innerEnum.name == e.name))))) {
+            await entity.generateFiles(
+              projectPath: projectPath,
+              projectName: state.projectName,
+            );
+          }
+
+          if (!source.exists) {
+            await source.generateFiles(
+              projectPath: projectPath,
+              projectName: state.projectName,
+              allSources: state.sources,
+            );
+          }
+        }
+      }
+      outputService.add('{#info}Generating entities!');
+
+      var mainProcess = await startProcess(
+          workingDirectory: '${state.projectPath}/${state.projectName}');
+
+      mainProcess.stdin.writeln(Consts.buildCmd);
+
+      mainProcess.stdin
+          .writeln('flutter pub run import_sorter:main --no-comments');
+
+      mainProcess.stdin.writeln('dart format .');
+
+      mainProcess.stdin.writeln('echo "Complete with exit code: 0"');
+
+      outputService.add('{#info}Complete with exit code: 0');
+      await mainProcess.exitCode;
+
       outputService.add('{#info}Entities generated!');
-      outputService.add('{#info}Exit code: $exitCode');
     }
 
     Config.saveConfig(state);
@@ -575,24 +693,26 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   FutureOr<void> _errorClear(_, Emitter<AppState> emit) async {
-    emit(state.copyWith(screenError: ''));
+    emit(state.copyWith(screenError: '', entityError: ''));
   }
 
   FutureOr<void> _openProject(OpenProject event, Emitter<AppState> emit) async {
     var mainProcess = await startProcess(
-        activateMason: false,
         workingDirectory: '${state.projectPath}/${state.projectName}');
 
-    mainProcess.stdin.writeln(
-        'open -a "Android Studio" "${state.projectPath}/${state.projectName}"');
+    mainProcess.stdin.writeln('open -na \'Android Studio.app\' .');
+
+    await mainProcess.exitCode;
   }
 
   Future<Process> startProcess(
-      {required String workingDirectory, bool activateMason = true}) async {
+      {required String workingDirectory,
+      bool activateMason = false,
+      bool exitOnSucceeded = false}) async {
     var mainProcess =
         await Process.start('zsh', [], workingDirectory: workingDirectory);
 
-    mainProcess.log();
+    mainProcess.log(exitOnSucceeded: exitOnSucceeded);
     mainProcess.stdin.writeln('source \$HOME/.zshrc');
     mainProcess.stdin.writeln('source \$HOME/.bash_profile');
 

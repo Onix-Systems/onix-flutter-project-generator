@@ -1,23 +1,13 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:{{project_name}}/core/router/app_router.dart';
 
-typedef IsInited = bool Function();
+
+typedef IsInitialized = bool Function();
 
 class InitGuard extends AutoRouteGuard {
-  @protected
-  final IsInited isInited;
-
-  InitGuard({
-    required this.isInited,
-  });
+  InitGuard();
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
-    if (!isInited()) {
-      router.push(const SplashRoute());
-    } else {
-      resolver.next();
-    }
+    resolver.next();
   }
 }

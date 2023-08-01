@@ -6,7 +6,6 @@ import 'dart:math';
 import 'package:recase/recase.dart';
 
 late String name;
-bool withUI = false;
 
 void run(HookContext context) async {
   // 'Complete with exit code: 0!'.log();
@@ -16,10 +15,6 @@ void run(HookContext context) async {
 
   if (!context.vars['platforms'].contains('android')) {
     await Process.run('rm', ['-rf', '$name/android']);
-  }
-
-  if (context.vars['withUI'] != null) {
-    withUI = context.vars['withUI'];
   }
 
   if (!context.vars['handLocalization']) {
@@ -91,6 +86,11 @@ void run(HookContext context) async {
 
   await Process.run('rm', ['app.dart'], workingDirectory: '$name/lib');
 
+  await Process.run('mv', ['main.gen.dart', 'main.dart'],
+      workingDirectory: '$name/lib');
+
+  //await Process.run('rm', ['main.gen.dar'], workingDirectory: '$name/lib');
+
   if (!context.vars['handLocalization']) {
     var localizationProcess = await Process.start(
         'flutter', ['pub', 'run', 'intl_utils:generate'],
@@ -114,7 +114,15 @@ void run(HookContext context) async {
 
   int sorterCode = await sorterProcess.exitCode;
 
-  exitCode += formatCode + sorterCode;
+  var splashProcess = await Process.start(
+      'flutter', ['pub', 'run', 'flutter_native_splash:create'],
+      workingDirectory: name);
+
+  splashProcess.log();
+
+  int splashCode = await splashProcess.exitCode;
+
+  exitCode += formatCode + sorterCode + splashCode;
 
   await correct(context);
   if (context.vars['use_keytool'] &&
@@ -146,6 +154,8 @@ Future<void> getDependencies(HookContext context) async {
     'logger',
     'loader_overlay',
     'fluttertoast',
+    'flutter_native_splash',
+    'collection',
   ];
 
   if (!context.vars['web_only']) {
@@ -213,7 +223,7 @@ Future<void> getDependencies(HookContext context) async {
     'Dependencies installed successfully'.log();
   } else {
     'Failed to install dependencies... Exit code: $exitCode'.error();
-    exitBrick();
+    //exitBrick();
   }
 
   'Getting dev dependencies...'.log();
@@ -232,7 +242,7 @@ Future<void> getDependencies(HookContext context) async {
     'Dev dependencies installed successfully'.log();
   } else {
     'Failed to install dev dependencies... Exit code: $exitCode'.error();
-    exitBrick();
+    //exitBrick();
   }
 }
 
@@ -251,7 +261,7 @@ Future<int> generate(HookContext context) async {
     'Generate complete successfully'.log();
   } else {
     'Failed to generate... Exit code: $exitCode'.error();
-    exitBrick();
+    //exitBrick();
   }
 
   return exitCode;
@@ -429,45 +439,6 @@ if (propFile.canRead()) {
 
   await writer.flush();
   await writer.close();
-
-//   String keytoolCommand =
-//       'keytool -genkey -v -keystore $name/android/app/signing/upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass $genPass -storepass $genPass';
-
-//   var list = '{"1", "2", "3", "4", "5", "6", "yes"}';
-//   if (withUI) {
-//     list = '{"#", "#", "#", "#", "#", "#", "yes"}';
-//     for (var value in context.vars['signingVars']) {
-//       list = list.replaceFirst('#', value.toString());
-//     }
-//   }
-
-//   var process = await Process.start('osascript', [
-//     '-e',
-//     '''tell application "Terminal"
-//       do script "$keytoolCommand"
-//       activate
-//       end tell
-//       set myList to ${list}
-//       delay 3
-//       repeat with str in myList
-//       tell application "System Events"
-// 	tell application process "Terminal"
-// 		set frontmost to true
-// 		keystroke str
-// 		keystroke return
-// 	end tell
-// end tell
-// end repeat
-// delay 5
-// // tell application "System Events"
-// // 	tell application process "Terminal"
-// // 		set frontmost to true
-// // 		keystroke "q" using command down
-// // 	end tell
-// // end tell
-// '''
-//   ]);
-  // return await process.exitCode;
 }
 
 void exitBrick() async {
@@ -485,19 +456,11 @@ void exitBrick() async {
 
 extension LogString on String {
   void log() {
-    if (withUI) {
-      print('{#info}$this');
-    } else {
-      print(this.green().bold());
-    }
+    print('{#info}$this');
   }
 
   void error() {
-    if (withUI) {
-      print('{#error}$this');
-    } else {
-      print(this.red().bold());
-    }
+    print('{#error}$this');
   }
 }
 
@@ -515,20 +478,12 @@ extension ListToString on List<String> {
 
 extension Log on Process {
   void log() {
-    this.outLines.forEach((element) => print(element));
-    if (withUI) {
-      this.errLines.forEach((element) => print('{#error}$element'));
-    } else {
-      this.errLines.forEach((element) => print(element.red()));
-    }
+    this.outLines.forEach((element) => print('$element'));
+    this.errLines.forEach((element) => print('{#error}$element'));
   }
 
   void info() {
-    if (withUI) {
-      this.errLines.forEach((element) => print('{#info}$element'));
-    } else {
-      this.errLines.forEach((element) => print(element));
-    }
+    this.errLines.forEach((element) => print('{#info}$element'));
   }
 }
 

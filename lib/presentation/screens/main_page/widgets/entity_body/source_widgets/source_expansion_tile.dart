@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/add_entity_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/source_widgets/add_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/entity_table.dart';
@@ -17,7 +17,7 @@ class SourceExpansionTile extends StatefulWidget {
       Key? key})
       : super(key: key);
 
-  final SourceEntity source;
+  final SourceWrapper source;
   final bool isFirst;
   final bool isLast;
 
@@ -82,15 +82,17 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              color: widget.source.exists
+                              color: widget.source.exists ||
+                                      widget.source.isGenerated
                                   ? CupertinoColors.inactiveGray
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                widget.source.exists
+                                widget.source.exists ||
+                                        widget.source.isGenerated
                                     ? null
-                                    : showCupertinoModalPopup<SourceEntity>(
+                                    : showCupertinoModalPopup<SourceWrapper>(
                                         context: context,
                                         barrierDismissible: false,
                                         builder: (context) => AddSourceDialog(
@@ -111,10 +113,10 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                showCupertinoModalPopup<EntityEntity>(
+                                showCupertinoModalPopup<Entity>(
                                   context: context,
                                   barrierDismissible: false,
-                                  builder: (context) => AddEntityDialog(
+                                  builder: (context) => const AddEntityDialog(
                                     entity: null,
                                     standalone: false,
                                   ),
@@ -132,13 +134,15 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                             ),
                             const SizedBox(width: 10),
                             CupertinoButton(
-                              color: widget.source.exists
+                              color: widget.source.exists ||
+                                      widget.source.isGenerated
                                   ? CupertinoColors.inactiveGray
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                widget.source.exists
+                                widget.source.exists ||
+                                        widget.source.isGenerated
                                     ? null
                                     : context.read<AppBloc>().add(
                                           SourceDelete(source: widget.source),

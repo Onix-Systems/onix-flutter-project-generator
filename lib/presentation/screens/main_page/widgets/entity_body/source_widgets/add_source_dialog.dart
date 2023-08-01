@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:recase/recase.dart';
 
 class AddSourceDialog extends StatelessWidget {
   AddSourceDialog({Key? key, this.source}) : super(key: key);
 
   final TextEditingController _sourceNameController = TextEditingController();
-  final SourceEntity? source;
+  final SourceWrapper? source;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class AddSourceDialog extends StatelessWidget {
         Navigator.pop(context, source);
       } else {
         Navigator.pop(context,
-            SourceEntity(name: _sourceNameController.text, entities: []));
+            SourceWrapper(name: _sourceNameController.text, entities: []));
       }
     } else {
       Navigator.pop(context);

@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/bloc/app_bloc_imports.dart';
-import 'package:onix_flutter_bricks/data/model/local/entity/entity_entity.dart';
-import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
+import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/entity_widgets/add_entity_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/screen_table_cell.dart';
 import 'package:onix_flutter_bricks/presentation/themes/app_colors.dart';
@@ -13,8 +13,8 @@ class EntityTable extends StatelessWidget {
   const EntityTable({required this.entities, this.source, Key? key})
       : super(key: key);
 
-  final Set<EntityEntity> entities;
-  final SourceEntity? source;
+  final Set<Entity> entities;
+  final SourceWrapper? source;
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +43,8 @@ class EntityTable extends StatelessWidget {
                   : null,
               color: CupertinoColors.activeBlue.withOpacity(0.1),
             ),
-            child: Row(
-              children: const [
+            child: const Row(
+              children: [
                 Cell(
                   value: Text('Entity', textAlign: TextAlign.center),
                   decorated: true,
@@ -88,35 +88,41 @@ class EntityTable extends StatelessWidget {
                 children: [
                   Cell(
                     value: Text(
-                      '${entity.name.pascalCase}Entity',
+                      entity.name.pascalCase,
                       style: TextStyle(
                           color: entity.exists
                               ? CupertinoColors.inactiveGray
                               : CupertinoColors.white),
                     ),
                     decorated: true,
+                    alignment: Alignment.centerLeft,
                   ),
                   Cell(
                     value: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        MSHCheckbox(
-                          value: entity.generateRequest,
-                          onChanged: (_) {},
-                          isDisabled: true,
-                          duration: const Duration(milliseconds: 200),
-                          colorConfig: entity.exists
-                              ? MSHColorConfig.fromCheckedUncheckedDisabled(
-                                  checkedColor: CupertinoColors.inactiveGray,
-                                  uncheckedColor: CupertinoColors.inactiveGray,
-                                  disabledColor: CupertinoColors.inactiveGray,
-                                )
-                              : MSHColorConfig.fromCheckedUncheckedDisabled(
-                                  checkedColor: CupertinoColors.activeOrange,
-                                  uncheckedColor: CupertinoColors.activeOrange,
-                                  disabledColor: CupertinoColors.activeOrange,
-                                ),
-                        ),
+                        if (entity.isEnum)
+                          const Text('enum')
+                        else
+                          MSHCheckbox(
+                            value: entity.generateRequest,
+                            onChanged: (_) {},
+                            isDisabled: true,
+                            duration: const Duration(milliseconds: 200),
+                            colorConfig: entity.exists
+                                ? MSHColorConfig.fromCheckedUncheckedDisabled(
+                                    checkedColor: CupertinoColors.inactiveGray,
+                                    uncheckedColor:
+                                        CupertinoColors.inactiveGray,
+                                    disabledColor: CupertinoColors.inactiveGray,
+                                  )
+                                : MSHColorConfig.fromCheckedUncheckedDisabled(
+                                    checkedColor: CupertinoColors.activeOrange,
+                                    uncheckedColor:
+                                        CupertinoColors.activeOrange,
+                                    disabledColor: CupertinoColors.activeOrange,
+                                  ),
+                          ),
                       ],
                     ),
                     decorated: true,
@@ -125,23 +131,28 @@ class EntityTable extends StatelessWidget {
                     value: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        MSHCheckbox(
-                          value: entity.generateResponse,
-                          onChanged: (_) {},
-                          isDisabled: true,
-                          duration: const Duration(milliseconds: 200),
-                          colorConfig: entity.exists
-                              ? MSHColorConfig.fromCheckedUncheckedDisabled(
-                                  checkedColor: CupertinoColors.inactiveGray,
-                                  uncheckedColor: CupertinoColors.inactiveGray,
-                                  disabledColor: CupertinoColors.inactiveGray,
-                                )
-                              : MSHColorConfig.fromCheckedUncheckedDisabled(
-                                  checkedColor: CupertinoColors.activeOrange,
-                                  uncheckedColor: CupertinoColors.activeOrange,
-                                  disabledColor: CupertinoColors.activeOrange,
-                                ),
-                        ),
+                        if (entity.isEnum)
+                          const Text('enum')
+                        else
+                          MSHCheckbox(
+                            value: entity.generateResponse,
+                            onChanged: (_) {},
+                            isDisabled: true,
+                            duration: const Duration(milliseconds: 200),
+                            colorConfig: entity.exists
+                                ? MSHColorConfig.fromCheckedUncheckedDisabled(
+                                    checkedColor: CupertinoColors.inactiveGray,
+                                    uncheckedColor:
+                                        CupertinoColors.inactiveGray,
+                                    disabledColor: CupertinoColors.inactiveGray,
+                                  )
+                                : MSHColorConfig.fromCheckedUncheckedDisabled(
+                                    checkedColor: CupertinoColors.activeOrange,
+                                    uncheckedColor:
+                                        CupertinoColors.activeOrange,
+                                    disabledColor: CupertinoColors.activeOrange,
+                                  ),
+                          ),
                       ],
                     ),
                     decorated: true,
@@ -155,14 +166,16 @@ class EntityTable extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              color: entity.exists
+                              color: entity.exists || entity.isGenerated
                                   ? CupertinoColors.inactiveGray
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                if (!entity.exists) {
-                                  showCupertinoModalPopup<EntityEntity>(
+                                if (!entity.exists &&
+                                    !entity.isEnum &&
+                                    !entity.isGenerated) {
+                                  showCupertinoModalPopup<Entity>(
                                     context: context,
                                     barrierDismissible: false,
                                     builder: (context) => AddEntityDialog(
@@ -182,13 +195,13 @@ class EntityTable extends StatelessWidget {
                             ),
                             const SizedBox(width: 10),
                             CupertinoButton(
-                              color: entity.exists
+                              color: entity.exists || entity.isGenerated
                                   ? CupertinoColors.inactiveGray
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                if (!entity.exists) {
+                                if (!entity.exists && !entity.isGenerated) {
                                   context.read<AppBloc>().add(
                                         EntityDelete(
                                             entity: entity, source: source),

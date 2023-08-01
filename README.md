@@ -15,5 +15,18 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials, samples, guidance on
 mobile development, and a full API reference.
 
-flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent
-build/macos/Build/Products/Release/onix_flutter_bricks.app release/onix_flutter_bricks.zip
+[master zip]:
+
+## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build'/macos/Build/Products/Release/Onix Flutter Project Generator.app' release/onix_flutter_proj_gen.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/master:master
+
+[testing zip]:
+
+## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build'/macos/Build/Products/Release/Onix Flutter Project Generator.app' release/onix_flutter_proj_gen.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/testing:testing
+
+[swagger_parser zip]:
+
+## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build'/macos/Build/Products/Release/Onix Flutter Project Generator.app' release/onix_flutter_proj_gen.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/swagger_parser:swagger_parser
+
+[swagger_parser dmg]:
+
+## flutter clean && flutter build macos --release && appdmg installers/dmg_creator/config.json 'release/Onix Flutter Project Generator.dmg' && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/swagger_parser:swagger_parser

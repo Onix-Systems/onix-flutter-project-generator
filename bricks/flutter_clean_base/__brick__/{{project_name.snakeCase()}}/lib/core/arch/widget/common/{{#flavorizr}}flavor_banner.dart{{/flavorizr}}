@@ -11,25 +11,21 @@ class FlavorBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (F.name == 'PROD') return child;
+    if (F.name == 'prod') return child;
     //ignore: dead_code
     return Stack(
       children: <Widget>[
         child,
-        _buildBanner(context),
+        CustomPaint(
+              painter: BannerPainter(
+                message: F.name,
+                textDirection: Directionality.of(context),
+                layoutDirection: Directionality.of(context),
+                location: BannerLocation.topStart,
+                color: Colors.red,
+              ),
+            ),
       ],
-    );
-  }
-
-  Widget _buildBanner(BuildContext context) {
-    return CustomPaint(
-      painter: BannerPainter(
-        message: F.name,
-        textDirection: Directionality.of(context),
-        layoutDirection: Directionality.of(context),
-        location: BannerLocation.topStart,
-        color: Colors.red,
-      ),
     );
   }
 }

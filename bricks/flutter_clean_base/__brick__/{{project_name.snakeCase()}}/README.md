@@ -18,13 +18,10 @@
 * [Bloc](https://pub.dev/packages/flutter_bloc) - state management
 * [Shared Preferences](https://pub.dev/packages/shared_preferences) - key-value storage
 
-{{#use_sonar}}
-
 ## SonarQube Setup
 
 * Set `sonar.projectKey` in `sonar-project.properties`
 * Replace main in `only: - main` to your main branch name in `.gitlab-ci.yml`
-  {{/use_sonar}}
 
 ## DO AFTER SETUP
 
@@ -44,6 +41,10 @@ Use the [watch] flag to watch the files' system for edits and rebuild as necessa
 If you have conflicts use command:
 
 `flutter pub run build_runner build --delete-conflicting-outputs`
+
+Regenerate splash screen:
+
+`flutter pub run flutter_native_splash:create`
 
 # Build
 
@@ -78,10 +79,9 @@ If you have conflicts use command:
 * Most common use case is after firebase libraries update
   `cd ios && pod cache clean --all && pod repo update && pod update && cd .. && flutter clean && flutter pub get`
 
-# Launcher icons
+# flutter_launcher_icons
 
-{{#flavorizr}}`flutter pub run flutter_flavorizr -p android:icons,ios:icons`{{/flavorizr}}
-{{^flavorizr}}init flutter_launcher_icons
+init flutter_launcher_icons
 
 `flutter pub run flutter_launcher_icons:main -f pubspec.yaml`
 
@@ -91,24 +91,4 @@ run flutter_launcher_icons
 
 generate flutter_launcher_icons for both flavors
 
-`flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons*`{{/flavorizr}}
-
-## Create entities with Flutter Clean Entity brick
-
-### install brick:
-
-`mason add -g flutter_clean_entity --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template.git --git-path flutter_clean_entity`
-
-### use brick:
-
-`mason make flutter_clean_entity --on-conflict overwrite`
-
-## Create screens with Flutter Clean Screen brick
-
-### install brick:
-
-`mason add -g flutter_clean_screen --git-url https://github.com/OnixFlutterTeam/flutter_clean_mason_template.git --git-path flutter_clean_screen`
-
-### use brick:
-
-`mason make flutter_clean_screen --on-conflict overwrite`
+`flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons*`

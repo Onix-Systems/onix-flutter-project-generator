@@ -37,15 +37,6 @@ class MainScreen extends StatelessWidget {
           ));
       _projectOrgController.selection = TextSelection.fromPosition(position);
     });
-
-    // _flavorsController.text = context.read<AppBloc>().state.flavors.toString();
-    // _flavorsController.addListener(() {
-    //   var position = _flavorsController.selection.base;
-    //   context.read<AppBloc>().add(FlavorsChange(
-    //         flavors: _flavorsController.text,
-    //       ));
-    //   _flavorsController.selection = TextSelection.fromPosition(position);
-    // });
   }
 
   @override
@@ -54,7 +45,6 @@ class MainScreen extends StatelessWidget {
     return CupertinoPageScaffold(
       child: BlocBuilder<AppBloc, AppState>(
         builder: (context, state) {
-          logger.i(state);
           if (state.projectName != _projectNameController.text) {
             var offset = _projectNameController.selection.base.offset + 1;
             if (_projectNameController.text.length == 1) offset--;
@@ -73,30 +63,6 @@ class MainScreen extends StatelessWidget {
                     ? TextPosition(offset: offset)
                     : TextPosition(offset: offset - 2));
           }
-          // if (state.flavors
-          //         .toString()
-          //         .replaceAll('{', '')
-          //         .replaceAll('}', '')
-          //         .replaceAll(',', '') !=
-          //     _flavorsController.text) {
-          //   var offset = _flavorsController.selection.base.offset;
-          //   _flavorsController.text = state.flavors
-          //       .toString()
-          //       .replaceAll('{', '')
-          //       .replaceAll('}', '')
-          //       .replaceAll(',', '');
-          //
-          //   while (_flavorsController.text.contains('  ')) {
-          //     _flavorsController.text =
-          //         _flavorsController.text.replaceFirst('  ', ' ');
-          //     offset--;
-          //   }
-          //
-          //   _flavorsController.selection = TextSelection.fromPosition(
-          //       offset <= _flavorsController.text.length
-          //           ? TextPosition(offset: offset)
-          //           : TextPosition(offset: offset - 1));
-          // }
           return Padding(
             padding: const EdgeInsets.all(10),
             child: Center(

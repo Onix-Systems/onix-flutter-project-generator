@@ -20,9 +20,9 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Config {
-  List<SourceEntity> get sources => throw _privateConstructorUsedError;
+  List<SourceWrapper> get sources => throw _privateConstructorUsedError;
   List<ScreenEntity> get screens => throw _privateConstructorUsedError;
-  List<EntityEntity> get entities => throw _privateConstructorUsedError;
+  List<Entity> get entities => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +35,9 @@ abstract class $ConfigCopyWith<$Res> {
       _$ConfigCopyWithImpl<$Res, Config>;
   @useResult
   $Res call(
-      {List<SourceEntity> sources,
+      {List<SourceWrapper> sources,
       List<ScreenEntity> screens,
-      List<EntityEntity> entities});
+      List<Entity> entities});
 }
 
 /// @nodoc
@@ -61,7 +61,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
       sources: null == sources
           ? _value.sources
           : sources // ignore: cast_nullable_to_non_nullable
-              as List<SourceEntity>,
+              as List<SourceWrapper>,
       screens: null == screens
           ? _value.screens
           : screens // ignore: cast_nullable_to_non_nullable
@@ -69,7 +69,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
       entities: null == entities
           ? _value.entities
           : entities // ignore: cast_nullable_to_non_nullable
-              as List<EntityEntity>,
+              as List<Entity>,
     ) as $Val);
   }
 }
@@ -81,9 +81,9 @@ abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {List<SourceEntity> sources,
+      {List<SourceWrapper> sources,
       List<ScreenEntity> screens,
-      List<EntityEntity> entities});
+      List<Entity> entities});
 }
 
 /// @nodoc
@@ -104,7 +104,7 @@ class __$$_ConfigCopyWithImpl<$Res>
       sources: null == sources
           ? _value._sources
           : sources // ignore: cast_nullable_to_non_nullable
-              as List<SourceEntity>,
+              as List<SourceWrapper>,
       screens: null == screens
           ? _value._screens
           : screens // ignore: cast_nullable_to_non_nullable
@@ -112,7 +112,7 @@ class __$$_ConfigCopyWithImpl<$Res>
       entities: null == entities
           ? _value._entities
           : entities // ignore: cast_nullable_to_non_nullable
-              as List<EntityEntity>,
+              as List<Entity>,
     ));
   }
 }
@@ -121,9 +121,9 @@ class __$$_ConfigCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Config implements _Config {
   const _$_Config(
-      {required final List<SourceEntity> sources,
+      {required final List<SourceWrapper> sources,
       required final List<ScreenEntity> screens,
-      required final List<EntityEntity> entities})
+      required final List<Entity> entities})
       : _sources = sources,
         _screens = screens,
         _entities = entities;
@@ -131,9 +131,9 @@ class _$_Config implements _Config {
   factory _$_Config.fromJson(Map<String, dynamic> json) =>
       _$$_ConfigFromJson(json);
 
-  final List<SourceEntity> _sources;
+  final List<SourceWrapper> _sources;
   @override
-  List<SourceEntity> get sources {
+  List<SourceWrapper> get sources {
     if (_sources is EqualUnmodifiableListView) return _sources;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_sources);
@@ -147,9 +147,9 @@ class _$_Config implements _Config {
     return EqualUnmodifiableListView(_screens);
   }
 
-  final List<EntityEntity> _entities;
+  final List<Entity> _entities;
   @override
-  List<EntityEntity> get entities {
+  List<Entity> get entities {
     if (_entities is EqualUnmodifiableListView) return _entities;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_entities);
@@ -194,18 +194,18 @@ class _$_Config implements _Config {
 
 abstract class _Config implements Config {
   const factory _Config(
-      {required final List<SourceEntity> sources,
+      {required final List<SourceWrapper> sources,
       required final List<ScreenEntity> screens,
-      required final List<EntityEntity> entities}) = _$_Config;
+      required final List<Entity> entities}) = _$_Config;
 
   factory _Config.fromJson(Map<String, dynamic> json) = _$_Config.fromJson;
 
   @override
-  List<SourceEntity> get sources;
+  List<SourceWrapper> get sources;
   @override
   List<ScreenEntity> get screens;
   @override
-  List<EntityEntity> get entities;
+  List<Entity> get entities;
   @override
   @JsonKey(ignore: true)
   _$$_ConfigCopyWith<_$_Config> get copyWith =>

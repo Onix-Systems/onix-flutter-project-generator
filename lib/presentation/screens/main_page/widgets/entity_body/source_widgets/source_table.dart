@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:onix_flutter_bricks/data/model/local/source/source_entity.dart';
+import 'package:onix_flutter_bricks/data/model/local/source_wrapper/source_wrapper.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/entity_body/source_widgets/source_table_expansion_title.dart';
 import 'package:onix_flutter_bricks/presentation/screens/main_page/widgets/screen_body/screen_table_cell.dart';
 
 class SourceTable extends StatefulWidget {
   const SourceTable({required this.sources, Key? key}) : super(key: key);
 
-  final Set<SourceEntity> sources;
+  final Set<SourceWrapper> sources;
 
   @override
   State<SourceTable> createState() => _SourceTableState();
