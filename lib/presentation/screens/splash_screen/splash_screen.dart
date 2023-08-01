@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -135,5 +137,6 @@ class _SplashScreenState extends State<SplashScreen> {
     if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }
+    exit(0);
   }
 }
