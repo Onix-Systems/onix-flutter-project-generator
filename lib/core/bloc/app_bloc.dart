@@ -598,7 +598,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       outputService.add('{#info}Screens generated!');
     }
 
-    if (state.generateEntitiesWithProject && state.entities.isNotEmpty) {
+    if ((state.generateEntitiesWithProject && state.entities.isNotEmpty) ||
+        state.projectExists) {
       add(const EntitiesGenerate());
     } else {
       Config.saveConfig(state);
