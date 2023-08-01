@@ -131,8 +131,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _launchUrl() async {
     final url = Uri.parse(
-        'https://gitlab.onix.ua/onix-systems/flutter-project-generator/-/raw/swagger_parser/release/Onix%20Flutter%20Project%20Generator.dmg');
-
+        'https://gitlab.onix.ua/onix-systems/flutter-project-generator/-/blob/swagger_parser/release/Onix%20Flutter%20Project%20Generator.dmg');
     if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }
