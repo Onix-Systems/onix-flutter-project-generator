@@ -21,7 +21,6 @@ mixin _$SplashScreenEvent {
     required TResult Function() init,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
@@ -33,13 +32,11 @@ mixin _$SplashScreenEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
@@ -65,9 +62,9 @@ class _$SplashScreenEventCopyWithImpl<$Res, $Val extends SplashScreenEvent>
     implements $SplashScreenEventCopyWith<$Res> {
   _$SplashScreenEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -233,9 +230,9 @@ class _$SplashScreenStateCopyWithImpl<$Res, $Val extends SplashScreenState>
     implements $SplashScreenStateCopyWith<$Res> {
   _$SplashScreenStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
