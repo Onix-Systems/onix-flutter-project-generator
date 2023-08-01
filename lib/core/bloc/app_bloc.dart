@@ -16,6 +16,7 @@ import 'package:onix_flutter_bricks/data/model/local/platforms_list/platforms_li
 import 'package:onix_flutter_bricks/domain/entity/entity.dart';
 import 'package:onix_flutter_bricks/domain/entity/property.dart';
 import 'package:onix_flutter_bricks/domain/use_case/screen/generate_screen_use_case.dart';
+import 'package:onix_flutter_bricks/utils/consts.dart';
 import 'package:onix_flutter_bricks/utils/extensions/logging.dart';
 import 'package:onix_flutter_bricks/utils/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
@@ -26,7 +27,7 @@ import 'app_models.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   String projectPath;
 
-  static const String gitRef = '--git-ref swagger_parser';
+  static const String gitRef = '--git-ref ${Consts.gitBranch}';
 
   final ConfigSource _configSource = ConfigSourceImpl();
 
@@ -84,12 +85,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     //'https://onix-systems-savii-api-mvp.staging.onix.ua/api-doc/savii-public'
     //'https://gist.githubusercontent.com/cozvtieg9/71b8c0be1a3d0b27ee390c726c2c5cbe/raw/6449c5fb25a4d161c357a396e3430f3b655ad1e2/.json'
 
-    final url = event.url.isNotEmpty
-        ? event.url
-        : 'https://vocadb.net/swagger/v1/swagger.json';
-
     try {
-      var response = await http.get(Uri.parse(url));
+      var response = await http.get(Uri.parse(event.url));
 
       var json = jsonDecode(response.body);
 
@@ -100,20 +97,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ..addAll(parsedData.entities)
         ..sort((a, b) => a.name.compareTo(b.name));
 
-      // for (final entity in entities) {
-      //   if (entity.isEnum) {
-      //     logger.wtf(entity.entity);
-      //   }
-      // }
-
       final sources = state.sources.toList()
         ..addAll(parsedData.sources)
         ..sort((a, b) => a.name.compareTo(b.name));
-
-      // for (final source in parsedData.sources) {
-      //   source.generateFiles(
-      //       projectName: state.projectName, projectPath: projectPath);
-      // }
 
       emit(state.copyWith(
         entities: entities.toSet(),
@@ -178,7 +164,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _tabChange(TabChange event, Emitter<AppState> emit) async {
     emit(state.copyWith(tab: event.tabIndex));
-    //add(const ProjectCheck());
   }
 
   FutureOr<void> _projectPathChange(
@@ -342,11 +327,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     if (state.generateSigningKey) {
       if (state.signingVars[6].isEmpty) {
-        var chars =
-            'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
         genPass = List.generate(20, (index) {
-          return chars[(Random.secure().nextInt(chars.length))];
+          return Consts.signingKeyPassChars[
+              (Random.secure().nextInt(Consts.signingKeyPassChars.length))];
         }).join();
       } else {
         genPass = state.signingVars[6];
@@ -396,10 +379,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
       outputService.add('{#info}Getting mason & brick...');
 
-      var mainProcess = await startProcess(workingDirectory: state.projectPath);
+      var mainProcess = await startProcess(
+          workingDirectory: state.projectPath, activateMason: true);
 
       mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_base --git-url git@gitlab.onix.ua:onix-systems/flutter-project-generator.git --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
+          'mason add -g flutter_clean_base --git-url ${Consts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
@@ -410,14 +394,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         outputService.add('{info}Keystore password: $genPass');
 
         var signingProcess = await startProcess(
-            activateMason: false,
             workingDirectory:
                 '${state.projectPath}/${state.projectName}/android/app/signing');
 
         signingProcess.stdin.writeln(
             'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass $genPass -storepass $genPass -dname "CN=${state.signingVars[0]}, OU=${state.signingVars[1]}, O=${state.signingVars[2]}, L=${state.signingVars[3]}, S=${state.signingVars[4]}, C=${state.signingVars[5]}"');
-
-        //var exitCode = await signingProcess.exitCode;
       }
 
       if (state.generateScreensWithProject && state.screens.isNotEmpty) {
@@ -601,11 +582,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
         if (screen == state.screens.last) {
           var mainProcess = await startProcess(
-              activateMason: false,
               workingDirectory: '${state.projectPath}/${state.projectName}');
 
-          mainProcess.stdin.writeln(
-              'dart run build_runner build --delete-conflicting-outputs');
+          mainProcess.stdin.writeln(Consts.buildCmd);
 
           mainProcess.stdin.writeln('dart format .');
 
@@ -688,11 +667,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       outputService.add('{#info}Generating entities!');
 
       var mainProcess = await startProcess(
-          activateMason: false,
           workingDirectory: '${state.projectPath}/${state.projectName}');
 
-      mainProcess.stdin
-          .writeln('dart run build_runner build --delete-conflicting-outputs');
+      mainProcess.stdin.writeln(Consts.buildCmd);
 
       mainProcess.stdin
           .writeln('flutter pub run import_sorter:main --no-comments');
@@ -721,7 +698,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _openProject(OpenProject event, Emitter<AppState> emit) async {
     var mainProcess = await startProcess(
-        activateMason: false,
         workingDirectory: '${state.projectPath}/${state.projectName}');
 
     mainProcess.stdin.writeln('open -na \'Android Studio.app\' .');
@@ -731,7 +707,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   Future<Process> startProcess(
       {required String workingDirectory,
-      bool activateMason = true,
+      bool activateMason = false,
       bool exitOnSucceeded = false}) async {
     var mainProcess =
         await Process.start('zsh', [], workingDirectory: workingDirectory);

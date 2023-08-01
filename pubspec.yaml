@@ -27,6 +27,8 @@ dependencies:
   http: ^0.13.5
   collection: ^1.17.0
   package_info_plus: 4.0.1
+  yaml: ^3.1.2
+  url_launcher: ^6.1.12
 
 dev_dependencies:
   flutter_test:

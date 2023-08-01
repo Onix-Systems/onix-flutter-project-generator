@@ -17,6 +17,7 @@ SourceWrapper _$SourceWrapperFromJson(Map<String, dynamic> json) =>
               .toList() ??
           const [],
       exists: json['exists'] as bool? ?? false,
+      isGenerated: json['isGenerated'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$SourceWrapperToJson(SourceWrapper instance) =>
@@ -24,5 +25,6 @@ Map<String, dynamic> _$SourceWrapperToJson(SourceWrapper instance) =>
       'name': instance.name,
       'entities': instance.entities,
       'exists': instance.exists,
+      'isGenerated': instance.isGenerated,
       'paths': instance.paths,
     };

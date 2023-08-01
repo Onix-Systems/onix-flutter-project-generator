@@ -15,6 +15,7 @@ Entity _$EntityFromJson(Map<String, dynamic> json) => Entity(
       generateRequest: json['generateRequest'] as bool? ?? false,
       generateResponse: json['generateResponse'] as bool? ?? false,
       exists: json['exists'] as bool? ?? false,
+      isGenerated: json['isGenerated'] as bool? ?? true,
     )
       ..sourceName = json['sourceName'] as String
       ..entityImports = (json['entityImports'] as List<dynamic>)
@@ -26,6 +27,7 @@ Map<String, dynamic> _$EntityToJson(Entity instance) => <String, dynamic>{
       'generateRequest': instance.generateRequest,
       'generateResponse': instance.generateResponse,
       'exists': instance.exists,
+      'isGenerated': instance.isGenerated,
       'properties': instance.properties,
       'sourceName': instance.sourceName,
       'entityImports': instance.entityImports.toList(),
