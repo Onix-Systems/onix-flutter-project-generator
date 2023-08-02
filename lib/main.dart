@@ -1,27 +1,57 @@
-import 'package:flutter/cupertino.dart';
-import 'package:onix_flutter_bricks/core/di/di.dart';
+//@formatter:off
+
+import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:onix_flutter_bricks/app/app.dart';
+import 'package:onix_flutter_bricks/core/app/app_initialization.dart';
+import 'package:onix_flutter_bricks/core/arch/bloc/app_bloc_observer.dart';
 import 'package:window_manager/window_manager.dart';
-import 'app.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await windowManager.ensureInitialized();
+Future<void> main() async {
+  await runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
 
-  injections();
+      await AppInitialization.I.initApp();
 
-  WindowOptions windowOptions = const WindowOptions(
-    minimumSize: Size(1000, 850),
-    size: Size(1000, 850),
-    center: true,
-    skipTaskbar: false,
-    titleBarStyle: TitleBarStyle.normal,
-    title: 'Onix Flutter Project Generator',
-  );
-  await windowManager.waitUntilReadyToShow(windowOptions, () async {
-    await windowManager.show();
-    //windowManager.maximize();
-    await windowManager.focus();
+      await windowManager.ensureInitialized();
+
+      WindowOptions windowOptions = const WindowOptions(
+        minimumSize: Size(1000, 850),
+        size: Size(1000, 850),
+        center: true,
+        skipTaskbar: false,
+        titleBarStyle: TitleBarStyle.normal,
+        title: 'Onix Flutter Project Generator',
+      );
+      await windowManager.waitUntilReadyToShow(windowOptions, () async {
+        await windowManager.show();
+        //windowManager.maximize();
+        await windowManager.focus();
+      });
+
+      Bloc.observer = AppBlocObserver();
+
+      runApp(const App());
+    },
+    (error, stackTrace) {
+      if (kDebugMode) {
+        print('runZonedGuarded: Caught error in root zone.\n$error');
+        print(stackTrace);
+      }
+      //there we can add FirebaseCrashlytics recordError method
+    },
+  )?.catchError((e, trace) {
+    if (kDebugMode) {
+      print('ERROR: $e');
+      print(trace);
+    }
+    exit(-1);
   });
-
-  runApp(const MyApp());
 }

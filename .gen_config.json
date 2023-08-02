@@ -1,0 +1,60 @@
+{
+  "sources": [
+    {
+      "name": "Time",
+      "entities": [
+        {
+          "name": "Time",
+          "generateRequest": false,
+          "generateResponse": false,
+          "exists": true,
+          "isGenerated": false,
+          "properties": [
+            {
+              "name": "currentDateTime",
+              "type": "DateTime",
+              "nullable": false
+            }
+          ],
+          "sourceName": "Time",
+          "entityImports": [],
+          "isEnum": false
+        }
+      ],
+      "exists": true,
+      "isGenerated": false,
+      "paths": []
+    }
+  ],
+  "screens": [
+    {
+      "name": "splash",
+      "bloc": true,
+      "exists": true
+    }
+  ],
+  "entities": [
+    {
+      "name": "Auth",
+      "generateRequest": false,
+      "generateResponse": false,
+      "exists": true,
+      "isGenerated": false,
+      "properties": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "nullable": false
+        },
+        {
+          "name": "refreshToken",
+          "type": "String",
+          "nullable": false
+        }
+      ],
+      "sourceName": "",
+      "entityImports": [],
+      "isEnum": false
+    }
+  ]
+}
