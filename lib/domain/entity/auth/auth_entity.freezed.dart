@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthenticationEntity {
   String get accessToken => throw _privateConstructorUsedError;
-
   String get refreshToken => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +29,6 @@ abstract class $AuthenticationEntityCopyWith<$Res> {
   factory $AuthenticationEntityCopyWith(AuthenticationEntity value,
           $Res Function(AuthenticationEntity) then) =
       _$AuthenticationEntityCopyWithImpl<$Res, AuthenticationEntity>;
-
   @useResult
   $Res call({String accessToken, String refreshToken});
 }
@@ -43,7 +41,6 @@ class _$AuthenticationEntityCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -72,7 +69,6 @@ abstract class _$$_AuthenticationEntityCopyWith<$Res>
   factory _$$_AuthenticationEntityCopyWith(_$_AuthenticationEntity value,
           $Res Function(_$_AuthenticationEntity) then) =
       __$$_AuthenticationEntityCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({String accessToken, String refreshToken});
@@ -150,10 +146,8 @@ abstract class _AuthenticationEntity implements AuthenticationEntity {
 
   @override
   String get accessToken;
-
   @override
   String get refreshToken;
-
   @override
   @JsonKey(ignore: true)
   _$$_AuthenticationEntityCopyWith<_$_AuthenticationEntity> get copyWith =>

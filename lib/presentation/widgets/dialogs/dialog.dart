@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
@@ -15,7 +14,7 @@ class Dialogs {
       context: context,
       builder: (ctx) => CupertinoAlertDialog(
         title: Padding(
-          padding: EdgeInsets.only(bottom: 10.h),
+          padding: const EdgeInsets.only(bottom: 10),
           child: Text(
             title,
             style: context.appTextStyles.fs18?.copyWith(
@@ -25,7 +24,7 @@ class Dialogs {
         ),
         content: Text(content,
             style: context.appTextStyles.fs18?.copyWith(
-              fontSize: 16.sp,
+              fontSize: 16,
             )),
         actions: [
           CupertinoDialogAction(
@@ -44,20 +43,23 @@ class Dialogs {
     required BuildContext context,
     bool isError = false,
     String title = '',
-    String content = '',
+    required Widget content,
     VoidCallback? onOk,
     VoidCallback? onCancel,
   }) {
     showCupertinoDialog(
       context: context,
       builder: (ctx) => CupertinoAlertDialog(
-        title: Text(title, style: context.appTextStyles.fs18),
-        content: Text(
-          content,
-          style: context.appTextStyles.fs18?.copyWith(
-            fontSize: 16.sp,
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Text(
+            title,
+            style: context.appTextStyles.fs18?.copyWith(
+              color: isError ? AppColors.red : null,
+            ),
           ),
         ),
+        content: content,
         actions: [
           CupertinoDialogAction(
             child: const Text('OK'),

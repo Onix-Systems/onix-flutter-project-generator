@@ -21,11 +21,9 @@ DefaultApiError _$DefaultApiErrorFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$DefaultApiError {
   String get name => throw _privateConstructorUsedError;
-
   String get code => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $DefaultApiErrorCopyWith<DefaultApiError> get copyWith =>
       throw _privateConstructorUsedError;
@@ -36,7 +34,6 @@ abstract class $DefaultApiErrorCopyWith<$Res> {
   factory $DefaultApiErrorCopyWith(
           DefaultApiError value, $Res Function(DefaultApiError) then) =
       _$DefaultApiErrorCopyWithImpl<$Res, DefaultApiError>;
-
   @useResult
   $Res call({String name, String code});
 }
@@ -48,7 +45,6 @@ class _$DefaultApiErrorCopyWithImpl<$Res, $Val extends DefaultApiError>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -77,7 +73,6 @@ abstract class _$$_DefaultApiErrorCopyWith<$Res>
   factory _$$_DefaultApiErrorCopyWith(
           _$_DefaultApiError value, $Res Function(_$_DefaultApiError) then) =
       __$$_DefaultApiErrorCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({String name, String code});
@@ -165,10 +160,8 @@ abstract class _DefaultApiError implements DefaultApiError {
 
   @override
   String get name;
-
   @override
   String get code;
-
   @override
   @JsonKey(ignore: true)
   _$$_DefaultApiErrorCopyWith<_$_DefaultApiError> get copyWith =>

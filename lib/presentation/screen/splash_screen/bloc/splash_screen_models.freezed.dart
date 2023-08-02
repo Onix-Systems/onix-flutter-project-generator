@@ -22,7 +22,6 @@ mixin _$SplashScreenEvent {
     required TResult Function() onAnimationFinished,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
@@ -36,7 +35,6 @@ mixin _$SplashScreenEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SplashScreenEventInit value) init,
@@ -44,7 +42,6 @@ mixin _$SplashScreenEvent {
         onAnimationFinished,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SplashScreenEventInit value)? init,
@@ -74,7 +71,7 @@ class _$SplashScreenEventCopyWithImpl<$Res, $Val extends SplashScreenEvent>
     implements $SplashScreenEventCopyWith<$Res> {
   _$SplashScreenEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;

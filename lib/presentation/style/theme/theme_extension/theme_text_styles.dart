@@ -1,73 +1,82 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 
 class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
-  static final light = ThemeTextStyles(
+  static const light = ThemeTextStyles(
     fs28: TextStyle(
-      fontSize: 28.sp,
+      fontSize: 28,
       fontWeight: FontWeight.w700,
       color: AppColors.textLight,
+      decoration: TextDecoration.none,
     ),
     fs24: TextStyle(
-      fontSize: 24.sp,
+      fontSize: 24,
       fontWeight: FontWeight.w600,
       color: AppColors.textLight,
+      decoration: TextDecoration.none,
     ),
     fs18: TextStyle(
-      fontSize: 18.sp,
+      fontSize: 18,
       fontWeight: FontWeight.w500,
       color: AppColors.textLight,
+      decoration: TextDecoration.none,
     ),
     button18: TextStyle(
-      fontSize: 18.sp,
+      fontSize: 18,
       fontWeight: FontWeight.w600,
       color: AppColors.textLight,
+      decoration: TextDecoration.none,
     ),
     bodyText16: TextStyle(
-      fontSize: 16.sp,
+      fontSize: 16,
       fontWeight: FontWeight.w400,
       color: AppColors.textLight,
+      decoration: TextDecoration.none,
     ),
     caption14: TextStyle(
-      fontSize: 14.sp,
+      fontSize: 14,
       fontWeight: FontWeight.w400,
       color: AppColors.textLight,
+      decoration: TextDecoration.none,
     ),
   );
 
-  static final dark = ThemeTextStyles(
+  static const dark = ThemeTextStyles(
     fs28: TextStyle(
-      fontSize: 28.sp,
+      fontSize: 28,
       fontWeight: FontWeight.w600,
       color: AppColors.textDark,
+      decoration: TextDecoration.none,
     ),
     fs24: TextStyle(
-      fontSize: 24.sp,
+      fontSize: 24,
       fontWeight: FontWeight.w500,
       color: AppColors.textDark,
+      decoration: TextDecoration.none,
     ),
     fs18: TextStyle(
-      fontSize: 18.sp,
+      fontSize: 18,
       fontWeight: FontWeight.w400,
       color: AppColors.textDark,
+      decoration: TextDecoration.none,
     ),
     button18: TextStyle(
-      fontSize: 18.sp,
+      fontSize: 18,
       fontWeight: FontWeight.w400,
       color: AppColors.textDark,
+      decoration: TextDecoration.none,
     ),
     bodyText16: TextStyle(
-      fontSize: 16.sp,
+      fontSize: 16,
       fontWeight: FontWeight.w400,
       color: AppColors.textDark,
+      decoration: TextDecoration.none,
     ),
     caption14: TextStyle(
-      fontSize: 14.sp,
+      fontSize: 14,
       fontWeight: FontWeight.w400,
       color: AppColors.textDark,
+      decoration: TextDecoration.none,
     ),
   );
 

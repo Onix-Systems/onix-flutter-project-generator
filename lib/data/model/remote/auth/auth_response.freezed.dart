@@ -22,12 +22,10 @@ AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) {
 mixin _$AuthResponse {
   @JsonKey(name: 'access_token')
   String? get accessToken => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'refresh_token')
   String? get refreshToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $AuthResponseCopyWith<AuthResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -38,7 +36,6 @@ abstract class $AuthResponseCopyWith<$Res> {
   factory $AuthResponseCopyWith(
           AuthResponse value, $Res Function(AuthResponse) then) =
       _$AuthResponseCopyWithImpl<$Res, AuthResponse>;
-
   @useResult
   $Res call(
       {@JsonKey(name: 'access_token') String? accessToken,
@@ -52,7 +49,6 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -81,7 +77,6 @@ abstract class _$$_AuthResponseCopyWith<$Res>
   factory _$$_AuthResponseCopyWith(
           _$_AuthResponse value, $Res Function(_$_AuthResponse) then) =
       __$$_AuthResponseCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -178,11 +173,9 @@ abstract class _AuthResponse implements AuthResponse {
   @override
   @JsonKey(name: 'access_token')
   String? get accessToken;
-
   @override
   @JsonKey(name: 'refresh_token')
   String? get refreshToken;
-
   @override
   @JsonKey(ignore: true)
   _$$_AuthResponseCopyWith<_$_AuthResponse> get copyWith =>

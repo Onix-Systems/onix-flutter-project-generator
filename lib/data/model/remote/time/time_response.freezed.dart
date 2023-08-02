@@ -23,7 +23,6 @@ mixin _$TimeResponse {
   DateTime get currentDateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $TimeResponseCopyWith<TimeResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -34,7 +33,6 @@ abstract class $TimeResponseCopyWith<$Res> {
   factory $TimeResponseCopyWith(
           TimeResponse value, $Res Function(TimeResponse) then) =
       _$TimeResponseCopyWithImpl<$Res, TimeResponse>;
-
   @useResult
   $Res call({DateTime currentDateTime});
 }
@@ -46,7 +44,6 @@ class _$TimeResponseCopyWithImpl<$Res, $Val extends TimeResponse>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -70,7 +67,6 @@ abstract class _$$_TimeResponseCopyWith<$Res>
   factory _$$_TimeResponseCopyWith(
           _$_TimeResponse value, $Res Function(_$_TimeResponse) then) =
       __$$_TimeResponseCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({DateTime currentDateTime});
@@ -150,7 +146,6 @@ abstract class _TimeResponse implements TimeResponse {
 
   @override
   DateTime get currentDateTime;
-
   @override
   @JsonKey(ignore: true)
   _$$_TimeResponseCopyWith<_$_TimeResponse> get copyWith =>

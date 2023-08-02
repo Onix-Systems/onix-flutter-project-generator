@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
+import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
@@ -105,16 +106,7 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
     getDirectoryPath().then(
       (value) {
         if (value != null) {
-          // Navigator.of(context).pushAndRemoveUntil(
-          //   CupertinoPageRoute(
-          //     builder: (context) => BlocProvider(
-          //       create: (context) =>
-          //           AppBloc(projectPath: value),
-          //       child: MainScreen(),
-          //     ),
-          //   ),
-          //       (route) => false,
-          // );
+          context.go(AppRouter.procedureSelectionScreen, extra: value);
         } else {
           Dialogs.showOkDialog(
             context: context,
@@ -133,7 +125,12 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
     Dialogs.showOkCancelDialog(
       context: context,
       title: 'New version available',
-      content: 'Please, download new version from GitHub',
+      content: Text(
+        'Please, download new version from GitHub',
+        style: context.appTextStyles.fs18?.copyWith(
+          fontSize: 16,
+        ),
+      ),
       onOk: _launchUrl,
       onCancel: () {
         blocOf(context).addSr(const SplashScreenSR.onShowPathSelector());

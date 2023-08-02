@@ -31,6 +31,16 @@
       "name": "splash",
       "bloc": true,
       "exists": true
+    },
+    {
+      "name": "projectName",
+      "bloc": true,
+      "exists": true
+    },
+    {
+      "name": "procedureSelection",
+      "bloc": false,
+      "exists": true
     }
   ],
   "entities": [

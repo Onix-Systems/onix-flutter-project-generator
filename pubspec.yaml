@@ -33,7 +33,6 @@ dependencies:
   package_info_plus: ^4.0.2
   yaml: ^3.1.2
   url_launcher: ^6.1.12
-  flutter_screenutil: ^5.8.4
   encrypt: ^5.0.1
   hive: ^2.2.3
   flutter_secure_storage: ^8.0.0

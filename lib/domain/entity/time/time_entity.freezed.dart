@@ -28,7 +28,6 @@ abstract class $TimeEntityCopyWith<$Res> {
   factory $TimeEntityCopyWith(
           TimeEntity value, $Res Function(TimeEntity) then) =
       _$TimeEntityCopyWithImpl<$Res, TimeEntity>;
-
   @useResult
   $Res call({DateTime currentDateTime});
 }
@@ -40,7 +39,6 @@ class _$TimeEntityCopyWithImpl<$Res, $Val extends TimeEntity>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -64,7 +62,6 @@ abstract class _$$_TimeEntityCopyWith<$Res>
   factory _$$_TimeEntityCopyWith(
           _$_TimeEntity value, $Res Function(_$_TimeEntity) then) =
       __$$_TimeEntityCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({DateTime currentDateTime});
@@ -130,7 +127,6 @@ abstract class _TimeEntity implements TimeEntity {
 
   @override
   DateTime get currentDateTime;
-
   @override
   @JsonKey(ignore: true)
   _$$_TimeEntityCopyWith<_$_TimeEntity> get copyWith =>
