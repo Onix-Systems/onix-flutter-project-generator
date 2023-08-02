@@ -36,7 +36,6 @@ class _AppFilledButtonState extends State<AppFilledButton> {
         ),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         minimumSize: const Size(100, 60),
-        //maximumSize: Size(200.w, 300.h),
       ),
       child: Column(
         children: [

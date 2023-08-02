@@ -1,9 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-
 import 'package:flutter/material.dart';
-
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -53,181 +50,11 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Arch Sample`
-  String get appName {
-    return Intl.message(
-      'Arch Sample',
-      name: 'appName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Arch Sample`
+  /// `Onix Flutter Project Generator`
   String get title {
     return Intl.message(
-      'Arch Sample',
+      'Onix Flutter Project Generator',
       name: 'title',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `N/A`
-  String get undefinedData {
-    return Intl.message(
-      'N/A',
-      name: 'undefinedData',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Image editor`
-  String get commonImageEditor {
-    return Intl.message(
-      'Image editor',
-      name: 'commonImageEditor',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Select source`
-  String get imageSource {
-    return Intl.message(
-      'Select source',
-      name: 'imageSource',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Gallery video`
-  String get imageSourceVideoGalleryBtn {
-    return Intl.message(
-      'Gallery video',
-      name: 'imageSourceVideoGalleryBtn',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Camera video`
-  String get imageSourceVideoCameraBtn {
-    return Intl.message(
-      'Camera video',
-      name: 'imageSourceVideoCameraBtn',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Gallery photo`
-  String get imageSourceImageGalleryBtn {
-    return Intl.message(
-      'Gallery photo',
-      name: 'imageSourceImageGalleryBtn',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Camera photo`
-  String get imageSourceImageCameraBtn {
-    return Intl.message(
-      'Camera photo',
-      name: 'imageSourceImageCameraBtn',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Cancel`
-  String get imageSourceCancelBtn {
-    return Intl.message(
-      'Cancel',
-      name: 'imageSourceCancelBtn',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Empty Field`
-  String get errorEmptyField {
-    return Intl.message(
-      'Empty Field',
-      name: 'errorEmptyField',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Email not valid`
-  String get errorEmail {
-    return Intl.message(
-      'Email not valid',
-      name: 'errorEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password too short, should be 8 or more characters`
-  String get errorPasswordToShort {
-    return Intl.message(
-      'Password too short, should be 8 or more characters',
-      name: 'errorPasswordToShort',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password too long, should be less 20 characters`
-  String get errorPasswordToLong {
-    return Intl.message(
-      'Password too long, should be less 20 characters',
-      name: 'errorPasswordToLong',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password must contain at least one special character: !@#$%^&*()?<>`
-  String get errorPasswordSpecialCharacter {
-    return Intl.message(
-      'Password must contain at least one special character: !@#\$%^&*()?<>',
-      name: 'errorPasswordSpecialCharacter',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password should contain letters`
-  String get errorPasswordLetters {
-    return Intl.message(
-      'Password should contain letters',
-      name: 'errorPasswordLetters',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password should contain at least one number`
-  String get errorPasswordNumeral {
-    return Intl.message(
-      'Password should contain at least one number',
-      name: 'errorPasswordNumeral',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password and confirm password not match`
-  String get errorPasswordNotMatch {
-    return Intl.message(
-      'Password and confirm password not match',
-      name: 'errorPasswordNotMatch',
       desc: '',
       args: [],
     );
@@ -272,6 +99,166 @@ class S {
       args: [],
     );
   }
+
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get continueLabel {
+    return Intl.message(
+      'Continue',
+      name: 'continueLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate new project`
+  String get generateNewProject {
+    return Intl.message(
+      'Generate new project',
+      name: 'generateNewProject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open existing project`
+  String get openExistingProject {
+    return Intl.message(
+      'Open existing project',
+      name: 'openExistingProject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Project name`
+  String get projectName {
+    return Intl.message(
+      'Project name',
+      name: 'projectName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Project already exists, choose different name`
+  String get projectExistsError {
+    return Intl.message(
+      'Project already exists, choose different name',
+      name: 'projectExistsError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Organization`
+  String get organization {
+    return Intl.message(
+      'Organization',
+      name: 'organization',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check names before continue`
+  String get checkNamesTitle {
+    return Intl.message(
+      'Check names before continue',
+      name: 'checkNamesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Is project name\n`
+  String get checkNamesContentFirstPart {
+    return Intl.message(
+      'Is project name\n',
+      name: 'checkNamesContentFirstPart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `\nand organization\n`
+  String get checkNamesContentSecondPart {
+    return Intl.message(
+      '\nand organization\n',
+      name: 'checkNamesContentSecondPart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `\nlooking reasonable?`
+  String get checkNamesContentLastPart {
+    return Intl.message(
+      '\nlooking reasonable?',
+      name: 'checkNamesContentLastPart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Path not selected`
+  String get pathNotSelectedTitle {
+    return Intl.message(
+      'Path not selected',
+      name: 'pathNotSelectedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You must select path to projects folder`
+  String get pathNotSelectedContent {
+    return Intl.message(
+      'You must select path to projects folder',
+      name: 'pathNotSelectedContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New version available`
+  String get newVersionAvailableTitle {
+    return Intl.message(
+      'New version available',
+      name: 'newVersionAvailableTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New version of Onix Flutter Project Generator is available. Do you want to download it?`
+  String get newVersionAvailableContent {
+    return Intl.message(
+      'New version of Onix Flutter Project Generator is available. Do you want to download it?',
+      name: 'newVersionAvailableContent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -285,10 +272,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

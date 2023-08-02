@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
@@ -12,22 +13,38 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     on<ProjectNameScreenEventInit>(_onInit);
     on<ProjectNameScreenEventProjectNameChanged>(_onProjectNameChanged);
     on<ProjectNameScreenEventOrganizationChanged>(_onOrganizationChanged);
-    add(const ProjectNameScreenEvent.init());
   }
 
   FutureOr<void> _onInit(
     ProjectNameScreenEventInit event,
     Emitter<ProjectNameScreenState> emit,
-  ) {}
+  ) {
+    emit(state.copyWith(
+      projectPath: event.projectPath,
+    ));
+  }
 
   FutureOr<void> _onProjectNameChanged(
     ProjectNameScreenEventProjectNameChanged event,
     Emitter<ProjectNameScreenState> emit,
-  ) {
+  ) async {
+    if (event.projectName.isEmpty) {
+      emit(state.copyWith(
+        projectName: '',
+        projectExists: false,
+      ));
+      return;
+    }
+
+    final projectName = event.projectName.snakeCase;
+
+    var projectExists =
+        await Directory('${state.projectPath}/$projectName').exists();
+
     emit(state.copyWith(
-      projectName: event.projectName.snakeCase,
+      projectName: projectName,
+      projectExists: projectExists,
     ));
-    logger.f('event.projectName: ${state.projectName}');
   }
 
   FutureOr<void> _onOrganizationChanged(

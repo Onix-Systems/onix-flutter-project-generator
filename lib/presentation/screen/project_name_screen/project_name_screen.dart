@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc_imports.dart';
@@ -26,6 +27,16 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
     ProjectNameScreenBloc, ProjectNameScreenSR, ProjectNameScreen> {
   TextEditingController projectNameController = TextEditingController();
   TextEditingController organizationController = TextEditingController();
+
+  @override
+  void onBlocCreated(BuildContext context, ProjectNameScreenBloc bloc) {
+    bloc.add(
+      ProjectNameScreenEvent.init(
+        projectPath: widget.projectPath,
+      ),
+    );
+    super.onBlocCreated(context, bloc);
+  }
 
   @override
   Widget buildWidget(BuildContext context) {
@@ -57,9 +68,10 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextFieldWithLabel(
-            label: 'Project name',
+            label: S.of(context).projectName,
             centered: true,
             textController: projectNameController,
+            error: state.projectExists,
             onChanged: () => blocOf(context).add(
               ProjectNameScreenEvent.projectNameChanged(
                 projectName: projectNameController.text,
@@ -71,7 +83,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
           ),
           const Delimiter.height(20),
           TextFieldWithLabel(
-            label: 'Organization',
+            label: S.of(context).organization,
             centered: true,
             textController: organizationController,
             onChanged: () => blocOf(context).add(
@@ -84,11 +96,25 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
             ],
           ),
           const Delimiter.height(40),
-          if (state.projectName.isNotEmpty && state.organization.isNotEmpty)
+          if (state.projectName.isNotEmpty &&
+              state.organization.isNotEmpty &&
+              !state.projectExists)
             AppFilledButton(
-              label: 'Continue',
+              label: S.of(context).continueLabel,
               onPressed: () =>
                   blocOf(context).addSr(const ProjectNameScreenSRCheckNames()),
+            )
+          else
+            SizedBox(
+              height: 52,
+              child: state.projectExists
+                  ? Text(
+                      S.of(context).projectExistsError,
+                      style: context.appTextStyles.fs18?.copyWith(
+                        color: AppColors.red,
+                      ),
+                    )
+                  : null,
             ),
         ],
       ),
@@ -99,12 +125,12 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
     Dialogs.showOkCancelDialog(
       context: context,
       isError: true,
-      title: 'Check names before continue',
+      title: S.of(context).checkNamesTitle,
       content: RichText(
         textAlign: TextAlign.center,
         softWrap: false,
         text: TextSpan(
-          text: 'Is project name\n',
+          text: S.of(context).checkNamesContentFirstPart,
           style: context.appTextStyles.fs18?.copyWith(
             fontSize: 16,
           ),
@@ -117,7 +143,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
               ),
             ),
             TextSpan(
-              text: '\nand organization\n',
+              text: S.of(context).checkNamesContentSecondPart,
               style: context.appTextStyles.fs18?.copyWith(
                 fontSize: 16,
               ),
@@ -130,7 +156,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
               ),
             ),
             TextSpan(
-              text: '\nlooking reasonable?',
+              text: S.of(context).checkNamesContentLastPart,
               style: context.appTextStyles.fs18?.copyWith(
                 fontSize: 16,
               ),

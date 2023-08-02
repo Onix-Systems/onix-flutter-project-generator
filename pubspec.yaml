@@ -48,6 +48,8 @@ dependencies:
   pretty_dio_logger: ^1.3.1
   fluttertoast: ^8.2.2
   go_router: ^10.0.0
+  intl: ^0.18.0
+  intl_utils: ^2.8.3
 
 dev_dependencies:
   flutter_test:
@@ -91,5 +93,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_intl:
+  enabled: true
+  arb_dir: lib/core/app/localization/l10n
+  output_dir: lib/core/app/localization/generated
 
 #generated with mason

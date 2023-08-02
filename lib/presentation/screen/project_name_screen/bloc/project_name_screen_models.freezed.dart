@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProjectNameScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(String projectPath) init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
   }) =>
@@ -26,20 +26,19 @@ mixin _$ProjectNameScreenEvent {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(String projectPath)? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(String projectPath)? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectNameScreenEventInit value) init,
@@ -49,7 +48,6 @@ mixin _$ProjectNameScreenEvent {
         organizationChanged,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectNameScreenEventInit value)? init,
@@ -96,6 +94,8 @@ abstract class _$$ProjectNameScreenEventInitCopyWith<$Res> {
           _$ProjectNameScreenEventInit value,
           $Res Function(_$ProjectNameScreenEventInit) then) =
       __$$ProjectNameScreenEventInitCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String projectPath});
 }
 
 /// @nodoc
@@ -107,58 +107,83 @@ class __$$ProjectNameScreenEventInitCopyWithImpl<$Res>
       _$ProjectNameScreenEventInit _value,
       $Res Function(_$ProjectNameScreenEventInit) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projectPath = null,
+  }) {
+    return _then(_$ProjectNameScreenEventInit(
+      projectPath: null == projectPath
+          ? _value.projectPath
+          : projectPath // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ProjectNameScreenEventInit implements ProjectNameScreenEventInit {
-  const _$ProjectNameScreenEventInit();
+  const _$ProjectNameScreenEventInit({required this.projectPath});
+
+  @override
+  final String projectPath;
 
   @override
   String toString() {
-    return 'ProjectNameScreenEvent.init()';
+    return 'ProjectNameScreenEvent.init(projectPath: $projectPath)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenEventInit);
+            other is _$ProjectNameScreenEventInit &&
+            (identical(other.projectPath, projectPath) ||
+                other.projectPath == projectPath));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, projectPath);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectNameScreenEventInitCopyWith<_$ProjectNameScreenEventInit>
+      get copyWith => __$$ProjectNameScreenEventInitCopyWithImpl<
+          _$ProjectNameScreenEventInit>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(String projectPath) init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
   }) {
-    return init();
+    return init(projectPath);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(String projectPath)? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
   }) {
-    return init?.call();
+    return init?.call(projectPath);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(String projectPath)? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init();
+      return init(projectPath);
     }
     return orElse();
   }
@@ -205,7 +230,13 @@ class _$ProjectNameScreenEventInit implements ProjectNameScreenEventInit {
 }
 
 abstract class ProjectNameScreenEventInit implements ProjectNameScreenEvent {
-  const factory ProjectNameScreenEventInit() = _$ProjectNameScreenEventInit;
+  const factory ProjectNameScreenEventInit(
+      {required final String projectPath}) = _$ProjectNameScreenEventInit;
+
+  String get projectPath;
+  @JsonKey(ignore: true)
+  _$$ProjectNameScreenEventInitCopyWith<_$ProjectNameScreenEventInit>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -279,7 +310,7 @@ class _$ProjectNameScreenEventProjectNameChanged
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(String projectPath) init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
   }) {
@@ -289,7 +320,7 @@ class _$ProjectNameScreenEventProjectNameChanged
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(String projectPath)? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
   }) {
@@ -299,7 +330,7 @@ class _$ProjectNameScreenEventProjectNameChanged
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(String projectPath)? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     required TResult orElse(),
@@ -436,7 +467,7 @@ class _$ProjectNameScreenEventOrganizationChanged
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(String projectPath) init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
   }) {
@@ -446,7 +477,7 @@ class _$ProjectNameScreenEventOrganizationChanged
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(String projectPath)? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
   }) {
@@ -456,7 +487,7 @@ class _$ProjectNameScreenEventOrganizationChanged
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(String projectPath)? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     required TResult orElse(),
@@ -680,19 +711,27 @@ abstract class ProjectNameScreenSRCheckNames implements ProjectNameScreenSR {
 mixin _$ProjectNameScreenState {
   String get projectName => throw _privateConstructorUsedError;
   String get organization => throw _privateConstructorUsedError;
+  String get projectPath => throw _privateConstructorUsedError;
+  bool get projectExists => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String projectName, String organization) data,
+    required TResult Function(String projectName, String organization,
+            String projectPath, bool projectExists)
+        data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectName, String organization)? data,
+    TResult? Function(String projectName, String organization,
+            String projectPath, bool projectExists)?
+        data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectName, String organization)? data,
+    TResult Function(String projectName, String organization,
+            String projectPath, bool projectExists)?
+        data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -724,7 +763,11 @@ abstract class $ProjectNameScreenStateCopyWith<$Res> {
           $Res Function(ProjectNameScreenState) then) =
       _$ProjectNameScreenStateCopyWithImpl<$Res, ProjectNameScreenState>;
   @useResult
-  $Res call({String projectName, String organization});
+  $Res call(
+      {String projectName,
+      String organization,
+      String projectPath,
+      bool projectExists});
 }
 
 /// @nodoc
@@ -743,6 +786,8 @@ class _$ProjectNameScreenStateCopyWithImpl<$Res,
   $Res call({
     Object? projectName = null,
     Object? organization = null,
+    Object? projectPath = null,
+    Object? projectExists = null,
   }) {
     return _then(_value.copyWith(
       projectName: null == projectName
@@ -753,6 +798,14 @@ class _$ProjectNameScreenStateCopyWithImpl<$Res,
           ? _value.organization
           : organization // ignore: cast_nullable_to_non_nullable
               as String,
+      projectPath: null == projectPath
+          ? _value.projectPath
+          : projectPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      projectExists: null == projectExists
+          ? _value.projectExists
+          : projectExists // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -766,7 +819,11 @@ abstract class _$$_ProjectNameScreenStateDataCopyWith<$Res>
       __$$_ProjectNameScreenStateDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String projectName, String organization});
+  $Res call(
+      {String projectName,
+      String organization,
+      String projectPath,
+      bool projectExists});
 }
 
 /// @nodoc
@@ -784,6 +841,8 @@ class __$$_ProjectNameScreenStateDataCopyWithImpl<$Res>
   $Res call({
     Object? projectName = null,
     Object? organization = null,
+    Object? projectPath = null,
+    Object? projectExists = null,
   }) {
     return _then(_$_ProjectNameScreenStateData(
       projectName: null == projectName
@@ -794,6 +853,14 @@ class __$$_ProjectNameScreenStateDataCopyWithImpl<$Res>
           ? _value.organization
           : organization // ignore: cast_nullable_to_non_nullable
               as String,
+      projectPath: null == projectPath
+          ? _value.projectPath
+          : projectPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      projectExists: null == projectExists
+          ? _value.projectExists
+          : projectExists // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -802,7 +869,10 @@ class __$$_ProjectNameScreenStateDataCopyWithImpl<$Res>
 
 class _$_ProjectNameScreenStateData implements _ProjectNameScreenStateData {
   const _$_ProjectNameScreenStateData(
-      {this.projectName = '', this.organization = ''});
+      {this.projectName = '',
+      this.organization = '',
+      this.projectPath = '',
+      this.projectExists = false});
 
   @override
   @JsonKey()
@@ -810,10 +880,16 @@ class _$_ProjectNameScreenStateData implements _ProjectNameScreenStateData {
   @override
   @JsonKey()
   final String organization;
+  @override
+  @JsonKey()
+  final String projectPath;
+  @override
+  @JsonKey()
+  final bool projectExists;
 
   @override
   String toString() {
-    return 'ProjectNameScreenState.data(projectName: $projectName, organization: $organization)';
+    return 'ProjectNameScreenState.data(projectName: $projectName, organization: $organization, projectPath: $projectPath, projectExists: $projectExists)';
   }
 
   @override
@@ -824,11 +900,16 @@ class _$_ProjectNameScreenStateData implements _ProjectNameScreenStateData {
             (identical(other.projectName, projectName) ||
                 other.projectName == projectName) &&
             (identical(other.organization, organization) ||
-                other.organization == organization));
+                other.organization == organization) &&
+            (identical(other.projectPath, projectPath) ||
+                other.projectPath == projectPath) &&
+            (identical(other.projectExists, projectExists) ||
+                other.projectExists == projectExists));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, projectName, organization);
+  int get hashCode => Object.hash(
+      runtimeType, projectName, organization, projectPath, projectExists);
 
   @JsonKey(ignore: true)
   @override
@@ -840,27 +921,33 @@ class _$_ProjectNameScreenStateData implements _ProjectNameScreenStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String projectName, String organization) data,
+    required TResult Function(String projectName, String organization,
+            String projectPath, bool projectExists)
+        data,
   }) {
-    return data(projectName, organization);
+    return data(projectName, organization, projectPath, projectExists);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectName, String organization)? data,
+    TResult? Function(String projectName, String organization,
+            String projectPath, bool projectExists)?
+        data,
   }) {
-    return data?.call(projectName, organization);
+    return data?.call(projectName, organization, projectPath, projectExists);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectName, String organization)? data,
+    TResult Function(String projectName, String organization,
+            String projectPath, bool projectExists)?
+        data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(projectName, organization);
+      return data(projectName, organization, projectPath, projectExists);
     }
     return orElse();
   }
@@ -897,12 +984,18 @@ class _$_ProjectNameScreenStateData implements _ProjectNameScreenStateData {
 abstract class _ProjectNameScreenStateData implements ProjectNameScreenState {
   const factory _ProjectNameScreenStateData(
       {final String projectName,
-      final String organization}) = _$_ProjectNameScreenStateData;
+      final String organization,
+      final String projectPath,
+      final bool projectExists}) = _$_ProjectNameScreenStateData;
 
   @override
   String get projectName;
   @override
   String get organization;
+  @override
+  String get projectPath;
+  @override
+  bool get projectExists;
   @override
   @JsonKey(ignore: true)
   _$$_ProjectNameScreenStateDataCopyWith<_$_ProjectNameScreenStateData>

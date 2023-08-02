@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
@@ -28,7 +29,7 @@ class Dialogs {
             )),
         actions: [
           CupertinoDialogAction(
-            child: const Text('OK'),
+            child: Text(S.of(context).ok),
             onPressed: () {
               onOk?.call();
               Navigator.of(ctx).pop();
@@ -62,14 +63,14 @@ class Dialogs {
         content: content,
         actions: [
           CupertinoDialogAction(
-            child: const Text('OK'),
+            child: Text(S.of(context).ok),
             onPressed: () {
               onOk?.call();
               Navigator.of(ctx).pop();
             },
           ),
           CupertinoDialogAction(
-            child: const Text('Cancel'),
+            child: Text(S.of(context).cancel),
             onPressed: () {
               onCancel?.call();
               Navigator.of(ctx).pop();

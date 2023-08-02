@@ -21,7 +21,6 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "apiFailureNoNetwork": MessageLookupByLibrary.simpleMessage(
             "Sorry, we\'re having trouble connecting. Please check your internet connection and try again.\n\nReach out to support if you continue to experience issues."),
@@ -31,34 +30,34 @@ class MessageLookup extends MessageLookupByLibrary {
             "The username or password you entered is incorrect."),
         "apiFailureUndefined": MessageLookupByLibrary.simpleMessage(
             "Uh oh! Looks like we ran into an issue while processing this request. Please try again.\n\nReach out to support if you continue to experience issues."),
-        "appName": MessageLookupByLibrary.simpleMessage("Arch Sample"),
-        "commonImageEditor":
-            MessageLookupByLibrary.simpleMessage("Image editor"),
-        "errorEmail": MessageLookupByLibrary.simpleMessage("Email not valid"),
-        "errorEmptyField": MessageLookupByLibrary.simpleMessage("Empty Field"),
-        "errorPasswordLetters": MessageLookupByLibrary.simpleMessage(
-            "Password should contain letters"),
-        "errorPasswordNotMatch": MessageLookupByLibrary.simpleMessage(
-            "Password and confirm password not match"),
-        "errorPasswordNumeral": MessageLookupByLibrary.simpleMessage(
-            "Password should contain at least one number"),
-        "errorPasswordSpecialCharacter": MessageLookupByLibrary.simpleMessage(
-            "Password must contain at least one special character: !@#\$%^&*()?<>"),
-        "errorPasswordToLong": MessageLookupByLibrary.simpleMessage(
-            "Password too long, should be less 20 characters"),
-        "errorPasswordToShort": MessageLookupByLibrary.simpleMessage(
-            "Password too short, should be 8 or more characters"),
-        "imageSource": MessageLookupByLibrary.simpleMessage("Select source"),
-        "imageSourceCancelBtn": MessageLookupByLibrary.simpleMessage("Cancel"),
-        "imageSourceImageCameraBtn":
-            MessageLookupByLibrary.simpleMessage("Camera photo"),
-        "imageSourceImageGalleryBtn":
-            MessageLookupByLibrary.simpleMessage("Gallery photo"),
-        "imageSourceVideoCameraBtn":
-            MessageLookupByLibrary.simpleMessage("Camera video"),
-        "imageSourceVideoGalleryBtn":
-            MessageLookupByLibrary.simpleMessage("Gallery video"),
-        "title": MessageLookupByLibrary.simpleMessage("Arch Sample"),
-        "undefinedData": MessageLookupByLibrary.simpleMessage("N/A")
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "checkNamesContentFirstPart":
+            MessageLookupByLibrary.simpleMessage("Is project name\n"),
+        "checkNamesContentLastPart":
+            MessageLookupByLibrary.simpleMessage("\nlooking reasonable?"),
+        "checkNamesContentSecondPart":
+            MessageLookupByLibrary.simpleMessage("\nand organization\n"),
+        "checkNamesTitle":
+            MessageLookupByLibrary.simpleMessage("Check names before continue"),
+        "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
+        "generateNewProject":
+            MessageLookupByLibrary.simpleMessage("Generate new project"),
+        "newVersionAvailableContent": MessageLookupByLibrary.simpleMessage(
+            "New version of Onix Flutter Project Generator is available. Do you want to download it?"),
+        "newVersionAvailableTitle":
+            MessageLookupByLibrary.simpleMessage("New version available"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
+        "openExistingProject":
+            MessageLookupByLibrary.simpleMessage("Open existing project"),
+        "organization": MessageLookupByLibrary.simpleMessage("Organization"),
+        "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
+            "You must select path to projects folder"),
+        "pathNotSelectedTitle":
+            MessageLookupByLibrary.simpleMessage("Path not selected"),
+        "projectExistsError": MessageLookupByLibrary.simpleMessage(
+            "Project already exists, choose different name"),
+        "projectName": MessageLookupByLibrary.simpleMessage("Project name"),
+        "title": MessageLookupByLibrary.simpleMessage(
+            "Onix Flutter Project Generator")
       };
 }

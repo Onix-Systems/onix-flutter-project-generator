@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
@@ -26,7 +27,7 @@ class ProcedureSelectionScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: AppFilledButton(
-                  label: 'Generate new project',
+                  label: S.of(context).generateNewProject,
                   onPressed: () {
                     context.go(AppRouter.projectNameScreen, extra: projectPath);
                   },
@@ -36,8 +37,9 @@ class ProcedureSelectionScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: AppFilledButton(
-                  label: 'Open existing project',
+                  label: S.of(context).openExistingProject,
                   onPressed: () {
+                    //TODO: implement open existing project
                     logger.f('Open existing project');
                   },
                   icon: Icons.folder_open_outlined,

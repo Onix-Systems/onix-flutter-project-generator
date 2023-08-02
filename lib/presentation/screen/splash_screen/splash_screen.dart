@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc_imports.dart';
@@ -111,8 +112,8 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
           Dialogs.showOkDialog(
             context: context,
             isError: true,
-            title: 'Path not selected',
-            content: 'You must select path to projects folder',
+            title: S.of(context).pathNotSelectedTitle,
+            content: S.of(context).pathNotSelectedContent,
             onOk: () => blocOf(context)
                 .addSr(const SplashScreenSR.onShowPathSelector()),
           );
@@ -124,9 +125,9 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
   _onNeedUpdate(BuildContext context) {
     Dialogs.showOkCancelDialog(
       context: context,
-      title: 'New version available',
+      title: S.of(context).newVersionAvailableTitle,
       content: Text(
-        'Please, download new version from GitHub',
+        S.of(context).newVersionAvailableContent,
         style: context.appTextStyles.fs18?.copyWith(
           fontSize: 16,
         ),
