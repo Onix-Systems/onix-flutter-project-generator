@@ -41,6 +41,16 @@
       "name": "procedureSelection",
       "bloc": false,
       "exists": true
+    },
+    {
+      "name": "platforms",
+      "bloc": true,
+      "exists": true
+    },
+    {
+      "name": "ProjectSettings",
+      "bloc": true,
+      "exists": true
     }
   ],
   "entities": [

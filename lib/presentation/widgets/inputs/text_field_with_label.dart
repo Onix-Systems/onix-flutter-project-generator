@@ -48,7 +48,8 @@ class TextFieldWithLabel extends StatelessWidget {
                 Text(
                   subLabel ?? '',
                   textAlign: TextAlign.left,
-                  style: const TextStyle(color: AppColors.white, fontSize: 13),
+                  style: context.appTextStyles.fs18
+                      ?.copyWith(color: AppColors.white, fontSize: 13),
                 ),
             ],
           )
@@ -68,8 +69,8 @@ class TextFieldWithLabel extends StatelessWidget {
                   Text(
                     subLabel ?? '',
                     textAlign: TextAlign.left,
-                    style:
-                        const TextStyle(color: AppColors.white, fontSize: 13),
+                    style: context.appTextStyles.fs18
+                        ?.copyWith(color: AppColors.white, fontSize: 13),
                   ),
               ],
             ),
@@ -91,7 +92,7 @@ class TextFieldWithLabel extends StatelessWidget {
           SizedBox(
             width: 300,
             child: CupertinoTextField(
-              style: TextStyle(
+              style: context.appTextStyles.fs18?.copyWith(
                   color:
                       error ? CupertinoColors.destructiveRed : AppColors.white),
               controller: textController,

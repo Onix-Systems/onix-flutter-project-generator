@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/platforms_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
@@ -165,7 +167,14 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
         ),
       ),
       onOk: () {
-        //TODO go to next screen
+        context.go(
+          AppRouter.platformsScreen,
+          extra: PlatformScreenExtra(
+            projectPath: widget.projectPath,
+            projectName: blocOf(context).state.projectName,
+            organization: blocOf(context).state.organization,
+          ),
+        );
       },
     );
   }
