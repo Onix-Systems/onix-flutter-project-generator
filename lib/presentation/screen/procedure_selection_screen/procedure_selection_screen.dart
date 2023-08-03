@@ -28,6 +28,7 @@ class ProcedureSelectionScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: AppFilledButton(
                   label: S.of(context).generateNewProject,
+                  big: true,
                   onPressed: () {
                     context.go(AppRouter.projectNameScreen, extra: projectPath);
                   },
@@ -38,6 +39,7 @@ class ProcedureSelectionScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: AppFilledButton(
                   label: S.of(context).openExistingProject,
+                  big: true,
                   onPressed: () {
                     //TODO: implement open existing project
                     logger.f('Open existing project');

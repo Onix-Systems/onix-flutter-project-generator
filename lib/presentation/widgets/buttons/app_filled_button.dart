@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
@@ -7,9 +8,16 @@ class AppFilledButton extends StatefulWidget {
   final VoidCallback? onPressed;
   final Color? color;
   final IconData? icon;
+  final bool big;
 
-  const AppFilledButton(
-      {required this.label, this.onPressed, this.color, this.icon, super.key});
+  const AppFilledButton({
+    required this.label,
+    this.onPressed,
+    this.color,
+    this.icon,
+    this.big = false,
+    super.key,
+  });
 
   @override
   State<AppFilledButton> createState() => _AppFilledButtonState();
@@ -37,21 +45,46 @@ class _AppFilledButtonState extends State<AppFilledButton> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         minimumSize: const Size(100, 60),
       ),
-      child: Column(
-        children: [
-          if (widget.icon != null)
-            Icon(
-              widget.icon,
-              size: 100,
-              color: hovered ? widget.color ?? AppColors.orange : _textColor(),
+      child: widget.big
+          ? Column(
+              children: [
+                if (widget.icon != null)
+                  Icon(
+                    widget.icon,
+                    size: 100,
+                    color: hovered
+                        ? widget.color ?? AppColors.orange
+                        : _textColor(),
+                  ),
+                Text(widget.label,
+                    style: context.appTextStyles.fs18?.copyWith(
+                      color: hovered
+                          ? widget.color ?? AppColors.orange
+                          : _textColor(),
+                    )),
+              ],
+            )
+          : Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (widget.icon != null) ...[
+                  Icon(
+                    widget.icon,
+                    size: 25,
+                    color: hovered
+                        ? widget.color ?? AppColors.orange
+                        : _textColor(),
+                  ),
+                  const Delimiter.width(10),
+                ],
+                Text(widget.label,
+                    style: context.appTextStyles.fs18?.copyWith(
+                      color: hovered
+                          ? widget.color ?? AppColors.orange
+                          : _textColor(),
+                    )),
+              ],
             ),
-          Text(widget.label,
-              style: context.appTextStyles.fs18?.copyWith(
-                color:
-                    hovered ? widget.color ?? AppColors.orange : _textColor(),
-              )),
-        ],
-      ),
     );
   }
 

@@ -130,6 +130,26 @@ class S {
     );
   }
 
+  /// `Modify`
+  String get modify {
+    return Intl.message(
+      'Modify',
+      name: 'modify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message(
+      'Delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Generate new project`
   String get generateNewProject {
     return Intl.message(
@@ -255,6 +275,266 @@ class S {
     return Intl.message(
       'New version of Onix Flutter Project Generator is available. Do you want to download it?',
       name: 'newVersionAvailableContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add screen`
+  String get addScreen {
+    return Intl.message(
+      'Add screen',
+      name: 'addScreen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modify screen`
+  String get modifyScreen {
+    return Intl.message(
+      'Modify screen',
+      name: 'modifyScreen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already exists`
+  String get screenAlreadyExistsTitle {
+    return Intl.message(
+      'Already exists',
+      name: 'screenAlreadyExistsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Screen with such name already exists`
+  String get screenAlreadyExistsContent {
+    return Intl.message(
+      'Screen with such name already exists',
+      name: 'screenAlreadyExistsContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Screen name`
+  String get screenName {
+    return Intl.message(
+      'Screen name',
+      name: 'screenName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Using BLoC`
+  String get usingBloc {
+    return Intl.message(
+      'Using BLoC',
+      name: 'usingBloc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Actions`
+  String get actions {
+    return Intl.message(
+      'Actions',
+      name: 'actions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Integrate Device Preview?`
+  String get integrateDevicePreview {
+    return Intl.message(
+      'Integrate Device Preview?',
+      name: 'integrateDevicePreview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theming:`
+  String get theming {
+    return Intl.message(
+      'Theming:',
+      name: 'theming',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Localization:`
+  String get localization {
+    return Intl.message(
+      'Localization:',
+      name: 'localization',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Router:`
+  String get router {
+    return Intl.message(
+      'Router:',
+      name: 'router',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Will you use Sonar?`
+  String get useSonar {
+    return Intl.message(
+      'Will you use Sonar?',
+      name: 'useSonar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modify signing vars...`
+  String get modifySigningVars {
+    return Intl.message(
+      'Modify signing vars...',
+      name: 'modifySigningVars',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(Dialog will open in separate window)`
+  String get dialogWillOpenInSeparateWindow {
+    return Intl.message(
+      '(Dialog will open in separate window)',
+      name: 'dialogWillOpenInSeparateWindow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate signing key?`
+  String get generateSigningKey {
+    return Intl.message(
+      'Generate signing key?',
+      name: 'generateSigningKey',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(space separated)`
+  String get spaceSeparated {
+    return Intl.message(
+      '(space separated)',
+      name: 'spaceSeparated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add flavors:`
+  String get addFlavors {
+    return Intl.message(
+      'Add flavors:',
+      name: 'addFlavors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Flavorize?`
+  String get flavorize {
+    return Intl.message(
+      'Flavorize?',
+      name: 'flavorize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DEV & PROD flavors will be added automatically`
+  String get willBeAddedAutomatically {
+    return Intl.message(
+      'DEV & PROD flavors will be added automatically',
+      name: 'willBeAddedAutomatically',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Keystore password`
+  String get keystorePassword {
+    return Intl.message(
+      ' Keystore password',
+      name: 'keystorePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Two-letter country code`
+  String get twoLetterCountryCode {
+    return Intl.message(
+      ' Two-letter country code',
+      name: 'twoLetterCountryCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` State or Province`
+  String get stateOrProvince {
+    return Intl.message(
+      ' State or Province',
+      name: 'stateOrProvince',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` City or Locality`
+  String get cityOrLocality {
+    return Intl.message(
+      ' City or Locality',
+      name: 'cityOrLocality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Organizational unit`
+  String get organizationalUnit {
+    return Intl.message(
+      ' Organizational unit',
+      name: 'organizationalUnit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` First & last name`
+  String get firstLastName {
+    return Intl.message(
+      ' First & last name',
+      name: 'firstLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Signing vars`
+  String get signingVars {
+    return Intl.message(
+      'Signing vars',
+      name: 'signingVars',
       desc: '',
       args: [],
     );

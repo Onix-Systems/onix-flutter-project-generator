@@ -5,10 +5,11 @@ import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/widgets/signing_dialog.dart';
-import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_screen.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_segmented_control.dart';
@@ -77,19 +78,18 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         SwitchWithLabel(
-                          label: 'Flavorize?',
+                          label: S.of(context).flavorize,
                           initialValue: state.flavorize,
-                          subLabel:
-                              '(DEV & PROD flavors will be added automatically)',
+                          subLabel: S.of(context).willBeAddedAutomatically,
                           valueSetter: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventFlavorizeChange()),
                         ),
                         if (state.flavorize) ...[
                           const SizedBox(height: 20),
                           TextFieldWithLabel(
-                            label: 'Add flavors:',
+                            label: S.of(context).addFlavors,
                             expanded: true,
-                            subLabel: '(space separated)',
+                            subLabel: S.of(context).spaceSeparated,
                             textController: _flavorsController,
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(
@@ -103,9 +103,10 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                         ],
                         const SizedBox(height: 20),
                         SwitchWithLabel(
-                          label: 'Generate signing key?',
+                          label: S.of(context).generateSigningKey,
                           initialValue: state.generateSigningKey,
-                          subLabel: '(Dialog will open in separate window)',
+                          subLabel:
+                              S.of(context).dialogWillOpenInSeparateWindow,
                           valueSetter: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventGenerateSigningKeyChange()),
                         ),
@@ -131,13 +132,13 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.zero,
                               ),
-                              child: const Text('Modify signing vars...'),
+                              child: Text(S.of(context).modifySigningVars),
                             ),
                           ],
                         ),
                         const SizedBox(height: 20),
                         SwitchWithLabel(
-                          label: 'Will you use Sonar?',
+                          label: S.of(context).useSonar,
                           initialValue: state.useSonar,
                           valueSetter: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventUseSonarChange()),
@@ -161,7 +162,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         LabeledSegmentedControl(
-                          label: 'Router:',
+                          label: S.of(context).router,
                           values:
                               ProjectRouter.values.map((e) => e.name).toList(),
                           onChange: (_) => blocOf(context).add(
@@ -170,7 +171,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                         ),
                         const SizedBox(height: 20),
                         LabeledSegmentedControl(
-                          label: 'Localization:',
+                          label: S.of(context).localization,
                           values: ProjectLocalization.values
                               .map((e) => e.name)
                               .toList(),
@@ -180,7 +181,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                         ),
                         const SizedBox(height: 20),
                         LabeledSegmentedControl(
-                          label: 'Theming:',
+                          label: S.of(context).theming,
                           values:
                               ProjectTheming.values.map((e) => e.name).toList(),
                           onChange: (_) => blocOf(context).add(
@@ -189,7 +190,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                         ),
                         const SizedBox(height: 20),
                         SwitchWithLabel(
-                          label: 'Integrate Device Preview?',
+                          label: S.of(context).integrateDevicePreview,
                           initialValue: state.integrateDevicePreview,
                           valueSetter: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventIntegrateDevicePreviewChange()),
@@ -202,7 +203,26 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
             ),
             const Delimiter.height(40),
             AppFilledButton(
-                label: S.of(context).continueLabel, onPressed: () {}),
+              label: S.of(context).continueLabel,
+              onPressed: () => context.go(
+                AppRouter.screensScreen,
+                extra: ScreensScreenExtra(
+                  projectPath: widget.extra.projectPath,
+                  projectName: widget.extra.projectName,
+                  organization: widget.extra.organization,
+                  platformsList: widget.extra.platformsList,
+                  flavorize: state.flavorize,
+                  flavors: state.flavors,
+                  generateSigningKey: state.generateSigningKey,
+                  useSonar: state.useSonar,
+                  router: state.router,
+                  localization: state.localization,
+                  theming: state.theming,
+                  integrateDevicePreview: state.integrateDevicePreview,
+                  signingVars: state.signingVars,
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -51,6 +51,11 @@
       "name": "ProjectSettings",
       "bloc": true,
       "exists": true
+    },
+    {
+      "name": "screens",
+      "bloc": true,
+      "exists": true
     }
   ],
   "entities": [

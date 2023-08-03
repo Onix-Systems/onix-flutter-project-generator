@@ -21,7 +21,11 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "actions": MessageLookupByLibrary.simpleMessage("Actions"),
+        "addFlavors": MessageLookupByLibrary.simpleMessage("Add flavors:"),
+        "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),
         "apiFailureNoNetwork": MessageLookupByLibrary.simpleMessage(
             "Sorry, we\'re having trouble connecting. Please check your internet connection and try again.\n\nReach out to support if you continue to experience issues."),
         "apiFailureTooManyRequests": MessageLookupByLibrary.simpleMessage(
@@ -39,9 +43,28 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("\nand organization\n"),
         "checkNamesTitle":
             MessageLookupByLibrary.simpleMessage("Check names before continue"),
+        "cityOrLocality":
+            MessageLookupByLibrary.simpleMessage(" City or Locality"),
         "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
+        "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
+            "(Dialog will open in separate window)"),
+        "firstLastName":
+            MessageLookupByLibrary.simpleMessage(" First & last name"),
+        "flavorize": MessageLookupByLibrary.simpleMessage("Flavorize?"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Generate new project"),
+        "generateSigningKey":
+            MessageLookupByLibrary.simpleMessage("Generate signing key?"),
+        "integrateDevicePreview":
+            MessageLookupByLibrary.simpleMessage("Integrate Device Preview?"),
+        "keystorePassword":
+            MessageLookupByLibrary.simpleMessage(" Keystore password"),
+        "localization": MessageLookupByLibrary.simpleMessage("Localization:"),
+        "modify": MessageLookupByLibrary.simpleMessage("Modify"),
+        "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
+        "modifySigningVars":
+            MessageLookupByLibrary.simpleMessage("Modify signing vars..."),
         "newVersionAvailableContent": MessageLookupByLibrary.simpleMessage(
             "New version of Onix Flutter Project Generator is available. Do you want to download it?"),
         "newVersionAvailableTitle":
@@ -50,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "openExistingProject":
             MessageLookupByLibrary.simpleMessage("Open existing project"),
         "organization": MessageLookupByLibrary.simpleMessage("Organization"),
+        "organizationalUnit":
+            MessageLookupByLibrary.simpleMessage(" Organizational unit"),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
             "You must select path to projects folder"),
         "pathNotSelectedTitle":
@@ -57,7 +82,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "projectExistsError": MessageLookupByLibrary.simpleMessage(
             "Project already exists, choose different name"),
         "projectName": MessageLookupByLibrary.simpleMessage("Project name"),
+        "router": MessageLookupByLibrary.simpleMessage("Router:"),
+        "screenAlreadyExistsContent": MessageLookupByLibrary.simpleMessage(
+            "Screen with such name already exists"),
+        "screenAlreadyExistsTitle":
+            MessageLookupByLibrary.simpleMessage("Already exists"),
+        "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
+        "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
+        "spaceSeparated":
+            MessageLookupByLibrary.simpleMessage("(space separated)"),
+        "stateOrProvince":
+            MessageLookupByLibrary.simpleMessage(" State or Province"),
+        "theming": MessageLookupByLibrary.simpleMessage("Theming:"),
         "title": MessageLookupByLibrary.simpleMessage(
-            "Onix Flutter Project Generator")
+            "Onix Flutter Project Generator"),
+        "twoLetterCountryCode":
+            MessageLookupByLibrary.simpleMessage(" Two-letter country code"),
+        "useSonar": MessageLookupByLibrary.simpleMessage("Will you use Sonar?"),
+        "usingBloc": MessageLookupByLibrary.simpleMessage("Using BLoC"),
+        "willBeAddedAutomatically": MessageLookupByLibrary.simpleMessage(
+            "DEV & PROD flavors will be added automatically")
       };
 }

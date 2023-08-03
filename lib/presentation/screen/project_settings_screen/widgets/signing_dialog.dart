@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class SigningDialog extends StatelessWidget {
-  ProjectSettingsScreenState state;
+  final ProjectSettingsScreenState state;
 
   SigningDialog({required this.state, Key? key}) : super(key: key);
 
@@ -41,13 +42,13 @@ class SigningDialog extends StatelessWidget {
         return KeyEventResult.skipRemainingHandlers;
       },
       child: CupertinoAlertDialog(
-        title: const Text('Signing vars'),
+        title: Text(S.of(context).signingVars),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 15),
-            const Text(
-              ' First & last name',
+            Text(
+              S.of(context).firstLastName,
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 5),
@@ -60,8 +61,8 @@ class SigningDialog extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 15),
-            const Text(
-              ' Organizational unit',
+            Text(
+              S.of(context).organizationalUnit,
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 5),
@@ -73,8 +74,8 @@ class SigningDialog extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 15),
-            const Text(
-              ' Organization',
+            Text(
+              ' ${S.of(context).organization}',
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 5),
@@ -86,8 +87,8 @@ class SigningDialog extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 15),
-            const Text(
-              ' City or Locality',
+            Text(
+              S.of(context).cityOrLocality,
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 5),
@@ -99,8 +100,8 @@ class SigningDialog extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 15),
-            const Text(
-              ' State or Province',
+            Text(
+              S.of(context).stateOrProvince,
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 5),
@@ -112,8 +113,8 @@ class SigningDialog extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 15),
-            const Text(
-              ' Two-letter country code',
+            Text(
+              S.of(context).twoLetterCountryCode,
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 5),
@@ -126,8 +127,8 @@ class SigningDialog extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 15),
-            const Text(
-              ' Keystore password',
+            Text(
+              S.of(context).keystorePassword,
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 5),
@@ -144,12 +145,12 @@ class SigningDialog extends StatelessWidget {
           CupertinoDialogAction(
             isDefaultAction: true,
             onPressed: () => _onOk(context),
-            child: const Text('Ok'),
+            child: Text(S.of(context).ok),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(S.of(context).cancel),
           ),
         ],
       ),
