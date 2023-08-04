@@ -5,7 +5,7 @@ import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
-import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/platforms_screen.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
@@ -14,10 +14,10 @@ import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/text_field_with_label.dart';
 
 class ProjectNameScreen extends StatefulWidget {
-  final String projectPath;
+  final Config config;
 
   const ProjectNameScreen({
-    required this.projectPath,
+    required this.config,
     super.key,
   });
 
@@ -34,7 +34,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
   void onBlocCreated(BuildContext context, ProjectNameScreenBloc bloc) {
     bloc.add(
       ProjectNameScreenEvent.init(
-        projectPath: widget.projectPath,
+        projectPath: widget.config.projectPath,
       ),
     );
     super.onBlocCreated(context, bloc);
@@ -169,8 +169,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
       onOk: () {
         context.go(
           AppRouter.platformsScreen,
-          extra: PlatformScreenExtra(
-            projectPath: widget.projectPath,
+          extra: widget.config.copyWith(
             projectName: blocOf(context).state.projectName,
             organization: blocOf(context).state.organization,
           ),

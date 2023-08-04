@@ -10,6 +10,7 @@
   "continueLabel": "Continue",
   "modify": "Modify",
   "delete": "Delete",
+  "error": "Error",
   "generateNewProject": "Generate new project",
   "openExistingProject": "Open existing project",
   "projectName": "Project name",
@@ -48,5 +49,7 @@
   "cityOrLocality": " City or Locality",
   "organizationalUnit": " Organizational unit",
   "firstLastName": " First & last name",
-  "signingVars": "Signing vars"
+  "signingVars": "Signing vars",
+  "url": "URL",
+  "swaggerParserPrompt": "Paste swagger config json file URL here to get data components from API\nor leave it empty to use default config"
 }

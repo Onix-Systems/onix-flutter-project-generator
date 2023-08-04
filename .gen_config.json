@@ -56,6 +56,16 @@
       "name": "screens",
       "bloc": true,
       "exists": true
+    },
+    {
+      "name": "dataComponents",
+      "bloc": true,
+      "exists": true
+    },
+    {
+      "name": "swaggerParser",
+      "bloc": true,
+      "exists": true
     }
   ],
   "entities": [

@@ -8,6 +8,7 @@ import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
@@ -107,7 +108,8 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
     getDirectoryPath().then(
       (value) {
         if (value != null) {
-          context.go(AppRouter.procedureSelectionScreen, extra: value);
+          context.go(AppRouter.procedureSelectionScreen,
+              extra: Config(projectPath: value));
         } else {
           Dialogs.showOkDialog(
             context: context,

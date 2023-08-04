@@ -6,10 +6,9 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
-import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/widgets/signing_dialog.dart';
-import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_screen.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_segmented_control.dart';
@@ -17,10 +16,10 @@ import 'package:onix_flutter_bricks/presentation/widgets/inputs/switch_with_labe
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/text_field_with_label.dart';
 
 class ProjectSettingsScreen extends StatefulWidget {
-  final ProjectSettingsScreenExtra extra;
+  final Config config;
 
   const ProjectSettingsScreen({
-    required this.extra,
+    required this.config,
     super.key,
   });
 
@@ -206,11 +205,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
               label: S.of(context).continueLabel,
               onPressed: () => context.go(
                 AppRouter.screensScreen,
-                extra: ScreensScreenExtra(
-                  projectPath: widget.extra.projectPath,
-                  projectName: widget.extra.projectName,
-                  organization: widget.extra.organization,
-                  platformsList: widget.extra.platformsList,
+                extra: widget.config.copyWith(
                   flavorize: state.flavorize,
                   flavors: state.flavors,
                   generateSigningKey: state.generateSigningKey,
@@ -228,18 +223,4 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
       ),
     );
   }
-}
-
-class ProjectSettingsScreenExtra {
-  final String projectPath;
-  final String projectName;
-  final String organization;
-  final PlatformsList platformsList;
-
-  const ProjectSettingsScreenExtra({
-    required this.projectPath,
-    required this.projectName,
-    required this.organization,
-    required this.platformsList,
-  });
 }

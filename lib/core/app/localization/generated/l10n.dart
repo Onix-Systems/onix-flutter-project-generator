@@ -150,6 +150,16 @@ class S {
     );
   }
 
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Generate new project`
   String get generateNewProject {
     return Intl.message(
@@ -535,6 +545,26 @@ class S {
     return Intl.message(
       'Signing vars',
       name: 'signingVars',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `URL`
+  String get url {
+    return Intl.message(
+      'URL',
+      name: 'url',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paste swagger config json file URL here to get data components from API\nor leave it empty to use default config`
+  String get swaggerParserPrompt {
+    return Intl.message(
+      'Paste swagger config json file URL here to get data components from API\nor leave it empty to use default config',
+      name: 'swaggerParserPrompt',
       desc: '',
       args: [],
     );

@@ -4,16 +4,16 @@ import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/bloc/platforms_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/widgets/platform_checkbox.dart';
-import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/project_settings_screen.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 
 class PlatformsScreen extends StatefulWidget {
-  final PlatformScreenExtra extra;
+  final Config config;
 
   const PlatformsScreen({
-    required this.extra,
+    required this.config,
     super.key,
   });
 
@@ -130,10 +130,7 @@ class _PlatformsScreenState extends BaseState<PlatformsScreenState,
                 label: S.of(context).continueLabel,
                 onPressed: () => context.go(
                       AppRouter.projectSettingsScreen,
-                      extra: ProjectSettingsScreenExtra(
-                        projectPath: widget.extra.projectPath,
-                        projectName: widget.extra.projectName,
-                        organization: widget.extra.organization,
+                      extra: widget.config.copyWith(
                         platformsList: state.platformsList,
                       ),
                     )),
@@ -142,16 +139,4 @@ class _PlatformsScreenState extends BaseState<PlatformsScreenState,
       ),
     );
   }
-}
-
-class PlatformScreenExtra {
-  final String projectPath;
-  final String projectName;
-  final String organization;
-
-  const PlatformScreenExtra({
-    required this.projectPath,
-    required this.projectName,
-    required this.organization,
-  });
 }

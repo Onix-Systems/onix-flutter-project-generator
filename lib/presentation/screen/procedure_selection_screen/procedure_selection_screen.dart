@@ -4,12 +4,13 @@ import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 
 class ProcedureSelectionScreen extends StatelessWidget {
-  final String projectPath;
+  final Config config;
 
-  const ProcedureSelectionScreen({required this.projectPath, Key? key})
+  const ProcedureSelectionScreen({required this.config, Key? key})
       : super(key: key);
 
   @override
@@ -30,7 +31,7 @@ class ProcedureSelectionScreen extends StatelessWidget {
                   label: S.of(context).generateNewProject,
                   big: true,
                   onPressed: () {
-                    context.go(AppRouter.projectNameScreen, extra: projectPath);
+                    context.go(AppRouter.projectNameScreen, extra: config);
                   },
                   icon: Icons.create_new_folder_outlined,
                 ),

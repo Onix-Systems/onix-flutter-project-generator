@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" First & last name"),
         "flavorize": MessageLookupByLibrary.simpleMessage("Flavorize?"),
@@ -93,11 +94,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("(space separated)"),
         "stateOrProvince":
             MessageLookupByLibrary.simpleMessage(" State or Province"),
+        "swaggerParserPrompt": MessageLookupByLibrary.simpleMessage(
+            "Paste swagger config json file URL here to get data components from API\nor leave it empty to use default config"),
         "theming": MessageLookupByLibrary.simpleMessage("Theming:"),
         "title": MessageLookupByLibrary.simpleMessage(
             "Onix Flutter Project Generator"),
         "twoLetterCountryCode":
             MessageLookupByLibrary.simpleMessage(" Two-letter country code"),
+        "url": MessageLookupByLibrary.simpleMessage("URL"),
         "useSonar": MessageLookupByLibrary.simpleMessage("Will you use Sonar?"),
         "usingBloc": MessageLookupByLibrary.simpleMessage("Using BLoC"),
         "willBeAddedAutomatically": MessageLookupByLibrary.simpleMessage(
