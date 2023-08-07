@@ -51,5 +51,12 @@
   "firstLastName": " First & last name",
   "signingVars": "Signing vars",
   "url": "URL",
-  "swaggerParserPrompt": "Paste swagger config json file URL here to get data components from API\nor leave it empty to use default config"
+  "swaggerParserPrompt": "Paste swagger config json file URL here to get data components from API\nor leave it empty to use default config",
+  "generate": "Generate",
+  "request": "Request",
+  "response": "Response",
+  "dataComponent": "Data component",
+  "addComponent": "Add component",
+  "addSource": "Add source",
+  "goBack": "Back"
 }

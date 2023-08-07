@@ -15,8 +15,13 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart'
 import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/di/app.dart';
+
 class SplashScreen extends StatefulWidget {
+  final bool skipSplash;
+
   const SplashScreen({
+    this.skipSplash = false,
     super.key,
   });
 
@@ -59,8 +64,14 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AnimatedOpacity(
-                opacity: state.logoVisible ? 0.5 : 0,
-                duration: const Duration(seconds: 2),
+                opacity: !widget.skipSplash
+                    ? state.logoVisible
+                        ? 0.5
+                        : 0
+                    : state.logoVisible
+                        ? 0.5
+                        : 0.49,
+                duration: Duration(milliseconds: widget.skipSplash ? 0 : 2000),
                 child: Hero(
                   tag: 'logo',
                   child: SvgPicture.asset(
@@ -108,6 +119,7 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
     getDirectoryPath().then(
       (value) {
         if (value != null) {
+          logger.f('Selected path: $value');
           context.go(AppRouter.procedureSelectionScreen,
               extra: Config(projectPath: value));
         } else {

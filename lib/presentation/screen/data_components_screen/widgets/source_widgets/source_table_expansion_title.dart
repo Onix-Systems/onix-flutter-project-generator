@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/add_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/source_expansion_tile.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 
 class SourceTableExpansionTile extends StatefulWidget {
   const SourceTableExpansionTile({required this.sources, Key? key})
@@ -17,7 +22,7 @@ class SourceTableExpansionTile extends StatefulWidget {
 }
 
 class _SourceTableExpansionTileState extends State<SourceTableExpansionTile> {
-  bool expanded = false;
+  bool expanded = true;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +39,7 @@ class _SourceTableExpansionTileState extends State<SourceTableExpansionTile> {
             : CupertinoColors.activeBlue.withOpacity(0.1),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Material(
             color: Colors.transparent,
@@ -49,15 +55,46 @@ class _SourceTableExpansionTileState extends State<SourceTableExpansionTile> {
                 padding: const EdgeInsets.all(10),
                 child: CupertinoListTile(
                   padding: EdgeInsets.zero,
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  title: Stack(
+                    alignment: Alignment.center,
+                    clipBehavior: Clip.none,
                     children: [
-                      Expanded(
-                        child: Text(
-                          'Sources: ${widget.sources.length}',
-                          textAlign: TextAlign.center,
-                          style: context.appTextStyles.fs18
-                              ?.copyWith(color: CupertinoColors.activeOrange),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Sources: ${widget.sources.length}',
+                              textAlign: TextAlign.center,
+                              style: context.appTextStyles.fs18?.copyWith(
+                                  color: CupertinoColors.activeOrange),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Positioned(
+                        left: 0,
+                        child: AppFilledButton(
+                          label: S.of(context).addSource,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 5),
+                          minimumSize: const Size(0, 50),
+                          icon: CupertinoIcons.add,
+                          onPressed: () => showCupertinoModalPopup<Source>(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) => AddSourceDialog(),
+                          ).then((source) {
+                            if (source != null) {
+                              blocOf(context)
+                                  .add(DataComponentsScreenEvent.addSource(
+                                source: Source(
+                                    name: source.name,
+                                    dataComponents: [],
+                                    isGenerated: false),
+                              ));
+                            }
+                          }),
                         ),
                       ),
                     ],
@@ -88,4 +125,7 @@ class _SourceTableExpansionTileState extends State<SourceTableExpansionTile> {
       ),
     );
   }
+
+  DataComponentsScreenBloc blocOf(BuildContext context) =>
+      context.read<DataComponentsScreenBloc>();
 }

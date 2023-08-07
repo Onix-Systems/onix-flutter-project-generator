@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
-class SwitchWithLabel extends StatefulWidget {
+class SwitchWithLabel extends StatelessWidget {
   const SwitchWithLabel(
       {Key? key,
       required this.label,
@@ -18,19 +18,6 @@ class SwitchWithLabel extends StatefulWidget {
   final ValueSetter<bool> valueSetter;
 
   @override
-  State<SwitchWithLabel> createState() => _SwitchWithLabelState();
-}
-
-class _SwitchWithLabelState extends State<SwitchWithLabel> {
-  late bool switchValue;
-
-  @override
-  void initState() {
-    switchValue = widget.initialValue;
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 8),
@@ -44,14 +31,14 @@ class _SwitchWithLabelState extends State<SwitchWithLabel> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.label,
+                  label,
                   textAlign: TextAlign.left,
                   style: context.appTextStyles.fs18
                       ?.copyWith(color: AppColors.white),
                 ),
-                if (widget.subLabel != null)
+                if (subLabel != null)
                   Text(
-                    widget.subLabel ?? '',
+                    subLabel ?? '',
                     textAlign: TextAlign.left,
                     style: context.appTextStyles.fs18
                         ?.copyWith(color: AppColors.white, fontSize: 13),
@@ -60,12 +47,9 @@ class _SwitchWithLabelState extends State<SwitchWithLabel> {
             ),
           ),
           CupertinoSwitch(
-            value: switchValue,
+            value: initialValue,
             onChanged: (value) {
-              setState(() {
-                switchValue = value;
-                widget.valueSetter.call(value);
-              });
+              valueSetter.call(value);
             },
           ),
         ],

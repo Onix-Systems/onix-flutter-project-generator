@@ -18,13 +18,13 @@ class SigningDialog extends StatelessWidget {
   final _passwordController = TextEditingController();
 
   void _init(BuildContext context) {
-    _nameController.text = state.signingVars[0];
-    _orgUnitController.text = state.signingVars[1];
-    _orgController.text = state.signingVars[2];
-    _cityController.text = state.signingVars[3];
-    _stateController.text = state.signingVars[4];
-    _countryController.text = state.signingVars[5];
-    _passwordController.text = state.signingVars[6];
+    _nameController.text = state.config.signingVars[0];
+    _orgUnitController.text = state.config.signingVars[1];
+    _orgController.text = state.config.signingVars[2];
+    _cityController.text = state.config.signingVars[3];
+    _stateController.text = state.config.signingVars[4];
+    _countryController.text = state.config.signingVars[5];
+    _passwordController.text = state.config.signingVars[6];
   }
 
   @override
@@ -161,25 +161,25 @@ class SigningDialog extends StatelessWidget {
     Navigator.pop(context, [
       _nameController.text.isNotEmpty
           ? _nameController.text
-          : state.signingVars[0],
+          : state.config.signingVars[0],
       _orgUnitController.text.isNotEmpty
           ? _orgUnitController.text
-          : state.signingVars[1],
+          : state.config.signingVars[1],
       _orgController.text.isNotEmpty
           ? _orgController.text
-          : state.signingVars[2],
+          : state.config.signingVars[2],
       _cityController.text.isNotEmpty
           ? _cityController.text
-          : state.signingVars[3],
+          : state.config.signingVars[3],
       _stateController.text.isNotEmpty
           ? _stateController.text
-          : state.signingVars[4],
+          : state.config.signingVars[4],
       _countryController.text.isNotEmpty
           ? _countryController.text
-          : state.signingVars[5],
+          : state.config.signingVars[5],
       _passwordController.text.isNotEmpty
           ? _passwordController.text
-          : state.signingVars[6],
+          : state.config.signingVars[6],
     ]);
   }
 }

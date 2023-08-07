@@ -1,11 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 
 part 'project_name_screen_models.freezed.dart';
 
 @freezed
 class ProjectNameScreenEvent with _$ProjectNameScreenEvent {
   const factory ProjectNameScreenEvent.init({
-    required String projectPath,
+    required Config config,
   }) = ProjectNameScreenEventInit;
 
   const factory ProjectNameScreenEvent.projectNameChanged({
@@ -26,9 +27,7 @@ class ProjectNameScreenSR with _$ProjectNameScreenSR {
 @freezed
 class ProjectNameScreenState with _$ProjectNameScreenState {
   const factory ProjectNameScreenState.data({
-    @Default('') String projectName,
-    @Default('') String organization,
-    @Default('') String projectPath,
+    required Config config,
     @Default(false) bool projectExists,
-  }) = _ProjectNameScreenStateData;
+  }) = ProjectNameScreenStateData;
 }

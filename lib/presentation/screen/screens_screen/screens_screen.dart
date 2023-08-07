@@ -42,6 +42,12 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
     );
   }
 
+  @override
+  void onBlocCreated(BuildContext context, ScreensScreenBloc bloc) {
+    bloc.add(ScreensScreenEventInit(config: widget.config));
+    super.onBlocCreated(context, bloc);
+  }
+
   void _onSingleResult(BuildContext context, ScreensScreenSR singleResult) {
     singleResult.when(
       existsError: () {
@@ -66,9 +72,9 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Flexible(
-              child: state.screens.isNotEmpty
+              child: state.config.screens.isNotEmpty
                   ? ScreenTable(
-                      screens: state.screens,
+                      screens: state.config.screens,
                       onModifyScreen: (screen) => blocOf(context).add(
                         const ScreensScreenEventOnScreenModify(),
                       ),
@@ -85,6 +91,15 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppFilledButton(
+                  label: S.of(context).goBack,
+                  icon: Icons.arrow_back_ios_rounded,
+                  onPressed: () => context.go(AppRouter.projectSettingsScreen,
+                      extra: widget.config.copyWith(
+                        screens: state.config.screens,
+                      )),
+                ),
+                const Delimiter.width(10),
+                AppFilledButton(
                   label: S.of(context).addScreen,
                   icon: Icons.add,
                   onPressed: () => showCupertinoModalPopup<Screen>(
@@ -99,12 +114,14 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                     }
                   }),
                 ),
-                const Delimiter.width(20),
+                const Delimiter.width(10),
                 AppFilledButton(
                   label: S.of(context).continueLabel,
+                  icon: Icons.arrow_forward_ios_rounded,
+                  iconLeft: false,
                   onPressed: () => context.go(AppRouter.swaggerParserScreen,
                       extra: widget.config.copyWith(
-                        screens: state.screens,
+                        screens: state.config.screens,
                       )),
                 ),
               ],

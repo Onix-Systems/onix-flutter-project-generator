@@ -2,16 +2,16 @@ import 'dart:async';
 
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/bloc/platforms_screen_bloc_imports.dart';
 
 class PlatformsScreenBloc extends BaseBloc<PlatformsScreenEvent,
     PlatformsScreenState, PlatformsScreenSR> {
-  PlatformsScreenBloc() : super(const PlatformsScreenStateData()) {
+  PlatformsScreenBloc()
+      : super(const PlatformsScreenStateData(config: Config())) {
     on<PlatformsScreenEventInit>(_onInit);
     on<PlatformsScreenEventOnPlatformsChange>(_onPlatformsChange);
-    add(const PlatformsScreenEvent.init());
   }
 
   FutureOr<void> _onInit(
@@ -19,7 +19,9 @@ class PlatformsScreenBloc extends BaseBloc<PlatformsScreenEvent,
     Emitter<PlatformsScreenState> emit,
   ) {
     emit(state.copyWith(
-      platformsList: const PlatformsList(),
+      config: state.config.copyWith(
+        platformsList: event.config.platformsList,
+      ),
     ));
   }
 
@@ -28,7 +30,9 @@ class PlatformsScreenBloc extends BaseBloc<PlatformsScreenEvent,
     Emitter<PlatformsScreenState> emit,
   ) {
     emit(state.copyWith(
-      platformsList: event.platformsList,
+      config: state.config.copyWith(
+        platformsList: event.platformsList,
+      ),
     ));
   }
 }

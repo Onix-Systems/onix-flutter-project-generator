@@ -2,18 +2,18 @@ import 'dart:async';
 
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc_imports.dart';
 
 class ScreensScreenBloc
     extends BaseBloc<ScreensScreenEvent, ScreensScreenState, ScreensScreenSR> {
-  ScreensScreenBloc() : super(const ScreensScreenStateData()) {
+  ScreensScreenBloc() : super(const ScreensScreenStateData(config: Config())) {
     on<ScreensScreenEventInit>(_onInit);
     on<ScreensScreenEventOnScreenAdd>(_onScreenAdd);
     on<ScreensScreenEventOnScreenDelete>(_onScreenDelete);
     on<ScreensScreenEventOnScreenModify>(_onScreenModify);
-    add(const ScreensScreenEvent.init());
   }
 
   FutureOr<void> _onInit(
@@ -21,17 +21,12 @@ class ScreensScreenBloc
     Emitter<ScreensScreenState> emit,
   ) {
     emit(state.copyWith(
-      screens: List.generate(
-        20,
-        (index) => Screen(
-          name: 'screen $index',
-          exists: false,
-          bloc: false,
-        ),
-      ).toSet(),
-      // {
-      //   Screen(name: 'home', exists: true, bloc: false),
-      // },
+      config: event.config.copyWith(
+        screens: {
+          Screen(name: 'home', exists: true, bloc: false),
+          ...event.config.screens
+        },
+      ),
     ));
   }
 
@@ -39,16 +34,18 @@ class ScreensScreenBloc
     ScreensScreenEventOnScreenAdd event,
     Emitter<ScreensScreenState> emit,
   ) {
-    final screens = state.screens.toList();
+    final screens = state.config.screens.toList();
 
-    if (state.screens
+    if (state.config.screens
         .where((element) => element.name == event.screen.name)
         .isNotEmpty) {
       addSr(const ScreensScreenSR.existsError());
     } else {
       screens.add(event.screen);
 
-      emit(state.copyWith(screens: screens.toSet()));
+      emit(state.copyWith(
+        config: state.config.copyWith(screens: screens.toSet()),
+      ));
     }
   }
 
@@ -56,9 +53,11 @@ class ScreensScreenBloc
     ScreensScreenEventOnScreenDelete event,
     Emitter<ScreensScreenState> emit,
   ) {
-    var screens = state.screens.toList();
+    var screens = state.config.screens.toList();
     screens.remove(event.screen);
-    emit(state.copyWith(screens: screens.toSet()));
+    emit(state.copyWith(
+      config: state.config.copyWith(screens: screens.toSet()),
+    ));
   }
 
   FutureOr<void> _onScreenModify(

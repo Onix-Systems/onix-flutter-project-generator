@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
@@ -38,6 +39,12 @@ class _PlatformsScreenState extends BaseState<PlatformsScreenState,
     );
   }
 
+  @override
+  void onBlocCreated(BuildContext context, PlatformsScreenBloc bloc) {
+    bloc.add(PlatformsScreenEvent.init(config: widget.config));
+    super.onBlocCreated(context, bloc);
+  }
+
   void _onSingleResult(BuildContext context, PlatformsScreenSR singleResult) {
     singleResult.when(
       loadFinished: () {},
@@ -58,31 +65,31 @@ class _PlatformsScreenState extends BaseState<PlatformsScreenState,
               PlatformCheckbox(
                 label: 'Android',
                 assetPath: 'assets/platform_logo/android_logo.svg',
-                initialValue: state.platformsList.android,
+                initialValue: state.config.platformsList.android,
                 onAction: () =>
                     blocOf(context).add(PlatformsScreenEvent.onPlatformsChange(
-                  platformsList: state.platformsList
-                      .copyWith(android: !state.platformsList.android),
+                  platformsList: state.config.platformsList
+                      .copyWith(android: !state.config.platformsList.android),
                 )),
               ),
               PlatformCheckbox(
                 label: 'iOS',
                 assetPath: 'assets/platform_logo/ios_logo.svg',
-                initialValue: state.platformsList.ios,
+                initialValue: state.config.platformsList.ios,
                 onAction: () =>
                     blocOf(context).add(PlatformsScreenEvent.onPlatformsChange(
-                  platformsList: state.platformsList
-                      .copyWith(ios: !state.platformsList.ios),
+                  platformsList: state.config.platformsList
+                      .copyWith(ios: !state.config.platformsList.ios),
                 )),
               ),
               PlatformCheckbox(
                 label: 'Web',
                 assetPath: 'assets/platform_logo/www_logo.svg',
-                initialValue: state.platformsList.web,
+                initialValue: state.config.platformsList.web,
                 onAction: () =>
                     blocOf(context).add(PlatformsScreenEvent.onPlatformsChange(
-                  platformsList: state.platformsList
-                      .copyWith(web: !state.platformsList.web),
+                  platformsList: state.config.platformsList
+                      .copyWith(web: !state.config.platformsList.web),
                 )),
               ),
             ],
@@ -94,46 +101,55 @@ class _PlatformsScreenState extends BaseState<PlatformsScreenState,
               PlatformCheckbox(
                   label: 'Windows',
                   assetPath: 'assets/platform_logo/win_logo.svg',
-                  initialValue: state.platformsList.windows,
+                  initialValue: state.config.platformsList.windows,
                   onAction: () => blocOf(context)
                           .add(PlatformsScreenEvent.onPlatformsChange(
-                        platformsList: state.platformsList
-                            .copyWith(windows: !state.platformsList.windows),
+                        platformsList: state.config.platformsList.copyWith(
+                            windows: !state.config.platformsList.windows),
                       ))),
               PlatformCheckbox(
                   label: 'MacOS',
                   assetPath: 'assets/platform_logo/macos_logo.svg',
-                  initialValue: state.platformsList.macos,
+                  initialValue: state.config.platformsList.macos,
                   onAction: () => blocOf(context)
                           .add(PlatformsScreenEvent.onPlatformsChange(
-                        platformsList: state.platformsList
-                            .copyWith(macos: !state.platformsList.macos),
+                        platformsList: state.config.platformsList
+                            .copyWith(macos: !state.config.platformsList.macos),
                       ))),
               PlatformCheckbox(
                   label: 'Linux',
                   assetPath: 'assets/platform_logo/linux_logo.svg',
-                  initialValue: state.platformsList.linux,
+                  initialValue: state.config.platformsList.linux,
                   onAction: () => blocOf(context)
                           .add(PlatformsScreenEvent.onPlatformsChange(
-                        platformsList: state.platformsList
-                            .copyWith(linux: !state.platformsList.linux),
+                        platformsList: state.config.platformsList
+                            .copyWith(linux: !state.config.platformsList.linux),
                       ))),
             ],
           ),
           const Delimiter.height(40),
-          Visibility(
-            visible: state.platformsList.selected,
-            maintainState: true,
-            maintainSize: true,
-            maintainAnimation: true,
-            child: AppFilledButton(
-                label: S.of(context).continueLabel,
-                onPressed: () => context.go(
-                      AppRouter.projectSettingsScreen,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppFilledButton(
+                  label: S.of(context).goBack,
+                  icon: Icons.arrow_back_ios_rounded,
+                  onPressed: () => context.go(AppRouter.projectNameScreen,
                       extra: widget.config.copyWith(
-                        platformsList: state.platformsList,
-                      ),
-                    )),
+                          platformsList: state.config.platformsList))),
+              const Delimiter.width(10),
+              AppFilledButton(
+                  label: S.of(context).continueLabel,
+                  icon: Icons.arrow_forward_ios_rounded,
+                  iconLeft: false,
+                  active: state.config.platformsList.selected,
+                  onPressed: () => context.go(
+                        AppRouter.projectSettingsScreen,
+                        extra: widget.config.copyWith(
+                          platformsList: state.config.platformsList,
+                        ),
+                      )),
+            ],
           ),
         ],
       ),

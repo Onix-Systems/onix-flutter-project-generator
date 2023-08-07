@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProjectSettingsScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function() generateSigningKeyChange,
@@ -30,10 +30,9 @@ mixin _$ProjectSettingsScreenEvent {
     required TResult Function() integrateDevicePreviewChange,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function()? generateSigningKeyChange,
@@ -47,7 +46,7 @@ mixin _$ProjectSettingsScreenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function()? generateSigningKeyChange,
@@ -60,7 +59,6 @@ mixin _$ProjectSettingsScreenEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectSettingsScreenEventInit value) init,
@@ -87,7 +85,6 @@ mixin _$ProjectSettingsScreenEvent {
         integrateDevicePreviewChange,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectSettingsScreenEventInit value)? init,
@@ -165,6 +162,10 @@ abstract class _$$ProjectSettingsScreenEventInitCopyWith<$Res> {
           _$ProjectSettingsScreenEventInit value,
           $Res Function(_$ProjectSettingsScreenEventInit) then) =
       __$$ProjectSettingsScreenEventInitCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Config config});
+
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -176,33 +177,65 @@ class __$$ProjectSettingsScreenEventInitCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventInit _value,
       $Res Function(_$ProjectSettingsScreenEventInit) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? config = null,
+  }) {
+    return _then(_$ProjectSettingsScreenEventInit(
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$ProjectSettingsScreenEventInit
     implements ProjectSettingsScreenEventInit {
-  const _$ProjectSettingsScreenEventInit();
+  const _$ProjectSettingsScreenEventInit({required this.config});
+
+  @override
+  final Config config;
 
   @override
   String toString() {
-    return 'ProjectSettingsScreenEvent.init()';
+    return 'ProjectSettingsScreenEvent.init(config: $config)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventInit);
+            other is _$ProjectSettingsScreenEventInit &&
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectSettingsScreenEventInitCopyWith<_$ProjectSettingsScreenEventInit>
+      get copyWith => __$$ProjectSettingsScreenEventInitCopyWithImpl<
+          _$ProjectSettingsScreenEventInit>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function() generateSigningKeyChange,
@@ -213,13 +246,13 @@ class _$ProjectSettingsScreenEventInit
     required TResult Function() themingChange,
     required TResult Function() integrateDevicePreviewChange,
   }) {
-    return init();
+    return init(config);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function()? generateSigningKeyChange,
@@ -230,13 +263,13 @@ class _$ProjectSettingsScreenEventInit
     TResult? Function()? themingChange,
     TResult? Function()? integrateDevicePreviewChange,
   }) {
-    return init?.call();
+    return init?.call(config);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function()? generateSigningKeyChange,
@@ -249,7 +282,7 @@ class _$ProjectSettingsScreenEventInit
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init();
+      return init(config);
     }
     return orElse();
   }
@@ -344,8 +377,13 @@ class _$ProjectSettingsScreenEventInit
 
 abstract class ProjectSettingsScreenEventInit
     implements ProjectSettingsScreenEvent {
-  const factory ProjectSettingsScreenEventInit() =
+  const factory ProjectSettingsScreenEventInit({required final Config config}) =
       _$ProjectSettingsScreenEventInit;
+
+  Config get config;
+  @JsonKey(ignore: true)
+  _$$ProjectSettingsScreenEventInitCopyWith<_$ProjectSettingsScreenEventInit>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -391,7 +429,7 @@ class _$ProjectSettingsScreenEventFlavorizeChange
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function() generateSigningKeyChange,
@@ -408,7 +446,7 @@ class _$ProjectSettingsScreenEventFlavorizeChange
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function()? generateSigningKeyChange,
@@ -425,7 +463,7 @@ class _$ProjectSettingsScreenEventFlavorizeChange
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function()? generateSigningKeyChange,
@@ -607,7 +645,7 @@ class _$ProjectSettingsScreenEventFlavorsChange
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function() generateSigningKeyChange,
@@ -624,7 +662,7 @@ class _$ProjectSettingsScreenEventFlavorsChange
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function()? generateSigningKeyChange,
@@ -641,7 +679,7 @@ class _$ProjectSettingsScreenEventFlavorsChange
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function()? generateSigningKeyChange,
@@ -806,7 +844,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function() generateSigningKeyChange,
@@ -823,7 +861,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function()? generateSigningKeyChange,
@@ -840,7 +878,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function()? generateSigningKeyChange,
@@ -998,7 +1036,7 @@ class _$ProjectSettingsScreenEventSigningVarsChange
   @override
   List<String> get signingVars {
     if (_signingVars is EqualUnmodifiableListView) return _signingVars;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_signingVars);
   }
 
@@ -1032,7 +1070,7 @@ class _$ProjectSettingsScreenEventSigningVarsChange
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function() generateSigningKeyChange,
@@ -1049,7 +1087,7 @@ class _$ProjectSettingsScreenEventSigningVarsChange
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function()? generateSigningKeyChange,
@@ -1066,7 +1104,7 @@ class _$ProjectSettingsScreenEventSigningVarsChange
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function()? generateSigningKeyChange,
@@ -1228,7 +1266,7 @@ class _$ProjectSettingsScreenEventUseSonarChange
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function() generateSigningKeyChange,
@@ -1245,7 +1283,7 @@ class _$ProjectSettingsScreenEventUseSonarChange
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function()? generateSigningKeyChange,
@@ -1262,7 +1300,7 @@ class _$ProjectSettingsScreenEventUseSonarChange
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function()? generateSigningKeyChange,
@@ -1417,7 +1455,7 @@ class _$ProjectSettingsScreenEventRouterChange
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function() generateSigningKeyChange,
@@ -1434,7 +1472,7 @@ class _$ProjectSettingsScreenEventRouterChange
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function()? generateSigningKeyChange,
@@ -1451,7 +1489,7 @@ class _$ProjectSettingsScreenEventRouterChange
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function()? generateSigningKeyChange,
@@ -1606,7 +1644,7 @@ class _$ProjectSettingsScreenEventLocalizationChange
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function() generateSigningKeyChange,
@@ -1623,7 +1661,7 @@ class _$ProjectSettingsScreenEventLocalizationChange
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function()? generateSigningKeyChange,
@@ -1640,7 +1678,7 @@ class _$ProjectSettingsScreenEventLocalizationChange
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function()? generateSigningKeyChange,
@@ -1795,7 +1833,7 @@ class _$ProjectSettingsScreenEventThemingChange
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function() generateSigningKeyChange,
@@ -1812,7 +1850,7 @@ class _$ProjectSettingsScreenEventThemingChange
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function()? generateSigningKeyChange,
@@ -1829,7 +1867,7 @@ class _$ProjectSettingsScreenEventThemingChange
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function()? generateSigningKeyChange,
@@ -1992,7 +2030,7 @@ class _$ProjectSettingsScreenEventIntegrateDevicePreviewChange
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function() generateSigningKeyChange,
@@ -2009,7 +2047,7 @@ class _$ProjectSettingsScreenEventIntegrateDevicePreviewChange
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function()? generateSigningKeyChange,
@@ -2026,7 +2064,7 @@ class _$ProjectSettingsScreenEventIntegrateDevicePreviewChange
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function()? generateSigningKeyChange,
@@ -2291,58 +2329,20 @@ abstract class _LoadFinished implements ProjectSettingsScreenSR {
 
 /// @nodoc
 mixin _$ProjectSettingsScreenState {
-  bool get flavorize => throw _privateConstructorUsedError;
-  String get flavors => throw _privateConstructorUsedError;
-  bool get generateSigningKey => throw _privateConstructorUsedError;
-  bool get useSonar => throw _privateConstructorUsedError;
-  ProjectRouter get router => throw _privateConstructorUsedError;
-  ProjectLocalization get localization => throw _privateConstructorUsedError;
-  ProjectTheming get theming => throw _privateConstructorUsedError;
-  bool get integrateDevicePreview => throw _privateConstructorUsedError;
-  List<String> get signingVars => throw _privateConstructorUsedError;
+  Config get config => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool flavorize,
-            String flavors,
-            bool generateSigningKey,
-            bool useSonar,
-            ProjectRouter router,
-            ProjectLocalization localization,
-            ProjectTheming theming,
-            bool integrateDevicePreview,
-            List<String> signingVars)
-        data,
+    required TResult Function(Config config) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            bool flavorize,
-            String flavors,
-            bool generateSigningKey,
-            bool useSonar,
-            ProjectRouter router,
-            ProjectLocalization localization,
-            ProjectTheming theming,
-            bool integrateDevicePreview,
-            List<String> signingVars)?
-        data,
+    TResult? Function(Config config)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            bool flavorize,
-            String flavors,
-            bool generateSigningKey,
-            bool useSonar,
-            ProjectRouter router,
-            ProjectLocalization localization,
-            ProjectTheming theming,
-            bool integrateDevicePreview,
-            List<String> signingVars)?
-        data,
+    TResult Function(Config config)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -2375,16 +2375,9 @@ abstract class $ProjectSettingsScreenStateCopyWith<$Res> {
       _$ProjectSettingsScreenStateCopyWithImpl<$Res,
           ProjectSettingsScreenState>;
   @useResult
-  $Res call(
-      {bool flavorize,
-      String flavors,
-      bool generateSigningKey,
-      bool useSonar,
-      ProjectRouter router,
-      ProjectLocalization localization,
-      ProjectTheming theming,
-      bool integrateDevicePreview,
-      List<String> signingVars});
+  $Res call({Config config});
+
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -2393,62 +2386,30 @@ class _$ProjectSettingsScreenStateCopyWithImpl<$Res,
     implements $ProjectSettingsScreenStateCopyWith<$Res> {
   _$ProjectSettingsScreenStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? flavorize = null,
-    Object? flavors = null,
-    Object? generateSigningKey = null,
-    Object? useSonar = null,
-    Object? router = null,
-    Object? localization = null,
-    Object? theming = null,
-    Object? integrateDevicePreview = null,
-    Object? signingVars = null,
+    Object? config = null,
   }) {
     return _then(_value.copyWith(
-      flavorize: null == flavorize
-          ? _value.flavorize
-          : flavorize // ignore: cast_nullable_to_non_nullable
-              as bool,
-      flavors: null == flavors
-          ? _value.flavors
-          : flavors // ignore: cast_nullable_to_non_nullable
-              as String,
-      generateSigningKey: null == generateSigningKey
-          ? _value.generateSigningKey
-          : generateSigningKey // ignore: cast_nullable_to_non_nullable
-              as bool,
-      useSonar: null == useSonar
-          ? _value.useSonar
-          : useSonar // ignore: cast_nullable_to_non_nullable
-              as bool,
-      router: null == router
-          ? _value.router
-          : router // ignore: cast_nullable_to_non_nullable
-              as ProjectRouter,
-      localization: null == localization
-          ? _value.localization
-          : localization // ignore: cast_nullable_to_non_nullable
-              as ProjectLocalization,
-      theming: null == theming
-          ? _value.theming
-          : theming // ignore: cast_nullable_to_non_nullable
-              as ProjectTheming,
-      integrateDevicePreview: null == integrateDevicePreview
-          ? _value.integrateDevicePreview
-          : integrateDevicePreview // ignore: cast_nullable_to_non_nullable
-              as bool,
-      signingVars: null == signingVars
-          ? _value.signingVars
-          : signingVars // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value) as $Val);
+    });
   }
 }
 
@@ -2461,16 +2422,10 @@ abstract class _$$ProjectSettingsScreenStateDataCopyWith<$Res>
       __$$ProjectSettingsScreenStateDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool flavorize,
-      String flavors,
-      bool generateSigningKey,
-      bool useSonar,
-      ProjectRouter router,
-      ProjectLocalization localization,
-      ProjectTheming theming,
-      bool integrateDevicePreview,
-      List<String> signingVars});
+  $Res call({Config config});
+
+  @override
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -2486,53 +2441,13 @@ class __$$ProjectSettingsScreenStateDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? flavorize = null,
-    Object? flavors = null,
-    Object? generateSigningKey = null,
-    Object? useSonar = null,
-    Object? router = null,
-    Object? localization = null,
-    Object? theming = null,
-    Object? integrateDevicePreview = null,
-    Object? signingVars = null,
+    Object? config = null,
   }) {
     return _then(_$ProjectSettingsScreenStateData(
-      flavorize: null == flavorize
-          ? _value.flavorize
-          : flavorize // ignore: cast_nullable_to_non_nullable
-              as bool,
-      flavors: null == flavors
-          ? _value.flavors
-          : flavors // ignore: cast_nullable_to_non_nullable
-              as String,
-      generateSigningKey: null == generateSigningKey
-          ? _value.generateSigningKey
-          : generateSigningKey // ignore: cast_nullable_to_non_nullable
-              as bool,
-      useSonar: null == useSonar
-          ? _value.useSonar
-          : useSonar // ignore: cast_nullable_to_non_nullable
-              as bool,
-      router: null == router
-          ? _value.router
-          : router // ignore: cast_nullable_to_non_nullable
-              as ProjectRouter,
-      localization: null == localization
-          ? _value.localization
-          : localization // ignore: cast_nullable_to_non_nullable
-              as ProjectLocalization,
-      theming: null == theming
-          ? _value.theming
-          : theming // ignore: cast_nullable_to_non_nullable
-              as ProjectTheming,
-      integrateDevicePreview: null == integrateDevicePreview
-          ? _value.integrateDevicePreview
-          : integrateDevicePreview // ignore: cast_nullable_to_non_nullable
-              as bool,
-      signingVars: null == signingVars
-          ? _value._signingVars
-          : signingVars // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
     ));
   }
 }
@@ -2541,62 +2456,14 @@ class __$$ProjectSettingsScreenStateDataCopyWithImpl<$Res>
 
 class _$ProjectSettingsScreenStateData
     implements ProjectSettingsScreenStateData {
-  const _$ProjectSettingsScreenStateData(
-      {this.flavorize = false,
-      this.flavors = '',
-      this.generateSigningKey = true,
-      this.useSonar = false,
-      this.router = ProjectRouter.goRouter,
-      this.localization = ProjectLocalization.intl,
-      this.theming = ProjectTheming.manual,
-      this.integrateDevicePreview = false,
-      final List<String> signingVars = const [
-        'Some developer',
-        'Flutter dep',
-        'Onix-Systems',
-        'Kropyvnytskyi',
-        'Kirovohrad oblast',
-        'UA',
-        ''
-      ]})
-      : _signingVars = signingVars;
+  const _$ProjectSettingsScreenStateData({required this.config});
 
   @override
-  @JsonKey()
-  final bool flavorize;
-  @override
-  @JsonKey()
-  final String flavors;
-  @override
-  @JsonKey()
-  final bool generateSigningKey;
-  @override
-  @JsonKey()
-  final bool useSonar;
-  @override
-  @JsonKey()
-  final ProjectRouter router;
-  @override
-  @JsonKey()
-  final ProjectLocalization localization;
-  @override
-  @JsonKey()
-  final ProjectTheming theming;
-  @override
-  @JsonKey()
-  final bool integrateDevicePreview;
-  final List<String> _signingVars;
-  @override
-  @JsonKey()
-  List<String> get signingVars {
-    if (_signingVars is EqualUnmodifiableListView) return _signingVars;
-// ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_signingVars);
-  }
+  final Config config;
 
   @override
   String toString() {
-    return 'ProjectSettingsScreenState.data(flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, useSonar: $useSonar, router: $router, localization: $localization, theming: $theming, integrateDevicePreview: $integrateDevicePreview, signingVars: $signingVars)';
+    return 'ProjectSettingsScreenState.data(config: $config)';
   }
 
   @override
@@ -2604,35 +2471,11 @@ class _$ProjectSettingsScreenStateData
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenStateData &&
-            (identical(other.flavorize, flavorize) ||
-                other.flavorize == flavorize) &&
-            (identical(other.flavors, flavors) || other.flavors == flavors) &&
-            (identical(other.generateSigningKey, generateSigningKey) ||
-                other.generateSigningKey == generateSigningKey) &&
-            (identical(other.useSonar, useSonar) ||
-                other.useSonar == useSonar) &&
-            (identical(other.router, router) || other.router == router) &&
-            (identical(other.localization, localization) ||
-                other.localization == localization) &&
-            (identical(other.theming, theming) || other.theming == theming) &&
-            (identical(other.integrateDevicePreview, integrateDevicePreview) ||
-                other.integrateDevicePreview == integrateDevicePreview) &&
-            const DeepCollectionEquality()
-                .equals(other._signingVars, _signingVars));
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      flavorize,
-      flavors,
-      generateSigningKey,
-      useSonar,
-      router,
-      localization,
-      theming,
-      integrateDevicePreview,
-      const DeepCollectionEquality().hash(_signingVars));
+  int get hashCode => Object.hash(runtimeType, config);
 
   @JsonKey(ignore: true)
   @override
@@ -2644,60 +2487,27 @@ class _$ProjectSettingsScreenStateData
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool flavorize,
-            String flavors,
-            bool generateSigningKey,
-            bool useSonar,
-            ProjectRouter router,
-            ProjectLocalization localization,
-            ProjectTheming theming,
-            bool integrateDevicePreview,
-            List<String> signingVars)
-        data,
+    required TResult Function(Config config) data,
   }) {
-    return data(flavorize, flavors, generateSigningKey, useSonar, router,
-        localization, theming, integrateDevicePreview, signingVars);
+    return data(config);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            bool flavorize,
-            String flavors,
-            bool generateSigningKey,
-            bool useSonar,
-            ProjectRouter router,
-            ProjectLocalization localization,
-            ProjectTheming theming,
-            bool integrateDevicePreview,
-            List<String> signingVars)?
-        data,
+    TResult? Function(Config config)? data,
   }) {
-    return data?.call(flavorize, flavors, generateSigningKey, useSonar, router,
-        localization, theming, integrateDevicePreview, signingVars);
+    return data?.call(config);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            bool flavorize,
-            String flavors,
-            bool generateSigningKey,
-            bool useSonar,
-            ProjectRouter router,
-            ProjectLocalization localization,
-            ProjectTheming theming,
-            bool integrateDevicePreview,
-            List<String> signingVars)?
-        data,
+    TResult Function(Config config)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(flavorize, flavors, generateSigningKey, useSonar, router,
-          localization, theming, integrateDevicePreview, signingVars);
+      return data(config);
     }
     return orElse();
   }
@@ -2733,35 +2543,11 @@ class _$ProjectSettingsScreenStateData
 
 abstract class ProjectSettingsScreenStateData
     implements ProjectSettingsScreenState {
-  const factory ProjectSettingsScreenStateData(
-      {final bool flavorize,
-      final String flavors,
-      final bool generateSigningKey,
-      final bool useSonar,
-      final ProjectRouter router,
-      final ProjectLocalization localization,
-      final ProjectTheming theming,
-      final bool integrateDevicePreview,
-      final List<String> signingVars}) = _$ProjectSettingsScreenStateData;
+  const factory ProjectSettingsScreenStateData({required final Config config}) =
+      _$ProjectSettingsScreenStateData;
 
   @override
-  bool get flavorize;
-  @override
-  String get flavors;
-  @override
-  bool get generateSigningKey;
-  @override
-  bool get useSonar;
-  @override
-  ProjectRouter get router;
-  @override
-  ProjectLocalization get localization;
-  @override
-  ProjectTheming get theming;
-  @override
-  bool get integrateDevicePreview;
-  @override
-  List<String> get signingVars;
+  Config get config;
   @override
   @JsonKey(ignore: true)
   _$$ProjectSettingsScreenStateDataCopyWith<_$ProjectSettingsScreenStateData>

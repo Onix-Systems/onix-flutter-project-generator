@@ -51,7 +51,9 @@ class AppRouter {
         GoRoute(
           path: _splashScreen,
           name: 'SplashScreen',
-          builder: (context, state) => const SplashScreen(),
+          builder: (context, state) => SplashScreen(
+            skipSplash: state.extra as bool? ?? false,
+          ),
         ),
         GoRoute(
           path: _projectNameScreen,

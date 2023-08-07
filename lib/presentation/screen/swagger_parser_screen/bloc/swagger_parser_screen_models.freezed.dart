@@ -18,28 +18,32 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SwaggerParserScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String projectName) init,
+    required TResult Function(Config config) init,
+    required TResult Function(String url) onUrlChanged,
     required TResult Function(String url) parse,
   }) =>
       throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectName)? init,
+    TResult? Function(Config config)? init,
+    TResult? Function(String url)? onUrlChanged,
     TResult? Function(String url)? parse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectName)? init,
+    TResult Function(Config config)? init,
+    TResult Function(String url)? onUrlChanged,
     TResult Function(String url)? parse,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SwaggerParserScreenEventInit value) init,
+    required TResult Function(SwaggerParserScreenEventOnUrlChanged value)
+        onUrlChanged,
     required TResult Function(SwaggerParserScreenEventParse value) parse,
   }) =>
       throw _privateConstructorUsedError;
@@ -47,12 +51,14 @@ mixin _$SwaggerParserScreenEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SwaggerParserScreenEventInit value)? init,
+    TResult? Function(SwaggerParserScreenEventOnUrlChanged value)? onUrlChanged,
     TResult? Function(SwaggerParserScreenEventParse value)? parse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SwaggerParserScreenEventInit value)? init,
+    TResult Function(SwaggerParserScreenEventOnUrlChanged value)? onUrlChanged,
     TResult Function(SwaggerParserScreenEventParse value)? parse,
     required TResult orElse(),
   }) =>
@@ -85,7 +91,9 @@ abstract class _$$SwaggerParserScreenEventInitCopyWith<$Res> {
           $Res Function(_$SwaggerParserScreenEventInit) then) =
       __$$SwaggerParserScreenEventInitCopyWithImpl<$Res>;
   @useResult
-  $Res call({String projectName});
+  $Res call({Config config});
+
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -101,28 +109,36 @@ class __$$SwaggerParserScreenEventInitCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectName = null,
+    Object? config = null,
   }) {
     return _then(_$SwaggerParserScreenEventInit(
-      projectName: null == projectName
-          ? _value.projectName
-          : projectName // ignore: cast_nullable_to_non_nullable
-              as String,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$SwaggerParserScreenEventInit implements SwaggerParserScreenEventInit {
-  const _$SwaggerParserScreenEventInit({required this.projectName});
+  const _$SwaggerParserScreenEventInit({required this.config});
 
   @override
-  final String projectName;
+  final Config config;
 
   @override
   String toString() {
-    return 'SwaggerParserScreenEvent.init(projectName: $projectName)';
+    return 'SwaggerParserScreenEvent.init(config: $config)';
   }
 
   @override
@@ -130,12 +146,11 @@ class _$SwaggerParserScreenEventInit implements SwaggerParserScreenEventInit {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwaggerParserScreenEventInit &&
-            (identical(other.projectName, projectName) ||
-                other.projectName == projectName));
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, projectName);
+  int get hashCode => Object.hash(runtimeType, config);
 
   @JsonKey(ignore: true)
   @override
@@ -147,30 +162,33 @@ class _$SwaggerParserScreenEventInit implements SwaggerParserScreenEventInit {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String projectName) init,
+    required TResult Function(Config config) init,
+    required TResult Function(String url) onUrlChanged,
     required TResult Function(String url) parse,
   }) {
-    return init(projectName);
+    return init(config);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectName)? init,
+    TResult? Function(Config config)? init,
+    TResult? Function(String url)? onUrlChanged,
     TResult? Function(String url)? parse,
   }) {
-    return init?.call(projectName);
+    return init?.call(config);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectName)? init,
+    TResult Function(Config config)? init,
+    TResult Function(String url)? onUrlChanged,
     TResult Function(String url)? parse,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(projectName);
+      return init(config);
     }
     return orElse();
   }
@@ -179,6 +197,8 @@ class _$SwaggerParserScreenEventInit implements SwaggerParserScreenEventInit {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SwaggerParserScreenEventInit value) init,
+    required TResult Function(SwaggerParserScreenEventOnUrlChanged value)
+        onUrlChanged,
     required TResult Function(SwaggerParserScreenEventParse value) parse,
   }) {
     return init(this);
@@ -188,6 +208,7 @@ class _$SwaggerParserScreenEventInit implements SwaggerParserScreenEventInit {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SwaggerParserScreenEventInit value)? init,
+    TResult? Function(SwaggerParserScreenEventOnUrlChanged value)? onUrlChanged,
     TResult? Function(SwaggerParserScreenEventParse value)? parse,
   }) {
     return init?.call(this);
@@ -197,6 +218,7 @@ class _$SwaggerParserScreenEventInit implements SwaggerParserScreenEventInit {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SwaggerParserScreenEventInit value)? init,
+    TResult Function(SwaggerParserScreenEventOnUrlChanged value)? onUrlChanged,
     TResult Function(SwaggerParserScreenEventParse value)? parse,
     required TResult orElse(),
   }) {
@@ -209,12 +231,161 @@ class _$SwaggerParserScreenEventInit implements SwaggerParserScreenEventInit {
 
 abstract class SwaggerParserScreenEventInit
     implements SwaggerParserScreenEvent {
-  const factory SwaggerParserScreenEventInit(
-      {required final String projectName}) = _$SwaggerParserScreenEventInit;
+  const factory SwaggerParserScreenEventInit({required final Config config}) =
+      _$SwaggerParserScreenEventInit;
 
-  String get projectName;
+  Config get config;
   @JsonKey(ignore: true)
   _$$SwaggerParserScreenEventInitCopyWith<_$SwaggerParserScreenEventInit>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SwaggerParserScreenEventOnUrlChangedCopyWith<$Res> {
+  factory _$$SwaggerParserScreenEventOnUrlChangedCopyWith(
+          _$SwaggerParserScreenEventOnUrlChanged value,
+          $Res Function(_$SwaggerParserScreenEventOnUrlChanged) then) =
+      __$$SwaggerParserScreenEventOnUrlChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String url});
+}
+
+/// @nodoc
+class __$$SwaggerParserScreenEventOnUrlChangedCopyWithImpl<$Res>
+    extends _$SwaggerParserScreenEventCopyWithImpl<$Res,
+        _$SwaggerParserScreenEventOnUrlChanged>
+    implements _$$SwaggerParserScreenEventOnUrlChangedCopyWith<$Res> {
+  __$$SwaggerParserScreenEventOnUrlChangedCopyWithImpl(
+      _$SwaggerParserScreenEventOnUrlChanged _value,
+      $Res Function(_$SwaggerParserScreenEventOnUrlChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+  }) {
+    return _then(_$SwaggerParserScreenEventOnUrlChanged(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SwaggerParserScreenEventOnUrlChanged
+    implements SwaggerParserScreenEventOnUrlChanged {
+  const _$SwaggerParserScreenEventOnUrlChanged({required this.url});
+
+  @override
+  final String url;
+
+  @override
+  String toString() {
+    return 'SwaggerParserScreenEvent.onUrlChanged(url: $url)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SwaggerParserScreenEventOnUrlChanged &&
+            (identical(other.url, url) || other.url == url));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, url);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SwaggerParserScreenEventOnUrlChangedCopyWith<
+          _$SwaggerParserScreenEventOnUrlChanged>
+      get copyWith => __$$SwaggerParserScreenEventOnUrlChangedCopyWithImpl<
+          _$SwaggerParserScreenEventOnUrlChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function(String url) onUrlChanged,
+    required TResult Function(String url) parse,
+  }) {
+    return onUrlChanged(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function(String url)? onUrlChanged,
+    TResult? Function(String url)? parse,
+  }) {
+    return onUrlChanged?.call(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function(String url)? onUrlChanged,
+    TResult Function(String url)? parse,
+    required TResult orElse(),
+  }) {
+    if (onUrlChanged != null) {
+      return onUrlChanged(url);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SwaggerParserScreenEventInit value) init,
+    required TResult Function(SwaggerParserScreenEventOnUrlChanged value)
+        onUrlChanged,
+    required TResult Function(SwaggerParserScreenEventParse value) parse,
+  }) {
+    return onUrlChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SwaggerParserScreenEventInit value)? init,
+    TResult? Function(SwaggerParserScreenEventOnUrlChanged value)? onUrlChanged,
+    TResult? Function(SwaggerParserScreenEventParse value)? parse,
+  }) {
+    return onUrlChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SwaggerParserScreenEventInit value)? init,
+    TResult Function(SwaggerParserScreenEventOnUrlChanged value)? onUrlChanged,
+    TResult Function(SwaggerParserScreenEventParse value)? parse,
+    required TResult orElse(),
+  }) {
+    if (onUrlChanged != null) {
+      return onUrlChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SwaggerParserScreenEventOnUrlChanged
+    implements SwaggerParserScreenEvent {
+  const factory SwaggerParserScreenEventOnUrlChanged(
+      {required final String url}) = _$SwaggerParserScreenEventOnUrlChanged;
+
+  String get url;
+  @JsonKey(ignore: true)
+  _$$SwaggerParserScreenEventOnUrlChangedCopyWith<
+          _$SwaggerParserScreenEventOnUrlChanged>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -230,131 +401,138 @@ abstract class _$$SwaggerParserScreenEventParseCopyWith<$Res> {
 
 /// @nodoc
 class __$$SwaggerParserScreenEventParseCopyWithImpl<$Res>
-    extends _$SwaggerParserScreenEventCopyWithImpl<$Res,
-        _$SwaggerParserScreenEventParse>
-    implements _$$SwaggerParserScreenEventParseCopyWith<$Res> {
-  __$$SwaggerParserScreenEventParseCopyWithImpl(
-      _$SwaggerParserScreenEventParse _value,
-      $Res Function(_$SwaggerParserScreenEventParse) _then)
-      : super(_value, _then);
+extends _$SwaggerParserScreenEventCopyWithImpl<$Res,
+_$SwaggerParserScreenEventParse>
+implements _$$SwaggerParserScreenEventParseCopyWith<$Res> {
+__$$SwaggerParserScreenEventParseCopyWithImpl(
+_$SwaggerParserScreenEventParse _value,
+$Res Function(_$SwaggerParserScreenEventParse) _then)
+    : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? url = null,
-  }) {
-    return _then(_$SwaggerParserScreenEventParse(
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+@pragma('vm:prefer-inline')
+@override
+$Res call({
+Object? url = null,
+}) {
+return _then(_$SwaggerParserScreenEventParse(
+url: null == url
+? _value.url
+    : url // ignore: cast_nullable_to_non_nullable
+as String,
+));
+}
 }
 
 /// @nodoc
 
 class _$SwaggerParserScreenEventParse implements SwaggerParserScreenEventParse {
-  const _$SwaggerParserScreenEventParse({required this.url});
+const _$SwaggerParserScreenEventParse({required this.url});
 
-  @override
-  final String url;
+@override
+final String url;
 
-  @override
-  String toString() {
-    return 'SwaggerParserScreenEvent.parse(url: $url)';
-  }
+@override
+String toString() {
+return 'SwaggerParserScreenEvent.parse(url: $url)';
+}
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SwaggerParserScreenEventParse &&
-            (identical(other.url, url) || other.url == url));
-  }
+@override
+bool operator ==(dynamic other) {
+return identical(this, other) ||
+(other.runtimeType == runtimeType &&
+other is _$SwaggerParserScreenEventParse &&
+(identical(other.url, url) || other.url == url));
+}
 
-  @override
-  int get hashCode => Object.hash(runtimeType, url);
+@override
+int get hashCode => Object.hash(runtimeType, url);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SwaggerParserScreenEventParseCopyWith<_$SwaggerParserScreenEventParse>
-      get copyWith => __$$SwaggerParserScreenEventParseCopyWithImpl<
-          _$SwaggerParserScreenEventParse>(this, _$identity);
+@JsonKey(ignore: true)
+@override
+@pragma('vm:prefer-inline')
+_$$SwaggerParserScreenEventParseCopyWith<_$SwaggerParserScreenEventParse>
+get copyWith => __$$SwaggerParserScreenEventParseCopyWithImpl<
+_$SwaggerParserScreenEventParse>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String projectName) init,
+@override
+@optionalTypeArgs
+TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function(String url) onUrlChanged,
     required TResult Function(String url) parse,
   }) {
-    return parse(url);
-  }
+return parse(url);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectName)? init,
+@override
+@optionalTypeArgs
+TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function(String url)? onUrlChanged,
     TResult? Function(String url)? parse,
   }) {
-    return parse?.call(url);
-  }
+return parse?.call(url);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectName)? init,
+@override
+@optionalTypeArgs
+TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function(String url)? onUrlChanged,
     TResult Function(String url)? parse,
     required TResult orElse(),
   }) {
-    if (parse != null) {
-      return parse(url);
-    }
-    return orElse();
-  }
+if (parse != null) {
+return parse(url);
+}
+return orElse();
+}
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult map<TResult extends Object?>({
     required TResult Function(SwaggerParserScreenEventInit value) init,
+    required TResult Function(SwaggerParserScreenEventOnUrlChanged value)
+        onUrlChanged,
     required TResult Function(SwaggerParserScreenEventParse value) parse,
   }) {
-    return parse(this);
-  }
+return parse(this);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SwaggerParserScreenEventInit value)? init,
+    TResult? Function(SwaggerParserScreenEventOnUrlChanged value)? onUrlChanged,
     TResult? Function(SwaggerParserScreenEventParse value)? parse,
   }) {
-    return parse?.call(this);
-  }
+return parse?.call(this);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult maybeMap<TResult extends Object?>({
     TResult Function(SwaggerParserScreenEventInit value)? init,
+    TResult Function(SwaggerParserScreenEventOnUrlChanged value)? onUrlChanged,
     TResult Function(SwaggerParserScreenEventParse value)? parse,
     required TResult orElse(),
   }) {
-    if (parse != null) {
-      return parse(this);
-    }
-    return orElse();
-  }
+if (parse != null) {
+return parse(this);
+}
+return orElse();
+}
 }
 
 abstract class SwaggerParserScreenEventParse
-    implements SwaggerParserScreenEvent {
-  const factory SwaggerParserScreenEventParse({required final String url}) =
-      _$SwaggerParserScreenEventParse;
+implements SwaggerParserScreenEvent {
+const factory SwaggerParserScreenEventParse({required final String url}) =
+_$SwaggerParserScreenEventParse;
 
-  String get url;
-  @JsonKey(ignore: true)
-  _$$SwaggerParserScreenEventParseCopyWith<_$SwaggerParserScreenEventParse>
-      get copyWith => throw _privateConstructorUsedError;
+String get url;
+@JsonKey(ignore: true)
+_$$SwaggerParserScreenEventParseCopyWith<_$SwaggerParserScreenEventParse>
+get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -654,28 +832,20 @@ abstract class _OnContinue implements SwaggerParserScreenSR {
 
 /// @nodoc
 mixin _$SwaggerParserScreenState {
-  String get projectName => throw _privateConstructorUsedError;
-  Set<DataComponent> get dataComponents => throw _privateConstructorUsedError;
-  Set<Source> get sources => throw _privateConstructorUsedError;
+  Config get config => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String projectName,
-            Set<DataComponent> dataComponents, Set<Source> sources)
-        data,
+    required TResult Function(Config config) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectName, Set<DataComponent> dataComponents,
-            Set<Source> sources)?
-        data,
+    TResult? Function(Config config)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectName, Set<DataComponent> dataComponents,
-            Set<Source> sources)?
-        data,
+    TResult Function(Config config)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -707,10 +877,9 @@ abstract class $SwaggerParserScreenStateCopyWith<$Res> {
           $Res Function(SwaggerParserScreenState) then) =
       _$SwaggerParserScreenStateCopyWithImpl<$Res, SwaggerParserScreenState>;
   @useResult
-  $Res call(
-      {String projectName,
-      Set<DataComponent> dataComponents,
-      Set<Source> sources});
+  $Res call({Config config});
+
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -719,32 +888,30 @@ class _$SwaggerParserScreenStateCopyWithImpl<$Res,
     implements $SwaggerParserScreenStateCopyWith<$Res> {
   _$SwaggerParserScreenStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectName = null,
-    Object? dataComponents = null,
-    Object? sources = null,
+    Object? config = null,
   }) {
     return _then(_value.copyWith(
-      projectName: null == projectName
-          ? _value.projectName
-          : projectName // ignore: cast_nullable_to_non_nullable
-              as String,
-      dataComponents: null == dataComponents
-          ? _value.dataComponents
-          : dataComponents // ignore: cast_nullable_to_non_nullable
-              as Set<DataComponent>,
-      sources: null == sources
-          ? _value.sources
-          : sources // ignore: cast_nullable_to_non_nullable
-              as Set<Source>,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value) as $Val);
+    });
   }
 }
 
@@ -757,10 +924,10 @@ abstract class _$$SwaggerParserScreenStateDataCopyWith<$Res>
       __$$SwaggerParserScreenStateDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String projectName,
-      Set<DataComponent> dataComponents,
-      Set<Source> sources});
+  $Res call({Config config});
+
+  @override
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -776,23 +943,13 @@ class __$$SwaggerParserScreenStateDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectName = null,
-    Object? dataComponents = null,
-    Object? sources = null,
+    Object? config = null,
   }) {
     return _then(_$SwaggerParserScreenStateData(
-      projectName: null == projectName
-          ? _value.projectName
-          : projectName // ignore: cast_nullable_to_non_nullable
-              as String,
-      dataComponents: null == dataComponents
-          ? _value._dataComponents
-          : dataComponents // ignore: cast_nullable_to_non_nullable
-              as Set<DataComponent>,
-      sources: null == sources
-          ? _value._sources
-          : sources // ignore: cast_nullable_to_non_nullable
-              as Set<Source>,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
     ));
   }
 }
@@ -800,37 +957,14 @@ class __$$SwaggerParserScreenStateDataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
-  const _$SwaggerParserScreenStateData(
-      {this.projectName = '',
-      final Set<DataComponent> dataComponents = const {},
-      final Set<Source> sources = const {}})
-      : _dataComponents = dataComponents,
-        _sources = sources;
+  const _$SwaggerParserScreenStateData({required this.config});
 
   @override
-  @JsonKey()
-  final String projectName;
-  final Set<DataComponent> _dataComponents;
-  @override
-  @JsonKey()
-  Set<DataComponent> get dataComponents {
-    if (_dataComponents is EqualUnmodifiableSetView) return _dataComponents;
-// ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_dataComponents);
-  }
-
-  final Set<Source> _sources;
-  @override
-  @JsonKey()
-  Set<Source> get sources {
-    if (_sources is EqualUnmodifiableSetView) return _sources;
-// ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_sources);
-  }
+  final Config config;
 
   @override
   String toString() {
-    return 'SwaggerParserScreenState.data(projectName: $projectName, dataComponents: $dataComponents, sources: $sources)';
+    return 'SwaggerParserScreenState.data(config: $config)';
   }
 
   @override
@@ -838,19 +972,11 @@ class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwaggerParserScreenStateData &&
-            (identical(other.projectName, projectName) ||
-                other.projectName == projectName) &&
-            const DeepCollectionEquality()
-                .equals(other._dataComponents, _dataComponents) &&
-            const DeepCollectionEquality().equals(other._sources, _sources));
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      projectName,
-      const DeepCollectionEquality().hash(_dataComponents),
-      const DeepCollectionEquality().hash(_sources));
+  int get hashCode => Object.hash(runtimeType, config);
 
   @JsonKey(ignore: true)
   @override
@@ -862,33 +988,27 @@ class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String projectName,
-            Set<DataComponent> dataComponents, Set<Source> sources)
-        data,
+    required TResult Function(Config config) data,
   }) {
-    return data(projectName, dataComponents, sources);
+    return data(config);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectName, Set<DataComponent> dataComponents,
-            Set<Source> sources)?
-        data,
+    TResult? Function(Config config)? data,
   }) {
-    return data?.call(projectName, dataComponents, sources);
+    return data?.call(config);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectName, Set<DataComponent> dataComponents,
-            Set<Source> sources)?
-        data,
+    TResult Function(Config config)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(projectName, dataComponents, sources);
+      return data(config);
     }
     return orElse();
   }
@@ -924,17 +1044,11 @@ class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
 
 abstract class SwaggerParserScreenStateData
     implements SwaggerParserScreenState {
-  const factory SwaggerParserScreenStateData(
-      {final String projectName,
-      final Set<DataComponent> dataComponents,
-      final Set<Source> sources}) = _$SwaggerParserScreenStateData;
+  const factory SwaggerParserScreenStateData({required final Config config}) =
+      _$SwaggerParserScreenStateData;
 
   @override
-  String get projectName;
-  @override
-  Set<DataComponent> get dataComponents;
-  @override
-  Set<Source> get sources;
+  Config get config;
   @override
   @JsonKey(ignore: true)
   _$$SwaggerParserScreenStateDataCopyWith<_$SwaggerParserScreenStateData>

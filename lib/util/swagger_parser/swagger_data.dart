@@ -3,8 +3,8 @@ import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 
 class SwaggerData {
   final String basePath;
-  final List<DataComponent> dataComponents;
-  final List<Source> sources;
+  final Set<DataComponent> dataComponents;
+  final Set<Source> sources;
 
   SwaggerData({
     required this.basePath,

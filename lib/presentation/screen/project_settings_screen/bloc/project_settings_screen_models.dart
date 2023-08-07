@@ -1,11 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 
 part 'project_settings_screen_models.freezed.dart';
 
 @freezed
 class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
-  const factory ProjectSettingsScreenEvent.init() =
-      ProjectSettingsScreenEventInit;
+  const factory ProjectSettingsScreenEvent.init({
+    required Config config,
+  }) = ProjectSettingsScreenEventInit;
 
   const factory ProjectSettingsScreenEvent.flavorizeChange() =
       ProjectSettingsScreenEventFlavorizeChange;
@@ -45,24 +47,7 @@ class ProjectSettingsScreenSR with _$ProjectSettingsScreenSR {
 @freezed
 class ProjectSettingsScreenState with _$ProjectSettingsScreenState {
   const factory ProjectSettingsScreenState.data({
-    @Default(false) bool flavorize,
-    @Default('') String flavors,
-    @Default(true) bool generateSigningKey,
-    @Default(false) bool useSonar,
-    @Default(ProjectRouter.goRouter) ProjectRouter router,
-    @Default(ProjectLocalization.intl) ProjectLocalization localization,
-    @Default(ProjectTheming.manual) ProjectTheming theming,
-    @Default(false) bool integrateDevicePreview,
-    @Default([
-      'Some developer',
-      'Flutter dep',
-      'Onix-Systems',
-      'Kropyvnytskyi',
-      'Kirovohrad oblast',
-      'UA',
-      '',
-    ])
-    List<String> signingVars,
+    required Config config,
   }) = ProjectSettingsScreenStateData;
 }
 

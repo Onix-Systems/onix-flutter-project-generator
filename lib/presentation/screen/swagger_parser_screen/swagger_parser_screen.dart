@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
@@ -29,8 +30,8 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
 
   @override
   void onBlocCreated(BuildContext context, SwaggerParserScreenBloc bloc) {
-    bloc.add(
-        SwaggerParserScreenEventInit(projectName: widget.config.projectName));
+    bloc.add(SwaggerParserScreenEventInit(config: widget.config));
+    _urlController.text = widget.config.swaggerUrl;
     super.onBlocCreated(context, bloc);
   }
 
@@ -81,21 +82,35 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
             child: TextFieldWithLabel(
               label: '${S.of(context).url}: ',
               textController: _urlController,
-              onChanged: () {},
+              onChanged: () => blocOf(context).add(
+                  SwaggerParserScreenEventOnUrlChanged(
+                      url: _urlController.text)),
               expanded: true,
             ),
           ),
           const Delimiter.height(40),
-          AppFilledButton(
-              label: S.of(context).continueLabel,
-              onPressed: () {
-                if (_urlController.text.isNotEmpty) {
-                  blocOf(context).add(
-                      SwaggerParserScreenEventParse(url: _urlController.text));
-                } else {
-                  _onContinue(context, state);
-                }
-              }),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppFilledButton(
+                  label: S.of(context).goBack,
+                  icon: Icons.arrow_back_ios_rounded,
+                  onPressed: () => _onBack(context, state)),
+              const Delimiter.width(10),
+              AppFilledButton(
+                  label: S.of(context).continueLabel,
+                  icon: Icons.arrow_forward_ios_rounded,
+                  iconLeft: false,
+                  onPressed: () {
+                    if (state.config.swaggerUrl.isNotEmpty) {
+                      blocOf(context).add(SwaggerParserScreenEventParse(
+                          url: state.config.swaggerUrl));
+                    } else {
+                      _onContinue(context, state);
+                    }
+                  }),
+            ],
+          ),
         ],
       ),
     );
@@ -105,8 +120,18 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
       context.go(
         AppRouter.dataComponentsScreen,
         extra: widget.config.copyWith(
-          dataComponents: state.dataComponents,
-          sources: state.sources,
+          dataComponents: state.config.dataComponents,
+          sources: state.config.sources,
+          swaggerUrl: state.config.swaggerUrl,
+        ),
+      );
+
+  _onBack(BuildContext context, SwaggerParserScreenState state) => context.go(
+        AppRouter.screensScreen,
+        extra: widget.config.copyWith(
+          dataComponents: state.config.dataComponents,
+          sources: state.config.sources,
+          swaggerUrl: state.config.swaggerUrl,
         ),
       );
 }

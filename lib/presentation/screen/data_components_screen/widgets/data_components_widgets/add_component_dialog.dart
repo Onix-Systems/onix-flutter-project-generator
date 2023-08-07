@@ -1,22 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
 import 'package:recase/recase.dart';
 
-class AddEntityDialog extends StatefulWidget {
-  const AddEntityDialog({Key? key, this.entity, this.standalone = true})
+class AddComponentDialog extends StatefulWidget {
+  const AddComponentDialog(
+      {Key? key, this.dataComponent, this.standalone = true})
       : super(key: key);
 
-  final DataComponent? entity;
+  final DataComponent? dataComponent;
   final bool standalone;
 
   @override
-  State<AddEntityDialog> createState() => _AddEntityDialogState();
+  State<AddComponentDialog> createState() => _AddComponentDialogState();
 }
 
-class _AddEntityDialogState extends State<AddEntityDialog> {
-  final TextEditingController _entityNameController = TextEditingController();
+class _AddComponentDialogState extends State<AddComponentDialog> {
+  final TextEditingController _componentNameController =
+      TextEditingController();
 
   final _dialogFocusNode = FocusNode();
   final _textFieldFocusNode = FocusNode();
@@ -29,10 +33,10 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
   @override
   void initState() {
     _textFieldFocusNode.requestFocus();
-    if (widget.entity != null) {
-      _entityNameController.text = widget.entity!.name;
-      _createRequest = widget.entity!.generateRequest;
-      _createResponse = widget.entity!.generateResponse;
+    if (widget.dataComponent != null) {
+      _componentNameController.text = widget.dataComponent!.name;
+      _createRequest = widget.dataComponent!.generateRequest;
+      _createResponse = widget.dataComponent!.generateResponse;
     }
     super.initState();
   }
@@ -103,23 +107,24 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
         return KeyEventResult.ignored;
       },
       child: CupertinoAlertDialog(
-        title: widget.entity != null
-            ? const Text('Modify entity')
-            : const Text('Add entity'),
+        title: widget.dataComponent != null
+            ? const Text('Modify component')
+            : const Text('Add component'),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
             CupertinoTextField(
-              controller: _entityNameController,
+              controller: _componentNameController,
               focusNode: _textFieldFocusNode,
+              style: context.appTextStyles.fs18,
               onTap: () {
                 setState(() {
                   _currentFocusNode = 0;
                   _textFieldFocusNode.requestFocus();
                 });
               },
-              placeholder: 'Entity name',
+              placeholder: 'Component name',
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
               ],
@@ -152,14 +157,14 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
           CupertinoDialogAction(
             isDefaultAction: true,
             onPressed: () => _onOK(context),
-            child: const Text('Ok'),
+            child: Text(S.of(context).ok),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text('Cancel'),
+            child: Text(S.of(context).cancel),
           ),
         ],
       ),
@@ -167,19 +172,19 @@ class _AddEntityDialogState extends State<AddEntityDialog> {
   }
 
   Future<void> _onOK(BuildContext context) async {
-    if (_entityNameController.text.isNotEmpty) {
-      if (widget.entity != null) {
-        widget.entity!.name = _entityNameController.text.snakeCase;
-        widget.entity!.generateRequest = _createRequest;
-        widget.entity!.generateResponse = _createResponse;
-        Navigator.pop(context, widget.entity);
+    if (_componentNameController.text.isNotEmpty) {
+      if (widget.dataComponent != null) {
+        widget.dataComponent!.name = _componentNameController.text.snakeCase;
+        widget.dataComponent!.generateRequest = _createRequest;
+        widget.dataComponent!.generateResponse = _createResponse;
+        Navigator.pop(context, widget.dataComponent);
       } else {
         Navigator.pop(
             context,
             DataComponent(
-              name: widget.entity != null
-                  ? _entityNameController.text.snakeCase
-                  : _entityNameController.text,
+              name: widget.dataComponent != null
+                  ? _componentNameController.text.snakeCase
+                  : _componentNameController.text,
               properties: [],
               isGenerated: false,
               generateRequest: _createRequest,

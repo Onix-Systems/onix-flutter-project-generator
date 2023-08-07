@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProjectNameScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String projectPath) init,
+    required TResult Function(Config config) init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
   }) =>
@@ -26,14 +26,14 @@ mixin _$ProjectNameScreenEvent {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectPath)? init,
+    TResult? Function(Config config)? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectPath)? init,
+    TResult Function(Config config)? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     required TResult orElse(),
@@ -95,7 +95,9 @@ abstract class _$$ProjectNameScreenEventInitCopyWith<$Res> {
           $Res Function(_$ProjectNameScreenEventInit) then) =
       __$$ProjectNameScreenEventInitCopyWithImpl<$Res>;
   @useResult
-  $Res call({String projectPath});
+  $Res call({Config config});
+
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -111,28 +113,36 @@ class __$$ProjectNameScreenEventInitCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectPath = null,
+    Object? config = null,
   }) {
     return _then(_$ProjectNameScreenEventInit(
-      projectPath: null == projectPath
-          ? _value.projectPath
-          : projectPath // ignore: cast_nullable_to_non_nullable
-              as String,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$ProjectNameScreenEventInit implements ProjectNameScreenEventInit {
-  const _$ProjectNameScreenEventInit({required this.projectPath});
+  const _$ProjectNameScreenEventInit({required this.config});
 
   @override
-  final String projectPath;
+  final Config config;
 
   @override
   String toString() {
-    return 'ProjectNameScreenEvent.init(projectPath: $projectPath)';
+    return 'ProjectNameScreenEvent.init(config: $config)';
   }
 
   @override
@@ -140,12 +150,11 @@ class _$ProjectNameScreenEventInit implements ProjectNameScreenEventInit {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectNameScreenEventInit &&
-            (identical(other.projectPath, projectPath) ||
-                other.projectPath == projectPath));
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, projectPath);
+  int get hashCode => Object.hash(runtimeType, config);
 
   @JsonKey(ignore: true)
   @override
@@ -157,33 +166,33 @@ class _$ProjectNameScreenEventInit implements ProjectNameScreenEventInit {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String projectPath) init,
+    required TResult Function(Config config) init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
   }) {
-    return init(projectPath);
+    return init(config);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectPath)? init,
+    TResult? Function(Config config)? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
   }) {
-    return init?.call(projectPath);
+    return init?.call(config);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectPath)? init,
+    TResult Function(Config config)? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(projectPath);
+      return init(config);
     }
     return orElse();
   }
@@ -230,10 +239,10 @@ class _$ProjectNameScreenEventInit implements ProjectNameScreenEventInit {
 }
 
 abstract class ProjectNameScreenEventInit implements ProjectNameScreenEvent {
-  const factory ProjectNameScreenEventInit(
-      {required final String projectPath}) = _$ProjectNameScreenEventInit;
+  const factory ProjectNameScreenEventInit({required final Config config}) =
+      _$ProjectNameScreenEventInit;
 
-  String get projectPath;
+  Config get config;
   @JsonKey(ignore: true)
   _$$ProjectNameScreenEventInitCopyWith<_$ProjectNameScreenEventInit>
       get copyWith => throw _privateConstructorUsedError;
@@ -310,7 +319,7 @@ class _$ProjectNameScreenEventProjectNameChanged
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String projectPath) init,
+    required TResult Function(Config config) init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
   }) {
@@ -320,7 +329,7 @@ class _$ProjectNameScreenEventProjectNameChanged
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectPath)? init,
+    TResult? Function(Config config)? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
   }) {
@@ -330,7 +339,7 @@ class _$ProjectNameScreenEventProjectNameChanged
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectPath)? init,
+    TResult Function(Config config)? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     required TResult orElse(),
@@ -467,7 +476,7 @@ class _$ProjectNameScreenEventOrganizationChanged
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String projectPath) init,
+    required TResult Function(Config config) init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
   }) {
@@ -477,7 +486,7 @@ class _$ProjectNameScreenEventOrganizationChanged
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectPath)? init,
+    TResult? Function(Config config)? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
   }) {
@@ -487,7 +496,7 @@ class _$ProjectNameScreenEventOrganizationChanged
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectPath)? init,
+    TResult Function(Config config)? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     required TResult orElse(),
@@ -709,45 +718,37 @@ abstract class ProjectNameScreenSRCheckNames implements ProjectNameScreenSR {
 
 /// @nodoc
 mixin _$ProjectNameScreenState {
-  String get projectName => throw _privateConstructorUsedError;
-  String get organization => throw _privateConstructorUsedError;
-  String get projectPath => throw _privateConstructorUsedError;
+  Config get config => throw _privateConstructorUsedError;
   bool get projectExists => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String projectName, String organization,
-            String projectPath, bool projectExists)
-        data,
+    required TResult Function(Config config, bool projectExists) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectName, String organization,
-            String projectPath, bool projectExists)?
-        data,
+    TResult? Function(Config config, bool projectExists)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectName, String organization,
-            String projectPath, bool projectExists)?
-        data,
+    TResult Function(Config config, bool projectExists)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ProjectNameScreenStateData value) data,
+    required TResult Function(ProjectNameScreenStateData value) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ProjectNameScreenStateData value)? data,
+    TResult? Function(ProjectNameScreenStateData value)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProjectNameScreenStateData value)? data,
+    TResult Function(ProjectNameScreenStateData value)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -763,11 +764,9 @@ abstract class $ProjectNameScreenStateCopyWith<$Res> {
           $Res Function(ProjectNameScreenState) then) =
       _$ProjectNameScreenStateCopyWithImpl<$Res, ProjectNameScreenState>;
   @useResult
-  $Res call(
-      {String projectName,
-      String organization,
-      String projectPath,
-      bool projectExists});
+  $Res call({Config config, bool projectExists});
+
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -784,79 +783,66 @@ class _$ProjectNameScreenStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectName = null,
-    Object? organization = null,
-    Object? projectPath = null,
+    Object? config = null,
     Object? projectExists = null,
   }) {
     return _then(_value.copyWith(
-      projectName: null == projectName
-          ? _value.projectName
-          : projectName // ignore: cast_nullable_to_non_nullable
-              as String,
-      organization: null == organization
-          ? _value.organization
-          : organization // ignore: cast_nullable_to_non_nullable
-              as String,
-      projectPath: null == projectPath
-          ? _value.projectPath
-          : projectPath // ignore: cast_nullable_to_non_nullable
-              as String,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
       projectExists: null == projectExists
           ? _value.projectExists
           : projectExists // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$_ProjectNameScreenStateDataCopyWith<$Res>
+abstract class _$$ProjectNameScreenStateDataCopyWith<$Res>
     implements $ProjectNameScreenStateCopyWith<$Res> {
-  factory _$$_ProjectNameScreenStateDataCopyWith(
-          _$_ProjectNameScreenStateData value,
-          $Res Function(_$_ProjectNameScreenStateData) then) =
-      __$$_ProjectNameScreenStateDataCopyWithImpl<$Res>;
+  factory _$$ProjectNameScreenStateDataCopyWith(
+          _$ProjectNameScreenStateData value,
+          $Res Function(_$ProjectNameScreenStateData) then) =
+      __$$ProjectNameScreenStateDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String projectName,
-      String organization,
-      String projectPath,
-      bool projectExists});
+  $Res call({Config config, bool projectExists});
+
+  @override
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
-class __$$_ProjectNameScreenStateDataCopyWithImpl<$Res>
+class __$$ProjectNameScreenStateDataCopyWithImpl<$Res>
     extends _$ProjectNameScreenStateCopyWithImpl<$Res,
-        _$_ProjectNameScreenStateData>
-    implements _$$_ProjectNameScreenStateDataCopyWith<$Res> {
-  __$$_ProjectNameScreenStateDataCopyWithImpl(
-      _$_ProjectNameScreenStateData _value,
-      $Res Function(_$_ProjectNameScreenStateData) _then)
+        _$ProjectNameScreenStateData>
+    implements _$$ProjectNameScreenStateDataCopyWith<$Res> {
+  __$$ProjectNameScreenStateDataCopyWithImpl(
+      _$ProjectNameScreenStateData _value,
+      $Res Function(_$ProjectNameScreenStateData) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projectName = null,
-    Object? organization = null,
-    Object? projectPath = null,
+    Object? config = null,
     Object? projectExists = null,
   }) {
-    return _then(_$_ProjectNameScreenStateData(
-      projectName: null == projectName
-          ? _value.projectName
-          : projectName // ignore: cast_nullable_to_non_nullable
-              as String,
-      organization: null == organization
-          ? _value.organization
-          : organization // ignore: cast_nullable_to_non_nullable
-              as String,
-      projectPath: null == projectPath
-          ? _value.projectPath
-          : projectPath // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$ProjectNameScreenStateData(
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
       projectExists: null == projectExists
           ? _value.projectExists
           : projectExists // ignore: cast_nullable_to_non_nullable
@@ -867,87 +853,65 @@ class __$$_ProjectNameScreenStateDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ProjectNameScreenStateData implements _ProjectNameScreenStateData {
-  const _$_ProjectNameScreenStateData(
-      {this.projectName = '',
-      this.organization = '',
-      this.projectPath = '',
-      this.projectExists = false});
+class _$ProjectNameScreenStateData implements ProjectNameScreenStateData {
+  const _$ProjectNameScreenStateData(
+      {required this.config, this.projectExists = false});
 
   @override
-  @JsonKey()
-  final String projectName;
-  @override
-  @JsonKey()
-  final String organization;
-  @override
-  @JsonKey()
-  final String projectPath;
+  final Config config;
   @override
   @JsonKey()
   final bool projectExists;
 
   @override
   String toString() {
-    return 'ProjectNameScreenState.data(projectName: $projectName, organization: $organization, projectPath: $projectPath, projectExists: $projectExists)';
+    return 'ProjectNameScreenState.data(config: $config, projectExists: $projectExists)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProjectNameScreenStateData &&
-            (identical(other.projectName, projectName) ||
-                other.projectName == projectName) &&
-            (identical(other.organization, organization) ||
-                other.organization == organization) &&
-            (identical(other.projectPath, projectPath) ||
-                other.projectPath == projectPath) &&
+            other is _$ProjectNameScreenStateData &&
+            (identical(other.config, config) || other.config == config) &&
             (identical(other.projectExists, projectExists) ||
                 other.projectExists == projectExists));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, projectName, organization, projectPath, projectExists);
+  int get hashCode => Object.hash(runtimeType, config, projectExists);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProjectNameScreenStateDataCopyWith<_$_ProjectNameScreenStateData>
-      get copyWith => __$$_ProjectNameScreenStateDataCopyWithImpl<
-          _$_ProjectNameScreenStateData>(this, _$identity);
+  _$$ProjectNameScreenStateDataCopyWith<_$ProjectNameScreenStateData>
+      get copyWith => __$$ProjectNameScreenStateDataCopyWithImpl<
+          _$ProjectNameScreenStateData>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String projectName, String organization,
-            String projectPath, bool projectExists)
-        data,
+    required TResult Function(Config config, bool projectExists) data,
   }) {
-    return data(projectName, organization, projectPath, projectExists);
+    return data(config, projectExists);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String projectName, String organization,
-            String projectPath, bool projectExists)?
-        data,
+    TResult? Function(Config config, bool projectExists)? data,
   }) {
-    return data?.call(projectName, organization, projectPath, projectExists);
+    return data?.call(config, projectExists);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String projectName, String organization,
-            String projectPath, bool projectExists)?
-        data,
+    TResult Function(Config config, bool projectExists)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(projectName, organization, projectPath, projectExists);
+      return data(config, projectExists);
     }
     return orElse();
   }
@@ -955,7 +919,7 @@ class _$_ProjectNameScreenStateData implements _ProjectNameScreenStateData {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ProjectNameScreenStateData value) data,
+    required TResult Function(ProjectNameScreenStateData value) data,
   }) {
     return data(this);
   }
@@ -963,7 +927,7 @@ class _$_ProjectNameScreenStateData implements _ProjectNameScreenStateData {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ProjectNameScreenStateData value)? data,
+    TResult? Function(ProjectNameScreenStateData value)? data,
   }) {
     return data?.call(this);
   }
@@ -971,7 +935,7 @@ class _$_ProjectNameScreenStateData implements _ProjectNameScreenStateData {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProjectNameScreenStateData value)? data,
+    TResult Function(ProjectNameScreenStateData value)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -981,23 +945,17 @@ class _$_ProjectNameScreenStateData implements _ProjectNameScreenStateData {
   }
 }
 
-abstract class _ProjectNameScreenStateData implements ProjectNameScreenState {
-  const factory _ProjectNameScreenStateData(
-      {final String projectName,
-      final String organization,
-      final String projectPath,
-      final bool projectExists}) = _$_ProjectNameScreenStateData;
+abstract class ProjectNameScreenStateData implements ProjectNameScreenState {
+  const factory ProjectNameScreenStateData(
+      {required final Config config,
+      final bool projectExists}) = _$ProjectNameScreenStateData;
 
   @override
-  String get projectName;
-  @override
-  String get organization;
-  @override
-  String get projectPath;
+  Config get config;
   @override
   bool get projectExists;
   @override
   @JsonKey(ignore: true)
-  _$$_ProjectNameScreenStateDataCopyWith<_$_ProjectNameScreenStateData>
+  _$$ProjectNameScreenStateDataCopyWith<_$ProjectNameScreenStateData>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -1,18 +1,21 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
-import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_entity_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:recase/recase.dart';
 
-class EntityTable extends StatelessWidget {
-  const EntityTable({required this.entities, this.source, Key? key})
+class ComponentsTable extends StatelessWidget {
+  const ComponentsTable({required this.dataComponents, this.source, Key? key})
       : super(key: key);
 
-  final Set<DataComponent> entities;
+  final Set<DataComponent> dataComponents;
   final Source? source;
 
   @override
@@ -47,7 +50,7 @@ class EntityTable extends StatelessWidget {
               children: [
                 Cell(
                   value: Text(
-                    'Data Component',
+                    S.of(context).dataComponent,
                     textAlign: TextAlign.center,
                     style: context.appTextStyles.fs18,
                   ),
@@ -55,7 +58,7 @@ class EntityTable extends StatelessWidget {
                 ),
                 Cell(
                   value: Text(
-                    'Gen request',
+                    '${S.of(context).generate} ${S.of(context).request.toLowerCase()}',
                     textAlign: TextAlign.center,
                     style: context.appTextStyles.fs18,
                   ),
@@ -63,7 +66,7 @@ class EntityTable extends StatelessWidget {
                 ),
                 Cell(
                   value: Text(
-                    'Gen response',
+                    '${S.of(context).generate} ${S.of(context).response.toLowerCase()}',
                     textAlign: TextAlign.center,
                     style: context.appTextStyles.fs18,
                   ),
@@ -71,7 +74,7 @@ class EntityTable extends StatelessWidget {
                 ),
                 Cell(
                   value: Text(
-                    'Actions',
+                    S.of(context).actions,
                     textAlign: TextAlign.center,
                     style: context.appTextStyles.fs18,
                   ),
@@ -79,18 +82,18 @@ class EntityTable extends StatelessWidget {
               ],
             ),
           ),
-          ...entities.map(
+          ...dataComponents.map(
             (entity) => Container(
               padding: const EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
                 color: AppColors.grayBG,
-                borderRadius: entity == entities.last
+                borderRadius: entity == dataComponents.last
                     ? const BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       )
                     : null,
-                border: entity == entities.last
+                border: entity == dataComponents.last
                     ? null
                     : const Border(
                         bottom: BorderSide(
@@ -105,6 +108,8 @@ class EntityTable extends StatelessWidget {
                   Cell(
                     value: Text(
                       entity.name.pascalCase,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: context.appTextStyles.fs18?.copyWith(
                           color: entity.exists
                               ? CupertinoColors.inactiveGray
@@ -200,20 +205,20 @@ class EntityTable extends StatelessWidget {
                                   showCupertinoModalPopup<DataComponent>(
                                     context: context,
                                     barrierDismissible: false,
-                                    builder: (context) => AddEntityDialog(
-                                      entity: entity,
+                                    builder: (context) => AddComponentDialog(
+                                      dataComponent: entity,
                                       standalone: source == null,
                                     ),
                                   ).then((entity) {
-                                    // if (entity != null) {
-                                    //   context.read<AppBloc>().add(
-                                    //     const StateUpdate(),
-                                    //   );
-                                    // }
+                                    if (entity != null) {
+                                      blocOf(context).add(
+                                        const DataComponentsScreenEventStateUpdate(),
+                                      );
+                                    }
                                   });
                                 }
                               },
-                              child: const Text('Modify'),
+                              child: Text(S.of(context).modify),
                             ),
                             const SizedBox(width: 10),
                             CupertinoButton(
@@ -224,13 +229,13 @@ class EntityTable extends StatelessWidget {
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
                                 if (!entity.exists && !entity.isGenerated) {
-                                  // context.read<AppBloc>().add(
-                                  //   EntityDelete(
-                                  //       entity: entity, source: source),
-                                  // );
+                                  blocOf(context).add(
+                                    DataComponentsScreenEventDeleteDataComponent(
+                                        entity: entity, source: source),
+                                  );
                                 }
                               },
-                              child: const Text('Delete'),
+                              child: Text(S.of(context).delete),
                             ),
                           ],
                         ),
@@ -245,4 +250,7 @@ class EntityTable extends StatelessWidget {
       ),
     );
   }
+
+  DataComponentsScreenBloc blocOf(BuildContext context) =>
+      context.read<DataComponentsScreenBloc>();
 }

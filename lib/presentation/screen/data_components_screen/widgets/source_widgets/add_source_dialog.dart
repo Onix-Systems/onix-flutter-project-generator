@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:recase/recase.dart';
 
 class AddSourceDialog extends StatelessWidget {
@@ -25,6 +26,7 @@ class AddSourceDialog extends StatelessWidget {
           CupertinoTextField(
             autofocus: true,
             controller: _sourceNameController,
+            style: context.appTextStyles.fs18,
             placeholder: 'Source name',
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),

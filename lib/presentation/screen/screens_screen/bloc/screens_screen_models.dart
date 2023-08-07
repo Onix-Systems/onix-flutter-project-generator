@@ -1,11 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 
 part 'screens_screen_models.freezed.dart';
 
 @freezed
 class ScreensScreenEvent with _$ScreensScreenEvent {
-  const factory ScreensScreenEvent.init() = ScreensScreenEventInit;
+  const factory ScreensScreenEvent.init({
+    required Config config,
+  }) = ScreensScreenEventInit;
 
   const factory ScreensScreenEvent.onScreenAdd({
     required Screen screen,
@@ -27,7 +30,7 @@ class ScreensScreenSR with _$ScreensScreenSR {
 @freezed
 class ScreensScreenState with _$ScreensScreenState {
   const factory ScreensScreenState.data({
-    @Default({}) Set<Screen> screens,
+    required Config config,
     @Default(0) int stateUpdate,
   }) = ScreensScreenStateData;
 }

@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
-import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_entity_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/entity_table.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/add_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
@@ -88,15 +92,15 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                           barrierDismissible: false,
                                           builder: (context) => AddSourceDialog(
                                               source: widget.source),
-                                        ).then((entity) {
-                                          // if (entity != null) {
-                                          //   context.read<AppBloc>().add(
-                                          //     const StateUpdate(),
-                                          //   );
-                                          // }
+                                        ).then((source) {
+                                          if (source != null) {
+                                            blocOf(context).add(
+                                              const DataComponentsScreenEventStateUpdate(),
+                                            );
+                                          }
                                         });
                                 },
-                                child: const Text('Modify'),
+                                child: Text(S.of(context).modify),
                               ),
                               const SizedBox(width: 10),
                               CupertinoButton(
@@ -107,21 +111,22 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                   showCupertinoModalPopup<DataComponent>(
                                     context: context,
                                     barrierDismissible: false,
-                                    builder: (context) => const AddEntityDialog(
-                                      entity: null,
+                                    builder: (context) =>
+                                        const AddComponentDialog(
+                                      dataComponent: null,
                                       standalone: false,
                                     ),
                                   ).then((entity) {
                                     if (entity != null) {
-                                      // context.read<AppBloc>().add(
-                                      //   EntityAdd(
-                                      //       entity: entity,
-                                      //       source: widget.source),
-                                      // );
+                                      blocOf(context).add(
+                                        DataComponentsScreenEventAddDataComponent(
+                                            dataComponent: entity,
+                                            source: widget.source),
+                                      );
                                     }
                                   });
                                 },
-                                child: const Text('Add entity'),
+                                child: Text(S.of(context).addComponent),
                               ),
                               const SizedBox(width: 10),
                               CupertinoButton(
@@ -132,14 +137,15 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 onPressed: () {
-                                  // widget.source.exists ||
-                                  //     widget.source.isGenerated
-                                  //     ? null
-                                  //     : context.read<AppBloc>().add(
-                                  //   SourceDelete(source: widget.source),
-                                  // );
+                                  widget.source.exists ||
+                                          widget.source.isGenerated
+                                      ? null
+                                      : blocOf(context).add(
+                                          DataComponentsScreenEventDeleteSource(
+                                              source: widget.source),
+                                        );
                                 },
-                                child: const Text('Delete'),
+                                child: Text(S.of(context).delete),
                               ),
                             ],
                           ),
@@ -163,8 +169,8 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
           if (widget.source.dataComponents.isNotEmpty && expanded) ...[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: EntityTable(
-                entities: widget.source.dataComponents.toSet(),
+              child: ComponentsTable(
+                dataComponents: widget.source.dataComponents.toSet(),
                 source: widget.source,
               ),
             ),
@@ -174,4 +180,7 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
       ),
     );
   }
+
+  DataComponentsScreenBloc blocOf(BuildContext context) =>
+      context.read<DataComponentsScreenBloc>();
 }

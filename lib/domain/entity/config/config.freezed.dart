@@ -44,6 +44,8 @@ mixin _$Config {
 
   Set<Screen> get screens => throw _privateConstructorUsedError;
 
+  String get swaggerUrl => throw _privateConstructorUsedError;
+
   Set<DataComponent> get dataComponents => throw _privateConstructorUsedError;
 
   Set<Source> get sources => throw _privateConstructorUsedError;
@@ -73,6 +75,7 @@ abstract class $ConfigCopyWith<$Res> {
       bool integrateDevicePreview,
       List<String> signingVars,
       Set<Screen> screens,
+      String swaggerUrl,
       Set<DataComponent> dataComponents,
       Set<Source> sources});
 
@@ -107,6 +110,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? integrateDevicePreview = null,
     Object? signingVars = null,
     Object? screens = null,
+    Object? swaggerUrl = null,
     Object? dataComponents = null,
     Object? sources = null,
   }) {
@@ -167,6 +171,10 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.screens
           : screens // ignore: cast_nullable_to_non_nullable
               as Set<Screen>,
+      swaggerUrl: null == swaggerUrl
+          ? _value.swaggerUrl
+          : swaggerUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       dataComponents: null == dataComponents
           ? _value.dataComponents
           : dataComponents // ignore: cast_nullable_to_non_nullable
@@ -209,6 +217,7 @@ abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       bool integrateDevicePreview,
       List<String> signingVars,
       Set<Screen> screens,
+      String swaggerUrl,
       Set<DataComponent> dataComponents,
       Set<Source> sources});
 
@@ -240,6 +249,7 @@ class __$$_ConfigCopyWithImpl<$Res>
     Object? integrateDevicePreview = null,
     Object? signingVars = null,
     Object? screens = null,
+    Object? swaggerUrl = null,
     Object? dataComponents = null,
     Object? sources = null,
   }) {
@@ -300,6 +310,10 @@ class __$$_ConfigCopyWithImpl<$Res>
           ? _value._screens
           : screens // ignore: cast_nullable_to_non_nullable
               as Set<Screen>,
+      swaggerUrl: null == swaggerUrl
+          ? _value.swaggerUrl
+          : swaggerUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       dataComponents: null == dataComponents
           ? _value._dataComponents
           : dataComponents // ignore: cast_nullable_to_non_nullable
@@ -338,6 +352,7 @@ class _$_Config implements _Config {
         ''
       ],
       final Set<Screen> screens = const {},
+      this.swaggerUrl = '',
       final Set<DataComponent> dataComponents = const {},
       final Set<Source> sources = const {}})
       : _signingVars = signingVars,
@@ -401,6 +416,9 @@ class _$_Config implements _Config {
     return EqualUnmodifiableSetView(_screens);
   }
 
+  @override
+  @JsonKey()
+  final String swaggerUrl;
   final Set<DataComponent> _dataComponents;
 
   @override
@@ -423,7 +441,7 @@ class _$_Config implements _Config {
 
   @override
   String toString() {
-    return 'Config(projectPath: $projectPath, projectName: $projectName, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, useSonar: $useSonar, router: $router, localization: $localization, theming: $theming, integrateDevicePreview: $integrateDevicePreview, signingVars: $signingVars, screens: $screens, dataComponents: $dataComponents, sources: $sources)';
+    return 'Config(projectPath: $projectPath, projectName: $projectName, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, useSonar: $useSonar, router: $router, localization: $localization, theming: $theming, integrateDevicePreview: $integrateDevicePreview, signingVars: $signingVars, screens: $screens, swaggerUrl: $swaggerUrl, dataComponents: $dataComponents, sources: $sources)';
   }
 
   @override
@@ -455,6 +473,8 @@ class _$_Config implements _Config {
             const DeepCollectionEquality()
                 .equals(other._signingVars, _signingVars) &&
             const DeepCollectionEquality().equals(other._screens, _screens) &&
+            (identical(other.swaggerUrl, swaggerUrl) ||
+                other.swaggerUrl == swaggerUrl) &&
             const DeepCollectionEquality()
                 .equals(other._dataComponents, _dataComponents) &&
             const DeepCollectionEquality().equals(other._sources, _sources));
@@ -477,6 +497,7 @@ class _$_Config implements _Config {
       integrateDevicePreview,
       const DeepCollectionEquality().hash(_signingVars),
       const DeepCollectionEquality().hash(_screens),
+      swaggerUrl,
       const DeepCollectionEquality().hash(_dataComponents),
       const DeepCollectionEquality().hash(_sources));
 
@@ -503,6 +524,7 @@ abstract class _Config implements Config {
       final bool integrateDevicePreview,
       final List<String> signingVars,
       final Set<Screen> screens,
+      final String swaggerUrl,
       final Set<DataComponent> dataComponents,
       final Set<Source> sources}) = _$_Config;
 
@@ -547,6 +569,9 @@ abstract class _Config implements Config {
 
   @override
   Set<Screen> get screens;
+
+  @override
+  String get swaggerUrl;
 
   @override
   Set<DataComponent> get dataComponents;

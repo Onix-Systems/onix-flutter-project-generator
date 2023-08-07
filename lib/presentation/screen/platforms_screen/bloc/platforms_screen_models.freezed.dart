@@ -18,25 +18,24 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PlatformsScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function(PlatformsList platformsList) onPlatformsChange,
   }) =>
       throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function(PlatformsList platformsList)? onPlatformsChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function(PlatformsList platformsList)? onPlatformsChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(PlatformsScreenEventInit value) init,
@@ -44,7 +43,6 @@ mixin _$PlatformsScreenEvent {
         onPlatformsChange,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(PlatformsScreenEventInit value)? init,
@@ -86,6 +84,10 @@ abstract class _$$PlatformsScreenEventInitCopyWith<$Res> {
   factory _$$PlatformsScreenEventInitCopyWith(_$PlatformsScreenEventInit value,
           $Res Function(_$PlatformsScreenEventInit) then) =
       __$$PlatformsScreenEventInitCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Config config});
+
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -95,55 +97,88 @@ class __$$PlatformsScreenEventInitCopyWithImpl<$Res>
   __$$PlatformsScreenEventInitCopyWithImpl(_$PlatformsScreenEventInit _value,
       $Res Function(_$PlatformsScreenEventInit) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? config = null,
+  }) {
+    return _then(_$PlatformsScreenEventInit(
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
-  const _$PlatformsScreenEventInit();
+  const _$PlatformsScreenEventInit({required this.config});
+
+  @override
+  final Config config;
 
   @override
   String toString() {
-    return 'PlatformsScreenEvent.init()';
+    return 'PlatformsScreenEvent.init(config: $config)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PlatformsScreenEventInit);
+            other is _$PlatformsScreenEventInit &&
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PlatformsScreenEventInitCopyWith<_$PlatformsScreenEventInit>
+      get copyWith =>
+          __$$PlatformsScreenEventInitCopyWithImpl<_$PlatformsScreenEventInit>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function(PlatformsList platformsList) onPlatformsChange,
   }) {
-    return init();
+    return init(config);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function(PlatformsList platformsList)? onPlatformsChange,
   }) {
-    return init?.call();
+    return init?.call(config);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function(PlatformsList platformsList)? onPlatformsChange,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init();
+      return init(config);
     }
     return orElse();
   }
@@ -184,7 +219,13 @@ class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
 }
 
 abstract class PlatformsScreenEventInit implements PlatformsScreenEvent {
-  const factory PlatformsScreenEventInit() = _$PlatformsScreenEventInit;
+  const factory PlatformsScreenEventInit({required final Config config}) =
+      _$PlatformsScreenEventInit;
+
+  Config get config;
+  @JsonKey(ignore: true)
+  _$$PlatformsScreenEventInitCopyWith<_$PlatformsScreenEventInit>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -268,7 +309,7 @@ class _$PlatformsScreenEventOnPlatformsChange
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function(PlatformsList platformsList) onPlatformsChange,
   }) {
     return onPlatformsChange(platformsList);
@@ -277,7 +318,7 @@ class _$PlatformsScreenEventOnPlatformsChange
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function(PlatformsList platformsList)? onPlatformsChange,
   }) {
     return onPlatformsChange?.call(platformsList);
@@ -286,7 +327,7 @@ class _$PlatformsScreenEventOnPlatformsChange
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function(PlatformsList platformsList)? onPlatformsChange,
     required TResult orElse(),
   }) {
@@ -496,20 +537,20 @@ abstract class _LoadFinished implements PlatformsScreenSR {
 
 /// @nodoc
 mixin _$PlatformsScreenState {
-  PlatformsList get platformsList => throw _privateConstructorUsedError;
+  Config get config => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PlatformsList platformsList) data,
+    required TResult Function(Config config) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlatformsList platformsList)? data,
+    TResult? Function(Config config)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlatformsList platformsList)? data,
+    TResult Function(Config config)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -541,9 +582,9 @@ abstract class $PlatformsScreenStateCopyWith<$Res> {
           $Res Function(PlatformsScreenState) then) =
       _$PlatformsScreenStateCopyWithImpl<$Res, PlatformsScreenState>;
   @useResult
-  $Res call({PlatformsList platformsList});
+  $Res call({Config config});
 
-  $PlatformsListCopyWith<$Res> get platformsList;
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -560,21 +601,21 @@ class _$PlatformsScreenStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? platformsList = null,
+    Object? config = null,
   }) {
     return _then(_value.copyWith(
-      platformsList: null == platformsList
-          ? _value.platformsList
-          : platformsList // ignore: cast_nullable_to_non_nullable
-              as PlatformsList,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PlatformsListCopyWith<$Res> get platformsList {
-    return $PlatformsListCopyWith<$Res>(_value.platformsList, (value) {
-      return _then(_value.copyWith(platformsList: value) as $Val);
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value) as $Val);
     });
   }
 }
@@ -587,10 +628,10 @@ abstract class _$$PlatformsScreenStateDataCopyWith<$Res>
       __$$PlatformsScreenStateDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PlatformsList platformsList});
+  $Res call({Config config});
 
   @override
-  $PlatformsListCopyWith<$Res> get platformsList;
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -604,13 +645,13 @@ class __$$PlatformsScreenStateDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? platformsList = null,
+    Object? config = null,
   }) {
     return _then(_$PlatformsScreenStateData(
-      platformsList: null == platformsList
-          ? _value.platformsList
-          : platformsList // ignore: cast_nullable_to_non_nullable
-              as PlatformsList,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
     ));
   }
 }
@@ -618,16 +659,14 @@ class __$$PlatformsScreenStateDataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PlatformsScreenStateData implements PlatformsScreenStateData {
-  const _$PlatformsScreenStateData(
-      {this.platformsList = const PlatformsList()});
+  const _$PlatformsScreenStateData({required this.config});
 
   @override
-  @JsonKey()
-  final PlatformsList platformsList;
+  final Config config;
 
   @override
   String toString() {
-    return 'PlatformsScreenState.data(platformsList: $platformsList)';
+    return 'PlatformsScreenState.data(config: $config)';
   }
 
   @override
@@ -635,12 +674,11 @@ class _$PlatformsScreenStateData implements PlatformsScreenStateData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlatformsScreenStateData &&
-            (identical(other.platformsList, platformsList) ||
-                other.platformsList == platformsList));
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, platformsList);
+  int get hashCode => Object.hash(runtimeType, config);
 
   @JsonKey(ignore: true)
   @override
@@ -653,27 +691,27 @@ class _$PlatformsScreenStateData implements PlatformsScreenStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PlatformsList platformsList) data,
+    required TResult Function(Config config) data,
   }) {
-    return data(platformsList);
+    return data(config);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PlatformsList platformsList)? data,
+    TResult? Function(Config config)? data,
   }) {
-    return data?.call(platformsList);
+    return data?.call(config);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PlatformsList platformsList)? data,
+    TResult Function(Config config)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(platformsList);
+      return data(config);
     }
     return orElse();
   }
@@ -708,11 +746,11 @@ class _$PlatformsScreenStateData implements PlatformsScreenStateData {
 }
 
 abstract class PlatformsScreenStateData implements PlatformsScreenState {
-  const factory PlatformsScreenStateData({final PlatformsList platformsList}) =
+  const factory PlatformsScreenStateData({required final Config config}) =
       _$PlatformsScreenStateData;
 
   @override
-  PlatformsList get platformsList;
+  Config get config;
   @override
   @JsonKey(ignore: true)
   _$$PlatformsScreenStateDataCopyWith<_$PlatformsScreenStateData>

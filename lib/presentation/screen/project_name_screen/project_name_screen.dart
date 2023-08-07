@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
@@ -34,9 +35,13 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
   void onBlocCreated(BuildContext context, ProjectNameScreenBloc bloc) {
     bloc.add(
       ProjectNameScreenEvent.init(
-        projectPath: widget.config.projectPath,
+        config: widget.config,
       ),
     );
+
+    projectNameController.text = widget.config.projectName;
+    organizationController.text = widget.config.organization;
+
     super.onBlocCreated(context, bloc);
   }
 
@@ -98,26 +103,30 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
             ],
           ),
           const Delimiter.height(40),
-          if (state.projectName.isNotEmpty &&
-              state.organization.isNotEmpty &&
-              !state.projectExists)
-            AppFilledButton(
-              label: S.of(context).continueLabel,
-              onPressed: () =>
-                  blocOf(context).addSr(const ProjectNameScreenSRCheckNames()),
-            )
-          else
-            SizedBox(
-              height: 52,
-              child: state.projectExists
-                  ? Text(
-                      S.of(context).projectExistsError,
-                      style: context.appTextStyles.fs18?.copyWith(
-                        color: AppColors.red,
-                      ),
-                    )
-                  : null,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppFilledButton(
+                  label: S.of(context).goBack,
+                  icon: Icons.arrow_back_ios_rounded,
+                  onPressed: () => context.go(
+                      AppRouter.procedureSelectionScreen,
+                      extra: widget.config.copyWith(
+                          projectName: projectNameController.text,
+                          organization: organizationController.text))),
+              const Delimiter.width(10),
+              AppFilledButton(
+                active: state.config.projectName.isNotEmpty &&
+                    state.config.organization.isNotEmpty &&
+                    !state.projectExists,
+                label: S.of(context).continueLabel,
+                icon: Icons.arrow_forward_ios_rounded,
+                iconLeft: false,
+                onPressed: () => blocOf(context)
+                    .addSr(const ProjectNameScreenSRCheckNames()),
+              )
+            ],
+          ),
         ],
       ),
     );
@@ -138,7 +147,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
           ),
           children: <TextSpan>[
             TextSpan(
-              text: blocOf(context).state.projectName,
+              text: blocOf(context).state.config.projectName,
               style: context.appTextStyles.fs18?.copyWith(
                 color: AppColors.orange,
                 fontSize: 16,
@@ -151,7 +160,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
               ),
             ),
             TextSpan(
-              text: blocOf(context).state.organization,
+              text: blocOf(context).state.config.organization,
               style: context.appTextStyles.fs18?.copyWith(
                 color: AppColors.orange,
                 fontSize: 16,
@@ -170,8 +179,8 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
         context.go(
           AppRouter.platformsScreen,
           extra: widget.config.copyWith(
-            projectName: blocOf(context).state.projectName,
-            organization: blocOf(context).state.organization,
+            projectName: blocOf(context).state.config.projectName,
+            organization: blocOf(context).state.config.organization,
           ),
         );
       },

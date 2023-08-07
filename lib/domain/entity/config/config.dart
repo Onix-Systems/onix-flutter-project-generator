@@ -33,6 +33,7 @@ class Config with _$Config {
     ])
     List<String> signingVars,
     @Default({}) Set<Screen> screens,
+    @Default('') String swaggerUrl,
     @Default({}) Set<DataComponent> dataComponents,
     @Default({}) Set<Source> sources,
   }) = _Config;

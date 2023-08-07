@@ -2,14 +2,15 @@ import 'dart:async';
 import 'dart:io';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/extension/org_case.dart';
 import 'package:recase/recase.dart';
 
 class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     ProjectNameScreenState, ProjectNameScreenSR> {
-  ProjectNameScreenBloc() : super(const ProjectNameScreenState.data()) {
+  ProjectNameScreenBloc()
+      : super(const ProjectNameScreenState.data(config: Config())) {
     on<ProjectNameScreenEventInit>(_onInit);
     on<ProjectNameScreenEventProjectNameChanged>(_onProjectNameChanged);
     on<ProjectNameScreenEventOrganizationChanged>(_onOrganizationChanged);
@@ -19,8 +20,8 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     ProjectNameScreenEventInit event,
     Emitter<ProjectNameScreenState> emit,
   ) {
-    emit(state.copyWith(
-      projectPath: event.projectPath,
+    emit(ProjectNameScreenState.data(
+      config: event.config,
     ));
   }
 
@@ -30,7 +31,7 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
   ) async {
     if (event.projectName.isEmpty) {
       emit(state.copyWith(
-        projectName: '',
+        config: state.config.copyWith(projectName: ''),
         projectExists: false,
       ));
       return;
@@ -39,10 +40,10 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     final projectName = event.projectName.snakeCase;
 
     var projectExists =
-        await Directory('${state.projectPath}/$projectName').exists();
+        await Directory('${state.config.projectPath}/$projectName').exists();
 
     emit(state.copyWith(
-      projectName: projectName,
+      config: state.config.copyWith(projectName: projectName),
       projectExists: projectExists,
     ));
   }
@@ -52,8 +53,7 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     Emitter<ProjectNameScreenState> emit,
   ) {
     emit(state.copyWith(
-      organization: event.organization.orgCase(),
+      config: state.config.copyWith(organization: event.organization.orgCase()),
     ));
-    logger.f('event.organization: ${state.organization}');
   }
 }

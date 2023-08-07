@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ScreensScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(Screen screen) onScreenDelete,
     required TResult Function() onScreenModify,
@@ -27,7 +27,7 @@ mixin _$ScreensScreenEvent {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(Screen screen)? onScreenDelete,
     TResult? Function()? onScreenModify,
@@ -35,14 +35,13 @@ mixin _$ScreensScreenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(Screen screen)? onScreenDelete,
     TResult Function()? onScreenModify,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ScreensScreenEventInit value) init,
@@ -53,7 +52,6 @@ mixin _$ScreensScreenEvent {
         onScreenModify,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ScreensScreenEventInit value)? init,
@@ -96,6 +94,10 @@ abstract class _$$ScreensScreenEventInitCopyWith<$Res> {
   factory _$$ScreensScreenEventInitCopyWith(_$ScreensScreenEventInit value,
           $Res Function(_$ScreensScreenEventInit) then) =
       __$$ScreensScreenEventInitCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Config config});
+
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -105,60 +107,93 @@ class __$$ScreensScreenEventInitCopyWithImpl<$Res>
   __$$ScreensScreenEventInitCopyWithImpl(_$ScreensScreenEventInit _value,
       $Res Function(_$ScreensScreenEventInit) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? config = null,
+  }) {
+    return _then(_$ScreensScreenEventInit(
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$ScreensScreenEventInit implements ScreensScreenEventInit {
-  const _$ScreensScreenEventInit();
+  const _$ScreensScreenEventInit({required this.config});
+
+  @override
+  final Config config;
 
   @override
   String toString() {
-    return 'ScreensScreenEvent.init()';
+    return 'ScreensScreenEvent.init(config: $config)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ScreensScreenEventInit);
+        (other.runtimeType == runtimeType &&
+            other is _$ScreensScreenEventInit &&
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ScreensScreenEventInitCopyWith<_$ScreensScreenEventInit> get copyWith =>
+      __$$ScreensScreenEventInitCopyWithImpl<_$ScreensScreenEventInit>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(Screen screen) onScreenDelete,
     required TResult Function() onScreenModify,
   }) {
-    return init();
+    return init(config);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(Screen screen)? onScreenDelete,
     TResult? Function()? onScreenModify,
   }) {
-    return init?.call();
+    return init?.call(config);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(Screen screen)? onScreenDelete,
     TResult Function()? onScreenModify,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init();
+      return init(config);
     }
     return orElse();
   }
@@ -204,7 +239,13 @@ class _$ScreensScreenEventInit implements ScreensScreenEventInit {
 }
 
 abstract class ScreensScreenEventInit implements ScreensScreenEvent {
-  const factory ScreensScreenEventInit() = _$ScreensScreenEventInit;
+  const factory ScreensScreenEventInit({required final Config config}) =
+      _$ScreensScreenEventInit;
+
+  Config get config;
+  @JsonKey(ignore: true)
+  _$$ScreensScreenEventInitCopyWith<_$ScreensScreenEventInit> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -275,7 +316,7 @@ class _$ScreensScreenEventOnScreenAdd implements ScreensScreenEventOnScreenAdd {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(Screen screen) onScreenDelete,
     required TResult Function() onScreenModify,
@@ -286,7 +327,7 @@ class _$ScreensScreenEventOnScreenAdd implements ScreensScreenEventOnScreenAdd {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(Screen screen)? onScreenDelete,
     TResult? Function()? onScreenModify,
@@ -297,7 +338,7 @@ class _$ScreensScreenEventOnScreenAdd implements ScreensScreenEventOnScreenAdd {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(Screen screen)? onScreenDelete,
     TResult Function()? onScreenModify,
@@ -429,7 +470,7 @@ class _$ScreensScreenEventOnScreenDelete
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(Screen screen) onScreenDelete,
     required TResult Function() onScreenModify,
@@ -440,7 +481,7 @@ class _$ScreensScreenEventOnScreenDelete
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(Screen screen)? onScreenDelete,
     TResult? Function()? onScreenModify,
@@ -451,7 +492,7 @@ class _$ScreensScreenEventOnScreenDelete
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(Screen screen)? onScreenDelete,
     TResult Function()? onScreenModify,
@@ -557,7 +598,7 @@ class _$ScreensScreenEventOnScreenModify
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(Config config) init,
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(Screen screen) onScreenDelete,
     required TResult Function() onScreenModify,
@@ -568,7 +609,7 @@ class _$ScreensScreenEventOnScreenModify
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(Config config)? init,
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(Screen screen)? onScreenDelete,
     TResult? Function()? onScreenModify,
@@ -579,7 +620,7 @@ class _$ScreensScreenEventOnScreenModify
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(Config config)? init,
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(Screen screen)? onScreenDelete,
     TResult Function()? onScreenModify,
@@ -788,21 +829,21 @@ abstract class _ExistsError implements ScreensScreenSR {
 
 /// @nodoc
 mixin _$ScreensScreenState {
-  Set<Screen> get screens => throw _privateConstructorUsedError;
+  Config get config => throw _privateConstructorUsedError;
   int get stateUpdate => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Set<Screen> screens, int stateUpdate) data,
+    required TResult Function(Config config, int stateUpdate) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Set<Screen> screens, int stateUpdate)? data,
+    TResult? Function(Config config, int stateUpdate)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Set<Screen> screens, int stateUpdate)? data,
+    TResult Function(Config config, int stateUpdate)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -834,7 +875,9 @@ abstract class $ScreensScreenStateCopyWith<$Res> {
           ScreensScreenState value, $Res Function(ScreensScreenState) then) =
       _$ScreensScreenStateCopyWithImpl<$Res, ScreensScreenState>;
   @useResult
-  $Res call({Set<Screen> screens, int stateUpdate});
+  $Res call({Config config, int stateUpdate});
+
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -842,27 +885,35 @@ class _$ScreensScreenStateCopyWithImpl<$Res, $Val extends ScreensScreenState>
     implements $ScreensScreenStateCopyWith<$Res> {
   _$ScreensScreenStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? screens = null,
+    Object? config = null,
     Object? stateUpdate = null,
   }) {
     return _then(_value.copyWith(
-      screens: null == screens
-          ? _value.screens
-          : screens // ignore: cast_nullable_to_non_nullable
-              as Set<Screen>,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
       stateUpdate: null == stateUpdate
           ? _value.stateUpdate
           : stateUpdate // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value) as $Val);
+    });
   }
 }
 
@@ -874,7 +925,10 @@ abstract class _$$ScreensScreenStateDataCopyWith<$Res>
       __$$ScreensScreenStateDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Set<Screen> screens, int stateUpdate});
+  $Res call({Config config, int stateUpdate});
+
+  @override
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -888,14 +942,14 @@ class __$$ScreensScreenStateDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? screens = null,
+    Object? config = null,
     Object? stateUpdate = null,
   }) {
     return _then(_$ScreensScreenStateData(
-      screens: null == screens
-          ? _value._screens
-          : screens // ignore: cast_nullable_to_non_nullable
-              as Set<Screen>,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
       stateUpdate: null == stateUpdate
           ? _value.stateUpdate
           : stateUpdate // ignore: cast_nullable_to_non_nullable
@@ -907,26 +961,17 @@ class __$$ScreensScreenStateDataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ScreensScreenStateData implements ScreensScreenStateData {
-  const _$ScreensScreenStateData(
-      {final Set<Screen> screens = const {}, this.stateUpdate = 0})
-      : _screens = screens;
+  const _$ScreensScreenStateData({required this.config, this.stateUpdate = 0});
 
-  final Set<Screen> _screens;
   @override
-  @JsonKey()
-  Set<Screen> get screens {
-    if (_screens is EqualUnmodifiableSetView) return _screens;
-// ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_screens);
-  }
-
+  final Config config;
   @override
   @JsonKey()
   final int stateUpdate;
 
   @override
   String toString() {
-    return 'ScreensScreenState.data(screens: $screens, stateUpdate: $stateUpdate)';
+    return 'ScreensScreenState.data(config: $config, stateUpdate: $stateUpdate)';
   }
 
   @override
@@ -934,14 +979,13 @@ class _$ScreensScreenStateData implements ScreensScreenStateData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScreensScreenStateData &&
-            const DeepCollectionEquality().equals(other._screens, _screens) &&
+            (identical(other.config, config) || other.config == config) &&
             (identical(other.stateUpdate, stateUpdate) ||
                 other.stateUpdate == stateUpdate));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_screens), stateUpdate);
+  int get hashCode => Object.hash(runtimeType, config, stateUpdate);
 
   @JsonKey(ignore: true)
   @override
@@ -953,27 +997,27 @@ class _$ScreensScreenStateData implements ScreensScreenStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Set<Screen> screens, int stateUpdate) data,
+    required TResult Function(Config config, int stateUpdate) data,
   }) {
-    return data(screens, stateUpdate);
+    return data(config, stateUpdate);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Set<Screen> screens, int stateUpdate)? data,
+    TResult? Function(Config config, int stateUpdate)? data,
   }) {
-    return data?.call(screens, stateUpdate);
+    return data?.call(config, stateUpdate);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Set<Screen> screens, int stateUpdate)? data,
+    TResult Function(Config config, int stateUpdate)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(screens, stateUpdate);
+      return data(config, stateUpdate);
     }
     return orElse();
   }
@@ -1009,11 +1053,11 @@ class _$ScreensScreenStateData implements ScreensScreenStateData {
 
 abstract class ScreensScreenStateData implements ScreensScreenState {
   const factory ScreensScreenStateData(
-      {final Set<Screen> screens,
+      {required final Config config,
       final int stateUpdate}) = _$ScreensScreenStateData;
 
   @override
-  Set<Screen> get screens;
+  Config get config;
   @override
   int get stateUpdate;
   @override

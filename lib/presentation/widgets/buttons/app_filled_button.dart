@@ -8,14 +8,22 @@ class AppFilledButton extends StatefulWidget {
   final VoidCallback? onPressed;
   final Color? color;
   final IconData? icon;
+  final bool iconLeft;
   final bool big;
+  final EdgeInsets? padding;
+  final Size? minimumSize;
+  final bool active;
 
   const AppFilledButton({
     required this.label,
+    this.active = true,
     this.onPressed,
     this.color,
     this.icon,
+    this.iconLeft = true,
     this.big = false,
+    this.padding,
+    this.minimumSize,
     super.key,
   });
 
@@ -34,16 +42,20 @@ class _AppFilledButtonState extends State<AppFilledButton> {
           hovered = value;
         });
       },
-      onPressed: () => widget.onPressed?.call(),
+      onPressed: () => widget.active ? widget.onPressed?.call() : null,
       style: ElevatedButton.styleFrom(
-        backgroundColor:
-            hovered ? _textColor() : widget.color ?? AppColors.orange,
+        backgroundColor: widget.active
+            ? hovered
+                ? _textColor()
+                : widget.color ?? AppColors.orange
+            : AppColors.inactiveText,
         foregroundColor: AppColors.orange,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        minimumSize: const Size(100, 60),
+        padding: widget.padding ??
+            const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        minimumSize: widget.minimumSize ?? const Size(100, 60),
       ),
       child: widget.big
           ? Column(
@@ -67,7 +79,7 @@ class _AppFilledButtonState extends State<AppFilledButton> {
           : Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (widget.icon != null) ...[
+                if (widget.icon != null && widget.iconLeft) ...[
                   Icon(
                     widget.icon,
                     size: 25,
@@ -83,6 +95,16 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                           ? widget.color ?? AppColors.orange
                           : _textColor(),
                     )),
+                if (widget.icon != null && !widget.iconLeft) ...[
+                  const Delimiter.width(10),
+                  Icon(
+                    widget.icon,
+                    size: 25,
+                    color: hovered
+                        ? widget.color ?? AppColors.orange
+                        : _textColor(),
+                  ),
+                ],
               ],
             ),
     );

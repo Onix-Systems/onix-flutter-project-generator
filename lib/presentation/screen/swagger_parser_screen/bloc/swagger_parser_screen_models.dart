@@ -1,14 +1,17 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
-import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 
 part 'swagger_parser_screen_models.freezed.dart';
 
 @freezed
 class SwaggerParserScreenEvent with _$SwaggerParserScreenEvent {
   const factory SwaggerParserScreenEvent.init({
-    required String projectName,
+    required Config config,
   }) = SwaggerParserScreenEventInit;
+
+  const factory SwaggerParserScreenEvent.onUrlChanged({
+    required String url,
+  }) = SwaggerParserScreenEventOnUrlChanged;
 
   const factory SwaggerParserScreenEvent.parse({
     required String url,
@@ -27,8 +30,6 @@ class SwaggerParserScreenSR with _$SwaggerParserScreenSR {
 @freezed
 class SwaggerParserScreenState with _$SwaggerParserScreenState {
   const factory SwaggerParserScreenState.data({
-    @Default('') String projectName,
-    @Default({}) Set<DataComponent> dataComponents,
-    @Default({}) Set<Source> sources,
+    required Config config,
   }) = SwaggerParserScreenStateData;
 }

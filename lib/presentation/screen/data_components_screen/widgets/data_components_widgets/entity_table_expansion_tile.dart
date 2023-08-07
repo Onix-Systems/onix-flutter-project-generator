@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/entity_table.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 
 class EntityTableExpansionTile extends StatefulWidget {
   const EntityTableExpansionTile({required this.dataComponents, Key? key})
@@ -17,7 +22,7 @@ class EntityTableExpansionTile extends StatefulWidget {
 }
 
 class _EntityTableExpansionTileState extends State<EntityTableExpansionTile> {
-  bool expanded = false;
+  bool expanded = true;
 
   @override
   Widget build(BuildContext context) {
@@ -49,15 +54,48 @@ class _EntityTableExpansionTileState extends State<EntityTableExpansionTile> {
                 padding: const EdgeInsets.all(10),
                 child: CupertinoListTile(
                   padding: EdgeInsets.zero,
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  title: Stack(
+                    alignment: Alignment.center,
+                    clipBehavior: Clip.none,
                     children: [
-                      Expanded(
-                        child: Text(
-                          'Standalone data components: ${widget.dataComponents.length}',
-                          textAlign: TextAlign.center,
-                          style: context.appTextStyles.fs18
-                              ?.copyWith(color: CupertinoColors.activeOrange),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Standalone data components: ${widget.dataComponents.length}',
+                              textAlign: TextAlign.center,
+                              style: context.appTextStyles.fs18?.copyWith(
+                                  color: CupertinoColors.activeOrange),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Positioned(
+                        left: 0,
+                        child: AppFilledButton(
+                          label: S.of(context).addComponent,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 5),
+                          minimumSize: const Size(0, 50),
+                          icon: CupertinoIcons.add,
+                          onPressed: () {
+                            showCupertinoModalPopup<DataComponent>(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (context) => const AddComponentDialog(
+                                dataComponent: null,
+                                standalone: false,
+                              ),
+                            ).then((entity) {
+                              if (entity != null) {
+                                blocOf(context).add(
+                                  DataComponentsScreenEventAddDataComponent(
+                                      dataComponent: entity, source: null),
+                                );
+                              }
+                            });
+                          },
                         ),
                       ),
                     ],
@@ -75,12 +113,15 @@ class _EntityTableExpansionTileState extends State<EntityTableExpansionTile> {
           if (expanded)
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-              child: EntityTable(
-                entities: widget.dataComponents.toSet(),
+              child: ComponentsTable(
+                dataComponents: widget.dataComponents.toSet(),
               ),
             ),
         ],
       ),
     );
   }
+
+  DataComponentsScreenBloc blocOf(BuildContext context) =>
+      context.read<DataComponentsScreenBloc>();
 }

@@ -46,6 +46,13 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
     );
   }
 
+  @override
+  void onBlocCreated(BuildContext context, ProjectSettingsScreenBloc bloc) {
+    bloc.add(ProjectSettingsScreenEvent.init(config: widget.config));
+    _flavorsController.text = widget.config.flavors;
+    super.onBlocCreated(context, bloc);
+  }
+
   void _onSingleResult(
       BuildContext context, ProjectSettingsScreenSR singleResult) {
     singleResult.when(
@@ -78,12 +85,12 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                       children: [
                         SwitchWithLabel(
                           label: S.of(context).flavorize,
-                          initialValue: state.flavorize,
+                          initialValue: state.config.flavorize,
                           subLabel: S.of(context).willBeAddedAutomatically,
                           valueSetter: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventFlavorizeChange()),
                         ),
-                        if (state.flavorize) ...[
+                        if (state.config.flavorize) ...[
                           const SizedBox(height: 20),
                           TextFieldWithLabel(
                             label: S.of(context).addFlavors,
@@ -103,7 +110,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                         const SizedBox(height: 20),
                         SwitchWithLabel(
                           label: S.of(context).generateSigningKey,
-                          initialValue: state.generateSigningKey,
+                          initialValue: state.config.generateSigningKey,
                           subLabel:
                               S.of(context).dialogWillOpenInSeparateWindow,
                           valueSetter: (_) => blocOf(context).add(
@@ -123,8 +130,8 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                                 (signingVars) {
                                   blocOf(context).add(
                                     ProjectSettingsScreenEventSigningVarsChange(
-                                        signingVars:
-                                            signingVars ?? state.signingVars),
+                                        signingVars: signingVars ??
+                                            state.config.signingVars),
                                   );
                                 },
                               ),
@@ -138,7 +145,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                         const SizedBox(height: 20),
                         SwitchWithLabel(
                           label: S.of(context).useSonar,
-                          initialValue: state.useSonar,
+                          initialValue: state.config.useSonar,
                           valueSetter: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventUseSonarChange()),
                         ),
@@ -166,7 +173,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                               ProjectRouter.values.map((e) => e.name).toList(),
                           onChange: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventRouterChange()),
-                          selectedValue: state.router.name,
+                          selectedValue: state.config.router.name,
                         ),
                         const SizedBox(height: 20),
                         LabeledSegmentedControl(
@@ -176,7 +183,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                               .toList(),
                           onChange: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventLocalizationChange()),
-                          selectedValue: state.localization.name,
+                          selectedValue: state.config.localization.name,
                         ),
                         const SizedBox(height: 20),
                         LabeledSegmentedControl(
@@ -185,12 +192,12 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                               ProjectTheming.values.map((e) => e.name).toList(),
                           onChange: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventThemingChange()),
-                          selectedValue: state.theming.name,
+                          selectedValue: state.config.theming.name,
                         ),
                         const SizedBox(height: 20),
                         SwitchWithLabel(
                           label: S.of(context).integrateDevicePreview,
-                          initialValue: state.integrateDevicePreview,
+                          initialValue: state.config.integrateDevicePreview,
                           valueSetter: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventIntegrateDevicePreviewChange()),
                         ),
@@ -201,22 +208,47 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
               ],
             ),
             const Delimiter.height(40),
-            AppFilledButton(
-              label: S.of(context).continueLabel,
-              onPressed: () => context.go(
-                AppRouter.screensScreen,
-                extra: widget.config.copyWith(
-                  flavorize: state.flavorize,
-                  flavors: state.flavors,
-                  generateSigningKey: state.generateSigningKey,
-                  useSonar: state.useSonar,
-                  router: state.router,
-                  localization: state.localization,
-                  theming: state.theming,
-                  integrateDevicePreview: state.integrateDevicePreview,
-                  signingVars: state.signingVars,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AppFilledButton(
+                    label: S.of(context).goBack,
+                    icon: Icons.arrow_back_ios_rounded,
+                    onPressed: () => context.go(AppRouter.platformsScreen,
+                        extra: widget.config.copyWith(
+                          flavorize: state.config.flavorize,
+                          flavors: state.config.flavors,
+                          generateSigningKey: state.config.generateSigningKey,
+                          useSonar: state.config.useSonar,
+                          router: state.config.router,
+                          localization: state.config.localization,
+                          theming: state.config.theming,
+                          integrateDevicePreview:
+                              state.config.integrateDevicePreview,
+                          signingVars: state.config.signingVars,
+                        ))),
+                const Delimiter.width(10),
+                AppFilledButton(
+                  label: S.of(context).continueLabel,
+                  icon: Icons.arrow_forward_ios_rounded,
+                  iconLeft: false,
+                  onPressed: () => context.go(
+                    AppRouter.screensScreen,
+                    extra: widget.config.copyWith(
+                      flavorize: state.config.flavorize,
+                      flavors: state.config.flavors,
+                      generateSigningKey: state.config.generateSigningKey,
+                      useSonar: state.config.useSonar,
+                      router: state.config.router,
+                      localization: state.config.localization,
+                      theming: state.config.theming,
+                      integrateDevicePreview:
+                          state.config.integrateDevicePreview,
+                      signingVars: state.config.signingVars,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
         ),

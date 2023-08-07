@@ -86,8 +86,8 @@ class SwaggerParser {
 
     return SwaggerData(
       basePath: basePath,
-      dataComponents: dataComponents,
-      sources: sources,
+      dataComponents: dataComponents.toSet(),
+      sources: sources.toSet(),
     );
   }
 

@@ -24,8 +24,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
+        "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Add flavors:"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),
+        "addSource": MessageLookupByLibrary.simpleMessage("Add source"),
         "apiFailureNoNetwork": MessageLookupByLibrary.simpleMessage(
             "Sorry, we\'re having trouble connecting. Please check your internet connection and try again.\n\nReach out to support if you continue to experience issues."),
         "apiFailureTooManyRequests": MessageLookupByLibrary.simpleMessage(
@@ -46,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cityOrLocality":
             MessageLookupByLibrary.simpleMessage(" City or Locality"),
         "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
+        "dataComponent": MessageLookupByLibrary.simpleMessage("Data component"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
@@ -53,10 +56,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" First & last name"),
         "flavorize": MessageLookupByLibrary.simpleMessage("Flavorize?"),
+        "generate": MessageLookupByLibrary.simpleMessage("Generate"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Generate new project"),
         "generateSigningKey":
             MessageLookupByLibrary.simpleMessage("Generate signing key?"),
+        "goBack": MessageLookupByLibrary.simpleMessage("Back"),
         "integrateDevicePreview":
             MessageLookupByLibrary.simpleMessage("Integrate Device Preview?"),
         "keystorePassword":
@@ -83,6 +88,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "projectExistsError": MessageLookupByLibrary.simpleMessage(
             "Project already exists, choose different name"),
         "projectName": MessageLookupByLibrary.simpleMessage("Project name"),
+        "request": MessageLookupByLibrary.simpleMessage("Request"),
+        "response": MessageLookupByLibrary.simpleMessage("Response"),
         "router": MessageLookupByLibrary.simpleMessage("Router:"),
         "screenAlreadyExistsContent": MessageLookupByLibrary.simpleMessage(
             "Screen with such name already exists"),
