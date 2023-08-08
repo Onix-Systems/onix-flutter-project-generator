@@ -66,6 +66,11 @@
       "name": "swaggerParser",
       "bloc": true,
       "exists": true
+    },
+    {
+      "name": "Summary",
+      "bloc": true,
+      "exists": true
     }
   ],
   "entities": [

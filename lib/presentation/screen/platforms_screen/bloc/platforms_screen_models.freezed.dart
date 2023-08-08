@@ -22,7 +22,6 @@ mixin _$PlatformsScreenEvent {
     required TResult Function(PlatformsList platformsList) onPlatformsChange,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
@@ -73,7 +72,7 @@ class _$PlatformsScreenEventCopyWithImpl<$Res,
     implements $PlatformsScreenEventCopyWith<$Res> {
   _$PlatformsScreenEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;

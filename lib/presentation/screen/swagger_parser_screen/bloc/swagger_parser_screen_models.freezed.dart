@@ -83,7 +83,7 @@ class _$SwaggerParserScreenEventCopyWithImpl<$Res,
     implements $SwaggerParserScreenEventCopyWith<$Res> {
   _$SwaggerParserScreenEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;
@@ -1007,102 +1007,102 @@ abstract class _$$_OnContinueCopyWith<$Res> {
 /// @nodoc
 class __$$_OnContinueCopyWithImpl<$Res>
     extends _$SwaggerParserScreenSRCopyWithImpl<$Res, _$_OnContinue>
-implements _$$_OnContinueCopyWith<$Res> {
-__$$_OnContinueCopyWithImpl(
-_$_OnContinue _value, $Res Function(_$_OnContinue) _then)
-    : super(_value, _then);
+    implements _$$_OnContinueCopyWith<$Res> {
+  __$$_OnContinueCopyWithImpl(
+      _$_OnContinue _value, $Res Function(_$_OnContinue) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
 class _$_OnContinue implements _OnContinue {
-const _$_OnContinue();
+  const _$_OnContinue();
 
-@override
-String toString() {
-return 'SwaggerParserScreenSR.onContinue()';
-}
+  @override
+  String toString() {
+    return 'SwaggerParserScreenSR.onContinue()';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType && other is _$_OnContinue);
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_OnContinue);
+  }
 
-@override
-int get hashCode => runtimeType.hashCode;
+  @override
+  int get hashCode => runtimeType.hashCode;
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
     required TResult Function(String message) onError,
     required TResult Function() onConflicting,
     required TResult Function() onContinue,
   }) {
-return onContinue();
-}
+    return onContinue();
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? onError,
     TResult? Function()? onConflicting,
     TResult? Function()? onContinue,
   }) {
-return onContinue?.call();
-}
+    return onContinue?.call();
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? onError,
     TResult Function()? onConflicting,
     TResult Function()? onContinue,
     required TResult orElse(),
   }) {
-if (onContinue != null) {
-return onContinue();
-}
-return orElse();
-}
+    if (onContinue != null) {
+      return onContinue();
+    }
+    return orElse();
+  }
 
-@override
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
     required TResult Function(_OnError value) onError,
     required TResult Function(_OnConflicting value) onConflicting,
     required TResult Function(_OnContinue value) onContinue,
   }) {
-return onContinue(this);
-}
+    return onContinue(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>({
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnError value)? onError,
     TResult? Function(_OnConflicting value)? onConflicting,
     TResult? Function(_OnContinue value)? onContinue,
   }) {
-return onContinue?.call(this);
-}
+    return onContinue?.call(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeMap<TResult extends Object?>({
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnError value)? onError,
     TResult Function(_OnConflicting value)? onConflicting,
     TResult Function(_OnContinue value)? onContinue,
     required TResult orElse(),
   }) {
-if (onContinue != null) {
-return onContinue(this);
-}
-return orElse();
-}
+    if (onContinue != null) {
+      return onContinue(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class _OnContinue implements SwaggerParserScreenSR {
-const factory _OnContinue() = _$_OnContinue;
+  const factory _OnContinue() = _$_OnContinue;
 }
 
 /// @nodoc

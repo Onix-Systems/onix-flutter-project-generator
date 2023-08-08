@@ -24,7 +24,6 @@ mixin _$ScreensScreenEvent {
     required TResult Function() onScreenModify,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
@@ -83,7 +82,7 @@ class _$ScreensScreenEventCopyWithImpl<$Res, $Val extends ScreensScreenEvent>
     implements $ScreensScreenEventCopyWith<$Res> {
   _$ScreensScreenEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;

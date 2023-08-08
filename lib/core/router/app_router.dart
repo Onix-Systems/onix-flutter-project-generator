@@ -9,6 +9,7 @@ import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/data_components_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/swagger_parser_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/summary_screen/summary_screen.dart';
 //{imports end}
 
 class AppRouter {
@@ -21,6 +22,7 @@ class AppRouter {
   static const _screensScreen = '/screens';
   static const _dataComponentsScreen = '/data_components';
   static const _swaggerParserScreen = '/swagger_parser';
+  static const _summaryScreen = '/summary';
   //{consts end}
 
   static final AppRouter _instance = AppRouter._privateConstructor();
@@ -34,6 +36,7 @@ class AppRouter {
   static String get screensScreen => _screensScreen;
   static String get dataComponentsScreen => _dataComponentsScreen;
   static String get swaggerParserScreen => _swaggerParserScreen;
+  static String get summaryScreen => _summaryScreen;
   //{getters end}
 
   AppRouter._privateConstructor() {
@@ -101,6 +104,13 @@ class AppRouter {
           path: _swaggerParserScreen,
           name: 'SwaggerParserScreen',
           builder: (context, state) => SwaggerParserScreen(
+            config: state.extra as Config,
+          ),
+        ),
+        GoRoute(
+          path: _summaryScreen,
+          name: 'SummaryScreen',
+          builder: (context, state) => SummaryScreen(
             config: state.extra as Config,
           ),
         ),

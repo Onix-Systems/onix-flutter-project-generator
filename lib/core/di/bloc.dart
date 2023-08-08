@@ -16,7 +16,10 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/b
 
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bloc/swagger_parser_screen_bloc.dart';
 
+import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summary_screen_bloc.dart';
+
 void registerBloc(GetIt getIt) {
+  getIt.registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new);
   getIt.registerFactory<SwaggerParserScreenBloc>(SwaggerParserScreenBloc.new);
   getIt.registerFactory<DataComponentsScreenBloc>(DataComponentsScreenBloc.new);
   getIt.registerFactory<ScreensScreenBloc>(ScreensScreenBloc.new);

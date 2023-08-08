@@ -29,6 +29,16 @@ class Source {
     return 'Source{name: $name, dataComponents: $dataComponents, exists: $exists, isGenerated: $isGenerated, paths: $paths, tag: $tag, dataComponentsNames: $dataComponentsNames}';
   }
 
+  Source.copyOf(Source source)
+      : name = source.name,
+        dataComponents =
+            source.dataComponents.map((e) => DataComponent.copyOf(e)).toList(),
+        exists = source.exists,
+        isGenerated = source.isGenerated,
+        paths = source.paths.map((e) => Path.copyOf(e)).toList(),
+        tag = source.tag,
+        dataComponentsNames = source.dataComponentsNames;
+
   factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
 
   Map<String, dynamic> toJson() => _$SourceToJson(this);

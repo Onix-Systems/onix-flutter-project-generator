@@ -119,9 +119,10 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
   }
 
   void _onContinue(BuildContext context, DataComponentsScreenState state) {
-    // context.go(AppRouter.swaggerParserScreen, extra: widget.config.copyWith(
-    //   sources: state.sources,
-    //   dataComponents: state.dataComponents,
-    // ));
+    context.go(AppRouter.summaryScreen,
+        extra: widget.config.copyWith(
+          sources: state.config.sources,
+          dataComponents: state.config.dataComponents,
+        ));
   }
 }

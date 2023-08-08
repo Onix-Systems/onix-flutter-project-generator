@@ -60,6 +60,8 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
           data: json as Map<String, dynamic>,
           projectName: state.config.projectName);
 
+      bool withConflicts = false;
+
       final stateComponents =
           Set<DataComponent>.from(state.config.dataComponents);
 
@@ -68,14 +70,9 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
             .where((element) =>
                 element.name.pascalCase == dataComponent.name.pascalCase)
             .isEmpty) {
-          stateComponents.add(dataComponent);
-        }
-      }
-
-      for (final dataComponent in stateComponents) {
-        if (dataComponent.isGenerated) {
-          parsedData.dataComponents.removeWhere((element) =>
-              element.name.pascalCase == dataComponent.name.pascalCase);
+          stateComponents.add(DataComponent.copyOf(dataComponent));
+        } else {
+          withConflicts = true;
         }
       }
 
@@ -86,7 +83,7 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
             .where((element) =>
                 element.name.pascalCase == parsedSource.name.pascalCase)
             .isEmpty) {
-          stateSources.add(parsedSource);
+          stateSources.add(Source.copyOf(parsedSource));
         } else {
           final stateSource = stateSources.firstWhere((element) =>
               element.name.pascalCase == parsedSource.name.pascalCase);
@@ -94,29 +91,12 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
           for (var element in parsedSource.dataComponents) {
             if (!stateSource.dataComponents.any((component) =>
                 component.name.pascalCase == element.name.pascalCase)) {
-              stateSource.dataComponents.add(element);
+              stateSource.dataComponents.add(DataComponent.copyOf(element));
+            } else {
+              withConflicts = true;
             }
           }
         }
-      }
-
-      for (final stateSource in stateSources) {
-        final stateComponents = <DataComponent>{};
-        for (final dataComponent in stateSource.dataComponents) {
-          stateComponents.add(dataComponent);
-        }
-
-        for (final parsedSource in parsedData.sources) {
-          parsedSource.dataComponents.removeWhere((element) =>
-              stateComponents.any((component) =>
-                  component.isGenerated &&
-                  component.name.pascalCase == element.name.pascalCase));
-        }
-      }
-
-      if (parsedData.sources.isNotEmpty) {
-        parsedData.sources
-            .removeWhere((element) => element.dataComponents.isEmpty);
       }
 
       await hideProgress();
@@ -129,10 +109,10 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
         parsedData: parsedData,
       ));
 
-      if (parsedData.dataComponents.isEmpty && parsedData.sources.isEmpty) {
-        addSr(const SwaggerParserScreenSR.onContinue());
-      } else {
+      if (withConflicts) {
         addSr(const SwaggerParserScreenSR.onConflicting());
+      } else {
+        addSr(const SwaggerParserScreenSR.onContinue());
       }
     } catch (e) {
       await hideProgress();
