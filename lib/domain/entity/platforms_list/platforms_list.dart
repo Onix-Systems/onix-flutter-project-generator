@@ -28,6 +28,6 @@ class PlatformsList with _$PlatformsList {
     if (windows) platforms.add('windows');
     if (linux) platforms.add('linux');
 
-    return platforms.join(',');
+    return platforms.join(', ');
   }
 }

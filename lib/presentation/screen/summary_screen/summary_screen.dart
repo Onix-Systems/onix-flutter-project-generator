@@ -7,6 +7,8 @@ import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summary_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_cell.dart';
+import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 
 class SummaryScreen extends StatefulWidget {
@@ -52,8 +54,100 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Spacer(),
+            const Delimiter.height(20),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: AppColors.inactiveText,
+                    width: 2,
+                    style: BorderStyle.solid,
+                    strokeAlign: BorderSide.strokeAlignOutside,
+                  ),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    SummaryCell(
+                      variable: 'Project path',
+                      value: widget.config.projectPath,
+                    ),
+                    SummaryCell(
+                      variable: 'Project name',
+                      value: widget.config.projectName,
+                    ),
+                    SummaryCell(
+                      variable: 'Organization',
+                      value: widget.config.organization,
+                    ),
+                    SummaryCell(
+                      variable: 'Platforms',
+                      value: widget.config.platformsList.toString(),
+                    ),
+                    SummaryCell(
+                      variable: 'Flavorize',
+                      value: widget.config.flavorize.toString(),
+                    ),
+                    if (widget.config.flavors.isNotEmpty)
+                      SummaryCell(
+                        variable: 'Flavors',
+                        value:
+                            'dev, prod, ${widget.config.flavors.split(' ').join(', ')}',
+                      ),
+                    SummaryCell(
+                      variable: 'Generate signing key',
+                      value: widget.config.generateSigningKey.toString(),
+                    ),
+                    SummaryCell(
+                      variable: 'Generate sonar config',
+                      value: widget.config.useSonar.toString(),
+                    ),
+                    SummaryCell(
+                      variable: 'Navigation router',
+                      value: widget.config.router.name,
+                    ),
+                    SummaryCell(
+                      variable: 'Localization method',
+                      value: widget.config.localization.name,
+                    ),
+                    SummaryCell(
+                      variable: 'Theming',
+                      value: widget.config.theming.name,
+                    ),
+                    SummaryCell(
+                      variable: 'Integrate device preview',
+                      value: widget.config.integrateDevicePreview.toString(),
+                    ),
+                    SummaryCell(
+                        variable: 'Generate screens',
+                        value: widget.config.screens
+                            .map((e) => '{name: ${e.name}, bloc: ${e.bloc}}')
+                            .join(', ')),
+                    SummaryCell(
+                      variable: 'Swagger URL',
+                      value: widget.config.swaggerUrl,
+                    ),
+                    SummaryCell(
+                      variable: 'Sources',
+                      value: widget.config.sources
+                          .map((e) =>
+                              '${e.name}(${e.dataComponents.map((e) => e.name).join(', ')})')
+                          .join('\n\n'),
+                    ),
+                    SummaryCell(
+                        variable: 'Data components',
+                        value: widget.config.dataComponents
+                            .map((e) => e.name)
+                            .join(', ')),
+                  ],
+                ),
+              ),
+            ),
+            const Delimiter.height(20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
