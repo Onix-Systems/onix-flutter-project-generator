@@ -27,7 +27,7 @@ Future<void> main() async {
         size: Size(1000, 850),
         center: true,
         skipTaskbar: false,
-        titleBarStyle: TitleBarStyle.normal,
+        titleBarStyle: TitleBarStyle.hidden,
         title: 'Onix Flutter Project Generator',
       );
       await windowManager.waitUntilReadyToShow(windowOptions, () async {
