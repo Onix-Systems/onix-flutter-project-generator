@@ -109,7 +109,7 @@ class _$DataComponentsScreenEventCopyWithImpl<$Res,
     implements $DataComponentsScreenEventCopyWith<$Res> {
   _$DataComponentsScreenEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;
@@ -1216,22 +1216,22 @@ mixin _$DataComponentsScreenSR {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
+  TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? error,
   }) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
     required TResult Function(_Error value) error,
   }) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Error value)? error,
   }) =>

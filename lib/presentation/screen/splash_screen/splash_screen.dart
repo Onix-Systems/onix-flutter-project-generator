@@ -15,8 +15,6 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart'
 import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../core/di/app.dart';
-
 class SplashScreen extends StatefulWidget {
   final bool skipSplash;
 
@@ -119,7 +117,6 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
     getDirectoryPath().then(
       (value) {
         if (value != null) {
-          logger.f('Selected path: $value');
           context.go(AppRouter.procedureSelectionScreen,
               extra: Config(projectPath: value));
         } else {

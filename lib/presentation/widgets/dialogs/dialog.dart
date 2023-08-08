@@ -44,6 +44,8 @@ class Dialogs {
     required BuildContext context,
     bool isError = false,
     String title = '',
+    String? okLabel,
+    String? cancelLabel,
     required Widget content,
     VoidCallback? onOk,
     VoidCallback? onCancel,
@@ -63,14 +65,14 @@ class Dialogs {
         content: content,
         actions: [
           CupertinoDialogAction(
-            child: Text(S.of(context).ok),
+            child: Text(okLabel ?? S.of(context).ok),
             onPressed: () {
               onOk?.call();
               Navigator.of(ctx).pop();
             },
           ),
           CupertinoDialogAction(
-            child: Text(S.of(context).cancel),
+            child: Text(cancelLabel ?? S.of(context).cancel),
             onPressed: () {
               onCancel?.call();
               Navigator.of(ctx).pop();

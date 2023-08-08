@@ -22,103 +22,114 @@ class EntityTableExpansionTile extends StatefulWidget {
 }
 
 class _EntityTableExpansionTileState extends State<EntityTableExpansionTile> {
-  bool expanded = true;
+  bool expanded = false;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: CupertinoColors.systemGrey,
-          width: 0.0, // One physical pixel.
-          style: BorderStyle.solid,
-        ),
-        borderRadius: BorderRadius.circular(10),
-        color: expanded
-            ? AppColors.grayBG
-            : CupertinoColors.activeBlue.withOpacity(0.1),
-      ),
-      child: Column(
-        children: [
-          Material(
-            color: Colors.transparent,
+    return BlocConsumer<DataComponentsScreenBloc, DataComponentsScreenState>(
+      listener: (context, state) {
+        if (state.config.dataComponents.isNotEmpty) {
+          setState(() {
+            expanded = true;
+          });
+        }
+      },
+      builder: (context, state) {
+        return Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: CupertinoColors.systemGrey,
+              width: 0.0, // One physical pixel.
+              style: BorderStyle.solid,
+            ),
             borderRadius: BorderRadius.circular(10),
-            clipBehavior: Clip.antiAlias,
-            child: InkWell(
-              onTap: () {
-                setState(() {
-                  expanded = !expanded;
-                });
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: CupertinoListTile(
-                  padding: EdgeInsets.zero,
-                  title: Stack(
-                    alignment: Alignment.center,
-                    clipBehavior: Clip.none,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+            color: expanded
+                ? AppColors.grayBG
+                : CupertinoColors.activeBlue.withOpacity(0.1),
+          ),
+          child: Column(
+            children: [
+              Material(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(10),
+                clipBehavior: Clip.antiAlias,
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      expanded = !expanded;
+                    });
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: CupertinoListTile(
+                      padding: EdgeInsets.zero,
+                      title: Stack(
+                        alignment: Alignment.center,
+                        clipBehavior: Clip.none,
                         children: [
-                          Expanded(
-                            child: Text(
-                              'Standalone data components: ${widget.dataComponents.length}',
-                              textAlign: TextAlign.center,
-                              style: context.appTextStyles.fs18?.copyWith(
-                                  color: CupertinoColors.activeOrange),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Standalone data components: ${widget.dataComponents.length}',
+                                  textAlign: TextAlign.center,
+                                  style: context.appTextStyles.fs18?.copyWith(
+                                      color: CupertinoColors.activeOrange),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Positioned(
+                            left: 0,
+                            child: AppFilledButton(
+                              label: S.of(context).addComponent,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 5),
+                              minimumSize: const Size(0, 50),
+                              icon: CupertinoIcons.add,
+                              onPressed: () =>
+                                  showCupertinoModalPopup<DataComponent>(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (context) => const AddComponentDialog(
+                                  dataComponent: null,
+                                  standalone: false,
+                                ),
+                              ).then((entity) {
+                                if (entity != null) {
+                                  blocOf(context).add(
+                                    DataComponentsScreenEventAddDataComponent(
+                                        dataComponent: entity, source: null),
+                                  );
+                                }
+                              }),
                             ),
                           ),
                         ],
                       ),
-                      Positioned(
-                        left: 0,
-                        child: AppFilledButton(
-                          label: S.of(context).addComponent,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 5),
-                          minimumSize: const Size(0, 50),
-                          icon: CupertinoIcons.add,
-                          onPressed: () {
-                            showCupertinoModalPopup<DataComponent>(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (context) => const AddComponentDialog(
-                                dataComponent: null,
-                                standalone: false,
-                              ),
-                            ).then((entity) {
-                              if (entity != null) {
-                                blocOf(context).add(
-                                  DataComponentsScreenEventAddDataComponent(
-                                      dataComponent: entity, source: null),
-                                );
-                              }
-                            });
-                          },
-                        ),
+                      trailing: Icon(
+                        expanded
+                            ? CupertinoIcons.chevron_up
+                            : CupertinoIcons.chevron_down,
+                        color: CupertinoColors.activeOrange,
                       ),
-                    ],
-                  ),
-                  trailing: Icon(
-                    expanded
-                        ? CupertinoIcons.chevron_up
-                        : CupertinoIcons.chevron_down,
-                    color: CupertinoColors.activeOrange,
+                    ),
                   ),
                 ),
               ),
-            ),
+              if (expanded)
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  child: ComponentsTable(
+                    dataComponents: widget.dataComponents.toSet(),
+                  ),
+                ),
+            ],
           ),
-          if (expanded)
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-              child: ComponentsTable(
-                dataComponents: widget.dataComponents.toSet(),
-              ),
-            ),
-        ],
-      ),
+        );
+      },
     );
   }
 

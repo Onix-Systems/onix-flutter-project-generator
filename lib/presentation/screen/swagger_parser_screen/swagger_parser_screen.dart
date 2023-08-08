@@ -59,6 +59,20 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
         title: S.of(context).error,
         content: error,
       ),
+      onConflicting: () => Dialogs.showOkCancelDialog(
+        context: context,
+        isError: true,
+        okLabel: 'Replace',
+        cancelLabel: 'Ignore',
+        title: S.of(context).error,
+        content: Text(
+          'Swagger file contains components conflicting with existing. Replace with parsed components or ignore conflicting parsed data?',
+          style: context.appTextStyles.fs18,
+        ),
+        onOk: () =>
+            blocOf(context).add(const SwaggerParserScreenEventOnReplace()),
+        onCancel: () => _onContinue(context, blocOf(context).state),
+      ),
       onContinue: () => _onContinue(context, blocOf(context).state),
     );
   }

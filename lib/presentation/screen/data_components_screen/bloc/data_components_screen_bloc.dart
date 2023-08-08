@@ -2,9 +2,7 @@ import 'dart:async';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
-import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
 import 'package:recase/recase.dart';
 
@@ -26,44 +24,8 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
   ) {
     emit(state.copyWith(
       config: event.config.copyWith(
-        sources: {
-          Source(
-              name: 'Time',
-              exists: true,
-              isGenerated: false,
-              dataComponents: [
-                DataComponent(
-                    name: 'Time',
-                    exists: true,
-                    isGenerated: false,
-                    properties: [
-                      Property(
-                        name: 'currentDateTime',
-                        type: 'DateTime',
-                      ),
-                    ])
-                  ..setSourceName('Time'),
-              ]),
-          ...event.config.sources,
-        },
-        dataComponents: {
-          DataComponent(
-            name: 'Auth',
-            exists: true,
-            isGenerated: false,
-            properties: [
-              Property(
-                name: 'accessToken',
-                type: 'String',
-              ),
-              Property(
-                name: 'refreshToken',
-                type: 'String',
-              ),
-            ],
-          ),
-          ...event.config.dataComponents,
-        },
+        sources: event.config.sources,
+        dataComponents: event.config.dataComponents,
       ),
     ));
   }

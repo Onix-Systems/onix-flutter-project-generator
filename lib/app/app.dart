@@ -39,7 +39,7 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             title: '',
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
-            themeMode: state.themeMode,
+            themeMode: ThemeMode.dark /*state.themeMode*/,
             routeInformationProvider: AppRouter.router.routeInformationProvider,
             routeInformationParser: AppRouter.router.routeInformationParser,
             routerDelegate: AppRouter.router.routerDelegate,

@@ -11,4 +11,9 @@ class SwaggerData {
     required this.dataComponents,
     required this.sources,
   });
+
+  SwaggerData.empty()
+      : basePath = '',
+        dataComponents = {},
+        sources = {};
 }

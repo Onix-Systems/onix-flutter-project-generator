@@ -65,22 +65,24 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
         child: Column(
           children: [
             Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    state.config.sources.isNotEmpty
-                        ? SourceTableExpansionTile(
-                            sources: state.config.sources.toList(),
-                          )
-                        : const SizedBox(),
-                    const SizedBox(height: 20),
-                    state.config.dataComponents.isNotEmpty
-                        ? EntityTableExpansionTile(
-                            dataComponents:
-                                state.config.dataComponents.toList(),
-                          )
-                        : const SizedBox(),
-                  ],
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SourceTableExpansionTile(
+                        sources: state.config.sources.toList(),
+                      ),
+                      const SizedBox(height: 20),
+                      EntityTableExpansionTile(
+                        dataComponents: state.config.dataComponents.toList(),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

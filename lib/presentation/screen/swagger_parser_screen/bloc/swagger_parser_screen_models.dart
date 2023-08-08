@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/util/swagger_parser/swagger_data.dart';
 
 part 'swagger_parser_screen_models.freezed.dart';
 
@@ -13,6 +14,9 @@ class SwaggerParserScreenEvent with _$SwaggerParserScreenEvent {
     required String url,
   }) = SwaggerParserScreenEventOnUrlChanged;
 
+  const factory SwaggerParserScreenEvent.onReplace() =
+      SwaggerParserScreenEventOnReplace;
+
   const factory SwaggerParserScreenEvent.parse({
     required String url,
   }) = SwaggerParserScreenEventParse;
@@ -24,6 +28,8 @@ class SwaggerParserScreenSR with _$SwaggerParserScreenSR {
     required String message,
   }) = _OnError;
 
+  const factory SwaggerParserScreenSR.onConflicting() = _OnConflicting;
+
   const factory SwaggerParserScreenSR.onContinue() = _OnContinue;
 }
 
@@ -31,5 +37,6 @@ class SwaggerParserScreenSR with _$SwaggerParserScreenSR {
 class SwaggerParserScreenState with _$SwaggerParserScreenState {
   const factory SwaggerParserScreenState.data({
     required Config config,
+    required SwaggerData parsedData,
   }) = SwaggerParserScreenStateData;
 }
