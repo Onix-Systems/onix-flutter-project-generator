@@ -20,6 +20,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
+    on<GenerationScreenEventOpenProject>(_openProject);
   }
 
   FutureOr<void> _onInit(
@@ -238,6 +239,17 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       outputService.add('{#info}Entities generated!');
     }
+  }
+
+  FutureOr<void> _openProject(GenerationScreenEventOpenProject event,
+      Emitter<GenerationScreenState> emit) async {
+    var mainProcess = await startProcess(
+        workingDirectory:
+            '${state.config.projectPath}/${state.config.projectName}');
+
+    mainProcess.stdin.writeln('open -na \'Android Studio.app\' .');
+
+    await mainProcess.exitCode;
   }
 
   Future<Process> startProcess(

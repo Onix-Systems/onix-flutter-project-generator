@@ -20,36 +20,38 @@ mixin _$GenerationScreenEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
     required TResult Function() generateProject,
+    required TResult Function() open,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
     TResult? Function()? generateProject,
+    TResult? Function()? open,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
     TResult Function()? generateProject,
+    TResult Function()? open,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GenerationScreenEventInit value) init,
     required TResult Function(GenerationScreenEventGenerateProject value)
         generateProject,
+    required TResult Function(GenerationScreenEventOpenProject value) open,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GenerationScreenEventInit value)? init,
     TResult? Function(GenerationScreenEventGenerateProject value)?
         generateProject,
+    TResult? Function(GenerationScreenEventOpenProject value)? open,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +59,7 @@ mixin _$GenerationScreenEvent {
     TResult Function(GenerationScreenEventInit value)? init,
     TResult Function(GenerationScreenEventGenerateProject value)?
         generateProject,
+    TResult Function(GenerationScreenEventOpenProject value)? open,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -160,6 +163,7 @@ class _$GenerationScreenEventInit implements GenerationScreenEventInit {
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
     required TResult Function() generateProject,
+    required TResult Function() open,
   }) {
     return init(config);
   }
@@ -169,6 +173,7 @@ class _$GenerationScreenEventInit implements GenerationScreenEventInit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
     TResult? Function()? generateProject,
+    TResult? Function()? open,
   }) {
     return init?.call(config);
   }
@@ -178,6 +183,7 @@ class _$GenerationScreenEventInit implements GenerationScreenEventInit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
     TResult Function()? generateProject,
+    TResult Function()? open,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -192,6 +198,7 @@ class _$GenerationScreenEventInit implements GenerationScreenEventInit {
     required TResult Function(GenerationScreenEventInit value) init,
     required TResult Function(GenerationScreenEventGenerateProject value)
         generateProject,
+    required TResult Function(GenerationScreenEventOpenProject value) open,
   }) {
     return init(this);
   }
@@ -202,6 +209,7 @@ class _$GenerationScreenEventInit implements GenerationScreenEventInit {
     TResult? Function(GenerationScreenEventInit value)? init,
     TResult? Function(GenerationScreenEventGenerateProject value)?
         generateProject,
+    TResult? Function(GenerationScreenEventOpenProject value)? open,
   }) {
     return init?.call(this);
   }
@@ -212,6 +220,7 @@ class _$GenerationScreenEventInit implements GenerationScreenEventInit {
     TResult Function(GenerationScreenEventInit value)? init,
     TResult Function(GenerationScreenEventGenerateProject value)?
         generateProject,
+    TResult Function(GenerationScreenEventOpenProject value)? open,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -276,6 +285,7 @@ class _$GenerationScreenEventGenerateProject
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
     required TResult Function() generateProject,
+    required TResult Function() open,
   }) {
     return generateProject();
   }
@@ -285,6 +295,7 @@ class _$GenerationScreenEventGenerateProject
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
     TResult? Function()? generateProject,
+    TResult? Function()? open,
   }) {
     return generateProject?.call();
   }
@@ -294,6 +305,7 @@ class _$GenerationScreenEventGenerateProject
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
     TResult Function()? generateProject,
+    TResult Function()? open,
     required TResult orElse(),
   }) {
     if (generateProject != null) {
@@ -308,6 +320,7 @@ class _$GenerationScreenEventGenerateProject
     required TResult Function(GenerationScreenEventInit value) init,
     required TResult Function(GenerationScreenEventGenerateProject value)
         generateProject,
+    required TResult Function(GenerationScreenEventOpenProject value) open,
   }) {
     return generateProject(this);
   }
@@ -318,6 +331,7 @@ class _$GenerationScreenEventGenerateProject
     TResult? Function(GenerationScreenEventInit value)? init,
     TResult? Function(GenerationScreenEventGenerateProject value)?
         generateProject,
+    TResult? Function(GenerationScreenEventOpenProject value)? open,
   }) {
     return generateProject?.call(this);
   }
@@ -328,6 +342,7 @@ class _$GenerationScreenEventGenerateProject
     TResult Function(GenerationScreenEventInit value)? init,
     TResult Function(GenerationScreenEventGenerateProject value)?
         generateProject,
+    TResult Function(GenerationScreenEventOpenProject value)? open,
     required TResult orElse(),
   }) {
     if (generateProject != null) {
@@ -344,6 +359,124 @@ abstract class GenerationScreenEventGenerateProject
 }
 
 /// @nodoc
+abstract class _$$GenerationScreenEventOpenProjectCopyWith<$Res> {
+  factory _$$GenerationScreenEventOpenProjectCopyWith(
+          _$GenerationScreenEventOpenProject value,
+          $Res Function(_$GenerationScreenEventOpenProject) then) =
+      __$$GenerationScreenEventOpenProjectCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GenerationScreenEventOpenProjectCopyWithImpl<$Res>
+    extends _$GenerationScreenEventCopyWithImpl<$Res,
+        _$GenerationScreenEventOpenProject>
+    implements _$$GenerationScreenEventOpenProjectCopyWith<$Res> {
+  __$$GenerationScreenEventOpenProjectCopyWithImpl(
+      _$GenerationScreenEventOpenProject _value,
+      $Res Function(_$GenerationScreenEventOpenProject) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GenerationScreenEventOpenProject
+    implements GenerationScreenEventOpenProject {
+  const _$GenerationScreenEventOpenProject();
+
+  @override
+  String toString() {
+    return 'GenerationScreenEvent.open()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GenerationScreenEventOpenProject);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function() generateProject,
+    required TResult Function() open,
+  }) {
+    return open();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function()? generateProject,
+    TResult? Function()? open,
+  }) {
+    return open?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function()? generateProject,
+    TResult Function()? open,
+    required TResult orElse(),
+  }) {
+    if (open != null) {
+      return open();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GenerationScreenEventInit value) init,
+    required TResult Function(GenerationScreenEventGenerateProject value)
+        generateProject,
+    required TResult Function(GenerationScreenEventOpenProject value) open,
+  }) {
+    return open(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GenerationScreenEventInit value)? init,
+    TResult? Function(GenerationScreenEventGenerateProject value)?
+        generateProject,
+    TResult? Function(GenerationScreenEventOpenProject value)? open,
+  }) {
+    return open?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GenerationScreenEventInit value)? init,
+    TResult Function(GenerationScreenEventGenerateProject value)?
+        generateProject,
+    TResult Function(GenerationScreenEventOpenProject value)? open,
+    required TResult orElse(),
+  }) {
+    if (open != null) {
+      return open(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GenerationScreenEventOpenProject
+    implements GenerationScreenEvent {
+  const factory GenerationScreenEventOpenProject() =
+      _$GenerationScreenEventOpenProject;
+}
+
+/// @nodoc
 mixin _$GenerationScreenSR {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -353,43 +486,43 @@ mixin _$GenerationScreenSR {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadFinished,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult maybeWhen<TResult extends Object?>({
+TResult Function()? loadFinished,
+required TResult orElse(),
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult map<TResult extends Object?>({
+required TResult Function(_LoadFinished value) loadFinished,
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult? mapOrNull<TResult extends Object?>({
+TResult? Function(_LoadFinished value)? loadFinished,
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult maybeMap<TResult extends Object?>({
+TResult Function(_LoadFinished value)? loadFinished,
+required TResult orElse(),
+}) =>
+throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $GenerationScreenSRCopyWith<$Res> {
-  factory $GenerationScreenSRCopyWith(
-          GenerationScreenSR value, $Res Function(GenerationScreenSR) then) =
-      _$GenerationScreenSRCopyWithImpl<$Res, GenerationScreenSR>;
+factory $GenerationScreenSRCopyWith(
+GenerationScreenSR value, $Res Function(GenerationScreenSR) then) =
+_$GenerationScreenSRCopyWithImpl<$Res, GenerationScreenSR>;
 }
 
 /// @nodoc
 class _$GenerationScreenSRCopyWithImpl<$Res, $Val extends GenerationScreenSR>
-    implements $GenerationScreenSRCopyWith<$Res> {
-  _$GenerationScreenSRCopyWithImpl(this._value, this._then);
+implements $GenerationScreenSRCopyWith<$Res> {
+_$GenerationScreenSRCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
   final $Val _value;
@@ -399,14 +532,14 @@ class _$GenerationScreenSRCopyWithImpl<$Res, $Val extends GenerationScreenSR>
 
 /// @nodoc
 abstract class _$$_LoadFinishedCopyWith<$Res> {
-  factory _$$_LoadFinishedCopyWith(
-          _$_LoadFinished value, $Res Function(_$_LoadFinished) then) =
-      __$$_LoadFinishedCopyWithImpl<$Res>;
+factory _$$_LoadFinishedCopyWith(
+_$_LoadFinished value, $Res Function(_$_LoadFinished) then) =
+__$$_LoadFinishedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$_LoadFinishedCopyWithImpl<$Res>
-    extends _$GenerationScreenSRCopyWithImpl<$Res, _$_LoadFinished>
+extends _$GenerationScreenSRCopyWithImpl<$Res, _$_LoadFinished>
     implements _$$_LoadFinishedCopyWith<$Res> {
   __$$_LoadFinishedCopyWithImpl(
       _$_LoadFinished _value, $Res Function(_$_LoadFinished) _then)

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
-import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/di/services.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/colored_line.dart';
@@ -104,7 +103,8 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
                               style: TextStyle(color: CupertinoColors.white),
                             ),
                             onPressed: () {
-                              //context.read<AppBloc>().add(const OpenProject());
+                              blocOf(context).add(
+                                  const GenerationScreenEventOpenProject());
                             },
                           ),
                           const SizedBox(width: 10),

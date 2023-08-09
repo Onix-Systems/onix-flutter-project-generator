@@ -21,41 +21,24 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Config {
   String get projectPath => throw _privateConstructorUsedError;
-
   String get projectName => throw _privateConstructorUsedError;
-
   String get organization => throw _privateConstructorUsedError;
-
   PlatformsList get platformsList => throw _privateConstructorUsedError;
-
   bool get flavorize => throw _privateConstructorUsedError;
-
   String get flavors => throw _privateConstructorUsedError;
-
   bool get generateSigningKey => throw _privateConstructorUsedError;
-
   bool get useSonar => throw _privateConstructorUsedError;
-
   ProjectRouter get router => throw _privateConstructorUsedError;
-
   ProjectLocalization get localization => throw _privateConstructorUsedError;
-
   ProjectTheming get theming => throw _privateConstructorUsedError;
-
   bool get integrateDevicePreview => throw _privateConstructorUsedError;
-
   List<String> get signingVars => throw _privateConstructorUsedError;
-
   Set<Screen> get screens => throw _privateConstructorUsedError;
-
   String get swaggerUrl => throw _privateConstructorUsedError;
-
   Set<DataComponent> get dataComponents => throw _privateConstructorUsedError;
-
   Set<Source> get sources => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
@@ -64,7 +47,6 @@ mixin _$Config {
 abstract class $ConfigCopyWith<$Res> {
   factory $ConfigCopyWith(Config value, $Res Function(Config) then) =
       _$ConfigCopyWithImpl<$Res, Config>;
-
   @useResult
   $Res call(
       {String projectPath,
@@ -95,7 +77,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -205,7 +186,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
 abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   factory _$$_ConfigCopyWith(_$_Config value, $Res Function(_$_Config) then) =
       __$$_ConfigCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -407,7 +387,6 @@ class _$_Config extends _Config {
   @JsonKey()
   final bool integrateDevicePreview;
   final List<String> _signingVars;
-
   @override
   @JsonKey()
   List<String> get signingVars {
@@ -417,7 +396,6 @@ class _$_Config extends _Config {
   }
 
   final Set<Screen> _screens;
-
   @override
   @JsonKey()
   Set<Screen> get screens {
@@ -430,7 +408,6 @@ class _$_Config extends _Config {
   @JsonKey()
   final String swaggerUrl;
   final Set<DataComponent> _dataComponents;
-
   @override
   @JsonKey()
   Set<DataComponent> get dataComponents {
@@ -440,7 +417,6 @@ class _$_Config extends _Config {
   }
 
   final Set<Source> _sources;
-
   @override
   @JsonKey()
   Set<Source> get sources {
@@ -545,62 +521,44 @@ abstract class _Config extends Config {
       final String swaggerUrl,
       final Set<DataComponent> dataComponents,
       final Set<Source> sources}) = _$_Config;
-
   const _Config._() : super._();
 
   factory _Config.fromJson(Map<String, dynamic> json) = _$_Config.fromJson;
 
   @override
   String get projectPath;
-
   @override
   String get projectName;
-
   @override
   String get organization;
-
   @override
   PlatformsList get platformsList;
-
   @override
   bool get flavorize;
-
   @override
   String get flavors;
-
   @override
   bool get generateSigningKey;
-
   @override
   bool get useSonar;
-
   @override
   ProjectRouter get router;
-
   @override
   ProjectLocalization get localization;
-
   @override
   ProjectTheming get theming;
-
   @override
   bool get integrateDevicePreview;
-
   @override
   List<String> get signingVars;
-
   @override
   Set<Screen> get screens;
-
   @override
   String get swaggerUrl;
-
   @override
   Set<DataComponent> get dataComponents;
-
   @override
   Set<Source> get sources;
-
   @override
   @JsonKey(ignore: true)
   _$$_ConfigCopyWith<_$_Config> get copyWith =>

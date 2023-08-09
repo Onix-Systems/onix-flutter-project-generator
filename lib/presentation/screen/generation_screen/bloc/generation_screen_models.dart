@@ -11,6 +11,8 @@ class GenerationScreenEvent with _$GenerationScreenEvent {
 
   const factory GenerationScreenEvent.generateProject() =
       GenerationScreenEventGenerateProject;
+
+  const factory GenerationScreenEvent.open() = GenerationScreenEventOpenProject;
 }
 
 @freezed
