@@ -2,6 +2,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'platforms_list.freezed.dart';
 
+part 'platforms_list.g.dart';
+
 @freezed
 class PlatformsList with _$PlatformsList {
   const PlatformsList._();
@@ -30,4 +32,7 @@ class PlatformsList with _$PlatformsList {
 
     return platforms.join(', ');
   }
+
+  factory PlatformsList.fromJson(Map<String, dynamic> json) =>
+      _$PlatformsListFromJson(json);
 }

@@ -8,9 +8,10 @@ import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_dialog.dart';
-import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/entity_table.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/components_table.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/add_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
+import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:recase/recase.dart';
 
@@ -100,7 +101,11 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                           }
                                         });
                                 },
-                                child: Text(S.of(context).modify),
+                                child: Text(
+                                  S.of(context).modify,
+                                  style: context.appTextStyles.fs18
+                                      ?.copyWith(color: AppColors.bgDark),
+                                ),
                               ),
                               const SizedBox(width: 10),
                               CupertinoButton(
@@ -126,7 +131,11 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                     }
                                   });
                                 },
-                                child: Text(S.of(context).addComponent),
+                                child: Text(
+                                  S.of(context).addComponent,
+                                  style: context.appTextStyles.fs18
+                                      ?.copyWith(color: AppColors.bgDark),
+                                ),
                               ),
                               const SizedBox(width: 10),
                               CupertinoButton(
@@ -145,7 +154,11 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                               source: widget.source),
                                         );
                                 },
-                                child: Text(S.of(context).delete),
+                                child: Text(
+                                  S.of(context).delete,
+                                  style: context.appTextStyles.fs18
+                                      ?.copyWith(color: AppColors.bgDark),
+                                ),
                               ),
                             ],
                           ),

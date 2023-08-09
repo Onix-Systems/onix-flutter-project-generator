@@ -67,24 +67,32 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
   ) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding:
+            const EdgeInsets.only(top: 40, bottom: 20, left: 20, right: 20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Flexible(
-              child: state.config.screens.isNotEmpty
-                  ? ScreenTable(
-                      screens: state.config.screens,
-                      onModifyScreen: (screen) => blocOf(context).add(
-                        const ScreensScreenEventOnScreenModify(),
-                      ),
-                      onDeleteScreen: (screen) => blocOf(context).add(
-                        ScreensScreenEventOnScreenDelete(
-                          screen: screen,
-                        ),
-                      ),
-                    )
-                  : const SizedBox(),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: CupertinoColors.systemGrey,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                clipBehavior: Clip.hardEdge,
+                child: ScreenTable(
+                  screens: state.config.screens,
+                  onModifyScreen: (screen) => blocOf(context).add(
+                    const ScreensScreenEventOnScreenModify(),
+                  ),
+                  onDeleteScreen: (screen) => blocOf(context).add(
+                    ScreensScreenEventOnScreenDelete(
+                      screen: screen,
+                    ),
+                  ),
+                ),
+              ),
             ),
             const Delimiter.height(20),
             Row(

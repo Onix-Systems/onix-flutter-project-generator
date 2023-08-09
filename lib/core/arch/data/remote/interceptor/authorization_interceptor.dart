@@ -39,7 +39,8 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
   }
 
   @override
-  Future<void> onError(DioError err, ErrorInterceptorHandler handler) async {
+  Future<void> onError(
+      DioException err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == HttpStatus.unauthorized) {
       final refreshToken = tokenRepository.refreshToken;
       final accessToken = tokenRepository.accessToken;
@@ -48,7 +49,7 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
             refreshToken.isEmpty ||
             accessToken == null ||
             accessToken.isEmpty) {
-          await sessionService().closeSession();
+          await sessionService.closeSession();
           return handler.next(err);
         }
         final request = TokenRequest(
@@ -57,20 +58,20 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
         );
         final authEntity = await _refresh(err, request);
         return await _resolveRequest(err, handler, authEntity);
-      } on DioError {
+      } on DioException {
         if (err.response?.statusCode == HttpStatus.unauthorized) {
-          await sessionService().closeSession();
+          await sessionService.closeSession();
         }
       } catch (e, stackTrace) {
         logger.crash(error: e, stackTrace: stackTrace);
-        await sessionService().closeSession();
+        await sessionService.closeSession();
       }
     }
     handler.next(err);
   }
 
   Future<AuthenticationEntity> _refresh(
-    DioError err,
+    DioException err,
     TokenRequest request,
   ) async {
     logger.d('_refresh start');
@@ -92,7 +93,7 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
   }
 
   Future<void> _resolveRequest(
-    DioError err,
+    DioException err,
     ErrorInterceptorHandler handler,
     AuthenticationEntity authEntity,
   ) async {

@@ -71,6 +71,11 @@
       "name": "Summary",
       "bloc": true,
       "exists": true
+    },
+    {
+      "name": "generation",
+      "bloc": true,
+      "exists": true
     }
   ],
   "entities": [

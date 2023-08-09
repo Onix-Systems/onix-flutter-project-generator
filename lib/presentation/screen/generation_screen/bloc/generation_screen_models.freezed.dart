@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'platforms_screen_models.dart';
+part of 'generation_screen_models.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,74 +15,78 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PlatformsScreenEvent {
+mixin _$GenerationScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
-    required TResult Function(PlatformsList platformsList) onPlatformsChange,
+    required TResult Function() generateProject,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
-    TResult? Function(PlatformsList platformsList)? onPlatformsChange,
+    TResult? Function()? generateProject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
-    TResult Function(PlatformsList platformsList)? onPlatformsChange,
+    TResult Function()? generateProject,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(PlatformsScreenEventInit value) init,
-    required TResult Function(PlatformsScreenEventOnPlatformsChange value)
-        onPlatformsChange,
+    required TResult Function(GenerationScreenEventInit value) init,
+    required TResult Function(GenerationScreenEventGenerateProject value)
+        generateProject,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PlatformsScreenEventInit value)? init,
-    TResult? Function(PlatformsScreenEventOnPlatformsChange value)?
-        onPlatformsChange,
+    TResult? Function(GenerationScreenEventInit value)? init,
+    TResult? Function(GenerationScreenEventGenerateProject value)?
+        generateProject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(PlatformsScreenEventInit value)? init,
-    TResult Function(PlatformsScreenEventOnPlatformsChange value)?
-        onPlatformsChange,
+    TResult Function(GenerationScreenEventInit value)? init,
+    TResult Function(GenerationScreenEventGenerateProject value)?
+        generateProject,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlatformsScreenEventCopyWith<$Res> {
-  factory $PlatformsScreenEventCopyWith(PlatformsScreenEvent value,
-          $Res Function(PlatformsScreenEvent) then) =
-      _$PlatformsScreenEventCopyWithImpl<$Res, PlatformsScreenEvent>;
+abstract class $GenerationScreenEventCopyWith<$Res> {
+  factory $GenerationScreenEventCopyWith(GenerationScreenEvent value,
+          $Res Function(GenerationScreenEvent) then) =
+      _$GenerationScreenEventCopyWithImpl<$Res, GenerationScreenEvent>;
 }
 
 /// @nodoc
-class _$PlatformsScreenEventCopyWithImpl<$Res,
-        $Val extends PlatformsScreenEvent>
-    implements $PlatformsScreenEventCopyWith<$Res> {
-  _$PlatformsScreenEventCopyWithImpl(this._value, this._then);
+class _$GenerationScreenEventCopyWithImpl<$Res,
+        $Val extends GenerationScreenEvent>
+    implements $GenerationScreenEventCopyWith<$Res> {
+  _$GenerationScreenEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$PlatformsScreenEventInitCopyWith<$Res> {
-  factory _$$PlatformsScreenEventInitCopyWith(_$PlatformsScreenEventInit value,
-          $Res Function(_$PlatformsScreenEventInit) then) =
-      __$$PlatformsScreenEventInitCopyWithImpl<$Res>;
+abstract class _$$GenerationScreenEventInitCopyWith<$Res> {
+  factory _$$GenerationScreenEventInitCopyWith(
+          _$GenerationScreenEventInit value,
+          $Res Function(_$GenerationScreenEventInit) then) =
+      __$$GenerationScreenEventInitCopyWithImpl<$Res>;
   @useResult
   $Res call({Config config});
 
@@ -90,11 +94,12 @@ abstract class _$$PlatformsScreenEventInitCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$PlatformsScreenEventInitCopyWithImpl<$Res>
-    extends _$PlatformsScreenEventCopyWithImpl<$Res, _$PlatformsScreenEventInit>
-    implements _$$PlatformsScreenEventInitCopyWith<$Res> {
-  __$$PlatformsScreenEventInitCopyWithImpl(_$PlatformsScreenEventInit _value,
-      $Res Function(_$PlatformsScreenEventInit) _then)
+class __$$GenerationScreenEventInitCopyWithImpl<$Res>
+    extends _$GenerationScreenEventCopyWithImpl<$Res,
+        _$GenerationScreenEventInit>
+    implements _$$GenerationScreenEventInitCopyWith<$Res> {
+  __$$GenerationScreenEventInitCopyWithImpl(_$GenerationScreenEventInit _value,
+      $Res Function(_$GenerationScreenEventInit) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +107,7 @@ class __$$PlatformsScreenEventInitCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$PlatformsScreenEventInit(
+    return _then(_$GenerationScreenEventInit(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -121,22 +126,22 @@ class __$$PlatformsScreenEventInitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
-  const _$PlatformsScreenEventInit({required this.config});
+class _$GenerationScreenEventInit implements GenerationScreenEventInit {
+  const _$GenerationScreenEventInit({required this.config});
 
   @override
   final Config config;
 
   @override
   String toString() {
-    return 'PlatformsScreenEvent.init(config: $config)';
+    return 'GenerationScreenEvent.init(config: $config)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PlatformsScreenEventInit &&
+            other is _$GenerationScreenEventInit &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -146,16 +151,15 @@ class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PlatformsScreenEventInitCopyWith<_$PlatformsScreenEventInit>
-      get copyWith =>
-          __$$PlatformsScreenEventInitCopyWithImpl<_$PlatformsScreenEventInit>(
-              this, _$identity);
+  _$$GenerationScreenEventInitCopyWith<_$GenerationScreenEventInit>
+      get copyWith => __$$GenerationScreenEventInitCopyWithImpl<
+          _$GenerationScreenEventInit>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
-    required TResult Function(PlatformsList platformsList) onPlatformsChange,
+    required TResult Function() generateProject,
   }) {
     return init(config);
   }
@@ -164,7 +168,7 @@ class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
-    TResult? Function(PlatformsList platformsList)? onPlatformsChange,
+    TResult? Function()? generateProject,
   }) {
     return init?.call(config);
   }
@@ -173,7 +177,7 @@ class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
-    TResult Function(PlatformsList platformsList)? onPlatformsChange,
+    TResult Function()? generateProject,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -185,9 +189,9 @@ class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(PlatformsScreenEventInit value) init,
-    required TResult Function(PlatformsScreenEventOnPlatformsChange value)
-        onPlatformsChange,
+    required TResult Function(GenerationScreenEventInit value) init,
+    required TResult Function(GenerationScreenEventGenerateProject value)
+        generateProject,
   }) {
     return init(this);
   }
@@ -195,9 +199,9 @@ class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PlatformsScreenEventInit value)? init,
-    TResult? Function(PlatformsScreenEventOnPlatformsChange value)?
-        onPlatformsChange,
+    TResult? Function(GenerationScreenEventInit value)? init,
+    TResult? Function(GenerationScreenEventGenerateProject value)?
+        generateProject,
   }) {
     return init?.call(this);
   }
@@ -205,9 +209,9 @@ class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(PlatformsScreenEventInit value)? init,
-    TResult Function(PlatformsScreenEventOnPlatformsChange value)?
-        onPlatformsChange,
+    TResult Function(GenerationScreenEventInit value)? init,
+    TResult Function(GenerationScreenEventGenerateProject value)?
+        generateProject,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -217,121 +221,83 @@ class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
   }
 }
 
-abstract class PlatformsScreenEventInit implements PlatformsScreenEvent {
-  const factory PlatformsScreenEventInit({required final Config config}) =
-      _$PlatformsScreenEventInit;
+abstract class GenerationScreenEventInit implements GenerationScreenEvent {
+  const factory GenerationScreenEventInit({required final Config config}) =
+      _$GenerationScreenEventInit;
 
   Config get config;
   @JsonKey(ignore: true)
-  _$$PlatformsScreenEventInitCopyWith<_$PlatformsScreenEventInit>
+  _$$GenerationScreenEventInitCopyWith<_$GenerationScreenEventInit>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$PlatformsScreenEventOnPlatformsChangeCopyWith<$Res> {
-  factory _$$PlatformsScreenEventOnPlatformsChangeCopyWith(
-          _$PlatformsScreenEventOnPlatformsChange value,
-          $Res Function(_$PlatformsScreenEventOnPlatformsChange) then) =
-      __$$PlatformsScreenEventOnPlatformsChangeCopyWithImpl<$Res>;
-  @useResult
-  $Res call({PlatformsList platformsList});
-
-  $PlatformsListCopyWith<$Res> get platformsList;
+abstract class _$$GenerationScreenEventGenerateProjectCopyWith<$Res> {
+  factory _$$GenerationScreenEventGenerateProjectCopyWith(
+          _$GenerationScreenEventGenerateProject value,
+          $Res Function(_$GenerationScreenEventGenerateProject) then) =
+      __$$GenerationScreenEventGenerateProjectCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$PlatformsScreenEventOnPlatformsChangeCopyWithImpl<$Res>
-    extends _$PlatformsScreenEventCopyWithImpl<$Res,
-        _$PlatformsScreenEventOnPlatformsChange>
-    implements _$$PlatformsScreenEventOnPlatformsChangeCopyWith<$Res> {
-  __$$PlatformsScreenEventOnPlatformsChangeCopyWithImpl(
-      _$PlatformsScreenEventOnPlatformsChange _value,
-      $Res Function(_$PlatformsScreenEventOnPlatformsChange) _then)
+class __$$GenerationScreenEventGenerateProjectCopyWithImpl<$Res>
+    extends _$GenerationScreenEventCopyWithImpl<$Res,
+        _$GenerationScreenEventGenerateProject>
+    implements _$$GenerationScreenEventGenerateProjectCopyWith<$Res> {
+  __$$GenerationScreenEventGenerateProjectCopyWithImpl(
+      _$GenerationScreenEventGenerateProject _value,
+      $Res Function(_$GenerationScreenEventGenerateProject) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? platformsList = null,
-  }) {
-    return _then(_$PlatformsScreenEventOnPlatformsChange(
-      platformsList: null == platformsList
-          ? _value.platformsList
-          : platformsList // ignore: cast_nullable_to_non_nullable
-              as PlatformsList,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PlatformsListCopyWith<$Res> get platformsList {
-    return $PlatformsListCopyWith<$Res>(_value.platformsList, (value) {
-      return _then(_value.copyWith(platformsList: value));
-    });
-  }
 }
 
 /// @nodoc
 
-class _$PlatformsScreenEventOnPlatformsChange
-    implements PlatformsScreenEventOnPlatformsChange {
-  const _$PlatformsScreenEventOnPlatformsChange({required this.platformsList});
-
-  @override
-  final PlatformsList platformsList;
+class _$GenerationScreenEventGenerateProject
+    implements GenerationScreenEventGenerateProject {
+  const _$GenerationScreenEventGenerateProject();
 
   @override
   String toString() {
-    return 'PlatformsScreenEvent.onPlatformsChange(platformsList: $platformsList)';
+    return 'GenerationScreenEvent.generateProject()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PlatformsScreenEventOnPlatformsChange &&
-            (identical(other.platformsList, platformsList) ||
-                other.platformsList == platformsList));
+            other is _$GenerationScreenEventGenerateProject);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, platformsList);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PlatformsScreenEventOnPlatformsChangeCopyWith<
-          _$PlatformsScreenEventOnPlatformsChange>
-      get copyWith => __$$PlatformsScreenEventOnPlatformsChangeCopyWithImpl<
-          _$PlatformsScreenEventOnPlatformsChange>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
-    required TResult Function(PlatformsList platformsList) onPlatformsChange,
+    required TResult Function() generateProject,
   }) {
-    return onPlatformsChange(platformsList);
+    return generateProject();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
-    TResult? Function(PlatformsList platformsList)? onPlatformsChange,
+    TResult? Function()? generateProject,
   }) {
-    return onPlatformsChange?.call(platformsList);
+    return generateProject?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
-    TResult Function(PlatformsList platformsList)? onPlatformsChange,
+    TResult Function()? generateProject,
     required TResult orElse(),
   }) {
-    if (onPlatformsChange != null) {
-      return onPlatformsChange(platformsList);
+    if (generateProject != null) {
+      return generateProject();
     }
     return orElse();
   }
@@ -339,53 +305,46 @@ class _$PlatformsScreenEventOnPlatformsChange
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(PlatformsScreenEventInit value) init,
-    required TResult Function(PlatformsScreenEventOnPlatformsChange value)
-        onPlatformsChange,
+    required TResult Function(GenerationScreenEventInit value) init,
+    required TResult Function(GenerationScreenEventGenerateProject value)
+        generateProject,
   }) {
-    return onPlatformsChange(this);
+    return generateProject(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PlatformsScreenEventInit value)? init,
-    TResult? Function(PlatformsScreenEventOnPlatformsChange value)?
-        onPlatformsChange,
+    TResult? Function(GenerationScreenEventInit value)? init,
+    TResult? Function(GenerationScreenEventGenerateProject value)?
+        generateProject,
   }) {
-    return onPlatformsChange?.call(this);
+    return generateProject?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(PlatformsScreenEventInit value)? init,
-    TResult Function(PlatformsScreenEventOnPlatformsChange value)?
-        onPlatformsChange,
+    TResult Function(GenerationScreenEventInit value)? init,
+    TResult Function(GenerationScreenEventGenerateProject value)?
+        generateProject,
     required TResult orElse(),
   }) {
-    if (onPlatformsChange != null) {
-      return onPlatformsChange(this);
+    if (generateProject != null) {
+      return generateProject(this);
     }
     return orElse();
   }
 }
 
-abstract class PlatformsScreenEventOnPlatformsChange
-    implements PlatformsScreenEvent {
-  const factory PlatformsScreenEventOnPlatformsChange(
-          {required final PlatformsList platformsList}) =
-      _$PlatformsScreenEventOnPlatformsChange;
-
-  PlatformsList get platformsList;
-  @JsonKey(ignore: true)
-  _$$PlatformsScreenEventOnPlatformsChangeCopyWith<
-          _$PlatformsScreenEventOnPlatformsChange>
-      get copyWith => throw _privateConstructorUsedError;
+abstract class GenerationScreenEventGenerateProject
+    implements GenerationScreenEvent {
+  const factory GenerationScreenEventGenerateProject() =
+      _$GenerationScreenEventGenerateProject;
 }
 
 /// @nodoc
-mixin _$PlatformsScreenSR {
+mixin _$GenerationScreenSR {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadFinished,
@@ -421,16 +380,16 @@ mixin _$PlatformsScreenSR {
 }
 
 /// @nodoc
-abstract class $PlatformsScreenSRCopyWith<$Res> {
-  factory $PlatformsScreenSRCopyWith(
-          PlatformsScreenSR value, $Res Function(PlatformsScreenSR) then) =
-      _$PlatformsScreenSRCopyWithImpl<$Res, PlatformsScreenSR>;
+abstract class $GenerationScreenSRCopyWith<$Res> {
+  factory $GenerationScreenSRCopyWith(
+          GenerationScreenSR value, $Res Function(GenerationScreenSR) then) =
+      _$GenerationScreenSRCopyWithImpl<$Res, GenerationScreenSR>;
 }
 
 /// @nodoc
-class _$PlatformsScreenSRCopyWithImpl<$Res, $Val extends PlatformsScreenSR>
-    implements $PlatformsScreenSRCopyWith<$Res> {
-  _$PlatformsScreenSRCopyWithImpl(this._value, this._then);
+class _$GenerationScreenSRCopyWithImpl<$Res, $Val extends GenerationScreenSR>
+    implements $GenerationScreenSRCopyWith<$Res> {
+  _$GenerationScreenSRCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
   final $Val _value;
@@ -447,7 +406,7 @@ abstract class _$$_LoadFinishedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadFinishedCopyWithImpl<$Res>
-    extends _$PlatformsScreenSRCopyWithImpl<$Res, _$_LoadFinished>
+    extends _$GenerationScreenSRCopyWithImpl<$Res, _$_LoadFinished>
     implements _$$_LoadFinishedCopyWith<$Res> {
   __$$_LoadFinishedCopyWithImpl(
       _$_LoadFinished _value, $Res Function(_$_LoadFinished) _then)
@@ -461,7 +420,7 @@ class _$_LoadFinished implements _LoadFinished {
 
   @override
   String toString() {
-    return 'PlatformsScreenSR.loadFinished()';
+    return 'GenerationScreenSR.loadFinished()';
   }
 
   @override
@@ -530,67 +489,69 @@ class _$_LoadFinished implements _LoadFinished {
   }
 }
 
-abstract class _LoadFinished implements PlatformsScreenSR {
+abstract class _LoadFinished implements GenerationScreenSR {
   const factory _LoadFinished() = _$_LoadFinished;
 }
 
 /// @nodoc
-mixin _$PlatformsScreenState {
+mixin _$GenerationScreenState {
   Config get config => throw _privateConstructorUsedError;
+  GeneratingState get generatingState => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) data,
+    required TResult Function(Config config, GeneratingState generatingState)
+        data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? data,
+    TResult? Function(Config config, GeneratingState generatingState)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? data,
+    TResult Function(Config config, GeneratingState generatingState)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(PlatformsScreenStateData value) data,
+    required TResult Function(GenerationScreenStateData value) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PlatformsScreenStateData value)? data,
+    TResult? Function(GenerationScreenStateData value)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(PlatformsScreenStateData value)? data,
+    TResult Function(GenerationScreenStateData value)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PlatformsScreenStateCopyWith<PlatformsScreenState> get copyWith =>
+  $GenerationScreenStateCopyWith<GenerationScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlatformsScreenStateCopyWith<$Res> {
-  factory $PlatformsScreenStateCopyWith(PlatformsScreenState value,
-          $Res Function(PlatformsScreenState) then) =
-      _$PlatformsScreenStateCopyWithImpl<$Res, PlatformsScreenState>;
+abstract class $GenerationScreenStateCopyWith<$Res> {
+  factory $GenerationScreenStateCopyWith(GenerationScreenState value,
+          $Res Function(GenerationScreenState) then) =
+      _$GenerationScreenStateCopyWithImpl<$Res, GenerationScreenState>;
   @useResult
-  $Res call({Config config});
+  $Res call({Config config, GeneratingState generatingState});
 
   $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
-class _$PlatformsScreenStateCopyWithImpl<$Res,
-        $Val extends PlatformsScreenState>
-    implements $PlatformsScreenStateCopyWith<$Res> {
-  _$PlatformsScreenStateCopyWithImpl(this._value, this._then);
+class _$GenerationScreenStateCopyWithImpl<$Res,
+        $Val extends GenerationScreenState>
+    implements $GenerationScreenStateCopyWith<$Res> {
+  _$GenerationScreenStateCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
   final $Val _value;
@@ -601,12 +562,17 @@ class _$PlatformsScreenStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? config = null,
+    Object? generatingState = null,
   }) {
     return _then(_value.copyWith(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
+      generatingState: null == generatingState
+          ? _value.generatingState
+          : generatingState // ignore: cast_nullable_to_non_nullable
+              as GeneratingState,
     ) as $Val);
   }
 
@@ -620,97 +586,110 @@ class _$PlatformsScreenStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$PlatformsScreenStateDataCopyWith<$Res>
-    implements $PlatformsScreenStateCopyWith<$Res> {
-  factory _$$PlatformsScreenStateDataCopyWith(_$PlatformsScreenStateData value,
-          $Res Function(_$PlatformsScreenStateData) then) =
-      __$$PlatformsScreenStateDataCopyWithImpl<$Res>;
+abstract class _$$GenerationScreenStateDataCopyWith<$Res>
+    implements $GenerationScreenStateCopyWith<$Res> {
+  factory _$$GenerationScreenStateDataCopyWith(
+          _$GenerationScreenStateData value,
+          $Res Function(_$GenerationScreenStateData) then) =
+      __$$GenerationScreenStateDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Config config});
+  $Res call({Config config, GeneratingState generatingState});
 
   @override
   $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
-class __$$PlatformsScreenStateDataCopyWithImpl<$Res>
-    extends _$PlatformsScreenStateCopyWithImpl<$Res, _$PlatformsScreenStateData>
-    implements _$$PlatformsScreenStateDataCopyWith<$Res> {
-  __$$PlatformsScreenStateDataCopyWithImpl(_$PlatformsScreenStateData _value,
-      $Res Function(_$PlatformsScreenStateData) _then)
+class __$$GenerationScreenStateDataCopyWithImpl<$Res>
+    extends _$GenerationScreenStateCopyWithImpl<$Res,
+        _$GenerationScreenStateData>
+    implements _$$GenerationScreenStateDataCopyWith<$Res> {
+  __$$GenerationScreenStateDataCopyWithImpl(_$GenerationScreenStateData _value,
+      $Res Function(_$GenerationScreenStateData) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? config = null,
+    Object? generatingState = null,
   }) {
-    return _then(_$PlatformsScreenStateData(
+    return _then(_$GenerationScreenStateData(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
+      generatingState: null == generatingState
+          ? _value.generatingState
+          : generatingState // ignore: cast_nullable_to_non_nullable
+              as GeneratingState,
     ));
   }
 }
 
 /// @nodoc
 
-class _$PlatformsScreenStateData implements PlatformsScreenStateData {
-  const _$PlatformsScreenStateData({required this.config});
+class _$GenerationScreenStateData implements GenerationScreenStateData {
+  const _$GenerationScreenStateData(
+      {required this.config, this.generatingState = GeneratingState.init});
 
   @override
   final Config config;
+  @override
+  @JsonKey()
+  final GeneratingState generatingState;
 
   @override
   String toString() {
-    return 'PlatformsScreenState.data(config: $config)';
+    return 'GenerationScreenState.data(config: $config, generatingState: $generatingState)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PlatformsScreenStateData &&
-            (identical(other.config, config) || other.config == config));
+            other is _$GenerationScreenStateData &&
+            (identical(other.config, config) || other.config == config) &&
+            (identical(other.generatingState, generatingState) ||
+                other.generatingState == generatingState));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config);
+  int get hashCode => Object.hash(runtimeType, config, generatingState);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PlatformsScreenStateDataCopyWith<_$PlatformsScreenStateData>
-      get copyWith =>
-          __$$PlatformsScreenStateDataCopyWithImpl<_$PlatformsScreenStateData>(
-              this, _$identity);
+  _$$GenerationScreenStateDataCopyWith<_$GenerationScreenStateData>
+      get copyWith => __$$GenerationScreenStateDataCopyWithImpl<
+          _$GenerationScreenStateData>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) data,
+    required TResult Function(Config config, GeneratingState generatingState)
+        data,
   }) {
-    return data(config);
+    return data(config, generatingState);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? data,
+    TResult? Function(Config config, GeneratingState generatingState)? data,
   }) {
-    return data?.call(config);
+    return data?.call(config, generatingState);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? data,
+    TResult Function(Config config, GeneratingState generatingState)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(config);
+      return data(config, generatingState);
     }
     return orElse();
   }
@@ -718,7 +697,7 @@ class _$PlatformsScreenStateData implements PlatformsScreenStateData {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(PlatformsScreenStateData value) data,
+    required TResult Function(GenerationScreenStateData value) data,
   }) {
     return data(this);
   }
@@ -726,7 +705,7 @@ class _$PlatformsScreenStateData implements PlatformsScreenStateData {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PlatformsScreenStateData value)? data,
+    TResult? Function(GenerationScreenStateData value)? data,
   }) {
     return data?.call(this);
   }
@@ -734,7 +713,7 @@ class _$PlatformsScreenStateData implements PlatformsScreenStateData {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(PlatformsScreenStateData value)? data,
+    TResult Function(GenerationScreenStateData value)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -744,14 +723,17 @@ class _$PlatformsScreenStateData implements PlatformsScreenStateData {
   }
 }
 
-abstract class PlatformsScreenStateData implements PlatformsScreenState {
-  const factory PlatformsScreenStateData({required final Config config}) =
-      _$PlatformsScreenStateData;
+abstract class GenerationScreenStateData implements GenerationScreenState {
+  const factory GenerationScreenStateData(
+      {required final Config config,
+      final GeneratingState generatingState}) = _$GenerationScreenStateData;
 
   @override
   Config get config;
   @override
+  GeneratingState get generatingState;
+  @override
   @JsonKey(ignore: true)
-  _$$PlatformsScreenStateDataCopyWith<_$PlatformsScreenStateData>
+  _$$GenerationScreenStateDataCopyWith<_$GenerationScreenStateData>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 {{#isGoRouter}}import 'package:go_router/go_router.dart';{{/isGoRouter}}
 {{^isGoRouter}}import 'package:{{project_name}}/core/router/guard/init_guard.dart';{{/isGoRouter}}
-import 'package:{{project_name}}/presentation/screen.dart/home_screen.dart';
+import 'package:{{project_name}}/presentation/screen/home_screen.dart';
 //{imports end}
 
 {{^isGoRouter}}

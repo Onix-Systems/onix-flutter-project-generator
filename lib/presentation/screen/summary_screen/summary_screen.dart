@@ -10,6 +10,7 @@ import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summ
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
+import 'package:recase/recase.dart';
 
 class SummaryScreen extends StatefulWidget {
   final Config config;
@@ -52,12 +53,12 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
   ) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding:
+            const EdgeInsets.only(top: 40, bottom: 20, left: 20, right: 20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Delimiter.height(20),
-            Expanded(
+            Flexible(
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -125,24 +126,28 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                     SummaryCell(
                         variable: 'Generate screens',
                         value: widget.config.screens
-                            .map((e) => '{name: ${e.name}, bloc: ${e.bloc}}')
+                            .map((e) =>
+                                '{name: ${e.name.pascalCase}Screen, bloc: ${e.bloc}}')
                             .join(', ')),
-                    SummaryCell(
-                      variable: 'Swagger URL',
-                      value: widget.config.swaggerUrl,
-                    ),
-                    SummaryCell(
-                      variable: 'Sources',
-                      value: widget.config.sources
-                          .map((e) =>
-                              '${e.name}(${e.dataComponents.map((e) => e.name).join(', ')})')
-                          .join('\n\n'),
-                    ),
-                    SummaryCell(
-                        variable: 'Data components',
-                        value: widget.config.dataComponents
-                            .map((e) => e.name)
-                            .join(', ')),
+                    if (widget.config.swaggerUrl.isNotEmpty)
+                      SummaryCell(
+                        variable: 'Swagger URL',
+                        value: widget.config.swaggerUrl,
+                      ),
+                    if (widget.config.sources.isNotEmpty)
+                      SummaryCell(
+                        variable: 'Sources',
+                        value: widget.config.sources
+                            .map((e) =>
+                                '${e.name}(${e.dataComponents.map((e) => e.name).join(', ')})')
+                            .join('\n\n'),
+                      ),
+                    if (widget.config.dataComponents.isNotEmpty)
+                      SummaryCell(
+                          variable: 'Data components',
+                          value: widget.config.dataComponents
+                              .map((e) => e.name)
+                              .join(', ')),
                   ],
                 ),
               ),
@@ -159,9 +164,11 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                 const Delimiter.width(10),
                 AppFilledButton(
                   label: 'Generate project',
-                  icon: Icons.task_alt,
+                  icon: Icons.local_fire_department,
                   iconLeft: false,
-                  onPressed: () {},
+                  onPressed: () => context.go(AppRouter.generationScreen,
+                      extra: widget.config),
+                  color: CupertinoColors.destructiveRed,
                 ),
               ],
             )

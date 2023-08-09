@@ -218,7 +218,11 @@ class ComponentsTable extends StatelessWidget {
                                   });
                                 }
                               },
-                              child: Text(S.of(context).modify),
+                              child: Text(
+                                S.of(context).modify,
+                                style: context.appTextStyles.fs18
+                                    ?.copyWith(color: AppColors.bgDark),
+                              ),
                             ),
                             const SizedBox(width: 10),
                             CupertinoButton(
@@ -235,7 +239,11 @@ class ComponentsTable extends StatelessWidget {
                                   );
                                 }
                               },
-                              child: Text(S.of(context).delete),
+                              child: Text(
+                                S.of(context).delete,
+                                style: context.appTextStyles.fs18
+                                    ?.copyWith(color: AppColors.bgDark),
+                              ),
                             ),
                           ],
                         ),

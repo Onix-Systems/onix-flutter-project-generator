@@ -10,6 +10,7 @@ import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_s
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/data_components_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/swagger_parser_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/summary_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/generation_screen/generation_screen.dart';
 //{imports end}
 
 class AppRouter {
@@ -23,6 +24,7 @@ class AppRouter {
   static const _dataComponentsScreen = '/data_components';
   static const _swaggerParserScreen = '/swagger_parser';
   static const _summaryScreen = '/summary';
+  static const _generationScreen = '/generation';
   //{consts end}
 
   static final AppRouter _instance = AppRouter._privateConstructor();
@@ -37,6 +39,7 @@ class AppRouter {
   static String get dataComponentsScreen => _dataComponentsScreen;
   static String get swaggerParserScreen => _swaggerParserScreen;
   static String get summaryScreen => _summaryScreen;
+  static String get generationScreen => _generationScreen;
   //{getters end}
 
   AppRouter._privateConstructor() {
@@ -111,6 +114,13 @@ class AppRouter {
           path: _summaryScreen,
           name: 'SummaryScreen',
           builder: (context, state) => SummaryScreen(
+            config: state.extra as Config,
+          ),
+        ),
+        GoRoute(
+          path: _generationScreen,
+          name: 'GenerationScreen',
+          builder: (context, state) => GenerationScreen(
             config: state.extra as Config,
           ),
         ),

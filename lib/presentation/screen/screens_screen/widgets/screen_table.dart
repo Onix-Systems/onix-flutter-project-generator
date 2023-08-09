@@ -22,190 +22,175 @@ class ScreenTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: CupertinoColors.systemGrey,
-        ),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      clipBehavior: Clip.hardEdge,
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: CupertinoColors.systemGrey,
-                strokeAlign: BorderSide.strokeAlignOutside,
-              ),
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
-              ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: CupertinoColors.systemGrey,
+              strokeAlign: BorderSide.strokeAlignOutside,
             ),
-            child: Row(
-              children: [
-                Cell(
-                  value: Text(
-                    S.of(context).screenName,
-                    textAlign: TextAlign.center,
-                    style: context.appTextStyles.fs18?.copyWith(
-                      color: AppColors.orange,
-                    ),
-                  ),
-                  decorated: true,
-                ),
-                Cell(
-                  value: Text(
-                    S.of(context).usingBloc,
-                    textAlign: TextAlign.center,
-                    style: context.appTextStyles.fs18?.copyWith(
-                      color: AppColors.orange,
-                    ),
-                  ),
-                  decorated: true,
-                ),
-                Cell(
-                  value: Text(
-                    S.of(context).actions,
-                    textAlign: TextAlign.center,
-                    style: context.appTextStyles.fs18?.copyWith(
-                      color: AppColors.orange,
-                    ),
-                  ),
-                ),
-              ],
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
             ),
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ...screens.map(
-                    (screen) => Container(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: CupertinoColors.systemGrey,
-                            width: 1,
-                          ),
-                        ),
+          child: Row(
+            children: [
+              Cell(
+                value: Text(
+                  S.of(context).screenName,
+                  textAlign: TextAlign.center,
+                  style: context.appTextStyles.fs18?.copyWith(
+                    color: AppColors.orange,
+                  ),
+                ),
+                decorated: true,
+              ),
+              Cell(
+                value: Text(
+                  S.of(context).usingBloc,
+                  textAlign: TextAlign.center,
+                  style: context.appTextStyles.fs18?.copyWith(
+                    color: AppColors.orange,
+                  ),
+                ),
+                decorated: true,
+              ),
+              Cell(
+                value: Text(
+                  S.of(context).actions,
+                  textAlign: TextAlign.center,
+                  style: context.appTextStyles.fs18?.copyWith(
+                    color: AppColors.orange,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Flexible(
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              ...screens.map(
+                (screen) => Container(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: CupertinoColors.systemGrey,
+                        width: 1,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Cell(
-                            value: Text(
-                              '${screen.name.pascalCase}Screen',
-                              style: context.appTextStyles.fs18?.copyWith(
-                                  color: screen.exists
-                                      ? CupertinoColors.inactiveGray
-                                      : CupertinoColors.white),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Cell(
+                        value: Text(
+                          '${screen.name.pascalCase}Screen',
+                          style: context.appTextStyles.fs18?.copyWith(
+                              color: screen.exists
+                                  ? CupertinoColors.inactiveGray
+                                  : CupertinoColors.white),
+                        ),
+                        decorated: true,
+                      ),
+                      Cell(
+                        value: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            MSHCheckbox(
+                              value: screen.bloc,
+                              onChanged: (_) {},
+                              isDisabled: true,
+                              duration: const Duration(milliseconds: 200),
+                              colorConfig: screen.exists
+                                  ? MSHColorConfig.fromCheckedUncheckedDisabled(
+                                      checkedColor:
+                                          CupertinoColors.inactiveGray,
+                                      uncheckedColor:
+                                          CupertinoColors.inactiveGray,
+                                      disabledColor:
+                                          CupertinoColors.inactiveGray,
+                                    )
+                                  : MSHColorConfig.fromCheckedUncheckedDisabled(
+                                      checkedColor:
+                                          CupertinoColors.activeOrange,
+                                      uncheckedColor:
+                                          CupertinoColors.activeOrange,
+                                      disabledColor:
+                                          CupertinoColors.activeOrange,
+                                    ),
                             ),
-                            decorated: true,
-                          ),
-                          Cell(
-                            value: Row(
+                          ],
+                        ),
+                        decorated: true,
+                      ),
+                      Cell(
+                        value: SizedBox(
+                          height: 45,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                MSHCheckbox(
-                                  value: screen.bloc,
-                                  onChanged: (_) {},
-                                  isDisabled: true,
-                                  duration: const Duration(milliseconds: 200),
-                                  colorConfig: screen.exists
-                                      ? MSHColorConfig
-                                          .fromCheckedUncheckedDisabled(
-                                          checkedColor:
-                                              CupertinoColors.inactiveGray,
-                                          uncheckedColor:
-                                              CupertinoColors.inactiveGray,
-                                          disabledColor:
-                                              CupertinoColors.inactiveGray,
-                                        )
-                                      : MSHColorConfig
-                                          .fromCheckedUncheckedDisabled(
-                                          checkedColor:
-                                              CupertinoColors.activeOrange,
-                                          uncheckedColor:
-                                              CupertinoColors.activeOrange,
-                                          disabledColor:
-                                              CupertinoColors.activeOrange,
-                                        ),
+                                CupertinoButton(
+                                    color: screen.exists
+                                        ? CupertinoColors.inactiveGray
+                                        : CupertinoColors.activeOrange,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    onPressed: () {
+                                      if (!screen.exists) {
+                                        showCupertinoModalPopup<Screen>(
+                                          context: context,
+                                          barrierDismissible: false,
+                                          builder: (context) =>
+                                              AddScreenDialog(screen: screen),
+                                        ).then((screen) {
+                                          if (screen != null) {
+                                            onModifyScreen(screen);
+                                          }
+                                        });
+                                      }
+                                    },
+                                    child: Text(S.of(context).modify,
+                                        style: context.appTextStyles.fs18
+                                            ?.copyWith(
+                                                color: AppColors.bgDark))),
+                                const SizedBox(width: 10),
+                                CupertinoButton(
+                                  color: screen.exists
+                                      ? CupertinoColors.inactiveGray
+                                      : CupertinoColors.activeOrange,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  onPressed: () {
+                                    if (!screen.exists) {
+                                      onDeleteScreen(screen);
+                                    }
+                                  },
+                                  child: Text(S.of(context).delete,
+                                      style: context.appTextStyles.fs18
+                                          ?.copyWith(color: AppColors.bgDark)),
                                 ),
                               ],
                             ),
-                            decorated: true,
                           ),
-                          Cell(
-                            value: SizedBox(
-                              height: 45,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    CupertinoButton(
-                                        color: screen.exists
-                                            ? CupertinoColors.inactiveGray
-                                            : CupertinoColors.activeOrange,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        onPressed: () {
-                                          if (!screen.exists) {
-                                            showCupertinoModalPopup<Screen>(
-                                              context: context,
-                                              barrierDismissible: false,
-                                              builder: (context) =>
-                                                  AddScreenDialog(
-                                                      screen: screen),
-                                            ).then((screen) {
-                                              if (screen != null) {
-                                                onModifyScreen(screen);
-                                              }
-                                            });
-                                          }
-                                        },
-                                        child: Text(S.of(context).modify,
-                                            style: context.appTextStyles.fs18
-                                                ?.copyWith(
-                                                    color: AppColors.bgDark))),
-                                    const SizedBox(width: 10),
-                                    CupertinoButton(
-                                      color: screen.exists
-                                          ? CupertinoColors.inactiveGray
-                                          : CupertinoColors.activeOrange,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      onPressed: () {
-                                        if (!screen.exists) {
-                                          onDeleteScreen(screen);
-                                        }
-                                      },
-                                      child: Text(S.of(context).delete,
-                                          style: context.appTextStyles.fs18
-                                              ?.copyWith(
-                                                  color: AppColors.bgDark)),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

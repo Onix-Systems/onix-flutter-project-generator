@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+PlatformsList _$PlatformsListFromJson(Map<String, dynamic> json) {
+  return _PlatformsList.fromJson(json);
+}
+
 /// @nodoc
 mixin _$PlatformsList {
   bool get android => throw _privateConstructorUsedError;
@@ -27,6 +31,8 @@ mixin _$PlatformsList {
   bool get windows => throw _privateConstructorUsedError;
 
   bool get linux => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlatformsListCopyWith<PlatformsList> get copyWith =>
@@ -155,7 +161,7 @@ class __$$_PlatformsListCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_PlatformsList extends _PlatformsList {
   const _$_PlatformsList(
       {this.android = true,
@@ -165,6 +171,9 @@ class _$_PlatformsList extends _PlatformsList {
       this.windows = false,
       this.linux = false})
       : super._();
+
+  factory _$_PlatformsList.fromJson(Map<String, dynamic> json) =>
+      _$$_PlatformsListFromJson(json);
 
   @override
   @JsonKey()
@@ -198,6 +207,7 @@ class _$_PlatformsList extends _PlatformsList {
             (identical(other.linux, linux) || other.linux == linux));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, android, ios, web, macos, windows, linux);
@@ -207,6 +217,13 @@ class _$_PlatformsList extends _PlatformsList {
   @pragma('vm:prefer-inline')
   _$$_PlatformsListCopyWith<_$_PlatformsList> get copyWith =>
       __$$_PlatformsListCopyWithImpl<_$_PlatformsList>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PlatformsListToJson(
+      this,
+    );
+  }
 }
 
 abstract class _PlatformsList extends PlatformsList {
@@ -219,6 +236,9 @@ abstract class _PlatformsList extends PlatformsList {
       final bool linux}) = _$_PlatformsList;
 
   const _PlatformsList._() : super._();
+
+  factory _PlatformsList.fromJson(Map<String, dynamic> json) =
+      _$_PlatformsList.fromJson;
 
   @override
   bool get android;
