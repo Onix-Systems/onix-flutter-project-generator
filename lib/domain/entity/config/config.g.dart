@@ -9,6 +9,7 @@ part of 'config.dart';
 _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
       projectPath: json['projectPath'] as String? ?? '',
       projectName: json['projectName'] as String? ?? '',
+      projectExists: json['projectExists'] as bool? ?? false,
       organization: json['organization'] as String? ?? '',
       platformsList: json['platformsList'] == null
           ? const PlatformsList()
@@ -56,6 +57,7 @@ _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
 Map<String, dynamic> _$$_ConfigToJson(_$_Config instance) => <String, dynamic>{
       'projectPath': instance.projectPath,
       'projectName': instance.projectName,
+      'projectExists': instance.projectExists,
       'organization': instance.organization,
       'platformsList': instance.platformsList,
       'flavorize': instance.flavorize,

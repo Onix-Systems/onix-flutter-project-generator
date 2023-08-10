@@ -15,6 +15,7 @@ class Config with _$Config {
   const factory Config({
     @Default('') String projectPath,
     @Default('') String projectName,
+    @Default(false) bool projectExists,
     @Default('') String organization,
     @Default(PlatformsList()) PlatformsList platformsList,
     @Default(false) final bool flavorize,

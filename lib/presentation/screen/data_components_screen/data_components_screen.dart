@@ -51,7 +51,10 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
       BuildContext context, DataComponentsScreenSR singleResult) {
     singleResult.when(
       error: (message) => Dialogs.showOkDialog(
-          context: context, title: "Error!", content: message, isError: true),
+          context: context,
+          title: '${S.of(context).error}!',
+          content: message,
+          isError: true),
     );
   }
 

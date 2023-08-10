@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:recase/recase.dart';
@@ -17,8 +18,8 @@ class AddSourceDialog extends StatelessWidget {
     }
     return CupertinoAlertDialog(
       title: source != null
-          ? const Text('Modify source')
-          : const Text('Add source'),
+          ? Text(S.of(context).modifySource)
+          : Text(S.of(context).addSource),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,7 +28,7 @@ class AddSourceDialog extends StatelessWidget {
             autofocus: true,
             controller: _sourceNameController,
             style: context.appTextStyles.fs18,
-            placeholder: 'Source name',
+            placeholder: S.of(context).sourceNamePlaceholder,
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
             ],
@@ -40,14 +41,14 @@ class AddSourceDialog extends StatelessWidget {
         CupertinoDialogAction(
           isDefaultAction: true,
           onPressed: () => _onSubmitted(context),
-          child: const Text('Ok'),
+          child: Text(S.of(context).ok),
         ),
         CupertinoDialogAction(
           isDefaultAction: true,
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Cancel'),
+          child: Text(S.of(context).cancel),
         ),
       ],
     );

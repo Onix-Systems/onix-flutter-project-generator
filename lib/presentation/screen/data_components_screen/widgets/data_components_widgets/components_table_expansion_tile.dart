@@ -39,7 +39,7 @@ class _EntityTableExpansionTileState extends State<EntityTableExpansionTile> {
           decoration: BoxDecoration(
             border: Border.all(
               color: CupertinoColors.systemGrey,
-              width: 0.0, // One physical pixel.
+              width: 0.0,
               style: BorderStyle.solid,
             ),
             borderRadius: BorderRadius.circular(10),
@@ -72,7 +72,7 @@ class _EntityTableExpansionTileState extends State<EntityTableExpansionTile> {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Standalone data components: ${widget.dataComponents.length}',
+                                  '${S.of(context).standaloneDataComponents} ${widget.dataComponents.length}',
                                   textAlign: TextAlign.center,
                                   style: context.appTextStyles.fs18?.copyWith(
                                       color: CupertinoColors.activeOrange),

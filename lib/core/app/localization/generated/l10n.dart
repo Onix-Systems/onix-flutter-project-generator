@@ -160,6 +160,36 @@ class S {
     );
   }
 
+  /// `Replace`
+  String get replace {
+    return Intl.message(
+      'Replace',
+      name: 'replace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ignore`
+  String get ignore {
+    return Intl.message(
+      'Ignore',
+      name: 'ignore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swagger file contains components conflicting with existing. Replace with parsed components or ignore conflicting parsed data?`
+  String get swaggerParserScreenConflictError {
+    return Intl.message(
+      'Swagger file contains components conflicting with existing. Replace with parsed components or ignore conflicting parsed data?',
+      name: 'swaggerParserScreenConflictError',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Generate new project`
   String get generateNewProject {
     return Intl.message(
@@ -167,6 +197,26 @@ class S {
       name: 'generateNewProject',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Generate project`
+  String get generateProject {
+    return Intl.message(
+      'Generate project',
+      name: 'generateProject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modify {projectName}`
+  String modifyGeneratedProject(Object projectName) {
+    return Intl.message(
+      'Modify $projectName',
+      name: 'modifyGeneratedProject',
+      desc: '',
+      args: [projectName],
     );
   }
 
@@ -185,6 +235,16 @@ class S {
     return Intl.message(
       'Project name',
       name: 'projectName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Project path`
+  String get projectPath {
+    return Intl.message(
+      'Project path',
+      name: 'projectPath',
       desc: '',
       args: [],
     );
@@ -370,10 +430,10 @@ class S {
     );
   }
 
-  /// `Theming:`
+  /// `Theming`
   String get theming {
     return Intl.message(
-      'Theming:',
+      'Theming',
       name: 'theming',
       desc: '',
       args: [],
@@ -405,6 +465,16 @@ class S {
     return Intl.message(
       'Will you use Sonar?',
       name: 'useSonar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate Sonar config?`
+  String get generateSonarConfig {
+    return Intl.message(
+      'Generate Sonar config?',
+      name: 'generateSonarConfig',
       desc: '',
       args: [],
     );
@@ -610,6 +680,16 @@ class S {
     );
   }
 
+  /// `Data components`
+  String get dataComponents {
+    return Intl.message(
+      'Data components',
+      name: 'dataComponents',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add component`
   String get addComponent {
     return Intl.message(
@@ -630,11 +710,161 @@ class S {
     );
   }
 
+  /// `Modify source`
+  String get modifySource {
+    return Intl.message(
+      'Modify source',
+      name: 'modifySource',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Back`
   String get goBack {
     return Intl.message(
       'Back',
       name: 'goBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modify component`
+  String get modifyComponent {
+    return Intl.message(
+      'Modify component',
+      name: 'modifyComponent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Component name`
+  String get componentNamePlaceholder {
+    return Intl.message(
+      'Component name',
+      name: 'componentNamePlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create request?`
+  String get createRequestCheckboxLabel {
+    return Intl.message(
+      'Create request?',
+      name: 'createRequestCheckboxLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create response?`
+  String get createResponseCheckboxLabel {
+    return Intl.message(
+      'Create response?',
+      name: 'createResponseCheckboxLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Standalone data components:`
+  String get standaloneDataComponents {
+    return Intl.message(
+      'Standalone data components:',
+      name: 'standaloneDataComponents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Source name`
+  String get sourceNamePlaceholder {
+    return Intl.message(
+      'Source name',
+      name: 'sourceNamePlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open in Android Studio`
+  String get openInAndroidStudio {
+    return Intl.message(
+      'Open in Android Studio',
+      name: 'openInAndroidStudio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Platforms`
+  String get platforms {
+    return Intl.message(
+      'Platforms',
+      name: 'platforms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Flavors`
+  String get flavors {
+    return Intl.message(
+      'Flavors',
+      name: 'flavors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Navigation router`
+  String get navigationRouter {
+    return Intl.message(
+      'Navigation router',
+      name: 'navigationRouter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Localization method`
+  String get localizationMethod {
+    return Intl.message(
+      'Localization method',
+      name: 'localizationMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate screens`
+  String get generateScreens {
+    return Intl.message(
+      'Generate screens',
+      name: 'generateScreens',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swagger URL`
+  String get swaggerURL {
+    return Intl.message(
+      'Swagger URL',
+      name: 'swaggerURL',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sources`
+  String get sources {
+    return Intl.message(
+      'Sources',
+      name: 'sources',
       desc: '',
       args: [],
     );

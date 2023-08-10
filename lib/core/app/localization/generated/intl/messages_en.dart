@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(projectName) => "Modify ${projectName}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
 
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -47,8 +49,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Check names before continue"),
         "cityOrLocality":
             MessageLookupByLibrary.simpleMessage(" City or Locality"),
+        "componentNamePlaceholder":
+            MessageLookupByLibrary.simpleMessage("Component name"),
         "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
+        "createRequestCheckboxLabel":
+            MessageLookupByLibrary.simpleMessage("Create request?"),
+        "createResponseCheckboxLabel":
+            MessageLookupByLibrary.simpleMessage("Create response?"),
         "dataComponent": MessageLookupByLibrary.simpleMessage("Data component"),
+        "dataComponents":
+            MessageLookupByLibrary.simpleMessage("Data components"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
@@ -56,21 +66,37 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" First & last name"),
         "flavorize": MessageLookupByLibrary.simpleMessage("Flavorize?"),
+        "flavors": MessageLookupByLibrary.simpleMessage("Flavors"),
         "generate": MessageLookupByLibrary.simpleMessage("Generate"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Generate new project"),
+        "generateProject":
+            MessageLookupByLibrary.simpleMessage("Generate project"),
+        "generateScreens":
+            MessageLookupByLibrary.simpleMessage("Generate screens"),
         "generateSigningKey":
             MessageLookupByLibrary.simpleMessage("Generate signing key?"),
+        "generateSonarConfig":
+            MessageLookupByLibrary.simpleMessage("Generate Sonar config?"),
         "goBack": MessageLookupByLibrary.simpleMessage("Back"),
+        "ignore": MessageLookupByLibrary.simpleMessage("Ignore"),
         "integrateDevicePreview":
             MessageLookupByLibrary.simpleMessage("Integrate Device Preview?"),
         "keystorePassword":
             MessageLookupByLibrary.simpleMessage(" Keystore password"),
         "localization": MessageLookupByLibrary.simpleMessage("Localization:"),
+        "localizationMethod":
+            MessageLookupByLibrary.simpleMessage("Localization method"),
         "modify": MessageLookupByLibrary.simpleMessage("Modify"),
+        "modifyComponent":
+            MessageLookupByLibrary.simpleMessage("Modify component"),
+        "modifyGeneratedProject": m0,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Modify signing vars..."),
+        "modifySource": MessageLookupByLibrary.simpleMessage("Modify source"),
+        "navigationRouter":
+            MessageLookupByLibrary.simpleMessage("Navigation router"),
         "newVersionAvailableContent": MessageLookupByLibrary.simpleMessage(
             "New version of Onix Flutter Project Generator is available. Do you want to download it?"),
         "newVersionAvailableTitle":
@@ -78,6 +104,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
             MessageLookupByLibrary.simpleMessage("Open existing project"),
+        "openInAndroidStudio":
+            MessageLookupByLibrary.simpleMessage("Open in Android Studio"),
         "organization": MessageLookupByLibrary.simpleMessage("Organization"),
         "organizationalUnit":
             MessageLookupByLibrary.simpleMessage(" Organizational unit"),
@@ -85,9 +113,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "You must select path to projects folder"),
         "pathNotSelectedTitle":
             MessageLookupByLibrary.simpleMessage("Path not selected"),
+        "platforms": MessageLookupByLibrary.simpleMessage("Platforms"),
         "projectExistsError": MessageLookupByLibrary.simpleMessage(
             "Project already exists, choose different name"),
         "projectName": MessageLookupByLibrary.simpleMessage("Project name"),
+        "projectPath": MessageLookupByLibrary.simpleMessage("Project path"),
+        "replace": MessageLookupByLibrary.simpleMessage("Replace"),
         "request": MessageLookupByLibrary.simpleMessage("Request"),
         "response": MessageLookupByLibrary.simpleMessage("Response"),
         "router": MessageLookupByLibrary.simpleMessage("Router:"),
@@ -97,13 +128,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Already exists"),
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
+        "sourceNamePlaceholder":
+            MessageLookupByLibrary.simpleMessage("Source name"),
+        "sources": MessageLookupByLibrary.simpleMessage("Sources"),
         "spaceSeparated":
             MessageLookupByLibrary.simpleMessage("(space separated)"),
+        "standaloneDataComponents":
+            MessageLookupByLibrary.simpleMessage("Standalone data components:"),
         "stateOrProvince":
             MessageLookupByLibrary.simpleMessage(" State or Province"),
         "swaggerParserPrompt": MessageLookupByLibrary.simpleMessage(
             "Paste swagger config json file URL here to get data components from API\nor leave it empty to use default config"),
-        "theming": MessageLookupByLibrary.simpleMessage("Theming:"),
+        "swaggerParserScreenConflictError": MessageLookupByLibrary.simpleMessage(
+            "Swagger file contains components conflicting with existing. Replace with parsed components or ignore conflicting parsed data?"),
+        "swaggerURL": MessageLookupByLibrary.simpleMessage("Swagger URL"),
+        "theming": MessageLookupByLibrary.simpleMessage("Theming"),
         "title": MessageLookupByLibrary.simpleMessage(
             "Onix Flutter Project Generator"),
         "twoLetterCountryCode":

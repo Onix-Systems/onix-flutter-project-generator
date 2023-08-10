@@ -23,6 +23,7 @@ class SummaryCell extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
+            flex: 35,
             child: Container(
               padding: const EdgeInsets.all(10),
               child: Text(
@@ -34,7 +35,7 @@ class SummaryCell extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 3,
+            flex: 100,
             child: Container(
               padding: const EdgeInsets.all(10),
               color: AppColors.bgDark,

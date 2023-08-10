@@ -32,11 +32,32 @@ class ProcedureSelectionScreen extends StatelessWidget {
                   label: S.of(context).generateNewProject,
                   big: true,
                   onPressed: () {
-                    context.go(AppRouter.projectNameScreen, extra: config);
+                    context.go(
+                      AppRouter.projectNameScreen,
+                      extra: config.copyWith(
+                        projectName:
+                            config.projectExists ? '' : config.projectName,
+                        projectExists: false,
+                      ),
+                    );
                   },
                   icon: Icons.create_new_folder_outlined,
                 ),
               ),
+              if (config.projectExists && config.projectName.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: AppFilledButton(
+                    label: S
+                        .of(context)
+                        .modifyGeneratedProject(config.projectName),
+                    big: true,
+                    onPressed: () {
+                      //context.go(AppRouter.projectNameScreen, extra: config);
+                    },
+                    icon: Icons.create_new_folder_outlined,
+                  ),
+                ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: AppFilledButton(

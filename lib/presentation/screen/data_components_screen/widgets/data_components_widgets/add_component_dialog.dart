@@ -101,15 +101,14 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
           } else {
             _focusNext();
           }
-          // _currentFocusNode.requestFocus();
           return KeyEventResult.handled;
         }
         return KeyEventResult.ignored;
       },
       child: CupertinoAlertDialog(
         title: widget.dataComponent != null
-            ? const Text('Modify component')
-            : const Text('Add component'),
+            ? Text(S.of(context).modifyComponent)
+            : Text(S.of(context).addComponent),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -124,7 +123,7 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
                   _textFieldFocusNode.requestFocus();
                 });
               },
-              placeholder: 'Component name',
+              placeholder: S.of(context).componentNamePlaceholder,
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
               ],
@@ -133,7 +132,7 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
             const SizedBox(height: 15),
             LabeledCheckbox(
               focused: _currentFocusNode == 1,
-              label: 'Create request?',
+              label: S.of(context).createRequestCheckboxLabel,
               initialValue: _createRequest,
               onAction: () {
                 setState(() {
@@ -143,7 +142,7 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
             ),
             LabeledCheckbox(
               focused: _currentFocusNode == 2,
-              label: 'Create response?',
+              label: S.of(context).createResponseCheckboxLabel,
               initialValue: _createResponse,
               onAction: () {
                 setState(() {

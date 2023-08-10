@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/di/services.dart';
+import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/colored_line.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
@@ -98,9 +101,10 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
                         children: [
                           CupertinoButton(
                             color: CupertinoColors.activeOrange,
-                            child: const Text(
-                              'Open in Android Studio',
-                              style: TextStyle(color: CupertinoColors.white),
+                            child: Text(
+                              S.of(context).openInAndroidStudio,
+                              style:
+                                  const TextStyle(color: CupertinoColors.white),
                             ),
                             onPressed: () {
                               blocOf(context).add(
@@ -116,9 +120,12 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
                               color: CupertinoColors.white,
                             ),
                             onPressed: () {
-                              // context
-                              //     .read<AppBloc>()
-                              //     .add(const GenerateComplete());
+                              context.go(AppRouter.procedureSelectionScreen,
+                                  extra: Config(
+                                    projectPath: state.config.projectPath,
+                                    projectName: state.config.projectName,
+                                    projectExists: true,
+                                  ));
                             },
                           ),
                         ],

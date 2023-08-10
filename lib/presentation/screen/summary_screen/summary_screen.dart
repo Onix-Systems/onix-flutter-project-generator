@@ -74,69 +74,69 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                   shrinkWrap: true,
                   children: [
                     SummaryCell(
-                      variable: 'Project path',
+                      variable: S.of(context).projectPath,
                       value: widget.config.projectPath,
                     ),
                     SummaryCell(
-                      variable: 'Project name',
+                      variable: S.of(context).projectName,
                       value: widget.config.projectName,
                     ),
                     SummaryCell(
-                      variable: 'Organization',
+                      variable: S.of(context).organization,
                       value: widget.config.organization,
                     ),
                     SummaryCell(
-                      variable: 'Platforms',
+                      variable: S.of(context).platforms,
                       value: widget.config.platformsList.toString(),
                     ),
                     SummaryCell(
-                      variable: 'Flavorize',
+                      variable: S.of(context).flavorize,
                       value: widget.config.flavorize.toString(),
                     ),
                     if (widget.config.flavors.isNotEmpty)
                       SummaryCell(
-                        variable: 'Flavors',
+                        variable: S.of(context).flavors,
                         value:
                             'dev, prod, ${widget.config.flavors.split(' ').join(', ')}',
                       ),
                     SummaryCell(
-                      variable: 'Generate signing key',
+                      variable: S.of(context).generateSigningKey,
                       value: widget.config.generateSigningKey.toString(),
                     ),
                     SummaryCell(
-                      variable: 'Generate sonar config',
+                      variable: S.of(context).generateSonarConfig,
                       value: widget.config.useSonar.toString(),
                     ),
                     SummaryCell(
-                      variable: 'Navigation router',
+                      variable: S.of(context).navigationRouter,
                       value: widget.config.router.name,
                     ),
                     SummaryCell(
-                      variable: 'Localization method',
+                      variable: S.of(context).localizationMethod,
                       value: widget.config.localization.name,
                     ),
                     SummaryCell(
-                      variable: 'Theming',
+                      variable: S.of(context).theming,
                       value: widget.config.theming.name,
                     ),
                     SummaryCell(
-                      variable: 'Integrate device preview',
+                      variable: S.of(context).integrateDevicePreview,
                       value: widget.config.integrateDevicePreview.toString(),
                     ),
                     SummaryCell(
-                        variable: 'Generate screens',
+                        variable: S.of(context).generateScreens,
                         value: widget.config.screens
                             .map((e) =>
                                 '{name: ${e.name.pascalCase}Screen, bloc: ${e.bloc}}')
                             .join(', ')),
                     if (widget.config.swaggerUrl.isNotEmpty)
                       SummaryCell(
-                        variable: 'Swagger URL',
+                        variable: S.of(context).swaggerURL,
                         value: widget.config.swaggerUrl,
                       ),
                     if (widget.config.sources.isNotEmpty)
                       SummaryCell(
-                        variable: 'Sources',
+                        variable: S.of(context).sources,
                         value: widget.config.sources
                             .map((e) =>
                                 '${e.name}(${e.dataComponents.map((e) => e.name).join(', ')})')
@@ -144,7 +144,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       ),
                     if (widget.config.dataComponents.isNotEmpty)
                       SummaryCell(
-                          variable: 'Data components',
+                          variable: S.of(context).dataComponents,
                           value: widget.config.dataComponents
                               .map((e) => e.name)
                               .join(', ')),
@@ -163,7 +163,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                         extra: widget.config)),
                 const Delimiter.width(10),
                 AppFilledButton(
-                  label: 'Generate project',
+                  label: S.of(context).generateProject,
                   icon: Icons.local_fire_department,
                   iconLeft: false,
                   onPressed: () => context.go(AppRouter.generationScreen,

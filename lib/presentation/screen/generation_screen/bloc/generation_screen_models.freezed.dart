@@ -78,7 +78,7 @@ class _$GenerationScreenEventCopyWithImpl<$Res,
     implements $GenerationScreenEventCopyWith<$Res> {
   _$GenerationScreenEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;
@@ -486,43 +486,43 @@ mixin _$GenerationScreenSR {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadFinished,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function()? loadFinished,
-required TResult orElse(),
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
-required TResult Function(_LoadFinished value) loadFinished,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(_LoadFinished value)? loadFinished,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult maybeMap<TResult extends Object?>({
-TResult Function(_LoadFinished value)? loadFinished,
-required TResult orElse(),
-}) =>
-throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadFinished,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadFinished value) loadFinished,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadFinished value)? loadFinished,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadFinished value)? loadFinished,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $GenerationScreenSRCopyWith<$Res> {
-factory $GenerationScreenSRCopyWith(
-GenerationScreenSR value, $Res Function(GenerationScreenSR) then) =
-_$GenerationScreenSRCopyWithImpl<$Res, GenerationScreenSR>;
+  factory $GenerationScreenSRCopyWith(
+          GenerationScreenSR value, $Res Function(GenerationScreenSR) then) =
+      _$GenerationScreenSRCopyWithImpl<$Res, GenerationScreenSR>;
 }
 
 /// @nodoc
 class _$GenerationScreenSRCopyWithImpl<$Res, $Val extends GenerationScreenSR>
-implements $GenerationScreenSRCopyWith<$Res> {
-_$GenerationScreenSRCopyWithImpl(this._value, this._then);
+    implements $GenerationScreenSRCopyWith<$Res> {
+  _$GenerationScreenSRCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
   final $Val _value;
@@ -532,14 +532,14 @@ _$GenerationScreenSRCopyWithImpl(this._value, this._then);
 
 /// @nodoc
 abstract class _$$_LoadFinishedCopyWith<$Res> {
-factory _$$_LoadFinishedCopyWith(
-_$_LoadFinished value, $Res Function(_$_LoadFinished) then) =
-__$$_LoadFinishedCopyWithImpl<$Res>;
+  factory _$$_LoadFinishedCopyWith(
+          _$_LoadFinished value, $Res Function(_$_LoadFinished) then) =
+      __$$_LoadFinishedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$_LoadFinishedCopyWithImpl<$Res>
-extends _$GenerationScreenSRCopyWithImpl<$Res, _$_LoadFinished>
+    extends _$GenerationScreenSRCopyWithImpl<$Res, _$_LoadFinished>
     implements _$$_LoadFinishedCopyWith<$Res> {
   __$$_LoadFinishedCopyWithImpl(
       _$_LoadFinished _value, $Res Function(_$_LoadFinished) _then)
