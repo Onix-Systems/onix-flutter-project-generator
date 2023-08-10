@@ -23,4 +23,13 @@ class MethodParameter extends Property {
       _$MethodParameterFromJson(json);
 
   Map<String, dynamic> toJson() => _$MethodParameterToJson(this);
+
+  static MethodParameter copyOf(MethodParameter source) {
+    return MethodParameter(
+      place: source.place,
+      name: source.name,
+      type: source.type,
+      nullable: source.nullable,
+    );
+  }
 }

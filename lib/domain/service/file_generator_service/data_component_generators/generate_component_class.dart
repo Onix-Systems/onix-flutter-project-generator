@@ -27,12 +27,15 @@ class GenerateComponentClass {
 import 'package:freezed_annotation/freezed_annotation.dart';
 ${'$imports\n'}
 part '${name.snakeCase}.freezed.dart';
+part '${name.snakeCase}.g.dart';
 
 @freezed
 class ${name.pascalCase} with _\$${name.pascalCase} {
     factory ${name.pascalCase}({
     ${dataComponent.properties.map((e) => '       $e,').join('\n')}
     }) = _${name.pascalCase};
+    
+    factory ${name.pascalCase}.fromJson(Map<String, dynamic> json) => _\$${name.pascalCase}FromJson(json);
     
     factory ${name.pascalCase}.empty() => ${name.pascalCase}(
 ${_getProperties(dataComponent: dataComponent)}

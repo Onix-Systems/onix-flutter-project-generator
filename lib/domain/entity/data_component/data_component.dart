@@ -89,7 +89,8 @@ class DataComponent {
       isGenerated: entity.isGenerated,
     );
     copy.addImports(entity.imports.toList());
-    copy.componentImports.addAll(entity.componentImports);
+    copy.componentImports
+        .addAll(entity.componentImports.map((e) => DataComponent.copyOf(e)));
     copy.sourceName = entity.sourceName;
     return copy;
   }

@@ -13,7 +13,8 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
   @override
   DataComponent? getDataComponentByName(String name) {
-    return dataComponents.firstWhereOrNull((element) => element.name == name);
+    return dataComponents.firstWhereOrNull(
+        (element) => element.name.pascalCase == name.pascalCase);
   }
 
   @override

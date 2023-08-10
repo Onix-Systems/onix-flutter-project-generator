@@ -19,19 +19,21 @@ class SwaggerParser {
     final parsedSources = sourceRepository.sources;
 
     for (final source in parsedSources) {
-      for (final entity in parsedEntities.where((e) =>
+      for (final dataComponent in parsedEntities.where((e) =>
           source.dataComponentsNames.contains(e.name) ||
           source.dataComponentsNames.contains('${e.name}Request') ||
           source.dataComponentsNames.contains('${e.name}Response'))) {
-        entity.setSourceName(source.name);
+        dataComponent.setSourceName(source.name);
       }
     }
 
-    for (final entity in parsedEntities) {
-      if (entity.imports.isNotEmpty && entity.sourceName.isNotEmpty) {
-        _setSourceNameForImports(parsedEntities, entity, entity.sourceName);
+    for (final dataComponent in parsedEntities) {
+      if (dataComponent.imports.isNotEmpty &&
+          dataComponent.sourceName.isNotEmpty) {
+        _setSourceNameForImports(
+            parsedEntities, dataComponent, dataComponent.sourceName);
       } else {
-        _setEntitySourceNameFromParent(parsedEntities, entity);
+        _setEntitySourceNameFromParent(parsedEntities, dataComponent);
       }
     }
 
@@ -82,6 +84,18 @@ class SwaggerParser {
       if (entity.generateResponse) {
         _setGenResponse(sources, entity);
       }
+    }
+
+    for (final source in sources) {
+      sourceRepository.sources.removeWhere((e) => e.name == source.name);
+      sourceRepository.sources.add(Source.copyOf(source));
+    }
+
+    for (final dataComponent in dataComponents) {
+      dataComponentRepository.dataComponents
+          .removeWhere((e) => e.name == dataComponent.name);
+      dataComponentRepository.dataComponents
+          .add(DataComponent.copyOf(dataComponent));
     }
 
     return SwaggerData(

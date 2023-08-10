@@ -57,10 +57,20 @@ class Method {
 
   Map<String, dynamic> toJson() => _$MethodToJson(this);
 
-  Method.copyOf(Method source)
-      : this(
-          methodType: source.methodType,
-          tags: source.tags,
-          entities: source.entities.map((e) => DataComponent.copyOf(e)).toSet(),
-        );
+  static Method copyOf(Method source) {
+    final copy = Method(
+      methodType: source.methodType,
+      tags: source.tags,
+      entities: source.entities,
+    );
+
+    copy.setResponseEntityName(source._responseEntityName);
+    copy.setResponseRuntimeType(source._responseRuntimeType);
+    copy.setRequestEntityName(source._requestEntityName);
+    copy.params.addAll(source.params.map((e) => MethodParameter.copyOf(e)));
+    copy.innerEnums
+        .addAll(source.innerEnums.map((e) => DataComponent.copyOf(e)));
+
+    return copy;
+  }
 }

@@ -70,7 +70,7 @@ class GenerateSource {
           method: method,
           path: path,
           pathPrefix: pathPrefix,
-          sourceWrapper: source,
+          source: source,
           projectName: projectName,
           imports: imports,
           projectPath: projectPath,
@@ -180,7 +180,7 @@ class ${source.name.pascalCase}SourceImpl implements ${source.name.pascalCase}So
   ${source.name.pascalCase}SourceImpl(this._apiClient, this._dioRequestProcessor);
   
   ${implMethods.map((e) => '''@override
-        ${e.sourceMethod /*.replaceAll(' params', '? params')*/ .replaceAll(';', '')} async {
+        ${e.sourceMethod.replaceAll(';', '')} async {
         ${_getSourceImplBody(e, mutatedPathPrefix)}
         }
     '''.replaceAll(('{}'), '')).join('\n')}
@@ -310,7 +310,7 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
     required Set<String> imports,
     required String projectName,
     required String projectPath,
-    required Source sourceWrapper,
+    required Source source,
   }) {
     final responseIsEnum =
         _checkEntityIsEnum(entityName: method.responseEntityName);
@@ -326,12 +326,11 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
             : '${method.requestEntityName}Request';
 
     if (method.responseEntityName.isNotEmpty) {
-      final sourceName =
-          _getSourceName(method.responseEntityName, sourceWrapper);
+      final sourceName = _getSourceName(method.responseEntityName, source);
 
       if (responseIsEnum) {
         imports.add(
-            "import 'package:$projectName/domain/entity/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${method.responseEntityName. /*stripRequestResponse().*/ snakeCase}.dart';");
+            "import 'package:$projectName/domain/entity/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${method.responseEntityName.snakeCase}.dart';");
       } else {
         imports.add(
             "import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${responseEntityName.snakeCase}.dart';");
@@ -339,22 +338,18 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
     }
 
     if (method.requestEntityName.isNotEmpty) {
-      final source = sourceRepository.sources.firstWhere((source) =>
-          source.dataComponents.firstWhereOrNull((element) =>
-              element.name ==
-              method.requestEntityName.stripRequestResponse()) !=
-          null);
+      final sourceName = _getSourceName(method.requestEntityName, source);
 
       if (!(method.innerEnums.isNotEmpty &&
           !method.innerEnums
               .any((element) => element.name == method.requestEntityName))) {
         imports.add(
-            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/${method.requestEntityName.stripRequestResponse().snakeCase}/${requestEntityName.snakeCase}.dart';");
+            "import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${method.requestEntityName.stripRequestResponse().snakeCase}/${requestEntityName.snakeCase}.dart';");
       }
     }
 
-    final methodParamsNotRequired = _generateMethodImports(
-        method, imports, projectName, projectPath, sourceWrapper);
+    final methodParamsNotRequired =
+        _generateMethodImports(method, imports, projectName, projectPath);
 
     final methodRequestBodyPart = method.requestEntityName.isNotEmpty
         ? 'required ${method.requestEntityName.endsWith('Request') ? method.requestEntityName : '${method.requestEntityName}Request'} ${method.requestEntityName.camelCase}'
@@ -371,7 +366,7 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
         '$methodRequestBodyPart${methodRequestBodyPart.isNotEmpty ? ', ' : ''}$methodRequestParamsPart${methodRequestParamsPart.isNotEmpty ? ', ' : ''}';
 
     final methodName =
-        '${method.methodType.name}${_parsePathMethod(path.path, pathPrefix, sourceWrapper)}';
+        '${method.methodType.name}${_parsePathMethod(path.path, pathPrefix, source)}';
 
     methodParams =
         '{$methodParams${methodParamsNotRequired.isNotEmpty ? '${methodName.pascalCase}Params? params,' : ''}}';
@@ -383,13 +378,13 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
 
     if (methodParamsNotRequired.isNotEmpty) {
       imports.add(
-          "import 'package:$projectName/data/source/remote/${sourceWrapper.name.snakeCase}/params/${methodName.snakeCase}_params.dart';");
+          "import 'package:$projectName/data/source/remote/${source.name.snakeCase}/params/${methodName.snakeCase}_params.dart';");
       _generateMethodParamsFile(
         methodName: methodName,
         methodParamsNotRequired: methodParamsNotRequired,
         projectName: projectName,
         projectPath: projectPath,
-        sourceWrapper: sourceWrapper,
+        source: source,
         innerEnums: method.innerEnums,
       );
     }
@@ -397,13 +392,13 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
     if (method.innerEnums.isNotEmpty) {
       for (final innerEnum in method.innerEnums) {
         imports.add(
-            "import 'package:$projectName/data/model/remote/${sourceWrapper.name.snakeCase}/enums/${innerEnum.name.snakeCase}.dart';");
+            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/enums/${innerEnum.name.snakeCase}.dart';");
 
         _generateMethodInnerEnumFile(
           innerEnum: innerEnum,
           projectName: projectName,
           projectPath: projectPath,
-          sourceWrapper: sourceWrapper,
+          source: source,
         );
       }
     }
@@ -412,23 +407,25 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
   }
 
   Set<Property> _generateMethodImports(Method method, Set<String> imports,
-      String projectName, String projectPath, Source sourceWrapper) {
+      String projectName, String projectPath) {
     final methodParamsNotRequired = <Property>{};
 
     if (method.params.isNotEmpty) {
       for (final parameter in method.params) {
         if (parameter.type.isNotEmpty) {
           if (!parameter.nullable) {
-            final source = sourceRepository.sources.firstWhereOrNull((source) =>
-                source.dataComponents.firstWhereOrNull(
-                    (element) => element.name == parameter.type) !=
-                null);
+            final sourceName = sourceRepository.sources
+                .firstWhereOrNull((source) =>
+                    source.dataComponents.firstWhereOrNull(
+                        (element) => element.name == parameter.type) !=
+                    null)
+                ?.name;
 
-            if (source != null &&
+            if (sourceName != null &&
                 !method.innerEnums.any((element) =>
                     element.name.snakeCase == parameter.type.snakeCase)) {
               imports.add(
-                  "import 'package:$projectName/domain/entity/${source.name.snakeCase}/${parameter.type.snakeCase}/${parameter.type.snakeCase}.dart';");
+                  "import 'package:$projectName/domain/entity/${sourceName.snakeCase}/${parameter.type.snakeCase}/${parameter.type.snakeCase}.dart';");
             }
           } else {
             methodParamsNotRequired.add(parameter);
@@ -445,7 +442,7 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
     required Set<Property> methodParamsNotRequired,
     required String projectName,
     required String projectPath,
-    required Source sourceWrapper,
+    required Source source,
     required List<DataComponent> innerEnums,
   }) async {
     final imports = <String>{};
@@ -455,8 +452,8 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
     if (methodParamsNotRequired.isNotEmpty) {
       for (final parameter in methodParamsNotRequired) {
         if (parameter.type.isNotEmpty) {
-          for (final source in sourceRepository.sources) {
-            for (final entity in source.dataComponents) {
+          for (final importSource in sourceRepository.sources) {
+            for (final entity in importSource.dataComponents) {
               if (parameter.type.contains(entity.name)) {
                 innerEnums.map((e) => e.name).contains(entity.name)
                     ? imports.add(
@@ -490,7 +487,7 @@ class ${methodName.pascalCase}Params{
 ''';
 
     final path = await Directory(
-            '$projectPath/$projectName/lib/data/source/remote/${sourceWrapper.name.snakeCase}/params')
+            '$projectPath/$projectName/lib/data/source/remote/${source.name.snakeCase}/params')
         .create(recursive: true);
 
     var file =
@@ -503,10 +500,10 @@ class ${methodName.pascalCase}Params{
     required DataComponent innerEnum,
     required String projectName,
     required String projectPath,
-    required Source sourceWrapper,
+    required Source source,
   }) async {
     final path = await Directory(
-            '$projectPath/$projectName/lib/data/model/remote/${sourceWrapper.name.snakeCase}/enums')
+            '$projectPath/$projectName/lib/data/model/remote/${source.name.snakeCase}/enums')
         .create(recursive: true);
 
     var file =
@@ -602,21 +599,24 @@ final request = _apiClient.client.${method.methodType}(
   }
 
   String _getSourceName(String entityName, Source thisSource) {
-    final source = sourceRepository.sources.firstWhere(
-        (source) =>
+    final sourceName = sourceRepository.sources
+        .firstWhere((source) =>
             source.dataComponents.firstWhereOrNull((element) =>
-                element.name.snakeCase ==
-                entityName. /*stripRequestResponse().*/ snakeCase) !=
-            null,
-        orElse: () => thisSource);
+                element.name.pascalCase ==
+                entityName.stripRequestResponse().pascalCase) !=
+            null)
+        .dataComponents
+        .firstWhere((element) =>
+            element.name.pascalCase ==
+            entityName.stripRequestResponse().pascalCase)
+        .sourceName;
 
-    return source.name;
+    return sourceName;
   }
 
   String _getRepositoryImplBody(
       GeneratedMethod method, String prefix, String sourceName) {
     String sourceParams = method.sourceMethod
-        /*.replaceAll(' params', '? params')*/
         .replaceAll(';', '')
         .split('(')
         .last
