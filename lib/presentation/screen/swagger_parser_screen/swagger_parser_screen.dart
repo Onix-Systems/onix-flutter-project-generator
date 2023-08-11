@@ -134,8 +134,8 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
       context.go(
         AppRouter.dataComponentsScreen,
         extra: widget.config.copyWith(
-          dataComponents: state.config.dataComponents,
-          sources: state.config.sources,
+          // dataComponents: state.config.dataComponents,
+          // sources: state.config.sources,
           swaggerUrl: state.config.swaggerUrl,
         ),
       );
@@ -143,8 +143,8 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
   _onBack(BuildContext context, SwaggerParserScreenState state) => context.go(
         AppRouter.screensScreen,
         extra: widget.config.copyWith(
-          dataComponents: state.config.dataComponents,
-          sources: state.config.sources,
+          // dataComponents: state.config.dataComponents,
+          // sources: state.config.sources,
           swaggerUrl: state.config.swaggerUrl,
         ),
       );

@@ -13,18 +13,47 @@ import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class SourceRepositoryImpl implements SourceRepository {
+  final Set<Source> _sources = {};
+
   @override
-  Set<Source> sources = {};
+  Set<Source> get sources => _sources.map((e) => Source.copyOf(e)).toSet();
+
+  @override
+  void addSource(Source source) {
+    if (_sources.where((element) => element.name == source.name).isEmpty) {
+      _sources.add(source);
+    }
+  }
 
   @override
   Source? getSourceByName(String name) {
-    return sources.firstWhereOrNull((element) => element.name == name);
+    return _sources.firstWhereOrNull(
+        (element) => element.name.pascalCase == name.pascalCase);
+  }
+
+  @override
+  String getDataComponentSourceName(String entityName) {
+    final source = _sources.firstWhereOrNull((source) =>
+        source.dataComponents.firstWhereOrNull((element) =>
+            element.name.pascalCase ==
+            entityName.stripRequestResponse().pascalCase) !=
+        null);
+
+    if (source == null) {
+      return '';
+    }
+
+    return source.dataComponents
+        .firstWhere((element) =>
+            element.name.pascalCase ==
+            entityName.stripRequestResponse().pascalCase)
+        .sourceName;
   }
 
   @override
   void parse(Map<String, dynamic> data) {
-    sources.clear();
-    sources.addAll(_parse(data));
+    _sources.clear();
+    _sources.addAll(_parse(data));
   }
 
   Set<Source> _parse(Map<String, dynamic> data) {
@@ -218,6 +247,7 @@ class SourceRepositoryImpl implements SourceRepository {
                 element.methods.any((method) => method.tags.contains(tag)))
             .toList(),
         dataComponentsNames: dependencies.toList(),
+        dataComponents: [],
       );
       sources.add(source);
     }
@@ -308,5 +338,45 @@ class SourceRepositoryImpl implements SourceRepository {
         .replaceAll('}', '')
         .split('/')
         .last;
+  }
+
+  @override
+  void addDataComponentToSource(Source source, DataComponent dataComponent) {
+    _sources.firstWhere((element) => element.name == source.name)
+      ..dataComponents.add(dataComponent)
+      ..dataComponentsNames.add(dataComponent.name);
+  }
+
+  @override
+  void deleteDataComponentFromSource(
+      Source source, DataComponent dataComponent) {
+    _sources
+        .firstWhere((element) => element.name == source.name)
+        .dataComponents
+        .remove(dataComponent);
+  }
+
+  @override
+  void deleteSource(Source source) {
+    _sources.remove(source);
+  }
+
+  @override
+  void modifyDataComponentInSource(
+      Source source, DataComponent dataComponent, String oldDataComponentName) {
+    _sources
+        .firstWhere((element) => element.name == source.name)
+        .dataComponents
+        .removeWhere((element) => element.name == oldDataComponentName);
+    _sources
+        .firstWhere((element) => element.name == source.name)
+        .dataComponents
+        .add(dataComponent);
+  }
+
+  @override
+  void modifySource(Source source, String sourceName) {
+    _sources.removeWhere((element) => element.name == sourceName);
+    _sources.add(source);
   }
 }

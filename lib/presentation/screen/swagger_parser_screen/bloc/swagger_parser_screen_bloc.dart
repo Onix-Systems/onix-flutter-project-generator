@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bloc/swagger_parser_screen_bloc_imports.dart';
-import 'package:onix_flutter_bricks/util/swagger_parser/swagger_data.dart';
 import 'package:onix_flutter_bricks/util/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
 
@@ -17,7 +17,6 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
       : super(
           SwaggerParserScreenStateData(
             config: const Config(),
-            parsedData: SwaggerData.empty(),
           ),
         ) {
     on<SwaggerParserScreenEventInit>(_onInit);
@@ -56,42 +55,34 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
 
       var json = jsonDecode(response.body);
 
-      final parsedData = SwaggerParser.parse(
+      SwaggerParser.parse(
           data: json as Map<String, dynamic>,
           projectName: state.config.projectName);
 
       bool withConflicts = false;
 
-      final stateComponents =
-          Set<DataComponent>.from(state.config.dataComponents);
-
-      for (var dataComponent in parsedData.dataComponents) {
-        if (stateComponents
+      for (var dataComponent in dataComponentRepository.dataComponents) {
+        if (state.config.dataComponents
             .where((element) =>
                 element.name.pascalCase == dataComponent.name.pascalCase)
             .isEmpty) {
-          stateComponents.add(DataComponent.copyOf(dataComponent));
+          dataComponentRepository.dataComponents
+              .add(DataComponent.copyOf(dataComponent));
         } else {
           withConflicts = true;
         }
       }
 
-      final stateSources = Set<Source>.from(state.config.sources);
-
-      for (var parsedSource in parsedData.sources) {
-        if (stateSources
-            .where((element) =>
-                element.name.pascalCase == parsedSource.name.pascalCase)
-            .isEmpty) {
-          stateSources.add(Source.copyOf(parsedSource));
+      for (var source in state.config.sources) {
+        final stateSource = sourceRepository.getSourceByName(source.name);
+        if (stateSource == null) {
+          sourceRepository.addSource(Source.copyOf(source));
         } else {
-          final stateSource = stateSources.firstWhere((element) =>
-              element.name.pascalCase == parsedSource.name.pascalCase);
-
-          for (var element in parsedSource.dataComponents) {
+          for (var element in source.dataComponents) {
             if (!stateSource.dataComponents.any((component) =>
                 component.name.pascalCase == element.name.pascalCase)) {
-              stateSource.dataComponents.add(DataComponent.copyOf(element));
+              sourceRepository.addDataComponentToSource(
+                  stateSource, DataComponent.copyOf(element));
             } else {
               withConflicts = true;
             }
@@ -103,10 +94,9 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
 
       emit(state.copyWith(
         config: state.config.copyWith(
-          dataComponents: stateComponents.toSet(),
-          sources: stateSources.toSet(),
+          dataComponents: dataComponentRepository.dataComponents,
+          sources: sourceRepository.sources,
         ),
-        parsedData: parsedData,
       ));
 
       if (withConflicts) {
@@ -124,38 +114,34 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     SwaggerParserScreenEventOnReplace event,
     Emitter<SwaggerParserScreenState> emit,
   ) async {
-    final stateComponents =
-        Set<DataComponent>.from(state.config.dataComponents);
+    final stateComponents = dataComponentRepository.dataComponents;
 
-    if (state.parsedData.dataComponents.isNotEmpty) {
-      for (final dataComponent in state.parsedData.dataComponents) {
+    if (dataComponentRepository.dataComponents.isNotEmpty) {
+      for (final dataComponent in dataComponentRepository.dataComponents) {
         stateComponents.removeWhere((element) =>
             element.name.pascalCase == dataComponent.name.pascalCase);
         stateComponents.add(dataComponent);
       }
     }
 
-    final stateSources = Set<Source>.from(state.config.sources);
+    if (sourceRepository.sources.isNotEmpty) {
+      for (var source in sourceRepository.sources) {
+        final stateSource = sourceRepository.getSourceByName(source.name);
 
-    if (state.parsedData.sources.isNotEmpty) {
-      for (var source in state.parsedData.sources) {
-        final stateSource = stateSources.firstWhere(
-            (element) => element.name.pascalCase == source.name.pascalCase);
-
-        for (var element in source.dataComponents) {
-          stateSource.dataComponents
-              .removeWhere((e) => e.name.pascalCase == element.name.pascalCase);
-          stateSource.dataComponents.add(element);
+        if (stateSource != null) {
+          for (var element in source.dataComponents) {
+            sourceRepository.modifyDataComponentInSource(
+                stateSource, DataComponent.copyOf(element), element.name);
+          }
         }
       }
     }
 
     emit(state.copyWith(
       config: state.config.copyWith(
-        dataComponents: stateComponents.toSet(),
-        sources: stateSources.toSet(),
+        dataComponents: dataComponentRepository.dataComponents,
+        sources: sourceRepository.sources,
       ),
-      parsedData: SwaggerData.empty(),
     ));
 
     addSr(const SwaggerParserScreenSR.onContinue());

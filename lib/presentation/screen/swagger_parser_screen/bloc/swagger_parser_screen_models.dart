@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/util/swagger_parser/swagger_data.dart';
 
 part 'swagger_parser_screen_models.freezed.dart';
 
@@ -37,6 +36,5 @@ class SwaggerParserScreenSR with _$SwaggerParserScreenSR {
 class SwaggerParserScreenState with _$SwaggerParserScreenState {
   const factory SwaggerParserScreenState.data({
     required Config config,
-    required SwaggerData parsedData,
   }) = SwaggerParserScreenStateData;
 }

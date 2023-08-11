@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
@@ -207,7 +206,7 @@ class ${source.name.pascalCase}SourceImpl implements ${source.name.pascalCase}So
         mappers.add(
             '''final _${mapper}Mappers = ${mapper.pascalCase}Mappers();''');
 
-        final sourceName = _getSourceName(mapper, source);
+        final sourceName = sourceRepository.getDataComponentSourceName(mapper);
 
         mappersImports.add(
             '''import 'package:$projectName/data/mapper/${sourceName.snakeCase}/${mapper.snakeCase}/${mapper.snakeCase}_mapper.dart';''');
@@ -326,7 +325,8 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
             : '${method.requestEntityName}Request';
 
     if (method.responseEntityName.isNotEmpty) {
-      final sourceName = _getSourceName(method.responseEntityName, source);
+      final sourceName = sourceRepository
+          .getDataComponentSourceName(method.responseEntityName);
 
       if (responseIsEnum) {
         imports.add(
@@ -338,7 +338,8 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
     }
 
     if (method.requestEntityName.isNotEmpty) {
-      final sourceName = _getSourceName(method.requestEntityName, source);
+      final sourceName =
+          sourceRepository.getDataComponentSourceName(method.requestEntityName);
 
       if (!(method.innerEnums.isNotEmpty &&
           !method.innerEnums
@@ -414,14 +415,17 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
       for (final parameter in method.params) {
         if (parameter.type.isNotEmpty) {
           if (!parameter.nullable) {
-            final sourceName = sourceRepository.sources
+            /*final sourceName = sourceRepository.sources
                 .firstWhereOrNull((source) =>
                     source.dataComponents.firstWhereOrNull(
                         (element) => element.name == parameter.type) !=
                     null)
-                ?.name;
+                ?.name;*/
 
-            if (sourceName != null &&
+            final sourceName = sourceRepository
+                .getDataComponentSourceName(parameter.type.snakeCase);
+
+            if (sourceName.isNotEmpty &&
                 !method.innerEnums.any((element) =>
                     element.name.snakeCase == parameter.type.snakeCase)) {
               imports.add(
@@ -596,22 +600,6 @@ final request = _apiClient.client.${method.methodType}(
     ''';
 
     return methodBody;
-  }
-
-  String _getSourceName(String entityName, Source thisSource) {
-    final sourceName = sourceRepository.sources
-        .firstWhere((source) =>
-            source.dataComponents.firstWhereOrNull((element) =>
-                element.name.pascalCase ==
-                entityName.stripRequestResponse().pascalCase) !=
-            null)
-        .dataComponents
-        .firstWhere((element) =>
-            element.name.pascalCase ==
-            entityName.stripRequestResponse().pascalCase)
-        .sourceName;
-
-    return sourceName;
   }
 
   String _getRepositoryImplBody(

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
@@ -14,8 +15,10 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     on<DataComponentsScreenEventStateUpdate>(_onStateUpdate);
     on<DataComponentsScreenEventAddSource>(_onAddSource);
     on<DataComponentsScreenEventDeleteSource>(_onDeleteSource);
+    on<DataComponentsScreenEventModifySource>(_onModifySource);
     on<DataComponentsScreenEventAddDataComponent>(_onAddDataComponent);
     on<DataComponentsScreenEventDeleteDataComponent>(_onDeleteDataComponent);
+    on<DataComponentsScreenEventModifyDataComponent>(_onModifyDataComponent);
   }
 
   FutureOr<void> _onInit(
@@ -24,8 +27,8 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
   ) {
     emit(state.copyWith(
       config: event.config.copyWith(
-        sources: event.config.sources,
-        dataComponents: event.config.dataComponents,
+        sources: sourceRepository.sources,
+        dataComponents: dataComponentRepository.dataComponents,
       ),
     ));
   }
@@ -34,45 +37,57 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     DataComponentsScreenEventStateUpdate event,
     Emitter<DataComponentsScreenState> emit,
   ) {
-    emit(state.copyWith(stateUpdate: DateTime.now().millisecondsSinceEpoch));
+    emit(state.copyWith(
+      config: state.config.copyWith(
+        sources: sourceRepository.sources,
+        dataComponents: dataComponentRepository.dataComponents,
+      ),
+      stateUpdate: DateTime.now().millisecondsSinceEpoch,
+    ));
   }
 
   FutureOr<void> _onAddSource(
     DataComponentsScreenEventAddSource event,
     Emitter<DataComponentsScreenState> emit,
   ) async {
-    if (state.config.sources
-        .where((element) => element.name == event.source.name)
-        .isNotEmpty) {
+    if (sourceRepository.getSourceByName(event.source.name) != null) {
       addSr(DataComponentsScreenSR.error(
           message: '${event.source.name.pascalCase}Source already exists'));
       return;
     }
 
-    var sources = state.config.sources.toList();
+    sourceRepository.addSource(event.source);
 
-    sources.add(event.source);
-    emit(state.copyWith(
-      config: state.config.copyWith(sources: sources.toSet()),
-    ));
+    add(const DataComponentsScreenEventStateUpdate());
   }
 
   FutureOr<void> _onDeleteSource(
     DataComponentsScreenEventDeleteSource event,
     Emitter<DataComponentsScreenState> emit,
   ) async {
-    var sources = state.config.sources.toList();
-    sources.remove(event.source);
-    emit(state.copyWith(
-      config: state.config.copyWith(sources: sources.toSet()),
-    ));
+    final sourceToDelete = sourceRepository.getSourceByName(event.source.name);
+
+    if (sourceToDelete != null) {
+      sourceRepository.deleteSource(sourceToDelete);
+    }
+
+    add(const DataComponentsScreenEventStateUpdate());
+  }
+
+  FutureOr<void> _onModifySource(
+    DataComponentsScreenEventModifySource event,
+    Emitter<DataComponentsScreenState> emit,
+  ) async {
+    sourceRepository.modifySource(event.source, event.oldSourceName);
+
+    add(const DataComponentsScreenEventStateUpdate());
   }
 
   FutureOr<void> _onAddDataComponent(
     DataComponentsScreenEventAddDataComponent event,
     Emitter<DataComponentsScreenState> emit,
   ) async {
-    if (state.config.dataComponents
+    if (dataComponentRepository.dataComponents
         .where((element) => element.name == event.dataComponent.name)
         .isNotEmpty) {
       addSr(DataComponentsScreenSR.error(
@@ -81,7 +96,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
 
       return;
     } else {
-      for (var source in state.config.sources) {
+      for (var source in sourceRepository.sources) {
         for (var entity in source.dataComponents) {
           if (entity.name == event.dataComponent.name) {
             addSr(DataComponentsScreenSR.error(
@@ -98,24 +113,13 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     component.properties = [Property(name: 'name', type: 'string')];
 
     if (event.source == null) {
-      var entities = state.config.dataComponents.toList();
-
-      entities.add(event.dataComponent);
-      emit(state.copyWith(
-        config: state.config.copyWith(dataComponents: entities.toSet()),
-      ));
+      dataComponentRepository.dataComponents.add(component);
     } else {
-      var entities = event.source?.dataComponents.toList() ?? [];
-      var entity = event.dataComponent;
-      entity.sourceName = event.source?.name ?? '';
-      entities.add(event.dataComponent);
-      var sources = state.config.sources.toList();
+      final source = sourceRepository.getSourceByName(event.source!.name);
 
-      sources.firstWhere((source) => source == event.source).dataComponents =
-          entities;
-      emit(state.copyWith(
-        config: state.config.copyWith(sources: sources.toSet()),
-      ));
+      if (source != null) {
+        sourceRepository.addDataComponentToSource(source, component);
+      }
     }
     add(const DataComponentsScreenEventStateUpdate());
   }
@@ -125,22 +129,36 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     Emitter<DataComponentsScreenState> emit,
   ) async {
     if (event.source == null) {
-      var entities = state.config.dataComponents.toList();
-      entities.remove(event.entity);
-      emit(state.copyWith(
-        config: state.config.copyWith(dataComponents: entities.toSet()),
-      ));
+      dataComponentRepository.dataComponents.remove(event.entity);
     } else {
-      var entities = event.source?.dataComponents.toList() ?? [];
-      entities.remove(event.entity);
-      var sources = state.config.sources.toList();
-      sources.firstWhere((source) => source == event.source).dataComponents =
-          entities;
-      emit(state.copyWith(
-        config: state.config.copyWith(sources: sources.toSet()),
-      ));
-    }
+      final source = sourceRepository.getSourceByName(event.source!.name);
 
+      if (source != null) {
+        sourceRepository.deleteDataComponentFromSource(source, event.entity);
+      }
+    }
+    add(const DataComponentsScreenEventStateUpdate());
+  }
+
+  FutureOr<void> _onModifyDataComponent(
+    DataComponentsScreenEventModifyDataComponent event,
+    Emitter<DataComponentsScreenState> emit,
+  ) async {
+    if (event.source == null) {
+      final componentToRemove = dataComponentRepository.dataComponents
+          .firstWhere((element) => element.name == event.oldDataComponentName);
+
+      dataComponentRepository.dataComponents.remove(componentToRemove);
+
+      dataComponentRepository.dataComponents.add(event.dataComponent);
+    } else {
+      final source = sourceRepository.getSourceByName(event.source!.name);
+
+      if (source != null) {
+        sourceRepository.modifyDataComponentInSource(
+            source, event.dataComponent, event.oldDataComponentName);
+      }
+    }
     add(const DataComponentsScreenEventStateUpdate());
   }
 }

@@ -1108,20 +1108,19 @@ abstract class _OnContinue implements SwaggerParserScreenSR {
 /// @nodoc
 mixin _$SwaggerParserScreenState {
   Config get config => throw _privateConstructorUsedError;
-  SwaggerData get parsedData => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config, SwaggerData parsedData) data,
+    required TResult Function(Config config) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, SwaggerData parsedData)? data,
+    TResult? Function(Config config)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, SwaggerData parsedData)? data,
+    TResult Function(Config config)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1153,7 +1152,7 @@ abstract class $SwaggerParserScreenStateCopyWith<$Res> {
           $Res Function(SwaggerParserScreenState) then) =
       _$SwaggerParserScreenStateCopyWithImpl<$Res, SwaggerParserScreenState>;
   @useResult
-  $Res call({Config config, SwaggerData parsedData});
+  $Res call({Config config});
 
   $ConfigCopyWith<$Res> get config;
 }
@@ -1173,17 +1172,12 @@ class _$SwaggerParserScreenStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? config = null,
-    Object? parsedData = null,
   }) {
     return _then(_value.copyWith(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
-      parsedData: null == parsedData
-          ? _value.parsedData
-          : parsedData // ignore: cast_nullable_to_non_nullable
-              as SwaggerData,
     ) as $Val);
   }
 
@@ -1205,7 +1199,7 @@ abstract class _$$SwaggerParserScreenStateDataCopyWith<$Res>
       __$$SwaggerParserScreenStateDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Config config, SwaggerData parsedData});
+  $Res call({Config config});
 
   @override
   $ConfigCopyWith<$Res> get config;
@@ -1225,17 +1219,12 @@ class __$$SwaggerParserScreenStateDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object? config = null,
-    Object? parsedData = null,
   }) {
     return _then(_$SwaggerParserScreenStateData(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
-      parsedData: null == parsedData
-          ? _value.parsedData
-          : parsedData // ignore: cast_nullable_to_non_nullable
-              as SwaggerData,
     ));
   }
 }
@@ -1243,17 +1232,14 @@ class __$$SwaggerParserScreenStateDataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
-  const _$SwaggerParserScreenStateData(
-      {required this.config, required this.parsedData});
+  const _$SwaggerParserScreenStateData({required this.config});
 
   @override
   final Config config;
-  @override
-  final SwaggerData parsedData;
 
   @override
   String toString() {
-    return 'SwaggerParserScreenState.data(config: $config, parsedData: $parsedData)';
+    return 'SwaggerParserScreenState.data(config: $config)';
   }
 
   @override
@@ -1261,13 +1247,11 @@ class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwaggerParserScreenStateData &&
-            (identical(other.config, config) || other.config == config) &&
-            (identical(other.parsedData, parsedData) ||
-                other.parsedData == parsedData));
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config, parsedData);
+  int get hashCode => Object.hash(runtimeType, config);
 
   @JsonKey(ignore: true)
   @override
@@ -1279,27 +1263,27 @@ class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config, SwaggerData parsedData) data,
+    required TResult Function(Config config) data,
   }) {
-    return data(config, parsedData);
+    return data(config);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, SwaggerData parsedData)? data,
+    TResult? Function(Config config)? data,
   }) {
-    return data?.call(config, parsedData);
+    return data?.call(config);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, SwaggerData parsedData)? data,
+    TResult Function(Config config)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(config, parsedData);
+      return data(config);
     }
     return orElse();
   }
@@ -1335,14 +1319,11 @@ class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
 
 abstract class SwaggerParserScreenStateData
     implements SwaggerParserScreenState {
-  const factory SwaggerParserScreenStateData(
-      {required final Config config,
-      required final SwaggerData parsedData}) = _$SwaggerParserScreenStateData;
+  const factory SwaggerParserScreenStateData({required final Config config}) =
+      _$SwaggerParserScreenStateData;
 
   @override
   Config get config;
-  @override
-  SwaggerData get parsedData;
   @override
   @JsonKey(ignore: true)
   _$$SwaggerParserScreenStateDataCopyWith<_$SwaggerParserScreenStateData>

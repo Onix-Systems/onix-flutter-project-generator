@@ -22,10 +22,14 @@ mixin _$DataComponentsScreenEvent {
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
     required TResult Function(Source source) deleteSource,
+    required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
     required TResult Function(DataComponent entity, Source? source)
         deleteDataComponent,
+    required TResult Function(DataComponent dataComponent,
+            String oldDataComponentName, Source? source)
+        modifyDataComponent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,10 +38,14 @@ mixin _$DataComponentsScreenEvent {
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
     TResult? Function(Source source)? deleteSource,
+    TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult? Function(DataComponent entity, Source? source)?
         deleteDataComponent,
+    TResult? Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -46,9 +54,13 @@ mixin _$DataComponentsScreenEvent {
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
     TResult Function(Source source)? deleteSource,
+    TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult Function(DataComponent entity, Source? source)? deleteDataComponent,
+    TResult Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,11 +73,16 @@ mixin _$DataComponentsScreenEvent {
         addSource,
     required TResult Function(DataComponentsScreenEventDeleteSource value)
         deleteSource,
+    required TResult Function(DataComponentsScreenEventModifySource value)
+        modifySource,
     required TResult Function(DataComponentsScreenEventAddDataComponent value)
         addDataComponent,
     required TResult Function(
             DataComponentsScreenEventDeleteDataComponent value)
         deleteDataComponent,
+    required TResult Function(
+            DataComponentsScreenEventModifyDataComponent value)
+        modifyDataComponent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,10 +92,14 @@ mixin _$DataComponentsScreenEvent {
     TResult? Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult? Function(DataComponentsScreenEventDeleteSource value)?
         deleteSource,
+    TResult? Function(DataComponentsScreenEventModifySource value)?
+        modifySource,
     TResult? Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult? Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult? Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,10 +108,13 @@ mixin _$DataComponentsScreenEvent {
     TResult Function(DataComponentsScreenEventStateUpdate value)? stateUpdate,
     TResult Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult Function(DataComponentsScreenEventDeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenEventModifySource value)? modifySource,
     TResult Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -197,10 +221,14 @@ class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
     required TResult Function(Source source) deleteSource,
+    required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
     required TResult Function(DataComponent entity, Source? source)
         deleteDataComponent,
+    required TResult Function(DataComponent dataComponent,
+            String oldDataComponentName, Source? source)
+        modifyDataComponent,
   }) {
     return init(config);
   }
@@ -212,10 +240,14 @@ class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
     TResult? Function(Source source)? deleteSource,
+    TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult? Function(DataComponent entity, Source? source)?
         deleteDataComponent,
+    TResult? Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
   }) {
     return init?.call(config);
   }
@@ -227,9 +259,13 @@ class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
     TResult Function(Source source)? deleteSource,
+    TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult Function(DataComponent entity, Source? source)? deleteDataComponent,
+    TResult Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -248,11 +284,16 @@ class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
         addSource,
     required TResult Function(DataComponentsScreenEventDeleteSource value)
         deleteSource,
+    required TResult Function(DataComponentsScreenEventModifySource value)
+        modifySource,
     required TResult Function(DataComponentsScreenEventAddDataComponent value)
         addDataComponent,
     required TResult Function(
             DataComponentsScreenEventDeleteDataComponent value)
         deleteDataComponent,
+    required TResult Function(
+            DataComponentsScreenEventModifyDataComponent value)
+        modifyDataComponent,
   }) {
     return init(this);
   }
@@ -265,10 +306,14 @@ class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
     TResult? Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult? Function(DataComponentsScreenEventDeleteSource value)?
         deleteSource,
+    TResult? Function(DataComponentsScreenEventModifySource value)?
+        modifySource,
     TResult? Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult? Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult? Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
   }) {
     return init?.call(this);
   }
@@ -280,10 +325,13 @@ class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
     TResult Function(DataComponentsScreenEventStateUpdate value)? stateUpdate,
     TResult Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult Function(DataComponentsScreenEventDeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenEventModifySource value)? modifySource,
     TResult Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -351,10 +399,14 @@ class _$DataComponentsScreenEventStateUpdate
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
     required TResult Function(Source source) deleteSource,
+    required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
     required TResult Function(DataComponent entity, Source? source)
         deleteDataComponent,
+    required TResult Function(DataComponent dataComponent,
+            String oldDataComponentName, Source? source)
+        modifyDataComponent,
   }) {
     return stateUpdate();
   }
@@ -366,10 +418,14 @@ class _$DataComponentsScreenEventStateUpdate
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
     TResult? Function(Source source)? deleteSource,
+    TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult? Function(DataComponent entity, Source? source)?
         deleteDataComponent,
+    TResult? Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
   }) {
     return stateUpdate?.call();
   }
@@ -381,9 +437,13 @@ class _$DataComponentsScreenEventStateUpdate
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
     TResult Function(Source source)? deleteSource,
+    TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult Function(DataComponent entity, Source? source)? deleteDataComponent,
+    TResult Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
     required TResult orElse(),
   }) {
     if (stateUpdate != null) {
@@ -402,11 +462,16 @@ class _$DataComponentsScreenEventStateUpdate
         addSource,
     required TResult Function(DataComponentsScreenEventDeleteSource value)
         deleteSource,
+    required TResult Function(DataComponentsScreenEventModifySource value)
+        modifySource,
     required TResult Function(DataComponentsScreenEventAddDataComponent value)
         addDataComponent,
     required TResult Function(
             DataComponentsScreenEventDeleteDataComponent value)
         deleteDataComponent,
+    required TResult Function(
+            DataComponentsScreenEventModifyDataComponent value)
+        modifyDataComponent,
   }) {
     return stateUpdate(this);
   }
@@ -419,10 +484,14 @@ class _$DataComponentsScreenEventStateUpdate
     TResult? Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult? Function(DataComponentsScreenEventDeleteSource value)?
         deleteSource,
+    TResult? Function(DataComponentsScreenEventModifySource value)?
+        modifySource,
     TResult? Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult? Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult? Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
   }) {
     return stateUpdate?.call(this);
   }
@@ -434,10 +503,13 @@ class _$DataComponentsScreenEventStateUpdate
     TResult Function(DataComponentsScreenEventStateUpdate value)? stateUpdate,
     TResult Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult Function(DataComponentsScreenEventDeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenEventModifySource value)? modifySource,
     TResult Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
     required TResult orElse(),
   }) {
     if (stateUpdate != null) {
@@ -527,10 +599,14 @@ class _$DataComponentsScreenEventAddSource
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
     required TResult Function(Source source) deleteSource,
+    required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
     required TResult Function(DataComponent entity, Source? source)
         deleteDataComponent,
+    required TResult Function(DataComponent dataComponent,
+            String oldDataComponentName, Source? source)
+        modifyDataComponent,
   }) {
     return addSource(source);
   }
@@ -542,10 +618,14 @@ class _$DataComponentsScreenEventAddSource
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
     TResult? Function(Source source)? deleteSource,
+    TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult? Function(DataComponent entity, Source? source)?
         deleteDataComponent,
+    TResult? Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
   }) {
     return addSource?.call(source);
   }
@@ -557,9 +637,13 @@ class _$DataComponentsScreenEventAddSource
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
     TResult Function(Source source)? deleteSource,
+    TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult Function(DataComponent entity, Source? source)? deleteDataComponent,
+    TResult Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
     required TResult orElse(),
   }) {
     if (addSource != null) {
@@ -578,11 +662,16 @@ class _$DataComponentsScreenEventAddSource
         addSource,
     required TResult Function(DataComponentsScreenEventDeleteSource value)
         deleteSource,
+    required TResult Function(DataComponentsScreenEventModifySource value)
+        modifySource,
     required TResult Function(DataComponentsScreenEventAddDataComponent value)
         addDataComponent,
     required TResult Function(
             DataComponentsScreenEventDeleteDataComponent value)
         deleteDataComponent,
+    required TResult Function(
+            DataComponentsScreenEventModifyDataComponent value)
+        modifyDataComponent,
   }) {
     return addSource(this);
   }
@@ -595,10 +684,14 @@ class _$DataComponentsScreenEventAddSource
     TResult? Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult? Function(DataComponentsScreenEventDeleteSource value)?
         deleteSource,
+    TResult? Function(DataComponentsScreenEventModifySource value)?
+        modifySource,
     TResult? Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult? Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult? Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
   }) {
     return addSource?.call(this);
   }
@@ -610,10 +703,13 @@ class _$DataComponentsScreenEventAddSource
     TResult Function(DataComponentsScreenEventStateUpdate value)? stateUpdate,
     TResult Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult Function(DataComponentsScreenEventDeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenEventModifySource value)? modifySource,
     TResult Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
     required TResult orElse(),
   }) {
     if (addSource != null) {
@@ -709,10 +805,14 @@ class _$DataComponentsScreenEventDeleteSource
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
     required TResult Function(Source source) deleteSource,
+    required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
     required TResult Function(DataComponent entity, Source? source)
         deleteDataComponent,
+    required TResult Function(DataComponent dataComponent,
+            String oldDataComponentName, Source? source)
+        modifyDataComponent,
   }) {
     return deleteSource(source);
   }
@@ -724,10 +824,14 @@ class _$DataComponentsScreenEventDeleteSource
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
     TResult? Function(Source source)? deleteSource,
+    TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult? Function(DataComponent entity, Source? source)?
         deleteDataComponent,
+    TResult? Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
   }) {
     return deleteSource?.call(source);
   }
@@ -739,9 +843,13 @@ class _$DataComponentsScreenEventDeleteSource
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
     TResult Function(Source source)? deleteSource,
+    TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult Function(DataComponent entity, Source? source)? deleteDataComponent,
+    TResult Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
     required TResult orElse(),
   }) {
     if (deleteSource != null) {
@@ -760,11 +868,16 @@ class _$DataComponentsScreenEventDeleteSource
         addSource,
     required TResult Function(DataComponentsScreenEventDeleteSource value)
         deleteSource,
+    required TResult Function(DataComponentsScreenEventModifySource value)
+        modifySource,
     required TResult Function(DataComponentsScreenEventAddDataComponent value)
         addDataComponent,
     required TResult Function(
             DataComponentsScreenEventDeleteDataComponent value)
         deleteDataComponent,
+    required TResult Function(
+            DataComponentsScreenEventModifyDataComponent value)
+        modifyDataComponent,
   }) {
     return deleteSource(this);
   }
@@ -777,10 +890,14 @@ class _$DataComponentsScreenEventDeleteSource
     TResult? Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult? Function(DataComponentsScreenEventDeleteSource value)?
         deleteSource,
+    TResult? Function(DataComponentsScreenEventModifySource value)?
+        modifySource,
     TResult? Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult? Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult? Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
   }) {
     return deleteSource?.call(this);
   }
@@ -792,10 +909,13 @@ class _$DataComponentsScreenEventDeleteSource
     TResult Function(DataComponentsScreenEventStateUpdate value)? stateUpdate,
     TResult Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult Function(DataComponentsScreenEventDeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenEventModifySource value)? modifySource,
     TResult Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
     required TResult orElse(),
   }) {
     if (deleteSource != null) {
@@ -818,6 +938,224 @@ abstract class DataComponentsScreenEventDeleteSource
 }
 
 /// @nodoc
+abstract class _$$DataComponentsScreenEventModifySourceCopyWith<$Res> {
+  factory _$$DataComponentsScreenEventModifySourceCopyWith(
+          _$DataComponentsScreenEventModifySource value,
+          $Res Function(_$DataComponentsScreenEventModifySource) then) =
+      __$$DataComponentsScreenEventModifySourceCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Source source, String oldSourceName});
+}
+
+/// @nodoc
+class __$$DataComponentsScreenEventModifySourceCopyWithImpl<$Res>
+    extends _$DataComponentsScreenEventCopyWithImpl<$Res,
+        _$DataComponentsScreenEventModifySource>
+    implements _$$DataComponentsScreenEventModifySourceCopyWith<$Res> {
+  __$$DataComponentsScreenEventModifySourceCopyWithImpl(
+      _$DataComponentsScreenEventModifySource _value,
+      $Res Function(_$DataComponentsScreenEventModifySource) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? source = null,
+    Object? oldSourceName = null,
+  }) {
+    return _then(_$DataComponentsScreenEventModifySource(
+      source: null == source
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as Source,
+      oldSourceName: null == oldSourceName
+          ? _value.oldSourceName
+          : oldSourceName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DataComponentsScreenEventModifySource
+    implements DataComponentsScreenEventModifySource {
+  const _$DataComponentsScreenEventModifySource(
+      {required this.source, required this.oldSourceName});
+
+  @override
+  final Source source;
+  @override
+  final String oldSourceName;
+
+  @override
+  String toString() {
+    return 'DataComponentsScreenEvent.modifySource(source: $source, oldSourceName: $oldSourceName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DataComponentsScreenEventModifySource &&
+            (identical(other.source, source) || other.source == source) &&
+            (identical(other.oldSourceName, oldSourceName) ||
+                other.oldSourceName == oldSourceName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, source, oldSourceName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DataComponentsScreenEventModifySourceCopyWith<
+          _$DataComponentsScreenEventModifySource>
+      get copyWith => __$$DataComponentsScreenEventModifySourceCopyWithImpl<
+          _$DataComponentsScreenEventModifySource>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function() stateUpdate,
+    required TResult Function(Source source) addSource,
+    required TResult Function(Source source) deleteSource,
+    required TResult Function(Source source, String oldSourceName) modifySource,
+    required TResult Function(DataComponent dataComponent, Source? source)
+        addDataComponent,
+    required TResult Function(DataComponent entity, Source? source)
+        deleteDataComponent,
+    required TResult Function(DataComponent dataComponent,
+            String oldDataComponentName, Source? source)
+        modifyDataComponent,
+  }) {
+    return modifySource(source, oldSourceName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function()? stateUpdate,
+    TResult? Function(Source source)? addSource,
+    TResult? Function(Source source)? deleteSource,
+    TResult? Function(Source source, String oldSourceName)? modifySource,
+    TResult? Function(DataComponent dataComponent, Source? source)?
+        addDataComponent,
+    TResult? Function(DataComponent entity, Source? source)?
+        deleteDataComponent,
+    TResult? Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
+  }) {
+    return modifySource?.call(source, oldSourceName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function()? stateUpdate,
+    TResult Function(Source source)? addSource,
+    TResult Function(Source source)? deleteSource,
+    TResult Function(Source source, String oldSourceName)? modifySource,
+    TResult Function(DataComponent dataComponent, Source? source)?
+        addDataComponent,
+    TResult Function(DataComponent entity, Source? source)? deleteDataComponent,
+    TResult Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
+    required TResult orElse(),
+  }) {
+    if (modifySource != null) {
+      return modifySource(source, oldSourceName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DataComponentsScreenEventInit value) init,
+    required TResult Function(DataComponentsScreenEventStateUpdate value)
+        stateUpdate,
+    required TResult Function(DataComponentsScreenEventAddSource value)
+        addSource,
+    required TResult Function(DataComponentsScreenEventDeleteSource value)
+        deleteSource,
+    required TResult Function(DataComponentsScreenEventModifySource value)
+        modifySource,
+    required TResult Function(DataComponentsScreenEventAddDataComponent value)
+        addDataComponent,
+    required TResult Function(
+            DataComponentsScreenEventDeleteDataComponent value)
+        deleteDataComponent,
+    required TResult Function(
+            DataComponentsScreenEventModifyDataComponent value)
+        modifyDataComponent,
+  }) {
+    return modifySource(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DataComponentsScreenEventInit value)? init,
+    TResult? Function(DataComponentsScreenEventStateUpdate value)? stateUpdate,
+    TResult? Function(DataComponentsScreenEventAddSource value)? addSource,
+    TResult? Function(DataComponentsScreenEventDeleteSource value)?
+        deleteSource,
+    TResult? Function(DataComponentsScreenEventModifySource value)?
+        modifySource,
+    TResult? Function(DataComponentsScreenEventAddDataComponent value)?
+        addDataComponent,
+    TResult? Function(DataComponentsScreenEventDeleteDataComponent value)?
+        deleteDataComponent,
+    TResult? Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
+  }) {
+    return modifySource?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataComponentsScreenEventInit value)? init,
+    TResult Function(DataComponentsScreenEventStateUpdate value)? stateUpdate,
+    TResult Function(DataComponentsScreenEventAddSource value)? addSource,
+    TResult Function(DataComponentsScreenEventDeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenEventModifySource value)? modifySource,
+    TResult Function(DataComponentsScreenEventAddDataComponent value)?
+        addDataComponent,
+    TResult Function(DataComponentsScreenEventDeleteDataComponent value)?
+        deleteDataComponent,
+    TResult Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
+    required TResult orElse(),
+  }) {
+    if (modifySource != null) {
+      return modifySource(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DataComponentsScreenEventModifySource
+    implements DataComponentsScreenEvent {
+  const factory DataComponentsScreenEventModifySource(
+          {required final Source source, required final String oldSourceName}) =
+      _$DataComponentsScreenEventModifySource;
+
+  Source get source;
+  String get oldSourceName;
+  @JsonKey(ignore: true)
+  _$$DataComponentsScreenEventModifySourceCopyWith<
+          _$DataComponentsScreenEventModifySource>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$DataComponentsScreenEventAddDataComponentCopyWith<$Res> {
   factory _$$DataComponentsScreenEventAddDataComponentCopyWith(
           _$DataComponentsScreenEventAddDataComponent value,
@@ -829,7 +1167,7 @@ abstract class _$$DataComponentsScreenEventAddDataComponentCopyWith<$Res> {
 
 /// @nodoc
 class __$$DataComponentsScreenEventAddDataComponentCopyWithImpl<$Res>
-    extends _$DataComponentsScreenEventCopyWithImpl<$Res,
+extends _$DataComponentsScreenEventCopyWithImpl<$Res,
         _$DataComponentsScreenEventAddDataComponent>
     implements _$$DataComponentsScreenEventAddDataComponentCopyWith<$Res> {
   __$$DataComponentsScreenEventAddDataComponentCopyWithImpl(
@@ -902,10 +1240,14 @@ class _$DataComponentsScreenEventAddDataComponent
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
     required TResult Function(Source source) deleteSource,
+    required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
     required TResult Function(DataComponent entity, Source? source)
         deleteDataComponent,
+    required TResult Function(DataComponent dataComponent,
+            String oldDataComponentName, Source? source)
+        modifyDataComponent,
   }) {
     return addDataComponent(dataComponent, source);
   }
@@ -917,10 +1259,14 @@ class _$DataComponentsScreenEventAddDataComponent
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
     TResult? Function(Source source)? deleteSource,
+    TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult? Function(DataComponent entity, Source? source)?
         deleteDataComponent,
+    TResult? Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
   }) {
     return addDataComponent?.call(dataComponent, source);
   }
@@ -932,9 +1278,13 @@ class _$DataComponentsScreenEventAddDataComponent
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
     TResult Function(Source source)? deleteSource,
+    TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult Function(DataComponent entity, Source? source)? deleteDataComponent,
+    TResult Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
     required TResult orElse(),
   }) {
     if (addDataComponent != null) {
@@ -953,11 +1303,16 @@ class _$DataComponentsScreenEventAddDataComponent
         addSource,
     required TResult Function(DataComponentsScreenEventDeleteSource value)
         deleteSource,
+    required TResult Function(DataComponentsScreenEventModifySource value)
+        modifySource,
     required TResult Function(DataComponentsScreenEventAddDataComponent value)
         addDataComponent,
     required TResult Function(
             DataComponentsScreenEventDeleteDataComponent value)
         deleteDataComponent,
+    required TResult Function(
+            DataComponentsScreenEventModifyDataComponent value)
+        modifyDataComponent,
   }) {
     return addDataComponent(this);
   }
@@ -970,10 +1325,14 @@ class _$DataComponentsScreenEventAddDataComponent
     TResult? Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult? Function(DataComponentsScreenEventDeleteSource value)?
         deleteSource,
+    TResult? Function(DataComponentsScreenEventModifySource value)?
+        modifySource,
     TResult? Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult? Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult? Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
   }) {
     return addDataComponent?.call(this);
   }
@@ -985,10 +1344,13 @@ class _$DataComponentsScreenEventAddDataComponent
     TResult Function(DataComponentsScreenEventStateUpdate value)? stateUpdate,
     TResult Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult Function(DataComponentsScreenEventDeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenEventModifySource value)? modifySource,
     TResult Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
     required TResult orElse(),
   }) {
     if (addDataComponent != null) {
@@ -1097,10 +1459,14 @@ class _$DataComponentsScreenEventDeleteDataComponent
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
     required TResult Function(Source source) deleteSource,
+    required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
     required TResult Function(DataComponent entity, Source? source)
         deleteDataComponent,
+    required TResult Function(DataComponent dataComponent,
+            String oldDataComponentName, Source? source)
+        modifyDataComponent,
   }) {
     return deleteDataComponent(entity, source);
   }
@@ -1112,10 +1478,14 @@ class _$DataComponentsScreenEventDeleteDataComponent
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
     TResult? Function(Source source)? deleteSource,
+    TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult? Function(DataComponent entity, Source? source)?
         deleteDataComponent,
+    TResult? Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
   }) {
     return deleteDataComponent?.call(entity, source);
   }
@@ -1127,9 +1497,13 @@ class _$DataComponentsScreenEventDeleteDataComponent
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
     TResult Function(Source source)? deleteSource,
+    TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
     TResult Function(DataComponent entity, Source? source)? deleteDataComponent,
+    TResult Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
     required TResult orElse(),
   }) {
     if (deleteDataComponent != null) {
@@ -1148,11 +1522,16 @@ class _$DataComponentsScreenEventDeleteDataComponent
         addSource,
     required TResult Function(DataComponentsScreenEventDeleteSource value)
         deleteSource,
+    required TResult Function(DataComponentsScreenEventModifySource value)
+        modifySource,
     required TResult Function(DataComponentsScreenEventAddDataComponent value)
         addDataComponent,
     required TResult Function(
             DataComponentsScreenEventDeleteDataComponent value)
         deleteDataComponent,
+    required TResult Function(
+            DataComponentsScreenEventModifyDataComponent value)
+        modifyDataComponent,
   }) {
     return deleteDataComponent(this);
   }
@@ -1165,10 +1544,14 @@ class _$DataComponentsScreenEventDeleteDataComponent
     TResult? Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult? Function(DataComponentsScreenEventDeleteSource value)?
         deleteSource,
+    TResult? Function(DataComponentsScreenEventModifySource value)?
+        modifySource,
     TResult? Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult? Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult? Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
   }) {
     return deleteDataComponent?.call(this);
   }
@@ -1180,10 +1563,13 @@ class _$DataComponentsScreenEventDeleteDataComponent
     TResult Function(DataComponentsScreenEventStateUpdate value)? stateUpdate,
     TResult Function(DataComponentsScreenEventAddSource value)? addSource,
     TResult Function(DataComponentsScreenEventDeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenEventModifySource value)? modifySource,
     TResult Function(DataComponentsScreenEventAddDataComponent value)?
         addDataComponent,
     TResult Function(DataComponentsScreenEventDeleteDataComponent value)?
         deleteDataComponent,
+    TResult Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
     required TResult orElse(),
   }) {
     if (deleteDataComponent != null) {
@@ -1208,6 +1594,244 @@ abstract class DataComponentsScreenEventDeleteDataComponent
 }
 
 /// @nodoc
+abstract class _$$DataComponentsScreenEventModifyDataComponentCopyWith<$Res> {
+  factory _$$DataComponentsScreenEventModifyDataComponentCopyWith(
+          _$DataComponentsScreenEventModifyDataComponent value,
+          $Res Function(_$DataComponentsScreenEventModifyDataComponent) then) =
+      __$$DataComponentsScreenEventModifyDataComponentCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {DataComponent dataComponent,
+      String oldDataComponentName,
+      Source? source});
+}
+
+/// @nodoc
+class __$$DataComponentsScreenEventModifyDataComponentCopyWithImpl<$Res>
+    extends _$DataComponentsScreenEventCopyWithImpl<$Res,
+        _$DataComponentsScreenEventModifyDataComponent>
+    implements _$$DataComponentsScreenEventModifyDataComponentCopyWith<$Res> {
+  __$$DataComponentsScreenEventModifyDataComponentCopyWithImpl(
+      _$DataComponentsScreenEventModifyDataComponent _value,
+      $Res Function(_$DataComponentsScreenEventModifyDataComponent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dataComponent = null,
+    Object? oldDataComponentName = null,
+    Object? source = freezed,
+  }) {
+    return _then(_$DataComponentsScreenEventModifyDataComponent(
+      dataComponent: null == dataComponent
+          ? _value.dataComponent
+          : dataComponent // ignore: cast_nullable_to_non_nullable
+              as DataComponent,
+      oldDataComponentName: null == oldDataComponentName
+          ? _value.oldDataComponentName
+          : oldDataComponentName // ignore: cast_nullable_to_non_nullable
+              as String,
+      source: freezed == source
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as Source?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DataComponentsScreenEventModifyDataComponent
+    implements DataComponentsScreenEventModifyDataComponent {
+  const _$DataComponentsScreenEventModifyDataComponent(
+      {required this.dataComponent,
+      required this.oldDataComponentName,
+      this.source = null});
+
+  @override
+  final DataComponent dataComponent;
+  @override
+  final String oldDataComponentName;
+  @override
+  @JsonKey()
+  final Source? source;
+
+  @override
+  String toString() {
+    return 'DataComponentsScreenEvent.modifyDataComponent(dataComponent: $dataComponent, oldDataComponentName: $oldDataComponentName, source: $source)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DataComponentsScreenEventModifyDataComponent &&
+            (identical(other.dataComponent, dataComponent) ||
+                other.dataComponent == dataComponent) &&
+            (identical(other.oldDataComponentName, oldDataComponentName) ||
+                other.oldDataComponentName == oldDataComponentName) &&
+            (identical(other.source, source) || other.source == source));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, dataComponent, oldDataComponentName, source);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DataComponentsScreenEventModifyDataComponentCopyWith<
+          _$DataComponentsScreenEventModifyDataComponent>
+      get copyWith =>
+          __$$DataComponentsScreenEventModifyDataComponentCopyWithImpl<
+              _$DataComponentsScreenEventModifyDataComponent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function() stateUpdate,
+    required TResult Function(Source source) addSource,
+    required TResult Function(Source source) deleteSource,
+    required TResult Function(Source source, String oldSourceName) modifySource,
+    required TResult Function(DataComponent dataComponent, Source? source)
+        addDataComponent,
+    required TResult Function(DataComponent entity, Source? source)
+        deleteDataComponent,
+    required TResult Function(DataComponent dataComponent,
+            String oldDataComponentName, Source? source)
+        modifyDataComponent,
+  }) {
+    return modifyDataComponent(dataComponent, oldDataComponentName, source);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function()? stateUpdate,
+    TResult? Function(Source source)? addSource,
+    TResult? Function(Source source)? deleteSource,
+    TResult? Function(Source source, String oldSourceName)? modifySource,
+    TResult? Function(DataComponent dataComponent, Source? source)?
+        addDataComponent,
+    TResult? Function(DataComponent entity, Source? source)?
+        deleteDataComponent,
+    TResult? Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
+  }) {
+    return modifyDataComponent?.call(
+        dataComponent, oldDataComponentName, source);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function()? stateUpdate,
+    TResult Function(Source source)? addSource,
+    TResult Function(Source source)? deleteSource,
+    TResult Function(Source source, String oldSourceName)? modifySource,
+    TResult Function(DataComponent dataComponent, Source? source)?
+        addDataComponent,
+    TResult Function(DataComponent entity, Source? source)? deleteDataComponent,
+    TResult Function(DataComponent dataComponent, String oldDataComponentName,
+            Source? source)?
+        modifyDataComponent,
+    required TResult orElse(),
+  }) {
+    if (modifyDataComponent != null) {
+      return modifyDataComponent(dataComponent, oldDataComponentName, source);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DataComponentsScreenEventInit value) init,
+    required TResult Function(DataComponentsScreenEventStateUpdate value)
+        stateUpdate,
+    required TResult Function(DataComponentsScreenEventAddSource value)
+        addSource,
+    required TResult Function(DataComponentsScreenEventDeleteSource value)
+        deleteSource,
+    required TResult Function(DataComponentsScreenEventModifySource value)
+        modifySource,
+    required TResult Function(DataComponentsScreenEventAddDataComponent value)
+        addDataComponent,
+    required TResult Function(
+            DataComponentsScreenEventDeleteDataComponent value)
+        deleteDataComponent,
+    required TResult Function(
+            DataComponentsScreenEventModifyDataComponent value)
+        modifyDataComponent,
+  }) {
+    return modifyDataComponent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DataComponentsScreenEventInit value)? init,
+    TResult? Function(DataComponentsScreenEventStateUpdate value)? stateUpdate,
+    TResult? Function(DataComponentsScreenEventAddSource value)? addSource,
+    TResult? Function(DataComponentsScreenEventDeleteSource value)?
+        deleteSource,
+    TResult? Function(DataComponentsScreenEventModifySource value)?
+        modifySource,
+    TResult? Function(DataComponentsScreenEventAddDataComponent value)?
+        addDataComponent,
+    TResult? Function(DataComponentsScreenEventDeleteDataComponent value)?
+        deleteDataComponent,
+    TResult? Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
+  }) {
+    return modifyDataComponent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataComponentsScreenEventInit value)? init,
+    TResult Function(DataComponentsScreenEventStateUpdate value)? stateUpdate,
+    TResult Function(DataComponentsScreenEventAddSource value)? addSource,
+    TResult Function(DataComponentsScreenEventDeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenEventModifySource value)? modifySource,
+    TResult Function(DataComponentsScreenEventAddDataComponent value)?
+        addDataComponent,
+    TResult Function(DataComponentsScreenEventDeleteDataComponent value)?
+        deleteDataComponent,
+    TResult Function(DataComponentsScreenEventModifyDataComponent value)?
+        modifyDataComponent,
+    required TResult orElse(),
+  }) {
+    if (modifyDataComponent != null) {
+      return modifyDataComponent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DataComponentsScreenEventModifyDataComponent
+    implements DataComponentsScreenEvent {
+  const factory DataComponentsScreenEventModifyDataComponent(
+      {required final DataComponent dataComponent,
+      required final String oldDataComponentName,
+      final Source? source}) = _$DataComponentsScreenEventModifyDataComponent;
+
+  DataComponent get dataComponent;
+  String get oldDataComponentName;
+  Source? get source;
+  @JsonKey(ignore: true)
+  _$$DataComponentsScreenEventModifyDataComponentCopyWith<
+          _$DataComponentsScreenEventModifyDataComponent>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$DataComponentsScreenSR {
   String get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1217,74 +1841,74 @@ mixin _$DataComponentsScreenSR {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Error value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Error value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+TResult? Function(String message)? error,
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult maybeWhen<TResult extends Object?>({
+TResult Function(String message)? error,
+required TResult orElse(),
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult map<TResult extends Object?>({
+required TResult Function(_Error value) error,
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult? mapOrNull<TResult extends Object?>({
+TResult? Function(_Error value)? error,
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult maybeMap<TResult extends Object?>({
+TResult Function(_Error value)? error,
+required TResult orElse(),
+}) =>
+throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $DataComponentsScreenSRCopyWith<DataComponentsScreenSR> get copyWith =>
-      throw _privateConstructorUsedError;
+@JsonKey(ignore: true)
+$DataComponentsScreenSRCopyWith<DataComponentsScreenSR> get copyWith =>
+throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $DataComponentsScreenSRCopyWith<$Res> {
-  factory $DataComponentsScreenSRCopyWith(DataComponentsScreenSR value,
-          $Res Function(DataComponentsScreenSR) then) =
-      _$DataComponentsScreenSRCopyWithImpl<$Res, DataComponentsScreenSR>;
-  @useResult
-  $Res call({String message});
+factory $DataComponentsScreenSRCopyWith(DataComponentsScreenSR value,
+$Res Function(DataComponentsScreenSR) then) =
+_$DataComponentsScreenSRCopyWithImpl<$Res, DataComponentsScreenSR>;
+@useResult
+$Res call({String message});
 }
 
 /// @nodoc
 class _$DataComponentsScreenSRCopyWithImpl<$Res,
-        $Val extends DataComponentsScreenSR>
-    implements $DataComponentsScreenSRCopyWith<$Res> {
-  _$DataComponentsScreenSRCopyWithImpl(this._value, this._then);
+$Val extends DataComponentsScreenSR>
+implements $DataComponentsScreenSRCopyWith<$Res> {
+_$DataComponentsScreenSRCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_value.copyWith(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+@pragma('vm:prefer-inline')
+@override
+$Res call({
+Object? message = null,
+}) {
+return _then(_value.copyWith(
+message: null == message
+? _value.message
+    : message // ignore: cast_nullable_to_non_nullable
+as String,
+) as $Val);
+}
 }
 
 /// @nodoc
 abstract class _$$_ErrorCopyWith<$Res>
-    implements $DataComponentsScreenSRCopyWith<$Res> {
+implements $DataComponentsScreenSRCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
   @override

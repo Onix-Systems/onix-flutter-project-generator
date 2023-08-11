@@ -60,8 +60,13 @@ class AddSourceDialog extends StatelessWidget {
         source!.name = _sourceNameController.text.snakeCase;
         Navigator.pop(context, source);
       } else {
-        Navigator.pop(context,
-            Source(name: _sourceNameController.text, dataComponents: []));
+        final source = Source(
+          name: _sourceNameController.text.snakeCase,
+          dataComponents: [],
+          dataComponentsNames: [],
+        );
+
+        Navigator.pop(context, source);
       }
     } else {
       Navigator.pop(context);

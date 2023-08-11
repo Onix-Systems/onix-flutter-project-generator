@@ -2,14 +2,11 @@ import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
-import 'package:onix_flutter_bricks/util/swagger_parser/swagger_data.dart';
 import 'package:recase/recase.dart';
 
 class SwaggerParser {
-  static SwaggerData parse(
+  static void parse(
       {required Map<String, dynamic> data, required String projectName}) {
-    final String basePath = data['basePath'] ?? '';
-
     dataComponentRepository.parse(data);
 
     sourceRepository.parse(data);
@@ -58,6 +55,7 @@ class SwaggerParser {
         name: source.name,
         paths: source.paths,
         dataComponents: componentsToMove.toList(),
+        dataComponentsNames: componentsToMove.map((e) => e.name).toList(),
       );
     }).toList();
 
@@ -87,22 +85,15 @@ class SwaggerParser {
     }
 
     for (final source in sources) {
-      sourceRepository.sources.removeWhere((e) => e.name == source.name);
-      sourceRepository.sources.add(Source.copyOf(source));
+      sourceRepository.modifySource(source, source.name);
     }
+
+    dataComponentRepository.dataComponents.clear();
 
     for (final dataComponent in dataComponents) {
       dataComponentRepository.dataComponents
-          .removeWhere((e) => e.name == dataComponent.name);
-      dataComponentRepository.dataComponents
           .add(DataComponent.copyOf(dataComponent));
     }
-
-    return SwaggerData(
-      basePath: basePath,
-      dataComponents: dataComponents.toSet(),
-      sources: sources.toSet(),
-    );
   }
 
   static void _setSourceNameForImports(Set<DataComponent> parsedEntities,

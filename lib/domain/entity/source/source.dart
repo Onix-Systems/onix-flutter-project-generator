@@ -12,16 +12,16 @@ class Source {
   bool isGenerated;
   final List<Path> paths;
   final String tag;
-  final List<String> dataComponentsNames;
+  List<String> dataComponentsNames;
 
   Source({
     required this.name,
-    this.dataComponents = const [],
+    required this.dataComponents,
     this.exists = false,
     this.isGenerated = true,
     this.paths = const [],
     this.tag = '',
-    this.dataComponentsNames = const [],
+    required this.dataComponentsNames,
   });
 
   @override

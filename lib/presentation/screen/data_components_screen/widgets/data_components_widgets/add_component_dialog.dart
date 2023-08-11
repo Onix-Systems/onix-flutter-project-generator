@@ -2,17 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
 import 'package:recase/recase.dart';
 
 class AddComponentDialog extends StatefulWidget {
-  const AddComponentDialog(
-      {Key? key, this.dataComponent, this.standalone = true})
-      : super(key: key);
-
   final DataComponent? dataComponent;
-  final bool standalone;
+  final Source? source;
+
+  const AddComponentDialog({Key? key, this.dataComponent, this.source})
+      : super(key: key);
 
   @override
   State<AddComponentDialog> createState() => _AddComponentDialogState();
@@ -33,6 +33,7 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
   @override
   void initState() {
     _textFieldFocusNode.requestFocus();
+
     if (widget.dataComponent != null) {
       _componentNameController.text = widget.dataComponent!.name;
       _createRequest = widget.dataComponent!.generateRequest;
@@ -178,17 +179,19 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
         widget.dataComponent!.generateResponse = _createResponse;
         Navigator.pop(context, widget.dataComponent);
       } else {
-        Navigator.pop(
-            context,
-            DataComponent(
-              name: widget.dataComponent != null
-                  ? _componentNameController.text.snakeCase
-                  : _componentNameController.text,
-              properties: [],
-              isGenerated: false,
-              generateRequest: _createRequest,
-              generateResponse: _createResponse,
-            ));
+        var dataComponent = DataComponent(
+          name: widget.dataComponent != null
+              ? _componentNameController.text.snakeCase
+              : _componentNameController.text,
+          properties: [],
+          isGenerated: false,
+          generateRequest: _createRequest,
+          generateResponse: _createResponse,
+        );
+
+        dataComponent.setSourceName(widget.source?.name ?? '');
+
+        Navigator.pop(context, dataComponent);
       }
     } else {
       Navigator.pop(context);

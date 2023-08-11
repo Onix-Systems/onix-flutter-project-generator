@@ -83,17 +83,17 @@ class ComponentsTable extends StatelessWidget {
             ),
           ),
           ...dataComponents.map(
-            (entity) => Container(
+            (dataComponent) => Container(
               padding: const EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
                 color: AppColors.grayBG,
-                borderRadius: entity == dataComponents.last
+                borderRadius: dataComponent == dataComponents.last
                     ? const BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       )
                     : null,
-                border: entity == dataComponents.last
+                border: dataComponent == dataComponents.last
                     ? null
                     : const Border(
                         bottom: BorderSide(
@@ -107,11 +107,11 @@ class ComponentsTable extends StatelessWidget {
                 children: [
                   Cell(
                     value: Text(
-                      entity.name.pascalCase,
+                      dataComponent.name.pascalCase,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: context.appTextStyles.fs18?.copyWith(
-                          color: entity.exists
+                          color: dataComponent.exists
                               ? CupertinoColors.inactiveGray
                               : CupertinoColors.white),
                     ),
@@ -122,18 +122,18 @@ class ComponentsTable extends StatelessWidget {
                     value: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (entity.isEnum)
+                        if (dataComponent.isEnum)
                           Text(
                             'enum',
                             style: context.appTextStyles.fs18,
                           )
                         else
                           MSHCheckbox(
-                            value: entity.generateRequest,
+                            value: dataComponent.generateRequest,
                             onChanged: (_) {},
                             isDisabled: true,
                             duration: const Duration(milliseconds: 200),
-                            colorConfig: entity.exists
+                            colorConfig: dataComponent.exists
                                 ? MSHColorConfig.fromCheckedUncheckedDisabled(
                                     checkedColor: CupertinoColors.inactiveGray,
                                     uncheckedColor:
@@ -155,18 +155,18 @@ class ComponentsTable extends StatelessWidget {
                     value: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (entity.isEnum)
+                        if (dataComponent.isEnum)
                           Text(
                             'enum',
                             style: context.appTextStyles.fs18,
                           )
                         else
                           MSHCheckbox(
-                            value: entity.generateResponse,
+                            value: dataComponent.generateResponse,
                             onChanged: (_) {},
                             isDisabled: true,
                             duration: const Duration(milliseconds: 200),
-                            colorConfig: entity.exists
+                            colorConfig: dataComponent.exists
                                 ? MSHColorConfig.fromCheckedUncheckedDisabled(
                                     checkedColor: CupertinoColors.inactiveGray,
                                     uncheckedColor:
@@ -193,26 +193,32 @@ class ComponentsTable extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CupertinoButton(
-                              color: entity.exists || entity.isGenerated
+                              color: dataComponent.exists ||
+                                      dataComponent.isGenerated
                                   ? CupertinoColors.inactiveGray
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                if (!entity.exists &&
-                                    !entity.isEnum &&
-                                    !entity.isGenerated) {
+                                if (!dataComponent.exists &&
+                                    !dataComponent.isEnum &&
+                                    !dataComponent.isGenerated) {
                                   showCupertinoModalPopup<DataComponent>(
                                     context: context,
                                     barrierDismissible: false,
                                     builder: (context) => AddComponentDialog(
-                                      dataComponent: entity,
-                                      standalone: source == null,
+                                      dataComponent:
+                                          DataComponent.copyOf(dataComponent),
+                                      source: source,
                                     ),
-                                  ).then((entity) {
-                                    if (entity != null) {
+                                  ).then((component) {
+                                    if (component != null) {
                                       blocOf(context).add(
-                                        const DataComponentsScreenEventStateUpdate(),
+                                        DataComponentsScreenEventModifyDataComponent(
+                                            dataComponent: component,
+                                            oldDataComponentName:
+                                                dataComponent.name,
+                                            source: source),
                                       );
                                     }
                                   });
@@ -226,16 +232,18 @@ class ComponentsTable extends StatelessWidget {
                             ),
                             const SizedBox(width: 10),
                             CupertinoButton(
-                              color: entity.exists || entity.isGenerated
+                              color: dataComponent.exists ||
+                                      dataComponent.isGenerated
                                   ? CupertinoColors.inactiveGray
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               onPressed: () {
-                                if (!entity.exists && !entity.isGenerated) {
+                                if (!dataComponent.exists &&
+                                    !dataComponent.isGenerated) {
                                   blocOf(context).add(
                                     DataComponentsScreenEventDeleteDataComponent(
-                                        entity: entity, source: source),
+                                        entity: dataComponent, source: source),
                                   );
                                 }
                               },

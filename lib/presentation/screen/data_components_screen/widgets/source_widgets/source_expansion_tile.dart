@@ -34,8 +34,17 @@ class SourceExpansionTile extends StatefulWidget {
 class _SourceExpansionTileState extends State<SourceExpansionTile> {
   bool expanded = true;
 
+  String oldSourceName = '';
+
+  @override
+  void initState() {
+    super.initState();
+    oldSourceName = widget.source.name;
+  }
+
   @override
   Widget build(BuildContext context) {
+    oldSourceName = widget.source.name;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -96,7 +105,9 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                         ).then((source) {
                                           if (source != null) {
                                             blocOf(context).add(
-                                              const DataComponentsScreenEventStateUpdate(),
+                                              DataComponentsScreenEventModifySource(
+                                                  source: source,
+                                                  oldSourceName: oldSourceName),
                                             );
                                           }
                                         });
@@ -116,10 +127,9 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                   showCupertinoModalPopup<DataComponent>(
                                     context: context,
                                     barrierDismissible: false,
-                                    builder: (context) =>
-                                        const AddComponentDialog(
+                                    builder: (context) => AddComponentDialog(
                                       dataComponent: null,
-                                      standalone: false,
+                                      source: widget.source,
                                     ),
                                   ).then((entity) {
                                     if (entity != null) {

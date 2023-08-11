@@ -94,7 +94,7 @@ class _EntityTableExpansionTileState extends State<EntityTableExpansionTile> {
                                 barrierDismissible: false,
                                 builder: (context) => const AddComponentDialog(
                                   dataComponent: null,
-                                  standalone: false,
+                                  source: null,
                                 ),
                               ).then((entity) {
                                 if (entity != null) {

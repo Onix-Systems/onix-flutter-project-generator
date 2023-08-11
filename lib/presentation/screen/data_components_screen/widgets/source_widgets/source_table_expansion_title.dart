@@ -100,6 +100,7 @@ class _SourceTableExpansionTileState extends State<SourceTableExpansionTile> {
                                     source: Source(
                                         name: source.name,
                                         dataComponents: [],
+                                        dataComponentsNames: [],
                                         isGenerated: false),
                                   ));
                                 }

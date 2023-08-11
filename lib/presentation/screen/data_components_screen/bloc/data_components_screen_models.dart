@@ -20,6 +20,11 @@ class DataComponentsScreenEvent with _$DataComponentsScreenEvent {
   const factory DataComponentsScreenEvent.deleteSource(
       {required Source source}) = DataComponentsScreenEventDeleteSource;
 
+  const factory DataComponentsScreenEvent.modifySource({
+    required Source source,
+    required String oldSourceName,
+  }) = DataComponentsScreenEventModifySource;
+
   const factory DataComponentsScreenEvent.addDataComponent({
     required DataComponent dataComponent,
     @Default(null) Source? source,
@@ -29,6 +34,12 @@ class DataComponentsScreenEvent with _$DataComponentsScreenEvent {
     required DataComponent entity,
     @Default(null) Source? source,
   }) = DataComponentsScreenEventDeleteDataComponent;
+
+  const factory DataComponentsScreenEvent.modifyDataComponent({
+    required DataComponent dataComponent,
+    required String oldDataComponentName,
+    @Default(null) Source? source,
+  }) = DataComponentsScreenEventModifyDataComponent;
 }
 
 @freezed
