@@ -139,7 +139,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                         variable: S.of(context).sources,
                         value: widget.config.sources
                             .map((e) =>
-                                '${e.name}(${e.dataComponents.map((e) => e.name).join(', ')})')
+                                '${e.name}(${e.dataComponents.map((e) => e.name.pascalCase).join(', ')})')
                             .join('\n\n'),
                       ),
                     if (widget.config.dataComponents.isNotEmpty)
