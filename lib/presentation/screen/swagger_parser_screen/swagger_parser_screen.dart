@@ -71,7 +71,8 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
         ),
         onOk: () =>
             blocOf(context).add(const SwaggerParserScreenEventOnReplace()),
-        onCancel: () => _onContinue(context, blocOf(context).state),
+        onCancel: () =>
+            blocOf(context).add(const SwaggerParserScreenEventOnIgnore()),
       ),
       onContinue: () => _onContinue(context, blocOf(context).state),
     );
@@ -134,8 +135,6 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
       context.go(
         AppRouter.dataComponentsScreen,
         extra: widget.config.copyWith(
-          // dataComponents: state.config.dataComponents,
-          // sources: state.config.sources,
           swaggerUrl: state.config.swaggerUrl,
         ),
       );
@@ -143,8 +142,6 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
   _onBack(BuildContext context, SwaggerParserScreenState state) => context.go(
         AppRouter.screensScreen,
         extra: widget.config.copyWith(
-          // dataComponents: state.config.dataComponents,
-          // sources: state.config.sources,
           swaggerUrl: state.config.swaggerUrl,
         ),
       );

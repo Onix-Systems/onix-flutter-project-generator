@@ -35,6 +35,7 @@
   "screenAlreadyExistsTitle": "Already exists",
   "screenAlreadyExistsContent": "Screen with such name already exists",
   "screenName": "Screen name",
+  "screens": "Screens",
   "usingBloc": "Using BLoC",
   "actions": "Actions",
   "integrateDevicePreview": "Integrate Device Preview?",

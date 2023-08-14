@@ -10,4 +10,6 @@ abstract class DataComponentRepository {
   void parse(Map<String, dynamic> data);
 
   DataComponent? getDataComponentByName(String name);
+
+  void empty();
 }

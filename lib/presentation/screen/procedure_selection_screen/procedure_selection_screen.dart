@@ -1,9 +1,9 @@
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
@@ -34,10 +34,8 @@ class ProcedureSelectionScreen extends StatelessWidget {
                   onPressed: () {
                     context.go(
                       AppRouter.projectNameScreen,
-                      extra: config.copyWith(
-                        projectName:
-                            config.projectExists ? '' : config.projectName,
-                        projectExists: false,
+                      extra: Config(
+                        projectPath: config.projectPath,
                       ),
                     );
                   },
@@ -53,7 +51,8 @@ class ProcedureSelectionScreen extends StatelessWidget {
                         .modifyGeneratedProject(config.projectName),
                     big: true,
                     onPressed: () {
-                      //context.go(AppRouter.projectNameScreen, extra: config);
+                      context.go(AppRouter.modifyProjectScreen,
+                          extra: config.copyWith(projectExists: true));
                     },
                     icon: Icons.create_new_folder_outlined,
                   ),
@@ -64,8 +63,18 @@ class ProcedureSelectionScreen extends StatelessWidget {
                   label: S.of(context).openExistingProject,
                   big: true,
                   onPressed: () {
-                    //TODO: implement open existing project
-                    logger.f('Open existing project');
+                    getDirectoryPath().then(
+                      (value) {
+                        if (value != null) {
+                          context.go(AppRouter.modifyProjectScreen,
+                              extra: Config(
+                                projectPath: config.projectPath,
+                                projectName: value.split('/').last,
+                                projectExists: true,
+                              ));
+                        }
+                      },
+                    );
                   },
                   icon: Icons.folder_open_outlined,
                 ),

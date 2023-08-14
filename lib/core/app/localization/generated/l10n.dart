@@ -400,6 +400,16 @@ class S {
     );
   }
 
+  /// `Screens`
+  String get screens {
+    return Intl.message(
+      'Screens',
+      name: 'screens',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Using BLoC`
   String get usingBloc {
     return Intl.message(

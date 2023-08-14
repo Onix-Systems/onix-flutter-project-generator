@@ -13,7 +13,43 @@ import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class SourceRepositoryImpl implements SourceRepository {
-  final Set<Source> _sources = {};
+  final Set<Source> _sources = {
+    Source(
+      name: 'Time',
+      exists: true,
+      isGenerated: false,
+      dataComponents: [
+        DataComponent(
+          name: 'Time',
+          exists: true,
+          isGenerated: false,
+          properties: [Property(name: 'currentDateTime', type: 'DateTime')],
+        )..setSourceName('Time'),
+      ],
+      dataComponentsNames: ['Time'],
+    ),
+  };
+
+  @override
+  void empty() {
+    _sources.clear();
+    _sources.add(
+      Source(
+        name: 'Time',
+        exists: true,
+        isGenerated: false,
+        dataComponents: [
+          DataComponent(
+            name: 'Time',
+            exists: true,
+            isGenerated: false,
+            properties: [Property(name: 'currentDateTime', type: 'DateTime')],
+          )..setSourceName('Time'),
+        ],
+        dataComponentsNames: ['Time'],
+      ),
+    );
+  }
 
   @override
   Set<Source> get sources => _sources.map((e) => Source.copyOf(e)).toSet();
@@ -53,6 +89,20 @@ class SourceRepositoryImpl implements SourceRepository {
   @override
   void parse(Map<String, dynamic> data) {
     _sources.clear();
+    _sources.add(Source(
+      name: 'Time',
+      exists: true,
+      isGenerated: false,
+      dataComponents: [
+        DataComponent(
+          name: 'Time',
+          exists: true,
+          isGenerated: false,
+          properties: [Property(name: 'currentDateTime', type: 'DateTime')],
+        )..setSourceName('Time'),
+      ],
+      dataComponentsNames: ['Time'],
+    ));
     _sources.addAll(_parse(data));
   }
 

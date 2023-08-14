@@ -127,6 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenAlreadyExistsTitle":
             MessageLookupByLibrary.simpleMessage("Already exists"),
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
+        "screens": MessageLookupByLibrary.simpleMessage("Screens"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),

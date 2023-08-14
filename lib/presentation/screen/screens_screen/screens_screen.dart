@@ -15,9 +15,11 @@ import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 
 class ScreensScreen extends StatefulWidget {
   final Config config;
+  final Function(Set<Screen>)? onChange;
 
   const ScreensScreen({
     required this.config,
+    this.onChange,
     super.key,
   });
 
@@ -34,7 +36,10 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
       child: CupertinoPageScaffold(
         child: SizedBox.expand(
           child: blocConsumer(
-            stateListener: (state) => _buildMainContainer(context, state),
+            stateListener: (state) {
+              widget.onChange?.call(state.config.screens);
+              return _buildMainContainer(context, state);
+            },
           ),
         ),
       ),
@@ -101,10 +106,7 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                 AppFilledButton(
                   label: S.of(context).goBack,
                   icon: Icons.arrow_back_ios_rounded,
-                  onPressed: () => context.go(AppRouter.projectSettingsScreen,
-                      extra: widget.config.copyWith(
-                        screens: state.config.screens,
-                      )),
+                  onPressed: () => _onBack(context, state),
                 ),
                 const Delimiter.width(10),
                 AppFilledButton(
@@ -127,10 +129,7 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                   label: S.of(context).continueLabel,
                   icon: Icons.arrow_forward_ios_rounded,
                   iconLeft: false,
-                  onPressed: () => context.go(AppRouter.swaggerParserScreen,
-                      extra: widget.config.copyWith(
-                        screens: state.config.screens,
-                      )),
+                  onPressed: () => _onContinue(context, state),
                 ),
               ],
             ),
@@ -138,5 +137,26 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
         ),
       ),
     );
+  }
+
+  void _onBack(BuildContext context, ScreensScreenState state) {
+    widget.config.projectExists
+        ? context.go(AppRouter.procedureSelectionScreen,
+            extra: Config(
+              projectPath: widget.config.projectPath,
+            ))
+        : context.go(
+            AppRouter.projectSettingsScreen,
+            extra: widget.config.copyWith(
+              screens: state.config.screens,
+            ),
+          );
+  }
+
+  void _onContinue(BuildContext context, ScreensScreenState state) {
+    context.go(AppRouter.swaggerParserScreen,
+        extra: widget.config.copyWith(
+          screens: state.config.screens,
+        ));
   }
 }

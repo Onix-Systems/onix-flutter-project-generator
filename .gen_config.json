@@ -76,6 +76,11 @@
       "name": "generation",
       "bloc": true,
       "exists": true
+    },
+    {
+      "name": "modifyProject",
+      "bloc": true,
+      "exists": true
     }
   ],
   "entities": [

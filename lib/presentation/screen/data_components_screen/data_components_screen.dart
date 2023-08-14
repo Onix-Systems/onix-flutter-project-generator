@@ -116,11 +116,18 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
   }
 
   void _onBack(BuildContext context, DataComponentsScreenState state) {
-    context.go(AppRouter.swaggerParserScreen,
-        extra: widget.config.copyWith(
-          sources: state.config.sources,
-          dataComponents: state.config.dataComponents,
-        ));
+    state.config.projectExists
+        ? context.go(AppRouter.procedureSelectionScreen,
+            extra: Config(
+              projectPath: widget.config.projectPath,
+            ))
+        : context.go(
+            AppRouter.swaggerParserScreen,
+            extra: widget.config.copyWith(
+              sources: state.config.sources,
+              dataComponents: state.config.dataComponents,
+            ),
+          );
   }
 
   void _onContinue(BuildContext context, DataComponentsScreenState state) {

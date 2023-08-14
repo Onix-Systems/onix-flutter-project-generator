@@ -11,24 +11,28 @@ import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bl
 import 'package:onix_flutter_bricks/util/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
 
+import '../../../../core/di/app.dart';
+
 class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     SwaggerParserScreenState, SwaggerParserScreenSR> {
   SwaggerParserScreenBloc()
       : super(
-          SwaggerParserScreenStateData(
-            config: const Config(),
+          const SwaggerParserScreenStateData(
+            config: Config(),
           ),
         ) {
     on<SwaggerParserScreenEventInit>(_onInit);
     on<SwaggerParserScreenEventOnUrlChanged>(_onUrlChanged);
     on<SwaggerParserScreenEventParse>(_onParse);
     on<SwaggerParserScreenEventOnReplace>(_onReplace);
+    on<SwaggerParserScreenEventOnIgnore>(_onIgnore);
   }
 
   FutureOr<void> _onInit(
     SwaggerParserScreenEventInit event,
     Emitter<SwaggerParserScreenState> emit,
   ) {
+    logger.f('config sources: ${event.config.sources.map((e) => e.name)}');
     emit(state.copyWith(
       config: event.config,
     ));
@@ -61,17 +65,17 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
 
       bool withConflicts = false;
 
-      for (var dataComponent in dataComponentRepository.dataComponents) {
-        if (state.config.dataComponents
-            .where((element) =>
-                element.name.pascalCase == dataComponent.name.pascalCase)
-            .isEmpty) {
-          dataComponentRepository.dataComponents
-              .add(DataComponent.copyOf(dataComponent));
-        } else {
-          withConflicts = true;
-        }
-      }
+      // for (var dataComponent in dataComponentRepository.dataComponents) {
+      //   if (state.config.dataComponents
+      //       .where((element) =>
+      //           element.name.pascalCase == dataComponent.name.pascalCase)
+      //       .isEmpty) {
+      //     dataComponentRepository.dataComponents
+      //         .add(DataComponent.copyOf(dataComponent));
+      //   } else {
+      //     withConflicts = true;
+      //   }
+      // }
 
       for (var source in state.config.sources) {
         final stateSource = sourceRepository.getSourceByName(source.name);
@@ -92,16 +96,15 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
 
       await hideProgress();
 
-      emit(state.copyWith(
-        config: state.config.copyWith(
-          dataComponents: dataComponentRepository.dataComponents,
-          sources: sourceRepository.sources,
-        ),
-      ));
-
       if (withConflicts) {
         addSr(const SwaggerParserScreenSR.onConflicting());
       } else {
+        emit(state.copyWith(
+          config: state.config.copyWith(
+            dataComponents: dataComponentRepository.dataComponents,
+            sources: sourceRepository.sources,
+          ),
+        ));
         addSr(const SwaggerParserScreenSR.onContinue());
       }
     } catch (e) {
@@ -114,35 +117,39 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     SwaggerParserScreenEventOnReplace event,
     Emitter<SwaggerParserScreenState> emit,
   ) async {
-    final stateComponents = dataComponentRepository.dataComponents;
-
-    if (dataComponentRepository.dataComponents.isNotEmpty) {
-      for (final dataComponent in dataComponentRepository.dataComponents) {
-        stateComponents.removeWhere((element) =>
-            element.name.pascalCase == dataComponent.name.pascalCase);
-        stateComponents.add(dataComponent);
-      }
-    }
-
-    if (sourceRepository.sources.isNotEmpty) {
-      for (var source in sourceRepository.sources) {
-        final stateSource = sourceRepository.getSourceByName(source.name);
-
-        if (stateSource != null) {
-          for (var element in source.dataComponents) {
-            sourceRepository.modifyDataComponentInSource(
-                stateSource, DataComponent.copyOf(element), element.name);
-          }
-        }
-      }
-    }
-
     emit(state.copyWith(
       config: state.config.copyWith(
         dataComponents: dataComponentRepository.dataComponents,
         sources: sourceRepository.sources,
       ),
     ));
+
+    addSr(const SwaggerParserScreenSR.onContinue());
+  }
+
+  FutureOr<void> _onIgnore(
+    SwaggerParserScreenEventOnIgnore event,
+    Emitter<SwaggerParserScreenState> emit,
+  ) async {
+    for (var element
+        in state.config.dataComponents.where((element) => !element.exists)) {
+      dataComponentRepository.dataComponents
+          .removeWhere((e) => e.name.pascalCase == element.name.pascalCase);
+      dataComponentRepository.dataComponents.add(DataComponent.copyOf(element));
+    }
+
+    logger.f(
+        'state.config.sources: ${state.config.sources.map((e) => '${e.name}: ${e.dataComponents.map((e) => e.name)}')}');
+
+    for (var element in state.config.sources) {
+      final source = sourceRepository.getSourceByName(element.name);
+      if (source != null) {
+        for (var dataComponent in element.dataComponents) {
+          sourceRepository.modifyDataComponentInSource(
+              source, dataComponent, dataComponent.name);
+        }
+      }
+    }
 
     addSr(const SwaggerParserScreenSR.onContinue());
   }

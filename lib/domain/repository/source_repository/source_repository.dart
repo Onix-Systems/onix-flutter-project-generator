@@ -23,4 +23,6 @@ abstract class SourceRepository {
 
   void modifyDataComponentInSource(
       Source source, DataComponent dataComponent, String oldDataComponentName);
+
+  void empty();
 }

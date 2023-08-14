@@ -119,10 +119,12 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     await _generateDataComponents();
 
+    emit(state.copyWith(
+        generatingState: GeneratingState.waiting,
+        config: state.config.copyWith(projectExists: true)));
+
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
-
-    emit(state.copyWith(generatingState: GeneratingState.waiting));
   }
 
   Future<void> _generateScreens() async {

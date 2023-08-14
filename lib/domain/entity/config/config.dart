@@ -53,33 +53,26 @@ class Config with _$Config {
       );
 
   Future<void> saveConfig({required String projectPath}) async {
-    List<Screen> screens = [];
-    List<Source> sources = [];
-    List<DataComponent> dataComponents = [];
-
-    for (var element in this.screens) {
-      screens.add(Screen.copyOf(element));
-      screens.last.exists = true;
-    }
-
-    for (var element in this.dataComponents) {
-      dataComponents.add(DataComponent.copyOf(element));
-      dataComponents.last.exists = true;
-    }
-
-    for (var element in this.sources) {
-      sources.add(Source.copyOf(element));
-      for (var dataComponent in sources.last.dataComponents) {
-        dataComponent.exists = true;
-      }
-      sources.last.exists = true;
-    }
-
     await configSource.saveConfig(
-        config: Config(
-          screens: screens.toSet(),
-          sources: sources.toSet(),
-          dataComponents: dataComponents.toSet(),
+        config: copyWith(
+          screens: screens.map((e) {
+            var screen = Screen.copyOf(e);
+            screen.exists = true;
+            return screen;
+          }).toSet(),
+          sources: sources.map((e) {
+            var source = Source.copyOf(e);
+            source.exists = true;
+            for (var dataComponent in source.dataComponents) {
+              dataComponent.exists = true;
+            }
+            return source;
+          }).toSet(),
+          dataComponents: dataComponents.map((e) {
+            var dataComponent = DataComponent.copyOf(e);
+            dataComponent.exists = true;
+            return dataComponent;
+          }).toSet(),
         ),
         configPath: '$projectPath/.gen_config.json');
   }

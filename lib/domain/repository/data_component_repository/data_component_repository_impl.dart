@@ -9,7 +9,45 @@ import 'package:recase/recase.dart';
 
 class DataComponentRepositoryImpl implements DataComponentRepository {
   @override
-  Set<DataComponent> dataComponents = {};
+  Set<DataComponent> dataComponents = {
+    DataComponent(
+      name: 'Auth',
+      exists: true,
+      isGenerated: false,
+      properties: [
+        Property(
+          name: 'accessToken',
+          type: 'String',
+        ),
+        Property(
+          name: 'refreshToken',
+          type: 'String',
+        ),
+      ],
+    ),
+  };
+
+  @override
+  void empty() {
+    dataComponents.clear();
+    dataComponents.add(
+      DataComponent(
+        name: 'Auth',
+        exists: true,
+        isGenerated: false,
+        properties: [
+          Property(
+            name: 'accessToken',
+            type: 'String',
+          ),
+          Property(
+            name: 'refreshToken',
+            type: 'String',
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   DataComponent? getDataComponentByName(String name) {
@@ -31,6 +69,23 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   @override
   void parse(Map<String, dynamic> data) {
     dataComponents.clear();
+    dataComponents.add(
+      DataComponent(
+        name: 'Auth',
+        exists: true,
+        isGenerated: false,
+        properties: [
+          Property(
+            name: 'accessToken',
+            type: 'String',
+          ),
+          Property(
+            name: 'refreshToken',
+            type: 'String',
+          ),
+        ],
+      ),
+    );
     dataComponents.addAll(_parse(data));
   }
 

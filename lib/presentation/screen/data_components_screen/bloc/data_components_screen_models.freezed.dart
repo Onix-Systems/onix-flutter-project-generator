@@ -1167,7 +1167,7 @@ abstract class _$$DataComponentsScreenEventAddDataComponentCopyWith<$Res> {
 
 /// @nodoc
 class __$$DataComponentsScreenEventAddDataComponentCopyWithImpl<$Res>
-extends _$DataComponentsScreenEventCopyWithImpl<$Res,
+    extends _$DataComponentsScreenEventCopyWithImpl<$Res,
         _$DataComponentsScreenEventAddDataComponent>
     implements _$$DataComponentsScreenEventAddDataComponentCopyWith<$Res> {
   __$$DataComponentsScreenEventAddDataComponentCopyWithImpl(
@@ -1841,74 +1841,74 @@ mixin _$DataComponentsScreenSR {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-TResult? Function(String message)? error,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function(String message)? error,
-required TResult orElse(),
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
-required TResult Function(_Error value) error,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(_Error value)? error,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult maybeMap<TResult extends Object?>({
-TResult Function(_Error value)? error,
-required TResult orElse(),
-}) =>
-throw _privateConstructorUsedError;
+    TResult? Function(String message)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Error value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Error value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
-@JsonKey(ignore: true)
-$DataComponentsScreenSRCopyWith<DataComponentsScreenSR> get copyWith =>
-throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DataComponentsScreenSRCopyWith<DataComponentsScreenSR> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $DataComponentsScreenSRCopyWith<$Res> {
-factory $DataComponentsScreenSRCopyWith(DataComponentsScreenSR value,
-$Res Function(DataComponentsScreenSR) then) =
-_$DataComponentsScreenSRCopyWithImpl<$Res, DataComponentsScreenSR>;
-@useResult
-$Res call({String message});
+  factory $DataComponentsScreenSRCopyWith(DataComponentsScreenSR value,
+          $Res Function(DataComponentsScreenSR) then) =
+      _$DataComponentsScreenSRCopyWithImpl<$Res, DataComponentsScreenSR>;
+  @useResult
+  $Res call({String message});
 }
 
 /// @nodoc
 class _$DataComponentsScreenSRCopyWithImpl<$Res,
-$Val extends DataComponentsScreenSR>
-implements $DataComponentsScreenSRCopyWith<$Res> {
-_$DataComponentsScreenSRCopyWithImpl(this._value, this._then);
+        $Val extends DataComponentsScreenSR>
+    implements $DataComponentsScreenSRCopyWith<$Res> {
+  _$DataComponentsScreenSRCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;
 
-@pragma('vm:prefer-inline')
-@override
-$Res call({
-Object? message = null,
-}) {
-return _then(_value.copyWith(
-message: null == message
-? _value.message
-    : message // ignore: cast_nullable_to_non_nullable
-as String,
-) as $Val);
-}
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_value.copyWith(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
 abstract class _$$_ErrorCopyWith<$Res>
-implements $DataComponentsScreenSRCopyWith<$Res> {
+    implements $DataComponentsScreenSRCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
   @override
