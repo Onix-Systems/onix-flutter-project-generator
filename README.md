@@ -23,14 +23,6 @@ mobile development, and a full API reference.
 
 ## rm 'release/Onix Flutter Project Generator.dmg' && flutter clean && flutter build macos --release && appdmg installers/dmg_creator/config.json 'release/Onix Flutter Project Generator.dmg' && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/master:master
 
-[testing zip]:
+[refactoring dmg]:
 
-## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build'/macos/Build/Products/Release/Onix Flutter Project Generator.app' release/onix_flutter_proj_gen.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/testing:testing
-
-[swagger_parser zip]:
-
-## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build'/macos/Build/Products/Release/Onix Flutter Project Generator.app' release/onix_flutter_proj_gen.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/swagger_parser:swagger_parser
-
-[swagger_parser dmg]:
-
-## rm 'release/Onix Flutter Project Generator.dmg' && flutter clean && flutter build macos --release && appdmg installers/dmg_creator/config.json 'release/Onix Flutter Project Generator.dmg' && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/swagger_parser:swagger_parser
+## rm 'release/Onix Flutter Project Generator.dmg' && flutter clean && flutter build macos --release && appdmg installers/dmg_creator/config.json 'release/Onix Flutter Project Generator.dmg' && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/refactoring:refactoring
