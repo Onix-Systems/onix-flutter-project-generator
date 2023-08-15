@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -46,8 +45,9 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
 
   void _onSingleResult(BuildContext context, SplashScreenSR singleResult) {
     singleResult.when(
-      onShowPathSelector: () => _onShowPathSelector(context),
       onNeedUpdate: () => _onNeedUpdate(context),
+      onContinue: () =>
+          context.go(AppRouter.procedureSelectionScreen, extra: const Config()),
     );
   }
 
@@ -113,26 +113,6 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
     exit(0);
   }
 
-  _onShowPathSelector(BuildContext context) {
-    getDirectoryPath().then(
-      (value) {
-        if (value != null) {
-          context.go(AppRouter.procedureSelectionScreen,
-              extra: Config(projectPath: value));
-        } else {
-          Dialogs.showOkDialog(
-            context: context,
-            isError: true,
-            title: S.of(context).pathNotSelectedTitle,
-            content: S.of(context).pathNotSelectedContent,
-            onOk: () => blocOf(context)
-                .addSr(const SplashScreenSR.onShowPathSelector()),
-          );
-        }
-      },
-    );
-  }
-
   _onNeedUpdate(BuildContext context) {
     Dialogs.showOkCancelDialog(
       context: context,
@@ -145,7 +125,7 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
       ),
       onOk: _launchUrl,
       onCancel: () {
-        blocOf(context).addSr(const SplashScreenSR.onShowPathSelector());
+        blocOf(context).addSr(const SplashScreenSR.onContinue());
       },
     );
   }

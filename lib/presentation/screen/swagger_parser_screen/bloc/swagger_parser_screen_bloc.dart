@@ -12,6 +12,8 @@ import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bl
 import 'package:onix_flutter_bricks/util/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
 
+import '../../../../core/di/app.dart';
+
 class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     SwaggerParserScreenState, SwaggerParserScreenSR> {
   SwaggerParserScreenBloc()
@@ -21,7 +23,6 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
           ),
         ) {
     on<SwaggerParserScreenEventInit>(_onInit);
-    on<SwaggerParserScreenEventOnUrlChanged>(_onUrlChanged);
     on<SwaggerParserScreenEventParse>(_onParse);
     on<SwaggerParserScreenEventOnReplace>(_onReplace);
     on<SwaggerParserScreenEventOnIgnore>(_onIgnore);
@@ -38,25 +39,22 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     )));
   }
 
-  FutureOr<void> _onUrlChanged(
-    SwaggerParserScreenEventOnUrlChanged event,
+  FutureOr<void> _onParse(
+    SwaggerParserScreenEventParse event,
     Emitter<SwaggerParserScreenState> emit,
-  ) {
+  ) async {
+    logger.f('SwaggerParserScreenEventParse: ${event.url}');
+
+    if (state.config.swaggerUrl == event.url) {
+      addSr(const SwaggerParserScreenSR.onContinue());
+      return;
+    }
+
     emit(state.copyWith(
       config: state.config.copyWith(
         swaggerUrl: event.url,
       ),
     ));
-  }
-
-  FutureOr<void> _onParse(
-    SwaggerParserScreenEventParse event,
-    Emitter<SwaggerParserScreenState> emit,
-  ) async {
-    if (state.config.swaggerUrl == event.url) {
-      addSr(const SwaggerParserScreenSR.onContinue());
-      return;
-    }
 
     showProgress();
     try {

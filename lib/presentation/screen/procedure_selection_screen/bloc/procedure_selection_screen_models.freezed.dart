@@ -19,6 +19,7 @@ mixin _$ProcedureSelectionScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
+    required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
   }) =>
       throw _privateConstructorUsedError;
@@ -26,28 +27,32 @@ mixin _$ProcedureSelectionScreenEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
+    TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
+    TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProcedureSelectionScreenEventInit value) init,
+    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
+        onNewProject,
     required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
         onProjectOpen,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
     TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
   }) =>
@@ -55,6 +60,8 @@ mixin _$ProcedureSelectionScreenEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
     TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
     required TResult orElse(),
@@ -164,6 +171,7 @@ class _$ProcedureSelectionScreenEventInit
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
+    required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
   }) {
     return init(config);
@@ -173,6 +181,7 @@ class _$ProcedureSelectionScreenEventInit
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
+    TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
   }) {
     return init?.call(config);
@@ -182,6 +191,7 @@ class _$ProcedureSelectionScreenEventInit
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
+    TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     required TResult orElse(),
   }) {
@@ -195,6 +205,8 @@ class _$ProcedureSelectionScreenEventInit
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProcedureSelectionScreenEventInit value) init,
+    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
+        onNewProject,
     required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
         onProjectOpen,
   }) {
@@ -205,6 +217,8 @@ class _$ProcedureSelectionScreenEventInit
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
     TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
   }) {
@@ -215,6 +229,8 @@ class _$ProcedureSelectionScreenEventInit
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
     TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
     required TResult orElse(),
@@ -239,6 +255,163 @@ abstract class ProcedureSelectionScreenEventInit
 }
 
 /// @nodoc
+abstract class _$$ProcedureSelectionScreenEventOnNewProjectCopyWith<$Res> {
+  factory _$$ProcedureSelectionScreenEventOnNewProjectCopyWith(
+          _$ProcedureSelectionScreenEventOnNewProject value,
+          $Res Function(_$ProcedureSelectionScreenEventOnNewProject) then) =
+      __$$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String projectPath});
+}
+
+/// @nodoc
+class __$$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl<$Res>
+    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
+        _$ProcedureSelectionScreenEventOnNewProject>
+    implements _$$ProcedureSelectionScreenEventOnNewProjectCopyWith<$Res> {
+  __$$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl(
+      _$ProcedureSelectionScreenEventOnNewProject _value,
+      $Res Function(_$ProcedureSelectionScreenEventOnNewProject) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projectPath = null,
+  }) {
+    return _then(_$ProcedureSelectionScreenEventOnNewProject(
+      projectPath: null == projectPath
+          ? _value.projectPath
+          : projectPath // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProcedureSelectionScreenEventOnNewProject
+    implements ProcedureSelectionScreenEventOnNewProject {
+  const _$ProcedureSelectionScreenEventOnNewProject(
+      {required this.projectPath});
+
+  @override
+  final String projectPath;
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenEvent.onNewProject(projectPath: $projectPath)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProcedureSelectionScreenEventOnNewProject &&
+            (identical(other.projectPath, projectPath) ||
+                other.projectPath == projectPath));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, projectPath);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProcedureSelectionScreenEventOnNewProjectCopyWith<
+          _$ProcedureSelectionScreenEventOnNewProject>
+      get copyWith => __$$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl<
+          _$ProcedureSelectionScreenEventOnNewProject>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function(String projectPath) onNewProject,
+    required TResult Function(String projectURI) onProjectOpen,
+  }) {
+    return onNewProject(projectPath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function(String projectPath)? onNewProject,
+    TResult? Function(String projectURI)? onProjectOpen,
+  }) {
+    return onNewProject?.call(projectPath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function(String projectPath)? onNewProject,
+    TResult Function(String projectURI)? onProjectOpen,
+    required TResult orElse(),
+  }) {
+    if (onNewProject != null) {
+      return onNewProject(projectPath);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProcedureSelectionScreenEventInit value) init,
+    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
+        onNewProject,
+    required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
+        onProjectOpen,
+  }) {
+    return onNewProject(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
+    TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
+        onProjectOpen,
+  }) {
+    return onNewProject?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
+    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
+        onProjectOpen,
+    required TResult orElse(),
+  }) {
+    if (onNewProject != null) {
+      return onNewProject(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProcedureSelectionScreenEventOnNewProject
+    implements ProcedureSelectionScreenEvent {
+  const factory ProcedureSelectionScreenEventOnNewProject(
+          {required final String projectPath}) =
+      _$ProcedureSelectionScreenEventOnNewProject;
+
+  String get projectPath;
+  @JsonKey(ignore: true)
+  _$$ProcedureSelectionScreenEventOnNewProjectCopyWith<
+          _$ProcedureSelectionScreenEventOnNewProject>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<$Res> {
   factory _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith(
           _$ProcedureSelectionScreenEventOnProjectOpen value,
@@ -250,141 +423,150 @@ abstract class _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<$Res> {
 
 /// @nodoc
 class __$$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventOnProjectOpen>
-    implements _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<$Res> {
-  __$$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl(
-      _$ProcedureSelectionScreenEventOnProjectOpen _value,
-      $Res Function(_$ProcedureSelectionScreenEventOnProjectOpen) _then)
-      : super(_value, _then);
+extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
+_$ProcedureSelectionScreenEventOnProjectOpen>
+implements _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<$Res> {
+__$$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl(
+_$ProcedureSelectionScreenEventOnProjectOpen _value,
+$Res Function(_$ProcedureSelectionScreenEventOnProjectOpen) _then)
+    : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? projectURI = null,
-  }) {
-    return _then(_$ProcedureSelectionScreenEventOnProjectOpen(
-      projectURI: null == projectURI
-          ? _value.projectURI
-          : projectURI // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+@pragma('vm:prefer-inline')
+@override
+$Res call({
+Object? projectURI = null,
+}) {
+return _then(_$ProcedureSelectionScreenEventOnProjectOpen(
+projectURI: null == projectURI
+? _value.projectURI
+    : projectURI // ignore: cast_nullable_to_non_nullable
+as String,
+));
+}
 }
 
 /// @nodoc
 
 class _$ProcedureSelectionScreenEventOnProjectOpen
-    implements ProcedureSelectionScreenEventOnProjectOpen {
-  const _$ProcedureSelectionScreenEventOnProjectOpen(
-      {required this.projectURI});
+implements ProcedureSelectionScreenEventOnProjectOpen {
+const _$ProcedureSelectionScreenEventOnProjectOpen(
+{required this.projectURI});
 
-  @override
-  final String projectURI;
+@override
+final String projectURI;
 
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenEvent.onProjectOpen(projectURI: $projectURI)';
-  }
+@override
+String toString() {
+return 'ProcedureSelectionScreenEvent.onProjectOpen(projectURI: $projectURI)';
+}
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventOnProjectOpen &&
-            (identical(other.projectURI, projectURI) ||
-                other.projectURI == projectURI));
-  }
+@override
+bool operator ==(dynamic other) {
+return identical(this, other) ||
+(other.runtimeType == runtimeType &&
+other is _$ProcedureSelectionScreenEventOnProjectOpen &&
+(identical(other.projectURI, projectURI) ||
+other.projectURI == projectURI));
+}
 
-  @override
-  int get hashCode => Object.hash(runtimeType, projectURI);
+@override
+int get hashCode => Object.hash(runtimeType, projectURI);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<
-          _$ProcedureSelectionScreenEventOnProjectOpen>
-      get copyWith =>
-          __$$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl<
-              _$ProcedureSelectionScreenEventOnProjectOpen>(this, _$identity);
+@JsonKey(ignore: true)
+@override
+@pragma('vm:prefer-inline')
+_$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<
+_$ProcedureSelectionScreenEventOnProjectOpen>
+get copyWith =>
+__$$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl<
+_$ProcedureSelectionScreenEventOnProjectOpen>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
+    required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
   }) {
-    return onProjectOpen(projectURI);
-  }
+return onProjectOpen(projectURI);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
+    TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
   }) {
-    return onProjectOpen?.call(projectURI);
-  }
+return onProjectOpen?.call(projectURI);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
+    TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     required TResult orElse(),
   }) {
-    if (onProjectOpen != null) {
-      return onProjectOpen(projectURI);
-    }
-    return orElse();
-  }
+if (onProjectOpen != null) {
+return onProjectOpen(projectURI);
+}
+return orElse();
+}
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult map<TResult extends Object?>({
     required TResult Function(ProcedureSelectionScreenEventInit value) init,
+    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
+        onNewProject,
     required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
         onProjectOpen,
   }) {
-    return onProjectOpen(this);
-  }
+return onProjectOpen(this);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
     TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
   }) {
-    return onProjectOpen?.call(this);
-  }
+return onProjectOpen?.call(this);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
+@override
+@optionalTypeArgs
+TResult maybeMap<TResult extends Object?>({
     TResult Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
     TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
     required TResult orElse(),
   }) {
-    if (onProjectOpen != null) {
-      return onProjectOpen(this);
-    }
-    return orElse();
-  }
+if (onProjectOpen != null) {
+return onProjectOpen(this);
+}
+return orElse();
+}
 }
 
 abstract class ProcedureSelectionScreenEventOnProjectOpen
-    implements ProcedureSelectionScreenEvent {
-  const factory ProcedureSelectionScreenEventOnProjectOpen(
-          {required final String projectURI}) =
-      _$ProcedureSelectionScreenEventOnProjectOpen;
+implements ProcedureSelectionScreenEvent {
+const factory ProcedureSelectionScreenEventOnProjectOpen(
+{required final String projectURI}) =
+_$ProcedureSelectionScreenEventOnProjectOpen;
 
-  String get projectURI;
-  @JsonKey(ignore: true)
-  _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<
-          _$ProcedureSelectionScreenEventOnProjectOpen>
-      get copyWith => throw _privateConstructorUsedError;
+String get projectURI;
+@JsonKey(ignore: true)
+_$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<
+_$ProcedureSelectionScreenEventOnProjectOpen>
+get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -393,18 +575,21 @@ mixin _$ProcedureSelectionScreenSR {
   TResult when<TResult extends Object?>({
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
+    required TResult Function() onNewProject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
+    TResult? Function()? onNewProject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
+    TResult Function()? onNewProject,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -412,18 +597,21 @@ mixin _$ProcedureSelectionScreenSR {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadFinished value) loadFinished,
     required TResult Function(_EmptyConfig value) emptyConfig,
+    required TResult Function(_onNewProject value) onNewProject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadFinished value)? loadFinished,
     TResult? Function(_EmptyConfig value)? emptyConfig,
+    TResult? Function(_onNewProject value)? onNewProject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadFinished value)? loadFinished,
     TResult Function(_EmptyConfig value)? emptyConfig,
+    TResult Function(_onNewProject value)? onNewProject,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -489,6 +677,7 @@ class _$_LoadFinished implements _LoadFinished {
   TResult when<TResult extends Object?>({
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
+    required TResult Function() onNewProject,
   }) {
     return loadFinished();
   }
@@ -498,6 +687,7 @@ class _$_LoadFinished implements _LoadFinished {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
+    TResult? Function()? onNewProject,
   }) {
     return loadFinished?.call();
   }
@@ -507,6 +697,7 @@ class _$_LoadFinished implements _LoadFinished {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
+    TResult Function()? onNewProject,
     required TResult orElse(),
   }) {
     if (loadFinished != null) {
@@ -520,6 +711,7 @@ class _$_LoadFinished implements _LoadFinished {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadFinished value) loadFinished,
     required TResult Function(_EmptyConfig value) emptyConfig,
+    required TResult Function(_onNewProject value) onNewProject,
   }) {
     return loadFinished(this);
   }
@@ -529,6 +721,7 @@ class _$_LoadFinished implements _LoadFinished {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadFinished value)? loadFinished,
     TResult? Function(_EmptyConfig value)? emptyConfig,
+    TResult? Function(_onNewProject value)? onNewProject,
   }) {
     return loadFinished?.call(this);
   }
@@ -538,6 +731,7 @@ class _$_LoadFinished implements _LoadFinished {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadFinished value)? loadFinished,
     TResult Function(_EmptyConfig value)? emptyConfig,
+    TResult Function(_onNewProject value)? onNewProject,
     required TResult orElse(),
   }) {
     if (loadFinished != null) {
@@ -591,6 +785,7 @@ class _$_EmptyConfig implements _EmptyConfig {
   TResult when<TResult extends Object?>({
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
+    required TResult Function() onNewProject,
   }) {
     return emptyConfig();
   }
@@ -600,6 +795,7 @@ class _$_EmptyConfig implements _EmptyConfig {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
+    TResult? Function()? onNewProject,
   }) {
     return emptyConfig?.call();
   }
@@ -609,6 +805,7 @@ class _$_EmptyConfig implements _EmptyConfig {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
+    TResult Function()? onNewProject,
     required TResult orElse(),
   }) {
     if (emptyConfig != null) {
@@ -622,6 +819,7 @@ class _$_EmptyConfig implements _EmptyConfig {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadFinished value) loadFinished,
     required TResult Function(_EmptyConfig value) emptyConfig,
+    required TResult Function(_onNewProject value) onNewProject,
   }) {
     return emptyConfig(this);
   }
@@ -631,6 +829,7 @@ class _$_EmptyConfig implements _EmptyConfig {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadFinished value)? loadFinished,
     TResult? Function(_EmptyConfig value)? emptyConfig,
+    TResult? Function(_onNewProject value)? onNewProject,
   }) {
     return emptyConfig?.call(this);
   }
@@ -640,6 +839,7 @@ class _$_EmptyConfig implements _EmptyConfig {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadFinished value)? loadFinished,
     TResult Function(_EmptyConfig value)? emptyConfig,
+    TResult Function(_onNewProject value)? onNewProject,
     required TResult orElse(),
   }) {
     if (emptyConfig != null) {
@@ -654,6 +854,114 @@ abstract class _EmptyConfig implements ProcedureSelectionScreenSR {
 }
 
 /// @nodoc
+abstract class _$$_onNewProjectCopyWith<$Res> {
+  factory _$$_onNewProjectCopyWith(
+          _$_onNewProject value, $Res Function(_$_onNewProject) then) =
+      __$$_onNewProjectCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_onNewProjectCopyWithImpl<$Res>
+    extends _$ProcedureSelectionScreenSRCopyWithImpl<$Res, _$_onNewProject>
+    implements _$$_onNewProjectCopyWith<$Res> {
+  __$$_onNewProjectCopyWithImpl(
+      _$_onNewProject _value, $Res Function(_$_onNewProject) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_onNewProject implements _onNewProject {
+  const _$_onNewProject();
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenSR.onNewProject()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_onNewProject);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadFinished,
+    required TResult Function() emptyConfig,
+    required TResult Function() onNewProject,
+  }) {
+    return onNewProject();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadFinished,
+    TResult? Function()? emptyConfig,
+    TResult? Function()? onNewProject,
+  }) {
+    return onNewProject?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadFinished,
+    TResult Function()? emptyConfig,
+    TResult Function()? onNewProject,
+    required TResult orElse(),
+  }) {
+    if (onNewProject != null) {
+      return onNewProject();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadFinished value) loadFinished,
+    required TResult Function(_EmptyConfig value) emptyConfig,
+    required TResult Function(_onNewProject value) onNewProject,
+  }) {
+    return onNewProject(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadFinished value)? loadFinished,
+    TResult? Function(_EmptyConfig value)? emptyConfig,
+    TResult? Function(_onNewProject value)? onNewProject,
+  }) {
+    return onNewProject?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadFinished value)? loadFinished,
+    TResult Function(_EmptyConfig value)? emptyConfig,
+    TResult Function(_onNewProject value)? onNewProject,
+    required TResult orElse(),
+  }) {
+    if (onNewProject != null) {
+      return onNewProject(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _onNewProject implements ProcedureSelectionScreenSR {
+  const factory _onNewProject() = _$_onNewProject;
+}
+
+/// @nodoc
 mixin _$ProcedureSelectionScreenState {
   Config get config => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -663,86 +971,86 @@ mixin _$ProcedureSelectionScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProcedureSelectionScreenStateData value) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProcedureSelectionScreenStateData value)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProcedureSelectionScreenStateData value)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+TResult? Function(Config config)? data,
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult maybeWhen<TResult extends Object?>({
+TResult Function(Config config)? data,
+required TResult orElse(),
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult map<TResult extends Object?>({
+required TResult Function(ProcedureSelectionScreenStateData value) data,
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult? mapOrNull<TResult extends Object?>({
+TResult? Function(ProcedureSelectionScreenStateData value)? data,
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult maybeMap<TResult extends Object?>({
+TResult Function(ProcedureSelectionScreenStateData value)? data,
+required TResult orElse(),
+}) =>
+throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $ProcedureSelectionScreenStateCopyWith<ProcedureSelectionScreenState>
-      get copyWith => throw _privateConstructorUsedError;
+@JsonKey(ignore: true)
+$ProcedureSelectionScreenStateCopyWith<ProcedureSelectionScreenState>
+get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ProcedureSelectionScreenStateCopyWith<$Res> {
-  factory $ProcedureSelectionScreenStateCopyWith(
-          ProcedureSelectionScreenState value,
-          $Res Function(ProcedureSelectionScreenState) then) =
-      _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
-          ProcedureSelectionScreenState>;
-  @useResult
-  $Res call({Config config});
+factory $ProcedureSelectionScreenStateCopyWith(
+ProcedureSelectionScreenState value,
+$Res Function(ProcedureSelectionScreenState) then) =
+_$ProcedureSelectionScreenStateCopyWithImpl<$Res,
+ProcedureSelectionScreenState>;
+@useResult
+$Res call({Config config});
 
-  $ConfigCopyWith<$Res> get config;
+$ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
 class _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
-        $Val extends ProcedureSelectionScreenState>
-    implements $ProcedureSelectionScreenStateCopyWith<$Res> {
-  _$ProcedureSelectionScreenStateCopyWithImpl(this._value, this._then);
+$Val extends ProcedureSelectionScreenState>
+implements $ProcedureSelectionScreenStateCopyWith<$Res> {
+_$ProcedureSelectionScreenStateCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? config = null,
-  }) {
-    return _then(_value.copyWith(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
-    ) as $Val);
-  }
+@pragma('vm:prefer-inline')
+@override
+$Res call({
+Object? config = null,
+}) {
+return _then(_value.copyWith(
+config: null == config
+? _value.config
+    : config // ignore: cast_nullable_to_non_nullable
+as Config,
+) as $Val);
+}
 
-  @override
-  @pragma('vm:prefer-inline')
-  $ConfigCopyWith<$Res> get config {
-    return $ConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value) as $Val);
-    });
-  }
+@override
+@pragma('vm:prefer-inline')
+$ConfigCopyWith<$Res> get config {
+return $ConfigCopyWith<$Res>(_value.config, (value) {
+return _then(_value.copyWith(config: value) as $Val);
+});
+}
 }
 
 /// @nodoc
 abstract class _$$ProcedureSelectionScreenStateDataCopyWith<$Res>
-    implements $ProcedureSelectionScreenStateCopyWith<$Res> {
+implements $ProcedureSelectionScreenStateCopyWith<$Res> {
   factory _$$ProcedureSelectionScreenStateDataCopyWith(
           _$ProcedureSelectionScreenStateData value,
           $Res Function(_$ProcedureSelectionScreenStateData) then) =

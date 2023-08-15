@@ -9,6 +9,10 @@ class ProcedureSelectionScreenEvent with _$ProcedureSelectionScreenEvent {
     required Config config,
   }) = ProcedureSelectionScreenEventInit;
 
+  const factory ProcedureSelectionScreenEvent.onNewProject({
+    required String projectPath,
+  }) = ProcedureSelectionScreenEventOnNewProject;
+
   const factory ProcedureSelectionScreenEvent.onProjectOpen({
     required String projectURI,
   }) = ProcedureSelectionScreenEventOnProjectOpen;
@@ -19,6 +23,8 @@ class ProcedureSelectionScreenSR with _$ProcedureSelectionScreenSR {
   const factory ProcedureSelectionScreenSR.loadFinished() = _LoadFinished;
 
   const factory ProcedureSelectionScreenSR.emptyConfig() = _EmptyConfig;
+
+  const factory ProcedureSelectionScreenSR.onNewProject() = _onNewProject;
 }
 
 @freezed

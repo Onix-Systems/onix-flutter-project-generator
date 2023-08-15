@@ -59,7 +59,7 @@ class SplashScreenBloc
     if (localVersion != remoteVersion) {
       addSr(const SplashScreenSR.onNeedUpdate());
     } else {
-      addSr(const SplashScreenSR.onShowPathSelector());
+      addSr(const SplashScreenSR.onContinue());
     }
 
     emit(state.copyWith(

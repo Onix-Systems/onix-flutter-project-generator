@@ -14,7 +14,7 @@ class SplashScreenEvent with _$SplashScreenEvent {
 class SplashScreenSR with _$SplashScreenSR {
   const factory SplashScreenSR.onNeedUpdate() = _onNeedUpdate;
 
-  const factory SplashScreenSR.onShowPathSelector() = _onShowPathSelector;
+  const factory SplashScreenSR.onContinue() = _onContinue;
 }
 
 @freezed

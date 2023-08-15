@@ -299,38 +299,38 @@ mixin _$SplashScreenSR {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onNeedUpdate,
-    required TResult Function() onShowPathSelector,
+    required TResult Function() onContinue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onNeedUpdate,
-    TResult? Function()? onShowPathSelector,
+    TResult? Function()? onContinue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onNeedUpdate,
-    TResult Function()? onShowPathSelector,
+    TResult Function()? onContinue,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_onNeedUpdate value) onNeedUpdate,
-    required TResult Function(_onShowPathSelector value) onShowPathSelector,
+    required TResult Function(_onContinue value) onContinue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult? Function(_onShowPathSelector value)? onShowPathSelector,
+    TResult? Function(_onContinue value)? onContinue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult Function(_onShowPathSelector value)? onShowPathSelector,
+    TResult Function(_onContinue value)? onContinue,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -393,7 +393,7 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onNeedUpdate,
-    required TResult Function() onShowPathSelector,
+    required TResult Function() onContinue,
   }) {
     return onNeedUpdate();
   }
@@ -402,7 +402,7 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onNeedUpdate,
-    TResult? Function()? onShowPathSelector,
+    TResult? Function()? onContinue,
   }) {
     return onNeedUpdate?.call();
   }
@@ -411,7 +411,7 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onNeedUpdate,
-    TResult Function()? onShowPathSelector,
+    TResult Function()? onContinue,
     required TResult orElse(),
   }) {
     if (onNeedUpdate != null) {
@@ -424,7 +424,7 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_onNeedUpdate value) onNeedUpdate,
-    required TResult Function(_onShowPathSelector value) onShowPathSelector,
+    required TResult Function(_onContinue value) onContinue,
   }) {
     return onNeedUpdate(this);
   }
@@ -433,7 +433,7 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult? Function(_onShowPathSelector value)? onShowPathSelector,
+    TResult? Function(_onContinue value)? onContinue,
   }) {
     return onNeedUpdate?.call(this);
   }
@@ -442,7 +442,7 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult Function(_onShowPathSelector value)? onShowPathSelector,
+    TResult Function(_onContinue value)? onContinue,
     required TResult orElse(),
   }) {
     if (onNeedUpdate != null) {
@@ -457,35 +457,35 @@ abstract class _onNeedUpdate implements SplashScreenSR {
 }
 
 /// @nodoc
-abstract class _$$_onShowPathSelectorCopyWith<$Res> {
-  factory _$$_onShowPathSelectorCopyWith(_$_onShowPathSelector value,
-          $Res Function(_$_onShowPathSelector) then) =
-      __$$_onShowPathSelectorCopyWithImpl<$Res>;
+abstract class _$$_onContinueCopyWith<$Res> {
+  factory _$$_onContinueCopyWith(
+          _$_onContinue value, $Res Function(_$_onContinue) then) =
+      __$$_onContinueCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_onShowPathSelectorCopyWithImpl<$Res>
-    extends _$SplashScreenSRCopyWithImpl<$Res, _$_onShowPathSelector>
-    implements _$$_onShowPathSelectorCopyWith<$Res> {
-  __$$_onShowPathSelectorCopyWithImpl(
-      _$_onShowPathSelector _value, $Res Function(_$_onShowPathSelector) _then)
+class __$$_onContinueCopyWithImpl<$Res>
+    extends _$SplashScreenSRCopyWithImpl<$Res, _$_onContinue>
+    implements _$$_onContinueCopyWith<$Res> {
+  __$$_onContinueCopyWithImpl(
+      _$_onContinue _value, $Res Function(_$_onContinue) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_onShowPathSelector implements _onShowPathSelector {
-  const _$_onShowPathSelector();
+class _$_onContinue implements _onContinue {
+  const _$_onContinue();
 
   @override
   String toString() {
-    return 'SplashScreenSR.onShowPathSelector()';
+    return 'SplashScreenSR.onContinue()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_onShowPathSelector);
+        (other.runtimeType == runtimeType && other is _$_onContinue);
   }
 
   @override
@@ -495,29 +495,29 @@ class _$_onShowPathSelector implements _onShowPathSelector {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onNeedUpdate,
-    required TResult Function() onShowPathSelector,
+    required TResult Function() onContinue,
   }) {
-    return onShowPathSelector();
+    return onContinue();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onNeedUpdate,
-    TResult? Function()? onShowPathSelector,
+    TResult? Function()? onContinue,
   }) {
-    return onShowPathSelector?.call();
+    return onContinue?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onNeedUpdate,
-    TResult Function()? onShowPathSelector,
+    TResult Function()? onContinue,
     required TResult orElse(),
   }) {
-    if (onShowPathSelector != null) {
-      return onShowPathSelector();
+    if (onContinue != null) {
+      return onContinue();
     }
     return orElse();
   }
@@ -526,36 +526,36 @@ class _$_onShowPathSelector implements _onShowPathSelector {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_onNeedUpdate value) onNeedUpdate,
-    required TResult Function(_onShowPathSelector value) onShowPathSelector,
+    required TResult Function(_onContinue value) onContinue,
   }) {
-    return onShowPathSelector(this);
+    return onContinue(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult? Function(_onShowPathSelector value)? onShowPathSelector,
+    TResult? Function(_onContinue value)? onContinue,
   }) {
-    return onShowPathSelector?.call(this);
+    return onContinue?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult Function(_onShowPathSelector value)? onShowPathSelector,
+    TResult Function(_onContinue value)? onContinue,
     required TResult orElse(),
   }) {
-    if (onShowPathSelector != null) {
-      return onShowPathSelector(this);
+    if (onContinue != null) {
+      return onContinue(this);
     }
     return orElse();
   }
 }
 
-abstract class _onShowPathSelector implements SplashScreenSR {
-  const factory _onShowPathSelector() = _$_onShowPathSelector;
+abstract class _onContinue implements SplashScreenSR {
+  const factory _onContinue() = _$_onContinue;
 }
 
 /// @nodoc

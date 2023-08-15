@@ -97,9 +97,7 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
             child: TextFieldWithLabel(
               label: '${S.of(context).url}: ',
               textController: _urlController,
-              onChanged: () => blocOf(context).add(
-                  SwaggerParserScreenEventOnUrlChanged(
-                      url: _urlController.text)),
+              onChanged: () {},
               expanded: true,
             ),
           ),
@@ -117,9 +115,9 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
                   icon: Icons.arrow_forward_ios_rounded,
                   iconLeft: false,
                   onPressed: () {
-                    if (state.config.swaggerUrl.isNotEmpty) {
+                    if (_urlController.text.isNotEmpty) {
                       blocOf(context).add(SwaggerParserScreenEventParse(
-                          url: state.config.swaggerUrl));
+                          url: _urlController.text));
                     } else {
                       _onContinue(context, state);
                     }

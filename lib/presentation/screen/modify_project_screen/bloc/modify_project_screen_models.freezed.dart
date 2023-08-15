@@ -88,7 +88,7 @@ class _$ModifyProjectScreenEventCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -1019,14 +1019,14 @@ abstract class _OnGenerate implements ModifyProjectScreenSR {
 
 /// @nodoc
 mixin _$ModifyProjectScreenState {
-  Config get config => throw _privateConstructorUsedError;
-  int get currentTab => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Config config, int currentTab) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
+Config get config => throw _privateConstructorUsedError;
+int get currentTab => throw _privateConstructorUsedError;
+@optionalTypeArgs
+TResult when<TResult extends Object?>({
+required TResult Function(Config config, int currentTab) data,
+}) =>
+throw _privateConstructorUsedError;
+@optionalTypeArgs
 TResult? whenOrNull<TResult extends Object?>({
 TResult? Function(Config config, int currentTab)? data,
 }) =>
@@ -1111,16 +1111,16 @@ return _then(_value.copyWith(config: value) as $Val);
 /// @nodoc
 abstract class _$$ModifyProjectScreenStateDataCopyWith<$Res>
 implements $ModifyProjectScreenStateCopyWith<$Res> {
-  factory _$$ModifyProjectScreenStateDataCopyWith(
-          _$ModifyProjectScreenStateData value,
-          $Res Function(_$ModifyProjectScreenStateData) then) =
-      __$$ModifyProjectScreenStateDataCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Config config, int currentTab});
+factory _$$ModifyProjectScreenStateDataCopyWith(
+_$ModifyProjectScreenStateData value,
+$Res Function(_$ModifyProjectScreenStateData) then) =
+__$$ModifyProjectScreenStateDataCopyWithImpl<$Res>;
+@override
+@useResult
+$Res call({Config config, int currentTab});
 
-  @override
-  $ConfigCopyWith<$Res> get config;
+@override
+$ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc

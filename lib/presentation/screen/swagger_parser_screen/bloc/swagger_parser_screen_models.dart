@@ -11,10 +11,6 @@ class SwaggerParserScreenEvent with _$SwaggerParserScreenEvent {
     required Config config,
   }) = SwaggerParserScreenEventInit;
 
-  const factory SwaggerParserScreenEvent.onUrlChanged({
-    required String url,
-  }) = SwaggerParserScreenEventOnUrlChanged;
-
   const factory SwaggerParserScreenEvent.onReplace() =
       SwaggerParserScreenEventOnReplace;
 

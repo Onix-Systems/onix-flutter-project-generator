@@ -16,6 +16,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
       : super(const ProcedureSelectionScreenStateData(config: Config())) {
     on<ProcedureSelectionScreenEventInit>(_onInit);
     on<ProcedureSelectionScreenEventOnProjectOpen>(_onProjectOpen);
+    on<ProcedureSelectionScreenEventOnNewProject>(_onNewProject);
   }
 
   FutureOr<void> _onInit(
@@ -25,6 +26,21 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     emit(state.copyWith(
       config: event.config,
     ));
+  }
+
+  FutureOr<void> _onNewProject(
+    ProcedureSelectionScreenEventOnNewProject event,
+    Emitter<ProcedureSelectionScreenState> emit,
+  ) async {
+    sourceRepository.empty();
+    dataComponentRepository.empty();
+    screenRepository.empty();
+
+    emit(state.copyWith(
+      config: Config(projectPath: event.projectPath),
+    ));
+
+    addSr(const ProcedureSelectionScreenSR.onNewProject());
   }
 
   FutureOr<void> _onProjectOpen(
@@ -42,8 +58,13 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     final projectName = event.projectURI.split('/').last;
     final projectPath = event.projectURI.replaceAll('/$projectName', '');
 
+    sourceRepository.empty();
     sourceRepository.addAll(config.sources);
+
+    dataComponentRepository.empty();
     dataComponentRepository.dataComponents.addAll(config.dataComponents);
+
+    screenRepository.empty();
     screenRepository.addAll(config.screens);
 
     emit(state.copyWith(

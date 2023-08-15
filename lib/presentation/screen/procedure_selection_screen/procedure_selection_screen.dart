@@ -59,6 +59,8 @@ class _ProcedureSelectionScreenState extends BaseState<
         title: S.of(context).emptyConfigTitle,
         content: S.of(context).emptyConfigContent,
       ),
+      onNewProject: () => context.go(AppRouter.projectNameScreen,
+          extra: Config(projectPath: blocOf(context).state.config.projectPath)),
     );
   }
 
@@ -82,11 +84,23 @@ class _ProcedureSelectionScreenState extends BaseState<
                   label: S.of(context).generateNewProject,
                   big: true,
                   onPressed: () {
-                    context.go(
-                      AppRouter.projectNameScreen,
-                      extra: Config(
-                        projectPath: widget.config.projectPath,
-                      ),
+                    getDirectoryPath().then(
+                      (value) {
+                        if (value != null) {
+                          blocOf(context)
+                              .add(ProcedureSelectionScreenEventOnNewProject(
+                            projectPath: value,
+                          ));
+                        } else {
+                          Dialogs.showOkDialog(
+                            context: context,
+                            isError: true,
+                            title: S.of(context).pathNotSelectedTitle,
+                            content: S.of(context).pathNotSelectedContent,
+                            onOk: () {},
+                          );
+                        }
+                      },
                     );
                   },
                   icon: Icons.create_new_folder_outlined,
