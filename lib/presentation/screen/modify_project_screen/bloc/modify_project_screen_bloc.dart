@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
@@ -14,7 +13,7 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
     on<ModifyProjectScreenEventInit>(_onInit);
     on<ModifyProjectScreenEventChangeTab>(_onChangeTab);
     on<ModifyProjectScreenEventOnScreensChange>(_onScreensChange);
-    on<ModifyProjectScreenEventOnDataComponentsChange>(_onDataComponentsChange);
+    on<ModifyProjectScreenEventOnGenerate>(_onGenerate);
   }
 
   FutureOr<void> _onInit(
@@ -24,25 +23,18 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
     if (event.config.organization.isEmpty) {
       sourceRepository.empty();
       dataComponentRepository.empty();
+      screenRepository.empty();
     }
-
-    final config = await configSource.getConfig(
-        configPath:
-            '${event.config.projectPath}/${event.config.projectName}/.gen_config.json');
-
-    sourceRepository.addAll(config.sources);
-    dataComponentRepository.dataComponents.addAll(config.dataComponents);
 
     emit(
       state.copyWith(
         config: event.config.copyWith(
           sources: sourceRepository.sources,
           dataComponents: dataComponentRepository.dataComponents,
-          screens: config.screens,
+          screens: screenRepository.screens,
         ),
       ),
     );
-    addSr(ModifyProjectScreenSR.loadFinished(config: config));
   }
 
   FutureOr<void> _onChangeTab(
@@ -63,33 +55,18 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
     ));
   }
 
-  FutureOr<void> _onDataComponentsChange(
-    ModifyProjectScreenEventOnDataComponentsChange event,
+  FutureOr<void> _onGenerate(
+    ModifyProjectScreenEventOnGenerate event,
     Emitter<ModifyProjectScreenState> emit,
-  ) {
-    // emit(state.copyWith(
-    //   config: state.config.copyWith(
-    //     dataComponents: event.dataComponents,
-    //     sources: {
-    //       Source(
-    //         name: 'Time',
-    //         exists: true,
-    //         isGenerated: false,
-    //         dataComponents: [
-    //           DataComponent(
-    //             name: 'Time',
-    //             exists: true,
-    //             isGenerated: false,
-    //             properties: [
-    //               Property(name: 'currentDateTime', type: 'DateTime')
-    //             ],
-    //           )..setSourceName('Time'),
-    //         ],
-    //         dataComponentsNames: ['Time'],
-    //       ),
-    //       ...sourceRepository.sources
-    //     },
-    //   ),
-    // ));
+  ) async {
+    emit(state.copyWith(
+      config: state.config.copyWith(
+        sources: sourceRepository.sources,
+        dataComponents: dataComponentRepository.dataComponents,
+        screens: screenRepository.screens,
+      ),
+    ));
+
+    addSr(const ModifyProjectScreenSR.onGenerate());
   }
 }

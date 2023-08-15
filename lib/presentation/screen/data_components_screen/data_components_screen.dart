@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
@@ -14,9 +15,11 @@ import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 
 class DataComponentsScreen extends StatefulWidget {
   final Config config;
+  final VoidCallback? onGenerate;
 
   const DataComponentsScreen({
     required this.config,
+    this.onGenerate,
     super.key,
   });
 
@@ -105,6 +108,11 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
                   label: S.of(context).continueLabel,
                   icon: Icons.arrow_forward_ios_rounded,
                   iconLeft: false,
+                  active: widget.config.projectExists
+                      ? sourceRepository.containsNewComponents() ||
+                          dataComponentRepository.containsNewComponents() ||
+                          screenRepository.containsNewComponents()
+                      : true,
                   onPressed: () => _onContinue(context, state),
                 ),
               ],
@@ -123,18 +131,13 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
             ))
         : context.go(
             AppRouter.swaggerParserScreen,
-            extra: widget.config.copyWith(
-              sources: state.config.sources,
-              dataComponents: state.config.dataComponents,
-            ),
+            extra: widget.config,
           );
   }
 
   void _onContinue(BuildContext context, DataComponentsScreenState state) {
-    context.go(AppRouter.summaryScreen,
-        extra: widget.config.copyWith(
-          sources: state.config.sources,
-          dataComponents: state.config.dataComponents,
-        ));
+    state.config.projectExists
+        ? widget.onGenerate?.call()
+        : context.go(AppRouter.summaryScreen, extra: widget.config);
   }
 }

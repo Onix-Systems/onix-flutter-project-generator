@@ -1,8 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
-import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 
 part 'modify_project_screen_models.freezed.dart';
 
@@ -20,10 +18,8 @@ class ModifyProjectScreenEvent with _$ModifyProjectScreenEvent {
     required Set<Screen> screens,
   }) = ModifyProjectScreenEventOnScreensChange;
 
-  const factory ModifyProjectScreenEvent.onDataComponentsChange({
-    required Set<DataComponent> dataComponents,
-    required Set<Source> sources,
-  }) = ModifyProjectScreenEventOnDataComponentsChange;
+  const factory ModifyProjectScreenEvent.onGenerate() =
+      ModifyProjectScreenEventOnGenerate;
 }
 
 @freezed
@@ -31,6 +27,8 @@ class ModifyProjectScreenSR with _$ModifyProjectScreenSR {
   const factory ModifyProjectScreenSR.loadFinished({
     required Config config,
   }) = _LoadFinished;
+
+  const factory ModifyProjectScreenSR.onGenerate() = _OnGenerate;
 }
 
 @freezed

@@ -62,6 +62,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
+        "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
+            "Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator"),
+        "emptyConfigTitle":
+            MessageLookupByLibrary.simpleMessage("Config file load error!"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" First & last name"),

@@ -10,7 +10,7 @@ import 'package:recase/recase.dart';
 
 class ScreenTable extends StatelessWidget {
   final Set<Screen> screens;
-  final Function(Screen) onModifyScreen;
+  final Function(Screen, String) onModifyScreen;
   final Function(Screen) onDeleteScreen;
 
   const ScreenTable({
@@ -149,11 +149,12 @@ class ScreenTable extends StatelessWidget {
                                         showCupertinoModalPopup<Screen>(
                                           context: context,
                                           barrierDismissible: false,
-                                          builder: (context) =>
-                                              AddScreenDialog(screen: screen),
-                                        ).then((screen) {
-                                          if (screen != null) {
-                                            onModifyScreen(screen);
+                                          builder: (context) => AddScreenDialog(
+                                              screen: Screen.copyOf(screen)),
+                                        ).then((modifiedScreen) {
+                                          if (modifiedScreen != null) {
+                                            onModifyScreen(
+                                                modifiedScreen, screen.name);
                                           }
                                         });
                                       }

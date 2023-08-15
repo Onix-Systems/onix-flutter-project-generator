@@ -5,6 +5,8 @@ abstract class DataComponentRepository {
 
   bool isEnum(String name);
 
+  bool containsNewComponents();
+
   Set<String> getEnumNames();
 
   void parse(Map<String, dynamic> data);

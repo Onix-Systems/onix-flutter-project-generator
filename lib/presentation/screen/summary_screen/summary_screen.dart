@@ -41,6 +41,12 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
     );
   }
 
+  @override
+  void onBlocCreated(BuildContext context, SummaryScreenBloc bloc) {
+    bloc.add(SummaryScreenEventInit(config: widget.config));
+    super.onBlocCreated(context, bloc);
+  }
+
   void _onSingleResult(BuildContext context, SummaryScreenSR singleResult) {
     singleResult.when(
       loadFinished: () {},
@@ -75,77 +81,77 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                   children: [
                     SummaryCell(
                       variable: S.of(context).projectPath,
-                      value: widget.config.projectPath,
+                      value: state.config.projectPath,
                     ),
                     SummaryCell(
                       variable: S.of(context).projectName,
-                      value: widget.config.projectName,
+                      value: state.config.projectName,
                     ),
                     SummaryCell(
                       variable: S.of(context).organization,
-                      value: widget.config.organization,
+                      value: state.config.organization,
                     ),
                     SummaryCell(
                       variable: S.of(context).platforms,
-                      value: widget.config.platformsList.toString(),
+                      value: state.config.platformsList.toString(),
                     ),
                     SummaryCell(
                       variable: S.of(context).flavorize,
-                      value: widget.config.flavorize.toString(),
+                      value: state.config.flavorize.toString(),
                     ),
-                    if (widget.config.flavors.isNotEmpty)
+                    if (state.config.flavors.isNotEmpty)
                       SummaryCell(
                         variable: S.of(context).flavors,
                         value:
-                            'dev, prod, ${widget.config.flavors.split(' ').join(', ')}',
+                            'dev, prod, ${state.config.flavors.split(' ').join(', ')}',
                       ),
                     SummaryCell(
                       variable: S.of(context).generateSigningKey,
-                      value: widget.config.generateSigningKey.toString(),
+                      value: state.config.generateSigningKey.toString(),
                     ),
                     SummaryCell(
                       variable: S.of(context).generateSonarConfig,
-                      value: widget.config.useSonar.toString(),
+                      value: state.config.useSonar.toString(),
                     ),
                     SummaryCell(
                       variable: S.of(context).navigationRouter,
-                      value: widget.config.router.name,
+                      value: state.config.router.name,
                     ),
                     SummaryCell(
                       variable: S.of(context).localizationMethod,
-                      value: widget.config.localization.name,
+                      value: state.config.localization.name,
                     ),
                     SummaryCell(
                       variable: S.of(context).theming,
-                      value: widget.config.theming.name,
+                      value: state.config.theming.name,
                     ),
                     SummaryCell(
                       variable: S.of(context).integrateDevicePreview,
-                      value: widget.config.integrateDevicePreview.toString(),
+                      value: state.config.integrateDevicePreview.toString(),
                     ),
                     SummaryCell(
                         variable: S.of(context).generateScreens,
-                        value: widget.config.screens
+                        value: state.config.screens
                             .map((e) =>
                                 '{name: ${e.name.pascalCase}Screen, bloc: ${e.bloc}}')
                             .join(', ')),
-                    if (widget.config.swaggerUrl.isNotEmpty)
+                    if (state.config.swaggerUrl.isNotEmpty)
                       SummaryCell(
                         variable: S.of(context).swaggerURL,
-                        value: widget.config.swaggerUrl,
+                        value: state.config.swaggerUrl,
                       ),
-                    if (widget.config.sources.isNotEmpty)
+                    if (state.config.sources.isNotEmpty)
                       SummaryCell(
                         variable: S.of(context).sources,
-                        value: widget.config.sources
+                        value: state.config.sources
                             .map((e) =>
-                                '${e.name}(${e.dataComponents.map((e) => e.name.pascalCase).join(', ')})')
+                                '${e.name.pascalCase}(${e.dataComponents.map((e) => e.name.pascalCase).join(', ')})')
                             .join('\n\n'),
                       ),
-                    if (widget.config.dataComponents.isNotEmpty)
+                    if (state.config.dataComponents.isNotEmpty)
                       SummaryCell(
                           variable: S.of(context).dataComponents,
-                          value: widget.config.dataComponents
+                          value: state.config.dataComponents
                               .map((e) => e.name)
                               .join(', ')),
                   ],
@@ -160,14 +166,14 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                     label: S.of(context).goBack,
                     icon: Icons.arrow_back_ios_outlined,
                     onPressed: () => context.go(AppRouter.dataComponentsScreen,
-                        extra: widget.config)),
+                        extra: state.config)),
                 const Delimiter.width(10),
                 AppFilledButton(
                   label: S.of(context).generateProject,
                   icon: Icons.local_fire_department,
                   iconLeft: false,
                   onPressed: () => context.go(AppRouter.generationScreen,
-                      extra: widget.config),
+                      extra: state.config),
                   color: CupertinoColors.destructiveRed,
                 ),
               ],

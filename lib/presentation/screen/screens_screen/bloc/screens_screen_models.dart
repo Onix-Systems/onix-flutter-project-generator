@@ -18,8 +18,10 @@ class ScreensScreenEvent with _$ScreensScreenEvent {
     required Screen screen,
   }) = ScreensScreenEventOnScreenDelete;
 
-  const factory ScreensScreenEvent.onScreenModify() =
-      ScreensScreenEventOnScreenModify;
+  const factory ScreensScreenEvent.onScreenModify({
+    required Screen screen,
+    required String oldName,
+  }) = ScreensScreenEventOnScreenModify;
 }
 
 @freezed

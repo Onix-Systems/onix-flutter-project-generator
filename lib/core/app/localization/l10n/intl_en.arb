@@ -82,5 +82,7 @@
   "localizationMethod": "Localization method",
   "generateScreens": "Generate screens",
   "swaggerURL": "Swagger URL",
-  "sources": "Sources"
+  "sources": "Sources",
+  "emptyConfigTitle": "Config file load error!",
+  "emptyConfigContent": "Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator"
 }

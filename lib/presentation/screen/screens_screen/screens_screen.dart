@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
-import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/add_screen_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table.dart';
@@ -18,10 +17,12 @@ import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 class ScreensScreen extends StatefulWidget {
   final Config config;
   final Function(Set<Screen>)? onChange;
+  final VoidCallback? onGenerate;
 
   const ScreensScreen({
     required this.config,
     this.onChange,
+    this.onGenerate,
     super.key,
   });
 
@@ -33,28 +34,20 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
     ScreensScreenBloc, ScreensScreenSR, ScreensScreen> {
   @override
   Widget buildWidget(BuildContext context) {
-    return StreamBuilder<ModifyProjectScreenSR>(
-        stream: context.read<ModifyProjectScreenBloc>().singleResults,
-        builder: (context, snapshot) {
-          if (snapshot.data != null) {
-            blocOf(context)
-                .add(ScreensScreenEventInit(config: snapshot.data!.config));
-          }
-          return srObserver(
-            context: context,
-            child: CupertinoPageScaffold(
-              child: SizedBox.expand(
-                child: blocConsumer(
-                  stateListener: (state) {
-                    widget.onChange?.call(state.config.screens);
-                    return _buildMainContainer(context, state);
-                  },
-                ),
-              ),
-            ),
-            onSR: _onSingleResult,
-          );
-        });
+    return srObserver(
+      context: context,
+      child: CupertinoPageScaffold(
+        child: SizedBox.expand(
+          child: blocConsumer(
+            stateListener: (state) {
+              widget.onChange?.call(state.config.screens);
+              return _buildMainContainer(context, state);
+            },
+          ),
+        ),
+      ),
+      onSR: _onSingleResult,
+    );
   }
 
   @override
@@ -98,8 +91,9 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                 clipBehavior: Clip.hardEdge,
                 child: ScreenTable(
                   screens: state.config.screens,
-                  onModifyScreen: (screen) => blocOf(context).add(
-                    const ScreensScreenEventOnScreenModify(),
+                  onModifyScreen: (screen, name) => blocOf(context).add(
+                    ScreensScreenEventOnScreenModify(
+                        screen: screen, oldName: name),
                   ),
                   onDeleteScreen: (screen) => blocOf(context).add(
                     ScreensScreenEventOnScreenDelete(
@@ -139,6 +133,11 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                   label: S.of(context).continueLabel,
                   icon: Icons.arrow_forward_ios_rounded,
                   iconLeft: false,
+                  active: widget.config.projectExists
+                      ? sourceRepository.containsNewComponents() ||
+                          dataComponentRepository.containsNewComponents() ||
+                          screenRepository.containsNewComponents()
+                      : true,
                   onPressed: () => _onContinue(context, state),
                 ),
               ],
@@ -157,16 +156,16 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
             ))
         : context.go(
             AppRouter.projectSettingsScreen,
-            extra: widget.config.copyWith(
-              screens: state.config.screens,
-            ),
+            extra: widget.config,
           );
   }
 
   void _onContinue(BuildContext context, ScreensScreenState state) {
-    context.go(AppRouter.swaggerParserScreen,
-        extra: widget.config.copyWith(
-          screens: state.config.screens,
-        ));
+    widget.config.projectExists
+        ? widget.onGenerate?.call()
+        : context.go(
+            AppRouter.swaggerParserScreen,
+            extra: widget.config,
+          );
   }
 }

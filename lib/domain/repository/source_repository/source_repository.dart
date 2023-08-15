@@ -6,6 +6,8 @@ abstract class SourceRepository {
 
   void parse(Map<String, dynamic> data);
 
+  bool containsNewComponents();
+
   Source? getSourceByName(String name);
 
   String getDataComponentSourceName(String entityName);

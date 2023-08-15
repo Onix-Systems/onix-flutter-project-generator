@@ -61,6 +61,11 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   }
 
   @override
+  bool containsNewComponents() {
+    return dataComponents.any((element) => !element.exists);
+  }
+
+  @override
   bool isEnum(String name) {
     return dataComponents
         .any((element) => element.name == name && element.isEnum);

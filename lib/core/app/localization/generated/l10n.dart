@@ -879,6 +879,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Config file load error!`
+  String get emptyConfigTitle {
+    return Intl.message(
+      'Config file load error!',
+      name: 'emptyConfigTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator`
+  String get emptyConfigContent {
+    return Intl.message(
+      'Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator',
+      name: 'emptyConfigContent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

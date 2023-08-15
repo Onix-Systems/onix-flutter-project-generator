@@ -56,6 +56,11 @@ class SourceRepositoryImpl implements SourceRepository {
   Set<Source> get sources => _sources.map((e) => Source.copyOf(e)).toSet();
 
   @override
+  bool containsNewComponents() => sourceRepository.sources.any((source) =>
+      !source.exists ||
+      source.dataComponents.where((component) => !component.exists).isNotEmpty);
+
+  @override
   void addSource(Source source) {
     if (_sources.where((element) => element.name == source.name).isEmpty) {
       _sources.add(source);

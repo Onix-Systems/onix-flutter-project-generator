@@ -6,6 +6,7 @@ import 'dart:math';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/services.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 
@@ -37,82 +38,84 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   ) async {
     emit(state.copyWith(generatingState: GeneratingState.generating));
 
-    String genPass = '';
+    if (!state.config.projectExists) {
+      String genPass = '';
 
-    if (state.config.generateSigningKey) {
-      if (state.config.signingVars[6].isEmpty) {
-        genPass = List.generate(20, (index) {
-          return AppConsts.signingKeyPassChars[
-              (Random.secure().nextInt(AppConsts.signingKeyPassChars.length))];
-        }).join();
-      } else {
-        genPass = state.config.signingVars[6];
-      }
-    }
-
-    var configFile =
-        await File('${state.config.projectPath}/config.json').create();
-
-    var flavors = <String>{};
-
-    if (state.config.flavors.isNotEmpty) {
-      flavors = state.config.flavors.contains(' ')
-          ? state.config.flavors
-              .toLowerCase()
-              .trim()
-              .replaceAll(RegExp(' +'), ' ')
-              .split(' ')
-              .toSet()
-          : {state.config.flavors.toLowerCase()};
-
-      for (var flavor in flavors) {
-        if (flavor.isEmpty || flavor == ' ') {
-          flavors.remove(flavor);
+      if (state.config.generateSigningKey) {
+        if (state.config.signingVars[6].isEmpty) {
+          genPass = List.generate(20, (index) {
+            return AppConsts.signingKeyPassChars[(Random.secure()
+                .nextInt(AppConsts.signingKeyPassChars.length))];
+          }).join();
+        } else {
+          genPass = state.config.signingVars[6];
         }
       }
 
-      flavors
-        ..remove('dev')
-        ..remove('prod');
-    }
+      var configFile =
+          await File('${state.config.projectPath}/config.json').create();
 
-    await configFile.writeAsString(jsonEncode({
-      'signing_password': genPass,
-      'project_name_dirt': state.config.projectName,
-      'project_org': state.config.organization,
-      'flavorizr': state.config.flavorize,
-      'flavors': flavors.toList(),
-      'navigation': state.config.router.name,
-      'localization': state.config.localization.name,
-      'use_keytool': state.config.generateSigningKey,
-      'use_sonar': state.config.useSonar,
-      'device_preview': state.config.integrateDevicePreview,
-      'platforms': state.config.platformsList.toString().replaceAll(' ', ''),
-      'theme_generate': state.config.theming.name == 'theme_tailor',
-    }).toString());
+      var flavors = <String>{};
 
-    outputService.add('{#info}Getting mason & brick...');
+      if (state.config.flavors.isNotEmpty) {
+        flavors = state.config.flavors.contains(' ')
+            ? state.config.flavors
+                .toLowerCase()
+                .trim()
+                .replaceAll(RegExp(' +'), ' ')
+                .split(' ')
+                .toSet()
+            : {state.config.flavors.toLowerCase()};
 
-    var mainProcess = await startProcess(
-        workingDirectory: state.config.projectPath, activateMason: true);
+        for (var flavor in flavors) {
+          if (flavor.isEmpty || flavor == ' ') {
+            flavors.remove(flavor);
+          }
+        }
 
-    mainProcess.stdin.writeln(
-        'mason add -g flutter_clean_base --git-url ${AppConsts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
-    mainProcess.stdin.writeln(
-        'mason make flutter_clean_base -c config.json --on-conflict overwrite');
+        flavors
+          ..remove('dev')
+          ..remove('prod');
+      }
 
-    await mainProcess.exitCode;
-    configFile.delete();
+      await configFile.writeAsString(jsonEncode({
+        'signing_password': genPass,
+        'project_name_dirt': state.config.projectName,
+        'project_org': state.config.organization,
+        'flavorizr': state.config.flavorize,
+        'flavors': flavors.toList(),
+        'navigation': state.config.router.name,
+        'localization': state.config.localization.name,
+        'use_keytool': state.config.generateSigningKey,
+        'use_sonar': state.config.useSonar,
+        'device_preview': state.config.integrateDevicePreview,
+        'platforms': state.config.platformsList.toString().replaceAll(' ', ''),
+        'theme_generate': state.config.theming.name == 'theme_tailor',
+      }).toString());
 
-    if (state.config.generateSigningKey) {
-      outputService.add('{info}Keystore password: $genPass');
+      outputService.add('{#info}Getting mason & brick...');
 
-      var signingProcess = await startProcess(
-          workingDirectory:
-              '${state.config.projectPath}/${state.config.projectName}/android/app/signing');
+      var mainProcess = await startProcess(
+          workingDirectory: state.config.projectPath, activateMason: true);
 
-      signingProcess.stdin.writeln(
-          'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass $genPass -storepass $genPass -dname "CN=${state.config.signingVars[0]}, OU=${state.config.signingVars[1]}, O=${state.config.signingVars[2]}, L=${state.config.signingVars[3]}, S=${state.config.signingVars[4]}, C=${state.config.signingVars[5]}"');
+      mainProcess.stdin.writeln(
+          'mason add -g flutter_clean_base --git-url ${AppConsts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
+      mainProcess.stdin.writeln(
+          'mason make flutter_clean_base -c config.json --on-conflict overwrite');
+
+      await mainProcess.exitCode;
+      configFile.delete();
+
+      if (state.config.generateSigningKey) {
+        outputService.add('{info}Keystore password: $genPass');
+
+        var signingProcess = await startProcess(
+            workingDirectory:
+                '${state.config.projectPath}/${state.config.projectName}/android/app/signing');
+
+        signingProcess.stdin.writeln(
+            'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass $genPass -storepass $genPass -dname "CN=${state.config.signingVars[0]}, OU=${state.config.signingVars[1]}, O=${state.config.signingVars[2]}, L=${state.config.signingVars[3]}, S=${state.config.signingVars[4]}, C=${state.config.signingVars[5]}"');
+      }
     }
 
     await _generateScreens();
@@ -141,6 +144,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         );
 
         screen.exists = true;
+        screenRepository.modifyScreen(screen, screen.name);
 
         if (screen == state.config.screens.last) {
           var mainProcess = await startProcess(
@@ -240,6 +244,20 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       await mainProcess.exitCode;
 
       outputService.add('{#info}Entities generated!');
+
+      for (var source in state.config.sources) {
+        source.exists = true;
+        sourceRepository.modifySource(source, source.name);
+        for (var component in source.dataComponents) {
+          component.exists = true;
+          sourceRepository.modifyDataComponentInSource(
+              source, component, component.name);
+        }
+      }
+
+      for (var component in state.config.dataComponents) {
+        component.exists = true;
+      }
     }
   }
 

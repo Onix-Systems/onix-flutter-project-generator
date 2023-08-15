@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
+import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/data_components_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_bloc_imports.dart';
@@ -58,6 +60,8 @@ class _ModifyProjectScreenState extends BaseState<
       BuildContext context, ModifyProjectScreenSR singleResult) {
     singleResult.when(
       loadFinished: (_) {},
+      onGenerate: () => context.go(AppRouter.generationScreen,
+          extra: blocOf(context).state.config),
     );
   }
 
@@ -102,13 +106,21 @@ class _ModifyProjectScreenState extends BaseState<
                         ),
                       );
                     },
+                    onGenerate: () => _onGenerate(context),
                   )
                 : DataComponentsScreen(
                     config: state.config,
+                    onGenerate: () => _onGenerate(context),
                   ),
           ),
         ],
       ),
+    );
+  }
+
+  _onGenerate(BuildContext context) {
+    blocOf(context).add(
+      const ModifyProjectScreenEventOnGenerate(),
     );
   }
 }

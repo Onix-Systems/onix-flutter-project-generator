@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc_imports.dart';
 
@@ -22,10 +22,7 @@ class ScreensScreenBloc
   ) {
     emit(state.copyWith(
       config: event.config.copyWith(
-        screens: {
-          Screen(name: 'home', exists: true, bloc: false),
-          ...event.config.screens
-        },
+        screens: screenRepository.screens,
       ),
     ));
   }
@@ -34,17 +31,15 @@ class ScreensScreenBloc
     ScreensScreenEventOnScreenAdd event,
     Emitter<ScreensScreenState> emit,
   ) {
-    final screens = state.config.screens.toList();
-
-    if (state.config.screens
+    if (screenRepository.screens
         .where((element) => element.name == event.screen.name)
         .isNotEmpty) {
       addSr(const ScreensScreenSR.existsError());
     } else {
-      screens.add(event.screen);
+      screenRepository.addScreen(event.screen);
 
       emit(state.copyWith(
-        config: state.config.copyWith(screens: screens.toSet()),
+        config: state.config.copyWith(screens: screenRepository.screens),
       ));
     }
   }
@@ -53,10 +48,9 @@ class ScreensScreenBloc
     ScreensScreenEventOnScreenDelete event,
     Emitter<ScreensScreenState> emit,
   ) {
-    var screens = state.config.screens.toList();
-    screens.remove(event.screen);
+    screenRepository.removeScreen(event.screen);
     emit(state.copyWith(
-      config: state.config.copyWith(screens: screens.toSet()),
+      config: state.config.copyWith(screens: screenRepository.screens),
     ));
   }
 
@@ -64,6 +58,10 @@ class ScreensScreenBloc
     ScreensScreenEventOnScreenModify event,
     Emitter<ScreensScreenState> emit,
   ) {
-    emit(state.copyWith(stateUpdate: DateTime.now().millisecondsSinceEpoch));
+    screenRepository.modifyScreen(event.screen, event.oldName);
+    emit(state.copyWith(
+        config: state.config.copyWith(
+      screens: screenRepository.screens,
+    )));
   }
 }

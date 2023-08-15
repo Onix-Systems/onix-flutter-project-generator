@@ -21,7 +21,7 @@ mixin _$ScreensScreenEvent {
     required TResult Function(Config config) init,
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(Screen screen) onScreenDelete,
-    required TResult Function() onScreenModify,
+    required TResult Function(Screen screen, String oldName) onScreenModify,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$ScreensScreenEvent {
     TResult? Function(Config config)? init,
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(Screen screen)? onScreenDelete,
-    TResult? Function()? onScreenModify,
+    TResult? Function(Screen screen, String oldName)? onScreenModify,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$ScreensScreenEvent {
     TResult Function(Config config)? init,
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(Screen screen)? onScreenDelete,
-    TResult Function()? onScreenModify,
+    TResult Function(Screen screen, String oldName)? onScreenModify,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -166,7 +166,7 @@ class _$ScreensScreenEventInit implements ScreensScreenEventInit {
     required TResult Function(Config config) init,
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(Screen screen) onScreenDelete,
-    required TResult Function() onScreenModify,
+    required TResult Function(Screen screen, String oldName) onScreenModify,
   }) {
     return init(config);
   }
@@ -177,7 +177,7 @@ class _$ScreensScreenEventInit implements ScreensScreenEventInit {
     TResult? Function(Config config)? init,
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(Screen screen)? onScreenDelete,
-    TResult? Function()? onScreenModify,
+    TResult? Function(Screen screen, String oldName)? onScreenModify,
   }) {
     return init?.call(config);
   }
@@ -188,7 +188,7 @@ class _$ScreensScreenEventInit implements ScreensScreenEventInit {
     TResult Function(Config config)? init,
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(Screen screen)? onScreenDelete,
-    TResult Function()? onScreenModify,
+    TResult Function(Screen screen, String oldName)? onScreenModify,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -318,7 +318,7 @@ class _$ScreensScreenEventOnScreenAdd implements ScreensScreenEventOnScreenAdd {
     required TResult Function(Config config) init,
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(Screen screen) onScreenDelete,
-    required TResult Function() onScreenModify,
+    required TResult Function(Screen screen, String oldName) onScreenModify,
   }) {
     return onScreenAdd(screen);
   }
@@ -329,7 +329,7 @@ class _$ScreensScreenEventOnScreenAdd implements ScreensScreenEventOnScreenAdd {
     TResult? Function(Config config)? init,
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(Screen screen)? onScreenDelete,
-    TResult? Function()? onScreenModify,
+    TResult? Function(Screen screen, String oldName)? onScreenModify,
   }) {
     return onScreenAdd?.call(screen);
   }
@@ -340,7 +340,7 @@ class _$ScreensScreenEventOnScreenAdd implements ScreensScreenEventOnScreenAdd {
     TResult Function(Config config)? init,
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(Screen screen)? onScreenDelete,
-    TResult Function()? onScreenModify,
+    TResult Function(Screen screen, String oldName)? onScreenModify,
     required TResult orElse(),
   }) {
     if (onScreenAdd != null) {
@@ -472,7 +472,7 @@ class _$ScreensScreenEventOnScreenDelete
     required TResult Function(Config config) init,
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(Screen screen) onScreenDelete,
-    required TResult Function() onScreenModify,
+    required TResult Function(Screen screen, String oldName) onScreenModify,
   }) {
     return onScreenDelete(screen);
   }
@@ -483,7 +483,7 @@ class _$ScreensScreenEventOnScreenDelete
     TResult? Function(Config config)? init,
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(Screen screen)? onScreenDelete,
-    TResult? Function()? onScreenModify,
+    TResult? Function(Screen screen, String oldName)? onScreenModify,
   }) {
     return onScreenDelete?.call(screen);
   }
@@ -494,7 +494,7 @@ class _$ScreensScreenEventOnScreenDelete
     TResult Function(Config config)? init,
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(Screen screen)? onScreenDelete,
-    TResult Function()? onScreenModify,
+    TResult Function(Screen screen, String oldName)? onScreenModify,
     required TResult orElse(),
   }) {
     if (onScreenDelete != null) {
@@ -560,6 +560,8 @@ abstract class _$$ScreensScreenEventOnScreenModifyCopyWith<$Res> {
           _$ScreensScreenEventOnScreenModify value,
           $Res Function(_$ScreensScreenEventOnScreenModify) then) =
       __$$ScreensScreenEventOnScreenModifyCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Screen screen, String oldName});
 }
 
 /// @nodoc
@@ -571,28 +573,62 @@ class __$$ScreensScreenEventOnScreenModifyCopyWithImpl<$Res>
       _$ScreensScreenEventOnScreenModify _value,
       $Res Function(_$ScreensScreenEventOnScreenModify) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? screen = null,
+    Object? oldName = null,
+  }) {
+    return _then(_$ScreensScreenEventOnScreenModify(
+      screen: null == screen
+          ? _value.screen
+          : screen // ignore: cast_nullable_to_non_nullable
+              as Screen,
+      oldName: null == oldName
+          ? _value.oldName
+          : oldName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ScreensScreenEventOnScreenModify
     implements ScreensScreenEventOnScreenModify {
-  const _$ScreensScreenEventOnScreenModify();
+  const _$ScreensScreenEventOnScreenModify(
+      {required this.screen, required this.oldName});
+
+  @override
+  final Screen screen;
+  @override
+  final String oldName;
 
   @override
   String toString() {
-    return 'ScreensScreenEvent.onScreenModify()';
+    return 'ScreensScreenEvent.onScreenModify(screen: $screen, oldName: $oldName)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScreensScreenEventOnScreenModify);
+            other is _$ScreensScreenEventOnScreenModify &&
+            (identical(other.screen, screen) || other.screen == screen) &&
+            (identical(other.oldName, oldName) || other.oldName == oldName));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, screen, oldName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ScreensScreenEventOnScreenModifyCopyWith<
+          _$ScreensScreenEventOnScreenModify>
+      get copyWith => __$$ScreensScreenEventOnScreenModifyCopyWithImpl<
+          _$ScreensScreenEventOnScreenModify>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -600,9 +636,9 @@ class _$ScreensScreenEventOnScreenModify
     required TResult Function(Config config) init,
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(Screen screen) onScreenDelete,
-    required TResult Function() onScreenModify,
+    required TResult Function(Screen screen, String oldName) onScreenModify,
   }) {
-    return onScreenModify();
+    return onScreenModify(screen, oldName);
   }
 
   @override
@@ -611,9 +647,9 @@ class _$ScreensScreenEventOnScreenModify
     TResult? Function(Config config)? init,
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(Screen screen)? onScreenDelete,
-    TResult? Function()? onScreenModify,
+    TResult? Function(Screen screen, String oldName)? onScreenModify,
   }) {
-    return onScreenModify?.call();
+    return onScreenModify?.call(screen, oldName);
   }
 
   @override
@@ -622,11 +658,11 @@ class _$ScreensScreenEventOnScreenModify
     TResult Function(Config config)? init,
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(Screen screen)? onScreenDelete,
-    TResult Function()? onScreenModify,
+    TResult Function(Screen screen, String oldName)? onScreenModify,
     required TResult orElse(),
   }) {
     if (onScreenModify != null) {
-      return onScreenModify();
+      return onScreenModify(screen, oldName);
     }
     return orElse();
   }
@@ -672,8 +708,16 @@ class _$ScreensScreenEventOnScreenModify
 }
 
 abstract class ScreensScreenEventOnScreenModify implements ScreensScreenEvent {
-  const factory ScreensScreenEventOnScreenModify() =
-      _$ScreensScreenEventOnScreenModify;
+  const factory ScreensScreenEventOnScreenModify(
+      {required final Screen screen,
+      required final String oldName}) = _$ScreensScreenEventOnScreenModify;
+
+  Screen get screen;
+  String get oldName;
+  @JsonKey(ignore: true)
+  _$$ScreensScreenEventOnScreenModifyCopyWith<
+          _$ScreensScreenEventOnScreenModify>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
