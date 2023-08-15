@@ -116,8 +116,11 @@ class _ProcedureSelectionScreenState extends BaseState<
                         .modifyGeneratedProject(widget.config.projectName),
                     big: true,
                     onPressed: () {
-                      context.go(AppRouter.modifyProjectScreen,
-                          extra: widget.config.copyWith(projectExists: true));
+                      blocOf(context)
+                          .add(ProcedureSelectionScreenEventOnProjectOpen(
+                        projectURI:
+                            '${widget.config.projectPath}/${widget.config.projectName}',
+                      ));
                     },
                     icon: Icons.create_new_folder_outlined,
                   ),

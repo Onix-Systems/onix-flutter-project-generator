@@ -28,6 +28,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenEventInit event,
     Emitter<GenerationScreenState> emit,
   ) {
+    outputService.clear();
     emit(state.copyWith(config: event.config));
     add(const GenerationScreenEventGenerateProject());
   }
@@ -123,8 +124,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     await _generateDataComponents();
 
     emit(state.copyWith(
-        generatingState: GeneratingState.waiting,
-        config: state.config.copyWith(projectExists: true)));
+      generatingState: GeneratingState.waiting,
+    ));
 
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');

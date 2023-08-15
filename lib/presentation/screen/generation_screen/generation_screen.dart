@@ -120,12 +120,17 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
                               color: CupertinoColors.white,
                             ),
                             onPressed: () {
-                              context.go(
-                                AppRouter.procedureSelectionScreen,
-                                extra: state.config.copyWith(
-                                  projectExists: true,
-                                ),
-                              );
+                              state.config.projectExists
+                                  ? context.go(AppRouter.modifyProjectScreen,
+                                      extra: state.config.copyWith(
+                                        projectExists: true,
+                                      ))
+                                  : context.go(
+                                      AppRouter.procedureSelectionScreen,
+                                      extra: state.config.copyWith(
+                                        projectExists: true,
+                                      ),
+                                    );
                             },
                           ),
                         ],
