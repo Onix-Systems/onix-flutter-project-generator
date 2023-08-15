@@ -1441,7 +1441,7 @@ class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
   Set<Source> get alreadyParsedSources {
     if (_alreadyParsedSources is EqualUnmodifiableSetView)
       return _alreadyParsedSources;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_alreadyParsedSources);
   }
 
@@ -1451,7 +1451,7 @@ class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
   Set<DataComponent> get alreadyParsedComponents {
     if (_alreadyParsedComponents is EqualUnmodifiableSetView)
       return _alreadyParsedComponents;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_alreadyParsedComponents);
   }
 

@@ -4,6 +4,8 @@ import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:recase/recase.dart';
 
+import '../../core/di/app.dart';
+
 class SwaggerParser {
   static void parse(
       {required Map<String, dynamic> data, required String projectName}) {
@@ -84,9 +86,19 @@ class SwaggerParser {
       }
     }
 
+    logger.f(sourceRepository.sources
+        .map((e) => '${e.name}(${e.dataComponents.map((e) => e.name)})')
+        .toList());
+
     for (final source in sources) {
-      sourceRepository.modifySource(source, source.name);
+      if (source.name != 'Time') {
+        sourceRepository.modifySource(source, source.name);
+      }
     }
+
+    logger.f(sourceRepository.sources
+        .map((e) => '${e.name}(${e.dataComponents.map((e) => e.name)})')
+        .toList());
 
     dataComponentRepository.dataComponents.clear();
 
@@ -94,6 +106,10 @@ class SwaggerParser {
       dataComponentRepository.dataComponents
           .add(DataComponent.copyOf(dataComponent));
     }
+
+    logger.f(sourceRepository.sources
+        .map((e) => '${e.name}(${e.dataComponents.map((e) => e.name)})')
+        .toList());
   }
 
   static void _setSourceNameForImports(Set<DataComponent> parsedEntities,

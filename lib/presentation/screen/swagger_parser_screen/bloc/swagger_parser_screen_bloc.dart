@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:collection/collection.dart';
 import 'package:http/http.dart' as http;
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +11,6 @@ import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bloc/swagger_parser_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
-
-import '../../../../core/di/app.dart';
 
 class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     SwaggerParserScreenState, SwaggerParserScreenSR> {
@@ -32,10 +31,11 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     SwaggerParserScreenEventInit event,
     Emitter<SwaggerParserScreenState> emit,
   ) {
-    logger.f('config sources: ${event.config.sources.map((e) => e.name)}');
     emit(state.copyWith(
-      config: event.config,
-    ));
+        config: event.config.copyWith(
+      sources: sourceRepository.sources,
+      dataComponents: dataComponentRepository.dataComponents,
+    )));
   }
 
   FutureOr<void> _onUrlChanged(
@@ -53,6 +53,11 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     SwaggerParserScreenEventParse event,
     Emitter<SwaggerParserScreenState> emit,
   ) async {
+    if (state.config.swaggerUrl == event.url) {
+      addSr(const SwaggerParserScreenSR.onContinue());
+      return;
+    }
+
     showProgress();
     try {
       var response = await http.get(Uri.parse(event.url));
@@ -65,30 +70,53 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
 
       bool withConflicts = false;
 
-      // for (var dataComponent in dataComponentRepository.dataComponents) {
-      //   if (state.config.dataComponents
-      //       .where((element) =>
-      //           element.name.pascalCase == dataComponent.name.pascalCase)
-      //       .isEmpty) {
-      //     dataComponentRepository.dataComponents
-      //         .add(DataComponent.copyOf(dataComponent));
-      //   } else {
-      //     withConflicts = true;
-      //   }
-      // }
-
-      for (var source in state.config.sources) {
-        final stateSource = sourceRepository.getSourceByName(source.name);
-        if (stateSource == null) {
-          sourceRepository.addSource(Source.copyOf(source));
+      for (var dataComponent in dataComponentRepository.dataComponents
+          .where((element) => !element.exists)) {
+        if (state.config.dataComponents
+            .where((element) =>
+                element.name.pascalCase == dataComponent.name.pascalCase)
+            .isNotEmpty) {
+          withConflicts = true;
         } else {
-          for (var element in source.dataComponents) {
-            if (!stateSource.dataComponents.any((component) =>
-                component.name.pascalCase == element.name.pascalCase)) {
-              sourceRepository.addDataComponentToSource(
-                  stateSource, DataComponent.copyOf(element));
-            } else {
+          emit(state.copyWith(
+            config: state.config.copyWith(
+              dataComponents: {
+                ...state.config.dataComponents,
+                DataComponent.copyOf(dataComponent),
+              },
+            ),
+          ));
+        }
+      }
+
+      for (var repositorySource in sourceRepository.sources) {
+        final stateSource = state.config.sources.firstWhereOrNull((element) =>
+            element.name.pascalCase == repositorySource.name.pascalCase);
+
+        if (stateSource == null) {
+          emit(state.copyWith(
+            config: state.config.copyWith(
+              sources: {
+                ...state.config.sources,
+                Source.copyOf(repositorySource),
+              },
+            ),
+          ));
+        } else {
+          for (var dataComponent in repositorySource.dataComponents) {
+            if (!dataComponent.exists &&
+                stateSource.dataComponents.any((element) =>
+                    element.name.pascalCase == dataComponent.name.pascalCase)) {
               withConflicts = true;
+            } else {
+              stateSource.dataComponents
+                  .add(DataComponent.copyOf(dataComponent));
+              stateSource.dataComponentsNames.add(dataComponent.name);
+              emit(state.copyWith(
+                config: state.config.copyWith(
+                  sources: state.config.sources,
+                ),
+              ));
             }
           }
         }
@@ -99,12 +127,6 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
       if (withConflicts) {
         addSr(const SwaggerParserScreenSR.onConflicting());
       } else {
-        emit(state.copyWith(
-          config: state.config.copyWith(
-            dataComponents: dataComponentRepository.dataComponents,
-            sources: sourceRepository.sources,
-          ),
-        ));
         addSr(const SwaggerParserScreenSR.onContinue());
       }
     } catch (e) {
@@ -138,15 +160,13 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
       dataComponentRepository.dataComponents.add(DataComponent.copyOf(element));
     }
 
-    logger.f(
-        'state.config.sources: ${state.config.sources.map((e) => '${e.name}: ${e.dataComponents.map((e) => e.name)}')}');
-
-    for (var element in state.config.sources) {
-      final source = sourceRepository.getSourceByName(element.name);
-      if (source != null) {
-        for (var dataComponent in element.dataComponents) {
+    for (var stateSource in state.config.sources) {
+      final repositorySource =
+          sourceRepository.getSourceByName(stateSource.name);
+      if (repositorySource != null) {
+        for (var stateDataComponent in stateSource.dataComponents) {
           sourceRepository.modifyDataComponentInSource(
-              source, dataComponent, dataComponent.name);
+              repositorySource, stateDataComponent, stateDataComponent.name);
         }
       }
     }

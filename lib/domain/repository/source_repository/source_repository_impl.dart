@@ -33,22 +33,23 @@ class SourceRepositoryImpl implements SourceRepository {
   @override
   void empty() {
     _sources.clear();
-    _sources.add(
-      Source(
-        name: 'Time',
-        exists: true,
-        isGenerated: false,
-        dataComponents: [
-          DataComponent(
-            name: 'Time',
-            exists: true,
-            isGenerated: false,
-            properties: [Property(name: 'currentDateTime', type: 'DateTime')],
-          )..setSourceName('Time'),
-        ],
-        dataComponentsNames: ['Time'],
-      ),
+
+    final defaultSource = Source(
+      name: 'Time',
+      exists: true,
+      isGenerated: false,
+      dataComponents: [
+        DataComponent(
+          name: 'Time',
+          exists: true,
+          isGenerated: false,
+          properties: [Property(name: 'currentDateTime', type: 'DateTime')],
+        )..setSourceName('Time'),
+      ],
+      dataComponentsNames: ['Time'],
     );
+
+    addSource(defaultSource);
   }
 
   @override
@@ -59,6 +60,11 @@ class SourceRepositoryImpl implements SourceRepository {
     if (_sources.where((element) => element.name == source.name).isEmpty) {
       _sources.add(source);
     }
+  }
+
+  @override
+  void addAll(Set<Source> sources) {
+    _sources.addAll(sources.where((element) => element.name != 'Time'));
   }
 
   @override
@@ -88,21 +94,7 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   void parse(Map<String, dynamic> data) {
-    _sources.clear();
-    _sources.add(Source(
-      name: 'Time',
-      exists: true,
-      isGenerated: false,
-      dataComponents: [
-        DataComponent(
-          name: 'Time',
-          exists: true,
-          isGenerated: false,
-          properties: [Property(name: 'currentDateTime', type: 'DateTime')],
-        )..setSourceName('Time'),
-      ],
-      dataComponentsNames: ['Time'],
-    ));
+    empty();
     _sources.addAll(_parse(data));
   }
 
@@ -415,11 +407,14 @@ class SourceRepositoryImpl implements SourceRepository {
   void modifyDataComponentInSource(
       Source source, DataComponent dataComponent, String oldDataComponentName) {
     _sources
-        .firstWhere((element) => element.name == source.name)
+        .firstWhere(
+            (element) => element.name.pascalCase == source.name.pascalCase)
         .dataComponents
-        .removeWhere((element) => element.name == oldDataComponentName);
+        .removeWhere((element) =>
+            element.name.pascalCase == oldDataComponentName.pascalCase);
     _sources
-        .firstWhere((element) => element.name == source.name)
+        .firstWhere(
+            (element) => element.name.pascalCase == source.name.pascalCase)
         .dataComponents
         .add(dataComponent);
   }

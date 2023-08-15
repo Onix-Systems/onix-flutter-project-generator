@@ -28,7 +28,9 @@ class ModifyProjectScreenEvent with _$ModifyProjectScreenEvent {
 
 @freezed
 class ModifyProjectScreenSR with _$ModifyProjectScreenSR {
-  const factory ModifyProjectScreenSR.loadFinished() = _LoadFinished;
+  const factory ModifyProjectScreenSR.loadFinished({
+    required Config config,
+  }) = _LoadFinished;
 }
 
 @freezed

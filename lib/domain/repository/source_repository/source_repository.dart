@@ -12,6 +12,8 @@ abstract class SourceRepository {
 
   void addSource(Source source);
 
+  void addAll(Set<Source> sources);
+
   void deleteSource(Source source);
 
   void modifySource(Source source, String sourceName);

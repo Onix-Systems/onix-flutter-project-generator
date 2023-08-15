@@ -26,7 +26,6 @@ mixin _$ModifyProjectScreenEvent {
         onDataComponentsChange,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
@@ -46,7 +45,6 @@ mixin _$ModifyProjectScreenEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ModifyProjectScreenEventInit value) init,
@@ -59,7 +57,6 @@ mixin _$ModifyProjectScreenEvent {
         onDataComponentsChange,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ModifyProjectScreenEventInit value)? init,
@@ -96,7 +93,7 @@ class _$ModifyProjectScreenEventCopyWithImpl<$Res,
     implements $ModifyProjectScreenEventCopyWith<$Res> {
   _$ModifyProjectScreenEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;
@@ -487,7 +484,7 @@ class _$ModifyProjectScreenEventOnScreensChange
   @override
   Set<Screen> get screens {
     if (_screens is EqualUnmodifiableSetView) return _screens;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_screens);
   }
 
@@ -670,7 +667,7 @@ class _$ModifyProjectScreenEventOnDataComponentsChange
   @override
   Set<DataComponent> get dataComponents {
     if (_dataComponents is EqualUnmodifiableSetView) return _dataComponents;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_dataComponents);
   }
 
@@ -678,7 +675,7 @@ class _$ModifyProjectScreenEventOnDataComponentsChange
   @override
   Set<Source> get sources {
     if (_sources is EqualUnmodifiableSetView) return _sources;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_sources);
   }
 
@@ -817,19 +814,20 @@ abstract class ModifyProjectScreenEventOnDataComponentsChange
 
 /// @nodoc
 mixin _$ModifyProjectScreenSR {
+  Config get config => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
+    required TResult Function(Config config) loadFinished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
+    TResult? Function(Config config)? loadFinished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
+    TResult Function(Config config)? loadFinished,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -849,6 +847,10 @@ mixin _$ModifyProjectScreenSR {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ModifyProjectScreenSRCopyWith<ModifyProjectScreenSR> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -856,6 +858,10 @@ abstract class $ModifyProjectScreenSRCopyWith<$Res> {
   factory $ModifyProjectScreenSRCopyWith(ModifyProjectScreenSR value,
           $Res Function(ModifyProjectScreenSR) then) =
       _$ModifyProjectScreenSRCopyWithImpl<$Res, ModifyProjectScreenSR>;
+  @useResult
+  $Res call({Config config});
+
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -868,13 +874,41 @@ class _$ModifyProjectScreenSRCopyWithImpl<$Res,
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? config = null,
+  }) {
+    return _then(_value.copyWith(
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$_LoadFinishedCopyWith<$Res> {
+abstract class _$$_LoadFinishedCopyWith<$Res>
+    implements $ModifyProjectScreenSRCopyWith<$Res> {
   factory _$$_LoadFinishedCopyWith(
           _$_LoadFinished value, $Res Function(_$_LoadFinished) then) =
       __$$_LoadFinishedCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Config config});
+
+  @override
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -884,51 +918,75 @@ class __$$_LoadFinishedCopyWithImpl<$Res>
   __$$_LoadFinishedCopyWithImpl(
       _$_LoadFinished _value, $Res Function(_$_LoadFinished) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? config = null,
+  }) {
+    return _then(_$_LoadFinished(
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_LoadFinished implements _LoadFinished {
-  const _$_LoadFinished();
+  const _$_LoadFinished({required this.config});
+
+  @override
+  final Config config;
 
   @override
   String toString() {
-    return 'ModifyProjectScreenSR.loadFinished()';
+    return 'ModifyProjectScreenSR.loadFinished(config: $config)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoadFinished);
+        (other.runtimeType == runtimeType &&
+            other is _$_LoadFinished &&
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LoadFinishedCopyWith<_$_LoadFinished> get copyWith =>
+      __$$_LoadFinishedCopyWithImpl<_$_LoadFinished>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
+    required TResult Function(Config config) loadFinished,
   }) {
-    return loadFinished();
+    return loadFinished(config);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
+    TResult? Function(Config config)? loadFinished,
   }) {
-    return loadFinished?.call();
+    return loadFinished?.call(config);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
+    TResult Function(Config config)? loadFinished,
     required TResult orElse(),
   }) {
     if (loadFinished != null) {
-      return loadFinished();
+      return loadFinished(config);
     }
     return orElse();
   }
@@ -963,7 +1021,14 @@ class _$_LoadFinished implements _LoadFinished {
 }
 
 abstract class _LoadFinished implements ModifyProjectScreenSR {
-  const factory _LoadFinished() = _$_LoadFinished;
+  const factory _LoadFinished({required final Config config}) = _$_LoadFinished;
+
+  @override
+  Config get config;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LoadFinishedCopyWith<_$_LoadFinished> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

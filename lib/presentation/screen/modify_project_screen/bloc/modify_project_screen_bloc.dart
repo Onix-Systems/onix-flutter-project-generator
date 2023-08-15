@@ -5,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_bloc_imports.dart';
-
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 
 class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
@@ -32,13 +30,19 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
         configPath:
             '${event.config.projectPath}/${event.config.projectName}/.gen_config.json');
 
-    logger.f('config: $config');
+    sourceRepository.addAll(config.sources);
+    dataComponentRepository.dataComponents.addAll(config.dataComponents);
 
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         config: event.config.copyWith(
-      sources: sourceRepository.sources,
-      dataComponents: dataComponentRepository.dataComponents,
-    )));
+          sources: sourceRepository.sources,
+          dataComponents: dataComponentRepository.dataComponents,
+          screens: config.screens,
+        ),
+      ),
+    );
+    addSr(ModifyProjectScreenSR.loadFinished(config: config));
   }
 
   FutureOr<void> _onChangeTab(

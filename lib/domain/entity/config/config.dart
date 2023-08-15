@@ -63,14 +63,17 @@ class Config with _$Config {
           sources: sources.map((e) {
             var source = Source.copyOf(e);
             source.exists = true;
+            source.isGenerated = false;
             for (var dataComponent in source.dataComponents) {
               dataComponent.exists = true;
+              dataComponent.isGenerated = false;
             }
             return source;
           }).toSet(),
           dataComponents: dataComponents.map((e) {
             var dataComponent = DataComponent.copyOf(e);
             dataComponent.exists = true;
+            dataComponent.isGenerated = false;
             return dataComponent;
           }).toSet(),
         ),

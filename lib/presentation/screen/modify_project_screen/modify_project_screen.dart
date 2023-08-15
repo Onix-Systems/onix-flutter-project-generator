@@ -57,7 +57,7 @@ class _ModifyProjectScreenState extends BaseState<
   void _onSingleResult(
       BuildContext context, ModifyProjectScreenSR singleResult) {
     singleResult.when(
-      loadFinished: () {},
+      loadFinished: (_) {},
     );
   }
 
