@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -83,11 +84,15 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
                   child: Column(
                     children: [
                       SourceTableExpansionTile(
-                        sources: state.config.sources.toList(),
+                        sources: state.config.sources
+                            .toList()
+                            .sorted((a, b) => a.name.compareTo(b.name)),
                       ),
                       const SizedBox(height: 20),
                       EntityTableExpansionTile(
-                        dataComponents: state.config.dataComponents.toList(),
+                        dataComponents: state.config.dataComponents
+                            .toList()
+                            .sorted((a, b) => a.name.compareTo(b.name)),
                       ),
                     ],
                   ),

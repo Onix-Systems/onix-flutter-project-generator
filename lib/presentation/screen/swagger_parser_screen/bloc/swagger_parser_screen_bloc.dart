@@ -35,7 +35,9 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     emit(state.copyWith(
         config: event.config.copyWith(
       sources: sourceRepository.sources,
-      dataComponents: dataComponentRepository.dataComponents,
+      dataComponents: dataComponentRepository.dataComponents
+          .map((e) => DataComponent.copyOf(e))
+          .toSet(),
     )));
   }
 

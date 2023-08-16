@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -192,7 +193,10 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: ComponentsTable(
-                dataComponents: widget.source.dataComponents.toSet(),
+                dataComponents: widget.source.dataComponents
+                    .toList()
+                    .sorted((a, b) => a.name.compareTo(b.name))
+                    .toSet(),
                 source: widget.source,
               ),
             ),

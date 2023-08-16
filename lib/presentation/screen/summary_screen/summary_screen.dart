@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -132,6 +133,8 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                     SummaryCell(
                         variable: S.of(context).generateScreens,
                         value: state.config.screens
+                            .toList()
+                            .sorted((a, b) => a.name.compareTo(b.name))
                             .map((e) =>
                                 '{name: ${e.name.pascalCase}Screen, bloc: ${e.bloc}}')
                             .join(', ')),
@@ -144,15 +147,19 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       SummaryCell(
                         variable: S.of(context).sources,
                         value: state.config.sources
+                            .toList()
+                            .sorted((a, b) => a.name.compareTo(b.name))
                             .map((e) =>
-                                '${e.name.pascalCase}(${e.dataComponents.map((e) => e.name.pascalCase).join(', ')})')
+                                '${e.name.pascalCase}(${e.dataComponents.sorted((a, b) => a.name.compareTo(b.name)).map((e) => e.name.pascalCase).join(', ')})')
                             .join('\n\n'),
                       ),
                     if (state.config.dataComponents.isNotEmpty)
                       SummaryCell(
                           variable: S.of(context).dataComponents,
                           value: state.config.dataComponents
-                              .map((e) => e.name)
+                              .toList()
+                              .sorted((a, b) => a.name.compareTo(b.name))
+                              .map((e) => e.name.pascalCase)
                               .join(', ')),
                   ],
                 ),

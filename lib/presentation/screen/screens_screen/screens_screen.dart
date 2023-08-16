@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
@@ -90,7 +91,10 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                 ),
                 clipBehavior: Clip.hardEdge,
                 child: ScreenTable(
-                  screens: state.config.screens,
+                  screens: state.config.screens
+                      .toList()
+                      .sorted((a, b) => a.name.compareTo(b.name))
+                      .toSet(),
                   onModifyScreen: (screen, name) => blocOf(context).add(
                     ScreensScreenEventOnScreenModify(
                         screen: screen, oldName: name),
