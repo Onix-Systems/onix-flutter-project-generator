@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
@@ -48,6 +49,7 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
       onNeedUpdate: () => _onNeedUpdate(context),
       onContinue: () =>
           context.go(AppRouter.procedureSelectionScreen, extra: const Config()),
+      onPermissions: () => _onPermissions(context),
     );
   }
 
@@ -105,12 +107,14 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
     );
   }
 
-  Future<void> _launchUrl() async {
-    final url = Uri.parse(AppConsts.releaseUri);
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
+  Future<void> _launchUrl({required String url, bool exitAfter = true}) async {
+    final uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      throw Exception('Could not launch $uri');
     }
-    exit(0);
+    if (exitAfter) {
+      exit(0);
+    }
   }
 
   _onNeedUpdate(BuildContext context) {
@@ -123,10 +127,45 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
           fontSize: 16,
         ),
       ),
-      onOk: _launchUrl,
+      onOk: () => _launchUrl(
+        url: AppConsts.releaseUri,
+      ),
       onCancel: () {
         blocOf(context).addSr(const SplashScreenSR.onContinue());
       },
+    );
+  }
+
+  _onPermissions(BuildContext context) {
+    Dialogs.showOkCancelDialog(
+      context: context,
+      title: S.of(context).gitPermissionsTitle,
+      content: Column(
+        children: [
+          Text(
+            S.of(context).gitPermissionsContent,
+            style: context.appTextStyles.fs18?.copyWith(
+              fontSize: 16,
+            ),
+          ),
+          TextButton(
+              onPressed: () => _launchUrl(
+                    url: AppConsts.sshPermissionsTutorialUri,
+                    exitAfter: false,
+                  ),
+              child: Text(
+                S.of(context).alsoReadThis,
+                style: context.appTextStyles.fs18?.copyWith(
+                  color: CupertinoColors.activeBlue,
+                ),
+              )),
+        ],
+      ),
+      okLabel: S.of(context).retry,
+      onOk: () =>
+          blocOf(context).add(const SplashScreenEventOnAnimationFinished()),
+      cancelLabel: S.of(context).exitLabel,
+      onCancel: () => exit(0),
     );
   }
 }

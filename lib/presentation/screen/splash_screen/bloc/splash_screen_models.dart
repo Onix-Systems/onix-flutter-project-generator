@@ -15,6 +15,8 @@ class SplashScreenSR with _$SplashScreenSR {
   const factory SplashScreenSR.onNeedUpdate() = _onNeedUpdate;
 
   const factory SplashScreenSR.onContinue() = _onContinue;
+
+  const factory SplashScreenSR.onPermissions() = _onPermissions;
 }
 
 @freezed

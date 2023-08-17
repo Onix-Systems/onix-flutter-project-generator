@@ -69,7 +69,12 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   void addAll(Set<Source> sources) {
-    _sources.addAll(sources.where((element) => element.name != 'Time'));
+    for (final source in sources) {
+      if (source.name == 'Time') {
+        continue;
+      }
+      addSource(source);
+    }
   }
 
   @override

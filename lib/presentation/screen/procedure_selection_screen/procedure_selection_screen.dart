@@ -8,6 +8,7 @@ import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 
@@ -57,7 +58,10 @@ class _ProcedureSelectionScreenState extends BaseState<
         context: context,
         isError: true,
         title: S.of(context).emptyConfigTitle,
-        content: S.of(context).emptyConfigContent,
+        content: Text(S.of(context).emptyConfigContent,
+            style: context.appTextStyles.fs18?.copyWith(
+              fontSize: 16,
+            )),
       ),
       onNewProject: () => context.go(AppRouter.projectNameScreen,
           extra: Config(projectPath: blocOf(context).state.config.projectPath)),
@@ -96,7 +100,10 @@ class _ProcedureSelectionScreenState extends BaseState<
                             context: context,
                             isError: true,
                             title: S.of(context).pathNotSelectedTitle,
-                            content: S.of(context).pathNotSelectedContent,
+                            content: Text(S.of(context).pathNotSelectedContent,
+                                style: context.appTextStyles.fs18?.copyWith(
+                                  fontSize: 16,
+                                )),
                             onOk: () {},
                           );
                         }

@@ -57,7 +57,10 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
         context: context,
         isError: true,
         title: S.of(context).error,
-        content: error,
+        content: Text(error,
+            style: context.appTextStyles.fs18?.copyWith(
+              fontSize: 16,
+            )),
       ),
       onConflicting: () => Dialogs.showOkCancelDialog(
         context: context,

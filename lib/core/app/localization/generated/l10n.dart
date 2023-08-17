@@ -180,6 +180,26 @@ class S {
     );
   }
 
+  /// `Retry`
+  String get retry {
+    return Intl.message(
+      'Retry',
+      name: 'retry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exit`
+  String get exitLabel {
+    return Intl.message(
+      'Exit',
+      name: 'exitLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Swagger file contains components conflicting with existing. Replace with parsed components or ignore conflicting parsed data?`
   String get swaggerParserScreenConflictError {
     return Intl.message(
@@ -895,6 +915,56 @@ class S {
     return Intl.message(
       'Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator',
       name: 'emptyConfigContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Git permissions error!`
+  String get gitPermissionsTitle {
+    return Intl.message(
+      'Git permissions error!',
+      name: 'gitPermissionsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Git permissions error! Check is git installed and you have permissions to use it or try to add git key to apple keychain.`
+  String get gitPermissionsContent {
+    return Intl.message(
+      'Git permissions error! Check is git installed and you have permissions to use it or try to add git key to apple keychain.',
+      name: 'gitPermissionsContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Also read this`
+  String get alsoReadThis {
+    return Intl.message(
+      'Also read this',
+      name: 'alsoReadThis',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get from swagger`
+  String get getFromSwagger {
+    return Intl.message(
+      'Get from swagger',
+      name: 'getFromSwagger',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place URL here`
+  String get placeURLTitle {
+    return Intl.message(
+      'Place URL here',
+      name: 'placeURLTitle',
       desc: '',
       args: [],
     );

@@ -17,13 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SummaryScreenEvent {
   Config get config => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
@@ -73,7 +71,7 @@ class _$SummaryScreenEventCopyWithImpl<$Res, $Val extends SummaryScreenEvent>
     implements $SummaryScreenEventCopyWith<$Res> {
   _$SummaryScreenEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;

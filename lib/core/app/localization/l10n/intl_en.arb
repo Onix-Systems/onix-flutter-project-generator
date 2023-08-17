@@ -13,6 +13,8 @@
   "error": "Error",
   "replace": "Replace",
   "ignore": "Ignore",
+  "retry": "Retry",
+  "exitLabel": "Exit",
   "swaggerParserScreenConflictError": "Swagger file contains components conflicting with existing. Replace with parsed components or ignore conflicting parsed data?",
   "generateNewProject": "Generate new project",
   "generateProject": "Generate project",
@@ -84,5 +86,10 @@
   "swaggerURL": "Swagger URL",
   "sources": "Sources",
   "emptyConfigTitle": "Config file load error!",
-  "emptyConfigContent": "Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator"
+  "emptyConfigContent": "Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator",
+  "gitPermissionsTitle": "Git permissions error!",
+  "gitPermissionsContent": "Git permissions error! Check is git installed and you have permissions to use it or try to add git key to apple keychain.",
+  "alsoReadThis": "Also read this",
+  "getFromSwagger": "Get from swagger",
+  "placeURLTitle": "Place URL here"
 }

@@ -12,8 +12,6 @@ import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bl
 import 'package:onix_flutter_bricks/util/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
 
-import '../../../../core/di/app.dart';
-
 class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     SwaggerParserScreenState, SwaggerParserScreenSR> {
   SwaggerParserScreenBloc()
@@ -45,8 +43,6 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     SwaggerParserScreenEventParse event,
     Emitter<SwaggerParserScreenState> emit,
   ) async {
-    logger.f('SwaggerParserScreenEventParse: ${event.url}');
-
     if (state.config.swaggerUrl == event.url) {
       addSr(const SwaggerParserScreenSR.onContinue());
       return;

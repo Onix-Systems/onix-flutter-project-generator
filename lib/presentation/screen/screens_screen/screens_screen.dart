@@ -5,25 +5,25 @@ import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/add_screen_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 
 class ScreensScreen extends StatefulWidget {
   final Config config;
   final Function(Set<Screen>)? onChange;
-  final VoidCallback? onGenerate;
+  final VoidCallback? onContinue;
 
   const ScreensScreen({
     required this.config,
+    this.onContinue,
     this.onChange,
-    this.onGenerate,
     super.key,
   });
 
@@ -64,7 +64,10 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
           context: context,
           isError: true,
           title: S.of(context).screenAlreadyExistsTitle,
-          content: S.of(context).screenAlreadyExistsContent,
+          content: Text(S.of(context).screenAlreadyExistsContent,
+              style: context.appTextStyles.fs18?.copyWith(
+                fontSize: 16,
+              )),
         );
       },
     );
@@ -137,11 +140,7 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                   label: S.of(context).continueLabel,
                   icon: Icons.arrow_forward_ios_rounded,
                   iconLeft: false,
-                  active: widget.config.projectExists
-                      ? sourceRepository.containsNewComponents() ||
-                          dataComponentRepository.containsNewComponents() ||
-                          screenRepository.containsNewComponents()
-                      : true,
+                  active: true,
                   onPressed: () => _onContinue(context, state),
                 ),
               ],
@@ -166,7 +165,7 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
 
   void _onContinue(BuildContext context, ScreensScreenState state) {
     widget.config.projectExists
-        ? widget.onGenerate?.call()
+        ? widget.onContinue?.call()
         : context.go(
             AppRouter.swaggerParserScreen,
             extra: widget.config,

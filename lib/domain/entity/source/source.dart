@@ -26,7 +26,7 @@ class Source {
 
   @override
   String toString() {
-    return 'Source{name: $name, dataComponents: $dataComponents, exists: $exists, isGenerated: $isGenerated, paths: $paths, tag: $tag, dataComponentsNames: $dataComponentsNames}';
+    return 'Source{name: $name, dataComponents: $dataComponents, exists: $exists, isGenerated: $isGenerated, tag: $tag, dataComponentsNames: $dataComponentsNames}';
   }
 
   Source.copyOf(Source source)

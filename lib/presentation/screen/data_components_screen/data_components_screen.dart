@@ -11,16 +11,27 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/components_table_expansion_tile.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/source_table_expansion_title.dart';
+import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widgets/inputs/text_field_with_label.dart';
+
+import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_models.dart';
 
 class DataComponentsScreen extends StatefulWidget {
   final Config config;
   final VoidCallback? onGenerate;
+  final VoidCallback? onBack;
+  final Function(String)? onParse;
+  final Stream<ModifyProjectScreenSR>? onSR;
 
   const DataComponentsScreen({
     required this.config,
+    this.onBack,
+    this.onSR,
     this.onGenerate,
+    this.onParse,
     super.key,
   });
 
@@ -47,6 +58,11 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
 
   @override
   void onBlocCreated(BuildContext context, DataComponentsScreenBloc bloc) {
+    widget.onSR?.listen((sr) {
+      if (sr is ModifyProjectScreenSROnRefresh) {
+        bloc.add(DataComponentsScreenEventInit(config: widget.config));
+      }
+    });
     bloc.add(DataComponentsScreenEventInit(config: widget.config));
     super.onBlocCreated(context, bloc);
   }
@@ -57,7 +73,10 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
       error: (message) => Dialogs.showOkDialog(
           context: context,
           title: '${S.of(context).error}!',
-          content: message,
+          content: Text(message,
+              style: context.appTextStyles.fs18?.copyWith(
+                fontSize: 16,
+              )),
           isError: true),
     );
   }
@@ -109,10 +128,25 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
                   onPressed: () => _onBack(context, state),
                 ),
                 const Delimiter.width(10),
+                if (state.config.projectExists) ...[
+                  AppFilledButton(
+                    label: S.of(context).getFromSwagger,
+                    icon: Icons.dataset_outlined,
+                    onPressed: () => _onParse(context, state),
+                  ),
+                  const Delimiter.width(10),
+                ],
                 AppFilledButton(
-                  label: S.of(context).continueLabel,
-                  icon: Icons.arrow_forward_ios_rounded,
+                  label: state.config.projectExists
+                      ? S.of(context).generate
+                      : S.of(context).continueLabel,
+                  icon: state.config.projectExists
+                      ? Icons.local_fire_department
+                      : Icons.arrow_forward_ios_rounded,
                   iconLeft: false,
+                  color: state.config.projectExists
+                      ? CupertinoColors.destructiveRed
+                      : null,
                   active: widget.config.projectExists
                       ? sourceRepository.containsNewComponents() ||
                           dataComponentRepository.containsNewComponents() ||
@@ -130,10 +164,7 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
 
   void _onBack(BuildContext context, DataComponentsScreenState state) {
     state.config.projectExists
-        ? context.go(AppRouter.procedureSelectionScreen,
-            extra: Config(
-              projectPath: widget.config.projectPath,
-            ))
+        ? widget.onBack?.call()
         : context.go(
             AppRouter.swaggerParserScreen,
             extra: widget.config,
@@ -144,5 +175,23 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
     state.config.projectExists
         ? widget.onGenerate?.call()
         : context.go(AppRouter.summaryScreen, extra: widget.config);
+  }
+
+  void _onParse(BuildContext context, DataComponentsScreenState state) {
+    final urlController = TextEditingController();
+
+    Dialogs.showOkCancelDialog(
+      context: context,
+      title: S.of(context).placeURLTitle,
+      content: TextFieldWithLabel(
+        label: '',
+        expanded: true,
+        textController: urlController,
+        onChanged: () {},
+      ),
+      onOk: () {
+        widget.onParse?.call(urlController.text);
+      },
+    );
   }
 }

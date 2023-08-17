@@ -6,9 +6,9 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart'
 class Dialogs {
   static void showOkDialog({
     required BuildContext context,
+    required Widget content,
     bool isError = false,
     String title = '',
-    String content = '',
     VoidCallback? onOk,
   }) {
     showCupertinoDialog(
@@ -23,10 +23,7 @@ class Dialogs {
             ),
           ),
         ),
-        content: Text(content,
-            style: context.appTextStyles.fs18?.copyWith(
-              fontSize: 16,
-            )),
+        content: content,
         actions: [
           CupertinoDialogAction(
             child: Text(S.of(context).ok),

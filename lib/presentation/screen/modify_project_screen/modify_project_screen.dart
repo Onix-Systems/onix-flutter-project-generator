@@ -9,6 +9,7 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/d
 import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_screen.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 
 class ModifyProjectScreen extends StatefulWidget {
   final Config config;
@@ -60,8 +61,18 @@ class _ModifyProjectScreenState extends BaseState<
       BuildContext context, ModifyProjectScreenSR singleResult) {
     singleResult.when(
       loadFinished: (_) {},
+      onRefresh: () {},
       onGenerate: () => context.go(AppRouter.generationScreen,
           extra: blocOf(context).state.config),
+      onError: (error) => Dialogs.showOkDialog(
+        context: context,
+        isError: true,
+        title: S.of(context).error,
+        content: Text(error,
+            style: context.appTextStyles.fs18?.copyWith(
+              fontSize: 16,
+            )),
+      ),
     );
   }
 
@@ -106,12 +117,29 @@ class _ModifyProjectScreenState extends BaseState<
                         ),
                       );
                     },
-                    onGenerate: () => _onGenerate(context),
+                    onContinue: () {
+                      _tabController.animateTo(1);
+                      blocOf(context).add(
+                        const ModifyProjectScreenEventChangeTab(
+                          index: 1,
+                        ),
+                      );
+                    },
                   )
                 : DataComponentsScreen(
                     config: state.config,
+                    onSR: blocOf(context).singleResults,
+                    onBack: () {
+                      _tabController.animateTo(0);
+                      blocOf(context).add(
+                        const ModifyProjectScreenEventChangeTab(
+                          index: 0,
+                        ),
+                      );
+                    },
                     onGenerate: () => _onGenerate(context),
-                  ),
+                    onParse: (url) => blocOf(context)
+                        .add(ModifyProjectScreenEventOnParse(path: url))),
           ),
         ],
       ),

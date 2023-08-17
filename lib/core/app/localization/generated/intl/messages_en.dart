@@ -23,12 +23,14 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(projectName) => "Modify ${projectName}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
         "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Add flavors:"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),
         "addSource": MessageLookupByLibrary.simpleMessage("Add source"),
+        "alsoReadThis": MessageLookupByLibrary.simpleMessage("Also read this"),
         "apiFailureNoNetwork": MessageLookupByLibrary.simpleMessage(
             "Sorry, we\'re having trouble connecting. Please check your internet connection and try again.\n\nReach out to support if you continue to experience issues."),
         "apiFailureTooManyRequests": MessageLookupByLibrary.simpleMessage(
@@ -66,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyConfigTitle":
             MessageLookupByLibrary.simpleMessage("Config file load error!"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "exitLabel": MessageLookupByLibrary.simpleMessage("Exit"),
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" First & last name"),
         "flavorize": MessageLookupByLibrary.simpleMessage("Flavorize?"),
@@ -81,6 +84,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Generate signing key?"),
         "generateSonarConfig":
             MessageLookupByLibrary.simpleMessage("Generate Sonar config?"),
+        "getFromSwagger":
+            MessageLookupByLibrary.simpleMessage("Get from swagger"),
+        "gitPermissionsContent": MessageLookupByLibrary.simpleMessage(
+            "Git permissions error! Check is git installed and you have permissions to use it or try to add git key to apple keychain."),
+        "gitPermissionsTitle":
+            MessageLookupByLibrary.simpleMessage("Git permissions error!"),
         "goBack": MessageLookupByLibrary.simpleMessage("Back"),
         "ignore": MessageLookupByLibrary.simpleMessage("Ignore"),
         "integrateDevicePreview":
@@ -116,6 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "You must select path to projects folder"),
         "pathNotSelectedTitle":
             MessageLookupByLibrary.simpleMessage("Path not selected"),
+        "placeURLTitle": MessageLookupByLibrary.simpleMessage("Place URL here"),
         "platforms": MessageLookupByLibrary.simpleMessage("Platforms"),
         "projectExistsError": MessageLookupByLibrary.simpleMessage(
             "Project already exists, choose different name"),
@@ -124,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "replace": MessageLookupByLibrary.simpleMessage("Replace"),
         "request": MessageLookupByLibrary.simpleMessage("Request"),
         "response": MessageLookupByLibrary.simpleMessage("Response"),
+        "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "router": MessageLookupByLibrary.simpleMessage("Router:"),
         "screenAlreadyExistsContent": MessageLookupByLibrary.simpleMessage(
             "Screen with such name already exists"),

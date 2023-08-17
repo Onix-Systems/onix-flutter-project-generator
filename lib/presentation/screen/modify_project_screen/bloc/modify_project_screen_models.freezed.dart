@@ -22,6 +22,7 @@ mixin _$ModifyProjectScreenEvent {
     required TResult Function(int index) changeTab,
     required TResult Function(Set<Screen> screens) onScreensChange,
     required TResult Function() onGenerate,
+    required TResult Function(String path) onParse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$ModifyProjectScreenEvent {
     TResult? Function(int index)? changeTab,
     TResult? Function(Set<Screen> screens)? onScreensChange,
     TResult? Function()? onGenerate,
+    TResult? Function(String path)? onParse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$ModifyProjectScreenEvent {
     TResult Function(int index)? changeTab,
     TResult Function(Set<Screen> screens)? onScreensChange,
     TResult Function()? onGenerate,
+    TResult Function(String path)? onParse,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -50,6 +53,7 @@ mixin _$ModifyProjectScreenEvent {
         onScreensChange,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
         onGenerate,
+    required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +63,7 @@ mixin _$ModifyProjectScreenEvent {
     TResult? Function(ModifyProjectScreenEventOnScreensChange value)?
         onScreensChange,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +73,7 @@ mixin _$ModifyProjectScreenEvent {
     TResult Function(ModifyProjectScreenEventOnScreensChange value)?
         onScreensChange,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -174,6 +180,7 @@ class _$ModifyProjectScreenEventInit implements ModifyProjectScreenEventInit {
     required TResult Function(int index) changeTab,
     required TResult Function(Set<Screen> screens) onScreensChange,
     required TResult Function() onGenerate,
+    required TResult Function(String path) onParse,
   }) {
     return init(config);
   }
@@ -185,6 +192,7 @@ class _$ModifyProjectScreenEventInit implements ModifyProjectScreenEventInit {
     TResult? Function(int index)? changeTab,
     TResult? Function(Set<Screen> screens)? onScreensChange,
     TResult? Function()? onGenerate,
+    TResult? Function(String path)? onParse,
   }) {
     return init?.call(config);
   }
@@ -196,6 +204,7 @@ class _$ModifyProjectScreenEventInit implements ModifyProjectScreenEventInit {
     TResult Function(int index)? changeTab,
     TResult Function(Set<Screen> screens)? onScreensChange,
     TResult Function()? onGenerate,
+    TResult Function(String path)? onParse,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -214,6 +223,7 @@ class _$ModifyProjectScreenEventInit implements ModifyProjectScreenEventInit {
         onScreensChange,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
         onGenerate,
+    required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
   }) {
     return init(this);
   }
@@ -226,6 +236,7 @@ class _$ModifyProjectScreenEventInit implements ModifyProjectScreenEventInit {
     TResult? Function(ModifyProjectScreenEventOnScreensChange value)?
         onScreensChange,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
   }) {
     return init?.call(this);
   }
@@ -238,6 +249,7 @@ class _$ModifyProjectScreenEventInit implements ModifyProjectScreenEventInit {
     TResult Function(ModifyProjectScreenEventOnScreensChange value)?
         onScreensChange,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -332,6 +344,7 @@ class _$ModifyProjectScreenEventChangeTab
     required TResult Function(int index) changeTab,
     required TResult Function(Set<Screen> screens) onScreensChange,
     required TResult Function() onGenerate,
+    required TResult Function(String path) onParse,
   }) {
     return changeTab(index);
   }
@@ -343,6 +356,7 @@ class _$ModifyProjectScreenEventChangeTab
     TResult? Function(int index)? changeTab,
     TResult? Function(Set<Screen> screens)? onScreensChange,
     TResult? Function()? onGenerate,
+    TResult? Function(String path)? onParse,
   }) {
     return changeTab?.call(index);
   }
@@ -354,6 +368,7 @@ class _$ModifyProjectScreenEventChangeTab
     TResult Function(int index)? changeTab,
     TResult Function(Set<Screen> screens)? onScreensChange,
     TResult Function()? onGenerate,
+    TResult Function(String path)? onParse,
     required TResult orElse(),
   }) {
     if (changeTab != null) {
@@ -372,6 +387,7 @@ class _$ModifyProjectScreenEventChangeTab
         onScreensChange,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
         onGenerate,
+    required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
   }) {
     return changeTab(this);
   }
@@ -384,6 +400,7 @@ class _$ModifyProjectScreenEventChangeTab
     TResult? Function(ModifyProjectScreenEventOnScreensChange value)?
         onScreensChange,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
   }) {
     return changeTab?.call(this);
   }
@@ -396,6 +413,7 @@ class _$ModifyProjectScreenEventChangeTab
     TResult Function(ModifyProjectScreenEventOnScreensChange value)?
         onScreensChange,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
     required TResult orElse(),
   }) {
     if (changeTab != null) {
@@ -499,6 +517,7 @@ class _$ModifyProjectScreenEventOnScreensChange
     required TResult Function(int index) changeTab,
     required TResult Function(Set<Screen> screens) onScreensChange,
     required TResult Function() onGenerate,
+    required TResult Function(String path) onParse,
   }) {
     return onScreensChange(screens);
   }
@@ -510,6 +529,7 @@ class _$ModifyProjectScreenEventOnScreensChange
     TResult? Function(int index)? changeTab,
     TResult? Function(Set<Screen> screens)? onScreensChange,
     TResult? Function()? onGenerate,
+    TResult? Function(String path)? onParse,
   }) {
     return onScreensChange?.call(screens);
   }
@@ -521,6 +541,7 @@ class _$ModifyProjectScreenEventOnScreensChange
     TResult Function(int index)? changeTab,
     TResult Function(Set<Screen> screens)? onScreensChange,
     TResult Function()? onGenerate,
+    TResult Function(String path)? onParse,
     required TResult orElse(),
   }) {
     if (onScreensChange != null) {
@@ -539,6 +560,7 @@ class _$ModifyProjectScreenEventOnScreensChange
         onScreensChange,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
         onGenerate,
+    required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
   }) {
     return onScreensChange(this);
   }
@@ -551,6 +573,7 @@ class _$ModifyProjectScreenEventOnScreensChange
     TResult? Function(ModifyProjectScreenEventOnScreensChange value)?
         onScreensChange,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
   }) {
     return onScreensChange?.call(this);
   }
@@ -563,6 +586,7 @@ class _$ModifyProjectScreenEventOnScreensChange
     TResult Function(ModifyProjectScreenEventOnScreensChange value)?
         onScreensChange,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
     required TResult orElse(),
   }) {
     if (onScreensChange != null) {
@@ -632,6 +656,7 @@ class _$ModifyProjectScreenEventOnGenerate
     required TResult Function(int index) changeTab,
     required TResult Function(Set<Screen> screens) onScreensChange,
     required TResult Function() onGenerate,
+    required TResult Function(String path) onParse,
   }) {
     return onGenerate();
   }
@@ -643,6 +668,7 @@ class _$ModifyProjectScreenEventOnGenerate
     TResult? Function(int index)? changeTab,
     TResult? Function(Set<Screen> screens)? onScreensChange,
     TResult? Function()? onGenerate,
+    TResult? Function(String path)? onParse,
   }) {
     return onGenerate?.call();
   }
@@ -654,6 +680,7 @@ class _$ModifyProjectScreenEventOnGenerate
     TResult Function(int index)? changeTab,
     TResult Function(Set<Screen> screens)? onScreensChange,
     TResult Function()? onGenerate,
+    TResult Function(String path)? onParse,
     required TResult orElse(),
   }) {
     if (onGenerate != null) {
@@ -672,6 +699,7 @@ class _$ModifyProjectScreenEventOnGenerate
         onScreensChange,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
         onGenerate,
+    required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
   }) {
     return onGenerate(this);
   }
@@ -684,6 +712,7 @@ class _$ModifyProjectScreenEventOnGenerate
     TResult? Function(ModifyProjectScreenEventOnScreensChange value)?
         onScreensChange,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
   }) {
     return onGenerate?.call(this);
   }
@@ -696,6 +725,7 @@ class _$ModifyProjectScreenEventOnGenerate
     TResult Function(ModifyProjectScreenEventOnScreensChange value)?
         onScreensChange,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
     required TResult orElse(),
   }) {
     if (onGenerate != null) {
@@ -712,23 +742,192 @@ abstract class ModifyProjectScreenEventOnGenerate
 }
 
 /// @nodoc
+abstract class _$$ModifyProjectScreenEventOnParseCopyWith<$Res> {
+  factory _$$ModifyProjectScreenEventOnParseCopyWith(
+          _$ModifyProjectScreenEventOnParse value,
+          $Res Function(_$ModifyProjectScreenEventOnParse) then) =
+      __$$ModifyProjectScreenEventOnParseCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String path});
+}
+
+/// @nodoc
+class __$$ModifyProjectScreenEventOnParseCopyWithImpl<$Res>
+    extends _$ModifyProjectScreenEventCopyWithImpl<$Res,
+        _$ModifyProjectScreenEventOnParse>
+    implements _$$ModifyProjectScreenEventOnParseCopyWith<$Res> {
+  __$$ModifyProjectScreenEventOnParseCopyWithImpl(
+      _$ModifyProjectScreenEventOnParse _value,
+      $Res Function(_$ModifyProjectScreenEventOnParse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? path = null,
+  }) {
+    return _then(_$ModifyProjectScreenEventOnParse(
+      path: null == path
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ModifyProjectScreenEventOnParse
+    implements ModifyProjectScreenEventOnParse {
+  const _$ModifyProjectScreenEventOnParse({required this.path});
+
+  @override
+  final String path;
+
+  @override
+  String toString() {
+    return 'ModifyProjectScreenEvent.onParse(path: $path)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ModifyProjectScreenEventOnParse &&
+            (identical(other.path, path) || other.path == path));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, path);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ModifyProjectScreenEventOnParseCopyWith<_$ModifyProjectScreenEventOnParse>
+      get copyWith => __$$ModifyProjectScreenEventOnParseCopyWithImpl<
+          _$ModifyProjectScreenEventOnParse>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function(int index) changeTab,
+    required TResult Function(Set<Screen> screens) onScreensChange,
+    required TResult Function() onGenerate,
+    required TResult Function(String path) onParse,
+  }) {
+    return onParse(path);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function(int index)? changeTab,
+    TResult? Function(Set<Screen> screens)? onScreensChange,
+    TResult? Function()? onGenerate,
+    TResult? Function(String path)? onParse,
+  }) {
+    return onParse?.call(path);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function(int index)? changeTab,
+    TResult Function(Set<Screen> screens)? onScreensChange,
+    TResult Function()? onGenerate,
+    TResult Function(String path)? onParse,
+    required TResult orElse(),
+  }) {
+    if (onParse != null) {
+      return onParse(path);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ModifyProjectScreenEventInit value) init,
+    required TResult Function(ModifyProjectScreenEventChangeTab value)
+        changeTab,
+    required TResult Function(ModifyProjectScreenEventOnScreensChange value)
+        onScreensChange,
+    required TResult Function(ModifyProjectScreenEventOnGenerate value)
+        onGenerate,
+    required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
+  }) {
+    return onParse(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ModifyProjectScreenEventInit value)? init,
+    TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
+    TResult? Function(ModifyProjectScreenEventOnScreensChange value)?
+        onScreensChange,
+    TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
+  }) {
+    return onParse?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ModifyProjectScreenEventInit value)? init,
+    TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
+    TResult Function(ModifyProjectScreenEventOnScreensChange value)?
+        onScreensChange,
+    TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
+    required TResult orElse(),
+  }) {
+    if (onParse != null) {
+      return onParse(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ModifyProjectScreenEventOnParse
+    implements ModifyProjectScreenEvent {
+  const factory ModifyProjectScreenEventOnParse({required final String path}) =
+      _$ModifyProjectScreenEventOnParse;
+
+  String get path;
+  @JsonKey(ignore: true)
+  _$$ModifyProjectScreenEventOnParseCopyWith<_$ModifyProjectScreenEventOnParse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ModifyProjectScreenSR {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) loadFinished,
     required TResult Function() onGenerate,
+    required TResult Function(String message) onError,
+    required TResult Function() onRefresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? loadFinished,
     TResult? Function()? onGenerate,
+    TResult? Function(String message)? onError,
+    TResult? Function()? onRefresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? loadFinished,
     TResult Function()? onGenerate,
+    TResult Function(String message)? onError,
+    TResult Function()? onRefresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -736,18 +935,24 @@ mixin _$ModifyProjectScreenSR {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadFinished value) loadFinished,
     required TResult Function(_OnGenerate value) onGenerate,
+    required TResult Function(_OnError value) onError,
+    required TResult Function(ModifyProjectScreenSROnRefresh value) onRefresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadFinished value)? loadFinished,
     TResult? Function(_OnGenerate value)? onGenerate,
+    TResult? Function(_OnError value)? onError,
+    TResult? Function(ModifyProjectScreenSROnRefresh value)? onRefresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadFinished value)? loadFinished,
     TResult Function(_OnGenerate value)? onGenerate,
+    TResult Function(_OnError value)? onError,
+    TResult Function(ModifyProjectScreenSROnRefresh value)? onRefresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -755,9 +960,9 @@ mixin _$ModifyProjectScreenSR {
 
 /// @nodoc
 abstract class $ModifyProjectScreenSRCopyWith<$Res> {
-  factory $ModifyProjectScreenSRCopyWith(ModifyProjectScreenSR value,
-          $Res Function(ModifyProjectScreenSR) then) =
-      _$ModifyProjectScreenSRCopyWithImpl<$Res, ModifyProjectScreenSR>;
+factory $ModifyProjectScreenSRCopyWith(ModifyProjectScreenSR value,
+$Res Function(ModifyProjectScreenSR) then) =
+_$ModifyProjectScreenSRCopyWithImpl<$Res, ModifyProjectScreenSR>;
 }
 
 /// @nodoc
@@ -848,6 +1053,8 @@ class _$_LoadFinished implements _LoadFinished {
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) loadFinished,
     required TResult Function() onGenerate,
+    required TResult Function(String message) onError,
+    required TResult Function() onRefresh,
   }) {
     return loadFinished(config);
   }
@@ -857,6 +1064,8 @@ class _$_LoadFinished implements _LoadFinished {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? loadFinished,
     TResult? Function()? onGenerate,
+    TResult? Function(String message)? onError,
+    TResult? Function()? onRefresh,
   }) {
     return loadFinished?.call(config);
   }
@@ -866,6 +1075,8 @@ class _$_LoadFinished implements _LoadFinished {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? loadFinished,
     TResult Function()? onGenerate,
+    TResult Function(String message)? onError,
+    TResult Function()? onRefresh,
     required TResult orElse(),
   }) {
     if (loadFinished != null) {
@@ -879,6 +1090,8 @@ class _$_LoadFinished implements _LoadFinished {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadFinished value) loadFinished,
     required TResult Function(_OnGenerate value) onGenerate,
+    required TResult Function(_OnError value) onError,
+    required TResult Function(ModifyProjectScreenSROnRefresh value) onRefresh,
   }) {
     return loadFinished(this);
   }
@@ -888,6 +1101,8 @@ class _$_LoadFinished implements _LoadFinished {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadFinished value)? loadFinished,
     TResult? Function(_OnGenerate value)? onGenerate,
+    TResult? Function(_OnError value)? onError,
+    TResult? Function(ModifyProjectScreenSROnRefresh value)? onRefresh,
   }) {
     return loadFinished?.call(this);
   }
@@ -897,6 +1112,8 @@ class _$_LoadFinished implements _LoadFinished {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadFinished value)? loadFinished,
     TResult Function(_OnGenerate value)? onGenerate,
+    TResult Function(_OnError value)? onError,
+    TResult Function(ModifyProjectScreenSROnRefresh value)? onRefresh,
     required TResult orElse(),
   }) {
     if (loadFinished != null) {
@@ -955,6 +1172,8 @@ class _$_OnGenerate implements _OnGenerate {
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) loadFinished,
     required TResult Function() onGenerate,
+    required TResult Function(String message) onError,
+    required TResult Function() onRefresh,
   }) {
     return onGenerate();
   }
@@ -964,6 +1183,8 @@ class _$_OnGenerate implements _OnGenerate {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? loadFinished,
     TResult? Function()? onGenerate,
+    TResult? Function(String message)? onError,
+    TResult? Function()? onRefresh,
   }) {
     return onGenerate?.call();
   }
@@ -973,6 +1194,8 @@ class _$_OnGenerate implements _OnGenerate {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? loadFinished,
     TResult Function()? onGenerate,
+    TResult Function(String message)? onError,
+    TResult Function()? onRefresh,
     required TResult orElse(),
   }) {
     if (onGenerate != null) {
@@ -986,6 +1209,8 @@ class _$_OnGenerate implements _OnGenerate {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadFinished value) loadFinished,
     required TResult Function(_OnGenerate value) onGenerate,
+    required TResult Function(_OnError value) onError,
+    required TResult Function(ModifyProjectScreenSROnRefresh value) onRefresh,
   }) {
     return onGenerate(this);
   }
@@ -995,6 +1220,8 @@ class _$_OnGenerate implements _OnGenerate {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadFinished value)? loadFinished,
     TResult? Function(_OnGenerate value)? onGenerate,
+    TResult? Function(_OnError value)? onError,
+    TResult? Function(ModifyProjectScreenSROnRefresh value)? onRefresh,
   }) {
     return onGenerate?.call(this);
   }
@@ -1004,6 +1231,8 @@ class _$_OnGenerate implements _OnGenerate {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadFinished value)? loadFinished,
     TResult Function(_OnGenerate value)? onGenerate,
+    TResult Function(_OnError value)? onError,
+    TResult Function(ModifyProjectScreenSROnRefresh value)? onRefresh,
     required TResult orElse(),
   }) {
     if (onGenerate != null) {
@@ -1018,109 +1247,373 @@ abstract class _OnGenerate implements ModifyProjectScreenSR {
 }
 
 /// @nodoc
-mixin _$ModifyProjectScreenState {
-Config get config => throw _privateConstructorUsedError;
-int get currentTab => throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function(Config config, int currentTab) data,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function(Config config, int currentTab)? data,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function(Config config, int currentTab)? data,
-required TResult orElse(),
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
-required TResult Function(ModifyProjectScreenStateData value) data,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(ModifyProjectScreenStateData value)? data,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult maybeMap<TResult extends Object?>({
-TResult Function(ModifyProjectScreenStateData value)? data,
-required TResult orElse(),
-}) =>
-throw _privateConstructorUsedError;
+abstract class _$$_OnErrorCopyWith<$Res> {
+  factory _$$_OnErrorCopyWith(
+          _$_OnError value, $Res Function(_$_OnError) then) =
+      __$$_OnErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
 
-@JsonKey(ignore: true)
-$ModifyProjectScreenStateCopyWith<ModifyProjectScreenState> get copyWith =>
-throw _privateConstructorUsedError;
+/// @nodoc
+class __$$_OnErrorCopyWithImpl<$Res>
+    extends _$ModifyProjectScreenSRCopyWithImpl<$Res, _$_OnError>
+    implements _$$_OnErrorCopyWith<$Res> {
+  __$$_OnErrorCopyWithImpl(_$_OnError _value, $Res Function(_$_OnError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_OnError(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OnError implements _OnError {
+  const _$_OnError({required this.message});
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'ModifyProjectScreenSR.onError(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_OnError &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OnErrorCopyWith<_$_OnError> get copyWith =>
+      __$$_OnErrorCopyWithImpl<_$_OnError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) loadFinished,
+    required TResult Function() onGenerate,
+    required TResult Function(String message) onError,
+    required TResult Function() onRefresh,
+  }) {
+    return onError(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? loadFinished,
+    TResult? Function()? onGenerate,
+    TResult? Function(String message)? onError,
+    TResult? Function()? onRefresh,
+  }) {
+    return onError?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? loadFinished,
+    TResult Function()? onGenerate,
+    TResult Function(String message)? onError,
+    TResult Function()? onRefresh,
+    required TResult orElse(),
+  }) {
+    if (onError != null) {
+      return onError(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadFinished value) loadFinished,
+    required TResult Function(_OnGenerate value) onGenerate,
+    required TResult Function(_OnError value) onError,
+    required TResult Function(ModifyProjectScreenSROnRefresh value) onRefresh,
+  }) {
+    return onError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadFinished value)? loadFinished,
+    TResult? Function(_OnGenerate value)? onGenerate,
+    TResult? Function(_OnError value)? onError,
+    TResult? Function(ModifyProjectScreenSROnRefresh value)? onRefresh,
+  }) {
+    return onError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadFinished value)? loadFinished,
+    TResult Function(_OnGenerate value)? onGenerate,
+    TResult Function(_OnError value)? onError,
+    TResult Function(ModifyProjectScreenSROnRefresh value)? onRefresh,
+    required TResult orElse(),
+  }) {
+    if (onError != null) {
+      return onError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnError implements ModifyProjectScreenSR {
+  const factory _OnError({required final String message}) = _$_OnError;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$_OnErrorCopyWith<_$_OnError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ModifyProjectScreenSROnRefreshCopyWith<$Res> {
+  factory _$$ModifyProjectScreenSROnRefreshCopyWith(
+          _$ModifyProjectScreenSROnRefresh value,
+          $Res Function(_$ModifyProjectScreenSROnRefresh) then) =
+      __$$ModifyProjectScreenSROnRefreshCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ModifyProjectScreenSROnRefreshCopyWithImpl<$Res>
+    extends _$ModifyProjectScreenSRCopyWithImpl<$Res,
+        _$ModifyProjectScreenSROnRefresh>
+    implements _$$ModifyProjectScreenSROnRefreshCopyWith<$Res> {
+  __$$ModifyProjectScreenSROnRefreshCopyWithImpl(
+      _$ModifyProjectScreenSROnRefresh _value,
+      $Res Function(_$ModifyProjectScreenSROnRefresh) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ModifyProjectScreenSROnRefresh
+    implements ModifyProjectScreenSROnRefresh {
+  const _$ModifyProjectScreenSROnRefresh();
+
+  @override
+  String toString() {
+    return 'ModifyProjectScreenSR.onRefresh()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ModifyProjectScreenSROnRefresh);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) loadFinished,
+    required TResult Function() onGenerate,
+    required TResult Function(String message) onError,
+    required TResult Function() onRefresh,
+  }) {
+    return onRefresh();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? loadFinished,
+    TResult? Function()? onGenerate,
+    TResult? Function(String message)? onError,
+    TResult? Function()? onRefresh,
+  }) {
+    return onRefresh?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? loadFinished,
+    TResult Function()? onGenerate,
+    TResult Function(String message)? onError,
+    TResult Function()? onRefresh,
+    required TResult orElse(),
+  }) {
+    if (onRefresh != null) {
+      return onRefresh();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadFinished value) loadFinished,
+    required TResult Function(_OnGenerate value) onGenerate,
+    required TResult Function(_OnError value) onError,
+    required TResult Function(ModifyProjectScreenSROnRefresh value) onRefresh,
+  }) {
+    return onRefresh(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadFinished value)? loadFinished,
+    TResult? Function(_OnGenerate value)? onGenerate,
+    TResult? Function(_OnError value)? onError,
+    TResult? Function(ModifyProjectScreenSROnRefresh value)? onRefresh,
+  }) {
+    return onRefresh?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadFinished value)? loadFinished,
+    TResult Function(_OnGenerate value)? onGenerate,
+    TResult Function(_OnError value)? onError,
+    TResult Function(ModifyProjectScreenSROnRefresh value)? onRefresh,
+    required TResult orElse(),
+  }) {
+    if (onRefresh != null) {
+      return onRefresh(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ModifyProjectScreenSROnRefresh implements ModifyProjectScreenSR {
+  const factory ModifyProjectScreenSROnRefresh() =
+      _$ModifyProjectScreenSROnRefresh;
+}
+
+/// @nodoc
+mixin _$ModifyProjectScreenState {
+  Config get config => throw _privateConstructorUsedError;
+  int get currentTab => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config, int currentTab) data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config, int currentTab)? data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config, int currentTab)? data,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ModifyProjectScreenStateData value) data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ModifyProjectScreenStateData value)? data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ModifyProjectScreenStateData value)? data,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ModifyProjectScreenStateCopyWith<ModifyProjectScreenState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ModifyProjectScreenStateCopyWith<$Res> {
-factory $ModifyProjectScreenStateCopyWith(ModifyProjectScreenState value,
-$Res Function(ModifyProjectScreenState) then) =
-_$ModifyProjectScreenStateCopyWithImpl<$Res, ModifyProjectScreenState>;
-@useResult
-$Res call({Config config, int currentTab});
+  factory $ModifyProjectScreenStateCopyWith(ModifyProjectScreenState value,
+          $Res Function(ModifyProjectScreenState) then) =
+      _$ModifyProjectScreenStateCopyWithImpl<$Res, ModifyProjectScreenState>;
+  @useResult
+  $Res call({Config config, int currentTab});
 
-$ConfigCopyWith<$Res> get config;
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
 class _$ModifyProjectScreenStateCopyWithImpl<$Res,
-$Val extends ModifyProjectScreenState>
-implements $ModifyProjectScreenStateCopyWith<$Res> {
-_$ModifyProjectScreenStateCopyWithImpl(this._value, this._then);
+        $Val extends ModifyProjectScreenState>
+    implements $ModifyProjectScreenStateCopyWith<$Res> {
+  _$ModifyProjectScreenStateCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
-final $Val _value;
+  final $Val _value;
 // ignore: unused_field
-final $Res Function($Val) _then;
+  final $Res Function($Val) _then;
 
-@pragma('vm:prefer-inline')
-@override
-$Res call({
-Object? config = null,
-Object? currentTab = null,
-}) {
-return _then(_value.copyWith(
-config: null == config
-? _value.config
-    : config // ignore: cast_nullable_to_non_nullable
-as Config,
-currentTab: null == currentTab
-? _value.currentTab
-    : currentTab // ignore: cast_nullable_to_non_nullable
-as int,
-) as $Val);
-}
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? config = null,
+    Object? currentTab = null,
+  }) {
+    return _then(_value.copyWith(
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
+      currentTab: null == currentTab
+          ? _value.currentTab
+          : currentTab // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 
-@override
-@pragma('vm:prefer-inline')
-$ConfigCopyWith<$Res> get config {
-return $ConfigCopyWith<$Res>(_value.config, (value) {
-return _then(_value.copyWith(config: value) as $Val);
-});
-}
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
 abstract class _$$ModifyProjectScreenStateDataCopyWith<$Res>
-implements $ModifyProjectScreenStateCopyWith<$Res> {
-factory _$$ModifyProjectScreenStateDataCopyWith(
-_$ModifyProjectScreenStateData value,
-$Res Function(_$ModifyProjectScreenStateData) then) =
-__$$ModifyProjectScreenStateDataCopyWithImpl<$Res>;
-@override
-@useResult
-$Res call({Config config, int currentTab});
+    implements $ModifyProjectScreenStateCopyWith<$Res> {
+  factory _$$ModifyProjectScreenStateDataCopyWith(
+          _$ModifyProjectScreenStateData value,
+          $Res Function(_$ModifyProjectScreenStateData) then) =
+      __$$ModifyProjectScreenStateDataCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Config config, int currentTab});
 
-@override
-$ConfigCopyWith<$Res> get config;
+  @override
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
