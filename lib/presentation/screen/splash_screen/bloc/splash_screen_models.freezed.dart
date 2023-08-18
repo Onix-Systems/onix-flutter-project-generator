@@ -356,7 +356,7 @@ class _$SplashScreenSRCopyWithImpl<$Res, $Val extends SplashScreenSR>
 
   // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -694,86 +694,86 @@ mixin _$SplashScreenState {
     required TResult Function(
             String remoteVersion, String localVersion, bool logoVisible)
         data,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
-TResult? Function(
-String remoteVersion, String localVersion, bool logoVisible)?
-data,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function(
-String remoteVersion, String localVersion, bool logoVisible)?
-data,
-required TResult orElse(),
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
-required TResult Function(Data value) data,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(Data value)? data,
-}) =>
-throw _privateConstructorUsedError;
-@optionalTypeArgs
-TResult maybeMap<TResult extends Object?>({
-TResult Function(Data value)? data,
-required TResult orElse(),
-}) =>
-throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String remoteVersion, String localVersion, bool logoVisible)?
+        data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String remoteVersion, String localVersion, bool logoVisible)?
+        data,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Data value) data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Data value)? data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
-@JsonKey(ignore: true)
-$SplashScreenStateCopyWith<SplashScreenState> get copyWith =>
-throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SplashScreenStateCopyWith<SplashScreenState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SplashScreenStateCopyWith<$Res> {
-factory $SplashScreenStateCopyWith(
-SplashScreenState value, $Res Function(SplashScreenState) then) =
-_$SplashScreenStateCopyWithImpl<$Res, SplashScreenState>;
-@useResult
-$Res call({String remoteVersion, String localVersion, bool logoVisible});
+  factory $SplashScreenStateCopyWith(
+          SplashScreenState value, $Res Function(SplashScreenState) then) =
+      _$SplashScreenStateCopyWithImpl<$Res, SplashScreenState>;
+  @useResult
+  $Res call({String remoteVersion, String localVersion, bool logoVisible});
 }
 
 /// @nodoc
 class _$SplashScreenStateCopyWithImpl<$Res, $Val extends SplashScreenState>
-implements $SplashScreenStateCopyWith<$Res> {
-_$SplashScreenStateCopyWithImpl(this._value, this._then);
+    implements $SplashScreenStateCopyWith<$Res> {
+  _$SplashScreenStateCopyWithImpl(this._value, this._then);
 
 // ignore: unused_field
-final $Val _value;
+  final $Val _value;
 // ignore: unused_field
-final $Res Function($Val) _then;
+  final $Res Function($Val) _then;
 
-@pragma('vm:prefer-inline')
-@override
-$Res call({
-Object? remoteVersion = null,
-Object? localVersion = null,
-Object? logoVisible = null,
-}) {
-return _then(_value.copyWith(
-remoteVersion: null == remoteVersion
-? _value.remoteVersion
-    : remoteVersion // ignore: cast_nullable_to_non_nullable
-as String,
-localVersion: null == localVersion
-? _value.localVersion
-    : localVersion // ignore: cast_nullable_to_non_nullable
-as String,
-logoVisible: null == logoVisible
-? _value.logoVisible
-    : logoVisible // ignore: cast_nullable_to_non_nullable
-as bool,
-) as $Val);
-}
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? remoteVersion = null,
+    Object? localVersion = null,
+    Object? logoVisible = null,
+  }) {
+    return _then(_value.copyWith(
+      remoteVersion: null == remoteVersion
+          ? _value.remoteVersion
+          : remoteVersion // ignore: cast_nullable_to_non_nullable
+              as String,
+      localVersion: null == localVersion
+          ? _value.localVersion
+          : localVersion // ignore: cast_nullable_to_non_nullable
+              as String,
+      logoVisible: null == logoVisible
+          ? _value.logoVisible
+          : logoVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc

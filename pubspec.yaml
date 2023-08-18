@@ -29,16 +29,16 @@ dependencies:
   json_annotation: ^4.8.1
   http: ^0.13.5
   collection: ^1.17.0
-  package_info_plus: ^4.0.2
+  package_info_plus: ^4.1.0
   yaml: ^3.1.2
   url_launcher: ^6.1.12
   encrypt: ^5.0.1
   hive: ^2.2.3
   flutter_secure_storage: ^8.0.0
   loader_overlay: ^2.3.0
-  dio: ^5.3.1
+  dio: ^5.3.2
   retry: ^3.1.2
-  connectivity_plus: ^4.0.1
+  connectivity_plus: ^4.0.2
   internet_connection_checker: ^1.0.0+1
   shared_preferences: ^2.2.0
   dio_cache_interceptor: ^3.4.2

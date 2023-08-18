@@ -960,9 +960,9 @@ mixin _$ModifyProjectScreenSR {
 
 /// @nodoc
 abstract class $ModifyProjectScreenSRCopyWith<$Res> {
-factory $ModifyProjectScreenSRCopyWith(ModifyProjectScreenSR value,
-$Res Function(ModifyProjectScreenSR) then) =
-_$ModifyProjectScreenSRCopyWithImpl<$Res, ModifyProjectScreenSR>;
+  factory $ModifyProjectScreenSRCopyWith(ModifyProjectScreenSR value,
+          $Res Function(ModifyProjectScreenSR) then) =
+      _$ModifyProjectScreenSRCopyWithImpl<$Res, ModifyProjectScreenSR>;
 }
 
 /// @nodoc
