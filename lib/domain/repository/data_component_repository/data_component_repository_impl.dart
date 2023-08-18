@@ -66,6 +66,12 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   }
 
   @override
+  bool contains(String componentName) {
+    return dataComponents
+        .any((element) => element.name.pascalCase == componentName.pascalCase);
+  }
+
+  @override
   bool isEnum(String name) {
     return dataComponents
         .any((element) => element.name == name && element.isEnum);
@@ -322,6 +328,15 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
         }
       });
       dataComponents.addAll(innerEntities);
+    }
+  }
+
+  @override
+  void addComponent(DataComponent component) {
+    if (component.name != 'Auth') {
+      if (!contains(component.name)) {
+        dataComponents.add(DataComponent.copyOf(component));
+      }
     }
   }
 }

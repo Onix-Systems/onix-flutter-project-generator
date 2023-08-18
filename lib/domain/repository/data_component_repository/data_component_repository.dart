@@ -7,6 +7,8 @@ abstract class DataComponentRepository {
 
   bool containsNewComponents();
 
+  bool contains(String componentName);
+
   Set<String> getEnumNames();
 
   void parse(Map<String, dynamic> data);
@@ -14,4 +16,6 @@ abstract class DataComponentRepository {
   DataComponent? getDataComponentByName(String name);
 
   void empty();
+
+  void addComponent(DataComponent component);
 }

@@ -61,27 +61,23 @@ class SwaggerParser {
 
     for (final source in sources) {
       for (final dataComponent in source.dataComponents) {
-        if (dataComponent.generateRequest) {
-          _setGenRequest(sources, dataComponent);
-        }
-
-        if (dataComponent.generateResponse) {
-          _setGenResponse(sources, dataComponent);
-        }
+        _setGenRequestResponse(
+            sources: sources,
+            dataComponent: dataComponent,
+            genRequest: dataComponent.generateRequest,
+            genResponse: dataComponent.generateResponse);
       }
     }
 
     final dataComponents =
         parsedEntities.where((e) => e.sourceName.isEmpty).toList();
 
-    for (final entity in dataComponents) {
-      if (entity.generateRequest) {
-        _setGenRequest(sources, entity);
-      }
-
-      if (entity.generateResponse) {
-        _setGenResponse(sources, entity);
-      }
+    for (final dataComponent in dataComponents) {
+      _setGenRequestResponse(
+          sources: sources,
+          dataComponent: dataComponent,
+          genRequest: dataComponent.generateRequest,
+          genResponse: dataComponent.generateResponse);
     }
 
     for (final source in sources) {
@@ -90,11 +86,10 @@ class SwaggerParser {
       }
     }
 
-    dataComponentRepository.dataComponents.clear();
+    dataComponentRepository.empty();
 
     for (final dataComponent in dataComponents) {
-      dataComponentRepository.dataComponents
-          .add(DataComponent.copyOf(dataComponent));
+      dataComponentRepository.addComponent(dataComponent);
     }
   }
 
@@ -126,9 +121,14 @@ class SwaggerParser {
     }
   }
 
-  static void _setGenRequest(
-      List<Source> sources, DataComponent dataComponent) {
-    dataComponent.generateRequest = true;
+  static void _setGenRequestResponse({
+    required List<Source> sources,
+    required DataComponent dataComponent,
+    required bool genRequest,
+    required bool genResponse,
+  }) {
+    dataComponent.generateRequest = genRequest;
+    dataComponent.generateResponse = genResponse;
 
     if (dataComponent.isEnum || dataComponent.componentImports.isEmpty) {
       return;
@@ -138,37 +138,41 @@ class SwaggerParser {
       if (!import.isEnum &&
           !import.name.endsWith('Request') &&
           !import.name.endsWith('Response') &&
-          dataComponentRepository.dataComponents
-                  .firstWhereOrNull((e) => e.name == import.name) !=
-              null) {
-        _setGenRequest(
-            sources,
-            dataComponentRepository.dataComponents
-                .firstWhere((e) => e.name == import.name));
+          dataComponentRepository.contains(import.name)) {
+        final component =
+            dataComponentRepository.getDataComponentByName(import.name);
+
+        if (component != null) {
+          _setGenRequestResponse(
+              sources: sources,
+              dataComponent: component,
+              genRequest: genRequest,
+              genResponse: genResponse);
+        }
       }
     }
   }
 
-  static void _setGenResponse(
-      List<Source> sources, DataComponent dataComponent) {
-    dataComponent.generateResponse = true;
-
-    if (dataComponent.isEnum || dataComponent.componentImports.isEmpty) {
-      return;
-    }
-
-    for (final import in dataComponent.componentImports) {
-      if (!import.isEnum &&
-          !import.name.endsWith('Response') &&
-          !import.name.endsWith('Request') &&
-          dataComponentRepository.dataComponents
-                  .firstWhereOrNull((e) => e.name == import.name) !=
-              null) {
-        _setGenResponse(
-            sources,
-            dataComponentRepository.dataComponents
-                .firstWhere((e) => e.name == import.name));
-      }
-    }
-  }
+// static void _setGenResponse(
+//     List<Source> sources, DataComponent dataComponent) {
+//   dataComponent.generateResponse = true;
+//
+//   if (dataComponent.isEnum || dataComponent.componentImports.isEmpty) {
+//     return;
+//   }
+//
+//   for (final import in dataComponent.componentImports) {
+//     if (!import.isEnum &&
+//         !import.name.endsWith('Response') &&
+//         !import.name.endsWith('Request') &&
+//         dataComponentRepository.dataComponents
+//                 .firstWhereOrNull((e) => e.name == import.name) !=
+//             null) {
+//       _setGenResponse(
+//           sources,
+//           dataComponentRepository.dataComponents
+//               .firstWhere((e) => e.name == import.name));
+//     }
+//   }
+// }
 }
