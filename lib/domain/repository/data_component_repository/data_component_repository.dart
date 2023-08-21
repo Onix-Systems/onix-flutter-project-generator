@@ -7,7 +7,7 @@ abstract class DataComponentRepository {
 
   bool containsNewComponents();
 
-  bool contains(String componentName);
+  bool exists(String componentName);
 
   Set<String> getEnumNames();
 
@@ -18,4 +18,8 @@ abstract class DataComponentRepository {
   void empty();
 
   void addComponent(DataComponent component);
+
+  void removeComponent(String name);
+
+  void addAll(Set<DataComponent> components);
 }

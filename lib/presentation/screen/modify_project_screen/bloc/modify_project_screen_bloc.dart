@@ -112,11 +112,11 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
           .toSet());
 
       dataComponentRepository.empty();
-      dataComponentRepository.dataComponents.addAll(stateDataComponents
+      dataComponentRepository.addAll(stateDataComponents
           .toList()
           .sorted((a, b) => a.name.compareTo(b.name))
           .toSet());
-      dataComponentRepository.dataComponents.addAll(parsedDataComponents
+      dataComponentRepository.addAll(parsedDataComponents
           .toList()
           .sorted((a, b) => a.name.compareTo(b.name))
           .toSet());

@@ -9,7 +9,10 @@ import 'package:recase/recase.dart';
 
 class DataComponentRepositoryImpl implements DataComponentRepository {
   @override
-  Set<DataComponent> dataComponents = {
+  Set<DataComponent> get dataComponents =>
+      _dataComponents /*.map((e) => DataComponent.copyOf(e)).toSet()*/;
+
+  final Set<DataComponent> _dataComponents = {
     DataComponent(
       name: 'Auth',
       exists: true,
@@ -29,8 +32,8 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
   @override
   void empty() {
-    dataComponents.clear();
-    dataComponents.add(
+    _dataComponents.clear();
+    _dataComponents.add(
       DataComponent(
         name: 'Auth',
         exists: true,
@@ -51,36 +54,36 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
   @override
   DataComponent? getDataComponentByName(String name) {
-    return dataComponents.firstWhereOrNull(
+    return _dataComponents.firstWhereOrNull(
         (element) => element.name.pascalCase == name.pascalCase);
   }
 
   @override
   Set<String> getEnumNames() {
-    return dataComponents.where((e) => e.isEnum).map((e) => e.name).toSet();
+    return _dataComponents.where((e) => e.isEnum).map((e) => e.name).toSet();
   }
 
   @override
   bool containsNewComponents() {
-    return dataComponents.any((element) => !element.exists);
+    return _dataComponents.any((element) => !element.exists);
   }
 
   @override
-  bool contains(String componentName) {
-    return dataComponents
+  bool exists(String componentName) {
+    return _dataComponents
         .any((element) => element.name.pascalCase == componentName.pascalCase);
   }
 
   @override
   bool isEnum(String name) {
-    return dataComponents.any((element) =>
+    return _dataComponents.any((element) =>
         element.name.pascalCase == name.pascalCase && element.isEnum);
   }
 
   @override
   void parse(Map<String, dynamic> data) {
-    dataComponents.clear();
-    dataComponents.add(
+    _dataComponents.clear();
+    _dataComponents.add(
       DataComponent(
         name: 'Auth',
         exists: true,
@@ -97,7 +100,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
         ],
       ),
     );
-    dataComponents.addAll(_parse(data));
+    _dataComponents.addAll(_parse(data));
   }
 
   Set<DataComponent> _parse(Map<String, dynamic> data) {
@@ -121,17 +124,17 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
           isEnum: true,
         );
 
-        dataComponents.add(dataComponent);
+        _dataComponents.add(dataComponent);
       }
     }
 
     _parseStack(stack);
 
-    for (final dataComponent in dataComponents) {
+    for (final dataComponent in _dataComponents) {
       if (dataComponent.imports.isEmpty) continue;
 
       for (final import in dataComponent.imports) {
-        final importedDataComponent = dataComponents.firstWhereOrNull(
+        final importedDataComponent = _dataComponents.firstWhereOrNull(
             (element) => element.name.camelCase == import.camelCase);
 
         if (importedDataComponent == null) continue;
@@ -140,7 +143,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
       }
     }
 
-    return dataComponents;
+    return _dataComponents;
   }
 
   void _parseObject(
@@ -226,9 +229,9 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
         return e.stripRequestResponse();
       }).toList());
 
-      dataComponents.add(generatedDataComponent);
+      _dataComponents.add(generatedDataComponent);
     } else {
-      dataComponents.add(dataComponent);
+      _dataComponents.add(dataComponent);
     }
   }
 
@@ -244,7 +247,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
       }
     });
 
-    dataComponents.addAll(innerEntities);
+    _dataComponents.addAll(innerEntities);
   }
 
   void _parseArray(
@@ -282,7 +285,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
           imports.add(className.snakeCase);
 
           final innerEntities = _parse(definitions);
-          dataComponents.addAll(innerEntities);
+          _dataComponents.addAll(innerEntities);
 
           property.type = 'List<$className>';
         }
@@ -307,7 +310,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
         if (TypeMatcher.isReference(dependency)) {
           final className = _getRefClassName(dependency).stripRequestResponse();
 
-          final dataComponent = dataComponents
+          final dataComponent = _dataComponents
               .where((element) => element.name == className)
               .first;
 
@@ -327,15 +330,32 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
           }
         }
       });
-      dataComponents.addAll(innerEntities);
+      _dataComponents.addAll(innerEntities);
     }
   }
 
   @override
   void addComponent(DataComponent component) {
     if (component.name != 'Auth') {
-      if (!contains(component.name)) {
-        dataComponents.add(DataComponent.copyOf(component));
+      if (!exists(component.name)) {
+        _dataComponents.add(DataComponent.copyOf(component));
+      }
+    }
+  }
+
+  @override
+  void addAll(Set<DataComponent> components) {
+    for (final component in components) {
+      addComponent(component);
+    }
+  }
+
+  @override
+  void removeComponent(String name) {
+    if (name.pascalCase != 'Auth') {
+      if (exists(name)) {
+        _dataComponents.removeWhere(
+            (element) => element.name.pascalCase == name.pascalCase);
       }
     }
   }

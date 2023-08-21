@@ -151,9 +151,8 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
   ) async {
     for (var element
         in state.config.dataComponents.where((element) => !element.exists)) {
-      dataComponentRepository.dataComponents
-          .removeWhere((e) => e.name.pascalCase == element.name.pascalCase);
-      dataComponentRepository.dataComponents.add(DataComponent.copyOf(element));
+      dataComponentRepository.removeComponent(element.name);
+      dataComponentRepository.addComponent(element);
     }
 
     for (var stateSource in state.config.sources) {

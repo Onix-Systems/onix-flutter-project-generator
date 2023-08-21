@@ -96,10 +96,13 @@ class SwaggerParser {
   }
 
   static void _setSourceNameForImports(Set<DataComponent> parsedEntities,
-      DataComponent entity, String sourceName) {
+      DataComponent dataComponent, String sourceName) {
+    final imports = dataComponent.imports.map((e) => e.snakeCase).toSet();
+
     for (var import in parsedEntities.where((e) =>
-        entity.imports.contains('${e.name.snakeCase}_request') ||
-        entity.imports.contains('${e.name.snakeCase}_response'))) {
+        // imports.contains(e.name.snakeCase) ||
+        imports.contains('${e.name.snakeCase}_request') ||
+        imports.contains('${e.name.snakeCase}_response'))) {
       import.setSourceName(sourceName);
 
       if (import.imports.isNotEmpty) {
@@ -109,17 +112,19 @@ class SwaggerParser {
   }
 
   static void _setEntitySourceNameFromParent(
-      Set<DataComponent> parsedEntities, DataComponent entity) {
-    if (entity.sourceName.isNotEmpty) {
+      Set<DataComponent> parsedDataComponents, DataComponent dataComponent) {
+    if (dataComponent.sourceName.isNotEmpty) {
       return;
     }
 
-    final sourceName = parsedEntities
-        .firstWhereOrNull((e) => e.imports.contains(entity.name.snakeCase))
+    final sourceName = parsedDataComponents
+        .firstWhereOrNull((e) => e.imports
+            .map((import) => import.pascalCase)
+            .contains(dataComponent.name.pascalCase))
         ?.sourceName;
 
     if (sourceName != null) {
-      entity.setSourceName(sourceName);
+      dataComponent.setSourceName(sourceName);
     }
   }
 

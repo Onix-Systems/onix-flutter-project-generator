@@ -87,9 +87,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     DataComponentsScreenEventAddDataComponent event,
     Emitter<DataComponentsScreenState> emit,
   ) async {
-    if (dataComponentRepository.dataComponents
-        .where((element) => element.name == event.dataComponent.name)
-        .isNotEmpty) {
+    if (dataComponentRepository.exists(event.dataComponent.name)) {
       addSr(DataComponentsScreenSR.error(
           message:
               'Data component ${event.dataComponent.name.pascalCase} already exists'));
@@ -113,7 +111,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     component.properties = [Property(name: 'name', type: 'string')];
 
     if (event.source == null) {
-      dataComponentRepository.dataComponents.add(component);
+      dataComponentRepository.addComponent(component);
     } else {
       final source = sourceRepository.getSourceByName(event.source!.name);
 
@@ -129,7 +127,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     Emitter<DataComponentsScreenState> emit,
   ) async {
     if (event.source == null) {
-      dataComponentRepository.dataComponents.remove(event.entity);
+      dataComponentRepository.removeComponent(event.entity.name);
     } else {
       final source = sourceRepository.getSourceByName(event.source!.name);
 
@@ -145,12 +143,8 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     Emitter<DataComponentsScreenState> emit,
   ) async {
     if (event.source == null) {
-      final componentToRemove = dataComponentRepository.dataComponents
-          .firstWhere((element) => element.name == event.oldDataComponentName);
-
-      dataComponentRepository.dataComponents.remove(componentToRemove);
-
-      dataComponentRepository.dataComponents.add(event.dataComponent);
+      dataComponentRepository.removeComponent(event.oldDataComponentName);
+      dataComponentRepository.addComponent(event.dataComponent);
     } else {
       final source = sourceRepository.getSourceByName(event.source!.name);
 

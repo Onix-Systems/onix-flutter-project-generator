@@ -62,7 +62,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     sourceRepository.addAll(config.sources);
 
     dataComponentRepository.empty();
-    dataComponentRepository.dataComponents.addAll(config.dataComponents);
+    dataComponentRepository.addAll(config.dataComponents);
 
     screenRepository.empty();
     screenRepository.addAll(config.screens);
