@@ -73,8 +73,8 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
   @override
   bool isEnum(String name) {
-    return dataComponents
-        .any((element) => element.name == name && element.isEnum);
+    return dataComponents.any((element) =>
+        element.name.pascalCase == name.pascalCase && element.isEnum);
   }
 
   @override

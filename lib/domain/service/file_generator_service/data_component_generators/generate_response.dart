@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
@@ -40,7 +39,7 @@ ${_getProperties(dataComponent: dataComponent)}
     }) = _${name.pascalCase}Response;
     
     factory ${name.pascalCase}Response.empty() => ${name.pascalCase}Response(
-    ${dataComponent.properties.map((e) => '        ${e.name}: ${dataComponentRepository.isEnum(e.type) ? '${e.type}.values.first.toString()' : TypeMatcher.defaultTypeValue(e.type) == e.type ? '${e.type}Response.empty()' : TypeMatcher.defaultTypeValue(e.type)} ,').join('\n')}
+    ${dataComponent.properties.map((property) => '        ${property.name}: ${dataComponent.componentImports.firstWhereOrNull((e) => e.name.pascalCase == property.type.pascalCase)?.isEnum ?? false ? '${property.type}.values.first.toString()' : TypeMatcher.defaultTypeValue(property.type) == property.type ? '${property.type}Response.empty()' : TypeMatcher.defaultTypeValue(property.type)} ,').join('\n')}
     );
 
     factory ${name.pascalCase}Response.fromJson(Map<String, dynamic> json,) => _\$${name.pascalCase}ResponseFromJson(json);
@@ -72,7 +71,8 @@ ${_getProperties(dataComponent: dataComponent)}
                 .map((e) => e.pascalCase)
                 .contains(property.type.pascalCase)
             ? dataComponent.componentImports
-                    .firstWhereOrNull((e) => e.name == property.type)!
+                    .firstWhereOrNull(
+                        (e) => e.name.pascalCase == property.type.pascalCase)!
                     .isEnum
                 ? properties.add('        String? ${property.name},')
                 : properties.add(

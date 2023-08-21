@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
@@ -17,7 +16,7 @@ class GenerateRequest {
     final sourceName = dataComponent.sourceName;
 
     final imports = dataComponent.componentImports.map((e) {
-      if (dataComponentRepository.isEnum(e.name)) {
+      if (e.isEnum) {
         return 'import \'package:$projectName/domain/entity/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';';
       } else {
         return 'import \'package:$projectName/data/model/remote/${e.sourceName.isNotEmpty ? '${e.sourceName.snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_request.dart\';';
@@ -45,7 +44,10 @@ ${dataComponent.properties.map((e) {
             type = type.replaceLast('>', 'Request>');
           }
         } else {
-          if (!dataComponentRepository.isEnum(type.pascalCase)) {
+          if (!dataComponent.componentImports
+              .firstWhere(
+                  (element) => element.name.pascalCase == type.pascalCase)
+              .isEnum) {
             type = '${type}Request';
           } else {
             type = 'String';
