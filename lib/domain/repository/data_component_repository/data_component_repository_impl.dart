@@ -10,7 +10,7 @@ import 'package:recase/recase.dart';
 class DataComponentRepositoryImpl implements DataComponentRepository {
   @override
   Set<DataComponent> get dataComponents =>
-      _dataComponents /*.map((e) => DataComponent.copyOf(e)).toSet()*/;
+      _dataComponents.map((e) => DataComponent.copyOf(e)).toSet();
 
   final Set<DataComponent> _dataComponents = {
     DataComponent(

@@ -4,6 +4,8 @@ import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:recase/recase.dart';
 
+import '../../core/di/app.dart';
+
 class SwaggerParser {
   static void parse(
       {required Map<String, dynamic> data, required String projectName}) {
@@ -15,12 +17,29 @@ class SwaggerParser {
 
     final parsedSources = sourceRepository.sources;
 
+    for (final dataComponent in parsedEntities) {
+      _setGenRequestResponse(
+        dataComponents: parsedEntities,
+        dataComponent: dataComponent,
+        genRequest: dataComponent.generateRequest,
+        genResponse: dataComponent.generateResponse,
+      );
+    }
+
     for (final source in parsedSources) {
       for (final dataComponent in parsedEntities.where((e) =>
           source.dataComponentsNames.contains(e.name) ||
           source.dataComponentsNames.contains('${e.name}Request') ||
           source.dataComponentsNames.contains('${e.name}Response'))) {
+        if (dataComponent.name == 'Relation') {
+          logger.f(source.dataComponentsNames);
+          logger.f(source.dataComponents);
+          logger.f(dataComponent);
+        }
         dataComponent.setSourceName(source.name);
+        if (dataComponent.name == 'Relation') {
+          logger.f(dataComponent);
+        }
       }
     }
 
@@ -63,26 +82,6 @@ class SwaggerParser {
         parsedEntities.where((e) => e.sourceName.isEmpty).toList();
 
     for (final source in sources) {
-      for (final dataComponent in source.dataComponents) {
-        _setGenRequestResponse(
-            sources: sources,
-            dataComponents: dataComponents,
-            dataComponent: dataComponent,
-            genRequest: dataComponent.generateRequest,
-            genResponse: dataComponent.generateResponse);
-      }
-    }
-
-    for (final dataComponent in dataComponents) {
-      _setGenRequestResponse(
-          sources: sources,
-          dataComponents: dataComponents,
-          dataComponent: dataComponent,
-          genRequest: dataComponent.generateRequest,
-          genResponse: dataComponent.generateResponse);
-    }
-
-    for (final source in sources) {
       if (source.name != 'Time') {
         sourceRepository.modifySource(source, source.name);
       }
@@ -100,7 +99,7 @@ class SwaggerParser {
     final imports = dataComponent.imports.map((e) => e.snakeCase).toSet();
 
     for (var import in parsedEntities.where((e) =>
-        // imports.contains(e.name.snakeCase) ||
+        imports.contains(e.name.snakeCase) ||
         imports.contains('${e.name.snakeCase}_request') ||
         imports.contains('${e.name.snakeCase}_response'))) {
       import.setSourceName(sourceName);
@@ -129,8 +128,7 @@ class SwaggerParser {
   }
 
   static void _setGenRequestResponse({
-    required List<Source> sources,
-    required List<DataComponent> dataComponents,
+    required Set<DataComponent> dataComponents,
     required DataComponent dataComponent,
     required bool genRequest,
     required bool genResponse,
@@ -151,15 +149,12 @@ class SwaggerParser {
           !import.name.endsWith('Request') &&
           !import.name.endsWith('Response') &&
           (dataComponents.any((component) =>
-                  component.name.pascalCase == import.name.pascalCase) ||
-              sources.any((source) => source.dataComponents
-                  .any((e) => e.name.pascalCase == import.name.pascalCase)))) {
-        final component =
-            dataComponentRepository.getDataComponentByName(import.name);
+              component.name.pascalCase == import.name.pascalCase))) {
+        final component = dataComponents.firstWhereOrNull(
+            (e) => e.name.pascalCase == import.name.pascalCase);
 
         if (component != null) {
           _setGenRequestResponse(
-              sources: sources,
               dataComponents: dataComponents,
               dataComponent: component,
               genRequest: genRequest,

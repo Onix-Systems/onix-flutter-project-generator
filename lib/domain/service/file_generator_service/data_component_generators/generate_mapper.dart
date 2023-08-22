@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 
@@ -15,7 +16,7 @@ class GenerateMapper {
   }) async {
     final name = dataComponent.name;
 
-    final sourceName = _getSourceName(dataComponent.sourceName);
+    final sourceName = _getSourceName(dataComponent.name);
 
     final importMappers = dataComponent.componentImports
         .where((e) => !e.isEnum)
@@ -24,10 +25,10 @@ class GenerateMapper {
 
     final imports = dataComponent.componentImports
         .map((e) => e.isEnum
-            ? 'import \'package:$projectName/domain/entity/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}.dart\';'
+            ? 'import \'package:$projectName/domain/entity/${_getSourceName(e.name)}${e.name.snakeCase}/${e.name.snakeCase}.dart\';'
             : importMappers.isNotEmpty
-                ? '${dataComponent.generateResponse ? 'import \'package:$projectName/data/model/remote/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';\n' : ''}'
-                    'import \'package:$projectName/data/mapper/${_getSourceName(e.sourceName)}${e.name.snakeCase}/${e.name.snakeCase}_mapper.dart\';\n'
+                ? '${dataComponent.generateResponse ? 'import \'package:$projectName/data/model/remote/${_getSourceName(e.name)}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';\n' : ''}'
+                    'import \'package:$projectName/data/mapper/${_getSourceName(e.name)}${e.name.snakeCase}/${e.name.snakeCase}_mapper.dart\';\n'
                 : '')
         .join('\n');
 
@@ -111,7 +112,11 @@ class ${name.pascalCase}Mappers {
     return properties.join('\n');
   }
 
-  String _getSourceName(String sourceName) {
-    return sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : '';
+  String _getSourceName(String dataComponentName) {
+    return sourceRepository
+            .getDataComponentSourceName(dataComponentName)
+            .isNotEmpty
+        ? '${sourceRepository.getDataComponentSourceName(dataComponentName).snakeCase}/'
+        : '';
   }
 }

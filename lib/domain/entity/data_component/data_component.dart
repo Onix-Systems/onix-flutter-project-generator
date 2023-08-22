@@ -39,9 +39,9 @@ class DataComponent {
   void setSourceName(String sourceName) {
     if (this.sourceName.isEmpty) {
       this.sourceName = sourceName;
-      for (final import in componentImports) {
-        import.setSourceName(sourceName);
-      }
+    }
+    for (final import in componentImports) {
+      import.setSourceName(sourceName);
     }
   }
 
