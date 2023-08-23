@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class ColoredLine extends StatelessWidget {
   ColoredLine({Key? key, required String line}) : super(key: key) {
@@ -40,7 +41,7 @@ class ColoredLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       line,
-      style: TextStyle(
+      style: context.appTextStyles.fs18?.copyWith(
         color: color,
       ),
     );

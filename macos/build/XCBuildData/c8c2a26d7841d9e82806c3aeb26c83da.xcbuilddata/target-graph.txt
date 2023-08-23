@@ -1,0 +1,34 @@
+Target dependency graph (12 targets)
+FlutterMacOS in Pods, no dependencies
+ReachabilitySwift in Pods, no dependencies
+connectivity_plus in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+ReachabilitySwift in Pods (explicit)
+file_selector_macos in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+flutter_secure_storage_macos in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+package_info_plus in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+path_provider_foundation in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+screen_retriever in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+shared_preferences_foundation in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+url_launcher_macos in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+window_manager in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+Pods-Runner in Pods, depends on:
+FlutterMacOS in Pods (explicit)
+ReachabilitySwift in Pods (explicit)
+connectivity_plus in Pods (explicit)
+file_selector_macos in Pods (explicit)
+flutter_secure_storage_macos in Pods (explicit)
+package_info_plus in Pods (explicit)
+path_provider_foundation in Pods (explicit)
+screen_retriever in Pods (explicit)
+shared_preferences_foundation in Pods (explicit)
+url_launcher_macos in Pods (explicit)
+window_manager in Pods (explicit)
