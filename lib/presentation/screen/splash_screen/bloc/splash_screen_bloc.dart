@@ -53,13 +53,8 @@ class SplashScreenBloc
     mainProcess.stdin.writeln(
         'git archive --remote=ssh://gitlab.onix.ua/onix-systems/flutter-project-generator.git HEAD README.md | tar xO');
 
-    //TODO: uncomment this on release
-    // mainProcess.stdin.writeln(
-    //     'git archive --remote=${AppConsts.gitUri} ${AppConsts.gitBranch} pubspec.yaml | tar xO | grep version && exit');
-
-    //TODO: delete this on release
     mainProcess.stdin.writeln(
-        'git archive --remote=${AppConsts.gitUri} master pubspec.yaml | tar xO | grep version && exit');
+        'git archive --remote=${AppConsts.gitUri} ${AppConsts.gitBranch} pubspec.yaml | tar xO | grep version && exit');
 
     await mainProcess.exitCode;
 
