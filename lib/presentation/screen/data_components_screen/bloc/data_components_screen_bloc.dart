@@ -96,7 +96,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     } else {
       for (var source in sourceRepository.sources) {
         for (var entity in source.dataComponents) {
-          if (entity.name == event.dataComponent.name) {
+          if (entity.name.pascalCase == event.dataComponent.name.pascalCase) {
             addSr(DataComponentsScreenSR.error(
                 message:
                     'Data component ${event.dataComponent.name.pascalCase} already exists in ${source.name.titleCase}Source'));

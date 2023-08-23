@@ -268,7 +268,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         workingDirectory:
             '${state.config.projectPath}/${state.config.projectName}');
 
-    mainProcess.stdin.writeln('open -na \'Android Studio.app\' .');
+    mainProcess.stdin.writeln('open -a \'Android Studio.app\' .');
 
     await mainProcess.exitCode;
   }
