@@ -149,6 +149,8 @@ void run(HookContext context) async {
 
   int gitCommitCode = await gitCommitProcess.exitCode;
 
+  await secure(context);
+
   'Complete with exit code: $exitCode!'.log();
 }
 
@@ -460,6 +462,21 @@ if (propFile.canRead()) {
 
   await writer.flush();
   await writer.close();
+}
+
+Future<void> secure(HookContext context) async {
+  'Securing... !'.log();
+
+  File globalGitIgnoreFile = File('$name/.gitignore');
+
+  String globalGitIgnoreContent = await globalGitIgnoreFile.readAsString();
+
+  globalGitIgnoreFile.writeAsStringSync(globalGitIgnoreContent +
+      '''
+  # Secure
+  *.jks
+  .env
+  ''');
 }
 
 void exitBrick() async {
