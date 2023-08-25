@@ -140,7 +140,7 @@ void run(HookContext context) async {
 
   gitAddProcess.log();
 
-  int addCode = await gitInitProcess.exitCode;
+  int addCode = await gitAddProcess.exitCode;
 
   var gitCommitProcess = await Process.start('git', ['commit', '-m', 'Initial'],
       workingDirectory: name);
