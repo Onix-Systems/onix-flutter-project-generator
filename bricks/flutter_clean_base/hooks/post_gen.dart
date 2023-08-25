@@ -473,10 +473,10 @@ Future<void> secure(HookContext context) async {
 
   globalGitIgnoreFile.writeAsStringSync(globalGitIgnoreContent +
       '''
-  # Secure
-  *.jks
-  .env
-  ''');
+# Secure
+*.jks
+.env
+''');
 }
 
 void exitBrick() async {
