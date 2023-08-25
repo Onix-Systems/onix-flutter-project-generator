@@ -489,19 +489,18 @@ Future<void> secure(HookContext context) async {
 /app/signing/signing.properties
       ''');
 
-  File androidBuildGradleFile = File('$name/android/build.gradle');
+  File androidBuildGradleFile = File('$name/android/app/build.gradle');
 
   String androidBuildGradleContent =
       await androidBuildGradleFile.readAsString();
 
-  androidBuildGradleFile.writeAsStringSync(androidBuildGradleContent
-      .replaceFirst('apply plugin: \'com.android.application\'', '''
+  androidBuildGradleFile
+      .writeAsStringSync(androidBuildGradleContent.replaceFirst('android {', '''
 
 \/\/ if need to use google maps - add google.maps_api_key=SECRET_KEY to local.properties
 \/\/def googleMapsApiKey = localProperties.getProperty('google.maps_api_key')
       
-apply plugin: 'com.android.application'
-      '''));
+android {'''));
 }
 
 void exitBrick() async {
