@@ -513,7 +513,7 @@ android {'''));
       \<!-- If need too use google maps - uncoment
        <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${googleMapsApiKey}" />-->
+            android:value="\${googleMapsApiKey}" />-->
 
       \</application>'''));
 }
