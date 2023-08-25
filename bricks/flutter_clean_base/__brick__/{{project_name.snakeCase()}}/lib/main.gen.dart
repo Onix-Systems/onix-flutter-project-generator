@@ -27,15 +27,21 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
     {{#use_getit}}
     initializeDi(GetIt.instance);
     {{/use_getit}}
-    {{#device_preview}}
-    runApp(DevicePreview(
-      enabled: false,
-      builder: (context) => App(),
-    ));
-    {{/device_preview}}
-    {{^device_preview}}
-    runApp(const App());
-    {{/device_preview}}
+    final isAllowedToUseApp = await environmentService().initialize();
+      if (isAllowedToUseApp) {
+        {{#device_preview}}
+        runApp(DevicePreview(
+        enabled: false,
+        builder: (context) => App(),
+        ));
+        {{/device_preview}}
+        {{^device_preview}}
+        runApp(const App());
+        {{/device_preview}}
+    } else {
+      runApp(const BannedApp());
+    }
+
     }, (error, stackTrace) {
       if (kDebugMode) {
         print('runZonedGuarded: Caught error in root zone.\n$error');
