@@ -5,6 +5,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:{{project_name}}/app/banned_app.dart';
+import 'package:{{project_name}}/core/di/services.dart';
 import 'package:{{project_name}}/core/arch/bloc/app_bloc_observer.dart';
 {{#use_getit}}import 'package:get_it/get_it.dart';{{/use_getit}}
 import 'package:{{project_name}}/app/app.dart';

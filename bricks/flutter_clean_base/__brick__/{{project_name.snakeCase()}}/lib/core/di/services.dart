@@ -9,3 +9,5 @@ void registerServices(GetIt getIt) {
 }
 
 SessionService sessionService() => GetIt.I.get<SessionService>();
+
+AppService environmentService() => GetIt.I.get<AppService>();
