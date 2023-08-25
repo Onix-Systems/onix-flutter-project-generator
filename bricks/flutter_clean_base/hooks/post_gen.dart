@@ -89,8 +89,6 @@ void run(HookContext context) async {
   await Process.run('mv', ['main.gen.dart', 'main.dart'],
       workingDirectory: '$name/lib');
 
-  //await Process.run('rm', ['main.gen.dar'], workingDirectory: '$name/lib');
-
   if (!context.vars['handLocalization']) {
     var localizationProcess = await Process.start(
         'flutter', ['pub', 'run', 'intl_utils:generate'],
@@ -129,6 +127,21 @@ void run(HookContext context) async {
       context.vars['platforms'].contains('android')) {
     await addSigning(context);
   }
+
+  var gitInitProcess =
+      await Process.start('git', ['init'], workingDirectory: name);
+
+  gitInitProcess.log();
+
+  int gitCode = await gitInitProcess.exitCode;
+
+  var gitCommitProcess = await Process.start(
+      'git', ['commit', '-am', 'Initial'],
+      workingDirectory: name);
+
+  gitCommitProcess.log();
+
+  int gitCommitCode = await gitCommitProcess.exitCode;
 
   'Complete with exit code: $exitCode!'.log();
 }
