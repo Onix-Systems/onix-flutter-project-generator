@@ -4,6 +4,9 @@
 
 * Go to `core/app/app_initialization.dart` and put your initializations in `initApp()` function;
 * Modify `core/arch/data/remote/error/default_api_error.dart` to your default api response model;
+* DO NOT commit `.env`, `keystore.jks` and other sensitive files.
+* To add sensitive keys
+  check [this article](https://dev.to/djsmk123/is-your-flutter-application-secured-best-practices-for-developing-and-deploying-secure-flutter-apps-4njm)
 
 ## Technologies used in Example
 
@@ -51,28 +54,28 @@ Regenerate splash screen:
 ## IOS
 
 * `flutter build ios --release`
-* `flutter build ios --flavor dev --release -t lib/core/flavors/main_dev.dart`
-* `flutter build ios --flavor prod --release -t lib/core/flavors/main_prod.dart`
+* `flutter build ios --flavor dev --release --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_dev.dart`
+* `flutter build ios --flavor prod --release --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_prod.dart`
 
 ## Android
 
 ### APK
 
 * `flutter build apk`
-* `flutter build apk --flavor dev -t lib/core/flavors/main_dev.dart`
-* `flutter build apk --flavor prod -t lib/core/flavors/main_prod.dart`
+* `flutter build apk --flavor dev --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_dev.dart`
+* `flutter build apk --flavor prod --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_prod.dart`
 
 ### AAB
 
 * `flutter build appbundle`
-* `flutter build appbundle --flavor dev -t lib/core/flavors/main_dev.dart`
-* `flutter build appbundle --flavor prod -t lib/core/flavors/main_prod.dart`
+* `flutter build appbundle --flavor dev --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_dev.dart`
+* `flutter build appbundle --flavor prod --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_prod.dart`
 
 ## run release
 
 * `flutter run --release`
-* `flutter run --flavor dev --release -t lib/core/flavors/main_dev.dart`
-* `flutter run --flavor prod --release -t lib/core/flavors/main_prod.dart`
+* `flutter run --flavor dev --release --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_dev.dart`
+* `flutter run --flavor prod --release --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_prod.dart`
 
 # update IOS repos:
 

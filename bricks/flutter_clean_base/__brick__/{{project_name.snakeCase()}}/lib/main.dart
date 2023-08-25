@@ -24,6 +24,14 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
     // ]);
 
     Bloc.observer = AppBlocObserver();
+
+    final isAllowedToUseApp = await environmentService().initialize();
+      if (isAllowedToUseApp) {
+        runApp(const App());
+      } else {
+        runApp(const BannedApp());
+    }
+
     {{#use_getit}}
     initializeDi(GetIt.instance);
     {{/use_getit}}

@@ -156,6 +156,8 @@ Future<void> getDependencies(HookContext context) async {
     'fluttertoast',
     'flutter_native_splash',
     'collection',
+    'flutter_dotenv',
+    'flutter_jailbreak_detection'
   ];
 
   if (!context.vars['web_only']) {

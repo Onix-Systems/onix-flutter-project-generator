@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:{{project_name}}/core/di/app.dart';
 import 'package:{{project_name}}/core/di/injection.dart';
+import 'package:{{project_name}}/core/di/services.dart';
 
 class AppInitialization {
   static final AppInitialization _instance =
@@ -12,8 +13,9 @@ class AppInitialization {
 
   Future<void> initApp() async {
     //TODO init firebase / Crashlytics / Messaging
-    await _initializeDatabase();
+
     initializeDi(GetIt.I);
+    await _initializeDatabase();
     logger.d('APP Init: done');
   }
 
