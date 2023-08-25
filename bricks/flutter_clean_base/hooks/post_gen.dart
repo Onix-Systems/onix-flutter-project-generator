@@ -11,9 +11,7 @@ void run(HookContext context) async {
   // 'Complete with exit code: 0!'.log();
   // return;
 
-  name = context.vars['project_name']
-      .toString()
-      .toSnakeCase;
+  name = context.vars['project_name'].toString().toSnakeCase;
 
   if (!context.vars['platforms'].contains('android')) {
     await Process.run('rm', ['-rf', '$name/android']);
@@ -102,7 +100,7 @@ void run(HookContext context) async {
   }
 
   var formatProcess =
-  await Process.run('flutter', ['format', '.'], workingDirectory: '$name');
+      await Process.run('flutter', ['format', '.'], workingDirectory: '$name');
 
   int formatCode = formatProcess.exitCode;
 
@@ -131,14 +129,14 @@ void run(HookContext context) async {
   }
 
   var gitInitProcess =
-  await Process.start('git', ['init'], workingDirectory: name);
+      await Process.start('git', ['init'], workingDirectory: name);
 
   gitInitProcess.log();
 
   int gitCode = await gitInitProcess.exitCode;
 
   var gitAddProcess =
-  await Process.start('git', ['add', '--all'], workingDirectory: name);
+      await Process.start('git', ['add', '--all'], workingDirectory: name);
 
   gitAddProcess.log();
 
@@ -353,7 +351,7 @@ Future<void> correct(HookContext context) async {
 
     buildGradle.writeAsStringSync(buildGradleContent
         .replaceAll('compileSdkVersion flutter.compileSdkVersion',
-        'compileSdkVersion 33')
+            'compileSdkVersion 33')
         .replaceAll('minSdkVersion flutter.minSdkVersion', 'minSdkVersion 24'));
   }
 
@@ -378,18 +376,18 @@ flutter_additional_ios_build_settings(target)
   <string>12.0</string>'''));
 
     File xcodeWorkspaceFile =
-    File('$name/ios/Runner.xcodeproj/project.pbxproj');
+        File('$name/ios/Runner.xcodeproj/project.pbxproj');
     List<String> xcodeWorkspaceFileContent =
-    await xcodeWorkspaceFile.readAsLines();
+        await xcodeWorkspaceFile.readAsLines();
 
     Future<String> mapIos() async {
       return xcodeWorkspaceFileContent
           .map((line) {
-        if (line.contains('IPHONEOS_DEPLOYMENT_TARGET')) {
-          line = '${line.substring(0, line.indexOf('= '))}= 12.0;';
-        }
-        return line;
-      })
+            if (line.contains('IPHONEOS_DEPLOYMENT_TARGET')) {
+              line = '${line.substring(0, line.indexOf('= '))}= 12.0;';
+            }
+            return line;
+          })
           .toList()
           .toRawString;
     }
@@ -489,8 +487,22 @@ Future<void> secure(HookContext context) async {
       '''
       
 /app/signing/signing.properties
-      '''
-      }
+      ''');
+
+  File androidBuildGradleFile = File('$name/android/build.gradle');
+
+  String androidBuildGradleContent =
+      await androidBuildGradleFile.readAsString();
+
+  androidBuildGradleFile.writeAsStringSync(androidBuildGradleContent
+      .replaceFirst('apply plugin: \'com.android.application\'', '''
+
+\/\/ if need to use google maps - add google.maps_api_key=SECRET_KEY to local.properties
+\/\/def googleMapsApiKey = localProperties.getProperty('google.maps_api_key')
+      
+apply plugin: 'com.android.application'
+      '''));
+}
 
 void exitBrick() async {
   'Deleting project folder because of errors...'.error();
