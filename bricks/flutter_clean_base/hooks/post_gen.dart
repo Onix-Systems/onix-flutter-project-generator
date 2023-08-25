@@ -508,14 +508,14 @@ android {'''));
   String androidManifestContent = await androidManifestFile.readAsString();
 
   androidManifestFile.writeAsStringSync(
-      androidManifestContent.replaceFirst('</application>', '''
+      androidManifestContent.replaceFirst('\<\/application\>', '''
       
-      <!-- If need too use google maps - uncoment
+      \<!-- If need too use google maps - uncoment
        <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${googleMapsApiKey}" />-->
 
-      </application>'''));
+      \</application>'''));
 }
 
 void exitBrick() async {
