@@ -135,6 +135,8 @@ void run(HookContext context) async {
 
   int gitCode = await gitInitProcess.exitCode;
 
+  await secure(context);
+
   var gitAddProcess =
       await Process.start('git', ['add', '--all'], workingDirectory: name);
 
@@ -148,8 +150,6 @@ void run(HookContext context) async {
   gitCommitProcess.log();
 
   int gitCommitCode = await gitCommitProcess.exitCode;
-
-  await secure(context);
 
   'Complete with exit code: $exitCode!'.log();
 }
@@ -501,6 +501,21 @@ Future<void> secure(HookContext context) async {
 \/\/def googleMapsApiKey = localProperties.getProperty('google.maps_api_key')
       
 android {'''));
+
+  File androidManifestFile =
+      File('$name/android/app/src/main/AndroidManifest.xml');
+
+  String androidManifestContent = await androidManifestFile.readAsString();
+
+  androidManifestFile.writeAsStringSync(
+      androidManifestContent.replaceFirst('</application>', '''
+      
+      <!-- If need too use google maps - uncoment
+       <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${googleMapsApiKey}" />-->
+
+      </application>'''));
 }
 
 void exitBrick() async {
