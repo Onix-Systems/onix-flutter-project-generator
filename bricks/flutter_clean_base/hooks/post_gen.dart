@@ -353,7 +353,7 @@ $makeFileContent
 make_$flavor:
     @echo "Building for $flavor"
     @echo "Copying ${flavor}_assets to \$(ASSETS_DIR)"
-    @cp -r $(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
+    @cp -r \$(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
 
 ''');
 
