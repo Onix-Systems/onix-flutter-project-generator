@@ -326,13 +326,14 @@ Future<void> flavorize(HookContext context) async {
     'Flavorized successfully'.log();
 
     for (var flavor in context.vars['flavors']) {
-      final makeFlavorFile = await File(
-          '$name/.idea/runConfigurations/make-${flavor}.xml').create();
+      final makeFlavorFile =
+          await File('$name/.idea/runConfigurations/make-${flavor}.xml')
+              .create();
 
       final makeContent = '''
 <component name="ProjectRunConfigurationManager">
     <configuration default="false" name="make-$flavor" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
-        <makefile filename="\$PROJECT_DIR$/Makefile" target="make_$flavor" workingDirectory="" arguments="">
+        <makefile filename="\$PROJECT_DIR\$/Makefile" target="make_$flavor" workingDirectory="" arguments="">
             <envs />
         </makefile>
         <method v="2" />
