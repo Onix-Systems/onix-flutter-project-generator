@@ -294,8 +294,6 @@ Future<void> flavorize(HookContext context) async {
   'Flavorizing...'.log();
   await Directory('$name/flavor_assets').create(recursive: true);
 
-  await Process.run('mkdir', ['flavor_assets'], workingDirectory: '$name');
-
   for (var flavor in context.vars['flavors']) {
     await Directory('$name/flavor_assets/$flavor/launcher_icons')
         .create(recursive: true);
