@@ -310,7 +310,6 @@ Future<void> flavorize(HookContext context) async {
         final srcFile = File('$name/assets/launcher_icons/ic_launcher.png');
         await srcFile
             .copy('$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
-        await srcFile.delete();
     }
   }
 
