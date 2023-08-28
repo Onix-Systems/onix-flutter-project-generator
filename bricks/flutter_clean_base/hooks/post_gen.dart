@@ -297,19 +297,15 @@ Future<void> flavorize(HookContext context) async {
   await Process.run('mkdir', ['flavor_assets'], workingDirectory: '$name');
 
   for (var flavor in context.vars['flavors']) {
+    await Directory('$name/flavor_assets/$flavor/launcher_icons')
+        .create(recursive: true);
     switch (flavor) {
       case 'dev':
       case 'prod':
-        await Directory('$name/flavor_assets/$flavor/launcher_icons')
-            .create(recursive: true);
-
         await File('$name/assets/launcher_icons/ic_launcher_$flavor.png')
             .copy('$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
-
         break;
       default:
-        await Directory('$name/flavor_assets/$flavor/launcher_icons')
-            .create(recursive: true);
         await File('$name/assets/launcher_icons/ic_launcher.png')
             .copy('$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
     }
