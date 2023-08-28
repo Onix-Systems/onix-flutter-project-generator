@@ -69,11 +69,11 @@ flavorizr:
 
       android:
         applicationId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
-        icon: "assets/launcher_icons/ic_launcher.png"
+        icon: "flavor_assets/{{.}}/launcher_icons/ic_launcher.png"
 
       ios:
         bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
-        icon: "assets/launcher_icons/ic_launcher.png"
+        icon: "flavor_assets/{{.}}/launcher_icons/ic_launcher.png"
 
       {{/flavors}}
       {{/flavorizr}}
