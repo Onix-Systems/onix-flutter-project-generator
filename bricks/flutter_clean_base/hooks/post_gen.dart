@@ -309,6 +309,9 @@ Future<void> flavorize(HookContext context) async {
     }
   }
 
+  await Process.run('rm', ['$name/assets/launcher_icons/*.*'],
+      workingDirectory: name);
+
   var flavorizrProc = await Process.start(
       'flutter', ['pub', 'run', 'flutter_flavorizr'],
       workingDirectory: name);
