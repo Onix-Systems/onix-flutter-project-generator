@@ -297,6 +297,13 @@ Future<void> flavorize(HookContext context) async {
     switch (flavor) {
       case 'dev':
       case 'prod':
+        await Process.run(
+            'cp',
+            [
+              'ic_launcher_$flavor.png',
+              '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png'
+            ],
+            workingDirectory: '$name/assets/launcher_icons');
         break;
       default:
         await Process.run('cp', ['ic_launcher.png', 'ic_launcher_$flavor.png'],

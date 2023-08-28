@@ -1,0 +1,20 @@
+DEV_FLAVOR = dev
+PROD_FLAVOR = prod
+STAGE_FLAVOR = stage
+ROOT_DIR = $(shell pwd)
+ASSETS_DIR = assets
+
+dev:
+	@echo "Building for $(DEV_FLAVOR)"
+	@echo "Copying $(DEV_FLAVOR)_assets to $(ASSETS_DIR)"
+	@cp -r $(ROOT_DIR)/flavor_assets/$(DEV_FLAVOR)/* $(ASSETS_DIR)
+
+prod:
+	@echo "Building for $(PROD_FLAVOR)"
+	@echo "Copying $(PROD_FLAVOR)_assets to $(ASSETS_DIR)"
+	cp -r $(ROOT_DIR)/flavor_assets/$(PROD_FLAVOR)/* $(ASSETS_DIR)
+
+stage:
+	@echo "Building for $(STAGE_FLAVOR)"
+	@echo "Copying $(STAGE_FLAVOR)_assets to $(ASSETS_DIR)"
+	cp -r $(ROOT_DIR)/flavor_assets/$(STAGE_FLAVOR)/* $(ASSETS_DIR)
