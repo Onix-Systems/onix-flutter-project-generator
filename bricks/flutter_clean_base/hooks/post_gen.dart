@@ -333,7 +333,7 @@ Future<void> flavorize(HookContext context) async {
       final makeContent = '''
 <component name="ProjectRunConfigurationManager">
     <configuration default="false" name="make-$flavor" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
-        <makefile filename="$name/Makefile" target="make_$flavor" workingDirectory="" arguments="">
+        <makefile filename="\$PROJECT_DIR\$/Makefile" target="make_$flavor" workingDirectory="" arguments="">
             <envs />
         </makefile>
         <method v="2" />
