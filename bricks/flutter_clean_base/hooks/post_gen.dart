@@ -300,12 +300,17 @@ Future<void> flavorize(HookContext context) async {
     switch (flavor) {
       case 'dev':
       case 'prod':
-        await File('$name/assets/launcher_icons/ic_launcher_$flavor.png')
-            .copy('$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
+        final srcFile = File(
+            '$name/assets/launcher_icons/ic_launcher_$flavor.png')
+        await srcFile.copy(
+            '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
+        await srcFile.delete();
         break;
       default:
-        await File('$name/assets/launcher_icons/ic_launcher.png')
-            .copy('$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
+        final srcFile = File('$name/assets/launcher_icons/ic_launcher.png');
+        await srcFile.copy(
+            '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
+        await srcFile.delete();
     }
   }
 
