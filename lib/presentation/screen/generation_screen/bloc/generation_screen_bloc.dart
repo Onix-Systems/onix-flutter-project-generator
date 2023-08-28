@@ -99,8 +99,12 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       var mainProcess = await startProcess(
           workingDirectory: state.config.projectPath, activateMason: true);
 
-      mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_base --git-url ${AppConsts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
+      final command =
+          'mason add -g flutter_clean_base --git-url ${AppConsts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}';
+
+      outputService.add('{#info}Running command: $command');
+
+      mainProcess.stdin.writeln(command);
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
