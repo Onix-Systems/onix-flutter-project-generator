@@ -298,6 +298,9 @@ Future<void> flavorize(HookContext context) async {
       case 'dev':
       case 'prod':
         await Process.run(
+            'mkdir', ['-p', '$name/flavor_assets/launcher_icons/$flavor'],
+            workingDirectory: '$name');
+        await Process.run(
             'cp',
             [
               'ic_launcher_$flavor.png',
@@ -306,7 +309,15 @@ Future<void> flavorize(HookContext context) async {
             workingDirectory: '$name/assets/launcher_icons');
         break;
       default:
-        await Process.run('cp', ['ic_launcher.png', 'ic_launcher_$flavor.png'],
+        await Process.run(
+            'mkdir', ['-p', '$name/flavor_assets/launcher_icons/$flavor'],
+            workingDirectory: '$name');
+        await Process.run(
+            'cp',
+            [
+              'ic_launcher.png',
+              '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png'
+            ],
             workingDirectory: '$name/assets/launcher_icons');
     }
   }
