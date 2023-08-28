@@ -1,11 +1,2 @@
 ROOT_DIR = $(shell pwd)
 ASSETS_DIR = assets
-
-{{#flavors}}
-{{#lowercase}}
-make_{{.}}:
-    @echo "Building for {{.}}"
-    @echo "Copying {{.}}_assets to $(ASSETS_DIR)"
-    @cp -r $(ROOT_DIR)/flavor_assets/{{.}}/* $(ASSETS_DIR)
-{{/lowercase}}
-{{/flavors}}

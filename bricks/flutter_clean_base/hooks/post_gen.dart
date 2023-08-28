@@ -351,9 +351,9 @@ Future<void> flavorize(HookContext context) async {
 $makeFileContent
       
 make_$flavor:
-    @echo "Building for $flavor"
-    @echo "Copying ${flavor}_assets to \$(ASSETS_DIR)"
-    @cp -r \$(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
+\t@echo "Building for $flavor"
+\t@echo "Copying ${flavor}_assets to \$(ASSETS_DIR)"
+\t@cp -r \$(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
 
 ''');
 
