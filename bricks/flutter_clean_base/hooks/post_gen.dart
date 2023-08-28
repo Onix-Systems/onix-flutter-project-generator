@@ -343,6 +343,20 @@ Future<void> flavorize(HookContext context) async {
 
       await makeFlavorFile.writeAsString(makeContent);
 
+      final makeFile = await File('$name/Makefile');
+
+      final makeFileContent = await makeFile.readAsString();
+
+      await makeFile.writeAsString('''
+$makeFileContent
+      
+make_$flavor:
+    @echo "Building for $flavor"
+    @echo "Copying ${flavor}_assets to \$(ASSETS_DIR)"
+    @cp -r $(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
+
+''');
+
       await Process.run('mv', ['main_$flavor.gen.dart', 'main_$flavor.dart'],
           workingDirectory: '$name/lib/core/flavors');
       await Process.run('rm', ['main_$flavor.dart'],
