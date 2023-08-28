@@ -305,7 +305,7 @@ Future<void> flavorize(HookContext context) async {
         await Process.run(
             'cp',
             [
-              '/assets/launcher_icons/ic_launcher_$flavor.png',
+              'assets/launcher_icons/ic_launcher_$flavor.png',
               'flavor_assets/$flavor/launcher_icons/ic_launcher.png'
             ],
             workingDirectory: '$name');
