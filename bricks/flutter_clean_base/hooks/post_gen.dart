@@ -326,9 +326,6 @@ Future<void> flavorize(HookContext context) async {
     'Flavorized successfully'.log();
 
     for (var flavor in context.vars['flavors']) {
-      await File()
-
-
       await Process.run('mv', ['main_$flavor.gen.dart', 'main_$flavor.dart'],
           workingDirectory: '$name/lib/core/flavors');
       await Process.run('rm', ['main_$flavor.dart'],
