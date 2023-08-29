@@ -420,8 +420,6 @@ Future<void> correct(HookContext context) async {
 flutter_additional_ios_build_settings(target)
       target.build_configurations.each do |config|
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
-        config.build_settings['PODS_CONFIGURATION_BUILD_DIR'] = '\${PODS_BUILD_DIR}/\$(CONFIGURATION)\$(EFFECTIVE_PLATFORM_NAME)'
-        config.build_settings['PODS_XCFRAMEWORKS_BUILD_DIR'] = '\$(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates'
       end'''));
 
     File plistFile = File('$name/ios/Flutter/AppFrameworkInfo.plist');
