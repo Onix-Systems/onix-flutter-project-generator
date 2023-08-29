@@ -420,7 +420,10 @@ Future<void> correct(HookContext context) async {
 flutter_additional_ios_build_settings(target)
       target.build_configurations.each do |config|
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
-      end'''));
+      end''')
+        .replaceAll('buildSettings = {', '''buildSettings = {
+        PODS_CONFIGURATION_BUILD_DIR = "${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";''')
+    );
 
     File plistFile = File('$name/ios/Flutter/AppFrameworkInfo.plist');
     String plistFileContent = plistFile.readAsStringSync();
