@@ -450,7 +450,7 @@ flutter_additional_ios_build_settings(target)
     mapIos().then((result) async {
       xcodeWorkspaceFile.writeAsString(
           result.replaceAll('buildSettings = {', '''buildSettings = {
-        PODS_CONFIGURATION_BUILD_DIR = "\${PODS_BUILD_DIR}/\$(CONFIGURATION)\$(EFFECTIVE_PLATFORM_NAME)";
+        PODS_CONFIGURATION_BUILD_DIR = ("\$inherited", "\${PODS_BUILD_DIR}/\$(CONFIGURATION)\$(EFFECTIVE_PLATFORM_NAME)");
         PODS_XCFRAMEWORKS_BUILD_DIR = "\$(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates";'''));
     });
   }
