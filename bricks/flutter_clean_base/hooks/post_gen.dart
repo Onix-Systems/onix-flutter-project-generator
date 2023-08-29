@@ -453,6 +453,19 @@ flutter_additional_ios_build_settings(target)
         PODS_CONFIGURATION_BUILD_DIR = ("\$inherited", "\${PODS_BUILD_DIR}/\$(CONFIGURATION)\$(EFFECTIVE_PLATFORM_NAME)");
         PODS_XCFRAMEWORKS_BUILD_DIR = "\$(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates";'''));
     });
+
+    var podInstallProcess =
+        await Process.start('pod', ['install'], workingDirectory: '$name/ios');
+    podInstallProcess.log();
+    await podInstallProcess.exitCode;
+
+    xcodeWorkspaceFileContent = await xcodeWorkspaceFile.readAsString();
+
+    xcodeWorkspaceFile.writeAsStringSync(
+        xcodeWorkspaceFileContent.replaceAll('''inputFileListPaths = (
+				"\${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-\${CONFIGURATION}-input-files.xcfilelist",
+			);''', '''inputFileListPaths = (
+			);'''));
   }
 }
 
