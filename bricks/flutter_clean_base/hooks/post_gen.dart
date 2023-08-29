@@ -333,7 +333,7 @@ Future<void> flavorize(HookContext context) async {
       final makeContent = '''
 <component name="ProjectRunConfigurationManager">
     <configuration default="false" name="make-$flavor" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
-        <makefile filename="\$PROJECT_DIR\$/Makefile" target="make_$flavor" workingDirectory="" arguments="">
+        <makefile filename="\$PROJECT_DIR\$/Makefile" target="$flavor" workingDirectory="" arguments="">
             <envs />
         </makefile>
         <method v="2" />
@@ -350,7 +350,7 @@ Future<void> flavorize(HookContext context) async {
       await makeFile.writeAsString('''
 $makeFileContent
       
-make_$flavor:
+$flavor:
 \t@echo "Building for $flavor"
 \t@echo "Copying ${flavor}_assets to \$(ASSETS_DIR)"
 \t@cp -r \$(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
