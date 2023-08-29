@@ -465,6 +465,9 @@ flutter_additional_ios_build_settings(target)
         .writeAsString(pbxprojFileContent.replaceAll('''inputFileListPaths = (
 				"\${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-\${CONFIGURATION}-input-files.xcfilelist",
 			);''', '''inputFileListPaths = (
+			);''').replaceAll('''outputFileListPaths = (
+				"\${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-\${CONFIGURATION}-output-files.xcfilelist",
+			);''', '''inputFileListPaths = (
 			);'''));
   }
 }
