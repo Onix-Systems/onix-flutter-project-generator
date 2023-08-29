@@ -459,10 +459,10 @@ flutter_additional_ios_build_settings(target)
     podInstallProcess.log();
     await podInstallProcess.exitCode;
 
-    xcodeWorkspaceFileContent = await xcodeWorkspaceFile.readAsString();
+    final pbxprojFileContent = await xcodeWorkspaceFile.readAsString();
 
-    xcodeWorkspaceFile.writeAsStringSync(
-        xcodeWorkspaceFileContent.replaceAll('''inputFileListPaths = (
+    await xcodeWorkspaceFile
+        .writeAsString(pbxprojFileContent.replaceAll('''inputFileListPaths = (
 				"\${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-\${CONFIGURATION}-input-files.xcfilelist",
 			);''', '''inputFileListPaths = (
 			);'''));
