@@ -300,16 +300,25 @@ Future<void> flavorize(HookContext context) async {
     switch (flavor) {
       case 'dev':
       case 'prod':
-        final srcFile =
-            File('$name/assets/launcher_icons/ic_launcher_$flavor.png');
+        srcFile = File('$name/assets/launcher_icons/ic_launcher_$flavor.png');
         await srcFile
             .copy('$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
         await srcFile.delete();
+
+        srcFile = File('$name/assets/android12splash_$flavor.png');
+        await srcFile.copy('$name/flavor_assets/$flavor/android12splash.png');
+
+        await srcFile.delete();
         break;
       default:
-        final srcFile = File('$name/assets/launcher_icons/ic_launcher.png');
+        srcFile = File('$name/assets/launcher_icons/ic_launcher.png');
         await srcFile
             .copy('$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
+        await srcFile.delete();
+
+        srcFile = File('$name/assets/android12splash.png');
+        await srcFile.copy('$name/flavor_assets/$flavor/android12splash.png');
+
         await srcFile.delete();
     }
   }
@@ -354,7 +363,7 @@ $flavor:
 \t@echo "Building for $flavor"
 \t@echo "Copying ${flavor}_assets to \$(ASSETS_DIR)"
 \t@cp -r \$(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
-
+\tflutter pub run flutter_native_splash:create
 ''');
 
       await Process.run('mv', ['main_$flavor.gen.dart', 'main_$flavor.dart'],
