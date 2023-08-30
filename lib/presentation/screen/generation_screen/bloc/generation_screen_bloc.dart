@@ -126,11 +126,9 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         File signingFile = File(
             '${state.config.projectPath}/${state.config.projectName}/android/app/signing/signing.properties');
         String signingFileContent = await signingFile.readAsString();
-        var writer = signingFile.openWrite();
-        writer.write(
+
+        await signingFile.writeAsString(
             signingFileContent.replaceAll('{signing_password}', genPass));
-        await writer.flush();
-        await writer.close();
 
         File buildGradle = File(
             '${state.config.projectPath}/${state.config.projectName}/android/app/build.gradle');
@@ -155,8 +153,7 @@ if (propFile.canRead()) {
     android.buildTypes.release.signingConfig = null
 }''';
 
-        writer = buildGradle.openWrite();
-        writer.write(buildGradleContent.replaceAll(
+        await buildGradle.writeAsString(buildGradleContent.replaceAll(
           '''buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
@@ -177,9 +174,6 @@ if (propFile.canRead()) {
         }
     }''',
         ));
-
-        await writer.flush();
-        await writer.close();
       }
     }
 
