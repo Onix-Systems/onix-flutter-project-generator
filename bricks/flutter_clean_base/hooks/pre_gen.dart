@@ -51,9 +51,9 @@ void run(HookContext context) async {
     exit(1);
   }
 
-  if (context.vars['use_keytool']) {
-    'Keytool will open in new terminal window after project generation...'.log;
-  }
+  // if (context.vars['use_keytool']) {
+  //   'Keytool will open in new terminal window after project generation...'.log;
+  // }
 
   context.vars = await _initCustomVars(context);
 }
