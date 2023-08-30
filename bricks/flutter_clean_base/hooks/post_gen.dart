@@ -494,7 +494,7 @@ flutter_additional_ios_build_settings(target)
 
     for (var line in pbxprojFileContent) {
       if (line.contains('/* Profile */,')) {
-        line = '$line\n${flavorInitStrings2.merge('\n')}';
+        line = '$line\n${flavorInitStrings2.map((string) => '$string\n')}';
       }
     }
 
