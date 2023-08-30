@@ -492,10 +492,11 @@ flutter_additional_ios_build_settings(target)
 
     pbxprojFileContent.insertAll(index, flavorInitStrings);
 
-    index = pbxprojFileContent.indexOf(pbxprojFileContent
-        .firstWhere((element) => element.contains('/* Profile */,')));
-
-    pbxprojFileContent.insertAll(index + 1, flavorInitStrings2);
+    for (var line in pbxprojFileContent) {
+      if (line.contains('/* Profile */,')) {
+        line = '$line\n${flavorInitStrings2.merge('\n')}';
+      }
+    }
 
     await xcodeWorkspaceFile.writeAsString(pbxprojFileContent.toRawString);
 
