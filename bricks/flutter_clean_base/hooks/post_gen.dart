@@ -448,76 +448,13 @@ flutter_additional_ios_build_settings(target)
     }
 
     mapIos().then((result) async {
-      xcodeWorkspaceFile.writeAsString(
-          result /*.replaceAll('buildSettings = {', '''buildSettings = {
-        PODS_CONFIGURATION_BUILD_DIR = ("\$inherited", "\${PODS_BUILD_DIR}/\$(CONFIGURATION)\$(EFFECTIVE_PLATFORM_NAME)");
-        PODS_XCFRAMEWORKS_BUILD_DIR = "\$(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates";''')*/
-          );
+      xcodeWorkspaceFile.writeAsString(result);
     });
 
     var podInstallProcess =
         await Process.start('pod', ['install'], workingDirectory: '$name/ios');
     podInstallProcess.log();
     await podInstallProcess.exitCode;
-
-    final pbxprojFileContent = await xcodeWorkspaceFile.readAsLines();
-
-    var targets = ['Debug', 'Profile', 'Release'];
-
-    final flavorInitString = '''CC21A6CC2A9F3624009AE203 /* Debug-dev */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = Runner;
-			};
-			name = "Debug-dev";
-		};''';
-
-    final flavorInitString2 = 'CC21A6D52A9F3624009AE203 /* Debug-dev */,';
-
-    final flavorInitStrings = <String>[];
-
-    final flavorInitStrings2 = <String>[];
-
-    for (final target in targets) {
-      for (final flavor in context.vars['flavors']) {
-        flavorInitStrings
-            .add(flavorInitString.replaceAll('Debug-dev', '$target-$flavor'));
-        flavorInitStrings2
-            .add(flavorInitString2.replaceAll('Debug-dev', '$target-$flavor'));
-      }
-    }
-
-    int index = pbxprojFileContent.indexOf(pbxprojFileContent
-        .firstWhere((element) => element.contains('/* Debug-dev */ = {')));
-
-    pbxprojFileContent.insertAll(index, flavorInitStrings);
-
-    for (var line in pbxprojFileContent) {
-      if (line.contains('/* Profile */,')) {
-        line = '$line\n${flavorInitStrings2.map((string) => '$string\n')}';
-      }
-    }
-
-    //await xcodeWorkspaceFile.writeAsString(pbxprojFileContent.toRawString);
-
-    await xcodeWorkspaceFile.writeAsString(
-        pbxprojFileContent.toRawString.replaceAll('''inputFileListPaths = (
-    		"\${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-\${CONFIGURATION}-input-files.xcfilelist",
-    	);''', '''inputFileListPaths = (
-    	);''').replaceAll('''outputFileListPaths = (
-    		"\${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-\${CONFIGURATION}-output-files.xcfilelist",
-    	);''', '''outputFileListPaths = (
-    	);''') /*.replaceAll('''LD_RUNPATH_SEARCH_PATHS = (
-    			"\$(inherited)",
-    			"@executable_path/Frameworks",
-    		);''', '''LD_RUNPATH_SEARCH_PATHS = ("\$(inherited)");''')*/
-        );
-
-    // var podUpdateProcess =
-    //     await Process.start('pod', ['update'], workingDirectory: '$name/ios');
-    // podUpdateProcess.log();
-    //
-    // await podUpdateProcess.exitCode;
   }
 }
 
