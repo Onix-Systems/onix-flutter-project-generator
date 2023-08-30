@@ -120,10 +120,6 @@ void run(HookContext context) async {
   exitCode += formatCode + sorterCode + splashCode;
 
   await correct(context);
-  // if (context.vars['use_keytool'] &&
-  //     context.vars['platforms'].contains('android')) {
-  //   await addSigning(context);
-  // }
 
   var gitInitProcess =
       await Process.start('git', ['init'], workingDirectory: name);
