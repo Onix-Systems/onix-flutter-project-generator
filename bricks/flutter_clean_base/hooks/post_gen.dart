@@ -477,10 +477,11 @@ flutter_additional_ios_build_settings(target)
 					"@executable_path/Frameworks",
 				);''', '''LD_RUNPATH_SEARCH_PATHS = ("$(inherited)");''');
 
-        var podInstallProcess =
-        await Process.start('pod', ['install'], workingDirectory: '$name/ios');
-    podInstallProcess.log();
-    await podInstallProcess.exitCode;
+        var podUpdateProcess =
+        await Process.start('pod', ['update'], workingDirectory: '$name/ios');
+    podUpdateProcess.log();
+
+    await podUpdateProcess.exitCode;
   }
 }
 
