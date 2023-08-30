@@ -462,22 +462,19 @@ flutter_additional_ios_build_settings(target)
     final pbxprojFileContent = await xcodeWorkspaceFile.readAsString();
 
     await xcodeWorkspaceFile
-        .writeAsString(pbxprojFileContent
-        .replaceAll('''inputFileListPaths = (
+        .writeAsString(pbxprojFileContent.replaceAll('''inputFileListPaths = (
 				"\${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-\${CONFIGURATION}-input-files.xcfilelist",
 			);''', '''inputFileListPaths = (
 			);
-			alwaysOutOfDate = 1;''')
-        .replaceAll('''outputFileListPaths = (
+			alwaysOutOfDate = 1;''').replaceAll('''outputFileListPaths = (
 				"\${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-\${CONFIGURATION}-output-files.xcfilelist",
 			);''', '''inputFileListPaths = (
-			);''')
-        .replaceAll('''LD_RUNPATH_SEARCH_PATHS = (
+			);''').replaceAll('''LD_RUNPATH_SEARCH_PATHS = (
 					"\$(inherited)",
 					"@executable_path/Frameworks",
-				);''', '''LD_RUNPATH_SEARCH_PATHS = ("\$(inherited)");''');
+				);''', '''LD_RUNPATH_SEARCH_PATHS = ("\$(inherited)");'''));
 
-        var podUpdateProcess =
+    var podUpdateProcess =
         await Process.start('pod', ['update'], workingDirectory: '$name/ios');
     podUpdateProcess.log();
 
