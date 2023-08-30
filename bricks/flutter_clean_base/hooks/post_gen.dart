@@ -8,9 +8,6 @@ import 'package:recase/recase.dart';
 late String name;
 
 void run(HookContext context) async {
-  // 'Complete with exit code: 0!'.log();
-  // return;
-
   name = context.vars['project_name'].toString().toSnakeCase;
 
   if (!context.vars['platforms'].contains('android')) {
@@ -123,10 +120,10 @@ void run(HookContext context) async {
   exitCode += formatCode + sorterCode + splashCode;
 
   await correct(context);
-  if (context.vars['use_keytool'] &&
-      context.vars['platforms'].contains('android')) {
-    await addSigning(context);
-  }
+  // if (context.vars['use_keytool'] &&
+  //     context.vars['platforms'].contains('android')) {
+  //   await addSigning(context);
+  // }
 
   var gitInitProcess =
       await Process.start('git', ['init'], workingDirectory: name);
@@ -452,71 +449,71 @@ flutter_additional_ios_build_settings(target)
   }
 }
 
-Future<void> addSigning(HookContext context) async {
-  // var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
-  // String genPass = List.generate(20, (index) {
-  //   return chars[(Random.secure().nextInt(chars.length))];
-  // }).join();
-
-  // 'Generated password: $genPass'.log();
-
-  File signingFile = File('$name/android/app/signing/signing.properties');
-  String signingFileContent = await signingFile.readAsString();
-  var writer = signingFile.openWrite();
-  writer.write(signingFileContent.replaceAll(
-      '{signing_password}', context.vars['signing_password']));
-  await writer.flush();
-  await writer.close();
-
-  File buildGradle = File('$name/android/app/build.gradle');
-  String buildGradleContent = await buildGradle.readAsString();
-  buildGradleContent += '''
-
-Properties props = new Properties()
-def propFile = file('./signing/signing.properties')
-if (propFile.canRead()) {
-    props.load(new FileInputStream(propFile))
-
-    if (props != null && props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
-            props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
-        android.signingConfigs.signed.storeFile = file(props['STORE_FILE'])
-        android.signingConfigs.signed.storePassword = props['STORE_PASSWORD']
-        android.signingConfigs.signed.keyAlias = props['KEY_ALIAS']
-        android.signingConfigs.signed.keyPassword = props['KEY_PASSWORD']
-    } else {
-        android.buildTypes.release.signingConfig = null
-    }
-} else {
-    android.buildTypes.release.signingConfig = null
-}''';
-
-  writer = buildGradle.openWrite();
-  writer.write(buildGradleContent.replaceAll(
-    '''buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
-        }
-    }''',
-    '''signingConfigs {
-        signed
-    }
-
-    buildTypes {
-        debug {
-            signingConfig signingConfigs.signed
-        }
-        release {
-            signingConfig signingConfigs.signed
-        }
-    }''',
-  ));
-
-  await writer.flush();
-  await writer.close();
-}
+// Future<void> addSigning(HookContext context) async {
+//   // var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+//
+//   // String genPass = List.generate(20, (index) {
+//   //   return chars[(Random.secure().nextInt(chars.length))];
+//   // }).join();
+//
+//   // 'Generated password: $genPass'.log();
+//
+//   File signingFile = File('$name/android/app/signing/signing.properties');
+//   String signingFileContent = await signingFile.readAsString();
+//   var writer = signingFile.openWrite();
+//   writer.write(signingFileContent.replaceAll(
+//       '{signing_password}', context.vars['signing_password']));
+//   await writer.flush();
+//   await writer.close();
+//
+//   File buildGradle = File('$name/android/app/build.gradle');
+//   String buildGradleContent = await buildGradle.readAsString();
+//   buildGradleContent += '''
+//
+// Properties props = new Properties()
+// def propFile = file('./signing/signing.properties')
+// if (propFile.canRead()) {
+//     props.load(new FileInputStream(propFile))
+//
+//     if (props != null && props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
+//             props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
+//         android.signingConfigs.signed.storeFile = file(props['STORE_FILE'])
+//         android.signingConfigs.signed.storePassword = props['STORE_PASSWORD']
+//         android.signingConfigs.signed.keyAlias = props['KEY_ALIAS']
+//         android.signingConfigs.signed.keyPassword = props['KEY_PASSWORD']
+//     } else {
+//         android.buildTypes.release.signingConfig = null
+//     }
+// } else {
+//     android.buildTypes.release.signingConfig = null
+// }''';
+//
+//   writer = buildGradle.openWrite();
+//   writer.write(buildGradleContent.replaceAll(
+//     '''buildTypes {
+//         release {
+//             // TODO: Add your own signing config for the release build.
+//             // Signing with the debug keys for now, so `flutter run --release` works.
+//             signingConfig signingConfigs.debug
+//         }
+//     }''',
+//     '''signingConfigs {
+//         signed
+//     }
+//
+//     buildTypes {
+//         debug {
+//             signingConfig signingConfigs.signed
+//         }
+//         release {
+//             signingConfig signingConfigs.signed
+//         }
+//     }''',
+//   ));
+//
+//   await writer.flush();
+//   await writer.close();
+// }
 
 Future<void> secure(HookContext context) async {
   'Securing... !'.log();
