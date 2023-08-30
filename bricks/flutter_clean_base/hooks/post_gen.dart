@@ -473,9 +473,9 @@ flutter_additional_ios_build_settings(target)
 			);''', '''inputFileListPaths = (
 			);''')
         .replaceAll('''LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
+					"\$(inherited)",
 					"@executable_path/Frameworks",
-				);''', '''LD_RUNPATH_SEARCH_PATHS = ("$(inherited)");''');
+				);''', '''LD_RUNPATH_SEARCH_PATHS = ("\$(inherited)");''');
 
         var podUpdateProcess =
         await Process.start('pod', ['update'], workingDirectory: '$name/ios');
