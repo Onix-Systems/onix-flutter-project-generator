@@ -435,21 +435,15 @@ flutter_additional_ios_build_settings(target)
     List<String> xcodeWorkspaceFileContent =
         await xcodeWorkspaceFile.readAsLines();
 
-    Future<String> mapIos() async {
-      return xcodeWorkspaceFileContent
-          .map((line) {
-            if (line.contains('IPHONEOS_DEPLOYMENT_TARGET')) {
-              line = '${line.substring(0, line.indexOf('= '))}= 12.0;';
-            }
-            return line;
-          })
-          .toList()
-          .toRawString;
-    }
-
-    mapIos().then((result) async {
-      xcodeWorkspaceFile.writeAsString(result);
-    });
+    await xcodeWorkspaceFile.writeAsString(xcodeWorkspaceFileContent
+        .map((line) {
+          if (line.contains('IPHONEOS_DEPLOYMENT_TARGET')) {
+            line = '${line.substring(0, line.indexOf('= '))}= 12.0;';
+          }
+          return line;
+        })
+        .toList()
+        .toRawString);
 
     var podInstallProcess =
         await Process.start('pod', ['install'], workingDirectory: '$name/ios');
