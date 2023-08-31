@@ -1,6 +1,4 @@
-import 'package:dio/dio.dart';
-
-abstract class BaseApiClient {
+abstract class BaseApiClient<T> {
   static const String kAuthHeader = 'Authorization';
   static const String kAuthPrefix = 'Bearer ';
   static const String kAcceptHeader = 'Accept';
@@ -10,7 +8,7 @@ abstract class BaseApiClient {
   static const String kMediaJPEG = 'image/jpeg';
   static const String kMediaPNG = 'image/png';
 
-  late Dio client;
+  late T client;
 
   void attachInterceptors();
 

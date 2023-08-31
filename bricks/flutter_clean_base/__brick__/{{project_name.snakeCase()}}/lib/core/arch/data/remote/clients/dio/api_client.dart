@@ -8,10 +8,10 @@ import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'package:{{project_name}}/core/arch/data/remote/base/base_api_client.dart';
-import 'package:{{project_name}}/core/arch/data/remote/interceptor/basic_app_auth_interceptor.dart';
-import 'package:{{project_name}}/core/arch/data/remote/interceptor/cache_interceptor.dart';
+import 'package:{{project_name}}/core/arch/data/remote/clients/dio/interceptor/basic_app_auth_interceptor.dart';
+import 'package:{{project_name}}/core/arch/data/remote/clients/dio/interceptor/cache_interceptor.dart';
 
-class ApiClient implements BaseApiClient {
+class ApiClient implements BaseApiClient<Dio> {
   static const defaultConnectTimeout = 30000;
   static const defaultReceiveTimeout = 30000;
 
