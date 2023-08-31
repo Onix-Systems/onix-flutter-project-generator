@@ -1,3 +1,4 @@
+//@formatter:off
 import 'package:get_it/get_it.dart';
 import 'package:{{project_name}}/core/arch/data/remote/clients/dio/api_client.dart';
 import 'package:{{project_name}}/core/arch/data/remote/clients/dio/dio_client_module.dart';
@@ -10,21 +11,20 @@ import 'package:{{project_name}}/core/arch/data/remote/clients/graph_ql/request_
 void registerRemote(GetIt getIt) {
   final dioClientModule = _DioClientModule();
 
-  getIt..registerLazySingleton<DioRequestProcessor>(
-    dioClientModule.makeDioErrorHandler,
-  )..registerLazySingleton<ApiClient>(
+  getIt
+    ..registerLazySingleton<DioRequestProcessor>(
+        dioClientModule.makeDioErrorHandler,
+    )
+    ..registerLazySingleton<ApiClient>(
         () => dioClientModule.makeApiClient(DioConst.timeApiBaseUrl),
     instanceName: DioConst.timeApiInstance,
-  ){
-    {
-      #graphql
-    }
-  }..registerLazySingleton<GraphQlRequestProcessor>(
-  GraphQlRequestProcessorImpl.new,
-  )
-  ..registerLazySingleton<GraphQlClient>(
-  GraphQlClient.new,
-  ){{/graphql}}; //{remote end}
+    ){{#graphql}}
+    ..registerLazySingleton<GraphQlRequestProcessor>(
+        GraphQlRequestProcessorImpl.new,
+    )
+    ..registerLazySingleton<GraphQlClient>(
+        GraphQlClient.new,
+    ){{/graphql}}; //{remote end}
 }
 
 ApiClient apiClientTime() =>

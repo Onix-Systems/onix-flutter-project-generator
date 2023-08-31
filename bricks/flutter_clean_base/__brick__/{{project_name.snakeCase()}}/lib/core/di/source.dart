@@ -1,3 +1,4 @@
+//@formatter:off
 import 'package:get_it/get_it.dart';
 import 'package:{{project_name}}/core/arch/data/remote/clients/dio/api_client.dart';
 import 'package:{{project_name}}/core/arch/data/remote/clients/dio/dio_const.dart';
@@ -15,14 +16,11 @@ void registerSources(GetIt getIt) {
     ..registerSingleton<TimeSource>(TimeSourceImpl(
       getIt.get<ApiClient>(instanceName: DioConst.timeApiInstance),
       getIt.get<DioRequestProcessor>(),
-    )){
-    {
-      #graphql
-    }
-  }..registerSingleton<AuthSource>(AuthSourceImpl(
-  getIt.get<GraphQlClient>(),
-  getIt.get<GraphQlRequestProcessor>(),
-  )){{/graphql}}; //{sources end}
+    )){{#graphql}}
+    ..registerSingleton<AuthSource>(AuthSourceImpl(
+    getIt.get<GraphQlClient>(),
+    getIt.get<GraphQlRequestProcessor>(),
+    )){{/graphql}}; //{sources end}
 }
 
 TimeSource get timeSource => GetIt.I.get<TimeSource>();
