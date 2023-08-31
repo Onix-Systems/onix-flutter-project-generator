@@ -112,6 +112,12 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       await mainProcess.exitCode;
       configFile.delete();
 
+      if (!state.config.graphql) {
+        await Directory(
+                '${state.config.projectPath}/${state.config.projectName}/lib/core/arch/data/remote/clients/graph_ql')
+            .delete(recursive: true);
+      }
+
       if (state.config.generateSigningKey) {
         outputService.add('{info}Keystore password: $genPass');
 
