@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:{{project_name}}/core/arch/bloc/sr_mixin.dart';
+import 'package:{{project_name}}/core/arch/bloc/sr_cubit_mixin.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/failure/failure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-abstract class BaseBloc<Event, State, SR> extends Bloc<Event, State>
-    with SingleResultMixin<Event, State, SR> {
+abstract class BaseCubit<State, SR> extends Cubit<State>
+    with SingleResultCubitMixin<State, SR> {
   @protected
   late StreamController<Failure> _errorStreamController;
 
@@ -17,7 +17,7 @@ abstract class BaseBloc<Event, State, SR> extends Bloc<Event, State>
 
   Stream<bool> get progressStream => _progressStreamController.stream;
 
-  BaseBloc(State initialState) : super(initialState) {
+  BaseCubit(State initialState) : super(initialState) {
     _errorStreamController = StreamController<Failure>.broadcast();
     _progressStreamController = StreamController<bool>.broadcast();
   }

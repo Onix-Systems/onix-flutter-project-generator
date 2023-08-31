@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// - Toast
 /// - Snack
 /// - Some interaction with the animation
-mixin SingleResultMixin<Event, State, SR> on Bloc<Event, State>
+mixin SingleResultCubitMixin<State, SR> on Cubit<State>
     implements SingleResultProvider<SR>, SingleResultEmitter<SR> {
   @protected
   final StreamController<SR> _srController = StreamController.broadcast();
@@ -18,15 +18,12 @@ mixin SingleResultMixin<Event, State, SR> on Bloc<Event, State>
 
   @override
   void addSr(SR sr) {
-    final observer = Bloc.observer;
-    if (observer is SrBlocObserver) observer.onSr(this, sr);
     if (!_srController.isClosed) _srController.add(sr);
   }
 
   @override
   Future<void> close() {
     _srController.close();
-
     return super.close();
   }
 }
@@ -37,13 +34,7 @@ abstract class SingleResultProvider<SingleResult> {
 }
 
 /// Protocol for receiving events [SingleResult]
+//ignore: one_member_abstracts
 abstract class SingleResultEmitter<SingleResult> {
   void addSr(SingleResult sr);
-}
-
-/// Extending Observer to support logging SingleResult events
-class SrBlocObserver<SR> extends BlocObserver {
-  @protected
-  @mustCallSuper
-  void onSr(Bloc bloc, SR sr) {}
 }

@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'data_response.freezed.dart';
 
 @freezed
-class DataResponse<T> with _$DataResponse {
+sealed class DataResponse<T> with _$DataResponse {
   const DataResponse._();
 
   const factory DataResponse.success(T data) = _DataResponseSuccess;
