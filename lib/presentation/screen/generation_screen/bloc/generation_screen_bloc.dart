@@ -117,7 +117,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
                 '${state.config.projectPath}/${state.config.projectName}/lib/core/arch/data/remote/clients/graph_ql')
             .delete(recursive: true);
         await Directory(
-                '${state.config.projectPath}/${state.config.projectName}lib/data/source/remote/auth')
+                '${state.config.projectPath}/${state.config.projectName}/lib/data/source/remote/auth')
             .delete(recursive: true);
       }
 
