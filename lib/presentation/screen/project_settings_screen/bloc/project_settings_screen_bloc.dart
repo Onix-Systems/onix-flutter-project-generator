@@ -17,6 +17,7 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
         _onGenerateSigningKeyChange);
     on<ProjectSettingsScreenEventSigningVarsChange>(_onSigningVarsChange);
     on<ProjectSettingsScreenEventUseSonarChange>(_onUseSonarChange);
+    on<ProjectSettingsScreenEventGraphQLChange>(_onGraphQLChange);
     on<ProjectSettingsScreenEventRouterChange>(_onRouterChange);
     on<ProjectSettingsScreenEventLocalizationChange>(_onLocalizationChange);
     on<ProjectSettingsScreenEventThemingChange>(_onThemingChange);
@@ -71,6 +72,14 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
   ) {
     emit(state.copyWith(
         config: state.config.copyWith(useSonar: !state.config.useSonar)));
+  }
+
+  FutureOr<void> _onGraphQLChange(
+    ProjectSettingsScreenEventGraphQLChange event,
+    Emitter<ProjectSettingsScreenState> emit,
+  ) {
+    emit(state.copyWith(
+        config: state.config.copyWith(graphql: !state.config.graphql)));
   }
 
   FutureOr<void> _onRouterChange(

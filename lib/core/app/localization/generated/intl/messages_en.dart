@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(projectName) => "Modify ${projectName}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
         "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
@@ -93,6 +94,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ignore": MessageLookupByLibrary.simpleMessage("Ignore"),
         "integrateDevicePreview":
             MessageLookupByLibrary.simpleMessage("Integrate Device Preview?"),
+        "integrateGraphQl":
+            MessageLookupByLibrary.simpleMessage("Integrate GraphQL?"),
         "keystorePassword":
             MessageLookupByLibrary.simpleMessage(" Keystore password"),
         "localization": MessageLookupByLibrary.simpleMessage("Localization:"),

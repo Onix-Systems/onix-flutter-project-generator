@@ -24,6 +24,7 @@ mixin _$ProjectSettingsScreenEvent {
     required TResult Function() generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -38,6 +39,7 @@ mixin _$ProjectSettingsScreenEvent {
     TResult? Function()? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -52,6 +54,7 @@ mixin _$ProjectSettingsScreenEvent {
     TResult Function()? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -73,6 +76,8 @@ mixin _$ProjectSettingsScreenEvent {
         signingVarsChange,
     required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
         useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -98,6 +103,8 @@ mixin _$ProjectSettingsScreenEvent {
         signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -122,6 +129,8 @@ mixin _$ProjectSettingsScreenEvent {
         signingVarsChange,
     TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -241,6 +250,7 @@ class _$ProjectSettingsScreenEventInit
     required TResult Function() generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -258,6 +268,7 @@ class _$ProjectSettingsScreenEventInit
     TResult? Function()? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -275,6 +286,7 @@ class _$ProjectSettingsScreenEventInit
     TResult Function()? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -302,6 +314,8 @@ class _$ProjectSettingsScreenEventInit
         signingVarsChange,
     required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
         useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -330,6 +344,8 @@ class _$ProjectSettingsScreenEventInit
         signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -357,6 +373,8 @@ class _$ProjectSettingsScreenEventInit
         signingVarsChange,
     TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -435,6 +453,7 @@ class _$ProjectSettingsScreenEventFlavorizeChange
     required TResult Function() generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -452,6 +471,7 @@ class _$ProjectSettingsScreenEventFlavorizeChange
     TResult? Function()? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -469,6 +489,7 @@ class _$ProjectSettingsScreenEventFlavorizeChange
     TResult Function()? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -496,6 +517,8 @@ class _$ProjectSettingsScreenEventFlavorizeChange
         signingVarsChange,
     required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
         useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -524,6 +547,8 @@ class _$ProjectSettingsScreenEventFlavorizeChange
         signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -551,6 +576,8 @@ class _$ProjectSettingsScreenEventFlavorizeChange
         signingVarsChange,
     TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -651,6 +678,7 @@ class _$ProjectSettingsScreenEventFlavorsChange
     required TResult Function() generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -668,6 +696,7 @@ class _$ProjectSettingsScreenEventFlavorsChange
     TResult? Function()? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -685,6 +714,7 @@ class _$ProjectSettingsScreenEventFlavorsChange
     TResult Function()? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -712,6 +742,8 @@ class _$ProjectSettingsScreenEventFlavorsChange
         signingVarsChange,
     required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
         useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -740,6 +772,8 @@ class _$ProjectSettingsScreenEventFlavorsChange
         signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -767,6 +801,8 @@ class _$ProjectSettingsScreenEventFlavorsChange
         signingVarsChange,
     TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -850,6 +886,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
     required TResult Function() generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -867,6 +904,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
     TResult? Function()? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -884,6 +922,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
     TResult Function()? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -911,6 +950,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
         signingVarsChange,
     required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
         useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -939,6 +980,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
         signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -966,6 +1009,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
         signingVarsChange,
     TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1076,6 +1121,7 @@ class _$ProjectSettingsScreenEventSigningVarsChange
     required TResult Function() generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -1093,6 +1139,7 @@ class _$ProjectSettingsScreenEventSigningVarsChange
     TResult? Function()? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -1110,6 +1157,7 @@ class _$ProjectSettingsScreenEventSigningVarsChange
     TResult Function()? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -1137,6 +1185,8 @@ class _$ProjectSettingsScreenEventSigningVarsChange
         signingVarsChange,
     required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
         useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1165,6 +1215,8 @@ class _$ProjectSettingsScreenEventSigningVarsChange
         signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1192,6 +1244,8 @@ class _$ProjectSettingsScreenEventSigningVarsChange
         signingVarsChange,
     TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1272,6 +1326,7 @@ class _$ProjectSettingsScreenEventUseSonarChange
     required TResult Function() generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -1289,6 +1344,7 @@ class _$ProjectSettingsScreenEventUseSonarChange
     TResult? Function()? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -1306,6 +1362,7 @@ class _$ProjectSettingsScreenEventUseSonarChange
     TResult Function()? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -1333,6 +1390,8 @@ class _$ProjectSettingsScreenEventUseSonarChange
         signingVarsChange,
     required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
         useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1361,6 +1420,8 @@ class _$ProjectSettingsScreenEventUseSonarChange
         signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1388,6 +1449,8 @@ class _$ProjectSettingsScreenEventUseSonarChange
         signingVarsChange,
     TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1413,40 +1476,40 @@ abstract class ProjectSettingsScreenEventUseSonarChange
 }
 
 /// @nodoc
-abstract class _$$ProjectSettingsScreenEventRouterChangeCopyWith<$Res> {
-  factory _$$ProjectSettingsScreenEventRouterChangeCopyWith(
-          _$ProjectSettingsScreenEventRouterChange value,
-          $Res Function(_$ProjectSettingsScreenEventRouterChange) then) =
-      __$$ProjectSettingsScreenEventRouterChangeCopyWithImpl<$Res>;
+abstract class _$$ProjectSettingsScreenEventGraphQLChangeCopyWith<$Res> {
+  factory _$$ProjectSettingsScreenEventGraphQLChangeCopyWith(
+          _$ProjectSettingsScreenEventGraphQLChange value,
+          $Res Function(_$ProjectSettingsScreenEventGraphQLChange) then) =
+      __$$ProjectSettingsScreenEventGraphQLChangeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProjectSettingsScreenEventRouterChangeCopyWithImpl<$Res>
+class __$$ProjectSettingsScreenEventGraphQLChangeCopyWithImpl<$Res>
     extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-        _$ProjectSettingsScreenEventRouterChange>
-    implements _$$ProjectSettingsScreenEventRouterChangeCopyWith<$Res> {
-  __$$ProjectSettingsScreenEventRouterChangeCopyWithImpl(
-      _$ProjectSettingsScreenEventRouterChange _value,
-      $Res Function(_$ProjectSettingsScreenEventRouterChange) _then)
+        _$ProjectSettingsScreenEventGraphQLChange>
+    implements _$$ProjectSettingsScreenEventGraphQLChangeCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventGraphQLChangeCopyWithImpl(
+      _$ProjectSettingsScreenEventGraphQLChange _value,
+      $Res Function(_$ProjectSettingsScreenEventGraphQLChange) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProjectSettingsScreenEventRouterChange
-    implements ProjectSettingsScreenEventRouterChange {
-  const _$ProjectSettingsScreenEventRouterChange();
+class _$ProjectSettingsScreenEventGraphQLChange
+    implements ProjectSettingsScreenEventGraphQLChange {
+  const _$ProjectSettingsScreenEventGraphQLChange();
 
   @override
   String toString() {
-    return 'ProjectSettingsScreenEvent.routerChange()';
+    return 'ProjectSettingsScreenEvent.graphQLChange()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventRouterChange);
+            other is _$ProjectSettingsScreenEventGraphQLChange);
   }
 
   @override
@@ -1461,12 +1524,13 @@ class _$ProjectSettingsScreenEventRouterChange
     required TResult Function() generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() integrateDevicePreviewChange,
   }) {
-    return routerChange();
+    return graphQLChange();
   }
 
   @override
@@ -1478,12 +1542,13 @@ class _$ProjectSettingsScreenEventRouterChange
     TResult? Function()? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? integrateDevicePreviewChange,
   }) {
-    return routerChange?.call();
+    return graphQLChange?.call();
   }
 
   @override
@@ -1495,14 +1560,15 @@ class _$ProjectSettingsScreenEventRouterChange
     TResult Function()? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
-    if (routerChange != null) {
-      return routerChange();
+    if (graphQLChange != null) {
+      return graphQLChange();
     }
     return orElse();
   }
@@ -1522,6 +1588,8 @@ class _$ProjectSettingsScreenEventRouterChange
         signingVarsChange,
     required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
         useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1533,7 +1601,7 @@ class _$ProjectSettingsScreenEventRouterChange
             ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
         integrateDevicePreviewChange,
   }) {
-    return routerChange(this);
+    return graphQLChange(this);
   }
 
   @override
@@ -1550,6 +1618,8 @@ class _$ProjectSettingsScreenEventRouterChange
         signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1560,7 +1630,7 @@ class _$ProjectSettingsScreenEventRouterChange
             ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
         integrateDevicePreviewChange,
   }) {
-    return routerChange?.call(this);
+    return graphQLChange?.call(this);
   }
 
   @override
@@ -1577,6 +1647,8 @@ class _$ProjectSettingsScreenEventRouterChange
         signingVarsChange,
     TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1588,11 +1660,209 @@ class _$ProjectSettingsScreenEventRouterChange
         integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
-    if (routerChange != null) {
-      return routerChange(this);
+    if (graphQLChange != null) {
+      return graphQLChange(this);
     }
     return orElse();
   }
+}
+
+abstract class ProjectSettingsScreenEventGraphQLChange
+    implements ProjectSettingsScreenEvent {
+  const factory ProjectSettingsScreenEventGraphQLChange() =
+      _$ProjectSettingsScreenEventGraphQLChange;
+}
+
+/// @nodoc
+abstract class _$$ProjectSettingsScreenEventRouterChangeCopyWith<$Res> {
+  factory _$$ProjectSettingsScreenEventRouterChangeCopyWith(
+          _$ProjectSettingsScreenEventRouterChange value,
+          $Res Function(_$ProjectSettingsScreenEventRouterChange) then) =
+      __$$ProjectSettingsScreenEventRouterChangeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ProjectSettingsScreenEventRouterChangeCopyWithImpl<$Res>
+extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
+_$ProjectSettingsScreenEventRouterChange>
+implements _$$ProjectSettingsScreenEventRouterChangeCopyWith<$Res> {
+__$$ProjectSettingsScreenEventRouterChangeCopyWithImpl(
+_$ProjectSettingsScreenEventRouterChange _value,
+$Res Function(_$ProjectSettingsScreenEventRouterChange) _then)
+    : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ProjectSettingsScreenEventRouterChange
+implements ProjectSettingsScreenEventRouterChange {
+const _$ProjectSettingsScreenEventRouterChange();
+
+@override
+String toString() {
+return 'ProjectSettingsScreenEvent.routerChange()';
+}
+
+@override
+bool operator ==(dynamic other) {
+return identical(this, other) ||
+(other.runtimeType == runtimeType &&
+other is _$ProjectSettingsScreenEventRouterChange);
+}
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+@optionalTypeArgs
+TResult when<TResult extends Object?>({
+required TResult Function(Config config) init,
+required TResult Function() flavorizeChange,
+required TResult Function(String flavors) flavorsChange,
+required TResult Function() generateSigningKeyChange,
+required TResult Function(List<String> signingVars) signingVarsChange,
+    required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
+    required TResult Function() routerChange,
+    required TResult Function() localizationChange,
+required TResult Function() themingChange,
+required TResult Function() integrateDevicePreviewChange,
+}) {
+return routerChange();
+}
+
+@override
+@optionalTypeArgs
+TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function()? flavorizeChange,
+    TResult? Function(String flavors)? flavorsChange,
+    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(List<String> signingVars)? signingVarsChange,
+    TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
+    TResult? Function()? routerChange,
+    TResult? Function()? localizationChange,
+    TResult? Function()? themingChange,
+    TResult? Function()? integrateDevicePreviewChange,
+  }) {
+return routerChange?.call();
+}
+
+@override
+@optionalTypeArgs
+TResult maybeWhen<TResult extends Object?>({
+TResult Function(Config config)? init,
+TResult Function()? flavorizeChange,
+TResult Function(String flavors)? flavorsChange,
+TResult Function()? generateSigningKeyChange,
+TResult Function(List<String> signingVars)? signingVarsChange,
+    TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
+    TResult Function()? routerChange,
+    TResult Function()? localizationChange,
+TResult Function()? themingChange,
+TResult Function()? integrateDevicePreviewChange,
+required TResult orElse(),
+}) {
+if (routerChange != null) {
+return routerChange();
+}
+return orElse();
+}
+
+@override
+@optionalTypeArgs
+TResult map<TResult extends Object?>({
+required TResult Function(ProjectSettingsScreenEventInit value) init,
+required TResult Function(ProjectSettingsScreenEventFlavorizeChange value)
+        flavorizeChange,
+    required TResult Function(ProjectSettingsScreenEventFlavorsChange value)
+        flavorsChange,
+    required TResult Function(
+            ProjectSettingsScreenEventGenerateSigningKeyChange value)
+        generateSigningKeyChange,
+    required TResult Function(ProjectSettingsScreenEventSigningVarsChange value)
+        signingVarsChange,
+    required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
+        useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
+    required TResult Function(ProjectSettingsScreenEventRouterChange value)
+        routerChange,
+    required TResult Function(
+            ProjectSettingsScreenEventLocalizationChange value)
+        localizationChange,
+    required TResult Function(ProjectSettingsScreenEventThemingChange value)
+        themingChange,
+    required TResult Function(
+            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
+        integrateDevicePreviewChange,
+  }) {
+return routerChange(this);
+}
+
+@override
+@optionalTypeArgs
+TResult? mapOrNull<TResult extends Object?>({
+TResult? Function(ProjectSettingsScreenEventInit value)? init,
+TResult? Function(ProjectSettingsScreenEventFlavorizeChange value)?
+flavorizeChange,
+TResult? Function(ProjectSettingsScreenEventFlavorsChange value)?
+flavorsChange,
+TResult? Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+generateSigningKeyChange,
+TResult? Function(ProjectSettingsScreenEventSigningVarsChange value)?
+signingVarsChange,
+    TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
+        useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventRouterChange value)?
+        routerChange,
+    TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
+localizationChange,
+TResult? Function(ProjectSettingsScreenEventThemingChange value)?
+themingChange,
+TResult? Function(
+ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
+integrateDevicePreviewChange,
+}) {
+return routerChange?.call(this);
+}
+
+@override
+@optionalTypeArgs
+TResult maybeMap<TResult extends Object?>({
+TResult Function(ProjectSettingsScreenEventInit value)? init,
+    TResult Function(ProjectSettingsScreenEventFlavorizeChange value)?
+        flavorizeChange,
+    TResult Function(ProjectSettingsScreenEventFlavorsChange value)?
+        flavorsChange,
+    TResult Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+        generateSigningKeyChange,
+    TResult Function(ProjectSettingsScreenEventSigningVarsChange value)?
+        signingVarsChange,
+    TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
+        useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
+    TResult Function(ProjectSettingsScreenEventRouterChange value)?
+        routerChange,
+    TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
+        localizationChange,
+    TResult Function(ProjectSettingsScreenEventThemingChange value)?
+        themingChange,
+    TResult Function(
+            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
+        integrateDevicePreviewChange,
+    required TResult orElse(),
+  }) {
+if (routerChange != null) {
+return routerChange(this);
+}
+return orElse();
+}
 }
 
 abstract class ProjectSettingsScreenEventRouterChange
@@ -1650,6 +1920,7 @@ class _$ProjectSettingsScreenEventLocalizationChange
     required TResult Function() generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -1667,6 +1938,7 @@ class _$ProjectSettingsScreenEventLocalizationChange
     TResult? Function()? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -1684,6 +1956,7 @@ class _$ProjectSettingsScreenEventLocalizationChange
     TResult Function()? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -1711,6 +1984,8 @@ class _$ProjectSettingsScreenEventLocalizationChange
         signingVarsChange,
     required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
         useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1739,6 +2014,8 @@ class _$ProjectSettingsScreenEventLocalizationChange
         signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1766,6 +2043,8 @@ class _$ProjectSettingsScreenEventLocalizationChange
         signingVarsChange,
     TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1839,6 +2118,7 @@ class _$ProjectSettingsScreenEventThemingChange
     required TResult Function() generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -1856,6 +2136,7 @@ class _$ProjectSettingsScreenEventThemingChange
     TResult? Function()? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -1873,6 +2154,7 @@ class _$ProjectSettingsScreenEventThemingChange
     TResult Function()? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -1900,6 +2182,8 @@ class _$ProjectSettingsScreenEventThemingChange
         signingVarsChange,
     required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
         useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1928,6 +2212,8 @@ class _$ProjectSettingsScreenEventThemingChange
         signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1955,6 +2241,8 @@ class _$ProjectSettingsScreenEventThemingChange
         signingVarsChange,
     TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2036,6 +2324,7 @@ class _$ProjectSettingsScreenEventIntegrateDevicePreviewChange
     required TResult Function() generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -2053,6 +2342,7 @@ class _$ProjectSettingsScreenEventIntegrateDevicePreviewChange
     TResult? Function()? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -2070,6 +2360,7 @@ class _$ProjectSettingsScreenEventIntegrateDevicePreviewChange
     TResult Function()? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -2097,6 +2388,8 @@ class _$ProjectSettingsScreenEventIntegrateDevicePreviewChange
         signingVarsChange,
     required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
         useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -2125,6 +2418,8 @@ class _$ProjectSettingsScreenEventIntegrateDevicePreviewChange
         signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2152,6 +2447,8 @@ class _$ProjectSettingsScreenEventIntegrateDevicePreviewChange
         signingVarsChange,
     TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?

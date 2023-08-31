@@ -500,6 +500,16 @@ class S {
     );
   }
 
+  /// `Integrate GraphQL?`
+  String get integrateGraphQl {
+    return Intl.message(
+      'Integrate GraphQL?',
+      name: 'integrateGraphQl',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Generate Sonar config?`
   String get generateSonarConfig {
     return Intl.message(
