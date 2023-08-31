@@ -22,6 +22,7 @@ class Config with _$Config {
     @Default('') String flavors,
     @Default(false) bool generateSigningKey,
     @Default(false) bool useSonar,
+    @Default(false) bool graphql,
     @Default(ProjectRouter.goRouter) ProjectRouter router,
     @Default(ProjectLocalization.intl) ProjectLocalization localization,
     @Default(ProjectTheming.manual) ProjectTheming theming,

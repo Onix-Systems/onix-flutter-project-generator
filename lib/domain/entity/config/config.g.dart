@@ -19,6 +19,7 @@ _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
       flavors: json['flavors'] as String? ?? '',
       generateSigningKey: json['generateSigningKey'] as bool? ?? false,
       useSonar: json['useSonar'] as bool? ?? false,
+      graphql: json['graphql'] as bool? ?? false,
       router: $enumDecodeNullable(_$ProjectRouterEnumMap, json['router']) ??
           ProjectRouter.goRouter,
       localization: $enumDecodeNullable(
@@ -64,6 +65,7 @@ Map<String, dynamic> _$$_ConfigToJson(_$_Config instance) => <String, dynamic>{
       'flavors': instance.flavors,
       'generateSigningKey': instance.generateSigningKey,
       'useSonar': instance.useSonar,
+      'graphql': instance.graphql,
       'router': _$ProjectRouterEnumMap[instance.router]!,
       'localization': _$ProjectLocalizationEnumMap[instance.localization]!,
       'theming': _$ProjectThemingEnumMap[instance.theming]!,

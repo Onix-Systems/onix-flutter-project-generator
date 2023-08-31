@@ -35,19 +35,19 @@
 
 To generate classes:
 
-`flutter packages pub run build_runner build`
+`dart run build_runner build`
 
 Use the [watch] flag to watch the files' system for edits and rebuild as necessary.
 
-`flutter packages pub run build_runner watch`
+`dart run build_runner watch`
 
 If you have conflicts use command:
 
-`flutter pub run build_runner build --delete-conflicting-outputs`
+`dart run build_runner build --delete-conflicting-outputs`
 
 Regenerate splash screen:
 
-`flutter pub run flutter_native_splash:create`
+`dart run flutter_native_splash:create`
 
 # Build
 
@@ -86,12 +86,12 @@ Regenerate splash screen:
 
 init flutter_launcher_icons
 
-`flutter pub run flutter_launcher_icons:main -f pubspec.yaml`
+`dart run flutter_launcher_icons:main -f pubspec.yaml`
 
 run flutter_launcher_icons
 
-`flutter pub run flutter_launcher_icons:main`
+`dart run flutter_launcher_icons:main`
 
 generate flutter_launcher_icons for both flavors
 
-`flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons*`
+`dart run flutter_launcher_icons:main -f flutter_launcher_icons*`
