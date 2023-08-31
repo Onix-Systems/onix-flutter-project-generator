@@ -1,5 +1,5 @@
 import 'package:{{project_name}}/core/arch/data/remote/base/base_api_client.dart';
-import 'package:{{project_name}}/core/arch/data/remote/graph_ql/graph_ql_const.dart';
+import 'package:{{project_name}}/core/arch/data/remote/clients/graph_ql/graph_ql_const.dart';
 import 'package:graphql/client.dart';
 
 class GraphQlClient implements BaseApiClient<GraphQLClient> {

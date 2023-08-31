@@ -12,21 +12,20 @@ void registerRemote(GetIt getIt) {
 
   getIt
     ..registerLazySingleton<ApiClient>(
-          () => dioClientModule.makeApiClient(DioConst.timeApiBaseUrl),
+      () => dioClientModule.makeApiClient(DioConst.timeApiBaseUrl),
       instanceName: DioConst.timeApiInstance,
-    )..registerLazySingleton<GraphQlRequestProcessor>(
-    GraphQlRequestProcessorImpl.new,
-  )
+    )
+    ..registerLazySingleton<GraphQlRequestProcessor>(
+      GraphQlRequestProcessorImpl.new,
+    )
     ..registerLazySingleton<GraphQlClient>(
       GraphQlClient.new,
-      ; //{remote end}
-  }
-
+    ); //{remote end}
+}
 
 ApiClient apiClientTime() =>
     GetIt.I.get<ApiClient>(instanceName: DioConst.timeApiInstance);
 
 GraphQlClient graphQlApiClient() => GetIt.I.get<GraphQlClient>();
-
 
 class _DioClientModule extends DioClientModule {}
