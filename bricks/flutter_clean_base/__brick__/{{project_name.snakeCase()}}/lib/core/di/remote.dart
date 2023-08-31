@@ -11,6 +11,9 @@ void registerRemote(GetIt getIt) {
   final dioClientModule = _DioClientModule();
 
   getIt
+    ..registerLazySingleton<DioRequestProcessor>(
+      dioClientModule.makeDioErrorHandler,
+    )
     ..registerLazySingleton<ApiClient>(
       () => dioClientModule.makeApiClient(DioConst.timeApiBaseUrl),
       instanceName: DioConst.timeApiInstance,
