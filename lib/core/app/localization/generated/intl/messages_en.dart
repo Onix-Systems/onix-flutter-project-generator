@@ -93,6 +93,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ignore": MessageLookupByLibrary.simpleMessage("Ignore"),
         "integrateDevicePreview":
             MessageLookupByLibrary.simpleMessage("Integrate Device Preview?"),
+        "integrateGraphQl":
+            MessageLookupByLibrary.simpleMessage("Integrate GraphQL?"),
         "keystorePassword":
             MessageLookupByLibrary.simpleMessage(" Keystore password"),
         "localization": MessageLookupByLibrary.simpleMessage("Localization:"),

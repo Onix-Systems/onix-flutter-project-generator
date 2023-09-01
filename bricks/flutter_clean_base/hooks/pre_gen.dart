@@ -9,6 +9,8 @@ void run(HookContext context) async {
 
   'Creating flutter project...'.log();
 
+  'Integrate GraphQL: ${context.vars['graphql']}'.error();
+
   String name = context.vars['project_name_dirt'].toString().toSnakeCase;
   String org = context.vars['project_org'];
 

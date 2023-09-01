@@ -31,6 +31,8 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
     ProjectSettingsScreenBloc, ProjectSettingsScreenSR, ProjectSettingsScreen> {
   final TextEditingController _flavorsController = TextEditingController();
 
+  final double _height = 350;
+
   @override
   Widget buildWidget(BuildContext context) {
     return srObserver(
@@ -74,7 +76,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
               children: [
                 Expanded(
                   child: Container(
-                    height: 300,
+                    height: _height,
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       border: Border.all(color: AppColors.orange),
@@ -149,6 +151,13 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                           valueSetter: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventUseSonarChange()),
                         ),
+                        const SizedBox(height: 20),
+                        SwitchWithLabel(
+                          label: S.of(context).integrateGraphQl,
+                          initialValue: state.config.graphql,
+                          valueSetter: (_) => blocOf(context).add(
+                              const ProjectSettingsScreenEventGraphQLChange()),
+                        ),
                       ],
                     ),
                   ),
@@ -156,7 +165,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                 const SizedBox(width: 20),
                 Expanded(
                   child: Container(
-                    height: 300,
+                    height: _height,
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       border: Border.all(color: CupertinoColors.systemOrange),
@@ -220,6 +229,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                           flavors: state.config.flavors,
                           generateSigningKey: state.config.generateSigningKey,
                           useSonar: state.config.useSonar,
+                          graphql: state.config.graphql,
                           router: state.config.router,
                           localization: state.config.localization,
                           theming: state.config.theming,
@@ -239,6 +249,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                       flavors: state.config.flavors,
                       generateSigningKey: state.config.generateSigningKey,
                       useSonar: state.config.useSonar,
+                      graphql: state.config.graphql,
                       router: state.config.router,
                       localization: state.config.localization,
                       theming: state.config.theming,

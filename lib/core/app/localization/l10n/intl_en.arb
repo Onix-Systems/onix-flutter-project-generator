@@ -45,6 +45,7 @@
   "localization": "Localization:",
   "router": "Router:",
   "useSonar": "Will you use Sonar?",
+  "integrateGraphQl": "Integrate GraphQL?",
   "generateSonarConfig": "Generate Sonar config?",
   "modifySigningVars": "Modify signing vars...",
   "dialogWillOpenInSeparateWindow": "(Dialog will open in separate window)",

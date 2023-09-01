@@ -26,6 +26,9 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEvent.useSonarChange() =
       ProjectSettingsScreenEventUseSonarChange;
 
+  const factory ProjectSettingsScreenEvent.graphQLChange() =
+      ProjectSettingsScreenEventGraphQLChange;
+
   const factory ProjectSettingsScreenEvent.routerChange() =
       ProjectSettingsScreenEventRouterChange;
 

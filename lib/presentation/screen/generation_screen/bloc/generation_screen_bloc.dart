@@ -89,6 +89,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         'localization': state.config.localization.name,
         'use_keytool': state.config.generateSigningKey,
         'use_sonar': state.config.useSonar,
+        'graphql': state.config.graphql,
         'device_preview': state.config.integrateDevicePreview,
         'platforms': state.config.platformsList.toString().replaceAll(' ', ''),
         'theme_generate': state.config.theming.name == 'theme_tailor',
@@ -110,6 +111,15 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       await mainProcess.exitCode;
       configFile.delete();
+
+      if (!state.config.graphql) {
+        await Directory(
+                '${state.config.projectPath}/${state.config.projectName}/lib/core/arch/data/remote/clients/graph_ql')
+            .delete(recursive: true);
+        await Directory(
+                '${state.config.projectPath}/${state.config.projectName}/lib/data/source/remote/auth')
+            .delete(recursive: true);
+      }
 
       if (state.config.generateSigningKey) {
         outputService.add('{info}Keystore password: $genPass');
@@ -292,8 +302,7 @@ if (propFile.canRead()) {
 
       mainProcess.stdin.writeln(AppConsts.buildCmd);
 
-      mainProcess.stdin
-          .writeln('flutter pub run import_sorter:main --no-comments');
+      mainProcess.stdin.writeln('dart run import_sorter:main --no-comments');
 
       mainProcess.stdin.writeln('dart format .');
 

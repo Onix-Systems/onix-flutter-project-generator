@@ -64,7 +64,6 @@ class QaUtils {
                 if (ip != null && port != null) {
                   logger.d('value: $ip, port: $port');
 
-                  apiClientJsonPlaceholder().attachCharlesProxy(ip, port);
                   Navigator.of(context, rootNavigator: true).pop(context);
                   CustomToast.showToast('DONE on $ip:$port');
                 }

@@ -171,7 +171,8 @@ Future<void> getDependencies(HookContext context) async {
     'flutter_native_splash',
     'collection',
     'flutter_dotenv',
-    'flutter_jailbreak_detection'
+    'flutter_jailbreak_detection',
+    'graphql',
   ];
 
   if (!context.vars['web_only']) {
@@ -360,7 +361,7 @@ $flavor:
 \t@echo "Building for $flavor"
 \t@echo "Copying ${flavor}_assets to \$(ASSETS_DIR)"
 \t@cp -r \$(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
-\tflutter pub run flutter_native_splash:create
+\tdart run flutter_native_splash:create
 ''');
 
       await Process.run('mv', ['main_$flavor.gen.dart', 'main_$flavor.dart'],

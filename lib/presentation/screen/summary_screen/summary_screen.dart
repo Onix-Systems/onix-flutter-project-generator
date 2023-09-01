@@ -115,6 +115,10 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       value: state.config.useSonar.toString(),
                     ),
                     SummaryCell(
+                      variable: S.of(context).integrateGraphQl,
+                      value: state.config.graphql.toString(),
+                    ),
+                    SummaryCell(
                       variable: S.of(context).navigationRouter,
                       value: state.config.router.name,
                     ),
