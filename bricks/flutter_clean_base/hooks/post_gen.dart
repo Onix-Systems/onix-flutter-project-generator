@@ -438,10 +438,10 @@ flutter_additional_ios_build_settings(target)
         .toList()
         .toRawString);
 
-    var podInstallProcess =
-        await Process.start('pod', ['install'], workingDirectory: '$name/ios');
-    podInstallProcess.log();
-    await podInstallProcess.exitCode;
+    // var podInstallProcess =
+    //     await Process.start('pod', ['install'], workingDirectory: '$name/ios');
+    // podInstallProcess.log();
+    // await podInstallProcess.exitCode;
   }
 }
 
