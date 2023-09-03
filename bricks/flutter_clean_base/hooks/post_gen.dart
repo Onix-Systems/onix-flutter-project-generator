@@ -460,36 +460,37 @@ Future<void> secure(HookContext context) async {
 .env
 ''');
 
-  File androidGitIgnoreFile = File('$name/android/.gitignore');
+  if (context.vars['platforms'].contains('android')) {
+    File androidGitIgnoreFile = File('$name/android/.gitignore');
 
-  String androidGitIgnoreContent = await androidGitIgnoreFile.readAsString();
+    String androidGitIgnoreContent = await androidGitIgnoreFile.readAsString();
 
-  androidGitIgnoreFile.writeAsStringSync(androidGitIgnoreContent +
-      '''
+    androidGitIgnoreFile.writeAsStringSync(androidGitIgnoreContent +
+        '''
       
 /app/signing/signing.properties
       ''');
 
-  File androidBuildGradleFile = File('$name/android/app/build.gradle');
+    File androidBuildGradleFile = File('$name/android/app/build.gradle');
 
-  String androidBuildGradleContent =
-      await androidBuildGradleFile.readAsString();
+    String androidBuildGradleContent =
+        await androidBuildGradleFile.readAsString();
 
-  androidBuildGradleFile
-      .writeAsStringSync(androidBuildGradleContent.replaceFirst('android {', '''
+    androidBuildGradleFile.writeAsStringSync(
+        androidBuildGradleContent.replaceFirst('android {', '''
 
 \/\/ if need to use google maps - add google.maps_api_key=SECRET_KEY to local.properties
 \/\/def googleMapsApiKey = localProperties.getProperty('google.maps_api_key')
       
 android {'''));
 
-  File androidManifestFile =
-      File('$name/android/app/src/main/AndroidManifest.xml');
+    File androidManifestFile =
+        File('$name/android/app/src/main/AndroidManifest.xml');
 
-  String androidManifestContent = await androidManifestFile.readAsString();
+    String androidManifestContent = await androidManifestFile.readAsString();
 
-  androidManifestFile.writeAsStringSync(
-      androidManifestContent.replaceFirst('</application>', '''
+    androidManifestFile.writeAsStringSync(
+        androidManifestContent.replaceFirst('</application>', '''
       
       \<!-- If need too use google maps - uncoment
        <meta-data
@@ -497,6 +498,7 @@ android {'''));
             android:value="\${googleMapsApiKey}" />-->
 
       </application>'''));
+  }
 }
 
 void exitBrick() async {
