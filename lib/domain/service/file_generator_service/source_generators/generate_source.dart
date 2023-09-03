@@ -162,8 +162,8 @@ abstract class ${source.name.pascalCase}Source {
     await repositoryFile.writeAsString(fileContent);
 
     fileContent =
-        '''import 'package:$projectName/core/arch/data/remote/api_client.dart';
-import 'package:$projectName/core/arch/data/remote/dio_request_processor/dio_request_processor.dart';
+        '''import 'package:$projectName/core/arch/data/remote/clients/dio/api_client.dart';
+import 'package:$projectName/core/arch/data/remote/clients.dio/dio_request_processor/dio_request_processor.dart';
 import 'package:$projectName/core/arch/domain/entity/common/data_response.dart';
 import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';
 import 'package:$projectName/data/source/remote/${source.name.snakeCase}/${source.name.snakeCase}_source.dart';
@@ -686,7 +686,7 @@ try {
         File('$projectPath/$projectName/lib/core/di/repository.dart');
 
     var dioConstFile = File(
-        '$projectPath/$projectName/lib/core/arch/data/remote/dio_const.dart');
+        '$projectPath/$projectName/lib/core/arch/data/remote/clients/dio/dio_const.dart');
 
     var getItSourceFileContent = await getItSourceFile.readAsString();
 
