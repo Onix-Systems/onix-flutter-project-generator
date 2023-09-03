@@ -163,7 +163,7 @@ abstract class ${source.name.pascalCase}Source {
 
     fileContent =
         '''import 'package:$projectName/core/arch/data/remote/clients/dio/api_client.dart';
-import 'package:$projectName/core/arch/data/remote/clients.dio/dio_request_processor/dio_request_processor.dart';
+import 'package:$projectName/core/arch/data/remote/clients/dio/dio_request_processor/dio_request_processor.dart';
 import 'package:$projectName/core/arch/domain/entity/common/data_response.dart';
 import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';
 import 'package:$projectName/data/source/remote/${source.name.snakeCase}/${source.name.snakeCase}_source.dart';
