@@ -1,27 +1,15 @@
 import 'package:get_it/get_it.dart';
-import 'package:onix_flutter_bricks/data/repository/time_repository_impl.dart';
-import 'package:onix_flutter_bricks/data/repository/token_repository_impl.dart';
-import 'package:onix_flutter_bricks/data/source/local/secure_storage/secure_storage_source.dart';
-import 'package:onix_flutter_bricks/data/source/remote/time/time_source.dart';
-import 'package:onix_flutter_bricks/domain/repository/data_component_repository/data_component_repository.dart';
-import 'package:onix_flutter_bricks/domain/repository/data_component_repository/data_component_repository_impl.dart';
-import 'package:onix_flutter_bricks/domain/repository/screen_repository/screen_repository.dart';
-import 'package:onix_flutter_bricks/domain/repository/screen_repository/screen_repository_impl.dart';
-import 'package:onix_flutter_bricks/domain/repository/source_repository/source_repository.dart';
-import 'package:onix_flutter_bricks/domain/repository/source_repository/source_repository_impl.dart';
-import 'package:onix_flutter_bricks/domain/repository/time_repository.dart';
-import 'package:onix_flutter_bricks/domain/repository/token_repository.dart';
+import 'package:onix_flutter_bricks/domain/repository/data_component_repository.dart';
+import 'package:onix_flutter_bricks/data/repository/data_component_repository_impl.dart';
+import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
+import 'package:onix_flutter_bricks/data/repository/screen_repository_impl.dart';
+import 'package:onix_flutter_bricks/domain/repository/source_repository.dart';
+import 'package:onix_flutter_bricks/data/repository/source_repository_impl.dart';
 
 //{imports end}
 
 void registerRepositories(GetIt getIt) {
   getIt
-    ..registerSingleton<TimeRepository>(
-      TimeRepositoryImpl(getIt<TimeSource>()),
-    )
-    ..registerSingleton<TokenRepository>(
-      TokenRepositoryImpl(getIt<SecureStorageSource>()),
-    )
     ..registerSingleton<ScreenRepository>(
       ScreenRepositoryImpl(),
     )
@@ -32,8 +20,6 @@ void registerRepositories(GetIt getIt) {
       SourceRepositoryImpl(),
     ); //{repositories end}
 }
-
-TokenRepository get tokenRepository => GetIt.I.get<TokenRepository>();
 
 ScreenRepository get screenRepository => GetIt.I.get<ScreenRepository>();
 

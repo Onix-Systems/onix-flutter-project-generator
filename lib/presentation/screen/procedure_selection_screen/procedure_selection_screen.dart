@@ -15,8 +15,10 @@ import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 class ProcedureSelectionScreen extends StatefulWidget {
   final Config config;
 
-  const ProcedureSelectionScreen({required this.config, Key? key})
-      : super(key: key);
+  const ProcedureSelectionScreen({
+    required this.config,
+    super.key,
+  });
 
   @override
   State<ProcedureSelectionScreen> createState() =>

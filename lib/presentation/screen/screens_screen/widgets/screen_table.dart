@@ -17,8 +17,8 @@ class ScreenTable extends StatelessWidget {
     required this.screens,
     required this.onModifyScreen,
     required this.onDeleteScreen,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

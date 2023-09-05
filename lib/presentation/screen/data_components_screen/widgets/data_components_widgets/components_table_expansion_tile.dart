@@ -11,10 +11,12 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 
 class EntityTableExpansionTile extends StatefulWidget {
-  const EntityTableExpansionTile({required this.dataComponents, Key? key})
-      : super(key: key);
-
   final List<DataComponent> dataComponents;
+
+  const EntityTableExpansionTile({
+    required this.dataComponents,
+    super.key,
+  });
 
   @override
   State<EntityTableExpansionTile> createState() =>

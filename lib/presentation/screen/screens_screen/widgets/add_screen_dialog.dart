@@ -9,7 +9,10 @@ import 'package:recase/recase.dart';
 class AddScreenDialog extends StatefulWidget {
   final Screen? screen;
 
-  const AddScreenDialog({Key? key, this.screen}) : super(key: key);
+  const AddScreenDialog({
+    this.screen,
+    super.key,
+  });
 
   @override
   State<AddScreenDialog> createState() => _AddScreenDialogState();

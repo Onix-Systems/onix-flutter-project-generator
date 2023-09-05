@@ -6,10 +6,13 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 import 'package:recase/recase.dart';
 
 class AddSourceDialog extends StatelessWidget {
-  AddSourceDialog({Key? key, this.source}) : super(key: key);
-
   final TextEditingController _sourceNameController = TextEditingController();
   final Source? source;
+
+  AddSourceDialog({
+    this.source,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

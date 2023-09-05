@@ -7,7 +7,11 @@ class SummaryCell extends StatelessWidget {
   final String variable;
   final String value;
 
-  const SummaryCell({required this.variable, required this.value, super.key});
+  const SummaryCell({
+    required this.variable,
+    required this.value,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

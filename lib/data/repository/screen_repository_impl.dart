@@ -1,5 +1,5 @@
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
-import 'package:onix_flutter_bricks/domain/repository/screen_repository/screen_repository.dart';
+import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:recase/recase.dart';
 
 class ScreenRepositoryImpl implements ScreenRepository {

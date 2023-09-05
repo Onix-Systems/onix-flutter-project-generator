@@ -12,11 +12,14 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 import 'package:recase/recase.dart';
 
 class ComponentsTable extends StatelessWidget {
-  const ComponentsTable({required this.dataComponents, this.source, Key? key})
-      : super(key: key);
-
   final Set<DataComponent> dataComponents;
   final Source? source;
+
+  const ComponentsTable({
+    required this.dataComponents,
+    this.source,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

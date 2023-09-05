@@ -3,20 +3,20 @@ import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class LabeledCheckbox extends StatelessWidget {
+  final String label;
+  final bool initialValue;
+  final VoidCallback onAction;
+  final bool disabled;
+  final bool focused;
+
   const LabeledCheckbox({
     required this.label,
     required this.onAction,
     this.initialValue = false,
     this.disabled = false,
     this.focused = false,
-    Key? key,
-  }) : super(key: key);
-
-  final String label;
-  final bool initialValue;
-  final VoidCallback onAction;
-  final bool disabled;
-  final bool focused;
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -16,16 +16,16 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 import 'package:recase/recase.dart';
 
 class SourceExpansionTile extends StatefulWidget {
+  final Source source;
+  final bool isFirst;
+  final bool isLast;
+
   const SourceExpansionTile({
     required this.source,
     required this.isFirst,
     required this.isLast,
-    Key? key,
-  }) : super(key: key);
-
-  final Source source;
-  final bool isFirst;
-  final bool isLast;
+    super.key,
+  });
 
   @override
   State<SourceExpansionTile> createState() => _SourceExpansionTileState();
