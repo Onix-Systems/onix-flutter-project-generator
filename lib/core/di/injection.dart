@@ -7,7 +7,6 @@ import 'package:onix_flutter_bricks/core/di/remote.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/services.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
-import 'package:onix_flutter_bricks/core/di/usecase.dart';
 
 void initializeDi(GetIt getIt) {
   registerLocal(getIt);
@@ -16,6 +15,5 @@ void initializeDi(GetIt getIt) {
   registerSources(getIt);
   registerRepositories(getIt);
   registerApp(getIt);
-  registerUseCases(getIt);
   registerBloc(getIt);
 }

@@ -7,7 +7,7 @@ import 'package:onix_flutter_bricks/domain/entity/source/method_parameter.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/method_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/path.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
-import 'package:onix_flutter_bricks/domain/repository/source_repository/source_repository.dart';
+import 'package:onix_flutter_bricks/domain/repository/source_repository.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';

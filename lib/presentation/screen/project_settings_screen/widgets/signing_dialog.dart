@@ -7,7 +7,10 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 class SigningDialog extends StatelessWidget {
   final ProjectSettingsScreenState state;
 
-  SigningDialog({required this.state, Key? key}) : super(key: key);
+  SigningDialog({
+    required this.state,
+    super.key,
+  });
 
   final _nameController = TextEditingController();
   final _orgUnitController = TextEditingController();

@@ -7,8 +7,10 @@ import 'package:recase/recase.dart';
 import '../../core/di/app.dart';
 
 class SwaggerParser {
-  static void parse(
-      {required Map<String, dynamic> data, required String projectName}) {
+  static void parse({
+    required Map<String, dynamic> data,
+    required String projectName,
+  }) {
     dataComponentRepository.parse(data);
 
     sourceRepository.parse(data);

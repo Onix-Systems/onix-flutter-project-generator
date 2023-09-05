@@ -11,10 +11,12 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 
 class SourceTableExpansionTile extends StatefulWidget {
-  const SourceTableExpansionTile({required this.sources, Key? key})
-      : super(key: key);
-
   final List<Source> sources;
+
+  const SourceTableExpansionTile({
+    required this.sources,
+    super.key,
+  });
 
   @override
   State<SourceTableExpansionTile> createState() =>

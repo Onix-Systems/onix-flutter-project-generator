@@ -4,8 +4,16 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
 class TextFieldWithLabel extends StatelessWidget {
+  final String label;
+  final String? subLabel;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool centered;
+  final VoidCallback onChanged;
+  final bool error;
+  final bool expanded;
+  final TextEditingController textController;
+
   const TextFieldWithLabel({
-    Key? key,
     required this.label,
     required this.textController,
     this.inputFormatters,
@@ -14,19 +22,10 @@ class TextFieldWithLabel extends StatelessWidget {
     this.subLabel,
     this.expanded = false,
     required this.onChanged,
-  }) : super(key: key);
+    super.key,
+  });
 
-  final String label;
-  final String? subLabel;
-  final List<TextInputFormatter>? inputFormatters;
-  final bool centered;
-  final VoidCallback onChanged;
 
-  final bool error;
-
-  final bool expanded;
-
-  final TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {

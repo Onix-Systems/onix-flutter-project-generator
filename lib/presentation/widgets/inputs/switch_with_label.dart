@@ -3,19 +3,18 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
 class SwitchWithLabel extends StatelessWidget {
-  const SwitchWithLabel(
-      {Key? key,
-      required this.label,
-      this.subLabel,
-      required this.valueSetter,
-      required this.initialValue})
-      : super(key: key);
-
   final String label;
   final String? subLabel;
   final bool initialValue;
-
   final ValueSetter<bool> valueSetter;
+
+  const SwitchWithLabel({
+    required this.label,
+    this.subLabel,
+    required this.valueSetter,
+    required this.initialValue,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

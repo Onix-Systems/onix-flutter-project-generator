@@ -11,8 +11,11 @@ class AddComponentDialog extends StatefulWidget {
   final DataComponent? dataComponent;
   final Source? source;
 
-  const AddComponentDialog({Key? key, this.dataComponent, this.source})
-      : super(key: key);
+  const AddComponentDialog({
+    this.dataComponent,
+    this.source,
+    super.key,
+  });
 
   @override
   State<AddComponentDialog> createState() => _AddComponentDialogState();

@@ -3,36 +3,18 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
 class LabeledSegmentedControl extends StatelessWidget {
-  const LabeledSegmentedControl(
-      {Key? key,
-      required this.label,
-      required this.values,
-      required this.onChange,
-      required this.selectedValue})
-      : super(key: key);
-
   final String label;
   final List<String> values;
   final ValueSetter<String> onChange;
-
   final String selectedValue;
 
-  Map<String, Widget> mapValues(BuildContext context) {
-    Map<String, Widget> result = {};
-    for (String value in values) {
-      result.addAll({
-        value: Text(
-          value,
-          style: context.appTextStyles.fs18?.copyWith(
-            color: selectedValue == value
-                ? CupertinoColors.black
-                : AppColors.inactiveText,
-          ),
-        )
-      });
-    }
-    return result;
-  }
+  const LabeledSegmentedControl({
+    required this.label,
+    required this.values,
+    required this.onChange,
+    required this.selectedValue,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +36,7 @@ class LabeledSegmentedControl extends StatelessWidget {
               selectedColor: AppColors.green,
               unselectedColor: AppColors.bgDark,
               borderColor: AppColors.white,
-              children: mapValues(context),
+              children: _mapValues(context),
               onValueChanged: (value) {
                 onChange.call(selectedValue);
               },
@@ -63,5 +45,22 @@ class LabeledSegmentedControl extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Map<String, Widget> _mapValues(BuildContext context) {
+    Map<String, Widget> result = {};
+    for (String value in values) {
+      result.addAll({
+        value: Text(
+          value,
+          style: context.appTextStyles.fs18?.copyWith(
+            color: selectedValue == value
+                ? CupertinoColors.black
+                : AppColors.inactiveText,
+          ),
+        )
+      });
+    }
+    return result;
   }
 }

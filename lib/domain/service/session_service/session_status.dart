@@ -1,1 +1,0 @@
-enum SessionStatus { open, closed }

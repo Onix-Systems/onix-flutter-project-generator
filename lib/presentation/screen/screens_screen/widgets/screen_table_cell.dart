@@ -9,8 +9,8 @@ class Cell extends StatelessWidget {
     required this.value,
     this.decorated = false,
     this.alignment = Alignment.center,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

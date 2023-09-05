@@ -8,7 +8,6 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'package:onix_flutter_bricks/core/arch/data/remote/base/base_api_client.dart';
-import 'package:onix_flutter_bricks/core/arch/data/remote/interceptor/basic_app_auth_interceptor.dart';
 import 'package:onix_flutter_bricks/core/arch/data/remote/interceptor/cache_interceptor.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 
@@ -18,13 +17,11 @@ class ApiClient implements BaseApiClient {
 
   ApiClient({required BaseOptions options}) {
     client = Dio(options);
-    customInterceptor = BasicAppAuthInterceptor();
     cacheInterceptor = CacheInterceptor(client);
     client.transformer = BackgroundTransformer();
     attachLoggerInterceptor();
   }
 
-  late BasicAppAuthInterceptor customInterceptor;
   late CacheInterceptor cacheInterceptor;
 
   CacheOptions? get cacheOptions => cacheInterceptor.cacheOptions;
@@ -50,14 +47,11 @@ class ApiClient implements BaseApiClient {
 
   @override
   void attachInterceptors() {
-    client.interceptors.remove(customInterceptor);
-    client.interceptors.add(customInterceptor);
     _attachCacheInterceptor();
   }
 
   @override
   void deAttachInterceptors() {
-    client.interceptors.remove(customInterceptor);
     clearCache();
   }
 
