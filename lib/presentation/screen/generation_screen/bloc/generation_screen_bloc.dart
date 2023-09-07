@@ -22,8 +22,6 @@ import 'package:onix_flutter_bricks/util/process_starter.dart';
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenState, GenerationScreenSR> {
-  static const String gitRef = '--git-ref ${AppConsts.gitBranch}';
-
   GenerationScreenBloc()
       : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
@@ -110,12 +108,10 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       mainProcess.stdin.writeln('dart pub global activate mason_cli');
       mainProcess.stdin.writeln('mason cache clear');
 
-      final command =
-          'mason add -g flutter_clean_base --git-url ${AppConsts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}';
+      const gitRef = '--git-ref ${AppConsts.gitBranch}';
 
-      outputService.add('{#info}Running command: $command');
-
-      mainProcess.stdin.writeln(command);
+      mainProcess.stdin.writeln(
+          'mason add -g flutter_clean_base --git-url ${AppConsts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
@@ -144,6 +140,15 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     await _generateScreens();
 
     await _generateDataComponents();
+
+    var gitProcess =
+        await ProcessStarter.start(workingDirectory: state.config.projectPath);
+
+    gitProcess.stdin.writeln('git add --all');
+
+    gitProcess.stdin.writeln('git commit -m "Initial"');
+
+    await gitProcess.exitCode;
 
     emit(state.copyWith(
       generatingState: GeneratingState.waiting,
