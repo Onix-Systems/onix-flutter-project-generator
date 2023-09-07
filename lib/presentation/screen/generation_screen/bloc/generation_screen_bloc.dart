@@ -141,21 +141,24 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     await _generateDataComponents();
 
-    var gitProcess =
-        await ProcessStarter.start(workingDirectory: state.config.projectPath);
+    await state.config.saveConfig(
+        projectPath: '${state.config.projectPath}/${state.config.projectName}');
+
+    var gitProcess = await ProcessStarter.start(
+        workingDirectory:
+            '${state.config.projectPath}/${state.config.projectName}');
 
     gitProcess.stdin.writeln('git add --all');
 
     gitProcess.stdin.writeln('git commit -m "Initial"');
+
+    gitProcess.stdin.writeln('echo "Complete with exit code: 0"');
 
     await gitProcess.exitCode;
 
     emit(state.copyWith(
       generatingState: GeneratingState.waiting,
     ));
-
-    await state.config.saveConfig(
-        projectPath: '${state.config.projectPath}/${state.config.projectName}');
   }
 
   Future<void> _generateScreens() async {
