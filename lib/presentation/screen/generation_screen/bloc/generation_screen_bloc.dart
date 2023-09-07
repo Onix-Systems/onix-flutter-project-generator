@@ -9,9 +9,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/services.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
 
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/extension/logging_extension.dart';
+
+// https://petstore.swagger.io/v2/swagger.json
+// https://vocadb.net/swagger/v1/swagger.json
+// https://onix-systems-savii-api-mvp.staging.onix.ua/api-doc/savii-public
+// https://gist.githubusercontent.com/cozvtieg9/71b8c0be1a3d0b27ee390c726c2c5cbe/raw/6449c5fb25a4d161c357a396e3430f3b655ad1e2/.json
+// https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenState, GenerationScreenSR> {
@@ -122,68 +129,12 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       }
 
       if (state.config.generateSigningKey) {
-        outputService.add('{info}Keystore password: $genPass');
-
-        var signingProcess = await startProcess(
-            workingDirectory:
-                '${state.config.projectPath}/${state.config.projectName}/android/app/signing');
-
-        signingProcess.stdin.writeln(
-            'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass $genPass -storepass $genPass -dname "CN=${state.config.signingVars[0]}, OU=${state.config.signingVars[1]}, O=${state.config.signingVars[2]}, L=${state.config.signingVars[3]}, S=${state.config.signingVars[4]}, C=${state.config.signingVars[5]}"');
-
-        await signingProcess.exitCode;
-
-        File signingFile = File(
-            '${state.config.projectPath}/${state.config.projectName}/android/app/signing/signing.properties');
-        String signingFileContent = await signingFile.readAsString();
-
-        await signingFile.writeAsString(
-            signingFileContent.replaceAll('{signing_password}', genPass));
-
-        File buildGradle = File(
-            '${state.config.projectPath}/${state.config.projectName}/android/app/build.gradle');
-        String buildGradleContent = await buildGradle.readAsString();
-        buildGradleContent += '''
-
-Properties props = new Properties()
-def propFile = file('./signing/signing.properties')
-if (propFile.canRead()) {
-    props.load(new FileInputStream(propFile))
-
-    if (props != null && props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
-            props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
-        android.signingConfigs.signed.storeFile = file(props['STORE_FILE'])
-        android.signingConfigs.signed.storePassword = props['STORE_PASSWORD']
-        android.signingConfigs.signed.keyAlias = props['KEY_ALIAS']
-        android.signingConfigs.signed.keyPassword = props['KEY_PASSWORD']
-    } else {
-        android.buildTypes.release.signingConfig = null
-    }
-} else {
-    android.buildTypes.release.signingConfig = null
-}''';
-
-        await buildGradle.writeAsString(buildGradleContent.replaceAll(
-          '''buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
-        }
-    }''',
-          '''signingConfigs {
-        signed
-    }
-
-    buildTypes {
-        debug {
-            signingConfig signingConfigs.signed
-        }
-        release {
-            signingConfig signingConfigs.signed
-        }
-    }''',
-        ));
+        await FileGeneratorService().generateSigning(
+          projectPath: state.config.projectPath,
+          projectName: state.config.projectName,
+          signingVars: state.config.signingVars,
+          genPass: genPass,
+        );
       }
     }
 

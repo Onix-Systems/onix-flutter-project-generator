@@ -7,6 +7,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_c
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/generate_request.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/generate_response.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/generate_screen.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/generate_signing.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/generate_source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
 
@@ -77,5 +78,19 @@ class FileGeneratorService {
         dataComponent: dataComponent,
       );
     }
+  }
+
+  Future<void> generateSigning({
+    required String projectPath,
+    required String projectName,
+    required String genPass,
+    required List<String> signingVars,
+  }) async {
+    GenerateSigning().call(
+      projectPath: projectPath,
+      projectName: projectName,
+      genPass: genPass,
+      signingVars: signingVars,
+    );
   }
 }
