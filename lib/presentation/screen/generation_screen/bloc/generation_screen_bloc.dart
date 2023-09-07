@@ -12,7 +12,7 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
 
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
-import 'package:onix_flutter_bricks/util/extension/logging_extension.dart';
+import 'package:onix_flutter_bricks/util/process_starter.dart';
 
 // https://petstore.swagger.io/v2/swagger.json
 // https://vocadb.net/swagger/v1/swagger.json
@@ -104,8 +104,11 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       outputService.add('{#info}Getting mason & brick...');
 
-      var mainProcess = await startProcess(
-          workingDirectory: state.config.projectPath, activateMason: true);
+      var mainProcess = await ProcessStarter.start(
+          workingDirectory: state.config.projectPath);
+
+      mainProcess.stdin.writeln('dart pub global activate mason_cli');
+      mainProcess.stdin.writeln('mason cache clear');
 
       final command =
           'mason add -g flutter_clean_base --git-url ${AppConsts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}';
@@ -167,7 +170,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         screenRepository.modifyScreen(screen, screen.name);
 
         if (screen == state.config.screens.last) {
-          var mainProcess = await startProcess(
+          var mainProcess = await ProcessStarter.start(
               workingDirectory:
                   '${state.config.projectPath}/${state.config.projectName}');
 
@@ -247,7 +250,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       }
       outputService.add('{#info}Generating entities!');
 
-      var mainProcess = await startProcess(
+      var mainProcess = await ProcessStarter.start(
           workingDirectory:
               '${state.config.projectPath}/${state.config.projectName}');
 
@@ -282,31 +285,12 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
   FutureOr<void> _openProject(GenerationScreenEventOpenProject event,
       Emitter<GenerationScreenState> emit) async {
-    var mainProcess = await startProcess(
+    var mainProcess = await ProcessStarter.start(
         workingDirectory:
             '${state.config.projectPath}/${state.config.projectName}');
 
     mainProcess.stdin.writeln('open -a \'Android Studio.app\' .');
 
     await mainProcess.exitCode;
-  }
-
-  Future<Process> startProcess(
-      {required String workingDirectory,
-      bool activateMason = false,
-      bool exitOnSucceeded = false}) async {
-    var mainProcess =
-        await Process.start('zsh', [], workingDirectory: workingDirectory);
-
-    mainProcess.log(exitOnSucceeded: exitOnSucceeded);
-    mainProcess.stdin.writeln('source \$HOME/.zshrc');
-    mainProcess.stdin.writeln('source \$HOME/.bash_profile');
-
-    if (activateMason) {
-      mainProcess.stdin.writeln('dart pub global activate mason_cli');
-      mainProcess.stdin.writeln('mason cache clear');
-    }
-
-    return mainProcess;
   }
 }
