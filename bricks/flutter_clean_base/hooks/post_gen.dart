@@ -129,6 +129,8 @@ void run(HookContext context) async {
   int gitCode = await gitInitProcess.exitCode;
 
   await secure(context);
+
+  'Complete with exit code: $exitCode!'.log();
 }
 
 Future<void> getDependencies(HookContext context) async {
