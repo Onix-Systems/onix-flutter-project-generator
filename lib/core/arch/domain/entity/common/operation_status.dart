@@ -1,4 +1,0 @@
-enum OperationStatus {
-  success,
-  failed,
-}

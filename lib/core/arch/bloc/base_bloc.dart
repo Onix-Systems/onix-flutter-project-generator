@@ -1,28 +1,16 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:onix_flutter_bricks/core/arch/bloc/sr_mixin.dart';
-import 'package:onix_flutter_bricks/core/arch/data/remote/base/map_common_server_error.dart';
-import 'package:onix_flutter_bricks/core/arch/domain/entity/common/data_response.dart';
-import 'package:onix_flutter_bricks/core/arch/domain/entity/failure/failure.dart';
 
 abstract class BaseBloc<Event, State, SR> extends Bloc<Event, State>
     with SingleResultMixin<Event, State, SR> {
   @protected
-  late StreamController<Failure> _errorStreamController;
-
-  @protected
   late StreamController<bool> _progressStreamController;
-
-  Stream<Failure> get failureStream => _errorStreamController.stream;
 
   Stream<bool> get progressStream => _progressStreamController.stream;
 
   BaseBloc(State initialState) : super(initialState) {
-    _errorStreamController = StreamController<Failure>.broadcast();
     _progressStreamController = StreamController<bool>.broadcast();
   }
 
@@ -39,21 +27,7 @@ abstract class BaseBloc<Event, State, SR> extends Bloc<Event, State>
     }
   }
 
-  void onFailure(Failure failure) {
-    if (!_errorStreamController.isClosed) {
-      _errorStreamController.add(failure);
-    }
-  }
-
-  void parseServerFailure(DataResponse failure) {
-    final apiFailure = MapCommonServerError.getServerFailureDetails(failure);
-    onFailure(apiFailure);
-  }
-
   void dispose() {
-    if (!_errorStreamController.isClosed) {
-      _errorStreamController.close();
-    }
     if (!_progressStreamController.isClosed) {
       _progressStreamController.close();
     }

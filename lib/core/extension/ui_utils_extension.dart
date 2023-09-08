@@ -1,11 +1,11 @@
 import 'package:flutter/widgets.dart';
 
 extension UiUtilExtension on BuildContext {
-  double get screenWidth => MediaQuery.of(this).size.width;
+  double get screenWidth => MediaQuery.sizeOf(this).width;
 
-  double get screenHeight => MediaQuery.of(this).size.height;
+  double get screenHeight => MediaQuery.sizeOf(this).height;
 
-  Size get screenSize => MediaQuery.of(this).size;
+  Size get screenSize => MediaQuery.sizeOf(this);
 
-  double get statusBarHeight => MediaQuery.of(this).padding.top;
+  double get statusBarHeight => MediaQuery.paddingOf(this).top;
 }

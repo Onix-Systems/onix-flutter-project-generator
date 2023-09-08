@@ -12,13 +12,7 @@ class AppInitialization {
   AppInitialization._privateConstructor();
 
   Future<void> initApp() async {
-    //TODO init firebase / Crashlytics / Messaging
-    await _initializeDatabase();
     initializeDi(GetIt.I);
     logger.d('APP Init: done');
-  }
-
-  Future<void> _initializeDatabase() async {
-    //TODO init databases here
   }
 }
