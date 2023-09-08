@@ -120,24 +120,18 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                             initialValue: state.config.generateSigningKey,
                             subLabel:
                                 S.of(context).dialogWillOpenInSeparateWindow,
-                            valueSetter: (_) => blocOf(context).add(
-                                const ProjectSettingsScreenEventGenerateSigningKeyChange()),
+                            valueSetter: (value) {
+                              blocOf(context).add(
+                                  const ProjectSettingsScreenEventGenerateSigningKeyChange());
+                              if (value) {
+                                _showSigningVarsDialog(
+                                    context: context, state: state);
+                              }
+                            },
                           ),
                           TextButton(
-                            onPressed: () =>
-                                showCupertinoModalPopup<List<String>>(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (context) => SigningDialog(state: state),
-                            ).then(
-                              (signingVars) {
-                                blocOf(context).add(
-                                  ProjectSettingsScreenEventSigningVarsChange(
-                                      signingVars: signingVars ??
-                                          state.config.signingVars),
-                                );
-                              },
-                            ),
+                            onPressed: () => _showSigningVarsDialog(
+                                context: context, state: state),
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
                             ),
@@ -214,39 +208,16 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppFilledButton(
-                    label: S.of(context).goBack,
-                    icon: Icons.arrow_back_ios_rounded,
-                    onPressed: () => context.go(AppRouter.platformsScreen,
-                        extra: widget.config.copyWith(
-                          flavorize: state.config.flavorize,
-                          flavors: state.config.flavors,
-                          generateSigningKey: state.config.generateSigningKey,
-                          useSonar: state.config.useSonar,
-                          graphql: state.config.graphql,
-                          router: state.config.router,
-                          localization: state.config.localization,
-                          theming: state.config.theming,
-                          signingVars: state.config.signingVars,
-                        ))),
+                  label: S.of(context).goBack,
+                  icon: Icons.arrow_back_ios_rounded,
+                  onPressed: () => _goNext(state),
+                ),
                 const Delimiter.width(10),
                 AppFilledButton(
                   label: S.of(context).continueLabel,
                   icon: Icons.arrow_forward_ios_rounded,
                   iconLeft: false,
-                  onPressed: () => context.go(
-                    AppRouter.screensScreen,
-                    extra: widget.config.copyWith(
-                      flavorize: state.config.flavorize,
-                      flavors: state.config.flavors,
-                      generateSigningKey: state.config.generateSigningKey,
-                      useSonar: state.config.useSonar,
-                      graphql: state.config.graphql,
-                      router: state.config.router,
-                      localization: state.config.localization,
-                      theming: state.config.theming,
-                      signingVars: state.config.signingVars,
-                    ),
-                  ),
+                  onPressed: () => _goBack(state),
                 ),
               ],
             ),
@@ -255,4 +226,51 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
       ),
     );
   }
+
+  void _showSigningVarsDialog(
+      {required BuildContext context,
+      required ProjectSettingsScreenState state}) {
+    showCupertinoModalPopup<List<String>>(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => SigningDialog(state: state),
+    ).then(
+      (signingVars) {
+        blocOf(context).add(
+          ProjectSettingsScreenEventSigningVarsChange(
+              signingVars:
+                  signingVars ?? blocOf(context).state.config.signingVars),
+        );
+      },
+    );
+  }
+
+  void _goNext(ProjectSettingsScreenState state) =>
+      context.go(AppRouter.platformsScreen,
+          extra: widget.config.copyWith(
+            flavorize: state.config.flavorize,
+            flavors: state.config.flavors,
+            generateSigningKey: state.config.generateSigningKey,
+            useSonar: state.config.useSonar,
+            graphql: state.config.graphql,
+            router: state.config.router,
+            localization: state.config.localization,
+            theming: state.config.theming,
+            signingVars: state.config.signingVars,
+          ));
+
+  void _goBack(ProjectSettingsScreenState state) => context.go(
+        AppRouter.screensScreen,
+        extra: widget.config.copyWith(
+          flavorize: state.config.flavorize,
+          flavors: state.config.flavors,
+          generateSigningKey: state.config.generateSigningKey,
+          useSonar: state.config.useSonar,
+          graphql: state.config.graphql,
+          router: state.config.router,
+          localization: state.config.localization,
+          theming: state.config.theming,
+          signingVars: state.config.signingVars,
+        ),
+      );
 }

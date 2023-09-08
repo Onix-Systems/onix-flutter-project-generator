@@ -979,6 +979,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Leave blank to auto-gen...`
+  String get keyStorePasswordPlaceholder {
+    return Intl.message(
+      'Leave blank to auto-gen...',
+      name: 'keyStorePasswordPlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

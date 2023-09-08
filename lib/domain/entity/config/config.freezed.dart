@@ -358,7 +358,7 @@ class _$_Config extends _Config {
       this.flavorize = false,
       this.flavors = '',
       this.generateSigningKey = false,
-      this.useSonar = false,
+      this.useSonar = true,
       this.graphql = false,
       this.router = ProjectRouter.goRouter,
       this.localization = ProjectLocalization.intl,

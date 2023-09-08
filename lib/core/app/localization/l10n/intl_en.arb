@@ -92,5 +92,6 @@
   "gitPermissionsContent": "Git permissions error! Check is git installed and you have permissions to use it or try to add git key to apple keychain.",
   "alsoReadThis": "Also read this",
   "getFromSwagger": "Get from swagger",
-  "placeURLTitle": "Place URL here"
+  "placeURLTitle": "Place URL here",
+  "keyStorePasswordPlaceholder": "Leave blank to auto-gen..."
 }

@@ -18,7 +18,7 @@ _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
       flavorize: json['flavorize'] as bool? ?? false,
       flavors: json['flavors'] as String? ?? '',
       generateSigningKey: json['generateSigningKey'] as bool? ?? false,
-      useSonar: json['useSonar'] as bool? ?? false,
+      useSonar: json['useSonar'] as bool? ?? true,
       graphql: json['graphql'] as bool? ?? false,
       router: $enumDecodeNullable(_$ProjectRouterEnumMap, json['router']) ??
           ProjectRouter.goRouter,
