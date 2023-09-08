@@ -3,14 +3,17 @@ import 'package:{{project_name}}/core/arch/bloc/stream_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:loader_overlay/loader_overlay.dart';
+{{^web_only}}import 'package:loader_overlay/loader_overlay.dart';{{/web_only}}
+{{#web_only}}import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
+import 'package:{{project_name}}/core/extension/loader.dart';{{/web_only}}
+
 
 typedef ListenDelegate<S> = void Function(BuildContext context, S state);
 typedef StateListener<S> = Widget Function(S state);
 typedef SingleResultListener<SR> = void Function(
-  BuildContext context,
-  SR singleResult,
-);
+    BuildContext context,
+    SR singleResult,
+    );
 
 abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
     W extends StatefulWidget> extends State<W> {
@@ -38,10 +41,24 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
 
   @override
   void dispose() {
-    if (_bloc != null) {
-      _bloc?.dispose();
+    {
+      {
+        #web_only
+      }
     }
-    super.dispose();
+    Loader.hide();
+    {
+      {
+    /web_only}}
+    {{^web_only}}context.loaderOverlay.hide();{{/web_only}}
+    if (_bloc != null) {
+    _bloc?.dispose();
+    }
+    super
+    .
+    dispose
+    (
+    );
   }
 
   B blocOf(BuildContext context) => context.read<B>();
@@ -86,9 +103,19 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
   void onBlocCreated(BuildContext context, B bloc) {
     bloc.progressStream.listen((event) async {
       if (event) {
-        context.loaderOverlay.show();
+        {
+          {
+            #web_only
+          }
+        }
+        context.progressShow();
+        {
+          {
+      /web_only}}
+      {{^web_only}}context.loaderOverlay.show();{{/web_only}}
       } else {
-        context.loaderOverlay.hide();
+      {{#web_only}}context.progressHide();{{/web_only}}
+      {{^web_only}}context.loaderOverlay.hide();{{/web_only}}
       }
     });
   }
