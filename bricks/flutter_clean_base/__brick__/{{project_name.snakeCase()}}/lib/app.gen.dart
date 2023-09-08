@@ -64,7 +64,7 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             {{^isGoRouter}}appRouter().defaultRouteParser(),{{/isGoRouter}}
             routerDelegate: {{#isGoRouter}}AppRouter.router.routerDelegate,{{/isGoRouter}}
             {{^isGoRouter}}appRouter().delegate(),{{/isGoRouter}}
-            {{^device_preview}}locale: locale,{{/device_preview}}
+            locale: locale,
             {{^handLocalization}}
             localizationsDelegates: const [
               S.delegate,
