@@ -1,5 +1,5 @@
-import 'package:{{project_name}}/presentation/style/theme/theme_extension_no_code_gen/app_colors.dart';
-import 'package:{{project_name}}/presentation/style/theme/theme_extension_no_code_gen/app_text_styles.dart';
+import 'package:{{project_name}}/presentation/style/theme/theme_extension/app_colors.dart';
+import 'package:{{project_name}}/presentation/style/theme/theme_extension/theme_text_styles.dart';
 import 'package:flutter/material.dart';
 
 extension ThemeFromContextExtension on BuildContext {

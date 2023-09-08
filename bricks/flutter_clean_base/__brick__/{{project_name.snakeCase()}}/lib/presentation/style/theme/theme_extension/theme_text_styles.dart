@@ -99,17 +99,18 @@ class _$ThemeTextStyles {
 }{{/theme_generate}}
 {{^theme_generate}}class ThemeTextStyles
     extends ThemeExtension<ThemeTextStyles> {
-  static final light = ThemeTextStyles(
-    fs28: TextStyle(
-    {{^web_only}}fontSize: 28.sp,{{/web_only}}
-    {{#web_only}}fontSize: 28,{{/web_only}}
-    fontWeight: FontWeight.w700,
-    color: AppColors.textLight,
-    ),
-    fs24: TextStyle(
-    {{^web_only}}fontSize: 24.sp,{{/web_only}}
-    {{#web_only}}fontSize: 24,{{/web_only}}
-    fontWeight: FontWeight.w600,
+  {{^web_only}}static final light = ThemeTextStyles({{/web_only}}
+  {{#web_only}}static const light = ThemeTextStyles({{/web_only}}
+  fs28: TextStyle(
+  {{^web_only}}fontSize: 28.sp,{{/web_only}}
+  {{#web_only}}fontSize: 28,{{/web_only}}
+  fontWeight: FontWeight.w700,
+  color: AppColors.textLight,
+  ),
+  fs24: TextStyle(
+  {{^web_only}}fontSize: 24.sp,{{/web_only}}
+  {{#web_only}}fontSize: 24,{{/web_only}}
+  fontWeight: FontWeight.w600,
     color: AppColors.textLight,
     ),
     fs18: TextStyle(
@@ -129,24 +130,25 @@ class _$ThemeTextStyles {
     {{#web_only}}fontSize: 16,{{/web_only}}
     fontWeight: FontWeight.w400,
     color: AppColors.textLight,
-    ),
-    caption14: TextStyle(
-    {{^web_only}}fontSize: 14.sp,{{/web_only}}
-    {{#web_only}}fontSize: 14,{{/web_only}}
-    fontWeight: FontWeight.w400,
-    color: AppColors.textLight,
-    ),
+  ),
+  caption14: TextStyle(
+  {{^web_only}}fontSize: 14.sp,{{/web_only}}
+  {{#web_only}}fontSize: 14,{{/web_only}}
+  fontWeight: FontWeight.w400,
+  color: AppColors.textLight,
+  ),
   );
 
-  static final dark = ThemeTextStyles(
-    fs28: TextStyle(
-    {{^web_only}}fontSize: 28.sp,{{/web_only}}
-    {{#web_only}}fontSize: 28,{{/web_only}}
-    fontWeight: FontWeight.w600,
-    color: AppColors.textDark,
-    ),
-    fs24: TextStyle(
-    {{^web_only}}fontSize: 24.sp,{{/web_only}}
+  {{^web_only}}static final dark = ThemeTextStyles({{/web_only}}
+  {{#web_only}}static const dark = ThemeTextStyles({{/web_only}}
+  fs28: TextStyle(
+  {{^web_only}}fontSize: 28.sp,{{/web_only}}
+  {{#web_only}}fontSize: 28,{{/web_only}}
+  fontWeight: FontWeight.w600,
+  color: AppColors.textDark,
+  ),
+  fs24: TextStyle(
+  {{^web_only}}fontSize: 24.sp,{{/web_only}}
     {{#web_only}}fontSize: 24,{{/web_only}}
     fontWeight: FontWeight.w500,
     color: AppColors.textDark,
