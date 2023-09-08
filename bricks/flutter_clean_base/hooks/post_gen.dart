@@ -166,7 +166,6 @@ Future<void> getDependencies(HookContext context) async {
     'encrypt',
     'path_provider',
     'logger',
-    'loader_overlay',
     'fluttertoast',
     'flutter_native_splash',
     'collection',
@@ -177,6 +176,9 @@ Future<void> getDependencies(HookContext context) async {
 
   if (!context.vars['web_only']) {
     dependencies.add('flutter_screenutil');
+    dependencies.add('loader_overlay');
+  } else {
+    dependencies.add('flutter_overlay_loader');
   }
 
   List<String> devDependencies = [
