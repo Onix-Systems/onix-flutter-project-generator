@@ -28,7 +28,13 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
     emit(state.copyWith(
-      config: event.config,
+      config: event.config.platformsList.webOnly
+          ? event.config.copyWith(
+              flavorize: false,
+              flavors: '',
+              generateSigningKey: false,
+            )
+          : event.config,
     ));
   }
 
