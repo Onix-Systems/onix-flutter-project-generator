@@ -147,6 +147,15 @@ class _PlatformsScreenState extends BaseState<PlatformsScreenState,
                         AppRouter.projectSettingsScreen,
                         extra: widget.config.copyWith(
                           platformsList: state.config.platformsList,
+                          flavorize: state.config.platformsList.webOnly
+                              ? false
+                              : state.config.flavorize,
+                          flavors: state.config.platformsList.webOnly
+                              ? ''
+                              : state.config.flavors,
+                          generateSigningKey: state.config.platformsList.webOnly
+                              ? false
+                              : state.config.generateSigningKey,
                         ),
                       )),
             ],

@@ -19,9 +19,7 @@ class PlatformsScreenBloc extends BaseBloc<PlatformsScreenEvent,
     Emitter<PlatformsScreenState> emit,
   ) {
     emit(state.copyWith(
-      config: state.config.copyWith(
-        platformsList: event.config.platformsList,
-      ),
+      config: event.config,
     ));
   }
 
