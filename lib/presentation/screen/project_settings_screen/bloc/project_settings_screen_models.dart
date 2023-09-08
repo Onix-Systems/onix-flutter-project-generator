@@ -37,9 +37,6 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
 
   const factory ProjectSettingsScreenEvent.themingChange() =
       ProjectSettingsScreenEventThemingChange;
-
-  const factory ProjectSettingsScreenEvent.integrateDevicePreviewChange() =
-      ProjectSettingsScreenEventIntegrateDevicePreviewChange;
 }
 
 @freezed

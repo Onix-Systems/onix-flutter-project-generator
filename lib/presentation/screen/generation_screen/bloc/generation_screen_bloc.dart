@@ -95,7 +95,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         'use_keytool': state.config.generateSigningKey,
         'use_sonar': state.config.useSonar,
         'graphql': state.config.graphql,
-        'device_preview': state.config.integrateDevicePreview,
         'platforms': state.config.platformsList.toString().replaceAll(' ', ''),
         'theme_generate': state.config.theming.name == 'theme_tailor',
       }).toString());

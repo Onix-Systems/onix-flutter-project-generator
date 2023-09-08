@@ -21,26 +21,43 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Config {
   String get projectPath => throw _privateConstructorUsedError;
+
   String get projectName => throw _privateConstructorUsedError;
+
   bool get projectExists => throw _privateConstructorUsedError;
+
   String get organization => throw _privateConstructorUsedError;
+
   PlatformsList get platformsList => throw _privateConstructorUsedError;
+
   bool get flavorize => throw _privateConstructorUsedError;
+
   String get flavors => throw _privateConstructorUsedError;
+
   bool get generateSigningKey => throw _privateConstructorUsedError;
+
   bool get useSonar => throw _privateConstructorUsedError;
+
   bool get graphql => throw _privateConstructorUsedError;
+
   ProjectRouter get router => throw _privateConstructorUsedError;
+
   ProjectLocalization get localization => throw _privateConstructorUsedError;
+
   ProjectTheming get theming => throw _privateConstructorUsedError;
-  bool get integrateDevicePreview => throw _privateConstructorUsedError;
+
   List<String> get signingVars => throw _privateConstructorUsedError;
+
   Set<Screen> get screens => throw _privateConstructorUsedError;
+
   String get swaggerUrl => throw _privateConstructorUsedError;
+
   Set<DataComponent> get dataComponents => throw _privateConstructorUsedError;
+
   Set<Source> get sources => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
@@ -49,6 +66,7 @@ mixin _$Config {
 abstract class $ConfigCopyWith<$Res> {
   factory $ConfigCopyWith(Config value, $Res Function(Config) then) =
       _$ConfigCopyWithImpl<$Res, Config>;
+
   @useResult
   $Res call(
       {String projectPath,
@@ -64,7 +82,6 @@ abstract class $ConfigCopyWith<$Res> {
       ProjectRouter router,
       ProjectLocalization localization,
       ProjectTheming theming,
-      bool integrateDevicePreview,
       List<String> signingVars,
       Set<Screen> screens,
       String swaggerUrl,
@@ -81,6 +98,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -100,7 +118,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? router = null,
     Object? localization = null,
     Object? theming = null,
-    Object? integrateDevicePreview = null,
     Object? signingVars = null,
     Object? screens = null,
     Object? swaggerUrl = null,
@@ -160,10 +177,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.theming
           : theming // ignore: cast_nullable_to_non_nullable
               as ProjectTheming,
-      integrateDevicePreview: null == integrateDevicePreview
-          ? _value.integrateDevicePreview
-          : integrateDevicePreview // ignore: cast_nullable_to_non_nullable
-              as bool,
       signingVars: null == signingVars
           ? _value.signingVars
           : signingVars // ignore: cast_nullable_to_non_nullable
@@ -200,6 +213,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
 abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   factory _$$_ConfigCopyWith(_$_Config value, $Res Function(_$_Config) then) =
       __$$_ConfigCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -216,7 +230,6 @@ abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       ProjectRouter router,
       ProjectLocalization localization,
       ProjectTheming theming,
-      bool integrateDevicePreview,
       List<String> signingVars,
       Set<Screen> screens,
       String swaggerUrl,
@@ -250,7 +263,6 @@ class __$$_ConfigCopyWithImpl<$Res>
     Object? router = null,
     Object? localization = null,
     Object? theming = null,
-    Object? integrateDevicePreview = null,
     Object? signingVars = null,
     Object? screens = null,
     Object? swaggerUrl = null,
@@ -310,10 +322,6 @@ class __$$_ConfigCopyWithImpl<$Res>
           ? _value.theming
           : theming // ignore: cast_nullable_to_non_nullable
               as ProjectTheming,
-      integrateDevicePreview: null == integrateDevicePreview
-          ? _value.integrateDevicePreview
-          : integrateDevicePreview // ignore: cast_nullable_to_non_nullable
-              as bool,
       signingVars: null == signingVars
           ? _value._signingVars
           : signingVars // ignore: cast_nullable_to_non_nullable
@@ -355,7 +363,6 @@ class _$_Config extends _Config {
       this.router = ProjectRouter.goRouter,
       this.localization = ProjectLocalization.intl,
       this.theming = ProjectTheming.manual,
-      this.integrateDevicePreview = false,
       final List<String> signingVars = const [
         'Some developer',
         'Flutter dep',
@@ -417,10 +424,8 @@ class _$_Config extends _Config {
   @override
   @JsonKey()
   final ProjectTheming theming;
-  @override
-  @JsonKey()
-  final bool integrateDevicePreview;
   final List<String> _signingVars;
+
   @override
   @JsonKey()
   List<String> get signingVars {
@@ -430,6 +435,7 @@ class _$_Config extends _Config {
   }
 
   final Set<Screen> _screens;
+
   @override
   @JsonKey()
   Set<Screen> get screens {
@@ -442,6 +448,7 @@ class _$_Config extends _Config {
   @JsonKey()
   final String swaggerUrl;
   final Set<DataComponent> _dataComponents;
+
   @override
   @JsonKey()
   Set<DataComponent> get dataComponents {
@@ -451,6 +458,7 @@ class _$_Config extends _Config {
   }
 
   final Set<Source> _sources;
+
   @override
   @JsonKey()
   Set<Source> get sources {
@@ -461,7 +469,7 @@ class _$_Config extends _Config {
 
   @override
   String toString() {
-    return 'Config(projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, integrateDevicePreview: $integrateDevicePreview, signingVars: $signingVars, screens: $screens, swaggerUrl: $swaggerUrl, dataComponents: $dataComponents, sources: $sources)';
+    return 'Config(projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, swaggerUrl: $swaggerUrl, dataComponents: $dataComponents, sources: $sources)';
   }
 
   @override
@@ -491,8 +499,6 @@ class _$_Config extends _Config {
             (identical(other.localization, localization) ||
                 other.localization == localization) &&
             (identical(other.theming, theming) || other.theming == theming) &&
-            (identical(other.integrateDevicePreview, integrateDevicePreview) ||
-                other.integrateDevicePreview == integrateDevicePreview) &&
             const DeepCollectionEquality()
                 .equals(other._signingVars, _signingVars) &&
             const DeepCollectionEquality().equals(other._screens, _screens) &&
@@ -505,28 +511,26 @@ class _$_Config extends _Config {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        projectPath,
-        projectName,
-        projectExists,
-        organization,
-        platformsList,
-        flavorize,
-        flavors,
-        generateSigningKey,
-        useSonar,
-        graphql,
-        router,
-        localization,
-        theming,
-        integrateDevicePreview,
-        const DeepCollectionEquality().hash(_signingVars),
-        const DeepCollectionEquality().hash(_screens),
-        swaggerUrl,
-        const DeepCollectionEquality().hash(_dataComponents),
-        const DeepCollectionEquality().hash(_sources)
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      projectPath,
+      projectName,
+      projectExists,
+      organization,
+      platformsList,
+      flavorize,
+      flavors,
+      generateSigningKey,
+      useSonar,
+      graphql,
+      router,
+      localization,
+      theming,
+      const DeepCollectionEquality().hash(_signingVars),
+      const DeepCollectionEquality().hash(_screens),
+      swaggerUrl,
+      const DeepCollectionEquality().hash(_dataComponents),
+      const DeepCollectionEquality().hash(_sources));
 
   @JsonKey(ignore: true)
   @override
@@ -557,54 +561,70 @@ abstract class _Config extends Config {
       final ProjectRouter router,
       final ProjectLocalization localization,
       final ProjectTheming theming,
-      final bool integrateDevicePreview,
       final List<String> signingVars,
       final Set<Screen> screens,
       final String swaggerUrl,
       final Set<DataComponent> dataComponents,
       final Set<Source> sources}) = _$_Config;
+
   const _Config._() : super._();
 
   factory _Config.fromJson(Map<String, dynamic> json) = _$_Config.fromJson;
 
   @override
   String get projectPath;
+
   @override
   String get projectName;
+
   @override
   bool get projectExists;
+
   @override
   String get organization;
+
   @override
   PlatformsList get platformsList;
+
   @override
   bool get flavorize;
+
   @override
   String get flavors;
+
   @override
   bool get generateSigningKey;
+
   @override
   bool get useSonar;
+
   @override
   bool get graphql;
+
   @override
   ProjectRouter get router;
+
   @override
   ProjectLocalization get localization;
+
   @override
   ProjectTheming get theming;
-  @override
-  bool get integrateDevicePreview;
+
   @override
   List<String> get signingVars;
+
   @override
   Set<Screen> get screens;
+
   @override
   String get swaggerUrl;
+
   @override
   Set<DataComponent> get dataComponents;
+
   @override
   Set<Source> get sources;
+
   @override
   @JsonKey(ignore: true)
   _$$_ConfigCopyWith<_$_Config> get copyWith =>

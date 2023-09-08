@@ -1,5 +1,4 @@
 //@formatter:off
-{{#device_preview}}import 'package:device_preview/device_preview.dart';{{/device_preview}}
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -42,27 +41,6 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
           stateListener: (state) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
-            {{#device_preview}}
-            useInheritedMediaQuery: true,
-            locale: DevicePreview.locale(context),
-            builder: (context, widget) {
-              return DevicePreview.appBuilder(
-                context,
-                MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                  {{#flavorizr}}
-                  child: FlavorBanner(
-                    child: widget ?? const SizedBox(),
-                  ),
-                  {{/flavorizr}}
-                  {{^flavorizr}}
-                  child: widget!,
-                  {{/flavorizr}}
-                ),
-              );
-            },
-            {{/device_preview}}
-            {{^device_preview}}
             builder: (context, widget) {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
@@ -76,7 +54,6 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
                 {{/flavorizr}}
               );
             },
-            {{/device_preview}}
             scrollBehavior: const CupertinoScrollBehavior(),
             title: '',
             theme: createLightTheme(),

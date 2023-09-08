@@ -84,16 +84,20 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SwitchWithLabel(
-                          label: S.of(context).flavorize,
-                          initialValue: state.config.flavorize,
-                          subLabel: S.of(context).willBeAddedAutomatically,
-                          valueSetter: (_) => blocOf(context).add(
-                              const ProjectSettingsScreenEventFlavorizeChange()),
-                        ),
-                        if (state.config.flavorize) ...[
-                          const SizedBox(height: 20),
+                        if (!state.config.platformsList.webOnly) ...[
+                          SwitchWithLabel(
+                            label: S.of(context).flavorize,
+                            initialValue: state.config.flavorize,
+                            subLabel: S.of(context).willBeAddedAutomatically,
+                            valueSetter: (_) => blocOf(context).add(
+                                const ProjectSettingsScreenEventFlavorizeChange()),
+                          ),
+                          const Delimiter.height(20),
+                        ],
+                        if (!state.config.platformsList.webOnly &&
+                            state.config.flavorize) ...[
                           TextFieldWithLabel(
                             label: S.of(context).addFlavors,
                             expanded: true,
@@ -108,50 +112,46 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                               flavors: _flavorsController.text,
                             )),
                           ),
+                          const Delimiter.height(20),
                         ],
-                        const SizedBox(height: 20),
-                        SwitchWithLabel(
-                          label: S.of(context).generateSigningKey,
-                          initialValue: state.config.generateSigningKey,
-                          subLabel:
-                              S.of(context).dialogWillOpenInSeparateWindow,
-                          valueSetter: (_) => blocOf(context).add(
-                              const ProjectSettingsScreenEventGenerateSigningKeyChange()),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            TextButton(
-                              onPressed: () =>
-                                  showCupertinoModalPopup<List<String>>(
-                                context: context,
-                                barrierDismissible: false,
-                                builder: (context) =>
-                                    SigningDialog(state: state),
-                              ).then(
-                                (signingVars) {
-                                  blocOf(context).add(
-                                    ProjectSettingsScreenEventSigningVarsChange(
-                                        signingVars: signingVars ??
-                                            state.config.signingVars),
-                                  );
-                                },
-                              ),
-                              style: TextButton.styleFrom(
-                                padding: EdgeInsets.zero,
-                              ),
-                              child: Text(S.of(context).modifySigningVars),
+                        if (!state.config.platformsList.webOnly) ...[
+                          SwitchWithLabel(
+                            label: S.of(context).generateSigningKey,
+                            initialValue: state.config.generateSigningKey,
+                            subLabel:
+                                S.of(context).dialogWillOpenInSeparateWindow,
+                            valueSetter: (_) => blocOf(context).add(
+                                const ProjectSettingsScreenEventGenerateSigningKeyChange()),
+                          ),
+                          TextButton(
+                            onPressed: () =>
+                                showCupertinoModalPopup<List<String>>(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (context) => SigningDialog(state: state),
+                            ).then(
+                              (signingVars) {
+                                blocOf(context).add(
+                                  ProjectSettingsScreenEventSigningVarsChange(
+                                      signingVars: signingVars ??
+                                          state.config.signingVars),
+                                );
+                              },
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                            ),
+                            child: Text(S.of(context).modifySigningVars),
+                          ),
+                          const Delimiter.height(20),
+                        ],
                         SwitchWithLabel(
                           label: S.of(context).useSonar,
                           initialValue: state.config.useSonar,
                           valueSetter: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventUseSonarChange()),
                         ),
-                        const SizedBox(height: 20),
+                        const Delimiter.height(20),
                         SwitchWithLabel(
                           label: S.of(context).integrateGraphQl,
                           initialValue: state.config.graphql,
@@ -162,7 +162,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                     ),
                   ),
                 ),
-                const SizedBox(width: 20),
+                const Delimiter.height(20),
                 Expanded(
                   child: Container(
                     height: _height,
@@ -184,7 +184,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                               const ProjectSettingsScreenEventRouterChange()),
                           selectedValue: state.config.router.name,
                         ),
-                        const SizedBox(height: 20),
+                        const Delimiter.height(20),
                         LabeledSegmentedControl(
                           label: S.of(context).localization,
                           values: ProjectLocalization.values
@@ -194,7 +194,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                               const ProjectSettingsScreenEventLocalizationChange()),
                           selectedValue: state.config.localization.name,
                         ),
-                        const SizedBox(height: 20),
+                        const Delimiter.height(20),
                         LabeledSegmentedControl(
                           label: S.of(context).theming,
                           values:
@@ -202,13 +202,6 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                           onChange: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventThemingChange()),
                           selectedValue: state.config.theming.name,
-                        ),
-                        const SizedBox(height: 20),
-                        SwitchWithLabel(
-                          label: S.of(context).integrateDevicePreview,
-                          initialValue: state.config.integrateDevicePreview,
-                          valueSetter: (_) => blocOf(context).add(
-                              const ProjectSettingsScreenEventIntegrateDevicePreviewChange()),
                         ),
                       ],
                     ),
@@ -233,8 +226,6 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                           router: state.config.router,
                           localization: state.config.localization,
                           theming: state.config.theming,
-                          integrateDevicePreview:
-                              state.config.integrateDevicePreview,
                           signingVars: state.config.signingVars,
                         ))),
                 const Delimiter.width(10),
@@ -253,8 +244,6 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                       router: state.config.router,
                       localization: state.config.localization,
                       theming: state.config.theming,
-                      integrateDevicePreview:
-                          state.config.integrateDevicePreview,
                       signingVars: state.config.signingVars,
                     ),
                   ),

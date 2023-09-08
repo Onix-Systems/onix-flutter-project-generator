@@ -27,7 +27,6 @@ _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
           ProjectLocalization.intl,
       theming: $enumDecodeNullable(_$ProjectThemingEnumMap, json['theming']) ??
           ProjectTheming.manual,
-      integrateDevicePreview: json['integrateDevicePreview'] as bool? ?? false,
       signingVars: (json['signingVars'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -69,7 +68,6 @@ Map<String, dynamic> _$$_ConfigToJson(_$_Config instance) => <String, dynamic>{
       'router': _$ProjectRouterEnumMap[instance.router]!,
       'localization': _$ProjectLocalizationEnumMap[instance.localization]!,
       'theming': _$ProjectThemingEnumMap[instance.theming]!,
-      'integrateDevicePreview': instance.integrateDevicePreview,
       'signingVars': instance.signingVars,
       'screens': instance.screens.toList(),
       'swaggerUrl': instance.swaggerUrl,

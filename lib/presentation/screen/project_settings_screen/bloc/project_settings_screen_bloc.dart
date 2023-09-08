@@ -21,8 +21,6 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     on<ProjectSettingsScreenEventRouterChange>(_onRouterChange);
     on<ProjectSettingsScreenEventLocalizationChange>(_onLocalizationChange);
     on<ProjectSettingsScreenEventThemingChange>(_onThemingChange);
-    on<ProjectSettingsScreenEventIntegrateDevicePreviewChange>(
-        _onIntegrateDevicePreviewChange);
   }
 
   FutureOr<void> _onInit(
@@ -113,14 +111,5 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
             theming: state.config.theming == ProjectTheming.theme_tailor
                 ? ProjectTheming.manual
                 : ProjectTheming.theme_tailor)));
-  }
-
-  FutureOr<void> _onIntegrateDevicePreviewChange(
-    ProjectSettingsScreenEventIntegrateDevicePreviewChange event,
-    Emitter<ProjectSettingsScreenState> emit,
-  ) {
-    emit(state.copyWith(
-        config: state.config.copyWith(
-            integrateDevicePreview: !state.config.integrateDevicePreview)));
   }
 }

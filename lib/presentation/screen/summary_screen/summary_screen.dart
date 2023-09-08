@@ -131,10 +131,6 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       value: state.config.theming.name,
                     ),
                     SummaryCell(
-                      variable: S.of(context).integrateDevicePreview,
-                      value: state.config.integrateDevicePreview.toString(),
-                    ),
-                    SummaryCell(
                         variable: S.of(context).generateScreens,
                         value: state.config.screens
                             .toList()

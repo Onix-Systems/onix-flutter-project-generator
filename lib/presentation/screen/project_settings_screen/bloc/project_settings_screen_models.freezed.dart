@@ -28,7 +28,6 @@ mixin _$ProjectSettingsScreenEvent {
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
-    required TResult Function() integrateDevicePreviewChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,7 +42,6 @@ mixin _$ProjectSettingsScreenEvent {
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
-    TResult? Function()? integrateDevicePreviewChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,7 +56,6 @@ mixin _$ProjectSettingsScreenEvent {
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
-    TResult Function()? integrateDevicePreviewChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -85,9 +82,6 @@ mixin _$ProjectSettingsScreenEvent {
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
-    required TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
-        integrateDevicePreviewChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -111,9 +105,6 @@ mixin _$ProjectSettingsScreenEvent {
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult? Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -137,9 +128,6 @@ mixin _$ProjectSettingsScreenEvent {
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -254,7 +242,6 @@ class _$ProjectSettingsScreenEventInit
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
-    required TResult Function() integrateDevicePreviewChange,
   }) {
     return init(config);
   }
@@ -272,7 +259,6 @@ class _$ProjectSettingsScreenEventInit
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
-    TResult? Function()? integrateDevicePreviewChange,
   }) {
     return init?.call(config);
   }
@@ -290,7 +276,6 @@ class _$ProjectSettingsScreenEventInit
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
-    TResult Function()? integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -323,9 +308,6 @@ class _$ProjectSettingsScreenEventInit
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
-    required TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
-        integrateDevicePreviewChange,
   }) {
     return init(this);
   }
@@ -352,9 +334,6 @@ class _$ProjectSettingsScreenEventInit
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult? Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
   }) {
     return init?.call(this);
   }
@@ -381,9 +360,6 @@ class _$ProjectSettingsScreenEventInit
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -457,7 +433,6 @@ class _$ProjectSettingsScreenEventFlavorizeChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
-    required TResult Function() integrateDevicePreviewChange,
   }) {
     return flavorizeChange();
   }
@@ -475,7 +450,6 @@ class _$ProjectSettingsScreenEventFlavorizeChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
-    TResult? Function()? integrateDevicePreviewChange,
   }) {
     return flavorizeChange?.call();
   }
@@ -493,7 +467,6 @@ class _$ProjectSettingsScreenEventFlavorizeChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
-    TResult Function()? integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (flavorizeChange != null) {
@@ -526,9 +499,6 @@ class _$ProjectSettingsScreenEventFlavorizeChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
-    required TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
-        integrateDevicePreviewChange,
   }) {
     return flavorizeChange(this);
   }
@@ -555,9 +525,6 @@ class _$ProjectSettingsScreenEventFlavorizeChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult? Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
   }) {
     return flavorizeChange?.call(this);
   }
@@ -584,9 +551,6 @@ class _$ProjectSettingsScreenEventFlavorizeChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (flavorizeChange != null) {
@@ -682,7 +646,6 @@ class _$ProjectSettingsScreenEventFlavorsChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
-    required TResult Function() integrateDevicePreviewChange,
   }) {
     return flavorsChange(flavors);
   }
@@ -700,7 +663,6 @@ class _$ProjectSettingsScreenEventFlavorsChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
-    TResult? Function()? integrateDevicePreviewChange,
   }) {
     return flavorsChange?.call(flavors);
   }
@@ -718,7 +680,6 @@ class _$ProjectSettingsScreenEventFlavorsChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
-    TResult Function()? integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (flavorsChange != null) {
@@ -751,9 +712,6 @@ class _$ProjectSettingsScreenEventFlavorsChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
-    required TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
-        integrateDevicePreviewChange,
   }) {
     return flavorsChange(this);
   }
@@ -780,9 +738,6 @@ class _$ProjectSettingsScreenEventFlavorsChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult? Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
   }) {
     return flavorsChange?.call(this);
   }
@@ -809,9 +764,6 @@ class _$ProjectSettingsScreenEventFlavorsChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (flavorsChange != null) {
@@ -890,7 +842,6 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
-    required TResult Function() integrateDevicePreviewChange,
   }) {
     return generateSigningKeyChange();
   }
@@ -908,7 +859,6 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
-    TResult? Function()? integrateDevicePreviewChange,
   }) {
     return generateSigningKeyChange?.call();
   }
@@ -926,7 +876,6 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
-    TResult Function()? integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (generateSigningKeyChange != null) {
@@ -959,9 +908,6 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
-    required TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
-        integrateDevicePreviewChange,
   }) {
     return generateSigningKeyChange(this);
   }
@@ -988,9 +934,6 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult? Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
   }) {
     return generateSigningKeyChange?.call(this);
   }
@@ -1017,9 +960,6 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (generateSigningKeyChange != null) {
@@ -1125,7 +1065,6 @@ class _$ProjectSettingsScreenEventSigningVarsChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
-    required TResult Function() integrateDevicePreviewChange,
   }) {
     return signingVarsChange(signingVars);
   }
@@ -1143,7 +1082,6 @@ class _$ProjectSettingsScreenEventSigningVarsChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
-    TResult? Function()? integrateDevicePreviewChange,
   }) {
     return signingVarsChange?.call(signingVars);
   }
@@ -1161,7 +1099,6 @@ class _$ProjectSettingsScreenEventSigningVarsChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
-    TResult Function()? integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (signingVarsChange != null) {
@@ -1194,9 +1131,6 @@ class _$ProjectSettingsScreenEventSigningVarsChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
-    required TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
-        integrateDevicePreviewChange,
   }) {
     return signingVarsChange(this);
   }
@@ -1223,9 +1157,6 @@ class _$ProjectSettingsScreenEventSigningVarsChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult? Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
   }) {
     return signingVarsChange?.call(this);
   }
@@ -1252,9 +1183,6 @@ class _$ProjectSettingsScreenEventSigningVarsChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (signingVarsChange != null) {
@@ -1330,7 +1258,6 @@ class _$ProjectSettingsScreenEventUseSonarChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
-    required TResult Function() integrateDevicePreviewChange,
   }) {
     return useSonarChange();
   }
@@ -1348,7 +1275,6 @@ class _$ProjectSettingsScreenEventUseSonarChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
-    TResult? Function()? integrateDevicePreviewChange,
   }) {
     return useSonarChange?.call();
   }
@@ -1366,7 +1292,6 @@ class _$ProjectSettingsScreenEventUseSonarChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
-    TResult Function()? integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (useSonarChange != null) {
@@ -1399,9 +1324,6 @@ class _$ProjectSettingsScreenEventUseSonarChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
-    required TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
-        integrateDevicePreviewChange,
   }) {
     return useSonarChange(this);
   }
@@ -1428,9 +1350,6 @@ class _$ProjectSettingsScreenEventUseSonarChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult? Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
   }) {
     return useSonarChange?.call(this);
   }
@@ -1457,9 +1376,6 @@ class _$ProjectSettingsScreenEventUseSonarChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (useSonarChange != null) {
@@ -1528,7 +1444,6 @@ class _$ProjectSettingsScreenEventGraphQLChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
-    required TResult Function() integrateDevicePreviewChange,
   }) {
     return graphQLChange();
   }
@@ -1546,7 +1461,6 @@ class _$ProjectSettingsScreenEventGraphQLChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
-    TResult? Function()? integrateDevicePreviewChange,
   }) {
     return graphQLChange?.call();
   }
@@ -1564,7 +1478,6 @@ class _$ProjectSettingsScreenEventGraphQLChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
-    TResult Function()? integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (graphQLChange != null) {
@@ -1597,9 +1510,6 @@ class _$ProjectSettingsScreenEventGraphQLChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
-    required TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
-        integrateDevicePreviewChange,
   }) {
     return graphQLChange(this);
   }
@@ -1626,9 +1536,6 @@ class _$ProjectSettingsScreenEventGraphQLChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult? Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
   }) {
     return graphQLChange?.call(this);
   }
@@ -1655,9 +1562,6 @@ class _$ProjectSettingsScreenEventGraphQLChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (graphQLChange != null) {
@@ -1683,57 +1587,56 @@ abstract class _$$ProjectSettingsScreenEventRouterChangeCopyWith<$Res> {
 
 /// @nodoc
 class __$$ProjectSettingsScreenEventRouterChangeCopyWithImpl<$Res>
-extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-_$ProjectSettingsScreenEventRouterChange>
-implements _$$ProjectSettingsScreenEventRouterChangeCopyWith<$Res> {
-__$$ProjectSettingsScreenEventRouterChangeCopyWithImpl(
-_$ProjectSettingsScreenEventRouterChange _value,
-$Res Function(_$ProjectSettingsScreenEventRouterChange) _then)
-    : super(_value, _then);
+    extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
+        _$ProjectSettingsScreenEventRouterChange>
+    implements _$$ProjectSettingsScreenEventRouterChangeCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventRouterChangeCopyWithImpl(
+      _$ProjectSettingsScreenEventRouterChange _value,
+      $Res Function(_$ProjectSettingsScreenEventRouterChange) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
 class _$ProjectSettingsScreenEventRouterChange
-implements ProjectSettingsScreenEventRouterChange {
-const _$ProjectSettingsScreenEventRouterChange();
+    implements ProjectSettingsScreenEventRouterChange {
+  const _$ProjectSettingsScreenEventRouterChange();
 
-@override
-String toString() {
-return 'ProjectSettingsScreenEvent.routerChange()';
-}
+  @override
+  String toString() {
+    return 'ProjectSettingsScreenEvent.routerChange()';
+  }
 
-@override
-bool operator ==(dynamic other) {
-return identical(this, other) ||
-(other.runtimeType == runtimeType &&
-other is _$ProjectSettingsScreenEventRouterChange);
-}
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectSettingsScreenEventRouterChange);
+  }
 
-@override
-int get hashCode => runtimeType.hashCode;
+  @override
+  int get hashCode => runtimeType.hashCode;
 
-@override
-@optionalTypeArgs
-TResult when<TResult extends Object?>({
-required TResult Function(Config config) init,
-required TResult Function() flavorizeChange,
-required TResult Function(String flavors) flavorsChange,
-required TResult Function() generateSigningKeyChange,
-required TResult Function(List<String> signingVars) signingVarsChange,
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function() flavorizeChange,
+    required TResult Function(String flavors) flavorsChange,
+    required TResult Function() generateSigningKeyChange,
+    required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
-required TResult Function() themingChange,
-required TResult Function() integrateDevicePreviewChange,
-}) {
-return routerChange();
-}
+    required TResult Function() themingChange,
+  }) {
+    return routerChange();
+  }
 
-@override
-@optionalTypeArgs
-TResult? whenOrNull<TResult extends Object?>({
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
@@ -1744,38 +1647,36 @@ TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
-    TResult? Function()? integrateDevicePreviewChange,
   }) {
-return routerChange?.call();
-}
+    return routerChange?.call();
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeWhen<TResult extends Object?>({
-TResult Function(Config config)? init,
-TResult Function()? flavorizeChange,
-TResult Function(String flavors)? flavorsChange,
-TResult Function()? generateSigningKeyChange,
-TResult Function(List<String> signingVars)? signingVarsChange,
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function()? flavorizeChange,
+    TResult Function(String flavors)? flavorsChange,
+    TResult Function()? generateSigningKeyChange,
+    TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
-TResult Function()? themingChange,
-TResult Function()? integrateDevicePreviewChange,
-required TResult orElse(),
-}) {
-if (routerChange != null) {
-return routerChange();
-}
-return orElse();
-}
+    TResult Function()? themingChange,
+    required TResult orElse(),
+  }) {
+    if (routerChange != null) {
+      return routerChange();
+    }
+    return orElse();
+  }
 
-@override
-@optionalTypeArgs
-TResult map<TResult extends Object?>({
-required TResult Function(ProjectSettingsScreenEventInit value) init,
-required TResult Function(ProjectSettingsScreenEventFlavorizeChange value)
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectSettingsScreenEventInit value) init,
+    required TResult Function(ProjectSettingsScreenEventFlavorizeChange value)
         flavorizeChange,
     required TResult Function(ProjectSettingsScreenEventFlavorsChange value)
         flavorsChange,
@@ -1795,25 +1696,22 @@ required TResult Function(ProjectSettingsScreenEventFlavorizeChange value)
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
-    required TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
-        integrateDevicePreviewChange,
   }) {
-return routerChange(this);
-}
+    return routerChange(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult? mapOrNull<TResult extends Object?>({
-TResult? Function(ProjectSettingsScreenEventInit value)? init,
-TResult? Function(ProjectSettingsScreenEventFlavorizeChange value)?
-flavorizeChange,
-TResult? Function(ProjectSettingsScreenEventFlavorsChange value)?
-flavorsChange,
-TResult? Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
-generateSigningKeyChange,
-TResult? Function(ProjectSettingsScreenEventSigningVarsChange value)?
-signingVarsChange,
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectSettingsScreenEventInit value)? init,
+    TResult? Function(ProjectSettingsScreenEventFlavorizeChange value)?
+        flavorizeChange,
+    TResult? Function(ProjectSettingsScreenEventFlavorsChange value)?
+        flavorsChange,
+    TResult? Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+        generateSigningKeyChange,
+    TResult? Function(ProjectSettingsScreenEventSigningVarsChange value)?
+        signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
@@ -1821,20 +1719,17 @@ signingVarsChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
-localizationChange,
-TResult? Function(ProjectSettingsScreenEventThemingChange value)?
-themingChange,
-TResult? Function(
-ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-integrateDevicePreviewChange,
-}) {
-return routerChange?.call(this);
-}
+        localizationChange,
+    TResult? Function(ProjectSettingsScreenEventThemingChange value)?
+        themingChange,
+  }) {
+    return routerChange?.call(this);
+  }
 
-@override
-@optionalTypeArgs
-TResult maybeMap<TResult extends Object?>({
-TResult Function(ProjectSettingsScreenEventInit value)? init,
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectSettingsScreenEventInit value)? init,
     TResult Function(ProjectSettingsScreenEventFlavorizeChange value)?
         flavorizeChange,
     TResult Function(ProjectSettingsScreenEventFlavorsChange value)?
@@ -1853,16 +1748,13 @@ TResult Function(ProjectSettingsScreenEventInit value)? init,
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
-if (routerChange != null) {
-return routerChange(this);
-}
-return orElse();
-}
+    if (routerChange != null) {
+      return routerChange(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class ProjectSettingsScreenEventRouterChange
@@ -1924,7 +1816,6 @@ class _$ProjectSettingsScreenEventLocalizationChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
-    required TResult Function() integrateDevicePreviewChange,
   }) {
     return localizationChange();
   }
@@ -1942,7 +1833,6 @@ class _$ProjectSettingsScreenEventLocalizationChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
-    TResult? Function()? integrateDevicePreviewChange,
   }) {
     return localizationChange?.call();
   }
@@ -1960,7 +1850,6 @@ class _$ProjectSettingsScreenEventLocalizationChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
-    TResult Function()? integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (localizationChange != null) {
@@ -1993,9 +1882,6 @@ class _$ProjectSettingsScreenEventLocalizationChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
-    required TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
-        integrateDevicePreviewChange,
   }) {
     return localizationChange(this);
   }
@@ -2022,9 +1908,6 @@ class _$ProjectSettingsScreenEventLocalizationChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult? Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
   }) {
     return localizationChange?.call(this);
   }
@@ -2051,9 +1934,6 @@ class _$ProjectSettingsScreenEventLocalizationChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (localizationChange != null) {
@@ -2122,7 +2002,6 @@ class _$ProjectSettingsScreenEventThemingChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
-    required TResult Function() integrateDevicePreviewChange,
   }) {
     return themingChange();
   }
@@ -2140,7 +2019,6 @@ class _$ProjectSettingsScreenEventThemingChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
-    TResult? Function()? integrateDevicePreviewChange,
   }) {
     return themingChange?.call();
   }
@@ -2158,7 +2036,6 @@ class _$ProjectSettingsScreenEventThemingChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
-    TResult Function()? integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (themingChange != null) {
@@ -2191,9 +2068,6 @@ class _$ProjectSettingsScreenEventThemingChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
-    required TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
-        integrateDevicePreviewChange,
   }) {
     return themingChange(this);
   }
@@ -2220,9 +2094,6 @@ class _$ProjectSettingsScreenEventThemingChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult? Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
   }) {
     return themingChange?.call(this);
   }
@@ -2249,9 +2120,6 @@ class _$ProjectSettingsScreenEventThemingChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
-    TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
     required TResult orElse(),
   }) {
     if (themingChange != null) {
@@ -2265,212 +2133,6 @@ abstract class ProjectSettingsScreenEventThemingChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventThemingChange() =
       _$ProjectSettingsScreenEventThemingChange;
-}
-
-/// @nodoc
-abstract class _$$ProjectSettingsScreenEventIntegrateDevicePreviewChangeCopyWith<
-    $Res> {
-  factory _$$ProjectSettingsScreenEventIntegrateDevicePreviewChangeCopyWith(
-          _$ProjectSettingsScreenEventIntegrateDevicePreviewChange value,
-          $Res Function(
-                  _$ProjectSettingsScreenEventIntegrateDevicePreviewChange)
-              then) =
-      __$$ProjectSettingsScreenEventIntegrateDevicePreviewChangeCopyWithImpl<
-          $Res>;
-}
-
-/// @nodoc
-class __$$ProjectSettingsScreenEventIntegrateDevicePreviewChangeCopyWithImpl<
-        $Res>
-    extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-        _$ProjectSettingsScreenEventIntegrateDevicePreviewChange>
-    implements
-        _$$ProjectSettingsScreenEventIntegrateDevicePreviewChangeCopyWith<
-            $Res> {
-  __$$ProjectSettingsScreenEventIntegrateDevicePreviewChangeCopyWithImpl(
-      _$ProjectSettingsScreenEventIntegrateDevicePreviewChange _value,
-      $Res Function(_$ProjectSettingsScreenEventIntegrateDevicePreviewChange)
-          _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ProjectSettingsScreenEventIntegrateDevicePreviewChange
-    implements ProjectSettingsScreenEventIntegrateDevicePreviewChange {
-  const _$ProjectSettingsScreenEventIntegrateDevicePreviewChange();
-
-  @override
-  String toString() {
-    return 'ProjectSettingsScreenEvent.integrateDevicePreviewChange()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventIntegrateDevicePreviewChange);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
-    required TResult Function() flavorizeChange,
-    required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
-    required TResult Function(List<String> signingVars) signingVarsChange,
-    required TResult Function() useSonarChange,
-    required TResult Function() graphQLChange,
-    required TResult Function() routerChange,
-    required TResult Function() localizationChange,
-    required TResult Function() themingChange,
-    required TResult Function() integrateDevicePreviewChange,
-  }) {
-    return integrateDevicePreviewChange();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
-    TResult? Function()? flavorizeChange,
-    TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
-    TResult? Function(List<String> signingVars)? signingVarsChange,
-    TResult? Function()? useSonarChange,
-    TResult? Function()? graphQLChange,
-    TResult? Function()? routerChange,
-    TResult? Function()? localizationChange,
-    TResult? Function()? themingChange,
-    TResult? Function()? integrateDevicePreviewChange,
-  }) {
-    return integrateDevicePreviewChange?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
-    TResult Function()? flavorizeChange,
-    TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
-    TResult Function(List<String> signingVars)? signingVarsChange,
-    TResult Function()? useSonarChange,
-    TResult Function()? graphQLChange,
-    TResult Function()? routerChange,
-    TResult Function()? localizationChange,
-    TResult Function()? themingChange,
-    TResult Function()? integrateDevicePreviewChange,
-    required TResult orElse(),
-  }) {
-    if (integrateDevicePreviewChange != null) {
-      return integrateDevicePreviewChange();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProjectSettingsScreenEventInit value) init,
-    required TResult Function(ProjectSettingsScreenEventFlavorizeChange value)
-        flavorizeChange,
-    required TResult Function(ProjectSettingsScreenEventFlavorsChange value)
-        flavorsChange,
-    required TResult Function(
-            ProjectSettingsScreenEventGenerateSigningKeyChange value)
-        generateSigningKeyChange,
-    required TResult Function(ProjectSettingsScreenEventSigningVarsChange value)
-        signingVarsChange,
-    required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
-        useSonarChange,
-    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
-        graphQLChange,
-    required TResult Function(ProjectSettingsScreenEventRouterChange value)
-        routerChange,
-    required TResult Function(
-            ProjectSettingsScreenEventLocalizationChange value)
-        localizationChange,
-    required TResult Function(ProjectSettingsScreenEventThemingChange value)
-        themingChange,
-    required TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)
-        integrateDevicePreviewChange,
-  }) {
-    return integrateDevicePreviewChange(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectSettingsScreenEventInit value)? init,
-    TResult? Function(ProjectSettingsScreenEventFlavorizeChange value)?
-        flavorizeChange,
-    TResult? Function(ProjectSettingsScreenEventFlavorsChange value)?
-        flavorsChange,
-    TResult? Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
-        generateSigningKeyChange,
-    TResult? Function(ProjectSettingsScreenEventSigningVarsChange value)?
-        signingVarsChange,
-    TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
-        useSonarChange,
-    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
-        graphQLChange,
-    TResult? Function(ProjectSettingsScreenEventRouterChange value)?
-        routerChange,
-    TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
-        localizationChange,
-    TResult? Function(ProjectSettingsScreenEventThemingChange value)?
-        themingChange,
-    TResult? Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
-  }) {
-    return integrateDevicePreviewChange?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProjectSettingsScreenEventInit value)? init,
-    TResult Function(ProjectSettingsScreenEventFlavorizeChange value)?
-        flavorizeChange,
-    TResult Function(ProjectSettingsScreenEventFlavorsChange value)?
-        flavorsChange,
-    TResult Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
-        generateSigningKeyChange,
-    TResult Function(ProjectSettingsScreenEventSigningVarsChange value)?
-        signingVarsChange,
-    TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
-        useSonarChange,
-    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
-        graphQLChange,
-    TResult Function(ProjectSettingsScreenEventRouterChange value)?
-        routerChange,
-    TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
-        localizationChange,
-    TResult Function(ProjectSettingsScreenEventThemingChange value)?
-        themingChange,
-    TResult Function(
-            ProjectSettingsScreenEventIntegrateDevicePreviewChange value)?
-        integrateDevicePreviewChange,
-    required TResult orElse(),
-  }) {
-    if (integrateDevicePreviewChange != null) {
-      return integrateDevicePreviewChange(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProjectSettingsScreenEventIntegrateDevicePreviewChange
-    implements ProjectSettingsScreenEvent {
-  const factory ProjectSettingsScreenEventIntegrateDevicePreviewChange() =
-      _$ProjectSettingsScreenEventIntegrateDevicePreviewChange;
 }
 
 /// @nodoc

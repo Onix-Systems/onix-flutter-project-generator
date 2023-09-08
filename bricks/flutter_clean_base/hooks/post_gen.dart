@@ -203,10 +203,6 @@ Future<void> getDependencies(HookContext context) async {
     devDependencies.add('flutter_launcher_icons');
   }
 
-  if (context.vars['device_preview']) {
-    dependencies.add('device_preview');
-  }
-
   if (context.vars['handLocalization']) {
     await Process.run('dart', ['pub', 'global', 'activate', 'flutter_gen']);
   } else {

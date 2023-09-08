@@ -26,7 +26,6 @@ class Config with _$Config {
     @Default(ProjectRouter.goRouter) ProjectRouter router,
     @Default(ProjectLocalization.intl) ProjectLocalization localization,
     @Default(ProjectTheming.manual) ProjectTheming theming,
-    @Default(false) bool integrateDevicePreview,
     @Default([
       'Some developer',
       'Flutter dep',
