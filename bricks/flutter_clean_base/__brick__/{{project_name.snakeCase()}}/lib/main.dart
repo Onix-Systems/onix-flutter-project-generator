@@ -1,7 +1,6 @@
 //@formatter:off
 import 'dart:async';
 import 'dart:io';
-{{#device_preview}}import 'package:device_preview/device_preview.dart';{{/device_preview}}
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/foundation.dart';
@@ -35,15 +34,7 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
     {{#use_getit}}
     initializeDi(GetIt.instance);
     {{/use_getit}}
-    {{#device_preview}}
-    runApp(DevicePreview(
-      enabled: false,
-      builder: (context) => App(),
-    ));
-    {{/device_preview}}
-    {{^device_preview}}
     runApp(const App());
-    {{/device_preview}}
     }, (error, stackTrace) {
       if (kDebugMode) {
         print('runZonedGuarded: Caught error in root zone.\n$error');
