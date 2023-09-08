@@ -28,11 +28,11 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
   @override
   Widget buildWidget(BuildContext context) {
     {{#isGoRouter}}AppRouter.init();{{/isGoRouter}}
-    return GlobalLoaderOverlay(
+    return {{^web_only}}GlobalLoaderOverlay(
       useDefaultLoading: true,
       overlayColor: Colors.black,
       overlayOpacity: 0.5,
-      child: {{^web_only}}ScreenUtilInit(
+      child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
         splitScreenMode: false,
@@ -90,8 +90,8 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
           },
           {{^web_only}}
         );
-        },{{/web_only}}
-      ),
+        },
+      ),{{/web_only}}
     );
   }
 }
