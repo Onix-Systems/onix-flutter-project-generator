@@ -1,3 +1,4 @@
+//@formatter:off
 import 'package:{{project_name}}/core/arch/bloc/base_bloc.dart';
 import 'package:{{project_name}}/core/arch/bloc/stream_listener.dart';
 import 'package:flutter/material.dart';
@@ -41,24 +42,12 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
 
   @override
   void dispose() {
-    {
-      {
-        #web_only
-      }
-    }
-    Loader.hide();
-    {
-      {
-    /web_only}}
+    {{#web_only}}Loader.hide();{{/web_only}}
     {{^web_only}}context.loaderOverlay.hide();{{/web_only}}
     if (_bloc != null) {
-    _bloc?.dispose();
+      _bloc?.dispose();
     }
-    super
-    .
-    dispose
-    (
-    );
+    super.dispose();
   }
 
   B blocOf(BuildContext context) => context.read<B>();
@@ -103,19 +92,11 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
   void onBlocCreated(BuildContext context, B bloc) {
     bloc.progressStream.listen((event) async {
       if (event) {
-        {
-          {
-            #web_only
-          }
-        }
-        context.progressShow();
-        {
-          {
-      /web_only}}
-      {{^web_only}}context.loaderOverlay.show();{{/web_only}}
+        {{#web_only}}context.progressShow();{{/web_only}}
+        {{^web_only}}context.loaderOverlay.show();{{/web_only}}
       } else {
-      {{#web_only}}context.progressHide();{{/web_only}}
-      {{^web_only}}context.loaderOverlay.hide();{{/web_only}}
+        {{#web_only}}context.progressHide();{{/web_only}}
+        {{^web_only}}context.loaderOverlay.hide();{{/web_only}}
       }
     });
   }
