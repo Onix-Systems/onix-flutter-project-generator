@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:{{project_name}}/presentation/style/theme/theme_extension/ext.dart';
 
-class AppTextField extends StatelessWidget {
+class AppTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final bool enabled;
   final String label;
@@ -15,8 +15,9 @@ class AppTextField extends StatelessWidget {
   final VoidCallback? onEditingComplete;
   final Function(String)? onChanged;
   final Function(String)? onSubmitted;
+  final Function(String?)? validator;
 
-  const AppTextField({
+  const AppTextFormField({
     required this.label,
     this.enabled = true,
     this.controller,
@@ -24,22 +25,24 @@ class AppTextField extends StatelessWidget {
     this.borderRadius,
     this.labelStyle,
     this.fillColor,
-    this.obscureText = false,
-    this.inputFormatters,
     this.onEditingComplete,
     this.onChanged,
     this.onSubmitted,
+    this.validator,
+    this.obscureText = false,
+    this.inputFormatters,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: controller,
       enabled: enabled,
-      keyboardType: keyboardType,
+      validator: (value) => validator?.call(value),
       obscureText: obscureText,
       inputFormatters: inputFormatters,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(10),
@@ -75,7 +78,7 @@ class AppTextField extends StatelessWidget {
       ),
       onEditingComplete: () => onEditingComplete?.call(),
       onChanged: (value) => onChanged?.call(value),
-      onSubmitted: (value) => onSubmitted?.call(value),
+      onFieldSubmitted: (value) => onSubmitted?.call(value),
     );
   }
 }
