@@ -11,6 +11,7 @@ class AppStandardButton extends StatelessWidget {
   final bool expanded;
   final double? height;
   final double? width;
+  final EdgeInsetsGeometry? padding;
 
   const AppStandardButton({
     required this.onPressed,
@@ -19,6 +20,7 @@ class AppStandardButton extends StatelessWidget {
     this.expanded = false,
     this.color,
     this.disabledColor,
+    this.padding,
     this.width,
     this.height,
     super.key,
@@ -34,6 +36,7 @@ class AppStandardButton extends StatelessWidget {
             backgroundColor: color ?? context.appColors.buttonColor,
             disabledBackgroundColor:
                 disabledColor ?? context.appColors.buttonDisabledColor,
+            padding: padding ?? EdgeInsets.zero,
           ),
           onPressed: enabled ? onPressed : null,
           child: Text(
