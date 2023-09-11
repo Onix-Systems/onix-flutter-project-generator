@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/add_screen_dialog.dart';
@@ -51,7 +50,7 @@ class ScreenTable extends StatelessWidget {
               ),
               Cell(
                 value: Text(
-                  S.of(context).usingBloc,
+                  S.of(context).stateManager,
                   textAlign: TextAlign.center,
                   style: context.appTextStyles.fs18?.copyWith(
                     color: AppColors.orange,
@@ -100,33 +99,12 @@ class ScreenTable extends StatelessWidget {
                         decorated: true,
                       ),
                       Cell(
-                        value: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            MSHCheckbox(
-                              value: screen.bloc,
-                              onChanged: (_) {},
-                              isDisabled: true,
-                              duration: const Duration(milliseconds: 200),
-                              colorConfig: screen.exists
-                                  ? MSHColorConfig.fromCheckedUncheckedDisabled(
-                                      checkedColor:
-                                          CupertinoColors.inactiveGray,
-                                      uncheckedColor:
-                                          CupertinoColors.inactiveGray,
-                                      disabledColor:
-                                          CupertinoColors.inactiveGray,
-                                    )
-                                  : MSHColorConfig.fromCheckedUncheckedDisabled(
-                                      checkedColor:
-                                          CupertinoColors.activeOrange,
-                                      uncheckedColor:
-                                          CupertinoColors.activeOrange,
-                                      disabledColor:
-                                          CupertinoColors.activeOrange,
-                                    ),
-                            ),
-                          ],
+                        value: Text(
+                          screen.state.name.pascalCase,
+                          style: context.appTextStyles.fs18?.copyWith(
+                              color: screen.exists
+                                  ? CupertinoColors.inactiveGray
+                                  : CupertinoColors.white),
                         ),
                         decorated: true,
                       ),

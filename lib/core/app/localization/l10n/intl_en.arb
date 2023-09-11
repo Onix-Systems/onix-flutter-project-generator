@@ -38,6 +38,7 @@
   "screenAlreadyExistsContent": "Screen with such name already exists",
   "screenName": "Screen name",
   "screens": "Screens",
+  "stateManager": "State manager",
   "usingBloc": "Using BLoC",
   "usingCubit": "Using Cubit",
   "actions": "Actions",

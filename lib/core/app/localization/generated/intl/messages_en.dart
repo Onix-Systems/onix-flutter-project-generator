@@ -154,6 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("(space separated)"),
         "standaloneDataComponents":
             MessageLookupByLibrary.simpleMessage("Standalone data components:"),
+        "stateManager": MessageLookupByLibrary.simpleMessage("State manager"),
         "stateOrProvince":
             MessageLookupByLibrary.simpleMessage(" State or Province"),
         "swaggerParserPrompt": MessageLookupByLibrary.simpleMessage(

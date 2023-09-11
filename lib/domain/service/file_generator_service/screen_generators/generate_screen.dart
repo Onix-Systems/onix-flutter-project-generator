@@ -29,7 +29,7 @@ class GenerateScreen {
         '$projectPath/$projectName/lib/presentation/screen/${screenName}_screen';
     await Directory(screenPath).create(recursive: true);
 
-    if (screen.bloc) {
+    if (screen.state == ScreenStateManagement.bloc) {
       await Directory('$screenPath/bloc').create(recursive: true);
     }
 
@@ -37,7 +37,7 @@ class GenerateScreen {
       screenName: screenName,
       screenPath: screenPath,
       projectName: projectName,
-      useBloc: screen.bloc,
+      useBloc: screen.state == ScreenStateManagement.bloc,
       router: router,
     );
 
@@ -47,7 +47,7 @@ class GenerateScreen {
         routesFile: routesFile,
         projectName: projectName);
 
-    if (screen.bloc) {
+    if (screen.state == ScreenStateManagement.bloc) {
       await _createDI(
         projectName: projectName,
         screenName: screenName,

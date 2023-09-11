@@ -430,6 +430,16 @@ class S {
     );
   }
 
+  /// `State manager`
+  String get stateManager {
+    return Intl.message(
+      'State manager',
+      name: 'stateManager',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Using BLoC`
   String get usingBloc {
     return Intl.message(

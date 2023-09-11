@@ -21,8 +21,7 @@ class AddScreenDialog extends StatefulWidget {
 class _AddScreenDialogState extends State<AddScreenDialog> {
   final TextEditingController _screenNameController = TextEditingController();
 
-  bool _useBloc = false;
-  bool _useCubit = false;
+  ScreenStateManagement _stateManagement = ScreenStateManagement.none;
 
   final _dialogFocusNode = FocusNode();
   final _textFieldFocusNode = FocusNode();
@@ -35,20 +34,9 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
     _currentFocusNode.requestFocus();
     if (widget.screen != null) {
       _screenNameController.text = widget.screen!.name;
-      _useBloc = widget.screen!.bloc;
+      _stateManagement = widget.screen!.state;
     }
     super.initState();
-  }
-
-  void _focusNext() {
-    setState(() {
-      if (_currentFocusNode == _textFieldFocusNode) {
-        _currentFocusNode = _dialogFocusNode;
-      } else {
-        _currentFocusNode = _textFieldFocusNode;
-      }
-      _currentFocusNode.requestFocus();
-    });
   }
 
   @override
@@ -62,19 +50,6 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
         }
         if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
           Navigator.pop(context);
-          return KeyEventResult.handled;
-        }
-        if (event.isKeyPressed(LogicalKeyboardKey.space)) {
-          setState(() {
-            if (_currentFocusNode == _dialogFocusNode) {
-              _useBloc = !_useBloc;
-            }
-          });
-
-          return KeyEventResult.handled;
-        }
-        if (event.isKeyPressed(LogicalKeyboardKey.tab)) {
-          _focusNext();
           return KeyEventResult.handled;
         }
         return KeyEventResult.ignored;
@@ -112,22 +87,20 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
             LabeledCheckbox(
               focused: _currentFocusNode == _dialogFocusNode,
               label: S.of(context).usingBloc,
-              initialValue: _useBloc,
+              initialValue: _stateManagement == ScreenStateManagement.bloc,
               onAction: () {
                 setState(() {
-                  _useBloc = !_useBloc;
-                  if (_useBloc) _useCubit = false;
+                  _stateManagement = ScreenStateManagement.bloc;
                 });
               },
             ),
             LabeledCheckbox(
               focused: _currentFocusNode == _dialogFocusNode,
               label: S.of(context).usingCubit,
-              initialValue: _useCubit,
+              initialValue: _stateManagement == ScreenStateManagement.cubit,
               onAction: () {
                 setState(() {
-                  _useCubit = !_useCubit;
-                  if (_useCubit) _useBloc = false;
+                  _stateManagement = ScreenStateManagement.cubit;
                 });
               },
             ),
@@ -155,14 +128,14 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
     if (_screenNameController.text.isNotEmpty) {
       if (widget.screen != null) {
         widget.screen!.name = _screenNameController.text.snakeCase;
-        widget.screen!.bloc = _useBloc;
+        widget.screen!.state = _stateManagement;
         Navigator.pop(context, widget.screen);
       } else {
         Navigator.pop(
             context,
             Screen(
                 name: _screenNameController.text,
-                bloc: _useBloc,
+                state: _stateManagement,
                 exists: false));
       }
     } else {

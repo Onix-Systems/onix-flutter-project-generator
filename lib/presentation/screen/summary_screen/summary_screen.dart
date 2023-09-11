@@ -136,7 +136,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                             .toList()
                             .sorted((a, b) => a.name.compareTo(b.name))
                             .map((e) =>
-                                '{name: ${e.name.pascalCase}Screen, bloc: ${e.bloc}}')
+                                '{name: ${e.name.pascalCase}Screen, bloc: ${e.state}}')
                             .join(', ')),
                     if (state.config.swaggerUrl.isNotEmpty)
                       SummaryCell(
