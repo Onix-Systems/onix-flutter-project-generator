@@ -6,6 +6,7 @@ class AppStandardButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String value;
   final Color? color;
+  final Color? disabledColor;
   final bool enabled;
   final bool expanded;
   final double? height;
@@ -17,6 +18,7 @@ class AppStandardButton extends StatelessWidget {
     this.enabled = true,
     this.expanded = false,
     this.color,
+    this.disabledColor,
     this.width,
     this.height,
     super.key,
@@ -30,6 +32,8 @@ class AppStandardButton extends StatelessWidget {
       child: FilledButton(
           style: FilledButton.styleFrom(
             backgroundColor: color ?? context.appColors.buttonColor,
+            disabledBackgroundColor:
+                disabledColor ?? context.appColors.buttonDisabledColor,
           ),
           onPressed: enabled ? onPressed : null,
           child: Text(
