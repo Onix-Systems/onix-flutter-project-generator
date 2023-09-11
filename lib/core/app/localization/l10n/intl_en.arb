@@ -39,6 +39,7 @@
   "screenName": "Screen name",
   "screens": "Screens",
   "usingBloc": "Using BLoC",
+  "usingCubit": "Using Cubit",
   "actions": "Actions",
   "integrateDevicePreview": "Integrate Device Preview?",
   "theming": "Theming",

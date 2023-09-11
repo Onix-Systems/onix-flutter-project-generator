@@ -440,6 +440,16 @@ class S {
     );
   }
 
+  /// `Using Cubit`
+  String get usingCubit {
+    return Intl.message(
+      'Using Cubit',
+      name: 'usingCubit',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Actions`
   String get actions {
     return Intl.message(

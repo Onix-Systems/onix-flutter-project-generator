@@ -38,3 +38,5 @@ class Screen {
 
   factory Screen.fromJson(Map<String, dynamic> json) => _$ScreenFromJson(json);
 }
+
+enum ScreenStateManagement { bloc, cubit, none }

@@ -22,6 +22,7 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
   final TextEditingController _screenNameController = TextEditingController();
 
   bool _useBloc = false;
+  bool _useCubit = false;
 
   final _dialogFocusNode = FocusNode();
   final _textFieldFocusNode = FocusNode();
@@ -115,6 +116,18 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
               onAction: () {
                 setState(() {
                   _useBloc = !_useBloc;
+                  if (_useBloc) _useCubit = false;
+                });
+              },
+            ),
+            LabeledCheckbox(
+              focused: _currentFocusNode == _dialogFocusNode,
+              label: S.of(context).usingCubit,
+              initialValue: _useCubit,
+              onAction: () {
+                setState(() {
+                  _useCubit = !_useCubit;
+                  if (_useCubit) _useBloc = false;
                 });
               },
             ),

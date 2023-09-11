@@ -169,6 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "url": MessageLookupByLibrary.simpleMessage("URL"),
         "useSonar": MessageLookupByLibrary.simpleMessage("Will you use Sonar?"),
         "usingBloc": MessageLookupByLibrary.simpleMessage("Using BLoC"),
+        "usingCubit": MessageLookupByLibrary.simpleMessage("Using Cubit"),
         "willBeAddedAutomatically": MessageLookupByLibrary.simpleMessage(
             "DEV & PROD flavors will be added automatically")
       };
