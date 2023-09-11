@@ -30,6 +30,9 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
     ProjectNameScreenBloc, ProjectNameScreenSR, ProjectNameScreen> {
   TextEditingController projectNameController = TextEditingController();
   TextEditingController organizationController = TextEditingController();
+  FocusNode projectNameFocusNode = FocusNode();
+  FocusNode organizationFocusNode = FocusNode();
+  FocusNode nextFocusNode = FocusNode();
 
   @override
   void onBlocCreated(BuildContext context, ProjectNameScreenBloc bloc) {
@@ -76,6 +79,8 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
         children: [
           TextFieldWithLabel(
             label: S.of(context).projectName,
+            focusNode: projectNameFocusNode,
+            autofocus: true,
             centered: true,
             textController: projectNameController,
             error: state.projectExists,
@@ -84,12 +89,14 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
                 projectName: projectNameController.text,
               ),
             ),
+            onEditingComplete: () => _nextFocus(state),
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9 ]')),
             ],
           ),
           const Delimiter.height(20),
           TextFieldWithLabel(
+            focusNode: organizationFocusNode,
             label: S.of(context).organization,
             centered: true,
             textController: organizationController,
@@ -98,6 +105,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
                 organization: organizationController.text,
               ),
             ),
+            onEditingComplete: () => _nextFocus(state),
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9-.]')),
             ],
@@ -116,6 +124,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
                           organization: organizationController.text))),
               const Delimiter.width(10),
               AppFilledButton(
+                focusNode: nextFocusNode,
                 active: state.config.projectName.isNotEmpty &&
                     state.config.organization.isNotEmpty &&
                     !state.projectExists,
@@ -130,6 +139,17 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
         ],
       ),
     );
+  }
+
+  void _nextFocus(ProjectNameScreenState state) {
+    if (state.config.projectName.isNotEmpty &&
+        state.config.organization.isNotEmpty) {
+      nextFocusNode.requestFocus();
+    } else if (state.config.projectName.isEmpty) {
+      projectNameFocusNode.requestFocus();
+    } else {
+      organizationFocusNode.requestFocus();
+    }
   }
 
   _onCheckNames(BuildContext context) {

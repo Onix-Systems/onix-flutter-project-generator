@@ -101,6 +101,8 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
               label: '${S.of(context).url}: ',
               textController: _urlController,
               onChanged: () {},
+              autofocus: true,
+              onEditingComplete: () => _onContinue(context, state),
               expanded: true,
             ),
           ),
@@ -117,14 +119,7 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
                   label: S.of(context).continueLabel,
                   icon: Icons.arrow_forward_ios_rounded,
                   iconLeft: false,
-                  onPressed: () {
-                    if (_urlController.text.isNotEmpty) {
-                      blocOf(context).add(SwaggerParserScreenEventParse(
-                          url: _urlController.text));
-                    } else {
-                      _onContinue(context, state);
-                    }
-                  }),
+                  onPressed: () => _onContinue(context, state)),
             ],
           ),
         ],
@@ -132,13 +127,19 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
     );
   }
 
-  _onContinue(BuildContext context, SwaggerParserScreenState state) =>
+  _onContinue(BuildContext context, SwaggerParserScreenState state) {
+    if (_urlController.text.isNotEmpty) {
+      blocOf(context)
+          .add(SwaggerParserScreenEventParse(url: _urlController.text));
+    } else {
       context.go(
         AppRouter.dataComponentsScreen,
         extra: widget.config.copyWith(
           swaggerUrl: state.config.swaggerUrl,
         ),
       );
+    }
+  }
 
   _onBack(BuildContext context, SwaggerParserScreenState state) => context.go(
         AppRouter.screensScreen,

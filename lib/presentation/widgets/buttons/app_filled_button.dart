@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
 class AppFilledButton extends StatefulWidget {
+  final FocusNode? focusNode;
   final String label;
   final VoidCallback? onPressed;
   final Color? color;
@@ -16,6 +18,7 @@ class AppFilledButton extends StatefulWidget {
 
   const AppFilledButton({
     required this.label,
+    this.focusNode,
     this.active = true,
     this.onPressed,
     this.color,
@@ -33,13 +36,20 @@ class AppFilledButton extends StatefulWidget {
 
 class _AppFilledButtonState extends State<AppFilledButton> {
   bool hovered = false;
+  bool focused = false;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return FilledButton(
+      focusNode: widget.focusNode,
       onHover: (value) {
         setState(() {
           hovered = value;
+        });
+      },
+      onFocusChange: (value) {
+        setState(() {
+          focused = value;
         });
       },
       onPressed: () => widget.active ? widget.onPressed?.call() : null,
@@ -51,8 +61,13 @@ class _AppFilledButtonState extends State<AppFilledButton> {
             : AppColors.inactiveText,
         foregroundColor: AppColors.orange,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
+            borderRadius: BorderRadius.circular(15),
+            side: focused
+                ? BorderSide(
+                    color: AppColors.white.withOpacity(0.7),
+                    width: 2,
+                  )
+                : BorderSide.none),
         padding: widget.padding ??
             const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         minimumSize: widget.minimumSize ?? const Size(100, 60),

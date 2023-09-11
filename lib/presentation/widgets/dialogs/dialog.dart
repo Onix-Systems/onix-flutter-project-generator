@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
@@ -49,33 +50,48 @@ class Dialogs {
   }) {
     showCupertinoDialog(
       context: context,
-      builder: (ctx) => CupertinoAlertDialog(
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: Text(
-            title,
-            style: context.appTextStyles.fs18?.copyWith(
-              color: isError ? AppColors.red : null,
+      builder: (ctx) => Focus(
+        autofocus: true,
+        onKey: (node, event) {
+          if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+            onOk?.call();
+            Navigator.of(ctx).pop();
+            return KeyEventResult.handled;
+          } else if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
+            onCancel?.call();
+            Navigator.of(ctx).pop();
+            return KeyEventResult.handled;
+          }
+          return KeyEventResult.ignored;
+        },
+        child: CupertinoAlertDialog(
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              title,
+              style: context.appTextStyles.fs18?.copyWith(
+                color: isError ? AppColors.red : null,
+              ),
             ),
           ),
+          content: content,
+          actions: [
+            CupertinoDialogAction(
+              child: Text(okLabel ?? S.of(context).ok),
+              onPressed: () {
+                onOk?.call();
+                Navigator.of(ctx).pop();
+              },
+            ),
+            CupertinoDialogAction(
+              child: Text(cancelLabel ?? S.of(context).cancel),
+              onPressed: () {
+                onCancel?.call();
+                Navigator.of(ctx).pop();
+              },
+            ),
+          ],
         ),
-        content: content,
-        actions: [
-          CupertinoDialogAction(
-            child: Text(okLabel ?? S.of(context).ok),
-            onPressed: () {
-              onOk?.call();
-              Navigator.of(ctx).pop();
-            },
-          ),
-          CupertinoDialogAction(
-            child: Text(cancelLabel ?? S.of(context).cancel),
-            onPressed: () {
-              onCancel?.call();
-              Navigator.of(ctx).pop();
-            },
-          ),
-        ],
       ),
     );
   }

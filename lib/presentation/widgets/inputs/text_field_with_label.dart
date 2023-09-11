@@ -9,9 +9,12 @@ class TextFieldWithLabel extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final bool centered;
   final VoidCallback onChanged;
+  final VoidCallback? onEditingComplete;
   final bool error;
   final bool expanded;
   final TextEditingController textController;
+  final FocusNode? focusNode;
+  final bool? autofocus;
 
   const TextFieldWithLabel({
     required this.label,
@@ -21,11 +24,12 @@ class TextFieldWithLabel extends StatelessWidget {
     this.centered = false,
     this.subLabel,
     this.expanded = false,
+    this.focusNode,
+    this.autofocus,
+    this.onEditingComplete,
     required this.onChanged,
     super.key,
   });
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +82,8 @@ class TextFieldWithLabel extends StatelessWidget {
         if (expanded)
           Expanded(
             child: CupertinoTextField(
+              focusNode: focusNode,
+              autofocus: autofocus ?? false,
               style: TextStyle(
                   color:
                       error ? CupertinoColors.destructiveRed : AppColors.white),
@@ -85,12 +91,15 @@ class TextFieldWithLabel extends StatelessWidget {
               keyboardType: TextInputType.text,
               inputFormatters: inputFormatters,
               onChanged: (_) => onChanged(),
+              onEditingComplete: () => onEditingComplete?.call(),
             ),
           )
         else
           SizedBox(
             width: 300,
             child: CupertinoTextField(
+              focusNode: focusNode,
+              autofocus: autofocus ?? false,
               style: context.appTextStyles.fs18?.copyWith(
                   color:
                       error ? CupertinoColors.destructiveRed : AppColors.white),
@@ -98,6 +107,7 @@ class TextFieldWithLabel extends StatelessWidget {
               keyboardType: TextInputType.text,
               inputFormatters: inputFormatters,
               onChanged: (_) => onChanged(),
+              onEditingComplete: () => onEditingComplete?.call(),
             ),
           ),
       ],
