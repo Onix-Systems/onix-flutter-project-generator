@@ -18,28 +18,36 @@ class _$ThemeColors {
     AppColors.buttonDisabledLight,
     AppColors.buttonDisabledDark,
   ];
+  static List<Color> borderEnabledColor = [
+    AppColors.textLight,
+    AppColors.textDark,
+  ];
 }{{/theme_generate}}
 {{^theme_generate}}class ThemeColors extends ThemeExtension<ThemeColors> {
   static const light = ThemeColors(
     backgroundColor: AppColors.bgLight,
     buttonColor: AppColors.greenLight,
     buttonDisabledColor: AppColors.buttonDisabledLight,
+    borderEnabledColor: AppColors.textLight,
   );
 
   static const dark = ThemeColors(
     backgroundColor: AppColors.bgDark,
     buttonColor: AppColors.greenDark,
     buttonDisabledColor: AppColors.buttonDisabledDark,
+    borderEnabledColor: AppColors.textDark,
   );
 
   final Color backgroundColor;
   final Color buttonColor;
   final Color buttonDisabledColor;
+  final Color borderEnabledColor;
 
   const ThemeColors({
     required this.backgroundColor,
     required this.buttonColor,
     required this.buttonDisabledColor,
+    required this.borderEnabledColor,
   });
 
   @override
@@ -47,11 +55,13 @@ class _$ThemeColors {
     Color? backgroundColor,
     Color? buttonColor,
     Color? buttonDisabledColor,
+    Color? borderEnabledColor,
   }) {
     return ThemeColors(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       buttonColor: buttonColor ?? this.buttonColor,
       buttonDisabledColor: buttonDisabledColor ?? this.buttonDisabledColor,
+      borderEnabledColor: borderEnabledColor ?? this.borderEnabledColor,
     );
   }
 
@@ -68,6 +78,9 @@ class _$ThemeColors {
       buttonDisabledColor:
       Color.lerp(buttonDisabledColor, other.buttonDisabledColor, t) ??
           buttonDisabledColor,
+      borderEnabledColor:
+      Color.lerp(borderEnabledColor, other.borderEnabledColor, t) ??
+          borderEnabledColor,
     );
   }
 }{{/theme_generate}}
