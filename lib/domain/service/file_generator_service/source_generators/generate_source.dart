@@ -117,6 +117,7 @@ class GenerateSource {
 
     await SourceFilesGenerator.sourceImplFileGenerate(
       projectName: projectName,
+      projectPath: projectPath,
       sourceName: source.name,
       imports: imports,
       sourceStaticPaths: sourceStaticPaths,

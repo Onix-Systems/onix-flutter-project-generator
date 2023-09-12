@@ -34,6 +34,7 @@ abstract class ${sourceName.pascalCase}Source {
 
   static Future<void> sourceImplFileGenerate({
     required String projectName,
+    required String projectPath,
     required String sourceName,
     required String mutatedPathPrefix,
     required Set<String> imports,
@@ -41,9 +42,9 @@ abstract class ${sourceName.pascalCase}Source {
     required List<String> sourceDynamicPaths,
     required List<GeneratedMethod> implMethods,
   }) async {
-    final path =
-        await Directory('lib/data/source/remote/${sourceName.snakeCase}/')
-            .create(recursive: true);
+    final path = await Directory(
+            '$projectPath/$projectName/lib/data/source/remote/${sourceName.snakeCase}/')
+        .create(recursive: true);
 
     final sourceImplFile =
         await File('${path.path}/${sourceName.snakeCase}_source_impl.dart')
