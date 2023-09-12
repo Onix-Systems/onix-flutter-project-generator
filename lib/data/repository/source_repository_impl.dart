@@ -424,4 +424,24 @@ class SourceRepositoryImpl implements SourceRepository {
     _sources.removeWhere((element) => element.name == sourceName);
     _sources.add(source);
   }
+
+  @override
+  bool checkEntityIsEnum({required String entityName}) {
+    bool result = false;
+
+    for (final source in sources) {
+      for (final entity in source.dataComponents) {
+        if (entity.name == entityName) {
+          result = entity.isEnum;
+        }
+      }
+    }
+
+    if (sources.any((element) => element.paths.any((path) => path.methods.any(
+        (method) => method.innerEnums
+            .any((innerEnum) => innerEnum.name == entityName))))) {
+      result = true;
+    }
+    return result;
+  }
 }

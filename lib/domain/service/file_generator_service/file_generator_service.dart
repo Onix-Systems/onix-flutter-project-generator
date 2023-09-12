@@ -86,7 +86,7 @@ class FileGeneratorService {
     required String genPass,
     required List<String> signingVars,
   }) async {
-    GenerateSigning().call(
+    GenerateSigning.call(
       projectPath: projectPath,
       projectName: projectName,
       genPass: genPass,

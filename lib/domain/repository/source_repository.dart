@@ -29,4 +29,6 @@ abstract class SourceRepository {
       Source source, DataComponent dataComponent, String oldDataComponentName);
 
   void empty();
+
+  bool checkEntityIsEnum({required String entityName});
 }

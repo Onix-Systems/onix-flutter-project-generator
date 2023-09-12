@@ -1,15 +1,18 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:onix_flutter_bricks/core/di/repository.dart';
-import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/method.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/method_parameter.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/path.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/di_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/generated_method.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/inner_enum_file_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params_file_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/repository_files_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/source_files_generator.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
-import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class GenerateSource {
@@ -18,35 +21,7 @@ class GenerateSource {
     required String projectPath,
     required Source source,
   }) async {
-    final path = await Directory(
-            '$projectPath/$projectName/lib/data/source/remote/${source.name.snakeCase}')
-        .create(recursive: true);
-
-    var sourceFile =
-        await File('${path.path}/${source.name.snakeCase}_source.dart')
-            .create();
-
-    var sourceImplFile =
-        await File('${path.path}/${source.name.snakeCase}_source_impl.dart')
-            .create();
-
-    final repositoryPath = await Directory(
-            '$projectPath/$projectName/lib/domain/repository/${source.name.snakeCase}')
-        .create(recursive: true);
-
-    final repositoryImplPath = await Directory(
-            '$projectPath/$projectName/lib/data/repository/${source.name.snakeCase}')
-        .create(recursive: true);
-
-    var repositoryFile = await File(
-            '${repositoryPath.path}/${source.name.snakeCase}_repository.dart')
-        .create();
-
-    var repositoryImplFile = await File(
-            '${repositoryImplPath.path}/${source.name.snakeCase}_repository_impl.dart')
-        .create();
-
-    await _generateDI(
+    await DiGenerator.call(
       sourceName: source.name,
       projectName: projectName,
       projectPath: projectPath,
@@ -65,7 +40,7 @@ class GenerateSource {
 
     for (final path in source.paths) {
       for (final method in path.methods) {
-        final sourceMethod = _generateMethod(
+        final sourceMethod = await _generateMethod(
           method: method,
           path: path,
           pathPrefix: pathPrefix,
@@ -87,16 +62,8 @@ class GenerateSource {
                 .replaceAll(mutatedPathPrefix, '')
             : 'final _${method.methodType.name}${path.path.replaceAll('/', '_').replaceAll('-', '_').replaceAll(mutatedPathPrefix, '').pascalCase}Path = \'${path.path}\';';
 
-        final params = sourceMethod
-            .split('(')
-            .last
-            .split(')')
-            .first
-            .split('{')
-            .last
-            .split('}')
-            .first
-            .split(',');
+        final params =
+            sourceMethod.split('({').last.split('})').first.split(',');
 
         implMethods.add(GeneratedMethod(
           path: path.path,
@@ -112,10 +79,8 @@ class GenerateSource {
               method.params.where((e) => e.place.name == 'query').toList(),
           pathParams:
               method.params.where((e) => e.place.name == 'path').toList(),
-          optionalParams: params
-              .where((e) => e.contains(' params'))
-              .join(', ')
-              .trim() /*.replaceAll(' params', '? params')*/,
+          optionalParams:
+              params.where((e) => e.contains(' params')).join(', ').trim(),
           requiredParams:
               params.where((e) => e.contains('required')).join(', ').trim(),
         ));
@@ -136,126 +101,37 @@ class GenerateSource {
       }
     }
 
-    String fileContent =
-        '''import 'package:$projectName/core/arch/domain/entity/common/data_response.dart';
-import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';
-${imports.join('\n')}
+    String sourceFileContent = await SourceFilesGenerator.sourceFileGenerate(
+        projectName: projectName,
+        sourceName: source.name,
+        imports: imports,
+        sourceMethods: sourceMethods);
 
-abstract class ${source.name.pascalCase}Source {
-  ${sourceMethods.join('\n  ')}
-}''';
+    await RepositoryFilesGenerator.repositoryFileGenerate(
+      sourceFileContent: sourceFileContent,
+      projectName: projectName,
+      projectPath: projectPath,
+      sourceName: source.name,
+    );
 
-    await sourceFile.writeAsString(fileContent);
+    await SourceFilesGenerator.sourceImplFileGenerate(
+      projectName: projectName,
+      sourceName: source.name,
+      imports: imports,
+      sourceStaticPaths: sourceStaticPaths,
+      sourceDynamicPaths: sourceDynamicPaths,
+      implMethods: implMethods,
+      mutatedPathPrefix: mutatedPathPrefix,
+    );
 
-    fileContent = fileContent
-        .replaceAll('data_response.dart', 'result.dart')
-        .replaceAll('<DataResponse<', '<Result<')
-        .replaceAll('Response>>', '>>')
-        .replaceAll('Source', 'Repository')
-        .split(';')
-        .map((e) {
-      if (e.contains('_response.dart')) {
-        return e
-            .replaceAll('_response.dart', '.dart')
-            .replaceAll('_response/', '/')
-            .replaceAll('data/model/remote/', 'domain/entity/');
-      }
-      return e;
-    }).join(';');
-
-    await repositoryFile.writeAsString(fileContent);
-
-    fileContent =
-        '''import 'package:$projectName/core/arch/data/remote/clients/dio/api_client.dart';
-import 'package:$projectName/core/arch/data/remote/clients/dio/dio_request_processor/dio_request_processor.dart';
-import 'package:$projectName/core/arch/domain/entity/common/data_response.dart';
-import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';
-import 'package:$projectName/data/source/remote/${source.name.snakeCase}/${source.name.snakeCase}_source.dart';
-${imports.join('\n')}
-
-class ${source.name.pascalCase}SourceImpl implements ${source.name.pascalCase}Source {
-
-  final ApiClient _apiClient;
-  final DioRequestProcessor _dioRequestProcessor;
-  
-  ${sourceStaticPaths.join('\n')}
-    
-  ${source.name.pascalCase}SourceImpl(this._apiClient, this._dioRequestProcessor);
-  
-  ${implMethods.map((e) => '''@override
-        ${e.sourceMethod.replaceAll(';', '')} async {
-        ${_getSourceImplBody(e, mutatedPathPrefix)}
-        }
-    '''.replaceAll(('{}'), '')).join('\n')}
-    
-  ${sourceDynamicPaths.join('\n')}
-}''';
-
-    await sourceImplFile.writeAsString(fileContent);
-
-    final mappers = <String>{};
-    final mappersImports = <String>{};
-
-    for (final method in implMethods) {
-      if (method.responseEntityName.isNotEmpty) {
-        if (_checkEntityIsEnum(
-          entityName: method.responseEntityName.replaceLast('Response', ''),
-        )) {
-          continue;
-        }
-
-        final mapper =
-            method.responseEntityName.replaceLast('Response', '').camelCase;
-
-        mappers.add(
-            '''final _${mapper}Mappers = ${mapper.pascalCase}Mappers();''');
-
-        final sourceName = sourceRepository.getDataComponentSourceName(mapper);
-
-        mappersImports.add(
-            '''import 'package:$projectName/data/mapper/${sourceName.snakeCase}/${mapper.snakeCase}/${mapper.snakeCase}_mapper.dart';''');
-      }
-    }
-
-    fileContent =
-        '''import 'package:$projectName/core/arch/data/remote/base/map_common_server_error.dart';
-import 'package:$projectName/core/arch/domain/entity/common/result.dart';
-import 'package:$projectName/core/di/app.dart';
-import 'package:$projectName/core/extension/logger_extension.dart';
-import 'package:$projectName/core/arch/domain/entity/failure/api_failure.dart';
-import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';
-import 'package:$projectName/data/source/remote/${source.name.snakeCase}/${source.name.snakeCase}_source.dart';
-import 'package:$projectName/domain/repository/${source.name.snakeCase}/${source.name.snakeCase}_repository.dart';
-${imports.map((import) {
-      if (import.contains('_response.dart')) {
-        return import
-            .replaceAll('_response.dart', '.dart')
-            .replaceAll('data/model/remote/', 'domain/entity/');
-      }
-      return import;
-    }).join('\n')}
-    
-${mappersImports.join('\n')}
-
-class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCase}Repository {
-  
-  final ${source.name.pascalCase}Source _${source.name.camelCase}Source;
-  
-  ${mappers.join('\n')}
-  
-  ${source.name.pascalCase}RepositoryImpl({
-    required ${source.name.pascalCase}Source ${source.name.camelCase}Source,
-  }) : _${source.name.camelCase}Source = ${source.name.camelCase}Source;
-  
-  ${implMethods.map((e) => '''@override
-        ${e.sourceMethod.replaceAll('DataResponse', 'Result').replaceAll('Response>>', '>>') /*.replaceAll(' params', '? params')*/
-                .replaceAll(';', '')} async {
-        ${_getRepositoryImplBody(e, mutatedPathPrefix, source.name.camelCase)}
-        }
-    '''.replaceAll(('{}'), '')).join('\n')}
-}''';
-
-    await repositoryImplFile.writeAsString(fileContent);
+    await RepositoryFilesGenerator.repositoryImplFileGenerate(
+      projectPath: projectPath,
+      projectName: projectName,
+      sourceName: source.name,
+      mutatedPathPrefix: mutatedPathPrefix,
+      imports: imports,
+      implMethods: implMethods,
+    );
   }
 
   String _getPathsPrefix(List<Path> paths) {
@@ -306,7 +182,7 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
     return result.isEmpty ? prefix.replaceFirst('/', '').pascalCase : result;
   }
 
-  String _generateMethod({
+  Future<String> _generateMethod({
     required Method method,
     required Path path,
     required String pathPrefix,
@@ -314,9 +190,9 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
     required String projectName,
     required String projectPath,
     required Source source,
-  }) {
-    final responseIsEnum =
-        _checkEntityIsEnum(entityName: method.responseEntityName);
+  }) async {
+    final responseIsEnum = sourceRepository.checkEntityIsEnum(
+        entityName: method.responseEntityName);
 
     final responseEntityName =
         method.responseEntityName.endsWith('Response') || responseIsEnum
@@ -384,12 +260,12 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
     if (methodParamsNotRequired.isNotEmpty) {
       imports.add(
           "import 'package:$projectName/data/source/remote/${source.name.snakeCase}/params/${methodName.snakeCase}_params.dart';");
-      _generateMethodParamsFile(
+      await ParamsFileGenerator.call(
         methodName: methodName,
         methodParamsNotRequired: methodParamsNotRequired,
         projectName: projectName,
         projectPath: projectPath,
-        source: source,
+        sourceName: source.name,
         innerEnums: method.innerEnums,
       );
     }
@@ -399,11 +275,11 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
         imports.add(
             "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/enums/${innerEnum.name.snakeCase}.dart';");
 
-        _generateMethodInnerEnumFile(
+        await InnerEnumFileGenerator.call(
           innerEnum: innerEnum,
           projectName: projectName,
           projectPath: projectPath,
-          source: source,
+          sourceName: source.name,
         );
       }
     }
@@ -419,13 +295,6 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
       for (final parameter in method.params) {
         if (parameter.type.isNotEmpty) {
           if (!parameter.nullable) {
-            /*final sourceName = sourceRepository.sources
-                .firstWhereOrNull((source) =>
-                    source.dataComponents.firstWhereOrNull(
-                        (element) => element.name == parameter.type) !=
-                    null)
-                ?.name;*/
-
             final sourceName = sourceRepository
                 .getDataComponentSourceName(parameter.type.snakeCase);
 
@@ -443,85 +312,6 @@ class ${source.name.pascalCase}RepositoryImpl implements ${source.name.pascalCas
     }
 
     return methodParamsNotRequired;
-  }
-
-  FutureOr<void> _generateMethodParamsFile({
-    required String methodName,
-    required Set<Property> methodParamsNotRequired,
-    required String projectName,
-    required String projectPath,
-    required Source source,
-    required List<DataComponent> innerEnums,
-  }) async {
-    final imports = <String>{};
-
-    imports.add("import 'package:json_annotation/json_annotation.dart';");
-
-    if (methodParamsNotRequired.isNotEmpty) {
-      for (final parameter in methodParamsNotRequired) {
-        if (parameter.type.isNotEmpty) {
-          for (final importSource in sourceRepository.sources) {
-            for (final entity in importSource.dataComponents) {
-              if (parameter.type.contains(entity.name)) {
-                innerEnums.map((e) => e.name).contains(entity.name)
-                    ? imports.add(
-                        "import 'package:$projectName/data/model/remote/${entity.sourceName.snakeCase}/enums/${entity.name.snakeCase}.dart';\n")
-                    : imports.add(
-                        "import 'package:$projectName/domain/entity/${entity.sourceName.snakeCase}/${entity.name.snakeCase}/${entity.name.snakeCase}.dart';\n");
-              }
-            }
-          }
-        }
-      }
-    }
-
-    final parameters = methodParamsNotRequired
-        .map((param) =>
-            '${TypeMatcher.getDartType(param.type)}? ${param.name.camelCase.replaceAll(RegExp('[\\[\\]]'), '')}')
-        .join(';\n');
-
-    final fileContent = '''${imports.map((e) => e).join('')}
-    
-part '${methodName.snakeCase}_params.g.dart';
-
-@JsonSerializable()
-class ${methodName.pascalCase}Params{
-  $parameters;
-  
-  ${methodName.pascalCase}Params({${methodParamsNotRequired.map((param) => 'this.${param.name.camelCase.replaceAll(RegExp('[\\[\\]]'), '')}').join(',\n')}});
-        
-  Map<String, dynamic> toJson() => _\$${methodName.pascalCase}ParamsToJson(this);
-}    
-''';
-
-    final path = await Directory(
-            '$projectPath/$projectName/lib/data/source/remote/${source.name.snakeCase}/params')
-        .create(recursive: true);
-
-    var file =
-        await File('${path.path}/${methodName.snakeCase}_params.dart').create();
-
-    await file.writeAsString(fileContent);
-  }
-
-  FutureOr<void> _generateMethodInnerEnumFile({
-    required DataComponent innerEnum,
-    required String projectName,
-    required String projectPath,
-    required Source source,
-  }) async {
-    final path = await Directory(
-            '$projectPath/$projectName/lib/data/model/remote/${source.name.snakeCase}/enums')
-        .create(recursive: true);
-
-    var file =
-        await File('${path.path}/${innerEnum.name.snakeCase}.dart').create();
-
-    final fileContent = '''enum ${innerEnum.name.pascalCase}{
-      ${innerEnum.properties.map((e) => e.name.snakeCase).join(',\n')}
-    }''';
-
-    await file.writeAsString(fileContent);
   }
 
   String _getDynamicPath(
@@ -555,211 +345,5 @@ class ${methodName.pascalCase}Params{
     }
 
     return 'String _$methodType${pathName.pascalCase}Path(${params.map((e) => '${e.type} ${e.name.replaceAll('-', '_').camelCase}').join(', ')}) => \'$dynamicPath\';';
-  }
-
-  String _getSourceImplBody(GeneratedMethod method, String prefix) {
-    final isEnum = _checkEntityIsEnum(entityName: method.responseEntityName);
-
-    String data = '';
-
-    if (method.requiredParams.isNotEmpty) {
-      if (method.requiredParams.contains(',')) {
-        if (method.requestEntityName.isNotEmpty &&
-            method.requiredParams
-                .contains(method.requestEntityName.camelCase)) {
-          data = method.requiredParams
-              .split(',')
-              .where((e) =>
-                  method.requestEntityName.isNotEmpty &&
-                  e.contains(method.requestEntityName.camelCase))
-              .first
-              .split(' ')
-              .last;
-        }
-      } else {
-        if (method.requestEntityName.isNotEmpty &&
-            method.requiredParams
-                .contains(method.requestEntityName.camelCase)) {
-          data = method.requiredParams.split(' ').last;
-        }
-      }
-    }
-
-    final responseEntityName =
-        method.responseEntityName.endsWith('Response') || isEnum
-            ? method.responseEntityName
-            : '${method.responseEntityName}Response';
-
-    final methodBody = '''
-final request = _apiClient.client.${method.methodType}(
-   ${method.endpoint.split(' ').firstWhere((e) => e.startsWith('_')).split('(').first.replaceAll(prefix, '')}${method.pathParams.isNotEmpty ? '(${method.pathParams.map((e) => e.name).join(', ')})' : ''},
-   ${method.optionalParams.isNotEmpty ? 'queryParameters: params?.toJson(),' : ''}
-   ${method.optionalParams.isEmpty && method.queryParams.isNotEmpty ? 'queryParameters: {${method.queryParams.map((e) => '\'${e.name}\': ${e.name}${method.innerEnums.any((element) => element.name == e.type) ? '.name' : ''}').join(',\n')},},' : ''}
-   ${data.isNotEmpty ? 'data: $data.toJson(),' : ''}
-   );
-
- return _dioRequestProcessor.processRequest(
- onRequest: () => request,
- onResponse: (response) => ${method.responseEntityName.isNotEmpty ? '$responseEntityName.${isEnum ? 'values.first' : 'fromJson(response.data)'}' : method.responseRuntimeType.isNotEmpty ? 'response.data' : 'OperationStatus.success'},);
-    ''';
-
-    return methodBody;
-  }
-
-  String _getRepositoryImplBody(
-      GeneratedMethod method, String prefix, String sourceName) {
-    String sourceParams = method.sourceMethod
-        .replaceAll(';', '')
-        .split('(')
-        .last
-        .replaceAll('{required ', '')
-        .replaceAll(', })', '')
-        .replaceLast(')', '')
-        .replaceLast('}', '')
-        .replaceLast(',', '');
-
-    if (sourceParams.isNotEmpty) {
-      if (sourceParams.contains(',')) {
-        sourceParams = sourceParams
-            .split(',')
-            .map((e) => '${e.split(' ').last}: ${e.split(' ').last}')
-            .join(', ');
-      } else {
-        sourceParams =
-            '${sourceParams.split(' ').last}: ${sourceParams.split(' ').last}';
-      }
-
-      sourceParams = '$sourceParams,';
-    }
-
-    final responseName = method.responseEntityName.replaceLast('Response', '');
-
-    final methodBody = '''
-try {
-      final response = await _${sourceName}Source.${method.name}($sourceParams);
-      if (response.isSuccess()) {
-        ${method.sourceMethod.contains('<OperationStatus>') || _checkEntityIsEnum(entityName: responseName) ? 'return Result.success(response.data);' : responseName.isNotEmpty ? '''final result = _${responseName.camelCase}Mappers.mapResponseToEntity(response.data);
-        return Result.success(result);''' : 'return Result.success(response.data);'}
-      } else {
-        final failure = MapCommonServerError.getServerFailureDetails(response);
-        return Result.error(failure: failure);
-      }
-    } catch (e, trace) {
-      logger.crash(reason: '${method.name}_API_ERR', error: e, stackTrace: trace);
-      //TODO make repository failure
-      return Result.error(
-        failure: ApiFailure(
-          ServerFailure.exception,
-          message: e.toString(),
-        ),
-      );
-    }
-    ''';
-
-    return methodBody;
-  }
-
-  bool _checkEntityIsEnum({required String entityName}) {
-    bool result = false;
-
-    for (final source in sourceRepository.sources) {
-      for (final entity in source.dataComponents) {
-        if (entity.name == entityName) {
-          result = entity.isEnum;
-        }
-      }
-    }
-
-    if (sourceRepository.sources.any((element) => element.paths.any((path) =>
-        path.methods.any((method) => method.innerEnums
-            .any((innerEnum) => innerEnum.name == entityName))))) {
-      result = true;
-    }
-    return result;
-  }
-
-  Future<void> _generateDI({
-    required String sourceName,
-    required String projectName,
-    required String projectPath,
-  }) async {
-    var getItSourceFile =
-        File('$projectPath/$projectName/lib/core/di/source.dart');
-
-    var getItRepositoryFile =
-        File('$projectPath/$projectName/lib/core/di/repository.dart');
-
-    var dioConstFile = File(
-        '$projectPath/$projectName/lib/core/arch/data/remote/clients/dio/dio_const.dart');
-
-    var getItSourceFileContent = await getItSourceFile.readAsString();
-
-    await getItSourceFile.writeAsString(getItSourceFileContent.replaceFirst(
-        '//{imports end}',
-        '''import 'package:$projectName/data/source/remote/${sourceName.snakeCase}/${sourceName.snakeCase}_source.dart';
-import 'package:$projectName/data/source/remote/${sourceName.snakeCase}/${sourceName.snakeCase}_source_impl.dart';
-//{imports end}''').replaceFirst(')); //{sources end}', '''))
-        ..registerSingleton<${sourceName.pascalCase}Source>(${sourceName.pascalCase}SourceImpl(
-       getIt.get<ApiClient>(instanceName: DioConst.${sourceName.camelCase}ApiInstance),
-       getIt.get<DioRequestProcessor>(),
-     )); //{sources end}'''));
-
-    var dioConstFileContent = await dioConstFile.readAsString();
-
-    await dioConstFile.writeAsString(dioConstFileContent.replaceFirst(
-        '//{dio const end}',
-        '''static const String ${sourceName.camelCase}ApiInstance = '${sourceName.snakeCase}Api';
-static const String ${sourceName.camelCase}ApiBaseUrl = 'http://localhost:8080';
-
-//{dio const end}'''));
-
-    var getItRepositoryFileContent = await getItRepositoryFile.readAsString();
-
-    await getItRepositoryFile.writeAsString(getItRepositoryFileContent.replaceFirst(
-        '//{imports end}',
-        '''import 'package:$projectName/domain/repository/${sourceName.snakeCase}/${sourceName.snakeCase}_repository.dart';
-import 'package:$projectName/data/repository/${sourceName.snakeCase}/${sourceName.snakeCase}_repository_impl.dart';
-import 'package:$projectName/data/source/remote/${sourceName.snakeCase}/${sourceName.snakeCase}_source.dart';
-//{imports end}''').replaceFirst('); //{repositories end}', ''')
-        ..registerSingleton<${sourceName.pascalCase}Repository>(
-       ${sourceName.pascalCase}RepositoryImpl(${sourceName.camelCase}Source: getIt<${sourceName.pascalCase}Source>()),
-     ); //{repositories end}'''));
-  }
-}
-
-class GeneratedMethod {
-  final String path;
-  final String name;
-  final String endpoint;
-  final String methodType;
-  final String sourceMethod;
-  final String responseEntityName;
-  final String requestEntityName;
-  final String responseRuntimeType;
-  final String requiredParams;
-  final String optionalParams;
-  final List<MethodParameter> queryParams;
-  final List<MethodParameter> pathParams;
-  final List<DataComponent> innerEnums;
-
-  GeneratedMethod({
-    required this.path,
-    required this.name,
-    required this.endpoint,
-    required this.methodType,
-    required this.sourceMethod,
-    required this.responseEntityName,
-    required this.requestEntityName,
-    this.responseRuntimeType = '',
-    required this.requiredParams,
-    required this.optionalParams,
-    required this.queryParams,
-    required this.pathParams,
-    this.innerEnums = const [],
-  });
-
-  @override
-  String toString() {
-    return 'Name: $name\nPath: $path\nEndpoint: $endpoint\nMethodType: $methodType\nResponseEntityName: $responseEntityName\nQueryParams: $queryParams\nRequiredParams: $requiredParams\nOptionalParams: $optionalParams';
   }
 }

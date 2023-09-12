@@ -4,7 +4,7 @@ import 'package:onix_flutter_bricks/core/di/services.dart';
 import 'package:onix_flutter_bricks/util/process_starter.dart';
 
 class GenerateSigning {
-  Future<void> call({
+  static Future<void> call({
     required String projectPath,
     required String projectName,
     required String genPass,
