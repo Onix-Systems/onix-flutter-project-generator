@@ -6,14 +6,15 @@ import 'package:recase/recase.dart';
 
 class SourceFilesGenerator {
   static Future<String> sourceFileGenerate({
+    required String projectPath,
     required String projectName,
     required String sourceName,
     required Set<String> imports,
     required List<String> sourceMethods,
   }) async {
-    final path =
-        await Directory('lib/data/source/remote/${sourceName.snakeCase}/')
-            .create(recursive: true);
+    final path = await Directory(
+            '$projectPath/$projectName/lib/data/source/remote/${sourceName.snakeCase}/')
+        .create(recursive: true);
 
     final sourceFile =
         await File('${path.path}/${sourceName.snakeCase}_source.dart').create();

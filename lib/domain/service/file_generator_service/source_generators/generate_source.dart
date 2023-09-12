@@ -102,6 +102,7 @@ class GenerateSource {
     }
 
     String sourceFileContent = await SourceFilesGenerator.sourceFileGenerate(
+        projectPath: projectPath,
         projectName: projectName,
         sourceName: source.name,
         imports: imports,
