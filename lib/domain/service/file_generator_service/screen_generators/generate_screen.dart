@@ -23,13 +23,11 @@ class GenerateScreen {
       screenName = screenName.substring(0, screenName.length - 7);
     }
 
-    //Post gen
-
     final screenPath =
         '$projectPath/$projectName/lib/presentation/screen/${screenName}_screen';
     await Directory(screenPath).create(recursive: true);
 
-    if (screen.state == ScreenStateManagement.bloc) {
+    if (screen.state != ScreenStateManagement.none) {
       await Directory('$screenPath/bloc').create(recursive: true);
     }
 
@@ -37,7 +35,7 @@ class GenerateScreen {
       screenName: screenName,
       screenPath: screenPath,
       projectName: projectName,
-      useBloc: screen.state == ScreenStateManagement.bloc,
+      stateManagement: screen.state,
       router: router,
     );
 
@@ -103,7 +101,7 @@ class GenerateScreen {
 
   Future<void> _createFiles({
     required String screenName,
-    required bool useBloc,
+    required ScreenStateManagement stateManagement,
     required String projectName,
     required String screenPath,
     required ProjectRouter router,
@@ -111,39 +109,45 @@ class GenerateScreen {
     var screenFile =
         await File('$screenPath/${screenName}_screen.dart').create();
 
-    if (useBloc) {
-      await screenFile.writeAsString(FileContent.screenBloc(
-        isGoRouter: router == ProjectRouter.goRouter,
-        screenName: screenName,
-        projectName: projectName,
-      ));
+    switch (stateManagement) {
+      case ScreenStateManagement.bloc || ScreenStateManagement.cubit:
+        await screenFile.writeAsString(FileContent.screenBloc(
+          isGoRouter: router == ProjectRouter.goRouter,
+          screenName: screenName,
+          projectName: projectName,
+          stateManagement: stateManagement,
+        ));
+        var importsFile =
+            await File('$screenPath/bloc/${screenName}_screen_imports.dart')
+                .create();
 
-      var importsFile =
-          await File('$screenPath/bloc/${screenName}_screen_bloc_imports.dart')
-              .create();
-
-      importsFile.writeAsString('''
-export '${screenName}_screen_bloc.dart';
+        importsFile.writeAsString('''
+export '${screenName}_screen_${stateManagement.name}.dart';
 export '${screenName}_screen_models.dart';
     ''');
 
-      var modelsFile =
-          await File('$screenPath/bloc/${screenName}_screen_models.dart')
-              .create();
+        var modelsFile =
+            await File('$screenPath/bloc/${screenName}_screen_models.dart')
+                .create();
 
-      await modelsFile
-          .writeAsString(FileContent.blocModels(screenName: screenName));
+        await modelsFile.writeAsString(FileContent.models(
+            screenName: screenName, stateManagement: stateManagement));
 
-      var blocFile =
-          await File('$screenPath/bloc/${screenName}_screen_bloc.dart')
-              .create();
+        var blocFile = await File(
+                '$screenPath/bloc/${screenName}_screen_${stateManagement.name}.dart')
+            .create();
 
-      await blocFile.writeAsString(
-          FileContent.bloc(projectName: projectName, screenName: screenName));
-    } else {
-      await screenFile.writeAsString(FileContent.screen(
+        await blocFile.writeAsString(FileContent.bloc(
+            projectName: projectName,
+            screenName: screenName,
+            stateManagement: stateManagement));
+        break;
+      case ScreenStateManagement.none:
+        await screenFile.writeAsString(FileContent.screenNoBloc(
           isGoRouter: router == ProjectRouter.goRouter,
-          screenName: screenName));
+          screenName: screenName,
+        ));
+        break;
     }
   }
 }
