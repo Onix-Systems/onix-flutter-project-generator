@@ -81,8 +81,9 @@ class GenerateSource {
             ? _getDynamicPath(
                     dynamicPath: path.path,
                     methodType: method.methodType.name,
-                    params:
-                        method.params.where((e) => e.place == 'path').toList())
+                    params: method.params
+                        .where((e) => e.place.name == 'path')
+                        .toList())
                 .replaceAll(mutatedPathPrefix, '')
             : 'final _${method.methodType.name}${path.path.replaceAll('/', '_').replaceAll('-', '_').replaceAll(mutatedPathPrefix, '').pascalCase}Path = \'${path.path}\';';
 
@@ -107,8 +108,10 @@ class GenerateSource {
           responseEntityName: method.responseEntityName,
           requestEntityName: method.requestEntityName,
           responseRuntimeType: method.responseRuntimeType,
-          queryParams: method.params.where((e) => e.place == 'query').toList(),
-          pathParams: method.params.where((e) => e.place == 'path').toList(),
+          queryParams:
+              method.params.where((e) => e.place.name == 'query').toList(),
+          pathParams:
+              method.params.where((e) => e.place.name == 'path').toList(),
           optionalParams: params
               .where((e) => e.contains(' params'))
               .join(', ')
@@ -121,8 +124,9 @@ class GenerateSource {
           sourceDynamicPaths.add(_getDynamicPath(
                   dynamicPath: path.path,
                   methodType: method.methodType.name,
-                  params:
-                      method.params.where((e) => e.place == 'path').toList())
+                  params: method.params
+                      .where((e) => e.place.name == 'path')
+                      .toList())
               .replaceAll(mutatedPathPrefix, ''));
         } else {
           sourceStaticPaths.add(

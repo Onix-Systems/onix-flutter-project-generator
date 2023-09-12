@@ -104,8 +104,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       var mainProcess = await ProcessStarter.start(
           workingDirectory: state.config.projectPath);
 
-      mainProcess.stdin.writeln('dart pub global activate mason_cli');
-      mainProcess.stdin.writeln('mason cache clear');
+      mainProcess.stdin
+          .writeln('dart pub global activate mason_cli && mason cache clear');
 
       const gitRef = '--git-ref ${AppConsts.gitBranch}';
 
@@ -147,11 +147,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         workingDirectory:
             '${state.config.projectPath}/${state.config.projectName}');
 
-    gitProcess.stdin.writeln('git add --all');
-
-    gitProcess.stdin.writeln('git commit -m "Initial"');
-
-    gitProcess.stdin.writeln('echo "Complete with exit code: 0"');
+    gitProcess.stdin.writeln(
+        'git add --all && git commit -m "Initial" && echo "Complete with exit code: 0"');
 
     await gitProcess.exitCode;
 

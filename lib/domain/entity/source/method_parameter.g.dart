@@ -8,7 +8,7 @@ part of 'method_parameter.dart';
 
 MethodParameter _$MethodParameterFromJson(Map<String, dynamic> json) =>
     MethodParameter(
-      place: json['place'] as String,
+      place: $enumDecode(_$MethodPlaceEnumMap, json['place']),
       name: json['name'] as String,
       type: json['type'] as String,
       nullable: json['nullable'] as bool? ?? false,
@@ -19,5 +19,10 @@ Map<String, dynamic> _$MethodParameterToJson(MethodParameter instance) =>
       'name': instance.name,
       'type': instance.type,
       'nullable': instance.nullable,
-      'place': instance.place,
+      'place': _$MethodPlaceEnumMap[instance.place]!,
     };
+
+const _$MethodPlaceEnumMap = {
+  MethodPlace.query: 'query',
+  MethodPlace.path: 'path',
+};

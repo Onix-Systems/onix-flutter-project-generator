@@ -3,12 +3,16 @@ import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:recase/recase.dart';
 
 class ScreenRepositoryImpl implements ScreenRepository {
-  final Set<Screen> _screens = {
-    Screen(
-      name: 'Home',
-      exists: true,
-    ),
-  };
+  final _homeScreen = Screen(
+    name: 'Home',
+    exists: true,
+  );
+
+  final Set<Screen> _screens = {};
+
+  ScreenRepositoryImpl() {
+    _screens.add(_homeScreen);
+  }
 
   @override
   Set<Screen> get screens => _screens.map((e) => Screen.copyOf(e)).toSet();
@@ -56,11 +60,6 @@ class ScreenRepositoryImpl implements ScreenRepository {
   @override
   void empty() {
     _screens.clear();
-    _screens.add(
-      Screen(
-        name: 'Home',
-        exists: true,
-      ),
-    );
+    _screens.add(_homeScreen);
   }
 }

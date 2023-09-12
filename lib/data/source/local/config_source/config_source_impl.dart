@@ -15,8 +15,7 @@ class ConfigSourceImpl implements ConfigSource {
       return Config.empty();
     }
 
-    var config = Config.fromJson(jsonDecode(file.readAsStringSync()));
-    return config;
+    return Config.fromJson(jsonDecode(file.readAsStringSync()));
   }
 
   @override

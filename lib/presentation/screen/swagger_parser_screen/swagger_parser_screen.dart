@@ -77,7 +77,10 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
         onCancel: () =>
             blocOf(context).add(const SwaggerParserScreenEventOnIgnore()),
       ),
-      onContinue: () => _onContinue(context, blocOf(context).state),
+      onContinue: () {
+        _urlController.clear();
+        _onContinue(context, blocOf(context).state);
+      },
     );
   }
 

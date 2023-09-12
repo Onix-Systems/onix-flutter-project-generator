@@ -5,7 +5,7 @@ part 'method_parameter.g.dart';
 
 @JsonSerializable()
 class MethodParameter extends Property {
-  final String place;
+  final MethodPlace place;
 
   MethodParameter({
     required this.place,
@@ -16,7 +16,7 @@ class MethodParameter extends Property {
 
   @override
   String toString() {
-    return '{name: ${super.name}, type: ${super.type}, place: $place, nullable: ${super.nullable}}';
+    return '{name: ${super.name}, type: ${super.type}, place: ${place.name}, nullable: ${super.nullable}}';
   }
 
   factory MethodParameter.fromJson(Map<String, dynamic> json) =>
@@ -33,3 +33,7 @@ class MethodParameter extends Property {
     );
   }
 }
+
+enum MethodPlace { query, path, formData, body, header }
+
+enum MethodType { get, post, put, delete, patch }

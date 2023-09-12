@@ -8,20 +8,20 @@ part of 'screen.dart';
 
 Screen _$ScreenFromJson(Map<String, dynamic> json) => Screen(
       name: json['name'] as String,
-      state:
-          $enumDecodeNullable(_$ScreenStateManagementEnumMap, json['state']) ??
-              ScreenStateManagement.none,
+      stateManager: $enumDecodeNullable(
+              _$ScreenStateManagerEnumMap, json['stateManager']) ??
+          ScreenStateManager.none,
       exists: json['exists'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$ScreenToJson(Screen instance) => <String, dynamic>{
       'name': instance.name,
-      'state': _$ScreenStateManagementEnumMap[instance.state]!,
+      'stateManager': _$ScreenStateManagerEnumMap[instance.stateManager]!,
       'exists': instance.exists,
     };
 
-const _$ScreenStateManagementEnumMap = {
-  ScreenStateManagement.bloc: 'bloc',
-  ScreenStateManagement.cubit: 'cubit',
-  ScreenStateManagement.none: 'none',
+const _$ScreenStateManagerEnumMap = {
+  ScreenStateManager.bloc: 'bloc',
+  ScreenStateManager.cubit: 'cubit',
+  ScreenStateManager.none: 'none',
 };

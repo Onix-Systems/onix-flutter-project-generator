@@ -4,7 +4,6 @@ import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/method.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/method_parameter.dart';
-import 'package:onix_flutter_bricks/domain/entity/source/method_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/path.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/domain/repository/source_repository.dart';
@@ -13,43 +12,31 @@ import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class SourceRepositoryImpl implements SourceRepository {
-  final Set<Source> _sources = {
-    Source(
-      name: 'Time',
-      exists: true,
-      isGenerated: false,
-      dataComponents: [
-        DataComponent(
-          name: 'Time',
-          exists: true,
-          isGenerated: false,
-          properties: [Property(name: 'currentDateTime', type: 'DateTime')],
-        )..setSourceName('Time'),
-      ],
-      dataComponentsNames: ['Time'],
-    ),
-  };
+  final _timeSource = Source(
+    name: 'Time',
+    exists: true,
+    isGenerated: false,
+    dataComponents: [
+      DataComponent(
+        name: 'Time',
+        exists: true,
+        isGenerated: false,
+        properties: [Property(name: 'currentDateTime', type: 'DateTime')],
+      )..setSourceName('Time'),
+    ],
+    dataComponentsNames: ['Time'],
+  );
+
+  final Set<Source> _sources = {};
+
+  SourceRepositoryImpl() {
+    _sources.add(_timeSource);
+  }
 
   @override
   void empty() {
     _sources.clear();
-
-    final defaultSource = Source(
-      name: 'Time',
-      exists: true,
-      isGenerated: false,
-      dataComponents: [
-        DataComponent(
-          name: 'Time',
-          exists: true,
-          isGenerated: false,
-          properties: [Property(name: 'currentDateTime', type: 'DateTime')],
-        )..setSourceName('Time'),
-      ],
-      dataComponentsNames: ['Time'],
-    );
-
-    addSource(defaultSource);
+    addSource(_timeSource);
   }
 
   @override
@@ -164,7 +151,8 @@ class SourceRepositoryImpl implements SourceRepository {
 
                 method.params.add(MethodParameter(
                     name: entityName.camelCase,
-                    place: parameter['in'],
+                    place: MethodPlace.values.firstWhere(
+                        (element) => element.name == parameter['in']),
                     type: isArray ? 'List<$entityName>' : entityName,
                     nullable: parameter['required'] != null
                         ? !parameter['required']
@@ -197,7 +185,8 @@ class SourceRepositoryImpl implements SourceRepository {
 
                 method.params.add(MethodParameter(
                     name: parameter['name'],
-                    place: parameter['in'],
+                    place: MethodPlace.values.firstWhere(
+                        (element) => element.name == parameter['in']),
                     type: isEnum
                         ? '${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase}'
                         : TypeMatcher.getDartType(parameter['schema']['type']),
@@ -210,7 +199,8 @@ class SourceRepositoryImpl implements SourceRepository {
 
               method.params.add(MethodParameter(
                   name: parameter['name'],
-                  place: parameter['in'],
+                  place: MethodPlace.values
+                      .firstWhere((element) => element.name == parameter['in']),
                   type: isArray
                       ? 'List<${TypeMatcher.getDartType(parameter['items']['type'])}>'
                       : TypeMatcher.getDartType(parameter['type']),

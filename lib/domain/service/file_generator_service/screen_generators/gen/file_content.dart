@@ -5,7 +5,7 @@ class FileContent {
   static String bloc(
           {required String projectName,
           required String screenName,
-          required ScreenStateManagement stateManagement}) =>
+          required ScreenStateManager stateManagement}) =>
       '''import 'dart:async';
 
 import 'package:$projectName/core/arch/bloc/base_${stateManagement.name}.dart';
@@ -13,17 +13,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_imports.dart';
 
-class ${screenName.pascalCase}Screen${stateManagement.name.pascalCase} extends Base${stateManagement.name.pascalCase}<${stateManagement == ScreenStateManagement.bloc ? '${screenName.pascalCase}ScreenEvent, ' : ''}${screenName.pascalCase}ScreenState, ${screenName.pascalCase}ScreenSR> {
+class ${screenName.pascalCase}Screen${stateManagement.name.pascalCase} extends Base${stateManagement.name.pascalCase}<${stateManagement == ScreenStateManager.bloc ? '${screenName.pascalCase}ScreenEvent, ' : ''}${screenName.pascalCase}ScreenState, ${screenName.pascalCase}ScreenSR> {
   ${screenName.pascalCase}Screen${stateManagement.name.pascalCase}() : super(${screenName.pascalCase}ScreenState()) {
-    ${stateManagement == ScreenStateManagement.bloc ? 'on<${screenName.pascalCase}ScreenEventInit>(_onInit);' : ''}
-    ${stateManagement == ScreenStateManagement.bloc ? 'add(const ${screenName.pascalCase}ScreenEvent.init());' : ''}
+    ${stateManagement == ScreenStateManager.bloc ? 'on<${screenName.pascalCase}ScreenEventInit>(_onInit);' : ''}
+    ${stateManagement == ScreenStateManager.bloc ? 'add(const ${screenName.pascalCase}ScreenEvent.init());' : ''}
   }
 
-  FutureOr<void> ${stateManagement == ScreenStateManagement.bloc ? '_onInit' : 'init'} (
-    ${stateManagement == ScreenStateManagement.bloc ? '${screenName.pascalCase}ScreenEventInit event,' : ''}
-    ${stateManagement == ScreenStateManagement.bloc ? 'Emitter<${screenName.pascalCase}ScreenState> emit,' : ''}
+  FutureOr<void> ${stateManagement == ScreenStateManager.bloc ? '_onInit' : 'init'} (
+    ${stateManagement == ScreenStateManager.bloc ? '${screenName.pascalCase}ScreenEventInit event,' : ''}
+    ${stateManagement == ScreenStateManager.bloc ? 'Emitter<${screenName.pascalCase}ScreenState> emit,' : ''}
   ) {
-    ${stateManagement == ScreenStateManagement.cubit ? 'emit(state.copyWith(isLoading: false));' : ''}  
+    ${stateManagement == ScreenStateManager.cubit ? 'emit(state.copyWith(isLoading: false));' : ''}  
   }
 
 }
@@ -31,12 +31,12 @@ class ${screenName.pascalCase}Screen${stateManagement.name.pascalCase} extends B
 
   static String models(
           {required String screenName,
-          required ScreenStateManagement stateManagement}) =>
+          required ScreenStateManager stateManagement}) =>
       '''import 'package:freezed_annotation/freezed_annotation.dart';
 
 part '${screenName}_screen_models.freezed.dart';
 
-${stateManagement == ScreenStateManagement.bloc ? '''@freezed
+${stateManagement == ScreenStateManager.bloc ? '''@freezed
 class ${screenName.pascalCase}ScreenEvent with _\$${screenName.pascalCase}ScreenEvent {
   const factory ${screenName.pascalCase}ScreenEvent.init() = ${screenName.pascalCase}ScreenEventInit;
 }''' : ''}
@@ -46,7 +46,7 @@ class ${screenName.pascalCase}ScreenSR with _\$${screenName.pascalCase}ScreenSR 
   const factory ${screenName.pascalCase}ScreenSR.loadFinished() = _LoadFinished;
 }
 
-${stateManagement == ScreenStateManagement.bloc ? 'class ${screenName.pascalCase}ScreenState {}' : '''@freezed
+${stateManagement == ScreenStateManager.bloc ? 'class ${screenName.pascalCase}ScreenState {}' : '''@freezed
 class ${screenName.pascalCase}ScreenState with _\$${screenName.pascalCase}ScreenState{
 const factory ${screenName.pascalCase}ScreenState({
     @Default(true) bool isLoading,
@@ -75,9 +75,9 @@ class ${screenName.pascalCase}Screen extends StatelessWidget {
           {required bool isGoRouter,
           required String screenName,
           required String projectName,
-          required ScreenStateManagement stateManagement}) =>
+          required ScreenStateManager stateManagement}) =>
       '''${isGoRouter ? 'import \'package:go_router/go_router.dart\';' : 'import \'package:auto_route/auto_route.dart\';'}
-${stateManagement == ScreenStateManagement.bloc ? 'import \'package:$projectName/core/arch/bloc/base_block_state.dart\';' : 'import \'package:$projectName/core/arch/bloc/base_cubit_state.dart\';'}
+${stateManagement == ScreenStateManager.bloc ? 'import \'package:$projectName/core/arch/bloc/base_block_state.dart\';' : 'import \'package:$projectName/core/arch/bloc/base_cubit_state.dart\';'}
 import 'package:flutter/material.dart';
 import 'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_imports.dart';
 
@@ -92,7 +92,7 @@ class ${screenName.pascalCase}Screen extends StatefulWidget {
 }
 
 class _${screenName.pascalCase}ScreenState
-    extends Base${stateManagement == ScreenStateManagement.cubit ? 'Cubit' : ''}State<${screenName.pascalCase}ScreenState, ${screenName.pascalCase}Screen${stateManagement.name.pascalCase}, ${screenName.pascalCase}ScreenSR, ${screenName.pascalCase}Screen> {
+    extends Base${stateManagement == ScreenStateManager.cubit ? 'Cubit' : ''}State<${screenName.pascalCase}ScreenState, ${screenName.pascalCase}Screen${stateManagement.name.pascalCase}, ${screenName.pascalCase}ScreenSR, ${screenName.pascalCase}Screen> {
   @override
   Widget buildWidget(BuildContext context) {
     return srObserver(

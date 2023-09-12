@@ -27,7 +27,7 @@ class GenerateScreen {
         '$projectPath/$projectName/lib/presentation/screen/${screenName}_screen';
     await Directory(screenPath).create(recursive: true);
 
-    if (screen.state != ScreenStateManagement.none) {
+    if (screen.stateManager != ScreenStateManager.none) {
       await Directory('$screenPath/bloc').create(recursive: true);
     }
 
@@ -35,7 +35,7 @@ class GenerateScreen {
       screenName: screenName,
       screenPath: screenPath,
       projectName: projectName,
-      stateManagement: screen.state,
+      stateManagement: screen.stateManager,
       router: router,
     );
 
@@ -45,7 +45,7 @@ class GenerateScreen {
         routesFile: routesFile,
         projectName: projectName);
 
-    if (screen.state == ScreenStateManagement.bloc) {
+    if (screen.stateManager == ScreenStateManager.bloc) {
       await _createDI(
         projectName: projectName,
         screenName: screenName,
@@ -101,7 +101,7 @@ class GenerateScreen {
 
   Future<void> _createFiles({
     required String screenName,
-    required ScreenStateManagement stateManagement,
+    required ScreenStateManager stateManagement,
     required String projectName,
     required String screenPath,
     required ProjectRouter router,
@@ -110,7 +110,7 @@ class GenerateScreen {
         await File('$screenPath/${screenName}_screen.dart').create();
 
     switch (stateManagement) {
-      case ScreenStateManagement.bloc || ScreenStateManagement.cubit:
+      case ScreenStateManager.bloc || ScreenStateManager.cubit:
         await screenFile.writeAsString(FileContent.screenBloc(
           isGoRouter: router == ProjectRouter.goRouter,
           screenName: screenName,
@@ -142,7 +142,7 @@ export '${screenName}_screen_models.dart';
             screenName: screenName,
             stateManagement: stateManagement));
         break;
-      case ScreenStateManagement.none:
+      case ScreenStateManager.none:
         await screenFile.writeAsString(FileContent.screenNoBloc(
           isGoRouter: router == ProjectRouter.goRouter,
           screenName: screenName,

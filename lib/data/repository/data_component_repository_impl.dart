@@ -12,44 +12,32 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   Set<DataComponent> get dataComponents =>
       _dataComponents.map((e) => DataComponent.copyOf(e)).toSet();
 
-  final Set<DataComponent> _dataComponents = {
-    DataComponent(
-      name: 'Auth',
-      exists: true,
-      isGenerated: false,
-      properties: [
-        Property(
-          name: 'accessToken',
-          type: 'String',
-        ),
-        Property(
-          name: 'refreshToken',
-          type: 'String',
-        ),
-      ],
-    ),
-  };
+  final _authComponent = DataComponent(
+    name: 'Auth',
+    exists: true,
+    isGenerated: false,
+    properties: [
+      Property(
+        name: 'accessToken',
+        type: 'String',
+      ),
+      Property(
+        name: 'refreshToken',
+        type: 'String',
+      ),
+    ],
+  );
+
+  final Set<DataComponent> _dataComponents = {};
+
+  DataComponentRepositoryImpl() {
+    _dataComponents.add(_authComponent);
+  }
 
   @override
   void empty() {
     _dataComponents.clear();
-    _dataComponents.add(
-      DataComponent(
-        name: 'Auth',
-        exists: true,
-        isGenerated: false,
-        properties: [
-          Property(
-            name: 'accessToken',
-            type: 'String',
-          ),
-          Property(
-            name: 'refreshToken',
-            type: 'String',
-          ),
-        ],
-      ),
-    );
+    _dataComponents.add(_authComponent);
   }
 
   @override
@@ -82,24 +70,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
   @override
   void parse(Map<String, dynamic> data) {
-    _dataComponents.clear();
-    _dataComponents.add(
-      DataComponent(
-        name: 'Auth',
-        exists: true,
-        isGenerated: false,
-        properties: [
-          Property(
-            name: 'accessToken',
-            type: 'String',
-          ),
-          Property(
-            name: 'refreshToken',
-            type: 'String',
-          ),
-        ],
-      ),
-    );
+    empty();
     _dataComponents.addAll(_parse(data));
   }
 

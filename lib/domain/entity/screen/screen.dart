@@ -5,17 +5,20 @@ part 'screen.g.dart';
 @JsonSerializable()
 class Screen {
   String name;
-  ScreenStateManagement state;
+  ScreenStateManager stateManager;
   bool exists;
 
   Screen({
     required this.name,
-    this.state = ScreenStateManagement.none,
+    this.stateManager = ScreenStateManager.none,
     this.exists = false,
   });
 
   Screen.copyOf(Screen screen)
-      : this(name: screen.name, state: screen.state, exists: screen.exists);
+      : this(
+            name: screen.name,
+            stateManager: screen.stateManager,
+            exists: screen.exists);
 
   @override
   bool operator ==(Object other) =>
@@ -23,7 +26,7 @@ class Screen {
       other is Screen &&
           runtimeType == other.runtimeType &&
           name == other.name &&
-          state == other.state &&
+          stateManager == other.stateManager &&
           exists == other.exists;
 
   @override
@@ -31,7 +34,7 @@ class Screen {
 
   @override
   String toString() {
-    return 'ScreenEntity{name: $name, bloc: $state, exists: $exists}';
+    return 'ScreenEntity{name: $name, bloc: $stateManager, exists: $exists}';
   }
 
   Map<String, dynamic> toJson() => _$ScreenToJson(this);
@@ -39,4 +42,4 @@ class Screen {
   factory Screen.fromJson(Map<String, dynamic> json) => _$ScreenFromJson(json);
 }
 
-enum ScreenStateManagement { bloc, cubit, none }
+enum ScreenStateManager { bloc, cubit, none }

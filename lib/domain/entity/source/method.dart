@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/method_parameter.dart';
-import 'package:onix_flutter_bricks/domain/entity/source/method_type.dart';
 
 part 'method.g.dart';
 

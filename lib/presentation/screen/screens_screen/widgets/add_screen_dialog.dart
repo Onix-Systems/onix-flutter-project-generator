@@ -21,7 +21,7 @@ class AddScreenDialog extends StatefulWidget {
 class _AddScreenDialogState extends State<AddScreenDialog> {
   final TextEditingController _screenNameController = TextEditingController();
 
-  ScreenStateManagement _stateManagement = ScreenStateManagement.none;
+  ScreenStateManager _stateManagement = ScreenStateManager.none;
 
   final _dialogFocusNode = FocusNode();
   final _textFieldFocusNode = FocusNode();
@@ -34,7 +34,7 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
     _currentFocusNode.requestFocus();
     if (widget.screen != null) {
       _screenNameController.text = widget.screen!.name;
-      _stateManagement = widget.screen!.state;
+      _stateManagement = widget.screen!.stateManager;
     }
     super.initState();
   }
@@ -87,20 +87,20 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
             LabeledCheckbox(
               focused: _currentFocusNode == _dialogFocusNode,
               label: S.of(context).usingBloc,
-              initialValue: _stateManagement == ScreenStateManagement.bloc,
+              initialValue: _stateManagement == ScreenStateManager.bloc,
               onAction: () {
                 setState(() {
-                  _stateManagement = ScreenStateManagement.bloc;
+                  _stateManagement = ScreenStateManager.bloc;
                 });
               },
             ),
             LabeledCheckbox(
               focused: _currentFocusNode == _dialogFocusNode,
               label: S.of(context).usingCubit,
-              initialValue: _stateManagement == ScreenStateManagement.cubit,
+              initialValue: _stateManagement == ScreenStateManager.cubit,
               onAction: () {
                 setState(() {
-                  _stateManagement = ScreenStateManagement.cubit;
+                  _stateManagement = ScreenStateManager.cubit;
                 });
               },
             ),
@@ -128,14 +128,14 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
     if (_screenNameController.text.isNotEmpty) {
       if (widget.screen != null) {
         widget.screen!.name = _screenNameController.text.snakeCase;
-        widget.screen!.state = _stateManagement;
+        widget.screen!.stateManager = _stateManagement;
         Navigator.pop(context, widget.screen);
       } else {
         Navigator.pop(
             context,
             Screen(
                 name: _screenNameController.text,
-                state: _stateManagement,
+                stateManager: _stateManagement,
                 exists: false));
       }
     } else {

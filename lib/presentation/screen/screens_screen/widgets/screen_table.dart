@@ -100,7 +100,7 @@ class ScreenTable extends StatelessWidget {
                       ),
                       Cell(
                         value: Text(
-                          screen.state.name.pascalCase,
+                          screen.stateManager.name.pascalCase,
                           style: context.appTextStyles.fs18?.copyWith(
                               color: screen.exists
                                   ? CupertinoColors.inactiveGray
