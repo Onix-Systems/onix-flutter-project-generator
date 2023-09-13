@@ -225,11 +225,11 @@ Future<void> getDependencies(HookContext context) async {
 
   for (var package in dependencies) {
     'Getting $package'.log();
-    var depProc = await Process.start(
+    var depProc = await Process.run(
         'flutter', ['pub', 'add', '--offline', '--no-precompile', package],
         workingDirectory: name);
 
-    depProc.log();
+    depProc.toString().log();
 
     exitCode = await depProc.exitCode;
   }
