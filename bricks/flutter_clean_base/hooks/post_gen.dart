@@ -216,9 +216,6 @@ Future<void> getDependencies(HookContext context) async {
     devDependencies.add('theme_tailor');
   }
 
-  /*==========================
-  flutter pub add starts here
-  ==========================*/
   'Getting dependencies...'.log();
 
   int exitCode = 0;
