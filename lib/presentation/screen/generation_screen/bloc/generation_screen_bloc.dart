@@ -108,7 +108,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       await Dio().download(
           'https://gitlab.onix.ua/onix-systems/flutter-project-generator/-/archive/master/flutter-project-generator-master.zip?path=bricks/flutter_clean_base',
-          brickDirectory.path);
+          '${brickDirectory.path}/brick.zip');
 
       var mainProcess = await ProcessStarter.start(
           workingDirectory: state.config.projectPath);
