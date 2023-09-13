@@ -186,21 +186,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
         screen.exists = true;
         screenRepository.modifyScreen(screen, screen.name);
-
-        if (screen == state.config.screens.last) {
-          var mainProcess = await ProcessStarter.start(
-              workingDirectory:
-                  '${state.config.projectPath}/${state.config.projectName}');
-
-          //mainProcess.stdin.writeln(AppConsts.buildCmd);
-
-          //mainProcess.stdin.writeln('dart format .');
-
-          mainProcess.stdin.writeln('echo "Complete with exit code: 0"');
-
-          outputService.add('{#info}Complete with exit code: 0');
-          await mainProcess.exitCode;
-        }
       }
 
       outputService.add('{#info}Screens generated!');
@@ -227,6 +212,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     }
 
     if (needToGenerateDataComponents || needToGenerateSources) {
+      outputService.add('{#info}Generating entities!');
       if (needToGenerateDataComponents) {
         for (final component
             in state.config.dataComponents.where((e) => !e.exists)) {
@@ -266,24 +252,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           }
         }
       }
-      outputService.add('{#info}Generating entities!');
-
-      var mainProcess = await ProcessStarter.start(
-          workingDirectory:
-              '${state.config.projectPath}/${state.config.projectName}');
-
-      // mainProcess.stdin.writeln(AppConsts.buildCmd);
-
-      // mainProcess.stdin.writeln('dart run import_sorter:main --no-comments');
-      //
-      // mainProcess.stdin.writeln('dart format .');
-
-      mainProcess.stdin.writeln('echo "Complete with exit code: 0"');
-
-      outputService.add('{#info}Complete with exit code: 0');
-      await mainProcess.exitCode;
-
-      outputService.add('{#info}Entities generated!');
 
       for (var source in state.config.sources) {
         source.exists = true;
@@ -298,6 +266,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       for (var component in state.config.dataComponents) {
         component.exists = true;
       }
+
+      outputService.add('{#info}Entities generated!');
     }
   }
 
