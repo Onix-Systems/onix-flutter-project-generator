@@ -63,7 +63,6 @@ void run(HookContext context) async {
   await Process.run('rm', ['pubspec.gen.yaml'], workingDirectory: name);
 
   await getDependencies(context);
-  //var exitCode = await generate(context);
 
   if (context.vars['flavorizr']) {
     await flavorize(context);
@@ -251,27 +250,6 @@ Future<void> getDependencies(HookContext context) async {
     exitBrick();
   }
 }
-
-// Future<int> generate(HookContext context) async {
-//   'Start build generator...'.log();
-//
-//   var buildRunnerProc = await Process.start(
-//       'flutter', ['pub', 'run', 'build_runner', 'build'],
-//       workingDirectory: name);
-//
-//   buildRunnerProc.log();
-//
-//   var exitCode = await buildRunnerProc.exitCode;
-//
-//   if (exitCode == 0) {
-//     'Generate complete successfully'.log();
-//   } else {
-//     'Failed to generate... Exit code: $exitCode'.error();
-//     //exitBrick();
-//   }
-//
-//   return exitCode;
-// }
 
 Future<void> flavorize(HookContext context) async {
   'Flavorizing...'.log();

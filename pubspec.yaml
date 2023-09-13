@@ -49,6 +49,7 @@ dependencies:
   go_router: ^10.1.2
   intl: ^0.18.1
   intl_utils: ^2.8.4
+  mason: ^0.1.0-dev.50
 
 dev_dependencies:
   flutter_test:
