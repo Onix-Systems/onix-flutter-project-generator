@@ -140,19 +140,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     await _generateDataComponents();
 
-    final buildProcess = await ProcessStarter.start(
-        workingDirectory:
-            '${state.config.projectPath}/${state.config.projectName}');
-
-    buildProcess.stdin.writeln(AppConsts.buildCmd);
-
-    buildProcess.stdin.writeln('dart run import_sorter:main --no-comments');
-
-    buildProcess.stdin.writeln('dart format .');
-
-    buildProcess.stdin.writeln('echo "Complete with exit code: 0"');
-
-    await buildProcess.exitCode;
+    await _buildProject();
 
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
@@ -280,5 +268,21 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     mainProcess.stdin.writeln('open -a \'Android Studio.app\' .');
 
     await mainProcess.exitCode;
+  }
+
+  Future<void> _buildProject() async {
+    final buildProcess = await ProcessStarter.start(
+        workingDirectory:
+            '${state.config.projectPath}/${state.config.projectName}');
+
+    buildProcess.stdin.writeln(AppConsts.buildCmd);
+
+    buildProcess.stdin.writeln('dart run import_sorter:main --no-comments');
+
+    buildProcess.stdin.writeln('dart format .');
+
+    buildProcess.stdin.writeln('echo "Complete with exit code: 0"');
+
+    await buildProcess.exitCode;
   }
 }
