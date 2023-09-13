@@ -223,16 +223,28 @@ Future<void> getDependencies(HookContext context) async {
 
   int exitCode = 0;
 
+  final pubGetProcess = await Process.start(
+      'echo', ['"Getting dependencies"'], workingDirectory: name);
+  workingDirectory:
+  name
+  );
+
+  pubGetProcess.log();
+
   for (var package in dependencies) {
-    'Getting $package'.log();
-    var depProc = await Process.run(
-        'flutter', ['pub', 'add', '--offline', '--no-precompile', package],
-        workingDirectory: name);
+  'Getting $package'.log();
 
-    depProc.outText.log();
-
-    exitCode = await depProc.exitCode;
+  pubGetProcess.stdin.writeln('flutter pub add $package');
+  // var depProc = await Process.run(
+  //     'flutter', ['pub', 'add', '--offline', '--no-precompile', package],
+  //     workingDirectory: name);
+  //
+  // depProc.outText.log();
+  //
+  // exitCode = await depProc.exitCode;
   }
+
+  exitCode = await pubGetProcess.exitCode;
 
   if (exitCode == 0) {
     'Dependencies installed successfully'.log();
