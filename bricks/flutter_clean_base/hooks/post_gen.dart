@@ -230,21 +230,11 @@ Future<void> getDependencies(HookContext context) async {
 
   exitCode = await depProc.exitCode;
 
-  // for (var package in dependencies) {
-  //   'Getting $package'.log();
-  //   var depProc = await Process.start('flutter', ['pub', 'add', package],
-  //       workingDirectory: name);
-  //
-  //   depProc.log();
-  //
-  //   exitCode = await depProc.exitCode;
-  // }
-
   if (exitCode == 0) {
     'Dependencies installed successfully'.log();
   } else {
     'Failed to install dependencies... Exit code: $exitCode'.error();
-    //exitBrick();
+    exitBrick();
   }
 
   'Getting dev dependencies...'.log();
@@ -257,21 +247,11 @@ Future<void> getDependencies(HookContext context) async {
 
   exitCode = await devDepProc.exitCode;
 
-  // for (var package in devDependencies) {
-  //   'Getting $package'.log();
-  //   var devProc = await Process.start('flutter', ['pub', 'add', '-d', package],
-  //       workingDirectory: name);
-  //
-  //   devProc.log();
-  //
-  //   exitCode = await devProc.exitCode;
-  // }
-
   if (exitCode == 0) {
     'Dev dependencies installed successfully'.log();
   } else {
     'Failed to install dev dependencies... Exit code: $exitCode'.error();
-    //exitBrick();
+    exitBrick();
   }
 }
 
