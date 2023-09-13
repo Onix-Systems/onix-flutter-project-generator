@@ -249,15 +249,23 @@ Future<void> getDependencies(HookContext context) async {
 
   'Getting dev dependencies...'.log();
 
-  for (var package in devDependencies) {
-    'Getting $package'.log();
-    var devProc = await Process.start('flutter', ['pub', 'add', '-d', package],
-        workingDirectory: name);
+  var devDepProc = await Process.start(
+      'flutter', ['pub', 'add', '-d', ...devDependencies],
+      workingDirectory: name);
 
-    devProc.log();
+  devDepProc.log();
 
-    exitCode = await devProc.exitCode;
-  }
+  exitCode = await devDepProc.exitCode;
+
+  // for (var package in devDependencies) {
+  //   'Getting $package'.log();
+  //   var devProc = await Process.start('flutter', ['pub', 'add', '-d', package],
+  //       workingDirectory: name);
+  //
+  //   devProc.log();
+  //
+  //   exitCode = await devProc.exitCode;
+  // }
 
   if (exitCode == 0) {
     'Dev dependencies installed successfully'.log();
