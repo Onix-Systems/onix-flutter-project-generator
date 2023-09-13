@@ -150,6 +150,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     buildProcess.stdin.writeln('dart format .');
 
+    buildProcess.stdin.writeln('echo "Complete with exit code: 0"');
+
     await buildProcess.exitCode;
 
     await state.config.saveConfig(
