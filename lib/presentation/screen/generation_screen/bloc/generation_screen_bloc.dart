@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:mason/mason.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,9 +58,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         }
       }
 
-      var configFile =
-          await File('${state.config.projectPath}/config.json').create();
-
       var flavors = <String>{};
 
       if (state.config.flavors.isNotEmpty) {
@@ -84,6 +80,9 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           ..remove('dev')
           ..remove('prod');
       }
+
+      var configFile =
+          await File('${state.config.projectPath}/config.json').create();
 
       await configFile.writeAsString(jsonEncode({
         'signing_password': genPass,
@@ -110,37 +109,12 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       const gitRef = '--git-ref ${AppConsts.gitBranch}';
 
-      final brick = Brick.git(
-        const GitPath(
-          AppConsts.gitUri,
-          path: 'bricks/flutter_clean_base',
-          ref: AppConsts.gitBranch,
-        ),
-      );
-      final generator = await MasonGenerator.fromBrick(brick);
-      final target =
-          DirectoryGeneratorTarget(Directory(state.config.projectPath));
-      await generator.generate(target, vars: <String, dynamic>{
-        'signing_password': genPass,
-        'project_name_dirt': state.config.projectName,
-        'project_org': state.config.organization,
-        'flavorizr': state.config.flavorize,
-        'flavors': flavors.toList(),
-        'navigation': state.config.router.name,
-        'localization': state.config.localization.name,
-        'use_keytool': state.config.generateSigningKey,
-        'use_sonar': state.config.useSonar,
-        'graphql': state.config.graphql,
-        'platforms': state.config.platformsList.toString().replaceAll(' ', ''),
-        'theme_generate': state.config.theming.name == 'theme_tailor',
-      });
+      mainProcess.stdin.writeln(
+          'mason add -g flutter_clean_base --git-url ${AppConsts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
+      mainProcess.stdin.writeln(
+          'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
-      // mainProcess.stdin.writeln(
-      //     'mason add -g flutter_clean_base --git-url ${AppConsts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
-      // mainProcess.stdin.writeln(
-      //     'mason make flutter_clean_base -c config.json --on-conflict overwrite');
-      //
-      // await mainProcess.exitCode;
+      await mainProcess.exitCode;
       configFile.delete();
 
       if (!state.config.graphql) {
