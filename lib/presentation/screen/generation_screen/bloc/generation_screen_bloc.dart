@@ -103,7 +103,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       outputService.add('{#info}Getting mason & brick...');
 
       final brickDirectory =
-          await Directory('${state.config.projectPath}/brick}')
+          await Directory('${state.config.projectPath}/brick')
               .create(recursive: true);
 
       await Dio().download(
