@@ -229,7 +229,7 @@ Future<void> getDependencies(HookContext context) async {
         'flutter', ['pub', 'add', '--offline', '--no-precompile', package],
         workingDirectory: name);
 
-    depProc.toString().log();
+    depProc.outText.log();
 
     exitCode = await depProc.exitCode;
   }
