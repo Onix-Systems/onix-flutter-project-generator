@@ -62,7 +62,7 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
       context.vars['localization'] == 'flutter_gen' ? true : false;
 
   var flavors = [];
-
+  'ok'.log();
   if (context.vars['flavorizr'] == true) {
     flavors = ['dev', 'prod'];
 

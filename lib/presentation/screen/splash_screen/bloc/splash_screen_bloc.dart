@@ -50,8 +50,6 @@ class SplashScreenBloc
 
     mainProcess.stdin.writeln('source \$HOME/.zshrc');
     mainProcess.stdin.writeln('source \$HOME/.bash_profile');
-    mainProcess.stdin.writeln(
-        'git archive --remote=ssh://gitlab.onix.ua/onix-systems/flutter-project-generator.git HEAD README.md | tar xO');
 
     mainProcess.stdin.writeln(
         'git archive --remote=${AppConsts.gitUri} ${AppConsts.gitBranch} pubspec.yaml | tar xO | grep version && exit');

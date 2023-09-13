@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:dio/dio.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,13 +101,14 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       outputService.add('{#info}Getting mason & brick...');
 
-      final brickDirectory =
-          await Directory('${state.config.projectPath}/brick')
-              .create(recursive: true);
+      final gitGetBrickProcess = await ProcessStarter.start(
+          workingDirectory: state.config.projectPath);
 
-      await Dio().download(
-          'https://gitlab.onix.ua/onix-systems/flutter-project-generator/-/archive/master/flutter-project-generator-master.zip?path=bricks/flutter_clean_base',
-          '${brickDirectory.path}/brick.zip');
+      gitGetBrickProcess.stdin.writeln(
+          'git archive --format=tar --remote=${AppConsts.gitUri} HEAD ./bricks/flutter_clean_base/ > brick.tar && tar -xf brick.tar && rm brick.tar');
+
+      gitGetBrickProcess.stdin.writeln('echo "Complete with exit code: 0"');
+      await gitGetBrickProcess.exitCode;
 
       var mainProcess = await ProcessStarter.start(
           workingDirectory: state.config.projectPath);
@@ -119,12 +119,17 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       const gitRef = '--git-ref ${AppConsts.gitBranch}';
 
       mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_base --git-url ${AppConsts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
+          'mason add -g flutter_clean_base --path ${state.config.projectPath}/bricks/flutter_clean_base');
+
+      // mainProcess.stdin.writeln(
+      //     'mason add -g flutter_clean_base --git-url ${AppConsts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
       await mainProcess.exitCode;
+
       configFile.delete();
+      // await Directory('${state.config.projectPath}/bricks').delete();
 
       if (!state.config.graphql) {
         await Directory(
