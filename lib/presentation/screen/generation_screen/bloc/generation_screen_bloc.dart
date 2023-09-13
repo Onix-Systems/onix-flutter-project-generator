@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:dio/dio.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -100,6 +101,14 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       }).toString());
 
       outputService.add('{#info}Getting mason & brick...');
+
+      final brickDirectory =
+          await Directory('${state.config.projectPath}/brick}')
+              .create(recursive: true);
+
+      await Dio().download(
+          'https://gitlab.onix.ua/onix-systems/flutter-project-generator/-/archive/master/flutter-project-generator-master.zip?path=bricks/flutter_clean_base',
+          brickDirectory.path);
 
       var mainProcess = await ProcessStarter.start(
           workingDirectory: state.config.projectPath);
