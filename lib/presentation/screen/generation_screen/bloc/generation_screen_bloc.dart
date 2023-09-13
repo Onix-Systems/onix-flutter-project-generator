@@ -125,7 +125,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       await mainProcess.exitCode;
 
       configFile.delete();
-      await Directory('${state.config.projectPath}/bricks').delete();
+      await Directory('${state.config.projectPath}/bricks')
+          .delete(recursive: true);
 
       if (!state.config.graphql) {
         await Directory(
