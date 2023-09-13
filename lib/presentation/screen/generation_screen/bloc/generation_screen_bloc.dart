@@ -140,10 +140,22 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     await _generateDataComponents();
 
+    final buildProcess = await ProcessStarter.start(
+        workingDirectory:
+            '${state.config.projectPath}/${state.config.projectName}');
+
+    buildProcess.stdin.writeln(AppConsts.buildCmd);
+
+    buildProcess.stdin.writeln('dart run import_sorter:main --no-comments');
+
+    buildProcess.stdin.writeln('dart format .');
+
+    await buildProcess.exitCode;
+
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
 
-    var gitProcess = await ProcessStarter.start(
+    final gitProcess = await ProcessStarter.start(
         workingDirectory:
             '${state.config.projectPath}/${state.config.projectName}');
 
@@ -178,9 +190,9 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
               workingDirectory:
                   '${state.config.projectPath}/${state.config.projectName}');
 
-          mainProcess.stdin.writeln(AppConsts.buildCmd);
+          //mainProcess.stdin.writeln(AppConsts.buildCmd);
 
-          mainProcess.stdin.writeln('dart format .');
+          //mainProcess.stdin.writeln('dart format .');
 
           mainProcess.stdin.writeln('echo "Complete with exit code: 0"');
 
@@ -258,11 +270,11 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           workingDirectory:
               '${state.config.projectPath}/${state.config.projectName}');
 
-      mainProcess.stdin.writeln(AppConsts.buildCmd);
+      // mainProcess.stdin.writeln(AppConsts.buildCmd);
 
-      mainProcess.stdin.writeln('dart run import_sorter:main --no-comments');
-
-      mainProcess.stdin.writeln('dart format .');
+      // mainProcess.stdin.writeln('dart run import_sorter:main --no-comments');
+      //
+      // mainProcess.stdin.writeln('dart format .');
 
       mainProcess.stdin.writeln('echo "Complete with exit code: 0"');
 
