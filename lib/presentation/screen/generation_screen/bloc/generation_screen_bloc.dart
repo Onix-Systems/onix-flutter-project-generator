@@ -105,7 +105,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           workingDirectory: state.config.projectPath);
 
       gitGetBrickProcess.stdin.writeln(
-          'git archive --format=tar --remote=${AppConsts.gitUri} HEAD ./bricks/flutter_clean_base/ > brick.tar && tar -xf brick.tar && rm brick.tar');
+          'git archive --format=tar --remote=${AppConsts.gitUri} ${AppConsts.gitBranch} ./bricks/flutter_clean_base/ > brick.tar && tar -xf brick.tar && rm brick.tar');
 
       gitGetBrickProcess.stdin.writeln('echo "Complete with exit code: 0"');
       await gitGetBrickProcess.exitCode;
@@ -116,20 +116,16 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       mainProcess.stdin
           .writeln('dart pub global activate mason_cli && mason cache clear');
 
-      const gitRef = '--git-ref ${AppConsts.gitBranch}';
-
       mainProcess.stdin.writeln(
           'mason add -g flutter_clean_base --path ${state.config.projectPath}/bricks/flutter_clean_base');
 
-      // mainProcess.stdin.writeln(
-      //     'mason add -g flutter_clean_base --git-url ${AppConsts.gitUri} --git-path bricks/flutter_clean_base ${gitRef.isNotEmpty ? gitRef : ''}');
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
       await mainProcess.exitCode;
 
       configFile.delete();
-      // await Directory('${state.config.projectPath}/bricks').delete();
+      await Directory('${state.config.projectPath}/bricks').delete();
 
       if (!state.config.graphql) {
         await Directory(
