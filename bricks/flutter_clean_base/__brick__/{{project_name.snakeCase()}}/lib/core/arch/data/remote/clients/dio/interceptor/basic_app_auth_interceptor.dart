@@ -16,7 +16,7 @@ class BasicAppAuthInterceptor extends InterceptorsWrapper {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     logger.d('AppInterceptor start: ${err.toString()}');
     if (err.response?.statusCode == HttpStatus.unauthorized) {
       //TODO disposeSessionLocal

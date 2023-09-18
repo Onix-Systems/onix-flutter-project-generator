@@ -1,5 +1,5 @@
 class DioConst {
-  static const String jsonPlaceholderInstance = 'jsonplaceholder';
+  static const String jsonPlaceholderInstance = 'jsonPlaceholder';
   static const String timeApiInstance = 'timeApi';
 
   static const String jsonPlaceholderBaseUrl =

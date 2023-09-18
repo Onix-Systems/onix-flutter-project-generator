@@ -83,9 +83,9 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
     try {
       final response = await _call(onRequest);
       return DataResponse.success(onResponse(response as Response<dynamic>));
-    } on DioError catch (e, trace) {
-      logger.crash(reason: 'onDioError', error: e, stackTrace: trace);
-      return _processDioError(e);
+    } on DioException catch (e, trace) {
+      logger.crash(reason: 'onDioException', error: e, stackTrace: trace);
+      return _processDioException(e);
     } catch (e, trace) {
       logger.crash(reason: 'onDioCommonError', error: e, stackTrace: trace);
       return DataResponse.undefinedError(e);
@@ -111,8 +111,8 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
     required Exception exception,
     required List<int> retryStatusCodes,
   }) {
-    if (exception is! DioError) return false;
-    if (exception.type == DioErrorType.cancel) return false;
+    if (exception is! DioException) return false;
+    if (exception.type == DioExceptionType.cancel) return false;
     final response = exception.response;
     if (response == null) {
       return true;
@@ -123,11 +123,11 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
     return retryStatusCodes.contains(response.statusCode);
   }
 
-  Future<DataResponse<T>> _processDioError<T>(DioError e) async {
+  Future<DataResponse<T>> _processDioException<T>(DioException e) async {
     final responseData = e.response?.data;
     final statusCode = e.response?.statusCode;
-    if (e.type == DioErrorType.connectionTimeout ||
-        e.type == DioErrorType.sendTimeout ||
+    if (e.type == DioExceptionType.connectionTimeout ||
+        e.type == DioExceptionType.sendTimeout ||
         statusCode == HttpStatus.networkConnectTimeoutError) {
       return const DataResponse.notConnected();
     }

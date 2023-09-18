@@ -51,7 +51,7 @@ static Failure getServerFailureDetails<T>(DataResponse<T> failure) {
   }
 }
 
-static ApiFailure _getResponseError(dynamic customError) {
+static ApiFailure _getResponseError(customError) {
   if (customError is DefaultApiError) {
     return ApiFailure(
       ServerFailure.response,

@@ -63,28 +63,31 @@ class ApiClient implements BaseApiClient<Dio> {
   void attachCharlesProxy(String? charlesIp, String? port) {
     if (charlesIp == null || port == null) return;
 
-    (client.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
-        (client) {
-      client.findProxy = (uri) => "PROXY $charlesIp:$port";
-      //ignore: cascade_invocations
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-      return client;
-    };
+    client.httpClientAdapter = IOHttpClientAdapter(
+      createHttpClient: () {
+        final client = HttpClient();
+        //ignore: cascade_invocations
+        client.findProxy = (uri) => 'PROXY $charlesIp:$port';
+        //ignore: cascade_invocations
+        client.badCertificateCallback = (cert, host, port) => true;
+        return client;
+      },
+    );
+
     logger.d('CharlesProxyEnabled');
   }
 
-  CachePolicy getCachePolicy(bool forceRefresh) =>
+  CachePolicy getCachePolicy({required bool forceRefresh}) =>
       cacheInterceptor.getCachePolicy(forceRefresh: forceRefresh);
 
   Future<void> clearCache() async {
     logger.d('clearCache');
     await cacheInterceptor.clearCache();
-    _attachCacheInterceptor();
+    await _attachCacheInterceptor();
   }
 
   Future<void> _attachCacheInterceptor() async {
     logger.d('attachCacheInterceptor');
-    cacheInterceptor.attachCacheInterceptor();
+    await cacheInterceptor.attachCacheInterceptor();
   }
 }
