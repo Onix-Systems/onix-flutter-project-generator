@@ -12,31 +12,27 @@ import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class SourceRepositoryImpl implements SourceRepository {
-  final _timeSource = Source(
-    name: 'Time',
-    exists: true,
-    isGenerated: false,
-    dataComponents: [
-      DataComponent(
+  @override
+  Source get timeSource => Source(
         name: 'Time',
         exists: true,
         isGenerated: false,
-        properties: [Property(name: 'currentDateTime', type: 'DateTime')],
-      )..setSourceName('Time'),
-    ],
-    dataComponentsNames: ['Time'],
-  );
+        dataComponents: [
+          DataComponent(
+            name: 'Time',
+            exists: true,
+            isGenerated: false,
+            properties: [Property(name: 'currentDateTime', type: 'DateTime')],
+          )..setSourceName('Time'),
+        ],
+        dataComponentsNames: ['Time'],
+      );
 
   final Set<Source> _sources = {};
-
-  SourceRepositoryImpl() {
-    _sources.add(_timeSource);
-  }
 
   @override
   void empty() {
     _sources.clear();
-    addSource(_timeSource);
   }
 
   @override
@@ -57,9 +53,6 @@ class SourceRepositoryImpl implements SourceRepository {
   @override
   void addAll(Set<Source> sources) {
     for (final source in sources) {
-      if (source.name == 'Time') {
-        continue;
-      }
       addSource(source);
     }
   }

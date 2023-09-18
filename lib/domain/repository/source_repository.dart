@@ -2,6 +2,8 @@ import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 
 abstract class SourceRepository {
+  Source get timeSource;
+
   Set<Source> get sources;
 
   void parse(Map<String, dynamic> data);

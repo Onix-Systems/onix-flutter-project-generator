@@ -28,6 +28,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     if (!event.config.projectExists) {
       dataComponentRepository
           .addComponent(dataComponentRepository.authComponent);
+      sourceRepository.addSource(sourceRepository.timeSource);
     }
     emit(state.copyWith(
       config: event.config.copyWith(
