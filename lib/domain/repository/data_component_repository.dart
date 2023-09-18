@@ -1,6 +1,8 @@
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 
 abstract class DataComponentRepository {
+  DataComponent get authComponent;
+
   Set<DataComponent> get dataComponents;
 
   bool isEnum(String name);
