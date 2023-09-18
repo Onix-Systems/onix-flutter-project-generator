@@ -13,6 +13,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_g
 
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/process_starter.dart';
+import 'package:recase/recase.dart';
 
 // https://petstore.swagger.io/v2/swagger.json
 // https://vocadb.net/swagger/v1/swagger.json
@@ -91,12 +92,12 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         'flavorizr': state.config.flavorize,
         'flavors': flavors.toList(),
         'navigation': state.config.router.name,
-        'localization': state.config.localization.name,
+        'localization': state.config.localization.name.snakeCase,
         'use_keytool': state.config.generateSigningKey,
         'use_sonar': state.config.useSonar,
         'graphql': state.config.graphql,
         'platforms': state.config.platformsList.toString().replaceAll(' ', ''),
-        'theme_generate': state.config.theming.name == 'theme_tailor',
+        'theme_generate': state.config.theming.name == 'themeTailor',
       }).toString());
 
       outputService.add('{#info}Getting mason & brick...');
