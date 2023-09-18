@@ -98,7 +98,7 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     emit(state.copyWith(
         config: state.config.copyWith(
             localization: state.config.localization == ProjectLocalization.intl
-                ? ProjectLocalization.flutter_gen
+                ? ProjectLocalization.flutterGen
                 : ProjectLocalization.intl)));
   }
 
@@ -108,8 +108,8 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
   ) {
     emit(state.copyWith(
         config: state.config.copyWith(
-            theming: state.config.theming == ProjectTheming.theme_tailor
+            theming: state.config.theming == ProjectTheming.themeTailor
                 ? ProjectTheming.manual
-                : ProjectTheming.theme_tailor)));
+                : ProjectTheming.themeTailor)));
   }
 }

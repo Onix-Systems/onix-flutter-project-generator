@@ -6,7 +6,7 @@ ThemeData createDarkTheme() {
   return ThemeData(
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.bgDark,
-    extensions: [
+    extensions: const [
       ThemeColors.dark,
       ThemeTextStyles.dark,
     ],

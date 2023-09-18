@@ -82,10 +82,10 @@ const _$ProjectRouterEnumMap = {
 
 const _$ProjectLocalizationEnumMap = {
   ProjectLocalization.intl: 'intl',
-  ProjectLocalization.flutter_gen: 'flutter_gen',
+  ProjectLocalization.flutterGen: 'flutter_gen',
 };
 
 const _$ProjectThemingEnumMap = {
   ProjectTheming.manual: 'manual',
-  ProjectTheming.theme_tailor: 'theme_tailor',
+  ProjectTheming.themeTailor: 'theme_tailor',
 };

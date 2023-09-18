@@ -22,6 +22,7 @@ class MethodParameter extends Property {
   factory MethodParameter.fromJson(Map<String, dynamic> json) =>
       _$MethodParameterFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$MethodParameterToJson(this);
 
   static MethodParameter copyOf(MethodParameter source) {

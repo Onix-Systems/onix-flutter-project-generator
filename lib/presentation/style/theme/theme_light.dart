@@ -6,7 +6,7 @@ ThemeData createLightTheme() {
   return ThemeData(
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.bgLight,
-    extensions: [
+    extensions: const [
       ThemeColors.light,
       ThemeTextStyles.light,
     ],

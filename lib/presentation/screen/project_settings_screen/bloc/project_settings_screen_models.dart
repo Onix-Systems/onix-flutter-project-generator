@@ -53,8 +53,8 @@ class ProjectSettingsScreenState with _$ProjectSettingsScreenState {
 
 enum ProjectRouter { goRouter, autoRouter }
 
-enum ProjectLocalization { intl, flutter_gen }
+enum ProjectLocalization { intl, flutterGen }
 
-enum ProjectTheming { manual, theme_tailor }
+enum ProjectTheming { manual, themeTailor }
 
 enum GeneratingState { init, generating, waiting }
