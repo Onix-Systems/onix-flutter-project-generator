@@ -44,6 +44,5 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-
 # generator config
-/.gen_config.json
+.gen_config.json
