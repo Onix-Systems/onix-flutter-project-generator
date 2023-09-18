@@ -17,13 +17,11 @@ import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 
 class ScreensScreen extends StatefulWidget {
   final Config config;
-  final Function(Set<Screen>)? onChange;
   final VoidCallback? onContinue;
 
   const ScreensScreen({
     required this.config,
     this.onContinue,
-    this.onChange,
     super.key,
   });
 
@@ -41,7 +39,6 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
         child: SizedBox.expand(
           child: blocConsumer(
             stateListener: (state) {
-              widget.onChange?.call(state.config.screens);
               return _buildMainContainer(context, state);
             },
           ),

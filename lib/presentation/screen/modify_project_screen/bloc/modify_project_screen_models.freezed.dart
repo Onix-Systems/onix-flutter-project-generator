@@ -20,7 +20,6 @@ mixin _$ModifyProjectScreenEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
     required TResult Function(int index) changeTab,
-    required TResult Function(Set<Screen> screens) onScreensChange,
     required TResult Function() onGenerate,
     required TResult Function(String path) onParse,
   }) =>
@@ -29,7 +28,6 @@ mixin _$ModifyProjectScreenEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
     TResult? Function(int index)? changeTab,
-    TResult? Function(Set<Screen> screens)? onScreensChange,
     TResult? Function()? onGenerate,
     TResult? Function(String path)? onParse,
   }) =>
@@ -38,7 +36,6 @@ mixin _$ModifyProjectScreenEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
     TResult Function(int index)? changeTab,
-    TResult Function(Set<Screen> screens)? onScreensChange,
     TResult Function()? onGenerate,
     TResult Function(String path)? onParse,
     required TResult orElse(),
@@ -49,8 +46,6 @@ mixin _$ModifyProjectScreenEvent {
     required TResult Function(ModifyProjectScreenEventInit value) init,
     required TResult Function(ModifyProjectScreenEventChangeTab value)
         changeTab,
-    required TResult Function(ModifyProjectScreenEventOnScreensChange value)
-        onScreensChange,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
         onGenerate,
     required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
@@ -60,8 +55,6 @@ mixin _$ModifyProjectScreenEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ModifyProjectScreenEventInit value)? init,
     TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
-    TResult? Function(ModifyProjectScreenEventOnScreensChange value)?
-        onScreensChange,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
   }) =>
@@ -70,8 +63,6 @@ mixin _$ModifyProjectScreenEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ModifyProjectScreenEventInit value)? init,
     TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
-    TResult Function(ModifyProjectScreenEventOnScreensChange value)?
-        onScreensChange,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
     required TResult orElse(),
@@ -178,7 +169,6 @@ class _$ModifyProjectScreenEventInit implements ModifyProjectScreenEventInit {
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
     required TResult Function(int index) changeTab,
-    required TResult Function(Set<Screen> screens) onScreensChange,
     required TResult Function() onGenerate,
     required TResult Function(String path) onParse,
   }) {
@@ -190,7 +180,6 @@ class _$ModifyProjectScreenEventInit implements ModifyProjectScreenEventInit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
     TResult? Function(int index)? changeTab,
-    TResult? Function(Set<Screen> screens)? onScreensChange,
     TResult? Function()? onGenerate,
     TResult? Function(String path)? onParse,
   }) {
@@ -202,7 +191,6 @@ class _$ModifyProjectScreenEventInit implements ModifyProjectScreenEventInit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
     TResult Function(int index)? changeTab,
-    TResult Function(Set<Screen> screens)? onScreensChange,
     TResult Function()? onGenerate,
     TResult Function(String path)? onParse,
     required TResult orElse(),
@@ -219,8 +207,6 @@ class _$ModifyProjectScreenEventInit implements ModifyProjectScreenEventInit {
     required TResult Function(ModifyProjectScreenEventInit value) init,
     required TResult Function(ModifyProjectScreenEventChangeTab value)
         changeTab,
-    required TResult Function(ModifyProjectScreenEventOnScreensChange value)
-        onScreensChange,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
         onGenerate,
     required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
@@ -233,8 +219,6 @@ class _$ModifyProjectScreenEventInit implements ModifyProjectScreenEventInit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ModifyProjectScreenEventInit value)? init,
     TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
-    TResult? Function(ModifyProjectScreenEventOnScreensChange value)?
-        onScreensChange,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
   }) {
@@ -246,8 +230,6 @@ class _$ModifyProjectScreenEventInit implements ModifyProjectScreenEventInit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ModifyProjectScreenEventInit value)? init,
     TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
-    TResult Function(ModifyProjectScreenEventOnScreensChange value)?
-        onScreensChange,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
     required TResult orElse(),
@@ -342,7 +324,6 @@ class _$ModifyProjectScreenEventChangeTab
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
     required TResult Function(int index) changeTab,
-    required TResult Function(Set<Screen> screens) onScreensChange,
     required TResult Function() onGenerate,
     required TResult Function(String path) onParse,
   }) {
@@ -354,7 +335,6 @@ class _$ModifyProjectScreenEventChangeTab
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
     TResult? Function(int index)? changeTab,
-    TResult? Function(Set<Screen> screens)? onScreensChange,
     TResult? Function()? onGenerate,
     TResult? Function(String path)? onParse,
   }) {
@@ -366,7 +346,6 @@ class _$ModifyProjectScreenEventChangeTab
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
     TResult Function(int index)? changeTab,
-    TResult Function(Set<Screen> screens)? onScreensChange,
     TResult Function()? onGenerate,
     TResult Function(String path)? onParse,
     required TResult orElse(),
@@ -383,8 +362,6 @@ class _$ModifyProjectScreenEventChangeTab
     required TResult Function(ModifyProjectScreenEventInit value) init,
     required TResult Function(ModifyProjectScreenEventChangeTab value)
         changeTab,
-    required TResult Function(ModifyProjectScreenEventOnScreensChange value)
-        onScreensChange,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
         onGenerate,
     required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
@@ -397,8 +374,6 @@ class _$ModifyProjectScreenEventChangeTab
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ModifyProjectScreenEventInit value)? init,
     TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
-    TResult? Function(ModifyProjectScreenEventOnScreensChange value)?
-        onScreensChange,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
   }) {
@@ -410,8 +385,6 @@ class _$ModifyProjectScreenEventChangeTab
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ModifyProjectScreenEventInit value)? init,
     TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
-    TResult Function(ModifyProjectScreenEventOnScreensChange value)?
-        onScreensChange,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
     required TResult orElse(),
@@ -432,180 +405,6 @@ abstract class ModifyProjectScreenEventChangeTab
   @JsonKey(ignore: true)
   _$$ModifyProjectScreenEventChangeTabCopyWith<
           _$ModifyProjectScreenEventChangeTab>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ModifyProjectScreenEventOnScreensChangeCopyWith<$Res> {
-  factory _$$ModifyProjectScreenEventOnScreensChangeCopyWith(
-          _$ModifyProjectScreenEventOnScreensChange value,
-          $Res Function(_$ModifyProjectScreenEventOnScreensChange) then) =
-      __$$ModifyProjectScreenEventOnScreensChangeCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Set<Screen> screens});
-}
-
-/// @nodoc
-class __$$ModifyProjectScreenEventOnScreensChangeCopyWithImpl<$Res>
-    extends _$ModifyProjectScreenEventCopyWithImpl<$Res,
-        _$ModifyProjectScreenEventOnScreensChange>
-    implements _$$ModifyProjectScreenEventOnScreensChangeCopyWith<$Res> {
-  __$$ModifyProjectScreenEventOnScreensChangeCopyWithImpl(
-      _$ModifyProjectScreenEventOnScreensChange _value,
-      $Res Function(_$ModifyProjectScreenEventOnScreensChange) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? screens = null,
-  }) {
-    return _then(_$ModifyProjectScreenEventOnScreensChange(
-      screens: null == screens
-          ? _value._screens
-          : screens // ignore: cast_nullable_to_non_nullable
-              as Set<Screen>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ModifyProjectScreenEventOnScreensChange
-    implements ModifyProjectScreenEventOnScreensChange {
-  const _$ModifyProjectScreenEventOnScreensChange(
-      {required final Set<Screen> screens})
-      : _screens = screens;
-
-  final Set<Screen> _screens;
-  @override
-  Set<Screen> get screens {
-    if (_screens is EqualUnmodifiableSetView) return _screens;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_screens);
-  }
-
-  @override
-  String toString() {
-    return 'ModifyProjectScreenEvent.onScreensChange(screens: $screens)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ModifyProjectScreenEventOnScreensChange &&
-            const DeepCollectionEquality().equals(other._screens, _screens));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_screens));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ModifyProjectScreenEventOnScreensChangeCopyWith<
-          _$ModifyProjectScreenEventOnScreensChange>
-      get copyWith => __$$ModifyProjectScreenEventOnScreensChangeCopyWithImpl<
-          _$ModifyProjectScreenEventOnScreensChange>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
-    required TResult Function(int index) changeTab,
-    required TResult Function(Set<Screen> screens) onScreensChange,
-    required TResult Function() onGenerate,
-    required TResult Function(String path) onParse,
-  }) {
-    return onScreensChange(screens);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
-    TResult? Function(int index)? changeTab,
-    TResult? Function(Set<Screen> screens)? onScreensChange,
-    TResult? Function()? onGenerate,
-    TResult? Function(String path)? onParse,
-  }) {
-    return onScreensChange?.call(screens);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
-    TResult Function(int index)? changeTab,
-    TResult Function(Set<Screen> screens)? onScreensChange,
-    TResult Function()? onGenerate,
-    TResult Function(String path)? onParse,
-    required TResult orElse(),
-  }) {
-    if (onScreensChange != null) {
-      return onScreensChange(screens);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ModifyProjectScreenEventInit value) init,
-    required TResult Function(ModifyProjectScreenEventChangeTab value)
-        changeTab,
-    required TResult Function(ModifyProjectScreenEventOnScreensChange value)
-        onScreensChange,
-    required TResult Function(ModifyProjectScreenEventOnGenerate value)
-        onGenerate,
-    required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
-  }) {
-    return onScreensChange(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ModifyProjectScreenEventInit value)? init,
-    TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
-    TResult? Function(ModifyProjectScreenEventOnScreensChange value)?
-        onScreensChange,
-    TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
-    TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
-  }) {
-    return onScreensChange?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ModifyProjectScreenEventInit value)? init,
-    TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
-    TResult Function(ModifyProjectScreenEventOnScreensChange value)?
-        onScreensChange,
-    TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
-    TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
-    required TResult orElse(),
-  }) {
-    if (onScreensChange != null) {
-      return onScreensChange(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ModifyProjectScreenEventOnScreensChange
-    implements ModifyProjectScreenEvent {
-  const factory ModifyProjectScreenEventOnScreensChange(
-          {required final Set<Screen> screens}) =
-      _$ModifyProjectScreenEventOnScreensChange;
-
-  Set<Screen> get screens;
-  @JsonKey(ignore: true)
-  _$$ModifyProjectScreenEventOnScreensChangeCopyWith<
-          _$ModifyProjectScreenEventOnScreensChange>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -654,7 +453,6 @@ class _$ModifyProjectScreenEventOnGenerate
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
     required TResult Function(int index) changeTab,
-    required TResult Function(Set<Screen> screens) onScreensChange,
     required TResult Function() onGenerate,
     required TResult Function(String path) onParse,
   }) {
@@ -666,7 +464,6 @@ class _$ModifyProjectScreenEventOnGenerate
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
     TResult? Function(int index)? changeTab,
-    TResult? Function(Set<Screen> screens)? onScreensChange,
     TResult? Function()? onGenerate,
     TResult? Function(String path)? onParse,
   }) {
@@ -678,7 +475,6 @@ class _$ModifyProjectScreenEventOnGenerate
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
     TResult Function(int index)? changeTab,
-    TResult Function(Set<Screen> screens)? onScreensChange,
     TResult Function()? onGenerate,
     TResult Function(String path)? onParse,
     required TResult orElse(),
@@ -695,8 +491,6 @@ class _$ModifyProjectScreenEventOnGenerate
     required TResult Function(ModifyProjectScreenEventInit value) init,
     required TResult Function(ModifyProjectScreenEventChangeTab value)
         changeTab,
-    required TResult Function(ModifyProjectScreenEventOnScreensChange value)
-        onScreensChange,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
         onGenerate,
     required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
@@ -709,8 +503,6 @@ class _$ModifyProjectScreenEventOnGenerate
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ModifyProjectScreenEventInit value)? init,
     TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
-    TResult? Function(ModifyProjectScreenEventOnScreensChange value)?
-        onScreensChange,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
   }) {
@@ -722,8 +514,6 @@ class _$ModifyProjectScreenEventOnGenerate
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ModifyProjectScreenEventInit value)? init,
     TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
-    TResult Function(ModifyProjectScreenEventOnScreensChange value)?
-        onScreensChange,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
     required TResult orElse(),
@@ -812,7 +602,6 @@ class _$ModifyProjectScreenEventOnParse
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
     required TResult Function(int index) changeTab,
-    required TResult Function(Set<Screen> screens) onScreensChange,
     required TResult Function() onGenerate,
     required TResult Function(String path) onParse,
   }) {
@@ -824,7 +613,6 @@ class _$ModifyProjectScreenEventOnParse
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
     TResult? Function(int index)? changeTab,
-    TResult? Function(Set<Screen> screens)? onScreensChange,
     TResult? Function()? onGenerate,
     TResult? Function(String path)? onParse,
   }) {
@@ -836,7 +624,6 @@ class _$ModifyProjectScreenEventOnParse
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
     TResult Function(int index)? changeTab,
-    TResult Function(Set<Screen> screens)? onScreensChange,
     TResult Function()? onGenerate,
     TResult Function(String path)? onParse,
     required TResult orElse(),
@@ -853,8 +640,6 @@ class _$ModifyProjectScreenEventOnParse
     required TResult Function(ModifyProjectScreenEventInit value) init,
     required TResult Function(ModifyProjectScreenEventChangeTab value)
         changeTab,
-    required TResult Function(ModifyProjectScreenEventOnScreensChange value)
-        onScreensChange,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
         onGenerate,
     required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
@@ -867,8 +652,6 @@ class _$ModifyProjectScreenEventOnParse
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ModifyProjectScreenEventInit value)? init,
     TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
-    TResult? Function(ModifyProjectScreenEventOnScreensChange value)?
-        onScreensChange,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
   }) {
@@ -880,8 +663,6 @@ class _$ModifyProjectScreenEventOnParse
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ModifyProjectScreenEventInit value)? init,
     TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
-    TResult Function(ModifyProjectScreenEventOnScreensChange value)?
-        onScreensChange,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
     required TResult orElse(),

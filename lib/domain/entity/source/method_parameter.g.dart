@@ -25,4 +25,7 @@ Map<String, dynamic> _$MethodParameterToJson(MethodParameter instance) =>
 const _$MethodPlaceEnumMap = {
   MethodPlace.query: 'query',
   MethodPlace.path: 'path',
+  MethodPlace.formData: 'formData',
+  MethodPlace.body: 'body',
+  MethodPlace.header: 'header',
 };

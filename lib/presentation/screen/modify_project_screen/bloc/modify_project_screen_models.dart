@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 
 part 'modify_project_screen_models.freezed.dart';
 
@@ -13,10 +12,6 @@ class ModifyProjectScreenEvent with _$ModifyProjectScreenEvent {
   const factory ModifyProjectScreenEvent.changeTab({
     required int index,
   }) = ModifyProjectScreenEventChangeTab;
-
-  const factory ModifyProjectScreenEvent.onScreensChange({
-    required Set<Screen> screens,
-  }) = ModifyProjectScreenEventOnScreensChange;
 
   const factory ModifyProjectScreenEvent.onGenerate() =
       ModifyProjectScreenEventOnGenerate;

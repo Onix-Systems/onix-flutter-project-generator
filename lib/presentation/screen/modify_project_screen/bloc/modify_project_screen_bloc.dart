@@ -16,7 +16,6 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
       : super(const ModifyProjectScreenStateData(config: Config())) {
     on<ModifyProjectScreenEventInit>(_onInit);
     on<ModifyProjectScreenEventChangeTab>(_onChangeTab);
-    on<ModifyProjectScreenEventOnScreensChange>(_onScreensChange);
     on<ModifyProjectScreenEventOnGenerate>(_onGenerate);
     on<ModifyProjectScreenEventOnParse>(_onParse);
   }
@@ -48,17 +47,6 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
     Emitter<ModifyProjectScreenState> emit,
   ) {
     emit(state.copyWith(currentTab: event.index));
-  }
-
-  FutureOr<void> _onScreensChange(
-    ModifyProjectScreenEventOnScreensChange event,
-    Emitter<ModifyProjectScreenState> emit,
-  ) {
-    emit(state.copyWith(
-      config: state.config.copyWith(
-        screens: event.screens,
-      ),
-    ));
   }
 
   FutureOr<void> _onGenerate(

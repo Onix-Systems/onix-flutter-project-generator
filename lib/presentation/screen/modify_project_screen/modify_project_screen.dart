@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/data_components_screen.dart';
@@ -53,6 +54,7 @@ class _ModifyProjectScreenState extends BaseState<
 
   @override
   void onBlocCreated(BuildContext context, ModifyProjectScreenBloc bloc) {
+    logger.f(widget.config);
     bloc.add(ModifyProjectScreenEvent.init(config: widget.config));
     super.onBlocCreated(context, bloc);
   }
@@ -109,14 +111,14 @@ class _ModifyProjectScreenState extends BaseState<
           Expanded(
             child: state.currentTab == 0
                 ? ScreensScreen(
-                    config: state.config,
-                    onChange: (screens) {
-                      blocOf(context).add(
-                        ModifyProjectScreenEventOnScreensChange(
-                          screens: screens,
-                        ),
-                      );
-                    },
+                    config: widget.config,
+                    // onChange: (screens) {
+                    //   blocOf(context).add(
+                    //     ModifyProjectScreenEventOnScreensChange(
+                    //       screens: screens,
+                    //     ),
+                    //   );
+                    // },
                     onContinue: () {
                       _tabController.animateTo(1);
                       blocOf(context).add(
@@ -127,7 +129,7 @@ class _ModifyProjectScreenState extends BaseState<
                     },
                   )
                 : DataComponentsScreen(
-                    config: state.config,
+                    config: widget.config,
                     onSR: blocOf(context).singleResults,
                     onBack: () {
                       _tabController.animateTo(0);

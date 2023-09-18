@@ -71,6 +71,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
       config: config.copyWith(
         projectName: projectName,
         projectPath: projectPath,
+        projectExists: true,
       ),
     ));
 
