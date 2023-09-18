@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 
@@ -21,7 +20,6 @@ class ScreensScreenBloc
     ScreensScreenEventInit event,
     Emitter<ScreensScreenState> emit,
   ) {
-    logger.f(event.config);
     if (!event.config.projectExists) {
       screenRepository.addScreen(screenRepository.homeScreen);
     }
