@@ -202,6 +202,7 @@ class ComponentsTable extends StatelessWidget {
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
+                              pressedOpacity: _pressedOpacity(dataComponent),
                               onPressed: () {
                                 if (!dataComponent.exists &&
                                     !dataComponent.isEnum &&
@@ -269,6 +270,13 @@ class ComponentsTable extends StatelessWidget {
       ),
     );
   }
+
+  double _pressedOpacity(DataComponent dataComponent) =>
+      !dataComponent.exists &&
+              !dataComponent.isEnum &&
+              !dataComponent.isGenerated
+          ? 0.5
+          : 1;
 
   DataComponentsScreenBloc blocOf(BuildContext context) =>
       context.read<DataComponentsScreenBloc>();

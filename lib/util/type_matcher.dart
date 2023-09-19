@@ -47,6 +47,21 @@ class TypeMatcher {
     }
   }
 
+  static String getJsonType(String type) {
+    switch (type) {
+      case 'String':
+        return 'string';
+      case 'int':
+        return 'integer';
+      case 'double':
+        return 'number';
+      case 'bool':
+        return 'boolean';
+      default:
+        return type;
+    }
+  }
+
   static String defaultTypeValue(String type) {
     switch (type) {
       case 'string':

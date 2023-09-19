@@ -113,7 +113,9 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
 
     var component = event.dataComponent;
 
-    component.properties = [Property(name: 'name', type: 'string')];
+    if (component.properties.isEmpty) {
+      component.properties.add(Property(name: 'name', type: 'string'));
+    }
 
     if (event.source == null) {
       dataComponentRepository.addComponent(component);

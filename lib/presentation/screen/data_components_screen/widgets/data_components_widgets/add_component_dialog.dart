@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/component_fields_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
 import 'package:recase/recase.dart';
 
@@ -22,6 +25,8 @@ class AddComponentDialog extends StatefulWidget {
 }
 
 class _AddComponentDialogState extends State<AddComponentDialog> {
+  late DataComponent _dataComponent;
+
   final TextEditingController _componentNameController =
       TextEditingController();
 
@@ -30,18 +35,32 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
 
   int _currentFocusNode = 0;
 
-  bool _createRequest = false;
-  bool _createResponse = false;
-
   @override
   void initState() {
     _textFieldFocusNode.requestFocus();
 
     if (widget.dataComponent != null) {
+      _dataComponent = widget.dataComponent!;
+
       _componentNameController.text = widget.dataComponent!.name;
-      _createRequest = widget.dataComponent!.generateRequest;
-      _createResponse = widget.dataComponent!.generateResponse;
+
+      _dataComponent = DataComponent(
+        name: widget.dataComponent!.name,
+        properties: widget.dataComponent!.properties,
+        isGenerated: widget.dataComponent!.isGenerated,
+        generateRequest: widget.dataComponent!.generateRequest,
+        generateResponse: widget.dataComponent!.generateResponse,
+      );
+    } else {
+      _dataComponent = DataComponent(
+        name: '',
+        properties: [],
+        isGenerated: false,
+        generateRequest: false,
+        generateResponse: false,
+      );
     }
+
     super.initState();
   }
 
@@ -91,9 +110,10 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
         if (event.isKeyPressed(LogicalKeyboardKey.space)) {
           setState(() {
             if (_currentFocusNode == 1) {
-              _createRequest = !_createRequest;
+              _dataComponent.generateRequest = !_dataComponent.generateRequest;
             } else if (_currentFocusNode == 2) {
-              _createResponse = !_createResponse;
+              _dataComponent.generateResponse =
+                  !_dataComponent.generateResponse;
             }
           });
 
@@ -127,6 +147,11 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
                   _textFieldFocusNode.requestFocus();
                 });
               },
+              onChanged: (_) {
+                setState(() {
+                  _dataComponent.name = _componentNameController.text;
+                });
+              },
               placeholder: S.of(context).componentNamePlaceholder,
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
@@ -137,23 +162,47 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
             LabeledCheckbox(
               focused: _currentFocusNode == 1,
               label: S.of(context).createRequestCheckboxLabel,
-              initialValue: _createRequest,
+              initialValue: _dataComponent.generateRequest,
               onAction: () {
                 setState(() {
-                  _createRequest = !_createRequest;
+                  _dataComponent.generateRequest =
+                      !_dataComponent.generateRequest;
                 });
               },
             ),
             LabeledCheckbox(
               focused: _currentFocusNode == 2,
               label: S.of(context).createResponseCheckboxLabel,
-              initialValue: _createResponse,
+              initialValue: _dataComponent.generateResponse,
               onAction: () {
                 setState(() {
-                  _createResponse = !_createResponse;
+                  _dataComponent.generateResponse =
+                      !_dataComponent.generateResponse;
                 });
               },
             ),
+            const SizedBox(height: 15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AppFilledButton(
+                  active: _componentNameController.text.isNotEmpty,
+                  onPressed: () {
+                    showCupertinoModalPopup(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (context) => Center(
+                              child: ComponentFieldsDialog(
+                                dataComponent: _dataComponent,
+                              ),
+                            ));
+                  },
+                  //color: AppColors.orange,
+                  label: 'Fields',
+                  icon: CupertinoIcons.plus,
+                ),
+              ],
+            )
           ],
         ),
         actions: <CupertinoDialogAction>[
@@ -178,23 +227,18 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
     if (_componentNameController.text.isNotEmpty) {
       if (widget.dataComponent != null) {
         widget.dataComponent!.name = _componentNameController.text.snakeCase;
-        widget.dataComponent!.generateRequest = _createRequest;
-        widget.dataComponent!.generateResponse = _createResponse;
+        widget.dataComponent!.generateRequest = _dataComponent.generateRequest;
+        widget.dataComponent!.generateResponse =
+            _dataComponent.generateResponse;
         Navigator.pop(context, widget.dataComponent);
       } else {
-        var dataComponent = DataComponent(
-          name: widget.dataComponent != null
-              ? _componentNameController.text.snakeCase
-              : _componentNameController.text,
-          properties: [],
-          isGenerated: false,
-          generateRequest: _createRequest,
-          generateResponse: _createResponse,
-        );
+        _dataComponent.name = widget.dataComponent != null
+            ? _componentNameController.text.snakeCase
+            : _componentNameController.text;
 
-        dataComponent.setSourceName(widget.source?.name ?? '');
+        _dataComponent.setSourceName(widget.source?.name ?? '');
 
-        Navigator.pop(context, dataComponent);
+        Navigator.pop(context, _dataComponent);
       }
     } else {
       Navigator.pop(context);

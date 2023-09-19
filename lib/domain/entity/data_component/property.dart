@@ -7,7 +7,7 @@ part 'property.g.dart';
 class Property {
   String name;
   String type;
-  final bool nullable;
+  bool nullable;
 
   Property({
     required this.name,
