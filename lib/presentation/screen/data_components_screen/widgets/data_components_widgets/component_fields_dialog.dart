@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
@@ -26,10 +25,17 @@ class ComponentFieldsDialog extends StatefulWidget {
 
 class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
   final List<Property> _properties = [];
+  final List<bool> _isList = [];
 
   @override
   void initState() {
-    _properties.addAll(List.from(widget.dataComponent.properties));
+    _properties
+        .addAll(widget.dataComponent.properties.map((e) => Property.copyOf(e)));
+    for (int i = 0; i < _properties.length; i++) {
+      _isList.add(_properties[i].type.contains('List'));
+      _properties[i].type =
+          _properties[i].type.replaceAll('List<', '').replaceAll('>', '');
+    }
     super.initState();
   }
 
@@ -76,6 +82,14 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
+                                LabeledCheckbox(
+                                    initialValue: _isList[index],
+                                    label: 'List',
+                                    onAction: () {
+                                      setState(() {
+                                        _isList[index] = !_isList[index];
+                                      });
+                                    }),
                                 ComponentFieldsDialogDropDown(
                                   property: _properties[index],
                                   values: const [
@@ -85,8 +99,6 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
                                     'bool',
                                   ],
                                   onChanged: (value) => setState(() {
-                                    logger.f(
-                                        'value: $value -> ${TypeMatcher.getJsonType(value)}');
                                     _properties[index].type =
                                         TypeMatcher.getJsonType(value);
                                   }),
@@ -109,11 +121,6 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
                                     onChanged: (value) =>
                                         _properties[index].name = value,
                                   ),
-                                ),
-                                const SizedBox(width: 20),
-                                Text(
-                                  index.toString(),
-                                  style: context.appTextStyles.fs18,
                                 ),
                                 const SizedBox(width: 20),
                                 Material(
@@ -146,6 +153,7 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
                                     type: 'string',
                                   ),
                                 );
+                                _isList.add(false);
                               });
                             },
                           ),
@@ -169,6 +177,24 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
                     child: AppActionButton(
                       label: S.of(context).ok,
                       onPressed: () {
+                        for (int i = 0; i < _properties.length; i++) {
+                          switch (_isList[i]) {
+                            case true:
+                              if (!_properties[i].type.contains('List')) {
+                                _properties[i].type =
+                                    'List<${TypeMatcher.getDartType(_properties[i].type)}>';
+                              }
+                              break;
+                            case false:
+                              if (_properties[i].type.contains('List')) {
+                                _properties[i].type = _properties[i]
+                                    .type
+                                    .replaceAll('List<', '')
+                                    .replaceAll('>', '');
+                              }
+                              break;
+                          }
+                        }
                         widget.dataComponent.properties = _properties;
                         Navigator.of(context).pop();
                       },
@@ -184,7 +210,9 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
                   Expanded(
                     child: AppActionButton(
                       label: S.of(context).cancel,
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
                     ),
                   ),
                 ],

@@ -40,8 +40,7 @@ ${dataComponent.properties.map((e) {
         if (type.startsWith('List')) {
           final listType = type.substring(5, type.length - 1);
 
-          if (TypeMatcher.getDartType(listType.camelCase) ==
-              listType.camelCase) {
+          if (!TypeMatcher.isStandardType(listType)) {
             type = type.replaceLast('>', 'Request>');
           }
         } else {

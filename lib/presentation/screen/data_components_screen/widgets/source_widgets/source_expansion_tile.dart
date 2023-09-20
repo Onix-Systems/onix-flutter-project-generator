@@ -93,6 +93,7 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                     : CupertinoColors.activeOrange,
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
+                                pressedOpacity: _pressedOpacity(widget.source),
                                 onPressed: () {
                                   widget.source.exists ||
                                           widget.source.isGenerated
@@ -155,6 +156,7 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                     : CupertinoColors.activeOrange,
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
+                                pressedOpacity: _pressedOpacity(widget.source),
                                 onPressed: () {
                                   widget.source.exists ||
                                           widget.source.isGenerated
@@ -206,6 +208,9 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
       ),
     );
   }
+
+  double _pressedOpacity(Source source) =>
+      !widget.source.exists && !widget.source.isGenerated ? 0.5 : 1;
 
   DataComponentsScreenBloc blocOf(BuildContext context) =>
       context.read<DataComponentsScreenBloc>();

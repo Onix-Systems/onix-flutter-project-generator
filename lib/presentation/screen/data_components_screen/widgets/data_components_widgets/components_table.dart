@@ -242,6 +242,7 @@ class ComponentsTable extends StatelessWidget {
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
+                              pressedOpacity: _pressedOpacity(dataComponent),
                               onPressed: () {
                                 if (!dataComponent.exists &&
                                     !dataComponent.isGenerated) {
