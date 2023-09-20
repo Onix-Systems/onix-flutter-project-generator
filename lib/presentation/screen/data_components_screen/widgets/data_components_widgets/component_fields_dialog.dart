@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_field_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/edit_remove_button.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_action_button.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
-
-import 'component_fileds_dialog_dropdown.dart';
 
 class ComponentFieldsDialog extends StatefulWidget {
   final DataComponent dataComponent;
@@ -25,14 +25,22 @@ class ComponentFieldsDialog extends StatefulWidget {
 
 class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
   final List<Property> _properties = [];
-  final List<bool> _isList = [];
+  final List<DataComponent> _components = [];
+  final List<bool> _isPropertyList = [];
 
   @override
   void initState() {
     _properties
         .addAll(widget.dataComponent.properties.map((e) => Property.copyOf(e)));
+
+    _components.addAll(dataComponentRepository.dataComponents);
+    _components.addAll(sourceRepository.sources
+        .map((e) => e.dataComponents)
+        .expand((e) => e)
+        .toList());
+
     for (int i = 0; i < _properties.length; i++) {
-      _isList.add(_properties[i].type.contains('List'));
+      _isPropertyList.add(_properties[i].type.contains('List'));
       _properties[i].type =
           _properties[i].type.replaceAll('List<', '').replaceAll('>', '');
     }
@@ -55,7 +63,6 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
             children: [
               Text(
                 '${widget.dataComponent.name.pascalCase} fields',
-                textAlign: TextAlign.center,
                 style: context.appTextStyles.fs18,
               ),
               const Divider(
@@ -63,107 +70,100 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
                 thickness: 0.25,
                 height: 40,
               ),
-              Flexible(
-                child: CustomScrollView(
-                  shrinkWrap: true,
-                  slivers: [
-                    SliverList.separated(
-                        itemCount: _properties.length,
-                        separatorBuilder: (context, index) {
-                          return Delimiter.height(
-                              index < _properties.length - 1 ? 10 : 0);
-                        },
-                        itemBuilder: (context, index) {
-                          final TextEditingController propertyNameController =
-                              TextEditingController();
-                          propertyNameController.text = _properties[index].name;
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                LabeledCheckbox(
-                                    initialValue: _isList[index],
-                                    label: 'List',
-                                    onAction: () {
-                                      setState(() {
-                                        _isList[index] = !_isList[index];
-                                      });
-                                    }),
-                                ComponentFieldsDialogDropDown(
-                                  property: _properties[index],
-                                  values: const [
-                                    'String',
-                                    'int',
-                                    'double',
-                                    'bool',
-                                  ],
-                                  onChanged: (value) => setState(() {
-                                    _properties[index].type =
-                                        TypeMatcher.getJsonType(value);
-                                  }),
-                                ),
-                                const SizedBox(width: 10),
-                                LabeledCheckbox(
-                                    initialValue: _properties[index].nullable,
-                                    label: 'nullable',
-                                    onAction: () {
-                                      setState(() {
-                                        _properties[index].nullable =
-                                            !_properties[index].nullable;
-                                      });
-                                    }),
-                                const SizedBox(width: 10),
-                                Flexible(
-                                  child: CupertinoTextField(
-                                    controller: propertyNameController,
-                                    style: context.appTextStyles.fs18,
-                                    onChanged: (value) =>
-                                        _properties[index].name = value,
-                                  ),
-                                ),
-                                const SizedBox(width: 20),
-                                Material(
-                                  child: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          _properties.removeAt(index);
-                                        });
-                                      },
-                                      icon: const Icon(Icons.close)),
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
-                    const SliverPadding(padding: EdgeInsets.only(bottom: 20)),
-                    SliverToBoxAdapter(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(width: 20),
-                          AppFilledButton(
-                            label: 'Add field',
-                            icon: CupertinoIcons.plus,
-                            onPressed: () {
-                              setState(() {
-                                _properties.add(
-                                  Property(
-                                    name: '',
-                                    type: 'string',
-                                  ),
-                                );
-                                _isList.add(false);
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SliverPadding(padding: EdgeInsets.only(bottom: 20)),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Text('class ${widget.dataComponent.name.pascalCase} {',
+                        style: context.appTextStyles.fs18),
                   ],
                 ),
               ),
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: _properties.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Row(
+                          children: [
+                            Text(
+                              '${_properties[index].nullable ? '' : 'required '}${TypeMatcher.getDartType(_properties[index].type)}${_properties[index].nullable ? '?' : ''} ${_properties[index].name},',
+                              style: context.appTextStyles.fs18,
+                            ),
+                            const SizedBox(width: 15),
+                            EditRemoveButton(onPressed: () {}),
+                            EditRemoveButton(
+                              onPressed: () {
+                                setState(() {
+                                  _properties.removeAt(index);
+                                });
+                              },
+                              isEdit: false,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Text('}', style: context.appTextStyles.fs18),
+                  ],
+                ),
+              ),
+              const Delimiter.height(20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AppFilledButton(
+                    label: 'Add field',
+                    icon: CupertinoIcons.plus,
+                    onPressed: () {
+                      showCupertinoModalPopup<Property>(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) => Center(
+                                child: AddComponentFieldDialog(
+                                  property: Property(
+                                    name: '',
+                                    type: 'String',
+                                    nullable: false,
+                                  ),
+                                ),
+                              )).then((value) {
+                        setState(() {
+                          _properties.add(value!);
+                        });
+                      });
+                    },
+                  ),
+                  const SizedBox(width: 20),
+                  AppFilledButton(
+                    label: 'Add component',
+                    icon: CupertinoIcons.plus,
+                    onPressed: () {
+                      setState(() {
+                        _properties.add(
+                          Property(
+                            name: '',
+                            type: 'string',
+                          ),
+                        );
+                        _isPropertyList.add(false);
+                      });
+                    },
+                  ),
+                ],
+              ),
+              const Delimiter.height(20),
               const Divider(
                 color: AppColors.white,
                 thickness: 0.25,
@@ -177,24 +177,6 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
                     child: AppActionButton(
                       label: S.of(context).ok,
                       onPressed: () {
-                        for (int i = 0; i < _properties.length; i++) {
-                          switch (_isList[i]) {
-                            case true:
-                              if (!_properties[i].type.contains('List')) {
-                                _properties[i].type =
-                                    'List<${TypeMatcher.getDartType(_properties[i].type)}>';
-                              }
-                              break;
-                            case false:
-                              if (_properties[i].type.contains('List')) {
-                                _properties[i].type = _properties[i]
-                                    .type
-                                    .replaceAll('List<', '')
-                                    .replaceAll('>', '');
-                              }
-                              break;
-                          }
-                        }
                         widget.dataComponent.properties = _properties;
                         Navigator.of(context).pop();
                       },
