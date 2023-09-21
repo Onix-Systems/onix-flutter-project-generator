@@ -4,7 +4,7 @@ import 'package:{{project_name}}/core/arch/domain/entity/failure/api_failure.dar
 import 'package:{{project_name}}/core/di/app.dart';
 import 'package:{{project_name}}/data/mapper/time_mapper.dart';
 import 'package:{{project_name}}/data/source/remote/time/time_source.dart';
-import 'package:{{project_name}}/domain/entity/time/time_entity.dart';
+import 'package:{{project_name}}/domain/entity/time/time/time.dart';
 import 'package:{{project_name}}/domain/repository/time_repository.dart';
 import 'package:{{project_name}}/core/extension/logger_extension.dart';
 
@@ -23,7 +23,7 @@ class TimeRepositoryImpl extends TimeRepository {
   );
 
   @override
-  Future<Result<TimeEntity>> getTime() async {
+  Future<Result<Time>> getTime() async {
     try {
       final response = await _timeSource.getTime();
       if (response.isSuccess()) {
