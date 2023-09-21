@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:{{project_name}}/core/di/remote.dart';
 import 'package:{{project_name}}/core/di/repository.dart';
-import 'package:{{project_name}}/domain/entity/auth/authentication.dart';
+import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
 import 'package:{{project_name}}/domain/service/session_service/session_status.dart';
 
 class SessionService {
@@ -15,7 +15,7 @@ class SessionService {
 
   SessionStatus get sessionStatus => _sessionStatus;
 
-  Future<void> openSession(AuthenticationEntity authEntity) async {
+  Future<void> openSession(Authentication authEntity) async {
     await tokenRepository.update(authEntity);
     _sessionStatus = SessionStatus.open;
     _sessionObserver.add(_sessionStatus);

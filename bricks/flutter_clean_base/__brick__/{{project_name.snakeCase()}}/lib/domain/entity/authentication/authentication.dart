@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'auth_entity.freezed.dart';
+part 'authentication.freezed.dart';
 
-part 'auth_entity.g.dart';
+part 'authentication.g.dart';
 
 @freezed
 class Authentication with _$Authentication {
@@ -14,7 +14,7 @@ class Authentication with _$Authentication {
   factory Authentication.fromJson(Map<String, dynamic> json) =>
       _$AuthenticationFromJson(json);
 
-  factory Authentication.empty() => Authentication(
+  factory Authentication.empty() => const Authentication(
         accessToken: '',
         refreshToken: '',
       );

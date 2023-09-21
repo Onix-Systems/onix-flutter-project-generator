@@ -4,7 +4,7 @@ import 'package:{{project_name}}/core/di/app.dart';
 import 'package:{{project_name}}/core/di/repository.dart';
 import 'package:{{project_name}}/core/di/services.dart';
 import 'package:{{project_name}}/data/mapper/auth/authentication_mapper.dart';
-import 'package:{{project_name}}/data/model/remote/auth/auth_response.dart';
+import 'package:{{project_name}}/data/model/remote/auth/authentication_response.dart';
 import 'package:{{project_name}}/data/model/remote/token/token_request.dart';
 import 'package:{{project_name}}/domain/entity/auth/authentication.dart';
 import 'package:{{project_name}}/core/extension/logger_extension.dart';

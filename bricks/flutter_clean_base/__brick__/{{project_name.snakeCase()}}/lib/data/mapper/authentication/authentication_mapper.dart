@@ -1,5 +1,5 @@
 import 'package:{{project_name}}/core/arch/domain/common/converter/mapper.dart';
-import 'package:{{project_name}}/data/model/remote/auth/auth_response.dart';
+import 'package:{{project_name}}/data/model/remote/auth/authentication_response.dart';
 import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
 
 class _ResponseToEntity implements Mapper<AuthResponse, Authentication> {
@@ -22,7 +22,7 @@ class _RefreshEntity implements Mapper<AuthResponse, Authentication> {
   }
 }
 
-class AuthMapper {
+class AuthenticationMappers {
   final _responseToEntity = _ResponseToEntity();
   final _refreshEntity = _RefreshEntity();
 
