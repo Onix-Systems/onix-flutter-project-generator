@@ -5,16 +5,20 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 class AppActionButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String label;
+  final bool active;
 
   const AppActionButton(
-      {required this.onPressed, required this.label, super.key});
+      {required this.onPressed,
+      required this.label,
+      this.active = true,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 56,
       child: TextButton(
-        onPressed: onPressed,
+        onPressed: active ? onPressed : null,
         style: TextButton.styleFrom(
           foregroundColor: CupertinoColors.inactiveGray,
         ),
@@ -22,7 +26,9 @@ class AppActionButton extends StatelessWidget {
           label,
           textAlign: TextAlign.center,
           style: context.appTextStyles.fs18?.copyWith(
-            color: CupertinoColors.systemBlue.darkHighContrastColor,
+            color: active
+                ? CupertinoColors.systemBlue.darkHighContrastColor
+                : CupertinoColors.inactiveGray,
           ),
         ),
       ),

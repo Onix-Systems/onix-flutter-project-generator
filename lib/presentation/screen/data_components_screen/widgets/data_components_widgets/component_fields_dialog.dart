@@ -38,7 +38,7 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 600,
+      width: 800,
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: AppColors.bgDark,
@@ -84,9 +84,19 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
                             ),
                             const SizedBox(width: 15),
                             EditRemoveButton(onPressed: () {
-                              _showAddComponentFieldDialog(
-                                  context: context,
-                                  property: _properties[index]);
+                              if (TypeMatcher.isStandardType(
+                                  TypeMatcher.getDartType(_properties[index]
+                                      .type
+                                      .replaceAll('List<', '')
+                                      .replaceAll('>', '')))) {
+                                _showAddComponentFieldDialog(
+                                    context: context,
+                                    property: _properties[index]);
+                              } else {
+                                _showAddComponentComponentDialog(
+                                    context: context,
+                                    property: _properties[index]);
+                              }
                             }),
                             EditRemoveButton(
                               onPressed: () {
@@ -209,7 +219,6 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
               ),
             )).then((value) {
       if (value != null) {
-        logger.f('value: $value');
         setState(() {
           if (property != null) {
             final index = _properties.indexOf(property);
@@ -219,6 +228,7 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
             _properties.add(value);
           }
           widget.dataComponent.addImports([value.type]);
+          widget.dataComponent.addComponentImports([value.type]);
         });
         logger.f('properties: $_properties');
       }

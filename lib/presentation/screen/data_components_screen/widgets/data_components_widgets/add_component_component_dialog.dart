@@ -6,13 +6,13 @@ import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_component_search_field.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_action_button.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
-import 'package:searchfield/searchfield.dart';
 
 class AddComponentComponentDialog extends StatefulWidget {
   final Property? property;
@@ -30,7 +30,10 @@ class AddComponentComponentDialog extends StatefulWidget {
 class _AddComponentComponentDialogState
     extends State<AddComponentComponentDialog> {
   final TextEditingController _propertyNameController = TextEditingController();
-  final components = [];
+  final TextEditingController _searchController = TextEditingController();
+  final FocusNode _propertyNameFocusNode = FocusNode();
+  final FocusNode _searchFieldFocusNode = FocusNode();
+  final components = <DataComponent>[];
 
   late Property _property;
 
@@ -44,7 +47,7 @@ class _AddComponentComponentDialogState
         .map((e) => e.dataComponents)
         .expand((element) => element));
 
-    logger.f(components.map((e) => e.name).toList());
+    components.sort((a, b) => a.name.compareTo(b.name));
 
     if (widget.property != null) {
       _propertyNameController.text = widget.property!.name;
@@ -93,16 +96,28 @@ class _AddComponentComponentDialogState
                   const SizedBox(width: 10),
                   Flexible(
                     child: Material(
-                      child: SearchField<DataComponent>(
-                        suggestions: components
-                            .map((e) => SearchFieldListItem<DataComponent>(
-                                e.name,
-                                item: e))
-                            .toList(),
-                        onSuggestionTap: (value) {
-                          logger.f(value.item!.name);
+                      color: Colors.transparent,
+                      child: AddComponentComponentSearchField(
+                        searchController: _searchController,
+                        searchFieldFocusNode: _searchFieldFocusNode,
+                        components: components,
+                        property: _property,
+                        onSelect: (value) {
                           setState(() {
-                            _property.type = value.item!.name;
+                            _property.type = value.name;
+                            _propertyNameFocusNode.requestFocus();
+                            if (_propertyNameController.text.isEmpty) {
+                              _propertyNameController.text =
+                                  value.name.camelCase;
+                            }
+                          });
+                        },
+                        onClear: () {
+                          setState(() {
+                            _property.type = '';
+                            _searchController.clear();
+
+                            _searchFieldFocusNode.requestFocus();
                           });
                         },
                       ),
@@ -120,9 +135,18 @@ class _AddComponentComponentDialogState
                   const SizedBox(width: 10),
                   Flexible(
                     child: CupertinoTextField(
+                      focusNode: _propertyNameFocusNode,
                       controller: _propertyNameController,
                       style: context.appTextStyles.fs18,
-                      onChanged: (value) => _property.name = value,
+                      onChanged: (value) {
+                        setState(() {
+                          _property.name = value;
+                        });
+                      },
+                      onSubmitted: (value) {
+                        _property.name = value;
+                        _onOK(context);
+                      },
                     ),
                   ),
                 ],
@@ -141,6 +165,8 @@ class _AddComponentComponentDialogState
                 Expanded(
                   child: AppActionButton(
                     label: S.of(context).ok,
+                    active: _propertyNameController.text.isNotEmpty &&
+                        _property.type.isNotEmpty,
                     onPressed: () => _onOK(context),
                   ),
                 ),
@@ -168,7 +194,7 @@ class _AddComponentComponentDialogState
   }
 
   Future<void> _onOK(BuildContext context) async {
-    if (_propertyNameController.text.isNotEmpty) {
+    if (_propertyNameController.text.isNotEmpty && _property.type.isNotEmpty) {
       if (widget.property != null) {
         widget.property!.name = _propertyNameController.text.snakeCase;
 

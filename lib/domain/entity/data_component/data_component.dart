@@ -31,6 +31,9 @@ class DataComponent {
   void addImports(List<String> imports) {
     imports.sort((a, b) => a.compareTo(b));
     this.imports.addAll(imports);
+  }
+
+  void addComponentImports(List<String> imports) {
     for (final import in imports) {
       DataComponent? dataComponent =
           dataComponentRepository.getDataComponentByName(
