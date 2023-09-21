@@ -1,17 +1,17 @@
 import 'package:{{project_name}}/core/arch/domain/common/converter/mapper.dart';
-import 'package:{{project_name}}/data/model/remote/time/time_response.dart';
-import 'package:{{project_name}}/domain/entity/time/time.dart';
+import 'package:{{project_name}}/data/model/remote/time/time/time_response.dart';
+import 'package:{{project_name}}/domain/entity/time/time/time.dart';
 
-class _TimeMapper implements Mapper<TimeResponse, TimeEntity> {
+class _TimeMapper implements Mapper<TimeResponse, Time> {
   @override
-  TimeEntity map(TimeResponse from) {
-    return TimeEntity(currentDateTime: from.currentDateTime);
+  Time map(TimeResponse from) {
+    return Time(currentDateTime: from.currentDateTime);
   }
 }
 
 class TimeMappers {
   final _timeResponseToEntityMapper = _TimeMapper();
 
-  TimeEntity mapResponseToEntity(TimeResponse response) =>
+  Time mapResponseToEntity(TimeResponse response) =>
       _timeResponseToEntityMapper.map(response);
 }

@@ -2,7 +2,7 @@ import 'package:{{project_name}}/core/arch/data/remote/base/map_common_server_er
 import 'package:{{project_name}}/core/arch/domain/entity/common/result.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/failure/api_failure.dart';
 import 'package:{{project_name}}/core/di/app.dart';
-import 'package:{{project_name}}/data/mapper/time_mapper.dart';
+import 'package:{{project_name}}/data/mapper/time/time_mapper.dart';
 import 'package:{{project_name}}/data/source/remote/time/time_source.dart';
 import 'package:{{project_name}}/domain/entity/time/time/time.dart';
 import 'package:{{project_name}}/domain/repository/time_repository.dart';

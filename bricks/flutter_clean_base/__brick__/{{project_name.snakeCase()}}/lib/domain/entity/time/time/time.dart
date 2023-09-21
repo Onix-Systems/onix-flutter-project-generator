@@ -2,6 +2,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'time.freezed.dart';
 
+part 'time.g.dart';
+
 @freezed
 class Time with _$Time {
   const factory Time({
