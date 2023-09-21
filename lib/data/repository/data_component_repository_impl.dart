@@ -13,7 +13,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
       _dataComponents.map((e) => DataComponent.copyOf(e)).toSet();
 
   DataComponent get authComponent => DataComponent(
-        name: 'Auth',
+        name: 'Authentication',
         exists: true,
         isGenerated: false,
         properties: [

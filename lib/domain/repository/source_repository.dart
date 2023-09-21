@@ -14,6 +14,8 @@ abstract class SourceRepository {
 
   String getDataComponentSourceName(String entityName);
 
+  DataComponent? getDataComponentByName(String name);
+
   void addSource(Source source);
 
   void addAll(Set<Source> sources);

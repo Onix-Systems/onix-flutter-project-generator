@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:recase/recase.dart';
 
@@ -30,6 +31,21 @@ class DataComponent {
   void addImports(List<String> imports) {
     imports.sort((a, b) => a.compareTo(b));
     this.imports.addAll(imports);
+    for (final import in imports) {
+      DataComponent? dataComponent =
+          dataComponentRepository.getDataComponentByName(
+              import.replaceAll('List<', '').replaceAll('>', ''));
+
+      if (dataComponent != null) {
+        componentImports.add(dataComponent);
+      } else {
+        dataComponent = sourceRepository.getDataComponentByName(
+            import.replaceAll('List<', '').replaceAll('>', ''));
+        if (dataComponent != null) {
+          componentImports.add(dataComponent);
+        }
+      }
+    }
   }
 
   void setName(String name) {
@@ -60,7 +76,7 @@ class DataComponent {
       return result;
     }
 
-    return 'ClassEntity{name: $name, properties: $properties, imports: $imports, sourceName: $sourceName, entityImports: $componentImports, generateRequest: $generateRequest, generateResponse: $generateResponse, exists: $exists, isEnum: $isEnum}';
+    return 'ClassEntity{name: $name, properties: $properties, imports: $imports, sourceName: $sourceName, componentImports: $componentImports, generateRequest: $generateRequest, generateResponse: $generateResponse, exists: $exists, isEnum: $isEnum}';
   }
 
   @override

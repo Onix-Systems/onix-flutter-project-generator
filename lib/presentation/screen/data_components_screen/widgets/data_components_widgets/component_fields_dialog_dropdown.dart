@@ -5,7 +5,7 @@ import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 
-class ComponentFieldsDialogDropDown extends StatelessWidget {
+class ComponentFieldsDialogDropDown extends StatefulWidget {
   final Property property;
   final List<String> values;
 
@@ -18,6 +18,13 @@ class ComponentFieldsDialogDropDown extends StatelessWidget {
     super.key,
   });
 
+  @override
+  State<ComponentFieldsDialogDropDown> createState() =>
+      _ComponentFieldsDialogDropDownState();
+}
+
+class _ComponentFieldsDialogDropDownState
+    extends State<ComponentFieldsDialogDropDown> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -52,15 +59,15 @@ class ComponentFieldsDialogDropDown extends StatelessWidget {
               color: AppColors.bgDark,
             ),
           ),
-          items: values.map((e) {
+          items: widget.values.map((e) {
             return DropdownMenuItem<String>(
               value: TypeMatcher.getDartType(e),
               child: Text(e),
             );
           }).toList(),
-          value: TypeMatcher.getDartType(property.type),
-          onChanged: (value) => onChanged(
-                property.type = value!,
+          value: TypeMatcher.getDartType(widget.property.type),
+          onChanged: (value) => widget.onChanged(
+                widget.property.type = value!,
               )),
     );
   }

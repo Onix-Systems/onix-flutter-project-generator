@@ -225,21 +225,11 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
 
   Future<void> _onOK(BuildContext context) async {
     if (_componentNameController.text.isNotEmpty) {
-      if (widget.dataComponent != null) {
-        widget.dataComponent!.name = _componentNameController.text.snakeCase;
-        widget.dataComponent!.generateRequest = _dataComponent.generateRequest;
-        widget.dataComponent!.generateResponse =
-            _dataComponent.generateResponse;
-        Navigator.pop(context, widget.dataComponent);
-      } else {
-        _dataComponent.name = widget.dataComponent != null
-            ? _componentNameController.text.snakeCase
-            : _componentNameController.text;
-
+      if (widget.dataComponent == null) {
+        _dataComponent.name = _componentNameController.text.snakeCase;
         _dataComponent.setSourceName(widget.source?.name ?? '');
-
-        Navigator.pop(context, _dataComponent);
       }
+      Navigator.pop(context, _dataComponent);
     } else {
       Navigator.pop(context);
     }

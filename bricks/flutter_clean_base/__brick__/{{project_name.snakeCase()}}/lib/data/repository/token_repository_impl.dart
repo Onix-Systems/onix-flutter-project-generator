@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:{{project_name}}/data/source/local/secure_storage/secure_storage_keys.dart';
 import 'package:{{project_name}}/data/source/local/secure_storage/secure_storage_source.dart';
-import 'package:{{project_name}}/domain/entity/auth/auth_entity.dart';
+import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
 import 'package:{{project_name}}/domain/repository/token_repository.dart';
 
 class TokenRepositoryImpl implements TokenRepository {
@@ -25,7 +25,7 @@ class TokenRepositoryImpl implements TokenRepository {
   }
 
   @override
-  Future<void> update(AuthenticationEntity authEntity) async {
+  Future<void> update(Authentication authEntity) async {
     accessToken = authEntity.accessToken;
     refreshToken = authEntity.refreshToken;
 
@@ -40,14 +40,14 @@ class TokenRepositoryImpl implements TokenRepository {
   }
 
   @override
-  Future<AuthenticationEntity?> getAuthData() async {
+  Future<Authentication?> getAuthData() async {
     final accessToken =
         await _secureStorage.read(SecureStorageKeys.kAccessToken);
     final refreshToken =
         await _secureStorage.read(SecureStorageKeys.kRefreshToken);
 
     if (accessToken.isNotEmpty && refreshToken.isNotEmpty) {
-      return AuthenticationEntity(
+      return Authentication(
         accessToken: accessToken,
         refreshToken: refreshToken,
       );

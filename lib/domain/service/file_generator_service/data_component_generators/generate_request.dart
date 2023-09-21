@@ -7,6 +7,8 @@ import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 
+import '../../../../core/di/app.dart';
+
 class GenerateRequest {
   FutureOr<void> call({
     required String projectName,
@@ -37,6 +39,7 @@ class ${name.pascalCase}Request with _\$${name.pascalCase}Request {
 ${dataComponent.properties.map((e) {
       String type = e.type;
       if (TypeMatcher.getDartType(type) == type && !type.contains('dynamic')) {
+        logger.f('Generate request: $type ${e.name}');
         if (type.startsWith('List')) {
           final listType = type.substring(5, type.length - 1);
 

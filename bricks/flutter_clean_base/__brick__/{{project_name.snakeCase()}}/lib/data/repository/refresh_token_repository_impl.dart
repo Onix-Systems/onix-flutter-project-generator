@@ -1,10 +1,10 @@
 import 'package:{{project_name}}/core/arch/domain/entity/common/result.dart';
-import 'package:{{project_name}}/domain/entity/auth/auth_entity.dart';
+import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
 import 'package:{{project_name}}/domain/repository/refresh_token_repository.dart';
 
 class RefreshTokenRepositoryImpl implements RefreshTokenRepository {
   @override
-  Future<Result<AuthenticationEntity>> refresh(String refreshToken) async {
+  Future<Result<Authentication>> refresh(String refreshToken) async {
     // TODO: implement refresh
     throw UnimplementedError();
     //implementation something like this. Depends on your requirements

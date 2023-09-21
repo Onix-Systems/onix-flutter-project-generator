@@ -1,4 +1,4 @@
-import 'package:{{project_name}}/domain/entity/auth/auth_entity.dart';
+import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
 
 abstract class TokenRepository {
   String? accessToken;
@@ -6,7 +6,7 @@ abstract class TokenRepository {
 
   Future<void> clear();
 
-  Future<void> update(AuthenticationEntity authEntity);
+  Future<void> update(Authentication authEntity);
 
-  Future<AuthenticationEntity?> getAuthData();
+  Future<Authentication?> getAuthData();
 }

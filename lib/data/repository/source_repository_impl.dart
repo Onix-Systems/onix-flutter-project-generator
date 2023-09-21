@@ -437,4 +437,17 @@ class SourceRepositoryImpl implements SourceRepository {
     }
     return result;
   }
+
+  @override
+  DataComponent? getDataComponentByName(String name) {
+    for (final source in sources) {
+      for (final entity in source.dataComponents) {
+        if (entity.name == name) {
+          return entity;
+        }
+      }
+    }
+
+    return null;
+  }
 }

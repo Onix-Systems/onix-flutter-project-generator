@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/di/repository.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_field_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/edit_remove_button.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
@@ -25,25 +26,12 @@ class ComponentFieldsDialog extends StatefulWidget {
 
 class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
   final List<Property> _properties = [];
-  final List<DataComponent> _components = [];
-  final List<bool> _isPropertyList = [];
 
   @override
   void initState() {
     _properties
         .addAll(widget.dataComponent.properties.map((e) => Property.copyOf(e)));
 
-    _components.addAll(dataComponentRepository.dataComponents);
-    _components.addAll(sourceRepository.sources
-        .map((e) => e.dataComponents)
-        .expand((e) => e)
-        .toList());
-
-    for (int i = 0; i < _properties.length; i++) {
-      _isPropertyList.add(_properties[i].type.contains('List'));
-      _properties[i].type =
-          _properties[i].type.replaceAll('List<', '').replaceAll('>', '');
-    }
     super.initState();
   }
 
@@ -95,7 +83,11 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
                               style: context.appTextStyles.fs18,
                             ),
                             const SizedBox(width: 15),
-                            EditRemoveButton(onPressed: () {}),
+                            EditRemoveButton(onPressed: () {
+                              _showAddComponentFieldDialog(
+                                  context: context,
+                                  property: _properties[index]);
+                            }),
                             EditRemoveButton(
                               onPressed: () {
                                 setState(() {
@@ -126,39 +118,15 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
                   AppFilledButton(
                     label: 'Add field',
                     icon: CupertinoIcons.plus,
-                    onPressed: () {
-                      showCupertinoModalPopup<Property>(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (context) => Center(
-                                child: AddComponentFieldDialog(
-                                  property: Property(
-                                    name: '',
-                                    type: 'String',
-                                    nullable: false,
-                                  ),
-                                ),
-                              )).then((value) {
-                        setState(() {
-                          _properties.add(value!);
-                        });
-                      });
-                    },
+                    onPressed: () =>
+                        _showAddComponentFieldDialog(context: context),
                   ),
                   const SizedBox(width: 20),
                   AppFilledButton(
                     label: 'Add component',
                     icon: CupertinoIcons.plus,
                     onPressed: () {
-                      setState(() {
-                        _properties.add(
-                          Property(
-                            name: '',
-                            type: 'string',
-                          ),
-                        );
-                        _isPropertyList.add(false);
-                      });
+                      _showAddComponentComponentDialog(context: context);
                     },
                   ),
                 ],
@@ -204,5 +172,56 @@ class _ComponentFieldsDialogState extends State<ComponentFieldsDialog> {
         ),
       ),
     );
+  }
+
+  void _showAddComponentFieldDialog(
+      {required BuildContext context, Property? property}) {
+    showCupertinoModalPopup<Property>(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(
+              child: AddComponentFieldDialog(
+                property: property,
+              ),
+            )).then((value) {
+      if (value != null) {
+        setState(() {
+          if (property != null) {
+            final index = _properties.indexOf(property);
+            _properties.remove(property);
+            _properties.insert(index, value);
+          } else {
+            _properties.add(value);
+          }
+        });
+      }
+    });
+  }
+
+  void _showAddComponentComponentDialog(
+      {required BuildContext context, Property? property}) {
+    showCupertinoModalPopup<Property>(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(
+              child: AddComponentComponentDialog(
+                property: property,
+              ),
+            )).then((value) {
+      if (value != null) {
+        logger.f('value: $value');
+        setState(() {
+          if (property != null) {
+            final index = _properties.indexOf(property);
+            _properties.remove(property);
+            _properties.insert(index, value);
+          } else {
+            _properties.add(value);
+          }
+          widget.dataComponent.addImports([value.type]);
+        });
+        logger.f('properties: $_properties');
+      }
+    });
   }
 }

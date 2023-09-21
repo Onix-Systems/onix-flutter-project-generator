@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:{{project_name}}/core/di/remote.dart';
 import 'package:{{project_name}}/core/di/repository.dart';
-import 'package:{{project_name}}/domain/entity/auth/auth_entity.dart';
+import 'package:{{project_name}}/domain/entity/auth/authentication.dart';
 import 'package:{{project_name}}/domain/service/session_service/session_status.dart';
 
 class SessionService {

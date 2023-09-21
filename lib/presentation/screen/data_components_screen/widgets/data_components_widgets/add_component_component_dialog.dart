@@ -3,44 +3,49 @@ import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
+import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
-import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/component_fields_dialog_dropdown.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_action_button.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
+import 'package:searchfield/searchfield.dart';
 
-class AddComponentFieldDialog extends StatefulWidget {
+class AddComponentComponentDialog extends StatefulWidget {
   final Property? property;
 
-  const AddComponentFieldDialog({
+  const AddComponentComponentDialog({
     this.property,
     super.key,
   });
 
   @override
-  State<AddComponentFieldDialog> createState() =>
-      _AddComponentFieldDialogState();
+  State<AddComponentComponentDialog> createState() =>
+      _AddComponentComponentDialogState();
 }
 
-class _AddComponentFieldDialogState extends State<AddComponentFieldDialog> {
+class _AddComponentComponentDialogState
+    extends State<AddComponentComponentDialog> {
   final TextEditingController _propertyNameController = TextEditingController();
+  final components = [];
 
   late Property _property;
 
   bool _isList = false;
 
-  final values = [
-    'String',
-    'int',
-    'double',
-    'bool',
-  ];
-
   @override
   void initState() {
+    components.addAll(dataComponentRepository.dataComponents);
+
+    components.addAll(sourceRepository.sources
+        .map((e) => e.dataComponents)
+        .expand((element) => element));
+
+    logger.f(components.map((e) => e.name).toList());
+
     if (widget.property != null) {
       _propertyNameController.text = widget.property!.name;
       _property = Property.copyOf(widget.property!);
@@ -52,7 +57,7 @@ class _AddComponentFieldDialogState extends State<AddComponentFieldDialog> {
     } else {
       _property = Property(
         name: '',
-        type: 'string',
+        type: '',
         nullable: false,
       );
     }
@@ -68,7 +73,7 @@ class _AddComponentFieldDialogState extends State<AddComponentFieldDialog> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: SizedBox(
-        width: 600,
+        width: 800,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -85,12 +90,23 @@ class _AddComponentFieldDialogState extends State<AddComponentFieldDialog> {
                           _isList = !_isList;
                         });
                       }),
-                  ComponentFieldsDialogDropDown(
-                    property: _property,
-                    values: values,
-                    onChanged: (value) => setState(() {
-                      _property.type = value;
-                    }),
+                  const SizedBox(width: 10),
+                  Flexible(
+                    child: Material(
+                      child: SearchField<DataComponent>(
+                        suggestions: components
+                            .map((e) => SearchFieldListItem<DataComponent>(
+                                e.name,
+                                item: e))
+                            .toList(),
+                        onSuggestionTap: (value) {
+                          logger.f(value.item!.name);
+                          setState(() {
+                            _property.type = value.item!.name;
+                          });
+                        },
+                      ),
+                    ),
                   ),
                   const SizedBox(width: 10),
                   LabeledCheckbox(
@@ -153,25 +169,39 @@ class _AddComponentFieldDialogState extends State<AddComponentFieldDialog> {
 
   Future<void> _onOK(BuildContext context) async {
     if (_propertyNameController.text.isNotEmpty) {
-      switch (_isList) {
-        case true:
-          if (!_property.type.contains('List')) {
-            _property.type = 'List<${TypeMatcher.getDartType(_property.type)}>';
-          }
-          break;
-        case false:
-          if (_property.type.contains('List')) {
-            _property.type =
-                _property.type.replaceAll('List<', '').replaceAll('>', '');
-          } else {
-            _property.type = TypeMatcher.getJsonType(_property.type);
-          }
-          break;
+      if (widget.property != null) {
+        widget.property!.name = _propertyNameController.text.snakeCase;
+
+        switch (_isList) {
+          case true:
+            if (!_property.type.contains('List')) {
+              _property.type =
+                  'List<${TypeMatcher.getDartType(_property.type)}>';
+            }
+            break;
+          case false:
+            if (_property.type.contains('List')) {
+              _property.type =
+                  _property.type.replaceAll('List<', '').replaceAll('>', '');
+            } else {
+              _property.type = TypeMatcher.getJsonType(_property.type);
+            }
+            break;
+        }
+
+        logger.f(_property.type);
+
+        widget.property!.type = _property.type;
+        widget.property!.nullable = _property.nullable;
+
+        Navigator.pop(context, widget.property);
+      } else {
+        _property.name = widget.property != null
+            ? _propertyNameController.text.snakeCase
+            : _propertyNameController.text;
+
+        Navigator.pop(context, _property);
       }
-
-      logger.f(_property.type);
-
-      Navigator.pop(context, _property);
     } else {
       Navigator.pop(context);
     }
