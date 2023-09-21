@@ -12,6 +12,6 @@ class _TimeMapper implements Mapper<TimeResponse, TimeEntity> {
 class TimeMappers {
   final _timeResponseToEntityMapper = _TimeMapper();
 
-  TimeEntity mapRemoteTimeList(TimeResponse response) =>
+  TimeEntity mapResponseToEntity(TimeResponse response) =>
       _timeResponseToEntityMapper.map(response);
 }

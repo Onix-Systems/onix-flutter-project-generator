@@ -27,7 +27,7 @@ class TimeRepositoryImpl extends TimeRepository {
     try {
       final response = await _timeSource.getTime();
       if (response.isSuccess()) {
-        final entities = _timeMappers.mapRemoteTimeList(response.data);
+        final entities = _timeMappers.mapResponseToEntity(response.data);
         return Result.success(entities);
       } else {
         final failure = MapCommonServerError.getServerFailureDetails(response);

@@ -12,4 +12,8 @@ class TimeResponse with _$TimeResponse {
 
   factory TimeResponse.fromJson(Map<String, dynamic> json) =>
       _$TimeResponseFromJson(json);
+
+  factory TimeResponse.empty() => TimeResponse(
+        currentDateTime: DateTime(0),
+      );
 }
