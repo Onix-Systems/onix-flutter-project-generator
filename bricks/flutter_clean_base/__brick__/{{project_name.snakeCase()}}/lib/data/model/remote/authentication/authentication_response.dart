@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'auth_response.freezed.dart';
+part 'authentication_response.freezed.dart';
 
-part 'auth_response.g.dart';
+part 'authentication_response.g.dart';
 
 @freezed
 class AuthenticationResponse with _$AuthenticationResponse {
