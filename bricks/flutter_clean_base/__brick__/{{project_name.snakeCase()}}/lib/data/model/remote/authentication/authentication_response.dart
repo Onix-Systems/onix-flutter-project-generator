@@ -5,12 +5,17 @@ part 'auth_response.freezed.dart';
 part 'auth_response.g.dart';
 
 @freezed
-class AuthResponse with _$AuthResponse {
-  const factory AuthResponse(
+class AuthenticationResponse with _$AuthenticationResponse {
+  const factory AuthenticationResponse(
     @JsonKey(name: 'access_token') String? accessToken,
     @JsonKey(name: 'refresh_token') String? refreshToken,
-  ) = _AuthResponse;
+  ) = _AuthenticationhResponse;
 
-  factory AuthResponse.fromJson(Map<String, dynamic> json) =>
+  factory AuthenticationResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthResponseFromJson(json);
+
+  factory AuthenticationResponse.empty() => const AuthenticationResponse(
+        '',
+        '',
+      );
 }

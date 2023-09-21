@@ -3,10 +3,10 @@ import 'package:{{project_name}}/core/arch/data/remote/base/http_status.dart';
 import 'package:{{project_name}}/core/di/app.dart';
 import 'package:{{project_name}}/core/di/repository.dart';
 import 'package:{{project_name}}/core/di/services.dart';
-import 'package:{{project_name}}/data/mapper/auth/authentication_mapper.dart';
-import 'package:{{project_name}}/data/model/remote/auth/authentication_response.dart';
+import 'package:{{project_name}}/data/mapper/authentication/authentication_mapper.dart';
+import 'package:{{project_name}}/data/model/remote/authentication/authentication_response.dart';
 import 'package:{{project_name}}/data/model/remote/token/token_request.dart';
-import 'package:{{project_name}}/domain/entity/auth/authentication.dart';
+import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
 import 'package:{{project_name}}/core/extension/logger_extension.dart';
 import 'package:dio/dio.dart';
 
@@ -69,7 +69,7 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
     handler.next(err);
   }
 
-  Future<AuthenticationEntity> _refresh(
+  Future<Authentication> _refresh(
     DioException err,
     TokenRequest request,
   ) async {
@@ -86,18 +86,18 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
       ),
       data: request.toJson(),
     );
-    final data = AuthResponse.fromJson(result.data['data']);
+    final data = AuthenticationResponse.fromJson(result.data['data']);
     logger.d('_refresh end');
-    return AuthMapper().mapRefreshEntity(data);
+    return AuthenticationMappers().mapRefreshEntity(data);
   }
 
   Future<void> _resolveRequest(
     DioException err,
     ErrorInterceptorHandler handler,
-    AuthenticationEntity authEntity,
+    Authentication authEntity,
   ) async {
     await tokenRepository.update(
-      AuthenticationEntity(
+      Authentication(
         accessToken: authEntity.accessToken,
         refreshToken: authEntity.refreshToken,
       ),
