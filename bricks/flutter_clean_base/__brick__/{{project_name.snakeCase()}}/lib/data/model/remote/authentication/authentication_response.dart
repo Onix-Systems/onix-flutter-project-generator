@@ -12,7 +12,7 @@ class AuthenticationResponse with _$AuthenticationResponse {
   ) = _AuthenticationhResponse;
 
   factory AuthenticationResponse.fromJson(Map<String, dynamic> json) =>
-      _$AuthResponseFromJson(json);
+      _$AuthenticationResponseFromJson(json);
 
   factory AuthenticationResponse.empty() => const AuthenticationResponse(
         '',

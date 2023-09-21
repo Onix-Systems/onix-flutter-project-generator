@@ -104,7 +104,7 @@ class ${name.pascalCase}Mappers {
                 ? properties.add(
                     '        ${property.name}: ${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name}${isRequest ? '.name' : ''})${isRequest ? '?.name' : ''} ?? ${property.type.pascalCase}.values.first${isRequest ? '.name' : ''},')
                 : properties.add(
-                    '        ${property.name}: ${property.type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}(from.${property.name} ${isRequest && !property.type.endsWith('?') ? '' : '?? ${property.type.pascalCase}Response(),'}),')
+                    '        ${property.name}: ${property.type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}(from.${property.name} ${isRequest && !property.type.endsWith('?') ? '' : '?? ${property.type.pascalCase}Response.empty(),'}),')
             : properties.add(
                 '        ${property.name}: from.${property.name}${isRequest && !property.type.endsWith('?') ? '' : ' ?? ${TypeMatcher.defaultTypeValue(property.type)}'},');
       }
