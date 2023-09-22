@@ -5,13 +5,13 @@ import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 
-class ComponentFieldsDialogDropDown extends StatefulWidget {
+class AddFieldsTileDropDown extends StatefulWidget {
   final Property property;
   final List<String> values;
 
   final ValueChanged<String> onChanged;
 
-  const ComponentFieldsDialogDropDown({
+  const AddFieldsTileDropDown({
     required this.property,
     required this.values,
     required this.onChanged,
@@ -19,12 +19,10 @@ class ComponentFieldsDialogDropDown extends StatefulWidget {
   });
 
   @override
-  State<ComponentFieldsDialogDropDown> createState() =>
-      _ComponentFieldsDialogDropDownState();
+  State<AddFieldsTileDropDown> createState() => _AddFieldsTileDropDownState();
 }
 
-class _ComponentFieldsDialogDropDownState
-    extends State<ComponentFieldsDialogDropDown> {
+class _AddFieldsTileDropDownState extends State<AddFieldsTileDropDown> {
   @override
   Widget build(BuildContext context) {
     return Material(

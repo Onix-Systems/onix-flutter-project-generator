@@ -377,6 +377,7 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   void addDataComponentToSource(Source source, DataComponent dataComponent) {
+    dataComponent.name = dataComponent.name.pascalCase;
     _sources.firstWhere((element) => element.name == source.name)
       ..dataComponents.add(dataComponent)
       ..dataComponentsNames.add(dataComponent.name);

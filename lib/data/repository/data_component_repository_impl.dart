@@ -302,7 +302,8 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
   @override
   void addComponent(DataComponent component) {
-    if (!exists(component.name)) {
+    if (!exists(component.name.pascalCase)) {
+      component.name = component.name.pascalCase;
       _dataComponents.add(DataComponent.copyOf(component));
     }
   }

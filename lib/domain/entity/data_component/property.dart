@@ -15,6 +15,12 @@ class Property {
     this.nullable = false,
   });
 
+  factory Property.empty() => Property(
+        name: '',
+        type: 'String',
+        nullable: false,
+      );
+
   factory Property.fromJson(Map<String, dynamic> json) =>
       _$PropertyFromJson(json);
 

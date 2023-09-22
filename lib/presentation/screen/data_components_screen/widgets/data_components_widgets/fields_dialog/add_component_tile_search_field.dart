@@ -43,21 +43,35 @@ class AddComponentComponentSearchField extends StatelessWidget {
                   .firstWhere((element) => element.name == property.type)),
       onSuggestionTap: (value) => onSelect(value.item!),
       searchStyle: context.appTextStyles.fs18?.copyWith(
-        color: AppColors.orange,
+        color: AppColors.bgDark,
       ),
       searchInputDecoration: InputDecoration(
-        border: OutlineInputBorder(
+        filled: true,
+        fillColor: AppColors.orange,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: searchController.text.isNotEmpty
+                ? AppColors.orange
+                : AppColors.red,
+            width: searchController.text.isNotEmpty ? 1 : 5,
+          ),
           borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.orange),
+          borderSide: BorderSide(
+            color: searchController.text.isNotEmpty
+                ? AppColors.orange
+                : AppColors.red,
+            width: searchController.text.isNotEmpty ? 1 : 5,
+          ),
           borderRadius: BorderRadius.circular(10),
         ),
         suffixIcon: IconButton(
           splashRadius: 27,
           icon: const Icon(
             Icons.clear,
-            color: AppColors.orange,
+            color: AppColors.bgDark,
           ),
           onPressed: () => onClear(),
         ),

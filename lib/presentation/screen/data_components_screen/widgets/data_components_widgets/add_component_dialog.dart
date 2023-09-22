@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
-import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/component_fields_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/fields_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
@@ -192,7 +192,7 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
                         context: context,
                         barrierDismissible: false,
                         builder: (context) => Center(
-                              child: ComponentFieldsDialog(
+                              child: FieldsDialog(
                                 dataComponent: _dataComponent,
                               ),
                             ));

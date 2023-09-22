@@ -11,6 +11,7 @@ import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bl
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summary_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_bloc.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/bloc/fields_dialog_bloc.dart';
 
 void registerBloc(GetIt getIt) {
   getIt
@@ -19,6 +20,7 @@ void registerBloc(GetIt getIt) {
     ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)
     ..registerFactory<SwaggerParserScreenBloc>(SwaggerParserScreenBloc.new)
     ..registerFactory<DataComponentsScreenBloc>(DataComponentsScreenBloc.new)
+    ..registerFactory<FieldsDialogBloc>(FieldsDialogBloc.new)
     ..registerFactory<ScreensScreenBloc>(ScreensScreenBloc.new)
     ..registerFactory<ProjectSettingsScreenBloc>(ProjectSettingsScreenBloc.new)
     ..registerFactory<PlatformsScreenBloc>(PlatformsScreenBloc.new)
