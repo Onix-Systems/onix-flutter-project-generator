@@ -12,6 +12,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   Set<DataComponent> get dataComponents =>
       _dataComponents.map((e) => DataComponent.copyOf(e)).toSet();
 
+  @override
   DataComponent get authComponent => DataComponent(
         name: 'Authentication',
         exists: true,
@@ -322,7 +323,11 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
           .removeWhere((element) => element.name.pascalCase == name.pascalCase);
     }
 
-    for (final component in _dataComponents) {
+    for (final component in _dataComponents
+        .where((element) => element.properties.any((property) =>
+            property.type.replaceAll('List<', '').replaceAll('>', '') ==
+            name.pascalCase))
+        .toList()) {
       component
         ..properties.removeWhere((element) =>
             element.type.replaceAll('List<', '').replaceAll('>', '') ==
@@ -331,6 +336,40 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
             .removeWhere((element) => element.pascalCase == name.pascalCase)
         ..componentImports.removeWhere(
             (element) => element.name.pascalCase == name.pascalCase);
+    }
+  }
+
+  @override
+  void modifyComponent(String name, DataComponent modifiedComponent) {
+    final dependants = _dataComponents
+        .where((element) => element.properties.any((property) =>
+            property.type.replaceAll('List<', '').replaceAll('>', '') ==
+            name.pascalCase))
+        .toList();
+
+    for (final dependant in dependants) {
+      for (var property in dependant.properties) {
+        if (property.type.replaceAll('List<', '').replaceAll('>', '') ==
+            name.pascalCase) {
+          if (property.type.contains('List')) {
+            property.type = 'List<${modifiedComponent.name.pascalCase}>';
+          } else {
+            property.type = modifiedComponent.name.pascalCase;
+          }
+        }
+      }
+
+      dependant.imports
+          .removeWhere((element) => element.pascalCase == name.pascalCase);
+      dependant.componentImports
+          .removeWhere((element) => element.name.pascalCase == name.pascalCase);
+      dependant.componentImports.add(modifiedComponent);
+      dependant.addImports([modifiedComponent.name.pascalCase]);
+    }
+
+    if (exists(name)) {
+      removeComponent(name);
+      _dataComponents.add(modifiedComponent);
     }
   }
 }

@@ -149,7 +149,8 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
               },
               onChanged: (_) {
                 setState(() {
-                  _dataComponent.name = _componentNameController.text;
+                  _dataComponent.name =
+                      _componentNameController.text.pascalCase;
                 });
               },
               placeholder: S.of(context).componentNamePlaceholder,

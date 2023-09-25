@@ -34,6 +34,9 @@ abstract class SourceRepository {
   void modifyDataComponentInSource(
       Source source, DataComponent dataComponent, String oldDataComponentName);
 
+  void modifyDataComponentInAllSources(
+      DataComponent dataComponent, String oldDataComponentName);
+
   void empty();
 
   bool checkEntityIsEnum({required String entityName});

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
@@ -108,12 +107,6 @@ class FieldsDialogBloc
         errorIndexes.add(state.properties.indexOf(property));
       }
     }
-
-    logger.f('errorIndexes: $errorIndexes');
-
-    // if (errorIndexes.isEmpty) {
-    //   addSr(const FieldsDialogSR.validated());
-    // }
 
     emit(
       state.copyWith(

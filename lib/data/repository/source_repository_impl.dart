@@ -11,6 +11,8 @@ import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 
+import '../../core/di/app.dart';
+
 class SourceRepositoryImpl implements SourceRepository {
   @override
   Source get timeSource => Source(
@@ -395,17 +397,25 @@ class SourceRepositoryImpl implements SourceRepository {
   @override
   void deleteDataComponentFromAllSources(String name) {
     for (var source in _sources) {
-      for (var entity in source.dataComponents) {
-        if (entity.properties
-            .where((property) => property.name.pascalCase == name.pascalCase)
-            .isNotEmpty) {
-          final dataComponent = DataComponent.copyOf(entity);
-          dataComponent.properties.removeWhere(
-              (property) => property.name.pascalCase == name.pascalCase);
+      var dependants = source.dataComponents
+          .where((entity) => entity.properties.any((property) =>
+              property.type
+                  .replaceAll('List<', '')
+                  .replaceAll('>', '')
+                  .pascalCase ==
+              name.pascalCase))
+          .map((e) => DataComponent.copyOf(e))
+          .toList();
 
-          modifyDataComponentInSource(
-              source, dataComponent, entity.name.pascalCase);
-        }
+      for (var dependant in dependants) {
+        dependant.properties.removeWhere((property) =>
+            property.type
+                .replaceAll('List<', '')
+                .replaceAll('>', '')
+                .pascalCase ==
+            name.pascalCase);
+
+        modifyDataComponentInSource(source, dependant, dependant.name);
       }
     }
   }
@@ -464,5 +474,39 @@ class SourceRepositoryImpl implements SourceRepository {
     }
 
     return null;
+  }
+
+  @override
+  void modifyDataComponentInAllSources(
+      DataComponent dataComponent, String oldDataComponentName) {
+    for (var source in _sources) {
+      final dependants = source.dataComponents
+          .where((element) => element.properties.any((property) =>
+              property.type.replaceAll('List<', '').replaceAll('>', '') ==
+              oldDataComponentName.pascalCase))
+          .toList();
+
+      for (final dependant in dependants) {
+        for (var property in dependant.properties) {
+          if (property.type.replaceAll('List<', '').replaceAll('>', '') ==
+              oldDataComponentName.pascalCase) {
+            if (property.type.contains('List')) {
+              property.type = 'List<${dataComponent.name.pascalCase}>';
+            } else {
+              property.type = dataComponent.name.pascalCase;
+            }
+          }
+        }
+
+        dependant.imports.removeWhere(
+            (element) => element.pascalCase == oldDataComponentName.pascalCase);
+        dependant.componentImports.removeWhere((element) =>
+            element.name.pascalCase == oldDataComponentName.pascalCase);
+        dependant.componentImports.add(dataComponent);
+        dependant.addImports([dataComponent.name.pascalCase]);
+      }
+
+      logger.f('dependants: $dependants');
+    }
   }
 }
