@@ -135,11 +135,14 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
   ) async {
     if (event.source == null) {
       dataComponentRepository.removeComponent(event.entity.name);
+      sourceRepository.deleteDataComponentFromAllSources(event.entity.name);
     } else {
       final source = sourceRepository.getSourceByName(event.source!.name);
 
       if (source != null) {
         sourceRepository.deleteDataComponentFromSource(source, event.entity);
+        sourceRepository.deleteDataComponentFromAllSources(event.entity.name);
+        dataComponentRepository.removeComponent(event.entity.name);
       }
     }
     add(const DataComponentsScreenEventStateUpdate());

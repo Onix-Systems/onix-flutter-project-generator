@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/domain/repository/data_component_repository.dart';
@@ -321,19 +320,17 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
     if (exists(name)) {
       _dataComponents
           .removeWhere((element) => element.name.pascalCase == name.pascalCase);
+    }
 
-      for (final component in _dataComponents) {
-        component
-          ..properties.removeWhere((element) =>
-              element.type.replaceAll('List<', '').replaceAll('>', '') ==
-              name.pascalCase)
-          ..imports
-              .removeWhere((element) => element.pascalCase == name.pascalCase)
-          ..componentImports.removeWhere(
-              (element) => element.name.pascalCase == name.pascalCase);
-      }
-
-      sourceRepository.deleteDataComponentFromAllSources(name);
+    for (final component in _dataComponents) {
+      component
+        ..properties.removeWhere((element) =>
+            element.type.replaceAll('List<', '').replaceAll('>', '') ==
+            name.pascalCase)
+        ..imports
+            .removeWhere((element) => element.pascalCase == name.pascalCase)
+        ..componentImports.removeWhere(
+            (element) => element.name.pascalCase == name.pascalCase);
     }
   }
 }
