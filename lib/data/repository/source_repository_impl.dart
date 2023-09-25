@@ -391,7 +391,6 @@ class SourceRepositoryImpl implements SourceRepository {
     _sources.firstWhere((element) => element.name == source.name)
       ..dataComponents.remove(dataComponent)
       ..dataComponentsNames.remove(dataComponent.name);
-    deleteDataComponentFromAllSources(dataComponent.name);
   }
 
   @override

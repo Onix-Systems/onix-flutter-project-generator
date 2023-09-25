@@ -133,16 +133,16 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     DataComponentsScreenEventDeleteDataComponent event,
     Emitter<DataComponentsScreenState> emit,
   ) async {
-    if (event.source == null) {
-      dataComponentRepository.removeComponent(event.entity.name);
-      sourceRepository.deleteDataComponentFromAllSources(event.entity.name);
-    } else {
+    if (event.source != null) {
       final source = sourceRepository.getSourceByName(event.source!.name);
       if (source != null) {
-        dataComponentRepository.removeComponent(event.entity.name);
         sourceRepository.deleteDataComponentFromSource(source, event.entity);
       }
     }
+
+    dataComponentRepository.removeComponent(event.entity.name);
+    sourceRepository.deleteDataComponentFromAllSources(event.entity.name);
+
     add(const DataComponentsScreenEventStateUpdate());
   }
 
@@ -150,23 +150,19 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     DataComponentsScreenEventModifyDataComponent event,
     Emitter<DataComponentsScreenState> emit,
   ) async {
-    if (event.source == null) {
-      dataComponentRepository.modifyComponent(
-          event.oldDataComponentName, event.dataComponent);
-      sourceRepository.modifyDataComponentInAllSources(
-          event.dataComponent, event.oldDataComponentName);
-    } else {
+    if (event.source != null) {
       final source = sourceRepository.getSourceByName(event.source!.name);
-
       if (source != null) {
         sourceRepository.modifyDataComponentInSource(
             source, event.dataComponent, event.oldDataComponentName);
-        sourceRepository.modifyDataComponentInAllSources(
-            event.dataComponent, event.oldDataComponentName);
-        dataComponentRepository.modifyComponent(
-            event.oldDataComponentName, event.dataComponent);
       }
     }
+
+    dataComponentRepository.modifyComponent(
+        event.oldDataComponentName, event.dataComponent);
+    sourceRepository.modifyDataComponentInAllSources(
+        event.dataComponent, event.oldDataComponentName);
+
     add(const DataComponentsScreenEventStateUpdate());
   }
 }
