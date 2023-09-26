@@ -30,8 +30,6 @@ class FieldsDialogEvent with _$FieldsDialogEvent {
 @freezed
 class FieldsDialogSR with _$FieldsDialogSR {
   const factory FieldsDialogSR.loadFinished() = _LoadFinished;
-
-  const factory FieldsDialogSR.validated() = _Validated;
 }
 
 @freezed

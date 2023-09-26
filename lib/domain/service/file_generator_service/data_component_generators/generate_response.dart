@@ -62,7 +62,7 @@ ${_getProperties(dataComponent: dataComponent)}
     for (final property in dataComponent.properties) {
       if (property.type.startsWith('List')) {
         final type = property.type.substring(5, property.type.length - 1);
-        dataComponent.imports.contains(type.snakeCase)
+        dataComponent.imports.contains(type.pascalCase)
             ? properties.add(
                 '        List<${type.pascalCase}Response>? ${property.name},')
             : properties.add(

@@ -160,8 +160,8 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
           sourceRepository.getSourceByName(stateSource.name);
       if (repositorySource != null) {
         for (var stateDataComponent in stateSource.dataComponents) {
-          sourceRepository.modifyDataComponentInSource(
-              repositorySource, stateDataComponent, stateDataComponent.name);
+          sourceRepository.modifyDataComponentInSource(repositorySource.name,
+              stateDataComponent, stateDataComponent.name);
         }
       }
     }

@@ -51,10 +51,6 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
   void _onSingleResult(BuildContext context, FieldsDialogSR singleResult) {
     singleResult.when(
       loadFinished: () {},
-      validated: () {
-        widget.dataComponent.properties = blocOf(context).state.properties;
-        Navigator.of(context).pop();
-      },
     );
   }
 
@@ -173,6 +169,14 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
                       onPressed: () {
                         if (state.errorIndexes.isEmpty) {
                           widget.dataComponent.properties = state.properties;
+                          final imports = state.properties
+                              .map((e) => e.type
+                                  .replaceAll('List<', '')
+                                  .replaceAll('>', ''))
+                              .where((element) => !_isStandardType(element))
+                              .toList();
+                          widget.dataComponent.addImports(imports);
+                          widget.dataComponent.addComponentImports(imports);
                           Navigator.of(context).pop();
                         }
                       },

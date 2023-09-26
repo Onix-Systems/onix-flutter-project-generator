@@ -26,7 +26,6 @@ mixin _$FieldsDialogEvent {
     required TResult Function() validate,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Property> properties, String componentName)? init,
@@ -46,7 +45,6 @@ mixin _$FieldsDialogEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FieldsDialogEventInit value) init,
@@ -56,7 +54,6 @@ mixin _$FieldsDialogEvent {
     required TResult Function(FieldsDialogEventValidate value) validate,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FieldsDialogEventInit value)? init,
@@ -90,7 +87,7 @@ class _$FieldsDialogEventCopyWithImpl<$Res, $Val extends FieldsDialogEvent>
     implements $FieldsDialogEventCopyWith<$Res> {
   _$FieldsDialogEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;
@@ -143,7 +140,7 @@ class _$FieldsDialogEventInit implements FieldsDialogEventInit {
   @override
   List<Property> get properties {
     if (_properties is EqualUnmodifiableListView) return _properties;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_properties);
   }
 
@@ -882,38 +879,32 @@ mixin _$FieldsDialogSR {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadFinished,
-    required TResult Function() validated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadFinished,
-    TResult? Function()? validated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadFinished,
-    TResult Function()? validated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadFinished value) loadFinished,
-    required TResult Function(_Validated value) validated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadFinished value)? loadFinished,
-    TResult? Function(_Validated value)? validated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadFinished value)? loadFinished,
-    TResult Function(_Validated value)? validated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -976,7 +967,6 @@ class _$_LoadFinished implements _LoadFinished {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadFinished,
-    required TResult Function() validated,
   }) {
     return loadFinished();
   }
@@ -985,7 +975,6 @@ class _$_LoadFinished implements _LoadFinished {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadFinished,
-    TResult? Function()? validated,
   }) {
     return loadFinished?.call();
   }
@@ -994,7 +983,6 @@ class _$_LoadFinished implements _LoadFinished {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadFinished,
-    TResult Function()? validated,
     required TResult orElse(),
   }) {
     if (loadFinished != null) {
@@ -1007,7 +995,6 @@ class _$_LoadFinished implements _LoadFinished {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadFinished value) loadFinished,
-    required TResult Function(_Validated value) validated,
   }) {
     return loadFinished(this);
   }
@@ -1016,7 +1003,6 @@ class _$_LoadFinished implements _LoadFinished {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadFinished value)? loadFinished,
-    TResult? Function(_Validated value)? validated,
   }) {
     return loadFinished?.call(this);
   }
@@ -1025,7 +1011,6 @@ class _$_LoadFinished implements _LoadFinished {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadFinished value)? loadFinished,
-    TResult Function(_Validated value)? validated,
     required TResult orElse(),
   }) {
     if (loadFinished != null) {
@@ -1037,108 +1022,6 @@ class _$_LoadFinished implements _LoadFinished {
 
 abstract class _LoadFinished implements FieldsDialogSR {
   const factory _LoadFinished() = _$_LoadFinished;
-}
-
-/// @nodoc
-abstract class _$$_ValidatedCopyWith<$Res> {
-  factory _$$_ValidatedCopyWith(
-          _$_Validated value, $Res Function(_$_Validated) then) =
-      __$$_ValidatedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_ValidatedCopyWithImpl<$Res>
-    extends _$FieldsDialogSRCopyWithImpl<$Res, _$_Validated>
-    implements _$$_ValidatedCopyWith<$Res> {
-  __$$_ValidatedCopyWithImpl(
-      _$_Validated _value, $Res Function(_$_Validated) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Validated implements _Validated {
-  const _$_Validated();
-
-  @override
-  String toString() {
-    return 'FieldsDialogSR.validated()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Validated);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
-    required TResult Function() validated,
-  }) {
-    return validated();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
-    TResult? Function()? validated,
-  }) {
-    return validated?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
-    TResult Function()? validated,
-    required TResult orElse(),
-  }) {
-    if (validated != null) {
-      return validated();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
-    required TResult Function(_Validated value) validated,
-  }) {
-    return validated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
-    TResult? Function(_Validated value)? validated,
-  }) {
-    return validated?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
-    TResult Function(_Validated value)? validated,
-    required TResult orElse(),
-  }) {
-    if (validated != null) {
-      return validated(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Validated implements FieldsDialogSR {
-  const factory _Validated() = _$_Validated;
 }
 
 /// @nodoc
@@ -1313,7 +1196,7 @@ class _$FieldsDialogStateData implements FieldsDialogStateData {
   @JsonKey()
   List<Property> get properties {
     if (_properties is EqualUnmodifiableListView) return _properties;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_properties);
   }
 
@@ -1322,7 +1205,7 @@ class _$FieldsDialogStateData implements FieldsDialogStateData {
   @JsonKey()
   List<DataComponent> get components {
     if (_components is EqualUnmodifiableListView) return _components;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_components);
   }
 
@@ -1331,7 +1214,7 @@ class _$FieldsDialogStateData implements FieldsDialogStateData {
   @JsonKey()
   List<int> get errorIndexes {
     if (_errorIndexes is EqualUnmodifiableListView) return _errorIndexes;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_errorIndexes);
   }
 

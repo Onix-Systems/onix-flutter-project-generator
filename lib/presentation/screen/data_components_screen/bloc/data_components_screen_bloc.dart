@@ -154,7 +154,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
       final source = sourceRepository.getSourceByName(event.source!.name);
       if (source != null) {
         sourceRepository.modifyDataComponentInSource(
-            source, event.dataComponent, event.oldDataComponentName);
+            source.name, event.dataComponent, event.oldDataComponentName);
       }
     }
 

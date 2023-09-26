@@ -31,8 +31,8 @@ abstract class SourceRepository {
 
   void deleteDataComponentFromAllSources(String name);
 
-  void modifyDataComponentInSource(
-      Source source, DataComponent dataComponent, String oldDataComponentName);
+  void modifyDataComponentInSource(String sourceName,
+      DataComponent dataComponent, String oldDataComponentName);
 
   void modifyDataComponentInAllSources(
       DataComponent dataComponent, String oldDataComponentName);

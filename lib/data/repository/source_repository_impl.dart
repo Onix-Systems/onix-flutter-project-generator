@@ -47,7 +47,10 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   void addSource(Source source) {
-    if (_sources.where((element) => element.name == source.name).isEmpty) {
+    if (_sources
+        .where((element) => element.name.pascalCase == source.name.pascalCase)
+        .isEmpty) {
+      source.name = source.name.pascalCase;
       _sources.add(source);
     }
   }
@@ -77,11 +80,7 @@ class SourceRepositoryImpl implements SourceRepository {
       return '';
     }
 
-    return source.dataComponents
-        .firstWhere((element) =>
-            element.name.pascalCase ==
-            entityName.stripRequestResponse().pascalCase)
-        .sourceName;
+    return source.name;
   }
 
   @override
@@ -380,6 +379,7 @@ class SourceRepositoryImpl implements SourceRepository {
   @override
   void addDataComponentToSource(Source source, DataComponent dataComponent) {
     dataComponent.name = dataComponent.name.pascalCase;
+    dataComponent.setSourceName(source.name);
     _sources.firstWhere((element) => element.name == source.name)
       ..dataComponents.add(dataComponent)
       ..dataComponentsNames.add(dataComponent.name);
@@ -414,7 +414,7 @@ class SourceRepositoryImpl implements SourceRepository {
                 .pascalCase ==
             name.pascalCase);
 
-        modifyDataComponentInSource(source, dependant, dependant.name);
+        modifyDataComponentInSource(source.name, dependant, dependant.name);
       }
     }
   }
@@ -425,15 +425,16 @@ class SourceRepositoryImpl implements SourceRepository {
   }
 
   @override
-  void modifyDataComponentInSource(
-      Source source, DataComponent dataComponent, String oldDataComponentName) {
-    _sources.firstWhere(
-        (element) => element.name.pascalCase == source.name.pascalCase)
-      ..dataComponents.removeWhere((element) =>
-          element.name.pascalCase == oldDataComponentName.pascalCase)
-      ..dataComponentsNames.remove(oldDataComponentName.pascalCase)
-      ..dataComponents.add(dataComponent)
-      ..dataComponentsNames.add(dataComponent.name.pascalCase);
+  void modifyDataComponentInSource(String sourceName,
+      DataComponent dataComponent, String oldDataComponentName) {
+    final source = _sources.firstWhere(
+        (element) => element.name.pascalCase == sourceName.pascalCase);
+
+    deleteDataComponentFromSource(
+        source,
+        source.dataComponents.firstWhere((element) =>
+            element.name.pascalCase == oldDataComponentName.pascalCase));
+    addDataComponentToSource(source, dataComponent);
   }
 
   @override

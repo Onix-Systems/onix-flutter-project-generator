@@ -142,7 +142,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
       properties:
           (entry.value['properties'] as Map<String, dynamic>).entries.map((e) {
         if (TypeMatcher.isReference(e.value)) {
-          imports.add(_getRefClassName(e.value));
+          imports.add(_getRefClassName(e.value).pascalCase);
         }
         var property = Property(
           name: e.key.camelCase,
@@ -157,7 +157,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
         }
 
         if (TypeMatcher.getDartType(property.type) == 'Map') {
-          imports.add(e.key.snakeCase);
+          imports.add(e.key.pascalCase);
           _parseMap(property, e);
         }
 
@@ -223,7 +223,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
       property.type =
           'List<${_getRefClassName(e.value['items']) /*.stripRequestResponse()*/}>';
       imports.add(_getRefClassName(e.value['items']) /*.stripRequestResponse()*/
-          .snakeCase);
+          .pascalCase);
     } else {
       if ((e.value['items'] as Map<String, dynamic>).isEmpty) {
         property.type = 'List<dynamic>';
@@ -249,7 +249,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
             }
           };
 
-          imports.add(className.snakeCase);
+          imports.add(className.pascalCase);
 
           final innerEntities = _parse(definitions);
           _dataComponents.addAll(innerEntities);

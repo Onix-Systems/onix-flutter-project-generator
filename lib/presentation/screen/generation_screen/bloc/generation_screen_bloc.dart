@@ -259,7 +259,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         for (var component in source.dataComponents) {
           component.exists = true;
           sourceRepository.modifyDataComponentInSource(
-              source, component, component.name);
+              source.name, component, component.name);
         }
       }
 
