@@ -86,12 +86,10 @@ class ${name.pascalCase}Mappers {
     final properties = <String>[];
 
     for (final property in dataComponent.properties) {
-      if (property.type.startsWith('List')) {
-        final type = property.type.substring(5, property.type.length - 1);
-
-        dataComponent.imports.contains(type.pascalCase)
+      if (property.isList) {
+        dataComponent.imports.contains(property.type.pascalCase)
             ? properties.add(
-                '        ${property.name}: from.${property.name}${isRequest && !property.nullable ? '' : '?'}.map(${type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest && !property.type.endsWith('?') ? '' : ' ?? []'},')
+                '        ${property.name}: from.${property.name}${isRequest && !property.nullable ? '' : '?'}.map(${property.type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest && !property.type.endsWith('?') ? '' : ' ?? []'},')
             : properties.add(
                 '        ${property.name}: from.${property.name}${isRequest ? '' : ' ?? []'},');
       } else {

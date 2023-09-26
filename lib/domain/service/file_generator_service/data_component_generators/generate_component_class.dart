@@ -57,7 +57,12 @@ ${_getProperties(dataComponent: dataComponent)}
     final properties = <String>[];
 
     for (final property in dataComponent.properties) {
-      if (TypeMatcher.defaultTypeValue(property.type) == (property.type)) {
+      if (property.isList) {
+        properties.add('        ${property.name}: [],');
+        continue;
+      }
+
+      if (!TypeMatcher.isStandardType(TypeMatcher.getDartType(property.type))) {
         final importEntity = dataComponent.componentImports
             .firstWhereOrNull((element) => element.name == property.type);
 

@@ -219,26 +219,24 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
   void _parseArray(
       MapEntry<String, dynamic> e, Property property, List<String> imports) {
+    property.isList = true;
     if (TypeMatcher.isReference(e.value['items'])) {
-      property.type =
-          'List<${_getRefClassName(e.value['items']) /*.stripRequestResponse()*/}>';
-      imports.add(_getRefClassName(e.value['items']) /*.stripRequestResponse()*/
-          .pascalCase);
+      property.type = _getRefClassName(e.value['items']);
+      imports.add(_getRefClassName(e.value['items']).pascalCase);
     } else {
       if ((e.value['items'] as Map<String, dynamic>).isEmpty) {
-        property.type = 'List<dynamic>';
+        property.type = 'dynamic';
       } else {
         final className =
             property.name.substring(0, property.name.length).pascalCase;
 
         if (e.value['items'].containsKey('type') &&
             e.value['items']['type'] != 'object') {
-          property.type =
-              'List<${TypeMatcher.getDartType(e.value['items']['type'])}>';
+          property.type = TypeMatcher.getDartType(e.value['items']['type']);
         } else if (e.value['items'].containsKey('type') &&
             e.value['items']['type'] == 'object' &&
             !e.value['items'].containsKey('properties')) {
-          property.type = 'List<dynamic>';
+          property.type = 'dynamic';
         } else {
           final definitions = {
             'definitions': {
@@ -254,7 +252,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
           final innerEntities = _parse(definitions);
           _dataComponents.addAll(innerEntities);
 
-          property.type = 'List<$className>';
+          property.type = className;
         }
       }
     }
@@ -324,14 +322,11 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
     }
 
     for (final component in _dataComponents
-        .where((element) => element.properties.any((property) =>
-            property.type.replaceAll('List<', '').replaceAll('>', '') ==
-            name.pascalCase))
+        .where((element) => element.properties
+            .any((property) => property.type == name.pascalCase))
         .toList()) {
       component
-        ..properties.removeWhere((element) =>
-            element.type.replaceAll('List<', '').replaceAll('>', '') ==
-            name.pascalCase)
+        ..properties.removeWhere((element) => element.type == name.pascalCase)
         ..imports
             .removeWhere((element) => element.pascalCase == name.pascalCase)
         ..componentImports.removeWhere(
@@ -342,20 +337,14 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   @override
   void modifyComponent(String name, DataComponent modifiedComponent) {
     final dependants = _dataComponents
-        .where((element) => element.properties.any((property) =>
-            property.type.replaceAll('List<', '').replaceAll('>', '') ==
-            name.pascalCase))
+        .where((element) => element.properties
+            .any((property) => property.type == name.pascalCase))
         .toList();
 
     for (final dependant in dependants) {
       for (var property in dependant.properties) {
-        if (property.type.replaceAll('List<', '').replaceAll('>', '') ==
-            name.pascalCase) {
-          if (property.type.contains('List')) {
-            property.type = 'List<${modifiedComponent.name.pascalCase}>';
-          } else {
-            property.type = modifiedComponent.name.pascalCase;
-          }
+        if (property.type == name.pascalCase) {
+          property.type = modifiedComponent.name.pascalCase;
         }
       }
 

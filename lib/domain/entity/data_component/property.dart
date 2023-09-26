@@ -8,17 +8,20 @@ class Property {
   String name;
   String type;
   bool nullable;
+  bool isList;
 
   Property({
     required this.name,
     required this.type,
     this.nullable = false,
+    this.isList = false,
   });
 
   factory Property.empty() => Property(
         name: '',
         type: 'String',
         nullable: false,
+        isList: false,
       );
 
   factory Property.fromJson(Map<String, dynamic> json) =>
@@ -28,7 +31,7 @@ class Property {
 
   @override
   String toString() {
-    return '${nullable ? '' : 'required '}${TypeMatcher.getDartType(type)}${nullable ? '?' : ''} $name';
+    return '${nullable ? '' : 'required '}${isList ? 'List<' : ''}${TypeMatcher.getDartType(type)}${isList ? '>' : ''}${nullable ? '?' : ''} $name';
   }
 
   Property.copyOf(Property source)
@@ -36,5 +39,6 @@ class Property {
           name: source.name,
           type: source.type,
           nullable: source.nullable,
+          isList: source.isList,
         );
 }

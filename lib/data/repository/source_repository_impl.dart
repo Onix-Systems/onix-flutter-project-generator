@@ -147,7 +147,8 @@ class SourceRepositoryImpl implements SourceRepository {
                     name: entityName.camelCase,
                     place: MethodPlace.values.firstWhere(
                         (element) => element.name == parameter['in']),
-                    type: isArray ? 'List<$entityName>' : entityName,
+                    type: entityName,
+                    isList: isArray,
                     nullable: parameter['required'] != null
                         ? !parameter['required']
                         : true));
@@ -195,9 +196,8 @@ class SourceRepositoryImpl implements SourceRepository {
                   name: parameter['name'],
                   place: MethodPlace.values
                       .firstWhere((element) => element.name == parameter['in']),
-                  type: isArray
-                      ? 'List<${TypeMatcher.getDartType(parameter['items']['type'])}>'
-                      : TypeMatcher.getDartType(parameter['type']),
+                  type: TypeMatcher.getDartType(parameter['type']),
+                  isList: isArray,
                   nullable: parameter['required'] != null
                       ? !parameter['required']
                       : true));
@@ -397,22 +397,14 @@ class SourceRepositoryImpl implements SourceRepository {
   void deleteDataComponentFromAllSources(String name) {
     for (var source in _sources) {
       var dependants = source.dataComponents
-          .where((entity) => entity.properties.any((property) =>
-              property.type
-                  .replaceAll('List<', '')
-                  .replaceAll('>', '')
-                  .pascalCase ==
-              name.pascalCase))
+          .where((entity) => entity.properties
+              .any((property) => property.type.pascalCase == name.pascalCase))
           .map((e) => DataComponent.copyOf(e))
           .toList();
 
       for (var dependant in dependants) {
-        dependant.properties.removeWhere((property) =>
-            property.type
-                .replaceAll('List<', '')
-                .replaceAll('>', '')
-                .pascalCase ==
-            name.pascalCase);
+        dependant.properties.removeWhere(
+            (property) => property.type.pascalCase == name.pascalCase);
 
         modifyDataComponentInSource(source.name, dependant, dependant.name);
       }
@@ -481,20 +473,14 @@ class SourceRepositoryImpl implements SourceRepository {
       DataComponent dataComponent, String oldDataComponentName) {
     for (var source in _sources) {
       final dependants = source.dataComponents
-          .where((element) => element.properties.any((property) =>
-              property.type.replaceAll('List<', '').replaceAll('>', '') ==
-              oldDataComponentName.pascalCase))
+          .where((element) => element.properties.any(
+              (property) => property.type == oldDataComponentName.pascalCase))
           .toList();
 
       for (final dependant in dependants) {
         for (var property in dependant.properties) {
-          if (property.type.replaceAll('List<', '').replaceAll('>', '') ==
-              oldDataComponentName.pascalCase) {
-            if (property.type.contains('List')) {
-              property.type = 'List<${dataComponent.name.pascalCase}>';
-            } else {
-              property.type = dataComponent.name.pascalCase;
-            }
+          if (property.type == oldDataComponentName.pascalCase) {
+            property.type = dataComponent.name.pascalCase;
           }
         }
 

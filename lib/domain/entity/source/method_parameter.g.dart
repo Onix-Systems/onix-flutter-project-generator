@@ -12,6 +12,7 @@ MethodParameter _$MethodParameterFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       type: json['type'] as String,
       nullable: json['nullable'] as bool? ?? false,
+      isList: json['isList'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$MethodParameterToJson(MethodParameter instance) =>
@@ -19,6 +20,7 @@ Map<String, dynamic> _$MethodParameterToJson(MethodParameter instance) =>
       'name': instance.name,
       'type': instance.type,
       'nullable': instance.nullable,
+      'isList': instance.isList,
       'place': _$MethodPlaceEnumMap[instance.place]!,
     };
 

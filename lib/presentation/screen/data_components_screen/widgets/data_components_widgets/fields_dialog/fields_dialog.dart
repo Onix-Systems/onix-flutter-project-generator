@@ -91,8 +91,9 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
                             return Row(
                               children: [
                                 Expanded(
-                                  child: _isStandardType(
-                                          state.properties[index].type)
+                                  child: TypeMatcher.isStandardType(
+                                          TypeMatcher.getDartType(
+                                              state.properties[index].type))
                                       ? AddFieldTile(
                                           property: state.properties[index],
                                           error: state.errorIndexes
@@ -170,10 +171,9 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
                         if (state.errorIndexes.isEmpty) {
                           widget.dataComponent.properties = state.properties;
                           final imports = state.properties
-                              .map((e) => e.type
-                                  .replaceAll('List<', '')
-                                  .replaceAll('>', ''))
-                              .where((element) => !_isStandardType(element))
+                              .map((e) => e.type)
+                              .where((element) => !TypeMatcher.isStandardType(
+                                  TypeMatcher.getDartType(element)))
                               .toList();
                           widget.dataComponent.addImports(imports);
                           widget.dataComponent.addComponentImports(imports);
@@ -205,10 +205,4 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
       ),
     );
   }
-
-  bool _isStandardType(String type) => TypeMatcher.isStandardType(
-        TypeMatcher.getDartType(
-          type.replaceAll('List<', '').replaceAll('>', ''),
-        ),
-      );
 }

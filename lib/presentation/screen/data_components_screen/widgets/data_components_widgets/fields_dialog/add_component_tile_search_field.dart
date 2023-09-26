@@ -5,7 +5,7 @@ import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:searchfield/searchfield.dart';
 
-class AddComponentComponentSearchField extends StatelessWidget {
+class AddComponentSearchField extends StatelessWidget {
   final TextEditingController searchController;
   final FocusNode searchFieldFocusNode;
   final Property property;
@@ -13,7 +13,7 @@ class AddComponentComponentSearchField extends StatelessWidget {
   final ValueChanged<DataComponent> onSelect;
   final VoidCallback onClear;
 
-  const AddComponentComponentSearchField({
+  const AddComponentSearchField({
     required this.searchController,
     required this.searchFieldFocusNode,
     required this.property,

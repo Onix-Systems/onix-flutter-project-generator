@@ -6,7 +6,6 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/w
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
-import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 
 class AddComponentTile extends StatefulWidget {
@@ -42,17 +41,11 @@ class _AddComponentTileState extends State<AddComponentTile> {
     if (widget.property != null) {
       _propertyNameController.text = widget.property!.name;
       _property = Property.copyOf(widget.property!);
-      if (_property.type.contains('List')) {
+      if (_property.isList) {
         _isList = true;
-        _property.type = TypeMatcher.getDartType(
-            _property.type.replaceAll('List<', '').replaceAll('>', ''));
       }
     } else {
-      _property = Property(
-        name: '',
-        type: '',
-        nullable: false,
-      );
+      _property = Property.empty();
     }
     _searchController.text = _property.type;
 
@@ -86,7 +79,7 @@ class _AddComponentTileState extends State<AddComponentTile> {
                 Flexible(
                   child: Material(
                     color: Colors.transparent,
-                    child: AddComponentComponentSearchField(
+                    child: AddComponentSearchField(
                       searchController: _searchController,
                       searchFieldFocusNode: _searchFieldFocusNode,
                       components: widget.components,
@@ -156,15 +149,7 @@ class _AddComponentTileState extends State<AddComponentTile> {
   void _onChanged() {
     _property.name = _propertyNameController.text;
     final property = Property.copyOf(_property);
-    switch (_isList) {
-      case true:
-        if (!_property.type.contains('List')) {
-          property.type = 'List<${_property.type}>';
-        }
-      case false:
-        property.type =
-            _property.type.replaceAll('List<', '').replaceAll('>', '');
-    }
+    property.isList = _isList;
 
     widget.onChanged(property);
   }

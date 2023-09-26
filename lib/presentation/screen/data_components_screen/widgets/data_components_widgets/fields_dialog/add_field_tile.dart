@@ -41,17 +41,11 @@ class _AddFieldTileState extends State<AddFieldTile> {
     if (widget.property != null) {
       _propertyNameController.text = widget.property!.name;
       _property = Property.copyOf(widget.property!);
-      if (_property.type.contains('List')) {
+      if (_property.isList) {
         _isList = true;
-        _property.type = TypeMatcher.getDartType(
-            _property.type.replaceAll('List<', '').replaceAll('>', ''));
       }
     } else {
-      _property = Property(
-        name: '',
-        type: 'string',
-        nullable: false,
-      );
+      _property = Property.empty();
     }
 
     super.initState();
@@ -129,15 +123,9 @@ class _AddFieldTileState extends State<AddFieldTile> {
 
   void _onChanged() {
     final property = Property.copyOf(_property);
-    switch (_isList) {
-      case true:
-        if (!_property.type.contains('List')) {
-          property.type = 'List<${TypeMatcher.getDartType(_property.type)}>';
-        }
-      case false:
-        property.type = TypeMatcher.getJsonType(
-            _property.type.replaceAll('List<', '').replaceAll('>', ''));
-    }
+    property.isList = _isList;
+    property.type = TypeMatcher.getJsonType(_property.type);
+
     widget.onChanged(property);
   }
 }

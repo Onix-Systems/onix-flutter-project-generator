@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
-import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 
@@ -36,23 +35,19 @@ class ${name.pascalCase}Request with _\$${name.pascalCase}Request {
     factory ${name.pascalCase}Request({
 ${dataComponent.properties.map((e) {
       String type = e.type;
-      if (TypeMatcher.getDartType(type) == type && !type.contains('dynamic')) {
-        if (type.startsWith('List')) {
-          final listType = type.substring(5, type.length - 1);
-
-          if (!TypeMatcher.isStandardType(listType)) {
-            type = type.replaceLast('>', 'Request>');
-          }
+      if (!TypeMatcher.isStandardType(TypeMatcher.getDartType(type)) &&
+          !type.contains('dynamic')) {
+        if (!dataComponent.componentImports
+            .firstWhere((element) => element.name.pascalCase == type.pascalCase)
+            .isEnum) {
+          type = '${type}Request';
         } else {
-          if (!dataComponent.componentImports
-              .firstWhere(
-                  (element) => element.name.pascalCase == type.pascalCase)
-              .isEnum) {
-            type = '${type}Request';
-          } else {
-            type = 'String';
-          }
+          type = 'String';
         }
+      }
+
+      if (e.isList) {
+        type = 'List<$type>';
       }
 
       return '        ${e.nullable ? '@JsonKey(includeIfNull: false)' : 'required'} ${TypeMatcher.getDartType(type)}${e.nullable ? '?' : ''} ${e.name},';

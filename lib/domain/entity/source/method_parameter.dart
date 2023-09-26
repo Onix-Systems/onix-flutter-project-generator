@@ -12,11 +12,12 @@ class MethodParameter extends Property {
     required String name,
     required String type,
     bool nullable = false,
-  }) : super(name: name, type: type, nullable: nullable);
+    bool isList = false,
+  }) : super(name: name, type: type, nullable: nullable, isList: isList);
 
   @override
   String toString() {
-    return '{name: ${super.name}, type: ${super.type}, place: ${place.name}, nullable: ${super.nullable}}';
+    return '{name: ${super.name}, type: ${super.type}, place: ${place.name}, nullable: ${super.nullable}, isList: ${super.isList}}';
   }
 
   factory MethodParameter.fromJson(Map<String, dynamic> json) =>
@@ -31,6 +32,7 @@ class MethodParameter extends Property {
       name: source.name,
       type: source.type,
       nullable: source.nullable,
+      isList: source.isList,
     );
   }
 }
