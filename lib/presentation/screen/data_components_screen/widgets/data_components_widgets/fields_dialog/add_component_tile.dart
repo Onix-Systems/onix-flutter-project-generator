@@ -35,15 +35,10 @@ class _AddComponentTileState extends State<AddComponentTile> {
 
   late Property _property;
 
-  bool _isList = false;
-
   void init() {
     if (widget.property != null) {
       _propertyNameController.text = widget.property!.name;
       _property = Property.copyOf(widget.property!);
-      if (_property.isList) {
-        _isList = true;
-      }
     } else {
       _property = Property.empty();
     }
@@ -67,11 +62,11 @@ class _AddComponentTileState extends State<AddComponentTile> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 LabeledCheckbox(
-                    initialValue: _isList,
+                    initialValue: _property.isList,
                     label: 'List',
                     onAction: () {
                       setState(() {
-                        _isList = !_isList;
+                        _property.isList = !_property.isList;
                         _onChanged();
                       });
                     }),
@@ -151,7 +146,6 @@ class _AddComponentTileState extends State<AddComponentTile> {
   void _onChanged() {
     _property.name = _propertyNameController.text.camelCase;
     final property = Property.copyOf(_property);
-    property.isList = _isList;
 
     widget.onChanged(property);
   }

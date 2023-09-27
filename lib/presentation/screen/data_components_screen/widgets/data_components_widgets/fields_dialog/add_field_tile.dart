@@ -29,8 +29,6 @@ class _AddFieldTileState extends State<AddFieldTile> {
 
   late Property _property;
 
-  bool _isList = false;
-
   final values = [
     'String',
     'int',
@@ -42,9 +40,6 @@ class _AddFieldTileState extends State<AddFieldTile> {
     if (widget.property != null) {
       _propertyNameController.text = widget.property!.name;
       _property = Property.copyOf(widget.property!);
-      if (_property.isList) {
-        _isList = true;
-      }
     } else {
       _property = Property.empty();
     }
@@ -67,11 +62,11 @@ class _AddFieldTileState extends State<AddFieldTile> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 LabeledCheckbox(
-                    initialValue: _isList,
+                    initialValue: _property.isList,
                     label: 'List',
                     onAction: () {
                       setState(() {
-                        _isList = !_isList;
+                        _property.isList = !_property.isList;
                         _onChanged();
                       });
                     }),
@@ -126,7 +121,6 @@ class _AddFieldTileState extends State<AddFieldTile> {
 
   void _onChanged() {
     final property = Property.copyOf(_property);
-    property.isList = _isList;
     property.type = TypeMatcher.getJsonType(_property.type);
 
     widget.onChanged(property);
