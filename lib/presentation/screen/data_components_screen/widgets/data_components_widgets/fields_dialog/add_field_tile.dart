@@ -6,6 +6,7 @@ import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
+import 'package:recase/recase.dart';
 
 class AddFieldTile extends StatefulWidget {
   final Property? property;
@@ -37,8 +38,7 @@ class _AddFieldTileState extends State<AddFieldTile> {
     'bool',
   ];
 
-  @override
-  void initState() {
+  void init() {
     if (widget.property != null) {
       _propertyNameController.text = widget.property!.name;
       _property = Property.copyOf(widget.property!);
@@ -48,12 +48,11 @@ class _AddFieldTileState extends State<AddFieldTile> {
     } else {
       _property = Property.empty();
     }
-
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    init();
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.bgDark,
@@ -112,7 +111,7 @@ class _AddFieldTileState extends State<AddFieldTile> {
                     ],
                     style: context.appTextStyles.fs18,
                     onChanged: (value) {
-                      _property.name = value;
+                      _property.name = value.camelCase;
                       _onChanged();
                     },
                   ),

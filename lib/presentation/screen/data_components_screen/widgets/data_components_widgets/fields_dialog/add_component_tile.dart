@@ -37,8 +37,7 @@ class _AddComponentTileState extends State<AddComponentTile> {
 
   bool _isList = false;
 
-  @override
-  void initState() {
+  void init() {
     if (widget.property != null) {
       _propertyNameController.text = widget.property!.name;
       _property = Property.copyOf(widget.property!);
@@ -49,12 +48,11 @@ class _AddComponentTileState extends State<AddComponentTile> {
       _property = Property.empty();
     }
     _searchController.text = _property.type;
-
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    init();
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.bgDark,
@@ -151,7 +149,7 @@ class _AddComponentTileState extends State<AddComponentTile> {
   }
 
   void _onChanged() {
-    _property.name = _propertyNameController.text;
+    _property.name = _propertyNameController.text.camelCase;
     final property = Property.copyOf(_property);
     property.isList = _isList;
 
