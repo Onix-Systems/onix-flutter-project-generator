@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
+import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 
 class AddScreenDialog extends StatefulWidget {
@@ -80,7 +81,7 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
               onSubmitted: (_) => _onOk(context),
               placeholder: S.of(context).screenName,
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
               ],
             ),
             const SizedBox(height: 15),
@@ -126,15 +127,21 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
 
   Future<void> _onOk(BuildContext context) async {
     if (_screenNameController.text.isNotEmpty) {
+      String screenName = _screenNameController.text.pascalCase;
+
+      while (screenName.endsWith('Screen')) {
+        screenName = screenName.replaceLast('Screen', '');
+      }
+
       if (widget.screen != null) {
-        widget.screen!.name = _screenNameController.text.snakeCase;
+        widget.screen!.name = screenName;
         widget.screen!.stateManager = _stateManagement;
         Navigator.pop(context, widget.screen);
       } else {
         Navigator.pop(
             context,
             Screen(
-                name: _screenNameController.text,
+                name: screenName,
                 stateManager: _stateManagement,
                 exists: false));
       }

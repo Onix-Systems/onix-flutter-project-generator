@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/add_fields_tile_dropdown.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
@@ -106,6 +107,9 @@ class _AddFieldTileState extends State<AddFieldTile> {
                       ),
                     ),
                     controller: _propertyNameController,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
+                    ],
                     style: context.appTextStyles.fs18,
                     onChanged: (value) {
                       _property.name = value;

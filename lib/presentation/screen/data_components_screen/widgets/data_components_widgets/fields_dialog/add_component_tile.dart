@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/add_component_tile_search_field.dart';
@@ -130,6 +131,9 @@ class _AddComponentTileState extends State<AddComponentTile> {
                     ),
                     focusNode: _propertyNameFocusNode,
                     controller: _propertyNameController,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
+                    ],
                     style: context.appTextStyles.fs18,
                     onChanged: (value) {
                       setState(() {

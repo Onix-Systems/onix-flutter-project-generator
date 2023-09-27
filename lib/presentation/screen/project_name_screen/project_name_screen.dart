@@ -91,7 +91,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
             ),
             onEditingComplete: () => _nextFocus(state),
             inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9 ]')),
+              FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9_]')),
             ],
           ),
           const Delimiter.height(20),

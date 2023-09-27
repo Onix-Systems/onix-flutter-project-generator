@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 
 class AddSourceDialog extends StatelessWidget {
@@ -33,7 +34,7 @@ class AddSourceDialog extends StatelessWidget {
             style: context.appTextStyles.fs18,
             placeholder: S.of(context).sourceNamePlaceholder,
             inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
+              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
             ],
             onSubmitted: (_) => _onSubmitted(context),
           ),
@@ -59,12 +60,18 @@ class AddSourceDialog extends StatelessWidget {
 
   void _onSubmitted(BuildContext context) {
     if (_sourceNameController.text.isNotEmpty) {
+      String sourceName = _sourceNameController.text.pascalCase;
+
+      while (sourceName.endsWith('Source')) {
+        sourceName = sourceName.replaceLast('Source', '');
+      }
+
       if (source != null) {
-        source!.name = _sourceNameController.text.snakeCase;
+        source!.name = sourceName;
         Navigator.pop(context, source);
       } else {
         final source = Source(
-          name: _sourceNameController.text.snakeCase,
+          name: sourceName,
           dataComponents: [],
           dataComponentsNames: [],
         );
