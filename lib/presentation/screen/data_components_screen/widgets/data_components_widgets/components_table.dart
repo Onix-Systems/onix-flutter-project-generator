@@ -6,6 +6,7 @@ import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/component_preview_modal.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -195,43 +196,58 @@ class ComponentsTable extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CupertinoButton(
-                              color: dataComponent.exists ||
-                                      dataComponent.isGenerated
-                                  ? CupertinoColors.inactiveGray
-                                  : CupertinoColors.activeOrange,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              pressedOpacity: _pressedOpacity(dataComponent),
-                              onPressed: () {
-                                if (!dataComponent.exists &&
-                                    !dataComponent.isEnum &&
-                                    !dataComponent.isGenerated) {
-                                  showCupertinoModalPopup<DataComponent>(
-                                    context: context,
-                                    barrierDismissible: false,
-                                    builder: (context) => AddComponentDialog(
-                                      dataComponent:
-                                          DataComponent.copyOf(dataComponent),
-                                      source: source,
-                                    ),
-                                  ).then((component) {
-                                    if (component != null) {
-                                      blocOf(context).add(
-                                        DataComponentsScreenEventModifyDataComponent(
-                                            dataComponent: component,
-                                            oldDataComponentName:
-                                                dataComponent.name,
-                                            source: source),
-                                      );
-                                    }
-                                  });
-                                }
-                              },
-                              child: Text(
-                                S.of(context).modify,
-                                style: context.appTextStyles.fs18
-                                    ?.copyWith(color: AppColors.bgDark),
+                            SizedBox(
+                              width: 120,
+                              child: CupertinoButton(
+                                color: dataComponent.isEnum
+                                    ? CupertinoColors.inactiveGray
+                                    : CupertinoColors.activeOrange,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                pressedOpacity: !dataComponent.isEnum ? 0.5 : 1,
+                                onPressed: () {
+                                  if (!dataComponent.exists &&
+                                      !dataComponent.isEnum &&
+                                      !dataComponent.isGenerated) {
+                                    showCupertinoModalPopup<DataComponent>(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (context) => AddComponentDialog(
+                                        dataComponent:
+                                            DataComponent.copyOf(dataComponent),
+                                        source: source,
+                                      ),
+                                    ).then((component) {
+                                      if (component != null) {
+                                        blocOf(context).add(
+                                          DataComponentsScreenEventModifyDataComponent(
+                                              dataComponent: component,
+                                              oldDataComponentName:
+                                                  dataComponent.name,
+                                              source: source),
+                                        );
+                                      }
+                                    });
+                                  } else if (!dataComponent.isEnum) {
+                                    showCupertinoModalPopup(
+                                      context: context,
+                                      barrierDismissible: true,
+                                      builder: (context) =>
+                                          ComponentPreviewModal(
+                                        dataComponent: dataComponent,
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: Text(
+                                  !dataComponent.exists &&
+                                          !dataComponent.isEnum &&
+                                          !dataComponent.isGenerated
+                                      ? S.of(context).modify
+                                      : 'Preview',
+                                  style: context.appTextStyles.fs18
+                                      ?.copyWith(color: AppColors.bgDark),
+                                ),
                               ),
                             ),
                             const SizedBox(width: 10),
@@ -242,7 +258,11 @@ class ComponentsTable extends StatelessWidget {
                                   : CupertinoColors.activeOrange,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
-                              pressedOpacity: _pressedOpacity(dataComponent),
+                              pressedOpacity: !dataComponent.exists &&
+                                      !dataComponent.isEnum &&
+                                      !dataComponent.isGenerated
+                                  ? 0.5
+                                  : 1,
                               onPressed: () {
                                 if (!dataComponent.exists &&
                                     !dataComponent.isGenerated) {
@@ -271,13 +291,6 @@ class ComponentsTable extends StatelessWidget {
       ),
     );
   }
-
-  double _pressedOpacity(DataComponent dataComponent) =>
-      !dataComponent.exists &&
-              !dataComponent.isEnum &&
-              !dataComponent.isGenerated
-          ? 0.5
-          : 1;
 
   DataComponentsScreenBloc blocOf(BuildContext context) =>
       context.read<DataComponentsScreenBloc>();
