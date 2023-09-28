@@ -25,7 +25,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m1(projectName) => "Змінити ${projectName}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Дії"),
         "addComponent":
@@ -43,7 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "apiFailureUnAuthorized": MessageLookupByLibrary.simpleMessage(
             "Ім\'я користувача або пароль не вірний."),
         "apiFailureUndefined": MessageLookupByLibrary.simpleMessage(
-            "Ой! Схоже, що в нас проблема з цим запитом. Будь ласка, спробуйте ще раз.\n\nЯкщо проблема не вирішилась - зверніться до техпідтримки.."),
+            "Ой! Схоже, що в нас проблема з цим запитом. Будь ласка, спробуйте ще раз.\n\nЯкщо проблема не вирішилась - зверніться до техпідтримки."),
         "cancel": MessageLookupByLibrary.simpleMessage("Відміна"),
         "checkNamesContentFirstPart":
             MessageLookupByLibrary.simpleMessage("Назва проекту\n"),
@@ -96,7 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "getFromSwagger":
             MessageLookupByLibrary.simpleMessage("Отримати з свагера"),
         "gitPermissionsContent": MessageLookupByLibrary.simpleMessage(
-            "Помилка доступу до Git! Перевірте, чи встановлений git та чи маєте ви права доступу до репозиторія або спробуйте додати ключ від git до брелка apple."),
+            "Помилка доступу до Git! Перевірте, чи встановлений git та чи маєте ви права доступу до репозиторія або спробуйте додати ключ від git вв Ключар."),
         "gitPermissionsTitle":
             MessageLookupByLibrary.simpleMessage("Помилка доступу до Git!"),
         "goBack": MessageLookupByLibrary.simpleMessage("Назад"),
@@ -172,7 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Вставте посалання на json файл конфігу свагера сюди для отримання компонентів від API\nабо залиште пустим для продовженя без інтеграції API"),
         "swaggerParserScreenConflictError": MessageLookupByLibrary.simpleMessage(
             "Файл Свагера містить компоненти, що конфліктують з тими що є. Замінити зпарсеними компоненами або ігнорувати конфліктуючі дані?"),
-        "swaggerURL": MessageLookupByLibrary.simpleMessage("Свагер URL"),
+        "swaggerURL": MessageLookupByLibrary.simpleMessage("Swagger URL"),
         "theming": MessageLookupByLibrary.simpleMessage("Theming"),
         "title": MessageLookupByLibrary.simpleMessage(
             "Onix Flutter Project Generator"),
