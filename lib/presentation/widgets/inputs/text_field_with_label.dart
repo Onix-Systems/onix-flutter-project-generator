@@ -60,9 +60,7 @@ class TextFieldWithLabel extends StatelessWidget {
           SizedBox(
             width: 130,
             child: Column(
-              crossAxisAlignment: centered
-                  ? CrossAxisAlignment.center
-                  : CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
                   label,
@@ -72,7 +70,6 @@ class TextFieldWithLabel extends StatelessWidget {
                 if (subLabel != null)
                   Text(
                     subLabel ?? '',
-                    textAlign: TextAlign.left,
                     style: context.appTextStyles.fs18
                         ?.copyWith(color: AppColors.white, fontSize: 13),
                   ),

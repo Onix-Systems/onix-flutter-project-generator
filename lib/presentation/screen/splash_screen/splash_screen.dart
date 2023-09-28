@@ -16,10 +16,7 @@ import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SplashScreen extends StatefulWidget {
-  final bool skipSplash;
-
   const SplashScreen({
-    this.skipSplash = false,
     super.key,
   });
 
@@ -69,14 +66,8 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AnimatedOpacity(
-                opacity: !widget.skipSplash
-                    ? state.logoVisible
-                        ? 0.5
-                        : 0
-                    : state.logoVisible
-                        ? 0.5
-                        : 0.49,
-                duration: Duration(milliseconds: widget.skipSplash ? 0 : 2000),
+                opacity: state.logoVisible ? 0.5 : 0.49,
+                duration: Duration(milliseconds: 2000),
                 child: SvgPicture.asset(
                   'assets/logo.svg',
                   colorFilter: const ColorFilter.mode(

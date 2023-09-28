@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m1(projectName) => "Змінити ${projectName}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Дії"),
         "addComponent":
@@ -95,7 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "getFromSwagger":
             MessageLookupByLibrary.simpleMessage("Отримати з свагера"),
         "gitPermissionsContent": MessageLookupByLibrary.simpleMessage(
-            "Помилка доступу до Git! Перевірте, чи встановлений git та чи маєте ви права доступу до репозиторія або спробуйте додати ключ від git вв Ключар."),
+            "Помилка доступу до Git! Перевірте, чи встановлений git та чи маєте ви права доступу до репозиторія або спробуйте додати ключ від git в Ключар."),
         "gitPermissionsTitle":
             MessageLookupByLibrary.simpleMessage("Помилка доступу до Git!"),
         "goBack": MessageLookupByLibrary.simpleMessage("Назад"),

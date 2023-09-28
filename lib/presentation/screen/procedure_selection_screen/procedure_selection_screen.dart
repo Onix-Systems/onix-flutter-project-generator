@@ -182,12 +182,6 @@ class _ProcedureSelectionScreenState extends BaseState<
                   ),
                 ],
               ),
-              const Delimiter.height(40),
-              AppFilledButton(
-                  label: S.of(context).goBack,
-                  icon: Icons.arrow_back_ios_rounded,
-                  onPressed: () =>
-                      context.go(AppRouter.splashScreen, extra: true)),
             ],
           ),
           Positioned(
