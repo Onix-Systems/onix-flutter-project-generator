@@ -25,7 +25,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m1(projectName) => "Змінити ${projectName}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Дії"),
         "addComponent":
