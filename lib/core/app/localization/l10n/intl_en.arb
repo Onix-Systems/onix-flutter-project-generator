@@ -99,5 +99,7 @@
   "nullable": "Nullable",
   "list": "List",
   "fields": "Fields",
-  "addField": "Add field"
+  "addField": "Add field",
+  "preview": "Preview",
+  "componentPreview": "{componentName} component preview"
 }

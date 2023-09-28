@@ -37,6 +37,8 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
           dataComponents: dataComponentRepository.dataComponents,
           screens: screenRepository.screens,
           projectExists: true,
+          localVersion: event.config.localVersion,
+          remoteVersion: event.config.remoteVersion,
         ),
       ),
     );

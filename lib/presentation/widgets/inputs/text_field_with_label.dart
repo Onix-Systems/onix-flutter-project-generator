@@ -58,7 +58,7 @@ class TextFieldWithLabel extends StatelessWidget {
           )
         else
           SizedBox(
-            width: 120,
+            width: 130,
             child: Column(
               crossAxisAlignment: centered
                   ? CrossAxisAlignment.center
@@ -66,6 +66,7 @@ class TextFieldWithLabel extends StatelessWidget {
               children: [
                 Text(
                   label,
+                  maxLines: 1,
                   style: context.appTextStyles.fs18,
                 ),
                 if (subLabel != null)

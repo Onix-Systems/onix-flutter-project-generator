@@ -18,7 +18,7 @@ class InnerEnumFileGenerator {
         await File('${path.path}/${innerEnum.name.snakeCase}.dart').create();
 
     final fileContent = '''enum ${innerEnum.name.pascalCase}{
-      ${innerEnum.properties.map((e) => e.name.snakeCase).join(',\n')}
+      ${innerEnum.properties.map((e) => e.name).join(',\n')}
     }''';
 
     await file.writeAsString(fileContent);

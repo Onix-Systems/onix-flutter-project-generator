@@ -20,26 +20,48 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Config {
+  String get localVersion => throw _privateConstructorUsedError;
+
+  String get remoteVersion => throw _privateConstructorUsedError;
+
   String get projectPath => throw _privateConstructorUsedError;
+
   String get projectName => throw _privateConstructorUsedError;
+
   bool get projectExists => throw _privateConstructorUsedError;
+
   String get organization => throw _privateConstructorUsedError;
+
   PlatformsList get platformsList => throw _privateConstructorUsedError;
+
   bool get flavorize => throw _privateConstructorUsedError;
+
   String get flavors => throw _privateConstructorUsedError;
+
   bool get generateSigningKey => throw _privateConstructorUsedError;
+
   bool get useSonar => throw _privateConstructorUsedError;
+
   bool get graphql => throw _privateConstructorUsedError;
+
   ProjectRouter get router => throw _privateConstructorUsedError;
+
   ProjectLocalization get localization => throw _privateConstructorUsedError;
+
   ProjectTheming get theming => throw _privateConstructorUsedError;
+
   List<String> get signingVars => throw _privateConstructorUsedError;
+
   Set<Screen> get screens => throw _privateConstructorUsedError;
+
   String get swaggerUrl => throw _privateConstructorUsedError;
+
   Set<DataComponent> get dataComponents => throw _privateConstructorUsedError;
+
   Set<Source> get sources => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
@@ -50,7 +72,9 @@ abstract class $ConfigCopyWith<$Res> {
       _$ConfigCopyWithImpl<$Res, Config>;
   @useResult
   $Res call(
-      {String projectPath,
+      {String localVersion,
+      String remoteVersion,
+      String projectPath,
       String projectName,
       bool projectExists,
       String organization,
@@ -85,6 +109,8 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? localVersion = null,
+    Object? remoteVersion = null,
     Object? projectPath = null,
     Object? projectName = null,
     Object? projectExists = null,
@@ -105,6 +131,14 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? sources = null,
   }) {
     return _then(_value.copyWith(
+      localVersion: null == localVersion
+          ? _value.localVersion
+          : localVersion // ignore: cast_nullable_to_non_nullable
+              as String,
+      remoteVersion: null == remoteVersion
+          ? _value.remoteVersion
+          : remoteVersion // ignore: cast_nullable_to_non_nullable
+              as String,
       projectPath: null == projectPath
           ? _value.projectPath
           : projectPath // ignore: cast_nullable_to_non_nullable
@@ -196,7 +230,9 @@ abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String projectPath,
+      {String localVersion,
+      String remoteVersion,
+      String projectPath,
       String projectName,
       bool projectExists,
       String organization,
@@ -229,6 +265,8 @@ class __$$_ConfigCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? localVersion = null,
+    Object? remoteVersion = null,
     Object? projectPath = null,
     Object? projectName = null,
     Object? projectExists = null,
@@ -249,6 +287,14 @@ class __$$_ConfigCopyWithImpl<$Res>
     Object? sources = null,
   }) {
     return _then(_$_Config(
+      localVersion: null == localVersion
+          ? _value.localVersion
+          : localVersion // ignore: cast_nullable_to_non_nullable
+              as String,
+      remoteVersion: null == remoteVersion
+          ? _value.remoteVersion
+          : remoteVersion // ignore: cast_nullable_to_non_nullable
+              as String,
       projectPath: null == projectPath
           ? _value.projectPath
           : projectPath // ignore: cast_nullable_to_non_nullable
@@ -329,7 +375,9 @@ class __$$_ConfigCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Config extends _Config {
   const _$_Config(
-      {this.projectPath = '',
+      {this.localVersion = '',
+      this.remoteVersion = '',
+      this.projectPath = '',
       this.projectName = '',
       this.projectExists = false,
       this.organization = '',
@@ -364,6 +412,12 @@ class _$_Config extends _Config {
   factory _$_Config.fromJson(Map<String, dynamic> json) =>
       _$$_ConfigFromJson(json);
 
+  @override
+  @JsonKey()
+  final String localVersion;
+  @override
+  @JsonKey()
+  final String remoteVersion;
   @override
   @JsonKey()
   final String projectPath;
@@ -444,7 +498,7 @@ class _$_Config extends _Config {
 
   @override
   String toString() {
-    return 'Config(projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, swaggerUrl: $swaggerUrl, dataComponents: $dataComponents, sources: $sources)';
+    return 'Config(localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, swaggerUrl: $swaggerUrl, dataComponents: $dataComponents, sources: $sources)';
   }
 
   @override
@@ -452,6 +506,10 @@ class _$_Config extends _Config {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Config &&
+            (identical(other.localVersion, localVersion) ||
+                other.localVersion == localVersion) &&
+            (identical(other.remoteVersion, remoteVersion) ||
+                other.remoteVersion == remoteVersion) &&
             (identical(other.projectPath, projectPath) ||
                 other.projectPath == projectPath) &&
             (identical(other.projectName, projectName) ||
@@ -486,26 +544,29 @@ class _$_Config extends _Config {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      projectPath,
-      projectName,
-      projectExists,
-      organization,
-      platformsList,
-      flavorize,
-      flavors,
-      generateSigningKey,
-      useSonar,
-      graphql,
-      router,
-      localization,
-      theming,
-      const DeepCollectionEquality().hash(_signingVars),
-      const DeepCollectionEquality().hash(_screens),
-      swaggerUrl,
-      const DeepCollectionEquality().hash(_dataComponents),
-      const DeepCollectionEquality().hash(_sources));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        localVersion,
+        remoteVersion,
+        projectPath,
+        projectName,
+        projectExists,
+        organization,
+        platformsList,
+        flavorize,
+        flavors,
+        generateSigningKey,
+        useSonar,
+        graphql,
+        router,
+        localization,
+        theming,
+        const DeepCollectionEquality().hash(_signingVars),
+        const DeepCollectionEquality().hash(_screens),
+        swaggerUrl,
+        const DeepCollectionEquality().hash(_dataComponents),
+        const DeepCollectionEquality().hash(_sources)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -523,7 +584,9 @@ class _$_Config extends _Config {
 
 abstract class _Config extends Config {
   const factory _Config(
-      {final String projectPath,
+      {final String localVersion,
+      final String remoteVersion,
+      final String projectPath,
       final String projectName,
       final bool projectExists,
       final String organization,
@@ -541,18 +604,29 @@ abstract class _Config extends Config {
       final String swaggerUrl,
       final Set<DataComponent> dataComponents,
       final Set<Source> sources}) = _$_Config;
+
   const _Config._() : super._();
 
   factory _Config.fromJson(Map<String, dynamic> json) = _$_Config.fromJson;
 
   @override
+  String get localVersion;
+
+  @override
+  String get remoteVersion;
+
+  @override
   String get projectPath;
+
   @override
   String get projectName;
+
   @override
   bool get projectExists;
+
   @override
   String get organization;
+
   @override
   PlatformsList get platformsList;
   @override

@@ -28,7 +28,7 @@ class ComponentPreviewModal extends StatelessWidget {
             children: [
               const Delimiter.height(20),
               Text(
-                '${dataComponent.name.pascalCase} component preview',
+                S.of(context).componentPreview(dataComponent.name),
                 textAlign: TextAlign.center,
                 style: context.appTextStyles.fs18,
               ),
@@ -48,7 +48,7 @@ class ComponentPreviewModal extends StatelessWidget {
                   slivers: [
                     SliverToBoxAdapter(
                       child: Text(
-                        'class ${dataComponent.name.pascalCase} {',
+                        '${dataComponent.isEnum ? 'enum' : 'class'} ${dataComponent.name.pascalCase} {',
                         textAlign: TextAlign.left,
                         style: context.appTextStyles.fs18,
                       ),
@@ -57,7 +57,7 @@ class ComponentPreviewModal extends StatelessWidget {
                         itemCount: dataComponent.properties.length,
                         itemBuilder: (context, index) {
                           return Text(
-                            '      ${dataComponent.properties[index].nullable ? '' : 'required '}${dataComponent.properties[index].isList ? 'List<' : ''}${TypeMatcher.getDartType(dataComponent.properties[index].type)}${dataComponent.properties[index].isList ? '>' : ''}${dataComponent.properties[index].nullable ? '?' : ''} ${dataComponent.properties[index].name.camelCase};',
+                            _getComponentFields(index: index),
                             textAlign: TextAlign.left,
                             style: context.appTextStyles.fs18,
                           );
@@ -94,5 +94,13 @@ class ComponentPreviewModal extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getComponentFields({required int index}) {
+    if (dataComponent.isEnum) {
+      return '      ${dataComponent.properties[index].name},';
+    } else {
+      return '      ${dataComponent.properties[index].nullable ? '' : 'required '}${dataComponent.properties[index].isList ? 'List<' : ''}${TypeMatcher.getDartType(dataComponent.properties[index].type)}${dataComponent.properties[index].isList ? '>' : ''}${dataComponent.properties[index].nullable ? '?' : ''} ${dataComponent.properties[index].name.camelCase};';
+    }
   }
 }

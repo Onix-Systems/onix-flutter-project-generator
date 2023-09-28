@@ -153,6 +153,8 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
         ? context.go(AppRouter.procedureSelectionScreen,
             extra: Config(
               projectPath: widget.config.projectPath,
+              localVersion: widget.config.localVersion,
+              remoteVersion: widget.config.remoteVersion,
             ))
         : context.go(
             AppRouter.projectSettingsScreen,

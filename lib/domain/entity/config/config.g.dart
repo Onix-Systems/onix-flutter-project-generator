@@ -7,6 +7,8 @@ part of 'config.dart';
 // **************************************************************************
 
 _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
+      localVersion: json['localVersion'] as String? ?? '',
+      remoteVersion: json['remoteVersion'] as String? ?? '',
       projectPath: json['projectPath'] as String? ?? '',
       projectName: json['projectName'] as String? ?? '',
       projectExists: json['projectExists'] as bool? ?? false,
@@ -55,6 +57,8 @@ _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
     );
 
 Map<String, dynamic> _$$_ConfigToJson(_$_Config instance) => <String, dynamic>{
+      'localVersion': instance.localVersion,
+      'remoteVersion': instance.remoteVersion,
       'projectPath': instance.projectPath,
       'projectName': instance.projectName,
       'projectExists': instance.projectExists,

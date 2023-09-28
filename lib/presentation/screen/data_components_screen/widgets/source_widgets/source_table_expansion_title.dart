@@ -75,7 +75,7 @@ class _SourceTableExpansionTileState extends State<SourceTableExpansionTile> {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Sources: ${widget.sources.length}',
+                                  '${S.of(context).sources}: ${widget.sources.length}',
                                   textAlign: TextAlign.center,
                                   style: context.appTextStyles.fs18?.copyWith(
                                       color: CupertinoColors.activeOrange),

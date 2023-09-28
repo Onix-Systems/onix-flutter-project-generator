@@ -115,13 +115,16 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AppFilledButton(
-                  label: S.of(context).goBack,
-                  icon: Icons.arrow_back_ios_rounded,
-                  onPressed: () => context.go(
-                      AppRouter.procedureSelectionScreen,
-                      extra: widget.config.copyWith(
-                          projectName: projectNameController.text,
-                          organization: organizationController.text))),
+                label: S.of(context).goBack,
+                icon: Icons.arrow_back_ios_rounded,
+                onPressed: () => context.go(
+                  AppRouter.procedureSelectionScreen,
+                  extra: widget.config.copyWith(
+                    projectName: projectNameController.text,
+                    organization: organizationController.text,
+                  ),
+                ),
+              ),
               const Delimiter.width(10),
               AppFilledButton(
                 focusNode: nextFocusNode,

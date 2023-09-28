@@ -47,8 +47,13 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
   void _onSingleResult(BuildContext context, SplashScreenSR singleResult) {
     singleResult.when(
       onNeedUpdate: () => _onNeedUpdate(context),
-      onContinue: () =>
-          context.go(AppRouter.procedureSelectionScreen, extra: const Config()),
+      onContinue: () => context.go(
+        AppRouter.procedureSelectionScreen,
+        extra: Config(
+          localVersion: blocOf(context).state.localVersion,
+          remoteVersion: blocOf(context).state.remoteVersion,
+        ),
+      ),
       onPermissions: () => _onPermissions(context),
     );
   }
@@ -72,14 +77,11 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
                         ? 0.5
                         : 0.49,
                 duration: Duration(milliseconds: widget.skipSplash ? 0 : 2000),
-                child: Hero(
-                  tag: 'logo',
-                  child: SvgPicture.asset(
-                    'assets/logo.svg',
-                    colorFilter: const ColorFilter.mode(
-                      AppColors.white,
-                      BlendMode.srcIn,
-                    ),
+                child: SvgPicture.asset(
+                  'assets/logo.svg',
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.white,
+                    BlendMode.srcIn,
                   ),
                 ),
                 onEnd: () {
@@ -90,19 +92,18 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
             ],
           ),
         ),
-        Positioned(
-          right: 10,
-          bottom: 10,
-          child: Text(
-            state.localVersion.isNotEmpty ? 'v${state.localVersion}' : '',
-            style: context.appTextStyles.fs18?.copyWith(
-              decoration: TextDecoration.none,
-              color: state.remoteVersion == state.localVersion
-                  ? AppColors.orange
-                  : AppColors.red,
+        if (state.remoteVersion != state.localVersion)
+          Positioned(
+            right: 10,
+            bottom: 10,
+            child: Text(
+              state.localVersion.isNotEmpty ? 'v ${state.localVersion}' : '',
+              style: context.appTextStyles.fs18?.copyWith(
+                decoration: TextDecoration.none,
+                color: AppColors.red,
+              ),
             ),
           ),
-        ),
       ],
     );
   }

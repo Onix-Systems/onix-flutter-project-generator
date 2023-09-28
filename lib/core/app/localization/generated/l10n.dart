@@ -1049,6 +1049,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Preview`
+  String get preview {
+    return Intl.message(
+      'Preview',
+      name: 'preview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{componentName} component preview`
+  String componentPreview(Object componentName) {
+    return Intl.message(
+      '$componentName component preview',
+      name: 'componentPreview',
+      desc: '',
+      args: [componentName],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -1057,6 +1077,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'uk'),
     ];
   }
 

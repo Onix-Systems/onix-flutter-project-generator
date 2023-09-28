@@ -1,11 +1,13 @@
 import 'dart:async';
+import 'dart:ui';
 
+import 'package:intl/intl.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
 
 class ProcedureSelectionScreenBloc extends BaseBloc<
@@ -17,6 +19,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     on<ProcedureSelectionScreenEventInit>(_onInit);
     on<ProcedureSelectionScreenEventOnProjectOpen>(_onProjectOpen);
     on<ProcedureSelectionScreenEventOnNewProject>(_onNewProject);
+    on<ProcedureSelectionScreenEventOnLocaleChange>(_onLocaleChange);
   }
 
   FutureOr<void> _onInit(
@@ -25,6 +28,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
   ) {
     emit(state.copyWith(
       config: event.config,
+      language: Intl.getCurrentLocale(),
     ));
   }
 
@@ -37,7 +41,11 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     screenRepository.empty();
 
     emit(state.copyWith(
-      config: Config(projectPath: event.projectPath),
+      config: Config(
+        projectPath: event.projectPath,
+        localVersion: state.config.localVersion,
+        remoteVersion: state.config.remoteVersion,
+      ),
     ));
 
     addSr(const ProcedureSelectionScreenSR.onNewProject());
@@ -72,9 +80,22 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
         projectName: projectName,
         projectPath: projectPath,
         projectExists: true,
+        localVersion: state.config.localVersion,
+        remoteVersion: state.config.remoteVersion,
       ),
     ));
 
     addSr(const ProcedureSelectionScreenSR.loadFinished());
+  }
+
+  FutureOr<void> _onLocaleChange(
+    ProcedureSelectionScreenEventOnLocaleChange event,
+    Emitter<ProcedureSelectionScreenState> emit,
+  ) async {
+    S.load(Locale(event.language));
+
+    emit(state.copyWith(
+      language: event.language,
+    ));
   }
 }

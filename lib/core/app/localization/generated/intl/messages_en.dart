@@ -20,7 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(projectName) => "Modify ${projectName}";
+  static String m0(componentName) => "${componentName} component preview";
+
+  static String m1(projectName) => "Modify ${projectName}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
 
@@ -53,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" City or Locality"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Component name"),
+        "componentPreview": m0,
         "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
         "createRequestCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Create request?"),
@@ -109,7 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Modify"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Modify component"),
-        "modifyGeneratedProject": m0,
+        "modifyGeneratedProject": m1,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Modify signing vars..."),
@@ -135,6 +138,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Path not selected"),
         "placeURLTitle": MessageLookupByLibrary.simpleMessage("Place URL here"),
         "platforms": MessageLookupByLibrary.simpleMessage("Platforms"),
+        "preview": MessageLookupByLibrary.simpleMessage("Preview"),
         "projectExistsError": MessageLookupByLibrary.simpleMessage(
             "Project already exists, choose different name"),
         "projectName": MessageLookupByLibrary.simpleMessage("Project name"),

@@ -4,8 +4,6 @@ import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:recase/recase.dart';
 
-import '../../core/di/app.dart';
-
 class SwaggerParser {
   static void parse({
     required Map<String, dynamic> data,
@@ -33,15 +31,7 @@ class SwaggerParser {
           source.dataComponentsNames.contains(e.name) ||
           source.dataComponentsNames.contains('${e.name}Request') ||
           source.dataComponentsNames.contains('${e.name}Response'))) {
-        if (dataComponent.name == 'Relation') {
-          logger.f(source.dataComponentsNames);
-          logger.f(source.dataComponents);
-          logger.f(dataComponent);
-        }
         dataComponent.setSourceName(source.name);
-        if (dataComponent.name == 'Relation') {
-          logger.f(dataComponent);
-        }
       }
     }
 

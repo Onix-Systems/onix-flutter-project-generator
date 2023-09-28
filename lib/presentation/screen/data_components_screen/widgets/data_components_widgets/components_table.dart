@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
@@ -196,12 +197,11 @@ class ComponentsTable extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            const Delimiter.width(10),
                             SizedBox(
                               width: 120,
                               child: CupertinoButton(
-                                color: dataComponent.isEnum
-                                    ? CupertinoColors.inactiveGray
-                                    : CupertinoColors.activeOrange,
+                                color: CupertinoColors.activeOrange,
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 pressedOpacity: !dataComponent.isEnum ? 0.5 : 1,
@@ -228,7 +228,7 @@ class ComponentsTable extends StatelessWidget {
                                         );
                                       }
                                     });
-                                  } else if (!dataComponent.isEnum) {
+                                  } else {
                                     showCupertinoModalPopup(
                                       context: context,
                                       barrierDismissible: true,
@@ -241,10 +241,10 @@ class ComponentsTable extends StatelessWidget {
                                 },
                                 child: Text(
                                   !dataComponent.exists &&
-                                          !dataComponent.isEnum &&
+                                          //!dataComponent.isEnum &&
                                           !dataComponent.isGenerated
                                       ? S.of(context).modify
-                                      : 'Preview',
+                                      : S.of(context).preview,
                                   style: context.appTextStyles.fs18
                                       ?.copyWith(color: AppColors.bgDark),
                                 ),

@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
-import 'package:recase/recase.dart';
 
 part 'data_component.g.dart';
 
@@ -72,7 +71,7 @@ class DataComponent {
       result += '$name {';
 
       for (final property in properties) {
-        result += '\n     ${property.name.camelCase},';
+        result += '\n     ${property.name},';
       }
 
       result += '\n}';

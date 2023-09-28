@@ -21,6 +21,7 @@ mixin _$ProcedureSelectionScreenEvent {
     required TResult Function(Config config) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
+    required TResult Function(String language) onLocaleChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$ProcedureSelectionScreenEvent {
     TResult? Function(Config config)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
+    TResult? Function(String language)? onLocaleChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$ProcedureSelectionScreenEvent {
     TResult Function(Config config)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
+    TResult Function(String language)? onLocaleChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,6 +48,8 @@ mixin _$ProcedureSelectionScreenEvent {
         onNewProject,
     required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
         onProjectOpen,
+    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
+        onLocaleChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +59,8 @@ mixin _$ProcedureSelectionScreenEvent {
         onNewProject,
     TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
+    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +70,8 @@ mixin _$ProcedureSelectionScreenEvent {
         onNewProject,
     TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
+    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -172,6 +181,7 @@ class _$ProcedureSelectionScreenEventInit
     required TResult Function(Config config) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
+    required TResult Function(String language) onLocaleChange,
   }) {
     return init(config);
   }
@@ -182,6 +192,7 @@ class _$ProcedureSelectionScreenEventInit
     TResult? Function(Config config)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
+    TResult? Function(String language)? onLocaleChange,
   }) {
     return init?.call(config);
   }
@@ -192,6 +203,7 @@ class _$ProcedureSelectionScreenEventInit
     TResult Function(Config config)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
+    TResult Function(String language)? onLocaleChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -208,6 +220,8 @@ class _$ProcedureSelectionScreenEventInit
         onNewProject,
     required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
         onProjectOpen,
+    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
+        onLocaleChange,
   }) {
     return init(this);
   }
@@ -220,6 +234,8 @@ class _$ProcedureSelectionScreenEventInit
         onNewProject,
     TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
+    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
   }) {
     return init?.call(this);
   }
@@ -232,6 +248,8 @@ class _$ProcedureSelectionScreenEventInit
         onNewProject,
     TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
+    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -328,6 +346,7 @@ class _$ProcedureSelectionScreenEventOnNewProject
     required TResult Function(Config config) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
+    required TResult Function(String language) onLocaleChange,
   }) {
     return onNewProject(projectPath);
   }
@@ -338,6 +357,7 @@ class _$ProcedureSelectionScreenEventOnNewProject
     TResult? Function(Config config)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
+    TResult? Function(String language)? onLocaleChange,
   }) {
     return onNewProject?.call(projectPath);
   }
@@ -348,6 +368,7 @@ class _$ProcedureSelectionScreenEventOnNewProject
     TResult Function(Config config)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
+    TResult Function(String language)? onLocaleChange,
     required TResult orElse(),
   }) {
     if (onNewProject != null) {
@@ -364,6 +385,8 @@ class _$ProcedureSelectionScreenEventOnNewProject
         onNewProject,
     required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
         onProjectOpen,
+    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
+        onLocaleChange,
   }) {
     return onNewProject(this);
   }
@@ -376,6 +399,8 @@ class _$ProcedureSelectionScreenEventOnNewProject
         onNewProject,
     TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
+    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
   }) {
     return onNewProject?.call(this);
   }
@@ -388,6 +413,8 @@ class _$ProcedureSelectionScreenEventOnNewProject
         onNewProject,
     TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
+    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
     required TResult orElse(),
   }) {
     if (onNewProject != null) {
@@ -486,6 +513,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpen
     required TResult Function(Config config) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
+    required TResult Function(String language) onLocaleChange,
   }) {
     return onProjectOpen(projectURI);
   }
@@ -496,6 +524,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpen
     TResult? Function(Config config)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
+    TResult? Function(String language)? onLocaleChange,
   }) {
     return onProjectOpen?.call(projectURI);
   }
@@ -506,6 +535,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpen
     TResult Function(Config config)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
+    TResult Function(String language)? onLocaleChange,
     required TResult orElse(),
   }) {
     if (onProjectOpen != null) {
@@ -522,6 +552,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpen
         onNewProject,
     required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
         onProjectOpen,
+    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
+        onLocaleChange,
   }) {
     return onProjectOpen(this);
   }
@@ -534,6 +566,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpen
         onNewProject,
     TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
+    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
   }) {
     return onProjectOpen?.call(this);
   }
@@ -546,6 +580,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpen
         onNewProject,
     TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
         onProjectOpen,
+    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
     required TResult orElse(),
   }) {
     if (onProjectOpen != null) {
@@ -565,6 +601,172 @@ abstract class ProcedureSelectionScreenEventOnProjectOpen
   @JsonKey(ignore: true)
   _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<
           _$ProcedureSelectionScreenEventOnProjectOpen>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ProcedureSelectionScreenEventOnLocaleChangeCopyWith<$Res> {
+  factory _$$ProcedureSelectionScreenEventOnLocaleChangeCopyWith(
+          _$ProcedureSelectionScreenEventOnLocaleChange value,
+          $Res Function(_$ProcedureSelectionScreenEventOnLocaleChange) then) =
+      __$$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String language});
+}
+
+/// @nodoc
+class __$$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl<$Res>
+    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
+        _$ProcedureSelectionScreenEventOnLocaleChange>
+    implements _$$ProcedureSelectionScreenEventOnLocaleChangeCopyWith<$Res> {
+  __$$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl(
+      _$ProcedureSelectionScreenEventOnLocaleChange _value,
+      $Res Function(_$ProcedureSelectionScreenEventOnLocaleChange) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? language = null,
+  }) {
+    return _then(_$ProcedureSelectionScreenEventOnLocaleChange(
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProcedureSelectionScreenEventOnLocaleChange
+    implements ProcedureSelectionScreenEventOnLocaleChange {
+  const _$ProcedureSelectionScreenEventOnLocaleChange({required this.language});
+
+  @override
+  final String language;
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenEvent.onLocaleChange(language: $language)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProcedureSelectionScreenEventOnLocaleChange &&
+            (identical(other.language, language) ||
+                other.language == language));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, language);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProcedureSelectionScreenEventOnLocaleChangeCopyWith<
+          _$ProcedureSelectionScreenEventOnLocaleChange>
+      get copyWith =>
+          __$$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl<
+              _$ProcedureSelectionScreenEventOnLocaleChange>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function(String projectPath) onNewProject,
+    required TResult Function(String projectURI) onProjectOpen,
+    required TResult Function(String language) onLocaleChange,
+  }) {
+    return onLocaleChange(language);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function(String projectPath)? onNewProject,
+    TResult? Function(String projectURI)? onProjectOpen,
+    TResult? Function(String language)? onLocaleChange,
+  }) {
+    return onLocaleChange?.call(language);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function(String projectPath)? onNewProject,
+    TResult Function(String projectURI)? onProjectOpen,
+    TResult Function(String language)? onLocaleChange,
+    required TResult orElse(),
+  }) {
+    if (onLocaleChange != null) {
+      return onLocaleChange(language);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProcedureSelectionScreenEventInit value) init,
+    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
+        onNewProject,
+    required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
+        onProjectOpen,
+    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
+        onLocaleChange,
+  }) {
+    return onLocaleChange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
+    TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
+        onProjectOpen,
+    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
+  }) {
+    return onLocaleChange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
+    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
+        onProjectOpen,
+    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
+    required TResult orElse(),
+  }) {
+    if (onLocaleChange != null) {
+      return onLocaleChange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProcedureSelectionScreenEventOnLocaleChange
+    implements ProcedureSelectionScreenEvent {
+  const factory ProcedureSelectionScreenEventOnLocaleChange(
+          {required final String language}) =
+      _$ProcedureSelectionScreenEventOnLocaleChange;
+
+  String get language;
+  @JsonKey(ignore: true)
+  _$$ProcedureSelectionScreenEventOnLocaleChangeCopyWith<
+          _$ProcedureSelectionScreenEventOnLocaleChange>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -963,19 +1165,20 @@ abstract class _onNewProject implements ProcedureSelectionScreenSR {
 /// @nodoc
 mixin _$ProcedureSelectionScreenState {
   Config get config => throw _privateConstructorUsedError;
+  dynamic get language => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) data,
+    required TResult Function(Config config, dynamic language) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? data,
+    TResult? Function(Config config, dynamic language)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? data,
+    TResult Function(Config config, dynamic language)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1009,7 +1212,7 @@ abstract class $ProcedureSelectionScreenStateCopyWith<$Res> {
       _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
           ProcedureSelectionScreenState>;
   @useResult
-  $Res call({Config config});
+  $Res call({Config config, dynamic language});
 
   $ConfigCopyWith<$Res> get config;
 }
@@ -1029,12 +1232,17 @@ class _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? config = null,
+    Object? language = freezed,
   }) {
     return _then(_value.copyWith(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 
@@ -1056,7 +1264,7 @@ abstract class _$$ProcedureSelectionScreenStateDataCopyWith<$Res>
       __$$ProcedureSelectionScreenStateDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Config config});
+  $Res call({Config config, dynamic language});
 
   @override
   $ConfigCopyWith<$Res> get config;
@@ -1076,12 +1284,14 @@ class __$$ProcedureSelectionScreenStateDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object? config = null,
+    Object? language = freezed,
   }) {
     return _then(_$ProcedureSelectionScreenStateData(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
+      language: freezed == language ? _value.language! : language,
     ));
   }
 }
@@ -1090,14 +1300,18 @@ class __$$ProcedureSelectionScreenStateDataCopyWithImpl<$Res>
 
 class _$ProcedureSelectionScreenStateData
     implements ProcedureSelectionScreenStateData {
-  const _$ProcedureSelectionScreenStateData({required this.config});
+  const _$ProcedureSelectionScreenStateData(
+      {required this.config, this.language = 'en'});
 
   @override
   final Config config;
+  @override
+  @JsonKey()
+  final dynamic language;
 
   @override
   String toString() {
-    return 'ProcedureSelectionScreenState.data(config: $config)';
+    return 'ProcedureSelectionScreenState.data(config: $config, language: $language)';
   }
 
   @override
@@ -1105,11 +1319,13 @@ class _$ProcedureSelectionScreenStateData
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProcedureSelectionScreenStateData &&
-            (identical(other.config, config) || other.config == config));
+            (identical(other.config, config) || other.config == config) &&
+            const DeepCollectionEquality().equals(other.language, language));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config);
+  int get hashCode => Object.hash(
+      runtimeType, config, const DeepCollectionEquality().hash(language));
 
   @JsonKey(ignore: true)
   @override
@@ -1122,27 +1338,27 @@ class _$ProcedureSelectionScreenStateData
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) data,
+    required TResult Function(Config config, dynamic language) data,
   }) {
-    return data(config);
+    return data(config, language);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? data,
+    TResult? Function(Config config, dynamic language)? data,
   }) {
-    return data?.call(config);
+    return data?.call(config, language);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? data,
+    TResult Function(Config config, dynamic language)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(config);
+      return data(config, language);
     }
     return orElse();
   }
@@ -1179,10 +1395,13 @@ class _$ProcedureSelectionScreenStateData
 abstract class ProcedureSelectionScreenStateData
     implements ProcedureSelectionScreenState {
   const factory ProcedureSelectionScreenStateData(
-      {required final Config config}) = _$ProcedureSelectionScreenStateData;
+      {required final Config config,
+      final dynamic language}) = _$ProcedureSelectionScreenStateData;
 
   @override
   Config get config;
+  @override
+  dynamic get language;
   @override
   @JsonKey(ignore: true)
   _$$ProcedureSelectionScreenStateDataCopyWith<

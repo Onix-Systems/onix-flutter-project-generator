@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:recase/recase.dart';
 

@@ -16,6 +16,10 @@ class ProcedureSelectionScreenEvent with _$ProcedureSelectionScreenEvent {
   const factory ProcedureSelectionScreenEvent.onProjectOpen({
     required String projectURI,
   }) = ProcedureSelectionScreenEventOnProjectOpen;
+
+  const factory ProcedureSelectionScreenEvent.onLocaleChange({
+    required String language,
+  }) = ProcedureSelectionScreenEventOnLocaleChange;
 }
 
 @freezed
@@ -31,5 +35,6 @@ class ProcedureSelectionScreenSR with _$ProcedureSelectionScreenSR {
 class ProcedureSelectionScreenState with _$ProcedureSelectionScreenState {
   const factory ProcedureSelectionScreenState.data({
     required Config config,
+    @Default('en') language,
   }) = ProcedureSelectionScreenStateData;
 }

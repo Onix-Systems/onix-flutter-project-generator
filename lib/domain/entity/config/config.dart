@@ -13,6 +13,8 @@ part 'config.g.dart';
 @freezed
 class Config with _$Config {
   const factory Config({
+    @Default('') String localVersion,
+    @Default('') String remoteVersion,
     @Default('') String projectPath,
     @Default('') String projectName,
     @Default(false) bool projectExists,
