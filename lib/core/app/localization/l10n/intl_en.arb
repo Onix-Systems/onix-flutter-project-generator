@@ -95,5 +95,9 @@
   "alsoReadThis": "Also read this",
   "getFromSwagger": "Get from swagger",
   "placeURLTitle": "Place URL here",
-  "keyStorePasswordPlaceholder": "Leave blank to auto-gen..."
+  "keyStorePasswordPlaceholder": "Leave blank to auto-gen...",
+  "nullable": "Nullable",
+  "list": "List",
+  "fields": "Fields",
+  "addField": "Add field"
 }

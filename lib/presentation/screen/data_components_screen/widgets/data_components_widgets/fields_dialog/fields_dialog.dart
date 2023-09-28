@@ -71,7 +71,7 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '${widget.dataComponent.name.pascalCase} fields',
+                '${widget.dataComponent.name.pascalCase} ${S.of(context).fields.toLowerCase()}',
                 style: context.appTextStyles.fs18,
               ),
               const Divider(
@@ -140,14 +140,14 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AppFilledButton(
-                    label: 'Add field',
+                    label: S.of(context).addField,
                     icon: CupertinoIcons.plus,
                     onPressed: () =>
                         blocOf(context).add(const FieldsDialogEvent.addField()),
                   ),
                   const SizedBox(width: 20),
                   AppFilledButton(
-                    label: 'Add component',
+                    label: S.of(context).addComponent,
                     icon: CupertinoIcons.plus,
                     onPressed: () => blocOf(context).add(
                         const FieldsDialogEvent.addField(isComponent: true)),

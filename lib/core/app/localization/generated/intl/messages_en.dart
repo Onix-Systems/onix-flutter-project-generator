@@ -23,9 +23,11 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(projectName) => "Modify ${projectName}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
         "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
+        "addField": MessageLookupByLibrary.simpleMessage("Add field"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Add flavors:"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),
         "addSource": MessageLookupByLibrary.simpleMessage("Add source"),
@@ -68,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Config file load error!"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "exitLabel": MessageLookupByLibrary.simpleMessage("Exit"),
+        "fields": MessageLookupByLibrary.simpleMessage("Fields"),
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" First & last name"),
         "flavorize": MessageLookupByLibrary.simpleMessage("Flavorize?"),
@@ -99,6 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Leave blank to auto-gen..."),
         "keystorePassword":
             MessageLookupByLibrary.simpleMessage(" Keystore password"),
+        "list": MessageLookupByLibrary.simpleMessage("List"),
         "localization": MessageLookupByLibrary.simpleMessage("Localization:"),
         "localizationMethod":
             MessageLookupByLibrary.simpleMessage("Localization method"),
@@ -116,6 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "New version of Onix Flutter Project Generator is available. Do you want to download it?"),
         "newVersionAvailableTitle":
             MessageLookupByLibrary.simpleMessage("New version available"),
+        "nullable": MessageLookupByLibrary.simpleMessage("Nullable"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
             MessageLookupByLibrary.simpleMessage("Open existing project"),

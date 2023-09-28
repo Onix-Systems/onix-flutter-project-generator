@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/add_fields_tile_dropdown.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
@@ -63,7 +64,7 @@ class _AddFieldTileState extends State<AddFieldTile> {
               children: [
                 LabeledCheckbox(
                     initialValue: _property.isList,
-                    label: 'List',
+                    label: S.of(context).list,
                     onAction: () {
                       setState(() {
                         _property.isList = !_property.isList;
@@ -81,7 +82,7 @@ class _AddFieldTileState extends State<AddFieldTile> {
                 const SizedBox(width: 10),
                 LabeledCheckbox(
                     initialValue: _property.nullable,
-                    label: 'nullable',
+                    label: S.of(context).nullable.toLowerCase(),
                     onAction: () {
                       setState(() {
                         _property.nullable = !_property.nullable;

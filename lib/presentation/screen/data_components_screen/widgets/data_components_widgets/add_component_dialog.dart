@@ -260,7 +260,7 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
                                   });
                                 },
                                 //color: AppColors.orange,
-                                label: 'Fields',
+                                label: S.of(context).fields,
                                 icon: CupertinoIcons.plus,
                               ),
                             ],

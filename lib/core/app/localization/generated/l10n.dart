@@ -1009,6 +1009,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Nullable`
+  String get nullable {
+    return Intl.message(
+      'Nullable',
+      name: 'nullable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `List`
+  String get list {
+    return Intl.message(
+      'List',
+      name: 'list',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fields`
+  String get fields {
+    return Intl.message(
+      'Fields',
+      name: 'fields',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add field`
+  String get addField {
+    return Intl.message(
+      'Add field',
+      name: 'addField',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
