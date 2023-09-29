@@ -28,6 +28,7 @@ class GenerateMapper {
             ? 'import \'package:$projectName/domain/entity/${_getSourceName(e.name)}${e.name.snakeCase}/${e.name.snakeCase}.dart\';'
             : importMappers.isNotEmpty
                 ? '${dataComponent.generateResponse ? 'import \'package:$projectName/data/model/remote/${_getSourceName(e.name)}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';\n' : ''}'
+                    '${dataComponent.generateRequest ? 'import \'package:$projectName/domain/entity/${_getSourceName(e.name)}${e.name.snakeCase}/${e.name.snakeCase}.dart\';\n' : ''}'
                     'import \'package:$projectName/data/mapper/${_getSourceName(e.name)}${e.name.snakeCase}/${e.name.snakeCase}_mapper.dart\';\n'
                 : '')
         .join('\n');
@@ -89,7 +90,7 @@ class ${name.pascalCase}Mappers {
       if (property.isList) {
         dataComponent.imports.contains(property.type.pascalCase)
             ? properties.add(
-                '        ${property.name}: from.${property.name}${isRequest && !property.nullable ? '' : '?'}.map(${property.type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest && !property.type.endsWith('?') ? '' : ' ?? []'},')
+                '        ${property.name}: from.${property.name}${isRequest && !property.nullable ? '' : '?'}.map(${property.type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest && !property.nullable ? '' : ' ?? []'},')
             : properties.add(
                 '        ${property.name}: from.${property.name}${isRequest ? '' : ' ?? []'},');
       } else {
@@ -102,9 +103,9 @@ class ${name.pascalCase}Mappers {
                 ? properties.add(
                     '        ${property.name}: ${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name}${isRequest ? '.name' : ''})${isRequest ? '?.name' : ''} ?? ${property.type.pascalCase}.values.first${isRequest ? '.name' : ''},')
                 : properties.add(
-                    '        ${property.name}: ${property.type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}(from.${property.name} ${isRequest && !property.type.endsWith('?') ? '' : '?? ${property.type.pascalCase}Response.empty(),'}),')
+                    '        ${property.name}: ${property.type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}(from.${property.name} ${isRequest && !property.nullable ? '' : '?? ${property.type.pascalCase}${isRequest ? '' : 'Response'}.empty(),'}),')
             : properties.add(
-                '        ${property.name}: from.${property.name}${isRequest && !property.type.endsWith('?') ? '' : ' ?? ${TypeMatcher.defaultTypeValue(property.type)}'},');
+                '        ${property.name}: from.${property.name}${isRequest && !property.nullable ? '' : ' ?? ${TypeMatcher.defaultTypeValue(property.type)}'},');
       }
     }
     return properties.join('\n');
