@@ -43,13 +43,13 @@ class FileGeneratorService {
     required String projectPath,
     required DataComponent dataComponent,
   }) async {
-    if (dataComponent.isEnum) {
+    if (dataComponent.isEnum && !dataComponent.exists) {
       await GenerateComponentEnum().call(
         projectName: projectName,
         projectPath: projectPath,
         dataComponent: dataComponent,
       );
-    } else {
+    } else if (!dataComponent.exists) {
       await GenerateComponentClass().call(
         projectName: projectName,
         projectPath: projectPath,

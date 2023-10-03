@@ -214,8 +214,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     if (needToGenerateDataComponents || needToGenerateSources) {
       outputService.add('{#info}Generating entities!');
       if (needToGenerateDataComponents) {
-        for (final component
-            in state.config.dataComponents.where((e) => !e.exists)) {
+        for (final component in state.config.dataComponents) {
           await fileGeneratorService.generateComponent(
             projectPath: state.config.projectPath,
             projectName: state.config.projectName,

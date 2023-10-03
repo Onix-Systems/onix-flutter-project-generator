@@ -61,9 +61,11 @@ ${dataComponent.properties.map((e) {
             '$projectPath/$projectName/lib/data/model/remote/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.snakeCase}')
         .create(recursive: true);
 
-    var file =
-        await File('${path.path}/${name.snakeCase}_request.dart').create();
+    var file = File('${path.path}/${name.snakeCase}_request.dart');
 
-    await file.writeAsString(fileContent);
+    if (!await file.exists()) {
+      file.create();
+      await file.writeAsString(fileContent);
+    }
   }
 }

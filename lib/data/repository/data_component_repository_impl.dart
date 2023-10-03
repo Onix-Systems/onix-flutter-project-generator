@@ -66,7 +66,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
   @override
   void parse(Map<String, dynamic> data) {
-    empty();
+    // empty();
     _dataComponents.addAll(_parse(data));
   }
 

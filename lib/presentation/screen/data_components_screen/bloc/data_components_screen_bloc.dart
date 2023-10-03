@@ -3,9 +3,12 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
 import 'package:recase/recase.dart';
+
+import '../../../../core/di/app.dart';
 
 class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     DataComponentsScreenState, DataComponentsScreenSR> {
@@ -111,6 +114,8 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
       }
     }
 
+    _inheritRequestResponse(event.dataComponent);
+
     var component = event.dataComponent;
 
     if (component.properties.isEmpty) {
@@ -158,11 +163,44 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
       }
     }
 
+    _inheritRequestResponse(event.dataComponent);
+
     dataComponentRepository.modifyComponent(
         event.oldDataComponentName, event.dataComponent);
     sourceRepository.modifyDataComponentInAllSources(
         event.dataComponent, event.oldDataComponentName);
 
     add(const DataComponentsScreenEventStateUpdate());
+  }
+
+  void _inheritRequestResponse(DataComponent parentComponent) {
+    logger.f(parentComponent);
+    if (parentComponent.componentImports.isEmpty) {
+      return;
+    }
+
+    for (var import
+        in parentComponent.componentImports.where((e) => !e.isEnum)) {
+      import.generateRequest = parentComponent.generateRequest;
+      import.generateResponse = parentComponent.generateResponse;
+
+      final componentImport = import.sourceName.isEmpty
+          ? dataComponentRepository.getDataComponentByName(import.name)
+          : sourceRepository.getDataComponentByName(import.name);
+
+      if (componentImport != null) {
+        componentImport.generateRequest = parentComponent.generateRequest;
+        componentImport.generateResponse = parentComponent.generateResponse;
+
+        if (componentImport.sourceName.isEmpty) {
+          dataComponentRepository.modifyComponent(import.name, componentImport);
+        } else {
+          sourceRepository.modifyDataComponentInAllSources(
+              componentImport, import.name);
+        }
+
+        _inheritRequestResponse(componentImport);
+      }
+    }
   }
 }

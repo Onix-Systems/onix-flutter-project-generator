@@ -83,7 +83,7 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   void parse(Map<String, dynamic> data) {
-    empty();
+    //empty();
     _sources.addAll(_parse(data));
   }
 
@@ -469,6 +469,9 @@ class SourceRepositoryImpl implements SourceRepository {
   @override
   void modifyDataComponentInAllSources(
       DataComponent dataComponent, String oldDataComponentName) {
+    modifyDataComponentInSource(
+        dataComponent.sourceName, dataComponent, oldDataComponentName);
+
     for (var source in _sources) {
       final dependants = source.dataComponents
           .where((element) => element.properties.any(
