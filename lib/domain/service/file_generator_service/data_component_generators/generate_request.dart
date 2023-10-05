@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
@@ -37,9 +39,12 @@ ${dataComponent.properties.map((e) {
       String type = e.type;
       if (!TypeMatcher.isStandardType(TypeMatcher.getDartType(type)) &&
           !type.contains('dynamic')) {
-        if (!dataComponent.componentImports
-            .firstWhere((element) => element.name.pascalCase == type.pascalCase)
-            .isEnum) {
+        final import = dataComponent.componentImports.firstWhereOrNull(
+            (element) => element.name.pascalCase == type.pascalCase);
+        if (import != null && !import.isEnum) {
+          if (import.name.pascalCase == 'MyAccount') {
+            logger.f(import);
+          }
           type = '${type}Request';
         } else {
           type = 'String';
@@ -47,7 +52,7 @@ ${dataComponent.properties.map((e) {
       }
 
       if (e.isList) {
-        type = 'List<$type>';
+        type = 'List<${TypeMatcher.getDartType(type)}>';
       }
 
       return '        ${e.nullable ? '@JsonKey(includeIfNull: false)' : 'required'} ${TypeMatcher.getDartType(type)}${e.nullable ? '?' : ''} ${e.name},';

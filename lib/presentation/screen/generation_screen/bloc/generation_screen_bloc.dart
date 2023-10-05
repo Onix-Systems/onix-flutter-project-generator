@@ -168,6 +168,11 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     emit(state.copyWith(
       generatingState: GeneratingState.waiting,
+      config: state.config.copyWith(
+        sources: sourceRepository.sources,
+        dataComponents: dataComponentRepository.dataComponents,
+        screens: screenRepository.screens,
+      ),
     ));
   }
 
@@ -252,19 +257,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         }
       }
 
-      for (var source in state.config.sources) {
-        source.exists = true;
-        sourceRepository.modifySource(source, source.name);
-        for (var component in source.dataComponents) {
-          component.exists = true;
-          sourceRepository.modifyDataComponentInSource(
-              source.name, component, component.name);
-        }
-      }
-
-      for (var component in state.config.dataComponents) {
-        component.exists = true;
-      }
+      sourceRepository.setAllExists();
+      dataComponentRepository.setAllExists();
 
       outputService.add('{#info}Entities generated!');
     }

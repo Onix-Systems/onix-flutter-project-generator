@@ -321,21 +321,31 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
           .removeWhere((element) => element.name.pascalCase == name.pascalCase);
     }
 
-    for (final component in _dataComponents
+    for (var component in _dataComponents
         .where((element) => element.properties
             .any((property) => property.type == name.pascalCase))
         .toList()) {
-      component
+      final modifiedComponent = DataComponent.copyOf(component);
+
+      modifiedComponent
         ..properties.removeWhere((element) => element.type == name.pascalCase)
         ..imports
             .removeWhere((element) => element.pascalCase == name.pascalCase)
         ..componentImports.removeWhere(
             (element) => element.name.pascalCase == name.pascalCase);
+
+      modifyComponent(component.name, modifiedComponent);
     }
   }
 
   @override
   void modifyComponent(String name, DataComponent modifiedComponent) {
+    if (exists(name)) {
+      _dataComponents
+          .removeWhere((element) => element.name.pascalCase == name.pascalCase);
+      _dataComponents.add(modifiedComponent);
+    }
+
     final dependants = _dataComponents
         .where((element) => element.properties
             .any((property) => property.type == name.pascalCase))
@@ -355,10 +365,12 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
       dependant.componentImports.add(modifiedComponent);
       dependant.addImports([modifiedComponent.name.pascalCase]);
     }
+  }
 
-    if (exists(name)) {
-      removeComponent(name);
-      _dataComponents.add(modifiedComponent);
+  @override
+  void setAllExists() {
+    for (final component in _dataComponents) {
+      component.exists = true;
     }
   }
 }

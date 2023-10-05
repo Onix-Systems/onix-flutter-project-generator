@@ -8,8 +8,6 @@ import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
 import 'package:recase/recase.dart';
 
-import '../../../../core/di/app.dart';
-
 class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     DataComponentsScreenState, DataComponentsScreenSR> {
   DataComponentsScreenBloc()
@@ -95,31 +93,32 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     DataComponentsScreenEventAddDataComponent event,
     Emitter<DataComponentsScreenState> emit,
   ) async {
-    if (dataComponentRepository.exists(event.dataComponent.name)) {
+    var component = event.dataComponent;
+    component.name = event.dataComponent.name.pascalCase;
+
+    if (dataComponentRepository.exists(component.name)) {
       addSr(DataComponentsScreenSR.error(
           message:
-              'Data component ${event.dataComponent.name.pascalCase} already exists'));
+              'Data component ${component.name.pascalCase} already exists'));
 
       return;
     } else {
       for (var source in sourceRepository.sources) {
         for (var entity in source.dataComponents) {
-          if (entity.name.pascalCase == event.dataComponent.name.pascalCase) {
+          if (entity.name.pascalCase == component.name.pascalCase) {
             addSr(DataComponentsScreenSR.error(
                 message:
-                    'Data component ${event.dataComponent.name.pascalCase} already exists in ${source.name.titleCase}Source'));
+                    'Data component ${component.name.pascalCase} already exists in ${source.name.titleCase}Source'));
             return;
           }
         }
       }
     }
 
-    _inheritRequestResponse(event.dataComponent);
-
-    var component = event.dataComponent;
-
     if (component.properties.isEmpty) {
       component.properties.add(Property(name: 'name', type: 'string'));
+    } else {
+      _inheritRequestResponse(component);
     }
 
     if (event.source == null) {
@@ -131,6 +130,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
         sourceRepository.addDataComponentToSource(source, component);
       }
     }
+
     add(const DataComponentsScreenEventStateUpdate());
   }
 
@@ -158,48 +158,44 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     if (event.source != null) {
       final source = sourceRepository.getSourceByName(event.source!.name);
       if (source != null) {
-        sourceRepository.modifyDataComponentInSource(
-            source.name, event.dataComponent, event.oldDataComponentName);
+        sourceRepository.modifyDataComponentInAllSources(
+            event.dataComponent, event.oldDataComponentName);
       }
+    } else {
+      dataComponentRepository.modifyComponent(
+          event.oldDataComponentName, event.dataComponent);
     }
 
     _inheritRequestResponse(event.dataComponent);
-
-    dataComponentRepository.modifyComponent(
-        event.oldDataComponentName, event.dataComponent);
-    sourceRepository.modifyDataComponentInAllSources(
-        event.dataComponent, event.oldDataComponentName);
 
     add(const DataComponentsScreenEventStateUpdate());
   }
 
   void _inheritRequestResponse(DataComponent parentComponent) {
-    logger.f(parentComponent);
-    if (parentComponent.componentImports.isEmpty) {
-      return;
-    }
+    if (parentComponent.componentImports.isNotEmpty) {
+      for (var import in parentComponent.componentImports
+          .where((e) => !e.isEnum)
+          .toList()) {
+        var componentImport = import.sourceName.isEmpty
+            ? dataComponentRepository.getDataComponentByName(import.name)
+            : sourceRepository.getDataComponentByName(import.name);
 
-    for (var import
-        in parentComponent.componentImports.where((e) => !e.isEnum)) {
-      import.generateRequest = parentComponent.generateRequest;
-      import.generateResponse = parentComponent.generateResponse;
+        if (componentImport != null) {
+          componentImport.generateRequest = parentComponent.generateRequest;
+          componentImport.generateResponse = parentComponent.generateResponse;
 
-      final componentImport = import.sourceName.isEmpty
-          ? dataComponentRepository.getDataComponentByName(import.name)
-          : sourceRepository.getDataComponentByName(import.name);
+          if (componentImport.sourceName.isEmpty) {
+            dataComponentRepository.modifyComponent(
+                import.name, componentImport);
+          } else {
+            sourceRepository.modifyDataComponentInAllSources(
+                componentImport, import.name);
+          }
 
-      if (componentImport != null) {
-        componentImport.generateRequest = parentComponent.generateRequest;
-        componentImport.generateResponse = parentComponent.generateResponse;
-
-        if (componentImport.sourceName.isEmpty) {
-          dataComponentRepository.modifyComponent(import.name, componentImport);
-        } else {
-          sourceRepository.modifyDataComponentInAllSources(
-              componentImport, import.name);
+          if (import.componentImports.isNotEmpty) {
+            _inheritRequestResponse(componentImport);
+          }
         }
-
-        _inheritRequestResponse(componentImport);
       }
     }
   }

@@ -361,7 +361,7 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
     if (_componentNameController.text.isNotEmpty) {
       if (widget.dataComponent == null) {
         _dataComponent.name = _componentNameController.text.snakeCase;
-        _dataComponent.setSourceName(widget.source?.name ?? '');
+        _dataComponent.sourceName = widget.source?.name ?? '';
       }
       Navigator.pop(context, _dataComponent);
     } else {

@@ -26,4 +26,6 @@ abstract class DataComponentRepository {
   void modifyComponent(String name, DataComponent component);
 
   void addAll(Set<DataComponent> components);
+
+  void setAllExists();
 }

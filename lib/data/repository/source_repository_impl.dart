@@ -377,7 +377,7 @@ class SourceRepositoryImpl implements SourceRepository {
   @override
   void addDataComponentToSource(Source source, DataComponent dataComponent) {
     dataComponent.name = dataComponent.name.pascalCase;
-    dataComponent.setSourceName(source.name);
+    dataComponent.sourceName = source.name;
     _sources.firstWhere((element) => element.name == source.name)
       ..dataComponents.add(dataComponent)
       ..dataComponentsNames.add(dataComponent.name);
@@ -491,6 +491,17 @@ class SourceRepositoryImpl implements SourceRepository {
             element.name.pascalCase == oldDataComponentName.pascalCase);
         dependant.componentImports.add(dataComponent);
         dependant.addImports([dataComponent.name.pascalCase]);
+      }
+    }
+  }
+
+  @override
+  void setAllExists() {
+    for (final source in _sources) {
+      source.exists = true;
+
+      for (final entity in source.dataComponents) {
+        entity.exists = true;
       }
     }
   }

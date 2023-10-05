@@ -40,4 +40,6 @@ abstract class SourceRepository {
   void empty();
 
   bool checkEntityIsEnum({required String entityName});
+
+  void setAllExists();
 }

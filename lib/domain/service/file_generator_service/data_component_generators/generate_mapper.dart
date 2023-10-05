@@ -88,14 +88,16 @@ class ${name.pascalCase}Mappers {
 
     for (final property in dataComponent.properties) {
       if (property.isList) {
-        dataComponent.imports.contains(property.type.pascalCase)
+        dataComponent.componentImports
+                .map((e) => e.name.pascalCase)
+                .contains(property.type.pascalCase)
             ? properties.add(
                 '        ${property.name}: from.${property.name}${isRequest && !property.nullable ? '' : '?'}.map(${property.type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest && !property.nullable ? '' : ' ?? []'},')
             : properties.add(
                 '        ${property.name}: from.${property.name}${isRequest ? '' : ' ?? []'},');
       } else {
-        dataComponent.imports
-                .map((e) => e.pascalCase)
+        dataComponent.componentImports
+                .map((e) => e.name.pascalCase)
                 .contains(property.type.pascalCase)
             ? dataComponent.componentImports
                     .firstWhereOrNull((e) => e.name == property.type)!
