@@ -300,21 +300,18 @@ mixin _$SplashScreenSR {
   TResult when<TResult extends Object?>({
     required TResult Function() onNeedUpdate,
     required TResult Function() onContinue,
-    required TResult Function() onPermissions,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onNeedUpdate,
     TResult? Function()? onContinue,
-    TResult? Function()? onPermissions,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onNeedUpdate,
     TResult Function()? onContinue,
-    TResult Function()? onPermissions,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -322,21 +319,18 @@ mixin _$SplashScreenSR {
   TResult map<TResult extends Object?>({
     required TResult Function(_onNeedUpdate value) onNeedUpdate,
     required TResult Function(_onContinue value) onContinue,
-    required TResult Function(_onPermissions value) onPermissions,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_onNeedUpdate value)? onNeedUpdate,
     TResult? Function(_onContinue value)? onContinue,
-    TResult? Function(_onPermissions value)? onPermissions,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_onNeedUpdate value)? onNeedUpdate,
     TResult Function(_onContinue value)? onContinue,
-    TResult Function(_onPermissions value)? onPermissions,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -400,7 +394,6 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   TResult when<TResult extends Object?>({
     required TResult Function() onNeedUpdate,
     required TResult Function() onContinue,
-    required TResult Function() onPermissions,
   }) {
     return onNeedUpdate();
   }
@@ -410,7 +403,6 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onNeedUpdate,
     TResult? Function()? onContinue,
-    TResult? Function()? onPermissions,
   }) {
     return onNeedUpdate?.call();
   }
@@ -420,7 +412,6 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onNeedUpdate,
     TResult Function()? onContinue,
-    TResult Function()? onPermissions,
     required TResult orElse(),
   }) {
     if (onNeedUpdate != null) {
@@ -434,7 +425,6 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   TResult map<TResult extends Object?>({
     required TResult Function(_onNeedUpdate value) onNeedUpdate,
     required TResult Function(_onContinue value) onContinue,
-    required TResult Function(_onPermissions value) onPermissions,
   }) {
     return onNeedUpdate(this);
   }
@@ -444,7 +434,6 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_onNeedUpdate value)? onNeedUpdate,
     TResult? Function(_onContinue value)? onContinue,
-    TResult? Function(_onPermissions value)? onPermissions,
   }) {
     return onNeedUpdate?.call(this);
   }
@@ -454,7 +443,6 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_onNeedUpdate value)? onNeedUpdate,
     TResult Function(_onContinue value)? onContinue,
-    TResult Function(_onPermissions value)? onPermissions,
     required TResult orElse(),
   }) {
     if (onNeedUpdate != null) {
@@ -508,7 +496,6 @@ class _$_onContinue implements _onContinue {
   TResult when<TResult extends Object?>({
     required TResult Function() onNeedUpdate,
     required TResult Function() onContinue,
-    required TResult Function() onPermissions,
   }) {
     return onContinue();
   }
@@ -518,7 +505,6 @@ class _$_onContinue implements _onContinue {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onNeedUpdate,
     TResult? Function()? onContinue,
-    TResult? Function()? onPermissions,
   }) {
     return onContinue?.call();
   }
@@ -528,7 +514,6 @@ class _$_onContinue implements _onContinue {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onNeedUpdate,
     TResult Function()? onContinue,
-    TResult Function()? onPermissions,
     required TResult orElse(),
   }) {
     if (onContinue != null) {
@@ -542,7 +527,6 @@ class _$_onContinue implements _onContinue {
   TResult map<TResult extends Object?>({
     required TResult Function(_onNeedUpdate value) onNeedUpdate,
     required TResult Function(_onContinue value) onContinue,
-    required TResult Function(_onPermissions value) onPermissions,
   }) {
     return onContinue(this);
   }
@@ -552,7 +536,6 @@ class _$_onContinue implements _onContinue {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_onNeedUpdate value)? onNeedUpdate,
     TResult? Function(_onContinue value)? onContinue,
-    TResult? Function(_onPermissions value)? onPermissions,
   }) {
     return onContinue?.call(this);
   }
@@ -562,7 +545,6 @@ class _$_onContinue implements _onContinue {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_onNeedUpdate value)? onNeedUpdate,
     TResult Function(_onContinue value)? onContinue,
-    TResult Function(_onPermissions value)? onPermissions,
     required TResult orElse(),
   }) {
     if (onContinue != null) {
@@ -574,114 +556,6 @@ class _$_onContinue implements _onContinue {
 
 abstract class _onContinue implements SplashScreenSR {
   const factory _onContinue() = _$_onContinue;
-}
-
-/// @nodoc
-abstract class _$$_onPermissionsCopyWith<$Res> {
-  factory _$$_onPermissionsCopyWith(
-          _$_onPermissions value, $Res Function(_$_onPermissions) then) =
-      __$$_onPermissionsCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_onPermissionsCopyWithImpl<$Res>
-    extends _$SplashScreenSRCopyWithImpl<$Res, _$_onPermissions>
-    implements _$$_onPermissionsCopyWith<$Res> {
-  __$$_onPermissionsCopyWithImpl(
-      _$_onPermissions _value, $Res Function(_$_onPermissions) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_onPermissions implements _onPermissions {
-  const _$_onPermissions();
-
-  @override
-  String toString() {
-    return 'SplashScreenSR.onPermissions()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_onPermissions);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() onNeedUpdate,
-    required TResult Function() onContinue,
-    required TResult Function() onPermissions,
-  }) {
-    return onPermissions();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onNeedUpdate,
-    TResult? Function()? onContinue,
-    TResult? Function()? onPermissions,
-  }) {
-    return onPermissions?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onNeedUpdate,
-    TResult Function()? onContinue,
-    TResult Function()? onPermissions,
-    required TResult orElse(),
-  }) {
-    if (onPermissions != null) {
-      return onPermissions();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_onNeedUpdate value) onNeedUpdate,
-    required TResult Function(_onContinue value) onContinue,
-    required TResult Function(_onPermissions value) onPermissions,
-  }) {
-    return onPermissions(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult? Function(_onContinue value)? onContinue,
-    TResult? Function(_onPermissions value)? onPermissions,
-  }) {
-    return onPermissions?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult Function(_onContinue value)? onContinue,
-    TResult Function(_onPermissions value)? onPermissions,
-    required TResult orElse(),
-  }) {
-    if (onPermissions != null) {
-      return onPermissions(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _onPermissions implements SplashScreenSR {
-  const factory _onPermissions() = _$_onPermissions;
 }
 
 /// @nodoc

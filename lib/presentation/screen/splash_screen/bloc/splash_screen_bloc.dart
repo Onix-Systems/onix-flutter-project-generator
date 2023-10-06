@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc_imports.dart';
@@ -42,24 +41,13 @@ class SplashScreenBloc
       }
     });
 
-    mainProcess.stderr.transform(utf8.decoder).listen((event) {
-      if (event.contains('git@gitlab.onix.ua: Permission denied (publickey)')) {
-        mainProcess.kill();
-      }
-    });
-
     mainProcess.stdin.writeln('source \$HOME/.zshrc');
     mainProcess.stdin.writeln('source \$HOME/.bash_profile');
 
     mainProcess.stdin.writeln(
-        'git archive --remote=${AppConsts.gitUri} ${AppConsts.gitBranch} pubspec.yaml | tar xO | grep version && exit');
+        'curl https://raw.githubusercontent.com/Onix-Systems/onix-flutter-project-generator/main/pubspec.yaml | grep version && exit');
 
     await mainProcess.exitCode;
-
-    if (remoteVersion.isEmpty) {
-      addSr(const SplashScreenSR.onPermissions());
-      return;
-    }
 
     if (localVersion != remoteVersion) {
       addSr(const SplashScreenSR.onNeedUpdate());

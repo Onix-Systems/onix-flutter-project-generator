@@ -33,11 +33,11 @@ _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
               ?.map((e) => e as String)
               .toList() ??
           const [
-            'Some developer',
-            'Flutter dep',
-            'Onix-Systems',
-            'Kropyvnytskyi',
-            'Kirovohrad oblast',
+            'Your Name',
+            'Department',
+            'Your Company',
+            'Your City',
+            'Your State or Province',
             'UA',
             ''
           ],

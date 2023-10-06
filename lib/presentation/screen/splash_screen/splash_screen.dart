@@ -51,7 +51,6 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
           remoteVersion: blocOf(context).state.remoteVersion,
         ),
       ),
-      onPermissions: () => _onPermissions(context),
     );
   }
 
@@ -67,7 +66,7 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
             children: [
               AnimatedOpacity(
                 opacity: state.logoVisible ? 0.5 : 0.49,
-                duration: Duration(milliseconds: 2000),
+                duration: const Duration(milliseconds: 2000),
                 child: SvgPicture.asset(
                   'assets/logo.svg',
                   colorFilter: const ColorFilter.mode(
@@ -125,39 +124,6 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
       onCancel: () {
         blocOf(context).addSr(const SplashScreenSR.onContinue());
       },
-    );
-  }
-
-  _onPermissions(BuildContext context) {
-    Dialogs.showOkCancelDialog(
-      context: context,
-      title: S.of(context).gitPermissionsTitle,
-      content: Column(
-        children: [
-          Text(
-            S.of(context).gitPermissionsContent,
-            style: context.appTextStyles.fs18?.copyWith(
-              fontSize: 16,
-            ),
-          ),
-          TextButton(
-              onPressed: () => _launchUrl(
-                    url: AppConsts.sshPermissionsTutorialUri,
-                    exitAfter: false,
-                  ),
-              child: Text(
-                S.of(context).alsoReadThis,
-                style: context.appTextStyles.fs18?.copyWith(
-                  color: CupertinoColors.activeBlue,
-                ),
-              )),
-        ],
-      ),
-      okLabel: S.of(context).retry,
-      onOk: () =>
-          blocOf(context).add(const SplashScreenEventOnAnimationFinished()),
-      cancelLabel: S.of(context).exitLabel,
-      onCancel: () => exit(0),
     );
   }
 }
