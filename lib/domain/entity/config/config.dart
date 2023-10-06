@@ -29,11 +29,11 @@ class Config with _$Config {
     @Default(ProjectLocalization.intl) ProjectLocalization localization,
     @Default(ProjectTheming.manual) ProjectTheming theming,
     @Default([
-      'Some developer',
-      'Flutter dep',
-      'Onix-Systems',
-      'Kropyvnytskyi',
-      'Kirovohrad oblast',
+      'Your Name',
+      'Department',
+      'Your Company',
+      'Your City',
+      'Your State or Province',
       'UA',
       '',
     ])
