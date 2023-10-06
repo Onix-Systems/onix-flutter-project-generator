@@ -194,5 +194,8 @@ here {https://github.com/Onix-Systems/onix-flutter-project-generator/releases}
 And don't forget, if you find a bug, be sure to report it on our GitHub
 page {https://github.com/Onix-Systems/onix-flutter-project-generator}.
 
+[![Made in Ukraine](https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7)](https://stand-with-ukraine.pp.ua)
 
-
+<p align="center">
+<a href="https://ibb.co/Jq7C042"><img src="https://i.ibb.co/C67WNZv/logo-white.png" alt="logo-white" border="0"></a>
+</p>
