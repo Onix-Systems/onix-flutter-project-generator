@@ -43,18 +43,18 @@ Now, in more detail.
 
 The first thing you will see is the screen where you need to select the park with the project. Now
 we will select Generate new projects. We will talk about the other option later.
-
+<p align="center">
 <a href="https://ibb.co/5nh2Hys"><img src="https://i.ibb.co/Br2wMxT/1-open-folder.png" alt="1-open-folder" border="0"></a>
-
+</p>
 The next step is to enter the project name and package name/bundle id.
 Nothing complicated.
-
+<p align="center">
 <a href="https://ibb.co/xXH5VqW"><img src="https://i.ibb.co/k51cY2j/2-names.png" alt="2-names" border="0"></a>
-
+</p>
 Next, you will see a screen where you need to select the platforms of your project.
-
+<p align="center">
 <a href="https://ibb.co/0KgxKMf"><img src="https://i.ibb.co/1MDkMq9/3-platforms.png" alt="3-platforms" border="0"></a>
-
+</p>
 On the next screen, you can configure the project in more detail, enable or disable some components.
 Let's take a closer look at each item:
 * Flavorize.
@@ -74,18 +74,18 @@ Select the type of localisation in the project
 * Theming
 Select the type of work with the application theme. The option enables or disables the use of the
 theme_tailor library
-
+<p align="center">
 <a href="https://ibb.co/vhDBWgz"><img src="https://i.ibb.co/LrvPybp/4-options.png" alt="4-options" border="0"></a>
-
+</p>
 In the next step, you have the option to add screen stubs to your project.
 
 For example, you already know which screens will be in the project and you have an idea of where and
 what the business logic will be, where you need BLoC and where you don't.
 To avoid creating them manually later, you can create a preliminary configuration of screens here.
 The screen will also be added to the navigator selected in the previous step.
-
+<p align="center">
 <a href="https://ibb.co/0yBd7kr"><img src="https://i.ibb.co/xqmRky6/5-screens.png" alt="5-screens" border="0"></a>
-
+</p>
 To add a screen, just click the Add screen button, enter the screen name (without the word
 “Screen”), and choose whether you want BLoC or Cubit for the screen.
 
@@ -115,9 +115,9 @@ And yes, depending on the Swagger file itself, it may not always generate perfec
 * you can preview the result beforehand and if you don't like it, you can refuse the generation;
 * you can fix everything manually and it will still take much less time than if you created everything
 from scratch;
-
+<p align="center">
 <a href="https://ibb.co/Ctsmb3y"><img src="https://i.ibb.co/7zNjndD/6-swagger-url.png" alt="6-swagger-url" border="0"></a>
-
+</p>
 If you don't want to use a Swagger URL, just click Continue.
 
 But if you still want to try it, paste a link (for
@@ -131,15 +131,15 @@ You will be able to see how your project data layer will look like: models, sour
 mappers will be created based on the Swagger file.
 
 You will also have the option to add components manually, add models and their fields, and more.
-
+<p align="center">
 <a href="https://ibb.co/tZvrgCF"><img src="https://i.ibb.co/RhswfHd/7-swagger-parsed.png" alt="7-swagger-parsed" border="0"></a>
-
+</p>
 Phew, finally we open the last screen. (almost)
 
 Here, just check that everything is correct. And click Generate Project.
-
+<p align="center">
 <a href="https://ibb.co/56MWfNd"><img src="https://i.ibb.co/xDCSRpy/8-summary.png" alt="8-summary" border="0"></a>
-
+</p>
 A window with logs describing the generation process will appear.
 
 Wait until the generation is complete... you can have a coffee, the generator will do everything for
@@ -148,31 +148,33 @@ It takes 2-4 minutes to generate.
 
 When it's done, you'll see a completion message and buttons to open the project in Android Studio or
 close the generation window.
-
+<p align="center">
 <a href="https://ibb.co/ZTFT2y3"><img src="https://i.ibb.co/RHsHjL1/9-logs.png" alt="9-logs" border="0"></a>
+</p>
 
 ## Project Code
 
 So, the project has been generated, open it in your IDE, and you have a basic project ready to go.
-
+<p align="center">
 <a href="https://ibb.co/cLB005X"><img src="https://i.ibb.co/nCG9928/project-base.png" alt="project-base" border="0"></a>
-
+</p>
 In my case, I added a few screens to the generator and used the Swagger URL to generate the data
 component.
-
+<p align="center">
 <a href="https://ibb.co/zXK8sQF"><img src="https://i.ibb.co/wSDJyB7/project-data.png" alt="project-data" border="0"></a>
-
+</p>
+<p align="center">
 <a href="https://ibb.co/MZBSZZ1"><img src="https://i.ibb.co/wBcgBBQ/project-screens.png" alt="project-screens" border="0"></a>
-
+</p>
 You can see the result below. Models, sources, repositories are not stubs, they are ready-to-use
 classes that implement API requests, parsing, mapping, etc.
 
 But the most important factor in what the result will be is the Swagger file itself. It all depends
 on its structure, component naming, etc. The way you see the components in Swagger is how they will
 be generated.
-
+<p align="center">
 <a href="https://ibb.co/XLBcr3X"><img src="https://i.ibb.co/LRwVXJS/project-source.png" alt="project-source" border="0"></a>
-
+</p>
 ## Modify existing project
 
 Now let's go back to the beginning. Do you remember that on the first screen you can open an
