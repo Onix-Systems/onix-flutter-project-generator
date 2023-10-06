@@ -45,25 +45,15 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
     _textFieldFocusNode.requestFocus();
 
     if (widget.dataComponent != null) {
-      _dataComponent = widget.dataComponent!;
-
       _componentNameController.text = widget.dataComponent!.name;
 
-      _dataComponent = DataComponent(
-        name: widget.dataComponent!.name,
-        properties: widget.dataComponent!.properties,
-        isGenerated: widget.dataComponent!.isGenerated,
-        generateRequest: widget.dataComponent!.generateRequest,
-        generateResponse: widget.dataComponent!.generateResponse,
-      );
+      _dataComponent = DataComponent.copyOf(widget.dataComponent!);
     } else {
-      _dataComponent = DataComponent(
-        name: '',
-        properties: [Property(name: 'name', type: 'string')],
-        isGenerated: false,
-        generateRequest: false,
-        generateResponse: false,
-      );
+      _dataComponent = DataComponent.empty();
+      _dataComponent.isGenerated = false;
+      if (widget.source != null) {
+        _dataComponent.sourceName = widget.source!.name;
+      }
     }
 
     super.initState();
@@ -360,8 +350,7 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
   Future<void> _onOK(BuildContext context) async {
     if (_componentNameController.text.isNotEmpty) {
       if (widget.dataComponent == null) {
-        _dataComponent.name = _componentNameController.text.snakeCase;
-        _dataComponent.sourceName = widget.source?.name ?? '';
+        _dataComponent.name = _componentNameController.text.pascalCase;
       }
       Navigator.pop(context, _dataComponent);
     } else {

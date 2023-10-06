@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
@@ -218,6 +219,8 @@ class ComponentsTable extends StatelessWidget {
                                         source: source,
                                       ),
                                     ).then((component) {
+                                      logger.f('component: $component');
+
                                       if (component != null) {
                                         blocOf(context).add(
                                           DataComponentsScreenEventModifyDataComponent(

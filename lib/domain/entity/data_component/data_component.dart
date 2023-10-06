@@ -27,6 +27,16 @@ class DataComponent {
     this.isGenerated = true,
   });
 
+  factory DataComponent.empty() => DataComponent(
+        name: '',
+        properties: [Property(name: 'name', type: 'string')],
+        isEnum: false,
+        generateRequest: false,
+        generateResponse: false,
+        exists: false,
+        isGenerated: true,
+      );
+
   void addImports(List<String> imports) {
     imports.sort((a, b) => a.compareTo(b));
     this.imports.addAll(imports);
