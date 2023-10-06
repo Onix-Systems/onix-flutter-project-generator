@@ -57,23 +57,17 @@ Next, you will see a screen where you need to select the platforms of your proje
 </p>
 On the next screen, you can configure the project in more detail, enable or disable some components.
 Let's take a closer look at each item:
-* Flavorize.
-If enabled, the project will be configured with flavors. Dev and prod flavors are created, but if
-you need additional flavors, you can add their names to the input field here, separated by a space.
-To create flavors, use the flavorizer utility.
-* Generate signing key?
-Add Android signing key generation to the project.
-* Will you use Sonar?
-Add the Sonar configuration files to the project;
-* Integrate GraphQL?
-Add vase classes to the project to work with Graph QL
-* Router.
-Select the type of library for navigation (GoRouter/AutoRouter)
-* Localization
-Select the type of localisation in the project
-* Theming
-Select the type of work with the application theme. The option enables or disables the use of the
+
+* Flavorize. If enabled, the project will be configured with flavors. Dev and prod flavors are created, but if
+you need additional flavors, you can add their names to the input field here, separated by a space. To create flavors, use the flavorizer utility.
+* Generate signing key? Add Android signing key generation to the project.
+* Will you use Sonar? Add the Sonar configuration files to the project;
+* Integrate GraphQL? Add vase classes to the project to work with Graph QL
+* Router. Select the type of library for navigation (GoRouter/AutoRouter)
+* Localization. Select the type of localisation in the project
+* Theming. Select the type of work with the application theme. The option enables or disables the use of the
 theme_tailor library
+
 <p align="center">
 <a href="https://ibb.co/vhDBWgz"><img src="https://i.ibb.co/LrvPybp/4-options.png" alt="4-options" border="0"></a>
 </p>
