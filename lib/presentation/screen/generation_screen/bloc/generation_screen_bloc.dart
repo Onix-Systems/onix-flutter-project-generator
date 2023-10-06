@@ -15,12 +15,6 @@ import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/g
 import 'package:onix_flutter_bricks/util/process_starter.dart';
 import 'package:recase/recase.dart';
 
-// https://petstore.swagger.io/v2/swagger.json
-// https://vocadb.net/swagger/v1/swagger.json
-// https://onix-systems-savii-api-mvp.staging.onix.ua/api-doc/savii-public
-// https://gist.githubusercontent.com/cozvtieg9/71b8c0be1a3d0b27ee390c726c2c5cbe/raw/6449c5fb25a4d161c357a396e3430f3b655ad1e2/.json
-// https://onix-systems-ar-connect-backend.staging.onix.ua/storage/openapi.json
-
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenState, GenerationScreenSR> {
   GenerationScreenBloc()
@@ -106,7 +100,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           workingDirectory: state.config.projectPath);
 
       gitGetBrickProcess.stdin.writeln(
-          'git archive --format=tar --remote=${AppConsts.gitUri} ${AppConsts.gitBranch} ./bricks/flutter_clean_base/ > brick.tar && tar -xf brick.tar && rm brick.tar');
+          'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/main.zip --output brick.zip && unzip -qq brick.zip "onix-flutter-project-generator-main/bricks/*" -d bricks && rm brick.zip');
 
       gitGetBrickProcess.stdin.writeln('echo "Complete with exit code: 0"');
       await gitGetBrickProcess.exitCode;
@@ -118,7 +112,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           .writeln('dart pub global activate mason_cli && mason cache clear');
 
       mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_base --path ${state.config.projectPath}/bricks/flutter_clean_base');
+          'mason add -g flutter_clean_base --path ${state.config.projectPath}/bricks/onix-flutter-project-generator-main/bricks/flutter_clean_base');
 
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');

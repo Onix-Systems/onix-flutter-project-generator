@@ -5,11 +5,7 @@ import 'package:tint/tint.dart';
 import 'package:recase/recase.dart';
 
 void run(HookContext context) async {
-  context.vars['platforms'].toString().log();
-
   'Creating flutter project...'.log();
-
-  'Integrate GraphQL: ${context.vars['graphql']}'.error();
 
   String name = context.vars['project_name_dirt'].toString().toSnakeCase;
   String org = context.vars['project_org'];
@@ -37,13 +33,11 @@ void run(HookContext context) async {
 
   createArgs.add(name);
 
-  createArgs.toString().log();
+  var flutterCreateProcess = await Process.start('flutter', createArgs);
 
-  var flutterCreateProc = await Process.start('flutter', createArgs);
+  flutterCreateProcess.log();
 
-  flutterCreateProc.log();
-
-  var exitCode = await flutterCreateProc.exitCode;
+  var exitCode = await flutterCreateProcess.exitCode;
 
   if (exitCode == 0) {
     'Project created successfully!'.log();
@@ -62,7 +56,7 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
       context.vars['localization'] == 'flutter_gen' ? true : false;
 
   var flavors = [];
-  'ok'.log();
+
   if (context.vars['flavorizr'] == true) {
     flavors = ['dev', 'prod'];
 

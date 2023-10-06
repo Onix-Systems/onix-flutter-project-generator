@@ -21,47 +21,27 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Config {
   String get localVersion => throw _privateConstructorUsedError;
-
   String get remoteVersion => throw _privateConstructorUsedError;
-
   String get projectPath => throw _privateConstructorUsedError;
-
   String get projectName => throw _privateConstructorUsedError;
-
   bool get projectExists => throw _privateConstructorUsedError;
-
   String get organization => throw _privateConstructorUsedError;
-
   PlatformsList get platformsList => throw _privateConstructorUsedError;
-
   bool get flavorize => throw _privateConstructorUsedError;
-
   String get flavors => throw _privateConstructorUsedError;
-
   bool get generateSigningKey => throw _privateConstructorUsedError;
-
   bool get useSonar => throw _privateConstructorUsedError;
-
   bool get graphql => throw _privateConstructorUsedError;
-
   ProjectRouter get router => throw _privateConstructorUsedError;
-
   ProjectLocalization get localization => throw _privateConstructorUsedError;
-
   ProjectTheming get theming => throw _privateConstructorUsedError;
-
   List<String> get signingVars => throw _privateConstructorUsedError;
-
   Set<Screen> get screens => throw _privateConstructorUsedError;
-
   String get swaggerUrl => throw _privateConstructorUsedError;
-
   Set<DataComponent> get dataComponents => throw _privateConstructorUsedError;
-
   Set<Source> get sources => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
@@ -391,11 +371,11 @@ class _$_Config extends _Config {
       this.localization = ProjectLocalization.intl,
       this.theming = ProjectTheming.manual,
       final List<String> signingVars = const [
-        'Some developer',
-        'Flutter dep',
-        'Onix-Systems',
-        'Kropyvnytskyi',
-        'Kirovohrad oblast',
+        'Your Name',
+        'Department',
+        'Your Company',
+        'Your City',
+        'Your State or Province',
         'UA',
         ''
       ],
@@ -604,29 +584,22 @@ abstract class _Config extends Config {
       final String swaggerUrl,
       final Set<DataComponent> dataComponents,
       final Set<Source> sources}) = _$_Config;
-
   const _Config._() : super._();
 
   factory _Config.fromJson(Map<String, dynamic> json) = _$_Config.fromJson;
 
   @override
   String get localVersion;
-
   @override
   String get remoteVersion;
-
   @override
   String get projectPath;
-
   @override
   String get projectName;
-
   @override
   bool get projectExists;
-
   @override
   String get organization;
-
   @override
   PlatformsList get platformsList;
   @override
