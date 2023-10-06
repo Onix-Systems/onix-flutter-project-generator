@@ -169,6 +169,7 @@ be generated.
 <p align="center">
 <a href="https://ibb.co/XLBcr3X"><img src="https://i.ibb.co/LRwVXJS/project-source.png" alt="project-source" border="0"></a>
 </p>
+
 ## Modify existing project
 
 Now let's go back to the beginning. Do you remember that on the first screen you can open an
