@@ -1,4 +1,5 @@
-Intro
+# Onix Flutter Project Generator
+## Intro
 
 Every time you create a new project, you repeat the same routine steps: create a new project,
 configure the basic project architecture, add the frameworks and libraries you usually use, etc.
@@ -20,20 +21,19 @@ and has proven itself very well on various types of projects.
 Our basic set is: Clean Architecture, BLoC for State managing, Dio or GraphQL, ScreenUtil, Freezed,
 GetIt, custom utils, helpers and wrappers and others.
 
-Main Features
+## Main Features
 
 First of all, what can our tool do?
 
 Currently, it has the following functions:
 
-Creating a new project based on Clean Architecture with predefined frameworks and libraries, a name,
-BundleId, and other options;
-Ability to configure, enable or disable components;
-Ability to add screen stubs with a generated BLoC for the screen;
-Ability to configure the data layer using Swagger URLs;
-Ability to edit some settings of a previously created project
+* Creating a new project based on Clean Architecture with predefined frameworks and libraries, a name, BundleId, and other options;
+* Ability to configure, enable or disable components;
+* Ability to add screen stubs with a generated BLoC for the screen;
+* Ability to configure the data layer using Swagger URLs;
+* Ability to edit some settings of a previously created project
 
-Creating a project
+## Creating a project
 
 Now, in more detail.
 
@@ -129,7 +129,7 @@ It takes 2-4 minutes to generate.
 When it's done, you'll see a completion message and buttons to open the project in Android Studio or
 close the generation window.
 
-Project Code
+## Project Code
 
 So, the project has been generated, open it in your IDE, and you have a basic project ready to go.
 
@@ -143,7 +143,7 @@ But the most important factor in what the result will be is the Swagger file its
 on its structure, component naming, etc. The way you see the components in Swagger is how they will
 be generated.
 
-Modify existing project
+## Modify existing project
 
 Now let's go back to the beginning. Do you remember that on the first screen you can open an
 existing project?
@@ -151,7 +151,7 @@ existing project?
 This only works with projects generated through this tool. But after opening an existing project,
 you will have the option to add new screens, add new data components, or update the Swagger Url.
 
-Summary
+## Summary
 I hope you will find this tool as useful as we did.
 
 So give it a try and share your impressions.
