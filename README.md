@@ -152,8 +152,10 @@ So, the project has been generated, open it in your IDE, and you have a basic pr
 <p align="center">
 <a href="https://ibb.co/cLB005X"><img src="https://i.ibb.co/nCG9928/project-base.png" alt="project-base" border="0"></a>
 </p>
+
 In my case, I added a few screens to the generator and used the Swagger URL to generate the data
 component.
+
 <p align="center">
 <a href="https://ibb.co/zXK8sQF"><img src="https://i.ibb.co/wSDJyB7/project-data.png" alt="project-data" border="0"></a>
 </p>
