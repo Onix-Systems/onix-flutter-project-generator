@@ -261,10 +261,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio_cache_interceptor
-      sha256: "4b4afbc59a407cc16ed69bdeb5a2b072537f43a7965a3571647eb5ba546481bf"
+      sha256: "7c0cb435963f08aa751ae8769b360d462f01160adc1d2d5b80e3b8c450b386e3"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.3"
+    version: "3.4.4"
   dio_cache_interceptor_hive_store:
     dependency: "direct main"
     description:
