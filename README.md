@@ -30,7 +30,7 @@ More details about the tool can be found in [this article](https://todthe.medium
 * ThemeTailor (Optional)
 
 
-##Release
+## Release
 
 Check out the [Releases](https://github.com/Onix-Systems/onix-flutter-project-generator/releases) section to download latest version;
 
