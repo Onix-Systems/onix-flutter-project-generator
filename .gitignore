@@ -46,3 +46,4 @@ app.*.map.json
 
 # generator config
 .gen_config.json
+/release/

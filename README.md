@@ -1,28 +1,48 @@
-# onix_flutter_bricks
+<p align="center">
+<a href="https://ibb.co/Js5vzD1"><img src="https://i.ibb.co/Js5vzD1/icon.png" alt="icon" border="0"></a>
+</p>
 
-Onix Flutter Clean Architecture mason bricks
+# Onix Flutter Project Generator
 
-## Getting Started
+Flutter Project Generator is a tool for creating a new project with built-in Clean Architecture and boilerplate components for a quick start. 
 
-This project is a starting point for a Flutter application.
+More details about the tool can be found in [this article](https://todthe.medium.article).
 
-A few resources to get you started if this is your first Flutter project:
+## Main features:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* Creating a new project based on Clean Architecture with predefined frameworks and libraries, a name, BundleId, and other options;
+* Ability to configure, enable or disable components;
+* Ability to add screen stubs with a generated BLoC for the screen;
+* Ability to configure the data layer using Swagger URLs;
+* Ability to edit some settings of a previously created project
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials, samples, guidance on
-mobile development, and a full API reference.
+## Generated project tech stack
 
-[master zip]:
+* Clean Architecture
+* BLoC
+* Dio/GraphQL
+* GetIt
+* Freezed
+* ScreenUtil
+* Navigation 2.0 (GoRouter/AutoRoute)
+* Flavorizer
+* Intl
+* ThemeTailor (Optional)
 
-## flutter clean && flutter build macos --release && ditto -c -k --sequesterRsrc --keepParent build'/macos/Build/Products/Release/Onix Flutter Project Generator.app' release/onix_flutter_proj_gen.zip && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/master:master
 
-[master dmg]:
+## Release
 
-## rm 'release/Onix Flutter Project Generator.dmg' && flutter clean && flutter build macos --release && appdmg installers/dmg_creator/config.json 'release/Onix Flutter Project Generator.dmg' && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/master:master
+Check out the [Releases](https://github.com/Onix-Systems/onix-flutter-project-generator/releases) section to download latest version;
 
-[refactoring dmg]:
+## Bug reporting
 
-## rm 'release/Onix Flutter Project Generator.dmg' && flutter clean && flutter build macos --release && appdmg installers/dmg_creator/config.json 'release/Onix Flutter Project Generator.dmg' && git commit -am "release" && git -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/refactoring:refactoring
+Found a bug? 
+Please [report it](https://github.com/Onix-Systems/onix-flutter-project-generator/issues).  
+
+
+
+[![Made in Ukraine](https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7)](https://stand-with-ukraine.pp.ua)
+
+<p align="center">
+<a href="https://ibb.co/Jq7C042"><img src="https://i.ibb.co/C67WNZv/logo-white.png" alt="logo-white" border="0"></a>
+</p>
