@@ -16,7 +16,7 @@ More details about the tool can be found in [this article](https://todthe.medium
 * Ability to configure the data layer using Swagger URLs;
 * Ability to edit some settings of a previously created project
 
-##Generated project tech stack
+## Generated project tech stack
 
 * Clean Architecture
 * BLoC
