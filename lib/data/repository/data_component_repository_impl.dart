@@ -106,7 +106,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
         if (importedDataComponent == null) continue;
 
-        dataComponent.componentImports.add(importedDataComponent);
+        //dataComponent.componentImports.add(importedDataComponent);
       }
     }
 
@@ -330,9 +330,9 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
       modifiedComponent
         ..properties.removeWhere((element) => element.type == name.pascalCase)
         ..imports
-            .removeWhere((element) => element.pascalCase == name.pascalCase)
-        ..componentImports.removeWhere(
-            (element) => element.name.pascalCase == name.pascalCase);
+            .removeWhere((element) => element.pascalCase == name.pascalCase);
+      // ..componentImports.removeWhere(
+      //     (element) => element.name.pascalCase == name.pascalCase);
 
       modifyComponent(component.name, modifiedComponent);
     }
@@ -360,9 +360,9 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
       dependant.imports
           .removeWhere((element) => element.pascalCase == name.pascalCase);
-      dependant.componentImports
-          .removeWhere((element) => element.name.pascalCase == name.pascalCase);
-      dependant.componentImports.add(modifiedComponent);
+      // dependant.componentImports
+      //     .removeWhere((element) => element.name.pascalCase == name.pascalCase);
+      // dependant.componentImports.add(modifiedComponent);
       dependant.addImports([modifiedComponent.name.pascalCase]);
     }
   }

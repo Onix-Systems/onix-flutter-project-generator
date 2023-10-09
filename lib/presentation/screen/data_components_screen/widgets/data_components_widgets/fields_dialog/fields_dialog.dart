@@ -176,7 +176,6 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
                                   TypeMatcher.getDartType(element)))
                               .toList();
                           widget.dataComponent.addImports(imports);
-                          widget.dataComponent.addComponentImports(imports);
                           Navigator.of(context).pop();
                         }
                       },

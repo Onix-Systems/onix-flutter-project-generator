@@ -17,11 +17,7 @@ DataComponent _$DataComponentFromJson(Map<String, dynamic> json) =>
       generateResponse: json['generateResponse'] as bool? ?? false,
       exists: json['exists'] as bool? ?? false,
       isGenerated: json['isGenerated'] as bool? ?? true,
-    )
-      ..sourceName = json['sourceName'] as String
-      ..componentImports = (json['componentImports'] as List<dynamic>)
-          .map((e) => DataComponent.fromJson(e as Map<String, dynamic>))
-          .toSet();
+    )..sourceName = json['sourceName'] as String;
 
 Map<String, dynamic> _$DataComponentToJson(DataComponent instance) =>
     <String, dynamic>{
@@ -32,6 +28,5 @@ Map<String, dynamic> _$DataComponentToJson(DataComponent instance) =>
       'isGenerated': instance.isGenerated,
       'properties': instance.properties,
       'sourceName': instance.sourceName,
-      'componentImports': instance.componentImports.toList(),
       'isEnum': instance.isEnum,
     };

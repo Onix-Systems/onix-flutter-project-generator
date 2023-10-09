@@ -11,22 +11,20 @@ import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 
-import '../../core/di/app.dart';
-
 class SourceRepositoryImpl implements SourceRepository {
   @override
   Source get timeSource => Source(
         name: 'Time',
         exists: true,
         isGenerated: false,
-        dataComponents: [
-          DataComponent(
-            name: 'Time',
-            exists: true,
-            isGenerated: false,
-            properties: [Property(name: 'currentDateTime', type: 'DateTime')],
-          )..setSourceName('Time'),
-        ],
+        // dataComponents: [
+        //   DataComponent(
+        //     name: 'Time',
+        //     exists: true,
+        //     isGenerated: false,
+        //     properties: [Property(name: 'currentDateTime', type: 'DateTime')],
+        //   )..setSourceName('Time'),
+        // ],
         dataComponentsNames: ['Time'],
       );
 
@@ -43,7 +41,9 @@ class SourceRepositoryImpl implements SourceRepository {
   @override
   bool containsNewComponents() => sourceRepository.sources.any((source) =>
       !source.exists ||
-      source.dataComponents.where((component) => !component.exists).isNotEmpty);
+      dataComponentRepository.dataComponents
+          .where((component) => !component.exists)
+          .isNotEmpty);
 
   @override
   void addSource(Source source) {
@@ -71,8 +71,8 @@ class SourceRepositoryImpl implements SourceRepository {
   @override
   String getDataComponentSourceName(String entityName) {
     final source = _sources.firstWhereOrNull((source) =>
-        source.dataComponents.firstWhereOrNull((element) =>
-            element.name.pascalCase ==
+        source.dataComponentsNames.firstWhereOrNull((element) =>
+            element.pascalCase ==
             entityName.stripRequestResponse().pascalCase) !=
         null);
 
@@ -283,7 +283,7 @@ class SourceRepositoryImpl implements SourceRepository {
                 element.methods.any((method) => method.tags.contains(tag)))
             .toList(),
         dataComponentsNames: dependencies.toList(),
-        dataComponents: [],
+        //dataComponents: [],
       );
       sources.add(source);
     }
@@ -381,7 +381,7 @@ class SourceRepositoryImpl implements SourceRepository {
     dataComponent.name = dataComponent.name.pascalCase;
     dataComponent.sourceName = source.name;
     _sources.firstWhere((element) => element.name == source.name)
-      ..dataComponents.add(dataComponent)
+      //..dataComponents.add(dataComponent)
       ..dataComponentsNames.add(dataComponent.name);
   }
 
@@ -389,24 +389,28 @@ class SourceRepositoryImpl implements SourceRepository {
   void deleteDataComponentFromSource(
       Source source, DataComponent dataComponent) {
     _sources.firstWhere((element) => element.name == source.name)
-      ..dataComponents.remove(dataComponent)
+      //..dataComponents.remove(dataComponent)
       ..dataComponentsNames.remove(dataComponent.name);
   }
 
   @override
   void deleteDataComponentFromAllSources(String name) {
     for (var source in _sources) {
-      var dependants = source.dataComponents
-          .where((entity) => entity.properties
+      var dependants = source.dataComponentsNames
+          .where((entity) => dataComponentRepository
+              .getDataComponentByName(entity)!
+              .properties
               .any((property) => property.type.pascalCase == name.pascalCase))
-          .map((e) => DataComponent.copyOf(e))
           .toList();
 
       for (var dependant in dependants) {
-        dependant.properties.removeWhere(
+        final dependantComponent =
+            dataComponentRepository.getDataComponentByName(dependant);
+        dependantComponent!.properties.removeWhere(
             (property) => property.type.pascalCase == name.pascalCase);
 
-        modifyDataComponentInSource(source.name, dependant, dependant.name);
+        modifyDataComponentInSource(
+            source.name, dependantComponent, dependantComponent.name);
       }
     }
   }
@@ -424,8 +428,8 @@ class SourceRepositoryImpl implements SourceRepository {
 
     deleteDataComponentFromSource(
         source,
-        source.dataComponents.firstWhere((element) =>
-            element.name.pascalCase == oldDataComponentName.pascalCase));
+        dataComponentRepository
+            .getDataComponentByName(oldDataComponentName.pascalCase)!);
     addDataComponentToSource(source, dataComponent);
   }
 
@@ -440,9 +444,9 @@ class SourceRepositoryImpl implements SourceRepository {
     bool result = false;
 
     for (final source in sources) {
-      for (final entity in source.dataComponents) {
-        if (entity.name == entityName) {
-          result = entity.isEnum;
+      for (final entity in source.dataComponentsNames) {
+        if (entity == entityName) {
+          result = dataComponentRepository.isEnum(entity);
         }
       }
     }
@@ -457,13 +461,13 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   DataComponent? getDataComponentByName(String name) {
-    for (final source in sources) {
-      for (final entity in source.dataComponents) {
-        if (entity.name == name) {
-          return entity;
-        }
-      }
-    }
+    // for (final source in sources) {
+    //   for (final entity in source.dataComponents) {
+    //     if (entity.name == name) {
+    //       return entity;
+    //     }
+    //   }
+    // }
 
     return null;
   }
@@ -475,24 +479,31 @@ class SourceRepositoryImpl implements SourceRepository {
         dataComponent.sourceName, dataComponent, oldDataComponentName);
 
     for (var source in _sources) {
-      final dependants = source.dataComponents
-          .where((element) => element.properties.any(
-              (property) => property.type == oldDataComponentName.pascalCase))
+      final dependants = source.dataComponentsNames
+          .where((element) => dataComponentRepository
+              .getDataComponentByName(element)!
+              .properties
+              .any((property) =>
+                  property.type == oldDataComponentName.pascalCase))
           .toList();
 
       for (final dependant in dependants) {
-        for (var property in dependant.properties) {
-          if (property.type == oldDataComponentName.pascalCase) {
-            property.type = dataComponent.name.pascalCase;
+        final dependantComponent =
+            dataComponentRepository.getDataComponentByName(dependant);
+        if (dependantComponent != null) {
+          for (var property in dependantComponent.properties) {
+            if (property.type == oldDataComponentName.pascalCase) {
+              property.type = dataComponent.name.pascalCase;
+            }
           }
-        }
 
-        dependant.imports.removeWhere(
-            (element) => element.pascalCase == oldDataComponentName.pascalCase);
-        dependant.componentImports.removeWhere((element) =>
-            element.name.pascalCase == oldDataComponentName.pascalCase);
-        dependant.componentImports.add(dataComponent);
-        dependant.addImports([dataComponent.name.pascalCase]);
+          dependantComponent.imports.removeWhere((element) =>
+              element.pascalCase == oldDataComponentName.pascalCase);
+          // dependant.componentImports.removeWhere((element) =>
+          //     element.name.pascalCase == oldDataComponentName.pascalCase);
+          // dependant.componentImports.add(dataComponent);
+          dependantComponent.addImports([dataComponent.name.pascalCase]);
+        }
       }
     }
   }
@@ -502,8 +513,14 @@ class SourceRepositoryImpl implements SourceRepository {
     for (final source in _sources) {
       source.exists = true;
 
-      for (final entity in source.dataComponents) {
-        entity.exists = true;
+      for (final dataComponentName in source.dataComponentsNames) {
+        final dataComponent =
+            dataComponentRepository.getDataComponentByName(dataComponentName);
+        if (dataComponent != null) {
+          dataComponent.exists = true;
+          dataComponentRepository.modifyComponent(
+              dataComponentName, dataComponent);
+        }
       }
     }
   }

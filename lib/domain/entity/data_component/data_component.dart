@@ -14,7 +14,8 @@ class DataComponent {
   List<Property> properties;
   final Set<String> imports = {};
   String sourceName = '';
-  Set<DataComponent> componentImports = {};
+
+  //Set<DataComponent> componentImports = {};
   bool isEnum;
 
   DataComponent({
@@ -42,23 +43,23 @@ class DataComponent {
     this.imports.addAll(imports);
   }
 
-  void addComponentImports(List<String> imports) {
-    for (final import in imports) {
-      DataComponent? dataComponent =
-          dataComponentRepository.getDataComponentByName(
-              import.replaceAll('List<', '').replaceAll('>', ''));
-
-      if (dataComponent != null) {
-        componentImports.add(dataComponent);
-      } else {
-        dataComponent = sourceRepository.getDataComponentByName(
-            import.replaceAll('List<', '').replaceAll('>', ''));
-        if (dataComponent != null) {
-          componentImports.add(dataComponent);
-        }
-      }
-    }
-  }
+  // void addComponentImports(List<String> imports) {
+  //   for (final import in imports) {
+  //     DataComponent? dataComponent =
+  //         dataComponentRepository.getDataComponentByName(
+  //             import.replaceAll('List<', '').replaceAll('>', ''));
+  //
+  //     if (dataComponent != null) {
+  //       componentImports.add(dataComponent);
+  //     } else {
+  //       dataComponent = sourceRepository.getDataComponentByName(
+  //           import.replaceAll('List<', '').replaceAll('>', ''));
+  //       if (dataComponent != null) {
+  //         componentImports.add(dataComponent);
+  //       }
+  //     }
+  //   }
+  // }
 
   void setName(String name) {
     this.name = name;
@@ -68,8 +69,11 @@ class DataComponent {
     if (this.sourceName.isEmpty) {
       this.sourceName = sourceName;
     }
-    for (final import in componentImports) {
-      import.setSourceName(sourceName);
+    for (final importName in imports) {
+      final import = dataComponentRepository.getDataComponentByName(importName);
+      if (import != null) {
+        import.setSourceName(sourceName);
+      }
     }
   }
 
@@ -88,7 +92,7 @@ class DataComponent {
       return result;
     }
 
-    return 'ClassEntity{name: $name, properties: $properties, imports: $imports, sourceName: $sourceName, componentImports: $componentImports, generateRequest: $generateRequest, generateResponse: $generateResponse, exists: $exists, isEnum: $isEnum}';
+    return 'ClassEntity{name: $name, properties: $properties, imports: $imports, sourceName: $sourceName, generateRequest: $generateRequest, generateResponse: $generateResponse, exists: $exists, isEnum: $isEnum}';
   }
 
   @override
@@ -117,8 +121,8 @@ class DataComponent {
       isGenerated: entity.isGenerated,
     );
     copy.addImports(entity.imports.toList());
-    copy.componentImports
-        .addAll(entity.componentImports.map((e) => DataComponent.copyOf(e)));
+    // copy.componentImports
+    //     .addAll(entity.componentImports.map((e) => DataComponent.copyOf(e)));
     copy.sourceName = entity.sourceName;
     return copy;
   }

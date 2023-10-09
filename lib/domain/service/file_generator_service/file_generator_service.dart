@@ -1,4 +1,4 @@
-import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/generate_component_class.dart';
@@ -41,8 +41,10 @@ class FileGeneratorService {
   Future<void> generateComponent({
     required String projectName,
     required String projectPath,
-    required DataComponent dataComponent,
+    required String dataComponentName,
   }) async {
+    final dataComponent =
+        dataComponentRepository.getDataComponentByName(dataComponentName)!;
     if (dataComponent.isEnum && !dataComponent.exists) {
       await GenerateComponentEnum().call(
         projectName: projectName,

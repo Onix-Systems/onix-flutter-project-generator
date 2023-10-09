@@ -201,8 +201,10 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     if (!needToGenerateSources) {
       for (var source in state.config.sources) {
-        if (source.dataComponents
-            .where((component) => !component.exists)
+        if (source.dataComponentsNames
+            .where((component) => !dataComponentRepository
+                .getDataComponentByName(component)!
+                .exists)
             .isNotEmpty) {
           needToGenerateSources = true;
           break;
@@ -217,27 +219,29 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           await fileGeneratorService.generateComponent(
             projectPath: state.config.projectPath,
             projectName: state.config.projectName,
-            dataComponent: component,
+            dataComponentName: component.name,
           );
         }
       }
 
       if (needToGenerateSources) {
         final sources = state.config.sources
-            .where((source) => source.dataComponents
-                .where((entity) => !entity.exists)
+            .where((source) => source.dataComponentsNames
+                .where((entity) => !dataComponentRepository
+                    .getDataComponentByName(entity)!
+                    .exists)
                 .isNotEmpty)
             .toList();
         for (var source in sources) {
-          for (final component in source.dataComponents.where((e) =>
-              !e.exists &&
+          for (final component in source.dataComponentsNames.where((e) =>
+              !dataComponentRepository.getDataComponentByName(e)!.exists &&
               !source.paths.any((path) => path.methods.any((method) => method
                   .innerEnums
-                  .any((innerEnum) => innerEnum.name == e.name))))) {
+                  .any((innerEnum) => innerEnum.name == e))))) {
             await fileGeneratorService.generateComponent(
               projectPath: state.config.projectPath,
               projectName: state.config.projectName,
-              dataComponent: component,
+              dataComponentName: component,
             );
           }
 

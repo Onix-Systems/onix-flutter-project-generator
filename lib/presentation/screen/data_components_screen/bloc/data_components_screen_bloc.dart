@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
@@ -105,8 +104,8 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
       return;
     } else {
       for (var source in sourceRepository.sources) {
-        for (var entity in source.dataComponents) {
-          if (entity.name.pascalCase == component.name.pascalCase) {
+        for (var entity in source.dataComponentsNames) {
+          if (entity.pascalCase == component.name.pascalCase) {
             addSr(DataComponentsScreenSR.error(
                 message:
                     'Data component ${component.name.pascalCase} already exists in ${source.name.titleCase}Source'));
@@ -173,27 +172,25 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
   }
 
   void _inheritRequestResponse(DataComponent parentComponent) {
-    if (parentComponent.componentImports.isNotEmpty) {
-      for (var import in parentComponent.componentImports
-          .where((e) => !e.isEnum)
+    if (parentComponent.imports.isNotEmpty) {
+      for (var import in parentComponent.imports
+          .where((e) => !dataComponentRepository.isEnum(e))
           .toList()) {
-        var componentImport = import.sourceName.isEmpty
-            ? dataComponentRepository.getDataComponentByName(import.name)
-            : sourceRepository.getDataComponentByName(import.name);
+        var componentImport =
+            dataComponentRepository.getDataComponentByName(import);
 
         if (componentImport != null) {
           componentImport.generateRequest = parentComponent.generateRequest;
           componentImport.generateResponse = parentComponent.generateResponse;
 
           if (componentImport.sourceName.isEmpty) {
-            dataComponentRepository.modifyComponent(
-                import.name, componentImport);
+            dataComponentRepository.modifyComponent(import, componentImport);
           } else {
             sourceRepository.modifyDataComponentInAllSources(
-                componentImport, import.name);
+                componentImport, import);
           }
 
-          if (import.componentImports.isNotEmpty) {
+          if (componentImport.imports.isNotEmpty) {
             _inheritRequestResponse(componentImport);
           }
         }

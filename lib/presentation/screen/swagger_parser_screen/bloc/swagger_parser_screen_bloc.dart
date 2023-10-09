@@ -99,14 +99,15 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
             ),
           ));
         } else {
-          for (var dataComponent in repositorySource.dataComponents) {
+          for (var dataComponent in repositorySource.dataComponentsNames
+              .map((e) => dataComponentRepository.getDataComponentByName(e)!)) {
             if (!dataComponent.exists &&
-                stateSource.dataComponents.any((element) =>
-                    element.name.pascalCase == dataComponent.name.pascalCase)) {
+                stateSource.dataComponentsNames.any((element) =>
+                    element.pascalCase == dataComponent.name.pascalCase)) {
               withConflicts = true;
             } else {
-              stateSource.dataComponents
-                  .add(DataComponent.copyOf(dataComponent));
+              stateSource.dataComponentsNames
+                  .add(dataComponent.name.pascalCase);
               stateSource.dataComponentsNames.add(dataComponent.name);
               emit(state.copyWith(
                 config: state.config.copyWith(
@@ -159,9 +160,12 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
       final repositorySource =
           sourceRepository.getSourceByName(stateSource.name);
       if (repositorySource != null) {
-        for (var stateDataComponent in stateSource.dataComponents) {
-          sourceRepository.modifyDataComponentInSource(repositorySource.name,
-              stateDataComponent, stateDataComponent.name);
+        for (var stateDataComponentName in stateSource.dataComponentsNames) {
+          sourceRepository.modifyDataComponentInSource(
+              repositorySource.name,
+              dataComponentRepository
+                  .getDataComponentByName(stateDataComponentName)!,
+              stateDataComponentName);
         }
       }
     }

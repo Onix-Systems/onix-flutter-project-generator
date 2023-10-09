@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.dart';
@@ -66,9 +67,11 @@ class Config with _$Config {
             var source = Source.copyOf(e);
             source.exists = true;
             source.isGenerated = false;
-            for (var dataComponent in source.dataComponents) {
-              dataComponent.exists = true;
-              dataComponent.isGenerated = false;
+            for (var dataComponent in source.dataComponentsNames) {
+              final component =
+                  dataComponentRepository.getDataComponentByName(dataComponent);
+              component!.exists = true;
+              component.isGenerated = false;
             }
             return source;
           }).toSet(),

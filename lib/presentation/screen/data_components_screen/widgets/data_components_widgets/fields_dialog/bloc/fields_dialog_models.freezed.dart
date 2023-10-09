@@ -1094,7 +1094,7 @@ class _$FieldsDialogStateCopyWithImpl<$Res, $Val extends FieldsDialogState>
 
   // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')

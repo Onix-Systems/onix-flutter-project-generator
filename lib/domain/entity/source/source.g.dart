@@ -8,9 +8,6 @@ part of 'source.dart';
 
 Source _$SourceFromJson(Map<String, dynamic> json) => Source(
       name: json['name'] as String,
-      dataComponents: (json['dataComponents'] as List<dynamic>)
-          .map((e) => DataComponent.fromJson(e as Map<String, dynamic>))
-          .toList(),
       exists: json['exists'] as bool? ?? false,
       isGenerated: json['isGenerated'] as bool? ?? true,
       paths: (json['paths'] as List<dynamic>?)
@@ -25,7 +22,6 @@ Source _$SourceFromJson(Map<String, dynamic> json) => Source(
 
 Map<String, dynamic> _$SourceToJson(Source instance) => <String, dynamic>{
       'name': instance.name,
-      'dataComponents': instance.dataComponents,
       'exists': instance.exists,
       'isGenerated': instance.isGenerated,
       'paths': instance.paths,

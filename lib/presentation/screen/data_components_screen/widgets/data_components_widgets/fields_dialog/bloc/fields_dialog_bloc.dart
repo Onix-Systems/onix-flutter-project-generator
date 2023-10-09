@@ -29,9 +29,10 @@ class FieldsDialogBloc
         .where((element) => element.name.pascalCase != event.componentName));
 
     components.addAll(sourceRepository.sources
-        .map((e) => e.dataComponents
-            .where((element) => element.name.pascalCase != event.componentName))
-        .expand((element) => element));
+        .map((e) => e.dataComponentsNames
+            .where((element) => element.pascalCase != event.componentName))
+        .expand((names) => names
+            .map((e) => dataComponentRepository.getDataComponentByName(e)!)));
 
     components.sort((a, b) => a.name.compareTo(b.name));
 

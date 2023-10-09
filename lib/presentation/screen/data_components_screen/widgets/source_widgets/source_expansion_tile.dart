@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
@@ -177,7 +178,7 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                         ),
                       ),
                     ),
-                    if (widget.source.dataComponents.isNotEmpty)
+                    if (widget.source.dataComponentsNames.isNotEmpty)
                       Icon(
                         expanded
                             ? CupertinoIcons.chevron_up
@@ -191,11 +192,14 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
               ),
             ),
           ),
-          if (widget.source.dataComponents.isNotEmpty && expanded) ...[
+          if (widget.source.dataComponentsNames.isNotEmpty && expanded) ...[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: ComponentsTable(
-                dataComponents: widget.source.dataComponents
+                dataComponents: widget.source.dataComponentsNames
+                    .map((e) =>
+                        dataComponentRepository.getDataComponentByName(e))
+                    .whereNotNull()
                     .toList()
                     .sorted((a, b) => a.name.compareTo(b.name))
                     .toSet(),

@@ -65,7 +65,6 @@ class SwaggerParser {
       return Source(
         name: source.name,
         paths: source.paths,
-        dataComponents: componentsToMove.toList(),
         dataComponentsNames: componentsToMove.map((e) => e.name).toList(),
       );
     }).toList();
@@ -132,18 +131,18 @@ class SwaggerParser {
         ? dataComponent.generateResponse = true
         : dataComponent.generateResponse = genResponse;
 
-    if (dataComponent.isEnum || dataComponent.componentImports.isEmpty) {
+    if (dataComponent.isEnum || dataComponent.imports.isEmpty) {
       return;
     }
 
-    for (final import in dataComponent.componentImports) {
-      if (!import.isEnum &&
-          !import.name.endsWith('Request') &&
-          !import.name.endsWith('Response') &&
-          (dataComponents.any((component) =>
-              component.name.pascalCase == import.name.pascalCase))) {
-        final component = dataComponents.firstWhereOrNull(
-            (e) => e.name.pascalCase == import.name.pascalCase);
+    for (final import in dataComponent.imports) {
+      if (!dataComponentRepository.isEnum(import) &&
+          !import.endsWith('Request') &&
+          !import.endsWith('Response') &&
+          (dataComponents.any(
+              (component) => component.name.pascalCase == import.pascalCase))) {
+        final component = dataComponents
+            .firstWhereOrNull((e) => e.name.pascalCase == import.pascalCase);
 
         if (component != null) {
           _setGenRequestResponse(
