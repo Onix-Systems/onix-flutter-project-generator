@@ -32,8 +32,7 @@ More details about the tool can be found in [this article](https://todthe.medium
 
 ##Release
 
-Check out the [Releases]({https://github.com/Onix-Systems/onix-flutter-project-generator/releases}) section to download latest version;
-here 
+Check out the [Releases](https://github.com/Onix-Systems/onix-flutter-project-generator/releases) section to download latest version;
 
 
 Found a bug? 
