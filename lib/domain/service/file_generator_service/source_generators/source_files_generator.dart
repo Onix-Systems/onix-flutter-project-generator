@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/generated_method.dart';
+import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 
 class SourceFilesGenerator {
@@ -80,8 +81,8 @@ class ${sourceName.pascalCase}SourceImpl implements ${sourceName.pascalCase}Sour
   }
 
   static String _getSourceImplBody(GeneratedMethod method, String prefix) {
-    final isEnum = sourceRepository.checkEntityIsEnum(
-        entityName: method.responseEntityName);
+    final isEnum = dataComponentRepository
+        .isEnum(method.responseEntityName.stripRequestResponse());
 
     String data = '';
 

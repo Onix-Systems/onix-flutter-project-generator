@@ -61,21 +61,6 @@ class SourceRepositoryImpl implements SourceRepository {
   }
 
   @override
-  String getDataComponentSourceName(String entityName) {
-    final source = _sources.firstWhereOrNull((source) =>
-        source.dataComponentsNames.firstWhereOrNull((element) =>
-            element.pascalCase ==
-            entityName.stripRequestResponse().pascalCase) !=
-        null);
-
-    if (source == null) {
-      return '';
-    }
-
-    return source.name;
-  }
-
-  @override
   void parse(Map<String, dynamic> data) {
     _sources.addAll(_parse(data));
   }
@@ -367,7 +352,6 @@ class SourceRepositoryImpl implements SourceRepository {
   @override
   void addDataComponentToSource(Source source, DataComponent dataComponent) {
     dataComponent.name = dataComponent.name.pascalCase;
-    dataComponent.sourceName = source.name;
     _sources
         .firstWhere((element) => element.name == source.name)
         .dataComponentsNames
@@ -427,26 +411,6 @@ class SourceRepositoryImpl implements SourceRepository {
   void modifySource(Source source, String sourceName) {
     _sources.removeWhere((element) => element.name == sourceName);
     _sources.add(source);
-  }
-
-  @override
-  bool checkEntityIsEnum({required String entityName}) {
-    bool result = false;
-
-    for (final source in sources) {
-      for (final entity in source.dataComponentsNames) {
-        if (entity == entityName) {
-          result = dataComponentRepository.isEnum(entity);
-        }
-      }
-    }
-
-    if (sources.any((element) => element.paths.any((path) => path.methods.any(
-        (method) => method.innerEnums
-            .any((innerEnum) => innerEnum.name == entityName))))) {
-      result = true;
-    }
-    return result;
   }
 
   @override

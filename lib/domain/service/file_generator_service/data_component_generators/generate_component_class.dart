@@ -19,10 +19,11 @@ class GenerateComponentClass {
 
     final name = dataComponent.name;
 
-    imports = dataComponent.imports
-        .map((e) =>
-            'import \'package:$projectName/domain/entity/${sourceRepository.getDataComponentSourceName(e).isNotEmpty ? '${sourceRepository.getDataComponentSourceName(e).snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}.dart\';')
-        .join('\n');
+    imports = dataComponent.imports.map((e) {
+      final importSourceName =
+          dataComponentRepository.getDataComponentByName(e)?.sourceName ?? '';
+      return 'import \'package:$projectName/domain/entity/${importSourceName.isNotEmpty ? '${importSourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}.dart\';';
+    }).join('\n');
 
     final fileContent = '''
 import 'package:freezed_annotation/freezed_annotation.dart';

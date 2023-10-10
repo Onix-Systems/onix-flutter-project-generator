@@ -60,8 +60,8 @@ class RepositoryFilesGenerator {
 
     for (final method in implMethods) {
       if (method.responseEntityName.isNotEmpty) {
-        if (sourceRepository.checkEntityIsEnum(
-          entityName: method.responseEntityName.replaceLast('Response', ''),
+        if (dataComponentRepository.isEnum(
+          method.responseEntityName.replaceLast('Response', ''),
         )) {
           continue;
         }
@@ -72,7 +72,10 @@ class RepositoryFilesGenerator {
         mappers.add(
             '''final _${mapper}Mappers = ${mapper.pascalCase}Mappers();''');
 
-        final sourceName = sourceRepository.getDataComponentSourceName(mapper);
+        final sourceName = dataComponentRepository
+                .getDataComponentByName(mapper)
+                ?.sourceName ??
+            '';
 
         mappersImports.add(
             '''import 'package:$projectName/data/mapper/${sourceName.snakeCase}/${mapper.snakeCase}/${mapper.snakeCase}_mapper.dart';''');
@@ -151,7 +154,7 @@ class ${sourceName.pascalCase}RepositoryImpl implements ${sourceName.pascalCase}
 try {
       final response = await _${sourceName}Source.${method.name}($sourceParams);
       if (response.isSuccess()) {
-        ${method.sourceMethod.contains('<OperationStatus>') || sourceRepository.checkEntityIsEnum(entityName: responseName) ? 'return Result.success(response.data);' : responseName.isNotEmpty ? '''final result = _${responseName.camelCase}Mappers.mapResponseToEntity(response.data);
+        ${method.sourceMethod.contains('<OperationStatus>') || dataComponentRepository.isEnum(responseName) ? 'return Result.success(response.data);' : responseName.isNotEmpty ? '''final result = _${responseName.camelCase}Mappers.mapResponseToEntity(response.data);
         return Result.success(result);''' : 'return Result.success(response.data);'}
       } else {
         final failure = MapCommonServerError.getServerFailureDetails(response);

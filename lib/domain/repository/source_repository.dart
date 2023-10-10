@@ -12,8 +12,6 @@ abstract class SourceRepository {
 
   Source? getSourceByName(String name);
 
-  String getDataComponentSourceName(String entityName);
-
   void addSource(Source source);
 
   void addAll(Set<Source> sources);
@@ -36,8 +34,6 @@ abstract class SourceRepository {
       DataComponent dataComponent, String oldDataComponentName);
 
   void empty();
-
-  bool checkEntityIsEnum({required String entityName});
 
   void setAllExists();
 }

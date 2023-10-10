@@ -18,10 +18,12 @@ class GenerateResponse {
     final name = dataComponent.name;
 
     final imports = dataComponent.imports.map((e) {
+      final sourceName =
+          dataComponentRepository.getDataComponentByName(e)?.sourceName ?? '';
       if (!dataComponentRepository.isEnum(e)) {
-        return 'import \'package:$projectName/data/model/remote/${sourceRepository.getDataComponentSourceName(e).isNotEmpty ? '${sourceRepository.getDataComponentSourceName(e).snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}_response.dart\';';
+        return 'import \'package:$projectName/data/model/remote/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}_response.dart\';';
       } else {
-        return 'import \'package:$projectName/domain/entity/${sourceRepository.getDataComponentSourceName(e).isNotEmpty ? '${sourceRepository.getDataComponentSourceName(e).snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}.dart\';';
+        return 'import \'package:$projectName/domain/entity/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}.dart\';';
       }
     }).join('\n');
 
