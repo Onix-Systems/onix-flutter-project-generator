@@ -12,15 +12,13 @@ DataComponent _$DataComponentFromJson(Map<String, dynamic> json) =>
       properties: (json['properties'] as List<dynamic>)
           .map((e) => Property.fromJson(e as Map<String, dynamic>))
           .toList(),
+      imports:
+          (json['imports'] as List<dynamic>).map((e) => e as String).toSet(),
       isEnum: json['isEnum'] as bool? ?? false,
       generateRequest: json['generateRequest'] as bool? ?? false,
       generateResponse: json['generateResponse'] as bool? ?? false,
       exists: json['exists'] as bool? ?? false,
       isGenerated: json['isGenerated'] as bool? ?? true,
-      imports: (json['imports'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toSet() ??
-          const {},
     )..sourceName = json['sourceName'] as String;
 
 Map<String, dynamic> _$DataComponentToJson(DataComponent instance) =>

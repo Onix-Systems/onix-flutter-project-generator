@@ -36,7 +36,9 @@ class _AddComponentTileState extends State<AddComponentTile> {
 
   late Property _property;
 
-  void init() {
+  @override
+  void initState() {
+    super.initState();
     if (widget.property != null) {
       _propertyNameController.text = widget.property!.name;
       _property = Property.copyOf(widget.property!);
@@ -48,7 +50,6 @@ class _AddComponentTileState extends State<AddComponentTile> {
 
   @override
   Widget build(BuildContext context) {
-    init();
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.bgDark,
@@ -129,11 +130,9 @@ class _AddComponentTileState extends State<AddComponentTile> {
                       FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
                     ],
                     style: context.appTextStyles.fs18,
-                    onChanged: (value) {
-                      setState(() {
-                        _onChanged();
-                      });
-                    },
+                    onEditingComplete: _onChanged,
+                    onSubmitted: (_) => _onChanged(),
+                    onTapOutside: (_) => _onChanged(),
                   ),
                 ),
               ],

@@ -14,7 +14,6 @@ Source _$SourceFromJson(Map<String, dynamic> json) => Source(
               ?.map((e) => Path.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      tag: json['tag'] as String? ?? '',
       dataComponentsNames: (json['dataComponentsNames'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
@@ -25,6 +24,5 @@ Map<String, dynamic> _$SourceToJson(Source instance) => <String, dynamic>{
       'exists': instance.exists,
       'isGenerated': instance.isGenerated,
       'paths': instance.paths,
-      'tag': instance.tag,
       'dataComponentsNames': instance.dataComponentsNames,
     };

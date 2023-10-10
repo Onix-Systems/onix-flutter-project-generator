@@ -9,7 +9,6 @@ class Source {
   bool exists;
   bool isGenerated;
   final List<Path> paths;
-  final String tag;
   List<String> dataComponentsNames;
 
   Source({
@@ -17,13 +16,12 @@ class Source {
     this.exists = false,
     this.isGenerated = true,
     this.paths = const [],
-    this.tag = '',
     required this.dataComponentsNames,
   });
 
   @override
   String toString() {
-    return 'Source{name: $name, exists: $exists, isGenerated: $isGenerated, tag: $tag, dataComponentsNames: $dataComponentsNames}';
+    return 'Source{name: $name, exists: $exists, isGenerated: $isGenerated, dataComponentsNames: $dataComponentsNames}';
   }
 
   Source.copyOf(Source source)
@@ -31,7 +29,6 @@ class Source {
         exists = source.exists,
         isGenerated = source.isGenerated,
         paths = source.paths.map((e) => Path.copyOf(e)).toList(),
-        tag = source.tag,
         dataComponentsNames = source.dataComponentsNames;
 
   factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);

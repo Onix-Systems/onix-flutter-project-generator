@@ -267,7 +267,6 @@ class SourceRepositoryImpl implements SourceRepository {
             .replaceAll(RegExp('[^A-Za-z0-9_-]'), '')
             .pascalCase
             .replaceAll('Api', ''),
-        tag: tag,
         paths: paths
             .where((element) =>
                 element.methods.any((method) => method.tags.contains(tag)))
