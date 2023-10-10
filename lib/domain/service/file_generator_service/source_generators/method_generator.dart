@@ -1,4 +1,3 @@
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/method.dart';
@@ -33,7 +32,6 @@ class MethodGenerator {
             : '${method.requestEntityName}Request';
 
     if (method.responseEntityName.isNotEmpty) {
-      logger.f('responseEntityName: ${method.responseEntityName}');
       final sourceName = dataComponentRepository
               .getDataComponentByName(
                   method.responseEntityName.stripRequestResponse())
