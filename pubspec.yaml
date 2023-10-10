@@ -17,7 +17,7 @@ dependencies:
 
   cupertino_icons: ^1.0.6
   flutter_svg: ^2.0.7
-  window_manager: ^0.3.6
+  window_manager: ^0.3.7
   recase: ^4.1.0
   process_run: ^0.13.1
   logger: ^2.0.2+1
@@ -29,7 +29,7 @@ dependencies:
   json_annotation: ^4.8.1
   http: ^1.1.0
   collection: ^1.17.0
-  package_info_plus: ^4.1.0
+  package_info_plus: ^5.0.0
   yaml: ^3.1.2
   url_launcher: ^6.1.14
   encrypt: ^5.0.3
@@ -38,7 +38,7 @@ dependencies:
   loader_overlay: ^2.3.2
   dio: ^5.3.3
   retry: ^3.1.2
-  connectivity_plus: ^4.0.2
+  connectivity_plus: ^5.0.0
   internet_connection_checker: ^1.0.0+1
   shared_preferences: ^2.2.1
   dio_cache_interceptor: ^3.4.4
@@ -46,7 +46,7 @@ dependencies:
   hive_flutter: ^1.1.0
   pretty_dio_logger: ^1.3.1
   fluttertoast: ^8.2.2
-  go_router: ^11.1.2
+  go_router: ^11.1.3
   intl: ^0.18.1
   intl_utils: ^2.8.4
   dropdown_button2: ^2.3.9
