@@ -69,9 +69,6 @@ class SwaggerParser {
       );
     }).toList();
 
-    final dataComponents =
-        parsedEntities.where((e) => e.sourceName.isEmpty).toList();
-
     for (final source in sources) {
       if (source.name != 'Time') {
         sourceRepository.modifySource(source, source.name);
@@ -80,7 +77,7 @@ class SwaggerParser {
 
     dataComponentRepository.empty();
 
-    for (final dataComponent in dataComponents) {
+    for (final dataComponent in parsedEntities) {
       dataComponentRepository.addComponent(dataComponent);
     }
   }

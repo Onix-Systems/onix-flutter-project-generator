@@ -113,10 +113,10 @@ class ${name.pascalCase}Mappers {
   }
 
   String _getSourceName(String dataComponentName) {
-    return sourceRepository
-            .getDataComponentSourceName(dataComponentName)
-            .isNotEmpty
-        ? '${sourceRepository.getDataComponentSourceName(dataComponentName).snakeCase}/'
-        : '';
+    final sourceName = dataComponentRepository
+            .getDataComponentByName(dataComponentName)
+            ?.sourceName ??
+        '';
+    return sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : '';
   }
 }

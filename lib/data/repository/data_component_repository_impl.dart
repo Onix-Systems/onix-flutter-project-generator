@@ -15,6 +15,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   @override
   DataComponent get authComponent => DataComponent(
         name: 'Authentication',
+        imports: {},
         exists: true,
         isGenerated: false,
         properties: [
@@ -28,6 +29,15 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
           ),
         ],
       );
+
+  @override
+  DataComponent get timeComponent => DataComponent(
+        name: 'Time',
+        exists: true,
+        imports: {},
+        isGenerated: false,
+        properties: [Property(name: 'currentDateTime', type: 'DateTime')],
+      )..setSourceName('Time');
 
   final Set<DataComponent> _dataComponents = {};
 
@@ -66,7 +76,6 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
   @override
   void parse(Map<String, dynamic> data) {
-    // empty();
     _dataComponents.addAll(_parse(data));
   }
 
@@ -85,6 +94,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
       } else if (entry.value.containsKey('enum')) {
         final dataComponent = DataComponent(
           name: entry.key,
+          imports: {},
           properties: (entry.value['enum'] as List<dynamic>)
               .map((e) => Property(name: e, type: 'string'))
               .toList(),
@@ -96,19 +106,6 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
     }
 
     _parseStack(stack);
-
-    for (final dataComponent in _dataComponents) {
-      if (dataComponent.imports.isEmpty) continue;
-
-      for (final import in dataComponent.imports) {
-        final importedDataComponent = _dataComponents.firstWhereOrNull(
-            (element) => element.name.camelCase == import.camelCase);
-
-        if (importedDataComponent == null) continue;
-
-        //dataComponent.componentImports.add(importedDataComponent);
-      }
-    }
 
     return _dataComponents;
   }
@@ -139,6 +136,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
     final dataComponent = DataComponent(
       name: entry.key,
+      imports: {},
       properties:
           (entry.value['properties'] as Map<String, dynamic>).entries.map((e) {
         if (TypeMatcher.isReference(e.value)) {
@@ -174,6 +172,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
       final generatedDataComponent = DataComponent(
         name: dataComponent.name.stripRequestResponse(),
+        imports: {},
         properties: dataComponent.properties.map((e) {
           if (e.type.endsWith('Response') ||
               e.type.endsWith('Response>') ||
@@ -331,8 +330,6 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
         ..properties.removeWhere((element) => element.type == name.pascalCase)
         ..imports
             .removeWhere((element) => element.pascalCase == name.pascalCase);
-      // ..componentImports.removeWhere(
-      //     (element) => element.name.pascalCase == name.pascalCase);
 
       modifyComponent(component.name, modifiedComponent);
     }
@@ -360,9 +357,6 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
       dependant.imports
           .removeWhere((element) => element.pascalCase == name.pascalCase);
-      // dependant.componentImports
-      //     .removeWhere((element) => element.name.pascalCase == name.pascalCase);
-      // dependant.componentImports.add(modifiedComponent);
       dependant.addImports([modifiedComponent.name.pascalCase]);
     }
   }

@@ -17,14 +17,6 @@ class SourceRepositoryImpl implements SourceRepository {
         name: 'Time',
         exists: true,
         isGenerated: false,
-        // dataComponents: [
-        //   DataComponent(
-        //     name: 'Time',
-        //     exists: true,
-        //     isGenerated: false,
-        //     properties: [Property(name: 'currentDateTime', type: 'DateTime')],
-        //   )..setSourceName('Time'),
-        // ],
         dataComponentsNames: ['Time'],
       );
 
@@ -85,7 +77,6 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   void parse(Map<String, dynamic> data) {
-    //empty();
     _sources.addAll(_parse(data));
   }
 
@@ -152,14 +143,13 @@ class SourceRepositoryImpl implements SourceRepository {
                     nullable: parameter['required'] != null
                         ? !parameter['required']
                         : true));
-
-                //method.setRequestEntityName(entityName);
               } else {
                 if (isEnum) {
                   method.innerEnums.add(DataComponent(
                     name:
                         '${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase}',
                     isEnum: true,
+                    imports: {},
                     properties: List<Property>.generate(
                       parameter['schema']['enum']
                           .where((e) => e.runtimeType.toString() == 'String')
@@ -283,7 +273,6 @@ class SourceRepositoryImpl implements SourceRepository {
                 element.methods.any((method) => method.tags.contains(tag)))
             .toList(),
         dataComponentsNames: dependencies.toList(),
-        //dataComponents: [],
       );
       sources.add(source);
     }
@@ -380,17 +369,19 @@ class SourceRepositoryImpl implements SourceRepository {
   void addDataComponentToSource(Source source, DataComponent dataComponent) {
     dataComponent.name = dataComponent.name.pascalCase;
     dataComponent.sourceName = source.name;
-    _sources.firstWhere((element) => element.name == source.name)
-      //..dataComponents.add(dataComponent)
-      ..dataComponentsNames.add(dataComponent.name);
+    _sources
+        .firstWhere((element) => element.name == source.name)
+        .dataComponentsNames
+        .add(dataComponent.name);
   }
 
   @override
   void deleteDataComponentFromSource(
       Source source, DataComponent dataComponent) {
-    _sources.firstWhere((element) => element.name == source.name)
-      //..dataComponents.remove(dataComponent)
-      ..dataComponentsNames.remove(dataComponent.name);
+    _sources
+        .firstWhere((element) => element.name == source.name)
+        .dataComponentsNames
+        .remove(dataComponent.name);
   }
 
   @override
@@ -460,19 +451,6 @@ class SourceRepositoryImpl implements SourceRepository {
   }
 
   @override
-  DataComponent? getDataComponentByName(String name) {
-    // for (final source in sources) {
-    //   for (final entity in source.dataComponents) {
-    //     if (entity.name == name) {
-    //       return entity;
-    //     }
-    //   }
-    // }
-
-    return null;
-  }
-
-  @override
   void modifyDataComponentInAllSources(
       DataComponent dataComponent, String oldDataComponentName) {
     modifyDataComponentInSource(
@@ -499,9 +477,6 @@ class SourceRepositoryImpl implements SourceRepository {
 
           dependantComponent.imports.removeWhere((element) =>
               element.pascalCase == oldDataComponentName.pascalCase);
-          // dependant.componentImports.removeWhere((element) =>
-          //     element.name.pascalCase == oldDataComponentName.pascalCase);
-          // dependant.componentImports.add(dataComponent);
           dependantComponent.addImports([dataComponent.name.pascalCase]);
         }
       }

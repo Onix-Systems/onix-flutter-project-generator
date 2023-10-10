@@ -225,13 +225,13 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       }
 
       if (needToGenerateSources) {
-        final sources = state.config.sources
-            .where((source) => source.dataComponentsNames
-                .where((entity) => !dataComponentRepository
-                    .getDataComponentByName(entity)!
-                    .exists)
-                .isNotEmpty)
-            .toList();
+        final sources = state.config.sources.where((source) {
+          return source.dataComponentsNames.where((entity) {
+            return !dataComponentRepository
+                .getDataComponentByName(entity)!
+                .exists;
+          }).isNotEmpty;
+        }).toList();
         for (var source in sources) {
           for (final component in source.dataComponentsNames.where((e) =>
               !dataComponentRepository.getDataComponentByName(e)!.exists &&

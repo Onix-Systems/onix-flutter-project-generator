@@ -29,12 +29,16 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     if (!event.config.projectExists) {
       dataComponentRepository
           .addComponent(dataComponentRepository.authComponent);
+      dataComponentRepository
+          .addComponent(dataComponentRepository.timeComponent);
       sourceRepository.addSource(sourceRepository.timeSource);
     }
     emit(state.copyWith(
       config: event.config.copyWith(
         sources: sourceRepository.sources,
-        dataComponents: dataComponentRepository.dataComponents,
+        dataComponents: dataComponentRepository.dataComponents
+            .where((e) => e.sourceName.isEmpty)
+            .toSet(),
       ),
     ));
   }
@@ -46,7 +50,9 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     emit(state.copyWith(
       config: state.config.copyWith(
         sources: sourceRepository.sources,
-        dataComponents: dataComponentRepository.dataComponents,
+        dataComponents: dataComponentRepository.dataComponents
+            .where((e) => e.sourceName.isEmpty)
+            .toSet(),
       ),
       stateUpdate: DateTime.now().millisecondsSinceEpoch,
     ));
@@ -121,15 +127,15 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
       _inheritRequestResponse(component);
     }
 
-    if (event.source == null) {
-      dataComponentRepository.addComponent(component);
-    } else {
+    if (event.source != null) {
       final source = sourceRepository.getSourceByName(event.source!.name);
 
       if (source != null) {
         sourceRepository.addDataComponentToSource(source, component);
       }
     }
+
+    dataComponentRepository.addComponent(component);
 
     add(const DataComponentsScreenEventStateUpdate());
   }
@@ -183,9 +189,9 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
           componentImport.generateRequest = parentComponent.generateRequest;
           componentImport.generateResponse = parentComponent.generateResponse;
 
-          if (componentImport.sourceName.isEmpty) {
-            dataComponentRepository.modifyComponent(import, componentImport);
-          } else {
+          dataComponentRepository.modifyComponent(import, componentImport);
+
+          if (componentImport.sourceName.isNotEmpty) {
             sourceRepository.modifyDataComponentInAllSources(
                 componentImport, import);
           }
