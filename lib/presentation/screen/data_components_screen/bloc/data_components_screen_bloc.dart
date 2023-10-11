@@ -89,7 +89,8 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     DataComponentsScreenEventModifySource event,
     Emitter<DataComponentsScreenState> emit,
   ) async {
-    sourceRepository.modifySource(event.source, event.oldSourceName);
+    sourceRepository.modifySource(
+        source: event.source, oldSourceName: event.oldSourceName);
 
     add(const DataComponentsScreenEventStateUpdate());
   }
@@ -145,17 +146,15 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     DataComponentsScreenEventDeleteDataComponent event,
     Emitter<DataComponentsScreenState> emit,
   ) async {
-    if (event.source != null) {
-      final source =
-          sourceRepository.getSourceByName(sourceName: event.source!.name);
-      if (source != null) {
-        sourceRepository.deleteDataComponentFromSource(
-            source: source, dataComponentName: event.entity.name);
-      }
+    if (event.sourceName.isNotEmpty) {
+      sourceRepository.deleteDataComponentFromSource(
+          sourceName: event.sourceName,
+          dataComponentName: event.dataComponentName);
     }
 
-    dataComponentRepository.removeComponent(event.entity.name);
-    sourceRepository.deleteDataComponentFromAllSources(event.entity.name);
+    dataComponentRepository.removeComponent(event.dataComponentName);
+    sourceRepository.deleteDataComponentFromAllSources(
+        dataComponentName: event.dataComponentName);
 
     add(const DataComponentsScreenEventStateUpdate());
   }

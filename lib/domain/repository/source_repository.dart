@@ -19,18 +19,19 @@ abstract class SourceRepository {
   void deleteSource(
       {required String sourceName, required bool withDataComponents});
 
-  void modifySource(Source source, String sourceName);
+  void modifySource({required Source source, required String oldSourceName});
 
   void addDataComponentToSource(
       {required String sourceName, required String dataComponentName});
 
   void deleteDataComponentFromSource(
-      {required Source source, required String dataComponentName});
+      {required String sourceName, required String dataComponentName});
 
-  void deleteDataComponentFromAllSources(String name);
+  void deleteDataComponentFromAllSources({required String dataComponentName});
 
-  void modifyDataComponentInSource(String sourceName,
-      DataComponent dataComponent, String oldDataComponentName);
+  void modifyDataComponentInSource(
+      {required DataComponent dataComponent,
+      required String oldDataComponentName});
 
   void modifyDataComponentInAllSources(
       DataComponent dataComponent, String oldDataComponentName);

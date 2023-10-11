@@ -278,8 +278,9 @@ class ComponentsTable extends StatelessWidget {
                                       onOk: () {
                                         blocOf(context).add(
                                           DataComponentsScreenEventDeleteDataComponent(
-                                              entity: dataComponent,
-                                              source: source),
+                                              dataComponentName:
+                                                  dataComponent.name,
+                                              sourceName: source?.name ?? ''),
                                         );
                                       });
                                 }

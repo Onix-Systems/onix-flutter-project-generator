@@ -1196,7 +1196,7 @@ class _$FieldsDialogStateData implements FieldsDialogStateData {
   @JsonKey()
   List<Property> get properties {
     if (_properties is EqualUnmodifiableListView) return _properties;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_properties);
   }
 
@@ -1205,7 +1205,7 @@ class _$FieldsDialogStateData implements FieldsDialogStateData {
   @JsonKey()
   List<String> get components {
     if (_components is EqualUnmodifiableListView) return _components;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_components);
   }
 

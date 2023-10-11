@@ -71,7 +71,8 @@ class SwaggerParser {
 
     for (final source in sources) {
       if (source.name != 'Time') {
-        sourceRepository.modifySource(source, source.name);
+        sourceRepository.modifySource(
+            source: source, oldSourceName: source.name);
       }
     }
 

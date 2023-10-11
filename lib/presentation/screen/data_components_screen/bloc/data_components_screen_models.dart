@@ -32,8 +32,8 @@ class DataComponentsScreenEvent with _$DataComponentsScreenEvent {
   }) = DataComponentsScreenEventAddDataComponent;
 
   const factory DataComponentsScreenEvent.deleteDataComponent({
-    required DataComponent entity,
-    @Default(null) Source? source,
+    required String dataComponentName,
+    @Default('') String sourceName,
   }) = DataComponentsScreenEventDeleteDataComponent;
 
   const factory DataComponentsScreenEvent.modifyDataComponent({

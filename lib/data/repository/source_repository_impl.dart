@@ -360,39 +360,43 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   void deleteDataComponentFromSource(
-      {required Source source, required String dataComponentName}) {
-    _sources
-        .firstWhere((element) => element.name == source.name)
-        .dataComponentsNames
-        .remove(dataComponentName);
+      {required String sourceName, required String dataComponentName}) {
+    if (exists(sourceName: sourceName)) {
+      _sources
+          .firstWhere((element) => element.name == sourceName)
+          .dataComponentsNames
+          .remove(dataComponentName);
+    }
   }
 
   @override
-  void deleteDataComponentFromAllSources(String name) {
+  void deleteDataComponentFromAllSources({required String dataComponentName}) {
     for (var source in _sources) {
       var dependants = source.dataComponentsNames
           .where((entity) => dataComponentRepository
               .getDataComponentByName(entity)!
               .properties
-              .any((property) => property.type.pascalCase == name.pascalCase))
+              .any((property) =>
+                  property.type.pascalCase == dataComponentName.pascalCase))
           .toList();
 
       for (var dependant in dependants) {
         final dependantComponent =
             dataComponentRepository.getDataComponentByName(dependant);
         if (dependantComponent != null) {
-          dependantComponent.properties.removeWhere(
-              (property) => property.type.pascalCase == name.pascalCase);
+          dependantComponent.properties.removeWhere((property) =>
+              property.type.pascalCase == dataComponentName.pascalCase);
 
-          dependantComponent.imports
-              .removeWhere((element) => element.pascalCase == name.pascalCase);
+          dependantComponent.imports.removeWhere(
+              (element) => element.pascalCase == dataComponentName.pascalCase);
 
           if (dependantComponent.properties.isEmpty) {
             dependantComponent.properties.add(Property.empty());
           }
 
           modifyDataComponentInSource(
-              source.name, dependantComponent, dependantComponent.name);
+              dataComponent: dependantComponent,
+              oldDataComponentName: dependantComponent.name);
         }
       }
     }
@@ -423,30 +427,38 @@ class SourceRepositoryImpl implements SourceRepository {
   }
 
   @override
-  void modifyDataComponentInSource(String sourceName,
-      DataComponent dataComponent, String oldDataComponentName) {
-    final source = _sources.firstWhere(
-        (element) => element.name.pascalCase == sourceName.pascalCase);
-
-    deleteDataComponentFromSource(
-      source: source,
-      dataComponentName: oldDataComponentName,
-    );
-    addDataComponentToSource(
-        sourceName: source.name, dataComponentName: dataComponent.name);
+  void modifyDataComponentInSource(
+      {required DataComponent dataComponent,
+      required String oldDataComponentName}) {
+    if (exists(sourceName: dataComponent.sourceName)) {
+      deleteDataComponentFromSource(
+        sourceName: dataComponent.sourceName,
+        dataComponentName: oldDataComponentName,
+      );
+      addDataComponentToSource(
+          sourceName: dataComponent.sourceName,
+          dataComponentName: dataComponent.name);
+    }
   }
 
   @override
-  void modifySource(Source source, String sourceName) {
-    _sources.removeWhere((element) => element.name == sourceName);
+  void modifySource({required Source source, required String oldSourceName}) {
+    _sources.removeWhere((element) => element.name == oldSourceName);
     _sources.add(source);
+    if (source.name != oldSourceName) {
+      for (final dataComponentName in source.dataComponentsNames) {
+        dataComponentRepository.setDataComponentSource(
+            dataComponentName: dataComponentName, sourceName: source.name);
+      }
+    }
   }
 
   @override
   void modifyDataComponentInAllSources(
       DataComponent dataComponent, String oldDataComponentName) {
     modifyDataComponentInSource(
-        dataComponent.sourceName, dataComponent, oldDataComponentName);
+        dataComponent: dataComponent,
+        oldDataComponentName: oldDataComponentName);
 
     for (var source in _sources) {
       final dependants = source.dataComponentsNames
