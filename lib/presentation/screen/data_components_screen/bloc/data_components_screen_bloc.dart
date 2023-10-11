@@ -171,7 +171,8 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
           sourceRepository.getSourceByName(sourceName: event.source!.name);
       if (source != null) {
         sourceRepository.modifyDataComponentInAllSources(
-            event.dataComponent, event.oldDataComponentName);
+            dataComponent: event.dataComponent,
+            oldDataComponentName: event.oldDataComponentName);
       }
     }
 
@@ -196,7 +197,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
 
           if (componentImport.sourceName.isNotEmpty) {
             sourceRepository.modifyDataComponentInAllSources(
-                componentImport, import);
+                dataComponent: componentImport, oldDataComponentName: import);
           }
 
           if (componentImport.imports.isNotEmpty) {

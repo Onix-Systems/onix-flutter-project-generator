@@ -395,7 +395,8 @@ class SourceRepositoryImpl implements SourceRepository {
           }
 
           modifyDataComponentInSource(
-              dataComponent: dependantComponent,
+              dataComponentName: dependantComponent.name,
+              dataComponentSourceName: source.name,
               oldDataComponentName: dependantComponent.name);
         }
       }
@@ -428,16 +429,17 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   void modifyDataComponentInSource(
-      {required DataComponent dataComponent,
+      {required String dataComponentName,
+      required String dataComponentSourceName,
       required String oldDataComponentName}) {
-    if (exists(sourceName: dataComponent.sourceName)) {
+    if (exists(sourceName: dataComponentSourceName)) {
       deleteDataComponentFromSource(
-        sourceName: dataComponent.sourceName,
+        sourceName: dataComponentSourceName,
         dataComponentName: oldDataComponentName,
       );
       addDataComponentToSource(
-          sourceName: dataComponent.sourceName,
-          dataComponentName: dataComponent.name);
+          sourceName: dataComponentSourceName,
+          dataComponentName: dataComponentName);
     }
   }
 
@@ -455,9 +457,11 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   void modifyDataComponentInAllSources(
-      DataComponent dataComponent, String oldDataComponentName) {
+      {required DataComponent dataComponent,
+      required String oldDataComponentName}) {
     modifyDataComponentInSource(
-        dataComponent: dataComponent,
+        dataComponentName: dataComponent.name,
+        dataComponentSourceName: dataComponent.sourceName,
         oldDataComponentName: oldDataComponentName);
 
     for (var source in _sources) {
