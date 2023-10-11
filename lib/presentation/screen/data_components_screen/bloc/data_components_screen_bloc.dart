@@ -126,16 +126,17 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
       _inheritRequestResponse(component);
     }
 
+    dataComponentRepository.addComponent(component);
+
     if (event.source != null) {
       final source =
           sourceRepository.getSourceByName(sourceName: event.source!.name);
 
       if (source != null) {
-        sourceRepository.addDataComponentToSource(source, component);
+        sourceRepository.addDataComponentToSource(
+            sourceName: source.name, dataComponentName: component.name);
       }
     }
-
-    dataComponentRepository.addComponent(component);
 
     add(const DataComponentsScreenEventStateUpdate());
   }
@@ -163,6 +164,9 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     DataComponentsScreenEventModifyDataComponent event,
     Emitter<DataComponentsScreenState> emit,
   ) async {
+    dataComponentRepository.modifyComponent(
+        event.oldDataComponentName, event.dataComponent);
+
     if (event.source != null) {
       final source =
           sourceRepository.getSourceByName(sourceName: event.source!.name);
@@ -170,9 +174,6 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
         sourceRepository.modifyDataComponentInAllSources(
             event.dataComponent, event.oldDataComponentName);
       }
-    } else {
-      dataComponentRepository.modifyComponent(
-          event.oldDataComponentName, event.dataComponent);
     }
 
     _inheritRequestResponse(event.dataComponent);

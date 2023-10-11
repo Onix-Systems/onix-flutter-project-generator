@@ -371,4 +371,15 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
       component.exists = true;
     }
   }
+
+  @override
+  void setDataComponentSource(
+      {required String dataComponentName, String sourceName = ''}) {
+    final dataComponent = _dataComponents.firstWhereOrNull(
+        (element) => element.name.pascalCase == dataComponentName.pascalCase);
+
+    if (dataComponent != null) {
+      dataComponent.sourceName = sourceName.pascalCase;
+    }
+  }
 }

@@ -30,4 +30,7 @@ abstract class DataComponentRepository {
   void addAll(Set<DataComponent> components);
 
   void setAllExists();
+
+  void setDataComponentSource(
+      {required String dataComponentName, String sourceName = ''});
 }

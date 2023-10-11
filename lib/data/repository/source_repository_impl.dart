@@ -346,12 +346,16 @@ class SourceRepositoryImpl implements SourceRepository {
   }
 
   @override
-  void addDataComponentToSource(Source source, DataComponent dataComponent) {
-    dataComponent.name = dataComponent.name.pascalCase;
+  void addDataComponentToSource(
+      {required String sourceName, required String dataComponentName}) {
     _sources
-        .firstWhere((element) => element.name == source.name)
+        .firstWhere(
+            (element) => element.name.pascalCase == sourceName.pascalCase)
         .dataComponentsNames
-        .add(dataComponent.name);
+        .add(dataComponentName.pascalCase);
+
+    dataComponentRepository.setDataComponentSource(
+        dataComponentName: dataComponentName, sourceName: sourceName);
   }
 
   @override
@@ -428,7 +432,8 @@ class SourceRepositoryImpl implements SourceRepository {
       source: source,
       dataComponentName: oldDataComponentName,
     );
-    addDataComponentToSource(source, dataComponent);
+    addDataComponentToSource(
+        sourceName: source.name, dataComponentName: dataComponent.name);
   }
 
   @override
@@ -446,7 +451,7 @@ class SourceRepositoryImpl implements SourceRepository {
     for (var source in _sources) {
       final dependants = source.dataComponentsNames
           .where((element) => dataComponentRepository
-              .getDataComponentByName(element)!
+              .getDataComponentByName(element.pascalCase)!
               .properties
               .any((property) =>
                   property.type == oldDataComponentName.pascalCase))
@@ -475,5 +480,12 @@ class SourceRepositoryImpl implements SourceRepository {
     for (final source in _sources) {
       source.exists = true;
     }
+  }
+
+  @override
+  bool exists({required String sourceName}) {
+    return _sources
+        .where((element) => element.name.pascalCase == sourceName.pascalCase)
+        .isNotEmpty;
   }
 }

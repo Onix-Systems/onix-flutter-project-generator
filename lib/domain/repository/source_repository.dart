@@ -21,7 +21,8 @@ abstract class SourceRepository {
 
   void modifySource(Source source, String sourceName);
 
-  void addDataComponentToSource(Source source, DataComponent dataComponent);
+  void addDataComponentToSource(
+      {required String sourceName, required String dataComponentName});
 
   void deleteDataComponentFromSource(
       {required Source source, required String dataComponentName});
@@ -37,4 +38,6 @@ abstract class SourceRepository {
   void empty();
 
   void setAllExists();
+
+  bool exists({required String sourceName});
 }
