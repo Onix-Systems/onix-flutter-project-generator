@@ -105,5 +105,6 @@
   "preview": "Preview",
   "componentPreview": "{componentName} component preview",
   "sourceDeletingDialogTitle": "Do you really want to delete source {sourceName}?",
-  "withComponents": "With components"
+  "withComponents": "With components",
+  "deleteComponentConfirmation": "Do you really want to delete component {componentName}?"
 }

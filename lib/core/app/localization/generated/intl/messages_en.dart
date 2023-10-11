@@ -22,9 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(componentName) => "${componentName} component preview";
 
-  static String m1(projectName) => "Modify ${projectName}";
+  static String m1(componentName) =>
+      "Do you really want to delete component ${componentName}?";
 
-  static String m2(sourceName) =>
+  static String m2(projectName) => "Modify ${projectName}";
+
+  static String m3(sourceName) =>
       "Do you really want to delete source ${sourceName}?";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -68,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dataComponents":
             MessageLookupByLibrary.simpleMessage("Data components"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "deleteComponentConfirmation": m1,
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
@@ -115,7 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Modify"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Modify component"),
-        "modifyGeneratedProject": m1,
+        "modifyGeneratedProject": m2,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Modify signing vars..."),
@@ -159,7 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
         "screens": MessageLookupByLibrary.simpleMessage("Screens"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
-        "sourceDeletingDialogTitle": m2,
+        "sourceDeletingDialogTitle": m3,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),
         "sources": MessageLookupByLibrary.simpleMessage("Sources"),

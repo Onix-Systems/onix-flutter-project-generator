@@ -11,6 +11,7 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/w
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 import 'package:recase/recase.dart';
 
 class ComponentsTable extends StatelessWidget {
@@ -266,10 +267,21 @@ class ComponentsTable extends StatelessWidget {
                               onPressed: () {
                                 if (!dataComponent.exists &&
                                     !dataComponent.isGenerated) {
-                                  blocOf(context).add(
-                                    DataComponentsScreenEventDeleteDataComponent(
-                                        entity: dataComponent, source: source),
-                                  );
+                                  Dialogs.showOkCancelDialog(
+                                      context: context,
+                                      title: S
+                                          .of(context)
+                                          .deleteComponentConfirmation(
+                                              dataComponent.name.pascalCase),
+                                      isError: true,
+                                      content: const SizedBox(),
+                                      onOk: () {
+                                        blocOf(context).add(
+                                          DataComponentsScreenEventDeleteDataComponent(
+                                              entity: dataComponent,
+                                              source: source),
+                                        );
+                                      });
                                 }
                               },
                               child: Text(

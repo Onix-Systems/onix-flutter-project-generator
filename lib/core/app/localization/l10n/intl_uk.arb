@@ -104,5 +104,6 @@
   "preview": "Перегляд",
   "componentPreview": "Перегляд компонента {componentName}",
   "sourceDeletingDialogTitle": "Дійсно хочете видалити джерело {sourceName}?",
-  "withComponents": "З компонентами"
+  "withComponents": "З компонентами",
+  "deleteComponentConfirmation": "Дійсно хочете видалити компонент {componentName}?"
 }

@@ -1109,6 +1109,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Do you really want to delete component {componentName}?`
+  String deleteComponentConfirmation(Object componentName) {
+    return Intl.message(
+      'Do you really want to delete component $componentName?',
+      name: 'deleteComponentConfirmation',
+      desc: '',
+      args: [componentName],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

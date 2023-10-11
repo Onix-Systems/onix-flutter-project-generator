@@ -22,9 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(componentName) => "Перегляд компонента ${componentName}";
 
-  static String m1(projectName) => "Змінити ${projectName}";
+  static String m1(componentName) =>
+      "Дійсно хочете видалити компонент ${componentName}?";
 
-  static String m2(sourceName) =>
+  static String m2(projectName) => "Змінити ${projectName}";
+
+  static String m3(sourceName) =>
       "Дійсно хочете видалити джерело ${sourceName}?";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -71,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dataComponents":
             MessageLookupByLibrary.simpleMessage("Компоненти даних"),
         "delete": MessageLookupByLibrary.simpleMessage("Видалити"),
+        "deleteComponentConfirmation": m1,
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Діалог видкріється в окремому вікні)"),
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
@@ -117,7 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Змінити"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Змінити компонент"),
-        "modifyGeneratedProject": m1,
+        "modifyGeneratedProject": m2,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Змінити екран"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Змінити дані підпису..."),
@@ -162,7 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenName": MessageLookupByLibrary.simpleMessage("Назва екрану"),
         "screens": MessageLookupByLibrary.simpleMessage("Екрани"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Дані підпису"),
-        "sourceDeletingDialogTitle": m2,
+        "sourceDeletingDialogTitle": m3,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Назва джерела"),
         "sources": MessageLookupByLibrary.simpleMessage("Джерела"),
