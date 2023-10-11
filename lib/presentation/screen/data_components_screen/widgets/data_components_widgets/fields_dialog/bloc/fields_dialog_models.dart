@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 
 part 'fields_dialog_models.freezed.dart';
@@ -37,7 +36,7 @@ class FieldsDialogState with _$FieldsDialogState {
   const factory FieldsDialogState.data({
     @Default('') componentName,
     @Default([]) List<Property> properties,
-    @Default([]) List<DataComponent> components,
+    @Default([]) List<String> components,
     @Default([]) List<int> errorIndexes,
   }) = FieldsDialogStateData;
 }

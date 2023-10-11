@@ -24,7 +24,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(projectName) => "Modify ${projectName}";
 
+  static String m2(sourceName) =>
+      "Do you really want to delete source ${sourceName}?";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
         "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
@@ -122,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "New version of Onix Flutter Project Generator is available. Do you want to download it?"),
         "newVersionAvailableTitle":
             MessageLookupByLibrary.simpleMessage("New version available"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "nullable": MessageLookupByLibrary.simpleMessage("Nullable"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
@@ -154,6 +159,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
         "screens": MessageLookupByLibrary.simpleMessage("Screens"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
+        "sourceDeletingDialogTitle": m2,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),
         "sources": MessageLookupByLibrary.simpleMessage("Sources"),
@@ -179,6 +185,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "usingBloc": MessageLookupByLibrary.simpleMessage("Using BLoC"),
         "usingCubit": MessageLookupByLibrary.simpleMessage("Using Cubit"),
         "willBeAddedAutomatically": MessageLookupByLibrary.simpleMessage(
-            "DEV & PROD flavors will be added automatically")
+            "DEV & PROD flavors will be added automatically"),
+        "withComponents":
+            MessageLookupByLibrary.simpleMessage("With components"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

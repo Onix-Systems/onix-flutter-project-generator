@@ -6,24 +6,25 @@ abstract class SourceRepository {
 
   Set<Source> get sources;
 
-  void parse(Map<String, dynamic> data);
+  void parse({required Map<String, dynamic> data});
 
   bool containsNewComponents();
 
-  Source? getSourceByName(String name);
+  Source? getSourceByName({required String sourceName});
 
-  void addSource(Source source);
+  void addSource({required Source source});
 
-  void addAll(Set<Source> sources);
+  void addAll({required Set<Source> sources});
 
-  void deleteSource(Source source);
+  void deleteSource(
+      {required String sourceName, required bool withDataComponents});
 
   void modifySource(Source source, String sourceName);
 
   void addDataComponentToSource(Source source, DataComponent dataComponent);
 
   void deleteDataComponentFromSource(
-      Source source, DataComponent dataComponent);
+      {required Source source, required String dataComponentName});
 
   void deleteDataComponentFromAllSources(String name);
 

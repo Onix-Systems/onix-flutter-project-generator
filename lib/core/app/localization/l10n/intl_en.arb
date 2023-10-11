@@ -7,6 +7,8 @@
   "apiFailureUndefined": "Uh oh! Looks like we ran into an issue while processing this request. Please try again.\n\nReach out to support if you continue to experience issues.",
   "ok": "OK",
   "cancel": "Cancel",
+  "yes": "Yes",
+  "no": "No",
   "continueLabel": "Continue",
   "modify": "Modify",
   "delete": "Delete",
@@ -101,5 +103,7 @@
   "fields": "Fields",
   "addField": "Add field",
   "preview": "Preview",
-  "componentPreview": "{componentName} component preview"
+  "componentPreview": "{componentName} component preview",
+  "sourceDeletingDialogTitle": "Do you really want to delete source {sourceName}?",
+  "withComponents": "With components"
 }

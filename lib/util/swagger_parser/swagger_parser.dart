@@ -11,7 +11,7 @@ class SwaggerParser {
   }) {
     dataComponentRepository.parse(data);
 
-    sourceRepository.parse(data);
+    sourceRepository.parse(data: data);
 
     final parsedEntities = dataComponentRepository.dataComponents;
 

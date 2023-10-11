@@ -8,7 +8,7 @@ part 'method.g.dart';
 class Method {
   final MethodType methodType;
   final List<String> tags;
-  final Set<DataComponent> entities;
+  final Set<String> entities;
 
   String _responseEntityName = '';
   String _responseRuntimeType = '';

@@ -38,7 +38,7 @@ class SourceRepositoryImpl implements SourceRepository {
           .isNotEmpty);
 
   @override
-  void addSource(Source source) {
+  void addSource({required Source source}) {
     if (_sources
         .where((element) => element.name.pascalCase == source.name.pascalCase)
         .isEmpty) {
@@ -48,20 +48,20 @@ class SourceRepositoryImpl implements SourceRepository {
   }
 
   @override
-  void addAll(Set<Source> sources) {
+  void addAll({required Set<Source> sources}) {
     for (final source in sources) {
-      addSource(source);
+      addSource(source: source);
     }
   }
 
   @override
-  Source? getSourceByName(String name) {
+  Source? getSourceByName({required String sourceName}) {
     return _sources.firstWhereOrNull(
-        (element) => element.name.pascalCase == name.pascalCase);
+        (element) => element.name.pascalCase == sourceName.pascalCase);
   }
 
   @override
-  void parse(Map<String, dynamic> data) {
+  void parse({required Map<String, dynamic> data}) {
     final sources = <Source>{};
 
     final paths = <Path>[];
@@ -113,7 +113,7 @@ class SourceRepositoryImpl implements SourceRepository {
                   continue;
                 }
 
-                method.entities.add(entity);
+                method.entities.add(entity.name.pascalCase);
 
                 method.params.add(MethodParameter(
                     name: entityName.camelCase,
@@ -203,7 +203,7 @@ class SourceRepositoryImpl implements SourceRepository {
                 entity.generateRequest = true;
               }
 
-              method.entities.add(entity);
+              method.entities.add(entity.name.pascalCase);
               method.setRequestEntityName(entity.name);
             }
           }
@@ -237,7 +237,7 @@ class SourceRepositoryImpl implements SourceRepository {
       for (final path in paths) {
         for (final method in path.methods) {
           if (method.tags.contains(tag)) {
-            dependencies.addAll(method.entities.map((e) => e.name));
+            dependencies.addAll(method.entities);
           }
         }
       }
@@ -257,7 +257,7 @@ class SourceRepositoryImpl implements SourceRepository {
       sources.add(source);
     }
 
-    addAll(sources);
+    addAll(sources: sources);
   }
 
   void _getMethodSchemaReference(entry, Method method) {
@@ -324,7 +324,7 @@ class SourceRepositoryImpl implements SourceRepository {
 
       entity.generateResponse = true;
 
-      method.entities.add(entity);
+      method.entities.add(entity.name);
     }
   }
 
@@ -356,11 +356,11 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   void deleteDataComponentFromSource(
-      Source source, DataComponent dataComponent) {
+      {required Source source, required String dataComponentName}) {
     _sources
         .firstWhere((element) => element.name == source.name)
         .dataComponentsNames
-        .remove(dataComponent.name);
+        .remove(dataComponentName);
   }
 
   @override
@@ -376,17 +376,45 @@ class SourceRepositoryImpl implements SourceRepository {
       for (var dependant in dependants) {
         final dependantComponent =
             dataComponentRepository.getDataComponentByName(dependant);
-        dependantComponent!.properties.removeWhere(
-            (property) => property.type.pascalCase == name.pascalCase);
+        if (dependantComponent != null) {
+          dependantComponent.properties.removeWhere(
+              (property) => property.type.pascalCase == name.pascalCase);
 
-        modifyDataComponentInSource(
-            source.name, dependantComponent, dependantComponent.name);
+          dependantComponent.imports
+              .removeWhere((element) => element.pascalCase == name.pascalCase);
+
+          if (dependantComponent.properties.isEmpty) {
+            dependantComponent.properties.add(Property.empty());
+          }
+
+          modifyDataComponentInSource(
+              source.name, dependantComponent, dependantComponent.name);
+        }
       }
     }
   }
 
   @override
-  void deleteSource(Source source) {
+  void deleteSource(
+      {required String sourceName, required bool withDataComponents}) {
+    final source = _sources.firstWhere(
+        (element) => element.name.pascalCase == sourceName.pascalCase);
+
+    for (final dataComponentName in source.dataComponentsNames) {
+      if (withDataComponents) {
+        dataComponentRepository.removeComponent(dataComponentName);
+      } else {
+        final dataComponent = dataComponentRepository
+            .getDataComponentByName(dataComponentName.pascalCase);
+
+        if (dataComponent != null) {
+          dataComponent.sourceName = '';
+          dataComponentRepository.modifyComponent(
+              dataComponent.name, dataComponent);
+        }
+      }
+    }
+
     _sources.remove(source);
   }
 
@@ -397,9 +425,9 @@ class SourceRepositoryImpl implements SourceRepository {
         (element) => element.name.pascalCase == sourceName.pascalCase);
 
     deleteDataComponentFromSource(
-        source,
-        dataComponentRepository
-            .getDataComponentByName(oldDataComponentName.pascalCase)!);
+      source: source,
+      dataComponentName: oldDataComponentName,
+    );
     addDataComponentToSource(source, dataComponent);
   }
 

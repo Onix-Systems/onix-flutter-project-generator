@@ -94,24 +94,23 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
           .toSet();
 
       sourceRepository.empty();
-      sourceRepository.addAll(stateSources
-          .toList()
-          .sorted((a, b) => a.name.compareTo(b.name))
-          .toSet());
-      sourceRepository.addAll(parsedSources
-          .toList()
-          .sorted((a, b) => a.name.compareTo(b.name))
-          .toSet());
+      final sources = [
+        ...stateSources,
+        ...parsedSources,
+      ];
+
+      sourceRepository.addAll(
+          sources: sources.sorted((a, b) => a.name.compareTo(b.name)).toSet());
 
       dataComponentRepository.empty();
-      dataComponentRepository.addAll(stateDataComponents
-          .toList()
-          .sorted((a, b) => a.name.compareTo(b.name))
-          .toSet());
-      dataComponentRepository.addAll(parsedDataComponents
-          .toList()
-          .sorted((a, b) => a.name.compareTo(b.name))
-          .toSet());
+
+      final dataComponents = [
+        ...stateDataComponents,
+        ...parsedDataComponents,
+      ];
+
+      dataComponentRepository.addAll(
+          dataComponents.sorted((a, b) => a.name.compareTo(b.name)).toSet());
 
       await hideProgress();
 

@@ -331,6 +331,10 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
         ..imports
             .removeWhere((element) => element.pascalCase == name.pascalCase);
 
+      if (modifiedComponent.properties.isEmpty) {
+        modifiedComponent.properties.add(Property.empty());
+      }
+
       modifyComponent(component.name, modifiedComponent);
     }
   }

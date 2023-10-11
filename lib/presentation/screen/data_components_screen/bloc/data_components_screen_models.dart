@@ -18,7 +18,8 @@ class DataComponentsScreenEvent with _$DataComponentsScreenEvent {
       DataComponentsScreenEventAddSource;
 
   const factory DataComponentsScreenEvent.deleteSource(
-      {required Source source}) = DataComponentsScreenEventDeleteSource;
+          {required String sourceName, required bool withDataComponents}) =
+      DataComponentsScreenEventDeleteSource;
 
   const factory DataComponentsScreenEvent.modifySource({
     required Source source,

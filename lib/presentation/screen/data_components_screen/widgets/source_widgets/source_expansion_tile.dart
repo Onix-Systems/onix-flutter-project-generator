@@ -11,6 +11,7 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/b
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/components_table.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/add_source_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/delete_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -162,10 +163,23 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                   widget.source.exists ||
                                           widget.source.isGenerated
                                       ? null
-                                      : blocOf(context).add(
-                                          DataComponentsScreenEventDeleteSource(
-                                              source: widget.source),
-                                        );
+                                      : showCupertinoModalPopup<bool>(
+                                          context: context,
+                                          barrierDismissible: true,
+                                          builder: (context) =>
+                                              DeleteSourceDialog(
+                                                sourceName: widget.source.name,
+                                              )).then((withDataComponents) {
+                                          if (withDataComponents != null) {
+                                            blocOf(context).add(
+                                              DataComponentsScreenEventDeleteSource(
+                                                sourceName: widget.source.name,
+                                                withDataComponents:
+                                                    withDataComponents,
+                                              ),
+                                            );
+                                          }
+                                        });
                                 },
                                 child: Text(
                                   S.of(context).delete,

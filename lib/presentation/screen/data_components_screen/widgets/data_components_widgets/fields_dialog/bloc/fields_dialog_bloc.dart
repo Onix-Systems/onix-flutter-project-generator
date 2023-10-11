@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
-import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/bloc/fields_dialog_imports.dart';
 import 'package:recase/recase.dart';
@@ -23,12 +22,13 @@ class FieldsDialogBloc
     FieldsDialogEventInit event,
     Emitter<FieldsDialogState> emit,
   ) {
-    final components = <DataComponent>[];
+    final components = <String>[];
 
     components.addAll(dataComponentRepository.dataComponents
-        .where((element) => element.name.pascalCase != event.componentName));
+        .where((element) => element.name.pascalCase != event.componentName)
+        .map((e) => e.name.pascalCase));
 
-    components.sort((a, b) => a.name.compareTo(b.name));
+    components.sort((a, b) => a.compareTo(b));
 
     emit(state.copyWith(
       properties: event.properties,

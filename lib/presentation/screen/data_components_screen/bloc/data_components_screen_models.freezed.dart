@@ -21,7 +21,8 @@ mixin _$DataComponentsScreenEvent {
     required TResult Function(Config config) init,
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
-    required TResult Function(Source source) deleteSource,
+    required TResult Function(String sourceName, bool withDataComponents)
+        deleteSource,
     required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
@@ -37,7 +38,7 @@ mixin _$DataComponentsScreenEvent {
     TResult? Function(Config config)? init,
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
-    TResult? Function(Source source)? deleteSource,
+    TResult? Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -53,7 +54,7 @@ mixin _$DataComponentsScreenEvent {
     TResult Function(Config config)? init,
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
-    TResult Function(Source source)? deleteSource,
+    TResult Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -220,7 +221,8 @@ class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
     required TResult Function(Config config) init,
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
-    required TResult Function(Source source) deleteSource,
+    required TResult Function(String sourceName, bool withDataComponents)
+        deleteSource,
     required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
@@ -239,7 +241,7 @@ class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
     TResult? Function(Config config)? init,
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
-    TResult? Function(Source source)? deleteSource,
+    TResult? Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -258,7 +260,7 @@ class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
     TResult Function(Config config)? init,
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
-    TResult Function(Source source)? deleteSource,
+    TResult Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -398,7 +400,8 @@ class _$DataComponentsScreenEventStateUpdate
     required TResult Function(Config config) init,
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
-    required TResult Function(Source source) deleteSource,
+    required TResult Function(String sourceName, bool withDataComponents)
+        deleteSource,
     required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
@@ -417,7 +420,7 @@ class _$DataComponentsScreenEventStateUpdate
     TResult? Function(Config config)? init,
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
-    TResult? Function(Source source)? deleteSource,
+    TResult? Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -436,7 +439,7 @@ class _$DataComponentsScreenEventStateUpdate
     TResult Function(Config config)? init,
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
-    TResult Function(Source source)? deleteSource,
+    TResult Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -598,7 +601,8 @@ class _$DataComponentsScreenEventAddSource
     required TResult Function(Config config) init,
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
-    required TResult Function(Source source) deleteSource,
+    required TResult Function(String sourceName, bool withDataComponents)
+        deleteSource,
     required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
@@ -617,7 +621,7 @@ class _$DataComponentsScreenEventAddSource
     TResult? Function(Config config)? init,
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
-    TResult? Function(Source source)? deleteSource,
+    TResult? Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -636,7 +640,7 @@ class _$DataComponentsScreenEventAddSource
     TResult Function(Config config)? init,
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
-    TResult Function(Source source)? deleteSource,
+    TResult Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -738,7 +742,7 @@ abstract class _$$DataComponentsScreenEventDeleteSourceCopyWith<$Res> {
           $Res Function(_$DataComponentsScreenEventDeleteSource) then) =
       __$$DataComponentsScreenEventDeleteSourceCopyWithImpl<$Res>;
   @useResult
-  $Res call({Source source});
+  $Res call({String sourceName, bool withDataComponents});
 }
 
 /// @nodoc
@@ -754,13 +758,18 @@ class __$$DataComponentsScreenEventDeleteSourceCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? source = null,
+    Object? sourceName = null,
+    Object? withDataComponents = null,
   }) {
     return _then(_$DataComponentsScreenEventDeleteSource(
-      source: null == source
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as Source,
+      sourceName: null == sourceName
+          ? _value.sourceName
+          : sourceName // ignore: cast_nullable_to_non_nullable
+              as String,
+      withDataComponents: null == withDataComponents
+          ? _value.withDataComponents
+          : withDataComponents // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -769,14 +778,17 @@ class __$$DataComponentsScreenEventDeleteSourceCopyWithImpl<$Res>
 
 class _$DataComponentsScreenEventDeleteSource
     implements DataComponentsScreenEventDeleteSource {
-  const _$DataComponentsScreenEventDeleteSource({required this.source});
+  const _$DataComponentsScreenEventDeleteSource(
+      {required this.sourceName, required this.withDataComponents});
 
   @override
-  final Source source;
+  final String sourceName;
+  @override
+  final bool withDataComponents;
 
   @override
   String toString() {
-    return 'DataComponentsScreenEvent.deleteSource(source: $source)';
+    return 'DataComponentsScreenEvent.deleteSource(sourceName: $sourceName, withDataComponents: $withDataComponents)';
   }
 
   @override
@@ -784,11 +796,14 @@ class _$DataComponentsScreenEventDeleteSource
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataComponentsScreenEventDeleteSource &&
-            (identical(other.source, source) || other.source == source));
+            (identical(other.sourceName, sourceName) ||
+                other.sourceName == sourceName) &&
+            (identical(other.withDataComponents, withDataComponents) ||
+                other.withDataComponents == withDataComponents));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, source);
+  int get hashCode => Object.hash(runtimeType, sourceName, withDataComponents);
 
   @JsonKey(ignore: true)
   @override
@@ -804,7 +819,8 @@ class _$DataComponentsScreenEventDeleteSource
     required TResult Function(Config config) init,
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
-    required TResult Function(Source source) deleteSource,
+    required TResult Function(String sourceName, bool withDataComponents)
+        deleteSource,
     required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
@@ -814,7 +830,7 @@ class _$DataComponentsScreenEventDeleteSource
             String oldDataComponentName, Source? source)
         modifyDataComponent,
   }) {
-    return deleteSource(source);
+    return deleteSource(sourceName, withDataComponents);
   }
 
   @override
@@ -823,7 +839,7 @@ class _$DataComponentsScreenEventDeleteSource
     TResult? Function(Config config)? init,
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
-    TResult? Function(Source source)? deleteSource,
+    TResult? Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -833,7 +849,7 @@ class _$DataComponentsScreenEventDeleteSource
             Source? source)?
         modifyDataComponent,
   }) {
-    return deleteSource?.call(source);
+    return deleteSource?.call(sourceName, withDataComponents);
   }
 
   @override
@@ -842,7 +858,7 @@ class _$DataComponentsScreenEventDeleteSource
     TResult Function(Config config)? init,
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
-    TResult Function(Source source)? deleteSource,
+    TResult Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -853,7 +869,7 @@ class _$DataComponentsScreenEventDeleteSource
     required TResult orElse(),
   }) {
     if (deleteSource != null) {
-      return deleteSource(source);
+      return deleteSource(sourceName, withDataComponents);
     }
     return orElse();
   }
@@ -928,9 +944,12 @@ class _$DataComponentsScreenEventDeleteSource
 abstract class DataComponentsScreenEventDeleteSource
     implements DataComponentsScreenEvent {
   const factory DataComponentsScreenEventDeleteSource(
-      {required final Source source}) = _$DataComponentsScreenEventDeleteSource;
+          {required final String sourceName,
+          required final bool withDataComponents}) =
+      _$DataComponentsScreenEventDeleteSource;
 
-  Source get source;
+  String get sourceName;
+  bool get withDataComponents;
   @JsonKey(ignore: true)
   _$$DataComponentsScreenEventDeleteSourceCopyWith<
           _$DataComponentsScreenEventDeleteSource>
@@ -1020,7 +1039,8 @@ class _$DataComponentsScreenEventModifySource
     required TResult Function(Config config) init,
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
-    required TResult Function(Source source) deleteSource,
+    required TResult Function(String sourceName, bool withDataComponents)
+        deleteSource,
     required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
@@ -1039,7 +1059,7 @@ class _$DataComponentsScreenEventModifySource
     TResult? Function(Config config)? init,
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
-    TResult? Function(Source source)? deleteSource,
+    TResult? Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -1058,7 +1078,7 @@ class _$DataComponentsScreenEventModifySource
     TResult Function(Config config)? init,
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
-    TResult Function(Source source)? deleteSource,
+    TResult Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -1239,7 +1259,8 @@ class _$DataComponentsScreenEventAddDataComponent
     required TResult Function(Config config) init,
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
-    required TResult Function(Source source) deleteSource,
+    required TResult Function(String sourceName, bool withDataComponents)
+        deleteSource,
     required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
@@ -1258,7 +1279,7 @@ class _$DataComponentsScreenEventAddDataComponent
     TResult? Function(Config config)? init,
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
-    TResult? Function(Source source)? deleteSource,
+    TResult? Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -1277,7 +1298,7 @@ class _$DataComponentsScreenEventAddDataComponent
     TResult Function(Config config)? init,
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
-    TResult Function(Source source)? deleteSource,
+    TResult Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -1458,7 +1479,8 @@ class _$DataComponentsScreenEventDeleteDataComponent
     required TResult Function(Config config) init,
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
-    required TResult Function(Source source) deleteSource,
+    required TResult Function(String sourceName, bool withDataComponents)
+        deleteSource,
     required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
@@ -1477,7 +1499,7 @@ class _$DataComponentsScreenEventDeleteDataComponent
     TResult? Function(Config config)? init,
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
-    TResult? Function(Source source)? deleteSource,
+    TResult? Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -1496,7 +1518,7 @@ class _$DataComponentsScreenEventDeleteDataComponent
     TResult Function(Config config)? init,
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
-    TResult Function(Source source)? deleteSource,
+    TResult Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -1693,7 +1715,8 @@ class _$DataComponentsScreenEventModifyDataComponent
     required TResult Function(Config config) init,
     required TResult Function() stateUpdate,
     required TResult Function(Source source) addSource,
-    required TResult Function(Source source) deleteSource,
+    required TResult Function(String sourceName, bool withDataComponents)
+        deleteSource,
     required TResult Function(Source source, String oldSourceName) modifySource,
     required TResult Function(DataComponent dataComponent, Source? source)
         addDataComponent,
@@ -1712,7 +1735,7 @@ class _$DataComponentsScreenEventModifyDataComponent
     TResult? Function(Config config)? init,
     TResult? Function()? stateUpdate,
     TResult? Function(Source source)? addSource,
-    TResult? Function(Source source)? deleteSource,
+    TResult? Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult? Function(Source source, String oldSourceName)? modifySource,
     TResult? Function(DataComponent dataComponent, Source? source)?
         addDataComponent,
@@ -1732,7 +1755,7 @@ class _$DataComponentsScreenEventModifyDataComponent
     TResult Function(Config config)? init,
     TResult Function()? stateUpdate,
     TResult Function(Source source)? addSource,
-    TResult Function(Source source)? deleteSource,
+    TResult Function(String sourceName, bool withDataComponents)? deleteSource,
     TResult Function(Source source, String oldSourceName)? modifySource,
     TResult Function(DataComponent dataComponent, Source? source)?
         addDataComponent,

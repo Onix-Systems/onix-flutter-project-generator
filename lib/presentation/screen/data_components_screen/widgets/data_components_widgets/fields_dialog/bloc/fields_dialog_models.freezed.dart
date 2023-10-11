@@ -1028,26 +1028,26 @@ abstract class _LoadFinished implements FieldsDialogSR {
 mixin _$FieldsDialogState {
   dynamic get componentName => throw _privateConstructorUsedError;
   List<Property> get properties => throw _privateConstructorUsedError;
-  List<DataComponent> get components => throw _privateConstructorUsedError;
+  List<String> get components => throw _privateConstructorUsedError;
   List<int> get errorIndexes => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic componentName, List<Property> properties,
-            List<DataComponent> components, List<int> errorIndexes)
+            List<String> components, List<int> errorIndexes)
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic componentName, List<Property> properties,
-            List<DataComponent> components, List<int> errorIndexes)?
+            List<String> components, List<int> errorIndexes)?
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic componentName, List<Property> properties,
-            List<DataComponent> components, List<int> errorIndexes)?
+            List<String> components, List<int> errorIndexes)?
         data,
     required TResult orElse(),
   }) =>
@@ -1083,7 +1083,7 @@ abstract class $FieldsDialogStateCopyWith<$Res> {
   $Res call(
       {dynamic componentName,
       List<Property> properties,
-      List<DataComponent> components,
+      List<String> components,
       List<int> errorIndexes});
 }
 
@@ -1117,7 +1117,7 @@ class _$FieldsDialogStateCopyWithImpl<$Res, $Val extends FieldsDialogState>
       components: null == components
           ? _value.components
           : components // ignore: cast_nullable_to_non_nullable
-              as List<DataComponent>,
+              as List<String>,
       errorIndexes: null == errorIndexes
           ? _value.errorIndexes
           : errorIndexes // ignore: cast_nullable_to_non_nullable
@@ -1137,7 +1137,7 @@ abstract class _$$FieldsDialogStateDataCopyWith<$Res>
   $Res call(
       {dynamic componentName,
       List<Property> properties,
-      List<DataComponent> components,
+      List<String> components,
       List<int> errorIndexes});
 }
 
@@ -1167,7 +1167,7 @@ class __$$FieldsDialogStateDataCopyWithImpl<$Res>
       components: null == components
           ? _value._components
           : components // ignore: cast_nullable_to_non_nullable
-              as List<DataComponent>,
+              as List<String>,
       errorIndexes: null == errorIndexes
           ? _value._errorIndexes
           : errorIndexes // ignore: cast_nullable_to_non_nullable
@@ -1182,7 +1182,7 @@ class _$FieldsDialogStateData implements FieldsDialogStateData {
   const _$FieldsDialogStateData(
       {this.componentName = '',
       final List<Property> properties = const [],
-      final List<DataComponent> components = const [],
+      final List<String> components = const [],
       final List<int> errorIndexes = const []})
       : _properties = properties,
         _components = components,
@@ -1196,16 +1196,16 @@ class _$FieldsDialogStateData implements FieldsDialogStateData {
   @JsonKey()
   List<Property> get properties {
     if (_properties is EqualUnmodifiableListView) return _properties;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_properties);
   }
 
-  final List<DataComponent> _components;
+  final List<String> _components;
   @override
   @JsonKey()
-  List<DataComponent> get components {
+  List<String> get components {
     if (_components is EqualUnmodifiableListView) return _components;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_components);
   }
 
@@ -1257,7 +1257,7 @@ class _$FieldsDialogStateData implements FieldsDialogStateData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic componentName, List<Property> properties,
-            List<DataComponent> components, List<int> errorIndexes)
+            List<String> components, List<int> errorIndexes)
         data,
   }) {
     return data(componentName, properties, components, errorIndexes);
@@ -1267,7 +1267,7 @@ class _$FieldsDialogStateData implements FieldsDialogStateData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic componentName, List<Property> properties,
-            List<DataComponent> components, List<int> errorIndexes)?
+            List<String> components, List<int> errorIndexes)?
         data,
   }) {
     return data?.call(componentName, properties, components, errorIndexes);
@@ -1277,7 +1277,7 @@ class _$FieldsDialogStateData implements FieldsDialogStateData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic componentName, List<Property> properties,
-            List<DataComponent> components, List<int> errorIndexes)?
+            List<String> components, List<int> errorIndexes)?
         data,
     required TResult orElse(),
   }) {
@@ -1320,7 +1320,7 @@ abstract class FieldsDialogStateData implements FieldsDialogState {
   const factory FieldsDialogStateData(
       {final dynamic componentName,
       final List<Property> properties,
-      final List<DataComponent> components,
+      final List<String> components,
       final List<int> errorIndexes}) = _$FieldsDialogStateData;
 
   @override
@@ -1328,7 +1328,7 @@ abstract class FieldsDialogStateData implements FieldsDialogState {
   @override
   List<Property> get properties;
   @override
-  List<DataComponent> get components;
+  List<String> get components;
   @override
   List<int> get errorIndexes;
   @override

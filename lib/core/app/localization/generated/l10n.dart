@@ -120,6 +120,26 @@ class S {
     );
   }
 
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Continue`
   String get continueLabel {
     return Intl.message(
@@ -1067,6 +1087,26 @@ class S {
       name: 'componentPreview',
       desc: '',
       args: [componentName],
+    );
+  }
+
+  /// `Do you really want to delete source {sourceName}?`
+  String sourceDeletingDialogTitle(Object sourceName) {
+    return Intl.message(
+      'Do you really want to delete source $sourceName?',
+      name: 'sourceDeletingDialogTitle',
+      desc: '',
+      args: [sourceName],
+    );
+  }
+
+  /// `With components`
+  String get withComponents {
+    return Intl.message(
+      'With components',
+      name: 'withComponents',
+      desc: '',
+      args: [],
     );
   }
 }

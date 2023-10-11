@@ -31,7 +31,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
           .addComponent(dataComponentRepository.authComponent);
       dataComponentRepository
           .addComponent(dataComponentRepository.timeComponent);
-      sourceRepository.addSource(sourceRepository.timeSource);
+      sourceRepository.addSource(source: sourceRepository.timeSource);
     }
     emit(state.copyWith(
       config: event.config.copyWith(
@@ -62,13 +62,14 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     DataComponentsScreenEventAddSource event,
     Emitter<DataComponentsScreenState> emit,
   ) async {
-    if (sourceRepository.getSourceByName(event.source.name) != null) {
+    if (sourceRepository.getSourceByName(sourceName: event.source.name) !=
+        null) {
       addSr(DataComponentsScreenSR.error(
           message: '${event.source.name.pascalCase}Source already exists'));
       return;
     }
 
-    sourceRepository.addSource(event.source);
+    sourceRepository.addSource(source: event.source);
 
     add(const DataComponentsScreenEventStateUpdate());
   }
@@ -77,11 +78,9 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     DataComponentsScreenEventDeleteSource event,
     Emitter<DataComponentsScreenState> emit,
   ) async {
-    final sourceToDelete = sourceRepository.getSourceByName(event.source.name);
-
-    if (sourceToDelete != null) {
-      sourceRepository.deleteSource(sourceToDelete);
-    }
+    sourceRepository.deleteSource(
+        sourceName: event.sourceName,
+        withDataComponents: event.withDataComponents);
 
     add(const DataComponentsScreenEventStateUpdate());
   }
@@ -128,7 +127,8 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     }
 
     if (event.source != null) {
-      final source = sourceRepository.getSourceByName(event.source!.name);
+      final source =
+          sourceRepository.getSourceByName(sourceName: event.source!.name);
 
       if (source != null) {
         sourceRepository.addDataComponentToSource(source, component);
@@ -145,9 +145,11 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     Emitter<DataComponentsScreenState> emit,
   ) async {
     if (event.source != null) {
-      final source = sourceRepository.getSourceByName(event.source!.name);
+      final source =
+          sourceRepository.getSourceByName(sourceName: event.source!.name);
       if (source != null) {
-        sourceRepository.deleteDataComponentFromSource(source, event.entity);
+        sourceRepository.deleteDataComponentFromSource(
+            source: source, dataComponentName: event.entity.name);
       }
     }
 
@@ -162,7 +164,8 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     Emitter<DataComponentsScreenState> emit,
   ) async {
     if (event.source != null) {
-      final source = sourceRepository.getSourceByName(event.source!.name);
+      final source =
+          sourceRepository.getSourceByName(sourceName: event.source!.name);
       if (source != null) {
         sourceRepository.modifyDataComponentInAllSources(
             event.dataComponent, event.oldDataComponentName);

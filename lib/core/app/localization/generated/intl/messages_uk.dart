@@ -24,7 +24,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(projectName) => "Змінити ${projectName}";
 
+  static String m2(sourceName) =>
+      "Дійсно хочете видалити джерело ${sourceName}?";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Дії"),
         "addComponent":
@@ -124,6 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Доступна нова версія Onix Flutter Project Generator. Хочете її завантажити?"),
         "newVersionAvailableTitle":
             MessageLookupByLibrary.simpleMessage("Доступна нова версія"),
+        "no": MessageLookupByLibrary.simpleMessage("Ні"),
         "nullable": MessageLookupByLibrary.simpleMessage("Опціональне"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
@@ -157,6 +162,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenName": MessageLookupByLibrary.simpleMessage("Назва екрану"),
         "screens": MessageLookupByLibrary.simpleMessage("Екрани"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Дані підпису"),
+        "sourceDeletingDialogTitle": m2,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Назва джерела"),
         "sources": MessageLookupByLibrary.simpleMessage("Джерела"),
@@ -182,6 +188,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "usingBloc": MessageLookupByLibrary.simpleMessage("Використати BLoC"),
         "usingCubit": MessageLookupByLibrary.simpleMessage("Використати Cubit"),
         "willBeAddedAutomatically": MessageLookupByLibrary.simpleMessage(
-            "DEV та PROD флавори будуть додані автоматично")
+            "DEV та PROD флавори будуть додані автоматично"),
+        "withComponents":
+            MessageLookupByLibrary.simpleMessage("З компонентами"),
+        "yes": MessageLookupByLibrary.simpleMessage("Так")
       };
 }
