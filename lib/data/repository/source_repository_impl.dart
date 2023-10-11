@@ -62,10 +62,6 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   void parse(Map<String, dynamic> data) {
-    _sources.addAll(_parse(data));
-  }
-
-  Set<Source> _parse(Map<String, dynamic> data) {
     final sources = <Source>{};
 
     final paths = <Path>[];
@@ -261,7 +257,7 @@ class SourceRepositoryImpl implements SourceRepository {
       sources.add(source);
     }
 
-    return sources;
+    addAll(sources);
   }
 
   void _getMethodSchemaReference(entry, Method method) {
@@ -450,16 +446,6 @@ class SourceRepositoryImpl implements SourceRepository {
   void setAllExists() {
     for (final source in _sources) {
       source.exists = true;
-
-      for (final dataComponentName in source.dataComponentsNames) {
-        final dataComponent =
-            dataComponentRepository.getDataComponentByName(dataComponentName);
-        if (dataComponent != null) {
-          dataComponent.exists = true;
-          dataComponentRepository.modifyComponent(
-              dataComponentName, dataComponent);
-        }
-      }
     }
   }
 }
