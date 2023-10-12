@@ -58,13 +58,11 @@ class Config with _$Config {
   Future<void> saveConfig({required String projectPath}) async {
     await configSource.saveConfig(
         config: copyWith(
-          screens: screens.map((e) {
-            var screen = Screen.copyOf(e);
+          screens: screenRepository.screens.map((screen) {
             screen.exists = true;
             return screen;
           }).toSet(),
-          sources: sources.map((e) {
-            var source = Source.copyOf(e);
+          sources: sourceRepository.sources.map((source) {
             source.exists = true;
             source.isGenerated = false;
             for (var dataComponent in source.dataComponentsNames) {
@@ -75,8 +73,8 @@ class Config with _$Config {
             }
             return source;
           }).toSet(),
-          dataComponents: dataComponents.map((e) {
-            var dataComponent = DataComponent.copyOf(e);
+          dataComponents:
+              dataComponentRepository.dataComponents.map((dataComponent) {
             dataComponent.exists = true;
             dataComponent.isGenerated = false;
             return dataComponent;
