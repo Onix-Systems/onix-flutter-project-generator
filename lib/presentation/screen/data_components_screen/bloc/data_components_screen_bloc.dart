@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
@@ -27,11 +28,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     Emitter<DataComponentsScreenState> emit,
   ) {
     if (!event.config.projectExists) {
-      dataComponentRepository.addComponent(
-          dataComponent: dataComponentRepository.authComponent);
-      dataComponentRepository.addComponent(
-          dataComponent: dataComponentRepository.timeComponent);
-      sourceRepository.addSource(source: sourceRepository.timeSource);
+      sourceRepository.addDemoComponents();
     }
     emit(state.copyWith(
       config: event.config.copyWith(
@@ -65,7 +62,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     if (sourceRepository.getSourceByName(sourceName: event.source.name) !=
         null) {
       addSr(DataComponentsScreenSR.error(
-          message: '${event.source.name.pascalCase}Source already exists'));
+          message: S.current.sourceExistsError(event.source.name)));
       return;
     }
 
@@ -108,7 +105,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
 
       addSr(DataComponentsScreenSR.error(
           message:
-              'Data component ${component.name.pascalCase} already exists${existingComponent.sourceName.isNotEmpty ? ' in ${existingComponent.sourceName.pascalCase} source' : ''}'));
+              '${S.current.dataComponentExistsError(component.name.pascalCase)}${existingComponent.sourceName.isNotEmpty ? S.current.dataComponentExistsInSource(existingComponent.sourceName) : ''}'));
 
       return;
     }
@@ -122,13 +119,10 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     dataComponentRepository.addComponent(dataComponent: component);
 
     if (event.source != null) {
-      final source =
-          sourceRepository.getSourceByName(sourceName: event.source!.name);
-
-      if (source != null) {
-        sourceRepository.addDataComponentToSource(
-            sourceName: source.name, dataComponentName: component.name);
-      }
+      sourceRepository.addDataComponentToSource(
+        sourceName: event.source?.name ?? '',
+        dataComponentName: component.name,
+      );
     }
 
     add(const DataComponentsScreenEventStateUpdate());
@@ -161,14 +155,10 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
         dataComponent: event.dataComponent);
 
     if (event.source != null) {
-      final source =
-          sourceRepository.getSourceByName(sourceName: event.source!.name);
-      if (source != null) {
-        sourceRepository.modifyDataComponentInAllSources(
-            dataComponentName: event.dataComponent.name,
-            dataComponentSourceName: source.name,
-            oldDataComponentName: event.oldDataComponentName);
-      }
+      sourceRepository.modifyDataComponentInAllSources(
+          dataComponentName: event.dataComponent.name,
+          dataComponentSourceName: event.source?.name ?? '',
+          oldDataComponentName: event.oldDataComponentName);
     }
 
     _inheritRequestResponse(event.dataComponent);

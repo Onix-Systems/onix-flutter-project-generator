@@ -5,6 +5,8 @@ abstract class SourceRepository {
 
   Set<Source> get sources;
 
+  void addDemoComponents();
+
   void parse({required Map<String, dynamic> data});
 
   bool containsNewComponents();

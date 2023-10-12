@@ -25,7 +25,8 @@ class FieldsDialogBloc
     final components = <String>[];
 
     components.addAll(dataComponentRepository.dataComponents
-        .where((element) => element.name.pascalCase != event.componentName)
+        .where((element) =>
+            element.name.pascalCase != event.componentName.pascalCase)
         .map((e) => e.name.pascalCase));
 
     components.sort((a, b) => a.compareTo(b));
@@ -93,7 +94,7 @@ class FieldsDialogBloc
 
     for (final property in state.properties) {
       if (property.name.isEmpty ||
-          property.type.replaceAll('List<', '').replaceAll('>', '').isEmpty ||
+          property.type.isEmpty ||
           state.properties
                   .where((element) =>
                       element.name.pascalCase == property.name.pascalCase)

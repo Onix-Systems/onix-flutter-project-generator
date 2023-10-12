@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:collection/collection.dart';
 import 'package:http/http.dart' as http;
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
-import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bloc/swagger_parser_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/swagger_parser/swagger_parser.dart';
 import 'package:recase/recase.dart';
@@ -33,9 +31,7 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     emit(state.copyWith(
         config: event.config.copyWith(
       sources: sourceRepository.sources,
-      dataComponents: dataComponentRepository.dataComponents
-          .map((e) => DataComponent.copyOf(e))
-          .toSet(),
+      dataComponents: dataComponentRepository.dataComponents,
     )));
   }
 
@@ -60,6 +56,8 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
 
       var json = jsonDecode(response.body);
 
+      dataComponentRepository.empty();
+
       SwaggerParser.parse(
           data: json as Map<String, dynamic>,
           projectName: state.config.projectName);
@@ -82,41 +80,6 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
               },
             ),
           ));
-        }
-      }
-
-      for (var repositorySource in sourceRepository.sources) {
-        final stateSource = state.config.sources.firstWhereOrNull((element) =>
-            element.name.pascalCase == repositorySource.name.pascalCase);
-
-        if (stateSource == null) {
-          emit(state.copyWith(
-            config: state.config.copyWith(
-              sources: {
-                ...state.config.sources,
-                Source.copyOf(repositorySource),
-              },
-            ),
-          ));
-        } else {
-          for (var dataComponent in repositorySource.dataComponentsNames.map(
-              (e) => dataComponentRepository.getDataComponentByName(
-                  dataComponentName: e)!)) {
-            if (!dataComponent.exists &&
-                stateSource.dataComponentsNames.any((element) =>
-                    element.pascalCase == dataComponent.name.pascalCase)) {
-              withConflicts = true;
-            } else {
-              stateSource.dataComponentsNames
-                  .add(dataComponent.name.pascalCase);
-              stateSource.dataComponentsNames.add(dataComponent.name);
-              emit(state.copyWith(
-                config: state.config.copyWith(
-                  sources: state.config.sources,
-                ),
-              ));
-            }
-          }
         }
       }
 
@@ -153,24 +116,20 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
   ) async {
     for (var element
         in state.config.dataComponents.where((element) => !element.exists)) {
-      dataComponentRepository.removeComponent(dataComponentName: element.name);
-      dataComponentRepository.addComponent(dataComponent: element);
-    }
+      final oldComponent = dataComponentRepository.getDataComponentByName(
+          dataComponentName: element.name);
 
-    for (var stateSource in state.config.sources) {
-      final repositorySource =
-          sourceRepository.getSourceByName(sourceName: stateSource.name);
-      if (repositorySource != null) {
-        for (var stateDataComponentName in stateSource.dataComponentsNames) {
-          final dataComponent = dataComponentRepository.getDataComponentByName(
-              dataComponentName: stateDataComponentName);
-          if (dataComponent != null) {
-            sourceRepository.modifyDataComponentInSource(
-                dataComponentName: dataComponent.name,
-                dataComponentSourceName: dataComponent.sourceName,
-                oldDataComponentName: stateDataComponentName);
-          }
-        }
+      if (oldComponent != null && oldComponent.sourceName.isNotEmpty) {
+        sourceRepository.deleteDataComponentFromSource(
+            sourceName: oldComponent.sourceName,
+            dataComponentName: element.name);
+      }
+
+      dataComponentRepository.modifyComponent(
+          oldDataComponentName: element.name, dataComponent: element);
+      if (element.sourceName.isNotEmpty) {
+        sourceRepository.addDataComponentToSource(
+            sourceName: element.sourceName, dataComponentName: element.name);
       }
     }
 

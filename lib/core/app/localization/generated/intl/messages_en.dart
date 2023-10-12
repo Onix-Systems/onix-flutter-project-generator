@@ -23,12 +23,19 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(componentName) => "${componentName} component preview";
 
   static String m1(componentName) =>
+      "Data component ${componentName} already exists";
+
+  static String m2(sourceName) => " in ${sourceName} source";
+
+  static String m3(componentName) =>
       "Do you really want to delete component ${componentName}?";
 
-  static String m2(projectName) => "Modify ${projectName}";
+  static String m4(projectName) => "Modify ${projectName}";
 
-  static String m3(sourceName) =>
+  static String m5(sourceName) =>
       "Do you really want to delete source ${sourceName}?";
+
+  static String m6(sourceName) => "${sourceName}Source already exists";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
 
@@ -68,10 +75,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "createResponseCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Create response?"),
         "dataComponent": MessageLookupByLibrary.simpleMessage("Data component"),
+        "dataComponentExistsError": m1,
+        "dataComponentExistsInSource": m2,
         "dataComponents":
             MessageLookupByLibrary.simpleMessage("Data components"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
-        "deleteComponentConfirmation": m1,
+        "deleteComponentConfirmation": m3,
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
@@ -119,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Modify"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Modify component"),
-        "modifyGeneratedProject": m2,
+        "modifyGeneratedProject": m4,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Modify signing vars..."),
@@ -163,7 +172,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
         "screens": MessageLookupByLibrary.simpleMessage("Screens"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
-        "sourceDeletingDialogTitle": m3,
+        "sourceDeletingDialogTitle": m5,
+        "sourceExistsError": m6,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),
         "sources": MessageLookupByLibrary.simpleMessage("Sources"),

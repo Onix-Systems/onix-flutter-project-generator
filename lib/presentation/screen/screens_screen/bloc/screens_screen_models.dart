@@ -15,7 +15,7 @@ class ScreensScreenEvent with _$ScreensScreenEvent {
   }) = ScreensScreenEventOnScreenAdd;
 
   const factory ScreensScreenEvent.onScreenDelete({
-    required Screen screen,
+    required String screenName,
   }) = ScreensScreenEventOnScreenDelete;
 
   const factory ScreensScreenEvent.onScreenModify({

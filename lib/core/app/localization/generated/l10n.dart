@@ -1119,6 +1119,36 @@ class S {
       args: [componentName],
     );
   }
+
+  /// `{sourceName}Source already exists`
+  String sourceExistsError(Object sourceName) {
+    return Intl.message(
+      '${sourceName}Source already exists',
+      name: 'sourceExistsError',
+      desc: '',
+      args: [sourceName],
+    );
+  }
+
+  /// `Data component {componentName} already exists`
+  String dataComponentExistsError(Object componentName) {
+    return Intl.message(
+      'Data component $componentName already exists',
+      name: 'dataComponentExistsError',
+      desc: '',
+      args: [componentName],
+    );
+  }
+
+  /// ` in {sourceName} source`
+  String dataComponentExistsInSource(Object sourceName) {
+    return Intl.message(
+      ' in $sourceName source',
+      name: 'dataComponentExistsInSource',
+      desc: '',
+      args: [sourceName],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -5,11 +5,13 @@ abstract class ScreenRepository {
 
   Set<Screen> get screens;
 
-  void addScreen(Screen screen);
+  bool exists({required String screenName});
 
-  void addAll(Set<Screen> screens);
+  void addScreen({required Screen screen});
 
-  void removeScreen(Screen screen);
+  void addAll({required Set<Screen> screens});
+
+  void removeScreen({required String screenName});
 
   void modifyScreen(Screen screen, String oldName);
 

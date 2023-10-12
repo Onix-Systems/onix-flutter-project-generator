@@ -105,5 +105,8 @@
   "componentPreview": "Перегляд компонента {componentName}",
   "sourceDeletingDialogTitle": "Дійсно хочете видалити джерело {sourceName}?",
   "withComponents": "З компонентами",
-  "deleteComponentConfirmation": "Дійсно хочете видалити компонент {componentName}?"
+  "deleteComponentConfirmation": "Дійсно хочете видалити компонент {componentName}?",
+  "sourceExistsError": "{sourceName}Source вже існує",
+  "dataComponentExistsError": "Компонент {componentName} вже існує",
+  "dataComponentExistsInSource": " в джерелі {sourceName}"
 }

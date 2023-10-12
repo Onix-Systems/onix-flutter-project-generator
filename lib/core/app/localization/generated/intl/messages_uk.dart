@@ -22,13 +22,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(componentName) => "Перегляд компонента ${componentName}";
 
-  static String m1(componentName) =>
+  static String m1(componentName) => "Компонент ${componentName} вже існує";
+
+  static String m2(sourceName) => " в джерелі ${sourceName}";
+
+  static String m3(componentName) =>
       "Дійсно хочете видалити компонент ${componentName}?";
 
-  static String m2(projectName) => "Змінити ${projectName}";
+  static String m4(projectName) => "Змінити ${projectName}";
 
-  static String m3(sourceName) =>
+  static String m5(sourceName) =>
       "Дійсно хочете видалити джерело ${sourceName}?";
+
+  static String m6(sourceName) => "${sourceName}Source вже існує";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
 
@@ -71,10 +77,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Створити відповідь?"),
         "dataComponent":
             MessageLookupByLibrary.simpleMessage("Компонент даних"),
+        "dataComponentExistsError": m1,
+        "dataComponentExistsInSource": m2,
         "dataComponents":
             MessageLookupByLibrary.simpleMessage("Компоненти даних"),
         "delete": MessageLookupByLibrary.simpleMessage("Видалити"),
-        "deleteComponentConfirmation": m1,
+        "deleteComponentConfirmation": m3,
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Діалог видкріється в окремому вікні)"),
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
@@ -121,7 +129,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Змінити"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Змінити компонент"),
-        "modifyGeneratedProject": m2,
+        "modifyGeneratedProject": m4,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Змінити екран"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Змінити дані підпису..."),
@@ -166,7 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenName": MessageLookupByLibrary.simpleMessage("Назва екрану"),
         "screens": MessageLookupByLibrary.simpleMessage("Екрани"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Дані підпису"),
-        "sourceDeletingDialogTitle": m3,
+        "sourceDeletingDialogTitle": m5,
+        "sourceExistsError": m6,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Назва джерела"),
         "sources": MessageLookupByLibrary.simpleMessage("Джерела"),
