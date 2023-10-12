@@ -47,9 +47,9 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   }
 
   @override
-  DataComponent? getDataComponentByName(String name) {
+  DataComponent? getDataComponentByName({required String dataComponentName}) {
     return _dataComponents.firstWhereOrNull(
-        (element) => element.name.pascalCase == name.pascalCase);
+        (element) => element.name.pascalCase == dataComponentName.pascalCase);
   }
 
   @override
@@ -63,19 +63,20 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   }
 
   @override
-  bool exists(String componentName) {
-    return _dataComponents
-        .any((element) => element.name.pascalCase == componentName.pascalCase);
+  bool exists({required String dataComponentName}) {
+    return _dataComponents.any(
+        (element) => element.name.pascalCase == dataComponentName.pascalCase);
   }
 
   @override
-  bool isEnum(String name) {
+  bool isEnum({required String dataComponentName}) {
     return _dataComponents.any((element) =>
-        element.name.pascalCase == name.pascalCase && element.isEnum);
+        element.name.pascalCase == dataComponentName.pascalCase &&
+        element.isEnum);
   }
 
   @override
-  void parse(Map<String, dynamic> data) {
+  void parse({required Map<String, dynamic> data}) {
     _dataComponents.addAll(_parse(data));
   }
 
@@ -299,69 +300,75 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   }
 
   @override
-  void addComponent(DataComponent component) {
-    if (!exists(component.name.pascalCase)) {
-      component.name = component.name.pascalCase;
-      _dataComponents.add(DataComponent.copyOf(component));
+  void addComponent({required DataComponent dataComponent}) {
+    if (!exists(dataComponentName: dataComponent.name.pascalCase)) {
+      dataComponent.name = dataComponent.name.pascalCase;
+      _dataComponents.add(DataComponent.copyOf(dataComponent));
     }
   }
 
   @override
-  void addAll(Set<DataComponent> components) {
-    for (final component in components) {
-      addComponent(component);
+  void addAll({required Set<DataComponent> dataComponents}) {
+    for (final component in dataComponents) {
+      addComponent(dataComponent: component);
     }
   }
 
   @override
-  void removeComponent(String name) {
-    if (exists(name)) {
-      _dataComponents
-          .removeWhere((element) => element.name.pascalCase == name.pascalCase);
+  void removeComponent({required String dataComponentName}) {
+    if (exists(dataComponentName: dataComponentName)) {
+      _dataComponents.removeWhere(
+          (element) => element.name.pascalCase == dataComponentName.pascalCase);
     }
 
     for (var component in _dataComponents
         .where((element) => element.properties
-            .any((property) => property.type == name.pascalCase))
+            .any((property) => property.type == dataComponentName.pascalCase))
         .toList()) {
       final modifiedComponent = DataComponent.copyOf(component);
 
       modifiedComponent
-        ..properties.removeWhere((element) => element.type == name.pascalCase)
-        ..imports
-            .removeWhere((element) => element.pascalCase == name.pascalCase);
+        ..properties.removeWhere(
+            (element) => element.type == dataComponentName.pascalCase)
+        ..imports.removeWhere(
+            (element) => element.pascalCase == dataComponentName.pascalCase);
 
       if (modifiedComponent.properties.isEmpty) {
         modifiedComponent.properties.add(Property.empty());
       }
 
-      modifyComponent(component.name, modifiedComponent);
+      modifyComponent(
+          oldDataComponentName: component.name,
+          dataComponent: modifiedComponent);
     }
   }
 
   @override
-  void modifyComponent(String name, DataComponent modifiedComponent) {
-    if (exists(name)) {
-      _dataComponents
-          .removeWhere((element) => element.name.pascalCase == name.pascalCase);
-      _dataComponents.add(modifiedComponent);
+  void modifyComponent({
+    required String oldDataComponentName,
+    required DataComponent dataComponent,
+  }) {
+    if (exists(dataComponentName: oldDataComponentName)) {
+      _dataComponents.removeWhere((element) =>
+          element.name.pascalCase == oldDataComponentName.pascalCase);
+      _dataComponents.add(dataComponent);
     }
 
     final dependants = _dataComponents
-        .where((element) => element.properties
-            .any((property) => property.type == name.pascalCase))
+        .where((element) => element.properties.any(
+            (property) => property.type == oldDataComponentName.pascalCase))
         .toList();
 
     for (final dependant in dependants) {
       for (var property in dependant.properties) {
-        if (property.type == name.pascalCase) {
-          property.type = modifiedComponent.name.pascalCase;
+        if (property.type == oldDataComponentName.pascalCase) {
+          property.type = dataComponent.name.pascalCase;
         }
       }
 
-      dependant.imports
-          .removeWhere((element) => element.pascalCase == name.pascalCase);
-      dependant.addImports([modifiedComponent.name.pascalCase]);
+      dependant.imports.removeWhere(
+          (element) => element.pascalCase == oldDataComponentName.pascalCase);
+      dependant.addImports([dataComponent.name.pascalCase]);
     }
   }
 

@@ -19,12 +19,12 @@ class GenerateMapper {
     final sourceName = _getSourceName(dataComponent.name);
 
     final importMappers = dataComponent.imports
-        .where((e) => !dataComponentRepository.isEnum(e))
+        .where((e) => !dataComponentRepository.isEnum(dataComponentName: e))
         .map((e) => '    final ${e.camelCase}Mapper = ${e}Mappers();')
         .join('\n');
 
     final imports = dataComponent.imports
-        .map((e) => dataComponentRepository.isEnum(e)
+        .map((e) => dataComponentRepository.isEnum(dataComponentName: e)
             ? 'import \'package:$projectName/domain/entity/${_getSourceName(e)}${e.snakeCase}/${e.snakeCase}.dart\';'
             : importMappers.isNotEmpty
                 ? '${dataComponent.generateResponse ? 'import \'package:$projectName/data/model/remote/${_getSourceName(e)}${e.snakeCase}/${e.snakeCase}_response.dart\';\n' : ''}'
@@ -99,8 +99,9 @@ class ${name.pascalCase}Mappers {
         dataComponent.imports
                 .map((e) => e.pascalCase)
                 .contains(property.type.pascalCase)
-            ? dataComponentRepository.isEnum(dataComponent.imports
-                    .firstWhereOrNull((e) => e == property.type)!)
+            ? dataComponentRepository.isEnum(
+                    dataComponentName: dataComponent.imports
+                        .firstWhereOrNull((e) => e == property.type)!)
                 ? properties.add(
                     '        ${property.name}: ${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name}${isRequest ? '.name' : ''})${isRequest ? '?.name' : ''} ?? ${property.type.pascalCase}.values.first${isRequest ? '.name' : ''},')
                 : properties.add(
@@ -114,7 +115,7 @@ class ${name.pascalCase}Mappers {
 
   String _getSourceName(String dataComponentName) {
     final sourceName = dataComponentRepository
-            .getDataComponentByName(dataComponentName)
+            .getDataComponentByName(dataComponentName: dataComponentName)
             ?.sourceName ??
         '';
     return sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : '';

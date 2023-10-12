@@ -211,8 +211,8 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: ComponentsTable(
                 dataComponents: widget.source.dataComponentsNames
-                    .map((e) =>
-                        dataComponentRepository.getDataComponentByName(e))
+                    .map((e) => dataComponentRepository.getDataComponentByName(
+                        dataComponentName: e))
                     .whereNotNull()
                     .toList()
                     .sorted((a, b) => a.name.compareTo(b.name))

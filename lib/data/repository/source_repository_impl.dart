@@ -106,8 +106,8 @@ class SourceRepositoryImpl implements SourceRepository {
                     ? _getRefClassName(parameter['schema']['items'])
                     : _getRefClassName(parameter['schema']);
 
-                final entity =
-                    dataComponentRepository.getDataComponentByName(entityName);
+                final entity = dataComponentRepository.getDataComponentByName(
+                    dataComponentName: entityName);
 
                 if (entity == null) {
                   continue;
@@ -187,12 +187,12 @@ class SourceRepositoryImpl implements SourceRepository {
             if (TypeMatcher.isReference(parameter['schema'])) {
               String entityName = _getRefClassName(parameter['schema']);
 
-              var entity =
-                  dataComponentRepository.getDataComponentByName(entityName);
+              var entity = dataComponentRepository.getDataComponentByName(
+                  dataComponentName: entityName);
 
               if (entity == null) {
-                entity = dataComponentRepository
-                    .getDataComponentByName(entityName.stripRequestResponse());
+                entity = dataComponentRepository.getDataComponentByName(
+                    dataComponentName: entityName.stripRequestResponse());
 
                 if (entity == null) {
                   continue;
@@ -315,8 +315,8 @@ class SourceRepositoryImpl implements SourceRepository {
 
       String entityName = _getRefClassName(schema);
 
-      final entity = dataComponentRepository
-          .getDataComponentByName(entityName.stripRequestResponse());
+      final entity = dataComponentRepository.getDataComponentByName(
+          dataComponentName: entityName.stripRequestResponse());
 
       if (entity == null) {
         continue;
@@ -374,15 +374,15 @@ class SourceRepositoryImpl implements SourceRepository {
     for (var source in _sources) {
       var dependants = source.dataComponentsNames
           .where((entity) => dataComponentRepository
-              .getDataComponentByName(entity)!
+              .getDataComponentByName(dataComponentName: entity)!
               .properties
               .any((property) =>
                   property.type.pascalCase == dataComponentName.pascalCase))
           .toList();
 
       for (var dependant in dependants) {
-        final dependantComponent =
-            dataComponentRepository.getDataComponentByName(dependant);
+        final dependantComponent = dataComponentRepository
+            .getDataComponentByName(dataComponentName: dependant);
         if (dependantComponent != null) {
           dependantComponent.properties.removeWhere((property) =>
               property.type.pascalCase == dataComponentName.pascalCase);
@@ -411,15 +411,17 @@ class SourceRepositoryImpl implements SourceRepository {
 
     for (final dataComponentName in source.dataComponentsNames) {
       if (withDataComponents) {
-        dataComponentRepository.removeComponent(dataComponentName);
+        dataComponentRepository.removeComponent(
+            dataComponentName: dataComponentName);
       } else {
-        final dataComponent = dataComponentRepository
-            .getDataComponentByName(dataComponentName.pascalCase);
+        final dataComponent = dataComponentRepository.getDataComponentByName(
+            dataComponentName: dataComponentName.pascalCase);
 
         if (dataComponent != null) {
           dataComponent.sourceName = '';
           dataComponentRepository.modifyComponent(
-              dataComponent.name, dataComponent);
+              oldDataComponentName: dataComponent.name,
+              dataComponent: dataComponent);
         }
       }
     }
@@ -457,35 +459,36 @@ class SourceRepositoryImpl implements SourceRepository {
 
   @override
   void modifyDataComponentInAllSources(
-      {required DataComponent dataComponent,
+      {required String dataComponentName,
+      required String dataComponentSourceName,
       required String oldDataComponentName}) {
     modifyDataComponentInSource(
-        dataComponentName: dataComponent.name,
-        dataComponentSourceName: dataComponent.sourceName,
+        dataComponentName: dataComponentName,
+        dataComponentSourceName: dataComponentSourceName,
         oldDataComponentName: oldDataComponentName);
 
     for (var source in _sources) {
       final dependants = source.dataComponentsNames
           .where((element) => dataComponentRepository
-              .getDataComponentByName(element.pascalCase)!
+              .getDataComponentByName(dataComponentName: element.pascalCase)!
               .properties
               .any((property) =>
                   property.type == oldDataComponentName.pascalCase))
           .toList();
 
       for (final dependant in dependants) {
-        final dependantComponent =
-            dataComponentRepository.getDataComponentByName(dependant);
+        final dependantComponent = dataComponentRepository
+            .getDataComponentByName(dataComponentName: dependant);
         if (dependantComponent != null) {
           for (var property in dependantComponent.properties) {
             if (property.type == oldDataComponentName.pascalCase) {
-              property.type = dataComponent.name.pascalCase;
+              property.type = dataComponentName.pascalCase;
             }
           }
 
           dependantComponent.imports.removeWhere((element) =>
               element.pascalCase == oldDataComponentName.pascalCase);
-          dependantComponent.addImports([dataComponent.name.pascalCase]);
+          dependantComponent.addImports([dataComponentName.pascalCase]);
         }
       }
     }

@@ -68,8 +68,8 @@ class Config with _$Config {
             source.exists = true;
             source.isGenerated = false;
             for (var dataComponent in source.dataComponentsNames) {
-              final component =
-                  dataComponentRepository.getDataComponentByName(dataComponent);
+              final component = dataComponentRepository.getDataComponentByName(
+                  dataComponentName: dataComponent);
               component!.exists = true;
               component.isGenerated = false;
             }

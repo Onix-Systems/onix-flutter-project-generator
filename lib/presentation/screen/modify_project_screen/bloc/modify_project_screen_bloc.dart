@@ -110,7 +110,9 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
       ];
 
       dataComponentRepository.addAll(
-          dataComponents.sorted((a, b) => a.name.compareTo(b.name)).toSet());
+          dataComponents: dataComponents
+              .sorted((a, b) => a.name.compareTo(b.name))
+              .toSet());
 
       await hideProgress();
 

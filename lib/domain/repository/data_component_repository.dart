@@ -7,27 +7,29 @@ abstract class DataComponentRepository {
 
   Set<DataComponent> get dataComponents;
 
-  bool isEnum(String name);
+  bool isEnum({required String dataComponentName});
 
   bool containsNewComponents();
 
-  bool exists(String componentName);
+  bool exists({required String dataComponentName});
 
   Set<String> getEnumNames();
 
-  void parse(Map<String, dynamic> data);
+  void parse({required Map<String, dynamic> data});
 
-  DataComponent? getDataComponentByName(String name);
+  DataComponent? getDataComponentByName({required String dataComponentName});
 
   void empty();
 
-  void addComponent(DataComponent component);
+  void addComponent({required DataComponent dataComponent});
 
-  void removeComponent(String name);
+  void removeComponent({required String dataComponentName});
 
-  void modifyComponent(String name, DataComponent component);
+  void modifyComponent(
+      {required String oldDataComponentName,
+      required DataComponent dataComponent});
 
-  void addAll(Set<DataComponent> components);
+  void addAll({required Set<DataComponent> dataComponents});
 
   void setAllExists();
 

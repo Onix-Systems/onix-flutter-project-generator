@@ -18,8 +18,8 @@ class MethodGenerator {
     required String projectPath,
     required Source source,
   }) async {
-    final responseIsEnum = dataComponentRepository
-        .isEnum(method.responseEntityName.stripRequestResponse());
+    final responseIsEnum = dataComponentRepository.isEnum(
+        dataComponentName: method.responseEntityName.stripRequestResponse());
 
     final responseEntityName =
         method.responseEntityName.endsWith('Response') || responseIsEnum
@@ -34,7 +34,8 @@ class MethodGenerator {
     if (method.responseEntityName.isNotEmpty) {
       final sourceName = dataComponentRepository
               .getDataComponentByName(
-                  method.responseEntityName.stripRequestResponse())
+                  dataComponentName:
+                      method.responseEntityName.stripRequestResponse())
               ?.sourceName ??
           '';
 
@@ -49,7 +50,8 @@ class MethodGenerator {
 
     if (method.requestEntityName.isNotEmpty) {
       final sourceName = dataComponentRepository
-              .getDataComponentByName(method.requestEntityName)
+              .getDataComponentByName(
+                  dataComponentName: method.requestEntityName)
               ?.sourceName ??
           '';
 
@@ -152,7 +154,8 @@ class MethodGenerator {
         if (parameter.type.isNotEmpty) {
           if (!parameter.nullable) {
             final sourceName = dataComponentRepository
-                    .getDataComponentByName(parameter.type.snakeCase)
+                    .getDataComponentByName(
+                        dataComponentName: parameter.type.snakeCase)
                     ?.sourceName ??
                 '';
 

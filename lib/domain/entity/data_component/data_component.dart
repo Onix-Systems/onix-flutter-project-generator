@@ -52,7 +52,8 @@ class DataComponent {
       this.sourceName = sourceName;
     }
     for (final importName in imports) {
-      final import = dataComponentRepository.getDataComponentByName(importName);
+      final import = dataComponentRepository.getDataComponentByName(
+          dataComponentName: importName);
       if (import != null) {
         import.setSourceName(sourceName);
       }

@@ -1,4 +1,3 @@
-import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 
 abstract class SourceRepository {
@@ -35,7 +34,8 @@ abstract class SourceRepository {
       required String oldDataComponentName});
 
   void modifyDataComponentInAllSources(
-      {required DataComponent dataComponent,
+      {required String dataComponentName,
+      required String dataComponentSourceName,
       required String oldDataComponentName});
 
   void empty();

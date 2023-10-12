@@ -17,9 +17,11 @@ class GenerateRequest {
     final sourceName = dataComponent.sourceName;
 
     final imports = dataComponent.imports.map((e) {
-      final sourceName =
-          dataComponentRepository.getDataComponentByName(e)?.sourceName ?? '';
-      if (dataComponentRepository.isEnum(e)) {
+      final sourceName = dataComponentRepository
+              .getDataComponentByName(dataComponentName: e)
+              ?.sourceName ??
+          '';
+      if (dataComponentRepository.isEnum(dataComponentName: e)) {
         return 'import \'package:$projectName/domain/entity/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}.dart\';';
       } else {
         return 'import \'package:$projectName/data/model/remote/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}_request.dart\';';
@@ -42,7 +44,8 @@ ${dataComponent.properties.map((e) {
           !type.contains('dynamic')) {
         final import = dataComponent.imports.firstWhereOrNull(
             (element) => element.pascalCase == type.pascalCase);
-        if (import != null && !dataComponentRepository.isEnum(import)) {
+        if (import != null &&
+            !dataComponentRepository.isEnum(dataComponentName: import)) {
           type = '${type}Request';
         } else {
           type = 'String';

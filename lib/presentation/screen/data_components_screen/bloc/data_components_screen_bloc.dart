@@ -27,10 +27,10 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     Emitter<DataComponentsScreenState> emit,
   ) {
     if (!event.config.projectExists) {
-      dataComponentRepository
-          .addComponent(dataComponentRepository.authComponent);
-      dataComponentRepository
-          .addComponent(dataComponentRepository.timeComponent);
+      dataComponentRepository.addComponent(
+          dataComponent: dataComponentRepository.authComponent);
+      dataComponentRepository.addComponent(
+          dataComponent: dataComponentRepository.timeComponent);
       sourceRepository.addSource(source: sourceRepository.timeSource);
     }
     emit(state.copyWith(
@@ -102,23 +102,15 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     var component = event.dataComponent;
     component.name = event.dataComponent.name.pascalCase;
 
-    if (dataComponentRepository.exists(component.name)) {
+    if (dataComponentRepository.exists(dataComponentName: component.name)) {
+      final existingComponent = dataComponentRepository.getDataComponentByName(
+          dataComponentName: component.name)!;
+
       addSr(DataComponentsScreenSR.error(
           message:
-              'Data component ${component.name.pascalCase} already exists'));
+              'Data component ${component.name.pascalCase} already exists${existingComponent.sourceName.isNotEmpty ? ' in ${existingComponent.sourceName.pascalCase} source' : ''}'));
 
       return;
-    } else {
-      for (var source in sourceRepository.sources) {
-        for (var entity in source.dataComponentsNames) {
-          if (entity.pascalCase == component.name.pascalCase) {
-            addSr(DataComponentsScreenSR.error(
-                message:
-                    'Data component ${component.name.pascalCase} already exists in ${source.name.titleCase}Source'));
-            return;
-          }
-        }
-      }
     }
 
     if (component.properties.isEmpty) {
@@ -127,7 +119,7 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
       _inheritRequestResponse(component);
     }
 
-    dataComponentRepository.addComponent(component);
+    dataComponentRepository.addComponent(dataComponent: component);
 
     if (event.source != null) {
       final source =
@@ -152,7 +144,8 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
           dataComponentName: event.dataComponentName);
     }
 
-    dataComponentRepository.removeComponent(event.dataComponentName);
+    dataComponentRepository.removeComponent(
+        dataComponentName: event.dataComponentName);
     sourceRepository.deleteDataComponentFromAllSources(
         dataComponentName: event.dataComponentName);
 
@@ -164,14 +157,16 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
     Emitter<DataComponentsScreenState> emit,
   ) async {
     dataComponentRepository.modifyComponent(
-        event.oldDataComponentName, event.dataComponent);
+        oldDataComponentName: event.oldDataComponentName,
+        dataComponent: event.dataComponent);
 
     if (event.source != null) {
       final source =
           sourceRepository.getSourceByName(sourceName: event.source!.name);
       if (source != null) {
         sourceRepository.modifyDataComponentInAllSources(
-            dataComponent: event.dataComponent,
+            dataComponentName: event.dataComponent.name,
+            dataComponentSourceName: source.name,
             oldDataComponentName: event.oldDataComponentName);
       }
     }
@@ -184,20 +179,23 @@ class DataComponentsScreenBloc extends BaseBloc<DataComponentsScreenEvent,
   void _inheritRequestResponse(DataComponent parentComponent) {
     if (parentComponent.imports.isNotEmpty) {
       for (var import in parentComponent.imports
-          .where((e) => !dataComponentRepository.isEnum(e))
+          .where((e) => !dataComponentRepository.isEnum(dataComponentName: e))
           .toList()) {
-        var componentImport =
-            dataComponentRepository.getDataComponentByName(import);
+        var componentImport = dataComponentRepository.getDataComponentByName(
+            dataComponentName: import);
 
         if (componentImport != null) {
           componentImport.generateRequest = parentComponent.generateRequest;
           componentImport.generateResponse = parentComponent.generateResponse;
 
-          dataComponentRepository.modifyComponent(import, componentImport);
+          dataComponentRepository.modifyComponent(
+              oldDataComponentName: import, dataComponent: componentImport);
 
           if (componentImport.sourceName.isNotEmpty) {
             sourceRepository.modifyDataComponentInAllSources(
-                dataComponent: componentImport, oldDataComponentName: import);
+                dataComponentName: componentImport.name,
+                dataComponentSourceName: componentImport.sourceName,
+                oldDataComponentName: import);
           }
 
           if (componentImport.imports.isNotEmpty) {

@@ -81,8 +81,8 @@ class ${sourceName.pascalCase}SourceImpl implements ${sourceName.pascalCase}Sour
   }
 
   static String _getSourceImplBody(GeneratedMethod method, String prefix) {
-    final isEnum = dataComponentRepository
-        .isEnum(method.responseEntityName.stripRequestResponse());
+    final isEnum = dataComponentRepository.isEnum(
+        dataComponentName: method.responseEntityName.stripRequestResponse());
 
     String data = '';
 

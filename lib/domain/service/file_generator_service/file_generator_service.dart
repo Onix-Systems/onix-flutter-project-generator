@@ -43,8 +43,8 @@ class FileGeneratorService {
     required String projectPath,
     required String dataComponentName,
   }) async {
-    final dataComponent =
-        dataComponentRepository.getDataComponentByName(dataComponentName)!;
+    final dataComponent = dataComponentRepository.getDataComponentByName(
+        dataComponentName: dataComponentName)!;
     if (dataComponent.isEnum && !dataComponent.exists) {
       await GenerateComponentEnum().call(
         projectName: projectName,

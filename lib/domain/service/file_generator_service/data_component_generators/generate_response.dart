@@ -18,9 +18,11 @@ class GenerateResponse {
     final name = dataComponent.name;
 
     final imports = dataComponent.imports.map((e) {
-      final sourceName =
-          dataComponentRepository.getDataComponentByName(e)?.sourceName ?? '';
-      if (!dataComponentRepository.isEnum(e)) {
+      final sourceName = dataComponentRepository
+              .getDataComponentByName(dataComponentName: e)
+              ?.sourceName ??
+          '';
+      if (!dataComponentRepository.isEnum(dataComponentName: e)) {
         return 'import \'package:$projectName/data/model/remote/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}_response.dart\';';
       } else {
         return 'import \'package:$projectName/domain/entity/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}.dart\';';
@@ -73,8 +75,8 @@ ${_getProperties(dataComponent: dataComponent)}
         dataComponent.imports
                 .map((e) => e.pascalCase)
                 .contains(property.type.pascalCase)
-            ? dataComponentRepository.isEnum(dataComponent.imports
-                    .firstWhereOrNull(
+            ? dataComponentRepository.isEnum(
+                    dataComponentName: dataComponent.imports.firstWhereOrNull(
                         (e) => e.pascalCase == property.type.pascalCase)!)
                 ? properties.add('        String? ${property.name},')
                 : properties.add(
@@ -91,6 +93,6 @@ ${_getProperties(dataComponent: dataComponent)}
     if (property.isList) {
       return '         ${property.name}: [],';
     }
-    return '         ${property.name}: ${dataComponentRepository.isEnum(dataComponent.imports.firstWhereOrNull((e) => e.pascalCase == property.type.pascalCase) ?? '') ? '${property.type}.values.first.toString()' : !TypeMatcher.isStandardType(TypeMatcher.getDartType(property.type)) ? '${property.type}Response.empty()' : TypeMatcher.defaultTypeValue(property.type)} ,';
+    return '         ${property.name}: ${dataComponentRepository.isEnum(dataComponentName: dataComponent.imports.firstWhereOrNull((e) => e.pascalCase == property.type.pascalCase) ?? '') ? '${property.type}.values.first.toString()' : !TypeMatcher.isStandardType(TypeMatcher.getDartType(property.type)) ? '${property.type}Response.empty()' : TypeMatcher.defaultTypeValue(property.type)} ,';
   }
 }

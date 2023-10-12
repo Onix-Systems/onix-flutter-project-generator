@@ -26,7 +26,7 @@ class ParamsFileGenerator {
             for (final entity in importSource.dataComponentsNames) {
               if (parameter.type.contains(entity)) {
                 final entitySourceName = dataComponentRepository
-                        .getDataComponentByName(entity)
+                        .getDataComponentByName(dataComponentName: entity)
                         ?.sourceName ??
                     '';
                 innerEnums.map((e) => e.name).contains(entity)

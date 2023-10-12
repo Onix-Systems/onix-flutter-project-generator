@@ -20,8 +20,10 @@ class GenerateComponentClass {
     final name = dataComponent.name;
 
     imports = dataComponent.imports.map((e) {
-      final importSourceName =
-          dataComponentRepository.getDataComponentByName(e)?.sourceName ?? '';
+      final importSourceName = dataComponentRepository
+              .getDataComponentByName(dataComponentName: e)
+              ?.sourceName ??
+          '';
       return 'import \'package:$projectName/domain/entity/${importSourceName.isNotEmpty ? '${importSourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}.dart\';';
     }).join('\n');
 
@@ -68,8 +70,8 @@ ${_getProperties(dataComponent: dataComponent)}
                 .firstWhereOrNull((element) => element == property.type) ??
             '';
 
-        final importEntity =
-            dataComponentRepository.getDataComponentByName(importName);
+        final importEntity = dataComponentRepository.getDataComponentByName(
+            dataComponentName: importName);
 
         if (importEntity != null && importEntity.isEnum) {
           properties

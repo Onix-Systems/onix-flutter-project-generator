@@ -9,7 +9,7 @@ class SwaggerParser {
     required Map<String, dynamic> data,
     required String projectName,
   }) {
-    dataComponentRepository.parse(data);
+    dataComponentRepository.parse(data: data);
 
     sourceRepository.parse(data: data);
 
@@ -77,10 +77,7 @@ class SwaggerParser {
     }
 
     dataComponentRepository.empty();
-
-    for (final dataComponent in parsedEntities) {
-      dataComponentRepository.addComponent(dataComponent);
-    }
+    dataComponentRepository.addAll(dataComponents: parsedEntities);
   }
 
   static void _setSourceNameForImports(Set<DataComponent> parsedEntities,
@@ -134,7 +131,7 @@ class SwaggerParser {
     }
 
     for (final import in dataComponent.imports) {
-      if (!dataComponentRepository.isEnum(import) &&
+      if (!dataComponentRepository.isEnum(dataComponentName: import) &&
           !import.endsWith('Request') &&
           !import.endsWith('Response') &&
           (dataComponents.any(
