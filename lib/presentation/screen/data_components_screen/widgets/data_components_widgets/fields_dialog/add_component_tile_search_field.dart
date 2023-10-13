@@ -34,7 +34,6 @@ class AddComponentSearchField extends StatelessWidget {
       marginColor: AppColors.bgDark,
       itemHeight: 45,
       offset: const Offset(0, 58),
-      scrollbarAlwaysVisible: false,
       initialValue: property.type.isEmpty
           ? null
           : SearchFieldListItem<String>(property.type,
