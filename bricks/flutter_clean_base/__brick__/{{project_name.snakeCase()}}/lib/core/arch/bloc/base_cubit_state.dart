@@ -42,7 +42,9 @@ abstract class BaseCubitState<S, B extends BaseCubit<S, SR>, SR,
   @override
   void dispose() {
     {{#web_only}}Loader.hide();{{/web_only}}
-    {{^web_only}}context.loaderOverlay.hide();{{/web_only}}
+    {{^web_only}}if (context.mounted) {
+    context.loaderOverlay.hide();
+    }{{/web_only}}
     if (_bloc != null) {
       _bloc?.dispose();
     }
