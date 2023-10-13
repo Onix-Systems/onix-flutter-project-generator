@@ -43,7 +43,8 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
   @override
   void empty() {
-    _dataComponents.clear();
+    _dataComponents.removeWhere((element) => !element.exists);
+    //_dataComponents.clear();
   }
 
   @override

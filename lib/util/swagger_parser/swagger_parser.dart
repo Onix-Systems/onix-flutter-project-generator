@@ -31,7 +31,9 @@ class SwaggerParser {
           source.dataComponentsNames.contains(e.name) ||
           source.dataComponentsNames.contains('${e.name}Request') ||
           source.dataComponentsNames.contains('${e.name}Response'))) {
-        dataComponent.setSourceName(source.name);
+        if (!dataComponent.exists) {
+          dataComponent.setSourceName(source.name);
+        }
       }
     }
 

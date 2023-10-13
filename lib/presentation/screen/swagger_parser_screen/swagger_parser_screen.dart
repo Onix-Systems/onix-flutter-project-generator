@@ -135,19 +135,32 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
       blocOf(context)
           .add(SwaggerParserScreenEventParse(url: _urlController.text));
     } else {
-      context.go(
-        AppRouter.dataComponentsScreen,
-        extra: widget.config.copyWith(
-          swaggerUrl: state.config.swaggerUrl,
-        ),
-      );
+      state.config.projectExists
+          ? context.pop(
+              widget.config.copyWith(
+                swaggerUrl: state.config.swaggerUrl,
+              ),
+            )
+          : context.go(
+              AppRouter.dataComponentsScreen,
+              extra: widget.config.copyWith(
+                swaggerUrl: state.config.swaggerUrl,
+              ),
+            );
     }
   }
 
-  _onBack(BuildContext context, SwaggerParserScreenState state) => context.go(
-        AppRouter.screensScreen,
-        extra: widget.config.copyWith(
-          swaggerUrl: state.config.swaggerUrl,
-        ),
-      );
+  _onBack(BuildContext context, SwaggerParserScreenState state) =>
+      state.config.projectExists
+          ? context.pop(
+              widget.config.copyWith(
+                swaggerUrl: state.config.swaggerUrl,
+              ),
+            )
+          : context.go(
+              AppRouter.screensScreen,
+              extra: widget.config.copyWith(
+                swaggerUrl: state.config.swaggerUrl,
+              ),
+            );
 }

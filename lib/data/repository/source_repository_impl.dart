@@ -58,7 +58,13 @@ class SourceRepositoryImpl implements SourceRepository {
   @override
   void addAll({required Set<Source> sources}) {
     for (final source in sources) {
-      addSource(source: source);
+      if (exists(sourceName: source.name)) {
+        source.dataComponentsNames.addAll(
+            getSourceByName(sourceName: source.name)!.dataComponentsNames);
+        modifySource(source: source, oldSourceName: source.name);
+      } else {
+        addSource(source: source);
+      }
     }
   }
 
