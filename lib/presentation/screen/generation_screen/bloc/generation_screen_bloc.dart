@@ -100,7 +100,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           workingDirectory: state.config.projectPath);
 
       gitGetBrickProcess.stdin.writeln(
-          'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/main.zip --output brick.zip && unzip -qq brick.zip "onix-flutter-project-generator-main/bricks/*" -d bricks && rm brick.zip');
+          'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/main.zip --output brick.zip && unzip -qq -f brick.zip "onix-flutter-project-generator-main/bricks/*" -d bricks && rm brick.zip');
 
       gitGetBrickProcess.stdin.writeln('echo "Complete with exit code: 0"');
       await gitGetBrickProcess.exitCode;
@@ -112,7 +112,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           .writeln('dart pub global activate mason_cli && mason cache clear');
 
       mainProcess.stdin.writeln(
-          'mason add -g flutter_clean_base --path ${state.config.projectPath}/bricks/onix-flutter-project-generator-main/bricks/flutter_clean_base');
+          'mason add -g flutter_clean_base --path \'${state.config.projectPath}/bricks/onix-flutter-project-generator-main/bricks/flutter_clean_base\'');
 
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
@@ -201,8 +201,10 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     if (!needToGenerateSources) {
       for (var source in state.config.sources) {
-        if (source.dataComponents
-            .where((component) => !component.exists)
+        if (source.dataComponentsNames
+            .where((component) => !dataComponentRepository
+                .getDataComponentByName(dataComponentName: component)!
+                .exists)
             .isNotEmpty) {
           needToGenerateSources = true;
           break;
@@ -217,27 +219,31 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           await fileGeneratorService.generateComponent(
             projectPath: state.config.projectPath,
             projectName: state.config.projectName,
-            dataComponent: component,
+            dataComponentName: component.name,
           );
         }
       }
 
       if (needToGenerateSources) {
-        final sources = state.config.sources
-            .where((source) => source.dataComponents
-                .where((entity) => !entity.exists)
-                .isNotEmpty)
-            .toList();
+        final sources = state.config.sources.where((source) {
+          return source.dataComponentsNames.where((entity) {
+            return !dataComponentRepository
+                .getDataComponentByName(dataComponentName: entity)!
+                .exists;
+          }).isNotEmpty;
+        }).toList();
         for (var source in sources) {
-          for (final component in source.dataComponents.where((e) =>
-              !e.exists &&
+          for (final component in source.dataComponentsNames.where((e) =>
+              !dataComponentRepository
+                  .getDataComponentByName(dataComponentName: e)!
+                  .exists &&
               !source.paths.any((path) => path.methods.any((method) => method
                   .innerEnums
-                  .any((innerEnum) => innerEnum.name == e.name))))) {
+                  .any((innerEnum) => innerEnum.name == e))))) {
             await fileGeneratorService.generateComponent(
               projectPath: state.config.projectPath,
               projectName: state.config.projectName,
-              dataComponent: component,
+              dataComponentName: component,
             );
           }
 

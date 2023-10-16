@@ -14,6 +14,9 @@ class DiGenerator {
     var getItRepositoryFile =
         File('$projectPath/$projectName/lib/core/di/repository.dart');
 
+    var getItRemoteFile =
+        File('$projectPath/$projectName/lib/core/di/remote.dart');
+
     var dioConstFile = File(
         '$projectPath/$projectName/lib/core/arch/data/remote/clients/dio/dio_const.dart');
 
@@ -33,7 +36,7 @@ import 'package:$projectName/data/source/remote/${sourceName.snakeCase}/${source
 
     await dioConstFile.writeAsString(dioConstFileContent.replaceFirst(
         '//{dio const end}',
-        '''static const String ${sourceName.camelCase}ApiInstance = '${sourceName.snakeCase}Api';
+        '''static const String ${sourceName.camelCase}ApiInstance = '${sourceName.camelCase}Api';
 static const String ${sourceName.camelCase}ApiBaseUrl = 'http://localhost:8080';
 
 //{dio const end}'''));
@@ -49,5 +52,20 @@ import 'package:$projectName/data/source/remote/${sourceName.snakeCase}/${source
         ..registerSingleton<${sourceName.pascalCase}Repository>(
        ${sourceName.pascalCase}RepositoryImpl(${sourceName.camelCase}Source: getIt<${sourceName.pascalCase}Source>()),
      ); //{repositories end}'''));
+
+    var getItRemoteFileContent = await getItRemoteFile.readAsString();
+
+    await getItRemoteFile.writeAsString(getItRemoteFileContent
+        .replaceFirst('); //{remote end}', ''')
+..registerLazySingleton<ApiClient>(
+      () => dioClientModule.makeApiClient(DioConst.${sourceName.camelCase}ApiBaseUrl),
+      instanceName: DioConst.${sourceName.camelCase}ApiInstance,
+); //{remote end}''').replaceFirst(
+            'class _DioClientModule extends DioClientModule {}', '''
+
+ApiClient apiClient${sourceName.pascalCase}() =>
+    GetIt.I.get<ApiClient>(instanceName: DioConst.${sourceName.camelCase}ApiInstance);
+
+class _DioClientModule extends DioClientModule {}'''));
   }
 }

@@ -22,7 +22,20 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(componentName) => "${componentName} component preview";
 
-  static String m1(projectName) => "Modify ${projectName}";
+  static String m1(componentName) =>
+      "Data component ${componentName} already exists";
+
+  static String m2(sourceName) => " in ${sourceName} source";
+
+  static String m3(componentName) =>
+      "Do you really want to delete component ${componentName}?";
+
+  static String m4(projectName) => "Modify ${projectName}";
+
+  static String m5(sourceName) =>
+      "Do you really want to delete source ${sourceName}?";
+
+  static String m6(sourceName) => "${sourceName}Source already exists";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -61,9 +74,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "createResponseCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Create response?"),
         "dataComponent": MessageLookupByLibrary.simpleMessage("Data component"),
+        "dataComponentExistsError": m1,
+        "dataComponentExistsInSource": m2,
         "dataComponents":
             MessageLookupByLibrary.simpleMessage("Data components"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "deleteComponentConfirmation": m3,
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
@@ -111,7 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Modify"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Modify component"),
-        "modifyGeneratedProject": m1,
+        "modifyGeneratedProject": m4,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Modify signing vars..."),
@@ -122,6 +138,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "New version of Onix Flutter Project Generator is available. Do you want to download it?"),
         "newVersionAvailableTitle":
             MessageLookupByLibrary.simpleMessage("New version available"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "nullable": MessageLookupByLibrary.simpleMessage("Nullable"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
@@ -154,6 +171,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
         "screens": MessageLookupByLibrary.simpleMessage("Screens"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
+        "sourceDeletingDialogTitle": m5,
+        "sourceExistsError": m6,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),
         "sources": MessageLookupByLibrary.simpleMessage("Sources"),
@@ -179,6 +198,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "usingBloc": MessageLookupByLibrary.simpleMessage("Using BLoC"),
         "usingCubit": MessageLookupByLibrary.simpleMessage("Using Cubit"),
         "willBeAddedAutomatically": MessageLookupByLibrary.simpleMessage(
-            "DEV & PROD flavors will be added automatically")
+            "DEV & PROD flavors will be added automatically"),
+        "withComponents":
+            MessageLookupByLibrary.simpleMessage("With components"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

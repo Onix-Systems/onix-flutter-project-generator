@@ -11,22 +11,12 @@ import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 
-import '../../core/di/app.dart';
-
 class SourceRepositoryImpl implements SourceRepository {
   @override
   Source get timeSource => Source(
         name: 'Time',
         exists: true,
         isGenerated: false,
-        dataComponents: [
-          DataComponent(
-            name: 'Time',
-            exists: true,
-            isGenerated: false,
-            properties: [Property(name: 'currentDateTime', type: 'DateTime')],
-          )..setSourceName('Time'),
-        ],
         dataComponentsNames: ['Time'],
       );
 
@@ -38,15 +28,25 @@ class SourceRepositoryImpl implements SourceRepository {
   }
 
   @override
+  void addDemoComponents() {
+    dataComponentRepository.addAll(dataComponents: {
+      dataComponentRepository.authComponent,
+      dataComponentRepository.timeComponent,
+    });
+    addSource(source: sourceRepository.timeSource);
+  }
+
+  @override
   Set<Source> get sources => _sources.map((e) => Source.copyOf(e)).toSet();
 
   @override
-  bool containsNewComponents() => sourceRepository.sources.any((source) =>
-      !source.exists ||
-      source.dataComponents.where((component) => !component.exists).isNotEmpty);
+  bool containsNewComponents() => sourceRepository.sources.any(
+        (source) =>
+            !source.exists || dataComponentRepository.containsNewComponents(),
+      );
 
   @override
-  void addSource(Source source) {
+  void addSource({required Source source}) {
     if (_sources
         .where((element) => element.name.pascalCase == source.name.pascalCase)
         .isEmpty) {
@@ -56,40 +56,26 @@ class SourceRepositoryImpl implements SourceRepository {
   }
 
   @override
-  void addAll(Set<Source> sources) {
+  void addAll({required Set<Source> sources}) {
     for (final source in sources) {
-      addSource(source);
+      if (exists(sourceName: source.name)) {
+        source.dataComponentsNames.addAll(
+            getSourceByName(sourceName: source.name)!.dataComponentsNames);
+        modifySource(source: source, oldSourceName: source.name);
+      } else {
+        addSource(source: source);
+      }
     }
   }
 
   @override
-  Source? getSourceByName(String name) {
+  Source? getSourceByName({required String sourceName}) {
     return _sources.firstWhereOrNull(
-        (element) => element.name.pascalCase == name.pascalCase);
+        (element) => element.name.pascalCase == sourceName.pascalCase);
   }
 
   @override
-  String getDataComponentSourceName(String entityName) {
-    final source = _sources.firstWhereOrNull((source) =>
-        source.dataComponents.firstWhereOrNull((element) =>
-            element.name.pascalCase ==
-            entityName.stripRequestResponse().pascalCase) !=
-        null);
-
-    if (source == null) {
-      return '';
-    }
-
-    return source.name;
-  }
-
-  @override
-  void parse(Map<String, dynamic> data) {
-    //empty();
-    _sources.addAll(_parse(data));
-  }
-
-  Set<Source> _parse(Map<String, dynamic> data) {
+  void parse({required Map<String, dynamic> data}) {
     final sources = <Source>{};
 
     final paths = <Path>[];
@@ -134,14 +120,14 @@ class SourceRepositoryImpl implements SourceRepository {
                     ? _getRefClassName(parameter['schema']['items'])
                     : _getRefClassName(parameter['schema']);
 
-                final entity =
-                    dataComponentRepository.getDataComponentByName(entityName);
+                final entity = dataComponentRepository.getDataComponentByName(
+                    dataComponentName: entityName);
 
                 if (entity == null) {
                   continue;
                 }
 
-                method.entities.add(entity);
+                method.entities.add(entity.name.pascalCase);
 
                 method.params.add(MethodParameter(
                     name: entityName.camelCase,
@@ -152,14 +138,13 @@ class SourceRepositoryImpl implements SourceRepository {
                     nullable: parameter['required'] != null
                         ? !parameter['required']
                         : true));
-
-                //method.setRequestEntityName(entityName);
               } else {
                 if (isEnum) {
                   method.innerEnums.add(DataComponent(
                     name:
                         '${entry.value['operationId'].toString().pascalCase}${parameter['name'].toString().pascalCase}',
                     isEnum: true,
+                    imports: {},
                     properties: List<Property>.generate(
                       parameter['schema']['enum']
                           .where((e) => e.runtimeType.toString() == 'String')
@@ -216,12 +201,12 @@ class SourceRepositoryImpl implements SourceRepository {
             if (TypeMatcher.isReference(parameter['schema'])) {
               String entityName = _getRefClassName(parameter['schema']);
 
-              var entity =
-                  dataComponentRepository.getDataComponentByName(entityName);
+              var entity = dataComponentRepository.getDataComponentByName(
+                  dataComponentName: entityName);
 
               if (entity == null) {
-                entity = dataComponentRepository
-                    .getDataComponentByName(entityName.stripRequestResponse());
+                entity = dataComponentRepository.getDataComponentByName(
+                    dataComponentName: entityName.stripRequestResponse());
 
                 if (entity == null) {
                   continue;
@@ -232,7 +217,7 @@ class SourceRepositoryImpl implements SourceRepository {
                 entity.generateRequest = true;
               }
 
-              method.entities.add(entity);
+              method.entities.add(entity.name.pascalCase);
               method.setRequestEntityName(entity.name);
             }
           }
@@ -266,7 +251,7 @@ class SourceRepositoryImpl implements SourceRepository {
       for (final path in paths) {
         for (final method in path.methods) {
           if (method.tags.contains(tag)) {
-            dependencies.addAll(method.entities.map((e) => e.name));
+            dependencies.addAll(method.entities);
           }
         }
       }
@@ -277,18 +262,16 @@ class SourceRepositoryImpl implements SourceRepository {
             .replaceAll(RegExp('[^A-Za-z0-9_-]'), '')
             .pascalCase
             .replaceAll('Api', ''),
-        tag: tag,
         paths: paths
             .where((element) =>
                 element.methods.any((method) => method.tags.contains(tag)))
             .toList(),
         dataComponentsNames: dependencies.toList(),
-        dataComponents: [],
       );
       sources.add(source);
     }
 
-    return sources;
+    addAll(sources: sources);
   }
 
   void _getMethodSchemaReference(entry, Method method) {
@@ -346,8 +329,8 @@ class SourceRepositoryImpl implements SourceRepository {
 
       String entityName = _getRefClassName(schema);
 
-      final entity = dataComponentRepository
-          .getDataComponentByName(entityName.stripRequestResponse());
+      final entity = dataComponentRepository.getDataComponentByName(
+          dataComponentName: entityName.stripRequestResponse());
 
       if (entity == null) {
         continue;
@@ -355,7 +338,7 @@ class SourceRepositoryImpl implements SourceRepository {
 
       entity.generateResponse = true;
 
-      method.entities.add(entity);
+      method.entities.add(entity.name);
     }
   }
 
@@ -377,122 +360,156 @@ class SourceRepositoryImpl implements SourceRepository {
   }
 
   @override
-  void addDataComponentToSource(Source source, DataComponent dataComponent) {
-    dataComponent.name = dataComponent.name.pascalCase;
-    dataComponent.sourceName = source.name;
-    _sources.firstWhere((element) => element.name == source.name)
-      ..dataComponents.add(dataComponent)
-      ..dataComponentsNames.add(dataComponent.name);
+  void addDataComponentToSource(
+      {required String sourceName, required String dataComponentName}) {
+    if (exists(sourceName: sourceName)) {
+      _sources
+          .firstWhere(
+              (element) => element.name.pascalCase == sourceName.pascalCase)
+          .dataComponentsNames
+          .add(dataComponentName.pascalCase);
+
+      dataComponentRepository.setDataComponentSource(
+          dataComponentName: dataComponentName, sourceName: sourceName);
+    }
   }
 
   @override
   void deleteDataComponentFromSource(
-      Source source, DataComponent dataComponent) {
-    _sources.firstWhere((element) => element.name == source.name)
-      ..dataComponents.remove(dataComponent)
-      ..dataComponentsNames.remove(dataComponent.name);
+      {required String sourceName, required String dataComponentName}) {
+    if (exists(sourceName: sourceName)) {
+      _sources
+          .firstWhere((element) => element.name == sourceName)
+          .dataComponentsNames
+          .remove(dataComponentName);
+    }
   }
 
   @override
-  void deleteDataComponentFromAllSources(String name) {
-    for (var source in _sources) {
-      var dependants = source.dataComponents
-          .where((entity) => entity.properties
-              .any((property) => property.type.pascalCase == name.pascalCase))
-          .map((e) => DataComponent.copyOf(e))
-          .toList();
+  void deleteDataComponentFromAllSources({required String dataComponentName}) {
+    if (dataComponentRepository.exists(dataComponentName: dataComponentName)) {
+      for (var source in _sources) {
+        var dependants = source.dataComponentsNames
+            .where((entity) => dataComponentRepository
+                .getDataComponentByName(dataComponentName: entity)!
+                .properties
+                .any((property) =>
+                    property.type.pascalCase == dataComponentName.pascalCase))
+            .toList();
 
-      for (var dependant in dependants) {
-        dependant.properties.removeWhere(
-            (property) => property.type.pascalCase == name.pascalCase);
+        for (var dependant in dependants) {
+          final dependantComponent = dataComponentRepository
+              .getDataComponentByName(dataComponentName: dependant);
+          if (dependantComponent != null) {
+            dependantComponent.properties.removeWhere((property) =>
+                property.type.pascalCase == dataComponentName.pascalCase);
 
-        modifyDataComponentInSource(source.name, dependant, dependant.name);
+            dependantComponent.imports.removeWhere((element) =>
+                element.pascalCase == dataComponentName.pascalCase);
+
+            if (dependantComponent.properties.isEmpty) {
+              dependantComponent.properties.add(Property.empty());
+            }
+
+            modifyDataComponentInSource(
+                dataComponentName: dependantComponent.name,
+                dataComponentSourceName: source.name,
+                oldDataComponentName: dependantComponent.name);
+          }
+        }
       }
     }
   }
 
   @override
-  void deleteSource(Source source) {
+  void deleteSource(
+      {required String sourceName, required bool withDataComponents}) {
+    final source = _sources.firstWhere(
+        (element) => element.name.pascalCase == sourceName.pascalCase);
+
+    for (final dataComponentName in source.dataComponentsNames) {
+      if (withDataComponents) {
+        dataComponentRepository.removeComponent(
+            dataComponentName: dataComponentName);
+      } else {
+        final dataComponent = dataComponentRepository.getDataComponentByName(
+            dataComponentName: dataComponentName.pascalCase);
+
+        if (dataComponent != null) {
+          dataComponent.sourceName = '';
+          dataComponentRepository.modifyComponent(
+              oldDataComponentName: dataComponent.name,
+              dataComponent: dataComponent);
+        }
+      }
+    }
+
     _sources.remove(source);
   }
 
   @override
-  void modifyDataComponentInSource(String sourceName,
-      DataComponent dataComponent, String oldDataComponentName) {
-    final source = _sources.firstWhere(
-        (element) => element.name.pascalCase == sourceName.pascalCase);
-
-    deleteDataComponentFromSource(
-        source,
-        source.dataComponents.firstWhere((element) =>
-            element.name.pascalCase == oldDataComponentName.pascalCase));
-    addDataComponentToSource(source, dataComponent);
+  void modifyDataComponentInSource(
+      {required String dataComponentName,
+      required String dataComponentSourceName,
+      required String oldDataComponentName}) {
+    if (exists(sourceName: dataComponentSourceName)) {
+      deleteDataComponentFromSource(
+        sourceName: dataComponentSourceName,
+        dataComponentName: oldDataComponentName,
+      );
+      addDataComponentToSource(
+          sourceName: dataComponentSourceName,
+          dataComponentName: dataComponentName);
+    }
   }
 
   @override
-  void modifySource(Source source, String sourceName) {
-    _sources.removeWhere((element) => element.name == sourceName);
+  void modifySource({required Source source, required String oldSourceName}) {
+    _sources.removeWhere((element) => element.name == oldSourceName);
     _sources.add(source);
-  }
-
-  @override
-  bool checkEntityIsEnum({required String entityName}) {
-    bool result = false;
-
-    for (final source in sources) {
-      for (final entity in source.dataComponents) {
-        if (entity.name == entityName) {
-          result = entity.isEnum;
-        }
+    if (source.name != oldSourceName) {
+      for (final dataComponentName in source.dataComponentsNames) {
+        dataComponentRepository.setDataComponentSource(
+            dataComponentName: dataComponentName, sourceName: source.name);
       }
     }
-
-    if (sources.any((element) => element.paths.any((path) => path.methods.any(
-        (method) => method.innerEnums
-            .any((innerEnum) => innerEnum.name == entityName))))) {
-      result = true;
-    }
-    return result;
-  }
-
-  @override
-  DataComponent? getDataComponentByName(String name) {
-    for (final source in sources) {
-      for (final entity in source.dataComponents) {
-        if (entity.name == name) {
-          return entity;
-        }
-      }
-    }
-
-    return null;
   }
 
   @override
   void modifyDataComponentInAllSources(
-      DataComponent dataComponent, String oldDataComponentName) {
-    modifyDataComponentInSource(
-        dataComponent.sourceName, dataComponent, oldDataComponentName);
+      {required String dataComponentName,
+      required String dataComponentSourceName,
+      required String oldDataComponentName}) {
+    if (exists(sourceName: dataComponentSourceName)) {
+      modifyDataComponentInSource(
+          dataComponentName: dataComponentName,
+          dataComponentSourceName: dataComponentSourceName,
+          oldDataComponentName: oldDataComponentName);
 
-    for (var source in _sources) {
-      final dependants = source.dataComponents
-          .where((element) => element.properties.any(
-              (property) => property.type == oldDataComponentName.pascalCase))
-          .toList();
+      for (var source in _sources) {
+        final dependants = source.dataComponentsNames
+            .where((element) => dataComponentRepository
+                .getDataComponentByName(dataComponentName: element.pascalCase)!
+                .properties
+                .any((property) =>
+                    property.type == oldDataComponentName.pascalCase))
+            .toList();
 
-      for (final dependant in dependants) {
-        for (var property in dependant.properties) {
-          if (property.type == oldDataComponentName.pascalCase) {
-            property.type = dataComponent.name.pascalCase;
+        for (final dependant in dependants) {
+          final dependantComponent = dataComponentRepository
+              .getDataComponentByName(dataComponentName: dependant);
+          if (dependantComponent != null) {
+            for (var property in dependantComponent.properties) {
+              if (property.type == oldDataComponentName.pascalCase) {
+                property.type = dataComponentName.pascalCase;
+              }
+            }
+
+            dependantComponent.imports.removeWhere((element) =>
+                element.pascalCase == oldDataComponentName.pascalCase);
+            dependantComponent.addImports([dataComponentName.pascalCase]);
           }
         }
-
-        dependant.imports.removeWhere(
-            (element) => element.pascalCase == oldDataComponentName.pascalCase);
-        dependant.componentImports.removeWhere((element) =>
-            element.name.pascalCase == oldDataComponentName.pascalCase);
-        dependant.componentImports.add(dataComponent);
-        dependant.addImports([dataComponent.name.pascalCase]);
       }
     }
   }
@@ -501,10 +518,13 @@ class SourceRepositoryImpl implements SourceRepository {
   void setAllExists() {
     for (final source in _sources) {
       source.exists = true;
-
-      for (final entity in source.dataComponents) {
-        entity.exists = true;
-      }
     }
+  }
+
+  @override
+  bool exists({required String sourceName}) {
+    return _sources
+        .where((element) => element.name.pascalCase == sourceName.pascalCase)
+        .isNotEmpty;
   }
 }

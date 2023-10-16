@@ -18,7 +18,7 @@ class Property {
   });
 
   factory Property.empty() => Property(
-        name: '',
+        name: 'name',
         type: 'String',
         nullable: false,
         isList: false,

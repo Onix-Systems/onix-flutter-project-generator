@@ -95,4 +95,68 @@ class Dialogs {
       ),
     );
   }
+
+  static showYesNoCancelDialog({
+    required BuildContext context,
+    bool isError = false,
+    String title = '',
+    required Widget content,
+    VoidCallback? onYes,
+    VoidCallback? onNo,
+    VoidCallback? onCancel,
+  }) {
+    showCupertinoDialog(
+      context: context,
+      builder: (ctx) => Focus(
+        autofocus: true,
+        onKey: (node, event) {
+          if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+            onYes?.call();
+            Navigator.of(ctx).pop();
+            return KeyEventResult.handled;
+          } else if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
+            onCancel?.call();
+            Navigator.of(ctx).pop();
+            return KeyEventResult.handled;
+          }
+          return KeyEventResult.ignored;
+        },
+        child: CupertinoAlertDialog(
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              title,
+              style: context.appTextStyles.fs18?.copyWith(
+                color: isError ? AppColors.red : null,
+              ),
+            ),
+          ),
+          content: content,
+          actions: [
+            CupertinoDialogAction(
+              child: Text(S.of(context).yes),
+              onPressed: () {
+                onYes?.call();
+                Navigator.of(ctx).pop();
+              },
+            ),
+            CupertinoDialogAction(
+              child: Text(S.of(context).no),
+              onPressed: () {
+                onNo?.call();
+                Navigator.of(ctx).pop();
+              },
+            ),
+            CupertinoDialogAction(
+              child: Text(S.of(context).cancel),
+              onPressed: () {
+                onCancel?.call();
+                Navigator.of(ctx).pop();
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

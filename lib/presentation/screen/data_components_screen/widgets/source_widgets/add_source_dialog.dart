@@ -72,7 +72,6 @@ class AddSourceDialog extends StatelessWidget {
       } else {
         final source = Source(
           name: sourceName,
-          dataComponents: [],
           dataComponentsNames: [],
         );
 

@@ -34,7 +34,9 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
       state.copyWith(
         config: event.config.copyWith(
           sources: sourceRepository.sources,
-          dataComponents: dataComponentRepository.dataComponents,
+          dataComponents: dataComponentRepository.dataComponents
+              .where((e) => e.sourceName.isEmpty)
+              .toSet(),
           screens: screenRepository.screens,
           projectExists: true,
           localVersion: event.config.localVersion,
@@ -92,24 +94,25 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
           .toSet();
 
       sourceRepository.empty();
-      sourceRepository.addAll(stateSources
-          .toList()
-          .sorted((a, b) => a.name.compareTo(b.name))
-          .toSet());
-      sourceRepository.addAll(parsedSources
-          .toList()
-          .sorted((a, b) => a.name.compareTo(b.name))
-          .toSet());
+      final sources = [
+        ...stateSources,
+        ...parsedSources,
+      ];
+
+      sourceRepository.addAll(
+          sources: sources.sorted((a, b) => a.name.compareTo(b.name)).toSet());
 
       dataComponentRepository.empty();
-      dataComponentRepository.addAll(stateDataComponents
-          .toList()
-          .sorted((a, b) => a.name.compareTo(b.name))
-          .toSet());
-      dataComponentRepository.addAll(parsedDataComponents
-          .toList()
-          .sorted((a, b) => a.name.compareTo(b.name))
-          .toSet());
+
+      final dataComponents = [
+        ...stateDataComponents,
+        ...parsedDataComponents,
+      ];
+
+      dataComponentRepository.addAll(
+          dataComponents: dataComponents
+              .sorted((a, b) => a.name.compareTo(b.name))
+              .toSet());
 
       await hideProgress();
 

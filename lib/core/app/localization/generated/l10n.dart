@@ -120,6 +120,26 @@ class S {
     );
   }
 
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Continue`
   String get continueLabel {
     return Intl.message(
@@ -1067,6 +1087,66 @@ class S {
       name: 'componentPreview',
       desc: '',
       args: [componentName],
+    );
+  }
+
+  /// `Do you really want to delete source {sourceName}?`
+  String sourceDeletingDialogTitle(Object sourceName) {
+    return Intl.message(
+      'Do you really want to delete source $sourceName?',
+      name: 'sourceDeletingDialogTitle',
+      desc: '',
+      args: [sourceName],
+    );
+  }
+
+  /// `With components`
+  String get withComponents {
+    return Intl.message(
+      'With components',
+      name: 'withComponents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete component {componentName}?`
+  String deleteComponentConfirmation(Object componentName) {
+    return Intl.message(
+      'Do you really want to delete component $componentName?',
+      name: 'deleteComponentConfirmation',
+      desc: '',
+      args: [componentName],
+    );
+  }
+
+  /// `{sourceName}Source already exists`
+  String sourceExistsError(Object sourceName) {
+    return Intl.message(
+      '${sourceName}Source already exists',
+      name: 'sourceExistsError',
+      desc: '',
+      args: [sourceName],
+    );
+  }
+
+  /// `Data component {componentName} already exists`
+  String dataComponentExistsError(Object componentName) {
+    return Intl.message(
+      'Data component $componentName already exists',
+      name: 'dataComponentExistsError',
+      desc: '',
+      args: [componentName],
+    );
+  }
+
+  /// ` in {sourceName} source`
+  String dataComponentExistsInSource(Object sourceName) {
+    return Intl.message(
+      ' in $sourceName source',
+      name: 'dataComponentExistsInSource',
+      desc: '',
+      args: [sourceName],
     );
   }
 }

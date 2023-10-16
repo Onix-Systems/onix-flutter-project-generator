@@ -101,7 +101,7 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                   ),
                   onDeleteScreen: (screen) => blocOf(context).add(
                     ScreensScreenEventOnScreenDelete(
-                      screen: screen,
+                      screenName: screen.name,
                     ),
                   ),
                 ),

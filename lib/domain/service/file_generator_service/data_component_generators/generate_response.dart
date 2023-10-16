@@ -17,11 +17,15 @@ class GenerateResponse {
     final sourceName = dataComponent.sourceName;
     final name = dataComponent.name;
 
-    final imports = dataComponent.componentImports.map((e) {
-      if (!e.isEnum) {
-        return 'import \'package:$projectName/data/model/remote/${sourceRepository.getDataComponentSourceName(e.name).isNotEmpty ? '${sourceRepository.getDataComponentSourceName(e.name).snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';';
+    final imports = dataComponent.imports.map((e) {
+      final sourceName = dataComponentRepository
+              .getDataComponentByName(dataComponentName: e)
+              ?.sourceName ??
+          '';
+      if (!dataComponentRepository.isEnum(dataComponentName: e)) {
+        return 'import \'package:$projectName/data/model/remote/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}_response.dart\';';
       } else {
-        return 'import \'package:$projectName/domain/entity/${sourceRepository.getDataComponentSourceName(e.name).isNotEmpty ? '${sourceRepository.getDataComponentSourceName(e.name).snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';';
+        return 'import \'package:$projectName/domain/entity/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}.dart\';';
       }
     }).join('\n');
 
@@ -71,10 +75,9 @@ ${_getProperties(dataComponent: dataComponent)}
         dataComponent.imports
                 .map((e) => e.pascalCase)
                 .contains(property.type.pascalCase)
-            ? dataComponent.componentImports
-                    .firstWhereOrNull(
-                        (e) => e.name.pascalCase == property.type.pascalCase)!
-                    .isEnum
+            ? dataComponentRepository.isEnum(
+                    dataComponentName: dataComponent.imports.firstWhereOrNull(
+                        (e) => e.pascalCase == property.type.pascalCase)!)
                 ? properties.add('        String? ${property.name},')
                 : properties.add(
                     '        ${property.type.pascalCase}Response? ${property.name},')
@@ -90,6 +93,6 @@ ${_getProperties(dataComponent: dataComponent)}
     if (property.isList) {
       return '         ${property.name}: [],';
     }
-    return '         ${property.name}: ${dataComponent.componentImports.firstWhereOrNull((e) => e.name.pascalCase == property.type.pascalCase)?.isEnum ?? false ? '${property.type}.values.first.toString()' : !TypeMatcher.isStandardType(TypeMatcher.getDartType(property.type)) ? '${property.type}Response.empty()' : TypeMatcher.defaultTypeValue(property.type)} ,';
+    return '         ${property.name}: ${dataComponentRepository.isEnum(dataComponentName: dataComponent.imports.firstWhereOrNull((e) => e.pascalCase == property.type.pascalCase) ?? '') ? '${property.type}.values.first.toString()' : !TypeMatcher.isStandardType(TypeMatcher.getDartType(property.type)) ? '${property.type}Response.empty()' : TypeMatcher.defaultTypeValue(property.type)} ,';
   }
 }

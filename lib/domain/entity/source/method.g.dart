@@ -9,9 +9,8 @@ part of 'method.dart';
 Method _$MethodFromJson(Map<String, dynamic> json) => Method(
       methodType: $enumDecode(_$MethodTypeEnumMap, json['methodType']),
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
-      entities: (json['entities'] as List<dynamic>)
-          .map((e) => DataComponent.fromJson(e as Map<String, dynamic>))
-          .toSet(),
+      entities:
+          (json['entities'] as List<dynamic>).map((e) => e as String).toSet(),
     );
 
 Map<String, dynamic> _$MethodToJson(Method instance) => <String, dynamic>{

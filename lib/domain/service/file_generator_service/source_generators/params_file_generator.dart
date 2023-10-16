@@ -23,13 +23,17 @@ class ParamsFileGenerator {
       for (final parameter in methodParamsNotRequired) {
         if (parameter.type.isNotEmpty) {
           for (final importSource in sourceRepository.sources) {
-            for (final entity in importSource.dataComponents) {
-              if (parameter.type.contains(entity.name)) {
-                innerEnums.map((e) => e.name).contains(entity.name)
+            for (final entity in importSource.dataComponentsNames) {
+              if (parameter.type.contains(entity)) {
+                final entitySourceName = dataComponentRepository
+                        .getDataComponentByName(dataComponentName: entity)
+                        ?.sourceName ??
+                    '';
+                innerEnums.map((e) => e.name).contains(entity)
                     ? imports.add(
-                        "import 'package:$projectName/data/model/remote/${entity.sourceName.snakeCase}/enums/${entity.name.snakeCase}.dart';\n")
+                        "import 'package:$projectName/data/model/remote/${entitySourceName.snakeCase}/enums/${entity.snakeCase}.dart';\n")
                     : imports.add(
-                        "import 'package:$projectName/domain/entity/${entity.sourceName.snakeCase}/${entity.name.snakeCase}/${entity.name.snakeCase}.dart';\n");
+                        "import 'package:$projectName/domain/entity/${entitySourceName.snakeCase}/${entity.snakeCase}/${entity.snakeCase}.dart';\n");
               }
             }
           }

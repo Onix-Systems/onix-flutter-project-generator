@@ -9,9 +9,9 @@ class SwaggerParser {
     required Map<String, dynamic> data,
     required String projectName,
   }) {
-    dataComponentRepository.parse(data);
+    dataComponentRepository.parse(data: data);
 
-    sourceRepository.parse(data);
+    sourceRepository.parse(data: data);
 
     final parsedEntities = dataComponentRepository.dataComponents;
 
@@ -31,7 +31,9 @@ class SwaggerParser {
           source.dataComponentsNames.contains(e.name) ||
           source.dataComponentsNames.contains('${e.name}Request') ||
           source.dataComponentsNames.contains('${e.name}Response'))) {
-        dataComponent.setSourceName(source.name);
+        if (!dataComponent.exists) {
+          dataComponent.setSourceName(source.name);
+        }
       }
     }
 
@@ -65,25 +67,19 @@ class SwaggerParser {
       return Source(
         name: source.name,
         paths: source.paths,
-        dataComponents: componentsToMove.toList(),
         dataComponentsNames: componentsToMove.map((e) => e.name).toList(),
       );
     }).toList();
 
-    final dataComponents =
-        parsedEntities.where((e) => e.sourceName.isEmpty).toList();
-
     for (final source in sources) {
       if (source.name != 'Time') {
-        sourceRepository.modifySource(source, source.name);
+        sourceRepository.modifySource(
+            source: source, oldSourceName: source.name);
       }
     }
 
     dataComponentRepository.empty();
-
-    for (final dataComponent in dataComponents) {
-      dataComponentRepository.addComponent(dataComponent);
-    }
+    dataComponentRepository.addAll(dataComponents: parsedEntities);
   }
 
   static void _setSourceNameForImports(Set<DataComponent> parsedEntities,
@@ -132,18 +128,18 @@ class SwaggerParser {
         ? dataComponent.generateResponse = true
         : dataComponent.generateResponse = genResponse;
 
-    if (dataComponent.isEnum || dataComponent.componentImports.isEmpty) {
+    if (dataComponent.isEnum || dataComponent.imports.isEmpty) {
       return;
     }
 
-    for (final import in dataComponent.componentImports) {
-      if (!import.isEnum &&
-          !import.name.endsWith('Request') &&
-          !import.name.endsWith('Response') &&
-          (dataComponents.any((component) =>
-              component.name.pascalCase == import.name.pascalCase))) {
-        final component = dataComponents.firstWhereOrNull(
-            (e) => e.name.pascalCase == import.name.pascalCase);
+    for (final import in dataComponent.imports) {
+      if (!dataComponentRepository.isEnum(dataComponentName: import) &&
+          !import.endsWith('Request') &&
+          !import.endsWith('Response') &&
+          (dataComponents.any(
+              (component) => component.name.pascalCase == import.pascalCase))) {
+        final component = dataComponents
+            .firstWhereOrNull((e) => e.name.pascalCase == import.pascalCase);
 
         if (component != null) {
           _setGenRequestResponse(

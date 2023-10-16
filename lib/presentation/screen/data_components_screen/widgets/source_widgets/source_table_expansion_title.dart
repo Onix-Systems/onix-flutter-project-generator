@@ -101,7 +101,6 @@ class _SourceTableExpansionTileState extends State<SourceTableExpansionTile> {
                                       .add(DataComponentsScreenEvent.addSource(
                                     source: Source(
                                         name: source.name,
-                                        dataComponents: [],
                                         dataComponentsNames: [],
                                         isGenerated: false),
                                   ));
