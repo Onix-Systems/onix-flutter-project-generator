@@ -18,8 +18,8 @@ class MethodGenerator {
     required String projectPath,
     required Source source,
   }) async {
-    final responseIsEnum = sourceRepository.checkEntityIsEnum(
-        entityName: method.responseEntityName);
+    final responseIsEnum = dataComponentRepository.isEnum(
+        dataComponentName: method.responseEntityName.stripRequestResponse());
 
     final responseEntityName =
         method.responseEntityName.endsWith('Response') || responseIsEnum
@@ -32,8 +32,12 @@ class MethodGenerator {
             : '${method.requestEntityName}Request';
 
     if (method.responseEntityName.isNotEmpty) {
-      final sourceName = sourceRepository
-          .getDataComponentSourceName(method.responseEntityName);
+      final sourceName = dataComponentRepository
+              .getDataComponentByName(
+                  dataComponentName:
+                      method.responseEntityName.stripRequestResponse())
+              ?.sourceName ??
+          '';
 
       if (responseIsEnum) {
         imports.add(
@@ -45,8 +49,11 @@ class MethodGenerator {
     }
 
     if (method.requestEntityName.isNotEmpty) {
-      final sourceName =
-          sourceRepository.getDataComponentSourceName(method.requestEntityName);
+      final sourceName = dataComponentRepository
+              .getDataComponentByName(
+                  dataComponentName: method.requestEntityName)
+              ?.sourceName ??
+          '';
 
       if (!(method.innerEnums.isNotEmpty &&
           !method.innerEnums
@@ -146,8 +153,11 @@ class MethodGenerator {
       for (final parameter in method.params) {
         if (parameter.type.isNotEmpty) {
           if (!parameter.nullable) {
-            final sourceName = sourceRepository
-                .getDataComponentSourceName(parameter.type.snakeCase);
+            final sourceName = dataComponentRepository
+                    .getDataComponentByName(
+                        dataComponentName: parameter.type.snakeCase)
+                    ?.sourceName ??
+                '';
 
             if (sourceName.isNotEmpty &&
                 !method.innerEnums.any((element) =>

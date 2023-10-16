@@ -12,14 +12,14 @@ class DataComponent {
   bool exists;
   bool isGenerated;
   List<Property> properties;
-  final Set<String> imports = {};
+  Set<String> imports;
   String sourceName = '';
-  Set<DataComponent> componentImports = {};
   bool isEnum;
 
   DataComponent({
     required this.name,
     required this.properties,
+    required this.imports,
     this.isEnum = false,
     this.generateRequest = false,
     this.generateResponse = false,
@@ -35,29 +35,12 @@ class DataComponent {
         generateResponse: false,
         exists: false,
         isGenerated: true,
+        imports: {},
       );
 
   void addImports(List<String> imports) {
     imports.sort((a, b) => a.compareTo(b));
     this.imports.addAll(imports);
-  }
-
-  void addComponentImports(List<String> imports) {
-    for (final import in imports) {
-      DataComponent? dataComponent =
-          dataComponentRepository.getDataComponentByName(
-              import.replaceAll('List<', '').replaceAll('>', ''));
-
-      if (dataComponent != null) {
-        componentImports.add(dataComponent);
-      } else {
-        dataComponent = sourceRepository.getDataComponentByName(
-            import.replaceAll('List<', '').replaceAll('>', ''));
-        if (dataComponent != null) {
-          componentImports.add(dataComponent);
-        }
-      }
-    }
   }
 
   void setName(String name) {
@@ -68,8 +51,12 @@ class DataComponent {
     if (this.sourceName.isEmpty) {
       this.sourceName = sourceName;
     }
-    for (final import in componentImports) {
-      import.setSourceName(sourceName);
+    for (final importName in imports) {
+      final import = dataComponentRepository.getDataComponentByName(
+          dataComponentName: importName);
+      if (import != null) {
+        import.setSourceName(sourceName);
+      }
     }
   }
 
@@ -88,7 +75,7 @@ class DataComponent {
       return result;
     }
 
-    return 'ClassEntity{name: $name, properties: $properties, imports: $imports, sourceName: $sourceName, componentImports: $componentImports, generateRequest: $generateRequest, generateResponse: $generateResponse, exists: $exists, isEnum: $isEnum}';
+    return 'ClassEntity{name: $name, properties: $properties, imports: $imports, sourceName: $sourceName, generateRequest: $generateRequest, generateResponse: $generateResponse, exists: $exists, isEnum: $isEnum}';
   }
 
   @override
@@ -115,10 +102,8 @@ class DataComponent {
       generateResponse: entity.generateResponse,
       exists: entity.exists,
       isGenerated: entity.isGenerated,
+      imports: entity.imports,
     );
-    copy.addImports(entity.imports.toList());
-    copy.componentImports
-        .addAll(entity.componentImports.map((e) => DataComponent.copyOf(e)));
     copy.sourceName = entity.sourceName;
     return copy;
   }

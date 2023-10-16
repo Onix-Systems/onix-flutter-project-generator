@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/components_table.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/add_source_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/delete_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -161,10 +163,23 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                   widget.source.exists ||
                                           widget.source.isGenerated
                                       ? null
-                                      : blocOf(context).add(
-                                          DataComponentsScreenEventDeleteSource(
-                                              source: widget.source),
-                                        );
+                                      : showCupertinoModalPopup<bool>(
+                                          context: context,
+                                          barrierDismissible: true,
+                                          builder: (context) =>
+                                              DeleteSourceDialog(
+                                                sourceName: widget.source.name,
+                                              )).then((withDataComponents) {
+                                          if (withDataComponents != null) {
+                                            blocOf(context).add(
+                                              DataComponentsScreenEventDeleteSource(
+                                                sourceName: widget.source.name,
+                                                withDataComponents:
+                                                    withDataComponents,
+                                              ),
+                                            );
+                                          }
+                                        });
                                 },
                                 child: Text(
                                   S.of(context).delete,
@@ -177,7 +192,7 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                         ),
                       ),
                     ),
-                    if (widget.source.dataComponents.isNotEmpty)
+                    if (widget.source.dataComponentsNames.isNotEmpty)
                       Icon(
                         expanded
                             ? CupertinoIcons.chevron_up
@@ -191,11 +206,14 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
               ),
             ),
           ),
-          if (widget.source.dataComponents.isNotEmpty && expanded) ...[
+          if (widget.source.dataComponentsNames.isNotEmpty && expanded) ...[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: ComponentsTable(
-                dataComponents: widget.source.dataComponents
+                dataComponents: widget.source.dataComponentsNames
+                    .map((e) => dataComponentRepository.getDataComponentByName(
+                        dataComponentName: e))
+                    .whereNotNull()
                     .toList()
                     .sorted((a, b) => a.name.compareTo(b.name))
                     .toSet(),

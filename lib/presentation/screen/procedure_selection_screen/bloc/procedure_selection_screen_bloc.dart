@@ -67,13 +67,13 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     final projectPath = event.projectURI.replaceAll('/$projectName', '');
 
     sourceRepository.empty();
-    sourceRepository.addAll(config.sources);
+    sourceRepository.addAll(sources: config.sources);
 
     dataComponentRepository.empty();
-    dataComponentRepository.addAll(config.dataComponents);
+    dataComponentRepository.addAll(dataComponents: config.dataComponents);
 
     screenRepository.empty();
-    screenRepository.addAll(config.screens);
+    screenRepository.addAll(screens: config.screens);
 
     emit(state.copyWith(
       config: config.copyWith(

@@ -12,16 +12,14 @@ DataComponent _$DataComponentFromJson(Map<String, dynamic> json) =>
       properties: (json['properties'] as List<dynamic>)
           .map((e) => Property.fromJson(e as Map<String, dynamic>))
           .toList(),
+      imports:
+          (json['imports'] as List<dynamic>).map((e) => e as String).toSet(),
       isEnum: json['isEnum'] as bool? ?? false,
       generateRequest: json['generateRequest'] as bool? ?? false,
       generateResponse: json['generateResponse'] as bool? ?? false,
       exists: json['exists'] as bool? ?? false,
       isGenerated: json['isGenerated'] as bool? ?? true,
-    )
-      ..sourceName = json['sourceName'] as String
-      ..componentImports = (json['componentImports'] as List<dynamic>)
-          .map((e) => DataComponent.fromJson(e as Map<String, dynamic>))
-          .toSet();
+    )..sourceName = json['sourceName'] as String;
 
 Map<String, dynamic> _$DataComponentToJson(DataComponent instance) =>
     <String, dynamic>{
@@ -31,7 +29,7 @@ Map<String, dynamic> _$DataComponentToJson(DataComponent instance) =>
       'exists': instance.exists,
       'isGenerated': instance.isGenerated,
       'properties': instance.properties,
+      'imports': instance.imports.toList(),
       'sourceName': instance.sourceName,
-      'componentImports': instance.componentImports.toList(),
       'isEnum': instance.isEnum,
     };

@@ -21,7 +21,7 @@ class ScreensScreenBloc
     Emitter<ScreensScreenState> emit,
   ) {
     if (!event.config.projectExists) {
-      screenRepository.addScreen(screenRepository.homeScreen);
+      screenRepository.addScreen(screen: screenRepository.homeScreen);
     }
     emit(state.copyWith(
       config: event.config.copyWith(
@@ -34,12 +34,10 @@ class ScreensScreenBloc
     ScreensScreenEventOnScreenAdd event,
     Emitter<ScreensScreenState> emit,
   ) {
-    if (screenRepository.screens
-        .where((element) => element.name == event.screen.name)
-        .isNotEmpty) {
+    if (screenRepository.exists(screenName: event.screen.name)) {
       addSr(const ScreensScreenSR.existsError());
     } else {
-      screenRepository.addScreen(event.screen);
+      screenRepository.addScreen(screen: event.screen);
 
       emit(state.copyWith(
         config: state.config.copyWith(screens: screenRepository.screens),
@@ -51,7 +49,7 @@ class ScreensScreenBloc
     ScreensScreenEventOnScreenDelete event,
     Emitter<ScreensScreenState> emit,
   ) {
-    screenRepository.removeScreen(event.screen);
+    screenRepository.removeScreen(screenName: event.screenName);
     emit(state.copyWith(
       config: state.config.copyWith(screens: screenRepository.screens),
     ));

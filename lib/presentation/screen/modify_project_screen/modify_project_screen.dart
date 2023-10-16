@@ -54,6 +54,13 @@ class _ModifyProjectScreenState extends BaseState<
   @override
   void onBlocCreated(BuildContext context, ModifyProjectScreenBloc bloc) {
     bloc.add(ModifyProjectScreenEvent.init(config: widget.config));
+
+    // if (widget.goToDataComponents) {
+    //   _tabController.animateTo(1);
+    //   bloc.add(
+    //     const ModifyProjectScreenEventChangeTab(index: 1),
+    //   );
+    // }
     super.onBlocCreated(context, bloc);
   }
 
@@ -131,8 +138,7 @@ class _ModifyProjectScreenState extends BaseState<
                       );
                     },
                     onGenerate: () => _onGenerate(context),
-                    onParse: (url) => blocOf(context)
-                        .add(ModifyProjectScreenEventOnParse(path: url))),
+                  ),
           ),
         ],
       ),

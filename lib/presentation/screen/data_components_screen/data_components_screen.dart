@@ -15,7 +15,6 @@ import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bl
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/inputs/text_field_with_label.dart';
 
 import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_models.dart';
 
@@ -23,7 +22,6 @@ class DataComponentsScreen extends StatefulWidget {
   final Config config;
   final VoidCallback? onGenerate;
   final VoidCallback? onBack;
-  final Function(String)? onParse;
   final Stream<ModifyProjectScreenSR>? onSR;
 
   const DataComponentsScreen({
@@ -31,7 +29,6 @@ class DataComponentsScreen extends StatefulWidget {
     this.onBack,
     this.onSR,
     this.onGenerate,
-    this.onParse,
     super.key,
   });
 
@@ -132,7 +129,18 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
                   AppFilledButton(
                     label: S.of(context).getFromSwagger,
                     icon: Icons.dataset_outlined,
-                    onPressed: () => _onParse(context, state),
+                    onPressed: () {
+                      context
+                          .push(
+                        AppRouter.swaggerParserScreen,
+                        extra: state.config,
+                      )
+                          .then((_) {
+                        blocOf(context).add(
+                          const DataComponentsScreenEventStateUpdate(),
+                        );
+                      });
+                    },
                   ),
                   const Delimiter.width(10),
                 ],
@@ -175,23 +183,5 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
     state.config.projectExists
         ? widget.onGenerate?.call()
         : context.go(AppRouter.summaryScreen, extra: widget.config);
-  }
-
-  void _onParse(BuildContext context, DataComponentsScreenState state) {
-    final urlController = TextEditingController();
-
-    Dialogs.showOkCancelDialog(
-      context: context,
-      title: S.of(context).placeURLTitle,
-      content: TextFieldWithLabel(
-        label: '',
-        expanded: true,
-        textController: urlController,
-        onChanged: () {},
-      ),
-      onOk: () {
-        widget.onParse?.call(urlController.text);
-      },
-    );
   }
 }

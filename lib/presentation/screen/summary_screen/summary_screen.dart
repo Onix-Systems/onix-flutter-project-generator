@@ -150,7 +150,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                             .toList()
                             .sorted((a, b) => a.name.compareTo(b.name))
                             .map((e) =>
-                                '${e.name.pascalCase}(${e.dataComponents.sorted((a, b) => a.name.compareTo(b.name)).map((e) => e.name.pascalCase).join(', ')})')
+                                '${e.name.pascalCase}(${e.dataComponentsNames.sorted((a, b) => a.compareTo(b)).map((e) => e.pascalCase).join(', ')})')
                             .join('\n\n'),
                       ),
                     if (state.config.dataComponents.isNotEmpty)

@@ -19,10 +19,13 @@ class GenerateComponentClass {
 
     final name = dataComponent.name;
 
-    imports = dataComponent.componentImports
-        .map((e) =>
-            'import \'package:$projectName/domain/entity/${sourceRepository.getDataComponentSourceName(e.name).isNotEmpty ? '${sourceRepository.getDataComponentSourceName(e.name).snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';')
-        .join('\n');
+    imports = dataComponent.imports.map((e) {
+      final importSourceName = dataComponentRepository
+              .getDataComponentByName(dataComponentName: e)
+              ?.sourceName ??
+          '';
+      return 'import \'package:$projectName/domain/entity/${importSourceName.isNotEmpty ? '${importSourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}.dart\';';
+    }).join('\n');
 
     final fileContent = '''
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -63,8 +66,12 @@ ${_getProperties(dataComponent: dataComponent)}
       }
 
       if (!TypeMatcher.isStandardType(TypeMatcher.getDartType(property.type))) {
-        final importEntity = dataComponent.componentImports
-            .firstWhereOrNull((element) => element.name == property.type);
+        final importName = dataComponent.imports
+                .firstWhereOrNull((element) => element == property.type) ??
+            '';
+
+        final importEntity = dataComponentRepository.getDataComponentByName(
+            dataComponentName: importName);
 
         if (importEntity != null && importEntity.isEnum) {
           properties

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -9,8 +8,8 @@ class AddComponentSearchField extends StatelessWidget {
   final TextEditingController searchController;
   final FocusNode searchFieldFocusNode;
   final Property property;
-  final List<DataComponent> components;
-  final ValueChanged<DataComponent> onSelect;
+  final List<String> components;
+  final ValueChanged<String> onSelect;
   final VoidCallback onClear;
 
   const AddComponentSearchField({
@@ -25,22 +24,21 @@ class AddComponentSearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SearchField<DataComponent>(
+    return SearchField<String>(
       controller: searchController,
       focusNode: searchFieldFocusNode,
       suggestions: components
-          .map((e) => SearchFieldListItem<DataComponent>(e.name, item: e))
+          .map((e) => SearchFieldListItem<String>(e, item: e))
           .toList(),
       maxSuggestionsInViewPort: 8,
       marginColor: AppColors.bgDark,
       itemHeight: 45,
       offset: const Offset(0, 58),
-      scrollbarAlwaysVisible: false,
       initialValue: property.type.isEmpty
           ? null
-          : SearchFieldListItem<DataComponent>(property.type,
-              item: components
-                  .firstWhere((element) => element.name == property.type)),
+          : SearchFieldListItem<String>(property.type,
+              item:
+                  components.firstWhere((element) => element == property.type)),
       onSuggestionTap: (value) => onSelect(value.item!),
       searchStyle: context.appTextStyles.fs18?.copyWith(
         color: AppColors.bgDark,

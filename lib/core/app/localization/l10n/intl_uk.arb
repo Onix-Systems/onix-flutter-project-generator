@@ -7,6 +7,8 @@
   "apiFailureUndefined": "Ой! Схоже, що в нас проблема з цим запитом. Будь ласка, спробуйте ще раз.\n\nЯкщо проблема не вирішилась - зверніться до техпідтримки.",
   "ok": "OK",
   "cancel": "Відміна",
+  "yes": "Так",
+  "no": "Ні",
   "continueLabel": "Продовжити",
   "modify": "Змінити",
   "delete": "Видалити",
@@ -100,5 +102,11 @@
   "fields": "Поля",
   "addField": "Додати поле",
   "preview": "Перегляд",
-  "componentPreview": "Перегляд компонента {componentName}"
+  "componentPreview": "Перегляд компонента {componentName}",
+  "sourceDeletingDialogTitle": "Дійсно хочете видалити джерело {sourceName}?",
+  "withComponents": "З компонентами",
+  "deleteComponentConfirmation": "Дійсно хочете видалити компонент {componentName}?",
+  "sourceExistsError": "{sourceName}Source вже існує",
+  "dataComponentExistsError": "Компонент {componentName} вже існує",
+  "dataComponentExistsInSource": " в джерелі {sourceName}"
 }

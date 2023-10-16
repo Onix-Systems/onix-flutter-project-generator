@@ -18,18 +18,18 @@ class GenerateMapper {
 
     final sourceName = _getSourceName(dataComponent.name);
 
-    final importMappers = dataComponent.componentImports
-        .where((e) => !e.isEnum)
-        .map((e) => '    final ${e.name.camelCase}Mapper = ${e.name}Mappers();')
+    final importMappers = dataComponent.imports
+        .where((e) => !dataComponentRepository.isEnum(dataComponentName: e))
+        .map((e) => '    final ${e.camelCase}Mapper = ${e}Mappers();')
         .join('\n');
 
-    final imports = dataComponent.componentImports
-        .map((e) => e.isEnum
-            ? 'import \'package:$projectName/domain/entity/${_getSourceName(e.name)}${e.name.snakeCase}/${e.name.snakeCase}.dart\';'
+    final imports = dataComponent.imports
+        .map((e) => dataComponentRepository.isEnum(dataComponentName: e)
+            ? 'import \'package:$projectName/domain/entity/${_getSourceName(e)}${e.snakeCase}/${e.snakeCase}.dart\';'
             : importMappers.isNotEmpty
-                ? '${dataComponent.generateResponse ? 'import \'package:$projectName/data/model/remote/${_getSourceName(e.name)}${e.name.snakeCase}/${e.name.snakeCase}_response.dart\';\n' : ''}'
-                    '${dataComponent.generateRequest ? 'import \'package:$projectName/domain/entity/${_getSourceName(e.name)}${e.name.snakeCase}/${e.name.snakeCase}.dart\';\n' : ''}'
-                    'import \'package:$projectName/data/mapper/${_getSourceName(e.name)}${e.name.snakeCase}/${e.name.snakeCase}_mapper.dart\';\n'
+                ? '${dataComponent.generateResponse ? 'import \'package:$projectName/data/model/remote/${_getSourceName(e)}${e.snakeCase}/${e.snakeCase}_response.dart\';\n' : ''}'
+                    '${dataComponent.generateRequest ? 'import \'package:$projectName/domain/entity/${_getSourceName(e)}${e.snakeCase}/${e.snakeCase}.dart\';\n' : ''}'
+                    'import \'package:$projectName/data/mapper/${_getSourceName(e)}${e.snakeCase}/${e.snakeCase}_mapper.dart\';\n'
                 : '')
         .join('\n');
 
@@ -88,20 +88,20 @@ class ${name.pascalCase}Mappers {
 
     for (final property in dataComponent.properties) {
       if (property.isList) {
-        dataComponent.componentImports
-                .map((e) => e.name.pascalCase)
+        dataComponent.imports
+                .map((e) => e.pascalCase)
                 .contains(property.type.pascalCase)
             ? properties.add(
                 '        ${property.name}: from.${property.name}${isRequest && !property.nullable ? '' : '?'}.map(${property.type.camelCase}Mapper.map${isRequest ? 'EntityToRequest' : 'ResponseToEntity'}).toList()${isRequest && !property.nullable ? '' : ' ?? []'},')
             : properties.add(
                 '        ${property.name}: from.${property.name}${isRequest ? '' : ' ?? []'},');
       } else {
-        dataComponent.componentImports
-                .map((e) => e.name.pascalCase)
+        dataComponent.imports
+                .map((e) => e.pascalCase)
                 .contains(property.type.pascalCase)
-            ? dataComponent.componentImports
-                    .firstWhereOrNull((e) => e.name == property.type)!
-                    .isEnum
+            ? dataComponentRepository.isEnum(
+                    dataComponentName: dataComponent.imports
+                        .firstWhereOrNull((e) => e == property.type)!)
                 ? properties.add(
                     '        ${property.name}: ${property.type.pascalCase}.values.firstWhereOrNull((element) => element.name == from.${property.name}${isRequest ? '.name' : ''})${isRequest ? '?.name' : ''} ?? ${property.type.pascalCase}.values.first${isRequest ? '.name' : ''},')
                 : properties.add(
@@ -114,10 +114,10 @@ class ${name.pascalCase}Mappers {
   }
 
   String _getSourceName(String dataComponentName) {
-    return sourceRepository
-            .getDataComponentSourceName(dataComponentName)
-            .isNotEmpty
-        ? '${sourceRepository.getDataComponentSourceName(dataComponentName).snakeCase}/'
-        : '';
+    final sourceName = dataComponentRepository
+            .getDataComponentByName(dataComponentName: dataComponentName)
+            ?.sourceName ??
+        '';
+    return sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : '';
   }
 }

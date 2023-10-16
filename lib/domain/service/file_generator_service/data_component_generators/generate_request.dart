@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
@@ -17,11 +16,15 @@ class GenerateRequest {
     final name = dataComponent.name;
     final sourceName = dataComponent.sourceName;
 
-    final imports = dataComponent.componentImports.map((e) {
-      if (e.isEnum) {
-        return 'import \'package:$projectName/domain/entity/${sourceRepository.getDataComponentSourceName(e.name).isNotEmpty ? '${sourceRepository.getDataComponentSourceName(e.name).snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}.dart\';';
+    final imports = dataComponent.imports.map((e) {
+      final sourceName = dataComponentRepository
+              .getDataComponentByName(dataComponentName: e)
+              ?.sourceName ??
+          '';
+      if (dataComponentRepository.isEnum(dataComponentName: e)) {
+        return 'import \'package:$projectName/domain/entity/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}.dart\';';
       } else {
-        return 'import \'package:$projectName/data/model/remote/${sourceRepository.getDataComponentSourceName(e.name).isNotEmpty ? '${sourceRepository.getDataComponentSourceName(e.name).snakeCase}/' : ''}${e.name.snakeCase}/${e.name.snakeCase}_request.dart\';';
+        return 'import \'package:$projectName/data/model/remote/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${e.snakeCase}/${e.snakeCase}_request.dart\';';
       }
     }).join('\n');
 
@@ -39,12 +42,10 @@ ${dataComponent.properties.map((e) {
       String type = e.type;
       if (!TypeMatcher.isStandardType(TypeMatcher.getDartType(type)) &&
           !type.contains('dynamic')) {
-        final import = dataComponent.componentImports.firstWhereOrNull(
-            (element) => element.name.pascalCase == type.pascalCase);
-        if (import != null && !import.isEnum) {
-          if (import.name.pascalCase == 'MyAccount') {
-            logger.f(import);
-          }
+        final import = dataComponent.imports.firstWhereOrNull(
+            (element) => element.pascalCase == type.pascalCase);
+        if (import != null &&
+            !dataComponentRepository.isEnum(dataComponentName: import)) {
           type = '${type}Request';
         } else {
           type = 'String';

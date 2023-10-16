@@ -1,4 +1,3 @@
-import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 
 abstract class SourceRepository {
@@ -6,40 +5,44 @@ abstract class SourceRepository {
 
   Set<Source> get sources;
 
-  void parse(Map<String, dynamic> data);
+  void addDemoComponents();
+
+  void parse({required Map<String, dynamic> data});
 
   bool containsNewComponents();
 
-  Source? getSourceByName(String name);
+  Source? getSourceByName({required String sourceName});
 
-  String getDataComponentSourceName(String entityName);
+  void addSource({required Source source});
 
-  DataComponent? getDataComponentByName(String name);
+  void addAll({required Set<Source> sources});
 
-  void addSource(Source source);
+  void deleteSource(
+      {required String sourceName, required bool withDataComponents});
 
-  void addAll(Set<Source> sources);
+  void modifySource({required Source source, required String oldSourceName});
 
-  void deleteSource(Source source);
-
-  void modifySource(Source source, String sourceName);
-
-  void addDataComponentToSource(Source source, DataComponent dataComponent);
+  void addDataComponentToSource(
+      {required String sourceName, required String dataComponentName});
 
   void deleteDataComponentFromSource(
-      Source source, DataComponent dataComponent);
+      {required String sourceName, required String dataComponentName});
 
-  void deleteDataComponentFromAllSources(String name);
+  void deleteDataComponentFromAllSources({required String dataComponentName});
 
-  void modifyDataComponentInSource(String sourceName,
-      DataComponent dataComponent, String oldDataComponentName);
+  void modifyDataComponentInSource(
+      {required String dataComponentName,
+      required String dataComponentSourceName,
+      required String oldDataComponentName});
 
   void modifyDataComponentInAllSources(
-      DataComponent dataComponent, String oldDataComponentName);
+      {required String dataComponentName,
+      required String dataComponentSourceName,
+      required String oldDataComponentName});
 
   void empty();
 
-  bool checkEntityIsEnum({required String entityName});
-
   void setAllExists();
+
+  bool exists({required String sourceName});
 }

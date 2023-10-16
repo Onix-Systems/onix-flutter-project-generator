@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
@@ -12,6 +11,7 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/w
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 import 'package:recase/recase.dart';
 
 class ComponentsTable extends StatelessWidget {
@@ -219,8 +219,6 @@ class ComponentsTable extends StatelessWidget {
                                         source: source,
                                       ),
                                     ).then((component) {
-                                      logger.f('component: $component');
-
                                       if (component != null) {
                                         blocOf(context).add(
                                           DataComponentsScreenEventModifyDataComponent(
@@ -269,10 +267,22 @@ class ComponentsTable extends StatelessWidget {
                               onPressed: () {
                                 if (!dataComponent.exists &&
                                     !dataComponent.isGenerated) {
-                                  blocOf(context).add(
-                                    DataComponentsScreenEventDeleteDataComponent(
-                                        entity: dataComponent, source: source),
-                                  );
+                                  Dialogs.showOkCancelDialog(
+                                      context: context,
+                                      title: S
+                                          .of(context)
+                                          .deleteComponentConfirmation(
+                                              dataComponent.name.pascalCase),
+                                      isError: true,
+                                      content: const SizedBox(),
+                                      onOk: () {
+                                        blocOf(context).add(
+                                          DataComponentsScreenEventDeleteDataComponent(
+                                              dataComponentName:
+                                                  dataComponent.name,
+                                              sourceName: source?.name ?? ''),
+                                        );
+                                      });
                                 }
                               },
                               child: Text(

@@ -37,7 +37,9 @@ class _AddFieldTileState extends State<AddFieldTile> {
     'bool',
   ];
 
-  void init() {
+  @override
+  void initState() {
+    super.initState();
     if (widget.property != null) {
       _propertyNameController.text = widget.property!.name;
       _property = Property.copyOf(widget.property!);
@@ -48,7 +50,6 @@ class _AddFieldTileState extends State<AddFieldTile> {
 
   @override
   Widget build(BuildContext context) {
-    init();
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.bgDark,
@@ -106,10 +107,9 @@ class _AddFieldTileState extends State<AddFieldTile> {
                       FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
                     ],
                     style: context.appTextStyles.fs18,
-                    onChanged: (value) {
-                      _property.name = value.camelCase;
-                      _onChanged();
-                    },
+                    onEditingComplete: _onChanged,
+                    onSubmitted: (_) => _onChanged(),
+                    onTapOutside: (_) => _onChanged(),
                   ),
                 ),
               ],
@@ -123,6 +123,7 @@ class _AddFieldTileState extends State<AddFieldTile> {
   void _onChanged() {
     final property = Property.copyOf(_property);
     property.type = TypeMatcher.getJsonType(_property.type);
+    property.name = _propertyNameController.text.camelCase;
 
     widget.onChanged(property);
   }

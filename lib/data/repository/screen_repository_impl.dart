@@ -15,7 +15,11 @@ class ScreenRepositoryImpl implements ScreenRepository {
   Set<Screen> get screens => _screens.map((e) => Screen.copyOf(e)).toSet();
 
   @override
-  void addScreen(Screen screen) {
+  bool exists({required String screenName}) =>
+      _screens.any((element) => element.name == screenName);
+
+  @override
+  void addScreen({required Screen screen}) {
     if (!_screens
         .any((element) => element.name.pascalCase == screen.name.pascalCase)) {
       _screens.add(screen);
@@ -23,9 +27,9 @@ class ScreenRepositoryImpl implements ScreenRepository {
   }
 
   @override
-  void addAll(Set<Screen> screens) {
+  void addAll({required Set<Screen> screens}) {
     for (final screen in screens) {
-      addScreen(screen);
+      addScreen(screen: screen);
     }
   }
 
@@ -43,9 +47,9 @@ class ScreenRepositoryImpl implements ScreenRepository {
   }
 
   @override
-  void removeScreen(Screen screen) {
-    if (!screen.exists) {
-      _screens.remove(screen);
+  void removeScreen({required String screenName}) {
+    if (exists(screenName: screenName)) {
+      _screens.removeWhere((screen) => screen.name == screenName);
     }
   }
 

@@ -15,6 +15,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   @override
   DataComponent get authComponent => DataComponent(
         name: 'Authentication',
+        imports: {},
         exists: true,
         isGenerated: false,
         properties: [
@@ -29,17 +30,27 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
         ],
       );
 
+  @override
+  DataComponent get timeComponent => DataComponent(
+        name: 'Time',
+        exists: true,
+        imports: {},
+        isGenerated: false,
+        properties: [Property(name: 'currentDateTime', type: 'DateTime')],
+      )..setSourceName('Time');
+
   final Set<DataComponent> _dataComponents = {};
 
   @override
   void empty() {
-    _dataComponents.clear();
+    _dataComponents.removeWhere((element) => !element.exists);
+    //_dataComponents.clear();
   }
 
   @override
-  DataComponent? getDataComponentByName(String name) {
+  DataComponent? getDataComponentByName({required String dataComponentName}) {
     return _dataComponents.firstWhereOrNull(
-        (element) => element.name.pascalCase == name.pascalCase);
+        (element) => element.name.pascalCase == dataComponentName.pascalCase);
   }
 
   @override
@@ -53,20 +64,20 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   }
 
   @override
-  bool exists(String componentName) {
-    return _dataComponents
-        .any((element) => element.name.pascalCase == componentName.pascalCase);
+  bool exists({required String dataComponentName}) {
+    return _dataComponents.any(
+        (element) => element.name.pascalCase == dataComponentName.pascalCase);
   }
 
   @override
-  bool isEnum(String name) {
+  bool isEnum({required String dataComponentName}) {
     return _dataComponents.any((element) =>
-        element.name.pascalCase == name.pascalCase && element.isEnum);
+        element.name.pascalCase == dataComponentName.pascalCase &&
+        element.isEnum);
   }
 
   @override
-  void parse(Map<String, dynamic> data) {
-    // empty();
+  void parse({required Map<String, dynamic> data}) {
     _dataComponents.addAll(_parse(data));
   }
 
@@ -85,6 +96,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
       } else if (entry.value.containsKey('enum')) {
         final dataComponent = DataComponent(
           name: entry.key,
+          imports: {},
           properties: (entry.value['enum'] as List<dynamic>)
               .map((e) => Property(name: e, type: 'string'))
               .toList(),
@@ -96,19 +108,6 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
     }
 
     _parseStack(stack);
-
-    for (final dataComponent in _dataComponents) {
-      if (dataComponent.imports.isEmpty) continue;
-
-      for (final import in dataComponent.imports) {
-        final importedDataComponent = _dataComponents.firstWhereOrNull(
-            (element) => element.name.camelCase == import.camelCase);
-
-        if (importedDataComponent == null) continue;
-
-        dataComponent.componentImports.add(importedDataComponent);
-      }
-    }
 
     return _dataComponents;
   }
@@ -139,6 +138,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
     final dataComponent = DataComponent(
       name: entry.key,
+      imports: {},
       properties:
           (entry.value['properties'] as Map<String, dynamic>).entries.map((e) {
         if (TypeMatcher.isReference(e.value)) {
@@ -174,6 +174,7 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
 
       final generatedDataComponent = DataComponent(
         name: dataComponent.name.stripRequestResponse(),
+        imports: {},
         properties: dataComponent.properties.map((e) {
           if (e.type.endsWith('Response') ||
               e.type.endsWith('Response>') ||
@@ -300,70 +301,75 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   }
 
   @override
-  void addComponent(DataComponent component) {
-    if (!exists(component.name.pascalCase)) {
-      component.name = component.name.pascalCase;
-      _dataComponents.add(DataComponent.copyOf(component));
+  void addComponent({required DataComponent dataComponent}) {
+    if (!exists(dataComponentName: dataComponent.name.pascalCase)) {
+      dataComponent.name = dataComponent.name.pascalCase;
+      _dataComponents.add(DataComponent.copyOf(dataComponent));
     }
   }
 
   @override
-  void addAll(Set<DataComponent> components) {
-    for (final component in components) {
-      addComponent(component);
+  void addAll({required Set<DataComponent> dataComponents}) {
+    for (final component in dataComponents) {
+      addComponent(dataComponent: component);
     }
   }
 
   @override
-  void removeComponent(String name) {
-    if (exists(name)) {
-      _dataComponents
-          .removeWhere((element) => element.name.pascalCase == name.pascalCase);
+  void removeComponent({required String dataComponentName}) {
+    if (exists(dataComponentName: dataComponentName)) {
+      _dataComponents.removeWhere(
+          (element) => element.name.pascalCase == dataComponentName.pascalCase);
     }
 
     for (var component in _dataComponents
         .where((element) => element.properties
-            .any((property) => property.type == name.pascalCase))
+            .any((property) => property.type == dataComponentName.pascalCase))
         .toList()) {
       final modifiedComponent = DataComponent.copyOf(component);
 
       modifiedComponent
-        ..properties.removeWhere((element) => element.type == name.pascalCase)
-        ..imports
-            .removeWhere((element) => element.pascalCase == name.pascalCase)
-        ..componentImports.removeWhere(
-            (element) => element.name.pascalCase == name.pascalCase);
+        ..properties.removeWhere(
+            (element) => element.type == dataComponentName.pascalCase)
+        ..imports.removeWhere(
+            (element) => element.pascalCase == dataComponentName.pascalCase);
 
-      modifyComponent(component.name, modifiedComponent);
+      if (modifiedComponent.properties.isEmpty) {
+        modifiedComponent.properties.add(Property.empty());
+      }
+
+      modifyComponent(
+          oldDataComponentName: component.name,
+          dataComponent: modifiedComponent);
     }
   }
 
   @override
-  void modifyComponent(String name, DataComponent modifiedComponent) {
-    if (exists(name)) {
-      _dataComponents
-          .removeWhere((element) => element.name.pascalCase == name.pascalCase);
-      _dataComponents.add(modifiedComponent);
+  void modifyComponent({
+    required String oldDataComponentName,
+    required DataComponent dataComponent,
+  }) {
+    if (exists(dataComponentName: oldDataComponentName)) {
+      _dataComponents.removeWhere((element) =>
+          element.name.pascalCase == oldDataComponentName.pascalCase);
+      _dataComponents.add(dataComponent);
     }
 
     final dependants = _dataComponents
-        .where((element) => element.properties
-            .any((property) => property.type == name.pascalCase))
+        .where((element) => element.properties.any(
+            (property) => property.type == oldDataComponentName.pascalCase))
         .toList();
 
     for (final dependant in dependants) {
       for (var property in dependant.properties) {
-        if (property.type == name.pascalCase) {
-          property.type = modifiedComponent.name.pascalCase;
+        if (property.type == oldDataComponentName.pascalCase) {
+          property.type = dataComponent.name.pascalCase;
         }
       }
 
-      dependant.imports
-          .removeWhere((element) => element.pascalCase == name.pascalCase);
-      dependant.componentImports
-          .removeWhere((element) => element.name.pascalCase == name.pascalCase);
-      dependant.componentImports.add(modifiedComponent);
-      dependant.addImports([modifiedComponent.name.pascalCase]);
+      dependant.imports.removeWhere(
+          (element) => element.pascalCase == oldDataComponentName.pascalCase);
+      dependant.addImports([dataComponent.name.pascalCase]);
     }
   }
 
@@ -371,6 +377,17 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
   void setAllExists() {
     for (final component in _dataComponents) {
       component.exists = true;
+    }
+  }
+
+  @override
+  void setDataComponentSource(
+      {required String dataComponentName, String sourceName = ''}) {
+    final dataComponent = _dataComponents.firstWhereOrNull(
+        (element) => element.name.pascalCase == dataComponentName.pascalCase);
+
+    if (dataComponent != null) {
+      dataComponent.sourceName = sourceName.pascalCase;
     }
   }
 }
