@@ -283,12 +283,33 @@ class SourceRepositoryImpl implements SourceRepository {
     }
 
     for (final response in responses) {
-      final schema = response.value.containsKey('content')
-          ? response.value['content']['schema'] ??
-                  response.value['content'].containsKey('application/json')
-              ? response.value['content']['application/json']['schema']
-              : response.value['content']['*/*']['schema']
-          : response.value['schema'];
+      Map<String, dynamic>? schema;
+
+      if (response.value.containsKey('content')) {
+        final content = response.value['content'];
+        if (content.containsKey('schema')) {
+          schema = content['schema'];
+        } else {
+          if (content.keys
+              .any((e) => e.toString().contains('application/json'))) {
+            schema = content[content.keys.firstWhere(
+                (e) => e.toString().contains('application/json'))]['schema'];
+          } else if (content.keys.any((e) => e.toString().contains('json'))) {
+            schema = content[content.keys
+                .firstWhere((e) => e.toString().contains('json'))]['schema'];
+          } else if (content.keys.any((e) => e.toString().contains('*/*'))) {
+            schema = content[content.keys
+                .firstWhere((e) => e.toString().contains('*/*'))]['schema'];
+          } else if (content.keys
+              .any((e) => e.toString().contains('text/plain'))) {
+            schema = content[content.keys
+                    .firstWhere((e) => e.toString().contains('text/plain'))]
+                ['schema'];
+          }
+        }
+      } else {
+        schema = response.value['schema'];
+      }
 
       if (schema == null) {
         return;
@@ -310,9 +331,8 @@ class SourceRepositoryImpl implements SourceRepository {
                 'List<${TypeMatcher.getDartType(schema['items']['type'])}>');
           }
         } else {
-          if (schema is Map &&
-              (schema.containsKey('additionalProperties') ||
-                  schema.containsKey('properties'))) {
+          if (schema.containsKey('additionalProperties') ||
+              schema.containsKey('properties')) {
             method.setResponseRuntimeType('Map<String, dynamic>');
           } else {
             method.setResponseRuntimeType(
