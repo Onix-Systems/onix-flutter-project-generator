@@ -100,7 +100,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           workingDirectory: state.config.projectPath);
 
       gitGetBrickProcess.stdin.writeln(
-          'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/main.zip --output brick.zip && unzip -qq -f brick.zip "onix-flutter-project-generator-main/bricks/*" -d bricks && rm brick.zip');
+          'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/main.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip');
 
       gitGetBrickProcess.stdin.writeln('echo "Complete with exit code: 0"');
       await gitGetBrickProcess.exitCode;
