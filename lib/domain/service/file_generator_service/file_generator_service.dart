@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
@@ -10,6 +12,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/generate_signing.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/generate_source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
+import 'package:recase/recase.dart';
 
 class FileGeneratorService {
   Future<void> generateScreen({
@@ -80,6 +83,22 @@ class FileGeneratorService {
         dataComponent: dataComponent,
       );
     }
+  }
+
+  Future<void> generateEmptySourceComponentFolders({
+    required String projectName,
+    required String projectPath,
+    required String sourceName,
+  }) async {
+    await Directory(
+            '$projectPath/$projectName/lib/domain/entity/${sourceName.snakeCase}')
+        .create(recursive: true);
+    await Directory(
+            '$projectPath/$projectName/lib/data/model/remote/${sourceName.snakeCase}')
+        .create(recursive: true);
+    await Directory(
+            '$projectPath/$projectName/lib/data/mapper/${sourceName.snakeCase}')
+        .create(recursive: true);
   }
 
   Future<void> generateSigning({

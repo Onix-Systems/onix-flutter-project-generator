@@ -55,7 +55,7 @@ class QaUtils {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             MaterialButton(
-              elevation: 10.0,
+              elevation: 10,
               child: const Text(
                 'Set proxy',
                 textDirection: TextDirection.ltr,
@@ -70,7 +70,7 @@ class QaUtils {
               },
             ),
             MaterialButton(
-              elevation: 10.0,
+              elevation: 10,
               child: const Text('Cancel'),
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pop(context);

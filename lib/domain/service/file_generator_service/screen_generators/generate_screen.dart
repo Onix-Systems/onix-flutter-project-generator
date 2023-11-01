@@ -14,7 +14,7 @@ class GenerateScreen {
     bool build = false,
   }) async {
     var routesFile =
-        File('$projectPath/$projectName/lib/core/router/app_router.dart');
+        File('$projectPath/$projectName/lib/app/router/app_router.dart');
     var diFile = File('$projectPath/$projectName/lib/core/di/bloc.dart');
 
     String screenName = screen.name.snakeCase;
@@ -45,10 +45,10 @@ class GenerateScreen {
         routesFile: routesFile,
         projectName: projectName);
 
-    if (screen.stateManager == ScreenStateManager.bloc) {
+    if (screen.stateManager != ScreenStateManager.none) {
       await _createDI(
         projectName: projectName,
-        screenName: screenName,
+        screen: screen,
         diFile: diFile,
       );
     }
@@ -89,14 +89,15 @@ class GenerateScreen {
 
   Future<void> _createDI({
     required String projectName,
-    required String screenName,
+    required Screen screen,
     required File diFile,
   }) async {
+    String screenName = screen.name.snakeCase;
     String diContent = await diFile.readAsString();
 
     await diFile.writeAsString(diContent.replaceFirst(
         'void registerBloc(GetIt getIt) {',
-        'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_bloc.dart\';\n\nvoid registerBloc(GetIt getIt) {\n  getIt.registerFactory<${screenName.pascalCase}ScreenBloc>(${screenName.pascalCase}ScreenBloc.new);'));
+        'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_${screen.stateManager.name}.dart\';\n\nvoid registerBloc(GetIt getIt) {\n  getIt.registerFactory<${screenName.pascalCase}Screen${screen.stateManager.name.pascalCase}>(${screenName.pascalCase}Screen${screen.stateManager.name.pascalCase}.new);'));
   }
 
   Future<void> _createFiles({

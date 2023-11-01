@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Delimiter extends SizedBox {
-  const Delimiter.height(double h, {Key? key}) : super(key: key, height: h);
+  const Delimiter.height(double h, {super.key}) : super(height: h);
 
-  const Delimiter.width(double w, {Key? key}) : super(key: key, width: w);
+  const Delimiter.width(double w, {super.key}) : super(width: w);
 }
 
 class ClickableWidget extends StatelessWidget {
@@ -32,7 +32,7 @@ class ClickableWidget extends StatelessWidget {
         elevation: elevation,
         borderRadius: borderRadius ?? borderRadiusInk,
         child: InkWell(
-          borderRadius: borderRadiusInk ?? BorderRadius.circular(0.0),
+          borderRadius: borderRadiusInk ?? BorderRadius.circular(0),
           splashColor:
               splashColor ?? Theme.of(context).primaryColor.withOpacity(0.03),
           highlightColor:
