@@ -17,7 +17,7 @@ abstract class BaseCubit<State, SR> extends Cubit<State>
 
   Stream<bool> get progressStream => _progressStreamController.stream;
 
-  BaseCubit(State initialState) : super(initialState) {
+  BaseCubit(super.initialState) {
     _errorStreamController = StreamController<Failure>.broadcast();
     _progressStreamController = StreamController<bool>.broadcast();
   }

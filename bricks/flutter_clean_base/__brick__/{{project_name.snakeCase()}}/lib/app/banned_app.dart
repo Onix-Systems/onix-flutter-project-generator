@@ -9,11 +9,11 @@ class BannedApp extends StatelessWidget {
       home: Scaffold(
         body: Center(
           child: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8),
             child: Text(
               'App is not working on jail broken or rooted device.',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 32.0),
+              style: TextStyle(fontSize: 32),
             ),
           ),
         ),

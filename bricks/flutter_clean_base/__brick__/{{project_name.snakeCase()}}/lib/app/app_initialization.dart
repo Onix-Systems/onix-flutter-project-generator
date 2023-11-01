@@ -1,15 +1,13 @@
 import 'package:get_it/get_it.dart';
 import 'package:{{project_name}}/core/di/app.dart';
 import 'package:{{project_name}}/core/di/injection.dart';
-import 'package:{{project_name}}/core/di/services.dart';
 
-class AppInitialization {
-  static final AppInitialization _instance =
-      AppInitialization._privateConstructor();
+class Initialization {
+  static final Initialization _instance = Initialization._privateConstructor();
 
-  static AppInitialization get I => _instance;
+  static Initialization get I => _instance;
 
-  AppInitialization._privateConstructor();
+  Initialization._privateConstructor();
 
   Future<void> initApp() async {
     //TODO init firebase / Crashlytics / Messaging

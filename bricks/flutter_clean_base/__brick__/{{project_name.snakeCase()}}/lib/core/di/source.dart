@@ -16,11 +16,13 @@ void registerSources(GetIt getIt) {
     ..registerSingleton<TimeSource>(TimeSourceImpl(
       getIt.get<ApiClient>(instanceName: DioConst.timeApiInstance),
       getIt.get<DioRequestProcessor>(),
-    )){{#graphql}}
+    ),
+    ){{#graphql}}
     ..registerSingleton<AuthSource>(AuthSourceImpl(
     getIt.get<GraphQlClient>(),
     getIt.get<GraphQlRequestProcessor>(),
-    )){{/graphql}}; //{sources end}
+    ),
+  ){{/graphql}}; //{sources end}
 }
 
 TimeSource get timeSource => GetIt.I.get<TimeSource>();

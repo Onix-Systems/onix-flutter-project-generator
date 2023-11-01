@@ -3,10 +3,11 @@ import 'package:{{project_name}}/core/di/local.dart';
 import 'package:{{project_name}}/data/source/local/secure_storage/secure_storage_keys.dart';
 import 'package:{{project_name}}/core/extension/logger_extension.dart';
 import 'package:dio/io.dart';
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
-import 'package:{{project_name}}/domain/service/hive_cipher_key_service.dart';
+import 'package:{{project_name}}/app/service/hive_cipher_key_service.dart';
 import 'package:path_provider/path_provider.dart' as pp;
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -28,11 +29,15 @@ class CacheInterceptor {
       client.interceptors.add(interceptor);
       cacheOptions = options;
 
-      (client.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
-          (client) {
-        client.badCertificateCallback = (cert, host, port) => true;
-        return client;
-      };
+      client.httpClientAdapter = IOHttpClientAdapter(
+        createHttpClient: () {
+          final client = HttpClient();
+          //ignore: cascade_invocations
+          client.badCertificateCallback = (cert, host, port) => true;
+          return client;
+        },
+      );
+
       logger.d('DioCacheInterceptor ADDED');
     } catch (e, trace) {
       logger.crash(
@@ -56,8 +61,6 @@ class CacheInterceptor {
       policy: CachePolicy.noCache,
       hitCacheOnErrorExcept: [],
       maxStale: const Duration(days: 1),
-      priority: CachePriority.normal,
-      keyBuilder: CacheOptions.defaultCacheKeyBuilder,
       allowPostMethod: true,
     );
   }

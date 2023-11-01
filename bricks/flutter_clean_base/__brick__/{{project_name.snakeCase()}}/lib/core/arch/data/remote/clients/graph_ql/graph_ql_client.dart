@@ -20,9 +20,7 @@ class GraphQlClient implements BaseApiClient<GraphQLClient> {
           //TODO: specify headers
         },
       ),
-      cache: GraphQLCache(
-        partialDataPolicy: PartialDataCachePolicy.acceptForOptimisticData,
-      ),
+      cache: GraphQLCache(),
     );
   }
 

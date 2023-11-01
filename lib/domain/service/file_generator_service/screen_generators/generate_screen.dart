@@ -14,7 +14,7 @@ class GenerateScreen {
     bool build = false,
   }) async {
     var routesFile =
-        File('$projectPath/$projectName/lib/core/router/app_router.dart');
+        File('$projectPath/$projectName/lib/app/router/app_router.dart');
     var diFile = File('$projectPath/$projectName/lib/core/di/bloc.dart');
 
     String screenName = screen.name.snakeCase;

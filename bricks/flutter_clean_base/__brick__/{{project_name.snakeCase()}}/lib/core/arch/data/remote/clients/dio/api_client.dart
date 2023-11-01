@@ -38,9 +38,7 @@ class ApiClient implements BaseApiClient<Dio> {
         PrettyDioLogger(
           requestHeader: true,
           requestBody: true,
-          responseBody: true,
           responseHeader: true,
-          error: true,
           compact: false,
         ),
       );
@@ -65,9 +63,9 @@ class ApiClient implements BaseApiClient<Dio> {
 
     client.httpClientAdapter = IOHttpClientAdapter(
       createHttpClient: () {
-        final client = HttpClient();
-        //ignore: cascade_invocations
-        client.findProxy = (uri) => 'PROXY $charlesIp:$port';
+        final client = HttpClient()
+          ..findProxy = (uri) => 'PROXY $charlesIp:$port';
+
         //ignore: cascade_invocations
         client.badCertificateCallback = (cert, host, port) => true;
         return client;
