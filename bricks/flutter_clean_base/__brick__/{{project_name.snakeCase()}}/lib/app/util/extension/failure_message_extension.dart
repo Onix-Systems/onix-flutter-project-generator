@@ -1,14 +1,15 @@
-import 'package:{{project_name}}/app/localization/common_app_localization_ext.dart';
+{{#handLocalization}}import 'package:{{project_name}}/app/localization/common_app_localization_ext.dart';{{/handLocalization}}
+{{^handLocalization}}import 'package:{{project_name}}/app/localization/generated/l10n.dart';{{/handLocalization}}
 import 'package:{{project_name}}/core/arch/domain/entity/failure/api_failure.dart';
 import 'package:flutter/material.dart';
 
 extension FailureMessageExtension on BuildContext {
-  String getApiFailureMessage(ApiFailure failure) {
-    switch (failure.failure) {
-    case ServerFailure.noNetwork:
-    {{#handLocalization}}return str.apiFailureNoNetwork;{{/handLocalization}}
-    {{^handLocalization}}return S.current.apiFailureNoNetwork;{{/handLocalization}}
-    case ServerFailure.exception:
+String getApiFailureMessage(ApiFailure failure) {
+switch (failure.failure) {
+case ServerFailure.noNetwork:
+{{#handLocalization}}return str.apiFailureNoNetwork;{{/handLocalization}}
+{{^handLocalization}}return S.current.apiFailureNoNetwork;{{/handLocalization}}
+case ServerFailure.exception:
     {{#handLocalization}}return str.apiFailureUndefined;{{/handLocalization}}
     {{^handLocalization}}return S.current.apiFailureUndefined;{{/handLocalization}}
     case ServerFailure.unAuthorized:
