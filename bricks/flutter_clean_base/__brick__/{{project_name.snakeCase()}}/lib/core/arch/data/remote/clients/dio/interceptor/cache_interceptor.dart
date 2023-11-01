@@ -6,7 +6,7 @@ import 'package:dio/io.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
-import 'package:{{project_name}}/domain/service/hive_cipher_key_service.dart';
+import 'package:{{project_name}}/app/service/hive_cipher_key_service.dart';
 import 'package:path_provider/path_provider.dart' as pp;
 import 'package:hive_flutter/hive_flutter.dart';
 
