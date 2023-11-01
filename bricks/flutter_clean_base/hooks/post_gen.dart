@@ -210,10 +210,10 @@ Future<void> getDependencies(HookContext context) async {
     dependencies.addAll(['intl', 'intl_utils']);
   }
 
-  if (context.vars['theme_generate']) {
-    dependencies.add('theme_tailor_annotation');
-    devDependencies.add('theme_tailor');
-  }
+  // if (context.vars['theme_generate']) {
+  //   dependencies.add('theme_tailor_annotation');
+  //   devDependencies.add('theme_tailor');
+  // }
 
   'Getting dependencies...'.log();
 
