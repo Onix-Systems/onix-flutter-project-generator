@@ -7,13 +7,13 @@ import 'package:flutter/foundation.dart';
 import 'package:{{project_name}}/core/arch/bloc/app_bloc_observer.dart';
 {{#use_getit}}import 'package:get_it/get_it.dart';{{/use_getit}}
 import 'package:{{project_name}}/app/app.dart';
-import 'package:{{project_name}}/core/app/app_initialization.dart';
+import 'package:{{project_name}}/app/app_initialization.dart';
 
 Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
     await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
 
-    await AppInitialization.I.initApp();
+    await Initialization.I.initApp();
 
     // await SystemChrome.setPreferredOrientations([
     //   //DeviceOrientation.portraitUp,

@@ -9,10 +9,10 @@ import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
 {{#isGoRouter}}import 'package:{{project_name}}/core/router/app_router.dart';{{/isGoRouter}}
 {{^isGoRouter}}import 'package:{{project_name}}/core/di/app.dart';{{/isGoRouter}}
 {{^handLocalization}}import 'package:flutter_localizations/flutter_localizations.dart';{{/handLocalization}}
-{{#handLocalization}}import 'package:{{project_name}}/core/app/localization/common_app_localization_ext.dart';
+{{#handLocalization}}import 'package:{{project_name}}/app/localization/common_app_localization_ext.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';{{/handLocalization}}
 {{#flavorizr}}import 'package:{{project_name}}/core/arch/widget/common/flavor_banner.dart';{{/flavorizr}}
-{{^handLocalization}}import 'package:{{project_name}}/core/app/localization/generated/l10n.dart';{{/handLocalization}}
+{{^handLocalization}}import 'package:{{project_name}}/app/localization/generated/l10n.dart';{{/handLocalization}}
 
 class App extends StatefulWidget {
   const App({super.key});
