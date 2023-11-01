@@ -1,7 +1,7 @@
 //@formatter:off
 {{#handLocalization}}import 'package:flutter/widgets.dart';
 import 'package:{{project_name}}/app/localization/common_app_localization_ext.dart';{{/handLocalization}}
-{{^handLocalization}}import 'package:{{project_name}}/core/app/localization/generated/l10n.dart';{{/handLocalization}}
+{{^handLocalization}}import 'package:{{project_name}}/app/localization/generated/l10n.dart';{{/handLocalization}}
 import 'package:{{project_name}}/core/extension/logger_extension.dart';
 import 'package:{{project_name}}/core/arch/data/remote/error/default_api_error.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/common/data_response.dart';
