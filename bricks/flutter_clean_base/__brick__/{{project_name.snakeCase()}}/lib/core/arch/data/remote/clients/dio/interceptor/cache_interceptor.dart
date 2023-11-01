@@ -28,11 +28,15 @@ class CacheInterceptor {
       client.interceptors.add(interceptor);
       cacheOptions = options;
 
-      (client.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
-          (client) {
-        client.badCertificateCallback = (cert, host, port) => true;
-        return client;
-      };
+      client.httpClientAdapter = IOHttpClientAdapter(
+        createHttpClient: () {
+          final client = HttpClient();
+          //ignore: cascade_invocations
+          client.badCertificateCallback = (cert, host, port) => true;
+          return client;
+        },
+      );
+
       logger.d('DioCacheInterceptor ADDED');
     } catch (e, trace) {
       logger.crash(
@@ -56,8 +60,6 @@ class CacheInterceptor {
       policy: CachePolicy.noCache,
       hitCacheOnErrorExcept: [],
       maxStale: const Duration(days: 1),
-      priority: CachePriority.normal,
-      keyBuilder: CacheOptions.defaultCacheKeyBuilder,
       allowPostMethod: true,
     );
   }

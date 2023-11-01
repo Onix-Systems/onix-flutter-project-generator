@@ -4,5 +4,6 @@ import 'package:{{project_name}}/data/model/remote/customer_access_token/custome
 
 abstract class AuthSource {
   Future<DataResponse<CustomerTokenResponseData>> login(
-      AuthenticationRequest requestData);
+    AuthenticationRequest requestData,
+  );
 }

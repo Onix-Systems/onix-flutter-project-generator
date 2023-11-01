@@ -29,13 +29,11 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
   Widget buildWidget(BuildContext context) {
     {{#isGoRouter}}AppRouter.init();{{/isGoRouter}}
     return {{^web_only}}GlobalLoaderOverlay(
-      useDefaultLoading: true,
       overlayColor: Colors.black,
       overlayOpacity: 0.5,
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
-        splitScreenMode: false,
         builder: (context, child) {
         return{{/web_only}} blocConsumer(
           stateListener: (state) {
@@ -43,7 +41,7 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             debugShowCheckedModeBanner: false,
             builder: (context, widget) {
               return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
                 {{#flavorizr}}
                 child: FlavorBanner(
                   child: widget ?? const SizedBox(),

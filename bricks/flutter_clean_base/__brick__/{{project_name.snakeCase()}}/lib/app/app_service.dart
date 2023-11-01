@@ -26,7 +26,7 @@ class AppService {
       }
     }
 
-    await dotenv.load(fileName: '.env');
+    await dotenv.load();
     return true;
   }
 

@@ -30,7 +30,8 @@ class RouterLoggingObserver extends AutoRouterObserver {
   @override
   void didReplace({Route? newRoute, Route? oldRoute}) {
     logger.w(
-        'ROUTING Route replaced to: ${newRoute?.settings.name} from: ${oldRoute?.settings.name}, stack${_stack()}',);
+        'ROUTING Route replaced to: ${newRoute?.settings.name} '
+        'from: ${oldRoute?.settings.name}, stack${_stack()}',);
   }
 
   @override

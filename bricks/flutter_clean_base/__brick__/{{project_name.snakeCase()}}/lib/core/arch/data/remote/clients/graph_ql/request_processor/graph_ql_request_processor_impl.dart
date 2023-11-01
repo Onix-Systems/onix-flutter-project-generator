@@ -84,8 +84,8 @@ class GraphQlRequestProcessorImpl implements GraphQlRequestProcessor {
     }
 
     if (e.linkException is ServerException) {
-      final hasErrors = (e.linkException as ServerException)
-              .parsedResponse
+      final hasErrors = (e.linkException as ServerException?)
+              ?.parsedResponse
               ?.errors
               ?.isNotEmpty ??
           false;

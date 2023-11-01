@@ -38,9 +38,7 @@ class ApiClient implements BaseApiClient<Dio> {
         PrettyDioLogger(
           requestHeader: true,
           requestBody: true,
-          responseBody: true,
           responseHeader: true,
-          error: true,
           compact: false,
         ),
       );
@@ -64,17 +62,16 @@ class ApiClient implements BaseApiClient<Dio> {
     if (charlesIp == null || port == null) return;
 
     client.httpClientAdapter = IOHttpClientAdapter(
-      createHttpClient: () {
-        final client = HttpClient();
-        //ignore: cascade_invocations
-        client.findProxy = (uri) => 'PROXY $charlesIp:$port';
-        //ignore: cascade_invocations
-        client.badCertificateCallback = (cert, host, port) => true;
-        return client;
-      },
-    );
+        createHttpClient: () {
+          final client = HttpClient()
+            ..findProxy = (uri) => 'PROXY $charlesIp:$port';
 
-    logger.d('CharlesProxyEnabled');
+          //ignore: cascade_invocations
+          client.badCertificateCallback = (cert, host, port) => true;
+          return client;
+        };
+
+        logger.d('CharlesProxyEnabled');
   }
 
   CachePolicy getCachePolicy({required bool forceRefresh}) =>
