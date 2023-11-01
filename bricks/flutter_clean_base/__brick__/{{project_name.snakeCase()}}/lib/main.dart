@@ -3,11 +3,13 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:{{project_name}}/app/banned_app.dart';
 import 'package:{{project_name}}/core/arch/bloc/app_bloc_observer.dart';
 import 'package:{{project_name}}/app/app.dart';
 import 'package:{{project_name}}/app/app_initialization.dart';
+import 'package:{{project_name}}/core/di/services.dart';
 
 Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
   unawaited(
