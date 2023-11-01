@@ -16,10 +16,10 @@ void run(HookContext context) async {
 
   if (!context.vars['handLocalization']) {
     await Process.run('rm', ['app_en.arb'],
-        workingDirectory: '$name/lib/core/app/localization/l10n');
+        workingDirectory: '$name/lib/app/localization/l10n');
   } else {
     await Process.run('rm', ['intl_en.arb'],
-        workingDirectory: '$name/lib/core/app/localization/l10n');
+        workingDirectory: '$name/lib/app/localization/l10n');
   }
 
   await Process.run('find', ['$name', '-name', '.g', '-type', 'f', '-delete']);
