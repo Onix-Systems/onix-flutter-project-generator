@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://ibb.co/Js5vzD1"><img src="https://i.ibb.co/crD6N4B/icon.png" alt="icon" border="0" width="300" height="300"/></a>
+<a><img src="https://i.ibb.co/crD6N4B/icon.png" alt="icon" border="0" width="300" height="300"/></a>
 </p>
 
 # Onix Flutter Project Generator
@@ -8,7 +8,7 @@ Flutter Project Generator is a tool for creating a new project with built-in Cle
 
 Checkout the video instruction for more details and to quick start:
 
-[![Onix Project Generator](https://i.imgur.com/PYZbRJa.png)](https://www.youtube.com/watch?v=lgey4r3osJI)
+<a href="(https://www.youtube.com/watch?v=lgey4r3osJI"><img src="https://i.imgur.com/GTjIxce.png" alt="icon" border="0" width="100" height="100"/></a>
 
 ## Main features:
 
