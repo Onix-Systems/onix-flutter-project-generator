@@ -8,7 +8,7 @@ Flutter Project Generator is a tool for creating a new project with built-in Cle
 
 Checkout the video instruction for more details and to quick start:
 
-<a href="(https://www.youtube.com/watch?v=lgey4r3osJI"><img src="https://i.imgur.com/GTjIxce.png" alt="icon" border="0" width="100" height="100"/></a>
+[![Onix Project Generator](https://i.imgur.com/kHsmEvr.png)](https://www.youtube.com/watch?v=lgey4r3osJI)
 
 ## Main features:
 
