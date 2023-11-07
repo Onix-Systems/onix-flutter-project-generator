@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://ibb.co/Js5vzD1"><img src="https://i.ibb.co/Js5vzD1/icon.png" alt="icon" border="0"></a>
+<a href="https://ibb.co/Js5vzD1"><img src="https://i.ibb.co/crD6N4B/icon.png" alt="icon" border="0" width="300" height="300"/></a>
 </p>
 
 # Onix Flutter Project Generator
