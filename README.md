@@ -6,7 +6,7 @@
 
 Flutter Project Generator is a tool for creating a new project with built-in Clean Architecture and boilerplate components for a quick start. 
 
-More details about the tool can be found in [this article](https://todthe.medium.article).
+More details about the tool can be found in [this article](https://docs.google.com/document/d/1xrtMgi1tREsImrutmIjP4F8HEOMWDeRyBzkJFVVXOHE/edit?usp=sharing).
 
 ## Main features:
 
