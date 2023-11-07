@@ -10,6 +10,7 @@ import 'package:{{project_name}}/core/arch/bloc/app_bloc_observer.dart';
 import 'package:{{project_name}}/app/app.dart';
 import 'package:{{project_name}}/app/app_initialization.dart';
 import 'package:{{project_name}}/core/di/services.dart';
+import 'package:{{project_name}}/core/extension/orientation_extension.dart';
 
 Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
   unawaited(
@@ -17,10 +18,9 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
       () async {
         WidgetsFlutterBinding.ensureInitialized();
         await Initialization.I.initApp();
-        await SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-          DeviceOrientation.portraitDown,
-        ]);
+
+        await OrientationExtension.lockVertical();
+
         Bloc.observer = AppBlocObserver();
         final isAllowedToUseApp = await environmentService().initialize();
         if (isAllowedToUseApp) {
