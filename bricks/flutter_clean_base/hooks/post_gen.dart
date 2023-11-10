@@ -170,7 +170,8 @@ Future<void> getDependencies(HookContext context) async {
     'collection',
     'flutter_dotenv',
     'flutter_jailbreak_detection',
-    'graphql',
+    'firebase_core',
+    'firebase_auth'
   ];
 
   if (!context.vars['web_only']) {
@@ -210,10 +211,9 @@ Future<void> getDependencies(HookContext context) async {
     dependencies.addAll(['intl', 'intl_utils']);
   }
 
-  // if (context.vars['theme_generate']) {
-  //   dependencies.add('theme_tailor_annotation');
-  //   devDependencies.add('theme_tailor');
-  // }
+  if (context.vars['graphql']) {
+    dependencies.add('graphql');
+  }
 
   'Getting dependencies...'.log();
 

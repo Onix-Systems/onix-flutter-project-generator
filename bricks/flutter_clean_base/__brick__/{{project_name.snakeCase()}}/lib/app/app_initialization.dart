@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:{{project_name}}/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:{{project_name}}/core/di/app.dart';
 import 'package:{{project_name}}/core/di/injection.dart';
 
