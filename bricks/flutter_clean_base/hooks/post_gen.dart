@@ -424,6 +424,7 @@ Future<void> secure(HookContext context) async {
 ios/firebase_app_id_file.json
 android/app/google-services.json
 lib/firebase_options.dart
+ios/Runner/GoogleService-Info.plist
 ''');
 
   if (context.vars['platforms'].contains('android')) {
