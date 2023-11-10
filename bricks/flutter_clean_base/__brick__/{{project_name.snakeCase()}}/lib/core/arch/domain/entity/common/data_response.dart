@@ -19,6 +19,8 @@ sealed class DataResponse<T> with _$DataResponse {
 
   const factory DataResponse.tooManyRequests() = _TooManyRequests;
 
+  const factory DataResponse.firebaseError(String code) = _FirebaseError;
+
   bool isSuccess() => this is _DataResponseSuccess;
 
   T get data => (this as _DataResponseSuccess).data;

@@ -9,7 +9,7 @@ import 'package:{{project_name}}/data/source/remote/auth/auth_source.dart';
 import 'package:{{project_name}}/data/source/remote/auth/auth_source_impl.dart';{{/graphql}}
 import 'package:{{project_name}}/data/source/remote/time/time_source.dart';
 import 'package:{{project_name}}/data/source/remote/time/time_source_impl.dart';
-import 'package:{{project_name}}/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:{{project_name}}/data/source/remote/firebase/auth/firebase_auth_source.dart';
 import 'package:{{project_name}}/data/source/remote/firebase/auth/firebase_auth_source_impl.dart';
 
