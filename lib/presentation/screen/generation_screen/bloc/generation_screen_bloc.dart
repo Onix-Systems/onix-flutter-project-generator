@@ -155,6 +155,34 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
 
+    if (true /*state.config.firebaseAuth*/) {
+      var process = await Process.start(
+          'osascript',
+          [
+            '-e',
+            '''tell application "Terminal"
+  set T to do script "cd '${state.config.projectPath}/${state.config.projectName}' && flutterfire config"
+	set targetWindow to window 1
+	activate targetWindow
+	set custom title of targetWindow to "flutterfire"
+	delay 2
+	repeat
+		delay 1
+		if not busy of T then exit repeat
+	end repeat
+	close (every window whose name contains "flutterfire")
+end tell'''
+          ],
+          workingDirectory:
+              '${state.config.projectPath}/${state.config.projectName}');
+
+      process.stdout
+          .transform(utf8.decoder)
+          .listen((event) => outputService.add(event));
+
+      await process.exitCode;
+    }
+
     final gitProcess = await ProcessStarter.start(
         workingDirectory:
             '${state.config.projectPath}/${state.config.projectName}');

@@ -82,17 +82,18 @@ class _$ScreensScreenEventCopyWithImpl<$Res, $Val extends ScreensScreenEvent>
     implements $ScreensScreenEventCopyWith<$Res> {
   _$ScreensScreenEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$ScreensScreenEventInitCopyWith<$Res> {
-  factory _$$ScreensScreenEventInitCopyWith(_$ScreensScreenEventInit value,
-          $Res Function(_$ScreensScreenEventInit) then) =
-      __$$ScreensScreenEventInitCopyWithImpl<$Res>;
+abstract class _$$ScreensScreenEventInitImplCopyWith<$Res> {
+  factory _$$ScreensScreenEventInitImplCopyWith(
+          _$ScreensScreenEventInitImpl value,
+          $Res Function(_$ScreensScreenEventInitImpl) then) =
+      __$$ScreensScreenEventInitImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Config config});
 
@@ -100,11 +101,12 @@ abstract class _$$ScreensScreenEventInitCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ScreensScreenEventInitCopyWithImpl<$Res>
-    extends _$ScreensScreenEventCopyWithImpl<$Res, _$ScreensScreenEventInit>
-    implements _$$ScreensScreenEventInitCopyWith<$Res> {
-  __$$ScreensScreenEventInitCopyWithImpl(_$ScreensScreenEventInit _value,
-      $Res Function(_$ScreensScreenEventInit) _then)
+class __$$ScreensScreenEventInitImplCopyWithImpl<$Res>
+    extends _$ScreensScreenEventCopyWithImpl<$Res, _$ScreensScreenEventInitImpl>
+    implements _$$ScreensScreenEventInitImplCopyWith<$Res> {
+  __$$ScreensScreenEventInitImplCopyWithImpl(
+      _$ScreensScreenEventInitImpl _value,
+      $Res Function(_$ScreensScreenEventInitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -112,7 +114,7 @@ class __$$ScreensScreenEventInitCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$ScreensScreenEventInit(
+    return _then(_$ScreensScreenEventInitImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -131,8 +133,8 @@ class __$$ScreensScreenEventInitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ScreensScreenEventInit implements ScreensScreenEventInit {
-  const _$ScreensScreenEventInit({required this.config});
+class _$ScreensScreenEventInitImpl implements ScreensScreenEventInit {
+  const _$ScreensScreenEventInitImpl({required this.config});
 
   @override
   final Config config;
@@ -146,7 +148,7 @@ class _$ScreensScreenEventInit implements ScreensScreenEventInit {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScreensScreenEventInit &&
+            other is _$ScreensScreenEventInitImpl &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -156,9 +158,9 @@ class _$ScreensScreenEventInit implements ScreensScreenEventInit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ScreensScreenEventInitCopyWith<_$ScreensScreenEventInit> get copyWith =>
-      __$$ScreensScreenEventInitCopyWithImpl<_$ScreensScreenEventInit>(
-          this, _$identity);
+  _$$ScreensScreenEventInitImplCopyWith<_$ScreensScreenEventInitImpl>
+      get copyWith => __$$ScreensScreenEventInitImplCopyWithImpl<
+          _$ScreensScreenEventInitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -239,32 +241,32 @@ class _$ScreensScreenEventInit implements ScreensScreenEventInit {
 
 abstract class ScreensScreenEventInit implements ScreensScreenEvent {
   const factory ScreensScreenEventInit({required final Config config}) =
-      _$ScreensScreenEventInit;
+      _$ScreensScreenEventInitImpl;
 
   Config get config;
   @JsonKey(ignore: true)
-  _$$ScreensScreenEventInitCopyWith<_$ScreensScreenEventInit> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ScreensScreenEventInitImplCopyWith<_$ScreensScreenEventInitImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ScreensScreenEventOnScreenAddCopyWith<$Res> {
-  factory _$$ScreensScreenEventOnScreenAddCopyWith(
-          _$ScreensScreenEventOnScreenAdd value,
-          $Res Function(_$ScreensScreenEventOnScreenAdd) then) =
-      __$$ScreensScreenEventOnScreenAddCopyWithImpl<$Res>;
+abstract class _$$ScreensScreenEventOnScreenAddImplCopyWith<$Res> {
+  factory _$$ScreensScreenEventOnScreenAddImplCopyWith(
+          _$ScreensScreenEventOnScreenAddImpl value,
+          $Res Function(_$ScreensScreenEventOnScreenAddImpl) then) =
+      __$$ScreensScreenEventOnScreenAddImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Screen screen});
 }
 
 /// @nodoc
-class __$$ScreensScreenEventOnScreenAddCopyWithImpl<$Res>
+class __$$ScreensScreenEventOnScreenAddImplCopyWithImpl<$Res>
     extends _$ScreensScreenEventCopyWithImpl<$Res,
-        _$ScreensScreenEventOnScreenAdd>
-    implements _$$ScreensScreenEventOnScreenAddCopyWith<$Res> {
-  __$$ScreensScreenEventOnScreenAddCopyWithImpl(
-      _$ScreensScreenEventOnScreenAdd _value,
-      $Res Function(_$ScreensScreenEventOnScreenAdd) _then)
+        _$ScreensScreenEventOnScreenAddImpl>
+    implements _$$ScreensScreenEventOnScreenAddImplCopyWith<$Res> {
+  __$$ScreensScreenEventOnScreenAddImplCopyWithImpl(
+      _$ScreensScreenEventOnScreenAddImpl _value,
+      $Res Function(_$ScreensScreenEventOnScreenAddImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -272,7 +274,7 @@ class __$$ScreensScreenEventOnScreenAddCopyWithImpl<$Res>
   $Res call({
     Object? screen = null,
   }) {
-    return _then(_$ScreensScreenEventOnScreenAdd(
+    return _then(_$ScreensScreenEventOnScreenAddImpl(
       screen: null == screen
           ? _value.screen
           : screen // ignore: cast_nullable_to_non_nullable
@@ -283,8 +285,9 @@ class __$$ScreensScreenEventOnScreenAddCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ScreensScreenEventOnScreenAdd implements ScreensScreenEventOnScreenAdd {
-  const _$ScreensScreenEventOnScreenAdd({required this.screen});
+class _$ScreensScreenEventOnScreenAddImpl
+    implements ScreensScreenEventOnScreenAdd {
+  const _$ScreensScreenEventOnScreenAddImpl({required this.screen});
 
   @override
   final Screen screen;
@@ -298,7 +301,7 @@ class _$ScreensScreenEventOnScreenAdd implements ScreensScreenEventOnScreenAdd {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScreensScreenEventOnScreenAdd &&
+            other is _$ScreensScreenEventOnScreenAddImpl &&
             (identical(other.screen, screen) || other.screen == screen));
   }
 
@@ -308,9 +311,10 @@ class _$ScreensScreenEventOnScreenAdd implements ScreensScreenEventOnScreenAdd {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ScreensScreenEventOnScreenAddCopyWith<_$ScreensScreenEventOnScreenAdd>
-      get copyWith => __$$ScreensScreenEventOnScreenAddCopyWithImpl<
-          _$ScreensScreenEventOnScreenAdd>(this, _$identity);
+  _$$ScreensScreenEventOnScreenAddImplCopyWith<
+          _$ScreensScreenEventOnScreenAddImpl>
+      get copyWith => __$$ScreensScreenEventOnScreenAddImplCopyWithImpl<
+          _$ScreensScreenEventOnScreenAddImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -391,32 +395,33 @@ class _$ScreensScreenEventOnScreenAdd implements ScreensScreenEventOnScreenAdd {
 
 abstract class ScreensScreenEventOnScreenAdd implements ScreensScreenEvent {
   const factory ScreensScreenEventOnScreenAdd({required final Screen screen}) =
-      _$ScreensScreenEventOnScreenAdd;
+      _$ScreensScreenEventOnScreenAddImpl;
 
   Screen get screen;
   @JsonKey(ignore: true)
-  _$$ScreensScreenEventOnScreenAddCopyWith<_$ScreensScreenEventOnScreenAdd>
+  _$$ScreensScreenEventOnScreenAddImplCopyWith<
+          _$ScreensScreenEventOnScreenAddImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ScreensScreenEventOnScreenDeleteCopyWith<$Res> {
-  factory _$$ScreensScreenEventOnScreenDeleteCopyWith(
-          _$ScreensScreenEventOnScreenDelete value,
-          $Res Function(_$ScreensScreenEventOnScreenDelete) then) =
-      __$$ScreensScreenEventOnScreenDeleteCopyWithImpl<$Res>;
+abstract class _$$ScreensScreenEventOnScreenDeleteImplCopyWith<$Res> {
+  factory _$$ScreensScreenEventOnScreenDeleteImplCopyWith(
+          _$ScreensScreenEventOnScreenDeleteImpl value,
+          $Res Function(_$ScreensScreenEventOnScreenDeleteImpl) then) =
+      __$$ScreensScreenEventOnScreenDeleteImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String screenName});
 }
 
 /// @nodoc
-class __$$ScreensScreenEventOnScreenDeleteCopyWithImpl<$Res>
+class __$$ScreensScreenEventOnScreenDeleteImplCopyWithImpl<$Res>
     extends _$ScreensScreenEventCopyWithImpl<$Res,
-        _$ScreensScreenEventOnScreenDelete>
-    implements _$$ScreensScreenEventOnScreenDeleteCopyWith<$Res> {
-  __$$ScreensScreenEventOnScreenDeleteCopyWithImpl(
-      _$ScreensScreenEventOnScreenDelete _value,
-      $Res Function(_$ScreensScreenEventOnScreenDelete) _then)
+        _$ScreensScreenEventOnScreenDeleteImpl>
+    implements _$$ScreensScreenEventOnScreenDeleteImplCopyWith<$Res> {
+  __$$ScreensScreenEventOnScreenDeleteImplCopyWithImpl(
+      _$ScreensScreenEventOnScreenDeleteImpl _value,
+      $Res Function(_$ScreensScreenEventOnScreenDeleteImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -424,7 +429,7 @@ class __$$ScreensScreenEventOnScreenDeleteCopyWithImpl<$Res>
   $Res call({
     Object? screenName = null,
   }) {
-    return _then(_$ScreensScreenEventOnScreenDelete(
+    return _then(_$ScreensScreenEventOnScreenDeleteImpl(
       screenName: null == screenName
           ? _value.screenName
           : screenName // ignore: cast_nullable_to_non_nullable
@@ -435,9 +440,9 @@ class __$$ScreensScreenEventOnScreenDeleteCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ScreensScreenEventOnScreenDelete
+class _$ScreensScreenEventOnScreenDeleteImpl
     implements ScreensScreenEventOnScreenDelete {
-  const _$ScreensScreenEventOnScreenDelete({required this.screenName});
+  const _$ScreensScreenEventOnScreenDeleteImpl({required this.screenName});
 
   @override
   final String screenName;
@@ -451,7 +456,7 @@ class _$ScreensScreenEventOnScreenDelete
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScreensScreenEventOnScreenDelete &&
+            other is _$ScreensScreenEventOnScreenDeleteImpl &&
             (identical(other.screenName, screenName) ||
                 other.screenName == screenName));
   }
@@ -462,10 +467,10 @@ class _$ScreensScreenEventOnScreenDelete
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ScreensScreenEventOnScreenDeleteCopyWith<
-          _$ScreensScreenEventOnScreenDelete>
-      get copyWith => __$$ScreensScreenEventOnScreenDeleteCopyWithImpl<
-          _$ScreensScreenEventOnScreenDelete>(this, _$identity);
+  _$$ScreensScreenEventOnScreenDeleteImplCopyWith<
+          _$ScreensScreenEventOnScreenDeleteImpl>
+      get copyWith => __$$ScreensScreenEventOnScreenDeleteImplCopyWithImpl<
+          _$ScreensScreenEventOnScreenDeleteImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -546,33 +551,34 @@ class _$ScreensScreenEventOnScreenDelete
 
 abstract class ScreensScreenEventOnScreenDelete implements ScreensScreenEvent {
   const factory ScreensScreenEventOnScreenDelete(
-      {required final String screenName}) = _$ScreensScreenEventOnScreenDelete;
+          {required final String screenName}) =
+      _$ScreensScreenEventOnScreenDeleteImpl;
 
   String get screenName;
   @JsonKey(ignore: true)
-  _$$ScreensScreenEventOnScreenDeleteCopyWith<
-          _$ScreensScreenEventOnScreenDelete>
+  _$$ScreensScreenEventOnScreenDeleteImplCopyWith<
+          _$ScreensScreenEventOnScreenDeleteImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ScreensScreenEventOnScreenModifyCopyWith<$Res> {
-  factory _$$ScreensScreenEventOnScreenModifyCopyWith(
-          _$ScreensScreenEventOnScreenModify value,
-          $Res Function(_$ScreensScreenEventOnScreenModify) then) =
-      __$$ScreensScreenEventOnScreenModifyCopyWithImpl<$Res>;
+abstract class _$$ScreensScreenEventOnScreenModifyImplCopyWith<$Res> {
+  factory _$$ScreensScreenEventOnScreenModifyImplCopyWith(
+          _$ScreensScreenEventOnScreenModifyImpl value,
+          $Res Function(_$ScreensScreenEventOnScreenModifyImpl) then) =
+      __$$ScreensScreenEventOnScreenModifyImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Screen screen, String oldName});
 }
 
 /// @nodoc
-class __$$ScreensScreenEventOnScreenModifyCopyWithImpl<$Res>
+class __$$ScreensScreenEventOnScreenModifyImplCopyWithImpl<$Res>
     extends _$ScreensScreenEventCopyWithImpl<$Res,
-        _$ScreensScreenEventOnScreenModify>
-    implements _$$ScreensScreenEventOnScreenModifyCopyWith<$Res> {
-  __$$ScreensScreenEventOnScreenModifyCopyWithImpl(
-      _$ScreensScreenEventOnScreenModify _value,
-      $Res Function(_$ScreensScreenEventOnScreenModify) _then)
+        _$ScreensScreenEventOnScreenModifyImpl>
+    implements _$$ScreensScreenEventOnScreenModifyImplCopyWith<$Res> {
+  __$$ScreensScreenEventOnScreenModifyImplCopyWithImpl(
+      _$ScreensScreenEventOnScreenModifyImpl _value,
+      $Res Function(_$ScreensScreenEventOnScreenModifyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -581,7 +587,7 @@ class __$$ScreensScreenEventOnScreenModifyCopyWithImpl<$Res>
     Object? screen = null,
     Object? oldName = null,
   }) {
-    return _then(_$ScreensScreenEventOnScreenModify(
+    return _then(_$ScreensScreenEventOnScreenModifyImpl(
       screen: null == screen
           ? _value.screen
           : screen // ignore: cast_nullable_to_non_nullable
@@ -596,9 +602,9 @@ class __$$ScreensScreenEventOnScreenModifyCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ScreensScreenEventOnScreenModify
+class _$ScreensScreenEventOnScreenModifyImpl
     implements ScreensScreenEventOnScreenModify {
-  const _$ScreensScreenEventOnScreenModify(
+  const _$ScreensScreenEventOnScreenModifyImpl(
       {required this.screen, required this.oldName});
 
   @override
@@ -615,7 +621,7 @@ class _$ScreensScreenEventOnScreenModify
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScreensScreenEventOnScreenModify &&
+            other is _$ScreensScreenEventOnScreenModifyImpl &&
             (identical(other.screen, screen) || other.screen == screen) &&
             (identical(other.oldName, oldName) || other.oldName == oldName));
   }
@@ -626,10 +632,10 @@ class _$ScreensScreenEventOnScreenModify
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ScreensScreenEventOnScreenModifyCopyWith<
-          _$ScreensScreenEventOnScreenModify>
-      get copyWith => __$$ScreensScreenEventOnScreenModifyCopyWithImpl<
-          _$ScreensScreenEventOnScreenModify>(this, _$identity);
+  _$$ScreensScreenEventOnScreenModifyImplCopyWith<
+          _$ScreensScreenEventOnScreenModifyImpl>
+      get copyWith => __$$ScreensScreenEventOnScreenModifyImplCopyWithImpl<
+          _$ScreensScreenEventOnScreenModifyImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -711,13 +717,13 @@ class _$ScreensScreenEventOnScreenModify
 abstract class ScreensScreenEventOnScreenModify implements ScreensScreenEvent {
   const factory ScreensScreenEventOnScreenModify(
       {required final Screen screen,
-      required final String oldName}) = _$ScreensScreenEventOnScreenModify;
+      required final String oldName}) = _$ScreensScreenEventOnScreenModifyImpl;
 
   Screen get screen;
   String get oldName;
   @JsonKey(ignore: true)
-  _$$ScreensScreenEventOnScreenModifyCopyWith<
-          _$ScreensScreenEventOnScreenModify>
+  _$$ScreensScreenEventOnScreenModifyImplCopyWith<
+          _$ScreensScreenEventOnScreenModifyImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -769,32 +775,32 @@ class _$ScreensScreenSRCopyWithImpl<$Res, $Val extends ScreensScreenSR>
     implements $ScreensScreenSRCopyWith<$Res> {
   _$ScreensScreenSRCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$_ExistsErrorCopyWith<$Res> {
-  factory _$$_ExistsErrorCopyWith(
-          _$_ExistsError value, $Res Function(_$_ExistsError) then) =
-      __$$_ExistsErrorCopyWithImpl<$Res>;
+abstract class _$$ExistsErrorImplCopyWith<$Res> {
+  factory _$$ExistsErrorImplCopyWith(
+          _$ExistsErrorImpl value, $Res Function(_$ExistsErrorImpl) then) =
+      __$$ExistsErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ExistsErrorCopyWithImpl<$Res>
-    extends _$ScreensScreenSRCopyWithImpl<$Res, _$_ExistsError>
-    implements _$$_ExistsErrorCopyWith<$Res> {
-  __$$_ExistsErrorCopyWithImpl(
-      _$_ExistsError _value, $Res Function(_$_ExistsError) _then)
+class __$$ExistsErrorImplCopyWithImpl<$Res>
+    extends _$ScreensScreenSRCopyWithImpl<$Res, _$ExistsErrorImpl>
+    implements _$$ExistsErrorImplCopyWith<$Res> {
+  __$$ExistsErrorImplCopyWithImpl(
+      _$ExistsErrorImpl _value, $Res Function(_$ExistsErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ExistsError implements _ExistsError {
-  const _$_ExistsError();
+class _$ExistsErrorImpl implements _ExistsError {
+  const _$ExistsErrorImpl();
 
   @override
   String toString() {
@@ -804,7 +810,7 @@ class _$_ExistsError implements _ExistsError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ExistsError);
+        (other.runtimeType == runtimeType && other is _$ExistsErrorImpl);
   }
 
   @override
@@ -868,7 +874,7 @@ class _$_ExistsError implements _ExistsError {
 }
 
 abstract class _ExistsError implements ScreensScreenSR {
-  const factory _ExistsError() = _$_ExistsError;
+  const factory _ExistsError() = _$ExistsErrorImpl;
 }
 
 /// @nodoc
@@ -962,11 +968,12 @@ class _$ScreensScreenStateCopyWithImpl<$Res, $Val extends ScreensScreenState>
 }
 
 /// @nodoc
-abstract class _$$ScreensScreenStateDataCopyWith<$Res>
+abstract class _$$ScreensScreenStateDataImplCopyWith<$Res>
     implements $ScreensScreenStateCopyWith<$Res> {
-  factory _$$ScreensScreenStateDataCopyWith(_$ScreensScreenStateData value,
-          $Res Function(_$ScreensScreenStateData) then) =
-      __$$ScreensScreenStateDataCopyWithImpl<$Res>;
+  factory _$$ScreensScreenStateDataImplCopyWith(
+          _$ScreensScreenStateDataImpl value,
+          $Res Function(_$ScreensScreenStateDataImpl) then) =
+      __$$ScreensScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Config config, int stateUpdate});
@@ -976,11 +983,12 @@ abstract class _$$ScreensScreenStateDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ScreensScreenStateDataCopyWithImpl<$Res>
-    extends _$ScreensScreenStateCopyWithImpl<$Res, _$ScreensScreenStateData>
-    implements _$$ScreensScreenStateDataCopyWith<$Res> {
-  __$$ScreensScreenStateDataCopyWithImpl(_$ScreensScreenStateData _value,
-      $Res Function(_$ScreensScreenStateData) _then)
+class __$$ScreensScreenStateDataImplCopyWithImpl<$Res>
+    extends _$ScreensScreenStateCopyWithImpl<$Res, _$ScreensScreenStateDataImpl>
+    implements _$$ScreensScreenStateDataImplCopyWith<$Res> {
+  __$$ScreensScreenStateDataImplCopyWithImpl(
+      _$ScreensScreenStateDataImpl _value,
+      $Res Function(_$ScreensScreenStateDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -989,7 +997,7 @@ class __$$ScreensScreenStateDataCopyWithImpl<$Res>
     Object? config = null,
     Object? stateUpdate = null,
   }) {
-    return _then(_$ScreensScreenStateData(
+    return _then(_$ScreensScreenStateDataImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -1004,8 +1012,9 @@ class __$$ScreensScreenStateDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ScreensScreenStateData implements ScreensScreenStateData {
-  const _$ScreensScreenStateData({required this.config, this.stateUpdate = 0});
+class _$ScreensScreenStateDataImpl implements ScreensScreenStateData {
+  const _$ScreensScreenStateDataImpl(
+      {required this.config, this.stateUpdate = 0});
 
   @override
   final Config config;
@@ -1022,7 +1031,7 @@ class _$ScreensScreenStateData implements ScreensScreenStateData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScreensScreenStateData &&
+            other is _$ScreensScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config) &&
             (identical(other.stateUpdate, stateUpdate) ||
                 other.stateUpdate == stateUpdate));
@@ -1034,9 +1043,9 @@ class _$ScreensScreenStateData implements ScreensScreenStateData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ScreensScreenStateDataCopyWith<_$ScreensScreenStateData> get copyWith =>
-      __$$ScreensScreenStateDataCopyWithImpl<_$ScreensScreenStateData>(
-          this, _$identity);
+  _$$ScreensScreenStateDataImplCopyWith<_$ScreensScreenStateDataImpl>
+      get copyWith => __$$ScreensScreenStateDataImplCopyWithImpl<
+          _$ScreensScreenStateDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1098,7 +1107,7 @@ class _$ScreensScreenStateData implements ScreensScreenStateData {
 abstract class ScreensScreenStateData implements ScreensScreenState {
   const factory ScreensScreenStateData(
       {required final Config config,
-      final int stateUpdate}) = _$ScreensScreenStateData;
+      final int stateUpdate}) = _$ScreensScreenStateDataImpl;
 
   @override
   Config get config;
@@ -1106,6 +1115,6 @@ abstract class ScreensScreenStateData implements ScreensScreenState {
   int get stateUpdate;
   @override
   @JsonKey(ignore: true)
-  _$$ScreensScreenStateDataCopyWith<_$ScreensScreenStateData> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ScreensScreenStateDataImplCopyWith<_$ScreensScreenStateDataImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

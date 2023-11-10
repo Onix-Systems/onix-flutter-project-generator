@@ -99,11 +99,12 @@ class _$SummaryScreenEventCopyWithImpl<$Res, $Val extends SummaryScreenEvent>
 }
 
 /// @nodoc
-abstract class _$$SummaryScreenEventInitCopyWith<$Res>
+abstract class _$$SummaryScreenEventInitImplCopyWith<$Res>
     implements $SummaryScreenEventCopyWith<$Res> {
-  factory _$$SummaryScreenEventInitCopyWith(_$SummaryScreenEventInit value,
-          $Res Function(_$SummaryScreenEventInit) then) =
-      __$$SummaryScreenEventInitCopyWithImpl<$Res>;
+  factory _$$SummaryScreenEventInitImplCopyWith(
+          _$SummaryScreenEventInitImpl value,
+          $Res Function(_$SummaryScreenEventInitImpl) then) =
+      __$$SummaryScreenEventInitImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Config config});
@@ -113,11 +114,12 @@ abstract class _$$SummaryScreenEventInitCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$SummaryScreenEventInitCopyWithImpl<$Res>
-    extends _$SummaryScreenEventCopyWithImpl<$Res, _$SummaryScreenEventInit>
-    implements _$$SummaryScreenEventInitCopyWith<$Res> {
-  __$$SummaryScreenEventInitCopyWithImpl(_$SummaryScreenEventInit _value,
-      $Res Function(_$SummaryScreenEventInit) _then)
+class __$$SummaryScreenEventInitImplCopyWithImpl<$Res>
+    extends _$SummaryScreenEventCopyWithImpl<$Res, _$SummaryScreenEventInitImpl>
+    implements _$$SummaryScreenEventInitImplCopyWith<$Res> {
+  __$$SummaryScreenEventInitImplCopyWithImpl(
+      _$SummaryScreenEventInitImpl _value,
+      $Res Function(_$SummaryScreenEventInitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -125,7 +127,7 @@ class __$$SummaryScreenEventInitCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$SummaryScreenEventInit(
+    return _then(_$SummaryScreenEventInitImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -136,8 +138,8 @@ class __$$SummaryScreenEventInitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SummaryScreenEventInit implements SummaryScreenEventInit {
-  const _$SummaryScreenEventInit({required this.config});
+class _$SummaryScreenEventInitImpl implements SummaryScreenEventInit {
+  const _$SummaryScreenEventInitImpl({required this.config});
 
   @override
   final Config config;
@@ -151,7 +153,7 @@ class _$SummaryScreenEventInit implements SummaryScreenEventInit {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SummaryScreenEventInit &&
+            other is _$SummaryScreenEventInitImpl &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -161,9 +163,9 @@ class _$SummaryScreenEventInit implements SummaryScreenEventInit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SummaryScreenEventInitCopyWith<_$SummaryScreenEventInit> get copyWith =>
-      __$$SummaryScreenEventInitCopyWithImpl<_$SummaryScreenEventInit>(
-          this, _$identity);
+  _$$SummaryScreenEventInitImplCopyWith<_$SummaryScreenEventInitImpl>
+      get copyWith => __$$SummaryScreenEventInitImplCopyWithImpl<
+          _$SummaryScreenEventInitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -224,14 +226,14 @@ class _$SummaryScreenEventInit implements SummaryScreenEventInit {
 
 abstract class SummaryScreenEventInit implements SummaryScreenEvent {
   const factory SummaryScreenEventInit({required final Config config}) =
-      _$SummaryScreenEventInit;
+      _$SummaryScreenEventInitImpl;
 
   @override
   Config get config;
   @override
   @JsonKey(ignore: true)
-  _$$SummaryScreenEventInitCopyWith<_$SummaryScreenEventInit> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SummaryScreenEventInitImplCopyWith<_$SummaryScreenEventInitImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -282,32 +284,32 @@ class _$SummaryScreenSRCopyWithImpl<$Res, $Val extends SummaryScreenSR>
     implements $SummaryScreenSRCopyWith<$Res> {
   _$SummaryScreenSRCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$_LoadFinishedCopyWith<$Res> {
-  factory _$$_LoadFinishedCopyWith(
-          _$_LoadFinished value, $Res Function(_$_LoadFinished) then) =
-      __$$_LoadFinishedCopyWithImpl<$Res>;
+abstract class _$$LoadFinishedImplCopyWith<$Res> {
+  factory _$$LoadFinishedImplCopyWith(
+          _$LoadFinishedImpl value, $Res Function(_$LoadFinishedImpl) then) =
+      __$$LoadFinishedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadFinishedCopyWithImpl<$Res>
-    extends _$SummaryScreenSRCopyWithImpl<$Res, _$_LoadFinished>
-    implements _$$_LoadFinishedCopyWith<$Res> {
-  __$$_LoadFinishedCopyWithImpl(
-      _$_LoadFinished _value, $Res Function(_$_LoadFinished) _then)
+class __$$LoadFinishedImplCopyWithImpl<$Res>
+    extends _$SummaryScreenSRCopyWithImpl<$Res, _$LoadFinishedImpl>
+    implements _$$LoadFinishedImplCopyWith<$Res> {
+  __$$LoadFinishedImplCopyWithImpl(
+      _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_LoadFinished implements _LoadFinished {
-  const _$_LoadFinished();
+class _$LoadFinishedImpl implements _LoadFinished {
+  const _$LoadFinishedImpl();
 
   @override
   String toString() {
@@ -317,7 +319,7 @@ class _$_LoadFinished implements _LoadFinished {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoadFinished);
+        (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
 
   @override
@@ -381,7 +383,7 @@ class _$_LoadFinished implements _LoadFinished {
 }
 
 abstract class _LoadFinished implements SummaryScreenSR {
-  const factory _LoadFinished() = _$_LoadFinished;
+  const factory _LoadFinished() = _$LoadFinishedImpl;
 }
 
 /// @nodoc
@@ -469,11 +471,12 @@ class _$SummaryScreenStateCopyWithImpl<$Res, $Val extends SummaryScreenState>
 }
 
 /// @nodoc
-abstract class _$$SummaryScreenStateDataCopyWith<$Res>
+abstract class _$$SummaryScreenStateDataImplCopyWith<$Res>
     implements $SummaryScreenStateCopyWith<$Res> {
-  factory _$$SummaryScreenStateDataCopyWith(_$SummaryScreenStateData value,
-          $Res Function(_$SummaryScreenStateData) then) =
-      __$$SummaryScreenStateDataCopyWithImpl<$Res>;
+  factory _$$SummaryScreenStateDataImplCopyWith(
+          _$SummaryScreenStateDataImpl value,
+          $Res Function(_$SummaryScreenStateDataImpl) then) =
+      __$$SummaryScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Config config});
@@ -483,11 +486,12 @@ abstract class _$$SummaryScreenStateDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$SummaryScreenStateDataCopyWithImpl<$Res>
-    extends _$SummaryScreenStateCopyWithImpl<$Res, _$SummaryScreenStateData>
-    implements _$$SummaryScreenStateDataCopyWith<$Res> {
-  __$$SummaryScreenStateDataCopyWithImpl(_$SummaryScreenStateData _value,
-      $Res Function(_$SummaryScreenStateData) _then)
+class __$$SummaryScreenStateDataImplCopyWithImpl<$Res>
+    extends _$SummaryScreenStateCopyWithImpl<$Res, _$SummaryScreenStateDataImpl>
+    implements _$$SummaryScreenStateDataImplCopyWith<$Res> {
+  __$$SummaryScreenStateDataImplCopyWithImpl(
+      _$SummaryScreenStateDataImpl _value,
+      $Res Function(_$SummaryScreenStateDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -495,7 +499,7 @@ class __$$SummaryScreenStateDataCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$SummaryScreenStateData(
+    return _then(_$SummaryScreenStateDataImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -506,8 +510,8 @@ class __$$SummaryScreenStateDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SummaryScreenStateData implements SummaryScreenStateData {
-  const _$SummaryScreenStateData({required this.config});
+class _$SummaryScreenStateDataImpl implements SummaryScreenStateData {
+  const _$SummaryScreenStateDataImpl({required this.config});
 
   @override
   final Config config;
@@ -521,7 +525,7 @@ class _$SummaryScreenStateData implements SummaryScreenStateData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SummaryScreenStateData &&
+            other is _$SummaryScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -531,9 +535,9 @@ class _$SummaryScreenStateData implements SummaryScreenStateData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SummaryScreenStateDataCopyWith<_$SummaryScreenStateData> get copyWith =>
-      __$$SummaryScreenStateDataCopyWithImpl<_$SummaryScreenStateData>(
-          this, _$identity);
+  _$$SummaryScreenStateDataImplCopyWith<_$SummaryScreenStateDataImpl>
+      get copyWith => __$$SummaryScreenStateDataImplCopyWithImpl<
+          _$SummaryScreenStateDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -594,12 +598,12 @@ class _$SummaryScreenStateData implements SummaryScreenStateData {
 
 abstract class SummaryScreenStateData implements SummaryScreenState {
   const factory SummaryScreenStateData({required final Config config}) =
-      _$SummaryScreenStateData;
+      _$SummaryScreenStateDataImpl;
 
   @override
   Config get config;
   @override
   @JsonKey(ignore: true)
-  _$$SummaryScreenStateDataCopyWith<_$SummaryScreenStateData> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SummaryScreenStateDataImplCopyWith<_$SummaryScreenStateDataImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

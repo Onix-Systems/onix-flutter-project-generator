@@ -82,18 +82,18 @@ class _$SwaggerParserScreenEventCopyWithImpl<$Res,
     implements $SwaggerParserScreenEventCopyWith<$Res> {
   _$SwaggerParserScreenEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$SwaggerParserScreenEventInitCopyWith<$Res> {
-  factory _$$SwaggerParserScreenEventInitCopyWith(
-          _$SwaggerParserScreenEventInit value,
-          $Res Function(_$SwaggerParserScreenEventInit) then) =
-      __$$SwaggerParserScreenEventInitCopyWithImpl<$Res>;
+abstract class _$$SwaggerParserScreenEventInitImplCopyWith<$Res> {
+  factory _$$SwaggerParserScreenEventInitImplCopyWith(
+          _$SwaggerParserScreenEventInitImpl value,
+          $Res Function(_$SwaggerParserScreenEventInitImpl) then) =
+      __$$SwaggerParserScreenEventInitImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Config config});
 
@@ -101,13 +101,13 @@ abstract class _$$SwaggerParserScreenEventInitCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SwaggerParserScreenEventInitCopyWithImpl<$Res>
+class __$$SwaggerParserScreenEventInitImplCopyWithImpl<$Res>
     extends _$SwaggerParserScreenEventCopyWithImpl<$Res,
-        _$SwaggerParserScreenEventInit>
-    implements _$$SwaggerParserScreenEventInitCopyWith<$Res> {
-  __$$SwaggerParserScreenEventInitCopyWithImpl(
-      _$SwaggerParserScreenEventInit _value,
-      $Res Function(_$SwaggerParserScreenEventInit) _then)
+        _$SwaggerParserScreenEventInitImpl>
+    implements _$$SwaggerParserScreenEventInitImplCopyWith<$Res> {
+  __$$SwaggerParserScreenEventInitImplCopyWithImpl(
+      _$SwaggerParserScreenEventInitImpl _value,
+      $Res Function(_$SwaggerParserScreenEventInitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -115,7 +115,7 @@ class __$$SwaggerParserScreenEventInitCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$SwaggerParserScreenEventInit(
+    return _then(_$SwaggerParserScreenEventInitImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -134,8 +134,9 @@ class __$$SwaggerParserScreenEventInitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SwaggerParserScreenEventInit implements SwaggerParserScreenEventInit {
-  const _$SwaggerParserScreenEventInit({required this.config});
+class _$SwaggerParserScreenEventInitImpl
+    implements SwaggerParserScreenEventInit {
+  const _$SwaggerParserScreenEventInitImpl({required this.config});
 
   @override
   final Config config;
@@ -149,7 +150,7 @@ class _$SwaggerParserScreenEventInit implements SwaggerParserScreenEventInit {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SwaggerParserScreenEventInit &&
+            other is _$SwaggerParserScreenEventInitImpl &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -159,9 +160,10 @@ class _$SwaggerParserScreenEventInit implements SwaggerParserScreenEventInit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SwaggerParserScreenEventInitCopyWith<_$SwaggerParserScreenEventInit>
-      get copyWith => __$$SwaggerParserScreenEventInitCopyWithImpl<
-          _$SwaggerParserScreenEventInit>(this, _$identity);
+  _$$SwaggerParserScreenEventInitImplCopyWith<
+          _$SwaggerParserScreenEventInitImpl>
+      get copyWith => __$$SwaggerParserScreenEventInitImplCopyWithImpl<
+          _$SwaggerParserScreenEventInitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -242,38 +244,39 @@ class _$SwaggerParserScreenEventInit implements SwaggerParserScreenEventInit {
 abstract class SwaggerParserScreenEventInit
     implements SwaggerParserScreenEvent {
   const factory SwaggerParserScreenEventInit({required final Config config}) =
-      _$SwaggerParserScreenEventInit;
+      _$SwaggerParserScreenEventInitImpl;
 
   Config get config;
   @JsonKey(ignore: true)
-  _$$SwaggerParserScreenEventInitCopyWith<_$SwaggerParserScreenEventInit>
+  _$$SwaggerParserScreenEventInitImplCopyWith<
+          _$SwaggerParserScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SwaggerParserScreenEventOnReplaceCopyWith<$Res> {
-  factory _$$SwaggerParserScreenEventOnReplaceCopyWith(
-          _$SwaggerParserScreenEventOnReplace value,
-          $Res Function(_$SwaggerParserScreenEventOnReplace) then) =
-      __$$SwaggerParserScreenEventOnReplaceCopyWithImpl<$Res>;
+abstract class _$$SwaggerParserScreenEventOnReplaceImplCopyWith<$Res> {
+  factory _$$SwaggerParserScreenEventOnReplaceImplCopyWith(
+          _$SwaggerParserScreenEventOnReplaceImpl value,
+          $Res Function(_$SwaggerParserScreenEventOnReplaceImpl) then) =
+      __$$SwaggerParserScreenEventOnReplaceImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SwaggerParserScreenEventOnReplaceCopyWithImpl<$Res>
+class __$$SwaggerParserScreenEventOnReplaceImplCopyWithImpl<$Res>
     extends _$SwaggerParserScreenEventCopyWithImpl<$Res,
-        _$SwaggerParserScreenEventOnReplace>
-    implements _$$SwaggerParserScreenEventOnReplaceCopyWith<$Res> {
-  __$$SwaggerParserScreenEventOnReplaceCopyWithImpl(
-      _$SwaggerParserScreenEventOnReplace _value,
-      $Res Function(_$SwaggerParserScreenEventOnReplace) _then)
+        _$SwaggerParserScreenEventOnReplaceImpl>
+    implements _$$SwaggerParserScreenEventOnReplaceImplCopyWith<$Res> {
+  __$$SwaggerParserScreenEventOnReplaceImplCopyWithImpl(
+      _$SwaggerParserScreenEventOnReplaceImpl _value,
+      $Res Function(_$SwaggerParserScreenEventOnReplaceImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SwaggerParserScreenEventOnReplace
+class _$SwaggerParserScreenEventOnReplaceImpl
     implements SwaggerParserScreenEventOnReplace {
-  const _$SwaggerParserScreenEventOnReplace();
+  const _$SwaggerParserScreenEventOnReplaceImpl();
 
   @override
   String toString() {
@@ -284,7 +287,7 @@ class _$SwaggerParserScreenEventOnReplace
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SwaggerParserScreenEventOnReplace);
+            other is _$SwaggerParserScreenEventOnReplaceImpl);
   }
 
   @override
@@ -369,33 +372,33 @@ class _$SwaggerParserScreenEventOnReplace
 abstract class SwaggerParserScreenEventOnReplace
     implements SwaggerParserScreenEvent {
   const factory SwaggerParserScreenEventOnReplace() =
-      _$SwaggerParserScreenEventOnReplace;
+      _$SwaggerParserScreenEventOnReplaceImpl;
 }
 
 /// @nodoc
-abstract class _$$SwaggerParserScreenEventOnIgnoreCopyWith<$Res> {
-  factory _$$SwaggerParserScreenEventOnIgnoreCopyWith(
-          _$SwaggerParserScreenEventOnIgnore value,
-          $Res Function(_$SwaggerParserScreenEventOnIgnore) then) =
-      __$$SwaggerParserScreenEventOnIgnoreCopyWithImpl<$Res>;
+abstract class _$$SwaggerParserScreenEventOnIgnoreImplCopyWith<$Res> {
+  factory _$$SwaggerParserScreenEventOnIgnoreImplCopyWith(
+          _$SwaggerParserScreenEventOnIgnoreImpl value,
+          $Res Function(_$SwaggerParserScreenEventOnIgnoreImpl) then) =
+      __$$SwaggerParserScreenEventOnIgnoreImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SwaggerParserScreenEventOnIgnoreCopyWithImpl<$Res>
+class __$$SwaggerParserScreenEventOnIgnoreImplCopyWithImpl<$Res>
     extends _$SwaggerParserScreenEventCopyWithImpl<$Res,
-        _$SwaggerParserScreenEventOnIgnore>
-    implements _$$SwaggerParserScreenEventOnIgnoreCopyWith<$Res> {
-  __$$SwaggerParserScreenEventOnIgnoreCopyWithImpl(
-      _$SwaggerParserScreenEventOnIgnore _value,
-      $Res Function(_$SwaggerParserScreenEventOnIgnore) _then)
+        _$SwaggerParserScreenEventOnIgnoreImpl>
+    implements _$$SwaggerParserScreenEventOnIgnoreImplCopyWith<$Res> {
+  __$$SwaggerParserScreenEventOnIgnoreImplCopyWithImpl(
+      _$SwaggerParserScreenEventOnIgnoreImpl _value,
+      $Res Function(_$SwaggerParserScreenEventOnIgnoreImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SwaggerParserScreenEventOnIgnore
+class _$SwaggerParserScreenEventOnIgnoreImpl
     implements SwaggerParserScreenEventOnIgnore {
-  const _$SwaggerParserScreenEventOnIgnore();
+  const _$SwaggerParserScreenEventOnIgnoreImpl();
 
   @override
   String toString() {
@@ -406,7 +409,7 @@ class _$SwaggerParserScreenEventOnIgnore
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SwaggerParserScreenEventOnIgnore);
+            other is _$SwaggerParserScreenEventOnIgnoreImpl);
   }
 
   @override
@@ -491,27 +494,27 @@ class _$SwaggerParserScreenEventOnIgnore
 abstract class SwaggerParserScreenEventOnIgnore
     implements SwaggerParserScreenEvent {
   const factory SwaggerParserScreenEventOnIgnore() =
-      _$SwaggerParserScreenEventOnIgnore;
+      _$SwaggerParserScreenEventOnIgnoreImpl;
 }
 
 /// @nodoc
-abstract class _$$SwaggerParserScreenEventParseCopyWith<$Res> {
-  factory _$$SwaggerParserScreenEventParseCopyWith(
-          _$SwaggerParserScreenEventParse value,
-          $Res Function(_$SwaggerParserScreenEventParse) then) =
-      __$$SwaggerParserScreenEventParseCopyWithImpl<$Res>;
+abstract class _$$SwaggerParserScreenEventParseImplCopyWith<$Res> {
+  factory _$$SwaggerParserScreenEventParseImplCopyWith(
+          _$SwaggerParserScreenEventParseImpl value,
+          $Res Function(_$SwaggerParserScreenEventParseImpl) then) =
+      __$$SwaggerParserScreenEventParseImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String url});
 }
 
 /// @nodoc
-class __$$SwaggerParserScreenEventParseCopyWithImpl<$Res>
+class __$$SwaggerParserScreenEventParseImplCopyWithImpl<$Res>
     extends _$SwaggerParserScreenEventCopyWithImpl<$Res,
-        _$SwaggerParserScreenEventParse>
-    implements _$$SwaggerParserScreenEventParseCopyWith<$Res> {
-  __$$SwaggerParserScreenEventParseCopyWithImpl(
-      _$SwaggerParserScreenEventParse _value,
-      $Res Function(_$SwaggerParserScreenEventParse) _then)
+        _$SwaggerParserScreenEventParseImpl>
+    implements _$$SwaggerParserScreenEventParseImplCopyWith<$Res> {
+  __$$SwaggerParserScreenEventParseImplCopyWithImpl(
+      _$SwaggerParserScreenEventParseImpl _value,
+      $Res Function(_$SwaggerParserScreenEventParseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -519,7 +522,7 @@ class __$$SwaggerParserScreenEventParseCopyWithImpl<$Res>
   $Res call({
     Object? url = null,
   }) {
-    return _then(_$SwaggerParserScreenEventParse(
+    return _then(_$SwaggerParserScreenEventParseImpl(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -530,8 +533,9 @@ class __$$SwaggerParserScreenEventParseCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SwaggerParserScreenEventParse implements SwaggerParserScreenEventParse {
-  const _$SwaggerParserScreenEventParse({required this.url});
+class _$SwaggerParserScreenEventParseImpl
+    implements SwaggerParserScreenEventParse {
+  const _$SwaggerParserScreenEventParseImpl({required this.url});
 
   @override
   final String url;
@@ -545,7 +549,7 @@ class _$SwaggerParserScreenEventParse implements SwaggerParserScreenEventParse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SwaggerParserScreenEventParse &&
+            other is _$SwaggerParserScreenEventParseImpl &&
             (identical(other.url, url) || other.url == url));
   }
 
@@ -555,9 +559,10 @@ class _$SwaggerParserScreenEventParse implements SwaggerParserScreenEventParse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SwaggerParserScreenEventParseCopyWith<_$SwaggerParserScreenEventParse>
-      get copyWith => __$$SwaggerParserScreenEventParseCopyWithImpl<
-          _$SwaggerParserScreenEventParse>(this, _$identity);
+  _$$SwaggerParserScreenEventParseImplCopyWith<
+          _$SwaggerParserScreenEventParseImpl>
+      get copyWith => __$$SwaggerParserScreenEventParseImplCopyWithImpl<
+          _$SwaggerParserScreenEventParseImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -638,11 +643,12 @@ class _$SwaggerParserScreenEventParse implements SwaggerParserScreenEventParse {
 abstract class SwaggerParserScreenEventParse
     implements SwaggerParserScreenEvent {
   const factory SwaggerParserScreenEventParse({required final String url}) =
-      _$SwaggerParserScreenEventParse;
+      _$SwaggerParserScreenEventParseImpl;
 
   String get url;
   @JsonKey(ignore: true)
-  _$$SwaggerParserScreenEventParseCopyWith<_$SwaggerParserScreenEventParse>
+  _$$SwaggerParserScreenEventParseImplCopyWith<
+          _$SwaggerParserScreenEventParseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -707,26 +713,27 @@ class _$SwaggerParserScreenSRCopyWithImpl<$Res,
     implements $SwaggerParserScreenSRCopyWith<$Res> {
   _$SwaggerParserScreenSRCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$_OnErrorCopyWith<$Res> {
-  factory _$$_OnErrorCopyWith(
-          _$_OnError value, $Res Function(_$_OnError) then) =
-      __$$_OnErrorCopyWithImpl<$Res>;
+abstract class _$$OnErrorImplCopyWith<$Res> {
+  factory _$$OnErrorImplCopyWith(
+          _$OnErrorImpl value, $Res Function(_$OnErrorImpl) then) =
+      __$$OnErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_OnErrorCopyWithImpl<$Res>
-    extends _$SwaggerParserScreenSRCopyWithImpl<$Res, _$_OnError>
-    implements _$$_OnErrorCopyWith<$Res> {
-  __$$_OnErrorCopyWithImpl(_$_OnError _value, $Res Function(_$_OnError) _then)
+class __$$OnErrorImplCopyWithImpl<$Res>
+    extends _$SwaggerParserScreenSRCopyWithImpl<$Res, _$OnErrorImpl>
+    implements _$$OnErrorImplCopyWith<$Res> {
+  __$$OnErrorImplCopyWithImpl(
+      _$OnErrorImpl _value, $Res Function(_$OnErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -734,7 +741,7 @@ class __$$_OnErrorCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_OnError(
+    return _then(_$OnErrorImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -745,8 +752,8 @@ class __$$_OnErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OnError implements _OnError {
-  const _$_OnError({required this.message});
+class _$OnErrorImpl implements _OnError {
+  const _$OnErrorImpl({required this.message});
 
   @override
   final String message;
@@ -760,7 +767,7 @@ class _$_OnError implements _OnError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OnError &&
+            other is _$OnErrorImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -770,8 +777,8 @@ class _$_OnError implements _OnError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OnErrorCopyWith<_$_OnError> get copyWith =>
-      __$$_OnErrorCopyWithImpl<_$_OnError>(this, _$identity);
+  _$$OnErrorImplCopyWith<_$OnErrorImpl> get copyWith =>
+      __$$OnErrorImplCopyWithImpl<_$OnErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -843,34 +850,34 @@ class _$_OnError implements _OnError {
 }
 
 abstract class _OnError implements SwaggerParserScreenSR {
-  const factory _OnError({required final String message}) = _$_OnError;
+  const factory _OnError({required final String message}) = _$OnErrorImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_OnErrorCopyWith<_$_OnError> get copyWith =>
+  _$$OnErrorImplCopyWith<_$OnErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_OnConflictingCopyWith<$Res> {
-  factory _$$_OnConflictingCopyWith(
-          _$_OnConflicting value, $Res Function(_$_OnConflicting) then) =
-      __$$_OnConflictingCopyWithImpl<$Res>;
+abstract class _$$OnConflictingImplCopyWith<$Res> {
+  factory _$$OnConflictingImplCopyWith(
+          _$OnConflictingImpl value, $Res Function(_$OnConflictingImpl) then) =
+      __$$OnConflictingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnConflictingCopyWithImpl<$Res>
-    extends _$SwaggerParserScreenSRCopyWithImpl<$Res, _$_OnConflicting>
-    implements _$$_OnConflictingCopyWith<$Res> {
-  __$$_OnConflictingCopyWithImpl(
-      _$_OnConflicting _value, $Res Function(_$_OnConflicting) _then)
+class __$$OnConflictingImplCopyWithImpl<$Res>
+    extends _$SwaggerParserScreenSRCopyWithImpl<$Res, _$OnConflictingImpl>
+    implements _$$OnConflictingImplCopyWith<$Res> {
+  __$$OnConflictingImplCopyWithImpl(
+      _$OnConflictingImpl _value, $Res Function(_$OnConflictingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_OnConflicting implements _OnConflicting {
-  const _$_OnConflicting();
+class _$OnConflictingImpl implements _OnConflicting {
+  const _$OnConflictingImpl();
 
   @override
   String toString() {
@@ -880,7 +887,7 @@ class _$_OnConflicting implements _OnConflicting {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnConflicting);
+        (other.runtimeType == runtimeType && other is _$OnConflictingImpl);
   }
 
   @override
@@ -956,29 +963,29 @@ class _$_OnConflicting implements _OnConflicting {
 }
 
 abstract class _OnConflicting implements SwaggerParserScreenSR {
-  const factory _OnConflicting() = _$_OnConflicting;
+  const factory _OnConflicting() = _$OnConflictingImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnContinueCopyWith<$Res> {
-  factory _$$_OnContinueCopyWith(
-          _$_OnContinue value, $Res Function(_$_OnContinue) then) =
-      __$$_OnContinueCopyWithImpl<$Res>;
+abstract class _$$OnContinueImplCopyWith<$Res> {
+  factory _$$OnContinueImplCopyWith(
+          _$OnContinueImpl value, $Res Function(_$OnContinueImpl) then) =
+      __$$OnContinueImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnContinueCopyWithImpl<$Res>
-    extends _$SwaggerParserScreenSRCopyWithImpl<$Res, _$_OnContinue>
-    implements _$$_OnContinueCopyWith<$Res> {
-  __$$_OnContinueCopyWithImpl(
-      _$_OnContinue _value, $Res Function(_$_OnContinue) _then)
+class __$$OnContinueImplCopyWithImpl<$Res>
+    extends _$SwaggerParserScreenSRCopyWithImpl<$Res, _$OnContinueImpl>
+    implements _$$OnContinueImplCopyWith<$Res> {
+  __$$OnContinueImplCopyWithImpl(
+      _$OnContinueImpl _value, $Res Function(_$OnContinueImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_OnContinue implements _OnContinue {
-  const _$_OnContinue();
+class _$OnContinueImpl implements _OnContinue {
+  const _$OnContinueImpl();
 
   @override
   String toString() {
@@ -988,7 +995,7 @@ class _$_OnContinue implements _OnContinue {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnContinue);
+        (other.runtimeType == runtimeType && other is _$OnContinueImpl);
   }
 
   @override
@@ -1064,7 +1071,7 @@ class _$_OnContinue implements _OnContinue {
 }
 
 abstract class _OnContinue implements SwaggerParserScreenSR {
-  const factory _OnContinue() = _$_OnContinue;
+  const factory _OnContinue() = _$OnContinueImpl;
 }
 
 /// @nodoc
@@ -1175,12 +1182,12 @@ class _$SwaggerParserScreenStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$SwaggerParserScreenStateDataCopyWith<$Res>
+abstract class _$$SwaggerParserScreenStateDataImplCopyWith<$Res>
     implements $SwaggerParserScreenStateCopyWith<$Res> {
-  factory _$$SwaggerParserScreenStateDataCopyWith(
-          _$SwaggerParserScreenStateData value,
-          $Res Function(_$SwaggerParserScreenStateData) then) =
-      __$$SwaggerParserScreenStateDataCopyWithImpl<$Res>;
+  factory _$$SwaggerParserScreenStateDataImplCopyWith(
+          _$SwaggerParserScreenStateDataImpl value,
+          $Res Function(_$SwaggerParserScreenStateDataImpl) then) =
+      __$$SwaggerParserScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1193,13 +1200,13 @@ abstract class _$$SwaggerParserScreenStateDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$SwaggerParserScreenStateDataCopyWithImpl<$Res>
+class __$$SwaggerParserScreenStateDataImplCopyWithImpl<$Res>
     extends _$SwaggerParserScreenStateCopyWithImpl<$Res,
-        _$SwaggerParserScreenStateData>
-    implements _$$SwaggerParserScreenStateDataCopyWith<$Res> {
-  __$$SwaggerParserScreenStateDataCopyWithImpl(
-      _$SwaggerParserScreenStateData _value,
-      $Res Function(_$SwaggerParserScreenStateData) _then)
+        _$SwaggerParserScreenStateDataImpl>
+    implements _$$SwaggerParserScreenStateDataImplCopyWith<$Res> {
+  __$$SwaggerParserScreenStateDataImplCopyWithImpl(
+      _$SwaggerParserScreenStateDataImpl _value,
+      $Res Function(_$SwaggerParserScreenStateDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1209,7 +1216,7 @@ class __$$SwaggerParserScreenStateDataCopyWithImpl<$Res>
     Object? alreadyParsedSources = null,
     Object? alreadyParsedComponents = null,
   }) {
-    return _then(_$SwaggerParserScreenStateData(
+    return _then(_$SwaggerParserScreenStateDataImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -1228,8 +1235,9 @@ class __$$SwaggerParserScreenStateDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
-  const _$SwaggerParserScreenStateData(
+class _$SwaggerParserScreenStateDataImpl
+    implements SwaggerParserScreenStateData {
+  const _$SwaggerParserScreenStateDataImpl(
       {required this.config,
       final Set<Source> alreadyParsedSources = const {},
       final Set<DataComponent> alreadyParsedComponents = const {}})
@@ -1267,7 +1275,7 @@ class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SwaggerParserScreenStateData &&
+            other is _$SwaggerParserScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config) &&
             const DeepCollectionEquality()
                 .equals(other._alreadyParsedSources, _alreadyParsedSources) &&
@@ -1285,9 +1293,10 @@ class _$SwaggerParserScreenStateData implements SwaggerParserScreenStateData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SwaggerParserScreenStateDataCopyWith<_$SwaggerParserScreenStateData>
-      get copyWith => __$$SwaggerParserScreenStateDataCopyWithImpl<
-          _$SwaggerParserScreenStateData>(this, _$identity);
+  _$$SwaggerParserScreenStateDataImplCopyWith<
+          _$SwaggerParserScreenStateDataImpl>
+      get copyWith => __$$SwaggerParserScreenStateDataImplCopyWithImpl<
+          _$SwaggerParserScreenStateDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1358,7 +1367,7 @@ abstract class SwaggerParserScreenStateData
           {required final Config config,
           final Set<Source> alreadyParsedSources,
           final Set<DataComponent> alreadyParsedComponents}) =
-      _$SwaggerParserScreenStateData;
+      _$SwaggerParserScreenStateDataImpl;
 
   @override
   Config get config;
@@ -1368,6 +1377,7 @@ abstract class SwaggerParserScreenStateData
   Set<DataComponent> get alreadyParsedComponents;
   @override
   @JsonKey(ignore: true)
-  _$$SwaggerParserScreenStateDataCopyWith<_$SwaggerParserScreenStateData>
+  _$$SwaggerParserScreenStateDataImplCopyWith<
+          _$SwaggerParserScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

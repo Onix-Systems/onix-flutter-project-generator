@@ -21,27 +21,49 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Config {
   String get localVersion => throw _privateConstructorUsedError;
+
   String get remoteVersion => throw _privateConstructorUsedError;
+
   String get projectPath => throw _privateConstructorUsedError;
+
   String get projectName => throw _privateConstructorUsedError;
+
   bool get projectExists => throw _privateConstructorUsedError;
+
   String get organization => throw _privateConstructorUsedError;
+
   PlatformsList get platformsList => throw _privateConstructorUsedError;
+
   bool get flavorize => throw _privateConstructorUsedError;
+
   String get flavors => throw _privateConstructorUsedError;
+
   bool get generateSigningKey => throw _privateConstructorUsedError;
+
+  bool get firebaseAuth => throw _privateConstructorUsedError;
+
   bool get useSonar => throw _privateConstructorUsedError;
+
   bool get graphql => throw _privateConstructorUsedError;
+
   ProjectRouter get router => throw _privateConstructorUsedError;
+
   ProjectLocalization get localization => throw _privateConstructorUsedError;
+
   ProjectTheming get theming => throw _privateConstructorUsedError;
+
   List<String> get signingVars => throw _privateConstructorUsedError;
+
   Set<Screen> get screens => throw _privateConstructorUsedError;
+
   String get swaggerUrl => throw _privateConstructorUsedError;
+
   Set<DataComponent> get dataComponents => throw _privateConstructorUsedError;
+
   Set<Source> get sources => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
@@ -50,6 +72,7 @@ mixin _$Config {
 abstract class $ConfigCopyWith<$Res> {
   factory $ConfigCopyWith(Config value, $Res Function(Config) then) =
       _$ConfigCopyWithImpl<$Res, Config>;
+
   @useResult
   $Res call(
       {String localVersion,
@@ -62,6 +85,7 @@ abstract class $ConfigCopyWith<$Res> {
       bool flavorize,
       String flavors,
       bool generateSigningKey,
+      bool firebaseAuth,
       bool useSonar,
       bool graphql,
       ProjectRouter router,
@@ -83,6 +107,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -99,6 +124,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? flavorize = null,
     Object? flavors = null,
     Object? generateSigningKey = null,
+    Object? firebaseAuth = null,
     Object? useSonar = null,
     Object? graphql = null,
     Object? router = null,
@@ -150,6 +176,10 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
       generateSigningKey: null == generateSigningKey
           ? _value.generateSigningKey
           : generateSigningKey // ignore: cast_nullable_to_non_nullable
+              as bool,
+      firebaseAuth: null == firebaseAuth
+          ? _value.firebaseAuth
+          : firebaseAuth // ignore: cast_nullable_to_non_nullable
               as bool,
       useSonar: null == useSonar
           ? _value.useSonar
@@ -204,9 +234,11 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
 }
 
 /// @nodoc
-abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
-  factory _$$_ConfigCopyWith(_$_Config value, $Res Function(_$_Config) then) =
-      __$$_ConfigCopyWithImpl<$Res>;
+abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
+  factory _$$ConfigImplCopyWith(
+          _$ConfigImpl value, $Res Function(_$ConfigImpl) then) =
+      __$$ConfigImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -220,6 +252,7 @@ abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       bool flavorize,
       String flavors,
       bool generateSigningKey,
+      bool firebaseAuth,
       bool useSonar,
       bool graphql,
       ProjectRouter router,
@@ -236,10 +269,11 @@ abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ConfigCopyWithImpl<$Res>
-    extends _$ConfigCopyWithImpl<$Res, _$_Config>
-    implements _$$_ConfigCopyWith<$Res> {
-  __$$_ConfigCopyWithImpl(_$_Config _value, $Res Function(_$_Config) _then)
+class __$$ConfigImplCopyWithImpl<$Res>
+    extends _$ConfigCopyWithImpl<$Res, _$ConfigImpl>
+    implements _$$ConfigImplCopyWith<$Res> {
+  __$$ConfigImplCopyWithImpl(
+      _$ConfigImpl _value, $Res Function(_$ConfigImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -255,6 +289,7 @@ class __$$_ConfigCopyWithImpl<$Res>
     Object? flavorize = null,
     Object? flavors = null,
     Object? generateSigningKey = null,
+    Object? firebaseAuth = null,
     Object? useSonar = null,
     Object? graphql = null,
     Object? router = null,
@@ -266,7 +301,7 @@ class __$$_ConfigCopyWithImpl<$Res>
     Object? dataComponents = null,
     Object? sources = null,
   }) {
-    return _then(_$_Config(
+    return _then(_$ConfigImpl(
       localVersion: null == localVersion
           ? _value.localVersion
           : localVersion // ignore: cast_nullable_to_non_nullable
@@ -306,6 +341,10 @@ class __$$_ConfigCopyWithImpl<$Res>
       generateSigningKey: null == generateSigningKey
           ? _value.generateSigningKey
           : generateSigningKey // ignore: cast_nullable_to_non_nullable
+              as bool,
+      firebaseAuth: null == firebaseAuth
+          ? _value.firebaseAuth
+          : firebaseAuth // ignore: cast_nullable_to_non_nullable
               as bool,
       useSonar: null == useSonar
           ? _value.useSonar
@@ -353,8 +392,8 @@ class __$$_ConfigCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Config extends _Config {
-  const _$_Config(
+class _$ConfigImpl extends _Config {
+  const _$ConfigImpl(
       {this.localVersion = '',
       this.remoteVersion = '',
       this.projectPath = '',
@@ -365,6 +404,7 @@ class _$_Config extends _Config {
       this.flavorize = false,
       this.flavors = '',
       this.generateSigningKey = false,
+      this.firebaseAuth = false,
       this.useSonar = true,
       this.graphql = false,
       this.router = ProjectRouter.goRouter,
@@ -389,8 +429,8 @@ class _$_Config extends _Config {
         _sources = sources,
         super._();
 
-  factory _$_Config.fromJson(Map<String, dynamic> json) =>
-      _$$_ConfigFromJson(json);
+  factory _$ConfigImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ConfigImplFromJson(json);
 
   @override
   @JsonKey()
@@ -424,6 +464,9 @@ class _$_Config extends _Config {
   final bool generateSigningKey;
   @override
   @JsonKey()
+  final bool firebaseAuth;
+  @override
+  @JsonKey()
   final bool useSonar;
   @override
   @JsonKey()
@@ -438,6 +481,7 @@ class _$_Config extends _Config {
   @JsonKey()
   final ProjectTheming theming;
   final List<String> _signingVars;
+
   @override
   @JsonKey()
   List<String> get signingVars {
@@ -447,6 +491,7 @@ class _$_Config extends _Config {
   }
 
   final Set<Screen> _screens;
+
   @override
   @JsonKey()
   Set<Screen> get screens {
@@ -459,6 +504,7 @@ class _$_Config extends _Config {
   @JsonKey()
   final String swaggerUrl;
   final Set<DataComponent> _dataComponents;
+
   @override
   @JsonKey()
   Set<DataComponent> get dataComponents {
@@ -468,6 +514,7 @@ class _$_Config extends _Config {
   }
 
   final Set<Source> _sources;
+
   @override
   @JsonKey()
   Set<Source> get sources {
@@ -478,14 +525,14 @@ class _$_Config extends _Config {
 
   @override
   String toString() {
-    return 'Config(localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, swaggerUrl: $swaggerUrl, dataComponents: $dataComponents, sources: $sources)';
+    return 'Config(localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, swaggerUrl: $swaggerUrl, dataComponents: $dataComponents, sources: $sources)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Config &&
+            other is _$ConfigImpl &&
             (identical(other.localVersion, localVersion) ||
                 other.localVersion == localVersion) &&
             (identical(other.remoteVersion, remoteVersion) ||
@@ -505,6 +552,8 @@ class _$_Config extends _Config {
             (identical(other.flavors, flavors) || other.flavors == flavors) &&
             (identical(other.generateSigningKey, generateSigningKey) ||
                 other.generateSigningKey == generateSigningKey) &&
+            (identical(other.firebaseAuth, firebaseAuth) ||
+                other.firebaseAuth == firebaseAuth) &&
             (identical(other.useSonar, useSonar) ||
                 other.useSonar == useSonar) &&
             (identical(other.graphql, graphql) || other.graphql == graphql) &&
@@ -536,6 +585,7 @@ class _$_Config extends _Config {
         flavorize,
         flavors,
         generateSigningKey,
+        firebaseAuth,
         useSonar,
         graphql,
         router,
@@ -551,12 +601,12 @@ class _$_Config extends _Config {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ConfigCopyWith<_$_Config> get copyWith =>
-      __$$_ConfigCopyWithImpl<_$_Config>(this, _$identity);
+  _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>
+      __$$ConfigImplCopyWithImpl<_$ConfigImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ConfigToJson(
+    return _$$ConfigImplToJson(
       this,
     );
   }
@@ -574,6 +624,7 @@ abstract class _Config extends Config {
       final bool flavorize,
       final String flavors,
       final bool generateSigningKey,
+      final bool firebaseAuth,
       final bool useSonar,
       final bool graphql,
       final ProjectRouter router,
@@ -583,53 +634,77 @@ abstract class _Config extends Config {
       final Set<Screen> screens,
       final String swaggerUrl,
       final Set<DataComponent> dataComponents,
-      final Set<Source> sources}) = _$_Config;
+      final Set<Source> sources}) = _$ConfigImpl;
+
   const _Config._() : super._();
 
-  factory _Config.fromJson(Map<String, dynamic> json) = _$_Config.fromJson;
+  factory _Config.fromJson(Map<String, dynamic> json) = _$ConfigImpl.fromJson;
 
   @override
   String get localVersion;
+
   @override
   String get remoteVersion;
+
   @override
   String get projectPath;
+
   @override
   String get projectName;
+
   @override
   bool get projectExists;
+
   @override
   String get organization;
+
   @override
   PlatformsList get platformsList;
+
   @override
   bool get flavorize;
+
   @override
   String get flavors;
+
   @override
   bool get generateSigningKey;
+
+  @override
+  bool get firebaseAuth;
+
   @override
   bool get useSonar;
+
   @override
   bool get graphql;
+
   @override
   ProjectRouter get router;
+
   @override
   ProjectLocalization get localization;
+
   @override
   ProjectTheming get theming;
+
   @override
   List<String> get signingVars;
+
   @override
   Set<Screen> get screens;
+
   @override
   String get swaggerUrl;
+
   @override
   Set<DataComponent> get dataComponents;
+
   @override
   Set<Source> get sources;
+
   @override
   @JsonKey(ignore: true)
-  _$$_ConfigCopyWith<_$_Config> get copyWith =>
+  _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

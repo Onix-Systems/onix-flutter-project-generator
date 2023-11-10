@@ -92,18 +92,18 @@ class _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
     implements $ProcedureSelectionScreenEventCopyWith<$Res> {
   _$ProcedureSelectionScreenEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$ProcedureSelectionScreenEventInitCopyWith<$Res> {
-  factory _$$ProcedureSelectionScreenEventInitCopyWith(
-          _$ProcedureSelectionScreenEventInit value,
-          $Res Function(_$ProcedureSelectionScreenEventInit) then) =
-      __$$ProcedureSelectionScreenEventInitCopyWithImpl<$Res>;
+abstract class _$$ProcedureSelectionScreenEventInitImplCopyWith<$Res> {
+  factory _$$ProcedureSelectionScreenEventInitImplCopyWith(
+          _$ProcedureSelectionScreenEventInitImpl value,
+          $Res Function(_$ProcedureSelectionScreenEventInitImpl) then) =
+      __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Config config});
 
@@ -111,13 +111,13 @@ abstract class _$$ProcedureSelectionScreenEventInitCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ProcedureSelectionScreenEventInitCopyWithImpl<$Res>
+class __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<$Res>
     extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventInit>
-    implements _$$ProcedureSelectionScreenEventInitCopyWith<$Res> {
-  __$$ProcedureSelectionScreenEventInitCopyWithImpl(
-      _$ProcedureSelectionScreenEventInit _value,
-      $Res Function(_$ProcedureSelectionScreenEventInit) _then)
+        _$ProcedureSelectionScreenEventInitImpl>
+    implements _$$ProcedureSelectionScreenEventInitImplCopyWith<$Res> {
+  __$$ProcedureSelectionScreenEventInitImplCopyWithImpl(
+      _$ProcedureSelectionScreenEventInitImpl _value,
+      $Res Function(_$ProcedureSelectionScreenEventInitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -125,7 +125,7 @@ class __$$ProcedureSelectionScreenEventInitCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$ProcedureSelectionScreenEventInit(
+    return _then(_$ProcedureSelectionScreenEventInitImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -144,9 +144,9 @@ class __$$ProcedureSelectionScreenEventInitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProcedureSelectionScreenEventInit
+class _$ProcedureSelectionScreenEventInitImpl
     implements ProcedureSelectionScreenEventInit {
-  const _$ProcedureSelectionScreenEventInit({required this.config});
+  const _$ProcedureSelectionScreenEventInitImpl({required this.config});
 
   @override
   final Config config;
@@ -160,7 +160,7 @@ class _$ProcedureSelectionScreenEventInit
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventInit &&
+            other is _$ProcedureSelectionScreenEventInitImpl &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -170,10 +170,10 @@ class _$ProcedureSelectionScreenEventInit
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenEventInitCopyWith<
-          _$ProcedureSelectionScreenEventInit>
-      get copyWith => __$$ProcedureSelectionScreenEventInitCopyWithImpl<
-          _$ProcedureSelectionScreenEventInit>(this, _$identity);
+  _$$ProcedureSelectionScreenEventInitImplCopyWith<
+          _$ProcedureSelectionScreenEventInitImpl>
+      get copyWith => __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<
+          _$ProcedureSelectionScreenEventInitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -262,33 +262,33 @@ class _$ProcedureSelectionScreenEventInit
 abstract class ProcedureSelectionScreenEventInit
     implements ProcedureSelectionScreenEvent {
   const factory ProcedureSelectionScreenEventInit(
-      {required final Config config}) = _$ProcedureSelectionScreenEventInit;
+      {required final Config config}) = _$ProcedureSelectionScreenEventInitImpl;
 
   Config get config;
   @JsonKey(ignore: true)
-  _$$ProcedureSelectionScreenEventInitCopyWith<
-          _$ProcedureSelectionScreenEventInit>
+  _$$ProcedureSelectionScreenEventInitImplCopyWith<
+          _$ProcedureSelectionScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProcedureSelectionScreenEventOnNewProjectCopyWith<$Res> {
-  factory _$$ProcedureSelectionScreenEventOnNewProjectCopyWith(
-          _$ProcedureSelectionScreenEventOnNewProject value,
-          $Res Function(_$ProcedureSelectionScreenEventOnNewProject) then) =
-      __$$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl<$Res>;
+abstract class _$$ProcedureSelectionScreenEventOnNewProjectImplCopyWith<$Res> {
+  factory _$$ProcedureSelectionScreenEventOnNewProjectImplCopyWith(
+          _$ProcedureSelectionScreenEventOnNewProjectImpl value,
+          $Res Function(_$ProcedureSelectionScreenEventOnNewProjectImpl) then) =
+      __$$ProcedureSelectionScreenEventOnNewProjectImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String projectPath});
 }
 
 /// @nodoc
-class __$$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl<$Res>
+class __$$ProcedureSelectionScreenEventOnNewProjectImplCopyWithImpl<$Res>
     extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventOnNewProject>
-    implements _$$ProcedureSelectionScreenEventOnNewProjectCopyWith<$Res> {
-  __$$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl(
-      _$ProcedureSelectionScreenEventOnNewProject _value,
-      $Res Function(_$ProcedureSelectionScreenEventOnNewProject) _then)
+        _$ProcedureSelectionScreenEventOnNewProjectImpl>
+    implements _$$ProcedureSelectionScreenEventOnNewProjectImplCopyWith<$Res> {
+  __$$ProcedureSelectionScreenEventOnNewProjectImplCopyWithImpl(
+      _$ProcedureSelectionScreenEventOnNewProjectImpl _value,
+      $Res Function(_$ProcedureSelectionScreenEventOnNewProjectImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -296,7 +296,7 @@ class __$$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl<$Res>
   $Res call({
     Object? projectPath = null,
   }) {
-    return _then(_$ProcedureSelectionScreenEventOnNewProject(
+    return _then(_$ProcedureSelectionScreenEventOnNewProjectImpl(
       projectPath: null == projectPath
           ? _value.projectPath
           : projectPath // ignore: cast_nullable_to_non_nullable
@@ -307,9 +307,9 @@ class __$$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProcedureSelectionScreenEventOnNewProject
+class _$ProcedureSelectionScreenEventOnNewProjectImpl
     implements ProcedureSelectionScreenEventOnNewProject {
-  const _$ProcedureSelectionScreenEventOnNewProject(
+  const _$ProcedureSelectionScreenEventOnNewProjectImpl(
       {required this.projectPath});
 
   @override
@@ -324,7 +324,7 @@ class _$ProcedureSelectionScreenEventOnNewProject
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventOnNewProject &&
+            other is _$ProcedureSelectionScreenEventOnNewProjectImpl &&
             (identical(other.projectPath, projectPath) ||
                 other.projectPath == projectPath));
   }
@@ -335,10 +335,12 @@ class _$ProcedureSelectionScreenEventOnNewProject
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenEventOnNewProjectCopyWith<
-          _$ProcedureSelectionScreenEventOnNewProject>
-      get copyWith => __$$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl<
-          _$ProcedureSelectionScreenEventOnNewProject>(this, _$identity);
+  _$$ProcedureSelectionScreenEventOnNewProjectImplCopyWith<
+          _$ProcedureSelectionScreenEventOnNewProjectImpl>
+      get copyWith =>
+          __$$ProcedureSelectionScreenEventOnNewProjectImplCopyWithImpl<
+                  _$ProcedureSelectionScreenEventOnNewProjectImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -428,33 +430,34 @@ abstract class ProcedureSelectionScreenEventOnNewProject
     implements ProcedureSelectionScreenEvent {
   const factory ProcedureSelectionScreenEventOnNewProject(
           {required final String projectPath}) =
-      _$ProcedureSelectionScreenEventOnNewProject;
+      _$ProcedureSelectionScreenEventOnNewProjectImpl;
 
   String get projectPath;
   @JsonKey(ignore: true)
-  _$$ProcedureSelectionScreenEventOnNewProjectCopyWith<
-          _$ProcedureSelectionScreenEventOnNewProject>
+  _$$ProcedureSelectionScreenEventOnNewProjectImplCopyWith<
+          _$ProcedureSelectionScreenEventOnNewProjectImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<$Res> {
-  factory _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith(
-          _$ProcedureSelectionScreenEventOnProjectOpen value,
-          $Res Function(_$ProcedureSelectionScreenEventOnProjectOpen) then) =
-      __$$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl<$Res>;
+abstract class _$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWith<$Res> {
+  factory _$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWith(
+          _$ProcedureSelectionScreenEventOnProjectOpenImpl value,
+          $Res Function(_$ProcedureSelectionScreenEventOnProjectOpenImpl)
+              then) =
+      __$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String projectURI});
 }
 
 /// @nodoc
-class __$$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl<$Res>
+class __$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWithImpl<$Res>
     extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventOnProjectOpen>
-    implements _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<$Res> {
-  __$$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl(
-      _$ProcedureSelectionScreenEventOnProjectOpen _value,
-      $Res Function(_$ProcedureSelectionScreenEventOnProjectOpen) _then)
+        _$ProcedureSelectionScreenEventOnProjectOpenImpl>
+    implements _$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWith<$Res> {
+  __$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWithImpl(
+      _$ProcedureSelectionScreenEventOnProjectOpenImpl _value,
+      $Res Function(_$ProcedureSelectionScreenEventOnProjectOpenImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -462,7 +465,7 @@ class __$$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl<$Res>
   $Res call({
     Object? projectURI = null,
   }) {
-    return _then(_$ProcedureSelectionScreenEventOnProjectOpen(
+    return _then(_$ProcedureSelectionScreenEventOnProjectOpenImpl(
       projectURI: null == projectURI
           ? _value.projectURI
           : projectURI // ignore: cast_nullable_to_non_nullable
@@ -473,9 +476,9 @@ class __$$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProcedureSelectionScreenEventOnProjectOpen
+class _$ProcedureSelectionScreenEventOnProjectOpenImpl
     implements ProcedureSelectionScreenEventOnProjectOpen {
-  const _$ProcedureSelectionScreenEventOnProjectOpen(
+  const _$ProcedureSelectionScreenEventOnProjectOpenImpl(
       {required this.projectURI});
 
   @override
@@ -490,7 +493,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpen
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventOnProjectOpen &&
+            other is _$ProcedureSelectionScreenEventOnProjectOpenImpl &&
             (identical(other.projectURI, projectURI) ||
                 other.projectURI == projectURI));
   }
@@ -501,11 +504,12 @@ class _$ProcedureSelectionScreenEventOnProjectOpen
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<
-          _$ProcedureSelectionScreenEventOnProjectOpen>
+  _$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWith<
+          _$ProcedureSelectionScreenEventOnProjectOpenImpl>
       get copyWith =>
-          __$$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl<
-              _$ProcedureSelectionScreenEventOnProjectOpen>(this, _$identity);
+          __$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWithImpl<
+                  _$ProcedureSelectionScreenEventOnProjectOpenImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -595,33 +599,36 @@ abstract class ProcedureSelectionScreenEventOnProjectOpen
     implements ProcedureSelectionScreenEvent {
   const factory ProcedureSelectionScreenEventOnProjectOpen(
           {required final String projectURI}) =
-      _$ProcedureSelectionScreenEventOnProjectOpen;
+      _$ProcedureSelectionScreenEventOnProjectOpenImpl;
 
   String get projectURI;
   @JsonKey(ignore: true)
-  _$$ProcedureSelectionScreenEventOnProjectOpenCopyWith<
-          _$ProcedureSelectionScreenEventOnProjectOpen>
+  _$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWith<
+          _$ProcedureSelectionScreenEventOnProjectOpenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProcedureSelectionScreenEventOnLocaleChangeCopyWith<$Res> {
-  factory _$$ProcedureSelectionScreenEventOnLocaleChangeCopyWith(
-          _$ProcedureSelectionScreenEventOnLocaleChange value,
-          $Res Function(_$ProcedureSelectionScreenEventOnLocaleChange) then) =
-      __$$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl<$Res>;
+abstract class _$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWith<
+    $Res> {
+  factory _$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWith(
+          _$ProcedureSelectionScreenEventOnLocaleChangeImpl value,
+          $Res Function(_$ProcedureSelectionScreenEventOnLocaleChangeImpl)
+              then) =
+      __$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String language});
 }
 
 /// @nodoc
-class __$$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl<$Res>
+class __$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWithImpl<$Res>
     extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventOnLocaleChange>
-    implements _$$ProcedureSelectionScreenEventOnLocaleChangeCopyWith<$Res> {
-  __$$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl(
-      _$ProcedureSelectionScreenEventOnLocaleChange _value,
-      $Res Function(_$ProcedureSelectionScreenEventOnLocaleChange) _then)
+        _$ProcedureSelectionScreenEventOnLocaleChangeImpl>
+    implements
+        _$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWith<$Res> {
+  __$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWithImpl(
+      _$ProcedureSelectionScreenEventOnLocaleChangeImpl _value,
+      $Res Function(_$ProcedureSelectionScreenEventOnLocaleChangeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -629,7 +636,7 @@ class __$$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl<$Res>
   $Res call({
     Object? language = null,
   }) {
-    return _then(_$ProcedureSelectionScreenEventOnLocaleChange(
+    return _then(_$ProcedureSelectionScreenEventOnLocaleChangeImpl(
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -640,9 +647,10 @@ class __$$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProcedureSelectionScreenEventOnLocaleChange
+class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
     implements ProcedureSelectionScreenEventOnLocaleChange {
-  const _$ProcedureSelectionScreenEventOnLocaleChange({required this.language});
+  const _$ProcedureSelectionScreenEventOnLocaleChangeImpl(
+      {required this.language});
 
   @override
   final String language;
@@ -656,7 +664,7 @@ class _$ProcedureSelectionScreenEventOnLocaleChange
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventOnLocaleChange &&
+            other is _$ProcedureSelectionScreenEventOnLocaleChangeImpl &&
             (identical(other.language, language) ||
                 other.language == language));
   }
@@ -667,11 +675,12 @@ class _$ProcedureSelectionScreenEventOnLocaleChange
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenEventOnLocaleChangeCopyWith<
-          _$ProcedureSelectionScreenEventOnLocaleChange>
+  _$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWith<
+          _$ProcedureSelectionScreenEventOnLocaleChangeImpl>
       get copyWith =>
-          __$$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl<
-              _$ProcedureSelectionScreenEventOnLocaleChange>(this, _$identity);
+          __$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWithImpl<
+                  _$ProcedureSelectionScreenEventOnLocaleChangeImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -761,12 +770,12 @@ abstract class ProcedureSelectionScreenEventOnLocaleChange
     implements ProcedureSelectionScreenEvent {
   const factory ProcedureSelectionScreenEventOnLocaleChange(
           {required final String language}) =
-      _$ProcedureSelectionScreenEventOnLocaleChange;
+      _$ProcedureSelectionScreenEventOnLocaleChangeImpl;
 
   String get language;
   @JsonKey(ignore: true)
-  _$$ProcedureSelectionScreenEventOnLocaleChangeCopyWith<
-          _$ProcedureSelectionScreenEventOnLocaleChange>
+  _$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWith<
+          _$ProcedureSelectionScreenEventOnLocaleChangeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -832,32 +841,32 @@ class _$ProcedureSelectionScreenSRCopyWithImpl<$Res,
     implements $ProcedureSelectionScreenSRCopyWith<$Res> {
   _$ProcedureSelectionScreenSRCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$_LoadFinishedCopyWith<$Res> {
-  factory _$$_LoadFinishedCopyWith(
-          _$_LoadFinished value, $Res Function(_$_LoadFinished) then) =
-      __$$_LoadFinishedCopyWithImpl<$Res>;
+abstract class _$$LoadFinishedImplCopyWith<$Res> {
+  factory _$$LoadFinishedImplCopyWith(
+          _$LoadFinishedImpl value, $Res Function(_$LoadFinishedImpl) then) =
+      __$$LoadFinishedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadFinishedCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenSRCopyWithImpl<$Res, _$_LoadFinished>
-    implements _$$_LoadFinishedCopyWith<$Res> {
-  __$$_LoadFinishedCopyWithImpl(
-      _$_LoadFinished _value, $Res Function(_$_LoadFinished) _then)
+class __$$LoadFinishedImplCopyWithImpl<$Res>
+    extends _$ProcedureSelectionScreenSRCopyWithImpl<$Res, _$LoadFinishedImpl>
+    implements _$$LoadFinishedImplCopyWith<$Res> {
+  __$$LoadFinishedImplCopyWithImpl(
+      _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_LoadFinished implements _LoadFinished {
-  const _$_LoadFinished();
+class _$LoadFinishedImpl implements _LoadFinished {
+  const _$LoadFinishedImpl();
 
   @override
   String toString() {
@@ -867,7 +876,7 @@ class _$_LoadFinished implements _LoadFinished {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoadFinished);
+        (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
 
   @override
@@ -943,29 +952,29 @@ class _$_LoadFinished implements _LoadFinished {
 }
 
 abstract class _LoadFinished implements ProcedureSelectionScreenSR {
-  const factory _LoadFinished() = _$_LoadFinished;
+  const factory _LoadFinished() = _$LoadFinishedImpl;
 }
 
 /// @nodoc
-abstract class _$$_EmptyConfigCopyWith<$Res> {
-  factory _$$_EmptyConfigCopyWith(
-          _$_EmptyConfig value, $Res Function(_$_EmptyConfig) then) =
-      __$$_EmptyConfigCopyWithImpl<$Res>;
+abstract class _$$EmptyConfigImplCopyWith<$Res> {
+  factory _$$EmptyConfigImplCopyWith(
+          _$EmptyConfigImpl value, $Res Function(_$EmptyConfigImpl) then) =
+      __$$EmptyConfigImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_EmptyConfigCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenSRCopyWithImpl<$Res, _$_EmptyConfig>
-    implements _$$_EmptyConfigCopyWith<$Res> {
-  __$$_EmptyConfigCopyWithImpl(
-      _$_EmptyConfig _value, $Res Function(_$_EmptyConfig) _then)
+class __$$EmptyConfigImplCopyWithImpl<$Res>
+    extends _$ProcedureSelectionScreenSRCopyWithImpl<$Res, _$EmptyConfigImpl>
+    implements _$$EmptyConfigImplCopyWith<$Res> {
+  __$$EmptyConfigImplCopyWithImpl(
+      _$EmptyConfigImpl _value, $Res Function(_$EmptyConfigImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_EmptyConfig implements _EmptyConfig {
-  const _$_EmptyConfig();
+class _$EmptyConfigImpl implements _EmptyConfig {
+  const _$EmptyConfigImpl();
 
   @override
   String toString() {
@@ -975,7 +984,7 @@ class _$_EmptyConfig implements _EmptyConfig {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_EmptyConfig);
+        (other.runtimeType == runtimeType && other is _$EmptyConfigImpl);
   }
 
   @override
@@ -1051,29 +1060,29 @@ class _$_EmptyConfig implements _EmptyConfig {
 }
 
 abstract class _EmptyConfig implements ProcedureSelectionScreenSR {
-  const factory _EmptyConfig() = _$_EmptyConfig;
+  const factory _EmptyConfig() = _$EmptyConfigImpl;
 }
 
 /// @nodoc
-abstract class _$$_onNewProjectCopyWith<$Res> {
-  factory _$$_onNewProjectCopyWith(
-          _$_onNewProject value, $Res Function(_$_onNewProject) then) =
-      __$$_onNewProjectCopyWithImpl<$Res>;
+abstract class _$$onNewProjectImplCopyWith<$Res> {
+  factory _$$onNewProjectImplCopyWith(
+          _$onNewProjectImpl value, $Res Function(_$onNewProjectImpl) then) =
+      __$$onNewProjectImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_onNewProjectCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenSRCopyWithImpl<$Res, _$_onNewProject>
-    implements _$$_onNewProjectCopyWith<$Res> {
-  __$$_onNewProjectCopyWithImpl(
-      _$_onNewProject _value, $Res Function(_$_onNewProject) _then)
+class __$$onNewProjectImplCopyWithImpl<$Res>
+    extends _$ProcedureSelectionScreenSRCopyWithImpl<$Res, _$onNewProjectImpl>
+    implements _$$onNewProjectImplCopyWith<$Res> {
+  __$$onNewProjectImplCopyWithImpl(
+      _$onNewProjectImpl _value, $Res Function(_$onNewProjectImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_onNewProject implements _onNewProject {
-  const _$_onNewProject();
+class _$onNewProjectImpl implements _onNewProject {
+  const _$onNewProjectImpl();
 
   @override
   String toString() {
@@ -1083,7 +1092,7 @@ class _$_onNewProject implements _onNewProject {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_onNewProject);
+        (other.runtimeType == runtimeType && other is _$onNewProjectImpl);
   }
 
   @override
@@ -1159,7 +1168,7 @@ class _$_onNewProject implements _onNewProject {
 }
 
 abstract class _onNewProject implements ProcedureSelectionScreenSR {
-  const factory _onNewProject() = _$_onNewProject;
+  const factory _onNewProject() = _$onNewProjectImpl;
 }
 
 /// @nodoc
@@ -1256,12 +1265,12 @@ class _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ProcedureSelectionScreenStateDataCopyWith<$Res>
+abstract class _$$ProcedureSelectionScreenStateDataImplCopyWith<$Res>
     implements $ProcedureSelectionScreenStateCopyWith<$Res> {
-  factory _$$ProcedureSelectionScreenStateDataCopyWith(
-          _$ProcedureSelectionScreenStateData value,
-          $Res Function(_$ProcedureSelectionScreenStateData) then) =
-      __$$ProcedureSelectionScreenStateDataCopyWithImpl<$Res>;
+  factory _$$ProcedureSelectionScreenStateDataImplCopyWith(
+          _$ProcedureSelectionScreenStateDataImpl value,
+          $Res Function(_$ProcedureSelectionScreenStateDataImpl) then) =
+      __$$ProcedureSelectionScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Config config, dynamic language});
@@ -1271,13 +1280,13 @@ abstract class _$$ProcedureSelectionScreenStateDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ProcedureSelectionScreenStateDataCopyWithImpl<$Res>
+class __$$ProcedureSelectionScreenStateDataImplCopyWithImpl<$Res>
     extends _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenStateData>
-    implements _$$ProcedureSelectionScreenStateDataCopyWith<$Res> {
-  __$$ProcedureSelectionScreenStateDataCopyWithImpl(
-      _$ProcedureSelectionScreenStateData _value,
-      $Res Function(_$ProcedureSelectionScreenStateData) _then)
+        _$ProcedureSelectionScreenStateDataImpl>
+    implements _$$ProcedureSelectionScreenStateDataImplCopyWith<$Res> {
+  __$$ProcedureSelectionScreenStateDataImplCopyWithImpl(
+      _$ProcedureSelectionScreenStateDataImpl _value,
+      $Res Function(_$ProcedureSelectionScreenStateDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1286,7 +1295,7 @@ class __$$ProcedureSelectionScreenStateDataCopyWithImpl<$Res>
     Object? config = null,
     Object? language = freezed,
   }) {
-    return _then(_$ProcedureSelectionScreenStateData(
+    return _then(_$ProcedureSelectionScreenStateDataImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -1298,9 +1307,9 @@ class __$$ProcedureSelectionScreenStateDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProcedureSelectionScreenStateData
+class _$ProcedureSelectionScreenStateDataImpl
     implements ProcedureSelectionScreenStateData {
-  const _$ProcedureSelectionScreenStateData(
+  const _$ProcedureSelectionScreenStateDataImpl(
       {required this.config, this.language = 'en'});
 
   @override
@@ -1318,7 +1327,7 @@ class _$ProcedureSelectionScreenStateData
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenStateData &&
+            other is _$ProcedureSelectionScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config) &&
             const DeepCollectionEquality().equals(other.language, language));
   }
@@ -1330,10 +1339,10 @@ class _$ProcedureSelectionScreenStateData
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenStateDataCopyWith<
-          _$ProcedureSelectionScreenStateData>
-      get copyWith => __$$ProcedureSelectionScreenStateDataCopyWithImpl<
-          _$ProcedureSelectionScreenStateData>(this, _$identity);
+  _$$ProcedureSelectionScreenStateDataImplCopyWith<
+          _$ProcedureSelectionScreenStateDataImpl>
+      get copyWith => __$$ProcedureSelectionScreenStateDataImplCopyWithImpl<
+          _$ProcedureSelectionScreenStateDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1396,7 +1405,7 @@ abstract class ProcedureSelectionScreenStateData
     implements ProcedureSelectionScreenState {
   const factory ProcedureSelectionScreenStateData(
       {required final Config config,
-      final dynamic language}) = _$ProcedureSelectionScreenStateData;
+      final dynamic language}) = _$ProcedureSelectionScreenStateDataImpl;
 
   @override
   Config get config;
@@ -1404,7 +1413,7 @@ abstract class ProcedureSelectionScreenStateData
   dynamic get language;
   @override
   @JsonKey(ignore: true)
-  _$$ProcedureSelectionScreenStateDataCopyWith<
-          _$ProcedureSelectionScreenStateData>
+  _$$ProcedureSelectionScreenStateDataImplCopyWith<
+          _$ProcedureSelectionScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

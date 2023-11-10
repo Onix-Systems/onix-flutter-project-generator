@@ -24,6 +24,7 @@ class Config with _$Config {
     @Default(false) final bool flavorize,
     @Default('') String flavors,
     @Default(false) bool generateSigningKey,
+    @Default(true) bool firebaseAuth,
     @Default(true) bool useSonar,
     @Default(false) bool graphql,
     @Default(ProjectRouter.goRouter) ProjectRouter router,
