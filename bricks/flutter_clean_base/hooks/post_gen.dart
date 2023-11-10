@@ -375,7 +375,7 @@ Future<void> correct(HookContext context) async {
 
     buildGradle.writeAsStringSync(buildGradleContent.replaceAll(
         'classpath \'com.android.tools.build:gradle:',
-        '''classpath 'com.google.gms:google-services:4.3.10
+        '''classpath 'com.google.gms:google-services:4.3.10'
         classpath \'com.android.tools.build:gradle:'''));
   }
 
