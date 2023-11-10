@@ -1,6 +1,7 @@
 {{#handLocalization}}import 'package:{{project_name}}/app/localization/common_app_localization_ext.dart';{{/handLocalization}}
 {{^handLocalization}}import 'package:{{project_name}}/app/localization/generated/l10n.dart';{{/handLocalization}}
 import 'package:{{project_name}}/core/arch/domain/entity/failure/api_failure.dart';
+import 'package:{{project_name}}/core/arch/domain/entity/failure/firebase_failure.dart';
 import 'package:flutter/material.dart';
 
 extension FailureMessageExtension on BuildContext {
