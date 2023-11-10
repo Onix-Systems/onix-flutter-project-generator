@@ -367,17 +367,16 @@ Future<void> correct(HookContext context) async {
 
     appBuildGradle.writeAsStringSync(appBuildGradleContent
         .replaceAll('compileSdkVersion flutter.compileSdkVersion',
-        'compileSdkVersion 33')
+            'compileSdkVersion 33')
         .replaceAll('minSdkVersion flutter.minSdkVersion', 'minSdkVersion 24'));
 
     File buildGradle = File('$name/android/build.gradle');
     String buildGradleContent = appBuildGradle.readAsStringSync();
 
-    buildGradle.writeAsStringSync(buildGradleContent
-        .replaceAll('classpath \'com.android.tools.build:gradle:',
-        'classpath 'com.google.gms:google-services:4.3.10'
-        \n        classpath \'com.android.tools.build:gradle:')
-    );
+    buildGradle.writeAsStringSync(buildGradleContent.replaceAll(
+        'classpath \'com.android.tools.build:gradle:',
+        '''classpath 'com.google.gms:google-services:4.3.10
+        classpath \'com.android.tools.build:gradle:'''));
   }
 
   if (context.vars['platforms'].contains('ios')) {
