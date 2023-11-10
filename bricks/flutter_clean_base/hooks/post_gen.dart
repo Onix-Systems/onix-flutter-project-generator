@@ -371,7 +371,7 @@ Future<void> correct(HookContext context) async {
         .replaceAll('minSdkVersion flutter.minSdkVersion', 'minSdkVersion 24'));
 
     File buildGradle = File('$name/android/build.gradle');
-    String buildGradleContent = appBuildGradle.readAsStringSync();
+    String buildGradleContent = buildGradle.readAsStringSync();
 
     buildGradle.writeAsStringSync(buildGradleContent.replaceAll(
         'classpath \'com.android.tools.build:gradle:',
