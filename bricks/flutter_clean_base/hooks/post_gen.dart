@@ -429,6 +429,9 @@ Future<void> secure(HookContext context) async {
 # Secure
 *.jks
 .env
+ios/firebase_app_id_file.json
+android/app/google-services.json
+lib/firebase_options.dart
 ''');
 
   if (context.vars['platforms'].contains('android')) {
