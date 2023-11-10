@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "343426538563",
+    "project_id": "onix-firebase-components",
+    "storage_bucket": "onix-firebase-components.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343426538563:android:80d800fc2a2106ffb508f6",
+        "android_client_info": {
+          "package_name": "com.onix.firebase_components"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC94_db9cwgUiFXaWe_1hz8V_sIuv8nCPk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
