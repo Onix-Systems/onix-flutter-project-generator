@@ -11,7 +11,9 @@ class Initialization {
 
   Future<void> initApp() async {
     //TODO init firebase / Crashlytics / Messaging
-
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     initializeDi(GetIt.I);
     await _initializeDatabase();
     logger.d('APP Init: done');
