@@ -6,6 +6,9 @@ import 'package:{{project_name}}/data/source/remote/time/time_source.dart';
 import 'package:{{project_name}}/domain/repository/time_repository.dart';
 import 'package:{{project_name}}/domain/repository/token_repository.dart';
 import 'package:{{project_name}}/data/source/local/secure_storage/secure_storage_source.dart';
+import 'package:{{project_name}}/data/repository/firebase_auth_repository_impl.dart';
+import 'package:{{project_name}}/data/source/remote/firebase/auth/firebase_auth_source.dart';
+import 'package:{{project_name}}/domain/repository/firebase_auth_repository.dart';
 //{imports end}
 
 void registerRepositories(GetIt getIt) {
@@ -15,6 +18,11 @@ void registerRepositories(GetIt getIt) {
     )
     ..registerSingleton<TokenRepository>(
       TokenRepositoryImpl(getIt<SecureStorageSource>()),
+    )
+    ..registerSingleton<FirebaseAuthRepository>(
+      FirebaseAuthRepositoryImpl(
+        getIt<FirebaseAuthSource>(),
+      ),
     ); //{repositories end}
 }
 
