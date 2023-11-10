@@ -362,13 +362,22 @@ $flavor:
 
 Future<void> correct(HookContext context) async {
   if (context.vars['platforms'].contains('android')) {
-    File buildGradle = File('$name/android/app/build.gradle');
-    String buildGradleContent = buildGradle.readAsStringSync();
+    File appBuildGradle = File('$name/android/app/build.gradle');
+    String appBuildGradleContent = appBuildGradle.readAsStringSync();
+
+    appBuildGradle.writeAsStringSync(appBuildGradleContent
+        .replaceAll('compileSdkVersion flutter.compileSdkVersion',
+        'compileSdkVersion 33')
+        .replaceAll('minSdkVersion flutter.minSdkVersion', 'minSdkVersion 24'));
+
+    File buildGradle = File('$name/android/build.gradle');
+    String buildGradleContent = appBuildGradle.readAsStringSync();
 
     buildGradle.writeAsStringSync(buildGradleContent
-        .replaceAll('compileSdkVersion flutter.compileSdkVersion',
-            'compileSdkVersion 33')
-        .replaceAll('minSdkVersion flutter.minSdkVersion', 'minSdkVersion 24'));
+        .replaceAll('classpath \'com.android.tools.build:gradle:',
+        'classpath 'com.google.gms:google-services:4.3.10'
+        \n        classpath \'com.android.tools.build:gradle:')
+    );
   }
 
   if (context.vars['platforms'].contains('ios')) {
