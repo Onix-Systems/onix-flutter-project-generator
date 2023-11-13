@@ -472,7 +472,7 @@ android {'''));
   }
 }
 
-Future<void> removeFirebase() {
+Future<void> removeFirebase() async {
   await Process.run('rm', ['-r', 'data/source/remote/firebase'],
       workingDirectory: '$name/lib');
   await Process.run('rm', ['-r', 'app/service/firebase_session_service'],
