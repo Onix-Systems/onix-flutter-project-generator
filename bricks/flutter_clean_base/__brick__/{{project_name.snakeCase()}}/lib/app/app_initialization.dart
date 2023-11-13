@@ -14,22 +14,12 @@ class Initialization {
 
   Future<void> initApp() async {
     //TODO init firebase / Crashlytics / Messaging
-    {
-      {
-        #firebase_auth
-      }
-    }
-    await Firebase.initializeApp(
+    {{#firebase_auth}}await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
-    );
-    {
-      {
-    /firebase_auth}}
+    );{{/firebase_auth}}
     initializeDi(GetIt.I);
     await _initializeDatabase();
-    logger.d('APP Init: done
-    '
-    );
+    logger.d('APP Init: done');
   }
 
   Future<void> _initializeDatabase() async {
