@@ -4,7 +4,7 @@ import 'package:{{project_name}}/core/di/app.dart';
 import 'package:{{project_name}}/data/source/local/secure_storage/secure_storage_keys.dart';
 import 'package:{{project_name}}/data/source/local/secure_storage/secure_storage_source.dart';
 import 'package:encrypt/encrypt.dart';
-import 'package:{{project_name}}/core/extension/logger_extension.dart';
+import 'package:{{project_name}}/core/extension/crashlytics_util.dart';
 
 class CipherService {
   final SecureStorageSource _storage;

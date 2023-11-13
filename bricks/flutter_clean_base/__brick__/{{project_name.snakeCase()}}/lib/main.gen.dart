@@ -11,6 +11,7 @@ import 'package:{{project_name}}/app/app.dart';
 import 'package:{{project_name}}/app/app_initialization.dart';
 import 'package:{{project_name}}/core/di/services.dart';
 import 'package:{{project_name}}/app/util/extension/orientation_extension.dart';
+import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 
 Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
   unawaited(
@@ -30,18 +31,11 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
         }
         },
         (error, stackTrace) {
-          if (kDebugMode) {
-            print('runZonedGuarded: Caught error in root zone.\n$error');
-            print(stackTrace);
-          }
-          //there we can add FirebaseCrashlytics recordError method
+          logger.crash(error: error, stackTrace: stackTrace, reason: 'main');
         },
         )?.catchError((e, trace) {
-          if (kDebugMode) {
-            print('ERROR: $e');
-            print(trace);
-          }
-      exit(-1);
+          logger.crash(error: e, stackTrace: trace, reason: 'main');
+          exit(-1);
     }),
   );
 }
