@@ -1,3 +1,4 @@
+//@formatter:off
 import 'package:get_it/get_it.dart';
 {{#firebase_auth}}import 'package:{{project_name}}/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';{{/firebase_auth}}
