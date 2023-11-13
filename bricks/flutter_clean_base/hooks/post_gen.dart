@@ -215,6 +215,9 @@ Future<void> getDependencies(HookContext context) async {
 
   if (context.vars['firebase_auth']) {
     dependencies.addAll(['firebase_core', 'firebase_auth']);
+  } else {
+    await Process.run('rm', ['-r', 'data/source/remote/firebase'],
+        workingDirectory: '$name/lib');
   }
 
   'Getting dependencies...'.log();
