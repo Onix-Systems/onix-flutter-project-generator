@@ -26,12 +26,12 @@ void registerSources(GetIt getIt) {
       FirebaseAuthSourceImpl(
         getIt.get<FirebaseAuth>(),
     ),{{/firebase_auth}}
-    ){{#graphql}}
+    {{#graphql}})
     ..registerSingleton<AuthSource>(AuthSourceImpl(
       getIt.get<GraphQlClient>(),
       getIt.get<GraphQlRequestProcessor>(),
     ),
-  ){{/graphql}}; //{sources end}
+  {{/graphql}}); //{sources end}
 }
 
 TimeSource get timeSource => GetIt.I.get<TimeSource>();
