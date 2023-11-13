@@ -21,14 +21,17 @@
   "apiFailureNoNetwork": "Sorry, we're having trouble connecting. Please check your internet connection and try again.\n\nReach out to support if you continue to experience issues.",
   "apiFailureUnAuthorized": "The username or password you entered is incorrect.",
   "apiFailureTooManyRequests": "Uh oh! Looks like we ran into an issue while processing this request. Please try again.\n\nReach out to support if you continue to experience issues.",
-  "apiFailureUndefined": "Uh oh! Looks like we ran into an issue while processing this request. Please try again.\n\nReach out to support if you continue to experience issues.",
-  "firebaseInvalidEmail": "Please provide a valid Email address.",
-  "firebaseAccountDisabled": "Your account was disabled. Please contact support.",
-  "firebaseUserNotRegistered": "This user does not exist.",
-  "firebasePasswordIncorrect": "Password is incorrect.",
-  "firebaseAccountAlreadyRegistered": "Account already registered.",
-  "firebaseNotAllowed": "Check is email authorization enabled on your Firebase account.",
-  "firebaseWeakPassword": "Your password is too weak.",
-  "firebaseCantFetch": "Can't fetch User Profile.",
-  "firebaseLogOutFailed": "Log Out failed."
+  "apiFailureUndefined": "Uh oh! Looks like we ran into an issue while processing this request. Please try again.\n\nReach out to support if you continue to experience issues."{{
+  #firebase_auth}},
+"firebaseInvalidEmail": "Please provide a valid Email address.",
+"firebaseAccountDisabled": "Your account was disabled. Please contact support.",
+"firebaseUserNotRegistered": "This user does not exist.",
+"firebasePasswordIncorrect": "Password is incorrect.",
+"firebaseAccountAlreadyRegistered": "Account already registered.",
+"firebaseNotAllowed": "Check is email authorization enabled on your Firebase account.",
+"firebaseWeakPassword": "Your password is too weak.",
+"firebaseCantFetch": "Can't fetch User Profile.",
+"firebaseLogOutFailed": "Log Out failed."{{/firebase_auth
+}
+}
 }
