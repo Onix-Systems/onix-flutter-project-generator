@@ -218,6 +218,12 @@ Future<void> getDependencies(HookContext context) async {
   } else {
     await Process.run('rm', ['-r', 'data/source/remote/firebase'],
         workingDirectory: '$name/lib');
+    await Process.run(
+        'rm', ['-r', 'data/repository/firebase_auth_repository_impl.dart'],
+        workingDirectory: '$name/lib');
+    await Process.run(
+        'rm', ['-r', 'domain/repository/firebase_auth_repository.dart'],
+        workingDirectory: '$name/lib');
   }
 
   'Getting dependencies...'.log();
