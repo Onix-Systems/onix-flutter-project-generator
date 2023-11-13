@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(sourceName) => "${sourceName}Source already exists";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
         "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
@@ -89,6 +90,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "exitLabel": MessageLookupByLibrary.simpleMessage("Exit"),
         "fields": MessageLookupByLibrary.simpleMessage("Fields"),
+        "firebaseAuth": MessageLookupByLibrary.simpleMessage(
+            "Integrate Firebase with FirebaseAuth?"),
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" First & last name"),
         "flavorize": MessageLookupByLibrary.simpleMessage("Flavorize?"),

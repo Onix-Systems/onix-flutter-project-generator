@@ -540,6 +540,16 @@ class S {
     );
   }
 
+  /// `Integrate Firebase with FirebaseAuth?`
+  String get firebaseAuth {
+    return Intl.message(
+      'Integrate Firebase with FirebaseAuth?',
+      name: 'firebaseAuth',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Integrate GraphQL?`
   String get integrateGraphQl {
     return Intl.message(

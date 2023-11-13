@@ -90,6 +90,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         'use_keytool': state.config.generateSigningKey,
         'use_sonar': state.config.useSonar,
         'graphql': state.config.graphql,
+        'firebase_auth': state.config.firebaseAuth,
         'platforms': state.config.platformsList.toString().replaceAll(' ', ''),
         'theme_generate': state.config.theming.name == 'themeTailor',
       }).toString());
@@ -155,7 +156,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
 
-    if (true /*state.config.firebaseAuth*/) {
+    if (state.config.firebaseAuth) {
       var process = await Process.start(
           'osascript',
           [
