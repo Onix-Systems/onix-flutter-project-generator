@@ -9,7 +9,7 @@ sealed class DataResponse<T> with _$DataResponse {
   const factory DataResponse.success(T data) = _DataResponseSuccess;
 
   const factory DataResponse.undefinedError(Object? errorObject) =
-      _UndefinedError;
+  _UndefinedError;
 
   const factory DataResponse.apiError(dynamic error) = _ApiError;
 
@@ -19,7 +19,8 @@ sealed class DataResponse<T> with _$DataResponse {
 
   const factory DataResponse.tooManyRequests() = _TooManyRequests;
 
-  const factory DataResponse.firebaseError(String code) = _FirebaseError;
+  {{#firebase_auth}}const factory DataResponse.firebaseError(
+      String code) = _FirebaseError;{{/firebase_auth}}
 
   bool isSuccess() => this is _DataResponseSuccess;
 
