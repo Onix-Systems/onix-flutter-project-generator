@@ -216,7 +216,7 @@ Future<void> getDependencies(HookContext context) async {
   if (context.vars['firebase_auth']) {
     dependencies.addAll(['firebase_core', 'firebase_auth']);
   } else {
-    await removeFirebase();
+    await removeFirebase(context);
   }
 
   'Getting dependencies...'.log();
