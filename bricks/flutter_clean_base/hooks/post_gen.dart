@@ -477,6 +477,8 @@ Future<void> removeFirebase() async {
       workingDirectory: '$name/lib');
   await Process.run('rm', ['-r', 'app/service/firebase_session_service'],
       workingDirectory: '$name/lib');
+  await Process.run('rm', ['-r', 'domain/params'],
+      workingDirectory: '$name/lib');
   await Process.run(
       'rm', ['-r', 'data/repository/firebase_auth_repository_impl.dart'],
       workingDirectory: '$name/lib');
@@ -488,6 +490,9 @@ Future<void> removeFirebase() async {
   await Process.run('rm', ['-r', 'domain/usecase/log_out_use_case.dart'],
       workingDirectory: '$name/lib');
   await Process.run('rm', ['-r', 'domain/usecase/login_use_case.dart'],
+      workingDirectory: '$name/lib');
+  await Process.run(
+      'rm', ['-r', 'core/arch/domain/entity/failure/firebase_failure.dart'],
       workingDirectory: '$name/lib');
 }
 
