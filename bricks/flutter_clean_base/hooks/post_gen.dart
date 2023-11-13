@@ -216,14 +216,7 @@ Future<void> getDependencies(HookContext context) async {
   if (context.vars['firebase_auth']) {
     dependencies.addAll(['firebase_core', 'firebase_auth']);
   } else {
-    await Process.run('rm', ['-r', 'data/source/remote/firebase'],
-        workingDirectory: '$name/lib');
-    await Process.run(
-        'rm', ['-r', 'data/repository/firebase_auth_repository_impl.dart'],
-        workingDirectory: '$name/lib');
-    await Process.run(
-        'rm', ['-r', 'domain/repository/firebase_auth_repository.dart'],
-        workingDirectory: '$name/lib');
+    await removeFirebase();
   }
 
   'Getting dependencies...'.log();
@@ -477,6 +470,25 @@ android {'''));
 
       </application>'''));
   }
+}
+
+Future<void> removeFirebase() {
+  await Process.run('rm', ['-r', 'data/source/remote/firebase'],
+      workingDirectory: '$name/lib');
+  await Process.run('rm', ['-r', 'app/service/firebase_session_service'],
+      workingDirectory: '$name/lib');
+  await Process.run(
+      'rm', ['-r', 'data/repository/firebase_auth_repository_impl.dart'],
+      workingDirectory: '$name/lib');
+  await Process.run(
+      'rm', ['-r', 'domain/repository/firebase_auth_repository.dart'],
+      workingDirectory: '$name/lib');
+  await Process.run('rm', ['-r', 'domain/usecase/create_account_use_case.dart'],
+      workingDirectory: '$name/lib');
+  await Process.run('rm', ['-r', 'domain/usecase/log_out_use_case.dart'],
+      workingDirectory: '$name/lib');
+  await Process.run('rm', ['-r', 'domain/usecase/login_use_case.dart'],
+      workingDirectory: '$name/lib');
 }
 
 void exitBrick() async {
