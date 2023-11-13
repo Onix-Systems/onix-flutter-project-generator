@@ -21,7 +21,7 @@ void registerSources(GetIt getIt) {
       getIt.get<ApiClient>(instanceName: DioConst.timeApiInstance),
       getIt.get<DioRequestProcessor>(),
     ),
-    ){{#firebase_auth}}
+    {{#firebase_auth}})
     ..registerSingleton<FirebaseAuthSource>(
       FirebaseAuthSourceImpl(
         getIt.get<FirebaseAuth>(),
