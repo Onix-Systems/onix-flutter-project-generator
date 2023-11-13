@@ -33,9 +33,9 @@ void registerUseCases(GetIt getIt) {
     ){{/firebase_auth}};
 }
 
-LoginUseCase get loginUseCase => GetIt.I.get<LoginUseCase>();
+{{#firebase_auth}}LoginUseCase get loginUseCase => GetIt.I.get<LoginUseCase>();
 
 CreateAccountUseCase get createAccountUseCase =>
     GetIt.I.get<CreateAccountUseCase>();
 
-LogOutUseCase get logOutUseCase => GetIt.I.get<LogOutUseCase>();
+LogOutUseCase get logOutUseCase => GetIt.I.get<LogOutUseCase>();{{/firebase_auth}}
