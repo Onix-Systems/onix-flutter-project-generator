@@ -472,7 +472,7 @@ android {'''));
   }
 }
 
-Future<void> removeFirebase() async {
+Future<void> removeFirebase(HookContext context) async {
   await Process.run('rm', ['-r', 'data/source/remote/firebase'],
       workingDirectory: '$name/lib');
   await Process.run('rm', ['-r', 'app/service/firebase_session_service'],
@@ -494,6 +494,25 @@ Future<void> removeFirebase() async {
   await Process.run(
       'rm', ['-r', 'core/arch/domain/entity/failure/firebase_failure.dart'],
       workingDirectory: '$name/lib');
+
+  final firebaseArbStrings = ''',
+  "firebaseInvalidEmail": "Please provide a valid Email address.",
+  "firebaseAccountDisabled": "Your account was disabled. Please contact support.",
+  "firebaseUserNotRegistered": "This user does not exist.",
+  "firebasePasswordIncorrect": "Password is incorrect.",
+  "firebaseAccountAlreadyRegistered": "Account already registered.",
+  "firebaseNotAllowed": "Check is email authorization enabled on your Firebase account.",
+  "firebaseWeakPassword": "Your password is too weak.",
+  "firebaseCantFetch": "Can't fetch User Profile.",
+  "firebaseLogOutFailed": "Log Out failed."''';
+
+  File arbFile = context.vars['handLocalization']
+      ? File('$name/lib/app/localization/l10n/app_en.arb')
+      : File('$name/lib/app/localization/l10n/intl_en.arb');
+
+  String arbContent = await arbFile.readAsString();
+
+  arbFile.writeAsStringSync(arbContent.replaceFirst(firebaseArbStrings, ''));
 }
 
 void exitBrick() async {
