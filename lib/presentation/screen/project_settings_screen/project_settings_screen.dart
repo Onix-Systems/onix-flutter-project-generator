@@ -264,6 +264,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
             localization: state.config.localization,
             theming: state.config.theming,
             signingVars: state.config.signingVars,
+            firebaseAuth: state.config.firebaseAuth,
           ));
 
   void _goBack(ProjectSettingsScreenState state) => context.go(
@@ -278,6 +279,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
           localization: state.config.localization,
           theming: state.config.theming,
           signingVars: state.config.signingVars,
+          firebaseAuth: state.config.firebaseAuth,
         ),
       );
 }

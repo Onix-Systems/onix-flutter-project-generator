@@ -156,7 +156,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
 
-    if (state.config.firebaseAuth) {
+    if (!state.config.projectExists && state.config.firebaseAuth) {
       var process = await Process.start(
           'osascript',
           [
