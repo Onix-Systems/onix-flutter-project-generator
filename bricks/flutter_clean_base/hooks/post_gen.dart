@@ -169,9 +169,7 @@ Future<void> getDependencies(HookContext context) async {
     'flutter_native_splash',
     'collection',
     'flutter_dotenv',
-    'flutter_jailbreak_detection',
-    'firebase_core',
-    'firebase_auth'
+    'flutter_jailbreak_detection'
   ];
 
   if (!context.vars['web_only']) {
@@ -213,6 +211,10 @@ Future<void> getDependencies(HookContext context) async {
 
   if (context.vars['graphql']) {
     dependencies.add('graphql');
+  }
+
+  if (context.vars['firebase_auth']) {
+    dependencies.addAll(['firebase_core', 'firebase_auth']);
   }
 
   'Getting dependencies...'.log();
