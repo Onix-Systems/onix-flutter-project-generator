@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:{{project_name}}/core/di/app.dart';
+import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';

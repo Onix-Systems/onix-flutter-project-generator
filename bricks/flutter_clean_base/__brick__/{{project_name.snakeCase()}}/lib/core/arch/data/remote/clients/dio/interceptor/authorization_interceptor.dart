@@ -1,13 +1,12 @@
 import 'package:{{project_name}}/core/arch/data/remote/base/base_api_client.dart';
 import 'package:{{project_name}}/core/arch/data/remote/base/http_status.dart';
-import 'package:{{project_name}}/core/di/app.dart';
+import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 import 'package:{{project_name}}/core/di/repository.dart';
 import 'package:{{project_name}}/core/di/services.dart';
 import 'package:{{project_name}}/data/mapper/authentication/authentication_mapper.dart';
 import 'package:{{project_name}}/data/model/remote/authentication/authentication_response.dart';
 import 'package:{{project_name}}/data/model/remote/token/token_request.dart';
 import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
-import 'package:{{project_name}}/core/extension/logger_extension.dart';
 import 'package:dio/dio.dart';
 
 class AuthorizationInterceptor extends QueuedInterceptorsWrapper {

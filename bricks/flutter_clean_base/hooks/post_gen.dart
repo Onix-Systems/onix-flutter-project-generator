@@ -371,8 +371,10 @@ Future<void> correct(HookContext context) async {
 
     appBuildGradle.writeAsStringSync(appBuildGradleContent
         .replaceAll('compileSdkVersion flutter.compileSdkVersion',
-            'compileSdkVersion 33')
-        .replaceAll('minSdkVersion flutter.minSdkVersion', 'minSdkVersion 24'));
+            'compileSdkVersion 34')
+        .replaceAll('minSdkVersion flutter.minSdkVersion', 'minSdkVersion 22')
+        .replaceAll('targetSdkVersion flutter.targetSdkVersion',
+            'targetSdkVersion 34'));
   }
 
   if (context.vars['platforms'].contains('ios')) {

@@ -1,7 +1,7 @@
 import 'package:{{project_name}}/core/arch/data/remote/clients/graph_ql/graph_ql_client.dart';
 import 'package:{{project_name}}/core/arch/data/remote/clients/graph_ql/request_processor/graph_ql_request_processor.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/common/data_response.dart';
-import 'package:{{project_name}}/core/di/app.dart';
+import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 import 'package:graphql/client.dart';
 
 class GraphQlRequestProcessorImpl implements GraphQlRequestProcessor {

@@ -1,6 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:{{project_name}}/core/di/app.dart';
-import 'package:{{project_name}}/core/extension/logger_extension.dart';
+import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 import 'package:{{project_name}}/data/source/local/secure_storage/secure_storage_source.dart';
 
 class SecureStorageSourceImpl implements SecureStorageSource {

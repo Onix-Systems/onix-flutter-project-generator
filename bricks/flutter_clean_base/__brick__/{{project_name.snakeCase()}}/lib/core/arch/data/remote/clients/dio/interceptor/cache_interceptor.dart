@@ -1,7 +1,6 @@
-import 'package:{{project_name}}/core/di/app.dart';
+import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 import 'package:{{project_name}}/core/di/local.dart';
 import 'package:{{project_name}}/data/source/local/secure_storage/secure_storage_keys.dart';
-import 'package:{{project_name}}/core/extension/logger_extension.dart';
 import 'package:dio/io.dart';
 import 'dart:io';
 import 'package:dio/dio.dart';

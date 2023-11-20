@@ -1,10 +1,9 @@
 //@formatter:off
-import 'package:{{project_name}}/core/extension/logger_extension.dart';
 import 'package:{{project_name}}/core/arch/data/remote/error/default_api_error.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/common/data_response.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/failure/api_failure.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/failure/failure.dart';
-import 'package:{{project_name}}/core/di/app.dart';
+import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 
 class MapCommonServerError {
   static Failure getServerFailureDetails<T>(DataResponse<T> failure) {
