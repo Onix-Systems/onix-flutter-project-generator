@@ -38,7 +38,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(sourceName) => "${sourceName}Source already exists";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
         "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
