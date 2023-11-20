@@ -80,16 +80,16 @@ class _$GenerationScreenEventCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$GenerationScreenEventInitCopyWith<$Res> {
-  factory _$$GenerationScreenEventInitCopyWith(
-          _$GenerationScreenEventInit value,
-          $Res Function(_$GenerationScreenEventInit) then) =
-      __$$GenerationScreenEventInitCopyWithImpl<$Res>;
+abstract class _$$GenerationScreenEventInitImplCopyWith<$Res> {
+  factory _$$GenerationScreenEventInitImplCopyWith(
+          _$GenerationScreenEventInitImpl value,
+          $Res Function(_$GenerationScreenEventInitImpl) then) =
+      __$$GenerationScreenEventInitImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Config config});
 
@@ -97,12 +97,13 @@ abstract class _$$GenerationScreenEventInitCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$GenerationScreenEventInitCopyWithImpl<$Res>
+class __$$GenerationScreenEventInitImplCopyWithImpl<$Res>
     extends _$GenerationScreenEventCopyWithImpl<$Res,
-        _$GenerationScreenEventInit>
-    implements _$$GenerationScreenEventInitCopyWith<$Res> {
-  __$$GenerationScreenEventInitCopyWithImpl(_$GenerationScreenEventInit _value,
-      $Res Function(_$GenerationScreenEventInit) _then)
+        _$GenerationScreenEventInitImpl>
+    implements _$$GenerationScreenEventInitImplCopyWith<$Res> {
+  __$$GenerationScreenEventInitImplCopyWithImpl(
+      _$GenerationScreenEventInitImpl _value,
+      $Res Function(_$GenerationScreenEventInitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -110,7 +111,7 @@ class __$$GenerationScreenEventInitCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$GenerationScreenEventInit(
+    return _then(_$GenerationScreenEventInitImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -129,8 +130,8 @@ class __$$GenerationScreenEventInitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GenerationScreenEventInit implements GenerationScreenEventInit {
-  const _$GenerationScreenEventInit({required this.config});
+class _$GenerationScreenEventInitImpl implements GenerationScreenEventInit {
+  const _$GenerationScreenEventInitImpl({required this.config});
 
   @override
   final Config config;
@@ -144,7 +145,7 @@ class _$GenerationScreenEventInit implements GenerationScreenEventInit {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GenerationScreenEventInit &&
+            other is _$GenerationScreenEventInitImpl &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -154,9 +155,9 @@ class _$GenerationScreenEventInit implements GenerationScreenEventInit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GenerationScreenEventInitCopyWith<_$GenerationScreenEventInit>
-      get copyWith => __$$GenerationScreenEventInitCopyWithImpl<
-          _$GenerationScreenEventInit>(this, _$identity);
+  _$$GenerationScreenEventInitImplCopyWith<_$GenerationScreenEventInitImpl>
+      get copyWith => __$$GenerationScreenEventInitImplCopyWithImpl<
+          _$GenerationScreenEventInitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -232,38 +233,38 @@ class _$GenerationScreenEventInit implements GenerationScreenEventInit {
 
 abstract class GenerationScreenEventInit implements GenerationScreenEvent {
   const factory GenerationScreenEventInit({required final Config config}) =
-      _$GenerationScreenEventInit;
+      _$GenerationScreenEventInitImpl;
 
   Config get config;
   @JsonKey(ignore: true)
-  _$$GenerationScreenEventInitCopyWith<_$GenerationScreenEventInit>
+  _$$GenerationScreenEventInitImplCopyWith<_$GenerationScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$GenerationScreenEventGenerateProjectCopyWith<$Res> {
-  factory _$$GenerationScreenEventGenerateProjectCopyWith(
-          _$GenerationScreenEventGenerateProject value,
-          $Res Function(_$GenerationScreenEventGenerateProject) then) =
-      __$$GenerationScreenEventGenerateProjectCopyWithImpl<$Res>;
+abstract class _$$GenerationScreenEventGenerateProjectImplCopyWith<$Res> {
+  factory _$$GenerationScreenEventGenerateProjectImplCopyWith(
+          _$GenerationScreenEventGenerateProjectImpl value,
+          $Res Function(_$GenerationScreenEventGenerateProjectImpl) then) =
+      __$$GenerationScreenEventGenerateProjectImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GenerationScreenEventGenerateProjectCopyWithImpl<$Res>
+class __$$GenerationScreenEventGenerateProjectImplCopyWithImpl<$Res>
     extends _$GenerationScreenEventCopyWithImpl<$Res,
-        _$GenerationScreenEventGenerateProject>
-    implements _$$GenerationScreenEventGenerateProjectCopyWith<$Res> {
-  __$$GenerationScreenEventGenerateProjectCopyWithImpl(
-      _$GenerationScreenEventGenerateProject _value,
-      $Res Function(_$GenerationScreenEventGenerateProject) _then)
+        _$GenerationScreenEventGenerateProjectImpl>
+    implements _$$GenerationScreenEventGenerateProjectImplCopyWith<$Res> {
+  __$$GenerationScreenEventGenerateProjectImplCopyWithImpl(
+      _$GenerationScreenEventGenerateProjectImpl _value,
+      $Res Function(_$GenerationScreenEventGenerateProjectImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$GenerationScreenEventGenerateProject
+class _$GenerationScreenEventGenerateProjectImpl
     implements GenerationScreenEventGenerateProject {
-  const _$GenerationScreenEventGenerateProject();
+  const _$GenerationScreenEventGenerateProjectImpl();
 
   @override
   String toString() {
@@ -274,7 +275,7 @@ class _$GenerationScreenEventGenerateProject
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GenerationScreenEventGenerateProject);
+            other is _$GenerationScreenEventGenerateProjectImpl);
   }
 
   @override
@@ -355,33 +356,33 @@ class _$GenerationScreenEventGenerateProject
 abstract class GenerationScreenEventGenerateProject
     implements GenerationScreenEvent {
   const factory GenerationScreenEventGenerateProject() =
-      _$GenerationScreenEventGenerateProject;
+      _$GenerationScreenEventGenerateProjectImpl;
 }
 
 /// @nodoc
-abstract class _$$GenerationScreenEventOpenProjectCopyWith<$Res> {
-  factory _$$GenerationScreenEventOpenProjectCopyWith(
-          _$GenerationScreenEventOpenProject value,
-          $Res Function(_$GenerationScreenEventOpenProject) then) =
-      __$$GenerationScreenEventOpenProjectCopyWithImpl<$Res>;
+abstract class _$$GenerationScreenEventOpenProjectImplCopyWith<$Res> {
+  factory _$$GenerationScreenEventOpenProjectImplCopyWith(
+          _$GenerationScreenEventOpenProjectImpl value,
+          $Res Function(_$GenerationScreenEventOpenProjectImpl) then) =
+      __$$GenerationScreenEventOpenProjectImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GenerationScreenEventOpenProjectCopyWithImpl<$Res>
+class __$$GenerationScreenEventOpenProjectImplCopyWithImpl<$Res>
     extends _$GenerationScreenEventCopyWithImpl<$Res,
-        _$GenerationScreenEventOpenProject>
-    implements _$$GenerationScreenEventOpenProjectCopyWith<$Res> {
-  __$$GenerationScreenEventOpenProjectCopyWithImpl(
-      _$GenerationScreenEventOpenProject _value,
-      $Res Function(_$GenerationScreenEventOpenProject) _then)
+        _$GenerationScreenEventOpenProjectImpl>
+    implements _$$GenerationScreenEventOpenProjectImplCopyWith<$Res> {
+  __$$GenerationScreenEventOpenProjectImplCopyWithImpl(
+      _$GenerationScreenEventOpenProjectImpl _value,
+      $Res Function(_$GenerationScreenEventOpenProjectImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$GenerationScreenEventOpenProject
+class _$GenerationScreenEventOpenProjectImpl
     implements GenerationScreenEventOpenProject {
-  const _$GenerationScreenEventOpenProject();
+  const _$GenerationScreenEventOpenProjectImpl();
 
   @override
   String toString() {
@@ -392,7 +393,7 @@ class _$GenerationScreenEventOpenProject
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GenerationScreenEventOpenProject);
+            other is _$GenerationScreenEventOpenProjectImpl);
   }
 
   @override
@@ -473,7 +474,7 @@ class _$GenerationScreenEventOpenProject
 abstract class GenerationScreenEventOpenProject
     implements GenerationScreenEvent {
   const factory GenerationScreenEventOpenProject() =
-      _$GenerationScreenEventOpenProject;
+      _$GenerationScreenEventOpenProjectImpl;
 }
 
 /// @nodoc
@@ -524,32 +525,32 @@ class _$GenerationScreenSRCopyWithImpl<$Res, $Val extends GenerationScreenSR>
     implements $GenerationScreenSRCopyWith<$Res> {
   _$GenerationScreenSRCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$_LoadFinishedCopyWith<$Res> {
-  factory _$$_LoadFinishedCopyWith(
-          _$_LoadFinished value, $Res Function(_$_LoadFinished) then) =
-      __$$_LoadFinishedCopyWithImpl<$Res>;
+abstract class _$$LoadFinishedImplCopyWith<$Res> {
+  factory _$$LoadFinishedImplCopyWith(
+          _$LoadFinishedImpl value, $Res Function(_$LoadFinishedImpl) then) =
+      __$$LoadFinishedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadFinishedCopyWithImpl<$Res>
-    extends _$GenerationScreenSRCopyWithImpl<$Res, _$_LoadFinished>
-    implements _$$_LoadFinishedCopyWith<$Res> {
-  __$$_LoadFinishedCopyWithImpl(
-      _$_LoadFinished _value, $Res Function(_$_LoadFinished) _then)
+class __$$LoadFinishedImplCopyWithImpl<$Res>
+    extends _$GenerationScreenSRCopyWithImpl<$Res, _$LoadFinishedImpl>
+    implements _$$LoadFinishedImplCopyWith<$Res> {
+  __$$LoadFinishedImplCopyWithImpl(
+      _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_LoadFinished implements _LoadFinished {
-  const _$_LoadFinished();
+class _$LoadFinishedImpl implements _LoadFinished {
+  const _$LoadFinishedImpl();
 
   @override
   String toString() {
@@ -559,7 +560,7 @@ class _$_LoadFinished implements _LoadFinished {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoadFinished);
+        (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
 
   @override
@@ -623,7 +624,7 @@ class _$_LoadFinished implements _LoadFinished {
 }
 
 abstract class _LoadFinished implements GenerationScreenSR {
-  const factory _LoadFinished() = _$_LoadFinished;
+  const factory _LoadFinished() = _$LoadFinishedImpl;
 }
 
 /// @nodoc
@@ -719,12 +720,12 @@ class _$GenerationScreenStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$GenerationScreenStateDataCopyWith<$Res>
+abstract class _$$GenerationScreenStateDataImplCopyWith<$Res>
     implements $GenerationScreenStateCopyWith<$Res> {
-  factory _$$GenerationScreenStateDataCopyWith(
-          _$GenerationScreenStateData value,
-          $Res Function(_$GenerationScreenStateData) then) =
-      __$$GenerationScreenStateDataCopyWithImpl<$Res>;
+  factory _$$GenerationScreenStateDataImplCopyWith(
+          _$GenerationScreenStateDataImpl value,
+          $Res Function(_$GenerationScreenStateDataImpl) then) =
+      __$$GenerationScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Config config, GeneratingState generatingState});
@@ -734,12 +735,13 @@ abstract class _$$GenerationScreenStateDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$GenerationScreenStateDataCopyWithImpl<$Res>
+class __$$GenerationScreenStateDataImplCopyWithImpl<$Res>
     extends _$GenerationScreenStateCopyWithImpl<$Res,
-        _$GenerationScreenStateData>
-    implements _$$GenerationScreenStateDataCopyWith<$Res> {
-  __$$GenerationScreenStateDataCopyWithImpl(_$GenerationScreenStateData _value,
-      $Res Function(_$GenerationScreenStateData) _then)
+        _$GenerationScreenStateDataImpl>
+    implements _$$GenerationScreenStateDataImplCopyWith<$Res> {
+  __$$GenerationScreenStateDataImplCopyWithImpl(
+      _$GenerationScreenStateDataImpl _value,
+      $Res Function(_$GenerationScreenStateDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -748,7 +750,7 @@ class __$$GenerationScreenStateDataCopyWithImpl<$Res>
     Object? config = null,
     Object? generatingState = null,
   }) {
-    return _then(_$GenerationScreenStateData(
+    return _then(_$GenerationScreenStateDataImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -763,8 +765,8 @@ class __$$GenerationScreenStateDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GenerationScreenStateData implements GenerationScreenStateData {
-  const _$GenerationScreenStateData(
+class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
+  const _$GenerationScreenStateDataImpl(
       {required this.config, this.generatingState = GeneratingState.init});
 
   @override
@@ -782,7 +784,7 @@ class _$GenerationScreenStateData implements GenerationScreenStateData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GenerationScreenStateData &&
+            other is _$GenerationScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config) &&
             (identical(other.generatingState, generatingState) ||
                 other.generatingState == generatingState));
@@ -794,9 +796,9 @@ class _$GenerationScreenStateData implements GenerationScreenStateData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GenerationScreenStateDataCopyWith<_$GenerationScreenStateData>
-      get copyWith => __$$GenerationScreenStateDataCopyWithImpl<
-          _$GenerationScreenStateData>(this, _$identity);
+  _$$GenerationScreenStateDataImplCopyWith<_$GenerationScreenStateDataImpl>
+      get copyWith => __$$GenerationScreenStateDataImplCopyWithImpl<
+          _$GenerationScreenStateDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -859,7 +861,7 @@ class _$GenerationScreenStateData implements GenerationScreenStateData {
 abstract class GenerationScreenStateData implements GenerationScreenState {
   const factory GenerationScreenStateData(
       {required final Config config,
-      final GeneratingState generatingState}) = _$GenerationScreenStateData;
+      final GeneratingState generatingState}) = _$GenerationScreenStateDataImpl;
 
   @override
   Config get config;
@@ -867,6 +869,6 @@ abstract class GenerationScreenStateData implements GenerationScreenState {
   GeneratingState get generatingState;
   @override
   @JsonKey(ignore: true)
-  _$$GenerationScreenStateDataCopyWith<_$GenerationScreenStateData>
+  _$$GenerationScreenStateDataImplCopyWith<_$GenerationScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

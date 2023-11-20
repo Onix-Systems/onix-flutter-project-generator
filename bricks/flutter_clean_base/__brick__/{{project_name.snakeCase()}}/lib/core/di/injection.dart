@@ -10,11 +10,12 @@ import 'package:{{project_name}}/core/di/usecase.dart';
 
 void initializeDi(GetIt getIt) {
   registerLocal(getIt);
-  registerServices(getIt);
+  registerCoreServices(getIt);
   registerRemote(getIt);
   registerSources(getIt);
   registerRepositories(getIt);
   registerApp(getIt);
+  registerAppServices(getIt);
   registerUseCases(getIt);
   registerBloc(getIt);
 }

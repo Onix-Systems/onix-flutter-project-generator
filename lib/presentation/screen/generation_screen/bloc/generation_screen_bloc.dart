@@ -90,6 +90,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         'use_keytool': state.config.generateSigningKey,
         'use_sonar': state.config.useSonar,
         'graphql': state.config.graphql,
+        'firebase_auth': state.config.firebaseAuth,
         'platforms': state.config.platformsList.toString().replaceAll(' ', ''),
         'theme_generate': state.config.theming.name == 'themeTailor',
       }).toString());
@@ -100,8 +101,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           workingDirectory: state.config.projectPath);
 
       gitGetBrickProcess.stdin.writeln(
-          //'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/main.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip');
-          'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/feat/logger.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip');
+        'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/main.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip',
+      );
 
       gitGetBrickProcess.stdin.writeln('echo "Complete with exit code: 0"');
       await gitGetBrickProcess.exitCode;
@@ -113,8 +114,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           .writeln('dart pub global activate mason_cli && mason cache clear');
 
       mainProcess.stdin.writeln(
-          //'mason add -g flutter_clean_base --path \'${state.config.projectPath}/bricks/onix-flutter-project-generator-main/bricks/flutter_clean_base\'');
-          'mason add -g flutter_clean_base --path \'${state.config.projectPath}/bricks/onix-flutter-project-generator-feat-logger/bricks/flutter_clean_base\'');
+        'mason add -g flutter_clean_base --path \'${state.config.projectPath}/bricks/onix-flutter-project-generator-main/bricks/flutter_clean_base\'',
+      );
 
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
@@ -152,6 +153,34 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
+
+    if (!state.config.projectExists && state.config.firebaseAuth) {
+      var process = await Process.start(
+          'osascript',
+          [
+            '-e',
+            '''tell application "Terminal"
+  set T to do script "cd '${state.config.projectPath}/${state.config.projectName}' && flutterfire config"
+	set targetWindow to window 1
+	activate targetWindow
+	set custom title of targetWindow to "flutterfire"
+	delay 2
+	repeat
+		delay 1
+		if not busy of T then exit repeat
+	end repeat
+	close (every window whose name contains "flutterfire")
+end tell'''
+          ],
+          workingDirectory:
+              '${state.config.projectPath}/${state.config.projectName}');
+
+      process.stdout
+          .transform(utf8.decoder)
+          .listen((event) => outputService.add(event));
+
+      await process.exitCode;
+    }
 
     final gitProcess = await ProcessStarter.start(
         workingDirectory:

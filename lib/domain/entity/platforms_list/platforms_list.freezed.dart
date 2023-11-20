@@ -21,13 +21,19 @@ PlatformsList _$PlatformsListFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PlatformsList {
   bool get android => throw _privateConstructorUsedError;
+
   bool get ios => throw _privateConstructorUsedError;
+
   bool get web => throw _privateConstructorUsedError;
+
   bool get macos => throw _privateConstructorUsedError;
+
   bool get windows => throw _privateConstructorUsedError;
+
   bool get linux => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $PlatformsListCopyWith<PlatformsList> get copyWith =>
       throw _privateConstructorUsedError;
@@ -38,6 +44,7 @@ abstract class $PlatformsListCopyWith<$Res> {
   factory $PlatformsListCopyWith(
           PlatformsList value, $Res Function(PlatformsList) then) =
       _$PlatformsListCopyWithImpl<$Res, PlatformsList>;
+
   @useResult
   $Res call(
       {bool android, bool ios, bool web, bool macos, bool windows, bool linux});
@@ -50,6 +57,7 @@ class _$PlatformsListCopyWithImpl<$Res, $Val extends PlatformsList>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -93,11 +101,12 @@ class _$PlatformsListCopyWithImpl<$Res, $Val extends PlatformsList>
 }
 
 /// @nodoc
-abstract class _$$_PlatformsListCopyWith<$Res>
+abstract class _$$PlatformsListImplCopyWith<$Res>
     implements $PlatformsListCopyWith<$Res> {
-  factory _$$_PlatformsListCopyWith(
-          _$_PlatformsList value, $Res Function(_$_PlatformsList) then) =
-      __$$_PlatformsListCopyWithImpl<$Res>;
+  factory _$$PlatformsListImplCopyWith(
+          _$PlatformsListImpl value, $Res Function(_$PlatformsListImpl) then) =
+      __$$PlatformsListImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -105,11 +114,11 @@ abstract class _$$_PlatformsListCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PlatformsListCopyWithImpl<$Res>
-    extends _$PlatformsListCopyWithImpl<$Res, _$_PlatformsList>
-    implements _$$_PlatformsListCopyWith<$Res> {
-  __$$_PlatformsListCopyWithImpl(
-      _$_PlatformsList _value, $Res Function(_$_PlatformsList) _then)
+class __$$PlatformsListImplCopyWithImpl<$Res>
+    extends _$PlatformsListCopyWithImpl<$Res, _$PlatformsListImpl>
+    implements _$$PlatformsListImplCopyWith<$Res> {
+  __$$PlatformsListImplCopyWithImpl(
+      _$PlatformsListImpl _value, $Res Function(_$PlatformsListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -122,7 +131,7 @@ class __$$_PlatformsListCopyWithImpl<$Res>
     Object? windows = null,
     Object? linux = null,
   }) {
-    return _then(_$_PlatformsList(
+    return _then(_$PlatformsListImpl(
       android: null == android
           ? _value.android
           : android // ignore: cast_nullable_to_non_nullable
@@ -153,8 +162,8 @@ class __$$_PlatformsListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PlatformsList extends _PlatformsList {
-  const _$_PlatformsList(
+class _$PlatformsListImpl extends _PlatformsList {
+  const _$PlatformsListImpl(
       {this.android = true,
       this.ios = true,
       this.web = false,
@@ -163,8 +172,8 @@ class _$_PlatformsList extends _PlatformsList {
       this.linux = false})
       : super._();
 
-  factory _$_PlatformsList.fromJson(Map<String, dynamic> json) =>
-      _$$_PlatformsListFromJson(json);
+  factory _$PlatformsListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PlatformsListImplFromJson(json);
 
   @override
   @JsonKey()
@@ -189,7 +198,7 @@ class _$_PlatformsList extends _PlatformsList {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlatformsList &&
+            other is _$PlatformsListImpl &&
             (identical(other.android, android) || other.android == android) &&
             (identical(other.ios, ios) || other.ios == ios) &&
             (identical(other.web, web) || other.web == web) &&
@@ -206,12 +215,12 @@ class _$_PlatformsList extends _PlatformsList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PlatformsListCopyWith<_$_PlatformsList> get copyWith =>
-      __$$_PlatformsListCopyWithImpl<_$_PlatformsList>(this, _$identity);
+  _$$PlatformsListImplCopyWith<_$PlatformsListImpl> get copyWith =>
+      __$$PlatformsListImplCopyWithImpl<_$PlatformsListImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlatformsListToJson(
+    return _$$PlatformsListImplToJson(
       this,
     );
   }
@@ -224,26 +233,33 @@ abstract class _PlatformsList extends PlatformsList {
       final bool web,
       final bool macos,
       final bool windows,
-      final bool linux}) = _$_PlatformsList;
+      final bool linux}) = _$PlatformsListImpl;
+
   const _PlatformsList._() : super._();
 
   factory _PlatformsList.fromJson(Map<String, dynamic> json) =
-      _$_PlatformsList.fromJson;
+      _$PlatformsListImpl.fromJson;
 
   @override
   bool get android;
+
   @override
   bool get ios;
+
   @override
   bool get web;
+
   @override
   bool get macos;
+
   @override
   bool get windows;
+
   @override
   bool get linux;
+
   @override
   @JsonKey(ignore: true)
-  _$$_PlatformsListCopyWith<_$_PlatformsList> get copyWith =>
+  _$$PlatformsListImplCopyWith<_$PlatformsListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

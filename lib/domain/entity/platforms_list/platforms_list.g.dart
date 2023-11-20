@@ -6,8 +6,8 @@ part of 'platforms_list.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PlatformsList _$$_PlatformsListFromJson(Map<String, dynamic> json) =>
-    _$_PlatformsList(
+_$PlatformsListImpl _$$PlatformsListImplFromJson(Map<String, dynamic> json) =>
+    _$PlatformsListImpl(
       android: json['android'] as bool? ?? true,
       ios: json['ios'] as bool? ?? true,
       web: json['web'] as bool? ?? false,
@@ -16,7 +16,7 @@ _$_PlatformsList _$$_PlatformsListFromJson(Map<String, dynamic> json) =>
       linux: json['linux'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$_PlatformsListToJson(_$_PlatformsList instance) =>
+Map<String, dynamic> _$$PlatformsListImplToJson(_$PlatformsListImpl instance) =>
     <String, dynamic>{
       'android': instance.android,
       'ios': instance.ios,

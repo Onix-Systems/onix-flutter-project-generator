@@ -169,8 +169,7 @@ Future<void> getDependencies(HookContext context) async {
     'flutter_native_splash',
     'collection',
     'flutter_dotenv',
-    'flutter_jailbreak_detection',
-    'graphql',
+    'flutter_jailbreak_detection'
   ];
 
   if (!context.vars['web_only']) {
@@ -210,10 +209,15 @@ Future<void> getDependencies(HookContext context) async {
     dependencies.addAll(['intl', 'intl_utils']);
   }
 
-  // if (context.vars['theme_generate']) {
-  //   dependencies.add('theme_tailor_annotation');
-  //   devDependencies.add('theme_tailor');
-  // }
+  if (context.vars['graphql']) {
+    dependencies.add('graphql');
+  }
+
+  if (context.vars['firebase_auth']) {
+    dependencies.addAll(['firebase_core', 'firebase_auth']);
+  } else {
+    await removeFirebase(context);
+  }
 
   'Getting dependencies...'.log();
 
@@ -362,10 +366,10 @@ $flavor:
 
 Future<void> correct(HookContext context) async {
   if (context.vars['platforms'].contains('android')) {
-    File buildGradle = File('$name/android/app/build.gradle');
-    String buildGradleContent = buildGradle.readAsStringSync();
+    File appBuildGradle = File('$name/android/app/build.gradle');
+    String appBuildGradleContent = appBuildGradle.readAsStringSync();
 
-    buildGradle.writeAsStringSync(buildGradleContent
+    appBuildGradle.writeAsStringSync(appBuildGradleContent
         .replaceAll('compileSdkVersion flutter.compileSdkVersion',
             'compileSdkVersion 34')
         .replaceAll('minSdkVersion flutter.minSdkVersion', 'minSdkVersion 22')
@@ -423,6 +427,10 @@ Future<void> secure(HookContext context) async {
 # Secure
 *.jks
 .env
+ios/firebase_app_id_file.json
+android/app/google-services.json
+lib/firebase_options.dart
+ios/Runner/GoogleService-Info.plist
 ''');
 
   if (context.vars['platforms'].contains('android')) {
@@ -464,6 +472,49 @@ android {'''));
 
       </application>'''));
   }
+}
+
+Future<void> removeFirebase(HookContext context) async {
+  await Process.run('rm', ['-r', 'data/source/remote/firebase'],
+      workingDirectory: '$name/lib');
+  await Process.run('rm', ['-r', 'app/service/firebase_session_service'],
+      workingDirectory: '$name/lib');
+  await Process.run('rm', ['-r', 'domain/params'],
+      workingDirectory: '$name/lib');
+  await Process.run(
+      'rm', ['-r', 'data/repository/firebase_auth_repository_impl.dart'],
+      workingDirectory: '$name/lib');
+  await Process.run(
+      'rm', ['-r', 'domain/repository/firebase_auth_repository.dart'],
+      workingDirectory: '$name/lib');
+  await Process.run('rm', ['-r', 'domain/usecase/create_account_use_case.dart'],
+      workingDirectory: '$name/lib');
+  await Process.run('rm', ['-r', 'domain/usecase/log_out_use_case.dart'],
+      workingDirectory: '$name/lib');
+  await Process.run('rm', ['-r', 'domain/usecase/login_use_case.dart'],
+      workingDirectory: '$name/lib');
+  await Process.run(
+      'rm', ['-r', 'core/arch/domain/entity/failure/firebase_failure.dart'],
+      workingDirectory: '$name/lib');
+
+  final firebaseArbStrings = ''',
+  "firebaseInvalidEmail": "Please provide a valid Email address.",
+  "firebaseAccountDisabled": "Your account was disabled. Please contact support.",
+  "firebaseUserNotRegistered": "This user does not exist.",
+  "firebasePasswordIncorrect": "Password is incorrect.",
+  "firebaseAccountAlreadyRegistered": "Account already registered.",
+  "firebaseNotAllowed": "Check is email authorization enabled on your Firebase account.",
+  "firebaseWeakPassword": "Your password is too weak.",
+  "firebaseCantFetch": "Can't fetch User Profile.",
+  "firebaseLogOutFailed": "Log Out failed."''';
+
+  File arbFile = context.vars['handLocalization']
+      ? File('$name/lib/app/localization/l10n/app_en.arb')
+      : File('$name/lib/app/localization/l10n/intl_en.arb');
+
+  String arbContent = await arbFile.readAsString();
+
+  arbFile.writeAsStringSync(arbContent.replaceFirst(firebaseArbStrings, ''));
 }
 
 void exitBrick() async {
