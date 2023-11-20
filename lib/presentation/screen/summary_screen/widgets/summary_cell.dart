@@ -26,7 +26,7 @@ class SummaryCell extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            flex: 35,
+            flex: 48,
             child: Container(
               padding: const EdgeInsets.all(10),
               child: Text(

@@ -137,16 +137,16 @@ class _$DataComponentsScreenEventCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$DataComponentsScreenEventInitCopyWith<$Res> {
-  factory _$$DataComponentsScreenEventInitCopyWith(
-          _$DataComponentsScreenEventInit value,
-          $Res Function(_$DataComponentsScreenEventInit) then) =
-      __$$DataComponentsScreenEventInitCopyWithImpl<$Res>;
+abstract class _$$DataComponentsScreenEventInitImplCopyWith<$Res> {
+  factory _$$DataComponentsScreenEventInitImplCopyWith(
+          _$DataComponentsScreenEventInitImpl value,
+          $Res Function(_$DataComponentsScreenEventInitImpl) then) =
+      __$$DataComponentsScreenEventInitImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Config config});
 
@@ -154,13 +154,13 @@ abstract class _$$DataComponentsScreenEventInitCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$DataComponentsScreenEventInitCopyWithImpl<$Res>
+class __$$DataComponentsScreenEventInitImplCopyWithImpl<$Res>
     extends _$DataComponentsScreenEventCopyWithImpl<$Res,
-        _$DataComponentsScreenEventInit>
-    implements _$$DataComponentsScreenEventInitCopyWith<$Res> {
-  __$$DataComponentsScreenEventInitCopyWithImpl(
-      _$DataComponentsScreenEventInit _value,
-      $Res Function(_$DataComponentsScreenEventInit) _then)
+        _$DataComponentsScreenEventInitImpl>
+    implements _$$DataComponentsScreenEventInitImplCopyWith<$Res> {
+  __$$DataComponentsScreenEventInitImplCopyWithImpl(
+      _$DataComponentsScreenEventInitImpl _value,
+      $Res Function(_$DataComponentsScreenEventInitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -168,7 +168,7 @@ class __$$DataComponentsScreenEventInitCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$DataComponentsScreenEventInit(
+    return _then(_$DataComponentsScreenEventInitImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -187,8 +187,9 @@ class __$$DataComponentsScreenEventInitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
-  const _$DataComponentsScreenEventInit({required this.config});
+class _$DataComponentsScreenEventInitImpl
+    implements DataComponentsScreenEventInit {
+  const _$DataComponentsScreenEventInitImpl({required this.config});
 
   @override
   final Config config;
@@ -202,7 +203,7 @@ class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenEventInit &&
+            other is _$DataComponentsScreenEventInitImpl &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -212,9 +213,10 @@ class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenEventInitCopyWith<_$DataComponentsScreenEventInit>
-      get copyWith => __$$DataComponentsScreenEventInitCopyWithImpl<
-          _$DataComponentsScreenEventInit>(this, _$identity);
+  _$$DataComponentsScreenEventInitImplCopyWith<
+          _$DataComponentsScreenEventInitImpl>
+      get copyWith => __$$DataComponentsScreenEventInitImplCopyWithImpl<
+          _$DataComponentsScreenEventInitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -348,38 +350,39 @@ class _$DataComponentsScreenEventInit implements DataComponentsScreenEventInit {
 abstract class DataComponentsScreenEventInit
     implements DataComponentsScreenEvent {
   const factory DataComponentsScreenEventInit({required final Config config}) =
-      _$DataComponentsScreenEventInit;
+      _$DataComponentsScreenEventInitImpl;
 
   Config get config;
   @JsonKey(ignore: true)
-  _$$DataComponentsScreenEventInitCopyWith<_$DataComponentsScreenEventInit>
+  _$$DataComponentsScreenEventInitImplCopyWith<
+          _$DataComponentsScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DataComponentsScreenEventStateUpdateCopyWith<$Res> {
-  factory _$$DataComponentsScreenEventStateUpdateCopyWith(
-          _$DataComponentsScreenEventStateUpdate value,
-          $Res Function(_$DataComponentsScreenEventStateUpdate) then) =
-      __$$DataComponentsScreenEventStateUpdateCopyWithImpl<$Res>;
+abstract class _$$DataComponentsScreenEventStateUpdateImplCopyWith<$Res> {
+  factory _$$DataComponentsScreenEventStateUpdateImplCopyWith(
+          _$DataComponentsScreenEventStateUpdateImpl value,
+          $Res Function(_$DataComponentsScreenEventStateUpdateImpl) then) =
+      __$$DataComponentsScreenEventStateUpdateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$DataComponentsScreenEventStateUpdateCopyWithImpl<$Res>
+class __$$DataComponentsScreenEventStateUpdateImplCopyWithImpl<$Res>
     extends _$DataComponentsScreenEventCopyWithImpl<$Res,
-        _$DataComponentsScreenEventStateUpdate>
-    implements _$$DataComponentsScreenEventStateUpdateCopyWith<$Res> {
-  __$$DataComponentsScreenEventStateUpdateCopyWithImpl(
-      _$DataComponentsScreenEventStateUpdate _value,
-      $Res Function(_$DataComponentsScreenEventStateUpdate) _then)
+        _$DataComponentsScreenEventStateUpdateImpl>
+    implements _$$DataComponentsScreenEventStateUpdateImplCopyWith<$Res> {
+  __$$DataComponentsScreenEventStateUpdateImplCopyWithImpl(
+      _$DataComponentsScreenEventStateUpdateImpl _value,
+      $Res Function(_$DataComponentsScreenEventStateUpdateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$DataComponentsScreenEventStateUpdate
+class _$DataComponentsScreenEventStateUpdateImpl
     implements DataComponentsScreenEventStateUpdate {
-  const _$DataComponentsScreenEventStateUpdate();
+  const _$DataComponentsScreenEventStateUpdateImpl();
 
   @override
   String toString() {
@@ -390,7 +393,7 @@ class _$DataComponentsScreenEventStateUpdate
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenEventStateUpdate);
+            other is _$DataComponentsScreenEventStateUpdateImpl);
   }
 
   @override
@@ -528,27 +531,27 @@ class _$DataComponentsScreenEventStateUpdate
 abstract class DataComponentsScreenEventStateUpdate
     implements DataComponentsScreenEvent {
   const factory DataComponentsScreenEventStateUpdate() =
-      _$DataComponentsScreenEventStateUpdate;
+      _$DataComponentsScreenEventStateUpdateImpl;
 }
 
 /// @nodoc
-abstract class _$$DataComponentsScreenEventAddSourceCopyWith<$Res> {
-  factory _$$DataComponentsScreenEventAddSourceCopyWith(
-          _$DataComponentsScreenEventAddSource value,
-          $Res Function(_$DataComponentsScreenEventAddSource) then) =
-      __$$DataComponentsScreenEventAddSourceCopyWithImpl<$Res>;
+abstract class _$$DataComponentsScreenEventAddSourceImplCopyWith<$Res> {
+  factory _$$DataComponentsScreenEventAddSourceImplCopyWith(
+          _$DataComponentsScreenEventAddSourceImpl value,
+          $Res Function(_$DataComponentsScreenEventAddSourceImpl) then) =
+      __$$DataComponentsScreenEventAddSourceImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Source source});
 }
 
 /// @nodoc
-class __$$DataComponentsScreenEventAddSourceCopyWithImpl<$Res>
+class __$$DataComponentsScreenEventAddSourceImplCopyWithImpl<$Res>
     extends _$DataComponentsScreenEventCopyWithImpl<$Res,
-        _$DataComponentsScreenEventAddSource>
-    implements _$$DataComponentsScreenEventAddSourceCopyWith<$Res> {
-  __$$DataComponentsScreenEventAddSourceCopyWithImpl(
-      _$DataComponentsScreenEventAddSource _value,
-      $Res Function(_$DataComponentsScreenEventAddSource) _then)
+        _$DataComponentsScreenEventAddSourceImpl>
+    implements _$$DataComponentsScreenEventAddSourceImplCopyWith<$Res> {
+  __$$DataComponentsScreenEventAddSourceImplCopyWithImpl(
+      _$DataComponentsScreenEventAddSourceImpl _value,
+      $Res Function(_$DataComponentsScreenEventAddSourceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -556,7 +559,7 @@ class __$$DataComponentsScreenEventAddSourceCopyWithImpl<$Res>
   $Res call({
     Object? source = null,
   }) {
-    return _then(_$DataComponentsScreenEventAddSource(
+    return _then(_$DataComponentsScreenEventAddSourceImpl(
       source: null == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -567,9 +570,9 @@ class __$$DataComponentsScreenEventAddSourceCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataComponentsScreenEventAddSource
+class _$DataComponentsScreenEventAddSourceImpl
     implements DataComponentsScreenEventAddSource {
-  const _$DataComponentsScreenEventAddSource({required this.source});
+  const _$DataComponentsScreenEventAddSourceImpl({required this.source});
 
   @override
   final Source source;
@@ -583,7 +586,7 @@ class _$DataComponentsScreenEventAddSource
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenEventAddSource &&
+            other is _$DataComponentsScreenEventAddSourceImpl &&
             (identical(other.source, source) || other.source == source));
   }
 
@@ -593,10 +596,10 @@ class _$DataComponentsScreenEventAddSource
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenEventAddSourceCopyWith<
-          _$DataComponentsScreenEventAddSource>
-      get copyWith => __$$DataComponentsScreenEventAddSourceCopyWithImpl<
-          _$DataComponentsScreenEventAddSource>(this, _$identity);
+  _$$DataComponentsScreenEventAddSourceImplCopyWith<
+          _$DataComponentsScreenEventAddSourceImpl>
+      get copyWith => __$$DataComponentsScreenEventAddSourceImplCopyWithImpl<
+          _$DataComponentsScreenEventAddSourceImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -730,33 +733,34 @@ class _$DataComponentsScreenEventAddSource
 abstract class DataComponentsScreenEventAddSource
     implements DataComponentsScreenEvent {
   const factory DataComponentsScreenEventAddSource(
-      {required final Source source}) = _$DataComponentsScreenEventAddSource;
+          {required final Source source}) =
+      _$DataComponentsScreenEventAddSourceImpl;
 
   Source get source;
   @JsonKey(ignore: true)
-  _$$DataComponentsScreenEventAddSourceCopyWith<
-          _$DataComponentsScreenEventAddSource>
+  _$$DataComponentsScreenEventAddSourceImplCopyWith<
+          _$DataComponentsScreenEventAddSourceImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DataComponentsScreenEventDeleteSourceCopyWith<$Res> {
-  factory _$$DataComponentsScreenEventDeleteSourceCopyWith(
-          _$DataComponentsScreenEventDeleteSource value,
-          $Res Function(_$DataComponentsScreenEventDeleteSource) then) =
-      __$$DataComponentsScreenEventDeleteSourceCopyWithImpl<$Res>;
+abstract class _$$DataComponentsScreenEventDeleteSourceImplCopyWith<$Res> {
+  factory _$$DataComponentsScreenEventDeleteSourceImplCopyWith(
+          _$DataComponentsScreenEventDeleteSourceImpl value,
+          $Res Function(_$DataComponentsScreenEventDeleteSourceImpl) then) =
+      __$$DataComponentsScreenEventDeleteSourceImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String sourceName, bool withDataComponents});
 }
 
 /// @nodoc
-class __$$DataComponentsScreenEventDeleteSourceCopyWithImpl<$Res>
+class __$$DataComponentsScreenEventDeleteSourceImplCopyWithImpl<$Res>
     extends _$DataComponentsScreenEventCopyWithImpl<$Res,
-        _$DataComponentsScreenEventDeleteSource>
-    implements _$$DataComponentsScreenEventDeleteSourceCopyWith<$Res> {
-  __$$DataComponentsScreenEventDeleteSourceCopyWithImpl(
-      _$DataComponentsScreenEventDeleteSource _value,
-      $Res Function(_$DataComponentsScreenEventDeleteSource) _then)
+        _$DataComponentsScreenEventDeleteSourceImpl>
+    implements _$$DataComponentsScreenEventDeleteSourceImplCopyWith<$Res> {
+  __$$DataComponentsScreenEventDeleteSourceImplCopyWithImpl(
+      _$DataComponentsScreenEventDeleteSourceImpl _value,
+      $Res Function(_$DataComponentsScreenEventDeleteSourceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -765,7 +769,7 @@ class __$$DataComponentsScreenEventDeleteSourceCopyWithImpl<$Res>
     Object? sourceName = null,
     Object? withDataComponents = null,
   }) {
-    return _then(_$DataComponentsScreenEventDeleteSource(
+    return _then(_$DataComponentsScreenEventDeleteSourceImpl(
       sourceName: null == sourceName
           ? _value.sourceName
           : sourceName // ignore: cast_nullable_to_non_nullable
@@ -780,9 +784,9 @@ class __$$DataComponentsScreenEventDeleteSourceCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataComponentsScreenEventDeleteSource
+class _$DataComponentsScreenEventDeleteSourceImpl
     implements DataComponentsScreenEventDeleteSource {
-  const _$DataComponentsScreenEventDeleteSource(
+  const _$DataComponentsScreenEventDeleteSourceImpl(
       {required this.sourceName, required this.withDataComponents});
 
   @override
@@ -799,7 +803,7 @@ class _$DataComponentsScreenEventDeleteSource
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenEventDeleteSource &&
+            other is _$DataComponentsScreenEventDeleteSourceImpl &&
             (identical(other.sourceName, sourceName) ||
                 other.sourceName == sourceName) &&
             (identical(other.withDataComponents, withDataComponents) ||
@@ -812,10 +816,10 @@ class _$DataComponentsScreenEventDeleteSource
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenEventDeleteSourceCopyWith<
-          _$DataComponentsScreenEventDeleteSource>
-      get copyWith => __$$DataComponentsScreenEventDeleteSourceCopyWithImpl<
-          _$DataComponentsScreenEventDeleteSource>(this, _$identity);
+  _$$DataComponentsScreenEventDeleteSourceImplCopyWith<
+          _$DataComponentsScreenEventDeleteSourceImpl>
+      get copyWith => __$$DataComponentsScreenEventDeleteSourceImplCopyWithImpl<
+          _$DataComponentsScreenEventDeleteSourceImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -951,34 +955,34 @@ abstract class DataComponentsScreenEventDeleteSource
   const factory DataComponentsScreenEventDeleteSource(
           {required final String sourceName,
           required final bool withDataComponents}) =
-      _$DataComponentsScreenEventDeleteSource;
+      _$DataComponentsScreenEventDeleteSourceImpl;
 
   String get sourceName;
   bool get withDataComponents;
   @JsonKey(ignore: true)
-  _$$DataComponentsScreenEventDeleteSourceCopyWith<
-          _$DataComponentsScreenEventDeleteSource>
+  _$$DataComponentsScreenEventDeleteSourceImplCopyWith<
+          _$DataComponentsScreenEventDeleteSourceImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DataComponentsScreenEventModifySourceCopyWith<$Res> {
-  factory _$$DataComponentsScreenEventModifySourceCopyWith(
-          _$DataComponentsScreenEventModifySource value,
-          $Res Function(_$DataComponentsScreenEventModifySource) then) =
-      __$$DataComponentsScreenEventModifySourceCopyWithImpl<$Res>;
+abstract class _$$DataComponentsScreenEventModifySourceImplCopyWith<$Res> {
+  factory _$$DataComponentsScreenEventModifySourceImplCopyWith(
+          _$DataComponentsScreenEventModifySourceImpl value,
+          $Res Function(_$DataComponentsScreenEventModifySourceImpl) then) =
+      __$$DataComponentsScreenEventModifySourceImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Source source, String oldSourceName});
 }
 
 /// @nodoc
-class __$$DataComponentsScreenEventModifySourceCopyWithImpl<$Res>
+class __$$DataComponentsScreenEventModifySourceImplCopyWithImpl<$Res>
     extends _$DataComponentsScreenEventCopyWithImpl<$Res,
-        _$DataComponentsScreenEventModifySource>
-    implements _$$DataComponentsScreenEventModifySourceCopyWith<$Res> {
-  __$$DataComponentsScreenEventModifySourceCopyWithImpl(
-      _$DataComponentsScreenEventModifySource _value,
-      $Res Function(_$DataComponentsScreenEventModifySource) _then)
+        _$DataComponentsScreenEventModifySourceImpl>
+    implements _$$DataComponentsScreenEventModifySourceImplCopyWith<$Res> {
+  __$$DataComponentsScreenEventModifySourceImplCopyWithImpl(
+      _$DataComponentsScreenEventModifySourceImpl _value,
+      $Res Function(_$DataComponentsScreenEventModifySourceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -987,7 +991,7 @@ class __$$DataComponentsScreenEventModifySourceCopyWithImpl<$Res>
     Object? source = null,
     Object? oldSourceName = null,
   }) {
-    return _then(_$DataComponentsScreenEventModifySource(
+    return _then(_$DataComponentsScreenEventModifySourceImpl(
       source: null == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -1002,9 +1006,9 @@ class __$$DataComponentsScreenEventModifySourceCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataComponentsScreenEventModifySource
+class _$DataComponentsScreenEventModifySourceImpl
     implements DataComponentsScreenEventModifySource {
-  const _$DataComponentsScreenEventModifySource(
+  const _$DataComponentsScreenEventModifySourceImpl(
       {required this.source, required this.oldSourceName});
 
   @override
@@ -1021,7 +1025,7 @@ class _$DataComponentsScreenEventModifySource
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenEventModifySource &&
+            other is _$DataComponentsScreenEventModifySourceImpl &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.oldSourceName, oldSourceName) ||
                 other.oldSourceName == oldSourceName));
@@ -1033,10 +1037,10 @@ class _$DataComponentsScreenEventModifySource
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenEventModifySourceCopyWith<
-          _$DataComponentsScreenEventModifySource>
-      get copyWith => __$$DataComponentsScreenEventModifySourceCopyWithImpl<
-          _$DataComponentsScreenEventModifySource>(this, _$identity);
+  _$$DataComponentsScreenEventModifySourceImplCopyWith<
+          _$DataComponentsScreenEventModifySourceImpl>
+      get copyWith => __$$DataComponentsScreenEventModifySourceImplCopyWithImpl<
+          _$DataComponentsScreenEventModifySourceImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1171,34 +1175,34 @@ abstract class DataComponentsScreenEventModifySource
     implements DataComponentsScreenEvent {
   const factory DataComponentsScreenEventModifySource(
           {required final Source source, required final String oldSourceName}) =
-      _$DataComponentsScreenEventModifySource;
+      _$DataComponentsScreenEventModifySourceImpl;
 
   Source get source;
   String get oldSourceName;
   @JsonKey(ignore: true)
-  _$$DataComponentsScreenEventModifySourceCopyWith<
-          _$DataComponentsScreenEventModifySource>
+  _$$DataComponentsScreenEventModifySourceImplCopyWith<
+          _$DataComponentsScreenEventModifySourceImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DataComponentsScreenEventAddDataComponentCopyWith<$Res> {
-  factory _$$DataComponentsScreenEventAddDataComponentCopyWith(
-          _$DataComponentsScreenEventAddDataComponent value,
-          $Res Function(_$DataComponentsScreenEventAddDataComponent) then) =
-      __$$DataComponentsScreenEventAddDataComponentCopyWithImpl<$Res>;
+abstract class _$$DataComponentsScreenEventAddDataComponentImplCopyWith<$Res> {
+  factory _$$DataComponentsScreenEventAddDataComponentImplCopyWith(
+          _$DataComponentsScreenEventAddDataComponentImpl value,
+          $Res Function(_$DataComponentsScreenEventAddDataComponentImpl) then) =
+      __$$DataComponentsScreenEventAddDataComponentImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DataComponent dataComponent, Source? source});
 }
 
 /// @nodoc
-class __$$DataComponentsScreenEventAddDataComponentCopyWithImpl<$Res>
+class __$$DataComponentsScreenEventAddDataComponentImplCopyWithImpl<$Res>
     extends _$DataComponentsScreenEventCopyWithImpl<$Res,
-        _$DataComponentsScreenEventAddDataComponent>
-    implements _$$DataComponentsScreenEventAddDataComponentCopyWith<$Res> {
-  __$$DataComponentsScreenEventAddDataComponentCopyWithImpl(
-      _$DataComponentsScreenEventAddDataComponent _value,
-      $Res Function(_$DataComponentsScreenEventAddDataComponent) _then)
+        _$DataComponentsScreenEventAddDataComponentImpl>
+    implements _$$DataComponentsScreenEventAddDataComponentImplCopyWith<$Res> {
+  __$$DataComponentsScreenEventAddDataComponentImplCopyWithImpl(
+      _$DataComponentsScreenEventAddDataComponentImpl _value,
+      $Res Function(_$DataComponentsScreenEventAddDataComponentImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1207,7 +1211,7 @@ class __$$DataComponentsScreenEventAddDataComponentCopyWithImpl<$Res>
     Object? dataComponent = null,
     Object? source = freezed,
   }) {
-    return _then(_$DataComponentsScreenEventAddDataComponent(
+    return _then(_$DataComponentsScreenEventAddDataComponentImpl(
       dataComponent: null == dataComponent
           ? _value.dataComponent
           : dataComponent // ignore: cast_nullable_to_non_nullable
@@ -1222,9 +1226,9 @@ class __$$DataComponentsScreenEventAddDataComponentCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataComponentsScreenEventAddDataComponent
+class _$DataComponentsScreenEventAddDataComponentImpl
     implements DataComponentsScreenEventAddDataComponent {
-  const _$DataComponentsScreenEventAddDataComponent(
+  const _$DataComponentsScreenEventAddDataComponentImpl(
       {required this.dataComponent, this.source = null});
 
   @override
@@ -1242,7 +1246,7 @@ class _$DataComponentsScreenEventAddDataComponent
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenEventAddDataComponent &&
+            other is _$DataComponentsScreenEventAddDataComponentImpl &&
             (identical(other.dataComponent, dataComponent) ||
                 other.dataComponent == dataComponent) &&
             (identical(other.source, source) || other.source == source));
@@ -1254,10 +1258,12 @@ class _$DataComponentsScreenEventAddDataComponent
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenEventAddDataComponentCopyWith<
-          _$DataComponentsScreenEventAddDataComponent>
-      get copyWith => __$$DataComponentsScreenEventAddDataComponentCopyWithImpl<
-          _$DataComponentsScreenEventAddDataComponent>(this, _$identity);
+  _$$DataComponentsScreenEventAddDataComponentImplCopyWith<
+          _$DataComponentsScreenEventAddDataComponentImpl>
+      get copyWith =>
+          __$$DataComponentsScreenEventAddDataComponentImplCopyWithImpl<
+                  _$DataComponentsScreenEventAddDataComponentImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1392,34 +1398,37 @@ abstract class DataComponentsScreenEventAddDataComponent
     implements DataComponentsScreenEvent {
   const factory DataComponentsScreenEventAddDataComponent(
       {required final DataComponent dataComponent,
-      final Source? source}) = _$DataComponentsScreenEventAddDataComponent;
+      final Source? source}) = _$DataComponentsScreenEventAddDataComponentImpl;
 
   DataComponent get dataComponent;
   Source? get source;
   @JsonKey(ignore: true)
-  _$$DataComponentsScreenEventAddDataComponentCopyWith<
-          _$DataComponentsScreenEventAddDataComponent>
+  _$$DataComponentsScreenEventAddDataComponentImplCopyWith<
+          _$DataComponentsScreenEventAddDataComponentImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DataComponentsScreenEventDeleteDataComponentCopyWith<$Res> {
-  factory _$$DataComponentsScreenEventDeleteDataComponentCopyWith(
-          _$DataComponentsScreenEventDeleteDataComponent value,
-          $Res Function(_$DataComponentsScreenEventDeleteDataComponent) then) =
-      __$$DataComponentsScreenEventDeleteDataComponentCopyWithImpl<$Res>;
+abstract class _$$DataComponentsScreenEventDeleteDataComponentImplCopyWith<
+    $Res> {
+  factory _$$DataComponentsScreenEventDeleteDataComponentImplCopyWith(
+          _$DataComponentsScreenEventDeleteDataComponentImpl value,
+          $Res Function(_$DataComponentsScreenEventDeleteDataComponentImpl)
+              then) =
+      __$$DataComponentsScreenEventDeleteDataComponentImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String dataComponentName, String sourceName});
 }
 
 /// @nodoc
-class __$$DataComponentsScreenEventDeleteDataComponentCopyWithImpl<$Res>
+class __$$DataComponentsScreenEventDeleteDataComponentImplCopyWithImpl<$Res>
     extends _$DataComponentsScreenEventCopyWithImpl<$Res,
-        _$DataComponentsScreenEventDeleteDataComponent>
-    implements _$$DataComponentsScreenEventDeleteDataComponentCopyWith<$Res> {
-  __$$DataComponentsScreenEventDeleteDataComponentCopyWithImpl(
-      _$DataComponentsScreenEventDeleteDataComponent _value,
-      $Res Function(_$DataComponentsScreenEventDeleteDataComponent) _then)
+        _$DataComponentsScreenEventDeleteDataComponentImpl>
+    implements
+        _$$DataComponentsScreenEventDeleteDataComponentImplCopyWith<$Res> {
+  __$$DataComponentsScreenEventDeleteDataComponentImplCopyWithImpl(
+      _$DataComponentsScreenEventDeleteDataComponentImpl _value,
+      $Res Function(_$DataComponentsScreenEventDeleteDataComponentImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1428,7 +1437,7 @@ class __$$DataComponentsScreenEventDeleteDataComponentCopyWithImpl<$Res>
     Object? dataComponentName = null,
     Object? sourceName = null,
   }) {
-    return _then(_$DataComponentsScreenEventDeleteDataComponent(
+    return _then(_$DataComponentsScreenEventDeleteDataComponentImpl(
       dataComponentName: null == dataComponentName
           ? _value.dataComponentName
           : dataComponentName // ignore: cast_nullable_to_non_nullable
@@ -1443,9 +1452,9 @@ class __$$DataComponentsScreenEventDeleteDataComponentCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataComponentsScreenEventDeleteDataComponent
+class _$DataComponentsScreenEventDeleteDataComponentImpl
     implements DataComponentsScreenEventDeleteDataComponent {
-  const _$DataComponentsScreenEventDeleteDataComponent(
+  const _$DataComponentsScreenEventDeleteDataComponentImpl(
       {required this.dataComponentName, this.sourceName = ''});
 
   @override
@@ -1463,7 +1472,7 @@ class _$DataComponentsScreenEventDeleteDataComponent
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenEventDeleteDataComponent &&
+            other is _$DataComponentsScreenEventDeleteDataComponentImpl &&
             (identical(other.dataComponentName, dataComponentName) ||
                 other.dataComponentName == dataComponentName) &&
             (identical(other.sourceName, sourceName) ||
@@ -1476,11 +1485,12 @@ class _$DataComponentsScreenEventDeleteDataComponent
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenEventDeleteDataComponentCopyWith<
-          _$DataComponentsScreenEventDeleteDataComponent>
+  _$$DataComponentsScreenEventDeleteDataComponentImplCopyWith<
+          _$DataComponentsScreenEventDeleteDataComponentImpl>
       get copyWith =>
-          __$$DataComponentsScreenEventDeleteDataComponentCopyWithImpl<
-              _$DataComponentsScreenEventDeleteDataComponent>(this, _$identity);
+          __$$DataComponentsScreenEventDeleteDataComponentImplCopyWithImpl<
+                  _$DataComponentsScreenEventDeleteDataComponentImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1615,22 +1625,24 @@ abstract class DataComponentsScreenEventDeleteDataComponent
     implements DataComponentsScreenEvent {
   const factory DataComponentsScreenEventDeleteDataComponent(
           {required final String dataComponentName, final String sourceName}) =
-      _$DataComponentsScreenEventDeleteDataComponent;
+      _$DataComponentsScreenEventDeleteDataComponentImpl;
 
   String get dataComponentName;
   String get sourceName;
   @JsonKey(ignore: true)
-  _$$DataComponentsScreenEventDeleteDataComponentCopyWith<
-          _$DataComponentsScreenEventDeleteDataComponent>
+  _$$DataComponentsScreenEventDeleteDataComponentImplCopyWith<
+          _$DataComponentsScreenEventDeleteDataComponentImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DataComponentsScreenEventModifyDataComponentCopyWith<$Res> {
-  factory _$$DataComponentsScreenEventModifyDataComponentCopyWith(
-          _$DataComponentsScreenEventModifyDataComponent value,
-          $Res Function(_$DataComponentsScreenEventModifyDataComponent) then) =
-      __$$DataComponentsScreenEventModifyDataComponentCopyWithImpl<$Res>;
+abstract class _$$DataComponentsScreenEventModifyDataComponentImplCopyWith<
+    $Res> {
+  factory _$$DataComponentsScreenEventModifyDataComponentImplCopyWith(
+          _$DataComponentsScreenEventModifyDataComponentImpl value,
+          $Res Function(_$DataComponentsScreenEventModifyDataComponentImpl)
+              then) =
+      __$$DataComponentsScreenEventModifyDataComponentImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {DataComponent dataComponent,
@@ -1639,13 +1651,14 @@ abstract class _$$DataComponentsScreenEventModifyDataComponentCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$DataComponentsScreenEventModifyDataComponentCopyWithImpl<$Res>
+class __$$DataComponentsScreenEventModifyDataComponentImplCopyWithImpl<$Res>
     extends _$DataComponentsScreenEventCopyWithImpl<$Res,
-        _$DataComponentsScreenEventModifyDataComponent>
-    implements _$$DataComponentsScreenEventModifyDataComponentCopyWith<$Res> {
-  __$$DataComponentsScreenEventModifyDataComponentCopyWithImpl(
-      _$DataComponentsScreenEventModifyDataComponent _value,
-      $Res Function(_$DataComponentsScreenEventModifyDataComponent) _then)
+        _$DataComponentsScreenEventModifyDataComponentImpl>
+    implements
+        _$$DataComponentsScreenEventModifyDataComponentImplCopyWith<$Res> {
+  __$$DataComponentsScreenEventModifyDataComponentImplCopyWithImpl(
+      _$DataComponentsScreenEventModifyDataComponentImpl _value,
+      $Res Function(_$DataComponentsScreenEventModifyDataComponentImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1655,7 +1668,7 @@ class __$$DataComponentsScreenEventModifyDataComponentCopyWithImpl<$Res>
     Object? oldDataComponentName = null,
     Object? source = freezed,
   }) {
-    return _then(_$DataComponentsScreenEventModifyDataComponent(
+    return _then(_$DataComponentsScreenEventModifyDataComponentImpl(
       dataComponent: null == dataComponent
           ? _value.dataComponent
           : dataComponent // ignore: cast_nullable_to_non_nullable
@@ -1674,9 +1687,9 @@ class __$$DataComponentsScreenEventModifyDataComponentCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataComponentsScreenEventModifyDataComponent
+class _$DataComponentsScreenEventModifyDataComponentImpl
     implements DataComponentsScreenEventModifyDataComponent {
-  const _$DataComponentsScreenEventModifyDataComponent(
+  const _$DataComponentsScreenEventModifyDataComponentImpl(
       {required this.dataComponent,
       required this.oldDataComponentName,
       this.source = null});
@@ -1698,7 +1711,7 @@ class _$DataComponentsScreenEventModifyDataComponent
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenEventModifyDataComponent &&
+            other is _$DataComponentsScreenEventModifyDataComponentImpl &&
             (identical(other.dataComponent, dataComponent) ||
                 other.dataComponent == dataComponent) &&
             (identical(other.oldDataComponentName, oldDataComponentName) ||
@@ -1713,11 +1726,12 @@ class _$DataComponentsScreenEventModifyDataComponent
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenEventModifyDataComponentCopyWith<
-          _$DataComponentsScreenEventModifyDataComponent>
+  _$$DataComponentsScreenEventModifyDataComponentImplCopyWith<
+          _$DataComponentsScreenEventModifyDataComponentImpl>
       get copyWith =>
-          __$$DataComponentsScreenEventModifyDataComponentCopyWithImpl<
-              _$DataComponentsScreenEventModifyDataComponent>(this, _$identity);
+          __$$DataComponentsScreenEventModifyDataComponentImplCopyWithImpl<
+                  _$DataComponentsScreenEventModifyDataComponentImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1852,16 +1866,17 @@ class _$DataComponentsScreenEventModifyDataComponent
 abstract class DataComponentsScreenEventModifyDataComponent
     implements DataComponentsScreenEvent {
   const factory DataComponentsScreenEventModifyDataComponent(
-      {required final DataComponent dataComponent,
-      required final String oldDataComponentName,
-      final Source? source}) = _$DataComponentsScreenEventModifyDataComponent;
+          {required final DataComponent dataComponent,
+          required final String oldDataComponentName,
+          final Source? source}) =
+      _$DataComponentsScreenEventModifyDataComponentImpl;
 
   DataComponent get dataComponent;
   String get oldDataComponentName;
   Source? get source;
   @JsonKey(ignore: true)
-  _$$DataComponentsScreenEventModifyDataComponentCopyWith<
-          _$DataComponentsScreenEventModifyDataComponent>
+  _$$DataComponentsScreenEventModifyDataComponentImplCopyWith<
+          _$DataComponentsScreenEventModifyDataComponentImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1941,20 +1956,22 @@ class _$DataComponentsScreenSRCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ErrorCopyWith<$Res>
+abstract class _$$ErrorImplCopyWith<$Res>
     implements $DataComponentsScreenSRCopyWith<$Res> {
-  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
-      __$$_ErrorCopyWithImpl<$Res>;
+  factory _$$ErrorImplCopyWith(
+          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
+      __$$ErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_ErrorCopyWithImpl<$Res>
-    extends _$DataComponentsScreenSRCopyWithImpl<$Res, _$_Error>
-    implements _$$_ErrorCopyWith<$Res> {
-  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
+class __$$ErrorImplCopyWithImpl<$Res>
+    extends _$DataComponentsScreenSRCopyWithImpl<$Res, _$ErrorImpl>
+    implements _$$ErrorImplCopyWith<$Res> {
+  __$$ErrorImplCopyWithImpl(
+      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1962,7 +1979,7 @@ class __$$_ErrorCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$_Error(
+    return _then(_$ErrorImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -1973,8 +1990,8 @@ class __$$_ErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Error implements _Error {
-  const _$_Error({required this.message});
+class _$ErrorImpl implements _Error {
+  const _$ErrorImpl({required this.message});
 
   @override
   final String message;
@@ -1988,7 +2005,7 @@ class _$_Error implements _Error {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Error &&
+            other is _$ErrorImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -1998,8 +2015,8 @@ class _$_Error implements _Error {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ErrorCopyWith<_$_Error> get copyWith =>
-      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2059,13 +2076,13 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements DataComponentsScreenSR {
-  const factory _Error({required final String message}) = _$_Error;
+  const factory _Error({required final String message}) = _$ErrorImpl;
 
   @override
   String get message;
   @override
   @JsonKey(ignore: true)
-  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2161,12 +2178,12 @@ class _$DataComponentsScreenStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$DataComponentsScreenStateDataCopyWith<$Res>
+abstract class _$$DataComponentsScreenStateDataImplCopyWith<$Res>
     implements $DataComponentsScreenStateCopyWith<$Res> {
-  factory _$$DataComponentsScreenStateDataCopyWith(
-          _$DataComponentsScreenStateData value,
-          $Res Function(_$DataComponentsScreenStateData) then) =
-      __$$DataComponentsScreenStateDataCopyWithImpl<$Res>;
+  factory _$$DataComponentsScreenStateDataImplCopyWith(
+          _$DataComponentsScreenStateDataImpl value,
+          $Res Function(_$DataComponentsScreenStateDataImpl) then) =
+      __$$DataComponentsScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Config config, int stateUpdate});
@@ -2176,13 +2193,13 @@ abstract class _$$DataComponentsScreenStateDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$DataComponentsScreenStateDataCopyWithImpl<$Res>
+class __$$DataComponentsScreenStateDataImplCopyWithImpl<$Res>
     extends _$DataComponentsScreenStateCopyWithImpl<$Res,
-        _$DataComponentsScreenStateData>
-    implements _$$DataComponentsScreenStateDataCopyWith<$Res> {
-  __$$DataComponentsScreenStateDataCopyWithImpl(
-      _$DataComponentsScreenStateData _value,
-      $Res Function(_$DataComponentsScreenStateData) _then)
+        _$DataComponentsScreenStateDataImpl>
+    implements _$$DataComponentsScreenStateDataImplCopyWith<$Res> {
+  __$$DataComponentsScreenStateDataImplCopyWithImpl(
+      _$DataComponentsScreenStateDataImpl _value,
+      $Res Function(_$DataComponentsScreenStateDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2191,7 +2208,7 @@ class __$$DataComponentsScreenStateDataCopyWithImpl<$Res>
     Object? config = null,
     Object? stateUpdate = null,
   }) {
-    return _then(_$DataComponentsScreenStateData(
+    return _then(_$DataComponentsScreenStateDataImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -2206,8 +2223,9 @@ class __$$DataComponentsScreenStateDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataComponentsScreenStateData implements DataComponentsScreenStateData {
-  const _$DataComponentsScreenStateData(
+class _$DataComponentsScreenStateDataImpl
+    implements DataComponentsScreenStateData {
+  const _$DataComponentsScreenStateDataImpl(
       {required this.config, this.stateUpdate = 0});
 
   @override
@@ -2225,7 +2243,7 @@ class _$DataComponentsScreenStateData implements DataComponentsScreenStateData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenStateData &&
+            other is _$DataComponentsScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config) &&
             (identical(other.stateUpdate, stateUpdate) ||
                 other.stateUpdate == stateUpdate));
@@ -2237,9 +2255,10 @@ class _$DataComponentsScreenStateData implements DataComponentsScreenStateData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenStateDataCopyWith<_$DataComponentsScreenStateData>
-      get copyWith => __$$DataComponentsScreenStateDataCopyWithImpl<
-          _$DataComponentsScreenStateData>(this, _$identity);
+  _$$DataComponentsScreenStateDataImplCopyWith<
+          _$DataComponentsScreenStateDataImpl>
+      get copyWith => __$$DataComponentsScreenStateDataImplCopyWithImpl<
+          _$DataComponentsScreenStateDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2302,7 +2321,7 @@ abstract class DataComponentsScreenStateData
     implements DataComponentsScreenState {
   const factory DataComponentsScreenStateData(
       {required final Config config,
-      final int stateUpdate}) = _$DataComponentsScreenStateData;
+      final int stateUpdate}) = _$DataComponentsScreenStateDataImpl;
 
   @override
   Config get config;
@@ -2310,6 +2329,7 @@ abstract class DataComponentsScreenStateData
   int get stateUpdate;
   @override
   @JsonKey(ignore: true)
-  _$$DataComponentsScreenStateDataCopyWith<_$DataComponentsScreenStateData>
+  _$$DataComponentsScreenStateDataImplCopyWith<
+          _$DataComponentsScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

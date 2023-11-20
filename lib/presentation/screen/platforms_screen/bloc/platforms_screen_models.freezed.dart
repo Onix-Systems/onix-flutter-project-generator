@@ -74,15 +74,16 @@ class _$PlatformsScreenEventCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$PlatformsScreenEventInitCopyWith<$Res> {
-  factory _$$PlatformsScreenEventInitCopyWith(_$PlatformsScreenEventInit value,
-          $Res Function(_$PlatformsScreenEventInit) then) =
-      __$$PlatformsScreenEventInitCopyWithImpl<$Res>;
+abstract class _$$PlatformsScreenEventInitImplCopyWith<$Res> {
+  factory _$$PlatformsScreenEventInitImplCopyWith(
+          _$PlatformsScreenEventInitImpl value,
+          $Res Function(_$PlatformsScreenEventInitImpl) then) =
+      __$$PlatformsScreenEventInitImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Config config});
 
@@ -90,11 +91,13 @@ abstract class _$$PlatformsScreenEventInitCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$PlatformsScreenEventInitCopyWithImpl<$Res>
-    extends _$PlatformsScreenEventCopyWithImpl<$Res, _$PlatformsScreenEventInit>
-    implements _$$PlatformsScreenEventInitCopyWith<$Res> {
-  __$$PlatformsScreenEventInitCopyWithImpl(_$PlatformsScreenEventInit _value,
-      $Res Function(_$PlatformsScreenEventInit) _then)
+class __$$PlatformsScreenEventInitImplCopyWithImpl<$Res>
+    extends _$PlatformsScreenEventCopyWithImpl<$Res,
+        _$PlatformsScreenEventInitImpl>
+    implements _$$PlatformsScreenEventInitImplCopyWith<$Res> {
+  __$$PlatformsScreenEventInitImplCopyWithImpl(
+      _$PlatformsScreenEventInitImpl _value,
+      $Res Function(_$PlatformsScreenEventInitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +105,7 @@ class __$$PlatformsScreenEventInitCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$PlatformsScreenEventInit(
+    return _then(_$PlatformsScreenEventInitImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -121,8 +124,8 @@ class __$$PlatformsScreenEventInitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
-  const _$PlatformsScreenEventInit({required this.config});
+class _$PlatformsScreenEventInitImpl implements PlatformsScreenEventInit {
+  const _$PlatformsScreenEventInitImpl({required this.config});
 
   @override
   final Config config;
@@ -136,7 +139,7 @@ class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PlatformsScreenEventInit &&
+            other is _$PlatformsScreenEventInitImpl &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -146,10 +149,9 @@ class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PlatformsScreenEventInitCopyWith<_$PlatformsScreenEventInit>
-      get copyWith =>
-          __$$PlatformsScreenEventInitCopyWithImpl<_$PlatformsScreenEventInit>(
-              this, _$identity);
+  _$$PlatformsScreenEventInitImplCopyWith<_$PlatformsScreenEventInitImpl>
+      get copyWith => __$$PlatformsScreenEventInitImplCopyWithImpl<
+          _$PlatformsScreenEventInitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -219,20 +221,20 @@ class _$PlatformsScreenEventInit implements PlatformsScreenEventInit {
 
 abstract class PlatformsScreenEventInit implements PlatformsScreenEvent {
   const factory PlatformsScreenEventInit({required final Config config}) =
-      _$PlatformsScreenEventInit;
+      _$PlatformsScreenEventInitImpl;
 
   Config get config;
   @JsonKey(ignore: true)
-  _$$PlatformsScreenEventInitCopyWith<_$PlatformsScreenEventInit>
+  _$$PlatformsScreenEventInitImplCopyWith<_$PlatformsScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$PlatformsScreenEventOnPlatformsChangeCopyWith<$Res> {
-  factory _$$PlatformsScreenEventOnPlatformsChangeCopyWith(
-          _$PlatformsScreenEventOnPlatformsChange value,
-          $Res Function(_$PlatformsScreenEventOnPlatformsChange) then) =
-      __$$PlatformsScreenEventOnPlatformsChangeCopyWithImpl<$Res>;
+abstract class _$$PlatformsScreenEventOnPlatformsChangeImplCopyWith<$Res> {
+  factory _$$PlatformsScreenEventOnPlatformsChangeImplCopyWith(
+          _$PlatformsScreenEventOnPlatformsChangeImpl value,
+          $Res Function(_$PlatformsScreenEventOnPlatformsChangeImpl) then) =
+      __$$PlatformsScreenEventOnPlatformsChangeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({PlatformsList platformsList});
 
@@ -240,13 +242,13 @@ abstract class _$$PlatformsScreenEventOnPlatformsChangeCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$PlatformsScreenEventOnPlatformsChangeCopyWithImpl<$Res>
+class __$$PlatformsScreenEventOnPlatformsChangeImplCopyWithImpl<$Res>
     extends _$PlatformsScreenEventCopyWithImpl<$Res,
-        _$PlatformsScreenEventOnPlatformsChange>
-    implements _$$PlatformsScreenEventOnPlatformsChangeCopyWith<$Res> {
-  __$$PlatformsScreenEventOnPlatformsChangeCopyWithImpl(
-      _$PlatformsScreenEventOnPlatformsChange _value,
-      $Res Function(_$PlatformsScreenEventOnPlatformsChange) _then)
+        _$PlatformsScreenEventOnPlatformsChangeImpl>
+    implements _$$PlatformsScreenEventOnPlatformsChangeImplCopyWith<$Res> {
+  __$$PlatformsScreenEventOnPlatformsChangeImplCopyWithImpl(
+      _$PlatformsScreenEventOnPlatformsChangeImpl _value,
+      $Res Function(_$PlatformsScreenEventOnPlatformsChangeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -254,7 +256,7 @@ class __$$PlatformsScreenEventOnPlatformsChangeCopyWithImpl<$Res>
   $Res call({
     Object? platformsList = null,
   }) {
-    return _then(_$PlatformsScreenEventOnPlatformsChange(
+    return _then(_$PlatformsScreenEventOnPlatformsChangeImpl(
       platformsList: null == platformsList
           ? _value.platformsList
           : platformsList // ignore: cast_nullable_to_non_nullable
@@ -273,9 +275,10 @@ class __$$PlatformsScreenEventOnPlatformsChangeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PlatformsScreenEventOnPlatformsChange
+class _$PlatformsScreenEventOnPlatformsChangeImpl
     implements PlatformsScreenEventOnPlatformsChange {
-  const _$PlatformsScreenEventOnPlatformsChange({required this.platformsList});
+  const _$PlatformsScreenEventOnPlatformsChangeImpl(
+      {required this.platformsList});
 
   @override
   final PlatformsList platformsList;
@@ -289,7 +292,7 @@ class _$PlatformsScreenEventOnPlatformsChange
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PlatformsScreenEventOnPlatformsChange &&
+            other is _$PlatformsScreenEventOnPlatformsChangeImpl &&
             (identical(other.platformsList, platformsList) ||
                 other.platformsList == platformsList));
   }
@@ -300,10 +303,10 @@ class _$PlatformsScreenEventOnPlatformsChange
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PlatformsScreenEventOnPlatformsChangeCopyWith<
-          _$PlatformsScreenEventOnPlatformsChange>
-      get copyWith => __$$PlatformsScreenEventOnPlatformsChangeCopyWithImpl<
-          _$PlatformsScreenEventOnPlatformsChange>(this, _$identity);
+  _$$PlatformsScreenEventOnPlatformsChangeImplCopyWith<
+          _$PlatformsScreenEventOnPlatformsChangeImpl>
+      get copyWith => __$$PlatformsScreenEventOnPlatformsChangeImplCopyWithImpl<
+          _$PlatformsScreenEventOnPlatformsChangeImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -375,12 +378,12 @@ abstract class PlatformsScreenEventOnPlatformsChange
     implements PlatformsScreenEvent {
   const factory PlatformsScreenEventOnPlatformsChange(
           {required final PlatformsList platformsList}) =
-      _$PlatformsScreenEventOnPlatformsChange;
+      _$PlatformsScreenEventOnPlatformsChangeImpl;
 
   PlatformsList get platformsList;
   @JsonKey(ignore: true)
-  _$$PlatformsScreenEventOnPlatformsChangeCopyWith<
-          _$PlatformsScreenEventOnPlatformsChange>
+  _$$PlatformsScreenEventOnPlatformsChangeImplCopyWith<
+          _$PlatformsScreenEventOnPlatformsChangeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -432,32 +435,32 @@ class _$PlatformsScreenSRCopyWithImpl<$Res, $Val extends PlatformsScreenSR>
     implements $PlatformsScreenSRCopyWith<$Res> {
   _$PlatformsScreenSRCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$_LoadFinishedCopyWith<$Res> {
-  factory _$$_LoadFinishedCopyWith(
-          _$_LoadFinished value, $Res Function(_$_LoadFinished) then) =
-      __$$_LoadFinishedCopyWithImpl<$Res>;
+abstract class _$$LoadFinishedImplCopyWith<$Res> {
+  factory _$$LoadFinishedImplCopyWith(
+          _$LoadFinishedImpl value, $Res Function(_$LoadFinishedImpl) then) =
+      __$$LoadFinishedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadFinishedCopyWithImpl<$Res>
-    extends _$PlatformsScreenSRCopyWithImpl<$Res, _$_LoadFinished>
-    implements _$$_LoadFinishedCopyWith<$Res> {
-  __$$_LoadFinishedCopyWithImpl(
-      _$_LoadFinished _value, $Res Function(_$_LoadFinished) _then)
+class __$$LoadFinishedImplCopyWithImpl<$Res>
+    extends _$PlatformsScreenSRCopyWithImpl<$Res, _$LoadFinishedImpl>
+    implements _$$LoadFinishedImplCopyWith<$Res> {
+  __$$LoadFinishedImplCopyWithImpl(
+      _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_LoadFinished implements _LoadFinished {
-  const _$_LoadFinished();
+class _$LoadFinishedImpl implements _LoadFinished {
+  const _$LoadFinishedImpl();
 
   @override
   String toString() {
@@ -467,7 +470,7 @@ class _$_LoadFinished implements _LoadFinished {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoadFinished);
+        (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
 
   @override
@@ -531,7 +534,7 @@ class _$_LoadFinished implements _LoadFinished {
 }
 
 abstract class _LoadFinished implements PlatformsScreenSR {
-  const factory _LoadFinished() = _$_LoadFinished;
+  const factory _LoadFinished() = _$LoadFinishedImpl;
 }
 
 /// @nodoc
@@ -620,11 +623,12 @@ class _$PlatformsScreenStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$PlatformsScreenStateDataCopyWith<$Res>
+abstract class _$$PlatformsScreenStateDataImplCopyWith<$Res>
     implements $PlatformsScreenStateCopyWith<$Res> {
-  factory _$$PlatformsScreenStateDataCopyWith(_$PlatformsScreenStateData value,
-          $Res Function(_$PlatformsScreenStateData) then) =
-      __$$PlatformsScreenStateDataCopyWithImpl<$Res>;
+  factory _$$PlatformsScreenStateDataImplCopyWith(
+          _$PlatformsScreenStateDataImpl value,
+          $Res Function(_$PlatformsScreenStateDataImpl) then) =
+      __$$PlatformsScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Config config});
@@ -634,11 +638,13 @@ abstract class _$$PlatformsScreenStateDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PlatformsScreenStateDataCopyWithImpl<$Res>
-    extends _$PlatformsScreenStateCopyWithImpl<$Res, _$PlatformsScreenStateData>
-    implements _$$PlatformsScreenStateDataCopyWith<$Res> {
-  __$$PlatformsScreenStateDataCopyWithImpl(_$PlatformsScreenStateData _value,
-      $Res Function(_$PlatformsScreenStateData) _then)
+class __$$PlatformsScreenStateDataImplCopyWithImpl<$Res>
+    extends _$PlatformsScreenStateCopyWithImpl<$Res,
+        _$PlatformsScreenStateDataImpl>
+    implements _$$PlatformsScreenStateDataImplCopyWith<$Res> {
+  __$$PlatformsScreenStateDataImplCopyWithImpl(
+      _$PlatformsScreenStateDataImpl _value,
+      $Res Function(_$PlatformsScreenStateDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -646,7 +652,7 @@ class __$$PlatformsScreenStateDataCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$PlatformsScreenStateData(
+    return _then(_$PlatformsScreenStateDataImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -657,8 +663,8 @@ class __$$PlatformsScreenStateDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PlatformsScreenStateData implements PlatformsScreenStateData {
-  const _$PlatformsScreenStateData({required this.config});
+class _$PlatformsScreenStateDataImpl implements PlatformsScreenStateData {
+  const _$PlatformsScreenStateDataImpl({required this.config});
 
   @override
   final Config config;
@@ -672,7 +678,7 @@ class _$PlatformsScreenStateData implements PlatformsScreenStateData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PlatformsScreenStateData &&
+            other is _$PlatformsScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -682,10 +688,9 @@ class _$PlatformsScreenStateData implements PlatformsScreenStateData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PlatformsScreenStateDataCopyWith<_$PlatformsScreenStateData>
-      get copyWith =>
-          __$$PlatformsScreenStateDataCopyWithImpl<_$PlatformsScreenStateData>(
-              this, _$identity);
+  _$$PlatformsScreenStateDataImplCopyWith<_$PlatformsScreenStateDataImpl>
+      get copyWith => __$$PlatformsScreenStateDataImplCopyWithImpl<
+          _$PlatformsScreenStateDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -746,12 +751,12 @@ class _$PlatformsScreenStateData implements PlatformsScreenStateData {
 
 abstract class PlatformsScreenStateData implements PlatformsScreenState {
   const factory PlatformsScreenStateData({required final Config config}) =
-      _$PlatformsScreenStateData;
+      _$PlatformsScreenStateDataImpl;
 
   @override
   Config get config;
   @override
   @JsonKey(ignore: true)
-  _$$PlatformsScreenStateDataCopyWith<_$PlatformsScreenStateData>
+  _$$PlatformsScreenStateDataImplCopyWith<_$PlatformsScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

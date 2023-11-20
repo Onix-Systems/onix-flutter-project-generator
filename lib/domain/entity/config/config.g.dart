@@ -6,7 +6,7 @@ part of 'config.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
+_$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
       localVersion: json['localVersion'] as String? ?? '',
       remoteVersion: json['remoteVersion'] as String? ?? '',
       projectPath: json['projectPath'] as String? ?? '',
@@ -20,6 +20,7 @@ _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
       flavorize: json['flavorize'] as bool? ?? false,
       flavors: json['flavors'] as String? ?? '',
       generateSigningKey: json['generateSigningKey'] as bool? ?? false,
+      firebaseAuth: json['firebaseAuth'] as bool? ?? false,
       useSonar: json['useSonar'] as bool? ?? true,
       graphql: json['graphql'] as bool? ?? false,
       router: $enumDecodeNullable(_$ProjectRouterEnumMap, json['router']) ??
@@ -56,7 +57,8 @@ _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
           const {},
     );
 
-Map<String, dynamic> _$$_ConfigToJson(_$_Config instance) => <String, dynamic>{
+Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
+    <String, dynamic>{
       'localVersion': instance.localVersion,
       'remoteVersion': instance.remoteVersion,
       'projectPath': instance.projectPath,
@@ -67,6 +69,7 @@ Map<String, dynamic> _$$_ConfigToJson(_$_Config instance) => <String, dynamic>{
       'flavorize': instance.flavorize,
       'flavors': instance.flavors,
       'generateSigningKey': instance.generateSigningKey,
+      'firebaseAuth': instance.firebaseAuth,
       'useSonar': instance.useSonar,
       'graphql': instance.graphql,
       'router': _$ProjectRouterEnumMap[instance.router]!,

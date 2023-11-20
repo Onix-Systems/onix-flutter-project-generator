@@ -87,27 +87,28 @@ class _$FieldsDialogEventCopyWithImpl<$Res, $Val extends FieldsDialogEvent>
     implements $FieldsDialogEventCopyWith<$Res> {
   _$FieldsDialogEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$FieldsDialogEventInitCopyWith<$Res> {
-  factory _$$FieldsDialogEventInitCopyWith(_$FieldsDialogEventInit value,
-          $Res Function(_$FieldsDialogEventInit) then) =
-      __$$FieldsDialogEventInitCopyWithImpl<$Res>;
+abstract class _$$FieldsDialogEventInitImplCopyWith<$Res> {
+  factory _$$FieldsDialogEventInitImplCopyWith(
+          _$FieldsDialogEventInitImpl value,
+          $Res Function(_$FieldsDialogEventInitImpl) then) =
+      __$$FieldsDialogEventInitImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<Property> properties, String componentName});
 }
 
 /// @nodoc
-class __$$FieldsDialogEventInitCopyWithImpl<$Res>
-    extends _$FieldsDialogEventCopyWithImpl<$Res, _$FieldsDialogEventInit>
-    implements _$$FieldsDialogEventInitCopyWith<$Res> {
-  __$$FieldsDialogEventInitCopyWithImpl(_$FieldsDialogEventInit _value,
-      $Res Function(_$FieldsDialogEventInit) _then)
+class __$$FieldsDialogEventInitImplCopyWithImpl<$Res>
+    extends _$FieldsDialogEventCopyWithImpl<$Res, _$FieldsDialogEventInitImpl>
+    implements _$$FieldsDialogEventInitImplCopyWith<$Res> {
+  __$$FieldsDialogEventInitImplCopyWithImpl(_$FieldsDialogEventInitImpl _value,
+      $Res Function(_$FieldsDialogEventInitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -116,7 +117,7 @@ class __$$FieldsDialogEventInitCopyWithImpl<$Res>
     Object? properties = null,
     Object? componentName = null,
   }) {
-    return _then(_$FieldsDialogEventInit(
+    return _then(_$FieldsDialogEventInitImpl(
       properties: null == properties
           ? _value._properties
           : properties // ignore: cast_nullable_to_non_nullable
@@ -131,8 +132,8 @@ class __$$FieldsDialogEventInitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FieldsDialogEventInit implements FieldsDialogEventInit {
-  const _$FieldsDialogEventInit(
+class _$FieldsDialogEventInitImpl implements FieldsDialogEventInit {
+  const _$FieldsDialogEventInitImpl(
       {required final List<Property> properties, required this.componentName})
       : _properties = properties;
 
@@ -140,7 +141,7 @@ class _$FieldsDialogEventInit implements FieldsDialogEventInit {
   @override
   List<Property> get properties {
     if (_properties is EqualUnmodifiableListView) return _properties;
-    // ignore: implicit_dynamic_type
+// ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_properties);
   }
 
@@ -156,7 +157,7 @@ class _$FieldsDialogEventInit implements FieldsDialogEventInit {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FieldsDialogEventInit &&
+            other is _$FieldsDialogEventInitImpl &&
             const DeepCollectionEquality()
                 .equals(other._properties, _properties) &&
             (identical(other.componentName, componentName) ||
@@ -170,9 +171,9 @@ class _$FieldsDialogEventInit implements FieldsDialogEventInit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FieldsDialogEventInitCopyWith<_$FieldsDialogEventInit> get copyWith =>
-      __$$FieldsDialogEventInitCopyWithImpl<_$FieldsDialogEventInit>(
-          this, _$identity);
+  _$$FieldsDialogEventInitImplCopyWith<_$FieldsDialogEventInitImpl>
+      get copyWith => __$$FieldsDialogEventInitImplCopyWithImpl<
+          _$FieldsDialogEventInitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -259,31 +260,33 @@ class _$FieldsDialogEventInit implements FieldsDialogEventInit {
 abstract class FieldsDialogEventInit implements FieldsDialogEvent {
   const factory FieldsDialogEventInit(
       {required final List<Property> properties,
-      required final String componentName}) = _$FieldsDialogEventInit;
+      required final String componentName}) = _$FieldsDialogEventInitImpl;
 
   List<Property> get properties;
   String get componentName;
   @JsonKey(ignore: true)
-  _$$FieldsDialogEventInitCopyWith<_$FieldsDialogEventInit> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$FieldsDialogEventInitImplCopyWith<_$FieldsDialogEventInitImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FieldsDialogEventAddFieldCopyWith<$Res> {
-  factory _$$FieldsDialogEventAddFieldCopyWith(
-          _$FieldsDialogEventAddField value,
-          $Res Function(_$FieldsDialogEventAddField) then) =
-      __$$FieldsDialogEventAddFieldCopyWithImpl<$Res>;
+abstract class _$$FieldsDialogEventAddFieldImplCopyWith<$Res> {
+  factory _$$FieldsDialogEventAddFieldImplCopyWith(
+          _$FieldsDialogEventAddFieldImpl value,
+          $Res Function(_$FieldsDialogEventAddFieldImpl) then) =
+      __$$FieldsDialogEventAddFieldImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool isComponent});
 }
 
 /// @nodoc
-class __$$FieldsDialogEventAddFieldCopyWithImpl<$Res>
-    extends _$FieldsDialogEventCopyWithImpl<$Res, _$FieldsDialogEventAddField>
-    implements _$$FieldsDialogEventAddFieldCopyWith<$Res> {
-  __$$FieldsDialogEventAddFieldCopyWithImpl(_$FieldsDialogEventAddField _value,
-      $Res Function(_$FieldsDialogEventAddField) _then)
+class __$$FieldsDialogEventAddFieldImplCopyWithImpl<$Res>
+    extends _$FieldsDialogEventCopyWithImpl<$Res,
+        _$FieldsDialogEventAddFieldImpl>
+    implements _$$FieldsDialogEventAddFieldImplCopyWith<$Res> {
+  __$$FieldsDialogEventAddFieldImplCopyWithImpl(
+      _$FieldsDialogEventAddFieldImpl _value,
+      $Res Function(_$FieldsDialogEventAddFieldImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -291,7 +294,7 @@ class __$$FieldsDialogEventAddFieldCopyWithImpl<$Res>
   $Res call({
     Object? isComponent = null,
   }) {
-    return _then(_$FieldsDialogEventAddField(
+    return _then(_$FieldsDialogEventAddFieldImpl(
       isComponent: null == isComponent
           ? _value.isComponent
           : isComponent // ignore: cast_nullable_to_non_nullable
@@ -302,8 +305,8 @@ class __$$FieldsDialogEventAddFieldCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FieldsDialogEventAddField implements FieldsDialogEventAddField {
-  const _$FieldsDialogEventAddField({this.isComponent = false});
+class _$FieldsDialogEventAddFieldImpl implements FieldsDialogEventAddField {
+  const _$FieldsDialogEventAddFieldImpl({this.isComponent = false});
 
   @override
   @JsonKey()
@@ -318,7 +321,7 @@ class _$FieldsDialogEventAddField implements FieldsDialogEventAddField {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FieldsDialogEventAddField &&
+            other is _$FieldsDialogEventAddFieldImpl &&
             (identical(other.isComponent, isComponent) ||
                 other.isComponent == isComponent));
   }
@@ -329,9 +332,9 @@ class _$FieldsDialogEventAddField implements FieldsDialogEventAddField {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FieldsDialogEventAddFieldCopyWith<_$FieldsDialogEventAddField>
-      get copyWith => __$$FieldsDialogEventAddFieldCopyWithImpl<
-          _$FieldsDialogEventAddField>(this, _$identity);
+  _$$FieldsDialogEventAddFieldImplCopyWith<_$FieldsDialogEventAddFieldImpl>
+      get copyWith => __$$FieldsDialogEventAddFieldImplCopyWithImpl<
+          _$FieldsDialogEventAddFieldImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -417,32 +420,32 @@ class _$FieldsDialogEventAddField implements FieldsDialogEventAddField {
 
 abstract class FieldsDialogEventAddField implements FieldsDialogEvent {
   const factory FieldsDialogEventAddField({final bool isComponent}) =
-      _$FieldsDialogEventAddField;
+      _$FieldsDialogEventAddFieldImpl;
 
   bool get isComponent;
   @JsonKey(ignore: true)
-  _$$FieldsDialogEventAddFieldCopyWith<_$FieldsDialogEventAddField>
+  _$$FieldsDialogEventAddFieldImplCopyWith<_$FieldsDialogEventAddFieldImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FieldsDialogEventRemoveFieldCopyWith<$Res> {
-  factory _$$FieldsDialogEventRemoveFieldCopyWith(
-          _$FieldsDialogEventRemoveField value,
-          $Res Function(_$FieldsDialogEventRemoveField) then) =
-      __$$FieldsDialogEventRemoveFieldCopyWithImpl<$Res>;
+abstract class _$$FieldsDialogEventRemoveFieldImplCopyWith<$Res> {
+  factory _$$FieldsDialogEventRemoveFieldImplCopyWith(
+          _$FieldsDialogEventRemoveFieldImpl value,
+          $Res Function(_$FieldsDialogEventRemoveFieldImpl) then) =
+      __$$FieldsDialogEventRemoveFieldImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int index});
 }
 
 /// @nodoc
-class __$$FieldsDialogEventRemoveFieldCopyWithImpl<$Res>
+class __$$FieldsDialogEventRemoveFieldImplCopyWithImpl<$Res>
     extends _$FieldsDialogEventCopyWithImpl<$Res,
-        _$FieldsDialogEventRemoveField>
-    implements _$$FieldsDialogEventRemoveFieldCopyWith<$Res> {
-  __$$FieldsDialogEventRemoveFieldCopyWithImpl(
-      _$FieldsDialogEventRemoveField _value,
-      $Res Function(_$FieldsDialogEventRemoveField) _then)
+        _$FieldsDialogEventRemoveFieldImpl>
+    implements _$$FieldsDialogEventRemoveFieldImplCopyWith<$Res> {
+  __$$FieldsDialogEventRemoveFieldImplCopyWithImpl(
+      _$FieldsDialogEventRemoveFieldImpl _value,
+      $Res Function(_$FieldsDialogEventRemoveFieldImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -450,7 +453,7 @@ class __$$FieldsDialogEventRemoveFieldCopyWithImpl<$Res>
   $Res call({
     Object? index = null,
   }) {
-    return _then(_$FieldsDialogEventRemoveField(
+    return _then(_$FieldsDialogEventRemoveFieldImpl(
       index: null == index
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -461,8 +464,9 @@ class __$$FieldsDialogEventRemoveFieldCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FieldsDialogEventRemoveField implements FieldsDialogEventRemoveField {
-  const _$FieldsDialogEventRemoveField({required this.index});
+class _$FieldsDialogEventRemoveFieldImpl
+    implements FieldsDialogEventRemoveField {
+  const _$FieldsDialogEventRemoveFieldImpl({required this.index});
 
   @override
   final int index;
@@ -476,7 +480,7 @@ class _$FieldsDialogEventRemoveField implements FieldsDialogEventRemoveField {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FieldsDialogEventRemoveField &&
+            other is _$FieldsDialogEventRemoveFieldImpl &&
             (identical(other.index, index) || other.index == index));
   }
 
@@ -486,9 +490,10 @@ class _$FieldsDialogEventRemoveField implements FieldsDialogEventRemoveField {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FieldsDialogEventRemoveFieldCopyWith<_$FieldsDialogEventRemoveField>
-      get copyWith => __$$FieldsDialogEventRemoveFieldCopyWithImpl<
-          _$FieldsDialogEventRemoveField>(this, _$identity);
+  _$$FieldsDialogEventRemoveFieldImplCopyWith<
+          _$FieldsDialogEventRemoveFieldImpl>
+      get copyWith => __$$FieldsDialogEventRemoveFieldImplCopyWithImpl<
+          _$FieldsDialogEventRemoveFieldImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -574,32 +579,33 @@ class _$FieldsDialogEventRemoveField implements FieldsDialogEventRemoveField {
 
 abstract class FieldsDialogEventRemoveField implements FieldsDialogEvent {
   const factory FieldsDialogEventRemoveField({required final int index}) =
-      _$FieldsDialogEventRemoveField;
+      _$FieldsDialogEventRemoveFieldImpl;
 
   int get index;
   @JsonKey(ignore: true)
-  _$$FieldsDialogEventRemoveFieldCopyWith<_$FieldsDialogEventRemoveField>
+  _$$FieldsDialogEventRemoveFieldImplCopyWith<
+          _$FieldsDialogEventRemoveFieldImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FieldsDialogEventUpdateFieldCopyWith<$Res> {
-  factory _$$FieldsDialogEventUpdateFieldCopyWith(
-          _$FieldsDialogEventUpdateField value,
-          $Res Function(_$FieldsDialogEventUpdateField) then) =
-      __$$FieldsDialogEventUpdateFieldCopyWithImpl<$Res>;
+abstract class _$$FieldsDialogEventUpdateFieldImplCopyWith<$Res> {
+  factory _$$FieldsDialogEventUpdateFieldImplCopyWith(
+          _$FieldsDialogEventUpdateFieldImpl value,
+          $Res Function(_$FieldsDialogEventUpdateFieldImpl) then) =
+      __$$FieldsDialogEventUpdateFieldImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int index, Property property});
 }
 
 /// @nodoc
-class __$$FieldsDialogEventUpdateFieldCopyWithImpl<$Res>
+class __$$FieldsDialogEventUpdateFieldImplCopyWithImpl<$Res>
     extends _$FieldsDialogEventCopyWithImpl<$Res,
-        _$FieldsDialogEventUpdateField>
-    implements _$$FieldsDialogEventUpdateFieldCopyWith<$Res> {
-  __$$FieldsDialogEventUpdateFieldCopyWithImpl(
-      _$FieldsDialogEventUpdateField _value,
-      $Res Function(_$FieldsDialogEventUpdateField) _then)
+        _$FieldsDialogEventUpdateFieldImpl>
+    implements _$$FieldsDialogEventUpdateFieldImplCopyWith<$Res> {
+  __$$FieldsDialogEventUpdateFieldImplCopyWithImpl(
+      _$FieldsDialogEventUpdateFieldImpl _value,
+      $Res Function(_$FieldsDialogEventUpdateFieldImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -608,7 +614,7 @@ class __$$FieldsDialogEventUpdateFieldCopyWithImpl<$Res>
     Object? index = null,
     Object? property = null,
   }) {
-    return _then(_$FieldsDialogEventUpdateField(
+    return _then(_$FieldsDialogEventUpdateFieldImpl(
       index: null == index
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -623,8 +629,9 @@ class __$$FieldsDialogEventUpdateFieldCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FieldsDialogEventUpdateField implements FieldsDialogEventUpdateField {
-  const _$FieldsDialogEventUpdateField(
+class _$FieldsDialogEventUpdateFieldImpl
+    implements FieldsDialogEventUpdateField {
+  const _$FieldsDialogEventUpdateFieldImpl(
       {required this.index, required this.property});
 
   @override
@@ -641,7 +648,7 @@ class _$FieldsDialogEventUpdateField implements FieldsDialogEventUpdateField {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FieldsDialogEventUpdateField &&
+            other is _$FieldsDialogEventUpdateFieldImpl &&
             (identical(other.index, index) || other.index == index) &&
             (identical(other.property, property) ||
                 other.property == property));
@@ -653,9 +660,10 @@ class _$FieldsDialogEventUpdateField implements FieldsDialogEventUpdateField {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FieldsDialogEventUpdateFieldCopyWith<_$FieldsDialogEventUpdateField>
-      get copyWith => __$$FieldsDialogEventUpdateFieldCopyWithImpl<
-          _$FieldsDialogEventUpdateField>(this, _$identity);
+  _$$FieldsDialogEventUpdateFieldImplCopyWith<
+          _$FieldsDialogEventUpdateFieldImpl>
+      get copyWith => __$$FieldsDialogEventUpdateFieldImplCopyWithImpl<
+          _$FieldsDialogEventUpdateFieldImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -742,36 +750,39 @@ class _$FieldsDialogEventUpdateField implements FieldsDialogEventUpdateField {
 abstract class FieldsDialogEventUpdateField implements FieldsDialogEvent {
   const factory FieldsDialogEventUpdateField(
       {required final int index,
-      required final Property property}) = _$FieldsDialogEventUpdateField;
+      required final Property property}) = _$FieldsDialogEventUpdateFieldImpl;
 
   int get index;
   Property get property;
   @JsonKey(ignore: true)
-  _$$FieldsDialogEventUpdateFieldCopyWith<_$FieldsDialogEventUpdateField>
+  _$$FieldsDialogEventUpdateFieldImplCopyWith<
+          _$FieldsDialogEventUpdateFieldImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FieldsDialogEventValidateCopyWith<$Res> {
-  factory _$$FieldsDialogEventValidateCopyWith(
-          _$FieldsDialogEventValidate value,
-          $Res Function(_$FieldsDialogEventValidate) then) =
-      __$$FieldsDialogEventValidateCopyWithImpl<$Res>;
+abstract class _$$FieldsDialogEventValidateImplCopyWith<$Res> {
+  factory _$$FieldsDialogEventValidateImplCopyWith(
+          _$FieldsDialogEventValidateImpl value,
+          $Res Function(_$FieldsDialogEventValidateImpl) then) =
+      __$$FieldsDialogEventValidateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FieldsDialogEventValidateCopyWithImpl<$Res>
-    extends _$FieldsDialogEventCopyWithImpl<$Res, _$FieldsDialogEventValidate>
-    implements _$$FieldsDialogEventValidateCopyWith<$Res> {
-  __$$FieldsDialogEventValidateCopyWithImpl(_$FieldsDialogEventValidate _value,
-      $Res Function(_$FieldsDialogEventValidate) _then)
+class __$$FieldsDialogEventValidateImplCopyWithImpl<$Res>
+    extends _$FieldsDialogEventCopyWithImpl<$Res,
+        _$FieldsDialogEventValidateImpl>
+    implements _$$FieldsDialogEventValidateImplCopyWith<$Res> {
+  __$$FieldsDialogEventValidateImplCopyWithImpl(
+      _$FieldsDialogEventValidateImpl _value,
+      $Res Function(_$FieldsDialogEventValidateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$FieldsDialogEventValidate implements FieldsDialogEventValidate {
-  const _$FieldsDialogEventValidate();
+class _$FieldsDialogEventValidateImpl implements FieldsDialogEventValidate {
+  const _$FieldsDialogEventValidateImpl();
 
   @override
   String toString() {
@@ -782,7 +793,7 @@ class _$FieldsDialogEventValidate implements FieldsDialogEventValidate {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FieldsDialogEventValidate);
+            other is _$FieldsDialogEventValidateImpl);
   }
 
   @override
@@ -871,7 +882,7 @@ class _$FieldsDialogEventValidate implements FieldsDialogEventValidate {
 }
 
 abstract class FieldsDialogEventValidate implements FieldsDialogEvent {
-  const factory FieldsDialogEventValidate() = _$FieldsDialogEventValidate;
+  const factory FieldsDialogEventValidate() = _$FieldsDialogEventValidateImpl;
 }
 
 /// @nodoc
@@ -922,32 +933,32 @@ class _$FieldsDialogSRCopyWithImpl<$Res, $Val extends FieldsDialogSR>
     implements $FieldsDialogSRCopyWith<$Res> {
   _$FieldsDialogSRCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$_LoadFinishedCopyWith<$Res> {
-  factory _$$_LoadFinishedCopyWith(
-          _$_LoadFinished value, $Res Function(_$_LoadFinished) then) =
-      __$$_LoadFinishedCopyWithImpl<$Res>;
+abstract class _$$LoadFinishedImplCopyWith<$Res> {
+  factory _$$LoadFinishedImplCopyWith(
+          _$LoadFinishedImpl value, $Res Function(_$LoadFinishedImpl) then) =
+      __$$LoadFinishedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadFinishedCopyWithImpl<$Res>
-    extends _$FieldsDialogSRCopyWithImpl<$Res, _$_LoadFinished>
-    implements _$$_LoadFinishedCopyWith<$Res> {
-  __$$_LoadFinishedCopyWithImpl(
-      _$_LoadFinished _value, $Res Function(_$_LoadFinished) _then)
+class __$$LoadFinishedImplCopyWithImpl<$Res>
+    extends _$FieldsDialogSRCopyWithImpl<$Res, _$LoadFinishedImpl>
+    implements _$$LoadFinishedImplCopyWith<$Res> {
+  __$$LoadFinishedImplCopyWithImpl(
+      _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_LoadFinished implements _LoadFinished {
-  const _$_LoadFinished();
+class _$LoadFinishedImpl implements _LoadFinished {
+  const _$LoadFinishedImpl();
 
   @override
   String toString() {
@@ -957,7 +968,7 @@ class _$_LoadFinished implements _LoadFinished {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoadFinished);
+        (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
 
   @override
@@ -1021,7 +1032,7 @@ class _$_LoadFinished implements _LoadFinished {
 }
 
 abstract class _LoadFinished implements FieldsDialogSR {
-  const factory _LoadFinished() = _$_LoadFinished;
+  const factory _LoadFinished() = _$LoadFinishedImpl;
 }
 
 /// @nodoc
@@ -1127,11 +1138,12 @@ class _$FieldsDialogStateCopyWithImpl<$Res, $Val extends FieldsDialogState>
 }
 
 /// @nodoc
-abstract class _$$FieldsDialogStateDataCopyWith<$Res>
+abstract class _$$FieldsDialogStateDataImplCopyWith<$Res>
     implements $FieldsDialogStateCopyWith<$Res> {
-  factory _$$FieldsDialogStateDataCopyWith(_$FieldsDialogStateData value,
-          $Res Function(_$FieldsDialogStateData) then) =
-      __$$FieldsDialogStateDataCopyWithImpl<$Res>;
+  factory _$$FieldsDialogStateDataImplCopyWith(
+          _$FieldsDialogStateDataImpl value,
+          $Res Function(_$FieldsDialogStateDataImpl) then) =
+      __$$FieldsDialogStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1142,11 +1154,11 @@ abstract class _$$FieldsDialogStateDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$FieldsDialogStateDataCopyWithImpl<$Res>
-    extends _$FieldsDialogStateCopyWithImpl<$Res, _$FieldsDialogStateData>
-    implements _$$FieldsDialogStateDataCopyWith<$Res> {
-  __$$FieldsDialogStateDataCopyWithImpl(_$FieldsDialogStateData _value,
-      $Res Function(_$FieldsDialogStateData) _then)
+class __$$FieldsDialogStateDataImplCopyWithImpl<$Res>
+    extends _$FieldsDialogStateCopyWithImpl<$Res, _$FieldsDialogStateDataImpl>
+    implements _$$FieldsDialogStateDataImplCopyWith<$Res> {
+  __$$FieldsDialogStateDataImplCopyWithImpl(_$FieldsDialogStateDataImpl _value,
+      $Res Function(_$FieldsDialogStateDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1157,7 +1169,7 @@ class __$$FieldsDialogStateDataCopyWithImpl<$Res>
     Object? components = null,
     Object? errorIndexes = null,
   }) {
-    return _then(_$FieldsDialogStateData(
+    return _then(_$FieldsDialogStateDataImpl(
       componentName:
           freezed == componentName ? _value.componentName! : componentName,
       properties: null == properties
@@ -1178,8 +1190,8 @@ class __$$FieldsDialogStateDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FieldsDialogStateData implements FieldsDialogStateData {
-  const _$FieldsDialogStateData(
+class _$FieldsDialogStateDataImpl implements FieldsDialogStateData {
+  const _$FieldsDialogStateDataImpl(
       {this.componentName = '',
       final List<Property> properties = const [],
       final List<String> components = const [],
@@ -1227,7 +1239,7 @@ class _$FieldsDialogStateData implements FieldsDialogStateData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FieldsDialogStateData &&
+            other is _$FieldsDialogStateDataImpl &&
             const DeepCollectionEquality()
                 .equals(other.componentName, componentName) &&
             const DeepCollectionEquality()
@@ -1249,9 +1261,9 @@ class _$FieldsDialogStateData implements FieldsDialogStateData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FieldsDialogStateDataCopyWith<_$FieldsDialogStateData> get copyWith =>
-      __$$FieldsDialogStateDataCopyWithImpl<_$FieldsDialogStateData>(
-          this, _$identity);
+  _$$FieldsDialogStateDataImplCopyWith<_$FieldsDialogStateDataImpl>
+      get copyWith => __$$FieldsDialogStateDataImplCopyWithImpl<
+          _$FieldsDialogStateDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1321,7 +1333,7 @@ abstract class FieldsDialogStateData implements FieldsDialogState {
       {final dynamic componentName,
       final List<Property> properties,
       final List<String> components,
-      final List<int> errorIndexes}) = _$FieldsDialogStateData;
+      final List<int> errorIndexes}) = _$FieldsDialogStateDataImpl;
 
   @override
   dynamic get componentName;
@@ -1333,6 +1345,6 @@ abstract class FieldsDialogStateData implements FieldsDialogState {
   List<int> get errorIndexes;
   @override
   @JsonKey(ignore: true)
-  _$$FieldsDialogStateDataCopyWith<_$FieldsDialogStateData> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$FieldsDialogStateDataImplCopyWith<_$FieldsDialogStateDataImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

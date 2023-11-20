@@ -87,7 +87,7 @@ class RepositoryFilesGenerator {
         '''import 'package:$projectName/core/arch/data/remote/base/map_common_server_error.dart';
 import 'package:$projectName/core/arch/domain/entity/common/result.dart';
 import 'package:$projectName/core/di/app.dart';
-import 'package:$projectName/core/extension/logger_extension.dart';
+import 'package:$projectName/core/extension/crashlytics_util.dart';
 import 'package:$projectName/core/arch/domain/entity/failure/api_failure.dart';
 import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';
 import 'package:$projectName/data/source/remote/${sourceName.snakeCase}/${sourceName.snakeCase}_source.dart';

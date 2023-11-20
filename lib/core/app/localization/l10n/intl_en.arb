@@ -49,6 +49,7 @@
   "localization": "Localization:",
   "router": "Router:",
   "useSonar": "Will you use Sonar?",
+  "firebaseAuth": "Integrate Firebase with FirebaseAuth?",
   "integrateGraphQl": "Integrate GraphQL?",
   "generateSonarConfig": "Generate Sonar config?",
   "modifySigningVars": "Modify signing vars...",

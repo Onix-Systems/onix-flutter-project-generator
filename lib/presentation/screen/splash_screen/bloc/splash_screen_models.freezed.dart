@@ -71,32 +71,33 @@ class _$SplashScreenEventCopyWithImpl<$Res, $Val extends SplashScreenEvent>
     implements $SplashScreenEventCopyWith<$Res> {
   _$SplashScreenEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$SplashScreenEventInitCopyWith<$Res> {
-  factory _$$SplashScreenEventInitCopyWith(_$SplashScreenEventInit value,
-          $Res Function(_$SplashScreenEventInit) then) =
-      __$$SplashScreenEventInitCopyWithImpl<$Res>;
+abstract class _$$SplashScreenEventInitImplCopyWith<$Res> {
+  factory _$$SplashScreenEventInitImplCopyWith(
+          _$SplashScreenEventInitImpl value,
+          $Res Function(_$SplashScreenEventInitImpl) then) =
+      __$$SplashScreenEventInitImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SplashScreenEventInitCopyWithImpl<$Res>
-    extends _$SplashScreenEventCopyWithImpl<$Res, _$SplashScreenEventInit>
-    implements _$$SplashScreenEventInitCopyWith<$Res> {
-  __$$SplashScreenEventInitCopyWithImpl(_$SplashScreenEventInit _value,
-      $Res Function(_$SplashScreenEventInit) _then)
+class __$$SplashScreenEventInitImplCopyWithImpl<$Res>
+    extends _$SplashScreenEventCopyWithImpl<$Res, _$SplashScreenEventInitImpl>
+    implements _$$SplashScreenEventInitImplCopyWith<$Res> {
+  __$$SplashScreenEventInitImplCopyWithImpl(_$SplashScreenEventInitImpl _value,
+      $Res Function(_$SplashScreenEventInitImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SplashScreenEventInit implements SplashScreenEventInit {
-  const _$SplashScreenEventInit();
+class _$SplashScreenEventInitImpl implements SplashScreenEventInit {
+  const _$SplashScreenEventInitImpl();
 
   @override
   String toString() {
@@ -106,7 +107,8 @@ class _$SplashScreenEventInit implements SplashScreenEventInit {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SplashScreenEventInit);
+        (other.runtimeType == runtimeType &&
+            other is _$SplashScreenEventInitImpl);
   }
 
   @override
@@ -179,33 +181,33 @@ class _$SplashScreenEventInit implements SplashScreenEventInit {
 }
 
 abstract class SplashScreenEventInit implements SplashScreenEvent {
-  const factory SplashScreenEventInit() = _$SplashScreenEventInit;
+  const factory SplashScreenEventInit() = _$SplashScreenEventInitImpl;
 }
 
 /// @nodoc
-abstract class _$$SplashScreenEventOnAnimationFinishedCopyWith<$Res> {
-  factory _$$SplashScreenEventOnAnimationFinishedCopyWith(
-          _$SplashScreenEventOnAnimationFinished value,
-          $Res Function(_$SplashScreenEventOnAnimationFinished) then) =
-      __$$SplashScreenEventOnAnimationFinishedCopyWithImpl<$Res>;
+abstract class _$$SplashScreenEventOnAnimationFinishedImplCopyWith<$Res> {
+  factory _$$SplashScreenEventOnAnimationFinishedImplCopyWith(
+          _$SplashScreenEventOnAnimationFinishedImpl value,
+          $Res Function(_$SplashScreenEventOnAnimationFinishedImpl) then) =
+      __$$SplashScreenEventOnAnimationFinishedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SplashScreenEventOnAnimationFinishedCopyWithImpl<$Res>
+class __$$SplashScreenEventOnAnimationFinishedImplCopyWithImpl<$Res>
     extends _$SplashScreenEventCopyWithImpl<$Res,
-        _$SplashScreenEventOnAnimationFinished>
-    implements _$$SplashScreenEventOnAnimationFinishedCopyWith<$Res> {
-  __$$SplashScreenEventOnAnimationFinishedCopyWithImpl(
-      _$SplashScreenEventOnAnimationFinished _value,
-      $Res Function(_$SplashScreenEventOnAnimationFinished) _then)
+        _$SplashScreenEventOnAnimationFinishedImpl>
+    implements _$$SplashScreenEventOnAnimationFinishedImplCopyWith<$Res> {
+  __$$SplashScreenEventOnAnimationFinishedImplCopyWithImpl(
+      _$SplashScreenEventOnAnimationFinishedImpl _value,
+      $Res Function(_$SplashScreenEventOnAnimationFinishedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SplashScreenEventOnAnimationFinished
+class _$SplashScreenEventOnAnimationFinishedImpl
     implements SplashScreenEventOnAnimationFinished {
-  const _$SplashScreenEventOnAnimationFinished();
+  const _$SplashScreenEventOnAnimationFinishedImpl();
 
   @override
   String toString() {
@@ -216,7 +218,7 @@ class _$SplashScreenEventOnAnimationFinished
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SplashScreenEventOnAnimationFinished);
+            other is _$SplashScreenEventOnAnimationFinishedImpl);
   }
 
   @override
@@ -291,7 +293,7 @@ class _$SplashScreenEventOnAnimationFinished
 abstract class SplashScreenEventOnAnimationFinished
     implements SplashScreenEvent {
   const factory SplashScreenEventOnAnimationFinished() =
-      _$SplashScreenEventOnAnimationFinished;
+      _$SplashScreenEventOnAnimationFinishedImpl;
 }
 
 /// @nodoc
@@ -348,32 +350,32 @@ class _$SplashScreenSRCopyWithImpl<$Res, $Val extends SplashScreenSR>
     implements $SplashScreenSRCopyWith<$Res> {
   _$SplashScreenSRCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$_onNeedUpdateCopyWith<$Res> {
-  factory _$$_onNeedUpdateCopyWith(
-          _$_onNeedUpdate value, $Res Function(_$_onNeedUpdate) then) =
-      __$$_onNeedUpdateCopyWithImpl<$Res>;
+abstract class _$$onNeedUpdateImplCopyWith<$Res> {
+  factory _$$onNeedUpdateImplCopyWith(
+          _$onNeedUpdateImpl value, $Res Function(_$onNeedUpdateImpl) then) =
+      __$$onNeedUpdateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_onNeedUpdateCopyWithImpl<$Res>
-    extends _$SplashScreenSRCopyWithImpl<$Res, _$_onNeedUpdate>
-    implements _$$_onNeedUpdateCopyWith<$Res> {
-  __$$_onNeedUpdateCopyWithImpl(
-      _$_onNeedUpdate _value, $Res Function(_$_onNeedUpdate) _then)
+class __$$onNeedUpdateImplCopyWithImpl<$Res>
+    extends _$SplashScreenSRCopyWithImpl<$Res, _$onNeedUpdateImpl>
+    implements _$$onNeedUpdateImplCopyWith<$Res> {
+  __$$onNeedUpdateImplCopyWithImpl(
+      _$onNeedUpdateImpl _value, $Res Function(_$onNeedUpdateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_onNeedUpdate implements _onNeedUpdate {
-  const _$_onNeedUpdate();
+class _$onNeedUpdateImpl implements _onNeedUpdate {
+  const _$onNeedUpdateImpl();
 
   @override
   String toString() {
@@ -383,7 +385,7 @@ class _$_onNeedUpdate implements _onNeedUpdate {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_onNeedUpdate);
+        (other.runtimeType == runtimeType && other is _$onNeedUpdateImpl);
   }
 
   @override
@@ -453,29 +455,29 @@ class _$_onNeedUpdate implements _onNeedUpdate {
 }
 
 abstract class _onNeedUpdate implements SplashScreenSR {
-  const factory _onNeedUpdate() = _$_onNeedUpdate;
+  const factory _onNeedUpdate() = _$onNeedUpdateImpl;
 }
 
 /// @nodoc
-abstract class _$$_onContinueCopyWith<$Res> {
-  factory _$$_onContinueCopyWith(
-          _$_onContinue value, $Res Function(_$_onContinue) then) =
-      __$$_onContinueCopyWithImpl<$Res>;
+abstract class _$$onContinueImplCopyWith<$Res> {
+  factory _$$onContinueImplCopyWith(
+          _$onContinueImpl value, $Res Function(_$onContinueImpl) then) =
+      __$$onContinueImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_onContinueCopyWithImpl<$Res>
-    extends _$SplashScreenSRCopyWithImpl<$Res, _$_onContinue>
-    implements _$$_onContinueCopyWith<$Res> {
-  __$$_onContinueCopyWithImpl(
-      _$_onContinue _value, $Res Function(_$_onContinue) _then)
+class __$$onContinueImplCopyWithImpl<$Res>
+    extends _$SplashScreenSRCopyWithImpl<$Res, _$onContinueImpl>
+    implements _$$onContinueImplCopyWith<$Res> {
+  __$$onContinueImplCopyWithImpl(
+      _$onContinueImpl _value, $Res Function(_$onContinueImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_onContinue implements _onContinue {
-  const _$_onContinue();
+class _$onContinueImpl implements _onContinue {
+  const _$onContinueImpl();
 
   @override
   String toString() {
@@ -485,7 +487,7 @@ class _$_onContinue implements _onContinue {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_onContinue);
+        (other.runtimeType == runtimeType && other is _$onContinueImpl);
   }
 
   @override
@@ -555,7 +557,7 @@ class _$_onContinue implements _onContinue {
 }
 
 abstract class _onContinue implements SplashScreenSR {
-  const factory _onContinue() = _$_onContinue;
+  const factory _onContinue() = _$onContinueImpl;
 }
 
 /// @nodoc
@@ -651,20 +653,21 @@ class _$SplashScreenStateCopyWithImpl<$Res, $Val extends SplashScreenState>
 }
 
 /// @nodoc
-abstract class _$$DataCopyWith<$Res>
+abstract class _$$DataImplCopyWith<$Res>
     implements $SplashScreenStateCopyWith<$Res> {
-  factory _$$DataCopyWith(_$Data value, $Res Function(_$Data) then) =
-      __$$DataCopyWithImpl<$Res>;
+  factory _$$DataImplCopyWith(
+          _$DataImpl value, $Res Function(_$DataImpl) then) =
+      __$$DataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String remoteVersion, String localVersion, bool logoVisible});
 }
 
 /// @nodoc
-class __$$DataCopyWithImpl<$Res>
-    extends _$SplashScreenStateCopyWithImpl<$Res, _$Data>
-    implements _$$DataCopyWith<$Res> {
-  __$$DataCopyWithImpl(_$Data _value, $Res Function(_$Data) _then)
+class __$$DataImplCopyWithImpl<$Res>
+    extends _$SplashScreenStateCopyWithImpl<$Res, _$DataImpl>
+    implements _$$DataImplCopyWith<$Res> {
+  __$$DataImplCopyWithImpl(_$DataImpl _value, $Res Function(_$DataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -674,7 +677,7 @@ class __$$DataCopyWithImpl<$Res>
     Object? localVersion = null,
     Object? logoVisible = null,
   }) {
-    return _then(_$Data(
+    return _then(_$DataImpl(
       remoteVersion: null == remoteVersion
           ? _value.remoteVersion
           : remoteVersion // ignore: cast_nullable_to_non_nullable
@@ -693,8 +696,8 @@ class __$$DataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Data implements Data {
-  const _$Data(
+class _$DataImpl implements Data {
+  const _$DataImpl(
       {this.remoteVersion = '',
       this.localVersion = '',
       this.logoVisible = false});
@@ -718,7 +721,7 @@ class _$Data implements Data {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Data &&
+            other is _$DataImpl &&
             (identical(other.remoteVersion, remoteVersion) ||
                 other.remoteVersion == remoteVersion) &&
             (identical(other.localVersion, localVersion) ||
@@ -734,8 +737,8 @@ class _$Data implements Data {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataCopyWith<_$Data> get copyWith =>
-      __$$DataCopyWithImpl<_$Data>(this, _$identity);
+  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
+      __$$DataImplCopyWithImpl<_$DataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -804,7 +807,7 @@ abstract class Data implements SplashScreenState {
   const factory Data(
       {final String remoteVersion,
       final String localVersion,
-      final bool logoVisible}) = _$Data;
+      final bool logoVisible}) = _$DataImpl;
 
   @override
   String get remoteVersion;
@@ -814,5 +817,6 @@ abstract class Data implements SplashScreenState {
   bool get logoVisible;
   @override
   @JsonKey(ignore: true)
-  _$$DataCopyWith<_$Data> get copyWith => throw _privateConstructorUsedError;
+  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
