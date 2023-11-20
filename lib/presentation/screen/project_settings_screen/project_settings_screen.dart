@@ -197,6 +197,13 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                               const ProjectSettingsScreenEventThemingChange()),
                           selectedValue: state.config.theming.name,
                         ),
+                        const Delimiter.height(20),
+                        SwitchWithLabel(
+                          label: S.of(context).firebaseAuth,
+                          initialValue: state.config.firebaseAuth,
+                          valueSetter: (_) => blocOf(context).add(
+                              const ProjectSettingsScreenEventFirebaseChange()),
+                        ),
                       ],
                     ),
                   ),
@@ -257,6 +264,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
             localization: state.config.localization,
             theming: state.config.theming,
             signingVars: state.config.signingVars,
+            firebaseAuth: state.config.firebaseAuth,
           ));
 
   void _goBack(ProjectSettingsScreenState state) => context.go(
@@ -271,6 +279,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
           localization: state.config.localization,
           theming: state.config.theming,
           signingVars: state.config.signingVars,
+          firebaseAuth: state.config.firebaseAuth,
         ),
       );
 }

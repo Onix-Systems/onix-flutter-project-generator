@@ -1,12 +1,14 @@
 <p align="center">
-<a href="https://ibb.co/Js5vzD1"><img src="https://i.ibb.co/Js5vzD1/icon.png" alt="icon" border="0"></a>
+<a><img src="https://i.ibb.co/crD6N4B/icon.png" alt="icon" border="0" width="300" height="300"/></a>
 </p>
 
 # Onix Flutter Project Generator
 
 Flutter Project Generator is a tool for creating a new project with built-in Clean Architecture and boilerplate components for a quick start. 
 
-More details about the tool can be found in [this article](https://todthe.medium.article).
+Checkout the video instruction for more details and to quick start:
+
+[![Onix Project Generator](https://i.imgur.com/kHsmEvr.png)](https://www.youtube.com/watch?v=lgey4r3osJI)
 
 ## Main features:
 

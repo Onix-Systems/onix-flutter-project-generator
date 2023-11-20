@@ -37,6 +37,9 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
 
   const factory ProjectSettingsScreenEvent.themingChange() =
       ProjectSettingsScreenEventThemingChange;
+
+  const factory ProjectSettingsScreenEvent.firebaseChange() =
+      ProjectSettingsScreenEventFirebaseChange;
 }
 
 @freezed

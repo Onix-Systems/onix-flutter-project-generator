@@ -83,16 +83,16 @@ class _$ProjectNameScreenEventCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$ProjectNameScreenEventInitCopyWith<$Res> {
-  factory _$$ProjectNameScreenEventInitCopyWith(
-          _$ProjectNameScreenEventInit value,
-          $Res Function(_$ProjectNameScreenEventInit) then) =
-      __$$ProjectNameScreenEventInitCopyWithImpl<$Res>;
+abstract class _$$ProjectNameScreenEventInitImplCopyWith<$Res> {
+  factory _$$ProjectNameScreenEventInitImplCopyWith(
+          _$ProjectNameScreenEventInitImpl value,
+          $Res Function(_$ProjectNameScreenEventInitImpl) then) =
+      __$$ProjectNameScreenEventInitImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Config config});
 
@@ -100,13 +100,13 @@ abstract class _$$ProjectNameScreenEventInitCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ProjectNameScreenEventInitCopyWithImpl<$Res>
+class __$$ProjectNameScreenEventInitImplCopyWithImpl<$Res>
     extends _$ProjectNameScreenEventCopyWithImpl<$Res,
-        _$ProjectNameScreenEventInit>
-    implements _$$ProjectNameScreenEventInitCopyWith<$Res> {
-  __$$ProjectNameScreenEventInitCopyWithImpl(
-      _$ProjectNameScreenEventInit _value,
-      $Res Function(_$ProjectNameScreenEventInit) _then)
+        _$ProjectNameScreenEventInitImpl>
+    implements _$$ProjectNameScreenEventInitImplCopyWith<$Res> {
+  __$$ProjectNameScreenEventInitImplCopyWithImpl(
+      _$ProjectNameScreenEventInitImpl _value,
+      $Res Function(_$ProjectNameScreenEventInitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -114,7 +114,7 @@ class __$$ProjectNameScreenEventInitCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$ProjectNameScreenEventInit(
+    return _then(_$ProjectNameScreenEventInitImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -133,8 +133,8 @@ class __$$ProjectNameScreenEventInitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProjectNameScreenEventInit implements ProjectNameScreenEventInit {
-  const _$ProjectNameScreenEventInit({required this.config});
+class _$ProjectNameScreenEventInitImpl implements ProjectNameScreenEventInit {
+  const _$ProjectNameScreenEventInitImpl({required this.config});
 
   @override
   final Config config;
@@ -148,7 +148,7 @@ class _$ProjectNameScreenEventInit implements ProjectNameScreenEventInit {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenEventInit &&
+            other is _$ProjectNameScreenEventInitImpl &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -158,9 +158,9 @@ class _$ProjectNameScreenEventInit implements ProjectNameScreenEventInit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProjectNameScreenEventInitCopyWith<_$ProjectNameScreenEventInit>
-      get copyWith => __$$ProjectNameScreenEventInitCopyWithImpl<
-          _$ProjectNameScreenEventInit>(this, _$identity);
+  _$$ProjectNameScreenEventInitImplCopyWith<_$ProjectNameScreenEventInitImpl>
+      get copyWith => __$$ProjectNameScreenEventInitImplCopyWithImpl<
+          _$ProjectNameScreenEventInitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -239,32 +239,32 @@ class _$ProjectNameScreenEventInit implements ProjectNameScreenEventInit {
 
 abstract class ProjectNameScreenEventInit implements ProjectNameScreenEvent {
   const factory ProjectNameScreenEventInit({required final Config config}) =
-      _$ProjectNameScreenEventInit;
+      _$ProjectNameScreenEventInitImpl;
 
   Config get config;
   @JsonKey(ignore: true)
-  _$$ProjectNameScreenEventInitCopyWith<_$ProjectNameScreenEventInit>
+  _$$ProjectNameScreenEventInitImplCopyWith<_$ProjectNameScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProjectNameScreenEventProjectNameChangedCopyWith<$Res> {
-  factory _$$ProjectNameScreenEventProjectNameChangedCopyWith(
-          _$ProjectNameScreenEventProjectNameChanged value,
-          $Res Function(_$ProjectNameScreenEventProjectNameChanged) then) =
-      __$$ProjectNameScreenEventProjectNameChangedCopyWithImpl<$Res>;
+abstract class _$$ProjectNameScreenEventProjectNameChangedImplCopyWith<$Res> {
+  factory _$$ProjectNameScreenEventProjectNameChangedImplCopyWith(
+          _$ProjectNameScreenEventProjectNameChangedImpl value,
+          $Res Function(_$ProjectNameScreenEventProjectNameChangedImpl) then) =
+      __$$ProjectNameScreenEventProjectNameChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String projectName});
 }
 
 /// @nodoc
-class __$$ProjectNameScreenEventProjectNameChangedCopyWithImpl<$Res>
+class __$$ProjectNameScreenEventProjectNameChangedImplCopyWithImpl<$Res>
     extends _$ProjectNameScreenEventCopyWithImpl<$Res,
-        _$ProjectNameScreenEventProjectNameChanged>
-    implements _$$ProjectNameScreenEventProjectNameChangedCopyWith<$Res> {
-  __$$ProjectNameScreenEventProjectNameChangedCopyWithImpl(
-      _$ProjectNameScreenEventProjectNameChanged _value,
-      $Res Function(_$ProjectNameScreenEventProjectNameChanged) _then)
+        _$ProjectNameScreenEventProjectNameChangedImpl>
+    implements _$$ProjectNameScreenEventProjectNameChangedImplCopyWith<$Res> {
+  __$$ProjectNameScreenEventProjectNameChangedImplCopyWithImpl(
+      _$ProjectNameScreenEventProjectNameChangedImpl _value,
+      $Res Function(_$ProjectNameScreenEventProjectNameChangedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -272,7 +272,7 @@ class __$$ProjectNameScreenEventProjectNameChangedCopyWithImpl<$Res>
   $Res call({
     Object? projectName = null,
   }) {
-    return _then(_$ProjectNameScreenEventProjectNameChanged(
+    return _then(_$ProjectNameScreenEventProjectNameChangedImpl(
       projectName: null == projectName
           ? _value.projectName
           : projectName // ignore: cast_nullable_to_non_nullable
@@ -283,9 +283,10 @@ class __$$ProjectNameScreenEventProjectNameChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProjectNameScreenEventProjectNameChanged
+class _$ProjectNameScreenEventProjectNameChangedImpl
     implements ProjectNameScreenEventProjectNameChanged {
-  const _$ProjectNameScreenEventProjectNameChanged({required this.projectName});
+  const _$ProjectNameScreenEventProjectNameChangedImpl(
+      {required this.projectName});
 
   @override
   final String projectName;
@@ -299,7 +300,7 @@ class _$ProjectNameScreenEventProjectNameChanged
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenEventProjectNameChanged &&
+            other is _$ProjectNameScreenEventProjectNameChangedImpl &&
             (identical(other.projectName, projectName) ||
                 other.projectName == projectName));
   }
@@ -310,10 +311,11 @@ class _$ProjectNameScreenEventProjectNameChanged
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProjectNameScreenEventProjectNameChangedCopyWith<
-          _$ProjectNameScreenEventProjectNameChanged>
-      get copyWith => __$$ProjectNameScreenEventProjectNameChangedCopyWithImpl<
-          _$ProjectNameScreenEventProjectNameChanged>(this, _$identity);
+  _$$ProjectNameScreenEventProjectNameChangedImplCopyWith<
+          _$ProjectNameScreenEventProjectNameChangedImpl>
+      get copyWith =>
+          __$$ProjectNameScreenEventProjectNameChangedImplCopyWithImpl<
+              _$ProjectNameScreenEventProjectNameChangedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -394,33 +396,33 @@ abstract class ProjectNameScreenEventProjectNameChanged
     implements ProjectNameScreenEvent {
   const factory ProjectNameScreenEventProjectNameChanged(
           {required final String projectName}) =
-      _$ProjectNameScreenEventProjectNameChanged;
+      _$ProjectNameScreenEventProjectNameChangedImpl;
 
   String get projectName;
   @JsonKey(ignore: true)
-  _$$ProjectNameScreenEventProjectNameChangedCopyWith<
-          _$ProjectNameScreenEventProjectNameChanged>
+  _$$ProjectNameScreenEventProjectNameChangedImplCopyWith<
+          _$ProjectNameScreenEventProjectNameChangedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProjectNameScreenEventOrganizationChangedCopyWith<$Res> {
-  factory _$$ProjectNameScreenEventOrganizationChangedCopyWith(
-          _$ProjectNameScreenEventOrganizationChanged value,
-          $Res Function(_$ProjectNameScreenEventOrganizationChanged) then) =
-      __$$ProjectNameScreenEventOrganizationChangedCopyWithImpl<$Res>;
+abstract class _$$ProjectNameScreenEventOrganizationChangedImplCopyWith<$Res> {
+  factory _$$ProjectNameScreenEventOrganizationChangedImplCopyWith(
+          _$ProjectNameScreenEventOrganizationChangedImpl value,
+          $Res Function(_$ProjectNameScreenEventOrganizationChangedImpl) then) =
+      __$$ProjectNameScreenEventOrganizationChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String organization});
 }
 
 /// @nodoc
-class __$$ProjectNameScreenEventOrganizationChangedCopyWithImpl<$Res>
+class __$$ProjectNameScreenEventOrganizationChangedImplCopyWithImpl<$Res>
     extends _$ProjectNameScreenEventCopyWithImpl<$Res,
-        _$ProjectNameScreenEventOrganizationChanged>
-    implements _$$ProjectNameScreenEventOrganizationChangedCopyWith<$Res> {
-  __$$ProjectNameScreenEventOrganizationChangedCopyWithImpl(
-      _$ProjectNameScreenEventOrganizationChanged _value,
-      $Res Function(_$ProjectNameScreenEventOrganizationChanged) _then)
+        _$ProjectNameScreenEventOrganizationChangedImpl>
+    implements _$$ProjectNameScreenEventOrganizationChangedImplCopyWith<$Res> {
+  __$$ProjectNameScreenEventOrganizationChangedImplCopyWithImpl(
+      _$ProjectNameScreenEventOrganizationChangedImpl _value,
+      $Res Function(_$ProjectNameScreenEventOrganizationChangedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -428,7 +430,7 @@ class __$$ProjectNameScreenEventOrganizationChangedCopyWithImpl<$Res>
   $Res call({
     Object? organization = null,
   }) {
-    return _then(_$ProjectNameScreenEventOrganizationChanged(
+    return _then(_$ProjectNameScreenEventOrganizationChangedImpl(
       organization: null == organization
           ? _value.organization
           : organization // ignore: cast_nullable_to_non_nullable
@@ -439,9 +441,9 @@ class __$$ProjectNameScreenEventOrganizationChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProjectNameScreenEventOrganizationChanged
+class _$ProjectNameScreenEventOrganizationChangedImpl
     implements ProjectNameScreenEventOrganizationChanged {
-  const _$ProjectNameScreenEventOrganizationChanged(
+  const _$ProjectNameScreenEventOrganizationChangedImpl(
       {required this.organization});
 
   @override
@@ -456,7 +458,7 @@ class _$ProjectNameScreenEventOrganizationChanged
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenEventOrganizationChanged &&
+            other is _$ProjectNameScreenEventOrganizationChangedImpl &&
             (identical(other.organization, organization) ||
                 other.organization == organization));
   }
@@ -467,10 +469,12 @@ class _$ProjectNameScreenEventOrganizationChanged
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProjectNameScreenEventOrganizationChangedCopyWith<
-          _$ProjectNameScreenEventOrganizationChanged>
-      get copyWith => __$$ProjectNameScreenEventOrganizationChangedCopyWithImpl<
-          _$ProjectNameScreenEventOrganizationChanged>(this, _$identity);
+  _$$ProjectNameScreenEventOrganizationChangedImplCopyWith<
+          _$ProjectNameScreenEventOrganizationChangedImpl>
+      get copyWith =>
+          __$$ProjectNameScreenEventOrganizationChangedImplCopyWithImpl<
+                  _$ProjectNameScreenEventOrganizationChangedImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -551,12 +555,12 @@ abstract class ProjectNameScreenEventOrganizationChanged
     implements ProjectNameScreenEvent {
   const factory ProjectNameScreenEventOrganizationChanged(
           {required final String organization}) =
-      _$ProjectNameScreenEventOrganizationChanged;
+      _$ProjectNameScreenEventOrganizationChangedImpl;
 
   String get organization;
   @JsonKey(ignore: true)
-  _$$ProjectNameScreenEventOrganizationChangedCopyWith<
-          _$ProjectNameScreenEventOrganizationChanged>
+  _$$ProjectNameScreenEventOrganizationChangedImplCopyWith<
+          _$ProjectNameScreenEventOrganizationChangedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -608,35 +612,36 @@ class _$ProjectNameScreenSRCopyWithImpl<$Res, $Val extends ProjectNameScreenSR>
     implements $ProjectNameScreenSRCopyWith<$Res> {
   _$ProjectNameScreenSRCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$ProjectNameScreenSRCheckNamesCopyWith<$Res> {
-  factory _$$ProjectNameScreenSRCheckNamesCopyWith(
-          _$ProjectNameScreenSRCheckNames value,
-          $Res Function(_$ProjectNameScreenSRCheckNames) then) =
-      __$$ProjectNameScreenSRCheckNamesCopyWithImpl<$Res>;
+abstract class _$$ProjectNameScreenSRCheckNamesImplCopyWith<$Res> {
+  factory _$$ProjectNameScreenSRCheckNamesImplCopyWith(
+          _$ProjectNameScreenSRCheckNamesImpl value,
+          $Res Function(_$ProjectNameScreenSRCheckNamesImpl) then) =
+      __$$ProjectNameScreenSRCheckNamesImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProjectNameScreenSRCheckNamesCopyWithImpl<$Res>
+class __$$ProjectNameScreenSRCheckNamesImplCopyWithImpl<$Res>
     extends _$ProjectNameScreenSRCopyWithImpl<$Res,
-        _$ProjectNameScreenSRCheckNames>
-    implements _$$ProjectNameScreenSRCheckNamesCopyWith<$Res> {
-  __$$ProjectNameScreenSRCheckNamesCopyWithImpl(
-      _$ProjectNameScreenSRCheckNames _value,
-      $Res Function(_$ProjectNameScreenSRCheckNames) _then)
+        _$ProjectNameScreenSRCheckNamesImpl>
+    implements _$$ProjectNameScreenSRCheckNamesImplCopyWith<$Res> {
+  __$$ProjectNameScreenSRCheckNamesImplCopyWithImpl(
+      _$ProjectNameScreenSRCheckNamesImpl _value,
+      $Res Function(_$ProjectNameScreenSRCheckNamesImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProjectNameScreenSRCheckNames implements ProjectNameScreenSRCheckNames {
-  const _$ProjectNameScreenSRCheckNames();
+class _$ProjectNameScreenSRCheckNamesImpl
+    implements ProjectNameScreenSRCheckNames {
+  const _$ProjectNameScreenSRCheckNamesImpl();
 
   @override
   String toString() {
@@ -647,7 +652,7 @@ class _$ProjectNameScreenSRCheckNames implements ProjectNameScreenSRCheckNames {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenSRCheckNames);
+            other is _$ProjectNameScreenSRCheckNamesImpl);
   }
 
   @override
@@ -712,7 +717,7 @@ class _$ProjectNameScreenSRCheckNames implements ProjectNameScreenSRCheckNames {
 
 abstract class ProjectNameScreenSRCheckNames implements ProjectNameScreenSR {
   const factory ProjectNameScreenSRCheckNames() =
-      _$ProjectNameScreenSRCheckNames;
+      _$ProjectNameScreenSRCheckNamesImpl;
 }
 
 /// @nodoc
@@ -807,12 +812,12 @@ class _$ProjectNameScreenStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ProjectNameScreenStateDataCopyWith<$Res>
+abstract class _$$ProjectNameScreenStateDataImplCopyWith<$Res>
     implements $ProjectNameScreenStateCopyWith<$Res> {
-  factory _$$ProjectNameScreenStateDataCopyWith(
-          _$ProjectNameScreenStateData value,
-          $Res Function(_$ProjectNameScreenStateData) then) =
-      __$$ProjectNameScreenStateDataCopyWithImpl<$Res>;
+  factory _$$ProjectNameScreenStateDataImplCopyWith(
+          _$ProjectNameScreenStateDataImpl value,
+          $Res Function(_$ProjectNameScreenStateDataImpl) then) =
+      __$$ProjectNameScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Config config, bool projectExists});
@@ -822,13 +827,13 @@ abstract class _$$ProjectNameScreenStateDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ProjectNameScreenStateDataCopyWithImpl<$Res>
+class __$$ProjectNameScreenStateDataImplCopyWithImpl<$Res>
     extends _$ProjectNameScreenStateCopyWithImpl<$Res,
-        _$ProjectNameScreenStateData>
-    implements _$$ProjectNameScreenStateDataCopyWith<$Res> {
-  __$$ProjectNameScreenStateDataCopyWithImpl(
-      _$ProjectNameScreenStateData _value,
-      $Res Function(_$ProjectNameScreenStateData) _then)
+        _$ProjectNameScreenStateDataImpl>
+    implements _$$ProjectNameScreenStateDataImplCopyWith<$Res> {
+  __$$ProjectNameScreenStateDataImplCopyWithImpl(
+      _$ProjectNameScreenStateDataImpl _value,
+      $Res Function(_$ProjectNameScreenStateDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -837,7 +842,7 @@ class __$$ProjectNameScreenStateDataCopyWithImpl<$Res>
     Object? config = null,
     Object? projectExists = null,
   }) {
-    return _then(_$ProjectNameScreenStateData(
+    return _then(_$ProjectNameScreenStateDataImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -852,8 +857,8 @@ class __$$ProjectNameScreenStateDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProjectNameScreenStateData implements ProjectNameScreenStateData {
-  const _$ProjectNameScreenStateData(
+class _$ProjectNameScreenStateDataImpl implements ProjectNameScreenStateData {
+  const _$ProjectNameScreenStateDataImpl(
       {required this.config, this.projectExists = false});
 
   @override
@@ -871,7 +876,7 @@ class _$ProjectNameScreenStateData implements ProjectNameScreenStateData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenStateData &&
+            other is _$ProjectNameScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config) &&
             (identical(other.projectExists, projectExists) ||
                 other.projectExists == projectExists));
@@ -883,9 +888,9 @@ class _$ProjectNameScreenStateData implements ProjectNameScreenStateData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProjectNameScreenStateDataCopyWith<_$ProjectNameScreenStateData>
-      get copyWith => __$$ProjectNameScreenStateDataCopyWithImpl<
-          _$ProjectNameScreenStateData>(this, _$identity);
+  _$$ProjectNameScreenStateDataImplCopyWith<_$ProjectNameScreenStateDataImpl>
+      get copyWith => __$$ProjectNameScreenStateDataImplCopyWithImpl<
+          _$ProjectNameScreenStateDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -947,7 +952,7 @@ class _$ProjectNameScreenStateData implements ProjectNameScreenStateData {
 abstract class ProjectNameScreenStateData implements ProjectNameScreenState {
   const factory ProjectNameScreenStateData(
       {required final Config config,
-      final bool projectExists}) = _$ProjectNameScreenStateData;
+      final bool projectExists}) = _$ProjectNameScreenStateDataImpl;
 
   @override
   Config get config;
@@ -955,6 +960,6 @@ abstract class ProjectNameScreenStateData implements ProjectNameScreenState {
   bool get projectExists;
   @override
   @JsonKey(ignore: true)
-  _$$ProjectNameScreenStateDataCopyWith<_$ProjectNameScreenStateData>
+  _$$ProjectNameScreenStateDataImplCopyWith<_$ProjectNameScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

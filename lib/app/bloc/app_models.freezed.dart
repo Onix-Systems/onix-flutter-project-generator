@@ -88,22 +88,22 @@ class _$AppEventCopyWithImpl<$Res, $Val extends AppEvent>
 }
 
 /// @nodoc
-abstract class _$$ChangeThemeEventCopyWith<$Res>
+abstract class _$$ChangeThemeEventImplCopyWith<$Res>
     implements $AppEventCopyWith<$Res> {
-  factory _$$ChangeThemeEventCopyWith(
-          _$ChangeThemeEvent value, $Res Function(_$ChangeThemeEvent) then) =
-      __$$ChangeThemeEventCopyWithImpl<$Res>;
+  factory _$$ChangeThemeEventImplCopyWith(_$ChangeThemeEventImpl value,
+          $Res Function(_$ChangeThemeEventImpl) then) =
+      __$$ChangeThemeEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeMode mode});
 }
 
 /// @nodoc
-class __$$ChangeThemeEventCopyWithImpl<$Res>
-    extends _$AppEventCopyWithImpl<$Res, _$ChangeThemeEvent>
-    implements _$$ChangeThemeEventCopyWith<$Res> {
-  __$$ChangeThemeEventCopyWithImpl(
-      _$ChangeThemeEvent _value, $Res Function(_$ChangeThemeEvent) _then)
+class __$$ChangeThemeEventImplCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$ChangeThemeEventImpl>
+    implements _$$ChangeThemeEventImplCopyWith<$Res> {
+  __$$ChangeThemeEventImplCopyWithImpl(_$ChangeThemeEventImpl _value,
+      $Res Function(_$ChangeThemeEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -111,7 +111,7 @@ class __$$ChangeThemeEventCopyWithImpl<$Res>
   $Res call({
     Object? mode = null,
   }) {
-    return _then(_$ChangeThemeEvent(
+    return _then(_$ChangeThemeEventImpl(
       null == mode
           ? _value.mode
           : mode // ignore: cast_nullable_to_non_nullable
@@ -122,8 +122,8 @@ class __$$ChangeThemeEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ChangeThemeEvent implements ChangeThemeEvent {
-  const _$ChangeThemeEvent(this.mode);
+class _$ChangeThemeEventImpl implements ChangeThemeEvent {
+  const _$ChangeThemeEventImpl(this.mode);
 
   @override
   final ThemeMode mode;
@@ -137,7 +137,7 @@ class _$ChangeThemeEvent implements ChangeThemeEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChangeThemeEvent &&
+            other is _$ChangeThemeEventImpl &&
             (identical(other.mode, mode) || other.mode == mode));
   }
 
@@ -147,8 +147,9 @@ class _$ChangeThemeEvent implements ChangeThemeEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ChangeThemeEventCopyWith<_$ChangeThemeEvent> get copyWith =>
-      __$$ChangeThemeEventCopyWithImpl<_$ChangeThemeEvent>(this, _$identity);
+  _$$ChangeThemeEventImplCopyWith<_$ChangeThemeEventImpl> get copyWith =>
+      __$$ChangeThemeEventImplCopyWithImpl<_$ChangeThemeEventImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -208,13 +209,13 @@ class _$ChangeThemeEvent implements ChangeThemeEvent {
 }
 
 abstract class ChangeThemeEvent implements AppEvent {
-  const factory ChangeThemeEvent(final ThemeMode mode) = _$ChangeThemeEvent;
+  const factory ChangeThemeEvent(final ThemeMode mode) = _$ChangeThemeEventImpl;
 
   @override
   ThemeMode get mode;
   @override
   @JsonKey(ignore: true)
-  _$$ChangeThemeEventCopyWith<_$ChangeThemeEvent> get copyWith =>
+  _$$ChangeThemeEventImplCopyWith<_$ChangeThemeEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -261,22 +262,22 @@ class _$AppScreenStateCopyWithImpl<$Res, $Val extends AppScreenState>
 }
 
 /// @nodoc
-abstract class _$$_AppScreenStateCopyWith<$Res>
+abstract class _$$AppScreenStateImplCopyWith<$Res>
     implements $AppScreenStateCopyWith<$Res> {
-  factory _$$_AppScreenStateCopyWith(
-          _$_AppScreenState value, $Res Function(_$_AppScreenState) then) =
-      __$$_AppScreenStateCopyWithImpl<$Res>;
+  factory _$$AppScreenStateImplCopyWith(_$AppScreenStateImpl value,
+          $Res Function(_$AppScreenStateImpl) then) =
+      __$$AppScreenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
-class __$$_AppScreenStateCopyWithImpl<$Res>
-    extends _$AppScreenStateCopyWithImpl<$Res, _$_AppScreenState>
-    implements _$$_AppScreenStateCopyWith<$Res> {
-  __$$_AppScreenStateCopyWithImpl(
-      _$_AppScreenState _value, $Res Function(_$_AppScreenState) _then)
+class __$$AppScreenStateImplCopyWithImpl<$Res>
+    extends _$AppScreenStateCopyWithImpl<$Res, _$AppScreenStateImpl>
+    implements _$$AppScreenStateImplCopyWith<$Res> {
+  __$$AppScreenStateImplCopyWithImpl(
+      _$AppScreenStateImpl _value, $Res Function(_$AppScreenStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -284,7 +285,7 @@ class __$$_AppScreenStateCopyWithImpl<$Res>
   $Res call({
     Object? themeMode = null,
   }) {
-    return _then(_$_AppScreenState(
+    return _then(_$AppScreenStateImpl(
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
@@ -295,8 +296,8 @@ class __$$_AppScreenStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AppScreenState implements _AppScreenState {
-  const _$_AppScreenState({required this.themeMode});
+class _$AppScreenStateImpl implements _AppScreenState {
+  const _$AppScreenStateImpl({required this.themeMode});
 
   @override
   final ThemeMode themeMode;
@@ -310,7 +311,7 @@ class _$_AppScreenState implements _AppScreenState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AppScreenState &&
+            other is _$AppScreenStateImpl &&
             (identical(other.themeMode, themeMode) ||
                 other.themeMode == themeMode));
   }
@@ -321,18 +322,19 @@ class _$_AppScreenState implements _AppScreenState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AppScreenStateCopyWith<_$_AppScreenState> get copyWith =>
-      __$$_AppScreenStateCopyWithImpl<_$_AppScreenState>(this, _$identity);
+  _$$AppScreenStateImplCopyWith<_$AppScreenStateImpl> get copyWith =>
+      __$$AppScreenStateImplCopyWithImpl<_$AppScreenStateImpl>(
+          this, _$identity);
 }
 
 abstract class _AppScreenState implements AppScreenState {
   const factory _AppScreenState({required final ThemeMode themeMode}) =
-      _$_AppScreenState;
+      _$AppScreenStateImpl;
 
   @override
   ThemeMode get themeMode;
   @override
   @JsonKey(ignore: true)
-  _$$_AppScreenStateCopyWith<_$_AppScreenState> get copyWith =>
+  _$$AppScreenStateImplCopyWith<_$AppScreenStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

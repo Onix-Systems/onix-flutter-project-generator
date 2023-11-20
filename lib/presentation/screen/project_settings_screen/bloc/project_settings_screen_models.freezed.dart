@@ -28,6 +28,7 @@ mixin _$ProjectSettingsScreenEvent {
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +43,7 @@ mixin _$ProjectSettingsScreenEvent {
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +58,7 @@ mixin _$ProjectSettingsScreenEvent {
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,6 +85,8 @@ mixin _$ProjectSettingsScreenEvent {
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -105,6 +110,8 @@ mixin _$ProjectSettingsScreenEvent {
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -128,6 +135,8 @@ mixin _$ProjectSettingsScreenEvent {
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,18 +156,18 @@ class _$ProjectSettingsScreenEventCopyWithImpl<$Res,
     implements $ProjectSettingsScreenEventCopyWith<$Res> {
   _$ProjectSettingsScreenEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$ProjectSettingsScreenEventInitCopyWith<$Res> {
-  factory _$$ProjectSettingsScreenEventInitCopyWith(
-          _$ProjectSettingsScreenEventInit value,
-          $Res Function(_$ProjectSettingsScreenEventInit) then) =
-      __$$ProjectSettingsScreenEventInitCopyWithImpl<$Res>;
+abstract class _$$ProjectSettingsScreenEventInitImplCopyWith<$Res> {
+  factory _$$ProjectSettingsScreenEventInitImplCopyWith(
+          _$ProjectSettingsScreenEventInitImpl value,
+          $Res Function(_$ProjectSettingsScreenEventInitImpl) then) =
+      __$$ProjectSettingsScreenEventInitImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Config config});
 
@@ -166,13 +175,13 @@ abstract class _$$ProjectSettingsScreenEventInitCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ProjectSettingsScreenEventInitCopyWithImpl<$Res>
+class __$$ProjectSettingsScreenEventInitImplCopyWithImpl<$Res>
     extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-        _$ProjectSettingsScreenEventInit>
-    implements _$$ProjectSettingsScreenEventInitCopyWith<$Res> {
-  __$$ProjectSettingsScreenEventInitCopyWithImpl(
-      _$ProjectSettingsScreenEventInit _value,
-      $Res Function(_$ProjectSettingsScreenEventInit) _then)
+        _$ProjectSettingsScreenEventInitImpl>
+    implements _$$ProjectSettingsScreenEventInitImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventInitImplCopyWithImpl(
+      _$ProjectSettingsScreenEventInitImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventInitImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -180,7 +189,7 @@ class __$$ProjectSettingsScreenEventInitCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$ProjectSettingsScreenEventInit(
+    return _then(_$ProjectSettingsScreenEventInitImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -199,9 +208,9 @@ class __$$ProjectSettingsScreenEventInitCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProjectSettingsScreenEventInit
+class _$ProjectSettingsScreenEventInitImpl
     implements ProjectSettingsScreenEventInit {
-  const _$ProjectSettingsScreenEventInit({required this.config});
+  const _$ProjectSettingsScreenEventInitImpl({required this.config});
 
   @override
   final Config config;
@@ -215,7 +224,7 @@ class _$ProjectSettingsScreenEventInit
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventInit &&
+            other is _$ProjectSettingsScreenEventInitImpl &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -225,9 +234,10 @@ class _$ProjectSettingsScreenEventInit
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProjectSettingsScreenEventInitCopyWith<_$ProjectSettingsScreenEventInit>
-      get copyWith => __$$ProjectSettingsScreenEventInitCopyWithImpl<
-          _$ProjectSettingsScreenEventInit>(this, _$identity);
+  _$$ProjectSettingsScreenEventInitImplCopyWith<
+          _$ProjectSettingsScreenEventInitImpl>
+      get copyWith => __$$ProjectSettingsScreenEventInitImplCopyWithImpl<
+          _$ProjectSettingsScreenEventInitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -242,6 +252,7 @@ class _$ProjectSettingsScreenEventInit
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
   }) {
     return init(config);
   }
@@ -259,6 +270,7 @@ class _$ProjectSettingsScreenEventInit
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
   }) {
     return init?.call(config);
   }
@@ -276,6 +288,7 @@ class _$ProjectSettingsScreenEventInit
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -308,6 +321,8 @@ class _$ProjectSettingsScreenEventInit
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
   }) {
     return init(this);
   }
@@ -334,6 +349,8 @@ class _$ProjectSettingsScreenEventInit
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
   }) {
     return init?.call(this);
   }
@@ -360,6 +377,8 @@ class _$ProjectSettingsScreenEventInit
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -372,38 +391,39 @@ class _$ProjectSettingsScreenEventInit
 abstract class ProjectSettingsScreenEventInit
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventInit({required final Config config}) =
-      _$ProjectSettingsScreenEventInit;
+      _$ProjectSettingsScreenEventInitImpl;
 
   Config get config;
   @JsonKey(ignore: true)
-  _$$ProjectSettingsScreenEventInitCopyWith<_$ProjectSettingsScreenEventInit>
+  _$$ProjectSettingsScreenEventInitImplCopyWith<
+          _$ProjectSettingsScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProjectSettingsScreenEventFlavorizeChangeCopyWith<$Res> {
-  factory _$$ProjectSettingsScreenEventFlavorizeChangeCopyWith(
-          _$ProjectSettingsScreenEventFlavorizeChange value,
-          $Res Function(_$ProjectSettingsScreenEventFlavorizeChange) then) =
-      __$$ProjectSettingsScreenEventFlavorizeChangeCopyWithImpl<$Res>;
+abstract class _$$ProjectSettingsScreenEventFlavorizeChangeImplCopyWith<$Res> {
+  factory _$$ProjectSettingsScreenEventFlavorizeChangeImplCopyWith(
+          _$ProjectSettingsScreenEventFlavorizeChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventFlavorizeChangeImpl) then) =
+      __$$ProjectSettingsScreenEventFlavorizeChangeImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProjectSettingsScreenEventFlavorizeChangeCopyWithImpl<$Res>
+class __$$ProjectSettingsScreenEventFlavorizeChangeImplCopyWithImpl<$Res>
     extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-        _$ProjectSettingsScreenEventFlavorizeChange>
-    implements _$$ProjectSettingsScreenEventFlavorizeChangeCopyWith<$Res> {
-  __$$ProjectSettingsScreenEventFlavorizeChangeCopyWithImpl(
-      _$ProjectSettingsScreenEventFlavorizeChange _value,
-      $Res Function(_$ProjectSettingsScreenEventFlavorizeChange) _then)
+        _$ProjectSettingsScreenEventFlavorizeChangeImpl>
+    implements _$$ProjectSettingsScreenEventFlavorizeChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventFlavorizeChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventFlavorizeChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventFlavorizeChangeImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProjectSettingsScreenEventFlavorizeChange
+class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     implements ProjectSettingsScreenEventFlavorizeChange {
-  const _$ProjectSettingsScreenEventFlavorizeChange();
+  const _$ProjectSettingsScreenEventFlavorizeChangeImpl();
 
   @override
   String toString() {
@@ -414,7 +434,7 @@ class _$ProjectSettingsScreenEventFlavorizeChange
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventFlavorizeChange);
+            other is _$ProjectSettingsScreenEventFlavorizeChangeImpl);
   }
 
   @override
@@ -433,6 +453,7 @@ class _$ProjectSettingsScreenEventFlavorizeChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
   }) {
     return flavorizeChange();
   }
@@ -450,6 +471,7 @@ class _$ProjectSettingsScreenEventFlavorizeChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
   }) {
     return flavorizeChange?.call();
   }
@@ -467,6 +489,7 @@ class _$ProjectSettingsScreenEventFlavorizeChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
     required TResult orElse(),
   }) {
     if (flavorizeChange != null) {
@@ -499,6 +522,8 @@ class _$ProjectSettingsScreenEventFlavorizeChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
   }) {
     return flavorizeChange(this);
   }
@@ -525,6 +550,8 @@ class _$ProjectSettingsScreenEventFlavorizeChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
   }) {
     return flavorizeChange?.call(this);
   }
@@ -551,6 +578,8 @@ class _$ProjectSettingsScreenEventFlavorizeChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
     required TResult orElse(),
   }) {
     if (flavorizeChange != null) {
@@ -563,27 +592,27 @@ class _$ProjectSettingsScreenEventFlavorizeChange
 abstract class ProjectSettingsScreenEventFlavorizeChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventFlavorizeChange() =
-      _$ProjectSettingsScreenEventFlavorizeChange;
+      _$ProjectSettingsScreenEventFlavorizeChangeImpl;
 }
 
 /// @nodoc
-abstract class _$$ProjectSettingsScreenEventFlavorsChangeCopyWith<$Res> {
-  factory _$$ProjectSettingsScreenEventFlavorsChangeCopyWith(
-          _$ProjectSettingsScreenEventFlavorsChange value,
-          $Res Function(_$ProjectSettingsScreenEventFlavorsChange) then) =
-      __$$ProjectSettingsScreenEventFlavorsChangeCopyWithImpl<$Res>;
+abstract class _$$ProjectSettingsScreenEventFlavorsChangeImplCopyWith<$Res> {
+  factory _$$ProjectSettingsScreenEventFlavorsChangeImplCopyWith(
+          _$ProjectSettingsScreenEventFlavorsChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventFlavorsChangeImpl) then) =
+      __$$ProjectSettingsScreenEventFlavorsChangeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String flavors});
 }
 
 /// @nodoc
-class __$$ProjectSettingsScreenEventFlavorsChangeCopyWithImpl<$Res>
+class __$$ProjectSettingsScreenEventFlavorsChangeImplCopyWithImpl<$Res>
     extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-        _$ProjectSettingsScreenEventFlavorsChange>
-    implements _$$ProjectSettingsScreenEventFlavorsChangeCopyWith<$Res> {
-  __$$ProjectSettingsScreenEventFlavorsChangeCopyWithImpl(
-      _$ProjectSettingsScreenEventFlavorsChange _value,
-      $Res Function(_$ProjectSettingsScreenEventFlavorsChange) _then)
+        _$ProjectSettingsScreenEventFlavorsChangeImpl>
+    implements _$$ProjectSettingsScreenEventFlavorsChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventFlavorsChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventFlavorsChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventFlavorsChangeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -591,7 +620,7 @@ class __$$ProjectSettingsScreenEventFlavorsChangeCopyWithImpl<$Res>
   $Res call({
     Object? flavors = null,
   }) {
-    return _then(_$ProjectSettingsScreenEventFlavorsChange(
+    return _then(_$ProjectSettingsScreenEventFlavorsChangeImpl(
       flavors: null == flavors
           ? _value.flavors
           : flavors // ignore: cast_nullable_to_non_nullable
@@ -602,9 +631,9 @@ class __$$ProjectSettingsScreenEventFlavorsChangeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProjectSettingsScreenEventFlavorsChange
+class _$ProjectSettingsScreenEventFlavorsChangeImpl
     implements ProjectSettingsScreenEventFlavorsChange {
-  const _$ProjectSettingsScreenEventFlavorsChange({required this.flavors});
+  const _$ProjectSettingsScreenEventFlavorsChangeImpl({required this.flavors});
 
   @override
   final String flavors;
@@ -618,7 +647,7 @@ class _$ProjectSettingsScreenEventFlavorsChange
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventFlavorsChange &&
+            other is _$ProjectSettingsScreenEventFlavorsChangeImpl &&
             (identical(other.flavors, flavors) || other.flavors == flavors));
   }
 
@@ -628,10 +657,11 @@ class _$ProjectSettingsScreenEventFlavorsChange
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProjectSettingsScreenEventFlavorsChangeCopyWith<
-          _$ProjectSettingsScreenEventFlavorsChange>
-      get copyWith => __$$ProjectSettingsScreenEventFlavorsChangeCopyWithImpl<
-          _$ProjectSettingsScreenEventFlavorsChange>(this, _$identity);
+  _$$ProjectSettingsScreenEventFlavorsChangeImplCopyWith<
+          _$ProjectSettingsScreenEventFlavorsChangeImpl>
+      get copyWith =>
+          __$$ProjectSettingsScreenEventFlavorsChangeImplCopyWithImpl<
+              _$ProjectSettingsScreenEventFlavorsChangeImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -646,6 +676,7 @@ class _$ProjectSettingsScreenEventFlavorsChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
   }) {
     return flavorsChange(flavors);
   }
@@ -663,6 +694,7 @@ class _$ProjectSettingsScreenEventFlavorsChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
   }) {
     return flavorsChange?.call(flavors);
   }
@@ -680,6 +712,7 @@ class _$ProjectSettingsScreenEventFlavorsChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
     required TResult orElse(),
   }) {
     if (flavorsChange != null) {
@@ -712,6 +745,8 @@ class _$ProjectSettingsScreenEventFlavorsChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
   }) {
     return flavorsChange(this);
   }
@@ -738,6 +773,8 @@ class _$ProjectSettingsScreenEventFlavorsChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
   }) {
     return flavorsChange?.call(this);
   }
@@ -764,6 +801,8 @@ class _$ProjectSettingsScreenEventFlavorsChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
     required TResult orElse(),
   }) {
     if (flavorsChange != null) {
@@ -777,42 +816,47 @@ abstract class ProjectSettingsScreenEventFlavorsChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventFlavorsChange(
           {required final String flavors}) =
-      _$ProjectSettingsScreenEventFlavorsChange;
+      _$ProjectSettingsScreenEventFlavorsChangeImpl;
 
   String get flavors;
   @JsonKey(ignore: true)
-  _$$ProjectSettingsScreenEventFlavorsChangeCopyWith<
-          _$ProjectSettingsScreenEventFlavorsChange>
+  _$$ProjectSettingsScreenEventFlavorsChangeImplCopyWith<
+          _$ProjectSettingsScreenEventFlavorsChangeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProjectSettingsScreenEventGenerateSigningKeyChangeCopyWith<
+abstract class _$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWith<
     $Res> {
-  factory _$$ProjectSettingsScreenEventGenerateSigningKeyChangeCopyWith(
-          _$ProjectSettingsScreenEventGenerateSigningKeyChange value,
-          $Res Function(_$ProjectSettingsScreenEventGenerateSigningKeyChange)
+  factory _$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWith(
+          _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl value,
+          $Res Function(
+                  _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl)
               then) =
-      __$$ProjectSettingsScreenEventGenerateSigningKeyChangeCopyWithImpl<$Res>;
+      __$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWithImpl<
+          $Res>;
 }
 
 /// @nodoc
-class __$$ProjectSettingsScreenEventGenerateSigningKeyChangeCopyWithImpl<$Res>
+class __$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWithImpl<
+        $Res>
     extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-        _$ProjectSettingsScreenEventGenerateSigningKeyChange>
+        _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl>
     implements
-        _$$ProjectSettingsScreenEventGenerateSigningKeyChangeCopyWith<$Res> {
-  __$$ProjectSettingsScreenEventGenerateSigningKeyChangeCopyWithImpl(
-      _$ProjectSettingsScreenEventGenerateSigningKeyChange _value,
-      $Res Function(_$ProjectSettingsScreenEventGenerateSigningKeyChange) _then)
+        _$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWith<
+            $Res> {
+  __$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl)
+          _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProjectSettingsScreenEventGenerateSigningKeyChange
+class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     implements ProjectSettingsScreenEventGenerateSigningKeyChange {
-  const _$ProjectSettingsScreenEventGenerateSigningKeyChange();
+  const _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl();
 
   @override
   String toString() {
@@ -823,7 +867,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventGenerateSigningKeyChange);
+            other is _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl);
   }
 
   @override
@@ -842,6 +886,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
   }) {
     return generateSigningKeyChange();
   }
@@ -859,6 +904,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
   }) {
     return generateSigningKeyChange?.call();
   }
@@ -876,6 +922,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
     required TResult orElse(),
   }) {
     if (generateSigningKeyChange != null) {
@@ -908,6 +955,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
   }) {
     return generateSigningKeyChange(this);
   }
@@ -934,6 +983,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
   }) {
     return generateSigningKeyChange?.call(this);
   }
@@ -960,6 +1011,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
     required TResult orElse(),
   }) {
     if (generateSigningKeyChange != null) {
@@ -972,27 +1025,30 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChange
 abstract class ProjectSettingsScreenEventGenerateSigningKeyChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventGenerateSigningKeyChange() =
-      _$ProjectSettingsScreenEventGenerateSigningKeyChange;
+      _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl;
 }
 
 /// @nodoc
-abstract class _$$ProjectSettingsScreenEventSigningVarsChangeCopyWith<$Res> {
-  factory _$$ProjectSettingsScreenEventSigningVarsChangeCopyWith(
-          _$ProjectSettingsScreenEventSigningVarsChange value,
-          $Res Function(_$ProjectSettingsScreenEventSigningVarsChange) then) =
-      __$$ProjectSettingsScreenEventSigningVarsChangeCopyWithImpl<$Res>;
+abstract class _$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWith<
+    $Res> {
+  factory _$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWith(
+          _$ProjectSettingsScreenEventSigningVarsChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventSigningVarsChangeImpl)
+              then) =
+      __$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<String> signingVars});
 }
 
 /// @nodoc
-class __$$ProjectSettingsScreenEventSigningVarsChangeCopyWithImpl<$Res>
+class __$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWithImpl<$Res>
     extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-        _$ProjectSettingsScreenEventSigningVarsChange>
-    implements _$$ProjectSettingsScreenEventSigningVarsChangeCopyWith<$Res> {
-  __$$ProjectSettingsScreenEventSigningVarsChangeCopyWithImpl(
-      _$ProjectSettingsScreenEventSigningVarsChange _value,
-      $Res Function(_$ProjectSettingsScreenEventSigningVarsChange) _then)
+        _$ProjectSettingsScreenEventSigningVarsChangeImpl>
+    implements
+        _$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventSigningVarsChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventSigningVarsChangeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1000,7 +1056,7 @@ class __$$ProjectSettingsScreenEventSigningVarsChangeCopyWithImpl<$Res>
   $Res call({
     Object? signingVars = null,
   }) {
-    return _then(_$ProjectSettingsScreenEventSigningVarsChange(
+    return _then(_$ProjectSettingsScreenEventSigningVarsChangeImpl(
       signingVars: null == signingVars
           ? _value._signingVars
           : signingVars // ignore: cast_nullable_to_non_nullable
@@ -1011,9 +1067,9 @@ class __$$ProjectSettingsScreenEventSigningVarsChangeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProjectSettingsScreenEventSigningVarsChange
+class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     implements ProjectSettingsScreenEventSigningVarsChange {
-  const _$ProjectSettingsScreenEventSigningVarsChange(
+  const _$ProjectSettingsScreenEventSigningVarsChangeImpl(
       {required final List<String> signingVars})
       : _signingVars = signingVars;
 
@@ -1034,7 +1090,7 @@ class _$ProjectSettingsScreenEventSigningVarsChange
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventSigningVarsChange &&
+            other is _$ProjectSettingsScreenEventSigningVarsChangeImpl &&
             const DeepCollectionEquality()
                 .equals(other._signingVars, _signingVars));
   }
@@ -1046,11 +1102,12 @@ class _$ProjectSettingsScreenEventSigningVarsChange
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProjectSettingsScreenEventSigningVarsChangeCopyWith<
-          _$ProjectSettingsScreenEventSigningVarsChange>
+  _$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWith<
+          _$ProjectSettingsScreenEventSigningVarsChangeImpl>
       get copyWith =>
-          __$$ProjectSettingsScreenEventSigningVarsChangeCopyWithImpl<
-              _$ProjectSettingsScreenEventSigningVarsChange>(this, _$identity);
+          __$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWithImpl<
+                  _$ProjectSettingsScreenEventSigningVarsChangeImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1065,6 +1122,7 @@ class _$ProjectSettingsScreenEventSigningVarsChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
   }) {
     return signingVarsChange(signingVars);
   }
@@ -1082,6 +1140,7 @@ class _$ProjectSettingsScreenEventSigningVarsChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
   }) {
     return signingVarsChange?.call(signingVars);
   }
@@ -1099,6 +1158,7 @@ class _$ProjectSettingsScreenEventSigningVarsChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
     required TResult orElse(),
   }) {
     if (signingVarsChange != null) {
@@ -1131,6 +1191,8 @@ class _$ProjectSettingsScreenEventSigningVarsChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
   }) {
     return signingVarsChange(this);
   }
@@ -1157,6 +1219,8 @@ class _$ProjectSettingsScreenEventSigningVarsChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
   }) {
     return signingVarsChange?.call(this);
   }
@@ -1183,6 +1247,8 @@ class _$ProjectSettingsScreenEventSigningVarsChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
     required TResult orElse(),
   }) {
     if (signingVarsChange != null) {
@@ -1196,39 +1262,39 @@ abstract class ProjectSettingsScreenEventSigningVarsChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventSigningVarsChange(
           {required final List<String> signingVars}) =
-      _$ProjectSettingsScreenEventSigningVarsChange;
+      _$ProjectSettingsScreenEventSigningVarsChangeImpl;
 
   List<String> get signingVars;
   @JsonKey(ignore: true)
-  _$$ProjectSettingsScreenEventSigningVarsChangeCopyWith<
-          _$ProjectSettingsScreenEventSigningVarsChange>
+  _$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWith<
+          _$ProjectSettingsScreenEventSigningVarsChangeImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProjectSettingsScreenEventUseSonarChangeCopyWith<$Res> {
-  factory _$$ProjectSettingsScreenEventUseSonarChangeCopyWith(
-          _$ProjectSettingsScreenEventUseSonarChange value,
-          $Res Function(_$ProjectSettingsScreenEventUseSonarChange) then) =
-      __$$ProjectSettingsScreenEventUseSonarChangeCopyWithImpl<$Res>;
+abstract class _$$ProjectSettingsScreenEventUseSonarChangeImplCopyWith<$Res> {
+  factory _$$ProjectSettingsScreenEventUseSonarChangeImplCopyWith(
+          _$ProjectSettingsScreenEventUseSonarChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventUseSonarChangeImpl) then) =
+      __$$ProjectSettingsScreenEventUseSonarChangeImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProjectSettingsScreenEventUseSonarChangeCopyWithImpl<$Res>
+class __$$ProjectSettingsScreenEventUseSonarChangeImplCopyWithImpl<$Res>
     extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-        _$ProjectSettingsScreenEventUseSonarChange>
-    implements _$$ProjectSettingsScreenEventUseSonarChangeCopyWith<$Res> {
-  __$$ProjectSettingsScreenEventUseSonarChangeCopyWithImpl(
-      _$ProjectSettingsScreenEventUseSonarChange _value,
-      $Res Function(_$ProjectSettingsScreenEventUseSonarChange) _then)
+        _$ProjectSettingsScreenEventUseSonarChangeImpl>
+    implements _$$ProjectSettingsScreenEventUseSonarChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventUseSonarChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventUseSonarChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventUseSonarChangeImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProjectSettingsScreenEventUseSonarChange
+class _$ProjectSettingsScreenEventUseSonarChangeImpl
     implements ProjectSettingsScreenEventUseSonarChange {
-  const _$ProjectSettingsScreenEventUseSonarChange();
+  const _$ProjectSettingsScreenEventUseSonarChangeImpl();
 
   @override
   String toString() {
@@ -1239,7 +1305,7 @@ class _$ProjectSettingsScreenEventUseSonarChange
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventUseSonarChange);
+            other is _$ProjectSettingsScreenEventUseSonarChangeImpl);
   }
 
   @override
@@ -1258,6 +1324,7 @@ class _$ProjectSettingsScreenEventUseSonarChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
   }) {
     return useSonarChange();
   }
@@ -1275,6 +1342,7 @@ class _$ProjectSettingsScreenEventUseSonarChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
   }) {
     return useSonarChange?.call();
   }
@@ -1292,6 +1360,7 @@ class _$ProjectSettingsScreenEventUseSonarChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
     required TResult orElse(),
   }) {
     if (useSonarChange != null) {
@@ -1324,6 +1393,8 @@ class _$ProjectSettingsScreenEventUseSonarChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
   }) {
     return useSonarChange(this);
   }
@@ -1350,6 +1421,8 @@ class _$ProjectSettingsScreenEventUseSonarChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
   }) {
     return useSonarChange?.call(this);
   }
@@ -1376,6 +1449,8 @@ class _$ProjectSettingsScreenEventUseSonarChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
     required TResult orElse(),
   }) {
     if (useSonarChange != null) {
@@ -1388,33 +1463,33 @@ class _$ProjectSettingsScreenEventUseSonarChange
 abstract class ProjectSettingsScreenEventUseSonarChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventUseSonarChange() =
-      _$ProjectSettingsScreenEventUseSonarChange;
+      _$ProjectSettingsScreenEventUseSonarChangeImpl;
 }
 
 /// @nodoc
-abstract class _$$ProjectSettingsScreenEventGraphQLChangeCopyWith<$Res> {
-  factory _$$ProjectSettingsScreenEventGraphQLChangeCopyWith(
-          _$ProjectSettingsScreenEventGraphQLChange value,
-          $Res Function(_$ProjectSettingsScreenEventGraphQLChange) then) =
-      __$$ProjectSettingsScreenEventGraphQLChangeCopyWithImpl<$Res>;
+abstract class _$$ProjectSettingsScreenEventGraphQLChangeImplCopyWith<$Res> {
+  factory _$$ProjectSettingsScreenEventGraphQLChangeImplCopyWith(
+          _$ProjectSettingsScreenEventGraphQLChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventGraphQLChangeImpl) then) =
+      __$$ProjectSettingsScreenEventGraphQLChangeImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProjectSettingsScreenEventGraphQLChangeCopyWithImpl<$Res>
+class __$$ProjectSettingsScreenEventGraphQLChangeImplCopyWithImpl<$Res>
     extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-        _$ProjectSettingsScreenEventGraphQLChange>
-    implements _$$ProjectSettingsScreenEventGraphQLChangeCopyWith<$Res> {
-  __$$ProjectSettingsScreenEventGraphQLChangeCopyWithImpl(
-      _$ProjectSettingsScreenEventGraphQLChange _value,
-      $Res Function(_$ProjectSettingsScreenEventGraphQLChange) _then)
+        _$ProjectSettingsScreenEventGraphQLChangeImpl>
+    implements _$$ProjectSettingsScreenEventGraphQLChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventGraphQLChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventGraphQLChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventGraphQLChangeImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProjectSettingsScreenEventGraphQLChange
+class _$ProjectSettingsScreenEventGraphQLChangeImpl
     implements ProjectSettingsScreenEventGraphQLChange {
-  const _$ProjectSettingsScreenEventGraphQLChange();
+  const _$ProjectSettingsScreenEventGraphQLChangeImpl();
 
   @override
   String toString() {
@@ -1425,7 +1500,7 @@ class _$ProjectSettingsScreenEventGraphQLChange
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventGraphQLChange);
+            other is _$ProjectSettingsScreenEventGraphQLChangeImpl);
   }
 
   @override
@@ -1444,6 +1519,7 @@ class _$ProjectSettingsScreenEventGraphQLChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
   }) {
     return graphQLChange();
   }
@@ -1461,6 +1537,7 @@ class _$ProjectSettingsScreenEventGraphQLChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
   }) {
     return graphQLChange?.call();
   }
@@ -1478,6 +1555,7 @@ class _$ProjectSettingsScreenEventGraphQLChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
     required TResult orElse(),
   }) {
     if (graphQLChange != null) {
@@ -1510,6 +1588,8 @@ class _$ProjectSettingsScreenEventGraphQLChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
   }) {
     return graphQLChange(this);
   }
@@ -1536,6 +1616,8 @@ class _$ProjectSettingsScreenEventGraphQLChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
   }) {
     return graphQLChange?.call(this);
   }
@@ -1562,6 +1644,8 @@ class _$ProjectSettingsScreenEventGraphQLChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
     required TResult orElse(),
   }) {
     if (graphQLChange != null) {
@@ -1574,33 +1658,33 @@ class _$ProjectSettingsScreenEventGraphQLChange
 abstract class ProjectSettingsScreenEventGraphQLChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventGraphQLChange() =
-      _$ProjectSettingsScreenEventGraphQLChange;
+      _$ProjectSettingsScreenEventGraphQLChangeImpl;
 }
 
 /// @nodoc
-abstract class _$$ProjectSettingsScreenEventRouterChangeCopyWith<$Res> {
-  factory _$$ProjectSettingsScreenEventRouterChangeCopyWith(
-          _$ProjectSettingsScreenEventRouterChange value,
-          $Res Function(_$ProjectSettingsScreenEventRouterChange) then) =
-      __$$ProjectSettingsScreenEventRouterChangeCopyWithImpl<$Res>;
+abstract class _$$ProjectSettingsScreenEventRouterChangeImplCopyWith<$Res> {
+  factory _$$ProjectSettingsScreenEventRouterChangeImplCopyWith(
+          _$ProjectSettingsScreenEventRouterChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventRouterChangeImpl) then) =
+      __$$ProjectSettingsScreenEventRouterChangeImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProjectSettingsScreenEventRouterChangeCopyWithImpl<$Res>
+class __$$ProjectSettingsScreenEventRouterChangeImplCopyWithImpl<$Res>
     extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-        _$ProjectSettingsScreenEventRouterChange>
-    implements _$$ProjectSettingsScreenEventRouterChangeCopyWith<$Res> {
-  __$$ProjectSettingsScreenEventRouterChangeCopyWithImpl(
-      _$ProjectSettingsScreenEventRouterChange _value,
-      $Res Function(_$ProjectSettingsScreenEventRouterChange) _then)
+        _$ProjectSettingsScreenEventRouterChangeImpl>
+    implements _$$ProjectSettingsScreenEventRouterChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventRouterChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventRouterChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventRouterChangeImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProjectSettingsScreenEventRouterChange
+class _$ProjectSettingsScreenEventRouterChangeImpl
     implements ProjectSettingsScreenEventRouterChange {
-  const _$ProjectSettingsScreenEventRouterChange();
+  const _$ProjectSettingsScreenEventRouterChangeImpl();
 
   @override
   String toString() {
@@ -1611,7 +1695,7 @@ class _$ProjectSettingsScreenEventRouterChange
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventRouterChange);
+            other is _$ProjectSettingsScreenEventRouterChangeImpl);
   }
 
   @override
@@ -1630,6 +1714,7 @@ class _$ProjectSettingsScreenEventRouterChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
   }) {
     return routerChange();
   }
@@ -1647,6 +1732,7 @@ class _$ProjectSettingsScreenEventRouterChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
   }) {
     return routerChange?.call();
   }
@@ -1664,6 +1750,7 @@ class _$ProjectSettingsScreenEventRouterChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
     required TResult orElse(),
   }) {
     if (routerChange != null) {
@@ -1696,6 +1783,8 @@ class _$ProjectSettingsScreenEventRouterChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
   }) {
     return routerChange(this);
   }
@@ -1722,6 +1811,8 @@ class _$ProjectSettingsScreenEventRouterChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
   }) {
     return routerChange?.call(this);
   }
@@ -1748,6 +1839,8 @@ class _$ProjectSettingsScreenEventRouterChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
     required TResult orElse(),
   }) {
     if (routerChange != null) {
@@ -1760,33 +1853,36 @@ class _$ProjectSettingsScreenEventRouterChange
 abstract class ProjectSettingsScreenEventRouterChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventRouterChange() =
-      _$ProjectSettingsScreenEventRouterChange;
+      _$ProjectSettingsScreenEventRouterChangeImpl;
 }
 
 /// @nodoc
-abstract class _$$ProjectSettingsScreenEventLocalizationChangeCopyWith<$Res> {
-  factory _$$ProjectSettingsScreenEventLocalizationChangeCopyWith(
-          _$ProjectSettingsScreenEventLocalizationChange value,
-          $Res Function(_$ProjectSettingsScreenEventLocalizationChange) then) =
-      __$$ProjectSettingsScreenEventLocalizationChangeCopyWithImpl<$Res>;
+abstract class _$$ProjectSettingsScreenEventLocalizationChangeImplCopyWith<
+    $Res> {
+  factory _$$ProjectSettingsScreenEventLocalizationChangeImplCopyWith(
+          _$ProjectSettingsScreenEventLocalizationChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventLocalizationChangeImpl)
+              then) =
+      __$$ProjectSettingsScreenEventLocalizationChangeImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProjectSettingsScreenEventLocalizationChangeCopyWithImpl<$Res>
+class __$$ProjectSettingsScreenEventLocalizationChangeImplCopyWithImpl<$Res>
     extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-        _$ProjectSettingsScreenEventLocalizationChange>
-    implements _$$ProjectSettingsScreenEventLocalizationChangeCopyWith<$Res> {
-  __$$ProjectSettingsScreenEventLocalizationChangeCopyWithImpl(
-      _$ProjectSettingsScreenEventLocalizationChange _value,
-      $Res Function(_$ProjectSettingsScreenEventLocalizationChange) _then)
+        _$ProjectSettingsScreenEventLocalizationChangeImpl>
+    implements
+        _$$ProjectSettingsScreenEventLocalizationChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventLocalizationChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventLocalizationChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventLocalizationChangeImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProjectSettingsScreenEventLocalizationChange
+class _$ProjectSettingsScreenEventLocalizationChangeImpl
     implements ProjectSettingsScreenEventLocalizationChange {
-  const _$ProjectSettingsScreenEventLocalizationChange();
+  const _$ProjectSettingsScreenEventLocalizationChangeImpl();
 
   @override
   String toString() {
@@ -1797,7 +1893,7 @@ class _$ProjectSettingsScreenEventLocalizationChange
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventLocalizationChange);
+            other is _$ProjectSettingsScreenEventLocalizationChangeImpl);
   }
 
   @override
@@ -1816,6 +1912,7 @@ class _$ProjectSettingsScreenEventLocalizationChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
   }) {
     return localizationChange();
   }
@@ -1833,6 +1930,7 @@ class _$ProjectSettingsScreenEventLocalizationChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
   }) {
     return localizationChange?.call();
   }
@@ -1850,6 +1948,7 @@ class _$ProjectSettingsScreenEventLocalizationChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
     required TResult orElse(),
   }) {
     if (localizationChange != null) {
@@ -1882,6 +1981,8 @@ class _$ProjectSettingsScreenEventLocalizationChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
   }) {
     return localizationChange(this);
   }
@@ -1908,6 +2009,8 @@ class _$ProjectSettingsScreenEventLocalizationChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
   }) {
     return localizationChange?.call(this);
   }
@@ -1934,6 +2037,8 @@ class _$ProjectSettingsScreenEventLocalizationChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
     required TResult orElse(),
   }) {
     if (localizationChange != null) {
@@ -1946,33 +2051,33 @@ class _$ProjectSettingsScreenEventLocalizationChange
 abstract class ProjectSettingsScreenEventLocalizationChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventLocalizationChange() =
-      _$ProjectSettingsScreenEventLocalizationChange;
+      _$ProjectSettingsScreenEventLocalizationChangeImpl;
 }
 
 /// @nodoc
-abstract class _$$ProjectSettingsScreenEventThemingChangeCopyWith<$Res> {
-  factory _$$ProjectSettingsScreenEventThemingChangeCopyWith(
-          _$ProjectSettingsScreenEventThemingChange value,
-          $Res Function(_$ProjectSettingsScreenEventThemingChange) then) =
-      __$$ProjectSettingsScreenEventThemingChangeCopyWithImpl<$Res>;
+abstract class _$$ProjectSettingsScreenEventThemingChangeImplCopyWith<$Res> {
+  factory _$$ProjectSettingsScreenEventThemingChangeImplCopyWith(
+          _$ProjectSettingsScreenEventThemingChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventThemingChangeImpl) then) =
+      __$$ProjectSettingsScreenEventThemingChangeImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProjectSettingsScreenEventThemingChangeCopyWithImpl<$Res>
+class __$$ProjectSettingsScreenEventThemingChangeImplCopyWithImpl<$Res>
     extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
-        _$ProjectSettingsScreenEventThemingChange>
-    implements _$$ProjectSettingsScreenEventThemingChangeCopyWith<$Res> {
-  __$$ProjectSettingsScreenEventThemingChangeCopyWithImpl(
-      _$ProjectSettingsScreenEventThemingChange _value,
-      $Res Function(_$ProjectSettingsScreenEventThemingChange) _then)
+        _$ProjectSettingsScreenEventThemingChangeImpl>
+    implements _$$ProjectSettingsScreenEventThemingChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventThemingChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventThemingChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventThemingChangeImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProjectSettingsScreenEventThemingChange
+class _$ProjectSettingsScreenEventThemingChangeImpl
     implements ProjectSettingsScreenEventThemingChange {
-  const _$ProjectSettingsScreenEventThemingChange();
+  const _$ProjectSettingsScreenEventThemingChangeImpl();
 
   @override
   String toString() {
@@ -1983,7 +2088,7 @@ class _$ProjectSettingsScreenEventThemingChange
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventThemingChange);
+            other is _$ProjectSettingsScreenEventThemingChangeImpl);
   }
 
   @override
@@ -2002,6 +2107,7 @@ class _$ProjectSettingsScreenEventThemingChange
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
   }) {
     return themingChange();
   }
@@ -2019,6 +2125,7 @@ class _$ProjectSettingsScreenEventThemingChange
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
   }) {
     return themingChange?.call();
   }
@@ -2036,6 +2143,7 @@ class _$ProjectSettingsScreenEventThemingChange
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
     required TResult orElse(),
   }) {
     if (themingChange != null) {
@@ -2068,6 +2176,8 @@ class _$ProjectSettingsScreenEventThemingChange
         localizationChange,
     required TResult Function(ProjectSettingsScreenEventThemingChange value)
         themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
   }) {
     return themingChange(this);
   }
@@ -2094,6 +2204,8 @@ class _$ProjectSettingsScreenEventThemingChange
         localizationChange,
     TResult? Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
   }) {
     return themingChange?.call(this);
   }
@@ -2120,6 +2232,8 @@ class _$ProjectSettingsScreenEventThemingChange
         localizationChange,
     TResult Function(ProjectSettingsScreenEventThemingChange value)?
         themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
     required TResult orElse(),
   }) {
     if (themingChange != null) {
@@ -2132,7 +2246,202 @@ class _$ProjectSettingsScreenEventThemingChange
 abstract class ProjectSettingsScreenEventThemingChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventThemingChange() =
-      _$ProjectSettingsScreenEventThemingChange;
+      _$ProjectSettingsScreenEventThemingChangeImpl;
+}
+
+/// @nodoc
+abstract class _$$ProjectSettingsScreenEventFirebaseChangeImplCopyWith<$Res> {
+  factory _$$ProjectSettingsScreenEventFirebaseChangeImplCopyWith(
+          _$ProjectSettingsScreenEventFirebaseChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventFirebaseChangeImpl) then) =
+      __$$ProjectSettingsScreenEventFirebaseChangeImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ProjectSettingsScreenEventFirebaseChangeImplCopyWithImpl<$Res>
+    extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
+        _$ProjectSettingsScreenEventFirebaseChangeImpl>
+    implements _$$ProjectSettingsScreenEventFirebaseChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventFirebaseChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventFirebaseChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventFirebaseChangeImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ProjectSettingsScreenEventFirebaseChangeImpl
+    implements ProjectSettingsScreenEventFirebaseChange {
+  const _$ProjectSettingsScreenEventFirebaseChangeImpl();
+
+  @override
+  String toString() {
+    return 'ProjectSettingsScreenEvent.firebaseChange()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectSettingsScreenEventFirebaseChangeImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function() flavorizeChange,
+    required TResult Function(String flavors) flavorsChange,
+    required TResult Function() generateSigningKeyChange,
+    required TResult Function(List<String> signingVars) signingVarsChange,
+    required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
+    required TResult Function() routerChange,
+    required TResult Function() localizationChange,
+    required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
+  }) {
+    return firebaseChange();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function()? flavorizeChange,
+    TResult? Function(String flavors)? flavorsChange,
+    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(List<String> signingVars)? signingVarsChange,
+    TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
+    TResult? Function()? routerChange,
+    TResult? Function()? localizationChange,
+    TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
+  }) {
+    return firebaseChange?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function()? flavorizeChange,
+    TResult Function(String flavors)? flavorsChange,
+    TResult Function()? generateSigningKeyChange,
+    TResult Function(List<String> signingVars)? signingVarsChange,
+    TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
+    TResult Function()? routerChange,
+    TResult Function()? localizationChange,
+    TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
+    required TResult orElse(),
+  }) {
+    if (firebaseChange != null) {
+      return firebaseChange();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectSettingsScreenEventInit value) init,
+    required TResult Function(ProjectSettingsScreenEventFlavorizeChange value)
+        flavorizeChange,
+    required TResult Function(ProjectSettingsScreenEventFlavorsChange value)
+        flavorsChange,
+    required TResult Function(
+            ProjectSettingsScreenEventGenerateSigningKeyChange value)
+        generateSigningKeyChange,
+    required TResult Function(ProjectSettingsScreenEventSigningVarsChange value)
+        signingVarsChange,
+    required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
+        useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
+    required TResult Function(ProjectSettingsScreenEventRouterChange value)
+        routerChange,
+    required TResult Function(
+            ProjectSettingsScreenEventLocalizationChange value)
+        localizationChange,
+    required TResult Function(ProjectSettingsScreenEventThemingChange value)
+        themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
+  }) {
+    return firebaseChange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectSettingsScreenEventInit value)? init,
+    TResult? Function(ProjectSettingsScreenEventFlavorizeChange value)?
+        flavorizeChange,
+    TResult? Function(ProjectSettingsScreenEventFlavorsChange value)?
+        flavorsChange,
+    TResult? Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+        generateSigningKeyChange,
+    TResult? Function(ProjectSettingsScreenEventSigningVarsChange value)?
+        signingVarsChange,
+    TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
+        useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventRouterChange value)?
+        routerChange,
+    TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
+        localizationChange,
+    TResult? Function(ProjectSettingsScreenEventThemingChange value)?
+        themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
+  }) {
+    return firebaseChange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectSettingsScreenEventInit value)? init,
+    TResult Function(ProjectSettingsScreenEventFlavorizeChange value)?
+        flavorizeChange,
+    TResult Function(ProjectSettingsScreenEventFlavorsChange value)?
+        flavorsChange,
+    TResult Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+        generateSigningKeyChange,
+    TResult Function(ProjectSettingsScreenEventSigningVarsChange value)?
+        signingVarsChange,
+    TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
+        useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
+    TResult Function(ProjectSettingsScreenEventRouterChange value)?
+        routerChange,
+    TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
+        localizationChange,
+    TResult Function(ProjectSettingsScreenEventThemingChange value)?
+        themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
+    required TResult orElse(),
+  }) {
+    if (firebaseChange != null) {
+      return firebaseChange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProjectSettingsScreenEventFirebaseChange
+    implements ProjectSettingsScreenEvent {
+  const factory ProjectSettingsScreenEventFirebaseChange() =
+      _$ProjectSettingsScreenEventFirebaseChangeImpl;
 }
 
 /// @nodoc
@@ -2184,32 +2493,32 @@ class _$ProjectSettingsScreenSRCopyWithImpl<$Res,
     implements $ProjectSettingsScreenSRCopyWith<$Res> {
   _$ProjectSettingsScreenSRCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
+// ignore: unused_field
   final $Val _value;
-  // ignore: unused_field
+// ignore: unused_field
   final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$$_LoadFinishedCopyWith<$Res> {
-  factory _$$_LoadFinishedCopyWith(
-          _$_LoadFinished value, $Res Function(_$_LoadFinished) then) =
-      __$$_LoadFinishedCopyWithImpl<$Res>;
+abstract class _$$LoadFinishedImplCopyWith<$Res> {
+  factory _$$LoadFinishedImplCopyWith(
+          _$LoadFinishedImpl value, $Res Function(_$LoadFinishedImpl) then) =
+      __$$LoadFinishedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadFinishedCopyWithImpl<$Res>
-    extends _$ProjectSettingsScreenSRCopyWithImpl<$Res, _$_LoadFinished>
-    implements _$$_LoadFinishedCopyWith<$Res> {
-  __$$_LoadFinishedCopyWithImpl(
-      _$_LoadFinished _value, $Res Function(_$_LoadFinished) _then)
+class __$$LoadFinishedImplCopyWithImpl<$Res>
+    extends _$ProjectSettingsScreenSRCopyWithImpl<$Res, _$LoadFinishedImpl>
+    implements _$$LoadFinishedImplCopyWith<$Res> {
+  __$$LoadFinishedImplCopyWithImpl(
+      _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_LoadFinished implements _LoadFinished {
-  const _$_LoadFinished();
+class _$LoadFinishedImpl implements _LoadFinished {
+  const _$LoadFinishedImpl();
 
   @override
   String toString() {
@@ -2219,7 +2528,7 @@ class _$_LoadFinished implements _LoadFinished {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoadFinished);
+        (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
 
   @override
@@ -2283,7 +2592,7 @@ class _$_LoadFinished implements _LoadFinished {
 }
 
 abstract class _LoadFinished implements ProjectSettingsScreenSR {
-  const factory _LoadFinished() = _$_LoadFinished;
+  const factory _LoadFinished() = _$LoadFinishedImpl;
 }
 
 /// @nodoc
@@ -2373,12 +2682,12 @@ class _$ProjectSettingsScreenStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ProjectSettingsScreenStateDataCopyWith<$Res>
+abstract class _$$ProjectSettingsScreenStateDataImplCopyWith<$Res>
     implements $ProjectSettingsScreenStateCopyWith<$Res> {
-  factory _$$ProjectSettingsScreenStateDataCopyWith(
-          _$ProjectSettingsScreenStateData value,
-          $Res Function(_$ProjectSettingsScreenStateData) then) =
-      __$$ProjectSettingsScreenStateDataCopyWithImpl<$Res>;
+  factory _$$ProjectSettingsScreenStateDataImplCopyWith(
+          _$ProjectSettingsScreenStateDataImpl value,
+          $Res Function(_$ProjectSettingsScreenStateDataImpl) then) =
+      __$$ProjectSettingsScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Config config});
@@ -2388,13 +2697,13 @@ abstract class _$$ProjectSettingsScreenStateDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ProjectSettingsScreenStateDataCopyWithImpl<$Res>
+class __$$ProjectSettingsScreenStateDataImplCopyWithImpl<$Res>
     extends _$ProjectSettingsScreenStateCopyWithImpl<$Res,
-        _$ProjectSettingsScreenStateData>
-    implements _$$ProjectSettingsScreenStateDataCopyWith<$Res> {
-  __$$ProjectSettingsScreenStateDataCopyWithImpl(
-      _$ProjectSettingsScreenStateData _value,
-      $Res Function(_$ProjectSettingsScreenStateData) _then)
+        _$ProjectSettingsScreenStateDataImpl>
+    implements _$$ProjectSettingsScreenStateDataImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenStateDataImplCopyWithImpl(
+      _$ProjectSettingsScreenStateDataImpl _value,
+      $Res Function(_$ProjectSettingsScreenStateDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2402,7 +2711,7 @@ class __$$ProjectSettingsScreenStateDataCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$ProjectSettingsScreenStateData(
+    return _then(_$ProjectSettingsScreenStateDataImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
@@ -2413,9 +2722,9 @@ class __$$ProjectSettingsScreenStateDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProjectSettingsScreenStateData
+class _$ProjectSettingsScreenStateDataImpl
     implements ProjectSettingsScreenStateData {
-  const _$ProjectSettingsScreenStateData({required this.config});
+  const _$ProjectSettingsScreenStateDataImpl({required this.config});
 
   @override
   final Config config;
@@ -2429,7 +2738,7 @@ class _$ProjectSettingsScreenStateData
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenStateData &&
+            other is _$ProjectSettingsScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config));
   }
 
@@ -2439,9 +2748,10 @@ class _$ProjectSettingsScreenStateData
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProjectSettingsScreenStateDataCopyWith<_$ProjectSettingsScreenStateData>
-      get copyWith => __$$ProjectSettingsScreenStateDataCopyWithImpl<
-          _$ProjectSettingsScreenStateData>(this, _$identity);
+  _$$ProjectSettingsScreenStateDataImplCopyWith<
+          _$ProjectSettingsScreenStateDataImpl>
+      get copyWith => __$$ProjectSettingsScreenStateDataImplCopyWithImpl<
+          _$ProjectSettingsScreenStateDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2503,12 +2813,13 @@ class _$ProjectSettingsScreenStateData
 abstract class ProjectSettingsScreenStateData
     implements ProjectSettingsScreenState {
   const factory ProjectSettingsScreenStateData({required final Config config}) =
-      _$ProjectSettingsScreenStateData;
+      _$ProjectSettingsScreenStateDataImpl;
 
   @override
   Config get config;
   @override
   @JsonKey(ignore: true)
-  _$$ProjectSettingsScreenStateDataCopyWith<_$ProjectSettingsScreenStateData>
+  _$$ProjectSettingsScreenStateDataImplCopyWith<
+          _$ProjectSettingsScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

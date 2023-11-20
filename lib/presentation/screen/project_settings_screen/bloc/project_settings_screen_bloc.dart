@@ -21,6 +21,7 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     on<ProjectSettingsScreenEventRouterChange>(_onRouterChange);
     on<ProjectSettingsScreenEventLocalizationChange>(_onLocalizationChange);
     on<ProjectSettingsScreenEventThemingChange>(_onThemingChange);
+    on<ProjectSettingsScreenEventFirebaseChange>(_onFirebaseChange);
   }
 
   FutureOr<void> _onInit(
@@ -111,5 +112,14 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
             theming: state.config.theming == ProjectTheming.themeTailor
                 ? ProjectTheming.manual
                 : ProjectTheming.themeTailor)));
+  }
+
+  FutureOr<void> _onFirebaseChange(
+    ProjectSettingsScreenEventFirebaseChange event,
+    Emitter<ProjectSettingsScreenState> emit,
+  ) {
+    emit(state.copyWith(
+        config:
+            state.config.copyWith(firebaseAuth: !state.config.firebaseAuth)));
   }
 }
