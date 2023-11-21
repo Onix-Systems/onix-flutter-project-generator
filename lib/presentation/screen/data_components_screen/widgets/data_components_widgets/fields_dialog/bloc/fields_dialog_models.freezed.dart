@@ -87,7 +87,7 @@ class _$FieldsDialogEventCopyWithImpl<$Res, $Val extends FieldsDialogEvent>
     implements $FieldsDialogEventCopyWith<$Res> {
   _$FieldsDialogEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
 // ignore: unused_field
   final $Res Function($Val) _then;
@@ -141,7 +141,7 @@ class _$FieldsDialogEventInitImpl implements FieldsDialogEventInit {
   @override
   List<Property> get properties {
     if (_properties is EqualUnmodifiableListView) return _properties;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_properties);
   }
 

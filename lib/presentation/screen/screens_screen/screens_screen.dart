@@ -10,6 +10,7 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/add_screen_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/figma_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
@@ -131,6 +132,16 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                       );
                     }
                   }),
+                ),
+                const Delimiter.width(10),
+                AppFilledButton(
+                  label: S.of(context).getStylesFromFigma,
+                  icon: Icons.download,
+                  onPressed: () => showCupertinoModalPopup(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (context) => const FigmaDialog(),
+                  ),
                 ),
                 const Delimiter.width(10),
                 AppFilledButton(

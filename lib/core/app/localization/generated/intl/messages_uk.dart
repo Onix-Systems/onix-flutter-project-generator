@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(sourceName) => "${sourceName}Source вже існує";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Дії"),
         "addComponent":
@@ -91,6 +92,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Помілка"),
         "exitLabel": MessageLookupByLibrary.simpleMessage("Вийти"),
         "fields": MessageLookupByLibrary.simpleMessage("Поля"),
+        "figmaFileKey":
+            MessageLookupByLibrary.simpleMessage("Ключ файлу Figma"),
+        "figmaToken": MessageLookupByLibrary.simpleMessage("Токен Figma"),
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" Ім\'я та прізвище"),
         "flavorize":
@@ -109,6 +113,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Згенерувати конфіг Sonar?"),
         "getFromSwagger":
             MessageLookupByLibrary.simpleMessage("Отримати з свагера"),
+        "getStylesFromFigma":
+            MessageLookupByLibrary.simpleMessage("Отримати стилі з Figma"),
         "gitPermissionsContent": MessageLookupByLibrary.simpleMessage(
             "Помилка доступу до Git! Перевірте, чи встановлений git та чи маєте ви права доступу до репозиторія або спробуйте додати ключ від git в Ключар."),
         "gitPermissionsTitle":

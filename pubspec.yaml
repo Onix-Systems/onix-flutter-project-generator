@@ -51,6 +51,7 @@ dependencies:
   intl_utils: ^2.8.5
   dropdown_button2: ^2.3.9
   searchfield: ^0.8.7
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:

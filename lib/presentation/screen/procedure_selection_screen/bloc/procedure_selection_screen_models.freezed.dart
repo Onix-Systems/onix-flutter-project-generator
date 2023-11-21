@@ -94,7 +94,7 @@ class _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
