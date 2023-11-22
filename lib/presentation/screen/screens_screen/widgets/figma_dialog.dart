@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/domain/entity/app_styles/app_style.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/figma_styles_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
@@ -107,17 +109,20 @@ class _FigmaDialogState extends State<FigmaDialog> {
   Future<void> _onOk(BuildContext context) async {
     if (_figmaFileController.text.isNotEmpty &&
         _figmaTokenController.text.isNotEmpty) {
-      Navigator.pop(context);
-      showCupertinoModalPopup(
+      showCupertinoModalPopup<List<AppStyle>>(
         context: context,
         barrierDismissible: false,
         builder: (context) => FigmaStylesDialog(
           figmaFile: _figmaFileController.text,
           figmaToken: _figmaTokenController.text,
         ),
-      );
+      ).then((styles) {
+        if (styles != null && styles.isNotEmpty) {
+          context.pop(styles);
+        }
+      });
     } else {
-      Navigator.pop(context);
+      context.pop(<AppStyle>[]);
     }
   }
 }

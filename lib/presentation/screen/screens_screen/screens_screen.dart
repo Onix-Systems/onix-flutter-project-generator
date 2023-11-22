@@ -5,7 +5,9 @@ import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bricks/domain/entity/app_styles/app_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc_imports.dart';
@@ -137,11 +139,18 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                 AppFilledButton(
                   label: S.of(context).getStylesFromFigma,
                   icon: Icons.download,
-                  onPressed: () => showCupertinoModalPopup(
+                  onPressed: () => showCupertinoModalPopup<List<AppStyle>>(
                     context: context,
                     barrierDismissible: false,
                     builder: (context) => const FigmaDialog(),
-                  ),
+                  ).then((styles) {
+                    if (styles != null && styles.isNotEmpty) {
+                      logger.f(styles);
+                      // blocOf(context).add(
+                      //   ScreensScreenEventOnFigmaStylesGet(styles: styles),
+                      // );
+                    }
+                  }),
                 ),
                 const Delimiter.width(10),
                 AppFilledButton(
