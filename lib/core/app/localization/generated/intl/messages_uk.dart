@@ -37,7 +37,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(sourceName) => "${sourceName}Source вже існує";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Дії"),
         "addComponent":

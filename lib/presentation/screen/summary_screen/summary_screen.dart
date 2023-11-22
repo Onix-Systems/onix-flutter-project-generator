@@ -9,6 +9,7 @@ import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summary_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_cell.dart';
+import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_styles_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
 import 'package:recase/recase.dart';
@@ -165,6 +166,11 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                               .sorted((a, b) => a.name.compareTo(b.name))
                               .map((e) => e.name.pascalCase)
                               .join(', ')),
+                    if (state.config.styles.isNotEmpty)
+                      SummaryStylesCell(
+                        variable: 'Styles',
+                        value: state.config.styles,
+                      ),
                   ],
                 ),
               ),

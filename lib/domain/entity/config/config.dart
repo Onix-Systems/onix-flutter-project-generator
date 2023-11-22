@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
+import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
@@ -41,6 +42,10 @@ class Config with _$Config {
     ])
     List<String> signingVars,
     @Default({}) Set<Screen> screens,
+    // ignore: invalid_annotation_target
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    @Default([])
+    List<AppStyle> styles,
     @Default('') String swaggerUrl,
     @Default({}) Set<DataComponent> dataComponents,
     @Default({}) Set<Source> sources,

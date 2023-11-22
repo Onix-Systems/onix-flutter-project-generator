@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 
 part 'modify_project_screen_models.freezed.dart';
@@ -8,6 +9,10 @@ class ModifyProjectScreenEvent with _$ModifyProjectScreenEvent {
   const factory ModifyProjectScreenEvent.init({
     required Config config,
   }) = ModifyProjectScreenEventInit;
+
+  const factory ModifyProjectScreenEvent.getStyles({
+    required List<AppStyle> styles,
+  }) = ModifyProjectScreenEventOnGetStyles;
 
   const factory ModifyProjectScreenEvent.changeTab({
     required int index,

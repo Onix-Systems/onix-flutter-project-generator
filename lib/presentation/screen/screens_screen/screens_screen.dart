@@ -5,9 +5,8 @@ import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
-import 'package:onix_flutter_bricks/domain/entity/app_styles/app_style.dart';
+import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc_imports.dart';
@@ -20,7 +19,7 @@ import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 
 class ScreensScreen extends StatefulWidget {
   final Config config;
-  final VoidCallback? onContinue;
+  final ValueChanged<List<AppStyle>>? onContinue;
 
   const ScreensScreen({
     required this.config,
@@ -145,10 +144,9 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                     builder: (context) => const FigmaDialog(),
                   ).then((styles) {
                     if (styles != null && styles.isNotEmpty) {
-                      logger.f(styles);
-                      // blocOf(context).add(
-                      //   ScreensScreenEventOnFigmaStylesGet(styles: styles),
-                      // );
+                      blocOf(context).add(
+                        ScreensScreenEventOnGetStyles(styles: styles),
+                      );
                     }
                   }),
                 ),
@@ -178,16 +176,20 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
             ))
         : context.go(
             AppRouter.projectSettingsScreen,
-            extra: widget.config,
+            extra: widget.config.copyWith(
+              styles: state.config.styles,
+            ),
           );
   }
 
   void _onContinue(BuildContext context, ScreensScreenState state) {
     widget.config.projectExists
-        ? widget.onContinue?.call()
+        ? widget.onContinue?.call(state.config.styles)
         : context.go(
             AppRouter.swaggerParserScreen,
-            extra: widget.config,
+            extra: widget.config.copyWith(
+              styles: state.config.styles,
+            ),
           );
   }
 }

@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/domain/entity/app_styles/app_style.dart';
+import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
+import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
+import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/figma_styles_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class FigmaDialog extends StatefulWidget {
@@ -97,7 +101,7 @@ class _FigmaDialogState extends State<FigmaDialog> {
           CupertinoDialogAction(
             isDefaultAction: true,
             onPressed: () {
-              Navigator.pop(context);
+              context.pop();
             },
             child: Text(S.of(context).cancel),
           ),
@@ -117,12 +121,39 @@ class _FigmaDialogState extends State<FigmaDialog> {
           figmaToken: _figmaTokenController.text,
         ),
       ).then((styles) {
-        if (styles != null && styles.isNotEmpty) {
-          context.pop(styles);
+        if (styles != null) {
+          final colorStyles = styles.whereType<AppColorStyle>().toList();
+          final textStyles = styles.whereType<AppTextStyle>().toList();
+          if (textStyles.isEmpty && colorStyles.isEmpty) {
+            _showToast('Styles not found');
+          } else if (colorStyles.isEmpty &&
+              textStyles.first.fontFamily == 'Error') {
+            _showToast(
+                'Error loading styles: check internet connection, figma file id and token');
+          } else {
+            context.pop(styles);
+          }
         }
       });
     } else {
-      context.pop(<AppStyle>[]);
+      context.pop();
     }
+  }
+
+  void _showToast(String message) {
+    showToast(
+      message,
+      context: context,
+      animation: StyledToastAnimation.scale,
+      reverseAnimation: StyledToastAnimation.scale,
+      position: StyledToastPosition.center,
+      animDuration: const Duration(milliseconds: 500),
+      duration: const Duration(seconds: 3),
+      curve: Curves.elasticOut,
+      reverseCurve: Curves.elasticIn,
+      textStyle: context.appTextStyles.fs18?.copyWith(
+        color: AppColors.red,
+      ),
+    );
   }
 }

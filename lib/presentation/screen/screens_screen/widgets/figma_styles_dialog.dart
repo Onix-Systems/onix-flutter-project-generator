@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/di/services.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
-import 'package:onix_flutter_bricks/domain/entity/app_styles/app_style.dart';
+import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_action_button.dart';
@@ -44,8 +43,15 @@ class _FigmaStylesDialogState extends State<FigmaStylesDialog> {
 
             if (data != null) {
               _styles.addAll(data);
-              final colors = data.whereType<AppColorStyle>().toList();
+              final colorStyles = data.whereType<AppColorStyle>().toList();
               final textStyles = data.whereType<AppTextStyle>().toList();
+
+              if (colorStyles.isEmpty &&
+                  (textStyles.isEmpty ||
+                      textStyles.first.fontFamily == 'Error')) {
+                context.pop(textStyles);
+                return const SizedBox();
+              }
 
               return Container(
                 width: MediaQuery.sizeOf(context).width * 0.7,
@@ -80,29 +86,30 @@ class _FigmaStylesDialogState extends State<FigmaStylesDialog> {
                                   runAlignment: WrapAlignment.center,
                                   crossAxisAlignment: WrapCrossAlignment.center,
                                   children: List.generate(
-                                    colors.length,
+                                    colorStyles.length,
                                     (index) => Container(
                                       width: 100,
                                       height: 100,
                                       padding: const EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
-                                        color: colors[index]
+                                        color: colorStyles[index]
                                             .color
-                                            .withOpacity(colors[index].opacity),
+                                            .withOpacity(
+                                                colorStyles[index].opacity),
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
-                                        colors[index]
+                                        colorStyles[index]
                                             .name
                                             .sentenceCase
                                             .toLowerCase(),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Color.fromRGBO(
-                                              255 - colors[index].r,
-                                              255 - colors[index].g,
-                                              255 - colors[index].b,
+                                              255 - colorStyles[index].r,
+                                              255 - colorStyles[index].g,
+                                              255 - colorStyles[index].b,
                                               1),
                                         ),
                                       ),
@@ -161,8 +168,7 @@ class _FigmaStylesDialogState extends State<FigmaStylesDialog> {
                           child: AppActionButton(
                             label: S.of(context).cancel,
                             onPressed: () {
-                              _styles.clear();
-                              context.pop(_styles);
+                              context.pop();
                             },
                           ),
                         ),
