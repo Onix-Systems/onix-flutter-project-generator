@@ -149,6 +149,9 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       }
     }
 
+    // final fileId = 'MwioXPxFIWEn0bR3EaqZt0';
+    // final token = 'figd__Z9kvUeOaFA-fmOdeq3zARQlHrJgy3240Qdjbj0_';
+
     await ColorsGenerator().call(
       projectName: state.config.projectName,
       projectPath: state.config.projectPath,
