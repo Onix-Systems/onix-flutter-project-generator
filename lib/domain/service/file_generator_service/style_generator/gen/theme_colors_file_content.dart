@@ -11,25 +11,25 @@ import 'package:$projectName/presentation/style/app_colors.dart';
 
 class ThemeColors extends ThemeExtension<ThemeColors> {
   static const light = ThemeColors(
-    ${colorNames.map((e) => '$e: AppColors.${colors.firstWhere((element) => element.name == e || element.name == '${e}Light')},').join('\n    ')}
+    ${colorNames.map((e) => '${e}Color: AppColors.${colors.firstWhere((element) => element.name == e || element.name == '${e}Light').name},').join('\n    ')}
   );
 
   static const dark = ThemeColors(
-    ${colorNames.map((e) => '$e: AppColors.${colors.firstWhere((element) => element.name == e || element.name == '${e}Dark')},').join('\n    ')}
+    ${colorNames.map((e) => '${e}Color: AppColors.${colors.firstWhere((element) => element.name == e || element.name == '${e}Dark').name},').join('\n    ')}
   );
 
-  ${colors.map((e) => 'final Color ${e.name};').join('\n  ')}
+  ${colorNames.map((e) => 'final Color ${e}Color;').join('\n  ')}
 
   const ThemeColors({
-    ${colorNames.map((e) => 'required this.$e,').join('\n    ')}
+    ${colorNames.map((e) => 'required this.${e}Color,').join('\n    ')}
   });
 
   @override
   ThemeExtension<ThemeColors> copyWith({
-    ${colorNames.map((e) => 'Color? $e,').join('\n    ')}
+    ${colorNames.map((e) => 'Color? ${e}Color,').join('\n    ')}
   }) {
     return ThemeColors(
-      ${colorNames.map((e) => '$e: $e ?? this.$e,').join('\n      ')}
+      ${colorNames.map((e) => '${e}Color: ${e}Color ?? this.${e}Color,').join('\n      ')}
     );
   }
 
@@ -42,7 +42,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       return this;
     }
     return ThemeColors(
-      ${colorNames.map((e) => '$e: Color.lerp($e, other.$e, t) ?? $e,').join('\n      ')}
+      ${colorNames.map((e) => '${e}Color: Color.lerp(${e}Color, other.${e}Color, t) ?? ${e}Color,').join('\n      ')}
     );
   }
 }

@@ -21,13 +21,14 @@ class FigmaService {
       if (fileResponse.statusCode != 200) {
         throw Exception('Error getting styles');
       }
-      final styles =
-          (jsonDecode(fileResponse.body) as Map<String, dynamic>)['styles'];
-      if (styles != null) {
+      final styles = (jsonDecode(fileResponse.body)
+          as Map<String, dynamic>)['styles'] as Map<String, dynamic>;
+      if (styles.isNotEmpty) {
         final keys = styles.keys
+            .toList()
             .toString()
-            .replaceAll('(', '')
-            .replaceAll(')', '')
+            .replaceAll('[', '')
+            .replaceAll(']', '')
             .replaceAll(' ', '');
         final styleResponse = await http.get(
             Uri.parse(
