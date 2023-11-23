@@ -47,13 +47,13 @@ class AppTextField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(10),
           borderSide: BorderSide(
-            color: context.appColors.borderEnabledColor,
+            color: context.appColors.textColor,
           ),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(10),
           borderSide: BorderSide(
-            color: context.appColors.borderEnabledColor.withOpacity(0.2),
+            color: context.appColors.textColor.withOpacity(0.2),
           ),
         ),
         focusedBorder: OutlineInputBorder(

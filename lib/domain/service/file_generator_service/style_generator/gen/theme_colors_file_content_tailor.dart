@@ -14,7 +14,7 @@ part 'theme_colors.tailor.dart';
 
 @Tailor(themeGetter: ThemeGetter.onBuildContext)
 class _\$ThemeColors {
-  ${tailorColors.map((e) => 'static List<Color> ${e.name} = [${e.colorNames.map((e) => 'AppColors.$e').join(',')},];').join('\n  ')}
+  ${tailorColors.map((e) => 'static List<Color> ${e.name}Color = [${e.colorNames.map((e) => 'AppColors.$e').join(',')},];').join('\n  ')}
 }
     ''';
   }
