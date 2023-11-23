@@ -7,12 +7,12 @@ part 'theme_colors.tailor.dart';
 @Tailor(themeGetter: ThemeGetter.onBuildContext)
 class _$ThemeColors {
   static List<Color> backgroundColor = [
-    AppColors.bgLight,
-    AppColors.bgDark,
+    AppColors.scaffoldBackgroundLight,
+    AppColors.scaffoldBackgroundDark,
   ];
   static List<Color> buttonColor = [
-    AppColors.greenLight,
-    AppColors.greenDark,
+    AppColors.buttonLight,
+    AppColors.buttonDark,
   ];
   static List<Color> buttonDisabledColor = [
     AppColors.buttonDisabledLight,
@@ -25,15 +25,15 @@ class _$ThemeColors {
 }{{/theme_generate}}
 {{^theme_generate}}class ThemeColors extends ThemeExtension<ThemeColors> {
   static const light = ThemeColors(
-    backgroundColor: AppColors.bgLight,
-    buttonColor: AppColors.greenLight,
+    backgroundColor: AppColors.scaffoldBackgroundLight,
+    buttonColor: AppColors.buttonLight,
     buttonDisabledColor: AppColors.buttonDisabledLight,
     borderEnabledColor: AppColors.textLight,
   );
 
   static const dark = ThemeColors(
-    backgroundColor: AppColors.bgDark,
-    buttonColor: AppColors.greenDark,
+    backgroundColor: AppColors.scaffoldBackgroundDark,
+    buttonColor: AppColors.buttonDark,
     buttonDisabledColor: AppColors.buttonDisabledDark,
     borderEnabledColor: AppColors.textDark,
   );

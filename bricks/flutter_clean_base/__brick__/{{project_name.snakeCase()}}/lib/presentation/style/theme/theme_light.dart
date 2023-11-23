@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 ThemeData createLightTheme() {
   return ThemeData(
     brightness: Brightness.light,
-    scaffoldBackgroundColor: AppColors.bgLight,
+    scaffoldBackgroundColor: AppColors.scaffoldBackgroundLight,
     extensions: [
       ThemeColors.light,
       ThemeTextStyles.light,
     ],
-    dialogTheme: const DialogTheme(backgroundColor: AppColors.bgLight),
+    dialogTheme:
+        const DialogTheme(backgroundColor: AppColors.scaffoldBackgroundLight),
   );
 }

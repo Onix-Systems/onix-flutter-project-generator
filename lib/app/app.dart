@@ -23,8 +23,7 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
     AppRouter.init();
     return GlobalLoaderOverlay(
       useDefaultLoading: true,
-      overlayColor: Colors.black,
-      overlayOpacity: 0.5,
+      overlayColor: Colors.black.withOpacity(0.5),
       child: blocConsumer(
         stateListener: (state) {
           return MaterialApp.router(
