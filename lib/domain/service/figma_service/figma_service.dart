@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
@@ -51,14 +52,16 @@ class FigmaService {
                 name: styles[key]['name'].toString().camelCase));
           } else {
             final fill = node['document']['fills'][0];
-            final color = (AppColorStyle(
+            final color = AppColorStyle(
                 id: key.toString(),
-                alpha: ((fill['color']['a'] * 255) as double).toInt(),
-                r: ((fill['color']['r'] * 255) as double).toInt(),
-                g: ((fill['color']['g'] * 255) as double).toInt(),
-                b: ((fill['color']['b'] * 255) as double).toInt(),
-                opacity: fill['opacity'] ?? 1,
-                name: styles[key]['name'].toString().camelCase));
+                name: styles[key]['name'].toString().camelCase,
+                color: Color.fromARGB(
+                  ((fill['color']['a'] * 255) as double).toInt(),
+                  ((fill['color']['r'] * 255) as double).toInt(),
+                  ((fill['color']['g'] * 255) as double).toInt(),
+                  ((fill['color']['b'] * 255) as double).toInt(),
+                ));
+
             figmaStyles.add(color);
           }
         }

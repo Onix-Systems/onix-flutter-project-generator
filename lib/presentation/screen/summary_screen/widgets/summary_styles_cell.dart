@@ -57,7 +57,7 @@ class SummaryStylesCell extends StatelessWidget {
                           (e) => Container(
                             width: 50,
                             height: 50,
-                            color: e.color.withOpacity(e.opacity),
+                            color: e.color,
                             alignment: Alignment.center,
                           ),
                         )

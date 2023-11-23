@@ -93,10 +93,7 @@ class _FigmaStylesDialogState extends State<FigmaStylesDialog> {
                                       padding: const EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
-                                        color: colorStyles[index]
-                                            .color
-                                            .withOpacity(
-                                                colorStyles[index].opacity),
+                                        color: colorStyles[index].color,
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
@@ -106,11 +103,7 @@ class _FigmaStylesDialogState extends State<FigmaStylesDialog> {
                                             .toLowerCase(),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          color: Color.fromRGBO(
-                                              255 - colorStyles[index].r,
-                                              255 - colorStyles[index].g,
-                                              255 - colorStyles[index].b,
-                                              1),
+                                          color: colorStyles[index].color,
                                         ),
                                       ),
                                     ),
