@@ -30,6 +30,8 @@ class _\$ThemeColors {
       names.add(name);
     }
 
+    names.sort((a, b) => a.compareTo(b));
+
     final tailorColors = <_TailorColor>[];
 
     for (final name in names) {

@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
 
 import 'default_colors.dart';
+import 'gen/theme_colors_file_content.dart';
 
 class ThemeColorsGenerator {
   Future<void> call({
@@ -23,6 +24,11 @@ class ThemeColorsGenerator {
 
     if (theming == ProjectTheming.themeTailor) {
       await appColorsFile.writeAsString(ThemeColorsFileContentTailor.generate(
+        colors: allColors,
+        projectName: projectName,
+      ));
+    } else {
+      await appColorsFile.writeAsString(ThemeColorsFileContent.generate(
         colors: allColors,
         projectName: projectName,
       ));
