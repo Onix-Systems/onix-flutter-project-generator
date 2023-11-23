@@ -8,8 +8,10 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/services.dart';
+import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/colors_generator.dart';
 
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/process_starter.dart';
@@ -146,6 +148,13 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         );
       }
     }
+
+    await ColorsGenerator().call(
+      projectName: state.config.projectName,
+      projectPath: state.config.projectPath,
+      colors: state.config.styles.whereType<AppColorStyle>().toList(),
+      theming: state.config.theming,
+    );
 
     await _generateScreens();
 
