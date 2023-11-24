@@ -189,10 +189,10 @@ packages:
     dependency: "direct main"
     description:
       name: connectivity_plus
-      sha256: b502a681ba415272ecc41400bd04fe543ed1a62632137dc84d25a91e7746f55f
+      sha256: "224a77051d52a11fbad53dd57827594d3bd24f945af28bd70bab376d68d437f0"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.1"
+    version: "5.0.2"
   connectivity_plus_platform_interface:
     dependency: transitive
     description:
@@ -253,10 +253,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "417e2a6f9d83ab396ec38ff4ea5da6c254da71e4db765ad737a42af6930140b7"
+      sha256: "01870acd87986f768e0c09cc4d7a19a59d814af7b34cbeb0b437d2c33bdfea4c"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.3"
+    version: "5.3.4"
   dio_cache_interceptor:
     dependency: "direct main"
     description:
@@ -459,6 +459,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  flutter_styled_toast:
+    dependency: "direct main"
+    description:
+      name: flutter_styled_toast
+      sha256: e667f13a665820eb0fa8506547e47eacbcddf1948d6d3036cfd3b089bd4b0516
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -533,6 +541,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "12.1.1"
+  google_fonts:
+    dependency: "direct main"
+    description:
+      name: google_fonts
+      sha256: f0b8d115a13ecf827013ec9fc883390ccc0e87a96ed5347a3114cac177ef18e8
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.0"
   graphs:
     dependency: transitive
     description:
@@ -649,10 +665,10 @@ packages:
     dependency: "direct main"
     description:
       name: loader_overlay
-      sha256: "74fab08c4f2f686e2cc32887cbc76a90d685afd2ffb79526221fc9e7cf027320"
+      sha256: "2b43430880a22133c9d18f65b96c166afa37b605bbe35efcb4f65073ae5aab97"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
+    version: "3.0.0"
   logger:
     dependency: "direct main"
     description:
@@ -921,10 +937,10 @@ packages:
     dependency: "direct main"
     description:
       name: searchfield
-      sha256: "99a2089edf5495d5cf042827cb716dc690b0de317d3164929d01eb36af09cf97"
+      sha256: "86fc0520f57a8ae7b3820af2d7c451357c7f2203dfee1a1a76bb90cc71c71cab"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.7"
+    version: "0.8.8"
   shared_preferences:
     dependency: "direct main"
     description:

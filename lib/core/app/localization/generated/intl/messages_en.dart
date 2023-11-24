@@ -89,6 +89,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "exitLabel": MessageLookupByLibrary.simpleMessage("Exit"),
         "fields": MessageLookupByLibrary.simpleMessage("Fields"),
+        "figmaFileKey": MessageLookupByLibrary.simpleMessage("Figma file key"),
+        "figmaToken": MessageLookupByLibrary.simpleMessage("Figma token"),
         "firebaseAuth": MessageLookupByLibrary.simpleMessage(
             "Integrate Firebase with FirebaseAuth?"),
         "firstLastName":
@@ -108,6 +110,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Generate Sonar config?"),
         "getFromSwagger":
             MessageLookupByLibrary.simpleMessage("Get from swagger"),
+        "getStylesFromFigma":
+            MessageLookupByLibrary.simpleMessage("Get styles from Figma"),
         "gitPermissionsContent": MessageLookupByLibrary.simpleMessage(
             "Git permissions error! Check is git installed and you have permissions to use it or try to add git key to apple keychain."),
         "gitPermissionsTitle":

@@ -108,5 +108,8 @@
   "deleteComponentConfirmation": "Дійсно хочете видалити компонент {componentName}?",
   "sourceExistsError": "{sourceName}Source вже існує",
   "dataComponentExistsError": "Компонент {componentName} вже існує",
-  "dataComponentExistsInSource": " в джерелі {sourceName}"
+  "dataComponentExistsInSource": " в джерелі {sourceName}",
+  "getStylesFromFigma": "Отримати стилі з Figma",
+  "figmaFileKey": "Ключ файлу Figma",
+  "figmaToken": "Токен Figma"
 }

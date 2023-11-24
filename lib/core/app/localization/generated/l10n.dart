@@ -1159,6 +1159,36 @@ class S {
       args: [sourceName],
     );
   }
+
+  /// `Get styles from Figma`
+  String get getStylesFromFigma {
+    return Intl.message(
+      'Get styles from Figma',
+      name: 'getStylesFromFigma',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Figma file key`
+  String get figmaFileKey {
+    return Intl.message(
+      'Figma file key',
+      name: 'figmaFileKey',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Figma token`
+  String get figmaToken {
+    return Intl.message(
+      'Figma token',
+      name: 'figmaToken',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

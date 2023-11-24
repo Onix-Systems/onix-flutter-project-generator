@@ -10,4 +10,6 @@ class AppConsts {
 
   static const String sshPermissionsTutorialUri =
       'https://apple.stackexchange.com/questions/48502/how-can-i-permanently-add-my-ssh-private-key-to-keychain-so-it-is-automatically/250572#250572';
+
+  static const String figmaBaseUrl = 'https://api.figma.com/v1';
 }

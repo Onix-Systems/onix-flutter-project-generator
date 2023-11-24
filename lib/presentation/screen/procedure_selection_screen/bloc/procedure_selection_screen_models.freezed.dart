@@ -94,7 +94,7 @@ class _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -841,9 +841,9 @@ class _$ProcedureSelectionScreenSRCopyWithImpl<$Res,
     implements $ProcedureSelectionScreenSRCopyWith<$Res> {
   _$ProcedureSelectionScreenSRCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
