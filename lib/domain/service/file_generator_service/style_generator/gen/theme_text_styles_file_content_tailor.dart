@@ -24,13 +24,13 @@ class _\$ThemeTextStyles {
     ${e.fontFamily.isEmpty ? '' : 'fontFamily: \'${e.fontFamily}\','}
     fontSize: ${e.fontSize}${useScreenUtil ? '.sp' : ''},
     fontWeight: FontWeight.w${e.fontWeight},
-    ${_getColor(colors, e.name)}Light,
+    ${_getColor(colors, '${e.name}Light')},
     ),
     ${!useScreenUtil ? 'const' : ''} TextStyle(
     ${e.fontFamily.isEmpty ? '' : 'fontFamily: \'${e.fontFamily}\','}
     fontSize: ${e.fontSize}${useScreenUtil ? '.sp' : ''},
     fontWeight: FontWeight.w${e.fontWeight},
-    ${_getColor(colors, e.name)}Dark,
+    ${_getColor(colors, '${e.name}Dark')},
     ),
   ];''').join('\n\n')}
 }''';
