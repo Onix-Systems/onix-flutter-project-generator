@@ -1,8 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
-import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
 
 class DefaultTextStyles {
@@ -55,6 +53,7 @@ class DefaultTextStyles {
             final value = part.split(':')[1].trim();
             styleMap[key] = value;
           }
+
           existingTextStyles.add(
             AppTextStyle(
               id: '',
@@ -86,7 +85,7 @@ class DefaultTextStyles {
       fontSize: 18,
       fontWeight: 600,
       letterSpacing: 0,
-      color: '',
+      color: 'AppColors.textColor',
     ),
     AppTextStyle(
       id: '',
@@ -95,7 +94,7 @@ class DefaultTextStyles {
       fontSize: 18,
       fontWeight: 600,
       letterSpacing: 0,
-      color: '',
+      color: 'AppColors.buttonColor',
     ),
   ];
 }

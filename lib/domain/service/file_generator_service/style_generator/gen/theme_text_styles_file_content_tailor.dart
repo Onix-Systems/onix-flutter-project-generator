@@ -16,31 +16,18 @@ part 'theme_text_styles.tailor.dart';
 
 @Tailor(themeGetter: ThemeGetter.onBuildContext)
 class _\$ThemeTextStyles {
-  static List<TextStyle> text = [
-    TextStyle(
-    fontSize: 18${useScreenUtil ? '.sp' : ''},
-    fontWeight: FontWeight.w600,
-    color: AppColors.textLight,
+  ${textStyles.map((e) => '''static List<TextStyle> ${e.name} = [
+  TextStyle(
+    fontSize: ${e.fontSize}${useScreenUtil ? '.sp' : ''},
+    fontWeight: FontWeight.w${e.fontWeight},
+    color: AppColors.${e.name}Light,
     ),
     TextStyle(
-    fontSize: 18${useScreenUtil ? '.sp' : ''},
-    fontWeight: FontWeight.w600,
-    color: AppColors.textDark,
+    fontSize: ${e.fontSize}${useScreenUtil ? '.sp' : ''},
+    fontWeight: FontWeight.w${e.fontWeight},
+    color: AppColors.${e.name}Dark,
     ),
-  ];
-
-  static List<TextStyle> button = [
-    TextStyle(
-    fontSize: 18${useScreenUtil ? '.sp' : ''},
-    fontWeight: FontWeight.w600,
-    color: AppColors.textLight,
-    ),
-    TextStyle(
-    fontSize: 18${useScreenUtil ? '.sp' : ''},
-    fontWeight: FontWeight.w600,
-    color: AppColors.textDark,
-    ),
-  ];
+  ];''').join('\n\n')}
 }''';
   }
 }

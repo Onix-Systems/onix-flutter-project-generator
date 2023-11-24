@@ -67,8 +67,12 @@ class FigmaService {
                   ((fill['color']['g'] * 255) as double).toInt(),
                   ((fill['color']['b'] * 255) as double).toInt(),
                 ));
-
-            figmaStyles.add(color);
+            if (!color.name.endsWith('Dark') && !color.name.endsWith('Light')) {
+              figmaStyles.add(color.copyWithName(name: '${color.name}Dark'));
+              figmaStyles.add(color.copyWithName(name: '${color.name}Light'));
+            } else {
+              figmaStyles.add(color);
+            }
           }
         }
       }

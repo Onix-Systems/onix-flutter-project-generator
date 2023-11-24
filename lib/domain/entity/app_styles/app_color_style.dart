@@ -9,4 +9,13 @@ class AppColorStyle extends AppStyle {
     required super.name,
     required this.color,
   });
+
+  AppColorStyle copyWithName({required String name}) => AppColorStyle(
+        id: id,
+        name: name,
+        color: color,
+      );
+
+  @override
+  String toString() => 'AppColorStyle(id: $id, name: $name, color: $color)';
 }

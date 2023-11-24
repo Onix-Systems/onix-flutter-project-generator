@@ -18,27 +18,23 @@ class ThemeTextStylesGenerator {
     required bool projectExists,
     required bool useScreenUtil,
   }) async {
-    // var appTextStylesFile = await File(
-    //         '$projectPath/$projectName/lib/presentation/style/theme/theme_extension/theme_text_styles.dart')
-    //     .create(recursive: true);
-
-    var appTextStylesFile = File(
-        '$projectPath/$projectName/lib/presentation/style/theme/theme_extension/theme_text_styles_backup.dart');
+    var appTextStylesFile = await File(
+            '$projectPath/$projectName/lib/presentation/style/theme/theme_extension/theme_text_styles.dart')
+        .create(recursive: true);
 
     final allTextStyles = textStyles
       ..addAll(DefaultTextStyles.call(
               file: appTextStylesFile, projectExists: projectExists)
-          .where((element) =>
-              !textStyles.map((e) => e.name).contains(element.name)));
+          .where((element) => !textStyles.contains(element)));
 
     logger.f(allTextStyles);
 
     if (theming == ProjectTheming.themeTailor) {
-      // await appTextStylesFile.writeAsString(
-      //     ThemeTextStylesFileContentTailor.generate(
-      //         textStyles: allTextStyles,
-      //         projectName: projectName,
-      //         useScreenUtil: useScreenUtil));
+      await appTextStylesFile.writeAsString(
+          ThemeTextStylesFileContentTailor.generate(
+              textStyles: allTextStyles,
+              projectName: projectName,
+              useScreenUtil: useScreenUtil));
     } else {
       // await appTextStylesFile.writeAsString(ThemeColorsFileContent.generate(
       //   colors: allTextStyles,
