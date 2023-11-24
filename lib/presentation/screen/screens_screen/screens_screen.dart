@@ -7,10 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
-import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/theme_text_styles_generator.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/add_screen_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/figma_dialog.dart';
@@ -141,17 +139,6 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                   label: S.of(context).getStylesFromFigma,
                   icon: Icons.download,
                   onPressed: () {
-                    //for testing
-                    ThemeTextStylesGenerator().call(
-                      projectName: widget.config.projectName,
-                      projectPath: widget.config.projectPath,
-                      textStyles: widget.config.styles
-                          .whereType<AppTextStyle>()
-                          .toList(),
-                      useScreenUtil: widget.config.platformsList.mobile,
-                      projectExists: widget.config.projectExists,
-                      theming: widget.config.theming,
-                    );
                     showCupertinoModalPopup<List<AppStyle>>(
                       context: context,
                       barrierDismissible: false,

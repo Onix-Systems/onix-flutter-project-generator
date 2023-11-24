@@ -59,10 +59,12 @@ class DefaultTextStyles {
               id: '',
               name: name,
               fontFamily: '',
-              fontSize:
-                  double.parse(styleMap['fontSize']!.replaceAll('.sp', '')),
-              fontWeight: int.parse(
-                  styleMap['fontWeight']!.replaceAll('FontWeight.w', '')),
+              fontSize: double.tryParse(
+                      (styleMap['fontSize'] ?? '').replaceAll('.sp', '')) ??
+                  18,
+              fontWeight: int.tryParse((styleMap['fontWeight'] ?? '')
+                      .replaceAll('FontWeight.w', '')) ??
+                  600,
               letterSpacing:
                   double.tryParse(styleMap['letterSpacing'] ?? '') ?? 0,
               color: styleMap['color'] ?? '',

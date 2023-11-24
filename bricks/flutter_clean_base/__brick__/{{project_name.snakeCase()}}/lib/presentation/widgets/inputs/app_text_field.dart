@@ -64,11 +64,11 @@ class AppTextField extends StatelessWidget {
         ),
         labelText: label,
         labelStyle: enabled
-            ? labelStyle ?? context.appTextStyles.fs18
+            ? labelStyle ?? context.appTextStyles.text
             : labelStyle?.copyWith(
                     color: labelStyle?.color?.withOpacity(0.2)) ??
-                context.appTextStyles.fs18?.copyWith(
-                  color: context.appTextStyles.fs18?.color?.withOpacity(0.2),
+                context.appTextStyles.text?.copyWith(
+                  color: context.appTextStyles.text?.color?.withOpacity(0.2),
                 ),
         fillColor: fillColor,
         filled: fillColor != null,

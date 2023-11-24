@@ -148,16 +148,16 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       }
     }
 
-    if (state.config.styles.isNotEmpty) {
-      await GenerateStyles().call(
-        projectName: state.config.projectName,
-        projectPath: state.config.projectPath,
-        styles: state.config.styles,
-        theming: state.config.theming,
-        projectExists: state.config.projectExists,
-        useScreenUtil: state.config.platformsList.mobile,
-      );
-    }
+    //if (state.config.styles.isNotEmpty) {
+    await GenerateStyles().call(
+      projectName: state.config.projectName,
+      projectPath: state.config.projectPath,
+      styles: state.config.styles,
+      theming: state.config.theming,
+      projectExists: state.config.projectExists,
+      useScreenUtil: state.config.platformsList.mobile,
+    );
+    //}
 
     await _generateScreens();
 

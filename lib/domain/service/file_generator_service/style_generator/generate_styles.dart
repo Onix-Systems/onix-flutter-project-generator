@@ -15,23 +15,27 @@ class GenerateStyles {
     required bool projectExists,
     required bool useScreenUtil,
   }) async {
+    final colors = styles.whereType<AppColorStyle>().toList();
+    final textStyles = styles.whereType<AppTextStyle>().toList();
+
     await ColorsGenerator().call(
       projectName: projectName,
       projectPath: projectPath,
-      colors: styles.whereType<AppColorStyle>().toList(),
+      colors: colors,
       projectExists: projectExists,
     );
     await ThemeColorsGenerator().call(
       projectName: projectName,
       projectPath: projectPath,
-      colors: styles.whereType<AppColorStyle>().toList(),
+      colors: colors,
       theming: theming,
       projectExists: projectExists,
     );
     await ThemeTextStylesGenerator().call(
       projectName: projectName,
       projectPath: projectPath,
-      textStyles: styles.whereType<AppTextStyle>().toList(),
+      textStyles: textStyles,
+      colors: colors,
       useScreenUtil: useScreenUtil,
       projectExists: projectExists,
       theming: theming,
