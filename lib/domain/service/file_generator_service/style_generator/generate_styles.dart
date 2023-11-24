@@ -11,6 +11,7 @@ class GenerateStyles {
     required List<AppStyle> styles,
     required ProjectTheming theming,
     required bool projectExists,
+    required bool useScreenUtil,
   }) async {
     await ColorsGenerator().call(
       projectName: projectName,
