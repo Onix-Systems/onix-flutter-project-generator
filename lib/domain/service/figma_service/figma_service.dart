@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
@@ -44,13 +45,17 @@ class FigmaService {
           final node = nodes[key];
           if (styles[key]['styleType'] == 'TEXT') {
             final textStyle = node['document']['style'];
-            figmaStyles.add(AppTextStyle(
+            figmaStyles.add(
+              AppTextStyle(
                 fontFamily: textStyle['fontFamily'],
                 fontSize: textStyle['fontSize'],
                 fontWeight: textStyle['fontWeight'],
                 letterSpacing: textStyle['letterSpacing'],
                 id: key.toString(),
-                name: styles[key]['name'].toString().camelCase));
+                name: styles[key]['name'].toString().camelCase,
+                color: '',
+              ),
+            );
           } else {
             final fill = node['document']['fills'][0];
             final color = AppColorStyle(
@@ -71,6 +76,7 @@ class FigmaService {
       return figmaStyles.toList();
     } catch (e) {
       figmaStyles.add(AppTextStyle(
+          color: '',
           fontFamily: 'Error',
           fontSize: 25,
           fontWeight: 400,

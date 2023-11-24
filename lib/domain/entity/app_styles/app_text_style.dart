@@ -7,6 +7,7 @@ class AppTextStyle extends AppStyle {
   final double fontSize;
   final int fontWeight;
   final double letterSpacing;
+  final String color;
 
   AppTextStyle({
     required super.id,
@@ -15,6 +16,7 @@ class AppTextStyle extends AppStyle {
     required this.fontSize,
     required this.fontWeight,
     required this.letterSpacing,
+    required this.color,
   });
 
   TextStyle getFontStyle() {
@@ -34,5 +36,10 @@ class AppTextStyle extends AppStyle {
     } catch (e) {
       return textStyle.copyWith(color: Colors.red);
     }
+  }
+
+  @override
+  String toString() {
+    return 'AppTextStyle(id: $id, name: $name, fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, letterSpacing: $letterSpacing, color: $color)';
   }
 }
