@@ -10,17 +10,20 @@ class GenerateStyles {
     required String projectPath,
     required List<AppStyle> styles,
     required ProjectTheming theming,
+    required bool projectExists,
   }) async {
     await ColorsGenerator().call(
       projectName: projectName,
       projectPath: projectPath,
       colors: styles.whereType<AppColorStyle>().toList(),
+      projectExists: projectExists,
     );
     await ThemeColorsGenerator().call(
       projectName: projectName,
       projectPath: projectPath,
       colors: styles.whereType<AppColorStyle>().toList(),
       theming: theming,
+      projectExists: projectExists,
     );
   }
 }

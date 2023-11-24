@@ -33,6 +33,7 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
 
     emit(
       state.copyWith(
+        configured: true,
         config: event.config.copyWith(
           sources: sourceRepository.sources,
           dataComponents: dataComponentRepository.dataComponents

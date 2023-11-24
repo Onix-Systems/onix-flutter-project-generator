@@ -803,7 +803,7 @@ class _$ScreensScreenEventOnGetStylesImpl
   @override
   List<AppStyle> get styles {
     if (_styles is EqualUnmodifiableListView) return _styles;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_styles);
   }
 

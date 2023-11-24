@@ -9,14 +9,17 @@ class ColorsGenerator {
     required String projectName,
     required String projectPath,
     required List<AppColorStyle> colors,
+    required bool projectExists,
   }) async {
-    final allColors = colors
-      ..addAll(defaultColors.where(
-          (element) => !colors.map((e) => e.name).contains(element.name)));
-
     var themeColorsFile = await File(
             '$projectPath/$projectName/lib/presentation/style/app_colors.dart')
         .create(recursive: true);
+
+    final allColors = colors
+      ..addAll(DefaultColors.call(
+              file: themeColorsFile, projectExists: projectExists)
+          .where(
+              (element) => !colors.map((e) => e.name).contains(element.name)));
 
     await themeColorsFile
         .writeAsString(AppColorsFileContent.generate(allColors));

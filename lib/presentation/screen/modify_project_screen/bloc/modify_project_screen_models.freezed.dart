@@ -315,7 +315,7 @@ class _$ModifyProjectScreenEventOnGetStylesImpl
   @override
   List<AppStyle> get styles {
     if (_styles is EqualUnmodifiableListView) return _styles;
-// ignore: implicit_dynamic_type
+    // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_styles);
   }
 
@@ -1509,19 +1509,21 @@ abstract class ModifyProjectScreenSROnRefresh implements ModifyProjectScreenSR {
 mixin _$ModifyProjectScreenState {
   Config get config => throw _privateConstructorUsedError;
   int get currentTab => throw _privateConstructorUsedError;
+  bool get configured => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config, int currentTab) data,
+    required TResult Function(Config config, int currentTab, bool configured)
+        data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, int currentTab)? data,
+    TResult? Function(Config config, int currentTab, bool configured)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, int currentTab)? data,
+    TResult Function(Config config, int currentTab, bool configured)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1553,7 +1555,7 @@ abstract class $ModifyProjectScreenStateCopyWith<$Res> {
           $Res Function(ModifyProjectScreenState) then) =
       _$ModifyProjectScreenStateCopyWithImpl<$Res, ModifyProjectScreenState>;
   @useResult
-  $Res call({Config config, int currentTab});
+  $Res call({Config config, int currentTab, bool configured});
 
   $ConfigCopyWith<$Res> get config;
 }
@@ -1574,6 +1576,7 @@ class _$ModifyProjectScreenStateCopyWithImpl<$Res,
   $Res call({
     Object? config = null,
     Object? currentTab = null,
+    Object? configured = null,
   }) {
     return _then(_value.copyWith(
       config: null == config
@@ -1584,6 +1587,10 @@ class _$ModifyProjectScreenStateCopyWithImpl<$Res,
           ? _value.currentTab
           : currentTab // ignore: cast_nullable_to_non_nullable
               as int,
+      configured: null == configured
+          ? _value.configured
+          : configured // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -1605,7 +1612,7 @@ abstract class _$$ModifyProjectScreenStateDataImplCopyWith<$Res>
       __$$ModifyProjectScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Config config, int currentTab});
+  $Res call({Config config, int currentTab, bool configured});
 
   @override
   $ConfigCopyWith<$Res> get config;
@@ -1626,6 +1633,7 @@ class __$$ModifyProjectScreenStateDataImplCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
     Object? currentTab = null,
+    Object? configured = null,
   }) {
     return _then(_$ModifyProjectScreenStateDataImpl(
       config: null == config
@@ -1636,6 +1644,10 @@ class __$$ModifyProjectScreenStateDataImplCopyWithImpl<$Res>
           ? _value.currentTab
           : currentTab // ignore: cast_nullable_to_non_nullable
               as int,
+      configured: null == configured
+          ? _value.configured
+          : configured // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1645,17 +1657,20 @@ class __$$ModifyProjectScreenStateDataImplCopyWithImpl<$Res>
 class _$ModifyProjectScreenStateDataImpl
     implements ModifyProjectScreenStateData {
   const _$ModifyProjectScreenStateDataImpl(
-      {required this.config, this.currentTab = 0});
+      {required this.config, this.currentTab = 0, this.configured = false});
 
   @override
   final Config config;
   @override
   @JsonKey()
   final int currentTab;
+  @override
+  @JsonKey()
+  final bool configured;
 
   @override
   String toString() {
-    return 'ModifyProjectScreenState.data(config: $config, currentTab: $currentTab)';
+    return 'ModifyProjectScreenState.data(config: $config, currentTab: $currentTab, configured: $configured)';
   }
 
   @override
@@ -1665,11 +1680,13 @@ class _$ModifyProjectScreenStateDataImpl
             other is _$ModifyProjectScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config) &&
             (identical(other.currentTab, currentTab) ||
-                other.currentTab == currentTab));
+                other.currentTab == currentTab) &&
+            (identical(other.configured, configured) ||
+                other.configured == configured));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config, currentTab);
+  int get hashCode => Object.hash(runtimeType, config, currentTab, configured);
 
   @JsonKey(ignore: true)
   @override
@@ -1682,27 +1699,28 @@ class _$ModifyProjectScreenStateDataImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config, int currentTab) data,
+    required TResult Function(Config config, int currentTab, bool configured)
+        data,
   }) {
-    return data(config, currentTab);
+    return data(config, currentTab, configured);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, int currentTab)? data,
+    TResult? Function(Config config, int currentTab, bool configured)? data,
   }) {
-    return data?.call(config, currentTab);
+    return data?.call(config, currentTab, configured);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, int currentTab)? data,
+    TResult Function(Config config, int currentTab, bool configured)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(config, currentTab);
+      return data(config, currentTab, configured);
     }
     return orElse();
   }
@@ -1740,12 +1758,15 @@ abstract class ModifyProjectScreenStateData
     implements ModifyProjectScreenState {
   const factory ModifyProjectScreenStateData(
       {required final Config config,
-      final int currentTab}) = _$ModifyProjectScreenStateDataImpl;
+      final int currentTab,
+      final bool configured}) = _$ModifyProjectScreenStateDataImpl;
 
   @override
   Config get config;
   @override
   int get currentTab;
+  @override
+  bool get configured;
   @override
   @JsonKey(ignore: true)
   _$$ModifyProjectScreenStateDataImplCopyWith<

@@ -47,5 +47,6 @@ class ModifyProjectScreenState with _$ModifyProjectScreenState {
   const factory ModifyProjectScreenState.data({
     required Config config,
     @Default(0) int currentTab,
+    @Default(false) bool configured,
   }) = ModifyProjectScreenStateData;
 }

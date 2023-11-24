@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/data_components_screen.dart';
@@ -107,36 +106,38 @@ class _ModifyProjectScreenState extends BaseState<
               ],
             ),
           ),
-          Expanded(
-            child: state.currentTab == 0
-                ? ScreensScreen(
-                    config: state.config,
-                    onContinue: (styles) {
-                      logger.f('onGetStyles: ${styles}');
-                      blocOf(context).add(
-                          ModifyProjectScreenEventOnGetStyles(styles: styles));
-                      _tabController.animateTo(1);
-                      blocOf(context).add(
-                        const ModifyProjectScreenEventChangeTab(
-                          index: 1,
+          state.configured
+              ? Expanded(
+                  child: state.currentTab == 0
+                      ? ScreensScreen(
+                          config: state.config,
+                          onContinue: (styles) {
+                            blocOf(context).add(
+                                ModifyProjectScreenEventOnGetStyles(
+                                    styles: styles));
+                            _tabController.animateTo(1);
+                            blocOf(context).add(
+                              const ModifyProjectScreenEventChangeTab(
+                                index: 1,
+                              ),
+                            );
+                          },
+                        )
+                      : DataComponentsScreen(
+                          config: state.config,
+                          onSR: blocOf(context).singleResults,
+                          onBack: () {
+                            _tabController.animateTo(0);
+                            blocOf(context).add(
+                              const ModifyProjectScreenEventChangeTab(
+                                index: 0,
+                              ),
+                            );
+                          },
+                          onGenerate: () => _onGenerate(context),
                         ),
-                      );
-                    },
-                  )
-                : DataComponentsScreen(
-                    config: state.config,
-                    onSR: blocOf(context).singleResults,
-                    onBack: () {
-                      _tabController.animateTo(0);
-                      blocOf(context).add(
-                        const ModifyProjectScreenEventChangeTab(
-                          index: 0,
-                        ),
-                      );
-                    },
-                    onGenerate: () => _onGenerate(context),
-                  ),
-          ),
+                )
+              : const CupertinoActivityIndicator(),
         ],
       ),
     );
