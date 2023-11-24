@@ -9,8 +9,7 @@ class ThemeTextStylesFileContentTailor {
       required bool useScreenUtil,
       required String projectName}) {
     textStyles.sort((a, b) => a.name.compareTo(b.name));
-    return '''
-    import 'package:$projectName/presentation/style/app_colors.dart';
+    return '''import 'package:$projectName/presentation/style/app_colors.dart';
 import 'package:flutter/material.dart';
 ${useScreenUtil ? 'import \'package:flutter_screenutil/flutter_screenutil.dart\';' : ''}
 import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
