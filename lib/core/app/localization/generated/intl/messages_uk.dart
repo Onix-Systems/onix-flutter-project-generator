@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(sourceName) => "${sourceName}Source вже існує";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Дії"),
         "addComponent":
@@ -93,6 +94,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "fields": MessageLookupByLibrary.simpleMessage("Поля"),
         "figmaFileKey":
             MessageLookupByLibrary.simpleMessage("Ключ файлу Figma"),
+        "figmaGetStylesEmpty": MessageLookupByLibrary.simpleMessage(
+            "В цьому figma файлі не знайдено стилів"),
+        "figmaGetStylesEmptyFileId":
+            MessageLookupByLibrary.simpleMessage("Figma id пустий"),
+        "figmaGetStylesEmptyToken":
+            MessageLookupByLibrary.simpleMessage("Figma token пустий"),
+        "figmaGetStylesError": MessageLookupByLibrary.simpleMessage(
+            "Помилка завантаження стилів: перевірте інтернет з\'єднання, id figma файлу та токен"),
         "figmaToken": MessageLookupByLibrary.simpleMessage("Токен Figma"),
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" Ім\'я та прізвище"),

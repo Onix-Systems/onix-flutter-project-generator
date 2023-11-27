@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bricks/app/bloc/app_bloc_imports.dart';
+import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc/figma_styles_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc.dart';
@@ -22,6 +23,7 @@ void registerBloc(GetIt getIt) {
     ..registerFactory<DataComponentsScreenBloc>(DataComponentsScreenBloc.new)
     ..registerFactory<FieldsDialogBloc>(FieldsDialogBloc.new)
     ..registerFactory<ScreensScreenBloc>(ScreensScreenBloc.new)
+    ..registerFactory<FigmaStylesScreenBloc>(FigmaStylesScreenBloc.new)
     ..registerFactory<ProjectSettingsScreenBloc>(ProjectSettingsScreenBloc.new)
     ..registerFactory<PlatformsScreenBloc>(PlatformsScreenBloc.new)
     ..registerFactory<ProjectNameScreenBloc>(ProjectNameScreenBloc.new)

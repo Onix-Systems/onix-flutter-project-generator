@@ -23,6 +23,7 @@ class _\$ThemeColors {
     final names = <String>[];
 
     for (final name in colors
+        .where((element) => element.validate())
         .map((e) => e.name.replaceAll('Dark', '').replaceAll('Light', ''))) {
       if (names.contains(name)) {
         continue;

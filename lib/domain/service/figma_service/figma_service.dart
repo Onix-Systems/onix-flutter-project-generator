@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
@@ -43,6 +42,9 @@ class FigmaService {
 
         for (final key in nodes.keys) {
           final node = nodes[key];
+
+          //logger.f(node);
+
           if (styles[key]['styleType'] == 'TEXT') {
             final textStyle = node['document']['style'];
             figmaStyles.add(
@@ -58,6 +60,9 @@ class FigmaService {
             );
           } else {
             final fill = node['document']['fills'][0];
+            if (fill['type'] != 'SOLID') {
+              continue;
+            }
             final color = AppColorStyle(
                 id: key.toString(),
                 name: styles[key]['name'].toString().camelCase,
@@ -67,9 +72,18 @@ class FigmaService {
                   ((fill['color']['g'] * 255) as double).toInt(),
                   ((fill['color']['b'] * 255) as double).toInt(),
                 ));
+            if (figmaStyles.map((e) => e.name).contains(color.name) ||
+                figmaStyles.map((e) => e.name).contains('${color.name}Dark') ||
+                figmaStyles.map((e) => e.name).contains('${color.name}Light')) {
+              final nameParts = color.name.sentenceCase.split(' ');
+              nameParts.insert(1, ' ${color.id.hashCode}');
+              color.name = nameParts.join(' ');
+            }
             if (!color.name.endsWith('Dark') && !color.name.endsWith('Light')) {
-              figmaStyles.add(color.copyWithName(name: '${color.name}Dark'));
-              figmaStyles.add(color.copyWithName(name: '${color.name}Light'));
+              figmaStyles
+                  .add(color.copyWithName(name: '${color.name}Dark'.camelCase));
+              figmaStyles.add(
+                  color.copyWithName(name: '${color.name}Light'.camelCase));
             } else {
               figmaStyles.add(color);
             }

@@ -113,5 +113,9 @@
   "dataComponentExistsInSource": " in {sourceName} source",
   "getStylesFromFigma": "Get styles from Figma",
   "figmaFileKey": "Figma file key",
-  "figmaToken": "Figma token"
+  "figmaToken": "Figma token",
+  "figmaGetStylesError": "Error loading styles: check internet connection, figma file id and token",
+  "figmaGetStylesEmpty": "No styles found in this file",
+  "figmaGetStylesEmptyFileId": "Figma file id is empty",
+  "figmaGetStylesEmptyToken": "Figma token is empty"
 }

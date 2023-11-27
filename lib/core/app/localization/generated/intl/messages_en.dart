@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(sourceName) => "${sourceName}Source already exists";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
         "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
@@ -90,6 +91,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "exitLabel": MessageLookupByLibrary.simpleMessage("Exit"),
         "fields": MessageLookupByLibrary.simpleMessage("Fields"),
         "figmaFileKey": MessageLookupByLibrary.simpleMessage("Figma file key"),
+        "figmaGetStylesEmpty": MessageLookupByLibrary.simpleMessage(
+            "No styles found in this file"),
+        "figmaGetStylesEmptyFileId":
+            MessageLookupByLibrary.simpleMessage("Figma file id is empty"),
+        "figmaGetStylesEmptyToken":
+            MessageLookupByLibrary.simpleMessage("Figma token is empty"),
+        "figmaGetStylesError": MessageLookupByLibrary.simpleMessage(
+            "Error loading styles: check internet connection, figma file id and token"),
         "figmaToken": MessageLookupByLibrary.simpleMessage("Figma token"),
         "firebaseAuth": MessageLookupByLibrary.simpleMessage(
             "Integrate Firebase with FirebaseAuth?"),
