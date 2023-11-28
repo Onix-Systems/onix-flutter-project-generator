@@ -49,17 +49,20 @@ class FigmaService {
 
           if (styles[key]['styleType'] == 'TEXT') {
             final textStyle = node['document']['style'];
-            figmaTextStyles.add(
-              AppTextStyle(
-                fontFamily: textStyle['fontFamily'],
-                fontSize: textStyle['fontSize'],
-                fontWeight: textStyle['fontWeight'],
-                letterSpacing: textStyle['letterSpacing'],
-                id: key.toString(),
-                name: styles[key]['name'].toString().camelCase,
-                color: '',
-              ),
+            final appTextStyle = AppTextStyle(
+              fontFamily: textStyle['fontFamily'],
+              fontSize: textStyle['fontSize'],
+              fontWeight: textStyle['fontWeight'],
+              letterSpacing: textStyle['letterSpacing'],
+              id: key.toString(),
+              name: styles[key]['name'].toString().camelCase,
+              color: '',
             );
+            if (!figmaTextStyles
+                .map((e) => e.name)
+                .contains(appTextStyle.name)) {
+              figmaTextStyles.add(appTextStyle);
+            }
           } else {
             final fill = node['document']['fills'][0];
             if (fill['type'] != 'SOLID') {

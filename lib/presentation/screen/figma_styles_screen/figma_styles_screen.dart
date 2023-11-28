@@ -14,10 +14,12 @@ import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_butt
 
 class FigmaStylesScreen extends StatefulWidget {
   final ValueChanged<List<AppStyle>>? onContinue;
+  final ValueChanged<List<AppStyle>>? onBack;
   final Config config;
 
   const FigmaStylesScreen({
     this.onContinue,
+    this.onBack,
     required this.config,
     super.key,
   });
@@ -152,12 +154,7 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
                 AppFilledButton(
                   label: S.of(context).goBack,
                   icon: Icons.arrow_back_ios_rounded,
-                  onPressed: () => context.go(
-                    AppRouter.screensScreen,
-                    extra: widget.config.copyWith(
-                      styles: state.config.styles,
-                    ),
-                  ),
+                  onPressed: () => _onBack(context, state),
                 ),
                 const Delimiter.width(10),
                 AppFilledButton(
@@ -180,6 +177,17 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
         ? widget.onContinue?.call(state.config.styles)
         : context.go(
             AppRouter.swaggerParserScreen,
+            extra: widget.config.copyWith(
+              styles: state.config.styles,
+            ),
+          );
+  }
+
+  void _onBack(BuildContext context, FigmaStylesScreenState state) {
+    state.config.projectExists
+        ? widget.onBack?.call(state.config.styles)
+        : context.go(
+            AppRouter.screensScreen,
             extra: widget.config.copyWith(
               styles: state.config.styles,
             ),
