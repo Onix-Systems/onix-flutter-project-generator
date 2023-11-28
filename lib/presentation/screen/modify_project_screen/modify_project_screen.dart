@@ -54,13 +54,6 @@ class _ModifyProjectScreenState extends BaseState<
   @override
   void onBlocCreated(BuildContext context, ModifyProjectScreenBloc bloc) {
     bloc.add(ModifyProjectScreenEvent.init(config: widget.config));
-
-    // if (widget.goToDataComponents) {
-    //   _tabController.animateTo(1);
-    //   bloc.add(
-    //     const ModifyProjectScreenEventChangeTab(index: 1),
-    //   );
-    // }
     super.onBlocCreated(context, bloc);
   }
 
@@ -113,33 +106,38 @@ class _ModifyProjectScreenState extends BaseState<
               ],
             ),
           ),
-          Expanded(
-            child: state.currentTab == 0
-                ? ScreensScreen(
-                    config: widget.config,
-                    onContinue: () {
-                      _tabController.animateTo(1);
-                      blocOf(context).add(
-                        const ModifyProjectScreenEventChangeTab(
-                          index: 1,
+          state.configured
+              ? Expanded(
+                  child: state.currentTab == 0
+                      ? ScreensScreen(
+                          config: state.config,
+                          onContinue: (styles) {
+                            blocOf(context).add(
+                                ModifyProjectScreenEventOnGetStyles(
+                                    styles: styles));
+                            _tabController.animateTo(1);
+                            blocOf(context).add(
+                              const ModifyProjectScreenEventChangeTab(
+                                index: 1,
+                              ),
+                            );
+                          },
+                        )
+                      : DataComponentsScreen(
+                          config: state.config,
+                          onSR: blocOf(context).singleResults,
+                          onBack: () {
+                            _tabController.animateTo(0);
+                            blocOf(context).add(
+                              const ModifyProjectScreenEventChangeTab(
+                                index: 0,
+                              ),
+                            );
+                          },
+                          onGenerate: () => _onGenerate(context),
                         ),
-                      );
-                    },
-                  )
-                : DataComponentsScreen(
-                    config: widget.config,
-                    onSR: blocOf(context).singleResults,
-                    onBack: () {
-                      _tabController.animateTo(0);
-                      blocOf(context).add(
-                        const ModifyProjectScreenEventChangeTab(
-                          index: 0,
-                        ),
-                      );
-                    },
-                    onGenerate: () => _onGenerate(context),
-                  ),
-          ),
+                )
+              : const CupertinoActivityIndicator(),
         ],
       ),
     );

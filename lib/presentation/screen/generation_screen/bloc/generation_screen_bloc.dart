@@ -10,6 +10,7 @@ import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/services.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/generate_styles.dart';
 
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/process_starter.dart';
@@ -101,7 +102,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           workingDirectory: state.config.projectPath);
 
       gitGetBrickProcess.stdin.writeln(
-        'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/main.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip',
+        //'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/main.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip',
+        'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/feat/figma.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip',
       );
 
       gitGetBrickProcess.stdin.writeln('echo "Complete with exit code: 0"');
@@ -114,7 +116,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           .writeln('dart pub global activate mason_cli && mason cache clear');
 
       mainProcess.stdin.writeln(
-        'mason add -g flutter_clean_base --path \'${state.config.projectPath}/bricks/onix-flutter-project-generator-main/bricks/flutter_clean_base\'',
+        //'mason add -g flutter_clean_base --path \'${state.config.projectPath}/bricks/onix-flutter-project-generator-main/bricks/flutter_clean_base\'',
+        'mason add -g flutter_clean_base --path \'${state.config.projectPath}/bricks/onix-flutter-project-generator-feat-figma/bricks/flutter_clean_base\'',
       );
 
       mainProcess.stdin.writeln(
@@ -144,6 +147,17 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         );
       }
     }
+
+    //if (state.config.styles.isNotEmpty) {
+    await GenerateStyles().call(
+      projectName: state.config.projectName,
+      projectPath: state.config.projectPath,
+      styles: state.config.styles,
+      theming: state.config.theming,
+      projectExists: state.config.projectExists,
+      useScreenUtil: state.config.platformsList.mobile,
+    );
+    //}
 
     await _generateScreens();
 

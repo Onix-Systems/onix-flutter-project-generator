@@ -22,6 +22,7 @@ mixin _$ScreensScreenEvent {
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(String screenName) onScreenDelete,
     required TResult Function(Screen screen, String oldName) onScreenModify,
+    required TResult Function(List<AppStyle> styles) onGetStyles,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$ScreensScreenEvent {
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(String screenName)? onScreenDelete,
     TResult? Function(Screen screen, String oldName)? onScreenModify,
+    TResult? Function(List<AppStyle> styles)? onGetStyles,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$ScreensScreenEvent {
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(String screenName)? onScreenDelete,
     TResult Function(Screen screen, String oldName)? onScreenModify,
+    TResult Function(List<AppStyle> styles)? onGetStyles,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +52,7 @@ mixin _$ScreensScreenEvent {
         onScreenDelete,
     required TResult Function(ScreensScreenEventOnScreenModify value)
         onScreenModify,
+    required TResult Function(ScreensScreenEventOnGetStyles value) onGetStyles,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +61,7 @@ mixin _$ScreensScreenEvent {
     TResult? Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
     TResult? Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
     TResult? Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult? Function(ScreensScreenEventOnGetStyles value)? onGetStyles,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +70,7 @@ mixin _$ScreensScreenEvent {
     TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
     TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
     TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult Function(ScreensScreenEventOnGetStyles value)? onGetStyles,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -84,7 +90,7 @@ class _$ScreensScreenEventCopyWithImpl<$Res, $Val extends ScreensScreenEvent>
 
   // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -169,6 +175,7 @@ class _$ScreensScreenEventInitImpl implements ScreensScreenEventInit {
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(String screenName) onScreenDelete,
     required TResult Function(Screen screen, String oldName) onScreenModify,
+    required TResult Function(List<AppStyle> styles) onGetStyles,
   }) {
     return init(config);
   }
@@ -180,6 +187,7 @@ class _$ScreensScreenEventInitImpl implements ScreensScreenEventInit {
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(String screenName)? onScreenDelete,
     TResult? Function(Screen screen, String oldName)? onScreenModify,
+    TResult? Function(List<AppStyle> styles)? onGetStyles,
   }) {
     return init?.call(config);
   }
@@ -191,6 +199,7 @@ class _$ScreensScreenEventInitImpl implements ScreensScreenEventInit {
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(String screenName)? onScreenDelete,
     TResult Function(Screen screen, String oldName)? onScreenModify,
+    TResult Function(List<AppStyle> styles)? onGetStyles,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -208,6 +217,7 @@ class _$ScreensScreenEventInitImpl implements ScreensScreenEventInit {
         onScreenDelete,
     required TResult Function(ScreensScreenEventOnScreenModify value)
         onScreenModify,
+    required TResult Function(ScreensScreenEventOnGetStyles value) onGetStyles,
   }) {
     return init(this);
   }
@@ -219,6 +229,7 @@ class _$ScreensScreenEventInitImpl implements ScreensScreenEventInit {
     TResult? Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
     TResult? Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
     TResult? Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult? Function(ScreensScreenEventOnGetStyles value)? onGetStyles,
   }) {
     return init?.call(this);
   }
@@ -230,6 +241,7 @@ class _$ScreensScreenEventInitImpl implements ScreensScreenEventInit {
     TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
     TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
     TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult Function(ScreensScreenEventOnGetStyles value)? onGetStyles,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -323,6 +335,7 @@ class _$ScreensScreenEventOnScreenAddImpl
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(String screenName) onScreenDelete,
     required TResult Function(Screen screen, String oldName) onScreenModify,
+    required TResult Function(List<AppStyle> styles) onGetStyles,
   }) {
     return onScreenAdd(screen);
   }
@@ -334,6 +347,7 @@ class _$ScreensScreenEventOnScreenAddImpl
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(String screenName)? onScreenDelete,
     TResult? Function(Screen screen, String oldName)? onScreenModify,
+    TResult? Function(List<AppStyle> styles)? onGetStyles,
   }) {
     return onScreenAdd?.call(screen);
   }
@@ -345,6 +359,7 @@ class _$ScreensScreenEventOnScreenAddImpl
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(String screenName)? onScreenDelete,
     TResult Function(Screen screen, String oldName)? onScreenModify,
+    TResult Function(List<AppStyle> styles)? onGetStyles,
     required TResult orElse(),
   }) {
     if (onScreenAdd != null) {
@@ -362,6 +377,7 @@ class _$ScreensScreenEventOnScreenAddImpl
         onScreenDelete,
     required TResult Function(ScreensScreenEventOnScreenModify value)
         onScreenModify,
+    required TResult Function(ScreensScreenEventOnGetStyles value) onGetStyles,
   }) {
     return onScreenAdd(this);
   }
@@ -373,6 +389,7 @@ class _$ScreensScreenEventOnScreenAddImpl
     TResult? Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
     TResult? Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
     TResult? Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult? Function(ScreensScreenEventOnGetStyles value)? onGetStyles,
   }) {
     return onScreenAdd?.call(this);
   }
@@ -384,6 +401,7 @@ class _$ScreensScreenEventOnScreenAddImpl
     TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
     TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
     TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult Function(ScreensScreenEventOnGetStyles value)? onGetStyles,
     required TResult orElse(),
   }) {
     if (onScreenAdd != null) {
@@ -479,6 +497,7 @@ class _$ScreensScreenEventOnScreenDeleteImpl
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(String screenName) onScreenDelete,
     required TResult Function(Screen screen, String oldName) onScreenModify,
+    required TResult Function(List<AppStyle> styles) onGetStyles,
   }) {
     return onScreenDelete(screenName);
   }
@@ -490,6 +509,7 @@ class _$ScreensScreenEventOnScreenDeleteImpl
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(String screenName)? onScreenDelete,
     TResult? Function(Screen screen, String oldName)? onScreenModify,
+    TResult? Function(List<AppStyle> styles)? onGetStyles,
   }) {
     return onScreenDelete?.call(screenName);
   }
@@ -501,6 +521,7 @@ class _$ScreensScreenEventOnScreenDeleteImpl
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(String screenName)? onScreenDelete,
     TResult Function(Screen screen, String oldName)? onScreenModify,
+    TResult Function(List<AppStyle> styles)? onGetStyles,
     required TResult orElse(),
   }) {
     if (onScreenDelete != null) {
@@ -518,6 +539,7 @@ class _$ScreensScreenEventOnScreenDeleteImpl
         onScreenDelete,
     required TResult Function(ScreensScreenEventOnScreenModify value)
         onScreenModify,
+    required TResult Function(ScreensScreenEventOnGetStyles value) onGetStyles,
   }) {
     return onScreenDelete(this);
   }
@@ -529,6 +551,7 @@ class _$ScreensScreenEventOnScreenDeleteImpl
     TResult? Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
     TResult? Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
     TResult? Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult? Function(ScreensScreenEventOnGetStyles value)? onGetStyles,
   }) {
     return onScreenDelete?.call(this);
   }
@@ -540,6 +563,7 @@ class _$ScreensScreenEventOnScreenDeleteImpl
     TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
     TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
     TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult Function(ScreensScreenEventOnGetStyles value)? onGetStyles,
     required TResult orElse(),
   }) {
     if (onScreenDelete != null) {
@@ -644,6 +668,7 @@ class _$ScreensScreenEventOnScreenModifyImpl
     required TResult Function(Screen screen) onScreenAdd,
     required TResult Function(String screenName) onScreenDelete,
     required TResult Function(Screen screen, String oldName) onScreenModify,
+    required TResult Function(List<AppStyle> styles) onGetStyles,
   }) {
     return onScreenModify(screen, oldName);
   }
@@ -655,6 +680,7 @@ class _$ScreensScreenEventOnScreenModifyImpl
     TResult? Function(Screen screen)? onScreenAdd,
     TResult? Function(String screenName)? onScreenDelete,
     TResult? Function(Screen screen, String oldName)? onScreenModify,
+    TResult? Function(List<AppStyle> styles)? onGetStyles,
   }) {
     return onScreenModify?.call(screen, oldName);
   }
@@ -666,6 +692,7 @@ class _$ScreensScreenEventOnScreenModifyImpl
     TResult Function(Screen screen)? onScreenAdd,
     TResult Function(String screenName)? onScreenDelete,
     TResult Function(Screen screen, String oldName)? onScreenModify,
+    TResult Function(List<AppStyle> styles)? onGetStyles,
     required TResult orElse(),
   }) {
     if (onScreenModify != null) {
@@ -683,6 +710,7 @@ class _$ScreensScreenEventOnScreenModifyImpl
         onScreenDelete,
     required TResult Function(ScreensScreenEventOnScreenModify value)
         onScreenModify,
+    required TResult Function(ScreensScreenEventOnGetStyles value) onGetStyles,
   }) {
     return onScreenModify(this);
   }
@@ -694,6 +722,7 @@ class _$ScreensScreenEventOnScreenModifyImpl
     TResult? Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
     TResult? Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
     TResult? Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult? Function(ScreensScreenEventOnGetStyles value)? onGetStyles,
   }) {
     return onScreenModify?.call(this);
   }
@@ -705,6 +734,7 @@ class _$ScreensScreenEventOnScreenModifyImpl
     TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
     TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
     TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult Function(ScreensScreenEventOnGetStyles value)? onGetStyles,
     required TResult orElse(),
   }) {
     if (onScreenModify != null) {
@@ -724,6 +754,176 @@ abstract class ScreensScreenEventOnScreenModify implements ScreensScreenEvent {
   @JsonKey(ignore: true)
   _$$ScreensScreenEventOnScreenModifyImplCopyWith<
           _$ScreensScreenEventOnScreenModifyImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ScreensScreenEventOnGetStylesImplCopyWith<$Res> {
+  factory _$$ScreensScreenEventOnGetStylesImplCopyWith(
+          _$ScreensScreenEventOnGetStylesImpl value,
+          $Res Function(_$ScreensScreenEventOnGetStylesImpl) then) =
+      __$$ScreensScreenEventOnGetStylesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<AppStyle> styles});
+}
+
+/// @nodoc
+class __$$ScreensScreenEventOnGetStylesImplCopyWithImpl<$Res>
+    extends _$ScreensScreenEventCopyWithImpl<$Res,
+        _$ScreensScreenEventOnGetStylesImpl>
+    implements _$$ScreensScreenEventOnGetStylesImplCopyWith<$Res> {
+  __$$ScreensScreenEventOnGetStylesImplCopyWithImpl(
+      _$ScreensScreenEventOnGetStylesImpl _value,
+      $Res Function(_$ScreensScreenEventOnGetStylesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? styles = null,
+  }) {
+    return _then(_$ScreensScreenEventOnGetStylesImpl(
+      styles: null == styles
+          ? _value._styles
+          : styles // ignore: cast_nullable_to_non_nullable
+              as List<AppStyle>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ScreensScreenEventOnGetStylesImpl
+    implements ScreensScreenEventOnGetStyles {
+  const _$ScreensScreenEventOnGetStylesImpl(
+      {required final List<AppStyle> styles})
+      : _styles = styles;
+
+  final List<AppStyle> _styles;
+  @override
+  List<AppStyle> get styles {
+    if (_styles is EqualUnmodifiableListView) return _styles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_styles);
+  }
+
+  @override
+  String toString() {
+    return 'ScreensScreenEvent.onGetStyles(styles: $styles)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ScreensScreenEventOnGetStylesImpl &&
+            const DeepCollectionEquality().equals(other._styles, _styles));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_styles));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ScreensScreenEventOnGetStylesImplCopyWith<
+          _$ScreensScreenEventOnGetStylesImpl>
+      get copyWith => __$$ScreensScreenEventOnGetStylesImplCopyWithImpl<
+          _$ScreensScreenEventOnGetStylesImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function(Screen screen) onScreenAdd,
+    required TResult Function(String screenName) onScreenDelete,
+    required TResult Function(Screen screen, String oldName) onScreenModify,
+    required TResult Function(List<AppStyle> styles) onGetStyles,
+  }) {
+    return onGetStyles(styles);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function(Screen screen)? onScreenAdd,
+    TResult? Function(String screenName)? onScreenDelete,
+    TResult? Function(Screen screen, String oldName)? onScreenModify,
+    TResult? Function(List<AppStyle> styles)? onGetStyles,
+  }) {
+    return onGetStyles?.call(styles);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function(Screen screen)? onScreenAdd,
+    TResult Function(String screenName)? onScreenDelete,
+    TResult Function(Screen screen, String oldName)? onScreenModify,
+    TResult Function(List<AppStyle> styles)? onGetStyles,
+    required TResult orElse(),
+  }) {
+    if (onGetStyles != null) {
+      return onGetStyles(styles);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ScreensScreenEventInit value) init,
+    required TResult Function(ScreensScreenEventOnScreenAdd value) onScreenAdd,
+    required TResult Function(ScreensScreenEventOnScreenDelete value)
+        onScreenDelete,
+    required TResult Function(ScreensScreenEventOnScreenModify value)
+        onScreenModify,
+    required TResult Function(ScreensScreenEventOnGetStyles value) onGetStyles,
+  }) {
+    return onGetStyles(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ScreensScreenEventInit value)? init,
+    TResult? Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
+    TResult? Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
+    TResult? Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult? Function(ScreensScreenEventOnGetStyles value)? onGetStyles,
+  }) {
+    return onGetStyles?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ScreensScreenEventInit value)? init,
+    TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
+    TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
+    TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult Function(ScreensScreenEventOnGetStyles value)? onGetStyles,
+    required TResult orElse(),
+  }) {
+    if (onGetStyles != null) {
+      return onGetStyles(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ScreensScreenEventOnGetStyles implements ScreensScreenEvent {
+  const factory ScreensScreenEventOnGetStyles(
+          {required final List<AppStyle> styles}) =
+      _$ScreensScreenEventOnGetStylesImpl;
+
+  List<AppStyle> get styles;
+  @JsonKey(ignore: true)
+  _$$ScreensScreenEventOnGetStylesImplCopyWith<
+          _$ScreensScreenEventOnGetStylesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 

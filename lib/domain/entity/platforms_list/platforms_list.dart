@@ -21,6 +21,8 @@ class PlatformsList with _$PlatformsList {
 
   bool get webOnly => web && !android && !ios && !macos && !windows && !linux;
 
+  bool get mobile => android || ios;
+
   @override
   String toString() {
     List<String> platforms = [];

@@ -158,7 +158,8 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
                   active: widget.config.projectExists
                       ? sourceRepository.containsNewComponents() ||
                           dataComponentRepository.containsNewComponents() ||
-                          screenRepository.containsNewComponents()
+                          screenRepository.containsNewComponents() ||
+                          state.config.styles.isNotEmpty
                       : true,
                   onPressed: () => _onContinue(context, state),
                 ),

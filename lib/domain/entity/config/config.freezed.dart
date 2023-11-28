@@ -37,7 +37,10 @@ mixin _$Config {
   ProjectLocalization get localization => throw _privateConstructorUsedError;
   ProjectTheming get theming => throw _privateConstructorUsedError;
   List<String> get signingVars => throw _privateConstructorUsedError;
-  Set<Screen> get screens => throw _privateConstructorUsedError;
+  Set<Screen> get screens =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  List<AppStyle> get styles => throw _privateConstructorUsedError;
   String get swaggerUrl => throw _privateConstructorUsedError;
   Set<DataComponent> get dataComponents => throw _privateConstructorUsedError;
   Set<Source> get sources => throw _privateConstructorUsedError;
@@ -71,6 +74,8 @@ abstract class $ConfigCopyWith<$Res> {
       ProjectTheming theming,
       List<String> signingVars,
       Set<Screen> screens,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      List<AppStyle> styles,
       String swaggerUrl,
       Set<DataComponent> dataComponents,
       Set<Source> sources});
@@ -109,6 +114,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? theming = null,
     Object? signingVars = null,
     Object? screens = null,
+    Object? styles = null,
     Object? swaggerUrl = null,
     Object? dataComponents = null,
     Object? sources = null,
@@ -186,6 +192,10 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.screens
           : screens // ignore: cast_nullable_to_non_nullable
               as Set<Screen>,
+      styles: null == styles
+          ? _value.styles
+          : styles // ignore: cast_nullable_to_non_nullable
+              as List<AppStyle>,
       swaggerUrl: null == swaggerUrl
           ? _value.swaggerUrl
           : swaggerUrl // ignore: cast_nullable_to_non_nullable
@@ -236,6 +246,8 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       ProjectTheming theming,
       List<String> signingVars,
       Set<Screen> screens,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      List<AppStyle> styles,
       String swaggerUrl,
       Set<DataComponent> dataComponents,
       Set<Source> sources});
@@ -273,6 +285,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
     Object? theming = null,
     Object? signingVars = null,
     Object? screens = null,
+    Object? styles = null,
     Object? swaggerUrl = null,
     Object? dataComponents = null,
     Object? sources = null,
@@ -350,6 +363,10 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value._screens
           : screens // ignore: cast_nullable_to_non_nullable
               as Set<Screen>,
+      styles: null == styles
+          ? _value._styles
+          : styles // ignore: cast_nullable_to_non_nullable
+              as List<AppStyle>,
       swaggerUrl: null == swaggerUrl
           ? _value.swaggerUrl
           : swaggerUrl // ignore: cast_nullable_to_non_nullable
@@ -396,11 +413,14 @@ class _$ConfigImpl extends _Config {
         ''
       ],
       final Set<Screen> screens = const {},
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final List<AppStyle> styles = const [],
       this.swaggerUrl = '',
       final Set<DataComponent> dataComponents = const {},
       final Set<Source> sources = const {}})
       : _signingVars = signingVars,
         _screens = screens,
+        _styles = styles,
         _dataComponents = dataComponents,
         _sources = sources,
         super._();
@@ -474,6 +494,17 @@ class _$ConfigImpl extends _Config {
     return EqualUnmodifiableSetView(_screens);
   }
 
+// ignore: invalid_annotation_target
+  final List<AppStyle> _styles;
+// ignore: invalid_annotation_target
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  List<AppStyle> get styles {
+    if (_styles is EqualUnmodifiableListView) return _styles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_styles);
+  }
+
   @override
   @JsonKey()
   final String swaggerUrl;
@@ -497,7 +528,7 @@ class _$ConfigImpl extends _Config {
 
   @override
   String toString() {
-    return 'Config(localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, swaggerUrl: $swaggerUrl, dataComponents: $dataComponents, sources: $sources)';
+    return 'Config(localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl, dataComponents: $dataComponents, sources: $sources)';
   }
 
   @override
@@ -536,6 +567,7 @@ class _$ConfigImpl extends _Config {
             const DeepCollectionEquality()
                 .equals(other._signingVars, _signingVars) &&
             const DeepCollectionEquality().equals(other._screens, _screens) &&
+            const DeepCollectionEquality().equals(other._styles, _styles) &&
             (identical(other.swaggerUrl, swaggerUrl) ||
                 other.swaggerUrl == swaggerUrl) &&
             const DeepCollectionEquality()
@@ -565,6 +597,7 @@ class _$ConfigImpl extends _Config {
         theming,
         const DeepCollectionEquality().hash(_signingVars),
         const DeepCollectionEquality().hash(_screens),
+        const DeepCollectionEquality().hash(_styles),
         swaggerUrl,
         const DeepCollectionEquality().hash(_dataComponents),
         const DeepCollectionEquality().hash(_sources)
@@ -604,6 +637,8 @@ abstract class _Config extends Config {
       final ProjectTheming theming,
       final List<String> signingVars,
       final Set<Screen> screens,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final List<AppStyle> styles,
       final String swaggerUrl,
       final Set<DataComponent> dataComponents,
       final Set<Source> sources}) = _$ConfigImpl;
@@ -647,6 +682,9 @@ abstract class _Config extends Config {
   List<String> get signingVars;
   @override
   Set<Screen> get screens;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  List<AppStyle> get styles;
   @override
   String get swaggerUrl;
   @override

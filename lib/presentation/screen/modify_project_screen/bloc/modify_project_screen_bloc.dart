@@ -18,6 +18,7 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
     on<ModifyProjectScreenEventChangeTab>(_onChangeTab);
     on<ModifyProjectScreenEventOnGenerate>(_onGenerate);
     on<ModifyProjectScreenEventOnParse>(_onParse);
+    on<ModifyProjectScreenEventOnGetStyles>(_onGetStyles);
   }
 
   FutureOr<void> _onInit(
@@ -32,6 +33,7 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
 
     emit(
       state.copyWith(
+        configured: true,
         config: event.config.copyWith(
           sources: sourceRepository.sources,
           dataComponents: dataComponentRepository.dataComponents
@@ -121,5 +123,16 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
       await hideProgress();
       addSr(ModifyProjectScreenSR.onError(message: e.toString()));
     }
+  }
+
+  FutureOr<void> _onGetStyles(
+    ModifyProjectScreenEventOnGetStyles event,
+    Emitter<ModifyProjectScreenState> emit,
+  ) async {
+    emit(state.copyWith(
+      config: state.config.copyWith(
+        styles: event.styles,
+      ),
+    ));
   }
 }

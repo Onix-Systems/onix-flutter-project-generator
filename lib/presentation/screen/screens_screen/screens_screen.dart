@@ -6,10 +6,12 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/add_screen_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/figma_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
@@ -17,7 +19,7 @@ import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
 
 class ScreensScreen extends StatefulWidget {
   final Config config;
-  final VoidCallback? onContinue;
+  final ValueChanged<List<AppStyle>>? onContinue;
 
   const ScreensScreen({
     required this.config,
@@ -134,6 +136,24 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                 ),
                 const Delimiter.width(10),
                 AppFilledButton(
+                  label: S.of(context).getStylesFromFigma,
+                  icon: Icons.download,
+                  onPressed: () {
+                    showCupertinoModalPopup<List<AppStyle>>(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) => const FigmaDialog(),
+                    ).then((styles) {
+                      if (styles != null && styles.isNotEmpty) {
+                        blocOf(context).add(
+                          ScreensScreenEventOnGetStyles(styles: styles),
+                        );
+                      }
+                    });
+                  },
+                ),
+                const Delimiter.width(10),
+                AppFilledButton(
                   label: S.of(context).continueLabel,
                   icon: Icons.arrow_forward_ios_rounded,
                   iconLeft: false,
@@ -158,16 +178,20 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
             ))
         : context.go(
             AppRouter.projectSettingsScreen,
-            extra: widget.config,
+            extra: widget.config.copyWith(
+              styles: state.config.styles,
+            ),
           );
   }
 
   void _onContinue(BuildContext context, ScreensScreenState state) {
     widget.config.projectExists
-        ? widget.onContinue?.call()
+        ? widget.onContinue?.call(state.config.styles)
         : context.go(
             AppRouter.swaggerParserScreen,
-            extra: widget.config,
+            extra: widget.config.copyWith(
+              styles: state.config.styles,
+            ),
           );
   }
 }

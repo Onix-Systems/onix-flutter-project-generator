@@ -19,6 +19,7 @@ mixin _$ModifyProjectScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
+    required TResult Function(List<AppStyle> styles) getStyles,
     required TResult Function(int index) changeTab,
     required TResult Function() onGenerate,
     required TResult Function(String path) onParse,
@@ -27,6 +28,7 @@ mixin _$ModifyProjectScreenEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
+    TResult? Function(List<AppStyle> styles)? getStyles,
     TResult? Function(int index)? changeTab,
     TResult? Function()? onGenerate,
     TResult? Function(String path)? onParse,
@@ -35,6 +37,7 @@ mixin _$ModifyProjectScreenEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
+    TResult Function(List<AppStyle> styles)? getStyles,
     TResult Function(int index)? changeTab,
     TResult Function()? onGenerate,
     TResult Function(String path)? onParse,
@@ -44,6 +47,8 @@ mixin _$ModifyProjectScreenEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ModifyProjectScreenEventInit value) init,
+    required TResult Function(ModifyProjectScreenEventOnGetStyles value)
+        getStyles,
     required TResult Function(ModifyProjectScreenEventChangeTab value)
         changeTab,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
@@ -54,6 +59,7 @@ mixin _$ModifyProjectScreenEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ModifyProjectScreenEventInit value)? init,
+    TResult? Function(ModifyProjectScreenEventOnGetStyles value)? getStyles,
     TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
@@ -62,6 +68,7 @@ mixin _$ModifyProjectScreenEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ModifyProjectScreenEventInit value)? init,
+    TResult Function(ModifyProjectScreenEventOnGetStyles value)? getStyles,
     TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
@@ -85,7 +92,7 @@ class _$ModifyProjectScreenEventCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -170,6 +177,7 @@ class _$ModifyProjectScreenEventInitImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
+    required TResult Function(List<AppStyle> styles) getStyles,
     required TResult Function(int index) changeTab,
     required TResult Function() onGenerate,
     required TResult Function(String path) onParse,
@@ -181,6 +189,7 @@ class _$ModifyProjectScreenEventInitImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
+    TResult? Function(List<AppStyle> styles)? getStyles,
     TResult? Function(int index)? changeTab,
     TResult? Function()? onGenerate,
     TResult? Function(String path)? onParse,
@@ -192,6 +201,7 @@ class _$ModifyProjectScreenEventInitImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
+    TResult Function(List<AppStyle> styles)? getStyles,
     TResult Function(int index)? changeTab,
     TResult Function()? onGenerate,
     TResult Function(String path)? onParse,
@@ -207,6 +217,8 @@ class _$ModifyProjectScreenEventInitImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ModifyProjectScreenEventInit value) init,
+    required TResult Function(ModifyProjectScreenEventOnGetStyles value)
+        getStyles,
     required TResult Function(ModifyProjectScreenEventChangeTab value)
         changeTab,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
@@ -220,6 +232,7 @@ class _$ModifyProjectScreenEventInitImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ModifyProjectScreenEventInit value)? init,
+    TResult? Function(ModifyProjectScreenEventOnGetStyles value)? getStyles,
     TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
@@ -231,6 +244,7 @@ class _$ModifyProjectScreenEventInitImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ModifyProjectScreenEventInit value)? init,
+    TResult Function(ModifyProjectScreenEventOnGetStyles value)? getStyles,
     TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
@@ -252,6 +266,178 @@ abstract class ModifyProjectScreenEventInit
   @JsonKey(ignore: true)
   _$$ModifyProjectScreenEventInitImplCopyWith<
           _$ModifyProjectScreenEventInitImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ModifyProjectScreenEventOnGetStylesImplCopyWith<$Res> {
+  factory _$$ModifyProjectScreenEventOnGetStylesImplCopyWith(
+          _$ModifyProjectScreenEventOnGetStylesImpl value,
+          $Res Function(_$ModifyProjectScreenEventOnGetStylesImpl) then) =
+      __$$ModifyProjectScreenEventOnGetStylesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<AppStyle> styles});
+}
+
+/// @nodoc
+class __$$ModifyProjectScreenEventOnGetStylesImplCopyWithImpl<$Res>
+    extends _$ModifyProjectScreenEventCopyWithImpl<$Res,
+        _$ModifyProjectScreenEventOnGetStylesImpl>
+    implements _$$ModifyProjectScreenEventOnGetStylesImplCopyWith<$Res> {
+  __$$ModifyProjectScreenEventOnGetStylesImplCopyWithImpl(
+      _$ModifyProjectScreenEventOnGetStylesImpl _value,
+      $Res Function(_$ModifyProjectScreenEventOnGetStylesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? styles = null,
+  }) {
+    return _then(_$ModifyProjectScreenEventOnGetStylesImpl(
+      styles: null == styles
+          ? _value._styles
+          : styles // ignore: cast_nullable_to_non_nullable
+              as List<AppStyle>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ModifyProjectScreenEventOnGetStylesImpl
+    implements ModifyProjectScreenEventOnGetStyles {
+  const _$ModifyProjectScreenEventOnGetStylesImpl(
+      {required final List<AppStyle> styles})
+      : _styles = styles;
+
+  final List<AppStyle> _styles;
+  @override
+  List<AppStyle> get styles {
+    if (_styles is EqualUnmodifiableListView) return _styles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_styles);
+  }
+
+  @override
+  String toString() {
+    return 'ModifyProjectScreenEvent.getStyles(styles: $styles)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ModifyProjectScreenEventOnGetStylesImpl &&
+            const DeepCollectionEquality().equals(other._styles, _styles));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_styles));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ModifyProjectScreenEventOnGetStylesImplCopyWith<
+          _$ModifyProjectScreenEventOnGetStylesImpl>
+      get copyWith => __$$ModifyProjectScreenEventOnGetStylesImplCopyWithImpl<
+          _$ModifyProjectScreenEventOnGetStylesImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function(List<AppStyle> styles) getStyles,
+    required TResult Function(int index) changeTab,
+    required TResult Function() onGenerate,
+    required TResult Function(String path) onParse,
+  }) {
+    return getStyles(styles);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function(List<AppStyle> styles)? getStyles,
+    TResult? Function(int index)? changeTab,
+    TResult? Function()? onGenerate,
+    TResult? Function(String path)? onParse,
+  }) {
+    return getStyles?.call(styles);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function(List<AppStyle> styles)? getStyles,
+    TResult Function(int index)? changeTab,
+    TResult Function()? onGenerate,
+    TResult Function(String path)? onParse,
+    required TResult orElse(),
+  }) {
+    if (getStyles != null) {
+      return getStyles(styles);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ModifyProjectScreenEventInit value) init,
+    required TResult Function(ModifyProjectScreenEventOnGetStyles value)
+        getStyles,
+    required TResult Function(ModifyProjectScreenEventChangeTab value)
+        changeTab,
+    required TResult Function(ModifyProjectScreenEventOnGenerate value)
+        onGenerate,
+    required TResult Function(ModifyProjectScreenEventOnParse value) onParse,
+  }) {
+    return getStyles(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ModifyProjectScreenEventInit value)? init,
+    TResult? Function(ModifyProjectScreenEventOnGetStyles value)? getStyles,
+    TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
+    TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
+  }) {
+    return getStyles?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ModifyProjectScreenEventInit value)? init,
+    TResult Function(ModifyProjectScreenEventOnGetStyles value)? getStyles,
+    TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
+    TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
+    TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
+    required TResult orElse(),
+  }) {
+    if (getStyles != null) {
+      return getStyles(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ModifyProjectScreenEventOnGetStyles
+    implements ModifyProjectScreenEvent {
+  const factory ModifyProjectScreenEventOnGetStyles(
+          {required final List<AppStyle> styles}) =
+      _$ModifyProjectScreenEventOnGetStylesImpl;
+
+  List<AppStyle> get styles;
+  @JsonKey(ignore: true)
+  _$$ModifyProjectScreenEventOnGetStylesImplCopyWith<
+          _$ModifyProjectScreenEventOnGetStylesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -326,6 +512,7 @@ class _$ModifyProjectScreenEventChangeTabImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
+    required TResult Function(List<AppStyle> styles) getStyles,
     required TResult Function(int index) changeTab,
     required TResult Function() onGenerate,
     required TResult Function(String path) onParse,
@@ -337,6 +524,7 @@ class _$ModifyProjectScreenEventChangeTabImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
+    TResult? Function(List<AppStyle> styles)? getStyles,
     TResult? Function(int index)? changeTab,
     TResult? Function()? onGenerate,
     TResult? Function(String path)? onParse,
@@ -348,6 +536,7 @@ class _$ModifyProjectScreenEventChangeTabImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
+    TResult Function(List<AppStyle> styles)? getStyles,
     TResult Function(int index)? changeTab,
     TResult Function()? onGenerate,
     TResult Function(String path)? onParse,
@@ -363,6 +552,8 @@ class _$ModifyProjectScreenEventChangeTabImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ModifyProjectScreenEventInit value) init,
+    required TResult Function(ModifyProjectScreenEventOnGetStyles value)
+        getStyles,
     required TResult Function(ModifyProjectScreenEventChangeTab value)
         changeTab,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
@@ -376,6 +567,7 @@ class _$ModifyProjectScreenEventChangeTabImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ModifyProjectScreenEventInit value)? init,
+    TResult? Function(ModifyProjectScreenEventOnGetStyles value)? getStyles,
     TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
@@ -387,6 +579,7 @@ class _$ModifyProjectScreenEventChangeTabImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ModifyProjectScreenEventInit value)? init,
+    TResult Function(ModifyProjectScreenEventOnGetStyles value)? getStyles,
     TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
@@ -455,6 +648,7 @@ class _$ModifyProjectScreenEventOnGenerateImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
+    required TResult Function(List<AppStyle> styles) getStyles,
     required TResult Function(int index) changeTab,
     required TResult Function() onGenerate,
     required TResult Function(String path) onParse,
@@ -466,6 +660,7 @@ class _$ModifyProjectScreenEventOnGenerateImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
+    TResult? Function(List<AppStyle> styles)? getStyles,
     TResult? Function(int index)? changeTab,
     TResult? Function()? onGenerate,
     TResult? Function(String path)? onParse,
@@ -477,6 +672,7 @@ class _$ModifyProjectScreenEventOnGenerateImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
+    TResult Function(List<AppStyle> styles)? getStyles,
     TResult Function(int index)? changeTab,
     TResult Function()? onGenerate,
     TResult Function(String path)? onParse,
@@ -492,6 +688,8 @@ class _$ModifyProjectScreenEventOnGenerateImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ModifyProjectScreenEventInit value) init,
+    required TResult Function(ModifyProjectScreenEventOnGetStyles value)
+        getStyles,
     required TResult Function(ModifyProjectScreenEventChangeTab value)
         changeTab,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
@@ -505,6 +703,7 @@ class _$ModifyProjectScreenEventOnGenerateImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ModifyProjectScreenEventInit value)? init,
+    TResult? Function(ModifyProjectScreenEventOnGetStyles value)? getStyles,
     TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
@@ -516,6 +715,7 @@ class _$ModifyProjectScreenEventOnGenerateImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ModifyProjectScreenEventInit value)? init,
+    TResult Function(ModifyProjectScreenEventOnGetStyles value)? getStyles,
     TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
@@ -605,6 +805,7 @@ class _$ModifyProjectScreenEventOnParseImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
+    required TResult Function(List<AppStyle> styles) getStyles,
     required TResult Function(int index) changeTab,
     required TResult Function() onGenerate,
     required TResult Function(String path) onParse,
@@ -616,6 +817,7 @@ class _$ModifyProjectScreenEventOnParseImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
+    TResult? Function(List<AppStyle> styles)? getStyles,
     TResult? Function(int index)? changeTab,
     TResult? Function()? onGenerate,
     TResult? Function(String path)? onParse,
@@ -627,6 +829,7 @@ class _$ModifyProjectScreenEventOnParseImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
+    TResult Function(List<AppStyle> styles)? getStyles,
     TResult Function(int index)? changeTab,
     TResult Function()? onGenerate,
     TResult Function(String path)? onParse,
@@ -642,6 +845,8 @@ class _$ModifyProjectScreenEventOnParseImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ModifyProjectScreenEventInit value) init,
+    required TResult Function(ModifyProjectScreenEventOnGetStyles value)
+        getStyles,
     required TResult Function(ModifyProjectScreenEventChangeTab value)
         changeTab,
     required TResult Function(ModifyProjectScreenEventOnGenerate value)
@@ -655,6 +860,7 @@ class _$ModifyProjectScreenEventOnParseImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ModifyProjectScreenEventInit value)? init,
+    TResult? Function(ModifyProjectScreenEventOnGetStyles value)? getStyles,
     TResult? Function(ModifyProjectScreenEventChangeTab value)? changeTab,
     TResult? Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult? Function(ModifyProjectScreenEventOnParse value)? onParse,
@@ -666,6 +872,7 @@ class _$ModifyProjectScreenEventOnParseImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ModifyProjectScreenEventInit value)? init,
+    TResult Function(ModifyProjectScreenEventOnGetStyles value)? getStyles,
     TResult Function(ModifyProjectScreenEventChangeTab value)? changeTab,
     TResult Function(ModifyProjectScreenEventOnGenerate value)? onGenerate,
     TResult Function(ModifyProjectScreenEventOnParse value)? onParse,
@@ -1302,19 +1509,21 @@ abstract class ModifyProjectScreenSROnRefresh implements ModifyProjectScreenSR {
 mixin _$ModifyProjectScreenState {
   Config get config => throw _privateConstructorUsedError;
   int get currentTab => throw _privateConstructorUsedError;
+  bool get configured => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config, int currentTab) data,
+    required TResult Function(Config config, int currentTab, bool configured)
+        data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, int currentTab)? data,
+    TResult? Function(Config config, int currentTab, bool configured)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, int currentTab)? data,
+    TResult Function(Config config, int currentTab, bool configured)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1346,7 +1555,7 @@ abstract class $ModifyProjectScreenStateCopyWith<$Res> {
           $Res Function(ModifyProjectScreenState) then) =
       _$ModifyProjectScreenStateCopyWithImpl<$Res, ModifyProjectScreenState>;
   @useResult
-  $Res call({Config config, int currentTab});
+  $Res call({Config config, int currentTab, bool configured});
 
   $ConfigCopyWith<$Res> get config;
 }
@@ -1367,6 +1576,7 @@ class _$ModifyProjectScreenStateCopyWithImpl<$Res,
   $Res call({
     Object? config = null,
     Object? currentTab = null,
+    Object? configured = null,
   }) {
     return _then(_value.copyWith(
       config: null == config
@@ -1377,6 +1587,10 @@ class _$ModifyProjectScreenStateCopyWithImpl<$Res,
           ? _value.currentTab
           : currentTab // ignore: cast_nullable_to_non_nullable
               as int,
+      configured: null == configured
+          ? _value.configured
+          : configured // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -1398,7 +1612,7 @@ abstract class _$$ModifyProjectScreenStateDataImplCopyWith<$Res>
       __$$ModifyProjectScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Config config, int currentTab});
+  $Res call({Config config, int currentTab, bool configured});
 
   @override
   $ConfigCopyWith<$Res> get config;
@@ -1419,6 +1633,7 @@ class __$$ModifyProjectScreenStateDataImplCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
     Object? currentTab = null,
+    Object? configured = null,
   }) {
     return _then(_$ModifyProjectScreenStateDataImpl(
       config: null == config
@@ -1429,6 +1644,10 @@ class __$$ModifyProjectScreenStateDataImplCopyWithImpl<$Res>
           ? _value.currentTab
           : currentTab // ignore: cast_nullable_to_non_nullable
               as int,
+      configured: null == configured
+          ? _value.configured
+          : configured // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1438,17 +1657,20 @@ class __$$ModifyProjectScreenStateDataImplCopyWithImpl<$Res>
 class _$ModifyProjectScreenStateDataImpl
     implements ModifyProjectScreenStateData {
   const _$ModifyProjectScreenStateDataImpl(
-      {required this.config, this.currentTab = 0});
+      {required this.config, this.currentTab = 0, this.configured = false});
 
   @override
   final Config config;
   @override
   @JsonKey()
   final int currentTab;
+  @override
+  @JsonKey()
+  final bool configured;
 
   @override
   String toString() {
-    return 'ModifyProjectScreenState.data(config: $config, currentTab: $currentTab)';
+    return 'ModifyProjectScreenState.data(config: $config, currentTab: $currentTab, configured: $configured)';
   }
 
   @override
@@ -1458,11 +1680,13 @@ class _$ModifyProjectScreenStateDataImpl
             other is _$ModifyProjectScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config) &&
             (identical(other.currentTab, currentTab) ||
-                other.currentTab == currentTab));
+                other.currentTab == currentTab) &&
+            (identical(other.configured, configured) ||
+                other.configured == configured));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config, currentTab);
+  int get hashCode => Object.hash(runtimeType, config, currentTab, configured);
 
   @JsonKey(ignore: true)
   @override
@@ -1475,27 +1699,28 @@ class _$ModifyProjectScreenStateDataImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config, int currentTab) data,
+    required TResult Function(Config config, int currentTab, bool configured)
+        data,
   }) {
-    return data(config, currentTab);
+    return data(config, currentTab, configured);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, int currentTab)? data,
+    TResult? Function(Config config, int currentTab, bool configured)? data,
   }) {
-    return data?.call(config, currentTab);
+    return data?.call(config, currentTab, configured);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, int currentTab)? data,
+    TResult Function(Config config, int currentTab, bool configured)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(config, currentTab);
+      return data(config, currentTab, configured);
     }
     return orElse();
   }
@@ -1533,12 +1758,15 @@ abstract class ModifyProjectScreenStateData
     implements ModifyProjectScreenState {
   const factory ModifyProjectScreenStateData(
       {required final Config config,
-      final int currentTab}) = _$ModifyProjectScreenStateDataImpl;
+      final int currentTab,
+      final bool configured}) = _$ModifyProjectScreenStateDataImpl;
 
   @override
   Config get config;
   @override
   int get currentTab;
+  @override
+  bool get configured;
   @override
   @JsonKey(ignore: true)
   _$$ModifyProjectScreenStateDataImplCopyWith<

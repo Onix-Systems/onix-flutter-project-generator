@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 ThemeData createDarkTheme() {
   return ThemeData(
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: AppColors.bgDark,
+    scaffoldBackgroundColor: AppColors.scaffoldBackgroundDark,
     extensions: [
       ThemeColors.dark,
       ThemeTextStyles.dark,
     ],
-    dialogTheme: const DialogTheme(backgroundColor: AppColors.bgDark),
+    dialogTheme:
+        const DialogTheme(backgroundColor: AppColors.scaffoldBackgroundDark),
   );
 }
