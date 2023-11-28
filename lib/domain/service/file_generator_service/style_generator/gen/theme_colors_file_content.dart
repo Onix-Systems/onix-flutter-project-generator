@@ -1,4 +1,6 @@
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
+import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
+import 'package:recase/recase.dart';
 
 class ThemeColorsFileContent {
   static String generate({
@@ -6,6 +8,7 @@ class ThemeColorsFileContent {
     required String projectName,
   }) {
     final colorNames = _getColorNames(colors);
+
     return '''import 'package:flutter/material.dart';
 import 'package:$projectName/presentation/style/app_colors.dart';
 
@@ -52,12 +55,21 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   static List<String> _getColorNames(List<AppColorStyle> colors) {
     final names = <String>[];
 
-    for (final name in colors
-        .map((e) => e.name.replaceAll('Dark', '').replaceAll('Light', ''))) {
-      if (names.contains(name)) {
+    for (var name
+        in colors.where((element) => element.validate()).map((e) => e.name)) {
+      if (name.endsWith('Dark')) {
+        name = name.replaceLast('Dark', '');
+        if (!names.contains(name)) {
+          names.add(name.camelCase);
+        }
         continue;
       }
-      names.add(name);
+      if (name.endsWith('Light')) {
+        name = name.replaceLast('Light', '');
+        if (!names.contains(name)) {
+          names.add(name.camelCase);
+        }
+      }
     }
 
     names.sort((a, b) => a.compareTo(b));

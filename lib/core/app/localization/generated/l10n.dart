@@ -1189,6 +1189,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Error loading styles: check internet connection, figma file id and token`
+  String get figmaGetStylesError {
+    return Intl.message(
+      'Error loading styles: check internet connection, figma file id and token',
+      name: 'figmaGetStylesError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No styles found in this file`
+  String get figmaGetStylesEmpty {
+    return Intl.message(
+      'No styles found in this file',
+      name: 'figmaGetStylesEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Figma file id is empty`
+  String get figmaGetStylesEmptyFileId {
+    return Intl.message(
+      'Figma file id is empty',
+      name: 'figmaGetStylesEmptyFileId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Figma token is empty`
+  String get figmaGetStylesEmptyToken {
+    return Intl.message(
+      'Figma token is empty',
+      name: 'figmaGetStylesEmptyToken',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

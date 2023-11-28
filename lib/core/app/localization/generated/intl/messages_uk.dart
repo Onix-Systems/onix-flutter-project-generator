@@ -93,6 +93,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "fields": MessageLookupByLibrary.simpleMessage("Поля"),
         "figmaFileKey":
             MessageLookupByLibrary.simpleMessage("Ключ файлу Figma"),
+        "figmaGetStylesEmpty": MessageLookupByLibrary.simpleMessage(
+            "В цьому figma файлі не знайдено стилів"),
+        "figmaGetStylesEmptyFileId":
+            MessageLookupByLibrary.simpleMessage("Figma id пустий"),
+        "figmaGetStylesEmptyToken":
+            MessageLookupByLibrary.simpleMessage("Figma token пустий"),
+        "figmaGetStylesError": MessageLookupByLibrary.simpleMessage(
+            "Помилка завантаження стилів: перевірте інтернет з\'єднання, id figma файлу та токен"),
         "figmaToken": MessageLookupByLibrary.simpleMessage("Токен Figma"),
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" Ім\'я та прізвище"),

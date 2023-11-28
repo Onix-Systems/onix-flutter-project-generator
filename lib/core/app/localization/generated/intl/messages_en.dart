@@ -90,6 +90,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "exitLabel": MessageLookupByLibrary.simpleMessage("Exit"),
         "fields": MessageLookupByLibrary.simpleMessage("Fields"),
         "figmaFileKey": MessageLookupByLibrary.simpleMessage("Figma file key"),
+        "figmaGetStylesEmpty": MessageLookupByLibrary.simpleMessage(
+            "No styles found in this file"),
+        "figmaGetStylesEmptyFileId":
+            MessageLookupByLibrary.simpleMessage("Figma file id is empty"),
+        "figmaGetStylesEmptyToken":
+            MessageLookupByLibrary.simpleMessage("Figma token is empty"),
+        "figmaGetStylesError": MessageLookupByLibrary.simpleMessage(
+            "Error loading styles: check internet connection, figma file id and token"),
         "figmaToken": MessageLookupByLibrary.simpleMessage("Figma token"),
         "firebaseAuth": MessageLookupByLibrary.simpleMessage(
             "Integrate Firebase with FirebaseAuth?"),

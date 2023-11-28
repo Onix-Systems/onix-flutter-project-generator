@@ -40,6 +40,6 @@ class AppTextStyle extends AppStyle {
 
   @override
   String toString() {
-    return 'AppTextStyle(id: $id, name: $name, fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, letterSpacing: $letterSpacing, color: $color)';
+    return 'FontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, letterSpacing: $letterSpacing${color.isNotEmpty ? ', color: $color' : ''}';
   }
 }
