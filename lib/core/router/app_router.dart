@@ -1,6 +1,7 @@
 //@formatter:off
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/figma_styles_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/splash_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/project_name_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/procedure_selection_screen.dart';
@@ -22,6 +23,7 @@ class AppRouter {
   static const _platformsScreen = '/platforms';
   static const _projectSettingsScreen = '/project_settings';
   static const _screensScreen = '/screens';
+  static const _stylesScreen = '/styles';
   static const _dataComponentsScreen = '/data_components';
   static const _swaggerParserScreen = '/swagger_parser';
   static const _summaryScreen = '/summary';
@@ -38,6 +40,7 @@ class AppRouter {
   static String get platformsScreen => _platformsScreen;
   static String get projectSettingsScreen => _projectSettingsScreen;
   static String get screensScreen => _screensScreen;
+  static String get stylesScreen => _stylesScreen;
   static String get dataComponentsScreen => _dataComponentsScreen;
   static String get swaggerParserScreen => _swaggerParserScreen;
   static String get summaryScreen => _summaryScreen;
@@ -94,6 +97,13 @@ class AppRouter {
           path: _screensScreen,
           name: 'ScreensScreen',
           builder: (context, state) => ScreensScreen(
+            config: state.extra as Config,
+          ),
+        ),
+        GoRoute(
+          path: _stylesScreen,
+          name: 'StylesScreen',
+          builder: (context, state) => FigmaStylesScreen(
             config: state.extra as Config,
           ),
         ),

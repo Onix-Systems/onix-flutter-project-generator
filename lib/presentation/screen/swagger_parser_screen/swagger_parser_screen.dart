@@ -158,7 +158,7 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
               ),
             )
           : context.go(
-              AppRouter.screensScreen,
+              AppRouter.stylesScreen,
               extra: widget.config.copyWith(
                 swaggerUrl: state.config.swaggerUrl,
               ),

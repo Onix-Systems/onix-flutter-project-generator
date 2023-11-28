@@ -9,6 +9,9 @@ class ThemeTextStylesFileContentTailor {
       required bool useScreenUtil,
       required String projectName}) {
     textStyles.sort((a, b) => a.name.compareTo(b.name));
+
+    final styles = textStyles.where((element) => element.validate()).toList();
+
     return '''import 'package:$projectName/presentation/style/app_colors.dart';
 import 'package:flutter/material.dart';
 ${useScreenUtil ? 'import \'package:flutter_screenutil/flutter_screenutil.dart\';' : ''}
@@ -18,7 +21,7 @@ part 'theme_text_styles.tailor.dart';
 
 @Tailor(themeGetter: ThemeGetter.onBuildContext)
 class _\$ThemeTextStyles {
-  ${textStyles.map((e) => '''static List<TextStyle> ${e.name} = [
+  ${styles.map((e) => '''static List<TextStyle> ${e.name} = [
   ${!useScreenUtil ? 'const' : ''} TextStyle(
     ${e.fontFamily.isEmpty ? '' : 'fontFamily: \'${e.fontFamily}\','}
     fontSize: ${e.fontSize}${useScreenUtil ? '.sp' : ''},

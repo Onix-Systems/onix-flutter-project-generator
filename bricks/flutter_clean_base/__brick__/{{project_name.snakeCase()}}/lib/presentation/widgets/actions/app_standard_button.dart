@@ -40,7 +40,7 @@ class AppStandardButton extends StatelessWidget {
           onPressed: enabled ? onPressed : null,
           child: Text(
             value,
-            style: context.appTextStyles.button,
+            style: context.appTextStyles.text,
           )),
     );
   }

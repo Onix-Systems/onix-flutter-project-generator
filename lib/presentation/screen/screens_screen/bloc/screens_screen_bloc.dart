@@ -14,7 +14,6 @@ class ScreensScreenBloc
     on<ScreensScreenEventOnScreenAdd>(_onScreenAdd);
     on<ScreensScreenEventOnScreenDelete>(_onScreenDelete);
     on<ScreensScreenEventOnScreenModify>(_onScreenModify);
-    on<ScreensScreenEventOnGetStyles>(_onGetStyles);
   }
 
   FutureOr<void> _onInit(
@@ -65,16 +64,5 @@ class ScreensScreenBloc
         config: state.config.copyWith(
       screens: screenRepository.screens,
     )));
-  }
-
-  FutureOr<void> _onGetStyles(
-    ScreensScreenEventOnGetStyles event,
-    Emitter<ScreensScreenState> emit,
-  ) {
-    emit(state.copyWith(
-      config: state.config.copyWith(
-        styles: event.styles,
-      ),
-    ));
   }
 }

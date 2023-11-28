@@ -19,7 +19,7 @@ abstract class AppColors {
     List<AppColorStyle> darkColors = [];
     List<AppColorStyle> lightColors = [];
 
-    for (var element in colors) {
+    for (var element in colors.where((element) => element.validate())) {
       if (element.name.endsWith('Dark')) {
         darkColors.add(element);
       } else if (element.name.endsWith('Light')) {

@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 
@@ -23,10 +22,6 @@ class ScreensScreenEvent with _$ScreensScreenEvent {
     required Screen screen,
     required String oldName,
   }) = ScreensScreenEventOnScreenModify;
-
-  const factory ScreensScreenEvent.onGetStyles({
-    required List<AppStyle> styles,
-  }) = ScreensScreenEventOnGetStyles;
 }
 
 @freezed

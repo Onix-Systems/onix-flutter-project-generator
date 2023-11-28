@@ -10,6 +10,7 @@ class ThemeTextStylesFileContent {
     required String projectName,
   }) {
     textStyles.sort((a, b) => a.name.compareTo(b.name));
+    final styles = textStyles.where((element) => element.validate()).toList();
 
     return '''import 'package:$projectName/presentation/style/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ ${useScreenUtil ? 'import \'package:flutter_screenutil/flutter_screenutil.dart\'
 
 class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   static ${useScreenUtil ? 'final' : 'const'} light = ThemeTextStyles(
-  ${textStyles.map((e) => '''${e.name}: TextStyle(
+  ${styles.map((e) => '''${e.name}: TextStyle(
   ${e.fontFamily.isNotEmpty ? 'fontFamily: \'${e.fontFamily}\',' : ''}
   fontSize: ${e.fontSize}${useScreenUtil ? '.sp' : ''},
     fontWeight: FontWeight.w${e.fontWeight},
@@ -26,7 +27,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   );
   
   static ${useScreenUtil ? 'final' : 'const'} dark = ThemeTextStyles(
-  ${textStyles.map((e) => '''${e.name}: TextStyle(
+  ${styles.map((e) => '''${e.name}: TextStyle(
   ${e.fontFamily.isNotEmpty ? 'fontFamily: \'${e.fontFamily}\',' : ''}
   fontSize: ${e.fontSize}${useScreenUtil ? '.sp' : ''},
     fontWeight: FontWeight.w${e.fontWeight},
@@ -34,18 +35,18 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   ),''').join('\n')}
   );
 
-  ${textStyles.map((e) => 'final TextStyle? ${e.name};').join('\n')}
+  ${styles.map((e) => 'final TextStyle? ${e.name};').join('\n')}
 
   const ThemeTextStyles({
-    ${textStyles.map((e) => 'this.${e.name},').join('\n')}
+    ${styles.map((e) => 'this.${e.name},').join('\n')}
   });
 
   @override
   ThemeExtension<ThemeTextStyles> copyWith({
-    ${textStyles.map((e) => 'TextStyle? ${e.name},').join('\n')}
+    ${styles.map((e) => 'TextStyle? ${e.name},').join('\n')}
   }) {
     return ThemeTextStyles(
-      ${textStyles.map((e) => '${e.name}: ${e.name} ?? this.${e.name},').join('\n')}
+      ${styles.map((e) => '${e.name}: ${e.name} ?? this.${e.name},').join('\n')}
     );
   }
 
@@ -56,7 +57,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       return this;
     }
     return ThemeTextStyles(
-      ${textStyles.map((e) => '${e.name}: TextStyle.lerp(${e.name}, other.${e.name}, t),').join('\n')}
+      ${styles.map((e) => '${e.name}: TextStyle.lerp(${e.name}, other.${e.name}, t),').join('\n')}
     );
   }
 }''';
