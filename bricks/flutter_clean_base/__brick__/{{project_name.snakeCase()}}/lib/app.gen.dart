@@ -29,8 +29,7 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
   Widget buildWidget(BuildContext context) {
     {{#isGoRouter}}AppRouter.init();{{/isGoRouter}}
     return {{^web_only}}GlobalLoaderOverlay(
-      overlayColor: Colors.black,
-      overlayOpacity: 0.5,
+      overlayColor: Colors.black.withOpacity(0.5),
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
