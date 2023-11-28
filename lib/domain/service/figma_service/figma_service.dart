@@ -2,15 +2,19 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:http/http.dart' as http;
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
+import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 
 class FigmaService {
   Future<List<AppStyle>> getStyles(String figmaId, String token) async {
     final Set<AppStyle> figmaStyles = {};
+    final Set<AppTextStyle> figmaTextStyles = {};
+    final Set<AppColorStyle> figmaColorStyles = {};
 
     try {
       final fileResponse = await http.get(
@@ -43,11 +47,9 @@ class FigmaService {
         for (final key in nodes.keys) {
           final node = nodes[key];
 
-          //logger.f(node);
-
           if (styles[key]['styleType'] == 'TEXT') {
             final textStyle = node['document']['style'];
-            figmaStyles.add(
+            figmaTextStyles.add(
               AppTextStyle(
                 fontFamily: textStyle['fontFamily'],
                 fontSize: textStyle['fontSize'],
@@ -72,27 +74,58 @@ class FigmaService {
                   ((fill['color']['g'] * 255) as double).toInt(),
                   ((fill['color']['b'] * 255) as double).toInt(),
                 ));
-            if (figmaStyles.map((e) => e.name).contains(color.name) ||
-                figmaStyles.map((e) => e.name).contains('${color.name}Dark') ||
-                figmaStyles.map((e) => e.name).contains('${color.name}Light')) {
+            color.validate();
+            if (figmaColorStyles.map((e) => e.name).contains(color.name) ||
+                figmaColorStyles
+                    .map((e) => e.name)
+                    .contains('${color.name}Dark') ||
+                figmaColorStyles
+                    .map((e) => e.name)
+                    .contains('${color.name}Light')) {
               final nameParts = color.name.sentenceCase.split(' ');
-              nameParts.insert(1, ' ${color.id.hashCode}');
-              color.name = nameParts.join(' ');
+              nameParts.insert(1, '${color.id.hashCode}');
+              color.name = nameParts.join(' ').camelCase;
             }
             if (!color.name.endsWith('Dark') && !color.name.endsWith('Light')) {
-              figmaStyles
+              figmaColorStyles
                   .add(color.copyWithName(name: '${color.name}Dark'.camelCase));
-              figmaStyles.add(
+              figmaColorStyles.add(
                   color.copyWithName(name: '${color.name}Light'.camelCase));
             } else {
-              figmaStyles.add(color);
+              figmaColorStyles
+                  .add(color.copyWithName(name: color.name.camelCase));
             }
           }
         }
       }
 
+      for (final color in List<AppColorStyle>.from(figmaColorStyles)) {
+        if (color.name.endsWith('Dark')) {
+          final colorName = color.name.replaceLast('Dark', '');
+          if (!figmaColorStyles
+              .map((e) => e.name)
+              .contains('${colorName}Light')) {
+            figmaColorStyles
+                .add(color.copyWithName(name: '${colorName}Light'.camelCase));
+          }
+        }
+        if (color.name.endsWith('Light')) {
+          final colorName = color.name.replaceLast('Light', '');
+          if (!figmaColorStyles
+              .map((e) => e.name)
+              .contains('${colorName}Dark')) {
+            figmaColorStyles
+                .add(color.copyWithName(name: '${colorName}Dark'.camelCase));
+          }
+        }
+      }
+
+      figmaStyles.addAll(figmaTextStyles);
+      figmaStyles.addAll(figmaColorStyles);
+
       return figmaStyles.toList();
     } catch (e) {
+      logger.f(e);
       figmaStyles.add(AppTextStyle(
           color: '',
           fontFamily: 'Error',

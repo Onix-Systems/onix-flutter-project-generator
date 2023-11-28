@@ -1,4 +1,5 @@
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
+import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 
 class ThemeColorsFileContentTailor {
   static String generate({
@@ -24,7 +25,7 @@ class _\$ThemeColors {
 
     for (final name in colors
         .where((element) => element.validate())
-        .map((e) => e.name.replaceAll('Dark', '').replaceAll('Light', ''))) {
+        .map((e) => e.name.replaceLast('Dark', '').replaceLast('Light', ''))) {
       if (names.contains(name)) {
         continue;
       }

@@ -1,4 +1,5 @@
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
+import 'package:recase/recase.dart';
 
 abstract class AppStyle {
   final String id;
@@ -35,7 +36,7 @@ abstract class AppStyle {
         newName == 'style Light') {
       valid = false;
     } else {
-      name = newName;
+      name = newName.camelCase;
     }
 
     return valid;
