@@ -65,10 +65,10 @@ class GenerateScreen {
       routesFile.writeAsString(routesContent.replaceAll('//{consts end}',
           '''static const _${screenName.camelCase} = '/$screenName';
       //{consts end}''').replaceAll('//{getters end}',
-          '''static String get ${screenName.camelCase}Screen => _${screenName.camelCase};
+          '''static String get ${screenName.camelCase}Screen => '${screenName.pascalCase}Screen';
       //{getters end}''').replaceAll('//{routes end}', '''GoRoute(
           path: _${screenName.camelCase},
-          name: '${screenName.pascalCase}Screen',
+          name: ${screenName.camelCase}Screen,
           builder: (context, state) =>
               const ${screenName.pascalCase}Screen(),
         ),

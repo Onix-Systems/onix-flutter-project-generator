@@ -19,7 +19,7 @@ class AppRouter {{^isGoRouter}}extends _$AppRouter{{/isGoRouter}}{
   static final AppRouter _instance = AppRouter._privateConstructor();
   static late GoRouter router;
 
-  static String get homeScreen => _home;
+  static String get homeScreen => 'HomeScreen';
   //{getters end}
 
   AppRouter._privateConstructor() {
@@ -36,6 +36,7 @@ class AppRouter {{^isGoRouter}}extends _$AppRouter{{/isGoRouter}}{
       routes: <GoRoute>[
         GoRoute(
           path: _home,
+          name: homeScreen,
           builder: (context, state) => const HomeScreen(),
         ),
         //{routes end}
