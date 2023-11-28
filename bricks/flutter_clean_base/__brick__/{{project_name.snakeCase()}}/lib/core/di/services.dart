@@ -1,5 +1,4 @@
 //@formatter:off
-import 'package:{{project_name}}/app/app_service.dart';
 import 'package:{{project_name}}/app/service/app_service.dart';
 import 'package:{{project_name}}/app/service/session_service/session_service.dart';
 {{#firebase_auth}}import 'package:{{project_name}}/app/service/firebase_session_service/firebase_session_service.dart';
