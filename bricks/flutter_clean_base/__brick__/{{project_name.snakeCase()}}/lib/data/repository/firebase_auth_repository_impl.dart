@@ -2,8 +2,7 @@ import 'package:{{project_name}}/core/arch/domain/entity/common/operation_status
 import 'package:{{project_name}}/core/arch/domain/entity/common/result.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/failure/api_failure.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/failure/firebase_failure.dart';
-import 'package:{{project_name}}/core/di/app.dart';
-import 'package:{{project_name}}/core/extension/logger_extension.dart';
+import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 import 'package:{{project_name}}/data/source/remote/firebase/auth/firebase_auth_source.dart';
 import 'package:{{project_name}}/domain/params/create_user/create_account_params.dart';
 import 'package:{{project_name}}/domain/repository/firebase_auth_repository.dart';
