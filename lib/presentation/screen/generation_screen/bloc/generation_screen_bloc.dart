@@ -77,8 +77,13 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           ..remove('prod');
       }
 
-      var configFile =
-          await File('${state.config.projectPath}/config.json').create();
+      var configFile = File('${state.config.projectPath}/config.json');
+
+      if (configFile.existsSync()) {
+        configFile.deleteSync();
+      }
+
+      configFile.createSync();
 
       await configFile.writeAsString(jsonEncode({
         'signing_password': genPass,
@@ -97,6 +102,18 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       }).toString());
 
       outputService.add('{#info}Getting mason & brick...');
+
+      final brickZip = File('${state.config.projectPath}/brick.zip');
+
+      if (brickZip.existsSync()) {
+        brickZip.deleteSync();
+      }
+
+      final brickFolder = Directory('${state.config.projectPath}/bricks');
+
+      if (brickFolder.existsSync()) {
+        brickFolder.deleteSync(recursive: true);
+      }
 
       final gitGetBrickProcess = await ProcessStarter.start(
           workingDirectory: state.config.projectPath);
@@ -124,8 +141,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       await mainProcess.exitCode;
 
       configFile.delete();
-      await Directory('${state.config.projectPath}/bricks')
-          .delete(recursive: true);
+      brickFolder.deleteSync(recursive: true);
 
       if (!state.config.graphql) {
         await Directory(

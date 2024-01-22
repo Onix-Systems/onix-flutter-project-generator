@@ -1,8 +1,8 @@
 //@formatter:off
 import 'package:get_it/get_it.dart';
-{{^isGoRouter}}import 'package:{{project_name}}/core/router/app_router.dart';
-import 'package:{{project_name}}/core/router/router_logging_observer.dart';
-import 'package:{{project_name}}/core/router/router_module.dart';{{/isGoRouter}}
+{{^isGoRouter}}import 'package:{{project_name}}/app/router/app_router.dart';
+import 'package:{{project_name}}/app/router/router_logging_observer.dart';
+import 'package:{{project_name}}/app/router/router_module.dart';{{/isGoRouter}}
 
 void registerApp(GetIt getIt) {
 
