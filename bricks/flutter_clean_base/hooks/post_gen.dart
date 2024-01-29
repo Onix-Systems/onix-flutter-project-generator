@@ -120,6 +120,8 @@ void run(HookContext context) async {
 
   await correct(context);
 
+  await Process.run('rm', ['widget_test.dart'], workingDirectory: '$name/test');
+
   var gitInitProcess =
       await Process.start('git', ['init'], workingDirectory: name);
 
