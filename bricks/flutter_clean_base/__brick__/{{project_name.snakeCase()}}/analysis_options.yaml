@@ -11,7 +11,6 @@ analyzer:
     - "**/*.mocks.dart"
     - "**/*.tailor.dart"
     - "ios/**"
-    - "test/**"
     - "lib/core/app/localization/**"
 
   errors:

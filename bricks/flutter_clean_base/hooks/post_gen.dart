@@ -184,6 +184,7 @@ Future<void> getDependencies(HookContext context) async {
     'freezed',
     'json_serializable',
     'import_sorter',
+    'mockito',
   ];
 
   switch (context.vars['navigation']) {
@@ -431,6 +432,10 @@ ios/firebase_app_id_file.json
 android/app/google-services.json
 lib/firebase_options.dart
 ios/Runner/GoogleService-Info.plist
+
+# Ignore lcov.info
+coverage/
+
 ''');
 
   if (context.vars['platforms'].contains('android')) {
