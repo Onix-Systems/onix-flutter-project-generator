@@ -145,7 +145,7 @@ class _$ScreensScreenEventInitImpl implements ScreensScreenEventInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScreensScreenEventInitImpl &&
@@ -298,7 +298,7 @@ class _$ScreensScreenEventOnScreenAddImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScreensScreenEventOnScreenAddImpl &&
@@ -453,7 +453,7 @@ class _$ScreensScreenEventOnScreenDeleteImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScreensScreenEventOnScreenDeleteImpl &&
@@ -618,7 +618,7 @@ class _$ScreensScreenEventOnScreenModifyImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScreensScreenEventOnScreenModifyImpl &&
@@ -777,7 +777,7 @@ class _$ScreensScreenSRCopyWithImpl<$Res, $Val extends ScreensScreenSR>
 
   // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -808,7 +808,7 @@ class _$ExistsErrorImpl implements _ExistsError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$ExistsErrorImpl);
   }
@@ -1028,7 +1028,7 @@ class _$ScreensScreenStateDataImpl implements ScreensScreenStateData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScreensScreenStateDataImpl &&

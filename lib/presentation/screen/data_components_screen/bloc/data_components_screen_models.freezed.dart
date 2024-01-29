@@ -200,7 +200,7 @@ class _$DataComponentsScreenEventInitImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataComponentsScreenEventInitImpl &&
@@ -390,7 +390,7 @@ class _$DataComponentsScreenEventStateUpdateImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataComponentsScreenEventStateUpdateImpl);
@@ -583,7 +583,7 @@ class _$DataComponentsScreenEventAddSourceImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataComponentsScreenEventAddSourceImpl &&
@@ -800,7 +800,7 @@ class _$DataComponentsScreenEventDeleteSourceImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataComponentsScreenEventDeleteSourceImpl &&
@@ -1022,7 +1022,7 @@ class _$DataComponentsScreenEventModifySourceImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataComponentsScreenEventModifySourceImpl &&
@@ -1243,7 +1243,7 @@ class _$DataComponentsScreenEventAddDataComponentImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataComponentsScreenEventAddDataComponentImpl &&
@@ -1469,7 +1469,7 @@ class _$DataComponentsScreenEventDeleteDataComponentImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataComponentsScreenEventDeleteDataComponentImpl &&
@@ -1708,7 +1708,7 @@ class _$DataComponentsScreenEventModifyDataComponentImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataComponentsScreenEventModifyDataComponentImpl &&
@@ -2002,7 +2002,7 @@ class _$ErrorImpl implements _Error {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorImpl &&
@@ -2240,7 +2240,7 @@ class _$DataComponentsScreenStateDataImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataComponentsScreenStateDataImpl &&

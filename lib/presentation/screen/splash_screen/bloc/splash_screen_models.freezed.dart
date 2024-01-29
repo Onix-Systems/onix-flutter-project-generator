@@ -105,7 +105,7 @@ class _$SplashScreenEventInitImpl implements SplashScreenEventInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SplashScreenEventInitImpl);
@@ -215,7 +215,7 @@ class _$SplashScreenEventOnAnimationFinishedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SplashScreenEventOnAnimationFinishedImpl);
@@ -352,7 +352,7 @@ class _$SplashScreenSRCopyWithImpl<$Res, $Val extends SplashScreenSR>
 
   // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -383,7 +383,7 @@ class _$onNeedUpdateImpl implements _onNeedUpdate {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$onNeedUpdateImpl);
   }
@@ -485,7 +485,7 @@ class _$onContinueImpl implements _onContinue {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$onContinueImpl);
   }
@@ -718,7 +718,7 @@ class _$DataImpl implements Data {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataImpl &&

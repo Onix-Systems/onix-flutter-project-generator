@@ -155,7 +155,7 @@ class _$ModifyProjectScreenEventInitImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ModifyProjectScreenEventInitImpl &&
@@ -325,7 +325,7 @@ class _$ModifyProjectScreenEventOnGetStylesImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ModifyProjectScreenEventOnGetStylesImpl &&
@@ -490,7 +490,7 @@ class _$ModifyProjectScreenEventChangeTabImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ModifyProjectScreenEventChangeTabImpl &&
@@ -635,7 +635,7 @@ class _$ModifyProjectScreenEventOnGenerateImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ModifyProjectScreenEventOnGenerateImpl);
@@ -783,7 +783,7 @@ class _$ModifyProjectScreenEventOnParseImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ModifyProjectScreenEventOnParseImpl &&
@@ -966,7 +966,7 @@ class _$ModifyProjectScreenSRCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -1025,7 +1025,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadFinishedImpl &&
@@ -1153,7 +1153,7 @@ class _$OnGenerateImpl implements _OnGenerate {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$OnGenerateImpl);
   }
@@ -1285,7 +1285,7 @@ class _$OnErrorImpl implements _OnError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OnErrorImpl &&
@@ -1416,7 +1416,7 @@ class _$ModifyProjectScreenSROnRefreshImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ModifyProjectScreenSROnRefreshImpl);
@@ -1674,7 +1674,7 @@ class _$ModifyProjectScreenStateDataImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ModifyProjectScreenStateDataImpl &&
