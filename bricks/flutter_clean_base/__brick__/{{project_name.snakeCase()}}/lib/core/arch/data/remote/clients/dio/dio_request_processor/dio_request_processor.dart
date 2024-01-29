@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:{{project_name}}/core/arch/data/remote/error/dio_error_processor.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/common/data_response.dart';
 import 'package:dio/dio.dart';
 
@@ -17,5 +18,6 @@ abstract class DioRequestProcessor {
     required OnRequest<T> onRequest,
     required OnResponse<R> onResponse,
     bool checkNetworkConnection = true,
+    OnCustomError? onCustomError,
   });
 }
