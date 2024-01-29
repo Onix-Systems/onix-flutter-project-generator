@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'color_property_data_model.g.dart';
 
+// https://www.figma.com/developers/api#color-type
 @JsonSerializable()
 class ColorPropertyDataModel {
   final double? r;

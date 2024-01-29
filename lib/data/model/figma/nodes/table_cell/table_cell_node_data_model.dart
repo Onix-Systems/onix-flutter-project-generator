@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/data/model/figma/properties/paint/paint_prop
 
 part 'table_cell_node_data_model.g.dart';
 
+// https://www.figma.com/developers/api#table_cell-props
 @JsonSerializable()
 class TableCellNodeDataModel extends FillPaintsNodeDataModel {
   const TableCellNodeDataModel({

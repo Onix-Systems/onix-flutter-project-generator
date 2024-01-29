@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'figma_node_style.g.dart';
 
+// https://www.figma.com/developers/api#style-type
 @JsonSerializable()
 class FigmaNodeStyle {
   final String? nodeId;

@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/data/model/figma/properties/paint/paint_prop
 
 part 'section_node_data_model.g.dart';
 
+// https://www.figma.com/developers/api#section-props
 @JsonSerializable()
 class SectionNodeDataModel extends FillPaintsNodeDataModel {
   const SectionNodeDataModel({

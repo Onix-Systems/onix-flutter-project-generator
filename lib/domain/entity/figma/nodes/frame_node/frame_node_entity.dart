@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/domain/entity/figma/properties/paint_propert
 
 part 'frame_node_entity.freezed.dart';
 
+// https://www.figma.com/developers/api#frame-props
 @freezed
 class FrameNodeEntity with _$FrameNodeEntity implements FillPaintsNode {
   const factory FrameNodeEntity({

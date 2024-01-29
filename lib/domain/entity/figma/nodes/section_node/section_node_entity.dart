@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/domain/entity/figma/properties/paint_propert
 
 part 'section_node_entity.freezed.dart';
 
+// https://www.figma.com/developers/api#section-props
 @freezed
 class SectionNodeEntity with _$SectionNodeEntity implements FillPaintsNode {
   const factory SectionNodeEntity({

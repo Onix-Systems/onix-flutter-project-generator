@@ -1,8 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/data/mapper/converter/figma/figma_node_type_converter.dart';
+import 'package:onix_flutter_bricks/data/converter/figma/figma_node_type_converter.dart';
 import 'package:onix_flutter_bricks/data/model/figma/nodes/node/node_data_model.dart';
+
 part 'document_node_data_model.g.dart';
 
+// https://www.figma.com/developers/api#document-props
 @JsonSerializable()
 class DocumentNodeDataModel extends NodeDataModel {
   @FigmaNodeTypeConverter()

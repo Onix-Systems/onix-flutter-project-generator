@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/domain/entity/figma/properties/paint_propert
 
 part 'connector_node_entity.freezed.dart';
 
+// https://www.figma.com/developers/api#connector-props
 @freezed
 class ConnectorNodeEntity with _$ConnectorNodeEntity implements FillPaintsNode {
   const factory ConnectorNodeEntity({

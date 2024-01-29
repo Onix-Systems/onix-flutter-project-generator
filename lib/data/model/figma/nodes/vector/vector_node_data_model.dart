@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/data/model/figma/properties/paint/paint_prop
 
 part 'vector_node_data_model.g.dart';
 
+// https://www.figma.com/developers/api#vector-props
 @JsonSerializable()
 class VectorNodeDataModel extends FillPaintsNodeDataModel {
   const VectorNodeDataModel({

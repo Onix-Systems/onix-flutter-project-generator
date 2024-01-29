@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/domain/entity/figma/properties/paint_propert
 
 part 'sticky_node_entity.freezed.dart';
 
+// https://www.figma.com/developers/api#sticky-props
 @freezed
 class StickyNodeEntity with _$StickyNodeEntity implements FillPaintsNode {
   const factory StickyNodeEntity({

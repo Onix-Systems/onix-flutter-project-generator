@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/data/model/figma/properties/paint/paint_prop
 
 part 'shape_with_text_node_data_model.g.dart';
 
+// https://www.figma.com/developers/api#shape_with_text-props
 @JsonSerializable()
 class ShapeWithTextNodeDataModel extends FillPaintsNodeDataModel {
   const ShapeWithTextNodeDataModel({

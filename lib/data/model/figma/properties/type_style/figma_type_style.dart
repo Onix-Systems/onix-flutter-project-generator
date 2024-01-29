@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'figma_type_style.g.dart';
 
+// https://www.figma.com/developers/api#typestyle-type
 @JsonSerializable()
 class FigmaTypeStyle {
   final String? fontFamily;

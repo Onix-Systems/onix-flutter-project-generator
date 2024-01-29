@@ -3,6 +3,7 @@ import 'package:onix_flutter_bricks/data/model/figma/properties/color/color_prop
 
 part 'paint_property_data_model.g.dart';
 
+// https://www.figma.com/developers/api#paint-type
 @JsonSerializable()
 class PaintPropertyDataModel {
   final ColorPropertyDataModel? color;

@@ -4,7 +4,6 @@ import 'package:onix_flutter_bricks/domain/entity/figma/properties/color_propert
 part 'paint_property.freezed.dart';
 
 // https://www.figma.com/developers/api#paint-type
-
 @freezed
 class PaintProperty with _$PaintProperty {
   const factory PaintProperty({

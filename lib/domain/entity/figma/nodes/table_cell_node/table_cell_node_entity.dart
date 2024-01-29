@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/domain/entity/figma/properties/paint_propert
 
 part 'table_cell_node_entity.freezed.dart';
 
+// https://www.figma.com/developers/api#table_cell-props
 @freezed
 class TableCellNodeEntity with _$TableCellNodeEntity implements FillPaintsNode {
   const factory TableCellNodeEntity({

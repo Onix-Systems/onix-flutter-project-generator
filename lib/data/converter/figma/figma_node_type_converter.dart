@@ -55,6 +55,7 @@ class FigmaNodeTypeConverter
 
   @override
   Map<String, dynamic> toJson(NodeDataModel object) {
-    return {};
+    // TODO(Ivan Modlo): Implement it if necessary
+    throw UnimplementedError();
   }
 }

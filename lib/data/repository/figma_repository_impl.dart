@@ -1,5 +1,5 @@
 import 'package:onix_flutter_bricks/data/mapper/figma/figma_nodes_mapper.dart';
-import 'package:onix_flutter_bricks/data/mapper/figma/node_style_mapper.dart';
+import 'package:onix_flutter_bricks/data/mapper/figma/properties_mapper.dart';
 import 'package:onix_flutter_bricks/data/source/remote/figma/figma_remote_data_source.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/nodes/node/base_node.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/properties/node_style_property/node_style_property.dart';
@@ -21,7 +21,7 @@ class FigmaRepositoryImpl implements FigmaRepository {
     return result.styles.map(
       (key, value) => MapEntry(
         key,
-        NodeStyleMapper().mapNodeStyleDataModelToEntity(value),
+        PropertyMapper().mapNodeStyleDataModelToEntity(value),
       ),
     );
   }

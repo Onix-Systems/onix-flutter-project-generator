@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/domain/entity/figma/properties/paint_propert
 
 part 'vector_node_entity.freezed.dart';
 
+// https://www.figma.com/developers/api#vector-props
 @freezed
 class VectorNodeEntity with _$VectorNodeEntity implements FillPaintsNode {
   const factory VectorNodeEntity({

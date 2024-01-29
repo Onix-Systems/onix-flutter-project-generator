@@ -3,6 +3,7 @@ import 'package:onix_flutter_bricks/domain/entity/figma/nodes/node/base_node.dar
 
 part 'document_node_entity.freezed.dart';
 
+// https://www.figma.com/developers/api#document-props
 @freezed
 class DocumentNodeEntity with _$DocumentNodeEntity implements BaseNode {
   const factory DocumentNodeEntity({

@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/domain/entity/figma/properties/type_style/ty
 
 part 'text_node_entity.freezed.dart';
 
+// https://www.figma.com/developers/api#text-props
 @freezed
 class TextNodeEntity with _$TextNodeEntity implements FillPaintsNode {
   const factory TextNodeEntity({

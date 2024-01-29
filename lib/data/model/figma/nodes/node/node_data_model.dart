@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'node_data_model.g.dart';
 
+// https://www.figma.com/developers/api#node-type
 @JsonSerializable()
 class NodeDataModel {
   final String? id;

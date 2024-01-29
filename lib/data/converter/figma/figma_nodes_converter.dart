@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onix_flutter_bricks/data/mapper/converter/figma/figma_node_type_converter.dart';
+import 'package:onix_flutter_bricks/data/converter/figma/figma_node_type_converter.dart';
 import 'package:onix_flutter_bricks/data/model/figma/nodes/node/node_data_model.dart';
 
 class FigmaNodesConverter
@@ -21,6 +21,7 @@ class FigmaNodesConverter
 
   @override
   Map<String, dynamic> toJson(List<NodeDataModel> object) {
+    // TODO(Ivan Modlo): Implement it if necessary
     throw UnimplementedError();
   }
 }

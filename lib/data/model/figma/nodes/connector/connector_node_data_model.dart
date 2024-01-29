@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/data/model/figma/properties/paint/paint_prop
 
 part 'connector_node_data_model.g.dart';
 
+// https://www.figma.com/developers/api#connector-props
 @JsonSerializable()
 class ConnectorNodeDataModel extends FillPaintsNodeDataModel {
   const ConnectorNodeDataModel({

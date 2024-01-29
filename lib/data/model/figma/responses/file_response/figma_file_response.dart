@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/data/model/figma/nodes/document/document_node_data_model.dart';
-import 'package:onix_flutter_bricks/data/model/figma/styles/figma_node_style.dart';
+import 'package:onix_flutter_bricks/data/model/figma/properties/node_style/figma_node_style.dart';
 
 part 'figma_file_response.g.dart';
 
