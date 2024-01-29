@@ -33,7 +33,7 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
   final bool useRetry;
   @protected
   final List<int> retryStatusCodes;
-  final _errorProcessor = DioErrorProcessor();
+  final _errorProcessor = const DioErrorProcessor();
 
   DioRequestProcessorImpl({
     this.connectivity,
@@ -58,7 +58,7 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
 
       if (checkNetworkConnection &&
           (resultConnectivity == ConnectivityResult.none || !hasConnection)) {
-        return const DataResponse.notConnected();
+        return DataResponse<R>.notConnected();
       }
     }
 

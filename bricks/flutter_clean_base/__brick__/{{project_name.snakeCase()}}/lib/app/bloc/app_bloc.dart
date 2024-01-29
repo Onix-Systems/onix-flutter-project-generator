@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';
 import 'package:{{project_name}}/core/arch/bloc/base_bloc.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +8,7 @@ class AppBloc extends BaseBloc<AppEvent, AppScreenState, AppSR> {
     on<ChangeThemeEvent>(_onChangeTheme);
   }
 
-  FutureOr<void> _onChangeTheme(
+  void _onChangeTheme(
     ChangeThemeEvent event,
     Emitter<AppScreenState> emit,
   ) {

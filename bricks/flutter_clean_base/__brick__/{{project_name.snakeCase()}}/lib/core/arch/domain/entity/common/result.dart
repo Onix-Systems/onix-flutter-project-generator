@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'result.freezed.dart';
 
 @freezed
-sealed class Result<T> with _$Result<T> {
+class Result<T> with _$Result<T> {
   bool get success => this is _ResultSuccess<T>;
 
   bool get isError => this is ResultError;

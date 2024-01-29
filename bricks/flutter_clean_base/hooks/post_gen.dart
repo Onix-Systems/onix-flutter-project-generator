@@ -120,6 +120,8 @@ void run(HookContext context) async {
 
   await correct(context);
 
+  await Process.run('rm', ['widget_test.dart'], workingDirectory: '$name/test');
+
   var gitInitProcess =
       await Process.start('git', ['init'], workingDirectory: name);
 
@@ -169,7 +171,8 @@ Future<void> getDependencies(HookContext context) async {
     'flutter_native_splash',
     'collection',
     'flutter_dotenv',
-    'flutter_jailbreak_detection'
+    'flutter_jailbreak_detection',
+    'gap',
   ];
 
   if (!context.vars['web_only']) {
@@ -184,6 +187,8 @@ Future<void> getDependencies(HookContext context) async {
     'freezed',
     'json_serializable',
     'import_sorter',
+    'mockito',
+    'bloc_test',
   ];
 
   switch (context.vars['navigation']) {
@@ -431,6 +436,10 @@ ios/firebase_app_id_file.json
 android/app/google-services.json
 lib/firebase_options.dart
 ios/Runner/GoogleService-Info.plist
+
+# Ignore lcov.info
+coverage/
+
 ''');
 
   if (context.vars['platforms'].contains('android')) {

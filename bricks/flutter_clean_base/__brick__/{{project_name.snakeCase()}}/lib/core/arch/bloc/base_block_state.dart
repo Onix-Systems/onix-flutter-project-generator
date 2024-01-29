@@ -72,7 +72,7 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
 
   Widget blocConsumer({
     required StateListener<S> stateListener,
-    ListenDelegate<S>? listenDelegate,
+    required ListenDelegate<S>? listenDelegate,
     BlocBuilderCondition<S>? buildWhen,
     BlocListenerCondition<S>? listenWhen,
   }) {
