@@ -169,7 +169,8 @@ Future<void> getDependencies(HookContext context) async {
     'flutter_native_splash',
     'collection',
     'flutter_dotenv',
-    'flutter_jailbreak_detection'
+    'flutter_jailbreak_detection',
+    'gap',
   ];
 
   if (!context.vars['web_only']) {
