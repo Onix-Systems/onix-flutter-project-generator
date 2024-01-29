@@ -34,13 +34,13 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
         designSize: const Size(375, 812),
         minTextAdapt: true,
         builder: (context, child) {
-        return{{/web_only}} blocConsumer(
-          stateListener: (state) {
+        return{{/web_only}} blocBuilder(
+          builder: (constext, state) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             builder: (context, widget) {
               return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+                data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
                 {{#flavorizr}}
                 child: FlavorBanner(
                   child: widget ?? const SizedBox(),
@@ -75,9 +75,8 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
 
             {{#handLocalization}}
             localeResolutionCallback: (deviceLocale, supportedLocales) {
-              locale ??=
+              return locale ??=
               Locale(AppLocalizations.supportedLocales.last.languageCode);
-              return locale;
             },
             onGenerateTitle: (context) => context.str.title,
             localizationsDelegates: AppLocalizations.localizationsDelegates,

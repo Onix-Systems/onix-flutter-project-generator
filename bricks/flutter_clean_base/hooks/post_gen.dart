@@ -185,6 +185,7 @@ Future<void> getDependencies(HookContext context) async {
     'json_serializable',
     'import_sorter',
     'mockito',
+    'bloc_test',
   ];
 
   switch (context.vars['navigation']) {
