@@ -17,13 +17,13 @@ class DioErrorProcessor {
     if (e.type == DioExceptionType.connectionTimeout ||
         e.type == DioExceptionType.sendTimeout ||
         statusCode == HttpStatus.networkConnectTimeoutError) {
-      return const DataResponse<T>.notConnected();
+      return DataResponse<T>.notConnected();
     }
     if (statusCode == HttpStatus.unauthorized) {
-      return const DataResponse<T>.unauthorized();
+      return DataResponse<T>.unauthorized();
     }
     if (statusCode == HttpStatus.tooManyRequests) {
-      return const DataResponse<T>.tooManyRequests();
+      return DataResponse<T>.tooManyRequests();
     }
     final errorHandler = onCustomError;
     if (errorHandler != null) {

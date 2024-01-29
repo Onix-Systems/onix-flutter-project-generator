@@ -1,6 +1,6 @@
 import 'package:{{project_name}}/core/arch/data/remote/base/http_status.dart';
-import 'package:{{project_name}}/core/arch/data/remote/dio/dio_request_processor/dio_request_processor.dart';
-import 'package:{{project_name}}/core/arch/data/remote/dio/dio_request_processor/dio_request_processor_impl.dart';
+import 'package:{{project_name}}/core/arch/data/remote/clients/dio/dio_request_processor/dio_request_processor.dart';
+import 'package:{{project_name}}/core/arch/data/remote/clients/dio/dio_request_processor/dio_request_processor_impl.dart';
 import 'package:{{project_name}}/core/arch/data/remote/error/default_api_error.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/common/data_response.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/common/operation_status.dart';
