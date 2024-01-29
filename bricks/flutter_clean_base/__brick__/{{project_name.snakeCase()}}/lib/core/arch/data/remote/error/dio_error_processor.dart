@@ -6,30 +6,7 @@ import 'package:dio/dio.dart';
 typedef OnCustomError<T> = dynamic Function(int code, dynamic response);
 
 class DioErrorProcessor {
-  /// Error codes that require re-execution of the request (without bad request)
-  static const retryStatusCodesWithoutBadReq = [
-    HttpStatus.unprocessedEntity,
-    HttpStatus.forbidden,
-    HttpStatus.unauthorized,
-    HttpStatus.unsupportedMediaType,
-    HttpStatus.badRequest,
-  ];
-
-  /// List of error codes indicating unknown server behavior -
-  /// [CommonResponseError.undefinedError]
-  static const defaultUndefinedErrorCodes = [
-    HttpStatus.internalServerError,
-    HttpStatus.notImplemented,
-    HttpStatus.badGateway,
-    HttpStatus.serviceUnavailable,
-    HttpStatus.notFound,
-  ];
-
-  final List<int> undefinedErrorCodes;
-
-  DioErrorProcessor({
-    this.undefinedErrorCodes = defaultUndefinedErrorCodes,
-  });
+  const DioErrorProcessor();
 
   DataResponse<T> processError<T>(
     DioException e, {
@@ -40,40 +17,40 @@ class DioErrorProcessor {
     if (e.type == DioExceptionType.connectionTimeout ||
         e.type == DioExceptionType.sendTimeout ||
         statusCode == HttpStatus.networkConnectTimeoutError) {
-      return const DataResponse.notConnected();
+      return DataResponse<T>.notConnected();
     }
     if (statusCode == HttpStatus.unauthorized) {
-      return const DataResponse.unauthorized();
+      return DataResponse<T>.unauthorized();
     }
     if (statusCode == HttpStatus.tooManyRequests) {
-      return const DataResponse.tooManyRequests();
-    }
-    if (undefinedErrorCodes.contains(statusCode)) {
-      return DataResponse.undefinedError(e);
-    }
-    if (retryStatusCodesWithoutBadReq.contains(statusCode)) {
-      return DataResponse.undefinedError(e);
+      return DataResponse<T>.tooManyRequests();
     }
     final errorHandler = onCustomError;
     if (errorHandler != null) {
       final apiError = errorHandler(statusCode, responseData);
       if (apiError != null) {
-        return DataResponse.apiError(apiError);
+        return DataResponse<T>.apiError(apiError);
       }
     }
     return _default<T>(e);
   }
 
   DataResponse<T> _default<T>(DioException e) {
-    final response = e.response?.data;
-    if (response != null) {
-      // TODO: process default error there
-      // TODO: customize DefaultApiError to your purposes
-      // TODO: also add new error types to DataResponse if needed
+    try {
+      final response = e.response?.data;
+      if (response != null) {
+        // TODO: process default error there
+        // TODO: customize DefaultApiError to your purposes
+        // TODO: also add new error types to DataResponse if needed
 
-      final error = DefaultApiError.fromJson(response);
-      return DataResponse.apiError(error);
+        final error = DefaultApiError.fromJson(response);
+        return DataResponse<T>.apiError(error);
+      }
+      return DataResponse<T>.undefinedError(e);
+    } catch (_) {
+      // This is in case the response is not received
+      // in the form of ResponseType.json
+      return DataResponse<T>.undefinedError(e);
     }
-    return DataResponse.undefinedError(e);
   }
 }
