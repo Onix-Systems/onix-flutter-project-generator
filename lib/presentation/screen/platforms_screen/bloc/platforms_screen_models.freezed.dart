@@ -136,7 +136,7 @@ class _$PlatformsScreenEventInitImpl implements PlatformsScreenEventInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlatformsScreenEventInitImpl &&
@@ -289,7 +289,7 @@ class _$PlatformsScreenEventOnPlatformsChangeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlatformsScreenEventOnPlatformsChangeImpl &&
@@ -468,7 +468,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
@@ -675,7 +675,7 @@ class _$PlatformsScreenStateDataImpl implements PlatformsScreenStateData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlatformsScreenStateDataImpl &&

@@ -157,7 +157,7 @@ class _$ProcedureSelectionScreenEventInitImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProcedureSelectionScreenEventInitImpl &&
@@ -321,7 +321,7 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProcedureSelectionScreenEventOnNewProjectImpl &&
@@ -490,7 +490,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProcedureSelectionScreenEventOnProjectOpenImpl &&
@@ -661,7 +661,7 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProcedureSelectionScreenEventOnLocaleChangeImpl &&
@@ -874,7 +874,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
@@ -982,7 +982,7 @@ class _$EmptyConfigImpl implements _EmptyConfig {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$EmptyConfigImpl);
   }
@@ -1090,7 +1090,7 @@ class _$onNewProjectImpl implements _onNewProject {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$onNewProjectImpl);
   }
@@ -1324,7 +1324,7 @@ class _$ProcedureSelectionScreenStateDataImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProcedureSelectionScreenStateDataImpl &&

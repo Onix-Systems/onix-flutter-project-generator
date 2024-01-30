@@ -147,7 +147,7 @@ class _$SwaggerParserScreenEventInitImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwaggerParserScreenEventInitImpl &&
@@ -284,7 +284,7 @@ class _$SwaggerParserScreenEventOnReplaceImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwaggerParserScreenEventOnReplaceImpl);
@@ -406,7 +406,7 @@ class _$SwaggerParserScreenEventOnIgnoreImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwaggerParserScreenEventOnIgnoreImpl);
@@ -546,7 +546,7 @@ class _$SwaggerParserScreenEventParseImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwaggerParserScreenEventParseImpl &&
@@ -764,7 +764,7 @@ class _$OnErrorImpl implements _OnError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OnErrorImpl &&
@@ -885,7 +885,7 @@ class _$OnConflictingImpl implements _OnConflicting {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$OnConflictingImpl);
   }
@@ -993,7 +993,7 @@ class _$OnContinueImpl implements _OnContinue {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$OnContinueImpl);
   }
@@ -1272,7 +1272,7 @@ class _$SwaggerParserScreenStateDataImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwaggerParserScreenStateDataImpl &&

@@ -221,7 +221,7 @@ class _$ProjectSettingsScreenEventInitImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenEventInitImpl &&
@@ -431,7 +431,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenEventFlavorizeChangeImpl);
@@ -644,7 +644,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenEventFlavorsChangeImpl &&
@@ -864,7 +864,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl);
@@ -1087,7 +1087,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenEventSigningVarsChangeImpl &&
@@ -1302,7 +1302,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenEventUseSonarChangeImpl);
@@ -1497,7 +1497,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenEventGraphQLChangeImpl);
@@ -1692,7 +1692,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenEventRouterChangeImpl);
@@ -1890,7 +1890,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenEventLocalizationChangeImpl);
@@ -2085,7 +2085,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenEventThemingChangeImpl);
@@ -2280,7 +2280,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenEventFirebaseChangeImpl);
@@ -2526,7 +2526,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
@@ -2735,7 +2735,7 @@ class _$ProjectSettingsScreenStateDataImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectSettingsScreenStateDataImpl &&

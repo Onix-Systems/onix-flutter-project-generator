@@ -23,7 +23,6 @@ mixin _$FigmaStylesScreenEvent {
     required TResult Function() onClear,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
@@ -39,7 +38,6 @@ mixin _$FigmaStylesScreenEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FigmaStylesScreenEventInit value) init,
@@ -48,7 +46,6 @@ mixin _$FigmaStylesScreenEvent {
     required TResult Function(FigmaStylesScreenEventOnClear value) onClear,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FigmaStylesScreenEventInit value)? init,
@@ -79,9 +76,9 @@ class _$FigmaStylesScreenEventCopyWithImpl<$Res,
     implements $FigmaStylesScreenEventCopyWith<$Res> {
   _$FigmaStylesScreenEventCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -143,7 +140,7 @@ class _$FigmaStylesScreenEventInitImpl implements FigmaStylesScreenEventInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FigmaStylesScreenEventInitImpl &&
@@ -297,7 +294,7 @@ class _$FigmaStylesScreenEventOnGetStylesImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FigmaStylesScreenEventOnGetStylesImpl &&
@@ -431,7 +428,7 @@ class _$FigmaStylesScreenEventOnClearImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FigmaStylesScreenEventOnClearImpl);
@@ -569,9 +566,9 @@ class _$FigmaStylesScreenSRCopyWithImpl<$Res, $Val extends FigmaStylesScreenSR>
     implements $FigmaStylesScreenSRCopyWith<$Res> {
   _$FigmaStylesScreenSRCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -602,7 +599,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
@@ -722,7 +719,7 @@ class _$ErrorImpl implements _Error {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorImpl &&
@@ -868,9 +865,9 @@ class _$FigmaStylesScreenStateCopyWithImpl<$Res,
     implements $FigmaStylesScreenStateCopyWith<$Res> {
   _$FigmaStylesScreenStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
@@ -948,7 +945,7 @@ class _$FigmaStylesScreenStateDataImpl implements FigmaStylesScreenStateData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FigmaStylesScreenStateDataImpl &&
