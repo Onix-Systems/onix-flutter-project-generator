@@ -134,7 +134,7 @@ class _$ChangeThemeEventImpl implements ChangeThemeEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChangeThemeEventImpl &&
@@ -308,7 +308,7 @@ class _$AppScreenStateImpl implements _AppScreenState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppScreenStateImpl &&

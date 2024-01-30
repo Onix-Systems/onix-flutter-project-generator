@@ -145,7 +145,7 @@ class _$ProjectNameScreenEventInitImpl implements ProjectNameScreenEventInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectNameScreenEventInitImpl &&
@@ -297,7 +297,7 @@ class _$ProjectNameScreenEventProjectNameChangedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectNameScreenEventProjectNameChangedImpl &&
@@ -455,7 +455,7 @@ class _$ProjectNameScreenEventOrganizationChangedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectNameScreenEventOrganizationChangedImpl &&
@@ -649,7 +649,7 @@ class _$ProjectNameScreenSRCheckNamesImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectNameScreenSRCheckNamesImpl);
@@ -873,7 +873,7 @@ class _$ProjectNameScreenStateDataImpl implements ProjectNameScreenStateData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectNameScreenStateDataImpl &&

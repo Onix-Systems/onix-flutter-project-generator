@@ -154,7 +154,7 @@ class _$FieldsDialogEventInitImpl implements FieldsDialogEventInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FieldsDialogEventInitImpl &&
@@ -318,7 +318,7 @@ class _$FieldsDialogEventAddFieldImpl implements FieldsDialogEventAddField {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FieldsDialogEventAddFieldImpl &&
@@ -477,7 +477,7 @@ class _$FieldsDialogEventRemoveFieldImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FieldsDialogEventRemoveFieldImpl &&
@@ -645,7 +645,7 @@ class _$FieldsDialogEventUpdateFieldImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FieldsDialogEventUpdateFieldImpl &&
@@ -790,7 +790,7 @@ class _$FieldsDialogEventValidateImpl implements FieldsDialogEventValidate {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FieldsDialogEventValidateImpl);
@@ -935,7 +935,7 @@ class _$FieldsDialogSRCopyWithImpl<$Res, $Val extends FieldsDialogSR>
 
   // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
@@ -966,7 +966,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
@@ -1236,7 +1236,7 @@ class _$FieldsDialogStateDataImpl implements FieldsDialogStateData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FieldsDialogStateDataImpl &&

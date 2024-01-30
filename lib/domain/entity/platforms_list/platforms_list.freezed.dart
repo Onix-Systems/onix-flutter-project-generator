@@ -186,7 +186,7 @@ class _$PlatformsListImpl extends _PlatformsList {
   final bool linux;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlatformsListImpl &&

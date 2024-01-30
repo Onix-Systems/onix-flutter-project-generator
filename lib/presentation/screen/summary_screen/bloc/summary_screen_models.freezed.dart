@@ -150,7 +150,7 @@ class _$SummaryScreenEventInitImpl implements SummaryScreenEventInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SummaryScreenEventInitImpl &&
@@ -317,7 +317,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
@@ -522,7 +522,7 @@ class _$SummaryScreenStateDataImpl implements SummaryScreenStateData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SummaryScreenStateDataImpl &&

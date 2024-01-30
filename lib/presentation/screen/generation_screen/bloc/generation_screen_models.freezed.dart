@@ -142,7 +142,7 @@ class _$GenerationScreenEventInitImpl implements GenerationScreenEventInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenerationScreenEventInitImpl &&
@@ -272,7 +272,7 @@ class _$GenerationScreenEventGenerateProjectImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenerationScreenEventGenerateProjectImpl);
@@ -390,7 +390,7 @@ class _$GenerationScreenEventOpenProjectImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenerationScreenEventOpenProjectImpl);
@@ -558,7 +558,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
   }
@@ -781,7 +781,7 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenerationScreenStateDataImpl &&
