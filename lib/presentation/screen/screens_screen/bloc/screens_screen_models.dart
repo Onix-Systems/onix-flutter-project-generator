@@ -22,6 +22,10 @@ class ScreensScreenEvent with _$ScreensScreenEvent {
     required Screen screen,
     required String oldName,
   }) = ScreensScreenEventOnScreenModify;
+
+  const factory ScreensScreenEvent.onScreenChangeInitial({
+    required Screen screen,
+  }) = ScreensScreenEventOnScreenChangeInitial;
 }
 
 @freezed

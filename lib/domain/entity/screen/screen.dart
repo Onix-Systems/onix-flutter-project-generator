@@ -7,18 +7,21 @@ class Screen {
   String name;
   ScreenStateManager stateManager;
   bool exists;
+  bool initial;
 
   Screen({
     required this.name,
     this.stateManager = ScreenStateManager.none,
     this.exists = false,
+    this.initial = false,
   });
 
   Screen.copyOf(Screen screen)
       : this(
             name: screen.name,
             stateManager: screen.stateManager,
-            exists: screen.exists);
+            exists: screen.exists,
+            initial: screen.initial);
 
   @override
   bool operator ==(Object other) =>
@@ -27,14 +30,15 @@ class Screen {
           runtimeType == other.runtimeType &&
           name == other.name &&
           stateManager == other.stateManager &&
-          exists == other.exists;
+          exists == other.exists &&
+          initial == other.initial;
 
   @override
   int get hashCode => name.hashCode;
 
   @override
   String toString() {
-    return 'ScreenEntity{name: $name, bloc: $stateManager, exists: $exists}';
+    return 'ScreenEntity{name: $name, bloc: $stateManager, exists: $exists, initial: $initial}';
   }
 
   Map<String, dynamic> toJson() => _$ScreenToJson(this);

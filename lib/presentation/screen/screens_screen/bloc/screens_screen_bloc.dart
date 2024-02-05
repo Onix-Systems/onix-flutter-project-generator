@@ -14,6 +14,7 @@ class ScreensScreenBloc
     on<ScreensScreenEventOnScreenAdd>(_onScreenAdd);
     on<ScreensScreenEventOnScreenDelete>(_onScreenDelete);
     on<ScreensScreenEventOnScreenModify>(_onScreenModify);
+    on<ScreensScreenEventOnScreenChangeInitial>(_onScreenChangeInitial);
   }
 
   FutureOr<void> _onInit(
@@ -64,5 +65,22 @@ class ScreensScreenBloc
         config: state.config.copyWith(
       screens: screenRepository.screens,
     )));
+  }
+
+  FutureOr<void> _onScreenChangeInitial(
+    ScreensScreenEventOnScreenChangeInitial event,
+    Emitter<ScreensScreenState> emit,
+  ) {
+    final oldInitial = state.config.screens.firstWhere((e) => e.initial);
+    oldInitial.initial = false;
+    screenRepository.modifyScreen(oldInitial, oldInitial.name);
+    event.screen.initial = true;
+    screenRepository.modifyScreen(event.screen, event.screen.name);
+
+    emit(state.copyWith(
+        stateUpdate: state.stateUpdate + 1,
+        config: state.config.copyWith(
+          screens: screenRepository.screens,
+        )));
   }
 }

@@ -12,13 +12,16 @@ part of 'node_style_property.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$NodeStyleProperty {
   String get key => throw _privateConstructorUsedError;
+
   String get name => throw _privateConstructorUsedError;
+
   String get description => throw _privateConstructorUsedError;
+
   NodeStyleType get style => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,6 +34,7 @@ abstract class $NodeStylePropertyCopyWith<$Res> {
   factory $NodeStylePropertyCopyWith(
           NodeStyleProperty value, $Res Function(NodeStyleProperty) then) =
       _$NodeStylePropertyCopyWithImpl<$Res, NodeStyleProperty>;
+
   @useResult
   $Res call({String key, String name, String description, NodeStyleType style});
 }
@@ -42,6 +46,7 @@ class _$NodeStylePropertyCopyWithImpl<$Res, $Val extends NodeStyleProperty>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -80,6 +85,7 @@ abstract class _$$NodeStylePropertyImplCopyWith<$Res>
   factory _$$NodeStylePropertyImplCopyWith(_$NodeStylePropertyImpl value,
           $Res Function(_$NodeStylePropertyImpl) then) =
       __$$NodeStylePropertyImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call({String key, String name, String description, NodeStyleType style});
@@ -177,12 +183,16 @@ abstract class _NodeStyleProperty implements NodeStyleProperty {
 
   @override
   String get key;
+
   @override
   String get name;
+
   @override
   String get description;
+
   @override
   NodeStyleType get style;
+
   @override
   @JsonKey(ignore: true)
   _$$NodeStylePropertyImplCopyWith<_$NodeStylePropertyImpl> get copyWith =>

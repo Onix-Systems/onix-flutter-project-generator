@@ -41,6 +41,7 @@ class GenerateScreen {
 
     await _createRoutes(
         screenName: screenName,
+        initial: screen.initial,
         router: router,
         routesFile: routesFile,
         projectName: projectName);
@@ -54,15 +55,21 @@ class GenerateScreen {
     }
   }
 
-  Future<void> _createRoutes(
-      {required String screenName,
-      required ProjectRouter router,
-      required File routesFile,
-      required String projectName}) async {
+  Future<void> _createRoutes({
+    required String screenName,
+    required ProjectRouter router,
+    required File routesFile,
+    required String projectName,
+    required bool initial,
+  }) async {
     String routesContent = routesFile.readAsStringSync();
 
     if (router == ProjectRouter.goRouter) {
-      routesFile.writeAsString(routesContent.replaceAll('//{consts end}',
+      routesFile.writeAsString(routesContent.replaceAll(
+          '''_initialLocation = '/''',
+          initial
+              ? '''_initialLocation = '/$screenName' '''
+              : '''_initialLocation = '/''').replaceAll('//{consts end}',
           '''static const _${screenName.camelCase} = '/$screenName';
       //{consts end}''').replaceAll('//{getters end}',
           '''static String get ${screenName.camelCase}Screen => '${screenName.pascalCase}Screen';
@@ -80,6 +87,7 @@ class GenerateScreen {
           '//{routes end}', '''AdaptiveRoute(
       page: ${screenName.pascalCase}Route.page,
       path: '/${screenName.camelCase}Screen',
+      ${initial ? '' : 'initial: true'},
     ),
     //{routes end}''').replaceAll('//{imports end}',
           '''import 'package:$projectName/presentation/screen/${screenName}_screen/${screenName}_screen.dart';
