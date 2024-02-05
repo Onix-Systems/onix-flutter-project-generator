@@ -91,7 +91,11 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
               initialValue: _stateManagement == ScreenStateManager.bloc,
               onAction: () {
                 setState(() {
-                  _stateManagement = ScreenStateManager.bloc;
+                  if (_stateManagement == ScreenStateManager.bloc) {
+                    _stateManagement = ScreenStateManager.none;
+                  } else {
+                    _stateManagement = ScreenStateManager.bloc;
+                  }
                 });
               },
             ),
@@ -101,7 +105,11 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
               initialValue: _stateManagement == ScreenStateManager.cubit,
               onAction: () {
                 setState(() {
-                  _stateManagement = ScreenStateManager.cubit;
+                  if (_stateManagement == ScreenStateManager.cubit) {
+                    _stateManagement = ScreenStateManager.none;
+                  } else {
+                    _stateManagement = ScreenStateManager.cubit;
+                  }
                 });
               },
             ),
