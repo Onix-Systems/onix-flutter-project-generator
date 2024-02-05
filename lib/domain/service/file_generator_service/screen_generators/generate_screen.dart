@@ -64,12 +64,14 @@ class GenerateScreen {
   }) async {
     String routesContent = routesFile.readAsStringSync();
 
+    if (initial) {
+      routesContent = routesContent.replaceAll(
+          'static const _initialLocation = \'/\'',
+          'static const _initialLocation = \'/$screenName\'');
+    }
+
     if (router == ProjectRouter.goRouter) {
-      routesFile.writeAsString(routesContent.replaceAll(
-          '''_initialLocation = '/''',
-          initial
-              ? '''_initialLocation = '/$screenName' '''
-              : '''_initialLocation = '/''').replaceAll('//{consts end}',
+      routesFile.writeAsString(routesContent.replaceAll('//{consts end}',
           '''static const _${screenName.camelCase} = '/$screenName';
       //{consts end}''').replaceAll('//{getters end}',
           '''static String get ${screenName.camelCase}Screen => '${screenName.pascalCase}Screen';
@@ -87,7 +89,7 @@ class GenerateScreen {
           '//{routes end}', '''AdaptiveRoute(
       page: ${screenName.pascalCase}Route.page,
       path: '/${screenName.camelCase}Screen',
-      ${initial ? '' : 'initial: true'},
+      ${initial ? 'initial: true,' : ''}
     ),
     //{routes end}''').replaceAll('//{imports end}',
           '''import 'package:$projectName/presentation/screen/${screenName}_screen/${screenName}_screen.dart';
