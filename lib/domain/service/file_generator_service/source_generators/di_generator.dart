@@ -58,13 +58,13 @@ import 'package:$projectName/data/source/remote/${sourceName.snakeCase}/${source
 
     var getItRemoteFileContent = await getItRemoteFile.readAsString();
 
-    await getItRemoteFile.writeAsString(getItRemoteFileContent
-        .replaceFirst('); //{remote end}', ''')
-..registerLazySingleton<ApiClient>(
+    await getItRemoteFile.writeAsString(getItRemoteFileContent.replaceFirst(
+        '//{remote end}', '''getIt.registerLazySingleton<ApiClient>(
       () => dioClientModule.makeApiClient(DioConst.${sourceName.camelCase}ApiBaseUrl),
       instanceName: DioConst.${sourceName.camelCase}ApiInstance,
-); //{remote end}''').replaceFirst(
-            'class _DioClientModule extends DioClientModule {}', '''
+  );
+  //{remote end}''').replaceFirst(
+        'class _DioClientModule extends DioClientModule {}', '''
 
 ApiClient apiClient${sourceName.pascalCase}() =>
     GetIt.I.get<ApiClient>(instanceName: DioConst.${sourceName.camelCase}ApiInstance);
