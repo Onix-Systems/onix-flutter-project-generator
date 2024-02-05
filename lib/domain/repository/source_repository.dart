@@ -1,8 +1,6 @@
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 
 abstract class SourceRepository {
-  Source get timeSource;
-
   Set<Source> get sources;
 
   void addDemoComponents();

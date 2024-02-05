@@ -27,9 +27,6 @@ void registerRemote(GetIt getIt) {
     ){{/graphql}}; //{remote end}
 }
 
-ApiClient apiClientTime() =>
-    GetIt.I.get<ApiClient>(instanceName: DioConst.timeApiInstance);
-
 {{#graphql}}GraphQlClient graphQlApiClient() => GetIt.I.get<GraphQlClient>();
 {{/graphql}}
 class _DioClientModule extends DioClientModule {}
