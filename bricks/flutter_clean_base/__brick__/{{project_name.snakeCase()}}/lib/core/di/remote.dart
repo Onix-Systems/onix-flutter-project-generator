@@ -13,13 +13,13 @@ void registerRemote(GetIt getIt) {
 
   getIt.registerLazySingleton<DioRequestProcessor>(
         dioClientModule.makeDioErrorHandler,
-    );
-  {{#graphql}}getIt.registerLazySingleton<GraphQlRequestProcessor>(
+    );{{#graphql}}
+  getIt.registerLazySingleton<GraphQlRequestProcessor>(
       GraphQlRequestProcessorImpl.new,
   );
   getIt.registerLazySingleton<GraphQlClient>(
       GraphQlClient.new,
-  ){{/graphql}};
+  );{{/graphql}}
   //{remote end}
 }
 

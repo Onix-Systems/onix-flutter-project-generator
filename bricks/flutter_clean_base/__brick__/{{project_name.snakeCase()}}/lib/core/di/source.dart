@@ -7,8 +7,6 @@ import 'package:{{project_name}}/core/arch/data/remote/clients/dio/dio_request_p
 import 'package:{{project_name}}/core/arch/data/remote/clients/graph_ql/request_processor/graph_ql_request_processor.dart';
 import 'package:{{project_name}}/data/source/remote/auth/auth_source.dart';
 import 'package:{{project_name}}/data/source/remote/auth/auth_source_impl.dart';{{/graphql}}
-import 'package:{{project_name}}/data/source/remote/time/time_source.dart';
-import 'package:{{project_name}}/data/source/remote/time/time_source_impl.dart';
 {{#firebase_auth}}import 'package:firebase_auth/firebase_auth.dart';
 import 'package:{{project_name}}/data/source/remote/firebase/auth/firebase_auth_source.dart';
 import 'package:{{project_name}}/data/source/remote/firebase/auth/firebase_auth_source_impl.dart';{{/firebase_auth}}
