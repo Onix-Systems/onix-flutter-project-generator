@@ -95,9 +95,9 @@ class GenerateScreen {
     String screenName = screen.name.snakeCase;
     String diContent = await diFile.readAsString();
 
-    await diFile.writeAsString(diContent.replaceFirst(
-        'void registerBloc(GetIt getIt) {',
-        'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_${screen.stateManager.name}.dart\';\n\nvoid registerBloc(GetIt getIt) {\n  getIt.registerFactory<${screenName.pascalCase}Screen${screen.stateManager.name.pascalCase}>(${screenName.pascalCase}Screen${screen.stateManager.name.pascalCase}.new);'));
+    await diFile.writeAsString(diContent.replaceFirst('//{imports end}',
+        '''import 'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_${screen.stateManager.name}.dart';
+//{imports end}''').replaceFirst('//{bloc end}', '''getIt.registerFactory<${screenName.pascalCase}Screen${screen.stateManager.name.pascalCase}>(${screenName.pascalCase}Screen${screen.stateManager.name.pascalCase}.new);'''));
   }
 
   Future<void> _createFiles({

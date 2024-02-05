@@ -11,17 +11,16 @@ import 'package:{{project_name}}/core/arch/data/remote/clients/graph_ql/request_
 void registerRemote(GetIt getIt) {
   final dioClientModule = _DioClientModule();
 
-  getIt
-    ..registerLazySingleton<DioRequestProcessor>(
+  getIt.registerLazySingleton<DioRequestProcessor>(
         dioClientModule.makeDioErrorHandler,
-    )
-    {{#graphql}}
-    ..registerLazySingleton<GraphQlRequestProcessor>(
-        GraphQlRequestProcessorImpl.new,
-    )
-    ..registerLazySingleton<GraphQlClient>(
-        GraphQlClient.new,
-    ){{/graphql}}; //{remote end}
+    );
+  {{#graphql}}getIt.registerLazySingleton<GraphQlRequestProcessor>(
+      GraphQlRequestProcessorImpl.new,
+  );
+  getIt.registerLazySingleton<GraphQlClient>(
+      GraphQlClient.new,
+  ){{/graphql}};
+  //{remote end}
 }
 
 {{#graphql}}GraphQlClient graphQlApiClient() => GetIt.I.get<GraphQlClient>();
