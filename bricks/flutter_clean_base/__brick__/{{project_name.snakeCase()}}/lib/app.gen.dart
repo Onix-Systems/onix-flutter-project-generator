@@ -35,7 +35,7 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
         minTextAdapt: true,
         builder: (context, child) {
         return{{/web_only}} blocBuilder(
-          builder: (constext, state) {
+          builder: (context, state) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             builder: (context, widget) {
