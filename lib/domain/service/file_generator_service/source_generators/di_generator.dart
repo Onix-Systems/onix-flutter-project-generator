@@ -26,10 +26,8 @@ class DiGenerator {
         '//{imports end}',
         '''import 'package:$projectName/data/source/remote/${sourceName.snakeCase}/${sourceName.snakeCase}_source.dart';
 import 'package:$projectName/data/source/remote/${sourceName.snakeCase}/${sourceName.snakeCase}_source_impl.dart';
-//{imports end}''').replaceFirst('''),
-    ); //{sources end}''', '''),
-    )
-        ..registerSingleton<${sourceName.pascalCase}Source>(${sourceName.pascalCase}SourceImpl(
+//{imports end}''').replaceFirst('''//{sources end}''',
+        '''getIt.registerSingleton<${sourceName.pascalCase}Source>(${sourceName.pascalCase}SourceImpl(
        getIt.get<ApiClient>(instanceName: DioConst.${sourceName.camelCase}ApiInstance),
        getIt.get<DioRequestProcessor>(),
      ),

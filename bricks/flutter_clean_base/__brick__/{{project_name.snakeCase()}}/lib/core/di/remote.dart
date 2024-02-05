@@ -15,10 +15,7 @@ void registerRemote(GetIt getIt) {
     ..registerLazySingleton<DioRequestProcessor>(
         dioClientModule.makeDioErrorHandler,
     )
-    ..registerLazySingleton<ApiClient>(
-        () => dioClientModule.makeApiClient(DioConst.timeApiBaseUrl),
-    instanceName: DioConst.timeApiInstance,
-    ){{#graphql}}
+    {{#graphql}}
     ..registerLazySingleton<GraphQlRequestProcessor>(
         GraphQlRequestProcessorImpl.new,
     )
