@@ -13,17 +13,15 @@ import 'package:{{project_name}}/domain/repository/firebase_auth_repository.dart
 //{imports end}
 
 void registerRepositories(GetIt getIt) {
-  getIt
-    ..registerSingleton<TimeRepository>(
-      TimeRepositoryImpl(getIt<TimeSource>()),
-    )
-    ..registerSingleton<TokenRepository>(
+  getIt.registerSingleton<TokenRepository>(
       TokenRepositoryImpl(getIt<SecureStorageSource>()),
-    ){{#firebase_auth}}..registerSingleton<FirebaseAuthRepository>(
+    );
+  {{#firebase_auth}}getIt.registerSingleton<FirebaseAuthRepository>(
       FirebaseAuthRepositoryImpl(
         getIt<FirebaseAuthSource>(),
       ),
-    ){{/firebase_auth}}; //{repositories end}
+    );{{/firebase_auth}}
+  //{repositories end}
 }
 
 TokenRepository get tokenRepository => GetIt.I.get<TokenRepository>();

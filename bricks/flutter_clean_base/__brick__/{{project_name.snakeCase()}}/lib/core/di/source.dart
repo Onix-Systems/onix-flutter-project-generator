@@ -16,22 +16,13 @@ import 'package:{{project_name}}/data/source/remote/firebase/auth/firebase_auth_
 //{imports end}
 
 void registerSources(GetIt getIt) {
-  getIt
-    ..registerSingleton<TimeSource>(TimeSourceImpl(
-      getIt.get<ApiClient>(instanceName: DioConst.timeApiInstance),
-      getIt.get<DioRequestProcessor>(),
-    ),
-    {{#firebase_auth}})
-    ..registerSingleton<FirebaseAuthSource>(
+    {{#firebase_auth}})getIt.registerSingleton<FirebaseAuthSource>(
       FirebaseAuthSourceImpl(
         getIt.get<FirebaseAuth>(),
-    ),{{/firebase_auth}}
-    {{#graphql}})
-    ..registerSingleton<AuthSource>(AuthSourceImpl(
+    );{{/firebase_auth}}
+    {{#graphql}})getIt.registerSingleton<AuthSource>(AuthSourceImpl(
       getIt.get<GraphQlClient>(),
       getIt.get<GraphQlRequestProcessor>(),
-    ),{{/graphql}}
-    ); //{sources end}
+    );{{/graphql}}
+    //{sources end}
 }
-
-TimeSource get timeSource => GetIt.I.get<TimeSource>();
