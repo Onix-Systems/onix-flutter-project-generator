@@ -31,7 +31,8 @@ import 'package:$projectName/data/source/remote/${sourceName.snakeCase}/${source
        getIt.get<ApiClient>(instanceName: DioConst.${sourceName.camelCase}ApiInstance),
        getIt.get<DioRequestProcessor>(),
      ),
-    ); //{sources end}'''));
+    );
+    //{sources end}'''));
 
     var dioConstFileContent = await dioConstFile.readAsString();
 
@@ -49,10 +50,11 @@ static const String ${sourceName.camelCase}ApiBaseUrl = 'http://localhost:8080';
         '''import 'package:$projectName/domain/repository/${sourceName.snakeCase}/${sourceName.snakeCase}_repository.dart';
 import 'package:$projectName/data/repository/${sourceName.snakeCase}/${sourceName.snakeCase}_repository_impl.dart';
 import 'package:$projectName/data/source/remote/${sourceName.snakeCase}/${sourceName.snakeCase}_source.dart';
-//{imports end}''').replaceFirst('); //{repositories end}', ''')
-        ..registerSingleton<${sourceName.pascalCase}Repository>(
+//{imports end}''').replaceFirst('//{repositories end}', ''')
+        getIt.registerSingleton<${sourceName.pascalCase}Repository>(
        ${sourceName.pascalCase}RepositoryImpl(${sourceName.camelCase}Source: getIt<${sourceName.pascalCase}Source>()),
-     ); //{repositories end}'''));
+     );
+     //{repositories end}'''));
 
     var getItRemoteFileContent = await getItRemoteFile.readAsString();
 
