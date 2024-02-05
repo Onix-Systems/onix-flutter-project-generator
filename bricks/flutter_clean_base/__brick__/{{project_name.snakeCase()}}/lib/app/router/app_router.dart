@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 {{#isGoRouter}}import 'package:go_router/go_router.dart';{{/isGoRouter}}
 {{^isGoRouter}}import 'package:{{project_name}}/app/router/guard/init_guard.dart';{{/isGoRouter}}
-//import 'package:{{project_name}}/presentation/screen/home_screen.dart';
+
 //{imports end}
 
 {{^isGoRouter}}
@@ -13,13 +13,12 @@ part 'app_router.gr.dart';
 @AutoRouterConfig(){{/isGoRouter}}
 class AppRouter {{^isGoRouter}}extends _$AppRouter{{/isGoRouter}}{
   {{#isGoRouter}}static const _initialLocation = '/';
-  //static const _home = '/';
+
   //{consts end}
 
   static final AppRouter _instance = AppRouter._privateConstructor();
   static late GoRouter router;
 
-  //static String get homeScreen => 'HomeScreen';
   //{getters end}
 
   AppRouter._privateConstructor() {
@@ -34,11 +33,6 @@ class AppRouter {{^isGoRouter}}extends _$AppRouter{{/isGoRouter}}{
     router = GoRouter(
       initialLocation: initialLocation,
       routes: <GoRoute>[
-        // GoRoute(
-        //   path: _home,
-        //   name: homeScreen,
-        //   builder: (context, state) => const HomeScreen(),
-        // ),
         //{routes end}
       ],
     );
@@ -46,10 +40,6 @@ class AppRouter {{^isGoRouter}}extends _$AppRouter{{/isGoRouter}}{
 
   {{^isGoRouter}}@override
   final List<AutoRoute> routes = [
-    // AdaptiveRoute(
-    //   page: HomeRoute.page,
-    //   path: '/',
-    // ),
     //{routes end}
   ];
 
