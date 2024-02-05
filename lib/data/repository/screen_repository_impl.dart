@@ -3,12 +3,6 @@ import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:recase/recase.dart';
 
 class ScreenRepositoryImpl implements ScreenRepository {
-  @override
-  Screen get homeScreen => Screen(
-        name: 'Home',
-        exists: true,
-      );
-
   final Set<Screen> _screens = {};
 
   @override

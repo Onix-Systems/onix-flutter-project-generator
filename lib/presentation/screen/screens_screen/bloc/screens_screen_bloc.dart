@@ -20,9 +20,9 @@ class ScreensScreenBloc
     ScreensScreenEventInit event,
     Emitter<ScreensScreenState> emit,
   ) {
-    if (!event.config.projectExists) {
-      screenRepository.addScreen(screen: screenRepository.homeScreen);
-    }
+    // if (!event.config.projectExists) {
+    //   screenRepository.addScreen(screen: screenRepository.homeScreen);
+    // }
     emit(state.copyWith(
       config: event.config.copyWith(
         screens: screenRepository.screens,
