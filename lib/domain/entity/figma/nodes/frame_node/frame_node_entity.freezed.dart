@@ -12,14 +12,18 @@ part of 'frame_node_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$FrameNodeEntity {
   List<PaintProperty> get fills => throw _privateConstructorUsedError;
+
   String get id => throw _privateConstructorUsedError;
+
   String get key => throw _privateConstructorUsedError;
+
   String get name => throw _privateConstructorUsedError;
+
   String get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,6 +36,7 @@ abstract class $FrameNodeEntityCopyWith<$Res> {
   factory $FrameNodeEntityCopyWith(
           FrameNodeEntity value, $Res Function(FrameNodeEntity) then) =
       _$FrameNodeEntityCopyWithImpl<$Res, FrameNodeEntity>;
+
   @useResult
   $Res call(
       {List<PaintProperty> fills,
@@ -48,6 +53,7 @@ class _$FrameNodeEntityCopyWithImpl<$Res, $Val extends FrameNodeEntity>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -91,6 +97,7 @@ abstract class _$$FrameNodeEntityImplCopyWith<$Res>
   factory _$$FrameNodeEntityImplCopyWith(_$FrameNodeEntityImpl value,
           $Res Function(_$FrameNodeEntityImpl) then) =
       __$$FrameNodeEntityImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -155,6 +162,7 @@ class _$FrameNodeEntityImpl implements _FrameNodeEntity {
       : _fills = fills;
 
   final List<PaintProperty> _fills;
+
   @override
   List<PaintProperty> get fills {
     if (_fills is EqualUnmodifiableListView) return _fills;
@@ -210,14 +218,19 @@ abstract class _FrameNodeEntity implements FrameNodeEntity {
 
   @override
   List<PaintProperty> get fills;
+
   @override
   String get id;
+
   @override
   String get key;
+
   @override
   String get name;
+
   @override
   String get type;
+
   @override
   @JsonKey(ignore: true)
   _$$FrameNodeEntityImplCopyWith<_$FrameNodeEntityImpl> get copyWith =>

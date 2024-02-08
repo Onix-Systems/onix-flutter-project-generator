@@ -30,15 +30,6 @@ class DataComponentRepositoryImpl implements DataComponentRepository {
         ],
       );
 
-  @override
-  DataComponent get timeComponent => DataComponent(
-        name: 'Time',
-        exists: true,
-        imports: {},
-        isGenerated: false,
-        properties: [Property(name: 'currentDateTime', type: 'DateTime')],
-      )..setSourceName('Time');
-
   final Set<DataComponent> _dataComponents = {};
 
   @override

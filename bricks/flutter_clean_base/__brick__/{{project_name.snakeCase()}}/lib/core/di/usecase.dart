@@ -1,7 +1,5 @@
 //@formatter:off
 
-import 'package:{{project_name}}/domain/repository/time_repository.dart';
-import 'package:{{project_name}}/domain/usecase/get_time_use_case.dart';
 {{#firebase_auth}}import 'package:{{project_name}}/domain/usecase/create_account_use_case.dart';
 import 'package:{{project_name}}/domain/usecase/log_out_use_case.dart';
 import 'package:{{project_name}}/domain/usecase/login_use_case.dart';
@@ -10,28 +8,25 @@ import 'package:{{project_name}}/domain/repository/firebase_auth_repository.dart
 import 'package:get_it/get_it.dart';
 
 void registerUseCases(GetIt getIt) {
-  getIt
-    ..registerSingleton<GetTimeUseCase>(
-      GetTimeUseCase(getIt<TimeRepository>()),
-    ){{#firebase_auth}}
-    ..registerSingleton<LoginUseCase>(
+  {{#firebase_auth}}getIt.registerSingleton<LoginUseCase>(
       LoginUseCase(
         getIt<FirebaseAuthRepository>(),
         getIt<FirebaseSessionService>(),
       ),
-    )
-    ..registerSingleton<CreateAccountUseCase>(
+    );
+  getIt.registerSingleton<CreateAccountUseCase>(
       CreateAccountUseCase(
         getIt<FirebaseAuthRepository>(),
         getIt<FirebaseSessionService>(),
       ),
-    )
-    ..registerSingleton<LogOutUseCase>(
+    );
+  getIt.registerSingleton<LogOutUseCase>(
       LogOutUseCase(
         getIt<FirebaseAuthRepository>(),
         getIt<FirebaseSessionService>(),
       ),
-    ){{/firebase_auth}};
+    );
+  {{/firebase_auth}}
 }
 
 {{#firebase_auth}}LoginUseCase get loginUseCase => GetIt.I.get<LoginUseCase>();

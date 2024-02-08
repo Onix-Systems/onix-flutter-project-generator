@@ -41,6 +41,7 @@ class GenerateScreen {
 
     await _createRoutes(
         screenName: screenName,
+        initial: screen.initial,
         router: router,
         routesFile: routesFile,
         projectName: projectName);
@@ -54,12 +55,20 @@ class GenerateScreen {
     }
   }
 
-  Future<void> _createRoutes(
-      {required String screenName,
-      required ProjectRouter router,
-      required File routesFile,
-      required String projectName}) async {
+  Future<void> _createRoutes({
+    required String screenName,
+    required ProjectRouter router,
+    required File routesFile,
+    required String projectName,
+    required bool initial,
+  }) async {
     String routesContent = routesFile.readAsStringSync();
+
+    if (initial) {
+      routesContent = routesContent.replaceAll(
+          'static const _initialLocation = \'/\'',
+          'static const _initialLocation = \'/$screenName\'');
+    }
 
     if (router == ProjectRouter.goRouter) {
       routesFile.writeAsString(routesContent.replaceAll('//{consts end}',
@@ -80,6 +89,7 @@ class GenerateScreen {
           '//{routes end}', '''AdaptiveRoute(
       page: ${screenName.pascalCase}Route.page,
       path: '/${screenName.camelCase}Screen',
+      ${initial ? 'initial: true,' : ''}
     ),
     //{routes end}''').replaceAll('//{imports end}',
           '''import 'package:$projectName/presentation/screen/${screenName}_screen/${screenName}_screen.dart';
@@ -95,9 +105,11 @@ class GenerateScreen {
     String screenName = screen.name.snakeCase;
     String diContent = await diFile.readAsString();
 
-    await diFile.writeAsString(diContent.replaceFirst(
-        'void registerBloc(GetIt getIt) {',
-        'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_${screen.stateManager.name}.dart\';\n\nvoid registerBloc(GetIt getIt) {\n  getIt.registerFactory<${screenName.pascalCase}Screen${screen.stateManager.name.pascalCase}>(${screenName.pascalCase}Screen${screen.stateManager.name.pascalCase}.new);'));
+    await diFile.writeAsString(diContent.replaceFirst('//{imports end}',
+        '''import 'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_${screen.stateManager.name}.dart';
+//{imports end}''').replaceFirst('//{bloc end}',
+        '''getIt.registerFactory<${screenName.pascalCase}Screen${screen.stateManager.name.pascalCase}>(${screenName.pascalCase}Screen${screen.stateManager.name.pascalCase}.new);
+//{bloc end}'''));
   }
 
   Future<void> _createFiles({
