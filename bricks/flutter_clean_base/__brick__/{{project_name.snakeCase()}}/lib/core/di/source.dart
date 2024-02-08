@@ -19,9 +19,10 @@ void registerSources(GetIt getIt) {
         getIt.get<FirebaseAuth>(),
       ),
     );{{/firebase_auth}}
-    {{#graphql}})getIt.registerSingleton<AuthSource>(AuthSourceImpl(
+    {{#graphql}}getIt.registerSingleton<AuthSource>(AuthSourceImpl(
       getIt.get<GraphQlClient>(),
       getIt.get<GraphQlRequestProcessor>(),
+      ),
     );{{/graphql}}
     //{sources end}
 }
