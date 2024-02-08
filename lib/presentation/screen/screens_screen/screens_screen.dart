@@ -104,6 +104,11 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                       screenName: screen.name,
                     ),
                   ),
+                  onChangeInitial: (screen) => blocOf(context).add(
+                    ScreensScreenEventOnScreenChangeInitial(
+                      screen: screen,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -126,6 +131,9 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                     builder: (context) => const AddScreenDialog(),
                   ).then((screen) {
                     if (screen != null) {
+                      if (state.config.screens.isEmpty) {
+                        screen.initial = true;
+                      }
                       blocOf(context).add(
                         ScreensScreenEventOnScreenAdd(screen: screen),
                       );

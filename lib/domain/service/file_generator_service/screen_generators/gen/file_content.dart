@@ -101,6 +101,7 @@ class _${screenName.pascalCase}ScreenState
         body: SizedBox.expand(
           child: blocConsumer(
             stateListener: (state) => _buildMainContainer(context, state),
+            listenDelegate: (context, state) {},
           ),
         ),
       ),

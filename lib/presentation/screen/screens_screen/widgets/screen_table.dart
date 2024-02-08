@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/add_screen_dialog.dart';
@@ -11,11 +12,13 @@ class ScreenTable extends StatelessWidget {
   final Set<Screen> screens;
   final Function(Screen, String) onModifyScreen;
   final Function(Screen) onDeleteScreen;
+  final Function(Screen) onChangeInitial;
 
   const ScreenTable({
     required this.screens,
     required this.onModifyScreen,
     required this.onDeleteScreen,
+    required this.onChangeInitial,
     super.key,
   });
 
@@ -38,6 +41,16 @@ class ScreenTable extends StatelessWidget {
           ),
           child: Row(
             children: [
+              Cell(
+                value: Text(
+                  'Initial',
+                  textAlign: TextAlign.center,
+                  style: context.appTextStyles.fs18?.copyWith(
+                    color: AppColors.orange,
+                  ),
+                ),
+                decorated: true,
+              ),
               Cell(
                 value: Text(
                   S.of(context).screenName,
@@ -88,6 +101,23 @@ class ScreenTable extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Cell(
+                        value: MSHCheckbox(
+                          value: screen.initial,
+                          duration: const Duration(milliseconds: 200),
+                          colorConfig:
+                              MSHColorConfig.fromCheckedUncheckedDisabled(
+                            checkedColor: CupertinoColors.activeOrange,
+                            uncheckedColor: CupertinoColors.activeOrange,
+                            disabledColor: CupertinoColors.activeOrange,
+                          ),
+                          onChanged: (value) {
+                            onChangeInitial(screen);
+                          },
+                          size: 20,
+                        ),
+                        decorated: true,
+                      ),
                       Cell(
                         value: Text(
                           '${screen.name.pascalCase}Screen',
