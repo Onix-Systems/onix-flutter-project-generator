@@ -239,7 +239,7 @@ Future<void> getDependencies(HookContext context) async {
     'Dependencies installed successfully'.log();
   } else {
     'Failed to install dependencies... Exit code: $exitCode'.error();
-    exitBrick();
+    //exitBrick();
   }
 
   'Getting dev dependencies...'.log();
@@ -256,7 +256,7 @@ Future<void> getDependencies(HookContext context) async {
     'Dev dependencies installed successfully'.log();
   } else {
     'Failed to install dev dependencies... Exit code: $exitCode'.error();
-    exitBrick();
+    //exitBrick();
   }
 }
 
