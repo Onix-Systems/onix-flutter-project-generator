@@ -169,7 +169,6 @@ Future<void> getDependencies(HookContext context) async {
     'path_provider',
     'logger',
     'fluttertoast',
-    //'flutter_native_splash',
     'collection',
     'flutter_dotenv',
     'flutter_jailbreak_detection',
@@ -264,6 +263,21 @@ Future<void> getDependencies(HookContext context) async {
     'Dev dependencies installed successfully'.log();
   } else {
     'Failed to install dev dependencies... Exit code: $exitCode'.error();
+    //exitBrick();
+  }
+
+  var nativeSplashDepProc = await Process.start(
+      'flutter', ['pub', 'add', '-d', 'flutter_native_splash'],
+      workingDirectory: name);
+
+  nativeSplashDepProc.log();
+
+  exitCode = await nativeSplashDepProc.exitCode;
+
+  if (exitCode == 0) {
+    'flutter_native_splash installed successfully'.log();
+  } else {
+    'Failed to install flutter_native_splash... Exit code: $exitCode'.error();
     //exitBrick();
   }
 }
