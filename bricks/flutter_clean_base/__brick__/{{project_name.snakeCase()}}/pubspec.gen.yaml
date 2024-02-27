@@ -74,7 +74,7 @@ flavorizr:
       {{/flavorizr}}
 
 {{^flavorizr}}
-flutter_icons:
+flutter_launcher_icons:
   image_path: "assets/launcher_icons/ic_launcher.png"
   android: true
   ios: true
