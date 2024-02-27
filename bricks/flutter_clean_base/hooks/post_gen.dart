@@ -267,7 +267,7 @@ Future<void> getDependencies(HookContext context) async {
   }
 
   var nativeSplashDepProc = await Process.start(
-      'flutter', ['pub', 'add', '-d', 'flutter_native_splash'],
+      'flutter', ['pub', 'add', 'flutter_native_splash'],
       workingDirectory: name);
 
   nativeSplashDepProc.log();
