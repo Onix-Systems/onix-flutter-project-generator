@@ -169,7 +169,7 @@ Future<void> getDependencies(HookContext context) async {
     'path_provider',
     'logger',
     'fluttertoast',
-    'flutter_native_splash',
+    //'flutter_native_splash',
     'collection',
     'flutter_dotenv',
     'flutter_jailbreak_detection',
