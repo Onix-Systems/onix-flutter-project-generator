@@ -194,8 +194,8 @@ Future<void> getDependencies(HookContext context) async {
   ];
 
   if (context.vars['theme_generate']) {
-    dependencies.add('theme_tailor_annotation');
-    devDependencies.add('theme_tailor');
+    dependencies.add('theme_tailor_annotation\'^2.1.0\'');
+    devDependencies.add('theme_tailor:\'^2.1.0\'');
   }
 
   switch (context.vars['navigation']) {
