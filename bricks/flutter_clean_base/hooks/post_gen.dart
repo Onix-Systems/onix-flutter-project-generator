@@ -150,6 +150,7 @@ void run(HookContext context) async {
 
 Future<void> getDependencies(HookContext context) async {
   List<String> dependencies = [
+    'cupertino_icons',
     'dio',
     'pretty_dio_logger',
     'dio_cache_interceptor',
@@ -168,7 +169,6 @@ Future<void> getDependencies(HookContext context) async {
     'path_provider',
     'logger',
     'fluttertoast',
-    'flutter_native_splash',
     'collection',
     'flutter_dotenv',
     'flutter_jailbreak_detection',
@@ -183,13 +183,20 @@ Future<void> getDependencies(HookContext context) async {
   }
 
   List<String> devDependencies = [
+    'flutter_lints',
     'build_runner',
     'freezed',
     'json_serializable',
     'import_sorter',
     'mockito',
     'bloc_test',
+    'test',
   ];
+
+  if (context.vars['theme_generate']) {
+    dependencies.add('theme_tailor_annotation:2.1.0');
+    devDependencies.add('theme_tailor:2.1.0');
+  }
 
   switch (context.vars['navigation']) {
     case 'goRouter':
@@ -256,6 +263,21 @@ Future<void> getDependencies(HookContext context) async {
     'Dev dependencies installed successfully'.log();
   } else {
     'Failed to install dev dependencies... Exit code: $exitCode'.error();
+    //exitBrick();
+  }
+
+  var nativeSplashDepProc = await Process.start(
+      'flutter', ['pub', 'add', 'flutter_native_splash'],
+      workingDirectory: name);
+
+  nativeSplashDepProc.log();
+
+  exitCode = await nativeSplashDepProc.exitCode;
+
+  if (exitCode == 0) {
+    'flutter_native_splash installed successfully'.log();
+  } else {
+    'Failed to install flutter_native_splash... Exit code: $exitCode'.error();
     //exitBrick();
   }
 }
