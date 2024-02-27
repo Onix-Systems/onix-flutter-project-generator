@@ -150,6 +150,7 @@ void run(HookContext context) async {
 
 Future<void> getDependencies(HookContext context) async {
   List<String> dependencies = [
+    'cupertino_icons',
     'dio',
     'pretty_dio_logger',
     'dio_cache_interceptor',
@@ -183,13 +184,20 @@ Future<void> getDependencies(HookContext context) async {
   }
 
   List<String> devDependencies = [
+    'flutter_lints',
     'build_runner',
     'freezed',
     'json_serializable',
     'import_sorter',
     'mockito',
     'bloc_test',
+    'test',
   ];
+
+  if (context.vars['theme_generate']) {
+    dependencies.add('theme_tailor_annotation');
+    devDependencies.add('theme_tailor');
+  }
 
   switch (context.vars['navigation']) {
     case 'goRouter':
