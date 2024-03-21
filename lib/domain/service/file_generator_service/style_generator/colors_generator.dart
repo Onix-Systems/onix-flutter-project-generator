@@ -10,11 +10,11 @@ class ColorsGenerator {
     required List<AppColorStyle> colors,
     required bool projectExists,
   }) async {
+    if (projectExists && colors.isEmpty) return;
+
     var themeColorsFile = await File(
             '$projectPath/$projectName/lib/presentation/style/app_colors.dart')
         .create(recursive: true);
-
-    if (colors.isEmpty) return;
 
     final allColors = colors
       ..addAll(ColorsParser.call(
