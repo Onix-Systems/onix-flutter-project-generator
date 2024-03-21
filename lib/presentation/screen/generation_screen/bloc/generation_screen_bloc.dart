@@ -208,15 +208,6 @@ end tell'''
       await process.exitCode;
     }
 
-    final gitProcess = await ProcessStarter.start(
-        workingDirectory:
-            '${state.config.projectPath}/${state.config.projectName}');
-
-    gitProcess.stdin.writeln(
-        'git add --all && git commit -m "Initial" && echo "Complete with exit code: 0"');
-
-    await gitProcess.exitCode;
-
     emit(state.copyWith(
       generatingState: GeneratingState.waiting,
       config: state.config.copyWith(
