@@ -1,8 +1,7 @@
 import 'dart:io';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/colors_parser.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/gen/app_colors_file_content.dart';
-
-import 'default_colors.dart';
 
 class ColorsGenerator {
   Future<void> call({
@@ -16,7 +15,7 @@ class ColorsGenerator {
         .create(recursive: true);
 
     final allColors = colors
-      ..addAll(DefaultColors.call(
+      ..addAll(ColorsParser.call(
               file: themeColorsFile, projectExists: projectExists)
           .where(
               (element) => !colors.map((e) => e.name).contains(element.name)));
