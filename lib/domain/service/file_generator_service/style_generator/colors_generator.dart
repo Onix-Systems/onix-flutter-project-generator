@@ -14,6 +14,8 @@ class ColorsGenerator {
             '$projectPath/$projectName/lib/presentation/style/app_colors.dart')
         .create(recursive: true);
 
+    if (colors.isEmpty) return;
+
     final allColors = colors
       ..addAll(ColorsParser.call(
               file: themeColorsFile, projectExists: projectExists)
