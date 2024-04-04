@@ -174,14 +174,16 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       }
     }
 
-    await GenerateStyles().call(
-      projectName: state.config.projectName,
-      projectPath: state.config.projectPath,
-      styles: state.config.styles,
-      theming: state.config.theming,
-      projectExists: state.config.projectExists,
-      useScreenUtil: state.config.platformsList.mobile,
-    );
+    if (!state.config.projectExists || state.config.styles.isNotEmpty) {
+      await GenerateStyles().call(
+        projectName: state.config.projectName,
+        projectPath: state.config.projectPath,
+        styles: state.config.styles,
+        theming: state.config.theming,
+        projectExists: state.config.projectExists,
+        useScreenUtil: state.config.platformsList.mobile,
+      );
+    }
 
     ///generating screens
     bool hasScreensToGenerate =
@@ -227,15 +229,6 @@ end tell'''
 
       await process.exitCode;
     }
-
-    final gitProcess = await ProcessStarter.start(
-        workingDirectory:
-            '${state.config.projectPath}/${state.config.projectName}');
-
-    gitProcess.stdin.writeln(
-        'git add --all && git commit -m "Initial" && echo "Complete with exit code: 0"');
-
-    await gitProcess.exitCode;
 
     emit(state.copyWith(
       generatingState: GeneratingState.waiting,

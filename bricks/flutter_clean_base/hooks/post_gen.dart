@@ -122,28 +122,7 @@ void run(HookContext context) async {
 
   await Process.run('rm', ['widget_test.dart'], workingDirectory: '$name/test');
 
-  var gitInitProcess =
-      await Process.start('git', ['init'], workingDirectory: name);
-
-  gitInitProcess.log();
-
-  int gitCode = await gitInitProcess.exitCode;
-
   await secure(context);
-
-  var gitAddProcess =
-      await Process.start('git', ['add', '--all'], workingDirectory: name);
-
-  gitAddProcess.log();
-
-  int addCode = await gitAddProcess.exitCode;
-
-  var gitCommitProcess = await Process.start('git', ['commit', '-m', 'Initial'],
-      workingDirectory: name);
-
-  gitCommitProcess.log();
-
-  int gitCommitCode = await gitCommitProcess.exitCode;
 
   'Complete with exit code: $exitCode!'.log();
 }
