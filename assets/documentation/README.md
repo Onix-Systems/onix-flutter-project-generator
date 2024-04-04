@@ -12,11 +12,11 @@ Readme file contains a technical description of the {app_name} project, provides
 
 ## Project environment
 
-* Supported Dart SDK `>=3.0.0 <4.0.0`
+* Supported Dart SDK `>=3.2.0 <4.0.0`
 * Flutter SDK `Channel stable, 3.19.1` 
-* Min Android SDK version `24` 
-* Compile Android API version `33` 
-* Target Android API version `33`
-* Minimum deployment iOS version: `15` 
+* Min Android SDK version `22` 
+* Compile Android API version `34` 
+* Target Android API version `34`
+* Minimum deployment iOS version: `12` 
 
 
