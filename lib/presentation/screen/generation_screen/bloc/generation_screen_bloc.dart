@@ -7,19 +7,39 @@ import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
-import 'package:onix_flutter_bricks/core/di/services.dart';
+
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/service/base/params/docs_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/generate_styles.dart';
+import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
 
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/util/extension/string_parser_extension.dart';
 import 'package:onix_flutter_bricks/util/process_starter.dart';
 import 'package:recase/recase.dart';
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenState, GenerationScreenSR> {
-  GenerationScreenBloc()
-      : super(const GenerationScreenStateData(config: Config())) {
+  final GenerateDocumentationUseCase _generateDocumentationUseCase;
+  final GenerateScreensUseCase _generateScreensUseCase;
+  final GenerateDataComponentsUseCase _generateDataComponentsUseCase;
+
+  ///output commands
+  final ClearOutputUseCase _clearOutputUseCase;
+  final AddOutputMessageUseCase _addOutputMessageUseCase;
+
+  GenerationScreenBloc(
+    this._generateDocumentationUseCase,
+    this._generateScreensUseCase,
+    this._generateDataComponentsUseCase,
+    this._clearOutputUseCase,
+    this._addOutputMessageUseCase,
+  ) : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
     on<GenerationScreenEventOpenProject>(_openProject);
@@ -29,7 +49,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenEventInit event,
     Emitter<GenerationScreenState> emit,
   ) {
-    outputService.clear();
+    _clearOutputUseCase();
     emit(state.copyWith(config: event.config));
     add(const GenerationScreenEventGenerateProject());
   }
@@ -57,14 +77,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       var flavors = <String>{};
 
       if (state.config.flavors.isNotEmpty) {
-        flavors = state.config.flavors.contains(' ')
-            ? state.config.flavors
-                .toLowerCase()
-                .trim()
-                .replaceAll(RegExp(' +'), ' ')
-                .split(' ')
-                .toSet()
-            : {state.config.flavors.toLowerCase()};
+        flavors = state.config.flavors.flavorStringToSet();
 
         for (var flavor in flavors) {
           if (flavor.isEmpty || flavor == ' ') {
@@ -101,8 +114,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         'theme_generate': state.config.theming.name == 'themeTailor',
       }).toString());
 
-      outputService.add('{#info}Getting mason & brick...');
-
+      _addOutputMessageUseCase(message: '{#info}Getting mason & brick...');
       final brickZip = File('${state.config.projectPath}/brick.zip');
 
       if (brickZip.existsSync()) {
@@ -171,11 +183,19 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       useScreenUtil: state.config.platformsList.mobile,
     );
 
-    await _generateScreens();
+    ///generating screens
+    bool hasScreensToGenerate =
+        state.config.screens.where((element) => !element.exists).isNotEmpty;
+    if (hasScreensToGenerate) {
+      await _generateScreensUseCase(config: state.config);
+    }
 
-    await _generateDataComponents();
+    ///generating data components
+    await _generateDataComponentsUseCase(config: state.config);
 
     await _buildProject();
+
+    await _generateDocumentation();
 
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
@@ -203,7 +223,7 @@ end tell'''
 
       process.stdout
           .transform(utf8.decoder)
-          .listen((event) => outputService.add(event));
+          .listen((event) => _addOutputMessageUseCase(message: event));
 
       await process.exitCode;
     }
@@ -225,109 +245,6 @@ end tell'''
         screens: screenRepository.screens,
       ),
     ));
-  }
-
-  Future<void> _generateScreens() async {
-    if (state.config.screens.where((element) => !element.exists).isNotEmpty) {
-      for (var screen
-          in state.config.screens.where((element) => !element.exists)) {
-        outputService.add('{#info}Generating screen ${screen.name}...');
-
-        await fileGeneratorService.generateScreen(
-          screen: screen,
-          projectPath: state.config.projectPath,
-          projectName: state.config.projectName,
-          router: state.config.router,
-        );
-
-        screen.exists = true;
-        screenRepository.modifyScreen(screen, screen.name);
-      }
-
-      outputService.add('{#info}Screens generated!');
-    }
-  }
-
-  Future<void> _generateDataComponents() async {
-    var needToGenerateDataComponents = state.config.dataComponents
-        .where((component) => !component.exists)
-        .isNotEmpty;
-
-    var needToGenerateSources =
-        state.config.sources.where((source) => !source.exists).isNotEmpty;
-
-    if (!needToGenerateSources) {
-      for (var source in state.config.sources) {
-        if (source.dataComponentsNames
-            .where((component) => !dataComponentRepository
-                .getDataComponentByName(dataComponentName: component)!
-                .exists)
-            .isNotEmpty) {
-          needToGenerateSources = true;
-          break;
-        }
-      }
-    }
-
-    if (needToGenerateDataComponents || needToGenerateSources) {
-      outputService.add('{#info}Generating entities!');
-      if (needToGenerateDataComponents) {
-        for (final component in state.config.dataComponents) {
-          await fileGeneratorService.generateComponent(
-            projectPath: state.config.projectPath,
-            projectName: state.config.projectName,
-            dataComponentName: component.name,
-          );
-        }
-      }
-
-      if (needToGenerateSources) {
-        final sources = state.config.sources.where((source) {
-          return !source.exists ||
-              source.dataComponentsNames.where((entity) {
-                return !dataComponentRepository
-                    .getDataComponentByName(dataComponentName: entity)!
-                    .exists;
-              }).isNotEmpty;
-        }).toList();
-
-        for (var source in sources) {
-          if (source.dataComponentsNames.isEmpty) {
-            await fileGeneratorService.generateEmptySourceComponentFolders(
-              projectPath: state.config.projectPath,
-              projectName: state.config.projectName,
-              sourceName: source.name,
-            );
-          }
-          for (final component in source.dataComponentsNames.where((e) =>
-              !dataComponentRepository
-                  .getDataComponentByName(dataComponentName: e)!
-                  .exists &&
-              !source.paths.any((path) => path.methods.any((method) => method
-                  .innerEnums
-                  .any((innerEnum) => innerEnum.name == e))))) {
-            await fileGeneratorService.generateComponent(
-              projectPath: state.config.projectPath,
-              projectName: state.config.projectName,
-              dataComponentName: component,
-            );
-          }
-
-          if (!source.exists) {
-            await fileGeneratorService.generateSource(
-              source: source,
-              projectPath: state.config.projectPath,
-              projectName: state.config.projectName,
-            );
-          }
-        }
-      }
-
-      sourceRepository.setAllExists();
-      dataComponentRepository.setAllExists();
-
-      outputService.add('{#info}Entities generated!');
-    }
   }
 
   FutureOr<void> _openProject(GenerationScreenEventOpenProject event,
@@ -355,5 +272,23 @@ end tell'''
     buildProcess.stdin.writeln('echo "Complete with exit code: 0"');
 
     await buildProcess.exitCode;
+  }
+
+  Future<void> _generateDocumentation() async {
+    final Set<String> allFlavors = {};
+    if (state.config.flavorize) {
+      final customFlavors = state.config.flavors.flavorStringToSet();
+      allFlavors.addAll(AppConsts.defaultFlavors);
+      allFlavors.addAll(customFlavors);
+    }
+    final params = DocsGenerationParams(
+      projectName: state.config.projectName,
+      projectPath: state.config.projectPath,
+      flavors: allFlavors,
+      platforms: state.config.platformsList.asList(),
+      commands: state.config.platformsList.asPlatformCommandsList(),
+    );
+
+    await _generateDocumentationUseCase(params: params);
   }
 }

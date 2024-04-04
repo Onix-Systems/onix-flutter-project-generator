@@ -17,4 +17,6 @@ class AppConsts {
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
   static const String figmaStylesValidChars = signingKeyPassChars;
+
+  static const Set<String> defaultFlavors = {'dev', 'prod'};
 }

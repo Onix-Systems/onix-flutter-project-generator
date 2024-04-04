@@ -1,5 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bricks/app/bloc/app_bloc_imports.dart';
+import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc/figma_styles_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc.dart';
@@ -17,7 +22,14 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/w
 void registerBloc(GetIt getIt) {
   getIt
     ..registerFactory<ModifyProjectScreenBloc>(ModifyProjectScreenBloc.new)
-    ..registerFactory<GenerationScreenBloc>(GenerationScreenBloc.new)
+    ..registerFactory<GenerationScreenBloc>(
+      () => GenerationScreenBloc(
+          GetIt.I.get<GenerateDocumentationUseCase>(),
+          GetIt.I.get<GenerateScreensUseCase>(),
+          GetIt.I.get<GenerateDataComponentsUseCase>(),
+          GetIt.I.get<ClearOutputUseCase>(),
+          GetIt.I.get<AddOutputMessageUseCase>()),
+    )
     ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)
     ..registerFactory<SwaggerParserScreenBloc>(SwaggerParserScreenBloc.new)
     ..registerFactory<DataComponentsScreenBloc>(DataComponentsScreenBloc.new)
