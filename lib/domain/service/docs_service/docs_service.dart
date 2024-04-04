@@ -17,6 +17,7 @@ class DocsService extends BaseGenerationService {
   final _mainFilesPattern = '{app_main_files}';
   final _envFilesPattern = '{app_env_files}';
   final _envExplanationPattern = '{app_env_explanation}';
+  final _mainCountDescription = '{main_count_description}';
 
   @override
   Future<bool> generate(BaseGenerationParams params) async {
@@ -81,14 +82,17 @@ class DocsService extends BaseGenerationService {
       final envFiles =
           params.flavors.map((e) => _getEnvFileForFlavor(e)).join('\n');
       final envExplanation = _getExplanationText(params.flavors);
+      final mainCountDescription = _getMainCountText(params.flavors);
       final output = input
           .replaceAll(_appNamePattern, params.projectName)
           .replaceAll(_flavorsPattern, flavors)
           .replaceAll(_platformsPattern, platforms)
           .replaceAll(_outputTypesPattern, commands)
-          .replaceAll(_mainFilesPattern, mainFiles)
-          .replaceAll(_envFilesPattern, envFiles)
-          .replaceAll(_envExplanationPattern, envExplanation);
+          .replaceAll(_mainFilesPattern,
+              flavors.isNotEmpty ? mainFiles : '/lib/main.dart')
+          .replaceAll(_envFilesPattern, flavors.isNotEmpty ? envFiles : '.env')
+          .replaceAll(_envExplanationPattern, envExplanation)
+          .replaceAll(_mainCountDescription, mainCountDescription);
       return output;
     }
 
@@ -102,6 +106,12 @@ class DocsService extends BaseGenerationService {
   String _getExplanationText(Set<String> flavors) {
     String envExplanation =
         'This file should contain all project required public API and services keys and other sensitive information. ';
+    if (flavors.isEmpty) {
+      envExplanation +=
+          '`.env` file contains environment variables for a application configuration. ';
+      return envExplanation;
+    }
+
     for (var flavor in flavors) {
       final flavorExplanation =
           '`.env_$flavor` file contains environment variables for a `$flavor` configuration (flavor). ';
@@ -110,4 +120,10 @@ class DocsService extends BaseGenerationService {
     return envExplanation;
   }
 
+  String _getMainCountText(Set<String> flavors) {
+    if (flavors.isEmpty) {
+      return 'This applications don\'t have any flavors, so there only one entry point `main.dart` file';
+    }
+    return 'This applications have ${flavors.length} flavors, so it have ${flavors.length} different entry points and `main.dart` files';
+  }
 }

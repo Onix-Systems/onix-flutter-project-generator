@@ -29,7 +29,7 @@ Apk and AppBundle refers to Android and specifies a type of output file (`*.apk`
 ```
 
 * **Build type** - type of build process: `release` or `debug`.
-* **main.dart** file - main file and entry point of your application. This applications have 2 flavors, so it have 2 different entry poins and `main.dart` files:
+* **main.dart** file - main file and entry point of your application. {main_count_description}:
 
 ```
 {app_main_files}
