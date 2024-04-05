@@ -9,7 +9,6 @@ import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
 
 part 'config.freezed.dart';
-
 part 'config.g.dart';
 
 @freezed

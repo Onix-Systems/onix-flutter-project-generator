@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';

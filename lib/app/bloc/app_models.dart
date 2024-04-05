@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_models.freezed.dart';

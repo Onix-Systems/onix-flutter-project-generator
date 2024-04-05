@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
 import 'package:collection/collection.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
+import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
+import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_bloc_imports.dart';
-import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/util/swagger_parser/swagger_parser.dart';
 
 class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,

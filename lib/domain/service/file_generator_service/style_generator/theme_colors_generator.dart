@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/colors_parser.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/gen/theme_colors_file_content.dart';

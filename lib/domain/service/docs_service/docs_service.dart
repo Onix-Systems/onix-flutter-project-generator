@@ -1,13 +1,11 @@
 import 'dart:io';
 
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/docs_generation_params.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:onix_flutter_bricks/domain/service/docs_service/enum/document_type.dart';
-import 'package:onix_flutter_bricks/util/extension/logging_extension.dart';
-import 'package:process_run/shell.dart';
 
 class DocsService extends BaseGenerationService {
   final _appNamePattern = '{app_name}';

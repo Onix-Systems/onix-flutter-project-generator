@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-
 import 'package:onix_flutter_bricks/data/source/local/config_source/config_source.dart';
 import 'package:onix_flutter_bricks/data/source/local/config_source/config_source_impl.dart';
 import 'package:onix_flutter_bricks/data/source/remote/figma/figma_remote_data_source.dart';

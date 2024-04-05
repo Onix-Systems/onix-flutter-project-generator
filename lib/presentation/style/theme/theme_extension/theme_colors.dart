@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 
 class ThemeColors extends ThemeExtension<ThemeColors> {

@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/default_text_styles.dart';

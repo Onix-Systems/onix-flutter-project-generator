@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bricks/domain/repository/figma_repository.dart';
-import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/docs_service.dart';
 import 'package:onix_flutter_bricks/domain/service/figma_service/figma_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
