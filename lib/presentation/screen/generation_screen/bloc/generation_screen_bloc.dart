@@ -67,18 +67,18 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     emit(state.copyWith(generatingState: GeneratingState.generating));
 
     if (!state.config.projectExists) {
-      //get password for signing generation (Android)
+      ///get password for signing generation (Android)
       String genPass = state.config.getSigningPassword();
-      //parse flavor string to Set<String>
+      ///parse flavor string to Set<String>
       var flavors = state.config.getFlavorsAsSet();
 
-      //create config file
+      ///create config file, clear old possible copy
       var configFile = File('${state.config.projectPath}/config.json');
-
       if (configFile.existsSync()) {
         configFile.deleteSync();
       }
 
+      ///create a new configuration file
       configFile.createSync();
 
       await configFile.writeAsString(jsonEncode({
@@ -99,19 +99,19 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       _addOutputMessageUseCase(message: '{#info}Getting mason & brick...');
 
-      //create brick archive file
+      ///create brick archive file
       final brickZip = File('${state.config.projectPath}/brick.zip');
       if (brickZip.existsSync()) {
         brickZip.deleteSync();
       }
 
+      ///get brick target folder
       final brickFolder = Directory('${state.config.projectPath}/bricks');
-
       if (brickFolder.existsSync()) {
         brickFolder.deleteSync(recursive: true);
       }
 
-      //get brick code
+      ///get brick code from repo
       await _runProcessUseCase(
         workDir: state.config.projectPath,
         commands: [
@@ -120,17 +120,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         ],
       );
 
-      /*final gitGetBrickProcess = await ProcessStarter.start(
-          workingDirectory: state.config.projectPath);
-
-      gitGetBrickProcess.stdin.writeln(
-        'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/$_brickHeadName.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip',
-      );
-
-      gitGetBrickProcess.stdin.writeln('echo "Complete with exit code: 0"');
-      await gitGetBrickProcess.exitCode;*/
-
-      //activate mason brick
+      ///run Mason command to build a brick
       await _runProcessUseCase(
         workDir: state.config.projectPath,
         commands: [
@@ -140,21 +130,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         ],
       );
 
-      /*var mainProcess = await ProcessStarter.start(
-          workingDirectory: state.config.projectPath);
 
-      mainProcess.stdin
-          .writeln('dart pub global activate mason_cli && mason cache clear');
-
-      mainProcess.stdin.writeln(
-        'mason add -g flutter_clean_base --path \'${state.config.projectPath}/bricks/onix-flutter-project-generator-$_projectTempSourceFolderPrefix/bricks/flutter_clean_base\'',
-      );
-
-      mainProcess.stdin.writeln(
-          'mason make flutter_clean_base -c config.json --on-conflict overwrite');
-
-      await mainProcess.exitCode;*/
-
+      ///clear temporary brick files
       configFile.delete();
       brickFolder.deleteSync(recursive: true);
 
@@ -167,6 +144,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
             .delete(recursive: true);
       }
 
+      ///generate Anroid signing key if configured
       if (state.config.generateSigningKey) {
         await FileGeneratorService().generateSigning(
           projectPath: state.config.projectPath,
@@ -177,6 +155,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       }
     }
 
+    ///generate styles if added
     if (!state.config.projectExists || state.config.styles.isNotEmpty) {
       await GenerateStyles().call(
         projectName: state.config.projectName,
@@ -209,42 +188,21 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       ],
     );
 
+    ///generate project documentation
     await _generateDocumentation();
 
+    ///save project configuration
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
 
+    /// run osascript
     if (!state.config.projectExists && state.config.firebaseAuth) {
       await _osaScriptProcessUseCase(
         workDir: '${state.config.projectPath}/${state.config.projectName}',
       );
-      /* var process = await Process.start(
-          'osascript',
-          [
-            '-e',
-            '''tell application "Terminal"
-  set T to do script "cd '${state.config.projectPath}/${state.config.projectName}' && flutterfire config"
-	set targetWindow to window 1
-	activate targetWindow
-	set custom title of targetWindow to "flutterfire"
-	delay 2
-	repeat
-		delay 1
-		if not busy of T then exit repeat
-	end repeat
-	close (every window whose name contains "flutterfire")
-end tell'''
-          ],
-          workingDirectory:
-              '${state.config.projectPath}/${state.config.projectName}');
-
-      process.stdout
-          .transform(utf8.decoder)
-          .listen((event) => _addOutputMessageUseCase(message: event));
-
-      await process.exitCode;*/
     }
 
+    ///finish generation
     emit(state.copyWith(
       generatingState: GeneratingState.waiting,
       config: state.config.copyWith(
@@ -255,38 +213,17 @@ end tell'''
     ));
   }
 
+  ///when user tap on "Open Android Studio"
   FutureOr<void> _openProject(GenerationScreenEventOpenProject event,
       Emitter<GenerationScreenState> emit) async {
     await _runProcessUseCase(
       workDir: '${state.config.projectPath}/${state.config.projectName}',
       commands: [Commands.getOpenAndroidStudioCommand()],
     );
-    /* var mainProcess = await ProcessStarter.start(
-        workingDirectory:
-            '${state.config.projectPath}/${state.config.projectName}');
-
-    mainProcess.stdin.writeln('open -a \'Android Studio.app\' .');
-
-    await mainProcess.exitCode;*/
   }
 
-  /* Future<void> _buildProject() async {
 
-    */ /*final buildProcess = await ProcessStarter.start(
-        workingDirectory:
-            '${state.config.projectPath}/${state.config.projectName}');
-
-    buildProcess.stdin.writeln(AppConsts.buildCmd);
-
-    buildProcess.stdin.writeln('dart run import_sorter:main --no-comments');
-
-    buildProcess.stdin.writeln('dart format .');
-
-    buildProcess.stdin.writeln('echo "Complete with exit code: 0"');
-
-    await buildProcess.exitCode;*/ /*
-  }*/
-
+  ///generating project base documentation files
   Future<void> _generateDocumentation() async {
     final Set<String> allFlavors = {};
     if (state.config.flavorize) {

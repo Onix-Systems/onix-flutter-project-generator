@@ -36,7 +36,6 @@ class FigmaService {
         );
 
         for (final node in nodes) {
-          print(node is TextNodeEntity);
           if (node is TextNodeEntity) {
             final textStyle = node.style;
 
