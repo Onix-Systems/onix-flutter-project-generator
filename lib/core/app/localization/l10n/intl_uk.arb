@@ -115,5 +115,6 @@
   "figmaGetStylesError": "Помилка завантаження стилів: перевірте інтернет з'єднання, id figma файлу та токен",
   "figmaGetStylesEmpty": "В цьому figma файлі не знайдено стилів",
   "figmaGetStylesEmptyFileId": "Figma id пустий",
-  "figmaGetStylesEmptyToken": "Figma token пустий"
+  "figmaGetStylesEmptyToken": "Figma token пустий",
+  "masonBrickSource": "Гілка Mason Brick"
 }

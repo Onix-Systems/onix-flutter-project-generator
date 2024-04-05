@@ -1230,6 +1230,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Mason Brick source`
+  String get masonBrickSource {
+    return Intl.message(
+      'Mason Brick source',
+      name: 'masonBrickSource',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -95,6 +95,10 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       value: state.config.organization,
                     ),
                     SummaryCell(
+                      variable: S.of(context).masonBrickSource,
+                      value: state.config.branch,
+                    ),
+                    SummaryCell(
                       variable: S.of(context).platforms,
                       value: state.config.platformsList.toString(),
                     ),

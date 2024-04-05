@@ -16,12 +16,15 @@ class ProjectNameScreenEvent with _$ProjectNameScreenEvent {
   const factory ProjectNameScreenEvent.organizationChanged({
     required String organization,
   }) = ProjectNameScreenEventOrganizationChanged;
+
+  const factory ProjectNameScreenEvent.branchChanged({
+    required String newBranch,
+  }) = ProjectNameScreenEventBranchChanged;
 }
 
 @freezed
 class ProjectNameScreenSR with _$ProjectNameScreenSR {
-  const factory ProjectNameScreenSR.checkNames() =
-      ProjectNameScreenSRCheckNames;
+  const factory ProjectNameScreenSR.stub() = ProjectNameScreenSRStub;
 }
 
 @freezed
@@ -29,5 +32,6 @@ class ProjectNameScreenState with _$ProjectNameScreenState {
   const factory ProjectNameScreenState.data({
     required Config config,
     @Default(false) bool projectExists,
+    @Default([]) List<String> branches,
   }) = ProjectNameScreenStateData;
 }

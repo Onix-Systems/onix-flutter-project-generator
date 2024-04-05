@@ -96,6 +96,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         'firebase_auth': state.config.firebaseAuth,
         'platforms': state.config.platformsList.toString().replaceAll(' ', ''),
         'theme_generate': state.config.theming.name == 'themeTailor',
+        'branch': state.config.branch,
       }).toString());
 
       _addOutputMessageUseCase(message: '{#info}Getting mason & brick...');
@@ -116,7 +117,9 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       await _runProcessUseCase(
         workDir: state.config.projectPath,
         commands: [
-          Commands.getDownloadBrickCodeCommand(),
+          Commands.getDownloadBrickCodeCommand(
+            masonBrickBranch: state.config.branch,
+          ),
           Commands.getCompletedWithCode0Command(),
         ],
       );
@@ -126,7 +129,10 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         workDir: state.config.projectPath,
         commands: [
           Commands.getMasonActivateCommand(),
-          Commands.getMasonAddBrickCommand(state.config.projectPath),
+          Commands.getMasonAddBrickCommand(
+            projectPath: state.config.projectPath,
+            masonBrickBranch: state.config.branch,
+          ),
           Commands.getMasonMakeBrickCommand(),
         ],
       );

@@ -10,6 +10,7 @@ import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 
@@ -53,5 +54,8 @@ void registerUseCases(GetIt getIt) {
       RunOsaScriptProcessUseCase(
         GetIt.I.get<AddOutputMessageUseCase>(),
       ),
+    )
+    ..registerSingleton<GetBranchesProcessUseCase>(
+      GetBranchesProcessUseCase(),
     );
 }
