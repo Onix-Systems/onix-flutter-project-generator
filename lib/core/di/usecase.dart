@@ -10,6 +10,8 @@ import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 
 void registerUseCases(GetIt getIt) {
   getIt
@@ -42,6 +44,14 @@ void registerUseCases(GetIt getIt) {
         GetIt.I.get<FileGeneratorService>(),
         GetIt.I.get<DataComponentRepository>(),
         GetIt.I.get<SourceRepository>(),
+      ),
+    )
+    ..registerSingleton<RunProcessUseCase>(
+      RunProcessUseCase(),
+    )
+    ..registerSingleton<RunOsaScriptProcessUseCase>(
+      RunOsaScriptProcessUseCase(
+        GetIt.I.get<AddOutputMessageUseCase>(),
       ),
     );
 }

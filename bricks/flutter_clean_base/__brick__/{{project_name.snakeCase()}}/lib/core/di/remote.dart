@@ -16,7 +16,7 @@ void registerRemote(GetIt getIt) {
     );{{#firebase_auth}}
   getIt.registerLazySingleton<FirebaseAuth>(
         () => FirebaseAuth.instance,
-  ));{{/firebase_auth}}
+  );{{/firebase_auth}}
 
   {{#graphql}}getIt.registerLazySingleton<GraphQlRequestProcessor>(
       GraphQlRequestProcessorImpl.new,

@@ -5,6 +5,8 @@ import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc/figma_styles_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc.dart';
@@ -24,11 +26,14 @@ void registerBloc(GetIt getIt) {
     ..registerFactory<ModifyProjectScreenBloc>(ModifyProjectScreenBloc.new)
     ..registerFactory<GenerationScreenBloc>(
       () => GenerationScreenBloc(
-          GetIt.I.get<GenerateDocumentationUseCase>(),
-          GetIt.I.get<GenerateScreensUseCase>(),
-          GetIt.I.get<GenerateDataComponentsUseCase>(),
-          GetIt.I.get<ClearOutputUseCase>(),
-          GetIt.I.get<AddOutputMessageUseCase>()),
+        GetIt.I.get<GenerateDocumentationUseCase>(),
+        GetIt.I.get<GenerateScreensUseCase>(),
+        GetIt.I.get<GenerateDataComponentsUseCase>(),
+        GetIt.I.get<ClearOutputUseCase>(),
+        GetIt.I.get<AddOutputMessageUseCase>(),
+        GetIt.I.get<RunProcessUseCase>(),
+        GetIt.I.get<RunOsaScriptProcessUseCase>(),
+      ),
     )
     ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)
     ..registerFactory<SwaggerParserScreenBloc>(SwaggerParserScreenBloc.new)

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
@@ -17,10 +16,13 @@ import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/util/commands.dart';
+import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/string_parser_extension.dart';
-import 'package:onix_flutter_bricks/util/process_starter.dart';
 import 'package:recase/recase.dart';
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
@@ -28,6 +30,10 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   final GenerateDocumentationUseCase _generateDocumentationUseCase;
   final GenerateScreensUseCase _generateScreensUseCase;
   final GenerateDataComponentsUseCase _generateDataComponentsUseCase;
+
+  ///process runners
+  final RunProcessUseCase _runProcessUseCase;
+  final RunOsaScriptProcessUseCase _osaScriptProcessUseCase;
 
   ///output commands
   final ClearOutputUseCase _clearOutputUseCase;
@@ -39,6 +45,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     this._generateDataComponentsUseCase,
     this._clearOutputUseCase,
     this._addOutputMessageUseCase,
+    this._runProcessUseCase,
+    this._osaScriptProcessUseCase,
   ) : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
@@ -61,35 +69,12 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     emit(state.copyWith(generatingState: GeneratingState.generating));
 
     if (!state.config.projectExists) {
-      String genPass = '';
+      //get password for signing generation (Android)
+      String genPass = state.config.getSigningPassword();
+      //parse flavor string to Set<String>
+      var flavors = state.config.getFlavorsAsSet();
 
-      if (state.config.generateSigningKey) {
-        if (state.config.signingVars[6].isEmpty) {
-          genPass = List.generate(20, (index) {
-            return AppConsts.signingKeyPassChars[(Random.secure()
-                .nextInt(AppConsts.signingKeyPassChars.length))];
-          }).join();
-        } else {
-          genPass = state.config.signingVars[6];
-        }
-      }
-
-      var flavors = <String>{};
-
-      if (state.config.flavors.isNotEmpty) {
-        flavors = state.config.flavors.flavorStringToSet();
-
-        for (var flavor in flavors) {
-          if (flavor.isEmpty || flavor == ' ') {
-            flavors.remove(flavor);
-          }
-        }
-
-        flavors
-          ..remove('dev')
-          ..remove('prod');
-      }
-
+      //create config file
       var configFile = File('${state.config.projectPath}/config.json');
 
       if (configFile.existsSync()) {
@@ -115,8 +100,9 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       }).toString());
 
       _addOutputMessageUseCase(message: '{#info}Getting mason & brick...');
-      final brickZip = File('${state.config.projectPath}/brick.zip');
 
+      //create brick archive file
+      final brickZip = File('${state.config.projectPath}/brick.zip');
       if (brickZip.existsSync()) {
         brickZip.deleteSync();
       }
@@ -127,30 +113,49 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         brickFolder.deleteSync(recursive: true);
       }
 
-      final gitGetBrickProcess = await ProcessStarter.start(
+      //get brick code
+      await _runProcessUseCase(
+        workDir: state.config.projectPath,
+        commands: [
+          Commands.getDownloadBrickCodeCommand(),
+          Commands.getCompletedWithCode0Command(),
+        ],
+      );
+
+      /*final gitGetBrickProcess = await ProcessStarter.start(
           workingDirectory: state.config.projectPath);
 
       gitGetBrickProcess.stdin.writeln(
-        'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/main.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip',
+        'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/$_brickHeadName.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip',
       );
 
       gitGetBrickProcess.stdin.writeln('echo "Complete with exit code: 0"');
-      await gitGetBrickProcess.exitCode;
+      await gitGetBrickProcess.exitCode;*/
 
-      var mainProcess = await ProcessStarter.start(
+      //activate mason brick
+      await _runProcessUseCase(
+        workDir: state.config.projectPath,
+        commands: [
+          Commands.getMasonActivateCommand(),
+          Commands.getMasonAddBrickCommand(state.config.projectPath),
+          Commands.getMasonMakeBrickCommand(),
+        ],
+      );
+
+      /*var mainProcess = await ProcessStarter.start(
           workingDirectory: state.config.projectPath);
 
       mainProcess.stdin
           .writeln('dart pub global activate mason_cli && mason cache clear');
 
       mainProcess.stdin.writeln(
-        'mason add -g flutter_clean_base --path \'${state.config.projectPath}/bricks/onix-flutter-project-generator-main/bricks/flutter_clean_base\'',
+        'mason add -g flutter_clean_base --path \'${state.config.projectPath}/bricks/onix-flutter-project-generator-$_projectTempSourceFolderPrefix/bricks/flutter_clean_base\'',
       );
 
       mainProcess.stdin.writeln(
           'mason make flutter_clean_base -c config.json --on-conflict overwrite');
 
-      await mainProcess.exitCode;
+      await mainProcess.exitCode;*/
 
       configFile.delete();
       brickFolder.deleteSync(recursive: true);
@@ -195,7 +200,16 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     ///generating data components
     await _generateDataComponentsUseCase(config: state.config);
 
-    await _buildProject();
+    ///build project
+    await _runProcessUseCase(
+      workDir: '${state.config.projectPath}/${state.config.projectName}',
+      commands: [
+        Commands.getBuildRunnerBuildCommand(),
+        Commands.getDartImportSortCommand(),
+        Commands.getDartFormatCommand(),
+        Commands.getCompletedWithCode0Command(),
+      ],
+    );
 
     await _generateDocumentation();
 
@@ -203,7 +217,10 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
 
     if (!state.config.projectExists && state.config.firebaseAuth) {
-      var process = await Process.start(
+      await _osaScriptProcessUseCase(
+        workDir: '${state.config.projectPath}/${state.config.projectName}',
+      );
+      /* var process = await Process.start(
           'osascript',
           [
             '-e',
@@ -227,7 +244,7 @@ end tell'''
           .transform(utf8.decoder)
           .listen((event) => _addOutputMessageUseCase(message: event));
 
-      await process.exitCode;
+      await process.exitCode;*/
     }
 
     emit(state.copyWith(
@@ -242,17 +259,22 @@ end tell'''
 
   FutureOr<void> _openProject(GenerationScreenEventOpenProject event,
       Emitter<GenerationScreenState> emit) async {
-    var mainProcess = await ProcessStarter.start(
+    await _runProcessUseCase(
+      workDir: '${state.config.projectPath}/${state.config.projectName}',
+      commands: [Commands.getOpenAndroidStudioCommand()],
+    );
+    /* var mainProcess = await ProcessStarter.start(
         workingDirectory:
             '${state.config.projectPath}/${state.config.projectName}');
 
     mainProcess.stdin.writeln('open -a \'Android Studio.app\' .');
 
-    await mainProcess.exitCode;
+    await mainProcess.exitCode;*/
   }
 
-  Future<void> _buildProject() async {
-    final buildProcess = await ProcessStarter.start(
+  /* Future<void> _buildProject() async {
+
+    */ /*final buildProcess = await ProcessStarter.start(
         workingDirectory:
             '${state.config.projectPath}/${state.config.projectName}');
 
@@ -264,8 +286,8 @@ end tell'''
 
     buildProcess.stdin.writeln('echo "Complete with exit code: 0"');
 
-    await buildProcess.exitCode;
-  }
+    await buildProcess.exitCode;*/ /*
+  }*/
 
   Future<void> _generateDocumentation() async {
     final Set<String> allFlavors = {};
