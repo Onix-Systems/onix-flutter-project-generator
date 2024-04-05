@@ -17,11 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BaseNodeEntity {
   String get id => throw _privateConstructorUsedError;
-
   String get key => throw _privateConstructorUsedError;
-
   String get name => throw _privateConstructorUsedError;
-
   String get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -34,7 +31,6 @@ abstract class $BaseNodeEntityCopyWith<$Res> {
   factory $BaseNodeEntityCopyWith(
           BaseNodeEntity value, $Res Function(BaseNodeEntity) then) =
       _$BaseNodeEntityCopyWithImpl<$Res, BaseNodeEntity>;
-
   @useResult
   $Res call({String id, String key, String name, String type});
 }
@@ -46,7 +42,6 @@ class _$BaseNodeEntityCopyWithImpl<$Res, $Val extends BaseNodeEntity>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -85,7 +80,6 @@ abstract class _$$BaseNodeEntityImplCopyWith<$Res>
   factory _$$BaseNodeEntityImplCopyWith(_$BaseNodeEntityImpl value,
           $Res Function(_$BaseNodeEntityImpl) then) =
       __$$BaseNodeEntityImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({String id, String key, String name, String type});
@@ -182,16 +176,12 @@ abstract class _BaseNodeEntity implements BaseNodeEntity {
 
   @override
   String get id;
-
   @override
   String get key;
-
   @override
   String get name;
-
   @override
   String get type;
-
   @override
   @JsonKey(ignore: true)
   _$$BaseNodeEntityImplCopyWith<_$BaseNodeEntityImpl> get copyWith =>

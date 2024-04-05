@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/util/extension/string_parser_extension.dart';
+import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
 
 extension ProjectConfigExtension on Config {
   String getSigningPassword() {

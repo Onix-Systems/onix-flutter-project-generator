@@ -24,7 +24,7 @@ class FigmaService {
 
     try {
       final result =
-      await _figmaRepository.getFigmaFiles(figmaId: figmaId, token: token);
+          await _figmaRepository.getFigmaFiles(figmaId: figmaId, token: token);
 
       if (result.isNotEmpty) {
         final keys = result.keys.map((e) => e).join(',');
@@ -136,7 +136,6 @@ class FigmaService {
     }
   }
 }
-
 
 //import 'dart:convert';
 //

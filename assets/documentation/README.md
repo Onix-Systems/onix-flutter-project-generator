@@ -19,4 +19,10 @@ Readme file contains a technical description of the {app_name} project, provides
 * Target Android API version `34`
 * Minimum deployment iOS version: `12` 
 
+## Application packages
+
+Here described package names and bundle ids used in the {app_name} application project:
+
+{platform_package_names}
+
 

@@ -17,13 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DocumentNodeEntity {
   String get id => throw _privateConstructorUsedError;
-
   String get key => throw _privateConstructorUsedError;
-
   String get name => throw _privateConstructorUsedError;
-
   String get type => throw _privateConstructorUsedError;
-
   List<BaseNode> get children => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,7 +32,6 @@ abstract class $DocumentNodeEntityCopyWith<$Res> {
   factory $DocumentNodeEntityCopyWith(
           DocumentNodeEntity value, $Res Function(DocumentNodeEntity) then) =
       _$DocumentNodeEntityCopyWithImpl<$Res, DocumentNodeEntity>;
-
   @useResult
   $Res call(
       {String id,
@@ -53,7 +48,6 @@ class _$DocumentNodeEntityCopyWithImpl<$Res, $Val extends DocumentNodeEntity>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -97,7 +91,6 @@ abstract class _$$DocumentNodeEntityImplCopyWith<$Res>
   factory _$$DocumentNodeEntityImplCopyWith(_$DocumentNodeEntityImpl value,
           $Res Function(_$DocumentNodeEntityImpl) then) =
       __$$DocumentNodeEntityImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -170,7 +163,6 @@ class _$DocumentNodeEntityImpl implements _DocumentNodeEntity {
   @override
   final String type;
   final List<BaseNode> _children;
-
   @override
   List<BaseNode> get children {
     if (_children is EqualUnmodifiableListView) return _children;
@@ -217,19 +209,14 @@ abstract class _DocumentNodeEntity implements DocumentNodeEntity {
 
   @override
   String get id;
-
   @override
   String get key;
-
   @override
   String get name;
-
   @override
   String get type;
-
   @override
   List<BaseNode> get children;
-
   @override
   @JsonKey(ignore: true)
   _$$DocumentNodeEntityImplCopyWith<_$DocumentNodeEntityImpl> get copyWith =>

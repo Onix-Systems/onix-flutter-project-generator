@@ -4,8 +4,8 @@ enum DocumentFolderType {
   devSolutions('assets/documentation/docs/dev_solutions/');
 
   const DocumentFolderType(
-      this.path,
-      );
+    this.path,
+  );
 
   final String path;
 }

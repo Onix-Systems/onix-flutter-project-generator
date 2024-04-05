@@ -50,10 +50,12 @@ class _SigningDialogState extends State<SigningDialog> {
     return Focus(
       focusNode: FocusNode(),
       onKeyEvent: (node, event) {
-        if (HardwareKeyboard.instance.isLogicalKeyPressed(LogicalKeyboardKey.enter)) {
+        if (HardwareKeyboard.instance
+            .isLogicalKeyPressed(LogicalKeyboardKey.enter)) {
           _onOk(context);
         }
-        if (HardwareKeyboard.instance.isLogicalKeyPressed(LogicalKeyboardKey.escape)) {
+        if (HardwareKeyboard.instance
+            .isLogicalKeyPressed(LogicalKeyboardKey.escape)) {
           Navigator.pop(context);
         }
         return KeyEventResult.skipRemainingHandlers;

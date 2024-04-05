@@ -19,8 +19,8 @@ import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
+import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
-import 'package:onix_flutter_bricks/util/extension/string_parser_extension.dart';
 import 'package:recase/recase.dart';
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
@@ -69,6 +69,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     if (!state.config.projectExists) {
       ///get password for signing generation (Android)
       String genPass = state.config.getSigningPassword();
+
       ///parse flavor string to Set<String>
       var flavors = state.config.getFlavorsAsSet();
 
@@ -129,7 +130,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           Commands.getMasonMakeBrickCommand(),
         ],
       );
-
 
       ///clear temporary brick files
       configFile.delete();
@@ -222,7 +222,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     );
   }
 
-
   ///generating project base documentation files
   Future<void> _generateDocumentation() async {
     final Set<String> allFlavors = {};
@@ -234,6 +233,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     final params = DocsGenerationParams(
       projectName: state.config.projectName,
       projectPath: state.config.projectPath,
+      organization: state.config.organization,
       flavors: allFlavors,
       platforms: state.config.platformsList.asList(),
       commands: state.config.platformsList.asPlatformCommandsList(),

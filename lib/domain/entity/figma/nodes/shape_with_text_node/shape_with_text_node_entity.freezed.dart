@@ -17,13 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ShapeWithTextNodeEntity {
   String get id => throw _privateConstructorUsedError;
-
   String get key => throw _privateConstructorUsedError;
-
   String get name => throw _privateConstructorUsedError;
-
   String get type => throw _privateConstructorUsedError;
-
   List<PaintProperty> get fills => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,7 +32,6 @@ abstract class $ShapeWithTextNodeEntityCopyWith<$Res> {
   factory $ShapeWithTextNodeEntityCopyWith(ShapeWithTextNodeEntity value,
           $Res Function(ShapeWithTextNodeEntity) then) =
       _$ShapeWithTextNodeEntityCopyWithImpl<$Res, ShapeWithTextNodeEntity>;
-
   @useResult
   $Res call(
       {String id,
@@ -54,7 +49,6 @@ class _$ShapeWithTextNodeEntityCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -99,7 +93,6 @@ abstract class _$$ShapeWithTextNodeEntityImplCopyWith<$Res>
           _$ShapeWithTextNodeEntityImpl value,
           $Res Function(_$ShapeWithTextNodeEntityImpl) then) =
       __$$ShapeWithTextNodeEntityImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -174,7 +167,6 @@ class _$ShapeWithTextNodeEntityImpl implements _ShapeWithTextNodeEntity {
   @override
   final String type;
   final List<PaintProperty> _fills;
-
   @override
   List<PaintProperty> get fills {
     if (_fills is EqualUnmodifiableListView) return _fills;
@@ -222,19 +214,14 @@ abstract class _ShapeWithTextNodeEntity implements ShapeWithTextNodeEntity {
 
   @override
   String get id;
-
   @override
   String get key;
-
   @override
   String get name;
-
   @override
   String get type;
-
   @override
   List<PaintProperty> get fills;
-
   @override
   @JsonKey(ignore: true)
   _$$ShapeWithTextNodeEntityImplCopyWith<_$ShapeWithTextNodeEntityImpl>

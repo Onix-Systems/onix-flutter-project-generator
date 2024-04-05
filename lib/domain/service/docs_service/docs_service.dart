@@ -2,10 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:onix_flutter_bricks/core/di/app.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/docs_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/enum/document_type.dart';
+import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
+import 'package:recase/recase.dart';
 
 class DocsService extends BaseGenerationService {
   final _appNamePattern = '{app_name}';
@@ -16,6 +19,7 @@ class DocsService extends BaseGenerationService {
   final _envFilesPattern = '{app_env_files}';
   final _envExplanationPattern = '{app_env_explanation}';
   final _mainCountDescription = '{main_count_description}';
+  final _platformPackageNames = '{platform_package_names}';
 
   @override
   Future<bool> generate(BaseGenerationParams params) async {
@@ -71,7 +75,25 @@ class DocsService extends BaseGenerationService {
     DocumentType doc,
     DocsGenerationParams params,
   ) async {
-    if (doc == DocumentType.installInstructions) {
+    final projectNamePrettified = params.projectName.titleCase;
+    if (doc == DocumentType.readme) {
+      final packages = List<String>.empty(growable: true);
+      for (var platform in params.platforms) {
+        if (platform.isFlavorCompatiblePlatform()) {
+          final prefix = '* **${platform.toUpperCase()}**\n\n';
+          final package = _getPackageIds(
+            params.organization,
+            params.projectName,
+            params.flavors,
+          );
+          packages.add('$prefix```\n$package\n```');
+        }
+      }
+      final output = input
+          .replaceAll(_appNamePattern, projectNamePrettified)
+          .replaceAll(_platformPackageNames, packages.join('\n'));
+      return output;
+    } else if (doc == DocumentType.installInstructions) {
       final flavors = params.flavors.join('\n');
       final platforms = params.platforms.map((e) => '* $e').join('\n');
       final commands = params.commands.join('\n');
@@ -82,7 +104,7 @@ class DocsService extends BaseGenerationService {
       final envExplanation = _getExplanationText(params.flavors);
       final mainCountDescription = _getMainCountText(params.flavors);
       final output = input
-          .replaceAll(_appNamePattern, params.projectName)
+          .replaceAll(_appNamePattern, projectNamePrettified)
           .replaceAll(_flavorsPattern, flavors)
           .replaceAll(_platformsPattern, platforms)
           .replaceAll(_outputTypesPattern, commands)
@@ -94,7 +116,7 @@ class DocsService extends BaseGenerationService {
       return output;
     }
 
-    return input.replaceAll(_appNamePattern, params.projectName);
+    return input.replaceAll(_appNamePattern, projectNamePrettified);
   }
 
   String _getMainFileForFlavor(String flavor) => '/lib/app/main_$flavor.dart';
@@ -123,5 +145,20 @@ class DocsService extends BaseGenerationService {
       return 'This applications don\'t have any flavors, so there only one entry point `main.dart` file';
     }
     return 'This applications have ${flavors.length} flavors, so it have ${flavors.length} different entry points and `main.dart` files';
+  }
+
+  String _getPackageIds(
+    String org,
+    String name,
+    Set<String> flavors,
+  ) {
+    if (flavors.isEmpty) {
+      return '$org.$name';
+    }
+    String output = '';
+    for (var e in flavors) {
+      output += '$org.$name.$e\n';
+    }
+    return output;
   }
 }

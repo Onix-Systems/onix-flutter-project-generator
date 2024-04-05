@@ -17,13 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$VectorNodeEntity {
   String get id => throw _privateConstructorUsedError;
-
   String get key => throw _privateConstructorUsedError;
-
   String get name => throw _privateConstructorUsedError;
-
   String get type => throw _privateConstructorUsedError;
-
   List<PaintProperty> get fills => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,7 +32,6 @@ abstract class $VectorNodeEntityCopyWith<$Res> {
   factory $VectorNodeEntityCopyWith(
           VectorNodeEntity value, $Res Function(VectorNodeEntity) then) =
       _$VectorNodeEntityCopyWithImpl<$Res, VectorNodeEntity>;
-
   @useResult
   $Res call(
       {String id,
@@ -53,7 +48,6 @@ class _$VectorNodeEntityCopyWithImpl<$Res, $Val extends VectorNodeEntity>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -97,7 +91,6 @@ abstract class _$$VectorNodeEntityImplCopyWith<$Res>
   factory _$$VectorNodeEntityImplCopyWith(_$VectorNodeEntityImpl value,
           $Res Function(_$VectorNodeEntityImpl) then) =
       __$$VectorNodeEntityImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -170,7 +163,6 @@ class _$VectorNodeEntityImpl implements _VectorNodeEntity {
   @override
   final String type;
   final List<PaintProperty> _fills;
-
   @override
   List<PaintProperty> get fills {
     if (_fills is EqualUnmodifiableListView) return _fills;
@@ -217,19 +209,14 @@ abstract class _VectorNodeEntity implements VectorNodeEntity {
 
   @override
   String get id;
-
   @override
   String get key;
-
   @override
   String get name;
-
   @override
   String get type;
-
   @override
   List<PaintProperty> get fills;
-
   @override
   @JsonKey(ignore: true)
   _$$VectorNodeEntityImplCopyWith<_$VectorNodeEntityImpl> get copyWith =>

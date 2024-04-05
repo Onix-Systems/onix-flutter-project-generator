@@ -1,4 +1,1 @@
-
-abstract class BaseGenerationParams{
-
-}
+abstract class BaseGenerationParams {}
