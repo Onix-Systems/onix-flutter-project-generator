@@ -9,7 +9,7 @@ import 'package:onix_flutter_bricks/domain/service/docs_service/enum/document_ty
 import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
 import 'package:recase/recase.dart';
 
-class DocsService extends BaseGenerationService {
+class DocsService implements BaseGenerationService {
   final _appNamePattern = '{app_name}';
   final _flavorsPattern = '{app_flavors}';
   final _platformsPattern = '{app_platforms}';

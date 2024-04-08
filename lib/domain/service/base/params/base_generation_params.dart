@@ -1,3 +1,3 @@
-abstract class BaseGenerationParams {
+abstract interface class BaseGenerationParams {
   const BaseGenerationParams();
 }

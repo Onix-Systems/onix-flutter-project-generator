@@ -1,6 +1,6 @@
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 
-class DocsGenerationParams extends BaseGenerationParams {
+class DocsGenerationParams implements BaseGenerationParams {
   final String projectName;
   final String projectPath;
   final String organization;
