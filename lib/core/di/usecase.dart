@@ -16,46 +16,46 @@ import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.d
 
 void registerUseCases(GetIt getIt) {
   getIt
-    ..registerSingleton<ClearOutputUseCase>(
-      ClearOutputUseCase(
+    ..registerLazySingleton<ClearOutputUseCase>(
+      () => ClearOutputUseCase(
         GetIt.I.get<OutputService>(),
       ),
     )
-    ..registerSingleton<AddOutputMessageUseCase>(
-      AddOutputMessageUseCase(
+    ..registerLazySingleton<AddOutputMessageUseCase>(
+      () => AddOutputMessageUseCase(
         GetIt.I.get<OutputService>(),
       ),
     )
-    ..registerSingleton<GenerateDocumentationUseCase>(
-      GenerateDocumentationUseCase(
+    ..registerLazySingleton<GenerateDocumentationUseCase>(
+      () => GenerateDocumentationUseCase(
         GetIt.I.get<OutputService>(),
         GetIt.I.get<DocsService>(),
       ),
     )
-    ..registerSingleton<GenerateScreensUseCase>(
-      GenerateScreensUseCase(
+    ..registerLazySingleton<GenerateScreensUseCase>(
+      () => GenerateScreensUseCase(
         GetIt.I.get<OutputService>(),
         GetIt.I.get<FileGeneratorService>(),
         GetIt.I.get<ScreenRepository>(),
       ),
     )
-    ..registerSingleton<GenerateDataComponentsUseCase>(
-      GenerateDataComponentsUseCase(
+    ..registerLazySingleton<GenerateDataComponentsUseCase>(
+      () => GenerateDataComponentsUseCase(
         GetIt.I.get<OutputService>(),
         GetIt.I.get<FileGeneratorService>(),
         GetIt.I.get<DataComponentRepository>(),
         GetIt.I.get<SourceRepository>(),
       ),
     )
-    ..registerSingleton<RunProcessUseCase>(
-      RunProcessUseCase(),
+    ..registerLazySingleton<RunProcessUseCase>(
+      () => const RunProcessUseCase(),
     )
-    ..registerSingleton<RunOsaScriptProcessUseCase>(
-      RunOsaScriptProcessUseCase(
+    ..registerLazySingleton<RunOsaScriptProcessUseCase>(
+      () => RunOsaScriptProcessUseCase(
         GetIt.I.get<AddOutputMessageUseCase>(),
       ),
     )
-    ..registerSingleton<GetBranchesProcessUseCase>(
-      GetBranchesProcessUseCase(),
+    ..registerLazySingleton<GetBranchesProcessUseCase>(
+      () => const GetBranchesProcessUseCase(),
     );
 }

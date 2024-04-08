@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 class GetBranchesProcessUseCase {
+  const GetBranchesProcessUseCase();
+
   Future<List<String>> call() async {
     final process = await Process.start(
       'git',

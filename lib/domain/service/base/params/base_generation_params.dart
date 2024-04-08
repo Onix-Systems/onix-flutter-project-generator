@@ -1,1 +1,3 @@
-abstract class BaseGenerationParams {}
+abstract class BaseGenerationParams {
+  const BaseGenerationParams();
+}

@@ -10,7 +10,7 @@ class GenerateDataComponentsUseCase {
   final DataComponentRepository _dataComponentRepository;
   final SourceRepository _sourceRepository;
 
-  GenerateDataComponentsUseCase(
+  const GenerateDataComponentsUseCase(
     this._outputService,
     this._fileGeneratorService,
     this._dataComponentRepository,

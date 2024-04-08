@@ -6,7 +6,7 @@ import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_use
 class RunOsaScriptProcessUseCase {
   final AddOutputMessageUseCase _addOutputMessageUseCase;
 
-  RunOsaScriptProcessUseCase(this._addOutputMessageUseCase);
+  const RunOsaScriptProcessUseCase(this._addOutputMessageUseCase);
 
   Future<int> call({
     required String workDir,

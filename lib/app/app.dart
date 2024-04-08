@@ -31,7 +31,7 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             builder: (context, widget) {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(
-                  textScaler: const TextScaler.linear(1.0),
+                  textScaler: TextScaler.noScaling,
                 ),
                 child: widget ?? const SizedBox(),
               );

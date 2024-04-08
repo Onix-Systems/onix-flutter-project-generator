@@ -8,7 +8,7 @@ class DocsGenerationParams extends BaseGenerationParams {
   final List<String> platforms;
   final List<String> commands;
 
-  DocsGenerationParams({
+  const DocsGenerationParams({
     required this.projectName,
     required this.projectPath,
     required this.organization,

@@ -6,7 +6,7 @@ class GenerateDocumentationUseCase {
   final OutputService _outputService;
   final DocsService _docsGeneratorService;
 
-  GenerateDocumentationUseCase(
+  const GenerateDocumentationUseCase(
     this._outputService,
     this._docsGeneratorService,
   );

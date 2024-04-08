@@ -8,7 +8,7 @@ class GenerateScreensUseCase {
   final FileGeneratorService _fileGeneratorService;
   final ScreenRepository _screenRepository;
 
-  GenerateScreensUseCase(
+  const GenerateScreensUseCase(
     this._outputService,
     this._fileGeneratorService,
     this._screenRepository,
