@@ -139,7 +139,7 @@ Future<void> getDependencies(HookContext context) async {
     'json_annotation',
     'get_it',
     'flutter_bloc',
-    'flutter_secure_storage:9.0.0',
+    'flutter_secure_storage:^9.0.0',
     'shared_preferences',
     'connectivity_plus',
     'internet_connection_checker',
