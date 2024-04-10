@@ -69,11 +69,11 @@ flavorizr:
       ios:
         bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
         icon: "flavor_assets/{{.}}/launcher_icons/ic_launcher.png"
-
+      {{#macOsEnabled}}
       macos:
         bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
         icon: "flavor_assets/{{.}}/launcher_icons/ic_launcher.png"
-
+      {{/macOsEnabled}}
       {{/flavors}}
       {{/flavorizr}}
 
@@ -89,10 +89,11 @@ flutter_launcher_icons:
   windows:
     generate: true
     image_path: "assets/launcher_icons/ic_launcher.png"
+{{#macOsEnabled}}
   macos:
     generate: true
     image_path: "assets/launcher_icons/ic_launcher.png"
-
+{{/macOsEnabled}}
 {{/flavorizr}}
 
 {{^handLocalization}}flutter_intl:
