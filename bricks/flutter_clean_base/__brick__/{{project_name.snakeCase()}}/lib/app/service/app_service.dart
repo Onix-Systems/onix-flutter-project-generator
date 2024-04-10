@@ -19,7 +19,7 @@ class AppService {
   final _secureFromJailbreak = true;
 
   Future<bool> initialize() async {
-    if (_secureFromJailbreak && !kIsWeb) {
+    if (_secureFromJailbreak && !kIsWeb && !kDebugMode) {
       final isJailBroken = await FlutterJailbreakDetection.jailbroken;
       if (isJailBroken) {
         return false;
