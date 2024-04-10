@@ -80,7 +80,6 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
     'flavors': flavors,
     'project_name': context.vars['project_name_dirt'].toString().toSnakeCase,
     'web_only': context.vars['platforms'] == 'web',
-    'macOsEnabled': context.vars['platforms'].toString().contains('macos'),
   };
 }
 
