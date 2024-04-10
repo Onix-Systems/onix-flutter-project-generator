@@ -6,8 +6,8 @@ ThemeData createDarkTheme() {
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.scaffoldBackgroundDark,
     extensions: [
-      ThemeColors.dark,
-      ThemeTextStyles.dark,
+      ThemeColors.dark(),
+      ThemeTextStyles.dark(),
     ],
     dialogTheme:
         const DialogTheme(backgroundColor: AppColors.scaffoldBackgroundDark),

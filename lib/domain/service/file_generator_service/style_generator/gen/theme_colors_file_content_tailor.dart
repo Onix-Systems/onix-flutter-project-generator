@@ -59,7 +59,7 @@ class _\$ThemeColors {
       final darkColor = (color.colorNames.length > 1)
           ? 'Color(0xFFFFFFFF)'
           : color.colorNames[1];
-      lines.add('$color: AppColors.$darkColor,');
+      lines.add('${color.name}: AppColors.$darkColor,');
     }
     lines.add(');');
 
