@@ -67,14 +67,14 @@ class _\$ThemeTextStyles {
     ///build constructor
     lines.add('ThemeTextStyles({');
     for (var style in styles) {
-      lines.add('required this.${style.name},');
+      lines.add('required this.${style.name}Style,');
     }
     lines.add('});');
 
     ///build light theme factory constructor
     lines.add(' factory ThemeTextStyles.light() => ThemeTextStyles(');
     for (var style in styles) {
-      lines.add('${style.name}: TextStyle(');
+      lines.add('${style.name}Style: TextStyle(');
       if (style.fontFamily.isNotEmpty) {
         lines.add('fontFamily: \'${style.fontFamily}\',');
       }
@@ -88,7 +88,7 @@ class _\$ThemeTextStyles {
     ///build dark theme factory constructor
     lines.add(' factory ThemeTextStyles.dark() => ThemeTextStyles(');
     for (var style in styles) {
-      lines.add('${style.name}: TextStyle(');
+      lines.add('${style.name}Style: TextStyle(');
       if (style.fontFamily.isNotEmpty) {
         lines.add('fontFamily: \'${style.fontFamily}\',');
       }
@@ -121,7 +121,7 @@ class _\$ThemeTextStyles {
 
   static List<String> _declareField(String name) => [
         '@override',
-        'final TextStyle $name;',
+        'final TextStyle ${name}Style;',
       ];
 
   static String _getColor(List<AppColorStyle> colors, String styleName) {

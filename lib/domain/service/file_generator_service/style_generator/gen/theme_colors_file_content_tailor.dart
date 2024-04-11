@@ -40,26 +40,21 @@ class _\$ThemeColors {
     ///build constructor
     lines.add('ThemeColors({');
     for (var color in tailorColors) {
-      lines.add('required this.${color.name},');
+      lines.add('required this.${color.name}Color,');
     }
     lines.add('});');
 
     ///build light theme factory constructor
     lines.add(' factory ThemeColors.light() => ThemeColors(');
     for (var color in tailorColors) {
-      final lightColor =
-          color.colorNames.isEmpty ? 'Color(0xFFFFFFFF)' : color.colorNames[0];
-      lines.add('${color.name}: AppColors.$lightColor,');
+      lines.add('${color.name}Color: ${(color.colorNames.isNotEmpty) ? 'AppColors.${color.colorNames[0]}' : 'Color(0xFFFFFFFF)'},');
     }
     lines.add(');');
 
     ///build dark theme factory constructor
     lines.add(' factory ThemeColors.dark() => ThemeColors(');
     for (var color in tailorColors) {
-      final darkColor = (color.colorNames.length > 1)
-          ? 'Color(0xFFFFFFFF)'
-          : color.colorNames[1];
-      lines.add('${color.name}: AppColors.$darkColor,');
+      lines.add('${color.name}Color: ${(color.colorNames.length > 1) ? 'AppColors.${color.colorNames[1]}' : 'Color(0xFFFFFFFF)'},');
     }
     lines.add(');');
 
@@ -82,7 +77,7 @@ class _\$ThemeColors {
 
   static List<String> _declareField(String name) => [
         '@override',
-        'final Color $name;',
+        'final Color ${name}Color;',
       ];
 
   static List<_TailorColor> _getTailorColors(List<AppColorStyle> colors) {
