@@ -7,7 +7,7 @@ import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/docs_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/generate_styles.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';

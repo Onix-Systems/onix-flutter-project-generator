@@ -1,7 +1,18 @@
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
+import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/app_colors_generation_params.dart';
 
-class AppColorsFileContent {
-  static String generate(List<AppColorStyle> colors) {
+class AppColorsFileContent implements BaseGenerationService<String> {
+  @override
+  Future<String> generate(BaseGenerationParams params) async {
+    if (params is! AppColorsGenerationParams) {
+      return '';
+    }
+    return _generateInternal(params.colors);
+  }
+
+  String _generateInternal(List<AppColorStyle> colors) {
     final sortedColors = _sortColors(colors);
     return '''
     import 'package:flutter/material.dart';
@@ -14,8 +25,7 @@ abstract class AppColors {
 }''';
   }
 
-  static Map<String, List<AppColorStyle>> _sortColors(
-      List<AppColorStyle> colors) {
+  Map<String, List<AppColorStyle>> _sortColors(List<AppColorStyle> colors) {
     List<AppColorStyle> darkColors = [];
     List<AppColorStyle> lightColors = [];
 

@@ -1,27 +1,23 @@
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
+import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_colors_generation_params.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 
-class ThemeColorsFileContentTailor {
-  static String generate({
-    required List<AppColorStyle> colors,
-    required String projectName,
-  }) {
-    /* final tailorColors = _getTailorColors(colors);
-    return '''import 'package:$projectName/presentation/style/app_colors.dart';
-import 'package:flutter/material.dart';
-import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
+class ThemeColorsFileContentTailor implements BaseGenerationService<String> {
+  @override
+  Future<String> generate(BaseGenerationParams params) async {
+    if (params is! ThemeColorsGenerationParams) {
+      return '';
+    }
 
-part 'theme_colors.tailor.dart';
-
-@Tailor(themeGetter: ThemeGetter.onBuildContext)
-class _\$ThemeColors {
-  ${tailorColors.map((e) => 'static List<Color> ${e.name}Color = [${e.colorNames.map((e) => 'AppColors.$e').join(',')},];').join('\n  ')}
-}
-    ''';*/
-    return generate2(colors: colors, projectName: projectName);
+    return _generateInternal(
+      colors: params.colors,
+      projectName: params.projectName,
+    );
   }
 
-  static String generate2({
+  String _generateInternal({
     required List<AppColorStyle> colors,
     required String projectName,
   }) {
@@ -47,14 +43,16 @@ class _\$ThemeColors {
     ///build light theme factory constructor
     lines.add(' factory ThemeColors.light() => ThemeColors(');
     for (var color in tailorColors) {
-      lines.add('${color.name}Color: ${(color.colorNames.isNotEmpty) ? 'AppColors.${color.colorNames[0]}' : 'Color(0xFFFFFFFF)'},');
+      lines.add(
+          '${color.name}Color: ${(color.colorNames.isNotEmpty) ? 'AppColors.${color.colorNames[0]}' : 'Color(0xFFFFFFFF)'},');
     }
     lines.add(');');
 
     ///build dark theme factory constructor
     lines.add(' factory ThemeColors.dark() => ThemeColors(');
     for (var color in tailorColors) {
-      lines.add('${color.name}Color: ${(color.colorNames.length > 1) ? 'AppColors.${color.colorNames[1]}' : 'Color(0xFFFFFFFF)'},');
+      lines.add(
+          '${color.name}Color: ${(color.colorNames.length > 1) ? 'AppColors.${color.colorNames[1]}' : 'Color(0xFFFFFFFF)'},');
     }
     lines.add(');');
 
@@ -63,24 +61,24 @@ class _\$ThemeColors {
     return lines.join('\n');
   }
 
-  static List<String> _imports(String projectName) => [
+  List<String> _imports(String projectName) => [
         'import \'package:$projectName/presentation/style/app_colors.dart\';',
         'import \'package:flutter/material.dart\';',
         'import \'package:theme_tailor_annotation/theme_tailor_annotation.dart\';',
         'part \'theme_colors.tailor.dart\';',
       ];
 
-  static List<String> _classPrefix() => [
+  List<String> _classPrefix() => [
         '@TailorMixin(themeGetter: ThemeGetter.onBuildContext)',
         'class ThemeColors extends ThemeExtension<ThemeColors> with _\$ThemeColorsTailorMixin {',
       ];
 
-  static List<String> _declareField(String name) => [
+  List<String> _declareField(String name) => [
         '@override',
         'final Color ${name}Color;',
       ];
 
-  static List<_TailorColor> _getTailorColors(List<AppColorStyle> colors) {
+  List<_TailorColor> _getTailorColors(List<AppColorStyle> colors) {
     final names = <String>[];
 
     for (final name in colors

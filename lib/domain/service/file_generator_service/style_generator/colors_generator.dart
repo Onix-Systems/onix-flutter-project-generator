@@ -3,8 +3,11 @@ import 'dart:io';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/colors_parser.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/gen/app_colors_file_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/app_colors_generation_params.dart';
 
 class ColorsGenerator {
+  final _appColorsGenerator = AppColorsFileContent();
+
   Future<void> call({
     required String projectName,
     required String projectPath,
@@ -21,7 +24,9 @@ class ColorsGenerator {
           .where(
               (element) => !colors.map((e) => e.name).contains(element.name)));
 
-    await themeColorsFile
-        .writeAsString(AppColorsFileContent.generate(allColors));
+    final result = await _appColorsGenerator.generate(
+      AppColorsGenerationParams(colors: allColors),
+    );
+    await themeColorsFile.writeAsString(result);
   }
 }

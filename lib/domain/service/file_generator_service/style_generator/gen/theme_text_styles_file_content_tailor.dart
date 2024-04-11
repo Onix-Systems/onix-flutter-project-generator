@@ -1,50 +1,26 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
+import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_text_style_generation_params.dart';
 
-class ThemeTextStylesFileContentTailor {
-  static String generate(
-      {required List<AppTextStyle> textStyles,
-      required List<AppColorStyle> colors,
-      required bool useScreenUtil,
-      required String projectName}) {
-/*    textStyles.sort((a, b) => a.name.compareTo(b.name));
-
-    final styles = textStyles.where((element) => element.validate()).toList();
-
-    return '''import 'package:$projectName/presentation/style/app_colors.dart';
-import 'package:flutter/material.dart';
-${useScreenUtil ? 'import \'package:flutter_screenutil/flutter_screenutil.dart\';' : ''}
-import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';
-
-part 'theme_text_styles.tailor.dart';
-
-@Tailor(themeGetter: ThemeGetter.onBuildContext)
-class _\$ThemeTextStyles {
-  ${styles.map((e) => '''static List<TextStyle> ${e.name} = [
-  ${!useScreenUtil ? 'const' : ''} TextStyle(
-    ${e.fontFamily.isEmpty ? '' : 'fontFamily: \'${e.fontFamily}\','}
-    fontSize: ${e.fontSize}${useScreenUtil ? '.sp' : ''},
-    fontWeight: FontWeight.w${e.fontWeight},
-    ${_getColor(colors, '${e.name}Light')},
-    ),
-    ${!useScreenUtil ? 'const' : ''} TextStyle(
-    ${e.fontFamily.isEmpty ? '' : 'fontFamily: \'${e.fontFamily}\','}
-    fontSize: ${e.fontSize}${useScreenUtil ? '.sp' : ''},
-    fontWeight: FontWeight.w${e.fontWeight},
-    ${_getColor(colors, '${e.name}Dark')},
-    ),
-  ];''').join('\n\n')}
-}''';*/
-    return generate2(
-      textStyles: textStyles,
-      colors: colors,
-      useScreenUtil: useScreenUtil,
-      projectName: projectName,
+class ThemeTextStylesFileContentTailor
+    implements BaseGenerationService<String> {
+  @override
+  Future<String> generate(BaseGenerationParams params) async {
+    if (params is! ThemeTextStyleGenerationParams) {
+      return '';
+    }
+    return _generateInternal(
+      textStyles: params.textStyles,
+      colors: params.colors,
+      useScreenUtil: params.useScreenUtil,
+      projectName: params.projectName,
     );
   }
 
-  static String generate2({
+  String _generateInternal({
     required List<AppTextStyle> textStyles,
     required List<AppColorStyle> colors,
     required bool useScreenUtil,
@@ -67,14 +43,14 @@ class _\$ThemeTextStyles {
     ///build constructor
     lines.add('ThemeTextStyles({');
     for (var style in styles) {
-      lines.add('required this.${style.name}Style,');
+      lines.add('required this.${style.name},');
     }
     lines.add('});');
 
     ///build light theme factory constructor
     lines.add(' factory ThemeTextStyles.light() => ThemeTextStyles(');
     for (var style in styles) {
-      lines.add('${style.name}Style: TextStyle(');
+      lines.add('${style.name}: TextStyle(');
       if (style.fontFamily.isNotEmpty) {
         lines.add('fontFamily: \'${style.fontFamily}\',');
       }
@@ -88,7 +64,7 @@ class _\$ThemeTextStyles {
     ///build dark theme factory constructor
     lines.add(' factory ThemeTextStyles.dark() => ThemeTextStyles(');
     for (var style in styles) {
-      lines.add('${style.name}Style: TextStyle(');
+      lines.add('${style.name}: TextStyle(');
       if (style.fontFamily.isNotEmpty) {
         lines.add('fontFamily: \'${style.fontFamily}\',');
       }
@@ -104,7 +80,7 @@ class _\$ThemeTextStyles {
     return lines.join('\n');
   }
 
-  static List<String> _imports(String projectName, bool useScreenUtil) => [
+  List<String> _imports(String projectName, bool useScreenUtil) => [
         'import \'package:$projectName/presentation/style/app_colors.dart\';',
         'import \'package:flutter/material.dart\';',
         'import \'package:theme_tailor_annotation/theme_tailor_annotation.dart\';',
@@ -114,17 +90,17 @@ class _\$ThemeTextStyles {
         'part \'theme_text_styles.tailor.dart\';',
       ];
 
-  static List<String> _classPrefix() => [
+  List<String> _classPrefix() => [
         '@TailorMixin(themeGetter: ThemeGetter.onBuildContext)',
         'class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> with _\$ThemeTextStylesTailorMixin {',
       ];
 
-  static List<String> _declareField(String name) => [
+  List<String> _declareField(String name) => [
         '@override',
-        'final TextStyle ${name}Style;',
+        'final TextStyle ${name};',
       ];
 
-  static String _getColor(List<AppColorStyle> colors, String styleName) {
+  String _getColor(List<AppColorStyle> colors, String styleName) {
     final color =
         colors.firstWhereOrNull((element) => element.name == styleName);
 

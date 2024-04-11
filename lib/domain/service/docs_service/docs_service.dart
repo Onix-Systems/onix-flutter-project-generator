@@ -4,12 +4,12 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/docs_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/enum/document_type.dart';
+import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
 import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
 import 'package:recase/recase.dart';
 
-class DocsService implements BaseGenerationService {
+class DocsService implements BaseGenerationService<bool> {
   final _appNamePattern = '{app_name}';
   final _flavorsPattern = '{app_flavors}';
   final _platformsPattern = '{app_platforms}';

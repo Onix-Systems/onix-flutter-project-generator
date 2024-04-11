@@ -5,9 +5,13 @@ import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/default_text_styles.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/gen/theme_text_styles_file_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/gen/theme_text_styles_file_content_tailor.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_text_style_generation_params.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
 
 class ThemeTextStylesGenerator {
+  final _defaultTextStylesGenerator = ThemeTextStylesFileContent();
+  final _tailorTextStylesGenerator = ThemeTextStylesFileContentTailor();
+
   Future<void> call({
     required String projectName,
     required String projectPath,
@@ -30,19 +34,23 @@ class ThemeTextStylesGenerator {
               !textStyles.map((e) => e.name).contains(element.name)));
 
     if (theming == ProjectTheming.themeTailor) {
-      await appTextStylesFile.writeAsString(
-          ThemeTextStylesFileContentTailor.generate(
-              textStyles: allTextStyles,
-              colors: colors,
-              projectName: projectName,
-              useScreenUtil: useScreenUtil));
+      final result = await _tailorTextStylesGenerator.generate(
+        ThemeTextStyleGenerationParams(
+            textStyles: allTextStyles,
+            colors: colors,
+            projectName: projectName,
+            useScreenUtil: useScreenUtil),
+      );
+      await appTextStylesFile.writeAsString(result);
     } else {
-      await appTextStylesFile.writeAsString(ThemeTextStylesFileContent.generate(
-        colors: colors,
-        projectName: projectName,
-        useScreenUtil: useScreenUtil,
-        textStyles: allTextStyles,
-      ));
+      final result = await _defaultTextStylesGenerator.generate(
+        ThemeTextStyleGenerationParams(
+            textStyles: allTextStyles,
+            colors: colors,
+            projectName: projectName,
+            useScreenUtil: useScreenUtil),
+      );
+      await appTextStylesFile.writeAsString(result);
     }
   }
 }
