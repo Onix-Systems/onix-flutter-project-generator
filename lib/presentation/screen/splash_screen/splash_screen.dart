@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
@@ -81,18 +82,19 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
             ],
           ),
         ),
-        if (state.remoteVersion != state.localVersion)
-          Positioned(
-            right: 10,
-            bottom: 10,
-            child: Text(
-              state.localVersion.isNotEmpty ? 'v ${state.localVersion}' : '',
-              style: context.appTextStyles.fs18?.copyWith(
-                decoration: TextDecoration.none,
-                color: AppColors.red,
-              ),
+        Positioned(
+          right: 10,
+          bottom: 10,
+          child: Text(
+            (state.localVersion.isNotEmpty && state.remoteVersion.isNotEmpty)
+                ? 'v${state.localVersion} (Remote: v${state.remoteVersion})'
+                : '',
+            style: context.appTextStyles.fs18?.copyWith(
+              decoration: TextDecoration.none,
+              color: Colors.grey,
             ),
           ),
+        ),
       ],
     );
   }
