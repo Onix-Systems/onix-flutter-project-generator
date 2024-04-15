@@ -14,15 +14,19 @@ import 'package:{{project_name}}/data/source/remote/firebase/auth/firebase_auth_
 //{imports end}
 
 void registerSources(GetIt getIt) {
-    {{#firebase_auth}}getIt.registerSingleton<FirebaseAuthSource>(
+    {{#firebase_auth}}
+    getIt.registerLazySingleton<FirebaseAuthSource>(()=>
       FirebaseAuthSourceImpl(
         getIt.get<FirebaseAuth>(),
       ),
-    );{{/firebase_auth}}
-    {{#graphql}}getIt.registerSingleton<AuthSource>(AuthSourceImpl(
+    );
+  {{/firebase_auth}}
+    {{#graphql}}
+  getIt.registerLazySingleton<AuthSource>(()=>AuthSourceImpl(
       getIt.get<GraphQlClient>(),
       getIt.get<GraphQlRequestProcessor>(),
       ),
-    );{{/graphql}}
+    );
+  {{/graphql}}
     //{sources end}
 }

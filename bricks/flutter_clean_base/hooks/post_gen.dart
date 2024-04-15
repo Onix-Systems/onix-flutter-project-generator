@@ -122,28 +122,7 @@ void run(HookContext context) async {
 
   await Process.run('rm', ['widget_test.dart'], workingDirectory: '$name/test');
 
-  var gitInitProcess =
-      await Process.start('git', ['init'], workingDirectory: name);
-
-  gitInitProcess.log();
-
-  int gitCode = await gitInitProcess.exitCode;
-
   await secure(context);
-
-  var gitAddProcess =
-      await Process.start('git', ['add', '--all'], workingDirectory: name);
-
-  gitAddProcess.log();
-
-  int addCode = await gitAddProcess.exitCode;
-
-  var gitCommitProcess = await Process.start('git', ['commit', '-m', 'Initial'],
-      workingDirectory: name);
-
-  gitCommitProcess.log();
-
-  int gitCommitCode = await gitCommitProcess.exitCode;
 
   'Complete with exit code: $exitCode!'.log();
 }
@@ -160,7 +139,7 @@ Future<void> getDependencies(HookContext context) async {
     'json_annotation',
     'get_it',
     'flutter_bloc',
-    'flutter_secure_storage',
+    'flutter_secure_storage:^9.0.0',
     'shared_preferences',
     'connectivity_plus',
     'internet_connection_checker',
@@ -194,8 +173,8 @@ Future<void> getDependencies(HookContext context) async {
   ];
 
   if (context.vars['theme_generate']) {
-    dependencies.add('theme_tailor_annotation:2.1.0');
-    devDependencies.add('theme_tailor:2.1.0');
+    dependencies.add('theme_tailor_annotation:3.0.1');
+    devDependencies.add('theme_tailor:3.0.1');
   }
 
   switch (context.vars['navigation']) {

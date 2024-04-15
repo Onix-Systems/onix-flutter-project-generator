@@ -17,13 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ConnectorNodeEntity {
   String get id => throw _privateConstructorUsedError;
-
   String get key => throw _privateConstructorUsedError;
-
   String get name => throw _privateConstructorUsedError;
-
   String get type => throw _privateConstructorUsedError;
-
   List<PaintProperty> get fills => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,7 +32,6 @@ abstract class $ConnectorNodeEntityCopyWith<$Res> {
   factory $ConnectorNodeEntityCopyWith(
           ConnectorNodeEntity value, $Res Function(ConnectorNodeEntity) then) =
       _$ConnectorNodeEntityCopyWithImpl<$Res, ConnectorNodeEntity>;
-
   @useResult
   $Res call(
       {String id,
@@ -53,7 +48,6 @@ class _$ConnectorNodeEntityCopyWithImpl<$Res, $Val extends ConnectorNodeEntity>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -97,7 +91,6 @@ abstract class _$$ConnectorNodeEntityImplCopyWith<$Res>
   factory _$$ConnectorNodeEntityImplCopyWith(_$ConnectorNodeEntityImpl value,
           $Res Function(_$ConnectorNodeEntityImpl) then) =
       __$$ConnectorNodeEntityImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -170,7 +163,6 @@ class _$ConnectorNodeEntityImpl implements _ConnectorNodeEntity {
   @override
   final String type;
   final List<PaintProperty> _fills;
-
   @override
   List<PaintProperty> get fills {
     if (_fills is EqualUnmodifiableListView) return _fills;
@@ -217,19 +209,14 @@ abstract class _ConnectorNodeEntity implements ConnectorNodeEntity {
 
   @override
   String get id;
-
   @override
   String get key;
-
   @override
   String get name;
-
   @override
   String get type;
-
   @override
   List<PaintProperty> get fills;
-
   @override
   @JsonKey(ignore: true)
   _$$ConnectorNodeEntityImplCopyWith<_$ConnectorNodeEntityImpl> get copyWith =>

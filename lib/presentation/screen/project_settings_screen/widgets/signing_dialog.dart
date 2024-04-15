@@ -49,11 +49,13 @@ class _SigningDialogState extends State<SigningDialog> {
   Widget build(BuildContext context) {
     return Focus(
       focusNode: FocusNode(),
-      onKey: (node, event) {
-        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+      onKeyEvent: (node, event) {
+        if (HardwareKeyboard.instance
+            .isLogicalKeyPressed(LogicalKeyboardKey.enter)) {
           _onOk(context);
         }
-        if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
+        if (HardwareKeyboard.instance
+            .isLogicalKeyPressed(LogicalKeyboardKey.escape)) {
           Navigator.pop(context);
         }
         return KeyEventResult.skipRemainingHandlers;

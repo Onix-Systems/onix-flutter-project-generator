@@ -44,12 +44,14 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
   Widget build(BuildContext context) {
     return Focus(
       focusNode: _dialogFocusNode,
-      onKey: (node, event) {
-        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+      onKeyEvent: (node, event) {
+        if (HardwareKeyboard.instance
+            .isLogicalKeyPressed(LogicalKeyboardKey.enter)) {
           _onOk(context);
           return KeyEventResult.handled;
         }
-        if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
+        if (HardwareKeyboard.instance
+            .isLogicalKeyPressed(LogicalKeyboardKey.escape)) {
           Navigator.pop(context);
           return KeyEventResult.handled;
         }

@@ -1,9 +1,24 @@
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
+import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_colors_generation_params.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 
-class ThemeColorsFileContent {
-  static String generate({
+class ThemeColorsFileContent implements BaseGenerationService<String> {
+  @override
+  Future<String> generate(BaseGenerationParams params) async {
+    if (params is! ThemeColorsGenerationParams) {
+      return '';
+    }
+
+    return _generateInternal(
+      colors: params.colors,
+      projectName: params.projectName,
+    );
+  }
+
+  String _generateInternal({
     required List<AppColorStyle> colors,
     required String projectName,
   }) {
@@ -13,11 +28,11 @@ class ThemeColorsFileContent {
 import 'package:$projectName/presentation/style/app_colors.dart';
 
 class ThemeColors extends ThemeExtension<ThemeColors> {
-  static const light = ThemeColors(
+  factory ThemeColors.light() => const ThemeColors(
     ${colorNames.map((e) => '${e}Color: AppColors.${colors.firstWhere((element) => element.name == e || element.name == '${e}Light').name},').join('\n    ')}
   );
 
-  static const dark = ThemeColors(
+  factory ThemeColors.dark() => const ThemeColors(
     ${colorNames.map((e) => '${e}Color: AppColors.${colors.firstWhere((element) => element.name == e || element.name == '${e}Dark').name},').join('\n    ')}
   );
 
@@ -52,7 +67,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
 ''';
   }
 
-  static List<String> _getColorNames(List<AppColorStyle> colors) {
+  List<String> _getColorNames(List<AppColorStyle> colors) {
     final names = <String>[];
 
     for (var name

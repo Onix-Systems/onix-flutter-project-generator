@@ -52,12 +52,14 @@ class Dialogs {
       context: context,
       builder: (ctx) => Focus(
         autofocus: true,
-        onKey: (node, event) {
-          if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+        onKeyEvent: (node, event) {
+          if (HardwareKeyboard.instance
+              .isLogicalKeyPressed(LogicalKeyboardKey.enter)) {
             onOk?.call();
             Navigator.of(ctx).pop();
             return KeyEventResult.handled;
-          } else if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
+          } else if (HardwareKeyboard.instance
+              .isLogicalKeyPressed(LogicalKeyboardKey.escape)) {
             onCancel?.call();
             Navigator.of(ctx).pop();
             return KeyEventResult.handled;
@@ -109,12 +111,14 @@ class Dialogs {
       context: context,
       builder: (ctx) => Focus(
         autofocus: true,
-        onKey: (node, event) {
-          if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+        onKeyEvent: (node, event) {
+          if (HardwareKeyboard.instance
+              .isLogicalKeyPressed(LogicalKeyboardKey.enter)) {
             onYes?.call();
             Navigator.of(ctx).pop();
             return KeyEventResult.handled;
-          } else if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
+          } else if (HardwareKeyboard.instance
+              .isLogicalKeyPressed(LogicalKeyboardKey.escape)) {
             onCancel?.call();
             Navigator.of(ctx).pop();
             return KeyEventResult.handled;

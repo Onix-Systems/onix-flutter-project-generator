@@ -6,8 +6,8 @@ ThemeData createLightTheme() {
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.scaffoldBackgroundLight,
     extensions: [
-      ThemeColors.light,
-      ThemeTextStyles.light,
+      ThemeColors.light(),
+      ThemeTextStyles.light(),
     ],
     dialogTheme:
         const DialogTheme(backgroundColor: AppColors.scaffoldBackgroundLight),

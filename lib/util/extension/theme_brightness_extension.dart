@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:onix_flutter_bricks/app/bloc/app_bloc_imports.dart';
 
 extension ThemeBrightnessExtension on BuildContext {

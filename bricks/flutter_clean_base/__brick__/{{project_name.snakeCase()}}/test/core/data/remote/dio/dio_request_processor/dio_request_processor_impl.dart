@@ -424,7 +424,7 @@ void main() {
       const mockedData = 'test';
 
       when(connectivity.checkConnectivity()).thenAnswer(
-        (_) async => ConnectivityResult.none,
+        (_) async => [ConnectivityResult.none],
       );
 
       when(internetConnectionChecker.hasConnection).thenAnswer(
@@ -454,7 +454,7 @@ void main() {
       const mockedData = 'test';
 
       when(connectivity.checkConnectivity()).thenAnswer(
-        (_) async => ConnectivityResult.mobile,
+        (_) async => [ConnectivityResult.mobile],
       );
 
       when(internetConnectionChecker.hasConnection).thenAnswer(

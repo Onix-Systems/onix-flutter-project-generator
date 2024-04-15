@@ -9,11 +9,11 @@ class MethodParameter extends Property {
 
   MethodParameter({
     required this.place,
-    required String name,
-    required String type,
-    bool nullable = false,
-    bool isList = false,
-  }) : super(name: name, type: type, nullable: nullable, isList: isList);
+    required super.name,
+    required super.type,
+    super.nullable,
+    super.isList,
+  });
 
   @override
   String toString() {

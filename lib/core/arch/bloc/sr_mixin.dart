@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Mixin for extending the block's capabilities to support SingleResult - events that need to be rendered 1 time

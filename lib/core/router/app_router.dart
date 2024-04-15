@@ -1,18 +1,18 @@
 //@formatter:off
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/figma_styles_screen.dart';
-import 'package:onix_flutter_bricks/presentation/screen/splash_screen/splash_screen.dart';
-import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/project_name_screen.dart';
-import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/procedure_selection_screen.dart';
-import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/platforms_screen.dart';
-import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/project_settings_screen.dart';
-import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/data_components_screen.dart';
-import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/swagger_parser_screen.dart';
-import 'package:onix_flutter_bricks/presentation/screen/summary_screen/summary_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/figma_styles_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/generation_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/modify_project_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/platforms_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/procedure_selection_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/project_name_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/project_settings_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/splash_screen/splash_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/summary_screen/summary_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/swagger_parser_screen.dart';
 //{imports end}
 
 class AppRouter {

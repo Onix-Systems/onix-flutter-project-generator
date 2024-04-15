@@ -30,7 +30,9 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             debugShowCheckedModeBanner: false,
             builder: (context, widget) {
               return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                data: MediaQuery.of(context).copyWith(
+                  textScaler: TextScaler.noScaling,
+                ),
                 child: widget ?? const SizedBox(),
               );
             },

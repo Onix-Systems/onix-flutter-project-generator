@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
-import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/fields_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
@@ -93,16 +92,19 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
   Widget build(BuildContext context) {
     return Focus(
       focusNode: _dialogFocusNode,
-      onKey: (node, event) {
-        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+      onKeyEvent: (node, event) {
+        if (HardwareKeyboard.instance
+            .isLogicalKeyPressed(LogicalKeyboardKey.enter)) {
           _onOK(context);
           return KeyEventResult.handled;
         }
-        if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
+        if (HardwareKeyboard.instance
+            .isLogicalKeyPressed(LogicalKeyboardKey.escape)) {
           Navigator.pop(context);
           return KeyEventResult.handled;
         }
-        if (event.isKeyPressed(LogicalKeyboardKey.space)) {
+        if (HardwareKeyboard.instance
+            .isLogicalKeyPressed(LogicalKeyboardKey.space)) {
           setState(() {
             if (_currentFocusNode == 1) {
               _dataComponent.generateRequest = !_dataComponent.generateRequest;
@@ -114,8 +116,10 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
 
           return KeyEventResult.handled;
         }
-        if (event.isKeyPressed(LogicalKeyboardKey.tab)) {
-          if (event.isShiftPressed) {
+        if (HardwareKeyboard.instance
+            .isLogicalKeyPressed(LogicalKeyboardKey.tab)) {
+          if (HardwareKeyboard.instance
+              .isLogicalKeyPressed(LogicalKeyboardKey.shift)) {
             _focusPrevious();
           } else {
             _focusNext();

@@ -69,7 +69,6 @@ flavorizr:
       ios:
         bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
         icon: "flavor_assets/{{.}}/launcher_icons/ic_launcher.png"
-
       {{/flavors}}
       {{/flavorizr}}
 

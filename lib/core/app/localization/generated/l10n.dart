@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1225,6 +1226,16 @@ class S {
     return Intl.message(
       'Figma token is empty',
       name: 'figmaGetStylesEmptyToken',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mason Brick source`
+  String get masonBrickSource {
+    return Intl.message(
+      'Mason Brick source',
+      name: 'masonBrickSource',
       desc: '',
       args: [],
     );
