@@ -22,7 +22,6 @@ mixin _$SplashScreenEvent {
     required TResult Function() onAnimationFinished,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,

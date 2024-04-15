@@ -1,25 +1,51 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
-import 'package:onix_flutter_bricks/core/di/services.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/generate_styles.dart';
-
+import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
-import 'package:onix_flutter_bricks/util/process_starter.dart';
+import 'package:onix_flutter_bricks/util/commands.dart';
+import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
+import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
 import 'package:recase/recase.dart';
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenState, GenerationScreenSR> {
-  GenerationScreenBloc()
-      : super(const GenerationScreenStateData(config: Config())) {
+  final GenerateDocumentationUseCase _generateDocumentationUseCase;
+  final GenerateScreensUseCase _generateScreensUseCase;
+  final GenerateDataComponentsUseCase _generateDataComponentsUseCase;
+
+  ///process runners
+  final RunProcessUseCase _runProcessUseCase;
+  final RunOsaScriptProcessUseCase _osaScriptProcessUseCase;
+
+  ///output commands
+  final ClearOutputUseCase _clearOutputUseCase;
+  final AddOutputMessageUseCase _addOutputMessageUseCase;
+
+  GenerationScreenBloc(
+    this._generateDocumentationUseCase,
+    this._generateScreensUseCase,
+    this._generateDataComponentsUseCase,
+    this._clearOutputUseCase,
+    this._addOutputMessageUseCase,
+    this._runProcessUseCase,
+    this._osaScriptProcessUseCase,
+  ) : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
     on<GenerationScreenEventOpenProject>(_openProject);
@@ -29,7 +55,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenEventInit event,
     Emitter<GenerationScreenState> emit,
   ) {
-    outputService.clear();
+    _clearOutputUseCase();
     emit(state.copyWith(config: event.config));
     add(const GenerationScreenEventGenerateProject());
   }
@@ -41,48 +67,19 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     emit(state.copyWith(generatingState: GeneratingState.generating));
 
     if (!state.config.projectExists) {
-      String genPass = '';
+      ///get password for signing generation (Android)
+      String genPass = state.config.getSigningPassword();
 
-      if (state.config.generateSigningKey) {
-        if (state.config.signingVars[6].isEmpty) {
-          genPass = List.generate(20, (index) {
-            return AppConsts.signingKeyPassChars[(Random.secure()
-                .nextInt(AppConsts.signingKeyPassChars.length))];
-          }).join();
-        } else {
-          genPass = state.config.signingVars[6];
-        }
-      }
+      ///parse flavor string to Set<String>
+      var flavors = state.config.getFlavorsAsSet();
 
-      var flavors = <String>{};
-
-      if (state.config.flavors.isNotEmpty) {
-        flavors = state.config.flavors.contains(' ')
-            ? state.config.flavors
-                .toLowerCase()
-                .trim()
-                .replaceAll(RegExp(' +'), ' ')
-                .split(' ')
-                .toSet()
-            : {state.config.flavors.toLowerCase()};
-
-        for (var flavor in flavors) {
-          if (flavor.isEmpty || flavor == ' ') {
-            flavors.remove(flavor);
-          }
-        }
-
-        flavors
-          ..remove('dev')
-          ..remove('prod');
-      }
-
+      ///create config file, clear old possible copy
       var configFile = File('${state.config.projectPath}/config.json');
-
       if (configFile.existsSync()) {
         configFile.deleteSync();
       }
 
+      ///create a new configuration file
       configFile.createSync();
 
       await configFile.writeAsString(jsonEncode({
@@ -99,47 +96,48 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         'firebase_auth': state.config.firebaseAuth,
         'platforms': state.config.platformsList.toString().replaceAll(' ', ''),
         'theme_generate': state.config.theming.name == 'themeTailor',
+        'branch': state.config.branch,
       }).toString());
 
-      outputService.add('{#info}Getting mason & brick...');
+      _addOutputMessageUseCase(message: '{#info}Getting mason & brick...');
 
+      ///create brick archive file
       final brickZip = File('${state.config.projectPath}/brick.zip');
-
       if (brickZip.existsSync()) {
         brickZip.deleteSync();
       }
 
+      ///get brick target folder
       final brickFolder = Directory('${state.config.projectPath}/bricks');
-
       if (brickFolder.existsSync()) {
         brickFolder.deleteSync(recursive: true);
       }
 
-      final gitGetBrickProcess = await ProcessStarter.start(
-          workingDirectory: state.config.projectPath);
-
-      gitGetBrickProcess.stdin.writeln(
-        'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/main.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip',
+      ///get brick code from repo
+      await _runProcessUseCase(
+        workDir: state.config.projectPath,
+        commands: [
+          Commands.getDownloadBrickCodeCommand(
+            masonBrickBranch: state.config.branch,
+          ),
+          Commands.getCompletedWithCode0Command(),
+        ],
       );
 
-      gitGetBrickProcess.stdin.writeln('echo "Complete with exit code: 0"');
-      await gitGetBrickProcess.exitCode;
-
-      var mainProcess = await ProcessStarter.start(
-          workingDirectory: state.config.projectPath);
-
-      mainProcess.stdin
-          .writeln('dart pub global activate mason_cli && mason cache clear');
-
-      mainProcess.stdin.writeln(
-        'mason add -g flutter_clean_base --path \'${state.config.projectPath}/bricks/onix-flutter-project-generator-main/bricks/flutter_clean_base\'',
+      ///run Mason command to build a brick
+      await _runProcessUseCase(
+        workDir: state.config.projectPath,
+        commands: [
+          Commands.getMasonActivateCommand(),
+          Commands.getMasonAddBrickCommand(
+            projectPath: state.config.projectPath,
+            masonBrickBranch: state.config.branch,
+          ),
+          Commands.getMasonMakeBrickCommand(),
+        ],
       );
 
-      mainProcess.stdin.writeln(
-          'mason make flutter_clean_base -c config.json --on-conflict overwrite');
-
-      await mainProcess.exitCode;
-
+      ///clear temporary brick files
       configFile.delete();
       brickFolder.deleteSync(recursive: true);
 
@@ -152,6 +150,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
             .delete(recursive: true);
       }
 
+      ///generate Anroid signing key if configured
       if (state.config.generateSigningKey) {
         await FileGeneratorService().generateSigning(
           projectPath: state.config.projectPath,
@@ -162,61 +161,54 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       }
     }
 
-    await GenerateStyles().call(
-      projectName: state.config.projectName,
-      projectPath: state.config.projectPath,
-      styles: state.config.styles,
-      theming: state.config.theming,
-      projectExists: state.config.projectExists,
-      useScreenUtil: state.config.platformsList.mobile,
+    ///generate styles if added
+    if (!state.config.projectExists || state.config.styles.isNotEmpty) {
+      await GenerateStyles().call(
+        projectName: state.config.projectName,
+        projectPath: state.config.projectPath,
+        styles: state.config.styles,
+        theming: state.config.theming,
+        projectExists: state.config.projectExists,
+        useScreenUtil: state.config.platformsList.mobile,
+      );
+    }
+
+    ///generating screens
+    bool hasScreensToGenerate =
+        state.config.screens.where((element) => !element.exists).isNotEmpty;
+    if (hasScreensToGenerate) {
+      await _generateScreensUseCase(config: state.config);
+    }
+
+    ///generating data components
+    await _generateDataComponentsUseCase(config: state.config);
+
+    ///build project
+    await _runProcessUseCase(
+      workDir: '${state.config.projectPath}/${state.config.projectName}',
+      commands: [
+        Commands.getBuildRunnerBuildCommand(),
+        Commands.getDartImportSortCommand(),
+        Commands.getDartFormatCommand(),
+        Commands.getCompletedWithCode0Command(),
+      ],
     );
 
-    await _generateScreens();
+    ///generate project documentation
+    await _generateDocumentation();
 
-    await _generateDataComponents();
-
-    await _buildProject();
-
+    ///save project configuration
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
 
+    /// run osascript
     if (!state.config.projectExists && state.config.firebaseAuth) {
-      var process = await Process.start(
-          'osascript',
-          [
-            '-e',
-            '''tell application "Terminal"
-  set T to do script "cd '${state.config.projectPath}/${state.config.projectName}' && flutterfire config"
-	set targetWindow to window 1
-	activate targetWindow
-	set custom title of targetWindow to "flutterfire"
-	delay 2
-	repeat
-		delay 1
-		if not busy of T then exit repeat
-	end repeat
-	close (every window whose name contains "flutterfire")
-end tell'''
-          ],
-          workingDirectory:
-              '${state.config.projectPath}/${state.config.projectName}');
-
-      process.stdout
-          .transform(utf8.decoder)
-          .listen((event) => outputService.add(event));
-
-      await process.exitCode;
+      await _osaScriptProcessUseCase(
+        workDir: '${state.config.projectPath}/${state.config.projectName}',
+      );
     }
 
-    final gitProcess = await ProcessStarter.start(
-        workingDirectory:
-            '${state.config.projectPath}/${state.config.projectName}');
-
-    gitProcess.stdin.writeln(
-        'git add --all && git commit -m "Initial" && echo "Complete with exit code: 0"');
-
-    await gitProcess.exitCode;
-
+    ///finish generation
     emit(state.copyWith(
       generatingState: GeneratingState.waiting,
       config: state.config.copyWith(
@@ -227,133 +219,32 @@ end tell'''
     ));
   }
 
-  Future<void> _generateScreens() async {
-    if (state.config.screens.where((element) => !element.exists).isNotEmpty) {
-      for (var screen
-          in state.config.screens.where((element) => !element.exists)) {
-        outputService.add('{#info}Generating screen ${screen.name}...');
-
-        await fileGeneratorService.generateScreen(
-          screen: screen,
-          projectPath: state.config.projectPath,
-          projectName: state.config.projectName,
-          router: state.config.router,
-        );
-
-        screen.exists = true;
-        screenRepository.modifyScreen(screen, screen.name);
-      }
-
-      outputService.add('{#info}Screens generated!');
-    }
-  }
-
-  Future<void> _generateDataComponents() async {
-    var needToGenerateDataComponents = state.config.dataComponents
-        .where((component) => !component.exists)
-        .isNotEmpty;
-
-    var needToGenerateSources =
-        state.config.sources.where((source) => !source.exists).isNotEmpty;
-
-    if (!needToGenerateSources) {
-      for (var source in state.config.sources) {
-        if (source.dataComponentsNames
-            .where((component) => !dataComponentRepository
-                .getDataComponentByName(dataComponentName: component)!
-                .exists)
-            .isNotEmpty) {
-          needToGenerateSources = true;
-          break;
-        }
-      }
-    }
-
-    if (needToGenerateDataComponents || needToGenerateSources) {
-      outputService.add('{#info}Generating entities!');
-      if (needToGenerateDataComponents) {
-        for (final component in state.config.dataComponents) {
-          await fileGeneratorService.generateComponent(
-            projectPath: state.config.projectPath,
-            projectName: state.config.projectName,
-            dataComponentName: component.name,
-          );
-        }
-      }
-
-      if (needToGenerateSources) {
-        final sources = state.config.sources.where((source) {
-          return !source.exists ||
-              source.dataComponentsNames.where((entity) {
-                return !dataComponentRepository
-                    .getDataComponentByName(dataComponentName: entity)!
-                    .exists;
-              }).isNotEmpty;
-        }).toList();
-
-        for (var source in sources) {
-          if (source.dataComponentsNames.isEmpty) {
-            await fileGeneratorService.generateEmptySourceComponentFolders(
-              projectPath: state.config.projectPath,
-              projectName: state.config.projectName,
-              sourceName: source.name,
-            );
-          }
-          for (final component in source.dataComponentsNames.where((e) =>
-              !dataComponentRepository
-                  .getDataComponentByName(dataComponentName: e)!
-                  .exists &&
-              !source.paths.any((path) => path.methods.any((method) => method
-                  .innerEnums
-                  .any((innerEnum) => innerEnum.name == e))))) {
-            await fileGeneratorService.generateComponent(
-              projectPath: state.config.projectPath,
-              projectName: state.config.projectName,
-              dataComponentName: component,
-            );
-          }
-
-          if (!source.exists) {
-            await fileGeneratorService.generateSource(
-              source: source,
-              projectPath: state.config.projectPath,
-              projectName: state.config.projectName,
-            );
-          }
-        }
-      }
-
-      sourceRepository.setAllExists();
-      dataComponentRepository.setAllExists();
-
-      outputService.add('{#info}Entities generated!');
-    }
-  }
-
+  ///when user tap on "Open Android Studio"
   FutureOr<void> _openProject(GenerationScreenEventOpenProject event,
       Emitter<GenerationScreenState> emit) async {
-    var mainProcess = await ProcessStarter.start(
-        workingDirectory:
-            '${state.config.projectPath}/${state.config.projectName}');
-
-    mainProcess.stdin.writeln('open -a \'Android Studio.app\' .');
-
-    await mainProcess.exitCode;
+    await _runProcessUseCase(
+      workDir: '${state.config.projectPath}/${state.config.projectName}',
+      commands: [Commands.getOpenAndroidStudioCommand()],
+    );
   }
 
-  Future<void> _buildProject() async {
-    final buildProcess = await ProcessStarter.start(
-        workingDirectory:
-            '${state.config.projectPath}/${state.config.projectName}');
+  ///generating project base documentation files
+  Future<void> _generateDocumentation() async {
+    final Set<String> allFlavors = {};
+    if (state.config.flavorize) {
+      final customFlavors = state.config.flavors.flavorStringToSet();
+      allFlavors.addAll(AppConsts.defaultFlavors);
+      allFlavors.addAll(customFlavors);
+    }
+    final params = DocsGenerationParams(
+      projectName: state.config.projectName,
+      projectPath: state.config.projectPath,
+      organization: state.config.organization,
+      flavors: allFlavors,
+      platforms: state.config.platformsList.asList(),
+      commands: state.config.platformsList.asPlatformCommandsList(),
+    );
 
-    buildProcess.stdin.writeln(AppConsts.buildCmd);
-
-    buildProcess.stdin.writeln('dart run import_sorter:main --no-comments');
-
-    buildProcess.stdin.writeln('dart format .');
-
-    buildProcess.stdin.writeln('echo "Complete with exit code: 0"');
-
-    await buildProcess.exitCode;
+    await _generateDocumentationUseCase(params: params);
   }
 }

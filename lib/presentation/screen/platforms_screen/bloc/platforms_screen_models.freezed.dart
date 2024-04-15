@@ -22,7 +22,6 @@ mixin _$PlatformsScreenEvent {
     required TResult Function(PlatformsList platformsList) onPlatformsChange,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,

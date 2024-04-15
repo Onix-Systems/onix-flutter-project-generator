@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class ColoredLine extends StatelessWidget {
-  ColoredLine({Key? key, required String line}) : super(key: key) {
+  ColoredLine({
+    super.key,
+    required String line,
+  }) {
     _process(line);
   }
 

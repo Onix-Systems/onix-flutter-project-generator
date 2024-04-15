@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'platforms_list.freezed.dart';
-
 part 'platforms_list.g.dart';
 
 @freezed
@@ -23,8 +22,7 @@ class PlatformsList with _$PlatformsList {
 
   bool get mobile => android || ios;
 
-  @override
-  String toString() {
+  List<String> asList() {
     List<String> platforms = [];
 
     if (android) platforms.add('android');
@@ -33,7 +31,27 @@ class PlatformsList with _$PlatformsList {
     if (macos) platforms.add('macos');
     if (windows) platforms.add('windows');
     if (linux) platforms.add('linux');
+    return platforms;
+  }
 
+  List<String> asPlatformCommandsList() {
+    List<String> commands = [];
+
+    if (android) {
+      commands.add('apk');
+      commands.add('appbundle');
+    }
+    if (ios) commands.add('ios');
+    if (web) commands.add('web');
+    if (macos) commands.add('macos');
+    if (windows) commands.add('windows');
+    if (linux) commands.add('linux');
+    return commands;
+  }
+
+  @override
+  String toString() {
+    final platforms = asList();
     return platforms.join(', ');
   }
 

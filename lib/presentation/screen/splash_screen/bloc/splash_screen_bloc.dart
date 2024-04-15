@@ -2,8 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc_imports.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -49,10 +50,21 @@ class SplashScreenBloc
 
     await mainProcess.exitCode;
 
-    if (localVersion != remoteVersion) {
-      addSr(const SplashScreenSR.onNeedUpdate());
-    } else {
-      addSr(const SplashScreenSR.onContinue());
+    try {
+      final localVersionNumber = int.parse(localVersion.replaceAll('.', ''));
+      final remoteVersionNumber = int.parse(remoteVersion.replaceAll('.', ''));
+      if (localVersionNumber < remoteVersionNumber) {
+        addSr(const SplashScreenSR.onNeedUpdate());
+      } else {
+        addSr(const SplashScreenSR.onContinue());
+      }
+    } catch (e) {
+      logger.e(e);
+      if (localVersion != remoteVersion) {
+        addSr(const SplashScreenSR.onNeedUpdate());
+      } else {
+        addSr(const SplashScreenSR.onContinue());
+      }
     }
 
     emit(state.copyWith(

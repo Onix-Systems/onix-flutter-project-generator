@@ -4,7 +4,6 @@ import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/domain/repository/data_component_repository.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
-
 import 'package:recase/recase.dart';
 
 class DataComponentRepositoryImpl implements DataComponentRepository {

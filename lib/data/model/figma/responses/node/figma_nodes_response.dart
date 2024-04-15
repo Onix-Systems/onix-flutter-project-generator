@@ -16,4 +16,3 @@ class FigmaNodesResponse {
 
   Map<String, dynamic> toJson() => _$FigmaNodesResponseToJson(this);
 }
-

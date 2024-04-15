@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
@@ -94,6 +95,10 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       value: state.config.organization,
                     ),
                     SummaryCell(
+                      variable: S.of(context).masonBrickSource,
+                      value: state.config.branch,
+                    ),
+                    SummaryCell(
                       variable: S.of(context).platforms,
                       value: state.config.platformsList.toString(),
                     ),
@@ -101,11 +106,11 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       variable: S.of(context).flavorize,
                       value: state.config.flavorize.toString(),
                     ),
-                    if (state.config.flavors.isNotEmpty)
+                    if (state.config.flavorize)
                       SummaryCell(
                         variable: S.of(context).flavors,
                         value:
-                            'dev, prod, ${state.config.flavors.split(' ').join(', ')}',
+                            '${AppConsts.defaultFlavors.join(', ')} ${state.config.flavors.split(' ').join(', ')}',
                       ),
                     SummaryCell(
                       variable: S.of(context).generateSigningKey,

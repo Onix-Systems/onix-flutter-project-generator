@@ -138,6 +138,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "localization": MessageLookupByLibrary.simpleMessage("Локалізація:"),
         "localizationMethod":
             MessageLookupByLibrary.simpleMessage("Метод локалізації"),
+        "masonBrickSource":
+            MessageLookupByLibrary.simpleMessage("Гілка Mason Brick"),
         "modify": MessageLookupByLibrary.simpleMessage("Змінити"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Змінити компонент"),

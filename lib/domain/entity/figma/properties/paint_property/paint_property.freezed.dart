@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PaintProperty {
   ColorProperty get color => throw _privateConstructorUsedError;
-
   PaintPropertyType get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +29,6 @@ abstract class $PaintPropertyCopyWith<$Res> {
   factory $PaintPropertyCopyWith(
           PaintProperty value, $Res Function(PaintProperty) then) =
       _$PaintPropertyCopyWithImpl<$Res, PaintProperty>;
-
   @useResult
   $Res call({ColorProperty color, PaintPropertyType type});
 
@@ -44,7 +42,6 @@ class _$PaintPropertyCopyWithImpl<$Res, $Val extends PaintProperty>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -81,7 +78,6 @@ abstract class _$$PaintPropertyImplCopyWith<$Res>
   factory _$$PaintPropertyImplCopyWith(
           _$PaintPropertyImpl value, $Res Function(_$PaintPropertyImpl) then) =
       __$$PaintPropertyImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({ColorProperty color, PaintPropertyType type});
@@ -158,10 +154,8 @@ abstract class _PaintProperty implements PaintProperty {
 
   @override
   ColorProperty get color;
-
   @override
   PaintPropertyType get type;
-
   @override
   @JsonKey(ignore: true)
   _$$PaintPropertyImplCopyWith<_$PaintPropertyImpl> get copyWith =>

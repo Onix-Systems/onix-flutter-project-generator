@@ -1,9 +1,25 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
+import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_text_style_generation_params.dart';
 
-class ThemeTextStylesFileContent {
-  static String generate({
+class ThemeTextStylesFileContent implements BaseGenerationService<String> {
+  @override
+  Future<String> generate(BaseGenerationParams params) async {
+    if (params is! ThemeTextStyleGenerationParams) {
+      return '';
+    }
+    return _generateInternal(
+      textStyles: params.textStyles,
+      colors: params.colors,
+      useScreenUtil: params.useScreenUtil,
+      projectName: params.projectName,
+    );
+  }
+
+  String _generateInternal({
     required List<AppTextStyle> textStyles,
     required List<AppColorStyle> colors,
     required bool useScreenUtil,
@@ -17,7 +33,7 @@ import 'package:flutter/material.dart';
 ${useScreenUtil ? 'import \'package:flutter_screenutil/flutter_screenutil.dart\';' : ''}
 
 class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
-  static ${useScreenUtil ? 'final' : 'const'} light = ThemeTextStyles(
+   factory ThemeTextStyles.light() => ${useScreenUtil ? '' : 'const'} ThemeTextStyles(
   ${styles.map((e) => '''${e.name}: TextStyle(
   ${e.fontFamily.isNotEmpty ? 'fontFamily: \'${e.fontFamily}\',' : ''}
   fontSize: ${e.fontSize}${useScreenUtil ? '.sp' : ''},
@@ -26,7 +42,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   ),''').join('\n')}
   );
   
-  static ${useScreenUtil ? 'final' : 'const'} dark = ThemeTextStyles(
+  factory ThemeTextStyles.dark() => ${useScreenUtil ? '' : 'const'} ThemeTextStyles(
   ${styles.map((e) => '''${e.name}: TextStyle(
   ${e.fontFamily.isNotEmpty ? 'fontFamily: \'${e.fontFamily}\',' : ''}
   fontSize: ${e.fontSize}${useScreenUtil ? '.sp' : ''},
@@ -63,7 +79,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
 }''';
   }
 
-  static String _getColor(List<AppColorStyle> colors, String styleName) {
+  String _getColor(List<AppColorStyle> colors, String styleName) {
     final color =
         colors.firstWhereOrNull((element) => element.name == styleName);
 

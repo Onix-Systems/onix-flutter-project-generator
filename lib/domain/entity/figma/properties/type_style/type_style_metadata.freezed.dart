@@ -17,11 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TypeStyleMetadata {
   String get fontFamily => throw _privateConstructorUsedError;
-
   num get fontWeight => throw _privateConstructorUsedError;
-
   num get fontSize => throw _privateConstructorUsedError;
-
   num get letterSpacing => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -34,7 +31,6 @@ abstract class $TypeStyleMetadataCopyWith<$Res> {
   factory $TypeStyleMetadataCopyWith(
           TypeStyleMetadata value, $Res Function(TypeStyleMetadata) then) =
       _$TypeStyleMetadataCopyWithImpl<$Res, TypeStyleMetadata>;
-
   @useResult
   $Res call(
       {String fontFamily, num fontWeight, num fontSize, num letterSpacing});
@@ -47,7 +43,6 @@ class _$TypeStyleMetadataCopyWithImpl<$Res, $Val extends TypeStyleMetadata>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -86,7 +81,6 @@ abstract class _$$TypeStyleMetadataImplCopyWith<$Res>
   factory _$$TypeStyleMetadataImplCopyWith(_$TypeStyleMetadataImpl value,
           $Res Function(_$TypeStyleMetadataImpl) then) =
       __$$TypeStyleMetadataImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -189,16 +183,12 @@ abstract class _TypeStyleMetadata implements TypeStyleMetadata {
 
   @override
   String get fontFamily;
-
   @override
   num get fontWeight;
-
   @override
   num get fontSize;
-
   @override
   num get letterSpacing;
-
   @override
   @JsonKey(ignore: true)
   _$$TypeStyleMetadataImplCopyWith<_$TypeStyleMetadataImpl> get copyWith =>

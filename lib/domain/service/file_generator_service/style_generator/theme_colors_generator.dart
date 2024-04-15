@@ -1,12 +1,16 @@
 import 'dart:io';
+
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/colors_parser.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/gen/theme_colors_file_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/gen/theme_colors_file_content_tailor.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_colors_generation_params.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
 
-import 'default_colors.dart';
-import 'gen/theme_colors_file_content.dart';
-
 class ThemeColorsGenerator {
+  final _defaultColorsGenerator = ThemeColorsFileContent();
+  final _tailorColorsGenerator = ThemeColorsFileContentTailor();
+
   Future<void> call({
     required String projectName,
     required String projectPath,
@@ -22,21 +26,27 @@ class ThemeColorsGenerator {
         '$projectPath/$projectName/lib/presentation/style/app_colors.dart');
 
     final allColors = colors
-      ..addAll(DefaultColors.call(
+      ..addAll(ColorsParser.call(
               file: themeColorsFile, projectExists: projectExists)
           .where(
               (element) => !colors.map((e) => e.name).contains(element.name)));
 
     if (theming == ProjectTheming.themeTailor) {
-      await appColorsFile.writeAsString(ThemeColorsFileContentTailor.generate(
-        colors: allColors,
-        projectName: projectName,
-      ));
+      final result = await _tailorColorsGenerator.generate(
+        ThemeColorsGenerationParams(
+          colors: allColors,
+          projectName: projectName,
+        ),
+      );
+      await appColorsFile.writeAsString(result);
     } else {
-      await appColorsFile.writeAsString(ThemeColorsFileContent.generate(
-        colors: allColors,
-        projectName: projectName,
-      ));
+      final result = await _defaultColorsGenerator.generate(
+        ThemeColorsGenerationParams(
+          colors: allColors,
+          projectName: projectName,
+        ),
+      );
+      await appColorsFile.writeAsString(result);
     }
   }
 }

@@ -5,7 +5,6 @@ import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
-
 import 'package:recase/recase.dart';
 
 class GenerateMapper {

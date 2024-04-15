@@ -19,8 +19,8 @@ class StreamListener<T> extends StatefulWidget {
     this.onError,
     this.onDone,
     this.cancelOnError,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<StreamListener<T>> createState() => _StreamListenerState<T>();

@@ -7,6 +7,7 @@ part of 'config.dart';
 // **************************************************************************
 
 _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
+      branch: json['branch'] as String? ?? 'main',
       localVersion: json['localVersion'] as String? ?? '',
       remoteVersion: json['remoteVersion'] as String? ?? '',
       projectPath: json['projectPath'] as String? ?? '',
@@ -59,6 +60,7 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
 
 Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
     <String, dynamic>{
+      'branch': instance.branch,
       'localVersion': instance.localVersion,
       'remoteVersion': instance.remoteVersion,
       'projectPath': instance.projectPath,

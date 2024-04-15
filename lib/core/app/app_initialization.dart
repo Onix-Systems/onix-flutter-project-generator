@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/di/injection.dart';
 

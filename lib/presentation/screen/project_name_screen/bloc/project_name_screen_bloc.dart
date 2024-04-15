@@ -1,27 +1,35 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/extension/org_case.dart';
 import 'package:recase/recase.dart';
 
 class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     ProjectNameScreenState, ProjectNameScreenSR> {
-  ProjectNameScreenBloc()
-      : super(const ProjectNameScreenState.data(config: Config())) {
+  final GetBranchesProcessUseCase _getBranchesProcessUseCase;
+
+  ProjectNameScreenBloc(
+    this._getBranchesProcessUseCase,
+  ) : super(const ProjectNameScreenState.data(config: Config())) {
     on<ProjectNameScreenEventInit>(_onInit);
     on<ProjectNameScreenEventProjectNameChanged>(_onProjectNameChanged);
     on<ProjectNameScreenEventOrganizationChanged>(_onOrganizationChanged);
+    on<ProjectNameScreenEventBranchChanged>(_onBranchChanged);
   }
 
   FutureOr<void> _onInit(
     ProjectNameScreenEventInit event,
     Emitter<ProjectNameScreenState> emit,
-  ) {
+  ) async {
+    final branches = await _getBranchesProcessUseCase();
     emit(ProjectNameScreenState.data(
       config: event.config,
+      branches: branches,
     ));
   }
 
@@ -54,6 +62,17 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
   ) {
     emit(state.copyWith(
       config: state.config.copyWith(organization: event.organization.orgCase()),
+    ));
+  }
+
+  FutureOr<void> _onBranchChanged(
+    ProjectNameScreenEventBranchChanged event,
+    Emitter<ProjectNameScreenState> emit,
+  ) {
+    emit(state.copyWith(
+      config: state.config.copyWith(
+        branch: event.newBranch,
+      ),
     ));
   }
 }

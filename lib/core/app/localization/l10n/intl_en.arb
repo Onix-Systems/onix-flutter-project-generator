@@ -117,5 +117,6 @@
   "figmaGetStylesError": "Error loading styles: check internet connection, figma file id and token",
   "figmaGetStylesEmpty": "No styles found in this file",
   "figmaGetStylesEmptyFileId": "Figma file id is empty",
-  "figmaGetStylesEmptyToken": "Figma token is empty"
+  "figmaGetStylesEmptyToken": "Figma token is empty",
+  "masonBrickSource": "Mason Brick source"
 }

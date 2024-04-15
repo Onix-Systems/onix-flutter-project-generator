@@ -20,53 +20,33 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Config {
+  String get branch => throw _privateConstructorUsedError;
   String get localVersion => throw _privateConstructorUsedError;
-
   String get remoteVersion => throw _privateConstructorUsedError;
-
   String get projectPath => throw _privateConstructorUsedError;
-
   String get projectName => throw _privateConstructorUsedError;
-
   bool get projectExists => throw _privateConstructorUsedError;
-
   String get organization => throw _privateConstructorUsedError;
-
   PlatformsList get platformsList => throw _privateConstructorUsedError;
-
   bool get flavorize => throw _privateConstructorUsedError;
-
   String get flavors => throw _privateConstructorUsedError;
-
   bool get generateSigningKey => throw _privateConstructorUsedError;
-
   bool get firebaseAuth => throw _privateConstructorUsedError;
-
   bool get useSonar => throw _privateConstructorUsedError;
-
   bool get graphql => throw _privateConstructorUsedError;
-
   ProjectRouter get router => throw _privateConstructorUsedError;
-
   ProjectLocalization get localization => throw _privateConstructorUsedError;
-
   ProjectTheming get theming => throw _privateConstructorUsedError;
-
   List<String> get signingVars => throw _privateConstructorUsedError;
-
   Set<Screen> get screens =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(includeFromJson: false, includeToJson: false)
   List<AppStyle> get styles => throw _privateConstructorUsedError;
-
   String get swaggerUrl => throw _privateConstructorUsedError;
-
   Set<DataComponent> get dataComponents => throw _privateConstructorUsedError;
-
   Set<Source> get sources => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
@@ -75,10 +55,10 @@ mixin _$Config {
 abstract class $ConfigCopyWith<$Res> {
   factory $ConfigCopyWith(Config value, $Res Function(Config) then) =
       _$ConfigCopyWithImpl<$Res, Config>;
-
   @useResult
   $Res call(
-      {String localVersion,
+      {String branch,
+      String localVersion,
       String remoteVersion,
       String projectPath,
       String projectName,
@@ -112,13 +92,13 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? branch = null,
     Object? localVersion = null,
     Object? remoteVersion = null,
     Object? projectPath = null,
@@ -143,6 +123,10 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? sources = null,
   }) {
     return _then(_value.copyWith(
+      branch: null == branch
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as String,
       localVersion: null == localVersion
           ? _value.localVersion
           : localVersion // ignore: cast_nullable_to_non_nullable
@@ -248,11 +232,11 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   factory _$$ConfigImplCopyWith(
           _$ConfigImpl value, $Res Function(_$ConfigImpl) then) =
       __$$ConfigImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
-      {String localVersion,
+      {String branch,
+      String localVersion,
       String remoteVersion,
       String projectPath,
       String projectName,
@@ -291,6 +275,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? branch = null,
     Object? localVersion = null,
     Object? remoteVersion = null,
     Object? projectPath = null,
@@ -315,6 +300,10 @@ class __$$ConfigImplCopyWithImpl<$Res>
     Object? sources = null,
   }) {
     return _then(_$ConfigImpl(
+      branch: null == branch
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as String,
       localVersion: null == localVersion
           ? _value.localVersion
           : localVersion // ignore: cast_nullable_to_non_nullable
@@ -411,7 +400,8 @@ class __$$ConfigImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ConfigImpl extends _Config {
   const _$ConfigImpl(
-      {this.localVersion = '',
+      {this.branch = 'main',
+      this.localVersion = '',
       this.remoteVersion = '',
       this.projectPath = '',
       this.projectName = '',
@@ -452,6 +442,9 @@ class _$ConfigImpl extends _Config {
   factory _$ConfigImpl.fromJson(Map<String, dynamic> json) =>
       _$$ConfigImplFromJson(json);
 
+  @override
+  @JsonKey()
+  final String branch;
   @override
   @JsonKey()
   final String localVersion;
@@ -501,7 +494,6 @@ class _$ConfigImpl extends _Config {
   @JsonKey()
   final ProjectTheming theming;
   final List<String> _signingVars;
-
   @override
   @JsonKey()
   List<String> get signingVars {
@@ -511,7 +503,6 @@ class _$ConfigImpl extends _Config {
   }
 
   final Set<Screen> _screens;
-
   @override
   @JsonKey()
   Set<Screen> get screens {
@@ -522,7 +513,6 @@ class _$ConfigImpl extends _Config {
 
 // ignore: invalid_annotation_target
   final List<AppStyle> _styles;
-
 // ignore: invalid_annotation_target
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -536,7 +526,6 @@ class _$ConfigImpl extends _Config {
   @JsonKey()
   final String swaggerUrl;
   final Set<DataComponent> _dataComponents;
-
   @override
   @JsonKey()
   Set<DataComponent> get dataComponents {
@@ -546,7 +535,6 @@ class _$ConfigImpl extends _Config {
   }
 
   final Set<Source> _sources;
-
   @override
   @JsonKey()
   Set<Source> get sources {
@@ -557,7 +545,7 @@ class _$ConfigImpl extends _Config {
 
   @override
   String toString() {
-    return 'Config(localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl, dataComponents: $dataComponents, sources: $sources)';
+    return 'Config(branch: $branch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl, dataComponents: $dataComponents, sources: $sources)';
   }
 
   @override
@@ -565,6 +553,7 @@ class _$ConfigImpl extends _Config {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ConfigImpl &&
+            (identical(other.branch, branch) || other.branch == branch) &&
             (identical(other.localVersion, localVersion) ||
                 other.localVersion == localVersion) &&
             (identical(other.remoteVersion, remoteVersion) ||
@@ -608,6 +597,7 @@ class _$ConfigImpl extends _Config {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
+        branch,
         localVersion,
         remoteVersion,
         projectPath,
@@ -648,7 +638,8 @@ class _$ConfigImpl extends _Config {
 
 abstract class _Config extends Config {
   const factory _Config(
-      {final String localVersion,
+      {final String branch,
+      final String localVersion,
       final String remoteVersion,
       final String projectPath,
       final String projectName,
@@ -671,78 +662,57 @@ abstract class _Config extends Config {
       final String swaggerUrl,
       final Set<DataComponent> dataComponents,
       final Set<Source> sources}) = _$ConfigImpl;
-
   const _Config._() : super._();
 
   factory _Config.fromJson(Map<String, dynamic> json) = _$ConfigImpl.fromJson;
 
   @override
+  String get branch;
+  @override
   String get localVersion;
-
   @override
   String get remoteVersion;
-
   @override
   String get projectPath;
-
   @override
   String get projectName;
-
   @override
   bool get projectExists;
-
   @override
   String get organization;
-
   @override
   PlatformsList get platformsList;
-
   @override
   bool get flavorize;
-
   @override
   String get flavors;
-
   @override
   bool get generateSigningKey;
-
   @override
   bool get firebaseAuth;
-
   @override
   bool get useSonar;
-
   @override
   bool get graphql;
-
   @override
   ProjectRouter get router;
-
   @override
   ProjectLocalization get localization;
-
   @override
   ProjectTheming get theming;
-
   @override
   List<String> get signingVars;
-
   @override
   Set<Screen> get screens;
-
   @override // ignore: invalid_annotation_target
   @JsonKey(includeFromJson: false, includeToJson: false)
   List<AppStyle> get styles;
-
   @override
   String get swaggerUrl;
-
   @override
   Set<DataComponent> get dataComponents;
-
   @override
   Set<Source> get sources;
-
   @override
   @JsonKey(ignore: true)
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>

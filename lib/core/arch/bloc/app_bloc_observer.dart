@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:onix_flutter_bricks/core/di/app.dart';
 
 class AppBlocObserver extends BlocObserver {

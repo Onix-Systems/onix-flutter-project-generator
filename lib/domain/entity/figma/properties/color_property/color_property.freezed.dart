@@ -17,11 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ColorProperty {
   double get r => throw _privateConstructorUsedError;
-
   double get g => throw _privateConstructorUsedError;
-
   double get b => throw _privateConstructorUsedError;
-
   double get a => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -34,7 +31,6 @@ abstract class $ColorPropertyCopyWith<$Res> {
   factory $ColorPropertyCopyWith(
           ColorProperty value, $Res Function(ColorProperty) then) =
       _$ColorPropertyCopyWithImpl<$Res, ColorProperty>;
-
   @useResult
   $Res call({double r, double g, double b, double a});
 }
@@ -46,7 +42,6 @@ class _$ColorPropertyCopyWithImpl<$Res, $Val extends ColorProperty>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -85,7 +80,6 @@ abstract class _$$ColorPropertyImplCopyWith<$Res>
   factory _$$ColorPropertyImplCopyWith(
           _$ColorPropertyImpl value, $Res Function(_$ColorPropertyImpl) then) =
       __$$ColorPropertyImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({double r, double g, double b, double a});
@@ -178,16 +172,12 @@ abstract class _ColorProperty implements ColorProperty {
 
   @override
   double get r;
-
   @override
   double get g;
-
   @override
   double get b;
-
   @override
   double get a;
-
   @override
   @JsonKey(ignore: true)
   _$$ColorPropertyImplCopyWith<_$ColorPropertyImpl> get copyWith =>

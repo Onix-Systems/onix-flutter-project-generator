@@ -21,4 +21,3 @@ class DocumentNodeDataModel extends NodeDataModel {
   factory DocumentNodeDataModel.fromJson(Map<String, dynamic> json) =>
       _$DocumentNodeDataModelFromJson(json);
 }
-

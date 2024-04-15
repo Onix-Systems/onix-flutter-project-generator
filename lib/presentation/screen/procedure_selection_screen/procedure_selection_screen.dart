@@ -188,14 +188,13 @@ class _ProcedureSelectionScreenState extends BaseState<
             right: 10,
             bottom: 10,
             child: Text(
-              widget.config.localVersion.isNotEmpty
-                  ? 'v ${widget.config.localVersion}'
+              (state.config.localVersion.isNotEmpty &&
+                      state.config.remoteVersion.isNotEmpty)
+                  ? 'v${state.config.localVersion} (Remote: v${state.config.remoteVersion})'
                   : '',
               style: context.appTextStyles.fs18?.copyWith(
                 decoration: TextDecoration.none,
-                color: widget.config.remoteVersion == widget.config.localVersion
-                    ? AppColors.orange
-                    : AppColors.red,
+                color: Colors.grey,
               ),
             ),
           ),
