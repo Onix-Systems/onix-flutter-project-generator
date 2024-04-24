@@ -2,7 +2,7 @@
 
 This section describes different installation options. It consists of the following parts:
 
-* Terminology  
+* Terminology
 * Platforms supported
 * Environment variables and setup
 * Important installation instructions
@@ -14,7 +14,7 @@ This section describes different installation options. It consists of the follow
 
 ## Terminology
 
-* **Output Type** - platform keyword used in run or build commands to specify for what platform app will be built. Available platforms are: 
+* **Output Type** - platform keyword used in run or build commands to specify for what platform app will be built. Available platforms are:
 
 ```
 {output_types}
@@ -22,7 +22,7 @@ This section describes different installation options. It consists of the follow
 Apk and AppBundle refers to Android and specifies a type of output file (`*.apk` or `*.aab`).
 
 
-* **Flavor** - type of application configuration. {app_name} supports following flavors: 
+* **Flavor** - type of application configuration. {app_name} supports following flavors:
 
 ```
 {app_flavors}
@@ -36,12 +36,12 @@ Apk and AppBundle refers to Android and specifies a type of output file (`*.apk`
 ```
 
 When you specifying a flavor in run or build command you also need to specify corresponding `main.dart` file for that flavor.
-   
+
 ## Platforms supported
 
 {app_name} application supported on following platforms:
 
-{app_platforms} 
+{app_platforms}
 
 ## Important installation instructions
 
@@ -58,14 +58,14 @@ When you sure you installed followed software follow steps to prepare {app_name}
 
 ## Environment variables and setup
 
-To add project environment keys need to create `.env` file in root folder for each of flavors: 
+To add project environment keys need to create `.env` file in root folder for each of flavors:
 
 ```
 {app_env_files}
 ```
 
-{app_env_explanation} 
-Environment file scheme: 
+{app_env_explanation}
+Environment file scheme:
 
 ```
 STRIPE_KEY=enter_stripe_key
@@ -86,7 +86,7 @@ You can use commands to run applications also. To run app:
 
 ## How to run {app_name} automatic tests
 
-{app_name} application is covered with **unit** and **widgets** tests. 
+{app_name} application is covered with **unit** and **widgets** tests.
 The goal of a unit test is to verify the correctness of a unit of logic under a variety of conditions.
 The goal of a widget test is to verify that the widget’s UI looks and interacts as expected.
 
@@ -111,7 +111,63 @@ Next step is depending on platform:
 
 * For iOS and MacOS open ios/macos folder of project in XCode and follow instructions How to upload app to AppStore
 * For Android you'll see the location of the output file in the terminal after build finished. Follow the instruction to upload build to Play Store
-* For Web - after build completed - deploy content of `/web` folder to your server  
+* For Web - after build completed - deploy content of `/web` folder to your server
+
+## How to build and distribute {app_name} application using fastlane
+
+Before you use fastlane to build and distribute:
+
+1. Make sure you are using **ruby version 3.0 or newer**
+2. Using the iOS build, call `xcode-select --install`
+3. Install fastlane using `brew install fastlane` or `gem install fastlane`
+4. Install the bundler using `gem install bundler`
+5. Go to the android & ios directory and call `bundle install`
+
+To submit a build to the App Store or Google Play Console you need:
+
+For iOS:
+1. If the .env.{flavor} file is not created, create it in the /ios/fastlane/ folder
+2. Go to the Apple Developer portal and create an AppStoreConnect API key, save it, then open the file and copy the contents of that file, not including the BEGIN PRIVATE KEY and END PRIVATE KEY with dashes.  Then add this key in .env.{flavor} to the KEY_CONTENT variable
+3. After creating the key, copy the ISSUER_ID, KEY_ID variables and add them to .env.{flavor}
+4. After that, add a few more variables BUNDLE_ID, APPLE_DEVELOPER_USERNAME, APP_STORE_CONNECT_TEAM_ID, DEVELOPER_PORTAL_TEAM_ID. You can find them on the Apple Developer portal and AppStore Connect
+
+For more information on creating a AppStore Connect API key go to [Creating API Keys for App Store Connect API](https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api)
+
+For Android:
+1. If the .env.{flavor} file is not created, create it in the /android/fastlane/ folder
+2. Download and save the service account key and place it in the project folder
+3. Specify the relative path to the service account key by adding the JSON_KEY_FILE variable to .env.{flavor}
+4. Specify the applicationId in the PACKAGE_NAME variable
+
+For more information on creating a service account key go to [Google Play Developer API](https://developers.google.com/android-publisher/getting_started/?hl=en) portal
+
+To submit a build to the Firebase App Distribution you need:
+
+1. Install Firebase CLI using `curl -sL firebase.tools | bash`
+2. Sign in using the Firebase CLI `firebase login`
+3. Create the .env.{flavor} file in /android/fastlane/ and /ios/fastlane/ if it was not created earlier
+4. Add the FIREBASE_APP_ID variable to the file by specifying the app_id, which you can find in the Firebase Console
+
+For more detailed information you can go to [Firebase App Distribution Android](https://firebase.google.com/docs/app-distribution/ios/distribute-fastlane) and [Firebase App Distribution iOS](https://firebase.google.com/docs/app-distribution/android/distribute-fastlane)
+
+Now you can build and distribute the build using the Makefile command:
+
+For iOS:
+* TestFlight and Firebase App Distribution  `make build_ios_{flavor}_with_distribution`
+* Firebase App Distribution only `make build_ios_{flavor}_firebase_only`
+* TestFlight only `make build_ios_{flavor}_test_flight_only`
+
+> Make sure the correct signing method is selected in Xcode under the "Signing & Capabilities" tab, and if signing manually, the correct Provisioning Profile and Certificate are selected as well
+
+For Android:
+* Play Store and Firebase App Distribution `make build_android_{flavor}_with_distribution`
+* Firebase App Distribution only `make build_android_{flavor}_firebase_only`
+* Play Store only `make build_android_{flavor}_store_only`
+
+> Make sure when submitting a build to the Play Store android artifact type is "aab"
+> Make sure when submitting a build to the Firebase App Distribution android artifact type is "apk" (if you have not set up firebase integration with your Google Play project)
+
+For more flexible build or distribution settings, you can change the parameters specified in **fastlane_config.yaml**
 
 ## Possible build errors
 
@@ -119,7 +175,7 @@ Next step is depending on platform:
 
 Try to run `dart pub get` command in IDE terminal
 
-### When you build an iOS or MacOS application you might get Pod's issue. 
+### When you build an iOS or MacOS application you might get Pod's issue.
 
 To fix that run following command in IDE terminal:
 
