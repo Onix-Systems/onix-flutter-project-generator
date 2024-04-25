@@ -3,11 +3,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/fastlane_service/fastlane_service.dart';
+import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastlane_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/generate_styles.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
@@ -197,6 +200,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     ///generate project documentation
     await _generateDocumentation();
 
+    await _generateFastlane();
+
     ///save project configuration
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
@@ -246,5 +251,25 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     );
 
     await _generateDocumentationUseCase(params: params);
+  }
+
+  ///generating project base documentation files
+  Future<void> _generateFastlane() async {
+    final Set<String> allFlavors = {};
+    if (state.config.flavorize) {
+      final customFlavors = state.config.flavors.flavorStringToSet();
+      allFlavors.addAll(AppConsts.defaultFlavors);
+      allFlavors.addAll(customFlavors);
+    }
+
+    final params = FastlaneGenerationParams(
+      projectName: state.config.projectName,
+      projectPath: state.config.projectPath,
+      organization: state.config.organization,
+      flavors: allFlavors,
+      platforms: state.config.platformsList.asList(),
+    );
+
+    await GetIt.I.get<FastlaneService>().generate(params);
   }
 }
