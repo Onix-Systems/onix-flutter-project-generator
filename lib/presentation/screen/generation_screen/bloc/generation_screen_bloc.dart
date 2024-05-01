@@ -14,6 +14,7 @@ import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastl
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/generate_styles.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
@@ -24,6 +25,7 @@ import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/g
 import 'package:onix_flutter_bricks/util/commands.dart';
 import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
+import 'package:onix_flutter_bricks/util/flavors_util.dart';
 import 'package:recase/recase.dart';
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
@@ -31,6 +33,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   final GenerateDocumentationUseCase _generateDocumentationUseCase;
   final GenerateScreensUseCase _generateScreensUseCase;
   final GenerateDataComponentsUseCase _generateDataComponentsUseCase;
+  final GenerateFastlaneFilesUseCase _generateFastlaneFilesUseCase;
 
   ///process runners
   final RunProcessUseCase _runProcessUseCase;
@@ -48,6 +51,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     this._addOutputMessageUseCase,
     this._runProcessUseCase,
     this._osaScriptProcessUseCase,
+    this._generateFastlaneFilesUseCase,
   ) : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
@@ -253,23 +257,19 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     await _generateDocumentationUseCase(params: params);
   }
 
-  ///generating project base documentation files
+  /// Generating project fastlane files
   Future<void> _generateFastlane() async {
-    final Set<String> allFlavors = {};
-    if (state.config.flavorize) {
-      final customFlavors = state.config.flavors.flavorStringToSet();
-      allFlavors.addAll(AppConsts.defaultFlavors);
-      allFlavors.addAll(customFlavors);
-    }
-
     final params = FastlaneGenerationParams(
       projectName: state.config.projectName,
       projectPath: state.config.projectPath,
       organization: state.config.organization,
-      flavors: allFlavors,
+      flavors: FlavorsUtil.joinFlavors(
+        flavorize: state.config.flavorize,
+        selectedFlavors: state.config.flavors,
+      ),
       platforms: state.config.platformsList.asList(),
     );
 
-    await GetIt.I.get<FastlaneService>().generate(params);
+    await _generateFastlaneFilesUseCase(params);
   }
 }
