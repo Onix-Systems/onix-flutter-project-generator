@@ -5,7 +5,6 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
-
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/figma_styles_dialog/bloc/figma_styles_dialog_bloc_imports.dart';
 
 class FigmaStylesDialogBloc extends BaseBloc<FigmaStylesDialogEvent,

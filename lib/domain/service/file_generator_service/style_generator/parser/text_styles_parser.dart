@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
-import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
 import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
 
 class TextStylesParser {

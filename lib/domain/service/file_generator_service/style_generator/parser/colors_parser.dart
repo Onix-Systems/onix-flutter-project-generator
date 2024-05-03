@@ -6,7 +6,6 @@ import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dar
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/style_generator_const.dart';
 
 class ColorsParser {
-
   List<AppColorStyle> parseFromFile({
     required File file,
     required bool projectExists,

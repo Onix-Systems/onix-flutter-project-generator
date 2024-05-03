@@ -5,11 +5,10 @@ import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
-import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:recase/recase.dart';
 
-class ScreenGenerator implements BaseGenerationService {
+class ScreenGenerator implements BaseGenerationService<bool> {
   final _screenCodeContent = ScreenCodeContent();
 
   @override

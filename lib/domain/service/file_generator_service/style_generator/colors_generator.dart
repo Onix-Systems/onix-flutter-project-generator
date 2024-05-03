@@ -1,12 +1,11 @@
 import 'dart:io';
 
-import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/colors_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/parser/colors_parser.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/gen/app_colors_file_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/colors_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/colors_generator_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/parser/colors_parser.dart';
 
 class ColorsGenerator implements BaseGenerationService<bool> {
   final _colorParser = ColorsParser();

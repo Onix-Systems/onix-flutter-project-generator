@@ -1,5 +1,3 @@
-import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
-import 'package:onix_flutter_bricks/domain/service/figma_service/figma_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/styles_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/styles_generator.dart';
 

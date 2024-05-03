@@ -1,5 +1,4 @@
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
-import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
@@ -304,6 +303,5 @@ class ScreenCodeContent {
     codeLines.add('}');
     codeLines.addNewLine();
     return codeLines.join('\n');
-
   }
 }

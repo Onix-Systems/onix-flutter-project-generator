@@ -15,8 +15,10 @@ class ColorsGeneratorParams implements BaseGenerationParams {
     required this.projectExists,
   });
 
-  factory ColorsGeneratorParams.fromStyles(StylesGeneratorParams params,
-      List<AppColorStyle> colors,) =>
+  factory ColorsGeneratorParams.fromStyles(
+    StylesGeneratorParams params,
+    List<AppColorStyle> colors,
+  ) =>
       ColorsGeneratorParams(
         projectName: params.projectName,
         projectPath: params.projectPath,

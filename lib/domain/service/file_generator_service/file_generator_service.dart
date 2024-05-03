@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
+import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/generate_component_class.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/generate_component_enum.dart';
@@ -17,7 +18,7 @@ import 'package:recase/recase.dart';
 class FileGeneratorService {
   final OutputService _outputService;
 
-  final ScreenGenerator _screenGenerator = ScreenGenerator();
+  final BaseGenerationService<bool> _screenGenerator = ScreenGenerator();
   late SigningGenerator _signingGenerator;
 
   FileGeneratorService(this._outputService) {

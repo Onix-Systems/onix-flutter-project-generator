@@ -53,4 +53,3 @@ class ProjectSettingsScreenState with _$ProjectSettingsScreenState {
     required Config config,
   }) = ProjectSettingsScreenStateData;
 }
-

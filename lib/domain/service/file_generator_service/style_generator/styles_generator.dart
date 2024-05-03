@@ -11,9 +11,10 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/theme_text_styles_generator.dart';
 
 class StylesGenerator implements BaseGenerationService<bool> {
-  final BaseGenerationService _colorsGenerator = ColorsGenerator();
-  final BaseGenerationService _themeColorsGenerator = ThemeColorsGenerator();
-  final BaseGenerationService _themeTextStylesGenerator =
+  final BaseGenerationService<bool> _colorsGenerator = ColorsGenerator();
+  final BaseGenerationService<bool> _themeColorsGenerator =
+      ThemeColorsGenerator();
+  final BaseGenerationService<bool> _themeTextStylesGenerator =
       ThemeTextStylesGenerator();
 
   @override
@@ -23,7 +24,6 @@ class StylesGenerator implements BaseGenerationService<bool> {
     }
     final colors = params.styles.whereType<AppColorStyle>().toList();
     final textStyles = params.styles.whereType<AppTextStyle>().toList();
-
 
     ///Generate colors
     await _colorsGenerator.generate(

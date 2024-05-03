@@ -7,7 +7,6 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_text_style_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_text_style_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/parser/text_styles_parser.dart';
-import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
 import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
 
 class ThemeTextStylesGenerator implements BaseGenerationService<bool> {
