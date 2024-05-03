@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/domain/usecase/figma/get_figma_styles_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
+
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc/figma_styles_screen_bloc_imports.dart';
 
 class FigmaStylesScreenBloc extends BaseBloc<FigmaStylesScreenEvent,

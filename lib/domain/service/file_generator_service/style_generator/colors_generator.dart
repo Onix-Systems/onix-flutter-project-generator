@@ -1,32 +1,41 @@
 import 'dart:io';
 
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/colors_parser.dart';
+import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/colors_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/parser/colors_parser.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/gen/app_colors_file_content.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/app_colors_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/colors_generator_params.dart';
 
-class ColorsGenerator {
+class ColorsGenerator implements BaseGenerationService<bool> {
+  final _colorParser = ColorsParser();
   final _appColorsGenerator = AppColorsFileContent();
 
-  Future<void> call({
-    required String projectName,
-    required String projectPath,
-    required List<AppColorStyle> colors,
-    required bool projectExists,
-  }) async {
+  @override
+  Future<bool> generate(BaseGenerationParams params) async {
+    if (params is! ColorsGeneratorParams) {
+      return false;
+    }
     var themeColorsFile = await File(
-            '$projectPath/$projectName/lib/presentation/style/app_colors.dart')
+            '${params.projectPath}/${params.projectName}/lib/presentation/style/app_colors.dart')
         .create(recursive: true);
 
-    final allColors = colors
-      ..addAll(ColorsParser.call(
-              file: themeColorsFile, projectExists: projectExists)
-          .where(
-              (element) => !colors.map((e) => e.name).contains(element.name)));
+    final parsedColors = _colorParser
+        .parseFromFile(
+          file: themeColorsFile,
+          projectExists: params.projectExists,
+        )
+        .where(
+          (element) => !params.colors.map((e) => e.name).contains(element.name),
+        );
+
+    final allColors = params.colors..addAll(parsedColors);
 
     final result = await _appColorsGenerator.generate(
-      AppColorsGenerationParams(colors: allColors),
+      ColorsGenerationParams(colors: allColors),
     );
     await themeColorsFile.writeAsString(result);
+    return true;
   }
 }

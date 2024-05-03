@@ -9,7 +9,7 @@ import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/generate_styles.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/styles_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
@@ -18,6 +18,7 @@ import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_use
 import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
 import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
@@ -31,6 +32,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   final GenerateDocumentationUseCase _generateDocumentationUseCase;
   final GenerateScreensUseCase _generateScreensUseCase;
   final GenerateDataComponentsUseCase _generateDataComponentsUseCase;
+  final GenerateStylesUseCase _generateStylesUseCase;
 
   ///process runners
   final RunProcessUseCase _runProcessUseCase;
@@ -49,6 +51,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     this._runProcessUseCase,
     this._osaScriptProcessUseCase,
     this._generateSigningConfigUseCase,
+    this._generateStylesUseCase,
   ) : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
@@ -169,13 +172,15 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     ///generate styles if added
     if (!state.config.projectExists || state.config.styles.isNotEmpty) {
-      await GenerateStyles().call(
-        projectName: state.config.projectName,
-        projectPath: state.config.projectPath,
-        styles: state.config.styles,
-        theming: state.config.theming,
-        projectExists: state.config.projectExists,
-        useScreenUtil: state.config.platformsList.mobile,
+      await _generateStylesUseCase(
+        params: StylesGeneratorParams(
+          projectName: state.config.projectName,
+          projectPath: state.config.projectPath,
+          styles: state.config.styles,
+          theming: state.config.theming,
+          projectExists: state.config.projectExists,
+          useScreenUtil: state.config.platformsList.mobile,
+        ),
       );
     }
 

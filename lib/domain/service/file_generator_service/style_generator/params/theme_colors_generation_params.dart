@@ -9,4 +9,5 @@ class ThemeColorsGenerationParams implements BaseGenerationParams {
     required this.projectName,
     required this.colors,
   });
+
 }

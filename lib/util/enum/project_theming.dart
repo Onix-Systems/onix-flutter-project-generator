@@ -1,0 +1,1 @@
+enum ProjectTheming { manual, themeTailor }

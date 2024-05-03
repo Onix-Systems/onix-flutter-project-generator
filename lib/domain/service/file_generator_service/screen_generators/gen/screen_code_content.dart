@@ -1,5 +1,6 @@
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
@@ -304,57 +305,5 @@ class ScreenCodeContent {
     codeLines.addNewLine();
     return codeLines.join('\n');
 
-    final old =
-        '''${isGoRouter ? 'import \'package:go_router/go_router.dart\';' : 'import \'package:auto_route/auto_route.dart\';'}
-${stateManagement == ScreenStateManager.bloc ? 'import \'package:$projectName/core/arch/bloc/base_block_state.dart\';' : 'import \'package:$projectName/core/arch/bloc/base_cubit_state.dart\';'}
-import 'package:flutter/material.dart';
-import 'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_imports.dart';
-
-${isGoRouter ? '' : '@RoutePage()'}
-class ${screenName.pascalCase}Screen extends StatefulWidget {
-  const ${screenName.pascalCase}Screen({
-    super.key,
-  });
-
-  @override
-  State<${screenName.pascalCase}Screen> createState() => _${screenName.pascalCase}ScreenState();
-}
-
-class _${screenName.pascalCase}ScreenState
-    extends Base${stateManagement == ScreenStateManager.cubit ? 'Cubit' : ''}State<${screenName.pascalCase}ScreenState, ${screenName.pascalCase}Screen${stateManagement.name.pascalCase}, ${screenName.pascalCase}ScreenSR, ${screenName.pascalCase}Screen> {
-  @override
-  Widget buildWidget(BuildContext context) {
-    return srObserver(
-      context: context,
-      child: Scaffold(
-        body: SizedBox.expand(
-          child: blocConsumer(
-            stateListener: (state) => _buildMainContainer(context, state),
-            listenDelegate: (context, state) {},
-          ),
-        ),
-      ),
-      onSR: _onSingleResult,
-    );
-  }
-
-  void _onSingleResult(BuildContext context, ${screenName.pascalCase}ScreenSR singleResult) {
-    singleResult.when(
-      loadFinished: () {
-        
-      },
-    );
-  }
-
-  Widget _buildMainContainer(
-    BuildContext context,
-    ${screenName.pascalCase}ScreenState state,
-  ) {
-    return const Center(
-      child: Text('${screenName.pascalCase} screen'),
-    );
-  }
-}
-''';
   }
 }

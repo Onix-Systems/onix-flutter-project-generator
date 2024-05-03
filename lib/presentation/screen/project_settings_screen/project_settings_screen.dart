@@ -14,6 +14,9 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_butto
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_segmented_control.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/text_field_with_label.dart';
+import 'package:onix_flutter_bricks/util/enum/project_localization.dart';
+import 'package:onix_flutter_bricks/util/enum/project_router.dart';
+import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
 
 class ProjectSettingsScreen extends StatefulWidget {
   final Config config;

@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/style_generator_const.dart';
 
 class ColorsParser {
-  static List<AppColorStyle> call({
+
+  List<AppColorStyle> parseFromFile({
     required File file,
     required bool projectExists,
   }) {
@@ -37,7 +39,8 @@ class ColorsParser {
           parsedColor = _parseHex(colorParams);
         }
 
-        if (!name.endsWith('Dark') && !name.endsWith('Light')) {
+        if (!name.endsWith(StyleGeneratorConst.darkColorSuffix) &&
+            !name.endsWith(StyleGeneratorConst.lightColorSuffix)) {
           existingColors.addAll([
             AppColorStyle(
               id: '',

@@ -7,6 +7,9 @@ import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
+import 'package:onix_flutter_bricks/util/enum/project_localization.dart';
+import 'package:onix_flutter_bricks/util/enum/project_router.dart';
+import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
 
 part 'config.freezed.dart';
 part 'config.g.dart';

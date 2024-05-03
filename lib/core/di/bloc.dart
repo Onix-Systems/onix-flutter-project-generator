@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bricks/app/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
-import 'package:onix_flutter_bricks/domain/usecase/figma/get_figma_styles_usecase.dart';
+
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
@@ -10,6 +10,8 @@ import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.d
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/bloc/fields_dialog_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc/figma_styles_screen_bloc.dart';
@@ -38,6 +40,7 @@ void registerBloc(GetIt getIt) {
         GetIt.I.get<RunProcessUseCase>(),
         GetIt.I.get<RunOsaScriptProcessUseCase>(),
         GetIt.I.get<GenerateSigningConfigUseCase>(),
+        GetIt.I.get<GenerateStylesUseCase>(),
       ),
     )
     ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)
