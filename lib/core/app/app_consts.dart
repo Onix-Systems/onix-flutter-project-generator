@@ -16,4 +16,6 @@ abstract final class AppConsts {
   static const String figmaStylesValidChars = signingKeyPassChars;
 
   static const Set<String> defaultFlavors = {'dev', 'prod'};
+
+  static const String mainDartPath = 'lib/core/flavors/';
 }

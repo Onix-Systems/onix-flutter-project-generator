@@ -12,7 +12,17 @@ class GenerateFastlaneFilesUseCase {
   })  : _outputService = outputService,
         _fastlaneService = fastlaneService;
 
-  Future<void> call(FastlaneGenerationParams params) async {
+  Future<void> call(
+    FastlaneGenerationParams params, {
+    required bool isModify,
+  }) async {
+    if (isModify) {
+      _outputService.add(
+        '{#info}Fastlane generation omitted because of the project modification',
+      );
+      return;
+    }
+
     _outputService.add('{#info}Start Fastlane generation...');
     final succeed = await _fastlaneService.generate(params);
     if (succeed) {

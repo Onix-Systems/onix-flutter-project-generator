@@ -60,15 +60,14 @@ class ModifyProjectScreenBloc extends BaseBloc<ModifyProjectScreenEvent,
     ModifyProjectScreenEventOnGenerate event,
     Emitter<ModifyProjectScreenState> emit,
   ) async {
-    emit(state.copyWith(
-      config: state.config.copyWith(
-        sources: sourceRepository.sources,
-        dataComponents: dataComponentRepository.dataComponents,
-        screens: screenRepository.screens,
-      ),
-    ));
+    final config = state.config.copyWith(
+      sources: sourceRepository.sources,
+      dataComponents: dataComponentRepository.dataComponents,
+      screens: screenRepository.screens,
+    );
+    emit(state.copyWith(config: config));
 
-    addSr(const ModifyProjectScreenSR.onGenerate());
+    addSr(ModifyProjectScreenSR.onGenerate(config: config));
   }
 
   FutureOr<void> _onParse(

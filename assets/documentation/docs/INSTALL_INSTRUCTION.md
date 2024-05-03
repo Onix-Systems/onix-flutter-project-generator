@@ -121,14 +121,14 @@ Before you use fastlane to build and distribute:
 2. Using the iOS build, call `xcode-select --install`
 3. Install fastlane using `brew install fastlane` or `gem install fastlane`
 4. Install the bundler using `gem install bundler`
-5. Go to the android & ios directory and call `bundle install`
+5. Go to the `android` & `ios` directory and call `bundle install` or `sudo bundle install`
 
 To submit a build to the App Store or Google Play Console you need:
 
 **For iOS:**
 
 1. If the `.env.{flavor}` file is not created, create it in the `/ios/fastlane/` folder
-2. Go to the Apple Developer portal and create an AppStoreConnect API key, save it, then open the file and copy the contents of that file, not including the BEGIN PRIVATE KEY and END PRIVATE KEY with dashes.  Then add this key in `.env.{flavor}` to the `KEY_CONTENT` variable
+2. Go to the Apple Developer portal and create an AppStoreConnect API key, save it, then open the file and copy the contents of that file, not including the `BEGIN PRIVATE KEY` and `END PRIVATE KEY` with dashes. Then add this key in `.env.{flavor}` to the `KEY_CONTENT` variable
 3. After creating the key, copy the `ISSUER_ID`, `KEY_ID` variables and add them to `.env.{flavor}`
 4. After that, add a few more variables `BUNDLE_ID`, `APPLE_DEVELOPER_USERNAME`, `APP_STORE_CONNECT_TEAM_ID`, `DEVELOPER_PORTAL_TEAM_ID`. You can find them on the Apple Developer portal and AppStore Connect
 

@@ -902,7 +902,7 @@ mixin _$ModifyProjectScreenSR {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) loadFinished,
-    required TResult Function() onGenerate,
+    required TResult Function(Config config) onGenerate,
     required TResult Function(String message) onError,
     required TResult Function() onRefresh,
   }) =>
@@ -910,7 +910,7 @@ mixin _$ModifyProjectScreenSR {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? loadFinished,
-    TResult? Function()? onGenerate,
+    TResult? Function(Config config)? onGenerate,
     TResult? Function(String message)? onError,
     TResult? Function()? onRefresh,
   }) =>
@@ -918,7 +918,7 @@ mixin _$ModifyProjectScreenSR {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? loadFinished,
-    TResult Function()? onGenerate,
+    TResult Function(Config config)? onGenerate,
     TResult Function(String message)? onError,
     TResult Function()? onRefresh,
     required TResult orElse(),
@@ -1045,7 +1045,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) loadFinished,
-    required TResult Function() onGenerate,
+    required TResult Function(Config config) onGenerate,
     required TResult Function(String message) onError,
     required TResult Function() onRefresh,
   }) {
@@ -1056,7 +1056,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? loadFinished,
-    TResult? Function()? onGenerate,
+    TResult? Function(Config config)? onGenerate,
     TResult? Function(String message)? onError,
     TResult? Function()? onRefresh,
   }) {
@@ -1067,7 +1067,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? loadFinished,
-    TResult Function()? onGenerate,
+    TResult Function(Config config)? onGenerate,
     TResult Function(String message)? onError,
     TResult Function()? onRefresh,
     required TResult orElse(),
@@ -1131,6 +1131,10 @@ abstract class _$$OnGenerateImplCopyWith<$Res> {
   factory _$$OnGenerateImplCopyWith(
           _$OnGenerateImpl value, $Res Function(_$OnGenerateImpl) then) =
       __$$OnGenerateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Config config});
+
+  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -1140,60 +1144,92 @@ class __$$OnGenerateImplCopyWithImpl<$Res>
   __$$OnGenerateImplCopyWithImpl(
       _$OnGenerateImpl _value, $Res Function(_$OnGenerateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? config = null,
+  }) {
+    return _then(_$OnGenerateImpl(
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$OnGenerateImpl implements _OnGenerate {
-  const _$OnGenerateImpl();
+  const _$OnGenerateImpl({required this.config});
+
+  @override
+  final Config config;
 
   @override
   String toString() {
-    return 'ModifyProjectScreenSR.onGenerate()';
+    return 'ModifyProjectScreenSR.onGenerate(config: $config)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnGenerateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$OnGenerateImpl &&
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnGenerateImplCopyWith<_$OnGenerateImpl> get copyWith =>
+      __$$OnGenerateImplCopyWithImpl<_$OnGenerateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) loadFinished,
-    required TResult Function() onGenerate,
+    required TResult Function(Config config) onGenerate,
     required TResult Function(String message) onError,
     required TResult Function() onRefresh,
   }) {
-    return onGenerate();
+    return onGenerate(config);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? loadFinished,
-    TResult? Function()? onGenerate,
+    TResult? Function(Config config)? onGenerate,
     TResult? Function(String message)? onError,
     TResult? Function()? onRefresh,
   }) {
-    return onGenerate?.call();
+    return onGenerate?.call(config);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? loadFinished,
-    TResult Function()? onGenerate,
+    TResult Function(Config config)? onGenerate,
     TResult Function(String message)? onError,
     TResult Function()? onRefresh,
     required TResult orElse(),
   }) {
     if (onGenerate != null) {
-      return onGenerate();
+      return onGenerate(config);
     }
     return orElse();
   }
@@ -1237,7 +1273,12 @@ class _$OnGenerateImpl implements _OnGenerate {
 }
 
 abstract class _OnGenerate implements ModifyProjectScreenSR {
-  const factory _OnGenerate() = _$OnGenerateImpl;
+  const factory _OnGenerate({required final Config config}) = _$OnGenerateImpl;
+
+  Config get config;
+  @JsonKey(ignore: true)
+  _$$OnGenerateImplCopyWith<_$OnGenerateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1305,7 +1346,7 @@ class _$OnErrorImpl implements _OnError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) loadFinished,
-    required TResult Function() onGenerate,
+    required TResult Function(Config config) onGenerate,
     required TResult Function(String message) onError,
     required TResult Function() onRefresh,
   }) {
@@ -1316,7 +1357,7 @@ class _$OnErrorImpl implements _OnError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? loadFinished,
-    TResult? Function()? onGenerate,
+    TResult? Function(Config config)? onGenerate,
     TResult? Function(String message)? onError,
     TResult? Function()? onRefresh,
   }) {
@@ -1327,7 +1368,7 @@ class _$OnErrorImpl implements _OnError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? loadFinished,
-    TResult Function()? onGenerate,
+    TResult Function(Config config)? onGenerate,
     TResult Function(String message)? onError,
     TResult Function()? onRefresh,
     required TResult orElse(),
@@ -1429,7 +1470,7 @@ class _$ModifyProjectScreenSROnRefreshImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) loadFinished,
-    required TResult Function() onGenerate,
+    required TResult Function(Config config) onGenerate,
     required TResult Function(String message) onError,
     required TResult Function() onRefresh,
   }) {
@@ -1440,7 +1481,7 @@ class _$ModifyProjectScreenSROnRefreshImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? loadFinished,
-    TResult? Function()? onGenerate,
+    TResult? Function(Config config)? onGenerate,
     TResult? Function(String message)? onError,
     TResult? Function()? onRefresh,
   }) {
@@ -1451,7 +1492,7 @@ class _$ModifyProjectScreenSROnRefreshImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? loadFinished,
-    TResult Function()? onGenerate,
+    TResult Function(Config config)? onGenerate,
     TResult Function(String message)? onError,
     TResult Function()? onRefresh,
     required TResult orElse(),
