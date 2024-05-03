@@ -11,6 +11,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/theme_text_styles_generator.dart';
 
 class StylesGenerator implements BaseGenerationService<bool> {
+
   final BaseGenerationService<bool> _colorsGenerator = ColorsGenerator();
   final BaseGenerationService<bool> _themeColorsGenerator =
       ThemeColorsGenerator();

@@ -15,8 +15,8 @@ class OutputService {
     _outputStream = _outputController.stream.asBroadcastStream();
   }
 
-  void add(String output) {
-    final line = OutputLine.fromRaw(output);
+  void add(String input) {
+    final line = OutputLine.fromRaw(input);
     _outputController.add(line);
     outputLines.add(line);
   }

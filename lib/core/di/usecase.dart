@@ -75,7 +75,7 @@ void registerUseCases(GetIt getIt) {
     )
     ..registerLazySingleton<GenerateStylesUseCase>(
       () => GenerateStylesUseCase(
-        GetIt.I.get<StylesGenerator>(),
+        GetIt.I.get<FileGeneratorService>(),
       ),
     );
 }
