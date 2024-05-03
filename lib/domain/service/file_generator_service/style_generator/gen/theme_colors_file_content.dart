@@ -2,6 +2,8 @@ import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dar
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_colors_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/style_generator_const.dart';
+import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 
@@ -23,64 +25,107 @@ class ThemeColorsFileContent implements BaseGenerationService<String> {
     required String projectName,
   }) {
     final colorNames = _getColorNames(colors);
+    final codeLines = List<String>.empty(growable: true);
+    codeLines.add('import \'package:flutter/material.dart\';');
+    codeLines.add(
+        'import \'package:$projectName/presentation/style/app_colors.dart\';');
+    codeLines.addNewLine();
+    codeLines.add('class ThemeColors extends ThemeExtension<ThemeColors> {');
 
-    return '''import 'package:flutter/material.dart';
-import 'package:$projectName/presentation/style/app_colors.dart';
+    ///Build Light constructor
+    codeLines.add('factory ThemeColors.light() => const ThemeColors(');
+    final lightColorDeclarations = colorNames
+        .map(
+          (e) =>
+              '${e}Color: AppColors.${colors.firstWhere((element) => element.name == e || element.name == '${e}Light').name},',
+        )
+        .toList();
+    codeLines.addAll(lightColorDeclarations);
+    codeLines.add(');');
+    codeLines.addNewLine();
 
-class ThemeColors extends ThemeExtension<ThemeColors> {
-  factory ThemeColors.light() => const ThemeColors(
-    ${colorNames.map((e) => '${e}Color: AppColors.${colors.firstWhere((element) => element.name == e || element.name == '${e}Light').name},').join('\n    ')}
-  );
+    ///Build Darrk coonstructor
+    codeLines.add('factory ThemeColors.dark() => const ThemeColors(');
+    final darkColorDeclarations = colorNames
+        .map(
+          (e) =>
+              '${e}Color: AppColors.${colors.firstWhere((element) => element.name == e || element.name == '${e}Dark').name},',
+        )
+        .toList();
+    codeLines.addAll(darkColorDeclarations);
+    codeLines.add(');');
+    codeLines.addNewLine();
 
-  factory ThemeColors.dark() => const ThemeColors(
-    ${colorNames.map((e) => '${e}Color: AppColors.${colors.firstWhere((element) => element.name == e || element.name == '${e}Dark').name},').join('\n    ')}
-  );
+    ///Build color variables
+    final colorVariablesDeclaration = colorNames
+        .map(
+          (e) => 'final Color ${e}Color;',
+        )
+        .toList();
+    codeLines.addAll(colorVariablesDeclaration);
 
-  ${colorNames.map((e) => 'final Color ${e}Color;').join('\n  ')}
+    ///Build default constructor
+    codeLines.add('const ThemeColors({');
+    final constructorVariables = colorNames
+        .map(
+          (e) => 'required this.${e}Color,',
+        )
+        .toList();
+    codeLines.addAll(constructorVariables);
+    codeLines.add('});');
+    codeLines.addNewLine();
 
-  const ThemeColors({
-    ${colorNames.map((e) => 'required this.${e}Color,').join('\n    ')}
-  });
+    ///Build copy with
+    codeLines.add('@override');
+    codeLines.add('ThemeExtension<ThemeColors> copyWith({');
+    final copyWithDeclarations = colorNames
+        .map(
+          (e) => 'Color? ${e}Color,',
+        )
+        .toList();
+    codeLines.addAll(copyWithDeclarations);
+    codeLines.add(');');
+    codeLines.add('}');
+    codeLines.addNewLine();
 
-  @override
-  ThemeExtension<ThemeColors> copyWith({
-    ${colorNames.map((e) => 'Color? ${e}Color,').join('\n    ')}
-  }) {
-    return ThemeColors(
-      ${colorNames.map((e) => '${e}Color: ${e}Color ?? this.${e}Color,').join('\n      ')}
-    );
-  }
+    ///Build lerp function
+    codeLines.add('@override');
+    codeLines.add('ThemeExtension<ThemeColors> lerp(');
+    codeLines.add('ThemeExtension<ThemeColors>? other, double t,) {');
+    codeLines.add('if (other is! ThemeColors) {');
+    codeLines.add('return this;');
+    codeLines.add('}');
+    codeLines.add('return ThemeColors(');
+    final lerpColors = colorNames
+        .map(
+          (e) =>
+              '${e}Color: Color.lerp(${e}Color, other.${e}Color, t) ?? ${e}Color,',
+        )
+        .toList();
+    codeLines.addAll(lerpColors);
+    codeLines.add(');}}');
+    codeLines.addNewLine();
 
-  @override
-  ThemeExtension<ThemeColors> lerp(
-    ThemeExtension<ThemeColors>? other,
-    double t,
-  ) {
-    if (other is! ThemeColors) {
-      return this;
-    }
-    return ThemeColors(
-      ${colorNames.map((e) => '${e}Color: Color.lerp(${e}Color, other.${e}Color, t) ?? ${e}Color,').join('\n      ')}
-    );
-  }
-}
-''';
+    return codeLines.join('\n');
   }
 
   List<String> _getColorNames(List<AppColorStyle> colors) {
-    final names = <String>[];
-
-    for (var name
-        in colors.where((element) => element.validate()).map((e) => e.name)) {
-      if (name.endsWith('Dark')) {
-        name = name.replaceLast('Dark', '');
+    final names = List<String>.empty(growable: true);
+    final validColors = colors
+        .where(
+          (element) => element.validate(),
+        )
+        .map((e) => e.name);
+    for (var name in validColors) {
+      if (name.endsWith(StyleGeneratorConst.darkColorSuffix)) {
+        name = name.replaceLast(StyleGeneratorConst.darkColorSuffix, '');
         if (!names.contains(name)) {
           names.add(name.camelCase);
         }
         continue;
       }
-      if (name.endsWith('Light')) {
-        name = name.replaceLast('Light', '');
+      if (name.endsWith(StyleGeneratorConst.lightColorSuffix)) {
+        name = name.replaceLast(StyleGeneratorConst.lightColorSuffix, '');
         if (!names.contains(name)) {
           names.add(name.camelCase);
         }
@@ -88,7 +133,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     }
 
     names.sort((a, b) => a.compareTo(b));
-
     return names;
   }
 }
