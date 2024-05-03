@@ -8,11 +8,12 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/generate_styles.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
@@ -25,6 +26,8 @@ import 'package:recase/recase.dart';
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenState, GenerationScreenSR> {
+  ///generators
+  final GenerateSigningConfigUseCase _generateSigningConfigUseCase;
   final GenerateDocumentationUseCase _generateDocumentationUseCase;
   final GenerateScreensUseCase _generateScreensUseCase;
   final GenerateDataComponentsUseCase _generateDataComponentsUseCase;
@@ -45,6 +48,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     this._addOutputMessageUseCase,
     this._runProcessUseCase,
     this._osaScriptProcessUseCase,
+    this._generateSigningConfigUseCase,
   ) : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
@@ -152,11 +156,13 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       ///generate Anroid signing key if configured
       if (state.config.generateSigningKey) {
-        await FileGeneratorService().generateSigning(
-          projectPath: state.config.projectPath,
-          projectName: state.config.projectName,
-          signingVars: state.config.signingVars,
-          genPass: genPass,
+        await _generateSigningConfigUseCase(
+          params: SingingGeneratorParams(
+            projectPath: state.config.projectPath,
+            projectName: state.config.projectName,
+            signingVars: state.config.signingVars,
+            genPass: genPass,
+          ),
         );
       }
     }

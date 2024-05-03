@@ -66,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Перевірте назву проекту та організацію перед тим, як продовжити"),
         "cityOrLocality":
             MessageLookupByLibrary.simpleMessage(" Місто або локація"),
+        "colorStyles": MessageLookupByLibrary.simpleMessage("Кольори"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Назва компонента"),
         "componentPreview": m0,
@@ -205,6 +206,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "swaggerParserScreenConflictError": MessageLookupByLibrary.simpleMessage(
             "Файл Свагера містить компоненти, що конфліктують з тими що є. Замінити зпарсеними компоненами або ігнорувати конфліктуючі дані?"),
         "swaggerURL": MessageLookupByLibrary.simpleMessage("Swagger URL"),
+        "textStyles": MessageLookupByLibrary.simpleMessage("Стилі тексту"),
         "theming": MessageLookupByLibrary.simpleMessage("Theming"),
         "title": MessageLookupByLibrary.simpleMessage(
             "Onix Flutter Project Generator"),

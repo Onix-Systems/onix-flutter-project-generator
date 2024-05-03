@@ -5,7 +5,7 @@ import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/add_fields_tile_dropdown.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
+import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 

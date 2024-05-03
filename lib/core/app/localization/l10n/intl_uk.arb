@@ -116,5 +116,7 @@
   "figmaGetStylesEmpty": "В цьому figma файлі не знайдено стилів",
   "figmaGetStylesEmptyFileId": "Figma id пустий",
   "figmaGetStylesEmptyToken": "Figma token пустий",
-  "masonBrickSource": "Гілка Mason Brick"
+  "masonBrickSource": "Гілка Mason Brick",
+  "textStyles": "Стилі тексту",
+  "colorStyles": "Кольори"
 }

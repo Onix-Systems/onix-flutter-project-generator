@@ -8,9 +8,9 @@ import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/fields_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_action_button.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 

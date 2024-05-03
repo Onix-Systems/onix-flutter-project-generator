@@ -1,6 +1,7 @@
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 
 class GenerateScreensUseCase {
@@ -21,10 +22,12 @@ class GenerateScreensUseCase {
       _outputService.add('{#info}Generating screen ${screen.name}...');
 
       await _fileGeneratorService.generateScreen(
-        screen: screen,
-        projectPath: config.projectPath,
-        projectName: config.projectName,
-        router: config.router,
+        ScreenGeneratorParams(
+          screen: screen,
+          projectPath: config.projectPath,
+          projectName: config.projectName,
+          router: config.router,
+        ),
       );
 
       screen.exists = true;

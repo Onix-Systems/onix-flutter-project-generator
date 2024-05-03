@@ -1240,6 +1240,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Text Styles`
+  String get textStyles {
+    return Intl.message(
+      'Text Styles',
+      name: 'textStyles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Color Styles`
+  String get colorStyles {
+    return Intl.message(
+      'Color Styles',
+      name: 'colorStyles',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

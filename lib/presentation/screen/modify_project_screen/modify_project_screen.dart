@@ -10,7 +10,7 @@ import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/figm
 import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_screen.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 
 class ModifyProjectScreen extends StatefulWidget {
   final Config config;

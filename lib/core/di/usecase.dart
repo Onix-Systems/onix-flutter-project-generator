@@ -3,11 +3,14 @@ import 'package:onix_flutter_bricks/domain/repository/data_component_repository.
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/domain/repository/source_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/docs_service.dart';
+import 'package:onix_flutter_bricks/domain/service/figma_service/figma_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/figma/get_figma_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
@@ -57,5 +60,15 @@ void registerUseCases(GetIt getIt) {
     )
     ..registerLazySingleton<GetBranchesProcessUseCase>(
       () => const GetBranchesProcessUseCase(),
+    )
+    ..registerLazySingleton<GetFigmaStylesUseCase>(
+      () => GetFigmaStylesUseCase(
+        GetIt.I.get<FigmaService>(),
+      ),
+    )
+    ..registerLazySingleton<GenerateSigningConfigUseCase>(
+      () => GenerateSigningConfigUseCase(
+        GetIt.I.get<FileGeneratorService>(),
+      ),
     );
 }

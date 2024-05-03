@@ -5,8 +5,9 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/di/services.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/domain/service/output_service/colored_line.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/output_line.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/presentation/widget/colored_line.dart';
 
 class GenerationScreen extends StatefulWidget {
   final Config config;
@@ -68,7 +69,7 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
                 padding: const EdgeInsets.all(20),
                 child: Stack(children: [
                   SizedBox.expand(
-                    child: StreamBuilder<ColoredLine>(
+                    child: StreamBuilder<OutputLine>(
                       stream: outputService.outputStream,
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
@@ -83,7 +84,11 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
                             reverse: true,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: outputService.outputLines,
+                              children: outputService.outputLines
+                                  .map(
+                                    (e) => ColoredLine(line: e),
+                                  )
+                                  .toList(),
                             ),
                           );
                           return output;

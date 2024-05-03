@@ -10,8 +10,8 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 
 class ProcedureSelectionScreen extends StatefulWidget {
   final Config config;

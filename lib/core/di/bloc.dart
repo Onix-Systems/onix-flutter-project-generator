@@ -1,8 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bricks/app/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/figma/get_figma_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
@@ -18,6 +20,7 @@ import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_scre
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc.dart';
+import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/figma_styles_dialog/bloc/figma_styles_dialog_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summary_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bloc/swagger_parser_screen_bloc.dart';
@@ -34,6 +37,7 @@ void registerBloc(GetIt getIt) {
         GetIt.I.get<AddOutputMessageUseCase>(),
         GetIt.I.get<RunProcessUseCase>(),
         GetIt.I.get<RunOsaScriptProcessUseCase>(),
+        GetIt.I.get<GenerateSigningConfigUseCase>(),
       ),
     )
     ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)
@@ -41,7 +45,16 @@ void registerBloc(GetIt getIt) {
     ..registerFactory<DataComponentsScreenBloc>(DataComponentsScreenBloc.new)
     ..registerFactory<FieldsDialogBloc>(FieldsDialogBloc.new)
     ..registerFactory<ScreensScreenBloc>(ScreensScreenBloc.new)
-    ..registerFactory<FigmaStylesScreenBloc>(FigmaStylesScreenBloc.new)
+    ..registerFactory<FigmaStylesScreenBloc>(
+      () => FigmaStylesScreenBloc(
+        GetIt.I.get<GetFigmaStylesUseCase>(),
+      ),
+    )
+    ..registerFactory<FigmaStylesDialogBloc>(
+      () => FigmaStylesDialogBloc(
+        GetIt.I.get<GetFigmaStylesUseCase>(),
+      ),
+    )
     ..registerFactory<ProjectSettingsScreenBloc>(ProjectSettingsScreenBloc.new)
     ..registerFactory<PlatformsScreenBloc>(PlatformsScreenBloc.new)
     ..registerFactory<ProjectNameScreenBloc>(

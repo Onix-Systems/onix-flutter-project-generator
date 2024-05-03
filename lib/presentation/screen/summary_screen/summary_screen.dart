@@ -12,7 +12,7 @@ import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summ
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_cell.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_styles_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:recase/recase.dart';
 
 class SummaryScreen extends StatefulWidget {

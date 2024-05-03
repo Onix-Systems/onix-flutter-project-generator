@@ -12,9 +12,9 @@ import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/widget/branch_selector_widget.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/inputs/text_field_with_label.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widget/inputs/text_field_with_label.dart';
 
 class ProjectNameScreen extends StatefulWidget {
   final Config config;

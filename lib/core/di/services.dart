@@ -8,7 +8,9 @@ import 'package:onix_flutter_bricks/domain/service/output_service/output_service
 void registerServices(GetIt getIt) {
   getIt
     ..registerSingleton<OutputService>(OutputService())
-    ..registerSingleton<FileGeneratorService>(FileGeneratorService())
+    ..registerSingleton<FileGeneratorService>(
+      FileGeneratorService(GetIt.I.get<OutputService>()),
+    )
     ..registerSingleton<DocsService>(DocsService())
     ..registerLazySingleton<FigmaService>(
       () => FigmaService(
@@ -21,5 +23,3 @@ OutputService get outputService => GetIt.I.get<OutputService>();
 
 FileGeneratorService get fileGeneratorService =>
     GetIt.I.get<FileGeneratorService>();
-
-FigmaService get figmaService => GetIt.I.get<FigmaService>();
