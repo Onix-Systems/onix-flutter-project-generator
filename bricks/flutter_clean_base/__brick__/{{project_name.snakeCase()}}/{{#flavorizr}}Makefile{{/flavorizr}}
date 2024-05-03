@@ -1,2 +1,6 @@
 ROOT_DIR = $(shell pwd)
 ASSETS_DIR = assets
+
+clean:
+    @echo "Cleaning"
+    @flutter clean

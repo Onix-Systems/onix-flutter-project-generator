@@ -283,40 +283,29 @@ class FastlaneService implements BaseGenerationService<bool> {
   }
 
   Future<void> _generateMakeFile(FastlaneGenerationParams params) async {
-    final directoryPath = '${_getProjectFullPath(params)}/Makefile';
-    final path = await File(directoryPath).create();
-    final contents = <String>[];
-    var attachFlavor = true;
-    final flavors = List<String>.from(params.flavors);
+    final directoryPath = _getProjectFullPath(params);
     final platforms = params.platforms
         .where((element) => element == _android || element == _ios);
 
-    contents
-      ..add('clean:')
-      ..add('\t@echo "Cleaning"')
-      ..add('\t@flutter clean')
-      ..add('');
-
-    if (params.flavors.isEmpty) {
-      attachFlavor = false;
-      flavors.add('default');
-    }
-
     for (final platform in platforms) {
-      for (final flavor in flavors) {
-        final result = platform == _android
-            ? FastlaneGenerateMakefile.generateForAndroid(
-                flavor: attachFlavor ? flavor : '',
-              )
-            : FastlaneGenerateMakefile.generateForIos(
-                flavor: attachFlavor ? flavor : '',
-              );
-
-        contents.addAll(result);
+      if (platform == _android) {
+        await FastlaneGenerateMakefile.generateMakefileAndroid(
+          outputPath: directoryPath,
+          flavors: params.flavors,
+        );
+      } else if (platform == _ios) {
+        await FastlaneGenerateMakefile.generateMakefileIos(
+          outputPath: directoryPath,
+          flavors: params.flavors,
+        );
       }
     }
 
-    await path.writeAsString(contents.join('\n'));
+    await FastlaneGenerateMakefile.generateMakefileMain(
+      outputPath: directoryPath,
+      flavors: params.flavors,
+      platforms: platforms,
+    );
   }
 
   String _getProjectFullPath(FastlaneGenerationParams params) =>

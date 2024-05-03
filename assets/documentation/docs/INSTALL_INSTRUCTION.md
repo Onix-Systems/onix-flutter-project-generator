@@ -125,19 +125,21 @@ Before you use fastlane to build and distribute:
 
 To submit a build to the App Store or Google Play Console you need:
 
-For iOS:
-1. If the .env.{flavor} file is not created, create it in the /ios/fastlane/ folder
-2. Go to the Apple Developer portal and create an AppStoreConnect API key, save it, then open the file and copy the contents of that file, not including the BEGIN PRIVATE KEY and END PRIVATE KEY with dashes.  Then add this key in .env.{flavor} to the KEY_CONTENT variable
-3. After creating the key, copy the ISSUER_ID, KEY_ID variables and add them to .env.{flavor}
-4. After that, add a few more variables BUNDLE_ID, APPLE_DEVELOPER_USERNAME, APP_STORE_CONNECT_TEAM_ID, DEVELOPER_PORTAL_TEAM_ID. You can find them on the Apple Developer portal and AppStore Connect
+**For iOS:**
+
+1. If the `.env.{flavor}` file is not created, create it in the `/ios/fastlane/` folder
+2. Go to the Apple Developer portal and create an AppStoreConnect API key, save it, then open the file and copy the contents of that file, not including the BEGIN PRIVATE KEY and END PRIVATE KEY with dashes.  Then add this key in `.env.{flavor}` to the `KEY_CONTENT` variable
+3. After creating the key, copy the `ISSUER_ID`, `KEY_ID` variables and add them to `.env.{flavor}`
+4. After that, add a few more variables `BUNDLE_ID`, `APPLE_DEVELOPER_USERNAME`, `APP_STORE_CONNECT_TEAM_ID`, `DEVELOPER_PORTAL_TEAM_ID`. You can find them on the Apple Developer portal and AppStore Connect
 
 For more information on creating a AppStore Connect API key go to [Creating API Keys for App Store Connect API](https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api)
 
-For Android:
-1. If the .env.{flavor} file is not created, create it in the /android/fastlane/ folder
+**For Android:**
+
+1. If the `.env.{flavor}` file is not created, create it in the `/android/fastlane/` folder
 2. Download and save the service account key and place it in the project folder
-3. Specify the relative path to the service account key by adding the JSON_KEY_FILE variable to .env.{flavor}
-4. Specify the applicationId in the PACKAGE_NAME variable
+3. Specify the relative path to the service account key by adding the `JSON_KEY_FILE` variable to `.env.{flavor}`
+4. Specify the applicationId in the `PACKAGE_NAME` variable to `.env.{flavor}`
 
 For more information on creating a service account key go to [Google Play Developer API](https://developers.google.com/android-publisher/getting_started/?hl=en) portal
 
@@ -145,24 +147,26 @@ To submit a build to the Firebase App Distribution you need:
 
 1. Install Firebase CLI using `curl -sL firebase.tools | bash`
 2. Sign in using the Firebase CLI `firebase login`
-3. Create the .env.{flavor} file in /android/fastlane/ and /ios/fastlane/ if it was not created earlier
-4. Add the FIREBASE_APP_ID variable to the file by specifying the app_id, which you can find in the Firebase Console
+3. Create the `.env.{flavor}` file in `/android/fastlane/` and `/ios/fastlane/` if it was not created earlier
+4. Add the `FIREBASE_APP_ID` variable to the file by specifying the `app_id`, which you can find in the Firebase Console
 
 For more detailed information you can go to [Firebase App Distribution Android](https://firebase.google.com/docs/app-distribution/ios/distribute-fastlane) and [Firebase App Distribution iOS](https://firebase.google.com/docs/app-distribution/android/distribute-fastlane)
 
 Now you can build and distribute the build using the Makefile command:
 
-For iOS:
-* TestFlight and Firebase App Distribution  `make build_ios_{flavor}_with_distribution`
-* Firebase App Distribution only `make build_ios_{flavor}_firebase_only`
-* TestFlight only `make build_ios_{flavor}_test_flight_only`
+**For iOS:**
+
+* TestFlight and Firebase App Distribution  `make build_{flavor}_ios_with_distribution`
+* Firebase App Distribution only `make build_{flavor}_ios_firebase_only`
+* TestFlight only `make build_{flavor}_ios_test_flight_only`
 
 > Make sure the correct signing method is selected in Xcode under the "Signing & Capabilities" tab, and if signing manually, the correct Provisioning Profile and Certificate are selected as well
 
-For Android:
-* Play Store and Firebase App Distribution `make build_android_{flavor}_with_distribution`
-* Firebase App Distribution only `make build_android_{flavor}_firebase_only`
-* Play Store only `make build_android_{flavor}_store_only`
+**For Android:**
+
+* Play Store and Firebase App Distribution `make build_{flavor}_android_with_distribution`
+* Firebase App Distribution only `make build_{flavor}_android_firebase_only`
+* Play Store only `make build_{flavor}_android_store_only`
 
 > Make sure when submitting a build to the Play Store android artifact type is "aab"
 > Make sure when submitting a build to the Firebase App Distribution android artifact type is "apk" (if you have not set up firebase integration with your Google Play project)

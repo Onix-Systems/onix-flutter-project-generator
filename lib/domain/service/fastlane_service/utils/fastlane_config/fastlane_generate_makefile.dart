@@ -1,93 +1,159 @@
-abstract class FastlaneGenerateMakefile {
-  const FastlaneGenerateMakefile._();
+import 'dart:io';
 
-  static List<String> generateForAndroid({String flavor = ''}) {
-    final makefileLineName = flavor.isNotEmpty ? '_${flavor}_' : '_';
-    final flavorParam = flavor.isNotEmpty ? '--flavor $flavor' : '';
-    final mainFilePath =
-        flavor.isNotEmpty ? '-t lib/core/flavors/main_$flavor.dart' : '';
+import 'package:onix_flutter_bricks/domain/service/fastlane_service/utils/fastlane_makefile_util.dart';
+import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 
-    final envParam = flavor.isNotEmpty ? '--env $flavor' : '';
-    final fastlaneFlavor = flavor.isNotEmpty ? flavor : 'default';
-    final list = <String>[];
+abstract final class FastlaneGenerateMakefile {
+  static Future<void> generateMakefileAndroid({
+    required String outputPath,
+    required Iterable<String> flavors,
+  }) async {
+    final file = await File('$outputPath/Makefile_android.mk').create();
+    final contents = <String>[];
+    final copiedFlavors = List<String>.from(flavors);
 
-    list
-      ..add('build_android${makefileLineName}apk: clean')
-      ..add('\techo "Build and distribute android APK"')
-      ..add('\t@flutter build apk --release $flavorParam $mainFilePath')
-      ..add(
-        '\t@cd android && bundle exec fastlane build flavor:$fastlaneFlavor firebase:true artifact_type:apk flavor:$fastlaneFlavor $envParam',
-      )
-      ..add('')
-      ..add('build_android${makefileLineName}aab: clean')
-      ..add('\t@echo "Build and distribute android AAB"')
-      ..add('\t@flutter build appbundle --release $flavorParam $mainFilePath')
-      ..add(
-        '\t@cd android && bundle exec fastlane build flavor:$fastlaneFlavor store:true artifact_type:aab flavor:$fastlaneFlavor $envParam',
-      )
-      ..add('')
-      ..add(
-        'build_android${makefileLineName}with_distribution: build_android${makefileLineName}apk build_android${makefileLineName}aab',
-      )
-      ..add(
-        '\t@echo "Build and distribute to the Firebase App Distribution and Store"',
-      )
-      ..add('')
-      ..add(
-          'build_android${makefileLineName}firebase_only: build_android${makefileLineName}apk')
-      ..add('\t@echo "Build and distribute to the Firebase App Distribution"')
-      ..add('')
-      ..add(
-        'build_android${makefileLineName}store_only: build_android${makefileLineName}aab',
-      )
-      ..add('\t@echo "Build and distribute to the Play Store"')
-      ..add('');
+    if (flavors.isEmpty) {
+      copiedFlavors.add('default');
+    }
 
-    return list;
+    for (final flavor in copiedFlavors) {
+      FastlaneMakefileUtil.generate(
+        flavorsIsNotEmpty: flavors.isNotEmpty,
+        flavor: flavor,
+        onCreate: (flavorParam, mainDart, lineName, env) {
+          contents
+            ..add('build_android${lineName}apk:')
+            ..add('\t@echo "Build and distribute android APK"')
+            ..add('\t@flutter build apk --release $flavorParam $mainDart')
+            ..addNewLine()
+            ..add('build_android${lineName}aab:')
+            ..add('\t@echo "Build and distribute android AAB"')
+            ..add('\t@flutter build appbundle --release $flavorParam $mainDart')
+            ..addNewLine()
+            ..add(
+              'build_android${lineName}with_distribution: build_android${lineName}firebase_only build_android${lineName}store_only',
+            )
+            ..add(
+              '\t@echo "Build and distribute to the Firebase App Distribution and Store"',
+            )
+            ..addNewLine()
+            ..add(
+                'build_android${lineName}firebase_only: build_android${lineName}apk')
+            ..add(
+                '\t@echo "Build and distribute to the Firebase App Distribution"')
+            ..add(
+              '\t@cd android && bundle exec fastlane build flavor:$flavorParam firebase:true artifact_type:apk $env',
+            )
+            ..addNewLine()
+            ..add(
+              'build_android${lineName}store_only: build_android${lineName}aab',
+            )
+            ..add('\t@echo "Build and distribute to the Play Store"')
+            ..add(
+              '\t@cd android && bundle exec fastlane build flavor:$flavorParam firebase:true artifact_type:apk $env',
+            )
+            ..addNewLine();
+        },
+      );
+    }
+
+    await file.writeAsString(contents.join('\n'));
   }
 
-  static List<String> generateForIos({String flavor = ''}) {
-    final makefileLineName = flavor.isNotEmpty ? '_${flavor}_' : '_';
-    final flavorParam = flavor.isNotEmpty ? '--flavor $flavor' : '';
-    final mainFilePath =
-        flavor.isNotEmpty ? '-t lib/core/flavors/main_$flavor.dart' : '';
-    final envParam = flavor.isNotEmpty ? '--env $flavor' : '';
-    final fastlaneFlavor = flavor.isNotEmpty ? flavor : 'default';
-    final list = <String>[];
+  static Future<void> generateMakefileIos({
+    required String outputPath,
+    required Iterable<String> flavors,
+  }) async {
+    final file = await File('$outputPath/Makefile_ios.mk').create();
+    final contents = <String>[];
+    final copiedFlavors = List<String>.from(flavors);
 
-    list
-      ..add('build${makefileLineName}ios:')
-      ..add('\t@flutter build ios --release $flavorParam $mainFilePath')
-      ..add('')
-      ..add(
-          'build_ios${makefileLineName}with_distribution: clean build${makefileLineName}ios')
-      ..add(
-        '\t@echo "Build and distribute iOS to the TestFlight and Firebase App Distribution"',
-      )
-      ..add(
-        '\t@cd ios && bundle exec fastlane build flavor:$fastlaneFlavor firebase:true test_flight:true $envParam',
-      )
-      ..add('')
-      ..add(
-          'build_ios${makefileLineName}firebase_only: clean build${makefileLineName}ios')
-      ..add(
-        '\t@echo "Build and distribute iOS to the Firebase App Distribution"',
-      )
-      ..add(
-        '\t@cd ios && bundle exec fastlane build flavor:$fastlaneFlavor firebase:true $envParam',
-      )
-      ..add('')
-      ..add(
-        'build_ios${makefileLineName}test_flight_only: clean build${makefileLineName}ios',
-      )
-      ..add(
-        '\t@echo "Build and distribute iOS to the TestFlight"',
-      )
-      ..add(
-        '\t@cd ios && bundle exec fastlane build flavor:$fastlaneFlavor test_flight:true $envParam',
-      )
-      ..add('');
+    if (flavors.isEmpty) {
+      copiedFlavors.add('default');
+    }
 
-    return list;
+    for (final flavor in copiedFlavors) {
+      FastlaneMakefileUtil.generate(
+        flavorsIsNotEmpty: flavors.isNotEmpty,
+        flavor: flavor,
+        onCreate: (flavorParam, mainDart, lineName, env) {
+          contents
+            ..add('build${lineName}ios:')
+            ..add('\t@flutter build ios --release $flavorParam $mainDart')
+            ..addNewLine()
+            ..add('build_ios${lineName}with_distribution: build${lineName}ios')
+            ..add(
+              '\t@echo "Build and distribute iOS to the TestFlight and Firebase App Distribution"',
+            )
+            ..add(
+              '\t@cd ios && bundle exec fastlane build flavor:$flavor firebase:true test_flight:true $env',
+            )
+            ..addNewLine()
+            ..add('build_ios${lineName}firebase_only: build${lineName}ios')
+            ..add(
+              '\t@echo "Build and distribute iOS to the Firebase App Distribution"',
+            )
+            ..add(
+              '\t@cd ios && bundle exec fastlane build flavor:$flavor firebase:true $env',
+            )
+            ..addNewLine()
+            ..add(
+              'build_ios${lineName}test_flight_only: build${lineName}ios',
+            )
+            ..add(
+              '\t@echo "Build and distribute iOS to the TestFlight"',
+            )
+            ..add(
+              '\t@cd ios && bundle exec fastlane build flavor:$flavor test_flight:true $lineName',
+            )
+            ..addNewLine();
+        },
+      );
+    }
+
+    await file.writeAsString(contents.join('\n'));
+  }
+
+  static Future<void> generateMakefileMain({
+    required String outputPath,
+    required Iterable<String> flavors,
+    required Iterable<String> platforms,
+  }) async {
+    final file = await File('$outputPath/Makefile').create();
+    final contents = await file.readAsLines();
+    final copiedFlavors = List<String>.from(flavors);
+
+    if (flavors.isEmpty) {
+      copiedFlavors.add('default');
+    }
+
+    if (!contents.contains('clean:')) {
+      contents
+        ..addNewLine()
+        ..add('clean:')
+        ..add('\t@echo "Cleaning"')
+        ..add('\t@flutter clean')
+        ..addNewLine();
+    }
+
+    for (final flavor in copiedFlavors) {
+      final lineName = flavors.isNotEmpty ? '_$flavor' : '';
+      contents
+        ..add('build_and_distribute$lineName: clean')
+        ..add('\t@echo "Build and distribute"');
+
+      for (final platform in platforms) {
+        final platformWithFlavor =
+            flavors.isNotEmpty ? '_${platform}_${flavor}_' : '_${platform}_';
+
+        contents.add(
+          '\t@make build${platformWithFlavor}with_distribution -f Makefile_$platform.mk',
+        );
+      }
+
+      contents.addNewLine();
+    }
+
+    await file.writeAsString(contents.join('\n'));
   }
 }

@@ -7,9 +7,11 @@ abstract final class FlavorsUtil {
   }) {
     final flavors = <String>{};
 
-    if(flavorize) {
+    if (flavorize) {
       flavors.addAll(AppConsts.defaultFlavors);
-      flavors.addAll(selectedFlavors.split(' '));
+      if (selectedFlavors.isNotEmpty) {
+        flavors.addAll(selectedFlavors.trim().split(' '));
+      }
     }
 
     return flavors;
