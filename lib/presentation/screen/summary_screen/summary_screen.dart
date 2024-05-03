@@ -109,8 +109,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                     if (state.config.flavorize)
                       SummaryCell(
                         variable: S.of(context).flavors,
-                        value:
-                            '${AppConsts.defaultFlavors.join(', ')} ${state.config.flavors.split(' ').join(', ')}',
+                        value: _getFlavors(state.config.flavors),
                       ),
                     SummaryCell(
                       variable: S.of(context).generateSigningKey,
@@ -194,8 +193,10 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                   label: S.of(context).generateProject,
                   icon: Icons.local_fire_department,
                   iconLeft: false,
-                  onPressed: () => context.go(AppRouter.generationScreen,
-                      extra: state.config),
+                  onPressed: () => context.go(
+                    AppRouter.generationScreen,
+                    extra: state.config,
+                  ),
                   color: CupertinoColors.destructiveRed,
                 ),
               ],
@@ -204,5 +205,15 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
         ),
       ),
     );
+  }
+
+  String _getFlavors(String flavors) {
+    var allFlavors = AppConsts.defaultFlavors.join(', ');
+
+    if (flavors.isNotEmpty) {
+      allFlavors += ', ${flavors.split(' ').join(', ')}';
+    }
+
+    return allFlavors;
   }
 }

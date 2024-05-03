@@ -138,9 +138,7 @@ abstract final class FastlaneGenerateMakefile {
 
     for (final flavor in copiedFlavors) {
       final lineName = flavors.isNotEmpty ? '_$flavor' : '';
-      contents
-        ..add('build_and_distribute$lineName: clean')
-        ..add('\t@echo "Build and distribute"');
+      contents.add('build_and_distribute$lineName: clean');
 
       for (final platform in platforms) {
         final platformWithFlavor =
