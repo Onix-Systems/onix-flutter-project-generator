@@ -21,12 +21,7 @@ This section describes different installation options. It consists of the follow
 ```
 Apk and AppBundle refers to Android and specifies a type of output file (`*.apk` or `*.aab`).
 
-
-* **Flavor** - type of application configuration. {app_name} supports following flavors:
-
-```
 {app_flavors}
-```
 
 * **Build type** - type of build process: `release` or `debug`.
 * **main.dart** file - main file and entry point of your application. {main_count_description}:

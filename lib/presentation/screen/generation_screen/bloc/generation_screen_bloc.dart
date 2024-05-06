@@ -241,6 +241,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       projectName: state.config.projectName,
       projectPath: state.config.projectPath,
       organization: state.config.organization,
+      flavorize: state.config.flavorize,
       flavors: FlavorsUtil.joinFlavors(
         flavorize: state.config.flavorize,
         selectedFlavors: state.config.flavors,
