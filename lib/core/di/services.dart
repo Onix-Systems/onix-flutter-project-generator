@@ -26,5 +26,3 @@ void registerAppServices(GetIt getIt) {
 
 OutputService get outputService => GetIt.I.get<OutputService>();
 
-FileGeneratorService get fileGeneratorService =>
-    GetIt.I.get<FileGeneratorService>();

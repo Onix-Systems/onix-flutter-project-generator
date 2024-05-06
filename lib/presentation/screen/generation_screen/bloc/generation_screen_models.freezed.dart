@@ -481,33 +481,33 @@ abstract class GenerationScreenEventOpenProject
 mixin _$GenerationScreenSR {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
+    required TResult Function() stub,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
+    TResult? Function()? stub,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
+    TResult Function()? stub,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
+    required TResult Function(_StubSR value) stub,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
+    TResult? Function(_StubSR value)? stub,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
+    TResult Function(_StubSR value)? stub,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -532,35 +532,35 @@ class _$GenerationScreenSRCopyWithImpl<$Res, $Val extends GenerationScreenSR>
 }
 
 /// @nodoc
-abstract class _$$LoadFinishedImplCopyWith<$Res> {
-  factory _$$LoadFinishedImplCopyWith(
-          _$LoadFinishedImpl value, $Res Function(_$LoadFinishedImpl) then) =
-      __$$LoadFinishedImplCopyWithImpl<$Res>;
+abstract class _$$StubSRImplCopyWith<$Res> {
+  factory _$$StubSRImplCopyWith(
+          _$StubSRImpl value, $Res Function(_$StubSRImpl) then) =
+      __$$StubSRImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadFinishedImplCopyWithImpl<$Res>
-    extends _$GenerationScreenSRCopyWithImpl<$Res, _$LoadFinishedImpl>
-    implements _$$LoadFinishedImplCopyWith<$Res> {
-  __$$LoadFinishedImplCopyWithImpl(
-      _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
+class __$$StubSRImplCopyWithImpl<$Res>
+    extends _$GenerationScreenSRCopyWithImpl<$Res, _$StubSRImpl>
+    implements _$$StubSRImplCopyWith<$Res> {
+  __$$StubSRImplCopyWithImpl(
+      _$StubSRImpl _value, $Res Function(_$StubSRImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadFinishedImpl implements _LoadFinished {
-  const _$LoadFinishedImpl();
+class _$StubSRImpl implements _StubSR {
+  const _$StubSRImpl();
 
   @override
   String toString() {
-    return 'GenerationScreenSR.loadFinished()';
+    return 'GenerationScreenSR.stub()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
+        (other.runtimeType == runtimeType && other is _$StubSRImpl);
   }
 
   @override
@@ -569,27 +569,27 @@ class _$LoadFinishedImpl implements _LoadFinished {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
+    required TResult Function() stub,
   }) {
-    return loadFinished();
+    return stub();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
+    TResult? Function()? stub,
   }) {
-    return loadFinished?.call();
+    return stub?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
+    TResult Function()? stub,
     required TResult orElse(),
   }) {
-    if (loadFinished != null) {
-      return loadFinished();
+    if (stub != null) {
+      return stub();
     }
     return orElse();
   }
@@ -597,54 +597,61 @@ class _$LoadFinishedImpl implements _LoadFinished {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
+    required TResult Function(_StubSR value) stub,
   }) {
-    return loadFinished(this);
+    return stub(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
+    TResult? Function(_StubSR value)? stub,
   }) {
-    return loadFinished?.call(this);
+    return stub?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
+    TResult Function(_StubSR value)? stub,
     required TResult orElse(),
   }) {
-    if (loadFinished != null) {
-      return loadFinished(this);
+    if (stub != null) {
+      return stub(this);
     }
     return orElse();
   }
 }
 
-abstract class _LoadFinished implements GenerationScreenSR {
-  const factory _LoadFinished() = _$LoadFinishedImpl;
+abstract class _StubSR implements GenerationScreenSR {
+  const factory _StubSR() = _$StubSRImpl;
 }
 
 /// @nodoc
 mixin _$GenerationScreenState {
   Config get config => throw _privateConstructorUsedError;
   GeneratingState get generatingState => throw _privateConstructorUsedError;
+  Stream<List<OutputLine>>? get outputStream =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config, GeneratingState generatingState)
+    required TResult Function(Config config, GeneratingState generatingState,
+            Stream<List<OutputLine>>? outputStream)
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, GeneratingState generatingState)? data,
+    TResult? Function(Config config, GeneratingState generatingState,
+            Stream<List<OutputLine>>? outputStream)?
+        data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, GeneratingState generatingState)? data,
+    TResult Function(Config config, GeneratingState generatingState,
+            Stream<List<OutputLine>>? outputStream)?
+        data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -676,7 +683,10 @@ abstract class $GenerationScreenStateCopyWith<$Res> {
           $Res Function(GenerationScreenState) then) =
       _$GenerationScreenStateCopyWithImpl<$Res, GenerationScreenState>;
   @useResult
-  $Res call({Config config, GeneratingState generatingState});
+  $Res call(
+      {Config config,
+      GeneratingState generatingState,
+      Stream<List<OutputLine>>? outputStream});
 
   $ConfigCopyWith<$Res> get config;
 }
@@ -697,6 +707,7 @@ class _$GenerationScreenStateCopyWithImpl<$Res,
   $Res call({
     Object? config = null,
     Object? generatingState = null,
+    Object? outputStream = freezed,
   }) {
     return _then(_value.copyWith(
       config: null == config
@@ -707,6 +718,10 @@ class _$GenerationScreenStateCopyWithImpl<$Res,
           ? _value.generatingState
           : generatingState // ignore: cast_nullable_to_non_nullable
               as GeneratingState,
+      outputStream: freezed == outputStream
+          ? _value.outputStream
+          : outputStream // ignore: cast_nullable_to_non_nullable
+              as Stream<List<OutputLine>>?,
     ) as $Val);
   }
 
@@ -728,7 +743,10 @@ abstract class _$$GenerationScreenStateDataImplCopyWith<$Res>
       __$$GenerationScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Config config, GeneratingState generatingState});
+  $Res call(
+      {Config config,
+      GeneratingState generatingState,
+      Stream<List<OutputLine>>? outputStream});
 
   @override
   $ConfigCopyWith<$Res> get config;
@@ -749,6 +767,7 @@ class __$$GenerationScreenStateDataImplCopyWithImpl<$Res>
   $Res call({
     Object? config = null,
     Object? generatingState = null,
+    Object? outputStream = freezed,
   }) {
     return _then(_$GenerationScreenStateDataImpl(
       config: null == config
@@ -759,6 +778,10 @@ class __$$GenerationScreenStateDataImplCopyWithImpl<$Res>
           ? _value.generatingState
           : generatingState // ignore: cast_nullable_to_non_nullable
               as GeneratingState,
+      outputStream: freezed == outputStream
+          ? _value.outputStream
+          : outputStream // ignore: cast_nullable_to_non_nullable
+              as Stream<List<OutputLine>>?,
     ));
   }
 }
@@ -767,17 +790,21 @@ class __$$GenerationScreenStateDataImplCopyWithImpl<$Res>
 
 class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
   const _$GenerationScreenStateDataImpl(
-      {required this.config, this.generatingState = GeneratingState.init});
+      {required this.config,
+      this.generatingState = GeneratingState.init,
+      this.outputStream});
 
   @override
   final Config config;
   @override
   @JsonKey()
   final GeneratingState generatingState;
+  @override
+  final Stream<List<OutputLine>>? outputStream;
 
   @override
   String toString() {
-    return 'GenerationScreenState.data(config: $config, generatingState: $generatingState)';
+    return 'GenerationScreenState.data(config: $config, generatingState: $generatingState, outputStream: $outputStream)';
   }
 
   @override
@@ -787,11 +814,14 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
             other is _$GenerationScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config) &&
             (identical(other.generatingState, generatingState) ||
-                other.generatingState == generatingState));
+                other.generatingState == generatingState) &&
+            (identical(other.outputStream, outputStream) ||
+                other.outputStream == outputStream));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config, generatingState);
+  int get hashCode =>
+      Object.hash(runtimeType, config, generatingState, outputStream);
 
   @JsonKey(ignore: true)
   @override
@@ -803,28 +833,33 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config, GeneratingState generatingState)
+    required TResult Function(Config config, GeneratingState generatingState,
+            Stream<List<OutputLine>>? outputStream)
         data,
   }) {
-    return data(config, generatingState);
+    return data(config, generatingState, outputStream);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, GeneratingState generatingState)? data,
+    TResult? Function(Config config, GeneratingState generatingState,
+            Stream<List<OutputLine>>? outputStream)?
+        data,
   }) {
-    return data?.call(config, generatingState);
+    return data?.call(config, generatingState, outputStream);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, GeneratingState generatingState)? data,
+    TResult Function(Config config, GeneratingState generatingState,
+            Stream<List<OutputLine>>? outputStream)?
+        data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(config, generatingState);
+      return data(config, generatingState, outputStream);
     }
     return orElse();
   }
@@ -860,13 +895,17 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
 
 abstract class GenerationScreenStateData implements GenerationScreenState {
   const factory GenerationScreenStateData(
-      {required final Config config,
-      final GeneratingState generatingState}) = _$GenerationScreenStateDataImpl;
+          {required final Config config,
+          final GeneratingState generatingState,
+          final Stream<List<OutputLine>>? outputStream}) =
+      _$GenerationScreenStateDataImpl;
 
   @override
   Config get config;
   @override
   GeneratingState get generatingState;
+  @override
+  Stream<List<OutputLine>>? get outputStream;
   @override
   @JsonKey(ignore: true)
   _$$GenerationScreenStateDataImplCopyWith<_$GenerationScreenStateDataImpl>

@@ -5,8 +5,8 @@ import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
-import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/get_generation_output_stream_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
@@ -34,12 +34,12 @@ void registerBloc(GetIt getIt) {
         GetIt.I.get<GenerateDocumentationUseCase>(),
         GetIt.I.get<GenerateScreensUseCase>(),
         GetIt.I.get<GenerateDataComponentsUseCase>(),
-        GetIt.I.get<ClearOutputUseCase>(),
         GetIt.I.get<AddOutputMessageUseCase>(),
         GetIt.I.get<RunProcessUseCase>(),
         GetIt.I.get<RunOsaScriptProcessUseCase>(),
         GetIt.I.get<GenerateSigningConfigUseCase>(),
         GetIt.I.get<GenerateStylesUseCase>(),
+        GetIt.I.get<GetGenerationOutputStream>(),
       ),
     )
     ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)

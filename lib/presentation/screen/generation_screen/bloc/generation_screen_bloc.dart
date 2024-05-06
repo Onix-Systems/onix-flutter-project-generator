@@ -15,7 +15,7 @@ import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
-import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/get_generation_output_stream_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
@@ -39,19 +39,19 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   final RunOsaScriptProcessUseCase _osaScriptProcessUseCase;
 
   ///output commands
-  final ClearOutputUseCase _clearOutputUseCase;
   final AddOutputMessageUseCase _addOutputMessageUseCase;
+  final GetGenerationOutputStream _getGenerationOutputStream;
 
   GenerationScreenBloc(
     this._generateDocumentationUseCase,
     this._generateScreensUseCase,
     this._generateDataComponentsUseCase,
-    this._clearOutputUseCase,
     this._addOutputMessageUseCase,
     this._runProcessUseCase,
     this._osaScriptProcessUseCase,
     this._generateSigningConfigUseCase,
     this._generateStylesUseCase,
+    this._getGenerationOutputStream,
   ) : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
@@ -61,9 +61,14 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   FutureOr<void> _onInit(
     GenerationScreenEventInit event,
     Emitter<GenerationScreenState> emit,
-  ) {
-    _clearOutputUseCase();
-    emit(state.copyWith(config: event.config));
+  ) async {
+    final outputStream = await _getGenerationOutputStream();
+    emit(
+      state.copyWith(
+        config: event.config,
+        outputStream: outputStream,
+      ),
+    );
     add(const GenerationScreenEventGenerateProject());
   }
 

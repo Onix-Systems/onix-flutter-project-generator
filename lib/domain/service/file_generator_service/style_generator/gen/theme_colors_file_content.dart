@@ -84,9 +84,15 @@ class ThemeColorsFileContent implements BaseGenerationService<String> {
         )
         .toList();
     codeLines.addAll(copyWithDeclarations);
-    codeLines.add(');');
-    codeLines.add('}');
-    codeLines.addNewLine();
+    codeLines.add(' }) {');
+    codeLines.add('return ThemeColors(');
+    final copyWithContent = colorNames
+        .map(
+          (e) => '${e}Color: ${e}Color ?? this.${e}Color,',
+        )
+        .toList();
+    codeLines.addAll(copyWithContent);
+    codeLines.add(' );}');
 
     ///Build lerp function
     codeLines.add('@override');

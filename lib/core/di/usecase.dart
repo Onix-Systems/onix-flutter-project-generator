@@ -5,15 +5,14 @@ import 'package:onix_flutter_bricks/domain/repository/source_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/docs_service.dart';
 import 'package:onix_flutter_bricks/domain/service/figma_service/figma_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/styles_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
-import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/get_generation_output_stream_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
@@ -21,11 +20,6 @@ import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_useca
 
 void registerUseCases(GetIt getIt) {
   getIt
-    ..registerLazySingleton<ClearOutputUseCase>(
-      () => ClearOutputUseCase(
-        GetIt.I.get<OutputService>(),
-      ),
-    )
     ..registerLazySingleton<AddOutputMessageUseCase>(
       () => AddOutputMessageUseCase(
         GetIt.I.get<OutputService>(),
@@ -76,6 +70,11 @@ void registerUseCases(GetIt getIt) {
     ..registerLazySingleton<GenerateStylesUseCase>(
       () => GenerateStylesUseCase(
         GetIt.I.get<FileGeneratorService>(),
+      ),
+    )
+    ..registerLazySingleton<GetGenerationOutputStream>(
+      () =>  GetGenerationOutputStream(
+        GetIt.I.get<OutputService>(),
       ),
     );
 }
