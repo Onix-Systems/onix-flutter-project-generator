@@ -7,6 +7,7 @@ import 'package:onix_flutter_bricks/domain/entity/figma/nodes/node/fill_paints_n
 import 'package:onix_flutter_bricks/domain/entity/figma/nodes/text_node/text_node_entity.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/properties/paint_property/paint_property.dart';
 import 'package:onix_flutter_bricks/domain/repository/figma_repository.dart';
+import 'package:onix_flutter_bricks/domain/service/figma_service/figma_generation_params.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 
@@ -19,21 +20,24 @@ class FigmaService {
     required FigmaRepository figmaRepository,
   }) : _figmaRepository = figmaRepository;
 
-  Future<List<AppStyle>> getStyles(String figmaId, String token) async {
+  Future<List<AppStyle>> getStylesFromFigma(
+      FigmaGenerationParams params) async {
     final Set<AppStyle> figmaStyles = {};
     final Set<AppTextStyle> figmaTextStyles = {};
     final Set<AppColorStyle> figmaColorStyles = {};
 
     try {
-      final figmaResult =
-          await _figmaRepository.getFigmaFiles(figmaId: figmaId, token: token);
+      final figmaResult = await _figmaRepository.getFigmaFiles(
+        figmaId: params.figmaId,
+        token: params.token,
+      );
 
       if (figmaResult.isNotEmpty) {
         final keys = figmaResult.keys.map((e) => e).join(',');
 
         final nodes = await _figmaRepository.getFigmaNodes(
-          token: token,
-          figmaId: figmaId,
+          figmaId: params.figmaId,
+          token: params.token,
           nodeIds: keys,
         );
 
