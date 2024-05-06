@@ -19,6 +19,7 @@ class AppColorsFileContent implements BaseGenerationService<String> {
     final codeLines = List<String>.empty(growable: true);
     codeLines.add('import \'package:flutter/material.dart\';');
     codeLines.addNewLine();
+    codeLines.add('class AppColors {');
     codeLines.add('//Light theme colors');
     final lightColors = sortedColors[StyleGeneratorConst.lightColorsKey]
             ?.map(

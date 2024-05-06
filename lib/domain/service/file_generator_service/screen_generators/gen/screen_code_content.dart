@@ -105,7 +105,7 @@ class ScreenCodeContent {
     final stateManagementSuffix = stateManagement.name.pascalCase;
     final className = '${screenName.pascalCase}Screen$stateManagementSuffix';
     final eventName = stateManagement == ScreenStateManager.bloc
-        ? '${screenName.pascalCase}ScreenEvent'
+        ? '${screenName.pascalCase}ScreenEvent, '
         : '';
     final stateName = '${screenName.pascalCase}ScreenState';
     final srName = '${screenName.pascalCase}ScreenSR';
@@ -118,13 +118,17 @@ class ScreenCodeContent {
     codeLines.addNewLine();
     codeLines.add(
         'import \'package:$projectName/core/arch/bloc/base_${stateManagement.name}.dart\';');
-    codeLines.add('import \'package:flutter_bloc/flutter_bloc.dart\';');
+    if(stateManagement == ScreenStateManager.bloc){
+      codeLines.add('import \'package:flutter_bloc/flutter_bloc.dart\';');
+    }
     codeLines.add(
         'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_imports.dart\';');
     codeLines.addNewLine();
     codeLines.add(
-        'class $className extends Base$stateManagementSuffix<$eventName, $stateName, $srName> {');
-    codeLines.add('$className() : super($stateName()) {');
+        'class $className extends Base$stateManagementSuffix<$eventName$stateName, $srName> {');
+    final defaultStatePrefix =
+        stateManagement == ScreenStateManager.bloc ? '' : 'const ';
+    codeLines.add('$className() : super($defaultStatePrefix$stateName()) {');
     if (stateManagement == ScreenStateManager.bloc) {
       codeLines.add('on<${screenName.pascalCase}ScreenEventInit>(_onInit);');
       codeLines.add('add(const ${screenName.pascalCase}ScreenEvent.init());');
@@ -241,12 +245,14 @@ class ScreenCodeContent {
     final codeLines = List<String>.empty(growable: true);
 
     ///Add imports
-    if (isGoRouter) {
-      codeLines.add('import \'package:go_router/go_router.dart\';');
-    } else {
-      codeLines.add('import \'package:auto_route/auto_route.dart\';');
-    }
     codeLines.add('import \'package:flutter/material.dart\';');
+    if (stateManagement == ScreenStateManager.bloc) {
+      codeLines.add(
+          'import \'package:$projectName/core/arch/bloc/base_block_state.dart\';');
+    } else {
+      codeLines.add(
+          'import \'package:$projectName/core/arch/bloc/base_cubit_state.dart\';');
+    }
     codeLines.add(
         'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_imports.dart\';');
     codeLines.addNewLine();

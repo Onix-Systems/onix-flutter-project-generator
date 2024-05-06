@@ -21,11 +21,11 @@ class ThemeColorsGenerator implements BaseGenerationService<bool> {
     }
     final libFolder = '${params.projectPath}/${params.projectName}/lib';
     final appColorsFile = await File(
-            '$libFolder/lib/presentation/style/theme/theme_extension/theme_colors.dart')
+            '$libFolder/presentation/style/theme/theme_extension/theme_colors.dart')
         .create(recursive: true);
 
     final themeColorsFile =
-        File('$libFolder/lib/presentation/style/app_colors.dart');
+        File('$libFolder/presentation/style/app_colors.dart');
 
     final parsedColors = _colorParser
         .parseFromFile(

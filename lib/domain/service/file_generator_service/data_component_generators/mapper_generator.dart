@@ -106,6 +106,7 @@ class MapperGenerator implements BaseGenerationService<bool> {
         '${name.pascalCase}Request mapEntityToRequest(${name.pascalCase} entity,) => _entityToRequestMapper.map(entity);',
       );
     }
+    codeLines.add('}');
     codeLines.addNewLine();
 
     ///Save file

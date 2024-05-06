@@ -80,7 +80,7 @@ class ScreenGenerator implements BaseGenerationService<bool> {
     ScreenGeneratorParams params,
     String screenPath,
   ) async {
-    final screenName = params.screen.name;
+    final screenName = params.screen.name.snakeCase;
     final screenFile =
         await File('$screenPath/${screenName}_screen.dart').create();
 
