@@ -121,7 +121,7 @@ Before you use fastlane to build and distribute:
 2. Using the iOS build, call `xcode-select --install`
 3. Install fastlane using `brew install fastlane` or `gem install fastlane`
 4. Install the bundler using `gem install bundler`
-5. Go to the `android` & `ios` directory and call `bundle install` or `sudo bundle install`
+5. Go to the `android` & `ios` directory and call `[sudo] bundle install`
 
 To submit a build to the App Store or Google Play Console you need:
 
