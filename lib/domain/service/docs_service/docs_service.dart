@@ -9,7 +9,7 @@ import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_gene
 import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
 import 'package:recase/recase.dart';
 
-class DocsService implements BaseGenerationService<bool> {
+class DocsService implements BaseGenerationService<String> {
   final _appNamePattern = '{app_name}';
   final _flavorsPattern = '{app_flavors}';
   final _platformsPattern = '{app_platforms}';
@@ -21,9 +21,9 @@ class DocsService implements BaseGenerationService<bool> {
   final _platformPackageNames = '{platform_package_names}';
 
   @override
-  Future<bool> generate(BaseGenerationParams params) async {
+  Future<String> generate(BaseGenerationParams params) async {
     if (params is! DocsGenerationParams) {
-      return false;
+      return 'Incorrect params';
     }
     try {
       final projectPath = '${params.projectPath}/${params.projectName}';
@@ -40,10 +40,10 @@ class DocsService implements BaseGenerationService<bool> {
           params,
         );
       }
-      return true;
+      return '';
     } catch (e, trace) {
       logger.e(e, stackTrace: trace);
-      return false;
+      return e.toString();
     }
   }
 

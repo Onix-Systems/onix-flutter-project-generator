@@ -15,6 +15,8 @@ class GenerateFastlaneFilesUseCase {
   Future<void> call(
     FastlaneGenerationParams params, {
     required bool isModify,
+
+    // TODO(Ivan Modlo): add errors
   }) async {
     if (isModify) {
       _outputService.add(
@@ -24,12 +26,13 @@ class GenerateFastlaneFilesUseCase {
     }
 
     _outputService.add('{#info}Start Fastlane generation...');
-    final succeed = await _fastlaneService.generate(params);
-    if (succeed) {
+    final result = await _fastlaneService.generate(params);
+    if (result.isEmpty) {
       _outputService.add('{#info}Fastlane files generated!');
     } else {
-      _outputService
-          .add('{#warning}Fastlane files generation completed with errors!');
+      _outputService.add(
+        '{#warning}Fastlane files generation completed with errors!\n $result',
+      );
     }
   }
 }

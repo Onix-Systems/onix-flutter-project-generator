@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
@@ -16,12 +17,12 @@ const _ios = 'ios';
 const _androidFastlane = '/android/fastlane/';
 const _iosFastlane = '/ios/fastlane/';
 
-class FastlaneService implements BaseGenerationService<bool> {
+class FastlaneService implements BaseGenerationService<String> {
   const FastlaneService();
 
   @override
-  Future<bool> generate(BaseGenerationParams params) async {
-    if (params is! FastlaneGenerationParams) return false;
+  Future<String> generate(BaseGenerationParams params) async {
+    if (params is! FastlaneGenerationParams) return 'Incorrect params';
 
     final platforms = params.platforms
         .where((element) => element == _android || element == _ios);
@@ -39,10 +40,10 @@ class FastlaneService implements BaseGenerationService<bool> {
       await _generateFastlaneConfig(params);
       await _generateMakeFile(params);
 
-      return true;
+      return '';
     } catch (e, s) {
       logger.e(e, stackTrace: s);
-      return false;
+      return e.toString();
     }
   }
 
@@ -62,9 +63,15 @@ class FastlaneService implements BaseGenerationService<bool> {
     final projectPath = _getProjectFullPath(params);
 
     for (final file in FastlaneAssets.values) {
-      await File(file.getAssetPath(platform: platform)).copy(
-        file.getOutputPath(projectPath: projectPath, platform: platform),
+      final contents = await rootBundle.loadString(
+        file.getAssetPath(platform: platform),
       );
+
+      final path = await File(
+        file.getOutputPath(projectPath: projectPath, platform: platform),
+      ).create(recursive: true);
+
+      await path.writeAsString(contents);
     }
 
     await _generateFastlaneEnvs(
