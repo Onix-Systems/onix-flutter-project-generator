@@ -7,5 +7,5 @@
 
 Use following command:
 
-`rm ‘release/Onix Flutter Project Generator.dmg’ && flutter clean && flutter build macos --release && appdmg installers/dmg_creator/config.json ‘release/Onix Flutter Project Generator.dmg’`
+`rm ‘release/Onix Flutter Project Generator.dmg’ && flutter clean && flutter build macos --release && appdmg installers/dmg_creator/config.json release/Onix_Flutter_Project_Generator.dmg`
 
