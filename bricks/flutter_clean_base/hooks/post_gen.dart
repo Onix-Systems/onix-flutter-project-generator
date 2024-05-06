@@ -300,7 +300,7 @@ Future<void> flavorize(HookContext context) async {
   }
 
   var flavorizrProc = await Process.start(
-      'flutter', ['pub', 'run', 'flutter_flavorizr'],
+      'flutter', ['flutter', 'pub', 'run', 'flutter_flavorizr'],
       workingDirectory: name);
 
   flavorizrProc.log();
