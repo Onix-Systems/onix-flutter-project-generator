@@ -1,19 +1,19 @@
 import 'dart:async';
 
+import 'package:onix_flutter_bricks/domain/entity/source/generated_method.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/method_parameter.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/path.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/di_generator.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/generated_method.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/method_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/component_generator/di_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/component_generator/method_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/component_generator/repository_files_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/component_generator/source_files_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/data_layer_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/di_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/method_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/repository_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/source_generator_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/repository_files_generator.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/source_files_generator.dart';
 import 'package:recase/recase.dart';
 
 class DataLayerGenerator implements BaseGenerationService<bool> {

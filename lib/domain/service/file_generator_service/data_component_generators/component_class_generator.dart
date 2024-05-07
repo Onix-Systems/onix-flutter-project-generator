@@ -5,9 +5,9 @@ import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/repository/data_component_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/base/class_builder/freezed_class_builder.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/params/data_component_params.dart';
-import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
@@ -27,46 +27,23 @@ class ComponentClassGenerator implements BaseGenerationService<bool> {
     final sourceName = params.dataComponent.sourceName;
     final name = params.dataComponent.name;
 
-    ///Imports
-    codeLines
-        .add('import \'package:freezed_annotation/freezed_annotation.dart\';');
-    final componentImports = params.dataComponent.imports.map(
-      (e) {
-        final importSourceName = _dataComponentRepository
-                .getDataComponentByName(dataComponentName: e)
-                ?.sourceName ??
-            '';
-        final sourceName =
-            importSourceName.isNotEmpty ? '${importSourceName.snakeCase}/' : '';
-        return 'import \'package:${params.projectName}/domain/entity/$sourceName${e.snakeCase}/${e.snakeCase}.dart\';';
-      },
+    final imports = _getImports(
+      params.projectName,
+      params.dataComponent,
     );
-    codeLines.addAll(componentImports);
-    codeLines.addNewLine();
-    codeLines.add('part \'${name.snakeCase}.freezed.dart\';');
-    codeLines.addNewLine();
-
-    ///Class Declaration
-    codeLines.add('@freezed');
-    codeLines.add('class ${name.pascalCase} with _\$${name.pascalCase} {');
-
-    ///Constructor
-    codeLines.add('factory ${name.pascalCase}({');
-    final componentProperties = params.dataComponent.properties.map(
-      (e) => '       $e,',
+    final constructorProperties = params.dataComponent.properties.map(
+      (e) => '$e,',
     );
-    codeLines.addAll(componentProperties);
-    codeLines.add(' }) = _${name.pascalCase};');
-    codeLines.addNewLine();
-
-    ///Empty class constructor
-    codeLines.add('factory ${name.pascalCase}.empty() => ${name.pascalCase}(');
-    final emptyProperties = _getEmptyConstructorProperties(
-      dataComponent: params.dataComponent,
+    final emptyConstructorProperties = _getEmptyConstructorProperties(
+      params.dataComponent,
     );
-    codeLines.addAll(emptyProperties);
-    codeLines.add(' );}');
-    codeLines.addNewLine();
+
+    final freezedClass = FreezedClassBuilder(className: name)
+      ..imports = imports
+      ..baseConstructorProperties = constructorProperties
+      ..emptyConstructorProperties = emptyConstructorProperties
+      ..withJsonAnnotation = false;
+    final fileContent = freezedClass.build();
 
     ///Save File
     final componentSubFolder =
@@ -85,13 +62,29 @@ class ComponentClassGenerator implements BaseGenerationService<bool> {
 
     var file = await File('${path.path}/${name.snakeCase}.dart').create();
 
-    final fileContent = codeLines.join('\n');
     await file.writeAsString(fileContent);
     return true;
   }
 
-  List<String> _getEmptyConstructorProperties(
-      {required DataComponent dataComponent}) {
+  Iterable<String> _getImports(
+    String projectName,
+    DataComponent dataComponent,
+  ) {
+    final imports = dataComponent.imports.map(
+      (e) {
+        final importSourceName = _dataComponentRepository
+                .getDataComponentByName(dataComponentName: e)
+                ?.sourceName ??
+            '';
+        final sourceName =
+            importSourceName.isNotEmpty ? '${importSourceName.snakeCase}/' : '';
+        return 'import \'package:${projectName}/domain/entity/$sourceName${e.snakeCase}/${e.snakeCase}.dart\';';
+      },
+    );
+    return imports;
+  }
+
+  Iterable<String> _getEmptyConstructorProperties(DataComponent dataComponent) {
     final properties = List<String>.empty(growable: true);
 
     for (final property in dataComponent.properties) {

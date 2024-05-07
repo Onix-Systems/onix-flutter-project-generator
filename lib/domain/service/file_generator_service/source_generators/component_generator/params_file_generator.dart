@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:onix_flutter_bricks/core/di/repository.dart';
-
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/params_generator_params.dart';

@@ -7,11 +7,10 @@ import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/component_class_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/component_enum_generator.dart';
-
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/generate_request.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/generate_response.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/mapper_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/params/data_component_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/request_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/response_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/signing_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/data_layer_generator.dart';
@@ -32,6 +31,8 @@ class FileGeneratorService {
   late BaseGenerationService<bool> _signingGenerator;
   late BaseGenerationService<bool> _componentClassGenerator;
   late BaseGenerationService<bool> _mapperGenerator;
+  late BaseGenerationService<bool> _requestGenerator;
+  late BaseGenerationService<bool> _responseGenerator;
 
   FileGeneratorService(
     this._outputService,
@@ -41,6 +42,8 @@ class FileGeneratorService {
     _componentClassGenerator =
         ComponentClassGenerator(_dataComponentRepository);
     _mapperGenerator = MapperGenerator(_dataComponentRepository);
+    _requestGenerator = RequestGenerator(_dataComponentRepository);
+    _responseGenerator = ResponseGenerator(_dataComponentRepository);
   }
 
   Future<bool> generateScreen(BaseGenerationParams params) =>
@@ -87,18 +90,12 @@ class FileGeneratorService {
         await _componentClassGenerator.generate(params);
       }
       if (dataComponent.generateResponse) {
-        await GenerateResponse().call(
-          projectName: projectName,
-          projectPath: projectPath,
-          dataComponent: dataComponent,
-        );
+        ///Generate response
+        await _responseGenerator.generate(params);
       }
       if (dataComponent.generateRequest) {
-        await GenerateRequest().call(
-          projectName: projectName,
-          projectPath: projectPath,
-          dataComponent: dataComponent,
-        );
+        ///Generate request
+        await _requestGenerator.generate(params);
       }
       if (dataComponent.generateRequest || dataComponent.generateResponse) {
         await _mapperGenerator.generate(params);

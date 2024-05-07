@@ -7,7 +7,7 @@ import 'package:onix_flutter_bricks/domain/entity/figma/nodes/node/fill_paints_n
 import 'package:onix_flutter_bricks/domain/entity/figma/nodes/text_node/text_node_entity.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/properties/paint_property/paint_property.dart';
 import 'package:onix_flutter_bricks/domain/repository/figma_repository.dart';
-import 'package:onix_flutter_bricks/domain/service/figma_service/figma_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/figma_service/params/figma_generation_params.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 

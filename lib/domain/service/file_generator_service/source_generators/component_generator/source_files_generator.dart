@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:onix_flutter_bricks/core/di/repository.dart';
+import 'package:onix_flutter_bricks/domain/entity/source/generated_method.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/generated_method.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/source_generator_params.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
@@ -104,9 +104,13 @@ class SourceFilesGenerator implements BaseGenerationService<String> {
     await sourceImplFile.writeAsString(fileContent);
   }
 
-  static String _getSourceImplBody(GeneratedMethod method, String prefix) {
+  static String _getSourceImplBody(
+    GeneratedMethod method,
+    String prefix,
+  ) {
     final isEnum = dataComponentRepository.isEnum(
-        dataComponentName: method.responseEntityName.stripRequestResponse());
+      dataComponentName: method.responseEntityName.stripRequestResponse(),
+    );
 
     String data = '';
 

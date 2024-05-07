@@ -1,5 +1,5 @@
+import 'package:onix_flutter_bricks/domain/entity/source/generated_method.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/generated_method.dart';
 
 class RepositoryGeneratorParams implements BaseGenerationParams {
   final String sourceFileContent;

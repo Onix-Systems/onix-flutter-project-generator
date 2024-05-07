@@ -4,11 +4,11 @@ import 'package:onix_flutter_bricks/domain/entity/source/method.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/inner_enum_file_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/component_generator/inner_enum_file_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/component_generator/params_file_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/inner_enum_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/method_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/params_generator_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params_file_generator.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 

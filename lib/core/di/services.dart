@@ -4,7 +4,6 @@ import 'package:onix_flutter_bricks/domain/repository/figma_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/docs_service.dart';
 import 'package:onix_flutter_bricks/domain/service/figma_service/figma_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/styles_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 
 void registerAppServices(GetIt getIt) {
