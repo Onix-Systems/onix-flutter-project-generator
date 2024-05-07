@@ -22,6 +22,3 @@ void registerAppServices(GetIt getIt) {
       ),
     );
 }
-
-OutputService get outputService => GetIt.I.get<OutputService>();
-

@@ -78,7 +78,7 @@ class ComponentClassGenerator implements BaseGenerationService<bool> {
             '';
         final sourceName =
             importSourceName.isNotEmpty ? '${importSourceName.snakeCase}/' : '';
-        return 'import \'package:${projectName}/domain/entity/$sourceName${e.snakeCase}/${e.snakeCase}.dart\';';
+        return 'import \'package:$projectName/domain/entity/$sourceName${e.snakeCase}/${e.snakeCase}.dart\';';
       },
     );
     return imports;

@@ -118,7 +118,7 @@ class ScreenCodeContent {
     codeLines.addNewLine();
     codeLines.add(
         'import \'package:$projectName/core/arch/bloc/base_${stateManagement.name}.dart\';');
-    if(stateManagement == ScreenStateManager.bloc){
+    if (stateManagement == ScreenStateManager.bloc) {
       codeLines.add('import \'package:flutter_bloc/flutter_bloc.dart\';');
     }
     codeLines.add(
@@ -208,7 +208,7 @@ class ScreenCodeContent {
     if (isGoRouter) {
       codeLines.add('import \'package:go_router/go_router.dart\';');
     } else {
-      codeLines.add('import \'package:auto_route/auto_route.dart\';');
+      codeLines.add('import \'package:auto_route/annotations.dart\';');
     }
     codeLines.add('import \'package:flutter/material.dart\';');
     codeLines.addNewLine();
@@ -246,6 +246,9 @@ class ScreenCodeContent {
 
     ///Add imports
     codeLines.add('import \'package:flutter/material.dart\';');
+    if (!isGoRouter) {
+      codeLines.add('import \'package:auto_route/annotations.dart\';');
+    }
     if (stateManagement == ScreenStateManager.bloc) {
       codeLines.add(
           'import \'package:$projectName/core/arch/bloc/base_block_state.dart\';');

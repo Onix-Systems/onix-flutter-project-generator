@@ -39,7 +39,7 @@ class _AppFilledButtonState extends State<AppFilledButton> {
 
   @override
   Widget build(BuildContext context) {
-    return FilledButton(
+    return ElevatedButton(
       focusNode: widget.focusNode,
       onHover: (value) {
         setState(() {
@@ -56,7 +56,7 @@ class _AppFilledButtonState extends State<AppFilledButton> {
         backgroundColor: widget.active
             ? hovered
                 ? _textColor()
-                : widget.color ?? AppColors.orange
+                : widget.color ?? AppColors.white
             : AppColors.inactiveText,
         foregroundColor: AppColors.orange,
         shape: RoundedRectangleBorder(

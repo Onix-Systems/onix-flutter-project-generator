@@ -1,17 +1,23 @@
-import 'package:onix_flutter_bricks/util/process_starter.dart';
+import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
+import 'package:onix_flutter_bricks/util/process_runner.dart';
 
 class RunProcessUseCase {
-  const RunProcessUseCase();
+  final OutputService _outputService;
+
+  const RunProcessUseCase(this._outputService);
+
   Future<int> call({
     required String workDir,
     required List<String> commands,
   }) async {
-    final process = await ProcessStarter.start(workingDirectory: workDir);
+    final processRunner = ProcessRunner(_outputService);
+    await processRunner.newProcess(workingDirectory: workDir);
 
     for (var command in commands) {
-      process.stdin.writeln(command);
+      processRunner.execCommand(command);
     }
-
-    return process.exitCode;
+    final exitCode = await processRunner.waitForExit();
+    processRunner.dispose();
+    return exitCode;
   }
 }

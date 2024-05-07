@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$OutputLine {
   String get line => throw _privateConstructorUsedError;
   Color get color => throw _privateConstructorUsedError;
-  String get tag => throw _privateConstructorUsedError;
+  OutputType get tag => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OutputLineCopyWith<OutputLine> get copyWith =>
@@ -31,7 +31,7 @@ abstract class $OutputLineCopyWith<$Res> {
           OutputLine value, $Res Function(OutputLine) then) =
       _$OutputLineCopyWithImpl<$Res, OutputLine>;
   @useResult
-  $Res call({String line, Color color, String tag});
+  $Res call({String line, Color color, OutputType tag});
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$OutputLineCopyWithImpl<$Res, $Val extends OutputLine>
       tag: null == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
-              as String,
+              as OutputType,
     ) as $Val);
   }
 }
@@ -76,7 +76,7 @@ abstract class _$$OutputLineImplCopyWith<$Res>
       __$$OutputLineImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String line, Color color, String tag});
+  $Res call({String line, Color color, OutputType tag});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class __$$OutputLineImplCopyWithImpl<$Res>
       tag: null == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
-              as String,
+              as OutputType,
     ));
   }
 }
@@ -122,7 +122,7 @@ class _$OutputLineImpl implements _OutputLine {
   @override
   final Color color;
   @override
-  final String tag;
+  final OutputType tag;
 
   @override
   String toString() {
@@ -153,14 +153,14 @@ abstract class _OutputLine implements OutputLine {
   const factory _OutputLine(
       {required final String line,
       required final Color color,
-      required final String tag}) = _$OutputLineImpl;
+      required final OutputType tag}) = _$OutputLineImpl;
 
   @override
   String get line;
   @override
   Color get color;
   @override
-  String get tag;
+  OutputType get tag;
   @override
   @JsonKey(ignore: true)
   _$$OutputLineImplCopyWith<_$OutputLineImpl> get copyWith =>

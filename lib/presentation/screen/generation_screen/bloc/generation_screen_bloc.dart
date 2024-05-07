@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,9 +20,10 @@ import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.d
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
+import 'package:onix_flutter_bricks/util/extension/config_file_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
+import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
-import 'package:recase/recase.dart';
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenState, GenerationScreenSR> {
@@ -80,7 +80,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     if (!state.config.projectExists) {
       ///get password for signing generation (Android)
-      String genPass = state.config.getSigningPassword();
+      String signingPassword = state.config.getSigningPassword();
 
       ///parse flavor string to Set<String>
       var flavors = state.config.getFlavorsAsSet();
@@ -93,25 +93,15 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       ///create a new configuration file
       configFile.createSync();
+      await configFile.saveJsonConfig(
+        config: state.config,
+        flavors: flavors.toList(),
+        signingPassword: signingPassword,
+      );
 
-      await configFile.writeAsString(jsonEncode({
-        'signing_password': genPass,
-        'project_name_dirt': state.config.projectName,
-        'project_org': state.config.organization,
-        'flavorizr': state.config.flavorize,
-        'flavors': flavors.toList(),
-        'navigation': state.config.router.name,
-        'localization': state.config.localization.name.snakeCase,
-        'use_keytool': state.config.generateSigningKey,
-        'use_sonar': state.config.useSonar,
-        'graphql': state.config.graphql,
-        'firebase_auth': state.config.firebaseAuth,
-        'platforms': state.config.platformsList.toString().replaceAll(' ', ''),
-        'theme_generate': state.config.theming.name == 'themeTailor',
-        'branch': state.config.branch,
-      }).toString());
-
-      _addOutputMessageUseCase(message: '{#info}Getting mason & brick...');
+      _addOutputMessageUseCase(
+        message: 'Getting mason & brick...'.toInfoMessage(),
+      );
 
       ///create brick archive file
       final brickZip = File('${state.config.projectPath}/brick.zip');
@@ -169,7 +159,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
             projectPath: state.config.projectPath,
             projectName: state.config.projectName,
             signingVars: state.config.signingVars,
-            genPass: genPass,
+            signingPassword: signingPassword,
           ),
         );
       }

@@ -32,8 +32,7 @@ class FreezedClassBuilder extends ClassBuilder {
   String build() {
     final importSuffix =
         _classNameSuffix.isNotEmpty ? '_${_classNameSuffix.snakeCase}' : '';
-    final classPartImport =
-        '${_className.snakeCase}$importSuffix';
+    final classPartImport = '${_className.snakeCase}$importSuffix';
     final classFullName =
         '${_className.pascalCase}${_classNameSuffix.pascalCase}';
     lines.add('import \'package:freezed_annotation/freezed_annotation.dart\';');
@@ -59,7 +58,6 @@ class FreezedClassBuilder extends ClassBuilder {
     if (_withJsonAnnotation) {
       lines.add(
           'factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);');
-
     }
     lines.add('}');
     lines.addNewLine();

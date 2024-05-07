@@ -6,7 +6,6 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/source
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
-
 class DiGenerator implements BaseGenerationService<bool> {
   final _importsKey = '//{imports end}';
   final _dioConstKey = '//{dio const end}';

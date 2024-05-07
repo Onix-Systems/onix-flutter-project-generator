@@ -1,7 +1,6 @@
 import 'package:onix_flutter_bricks/domain/entity/source/generated_method.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 
-
 class SourceGeneratorParams implements BaseGenerationParams {
   final String projectPath;
   final String projectName;

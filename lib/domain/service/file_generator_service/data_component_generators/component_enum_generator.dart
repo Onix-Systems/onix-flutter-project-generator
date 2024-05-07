@@ -16,6 +16,7 @@ class ComponentEnumGenerator implements BaseGenerationService<bool> {
     final name = params.dataComponent.name;
     final sourceName = params.dataComponent.sourceName;
     final codeLines = List<String>.empty(growable: true);
+
     ///Add content
     codeLines.add(
         'enum ${params.dataComponent.toString().replaceAll('default', '//default')};');

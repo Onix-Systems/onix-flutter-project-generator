@@ -31,16 +31,12 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
     SummaryScreenBloc, SummaryScreenSR, SummaryScreen> {
   @override
   Widget buildWidget(BuildContext context) {
-    return srObserver(
-      context: context,
-      child: CupertinoPageScaffold(
-        child: SizedBox.expand(
-          child: blocConsumer(
-            stateListener: (state) => _buildMainContainer(context, state),
-          ),
+    return CupertinoPageScaffold(
+      child: SizedBox.expand(
+        child: blocConsumer(
+          stateListener: (state) => _buildMainContainer(context, state),
         ),
       ),
-      onSR: _onSingleResult,
     );
   }
 
@@ -50,11 +46,6 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
     super.onBlocCreated(context, bloc);
   }
 
-  void _onSingleResult(BuildContext context, SummaryScreenSR singleResult) {
-    singleResult.when(
-      loadFinished: () {},
-    );
-  }
 
   Widget _buildMainContainer(
     BuildContext context,
@@ -196,7 +187,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                   iconLeft: false,
                   onPressed: () => context.go(AppRouter.generationScreen,
                       extra: state.config),
-                  color: CupertinoColors.destructiveRed,
+                 // color: CupertinoColors.destructiveRed,
                 ),
               ],
             )

@@ -4,7 +4,8 @@ import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
-import 'package:onix_flutter_bricks/util/process_starter.dart';
+import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
+import 'package:onix_flutter_bricks/util/process_runner.dart';
 
 ///This class Generates Android keystore with given credentials and fix Gradle signing configuration
 class SigningGenerator implements BaseGenerationService<bool> {
@@ -17,24 +18,28 @@ class SigningGenerator implements BaseGenerationService<bool> {
     if (params is! SingingGeneratorParams) {
       return false;
     }
-    _outputService.add('{info}Keystore password: ${params.genPass}');
+    _outputService
+        .add('Keystore password: ${params.signingPassword}'.toInfoMessage());
 
     final workDirectory =
         '${params.projectPath}/${params.projectName}/android/app/signing';
 
     ///Run generate Keystore process
-    var signingProcess =
-        await ProcessStarter.start(workingDirectory: workDirectory);
-    signingProcess.stdin.writeln(
-        'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass ${params.genPass} -storepass ${params.genPass} -dname "CN=${params.signingVars[0]}, OU=${params.signingVars[1]}, O=${params.signingVars[2]}, L=${params.signingVars[3]}, S=${params.signingVars[4]}, C=${params.signingVars[5]}"');
-
-    await signingProcess.exitCode;
+    final processRunner = ProcessRunner(_outputService);
+    await processRunner.newProcess(workingDirectory: workDirectory);
+    processRunner.execCommand(
+        'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass ${params.signingPassword} -storepass ${params.signingPassword} -dname "CN=${params.signingVars[0]}, OU=${params.signingVars[1]}, O=${params.signingVars[2]}, L=${params.signingVars[3]}, S=${params.signingVars[4]}, C=${params.signingVars[5]}"');
+    await processRunner.waitForExit();
+    processRunner.dispose();
 
     File signingFile = File('$workDirectory/signing.properties');
     String signingFileContent = await signingFile.readAsString();
 
     await signingFile.writeAsString(
-      signingFileContent.replaceAll('{signing_password}', params.genPass),
+      signingFileContent.replaceAll(
+        '{signing_password}',
+        params.signingPassword,
+      ),
     );
 
     ///Open gradle file

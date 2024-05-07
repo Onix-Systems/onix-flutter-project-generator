@@ -47,7 +47,7 @@ void registerUseCases(GetIt getIt) {
       ),
     )
     ..registerLazySingleton<RunProcessUseCase>(
-      () => const RunProcessUseCase(),
+      () => RunProcessUseCase(GetIt.I.get<OutputService>()),
     )
     ..registerLazySingleton<RunOsaScriptProcessUseCase>(
       () => RunOsaScriptProcessUseCase(
@@ -73,7 +73,7 @@ void registerUseCases(GetIt getIt) {
       ),
     )
     ..registerLazySingleton<GetGenerationOutputStream>(
-      () =>  GetGenerationOutputStream(
+      () => GetGenerationOutputStream(
         GetIt.I.get<OutputService>(),
       ),
     );

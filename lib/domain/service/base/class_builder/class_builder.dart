@@ -6,6 +6,3 @@ class ClassBuilder {
 
   String build() => lines.join('\n');
 }
-
-
-

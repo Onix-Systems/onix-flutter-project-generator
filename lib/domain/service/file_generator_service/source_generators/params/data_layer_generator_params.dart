@@ -7,8 +7,8 @@ class DataLayerGeneratorParams implements BaseGenerationParams {
   final Source source;
 
   DataLayerGeneratorParams({
-    required this. projectName,
-    required this. projectPath,
-    required this. source,
+    required this.projectName,
+    required this.projectPath,
+    required this.source,
   });
 }
