@@ -14,7 +14,8 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_c
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/params/data_component_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/signing_generator.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/generate_source.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/data_layer_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/data_layer_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/styles_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:recase/recase.dart';
@@ -25,6 +26,7 @@ class FileGeneratorService {
 
   final BaseGenerationService<bool> _screenGenerator = ScreenGenerator();
   final BaseGenerationService<bool> _stylesGenerator = StylesGenerator();
+  final BaseGenerationService<bool> _dataLayerGenerator = DataLayerGenerator();
   final BaseGenerationService<bool> _componentEnumGenerator =
       ComponentEnumGenerator();
   late BaseGenerationService<bool> _signingGenerator;
@@ -52,10 +54,12 @@ class FileGeneratorService {
     required String projectPath,
     required Source source,
   }) async =>
-      GenerateSource().call(
-        projectName: projectName,
-        projectPath: projectPath,
-        source: source,
+      _dataLayerGenerator.generate(
+        DataLayerGeneratorParams(
+          projectName: projectName,
+          projectPath: projectPath,
+          source: source,
+        ),
       );
 
   Future<void> generateComponent({

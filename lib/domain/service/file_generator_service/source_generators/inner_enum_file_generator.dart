@@ -1,26 +1,34 @@
 import 'dart:io';
 
-import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
+import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/inner_enum_generator_params.dart';
 import 'package:recase/recase.dart';
 
-class InnerEnumFileGenerator {
-  static Future<void> call({
-    required DataComponent innerEnum,
-    required String projectName,
-    required String projectPath,
-    required String sourceName,
-  }) async {
+class InnerEnumFileGenerator implements BaseGenerationService<bool> {
+  @override
+  Future<bool> generate(BaseGenerationParams params) async {
+    if (params is! InnerEnumGeneratorParams) {
+      return false;
+    }
+    final projectFolder = '${params.projectPath}/$params.projectName';
     final path = await Directory(
-            '$projectPath/$projectName/lib/data/model/remote/${sourceName.snakeCase}/enums')
+            '$projectFolder/lib/data/model/remote/${params.sourceName.snakeCase}/enums')
         .create(recursive: true);
 
-    var file =
-        await File('${path.path}/${innerEnum.name.snakeCase}.dart').create();
+    final file =
+        await File('${path.path}/${params.innerEnum.name.snakeCase}.dart')
+            .create();
 
-    final fileContent = '''enum ${innerEnum.name.pascalCase}{
-      ${innerEnum.properties.map((e) => e.name).join(',\n')}
-    }''';
+    final codeLines = List<String>.empty(growable: true);
+    codeLines.add('enum ${params.innerEnum.name.pascalCase}{');
+    final properties = params.innerEnum.properties.map((e) => e.name);
+    codeLines.addAll(properties);
+    codeLines.add('}');
 
-    await file.writeAsString(fileContent);
+    final code = codeLines.join('\n');
+
+    await file.writeAsString(code);
+    return true;
   }
 }

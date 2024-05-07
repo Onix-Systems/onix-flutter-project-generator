@@ -1,35 +1,44 @@
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/method.dart';
-import 'package:onix_flutter_bricks/domain/entity/source/path.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
+import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/inner_enum_file_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/inner_enum_generator_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/method_generator_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/params_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params_file_generator.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 
-class MethodGenerator {
-  static Future<String> call({
-    required Method method,
-    required Path path,
-    required String pathPrefix,
-    required Set<String> imports,
-    required String projectName,
-    required String projectPath,
-    required Source source,
-  }) async {
+class MethodGenerator implements BaseGenerationService<String> {
+  final _responseSuffix = 'Response';
+  final _requestSuffix = 'Request';
+
+  final _innerEnumGenerator = InnerEnumFileGenerator();
+  final _paramsFileGenerator = ParamsFileGenerator();
+
+  @override
+  Future<String> generate(BaseGenerationParams params) async {
+    if (params is! MethodGeneratorParams) {
+      return '';
+    }
     final responseIsEnum = dataComponentRepository.isEnum(
-        dataComponentName: method.responseEntityName.stripRequestResponse());
+      dataComponentName:
+          params.method.responseEntityName.stripRequestResponse(),
+    );
+    final method = params.method;
 
     final responseEntityName =
-        method.responseEntityName.endsWith('Response') || responseIsEnum
+        method.responseEntityName.endsWith(_responseSuffix) || responseIsEnum
             ? method.responseEntityName
-            : '${method.responseEntityName}Response';
+            : '${method.responseEntityName}$_responseSuffix';
 
     final requestEntityName =
-        method.requestEntityName.endsWith('Request') || responseIsEnum
+        method.requestEntityName.endsWith(_requestSuffix) || responseIsEnum
             ? method.requestEntityName
-            : '${method.requestEntityName}Request';
+            : '${method.requestEntityName}$_requestSuffix';
 
     if (method.responseEntityName.isNotEmpty) {
       final sourceName = dataComponentRepository
@@ -40,11 +49,11 @@ class MethodGenerator {
           '';
 
       if (responseIsEnum) {
-        imports.add(
-            "import 'package:$projectName/domain/entity/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${method.responseEntityName.snakeCase}.dart';");
+        params.imports.add(
+            "import 'package:${params.projectName}/domain/entity/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${method.responseEntityName.snakeCase}.dart';");
       } else {
-        imports.add(
-            "import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${responseEntityName.snakeCase}.dart';");
+        params.imports.add(
+            "import 'package:${params.projectName}/data/model/remote/${sourceName.snakeCase}/${method.responseEntityName.stripRequestResponse().snakeCase}/${responseEntityName.snakeCase}.dart';");
       }
     }
 
@@ -55,19 +64,24 @@ class MethodGenerator {
               ?.sourceName ??
           '';
 
-      if (!(method.innerEnums.isNotEmpty &&
-          !method.innerEnums
-              .any((element) => element.name == method.requestEntityName))) {
-        imports.add(
-            "import 'package:$projectName/data/model/remote/${sourceName.snakeCase}/${method.requestEntityName.stripRequestResponse().snakeCase}/${requestEntityName.snakeCase}.dart';");
+      final innerEnumNameEquals = method.innerEnums.any(
+        (element) => element.name == method.requestEntityName,
+      );
+      if (!(method.innerEnums.isNotEmpty && !innerEnumNameEquals)) {
+        params.imports.add(
+            "import 'package:${params.projectName}/data/model/remote/${sourceName.snakeCase}/${method.requestEntityName.stripRequestResponse().snakeCase}/${requestEntityName.snakeCase}.dart';");
       }
     }
 
-    final methodParamsNotRequired =
-        _generateMethodImports(method, imports, projectName, projectPath);
+    final methodParamsNotRequired = _generateMethodImports(
+      method,
+      params.imports,
+      params.projectName,
+      params.projectPath,
+    );
 
     final methodRequestBodyPart = method.requestEntityName.isNotEmpty
-        ? 'required ${method.requestEntityName.endsWith('Request') ? method.requestEntityName : '${method.requestEntityName}Request'} ${method.requestEntityName.camelCase}'
+        ? 'required ${method.requestEntityName.endsWith(_requestSuffix) ? method.requestEntityName : '${method.requestEntityName}$_requestSuffix'} ${method.requestEntityName.camelCase}'
         : '';
 
     final methodRequestParamsPart = method.params.isNotEmpty
@@ -81,7 +95,7 @@ class MethodGenerator {
         '$methodRequestBodyPart${methodRequestBodyPart.isNotEmpty ? ', ' : ''}$methodRequestParamsPart${methodRequestParamsPart.isNotEmpty ? ', ' : ''}';
 
     final methodName =
-        '${method.methodType.name}${_parsePathMethod(path.path, pathPrefix, source)}';
+        '${method.methodType.name}${_parsePathMethod(params.path.path, params.pathPrefix, params.source)}';
 
     methodParams =
         '{$methodParams${methodParamsNotRequired.isNotEmpty ? '${methodName.pascalCase}Params? params,' : ''}}';
@@ -91,29 +105,35 @@ class MethodGenerator {
     String generatedMethod =
         'Future<${method.responseEntityName.isNotEmpty ? 'DataResponse<$responseEntityName>' : method.responseRuntimeType.isNotEmpty ? 'DataResponse<${method.responseRuntimeType}>' : 'DataResponse<OperationStatus>'}> $methodName($methodParams);';
 
+    ///Generate not required params
     if (methodParamsNotRequired.isNotEmpty) {
-      imports.add(
-          "import 'package:$projectName/data/source/remote/${source.name.snakeCase}/params/${methodName.snakeCase}_params.dart';");
-      await ParamsFileGenerator.call(
-        methodName: methodName,
-        methodParamsNotRequired: methodParamsNotRequired,
-        projectName: projectName,
-        projectPath: projectPath,
-        sourceName: source.name,
-        innerEnums: method.innerEnums,
+      params.imports.add(
+          "import 'package:${params.projectName}/data/source/remote/${params.source.name.snakeCase}/params/${methodName.snakeCase}_params.dart';");
+      await _paramsFileGenerator.generate(
+        ParamsGeneratorParams(
+          methodName: methodName,
+          methodParamsNotRequired: methodParamsNotRequired,
+          projectName: params.projectName,
+          projectPath: params.projectPath,
+          sourceName: params.source.name,
+          innerEnums: method.innerEnums,
+        ),
       );
     }
 
+    ///Generate Enums
     if (method.innerEnums.isNotEmpty) {
       for (final innerEnum in method.innerEnums) {
-        imports.add(
-            "import 'package:$projectName/data/model/remote/${source.name.snakeCase}/enums/${innerEnum.name.snakeCase}.dart';");
+        params.imports.add(
+            'import \'package:${params.projectName}/data/model/remote/${params.source.name.snakeCase}/enums/${innerEnum.name.snakeCase}.dart\';');
 
-        await InnerEnumFileGenerator.call(
-          innerEnum: innerEnum,
-          projectName: projectName,
-          projectPath: projectPath,
-          sourceName: source.name,
+        await _innerEnumGenerator.generate(
+          InnerEnumGeneratorParams(
+            innerEnum: innerEnum,
+            projectName: params.projectName,
+            projectPath: params.projectPath,
+            sourceName: params.source.name,
+          ),
         );
       }
     }

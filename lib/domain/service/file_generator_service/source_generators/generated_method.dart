@@ -24,11 +24,11 @@ class GeneratedMethod {
     required this.sourceMethod,
     required this.responseEntityName,
     required this.requestEntityName,
-    this.responseRuntimeType = '',
     required this.requiredParams,
     required this.optionalParams,
     required this.queryParams,
     required this.pathParams,
+    this.responseRuntimeType = '',
     this.innerEnums = const [],
   });
 
