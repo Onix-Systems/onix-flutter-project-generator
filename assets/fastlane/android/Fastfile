@@ -1,7 +1,8 @@
-YAML_PATH = "../../fastlane_config.yaml" # An important note. Default path to configuration
+require 'yaml'
 
+YAML_PATH = "../../fastlane_config.yaml" # An important note. Default path to configuration
 $yaml_vars = {}
-selected_flavor = ""
+$selected_flavor = ""
 
 default_platform(:android)
 
