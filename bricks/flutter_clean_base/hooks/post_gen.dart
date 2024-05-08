@@ -482,6 +482,23 @@ android {'''));
 
       </application>'''));
   }
+
+  if (context.vars['platforms'].contains('ios')) {
+    File iosGitIgnoreFile = File('$name/ios/.gitignore');
+
+    if (!iosGitIgnoreFile.existsSync()) return;
+    String iosGitignoreContent = await globalGitIgnoreFile.readAsString();
+
+    await globalGitIgnoreFile.writeAsStringSync(
+      iosGitignoreContent +
+          '''
+          
+Runner.app.dSYM.zip
+Runner.ipa
+    
+    ''',
+    );
+  }
 }
 
 Future<void> removeFirebase(HookContext context) async {
