@@ -166,7 +166,7 @@ Now you can build and distribute the build using the Makefile command:
 > Make sure when submitting a build to the Play Store android artifact type is "aab"
 > Make sure when submitting a build to the Firebase App Distribution android artifact type is "apk" (if you have not set up firebase integration with your Google Play project)
 
-For more flexible build or distribution settings, you can change the parameters specified in **fastlane_config.yaml**
+For more flexible build or distribution settings, you can change the parameters specified in `fastlane_config.yaml`
 
 ## Possible build errors
 
