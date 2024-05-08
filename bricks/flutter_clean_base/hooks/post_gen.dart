@@ -484,12 +484,12 @@ android {'''));
   }
 
   if (context.vars['platforms'].contains('ios')) {
-    File iosGitIgnoreFile = File('$name/ios/.gitignore');
+    final iosGitIgnoreFile = File('$name/ios/.gitignore');
 
     if (!iosGitIgnoreFile.existsSync()) return;
-    String iosGitignoreContent = await globalGitIgnoreFile.readAsString();
+    String iosGitignoreContent = await iosGitIgnoreFile.readAsString();
 
-    await globalGitIgnoreFile.writeAsStringSync(
+    iosGitIgnoreFile.writeAsStringSync(
       iosGitignoreContent +
           '''
           
