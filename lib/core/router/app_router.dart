@@ -132,7 +132,7 @@ class AppRouter {
           path: _generationScreen,
           name: 'GenerationScreen',
           builder: (context, state) => GenerationScreen(
-            config: state.extra as Config,
+            extra: state.extra as GenerationScreenExtra,
           ),
         ),
         GoRoute(

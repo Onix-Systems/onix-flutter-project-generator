@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bricks/app/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
@@ -34,6 +35,7 @@ void registerBloc(GetIt getIt) {
         GetIt.I.get<AddOutputMessageUseCase>(),
         GetIt.I.get<RunProcessUseCase>(),
         GetIt.I.get<RunOsaScriptProcessUseCase>(),
+        GetIt.I.get<GenerateFastlaneFilesUseCase>(),
       ),
     )
     ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)
