@@ -184,8 +184,12 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                   label: S.of(context).generateProject,
                   icon: Icons.local_fire_department,
                   iconLeft: false,
-                  onPressed: () => context.go(AppRouter.generationScreen,
-                      extra: state.config),
+                  onPressed: () => context.go(
+                    AppRouter.generationScreen,
+                    extra: GenerationScreenExtra(
+                      config: state.config,
+                    ),
+                  ),
                 ),
               ],
             )
