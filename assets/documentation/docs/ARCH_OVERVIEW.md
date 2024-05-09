@@ -2,7 +2,7 @@
 
 {app_name} project code built on Clean based hybrid Architecture (I'll just call it Clean architecture for simplicity's sake).  
 
-The main concept of regular [Clean Architecture](http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) is codes splitted to layers, where every low-level layer knows nothing about up layers, separation of business logic from UI, not depending on frameworks or libraries, etc.
+The main concept of regular [Clean Architecture](http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) is codes split to layers, where every low-level layer knows nothing about up layers, separation of business logic from UI, not depending on frameworks or libraries, etc.
 
 The architecture we used in {app_name} project is very similar to the regular Clean architecture, but it has its own values, which is why we call it Clean based quasi-architecture.
 

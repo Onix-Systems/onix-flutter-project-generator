@@ -96,16 +96,16 @@ class DocsService implements BaseGenerationService<String> {
           .replaceAll(_platformPackageNames, packages.join('\n'));
       return output;
     } else if (doc == DocumentType.installInstructions) {
-      final flavorslines = List<String>.empty(growable: true);
+      final flavorsLines = List<String>.empty(growable: true);
       if (params.flavorize) {
-        flavorslines.add(flavorsTitle);
-        flavorslines.addNewLine();
-        flavorslines.add('```');
-        flavorslines.add(params.flavors.join('\n'));
-        flavorslines.add('```');
-        flavorslines.addNewLine();
+        flavorsLines.add(flavorsTitle);
+        flavorsLines.addNewLine();
+        flavorsLines.add('```');
+        flavorsLines.add(params.flavors.join('\n'));
+        flavorsLines.add('```');
+        flavorsLines.addNewLine();
       }
-      final flavors = flavorslines.join('\n');
+      final flavors = flavorsLines.join('\n');
       final platforms = params.platforms.map((e) => '* $e').join('\n');
       final commands = params.commands.join('\n');
       final mainFiles =
