@@ -21,7 +21,7 @@ abstract final class FastlaneGenerateMakefile {
         flavorsIsNotEmpty: flavors.isNotEmpty,
         flavor: flavor,
         onCreate: (buildFlavor, mainDart, lineName, env) {
-          final lineFlavor = flavors.isNotEmpty ? ' flavor:$flavor ' : '';
+          final lineFlavor = flavors.isNotEmpty ? 'flavor:$flavor ' : '';
 
           contents
             ..add('build_android${lineName}apk:')
@@ -44,7 +44,7 @@ abstract final class FastlaneGenerateMakefile {
             ..add(
                 '\t@echo "Distributing"')
             ..add(
-              '\t@cd android && bundle exec fastlane build${lineFlavor}firebase:true artifact_type:apk $env',
+              '\t@cd android && bundle exec fastlane build ${lineFlavor}firebase:true artifact_type:apk $env',
             )
             ..addNewLine()
             ..add(
@@ -52,7 +52,7 @@ abstract final class FastlaneGenerateMakefile {
             )
             ..add('\t@echo "Distributing"')
             ..add(
-              '\t@cd android && bundle exec fastlane build${lineFlavor}firebase:true artifact_type:aab $env',
+              '\t@cd android && bundle exec fastlane build ${lineFlavor}firebase:true artifact_type:aab $env',
             )
             ..addNewLine();
         },
@@ -79,7 +79,7 @@ abstract final class FastlaneGenerateMakefile {
         flavorsIsNotEmpty: flavors.isNotEmpty,
         flavor: flavor,
         onCreate: (buildFlavor, mainDart, lineName, env) {
-          final lineFlavor = flavors.isNotEmpty ? ' flavor:$flavor ' : '';
+          final lineFlavor = flavors.isNotEmpty ? 'flavor:$flavor ' : '';
 
           contents
             ..add('build${lineName}ios:')
@@ -90,7 +90,7 @@ abstract final class FastlaneGenerateMakefile {
               '\t@echo "Build and distribute iOS to the TestFlight and Firebase App Distribution"',
             )
             ..add(
-              '\t@cd ios && bundle exec fastlane build${lineFlavor}firebase:true test_flight:true $env',
+              '\t@cd ios && bundle exec fastlane build ${lineFlavor}firebase:true test_flight:true $env',
             )
             ..addNewLine()
             ..add('build_ios${lineName}firebase_only: build${lineName}ios')
@@ -98,7 +98,7 @@ abstract final class FastlaneGenerateMakefile {
               '\t@echo "Build and distribute iOS to the Firebase App Distribution"',
             )
             ..add(
-              '\t@cd ios && bundle exec fastlane build${lineFlavor}firebase:true $env',
+              '\t@cd ios && bundle exec fastlane build ${lineFlavor}firebase:true $env',
             )
             ..addNewLine()
             ..add(
