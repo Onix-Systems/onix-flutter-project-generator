@@ -4,9 +4,11 @@ import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/domain/repository/source_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/docs_service.dart';
 import 'package:onix_flutter_bricks/domain/service/figma_service/figma_service.dart';
+import 'package:onix_flutter_bricks/domain/service/fastlane_service/fastlane_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
@@ -75,6 +77,10 @@ void registerUseCases(GetIt getIt) {
     ..registerLazySingleton<GetGenerationOutputStream>(
       () => GetGenerationOutputStream(
         GetIt.I.get<OutputService>(),
+    ..registerLazySingleton<GenerateFastlaneFilesUseCase>(
+      () => GenerateFastlaneFilesUseCase(
+        outputService: getIt.get<OutputService>(),
+        fastlaneService: getIt.get<FastlaneService>(),
       ),
     );
 }

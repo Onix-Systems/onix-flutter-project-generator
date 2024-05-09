@@ -1,0 +1,156 @@
+require 'yaml'
+
+YAML_PATH = "../../fastlane_config.yaml" # An important note. Default path to configuration
+$yaml_vars = {}
+$selected_flavor = ""
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build iOS"
+  lane :build do |options|
+    flavor = options[:flavor]
+    firebase = options[:firebase]
+    test_flight = options[:test_flight]
+
+    load_fastlane_vars(flavor)
+    create_archive
+    upload_to_firebase_if_possible(firebase)
+    upload_to_test_flight_if_possible(test_flight)
+  end
+
+  def load_fastlane_vars(flavor)
+   $yaml_vars = YAML.load_file(YAML_PATH)
+   $selected_flavor = flavor == nil ? $yaml_vars['default_scheme'] : flavor
+  end
+
+  def get_app_store_connect_api_key
+   key_content = "-----BEGIN PRIVATE KEY-----\n#{ENV['KEY_CONTENT']}\n-----END PRIVATE KEY-----"
+   api_key = app_store_connect_api_key(
+             key_id: ENV['KEY_ID'],
+             issuer_id: ENV['ISSUER_ID'],
+             key_content: key_content,
+             duration: 1200,
+             in_house: false,
+             )
+    return api_key
+  end
+
+  def create_archive
+   settings = create_build_settings_for
+      if settings['manual_codesign']
+          build_manual_codesign(settings)
+      else
+          build_automatic_codesign(settings)
+      end
+  end
+
+  def build_manual_codesign(settings)
+    disable_automatic_code_signing(path: "#{settings['target_name']}.xcodeproj")
+    build_app(
+        workspace: settings['workspace'],
+        scheme: settings['scheme_name'],
+        export_method: settings['export_method'],
+        export_options: {
+            provisioningProfiles: {
+                settings['provisioning_profile']['bundle_id'] => settings['provisioning_profile']['name'],
+            },
+            manageAppVersionAndBuildNumber: false,
+        },
+    )
+  end
+
+  def build_automatic_codesign(settings)
+    enable_automatic_code_signing(path: "#{settings['target_name']}.xcodeproj")
+    build_app(
+        workspace: settings['workspace'],
+        scheme: settings['scheme_name'],
+        export_method: settings['export_method'],
+        xcargs: '-allowProvisioningUpdates',
+        export_options: {
+           manageAppVersionAndBuildNumber: false,
+        },
+    )
+  end
+
+  def create_build_settings_for
+    platform_scheme = $yaml_vars['schemes']
+
+    if platform_scheme == nil || platform_scheme['ios'] == nil
+        UI.user_error!("You must define all the settings for the build build before calling fastlane. Make sure everything is configured in fastlane_config_yaml schemes")
+    end
+
+    ios_scheme = platform_scheme['ios']
+    flavor_scheme = ios_scheme.find { |scheme| scheme['name'] == $selected_flavor }
+
+    if flavor_scheme == nil
+        UI.user_error!("You must define all the settings for the build build before calling fastlane. Make sure everything is configured in fastlane_config_yaml schemes")
+    end
+
+    build_settings = {
+        "workspace" => flavor_scheme['workspace'],
+        "scheme_name" => flavor_scheme['scheme_name'],
+        "target_name" => flavor_scheme['target_name'],
+        "export_method" => flavor_scheme['export_method'],
+        "release_notes_file" => flavor_scheme['release_notes_file'],
+        "manual_codesign" => flavor_scheme['manual_codesign'],
+        "distribute_to_test_flight" => flavor_scheme['distribute_to_test_flight'],
+        "distribute_to_firebase" => flavor_scheme['distribute_to_firebase'],
+        "provisioning_profile" => { "bundle_id" => flavor_scheme['provisioning_profile']['bundle_id'],
+                                     "name" => flavor_scheme['provisioning_profile']['name']
+                                  }
+      }
+
+    return build_settings
+  end
+
+  def upload_to_test_flight_if_possible(distribute_to_test_flight)
+    if distribute_to_test_flight == nil && !distribute_to_test_flight
+        return
+    end
+
+    api_key = get_app_store_connect_api_key
+    upload_to_testflight(
+        api_key: api_key,
+        submit_beta_review: false,
+    )
+  end
+
+  def upload_to_firebase_if_possible(upload_to_firebase)
+    if upload_to_firebase == nil || !upload_to_firebase
+        return
+    end
+
+    firebase = $yaml_vars['firebase']
+
+    if firebase == nil || firebase['ios'] == nil
+        UI.user_error!("distribute_to_firebase is specified, but the configuration is incomplete. Check fastlane_config firebase ios")
+        return
+    end
+
+    firebase_flavor = firebase['ios'].find { |scheme| scheme['name'] == $selected_flavor }
+
+    if firebase_flavor == nil
+        UI.user_error!("distribute_to_firebase is specified, but the configuration is incomplete. Check fastlane_config firebase ios #{$selected_flavor}")
+        return
+    end
+
+    firebase_distribution = {
+        "release_notes_file" => firebase_flavor['release_notes_file'],
+        "testers" => firebase_flavor['testers'],
+        "groups" => firebase_flavor['groups'],
+    }
+
+    if ENV['FIREBASE_APP_ID'] == nil
+        UI.user_error!("Using firebase app distribution you must specify a valid FIREBASE_APP_ID in the '.env.flavor_name' file located in the fastlane directory.")
+        return
+    end
+
+    firebase_app_distribution(
+        app: ENV['FIREBASE_APP_ID'],
+        release_notes_file: firebase_distribution['release_notes_file'],
+        testers: firebase_distribution['testers'],
+        groups: firebase_distribution['groups'],
+    )
+  end
+end

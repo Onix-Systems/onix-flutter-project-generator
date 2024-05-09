@@ -12,7 +12,15 @@ class GenerateDocumentationUseCase {
     this._docsGeneratorService,
   );
 
-  Future<void> call({required DocsGenerationParams params}) async {
+
+  Future<void> call({required DocsGenerationParams params, required bool isModify,}) async {
+  if (isModify) {
+      _outputService.add(
+        'Documentation generation omitted because of the project modification'..toInfoMessage(),
+      );
+
+      return;
+    }
     _outputService.add(
       'Start documentation generation...'.toInfoMessage(),
     );

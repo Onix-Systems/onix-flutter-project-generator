@@ -1,3 +1,7 @@
-extension CodeLineExtension on List<String> {
+
+extension CodeLineExtension on List<String>{
+
   void addNewLine() => add('');
+
 }
+

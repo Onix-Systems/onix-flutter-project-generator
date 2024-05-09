@@ -2,14 +2,17 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/styles_generator_params.dart';
+import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastlane_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/generate_styles.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
@@ -24,6 +27,9 @@ import 'package:onix_flutter_bricks/util/extension/config_file_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
+import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
+import 'package:onix_flutter_bricks/util/flavors_util.dart';
+import 'package:recase/recase.dart';
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenState, GenerationScreenSR> {
@@ -33,6 +39,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   final GenerateScreensUseCase _generateScreensUseCase;
   final GenerateDataComponentsUseCase _generateDataComponentsUseCase;
   final GenerateStylesUseCase _generateStylesUseCase;
+  final GenerateFastlaneFilesUseCase _generateFastlaneFilesUseCase;
 
   ///process runners
   final RunProcessUseCase _runProcessUseCase;
@@ -52,6 +59,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     this._generateSigningConfigUseCase,
     this._generateStylesUseCase,
     this._getGenerationOutputStream,
+    this._generateFastlaneFilesUseCase,
   ) : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
@@ -67,6 +75,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       state.copyWith(
         config: event.config,
         outputStream: outputStream,
+        isModify: event.isModify,
       ),
     );
     add(const GenerationScreenEventGenerateProject());
@@ -203,6 +212,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     ///generate project documentation
     await _generateDocumentation();
 
+    await _generateFastlane();
+
     ///save project configuration
     await state.config.saveConfig(
         projectPath: '${state.config.projectPath}/${state.config.projectName}');
@@ -226,8 +237,10 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   }
 
   ///when user tap on "Open Android Studio"
-  FutureOr<void> _openProject(GenerationScreenEventOpenProject event,
-      Emitter<GenerationScreenState> emit) async {
+  FutureOr<void> _openProject(
+    GenerationScreenEventOpenProject event,
+    Emitter<GenerationScreenState> emit,
+  ) async {
     await _runProcessUseCase(
       workDir: '${state.config.projectPath}/${state.config.projectName}',
       commands: [Commands.getOpenAndroidStudioCommand()],
@@ -236,21 +249,38 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
   ///generating project base documentation files
   Future<void> _generateDocumentation() async {
-    final Set<String> allFlavors = {};
-    if (state.config.flavorize) {
-      final customFlavors = state.config.flavors.flavorStringToSet();
-      allFlavors.addAll(AppConsts.defaultFlavors);
-      allFlavors.addAll(customFlavors);
-    }
     final params = DocsGenerationParams(
       projectName: state.config.projectName,
       projectPath: state.config.projectPath,
       organization: state.config.organization,
-      flavors: allFlavors,
+      flavorize: state.config.flavorize,
+      flavors: FlavorsUtil.joinFlavors(
+        flavorize: state.config.flavorize,
+        selectedFlavors: state.config.flavors,
+      ),
       platforms: state.config.platformsList.asList(),
       commands: state.config.platformsList.asPlatformCommandsList(),
     );
 
-    await _generateDocumentationUseCase(params: params);
+    await _generateDocumentationUseCase(
+      params: params,
+      isModify: state.isModify,
+    );
+  }
+
+  /// Generating project fastlane files
+  Future<void> _generateFastlane() async {
+    final params = FastlaneGenerationParams(
+      projectName: state.config.projectName,
+      projectPath: state.config.projectPath,
+      organization: state.config.organization,
+      flavors: FlavorsUtil.joinFlavors(
+        flavorize: state.config.flavorize,
+        selectedFlavors: state.config.flavors,
+      ),
+      platforms: state.config.platformsList.asList(),
+    );
+
+    await _generateFastlaneFilesUseCase(params, isModify: state.isModify);
   }
 }

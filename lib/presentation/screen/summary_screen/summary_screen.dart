@@ -8,6 +8,7 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/presentation/screen/generation_screen/generation_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summary_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_cell.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_styles_cell.dart';
@@ -99,8 +100,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                     if (state.config.flavorize)
                       SummaryCell(
                         variable: S.of(context).flavors,
-                        value:
-                            '${AppConsts.defaultFlavors.join(', ')} ${state.config.flavors.split(' ').join(', ')}',
+                        value: _getFlavors(state.config.flavors),
                       ),
                     SummaryCell(
                       variable: S.of(context).generateSigningKey,
@@ -186,7 +186,6 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                   iconLeft: false,
                   onPressed: () => context.go(AppRouter.generationScreen,
                       extra: state.config),
-                  // color: CupertinoColors.destructiveRed,
                 ),
               ],
             )
@@ -194,5 +193,15 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
         ),
       ),
     );
+  }
+
+  String _getFlavors(String flavors) {
+    var allFlavors = AppConsts.defaultFlavors.join(', ');
+
+    if (flavors.isNotEmpty) {
+      allFlavors += ', ${flavors.split(' ').join(', ')}';
+    }
+
+    return allFlavors;
   }
 }
