@@ -77,6 +77,8 @@ void registerUseCases(GetIt getIt) {
     ..registerLazySingleton<GetGenerationOutputStream>(
       () => GetGenerationOutputStream(
         GetIt.I.get<OutputService>(),
+      ),
+    )
     ..registerLazySingleton<GenerateFastlaneFilesUseCase>(
       () => GenerateFastlaneFilesUseCase(
         outputService: getIt.get<OutputService>(),

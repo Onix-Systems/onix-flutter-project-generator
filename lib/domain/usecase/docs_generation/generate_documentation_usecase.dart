@@ -24,14 +24,14 @@ class GenerateDocumentationUseCase {
     _outputService.add(
       'Start documentation generation...'.toInfoMessage(),
     );
-    final succeed = await _docsGeneratorService.generate(params);
-    if (succeed) {
+    final result = await _docsGeneratorService.generate(params);
+    if (result.isEmpty) {
       _outputService.add(
         'Documentation generated!'.toInfoMessage(),
       );
     } else {
       _outputService.add(
-        'Documentation generation completed with errors!'.toErrorMessage(),
+        'Documentation generation completed with errors! Error: $result'.toErrorMessage(),
       );
     }
   }

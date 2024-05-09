@@ -648,19 +648,31 @@ mixin _$GenerationScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-
+    required TResult Function(
+            Config config,
+            bool isModify,
+            GeneratingState generatingState,
+            Stream<List<OutputLine>>? outputStream)
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-
+    TResult? Function(
+            Config config,
+            bool isModify,
+            GeneratingState generatingState,
+            Stream<List<OutputLine>>? outputStream)?
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-
+    TResult Function(
+            Config config,
+            bool isModify,
+            GeneratingState generatingState,
+            Stream<List<OutputLine>>? outputStream)?
         data,
     required TResult orElse(),
   }) =>
@@ -693,7 +705,11 @@ abstract class $GenerationScreenStateCopyWith<$Res> {
           $Res Function(GenerationScreenState) then) =
       _$GenerationScreenStateCopyWithImpl<$Res, GenerationScreenState>;
   @useResult
-
+  $Res call(
+      {Config config,
+      bool isModify,
+      GeneratingState generatingState,
+      Stream<List<OutputLine>>? outputStream});
 
   $ConfigCopyWith<$Res> get config;
 }
@@ -755,7 +771,11 @@ abstract class _$$GenerationScreenStateDataImplCopyWith<$Res>
       __$$GenerationScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-
+  $Res call(
+      {Config config,
+      bool isModify,
+      GeneratingState generatingState,
+      Stream<List<OutputLine>>? outputStream});
 
   @override
   $ConfigCopyWith<$Res> get config;
@@ -805,6 +825,9 @@ class __$$GenerationScreenStateDataImplCopyWithImpl<$Res>
 class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
   const _$GenerationScreenStateDataImpl(
       {required this.config,
+      this.isModify = false,
+      this.generatingState = GeneratingState.init,
+      this.outputStream});
 
   @override
   final Config config;
@@ -819,7 +842,7 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
 
   @override
   String toString() {
-
+    return 'GenerationScreenState.data(config: $config, isModify: $isModify, generatingState: $generatingState, outputStream: $outputStream)';
   }
 
   @override
@@ -838,7 +861,7 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
 
   @override
   int get hashCode =>
-
+      Object.hash(runtimeType, config, isModify, generatingState, outputStream);
 
   @JsonKey(ignore: true)
   @override
@@ -850,24 +873,42 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-
+    required TResult Function(
+            Config config,
+            bool isModify,
+            GeneratingState generatingState,
+            Stream<List<OutputLine>>? outputStream)
+        data,
+  }) {
+    return data(config, isModify, generatingState, outputStream);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-
+    TResult? Function(
+            Config config,
+            bool isModify,
+            GeneratingState generatingState,
+            Stream<List<OutputLine>>? outputStream)?
+        data,
+  }) {
+    return data?.call(config, isModify, generatingState, outputStream);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-
+    TResult Function(
+            Config config,
+            bool isModify,
+            GeneratingState generatingState,
+            Stream<List<OutputLine>>? outputStream)?
         data,
     required TResult orElse(),
   }) {
     if (data != null) {
-
+      return data(config, isModify, generatingState, outputStream);
     }
     return orElse();
   }
@@ -903,7 +944,11 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
 
 abstract class GenerationScreenStateData implements GenerationScreenState {
   const factory GenerationScreenStateData(
-
+          {required final Config config,
+          final bool isModify,
+          final GeneratingState generatingState,
+          final Stream<List<OutputLine>>? outputStream}) =
+      _$GenerationScreenStateDataImpl;
 
   @override
   Config get config;
