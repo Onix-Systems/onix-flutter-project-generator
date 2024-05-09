@@ -14,12 +14,12 @@ abstract final class FastlaneMakefileUtil {
     required FastlaneMakefileParams onCreate,
   }) {
     final lineName = flavorsIsNotEmpty ? '_${flavor}_' : '_';
-    final flavorParam = flavorsIsNotEmpty ? '--flavor $flavor' : '';
+    final buildFlavor = flavorsIsNotEmpty ? '--flavor $flavor' : '';
     final mainDart = flavorsIsNotEmpty
         ? '-t ${AppConsts.mainDartPath}main_$flavor.dart'
         : '';
     final envParam = flavorsIsNotEmpty ? '--env $flavor' : '';
 
-    onCreate(flavorParam, mainDart, lineName, envParam);
+    onCreate(buildFlavor, mainDart, lineName, envParam);
   }
 }
