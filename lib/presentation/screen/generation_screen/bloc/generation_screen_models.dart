@@ -7,6 +7,7 @@ part 'generation_screen_models.freezed.dart';
 class GenerationScreenEvent with _$GenerationScreenEvent {
   const factory GenerationScreenEvent.init({
     required Config config,
+    required bool isModify,
   }) = GenerationScreenEventInit;
 
   const factory GenerationScreenEvent.generateProject() =
@@ -24,6 +25,7 @@ class GenerationScreenSR with _$GenerationScreenSR {
 class GenerationScreenState with _$GenerationScreenState {
   const factory GenerationScreenState.data({
     required Config config,
+    @Default(false) bool isModify,
     @Default(GeneratingState.init) GeneratingState generatingState,
   }) = GenerationScreenStateData;
 }

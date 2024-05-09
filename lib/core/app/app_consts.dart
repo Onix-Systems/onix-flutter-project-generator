@@ -1,4 +1,4 @@
-final class AppConsts {
+abstract final class AppConsts {
   static const String releaseUri =
       'https://github.com/Onix-Systems/onix-flutter-project-generator/releases';
 
@@ -16,4 +16,6 @@ final class AppConsts {
   static const String figmaStylesValidChars = signingKeyPassChars;
 
   static const Set<String> defaultFlavors = {'dev', 'prod'};
+
+  static const String mainDartPath = 'lib/core/flavors/';
 }

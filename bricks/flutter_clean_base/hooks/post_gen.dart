@@ -452,6 +452,7 @@ coverage/
         '''
       
 /app/signing/signing.properties
+/fastlane/.env*
       ''');
 
     File androidBuildGradleFile = File('$name/android/app/build.gradle');
@@ -481,6 +482,25 @@ android {'''));
             android:value="\${googleMapsApiKey}" />-->
 
       </application>'''));
+  }
+
+  if (context.vars['platforms'].contains('ios')) {
+    final iosGitIgnoreFile = File('$name/ios/.gitignore');
+
+    if (!iosGitIgnoreFile.existsSync()) return;
+    String iosGitignoreContent = await iosGitIgnoreFile.readAsString();
+
+    iosGitIgnoreFile.writeAsStringSync(
+      iosGitignoreContent +
+          '''
+          
+Runner.app.dSYM.zip
+Runner.ipa
+
+/fastlane/.env*
+    
+    ''',
+    );
   }
 }
 

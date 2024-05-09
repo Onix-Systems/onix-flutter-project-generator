@@ -32,7 +32,9 @@ class ModifyProjectScreenSR with _$ModifyProjectScreenSR {
     required Config config,
   }) = _LoadFinished;
 
-  const factory ModifyProjectScreenSR.onGenerate() = _OnGenerate;
+  const factory ModifyProjectScreenSR.onGenerate({
+    required Config config,
+  }) = _OnGenerate;
 
   const factory ModifyProjectScreenSR.onError({
     required String message,

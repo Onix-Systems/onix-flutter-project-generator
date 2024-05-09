@@ -9,10 +9,10 @@ import 'package:onix_flutter_bricks/domain/service/output_service/colored_line.d
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 
 class GenerationScreen extends StatefulWidget {
-  final Config config;
+  final GenerationScreenExtra extra;
 
   const GenerationScreen({
-    required this.config,
+    required this.extra,
     super.key,
   });
 
@@ -39,7 +39,12 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
 
   @override
   void onBlocCreated(BuildContext context, GenerationScreenBloc bloc) {
-    bloc.add(GenerationScreenEvent.init(config: widget.config));
+    bloc.add(
+      GenerationScreenEvent.init(
+        config: widget.extra.config,
+        isModify: widget.extra.isModify,
+      ),
+    );
     super.onBlocCreated(context, bloc);
   }
 
@@ -144,4 +149,14 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
       ),
     );
   }
+}
+
+class GenerationScreenExtra {
+  final bool isModify;
+  final Config config;
+
+  const GenerationScreenExtra({
+    required this.config,
+    this.isModify = false,
+  });
 }

@@ -7,6 +7,7 @@ import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/data_components_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/figma_styles_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/generation_screen/generation_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_screen.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -63,16 +64,23 @@ class _ModifyProjectScreenState extends BaseState<
     singleResult.when(
       loadFinished: (_) {},
       onRefresh: () {},
-      onGenerate: () => context.go(AppRouter.generationScreen,
-          extra: blocOf(context).state.config),
+      onGenerate: (config) => context.go(
+        AppRouter.generationScreen,
+        extra: GenerationScreenExtra(
+          config: config,
+          isModify: true,
+        ),
+      ),
       onError: (error) => Dialogs.showOkDialog(
         context: context,
         isError: true,
         title: S.of(context).error,
-        content: Text(error,
-            style: context.appTextStyles.fs18?.copyWith(
-              fontSize: 16,
-            )),
+        content: Text(
+          error,
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
+          ),
+        ),
       ),
     );
   }
@@ -124,16 +132,17 @@ class _ModifyProjectScreenState extends BaseState<
     );
   }
 
-  _onGenerate(BuildContext context) {
+  void _onGenerate(BuildContext context) {
     blocOf(context).add(
       const ModifyProjectScreenEventOnGenerate(),
     );
   }
 
-  _getTab(
-      {required int tabIndex,
-      required BuildContext context,
-      required ModifyProjectScreenState state}) {
+  Widget _getTab({
+    required int tabIndex,
+    required BuildContext context,
+    required ModifyProjectScreenState state,
+  }) {
     switch (tabIndex) {
       case 0:
         return ScreensScreen(
