@@ -88,14 +88,12 @@ class _FigmaStylesDialogState extends BaseState<FigmaStylesDialogState,
                             ),
                           ),
                         ),
-                        SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) => Text(
-                              dataState.textStyles[index].name.sentenceCase,
-                              style: dataState.textStyles[index].getFontStyle(),
-                            ),
-                            childCount: dataState.textStyles.length,
+                        SliverList.builder(
+                          itemBuilder: (context, index) => Text(
+                            dataState.textStyles[index].name.sentenceCase,
+                            style: dataState.textStyles[index].getFontStyle(),
                           ),
+                          itemCount: dataState.textStyles.length,
                         ),
                         const SliverToBoxAdapter(
                           child: Delimiter.height(20),
