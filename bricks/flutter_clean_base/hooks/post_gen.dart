@@ -452,6 +452,7 @@ coverage/
         '''
       
 /app/signing/signing.properties
+/fastlane/.env*
       ''');
 
     File androidBuildGradleFile = File('$name/android/app/build.gradle');
@@ -495,6 +496,8 @@ android {'''));
           
 Runner.app.dSYM.zip
 Runner.ipa
+
+/fastlane/.env*
     
     ''',
     );
