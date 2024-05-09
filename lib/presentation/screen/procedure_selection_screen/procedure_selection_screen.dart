@@ -81,108 +81,114 @@ class _ProcedureSelectionScreenState extends BaseState<
     return CupertinoPageScaffold(
       child: Stack(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Material(
-                color: Colors.transparent,
-                child: SizedBox(
-                  width: 120,
-                  child: CupertinoSegmentedControl<String>(
-                    padding: EdgeInsets.zero,
-                    groupValue: state.language,
-                    selectedColor: AppColors.orange,
-                    unselectedColor: AppColors.bgDark,
-                    borderColor: AppColors.orange,
-                    children: _mapValues(context),
-                    onValueChanged: (value) {
-                      blocOf(context).add(
-                        ProcedureSelectionScreenEventOnLocaleChange(
-                            language: value),
-                      );
-                    },
-                  ),
-                ),
-              ),
-              const Delimiter.height(40),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: AppFilledButton(
-                      label: S.of(context).generateNewProject,
-                      big: true,
-                      onPressed: () {
-                        getDirectoryPath().then(
-                          (value) {
-                            if (value != null) {
-                              blocOf(context).add(
-                                  ProcedureSelectionScreenEventOnNewProject(
-                                projectPath: value,
-                              ));
-                            } else {
-                              Dialogs.showOkDialog(
-                                context: context,
-                                isError: true,
-                                title: S.of(context).pathNotSelectedTitle,
-                                content: Text(
-                                    S.of(context).pathNotSelectedContent,
-                                    style: context.appTextStyles.fs18?.copyWith(
-                                      fontSize: 16,
-                                    )),
-                                onOk: () {},
-                              );
-                            }
-                          },
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Material(
+                  color: Colors.transparent,
+                  child: SizedBox(
+                    width: 120,
+                    child: CupertinoSegmentedControl<String>(
+                      padding: EdgeInsets.zero,
+                      groupValue: state.language,
+                      selectedColor: AppColors.white,
+                      unselectedColor: AppColors.bgDark,
+                      borderColor: AppColors.white,
+                      children: _mapValues(context),
+                      onValueChanged: (value) {
+                        blocOf(context).add(
+                          ProcedureSelectionScreenEventOnLocaleChange(
+                              language: value),
                         );
                       },
-                      icon: Icons.create_new_folder_outlined,
                     ),
                   ),
-                  if (state.config.projectExists &&
-                      state.config.projectName.isNotEmpty)
+                ),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: AppFilledButton(
-                        label: S
-                            .of(context)
-                            .modifyGeneratedProject(state.config.projectName),
+                        label: S.of(context).generateNewProject,
                         big: true,
                         onPressed: () {
-                          blocOf(context)
-                              .add(ProcedureSelectionScreenEventOnProjectOpen(
-                            projectURI:
-                                '${state.config.projectPath}/${state.config.projectName}',
-                          ));
+                          getDirectoryPath().then(
+                            (value) {
+                              if (value != null) {
+                                blocOf(context).add(
+                                    ProcedureSelectionScreenEventOnNewProject(
+                                  projectPath: value,
+                                ));
+                              } else {
+                                Dialogs.showOkDialog(
+                                  context: context,
+                                  isError: true,
+                                  title: S.of(context).pathNotSelectedTitle,
+                                  content: Text(
+                                      S.of(context).pathNotSelectedContent,
+                                      style:
+                                          context.appTextStyles.fs18?.copyWith(
+                                        fontSize: 16,
+                                      )),
+                                  onOk: () {},
+                                );
+                              }
+                            },
+                          );
                         },
                         icon: Icons.create_new_folder_outlined,
                       ),
                     ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: AppFilledButton(
-                      label: S.of(context).openExistingProject,
-                      big: true,
-                      onPressed: () {
-                        getDirectoryPath().then(
-                          (value) {
-                            if (value != null) {
-                              blocOf(context).add(
-                                  ProcedureSelectionScreenEventOnProjectOpen(
-                                projectURI: value,
-                              ));
-                            }
+                    if (state.config.projectExists &&
+                        state.config.projectName.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: AppFilledButton(
+                          label: S
+                              .of(context)
+                              .modifyGeneratedProject(state.config.projectName),
+                          big: true,
+                          onPressed: () {
+                            blocOf(context)
+                                .add(ProcedureSelectionScreenEventOnProjectOpen(
+                              projectURI:
+                                  '${state.config.projectPath}/${state.config.projectName}',
+                            ));
                           },
-                        );
-                      },
-                      icon: Icons.folder_open_outlined,
+                          icon: Icons.create_new_folder_outlined,
+                        ),
+                      ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: AppFilledButton(
+                        label: S.of(context).openExistingProject,
+                        big: true,
+                        onPressed: () {
+                          getDirectoryPath().then(
+                            (value) {
+                              if (value != null) {
+                                blocOf(context).add(
+                                    ProcedureSelectionScreenEventOnProjectOpen(
+                                  projectURI: value,
+                                ));
+                              }
+                            },
+                          );
+                        },
+                        icon: Icons.folder_open_outlined,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+                const Spacer(),
+              ],
+            ),
           ),
           Positioned(
             right: 10,
@@ -209,7 +215,7 @@ class _ProcedureSelectionScreenState extends BaseState<
         in S.delegate.supportedLocales.map((e) => e.languageCode)) {
       result.addAll({
         value: Text(
-          value,
+          value.toUpperCase(),
           style: context.appTextStyles.fs18?.copyWith(
             color: blocOf(context).state.language == value
                 ? CupertinoColors.black

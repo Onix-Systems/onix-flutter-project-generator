@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
@@ -34,6 +35,7 @@ class AppFilledButton extends StatefulWidget {
 }
 
 class _AppFilledButtonState extends State<AppFilledButton> {
+  final Color _defaultColor = AppColors.white;
   bool hovered = false;
   bool focused = false;
 
@@ -56,20 +58,20 @@ class _AppFilledButtonState extends State<AppFilledButton> {
         backgroundColor: widget.active
             ? hovered
                 ? _textColor()
-                : widget.color ?? AppColors.white
+                : widget.color ?? _defaultColor
             : AppColors.inactiveText,
-        foregroundColor: AppColors.orange,
+        foregroundColor: _defaultColor,
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(5),
             side: focused
                 ? BorderSide(
-                    color: AppColors.white.withOpacity(0.7),
+                    color: _defaultColor.withOpacity(0.7),
                     width: 2,
                   )
                 : BorderSide.none),
         padding: widget.padding ??
             const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        minimumSize: widget.minimumSize ?? const Size(100, 60),
+        minimumSize: widget.minimumSize ?? const Size(100, 50),
       ),
       child: widget.big
           ? Column(
@@ -77,15 +79,15 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                 if (widget.icon != null)
                   Icon(
                     widget.icon,
-                    size: 100,
+                    size: 75,
                     color: hovered
-                        ? widget.color ?? AppColors.orange
+                        ? widget.color ?? _defaultColor
                         : _textColor(),
                   ),
                 Text(widget.label,
                     style: context.appTextStyles.fs18?.copyWith(
                       color: hovered
-                          ? widget.color ?? AppColors.orange
+                          ? widget.color ?? _defaultColor
                           : _textColor(),
                     )),
               ],
@@ -98,7 +100,7 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                     widget.icon,
                     size: 25,
                     color: hovered
-                        ? widget.color ?? AppColors.orange
+                        ? widget.color ?? _defaultColor
                         : _textColor(),
                   ),
                   const Delimiter.width(10),
@@ -106,7 +108,7 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                 Text(widget.label,
                     style: context.appTextStyles.fs18?.copyWith(
                       color: hovered
-                          ? widget.color ?? AppColors.orange
+                          ? widget.color ??_defaultColor
                           : _textColor(),
                     )),
                 if (widget.icon != null && !widget.iconLeft) ...[
@@ -115,7 +117,7 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                     widget.icon,
                     size: 25,
                     color: hovered
-                        ? widget.color ?? AppColors.orange
+                        ? widget.color ?? _defaultColor
                         : _textColor(),
                   ),
                 ],

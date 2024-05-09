@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
@@ -58,12 +59,12 @@ class TextFieldWithLabel extends StatelessWidget {
           )
         else
           SizedBox(
-            width: 130,
+            width: 150,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  label,
+                  '$label: ',
                   maxLines: 1,
                   style: context.appTextStyles.fs18,
                 ),
@@ -83,8 +84,8 @@ class TextFieldWithLabel extends StatelessWidget {
               focusNode: focusNode,
               autofocus: autofocus ?? false,
               style: TextStyle(
-                  color:
-                      error ? CupertinoColors.destructiveRed : AppColors.white),
+                color: error ? CupertinoColors.destructiveRed : AppColors.white,
+              ),
               controller: textController,
               keyboardType: TextInputType.text,
               inputFormatters: inputFormatters,
@@ -99,8 +100,8 @@ class TextFieldWithLabel extends StatelessWidget {
               focusNode: focusNode,
               autofocus: autofocus ?? false,
               style: context.appTextStyles.fs18?.copyWith(
-                  color:
-                      error ? CupertinoColors.destructiveRed : AppColors.white),
+                color: error ? CupertinoColors.destructiveRed : AppColors.white,
+              ),
               controller: textController,
               keyboardType: TextInputType.text,
               inputFormatters: inputFormatters,
