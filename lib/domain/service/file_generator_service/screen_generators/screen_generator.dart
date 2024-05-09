@@ -129,6 +129,7 @@ class ScreenGenerator implements BaseGenerationService<bool> {
 
         break;
       case ScreenStateManager.none:
+
         ///Write screen without state management
         final screenContent = _screenCodeContent.createNoStateManagementScreen(
           isGoRouter: params.router == ProjectRouter.goRouter,

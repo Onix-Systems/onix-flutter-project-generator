@@ -80,9 +80,8 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                   Icon(
                     widget.icon,
                     size: 75,
-                    color: hovered
-                        ? widget.color ?? _defaultColor
-                        : _textColor(),
+                    color:
+                        hovered ? widget.color ?? _defaultColor : _textColor(),
                   ),
                 Text(widget.label,
                     style: context.appTextStyles.fs18?.copyWith(
@@ -99,16 +98,15 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                   Icon(
                     widget.icon,
                     size: 25,
-                    color: hovered
-                        ? widget.color ?? _defaultColor
-                        : _textColor(),
+                    color:
+                        hovered ? widget.color ?? _defaultColor : _textColor(),
                   ),
                   const Delimiter.width(10),
                 ],
                 Text(widget.label,
                     style: context.appTextStyles.fs18?.copyWith(
                       color: hovered
-                          ? widget.color ??_defaultColor
+                          ? widget.color ?? _defaultColor
                           : _textColor(),
                     )),
                 if (widget.icon != null && !widget.iconLeft) ...[
@@ -116,9 +114,8 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                   Icon(
                     widget.icon,
                     size: 25,
-                    color: hovered
-                        ? widget.color ?? _defaultColor
-                        : _textColor(),
+                    color:
+                        hovered ? widget.color ?? _defaultColor : _textColor(),
                   ),
                 ],
               ],

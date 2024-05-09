@@ -147,16 +147,16 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
           child: (state.branches.isEmpty || !kDebugMode)
               ? const SizedBox.shrink()
               : BranchSelectorWidget(
-            branches: state.branches,
-            selectedBranch: state.config.branch,
-            onSelected: (newBranch) {
-              blocOf(context).add(
-                ProjectNameScreenEvent.branchChanged(
-                  newBranch: newBranch,
+                  branches: state.branches,
+                  selectedBranch: state.config.branch,
+                  onSelected: (newBranch) {
+                    blocOf(context).add(
+                      ProjectNameScreenEvent.branchChanged(
+                        newBranch: newBranch,
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
         )
       ],
     );

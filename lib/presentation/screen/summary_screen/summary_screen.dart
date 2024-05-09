@@ -46,7 +46,6 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
     super.onBlocCreated(context, bloc);
   }
 
-
   Widget _buildMainContainer(
     BuildContext context,
     SummaryScreenState state,
@@ -187,7 +186,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                   iconLeft: false,
                   onPressed: () => context.go(AppRouter.generationScreen,
                       extra: state.config),
-                 // color: CupertinoColors.destructiveRed,
+                  // color: CupertinoColors.destructiveRed,
                 ),
               ],
             )
