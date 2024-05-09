@@ -6,10 +6,13 @@ import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/enum/document_type.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
+import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
 import 'package:recase/recase.dart';
 
-class DocsService implements BaseGenerationService<bool> {
+class DocsService implements BaseGenerationService<String> {
+  final flavorsTitle =
+      '* **Flavor** - type of application configuration. Flavored 2 supports following flavors:';
   final _appNamePattern = '{app_name}';
   final _flavorsPattern = '{app_flavors}';
   final _platformsPattern = '{app_platforms}';
@@ -21,9 +24,9 @@ class DocsService implements BaseGenerationService<bool> {
   final _platformPackageNames = '{platform_package_names}';
 
   @override
-  Future<bool> generate(BaseGenerationParams params) async {
+  Future<String> generate(BaseGenerationParams params) async {
     if (params is! DocsGenerationParams) {
-      return false;
+      return 'Incorrect params';
     }
     try {
       final projectPath = '${params.projectPath}/${params.projectName}';
@@ -40,10 +43,10 @@ class DocsService implements BaseGenerationService<bool> {
           params,
         );
       }
-      return true;
+      return '';
     } catch (e, trace) {
       logger.e(e, stackTrace: trace);
-      return false;
+      return e.toString();
     }
   }
 
@@ -93,7 +96,16 @@ class DocsService implements BaseGenerationService<bool> {
           .replaceAll(_platformPackageNames, packages.join('\n'));
       return output;
     } else if (doc == DocumentType.installInstructions) {
-      final flavors = params.flavors.join('\n');
+      final flavorslines = List<String>.empty(growable: true);
+      if (params.flavorize) {
+        flavorslines.add(flavorsTitle);
+        flavorslines.addNewLine();
+        flavorslines.add('```');
+        flavorslines.add(params.flavors.join('\n'));
+        flavorslines.add('```');
+        flavorslines.addNewLine();
+      }
+      final flavors = flavorslines.join('\n');
       final platforms = params.platforms.map((e) => '* $e').join('\n');
       final commands = params.commands.join('\n');
       final mainFiles =
@@ -112,6 +124,9 @@ class DocsService implements BaseGenerationService<bool> {
           .replaceAll(_envFilesPattern, flavors.isNotEmpty ? envFiles : '.env')
           .replaceAll(_envExplanationPattern, envExplanation)
           .replaceAll(_mainCountDescription, mainCountDescription);
+      if (!params.flavorize) {
+        return output.replaceAll(' --flavor {flavor}', '');
+      }
       return output;
     }
 

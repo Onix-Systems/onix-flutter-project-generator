@@ -1,0 +1,2 @@
+json_key_file(ENV['JSON_KEY_FILE']) # Relative path to google_service_account.json
+package_name(ENV['PACKAGE_NAME']) # The application id of your app
