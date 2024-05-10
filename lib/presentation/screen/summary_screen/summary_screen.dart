@@ -188,7 +188,9 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                   iconLeft: false,
                   onPressed: () => context.go(
                     AppRouter.generationScreen,
-                    extra: state.config,
+                    extra: GenerationScreenExtra(
+                      config: state.config,
+                    ),
                   ),
                 ),
               ],
