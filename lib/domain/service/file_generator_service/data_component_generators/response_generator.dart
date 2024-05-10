@@ -50,7 +50,7 @@ class ResponseGenerator implements BaseGenerationService<bool> {
     var file = File('${path.path}/${name.snakeCase}_response.dart');
 
     if (!await file.exists()) {
-      file.create();
+      await file.create();
       await file.writeAsString(fileContent);
     }
     return true;

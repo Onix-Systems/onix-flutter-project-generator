@@ -126,14 +126,13 @@ class ScreenCodeContent {
     codeLines.addNewLine();
     codeLines.add(
         'class $className extends Base$stateManagementSuffix<$eventName$stateName, $srName> {');
-    final defaultStatePrefix =
-        stateManagement == ScreenStateManager.bloc ? '' : 'const ';
-    codeLines.add('$className() : super($defaultStatePrefix$stateName()) {');
     if (stateManagement == ScreenStateManager.bloc) {
+      codeLines.add('$className() : super($stateName()) {');
       codeLines.add('on<${screenName.pascalCase}ScreenEventInit>(_onInit);');
       codeLines.add('add(const ${screenName.pascalCase}ScreenEvent.init());');
+      codeLines.add('}');
     }
-    codeLines.add('}');
+
     codeLines.addNewLine();
     codeLines.add('FutureOr<void> $initFunctionName (');
     if (stateManagement == ScreenStateManager.bloc) {
