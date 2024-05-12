@@ -33,7 +33,7 @@ class _OutputConsoleState extends State<OutputConsole> {
             ),
           );
         }
-        return const Text('');
+        return const SizedBox.shrink();
       },
     );
   }

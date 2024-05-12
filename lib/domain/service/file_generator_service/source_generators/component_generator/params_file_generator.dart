@@ -86,6 +86,6 @@ class ParamsFileGenerator implements BaseGenerationService<bool> {
             .create();
 
     await file.writeAsString(fileContent);
-    return false;
+    return true;
   }
 }

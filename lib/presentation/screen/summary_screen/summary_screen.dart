@@ -175,10 +175,13 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppFilledButton(
-                    label: S.of(context).goBack,
-                    icon: Icons.arrow_back_ios_outlined,
-                    onPressed: () => context.go(AppRouter.dataComponentsScreen,
-                        extra: state.config)),
+                  label: S.of(context).goBack,
+                  icon: Icons.arrow_back_ios_outlined,
+                  onPressed: () => context.go(
+                    AppRouter.dataComponentsScreen,
+                    extra: state.config,
+                  ),
+                ),
                 const Delimiter.width(10),
                 AppFilledButton(
                   label: S.of(context).generateProject,
