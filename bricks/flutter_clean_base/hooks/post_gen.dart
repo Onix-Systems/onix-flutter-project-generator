@@ -390,25 +390,25 @@ Future<void> injectFlavors(HookContext context) async {
     lines.add('  app:');
     lines.add('    android:');
     lines.add('      flavorDimensions: "flavor-type"');
-    lines.addNewLine();
+    lines.add('');
     lines.add('  flavors:');
-    for (flavor in flavors) {
+    for (String flavor in flavors) {
       final flavorPrefix = flavor.toLoweCase() == 'prod' ? '' : '.$flavor';
       lines.add('    $flavor:');
       lines.add('      app:');
       lines.add('        name: "$name $flavor"');
-      lines.addNewLine();
+      lines.add('');
       lines.add('      android:');
       lines.add('        applicationId: "$org.$name$flavorPrefix"');
       lines.add(
           '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
-      lines.addNewLine();
+      lines.add('');
       lines.add('      ios:');
       lines.add('        bundleId: "$org.$name$flavorPrefix"');
       lines.add(
           '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
-      lines.addNewLine();
-      lines.addNewLine();
+      lines.add('');
+      lines.add('');
     }
     final flavorLines = lines.join('\n');
     final flavorContent = pubspecFileContent.replaceAll(
