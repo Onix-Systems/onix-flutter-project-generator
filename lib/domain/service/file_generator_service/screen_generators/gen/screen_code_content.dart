@@ -17,11 +17,11 @@ class ScreenCodeContent {
     required ScreenStateManager stateManagement,
   }) {
     String output = input;
-    output
+    output = output
         .replaceFirst(_navigatorImportsSuffix,
-            'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_${stateManagement.name}.dart\';$_navigatorImportsSuffix')
+            'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_${stateManagement.name}.dart\';\n$_navigatorImportsSuffix')
         .replaceFirst(_diBlocSuffix,
-            'getIt.registerFactory<${screenName.pascalCase}Screen${stateManagement.name.pascalCase}>(${screenName.pascalCase}Screen${stateManagement.name.pascalCase}.new);$_diBlocSuffix');
+            'getIt.registerFactory<${screenName.pascalCase}Screen${stateManagement.name.pascalCase}>(${screenName.pascalCase}Screen${stateManagement.name.pascalCase}.new);\n$_diBlocSuffix');
     return output;
   }
 
@@ -91,8 +91,8 @@ class ScreenCodeContent {
   }) {
     final screenClassImport = screenName.snakeCase;
     final codeLines = List<String>.empty(growable: true);
-    codeLines
-        .add('export \'${screenClassImport}_screen_${stateManagement.name}.dart\';');
+    codeLines.add(
+        'export \'${screenClassImport}_screen_${stateManagement.name}.dart\';');
     codeLines.add('export \'${screenClassImport}_screen_models.dart\';');
     codeLines.addNewLine();
     return codeLines.join('\n');
@@ -131,9 +131,11 @@ class ScreenCodeContent {
         'class $className extends Base$stateManagementSuffix<$eventName$stateName, $srName> {');
 
     final defaultStatePrefix =
-    stateManagement == ScreenStateManager.bloc ? '' : 'const ';
-    final constructorSuffix =  stateManagement == ScreenStateManager.bloc ? ' {' : ';';
-    codeLines.add('$className() : super($defaultStatePrefix$stateName())$constructorSuffix');
+        stateManagement == ScreenStateManager.bloc ? '' : 'const ';
+    final constructorSuffix =
+        stateManagement == ScreenStateManager.bloc ? ' {' : ';';
+    codeLines.add(
+        '$className() : super($defaultStatePrefix$stateName())$constructorSuffix');
     if (stateManagement == ScreenStateManager.bloc) {
       codeLines.add('on<${screenName.pascalCase}ScreenEventInit>(_onInit);');
       codeLines.add('add(const ${screenName.pascalCase}ScreenEvent.init());');
