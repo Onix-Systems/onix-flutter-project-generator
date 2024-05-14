@@ -391,7 +391,7 @@ Future<void> injectFlavors(HookContext context) async {
     lines.add('    android:');
     lines.add('      flavorDimensions: "flavor-type"');
     lines.addNewLine();
-    lines.add('  flavors:')
+    lines.add('  flavors:');
     for (flavor in flavors) {
       final flavorPrefix = flavor.toLoweCase() == 'prod' ? '' : '.$flavor';
       lines.add('    $flavor:');
