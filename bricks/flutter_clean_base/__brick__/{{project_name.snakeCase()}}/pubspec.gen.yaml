@@ -50,27 +50,7 @@ flutter:
     # For details regarding fonts from package dependencies,
     # see https://flutter.dev/custom-fonts/#from-packages
 
-{{#flavorizr}}
-flavorizr:
-  app:
-    android:
-      flavorDimensions: "flavor-type"
-
-  flavors:
-    {{#flavors}}
-    {{#lowerCase}}{{.}}{{/lowerCase}}:
-      app:
-        name: "{{project_name}} {{.}}"
-
-      android:
-        applicationId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
-        icon: "flavor_assets/{{.}}/launcher_icons/ic_launcher.png"
-
-      ios:
-        bundleId: "{{project_org}}.{{project_name}}.{{#lowerCase}}{{.}}{{/lowerCase}}"
-        icon: "flavor_assets/{{.}}/launcher_icons/ic_launcher.png"
-      {{/flavors}}
-      {{/flavorizr}}
+{flavorizer_injection_config}
 
 {{^flavorizr}}
 flutter_launcher_icons:

@@ -6,9 +6,12 @@ import 'dart:math';
 import 'package:recase/recase.dart';
 
 late String name;
+const flavorizrInjectKey = '{flavorizer_injection_config}'
 
 void run(HookContext context) async {
-  name = context.vars['project_name'].toString().toSnakeCase;
+  name = context.vars['project_name']
+      .toString()
+      .toSnakeCase;
 
   if (!context.vars['platforms'].contains('android')) {
     await Process.run('rm', ['-rf', '$name/android']);
@@ -96,7 +99,7 @@ void run(HookContext context) async {
   }
 
   var formatProcess =
-      await Process.run('flutter', ['format', '.'], workingDirectory: '$name');
+  await Process.run('flutter', ['format', '.'], workingDirectory: '$name');
 
   int formatCode = formatProcess.exitCode;
 
@@ -263,6 +266,7 @@ Future<void> getDependencies(HookContext context) async {
 
 Future<void> flavorize(HookContext context) async {
   'Flavorizing...'.log();
+
   await Directory('$name/flavor_assets').create(recursive: true);
 
   for (var flavor in context.vars['flavors']) {
@@ -272,7 +276,7 @@ Future<void> flavorize(HookContext context) async {
       case 'dev':
       case 'prod':
         File srcFile =
-            File('$name/assets/launcher_icons/ic_launcher_$flavor.png');
+        File('$name/assets/launcher_icons/ic_launcher_$flavor.png');
         await srcFile
             .copy('$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
         await srcFile.delete();
@@ -312,8 +316,8 @@ Future<void> flavorize(HookContext context) async {
 
     for (var flavor in context.vars['flavors']) {
       final makeFlavorFile =
-          await File('$name/.idea/runConfigurations/make-${flavor}.xml')
-              .create();
+      await File('$name/.idea/runConfigurations/make-${flavor}.xml')
+          .create();
 
       final makeContent = '''
 <component name="ProjectRunConfigurationManager">
@@ -370,6 +374,51 @@ $flavor:
   }
 }
 
+Future<void> injectFlavors(HookContext context) async {
+  ///START:Flavorizer config injection
+  final isFlavorized = context.vars['flavorizr'] as bool;
+  File pubspecFile = File('$name/pubspec.yaml');
+  if (!pubspecFile.existsSync()) return;
+  String pubspecFileContent = await pubspecFile.readAsString();
+  if (isFlavorized) {
+    final flavors = context.vars['flavors'] as List<String>;
+    final String org = context.vars['project_org'] as String;
+    final lines = List<String>.empty(growable: true);
+    lines.add('flavorizr:');
+    lines.add('  app:');
+    lines.add('    android:');
+    lines.add('      flavorDimensions: "flavor-type"');
+    lines.addNewLine();
+    lines.add('  flavors:')
+    for (flavor in flavors) {
+      final flavorPrefix = flavor.toLoweCase() == 'prod' ? '' : '.$flavor';
+      lines.add('    $flavor:');
+      lines.add('      app:');
+      lines.add('        name: "$name $flavor"');
+      lines.addNewLine();
+      lines.add('      android:');
+      lines.add('        applicationId: "$org.$name$flavorPrefix"');
+      lines.add(
+          '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
+      lines.addNewLine();
+      lines.add('      ios:');
+      lines.add('        bundleId: "$org.$name$flavorPrefix"');
+      lines.add(
+          '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
+      lines.addNewLine();
+      lines.addNewLine();
+    }
+    final flavorContent = lines.join('\n');
+    pubspecFile.writeAsStringSync('$pubspecFileContent\n$flavorContent');
+  } else {
+    final clearedContent = flavorizrInjectKey.replaceAll(
+        flavorizrInjectKey, '');
+    pubspecFile.writeAsStringSync(pubspecFileContent);
+  }
+
+  ///END:Flavorizer config injection
+}
+
 Future<void> correct(HookContext context) async {
   if (context.vars['platforms'].contains('android')) {
     File appBuildGradle = File('$name/android/app/build.gradle');
@@ -377,10 +426,10 @@ Future<void> correct(HookContext context) async {
 
     appBuildGradle.writeAsStringSync(appBuildGradleContent
         .replaceAll('compileSdkVersion flutter.compileSdkVersion',
-            'compileSdkVersion 34')
+        'compileSdkVersion 34')
         .replaceAll('minSdkVersion flutter.minSdkVersion', 'minSdkVersion 22')
         .replaceAll('targetSdkVersion flutter.targetSdkVersion',
-            'targetSdkVersion 34'));
+        'targetSdkVersion 34'));
   }
 
   if (context.vars['platforms'].contains('ios')) {
@@ -404,17 +453,17 @@ flutter_additional_ios_build_settings(target)
   <string>12.0</string>'''));
 
     File xcodeWorkspaceFile =
-        File('$name/ios/Runner.xcodeproj/project.pbxproj');
+    File('$name/ios/Runner.xcodeproj/project.pbxproj');
     List<String> xcodeWorkspaceFileContent =
-        await xcodeWorkspaceFile.readAsLines();
+    await xcodeWorkspaceFile.readAsLines();
 
     await xcodeWorkspaceFile.writeAsString(xcodeWorkspaceFileContent
         .map((line) {
-          if (line.contains('IPHONEOS_DEPLOYMENT_TARGET')) {
-            line = '${line.substring(0, line.indexOf('= '))}= 12.0;';
-          }
-          return line;
-        })
+      if (line.contains('IPHONEOS_DEPLOYMENT_TARGET')) {
+        line = '${line.substring(0, line.indexOf('= '))}= 12.0;';
+      }
+      return line;
+    })
         .toList()
         .toRawString);
   }
@@ -458,7 +507,7 @@ coverage/
     File androidBuildGradleFile = File('$name/android/app/build.gradle');
 
     String androidBuildGradleContent =
-        await androidBuildGradleFile.readAsString();
+    await androidBuildGradleFile.readAsString();
 
     androidBuildGradleFile.writeAsStringSync(
         androidBuildGradleContent.replaceFirst('android {', '''
@@ -469,7 +518,7 @@ coverage/
 android {'''));
 
     File androidManifestFile =
-        File('$name/android/app/src/main/AndroidManifest.xml');
+    File('$name/android/app/src/main/AndroidManifest.xml');
 
     String androidManifestContent = await androidManifestFile.readAsString();
 
