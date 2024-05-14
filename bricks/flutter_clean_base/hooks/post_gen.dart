@@ -393,7 +393,7 @@ Future<void> injectFlavors(HookContext context) async {
     lines.add('');
     lines.add('  flavors:');
     for (String flavor in flavors) {
-      final flavorPrefix = flavor.toLoweCase() == 'prod' ? '' : '.$flavor';
+      final flavorPrefix = flavor.toLowerCase() == 'prod' ? '' : '.$flavor';
       lines.add('    $flavor:');
       lines.add('      app:');
       lines.add('        name: "$name $flavor"');
