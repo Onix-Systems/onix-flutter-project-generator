@@ -55,6 +55,8 @@ If project contains flavors and need to regenerate icons for ech flavor run:
 
 `flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons*`
 
+{flavorizr_instructions}
+
 ## Deep links
 
 {app_name} has a deep link features, and here describe all deep links options are available in the application.
