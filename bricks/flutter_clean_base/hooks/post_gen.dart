@@ -393,18 +393,19 @@ Future<void> injectFlavors(HookContext context) async {
     lines.add('');
     lines.add('  flavors:');
     for (String flavor in flavors) {
-      final flavorPrefix = flavor.toLowerCase() == 'prod' ? '' : '.$flavor';
+      final packageSuffix = flavor.toLowerCase() == 'prod' ? '' : '.$flavor';
+      final nameSuffix = flavor.toLowerCase() == 'prod' ? '' : ' $flavor';
       lines.add('    $flavor:');
       lines.add('      app:');
-      lines.add('        name: "$name $flavor"');
+      lines.add('        name: "$name$nameSuffix"');
       lines.add('');
       lines.add('      android:');
-      lines.add('        applicationId: "$org.$name$flavorPrefix"');
+      lines.add('        applicationId: "$org.$name$packageSuffix"');
       lines.add(
           '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
       lines.add('');
       lines.add('      ios:');
-      lines.add('        bundleId: "$org.$name$flavorPrefix"');
+      lines.add('        bundleId: "$org.$name$packageSuffix"');
       lines.add(
           '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
       lines.add('');
