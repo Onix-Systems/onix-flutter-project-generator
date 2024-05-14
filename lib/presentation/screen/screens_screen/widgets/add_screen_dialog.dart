@@ -83,7 +83,7 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
               onSubmitted: (_) => _onOk(context),
               placeholder: S.of(context).screenName,
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
               ],
             ),
             const SizedBox(height: 15),
