@@ -6,7 +6,7 @@ import 'dart:math';
 import 'package:recase/recase.dart';
 
 late String name;
-const flavorizrInjectKey = '{flavorizer_injection_config}'
+const flavorizrInjectKey = '{flavorizer_injection_config}';
 
 void run(HookContext context) async {
   name = context.vars['project_name']
