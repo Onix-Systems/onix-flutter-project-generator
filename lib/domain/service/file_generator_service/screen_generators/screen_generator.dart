@@ -110,7 +110,7 @@ class ScreenGenerator implements BaseGenerationService<bool> {
         var modelsFile =
             await File('$screenPath/bloc/${screenName}_screen_models.dart')
                 .create();
-        final modelsContent = _screenCodeContent.creatBlocModels(
+        final modelsContent = _screenCodeContent.createBlocModels(
           screenName: screenName,
           stateManagement: params.screen.stateManager,
         );

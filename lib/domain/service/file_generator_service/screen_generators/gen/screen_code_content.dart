@@ -33,6 +33,7 @@ class ScreenCodeContent {
     required ProjectRouter router,
   }) {
     String output = input;
+    final screenClassImport = screenName.snakeCase;
 
     ///Declare initial route
     if (isInitialScreen) {
@@ -48,13 +49,13 @@ class ScreenCodeContent {
           .replaceAll(_navigatorRoutesSuffix,
               '${_buildGoRouteContent(screenName)}$_navigatorRoutesSuffix')
           .replaceAll(_navigatorImportsSuffix,
-              'import \'package:$projectName/presentation/screen/${screenName}_screen/${screenName}_screen.dart\';\n$_navigatorImportsSuffix');
+              'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart\';\n$_navigatorImportsSuffix');
     } else {
       output
           .replaceAll(_navigatorRoutesSuffix,
               '${_buildAutoRouteContent(isInitialScreen, screenName)}//{routes end}')
           .replaceAll(_navigatorImportsSuffix,
-              'import \'package:$projectName/presentation/screen/${screenName}_screen/${screenName}_screen.dart\';$_navigatorImportsSuffix');
+              'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart\';$_navigatorImportsSuffix');
     }
 
     return output;
@@ -88,10 +89,11 @@ class ScreenCodeContent {
     required String screenName,
     required ScreenStateManager stateManagement,
   }) {
+    final screenClassImport = screenName.snakeCase;
     final codeLines = List<String>.empty(growable: true);
     codeLines
-        .add('export \'${screenName}_screen_${stateManagement.name}.dart\';');
-    codeLines.add('export \'${screenName}_screen_models.dart\';');
+        .add('export \'${screenClassImport}_screen_${stateManagement.name}.dart\';');
+    codeLines.add('export \'${screenClassImport}_screen_models.dart\';');
     codeLines.addNewLine();
     return codeLines.join('\n');
   }
@@ -103,6 +105,7 @@ class ScreenCodeContent {
   }) {
     ///Declare BLoC classes names
     final stateManagementSuffix = stateManagement.name.pascalCase;
+    final screenClassImport = screenName.snakeCase;
     final className = '${screenName.pascalCase}Screen$stateManagementSuffix';
     final eventName = stateManagement == ScreenStateManager.bloc
         ? '${screenName.pascalCase}ScreenEvent, '
@@ -122,7 +125,7 @@ class ScreenCodeContent {
       codeLines.add('import \'package:flutter_bloc/flutter_bloc.dart\';');
     }
     codeLines.add(
-        'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_imports.dart\';');
+        'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart\';');
     codeLines.addNewLine();
     codeLines.add(
         'class $className extends Base$stateManagementSuffix<$eventName$stateName, $srName> {');
@@ -154,16 +157,17 @@ class ScreenCodeContent {
     return codeLines.join('\n');
   }
 
-  String creatBlocModels({
+  String createBlocModels({
     required String screenName,
     required ScreenStateManager stateManagement,
   }) {
     final screenModelName = screenName.pascalCase;
+    final screenClassImport = screenName.snakeCase;
     final codeLines = List<String>.empty(growable: true);
     codeLines
         .add('import \'package:freezed_annotation/freezed_annotation.dart\';');
     codeLines.addNewLine();
-    codeLines.add('part \'${screenName}_screen_models.freezed.dart\';');
+    codeLines.add('part \'${screenClassImport}_screen_models.freezed.dart\';');
 
     ///If BLoC - add Event model
     if (stateManagement == ScreenStateManager.bloc) {
@@ -206,6 +210,7 @@ class ScreenCodeContent {
     required String screenName,
   }) {
     final screenClassName = screenName.pascalCase;
+    final screenClassImport = screenName.snakeCase;
     final codeLines = List<String>.empty(growable: true);
 
     ///Add imports
@@ -246,6 +251,7 @@ class ScreenCodeContent {
     required ScreenStateManager stateManagement,
   }) {
     final screenClassName = screenName.pascalCase;
+    final screenClassImport = screenName.snakeCase;
     final codeLines = List<String>.empty(growable: true);
 
     ///Add imports
@@ -261,7 +267,7 @@ class ScreenCodeContent {
           'import \'package:$projectName/core/arch/bloc/base_cubit_state.dart\';');
     }
     codeLines.add(
-        'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_imports.dart\';');
+        'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart\';');
     codeLines.addNewLine();
 
     ///Add annotation in AutoRoute navigation used
