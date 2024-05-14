@@ -50,7 +50,7 @@ flutter:
     # For details regarding fonts from package dependencies,
     # see https://flutter.dev/custom-fonts/#from-packages
 
-{flavorizer_injection_config}
+#{flavorizer_injection_config}
 
 {{^flavorizr}}
 flutter_launcher_icons:
