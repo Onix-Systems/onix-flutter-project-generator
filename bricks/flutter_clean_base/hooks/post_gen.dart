@@ -267,6 +267,8 @@ Future<void> getDependencies(HookContext context) async {
 Future<void> flavorize(HookContext context) async {
   'Flavorizing...'.log();
 
+  await injectFlavors(context);
+
   await Directory('$name/flavor_assets').create(recursive: true);
 
   for (var flavor in context.vars['flavors']) {
