@@ -410,8 +410,10 @@ Future<void> injectFlavors(HookContext context) async {
       lines.addNewLine();
       lines.addNewLine();
     }
-    final flavorContent = lines.join('\n');
-    pubspecFile.writeAsStringSync('$pubspecFileContent\n$flavorContent');
+    final flavorLines = lines.join('\n');
+    final flavorContent = pubspecFileContent.replaceAll(
+      flavorizrInjectKey, flavorLines,);
+    pubspecFile.writeAsStringSync(flavorContent);
   } else {
     final clearedContent = flavorizrInjectKey.replaceAll(
         flavorizrInjectKey, '');
