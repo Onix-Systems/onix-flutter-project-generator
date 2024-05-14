@@ -106,12 +106,12 @@ class DocsService implements BaseGenerationService<String> {
       for (var platform in params.platforms) {
         if (platform.isFlavorCompatiblePlatform()) {
           final prefix = '* **${platform.toUpperCase()}**\n\n';
-          final package = _getPackageIds(
+          final package = _getPackageIdDeclarations(
             params.organization,
             params.projectName,
             params.flavors,
           );
-          packages.add('$prefix```\n$package\n```');
+          packages.add('$prefix\n$package\n');
         }
       }
       final output = input
@@ -184,17 +184,20 @@ class DocsService implements BaseGenerationService<String> {
     return 'This applications have ${flavors.length} flavors, so it have ${flavors.length} different entry points and `main.dart` files';
   }
 
-  String _getPackageIds(
+  String _getPackageIdDeclarations(
     String org,
     String name,
     Set<String> flavors,
   ) {
     if (flavors.isEmpty) {
-      return '$org.$name';
+      return '`$org.$name`';
     }
     String output = '';
     for (var e in flavors) {
-      output += '$org.$name.$e\n';
+      final packageNamePrefix = '* ${e.titleCase} `';
+      final packageNameSuffix = e == 'prod' ? '' : '.$e';
+      output += packageNamePrefix;
+      output += '$org.$name$packageNameSuffix`\n';
     }
     return output;
   }
