@@ -1,0 +1,1 @@
+enum ProjectLocalization { intl, flutterGen }

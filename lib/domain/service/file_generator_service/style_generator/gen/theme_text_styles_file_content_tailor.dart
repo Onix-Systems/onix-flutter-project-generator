@@ -97,7 +97,7 @@ class ThemeTextStylesFileContentTailor
 
   List<String> _declareField(String name) => [
         '@override',
-        'final TextStyle ${name};',
+        'final TextStyle $name;',
       ];
 
   String _getColor(List<AppColorStyle> colors, String styleName) {

@@ -1,0 +1,1 @@
+enum ProjectRouter { goRouter, autoRouter }

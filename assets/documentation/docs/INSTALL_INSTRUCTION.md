@@ -97,7 +97,7 @@ To launch specific test run following command in IDE terminal:
 
 To build application open IDE terminal use following command:
 
-`flutter build {output_type} --flavor {flavor} -t {{path_to_main.dart}}`
+`flutter build {output_type} --flavor {flavor} --release -t {{path_to_main.dart}}`
 
 Add obfuscation params if you build application for mobile platforms:
 `--obfuscate --split-debug-info=debug_info`

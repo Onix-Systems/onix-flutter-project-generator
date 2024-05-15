@@ -8,7 +8,7 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/w
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/components_table.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 
 class EntityTableExpansionTile extends StatefulWidget {
   final List<DataComponent> dataComponents;

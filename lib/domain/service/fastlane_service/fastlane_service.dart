@@ -105,12 +105,16 @@ class FastlaneService implements BaseGenerationService<String> {
     }
 
     for (final flavor in params.flavors) {
+      // (Ivan Modlo): This is a temporary solution until we move to enum.
+      // It is used to avoid interpolating flavor,
+      // which is now considered unused, into a .prod string
+      final envFlavor = flavor == 'prod' ? bundleId : '$bundleId.$flavor';
       await creator.createEnv(
         path: path,
         flavor: flavor,
         data: {
-          if (isAndroid) FastlaneEnvVars.packageId: '$bundleId.$flavor',
-          if (!isAndroid) FastlaneEnvVars.bundleId: '$bundleId.$flavor',
+          if (isAndroid) FastlaneEnvVars.packageId: envFlavor,
+          if (!isAndroid) FastlaneEnvVars.bundleId: envFlavor,
         },
       );
     }
@@ -157,14 +161,18 @@ class FastlaneService implements BaseGenerationService<String> {
     final contents = <String>['  $platform:'];
     final flavors = List<String>.from(params.flavors);
 
-    var attachFlavor = true;
-
     if (flavors.isEmpty) {
-      attachFlavor = false;
       flavors.add('default');
     }
 
+    final isFlavorizr = params.flavors.isNotEmpty;
+
     for (final flavor in flavors) {
+      // (Ivan Modlo): This is a temporary solution until we move to enum.
+      // It is used to avoid interpolating flavor,
+      // which is now considered unused, into a .prod string
+      final shouldAttachFlavor = isFlavorizr && flavor != 'prod';
+
       final configParams = FastlaneFlavorParams.createFastlaneParams(
         platform: platform,
         flavor: flavor,
@@ -187,7 +195,7 @@ class FastlaneService implements BaseGenerationService<String> {
           if (!isAndroid) ...[
             FastlaneOneLineParam(
               key: 'scheme_name',
-              payload: attachFlavor ? flavor : 'Runner',
+              payload: isFlavorizr ? flavor : 'Runner',
               comment: '# Xcode - Manage Schemes',
             ),
             const FastlaneOneLineParam(
@@ -218,7 +226,7 @@ class FastlaneService implements BaseGenerationService<String> {
               comment:
                   'If manual_codesign: true, be sure to specify the bundle_id and the name of the profile\'s provisions',
               payload: {
-                'bundle_id': attachFlavor
+                'bundle_id': shouldAttachFlavor
                     ? '${params.organization}.${params.projectName}.$flavor'
                     : '${params.organization}.${params.projectName}',
                 'name': 'PROVISIONING_PROFILE_NAME'

@@ -22,6 +22,7 @@ class DocsService implements BaseGenerationService<String> {
   final _envExplanationPattern = '{app_env_explanation}';
   final _mainCountDescription = '{main_count_description}';
   final _platformPackageNames = '{platform_package_names}';
+  final _flavorizrInstructions = '{flavorizr_instructions}';
 
   @override
   Future<String> generate(BaseGenerationParams params) async {
@@ -78,17 +79,39 @@ class DocsService implements BaseGenerationService<String> {
     DocsGenerationParams params,
   ) async {
     final projectNamePrettified = params.projectName.titleCase;
-    if (doc == DocumentType.readme) {
+    if (doc == DocumentType.techDescription) {
+      String output = input;
+      if (params.flavorize) {
+        final lines = List<String>.empty(growable: true);
+        lines.add('## Flavorizr');
+        lines.addNewLine();
+        lines.add(
+            'Project uses [Flavorizr](https://pub.dev/packages/flutter_flavorizr) package to create flavors configuration in native mobile projects.');
+        lines.add(
+            'Flavorizr configuration declared in `pubspec.yaml` file in `flavorizr` section.');
+        lines.add(
+            'When you changing something in `flavorizr` configuration make sure to regenerate configurations to apply changes using command:');
+        lines.add('```');
+        lines.add('flutter pub run flutter_flavorizr');
+        lines.add('```');
+        lines.addNewLine();
+        final content = lines.join('\n');
+        output = input.replaceAll(_flavorizrInstructions, content);
+      } else {
+        output = input.replaceAll(_flavorizrInstructions, '');
+      }
+      return output;
+    } else if (doc == DocumentType.readme) {
       final packages = List<String>.empty(growable: true);
       for (var platform in params.platforms) {
         if (platform.isFlavorCompatiblePlatform()) {
           final prefix = '* **${platform.toUpperCase()}**\n\n';
-          final package = _getPackageIds(
+          final package = _getPackageIdDeclarations(
             params.organization,
             params.projectName,
             params.flavors,
           );
-          packages.add('$prefix```\n$package\n```');
+          packages.add('$prefix\n$package\n');
         }
       }
       final output = input
@@ -96,16 +119,16 @@ class DocsService implements BaseGenerationService<String> {
           .replaceAll(_platformPackageNames, packages.join('\n'));
       return output;
     } else if (doc == DocumentType.installInstructions) {
-      final flavorslines = List<String>.empty(growable: true);
+      final flavorsLines = List<String>.empty(growable: true);
       if (params.flavorize) {
-        flavorslines.add(flavorsTitle);
-        flavorslines.addNewLine();
-        flavorslines.add('```');
-        flavorslines.add(params.flavors.join('\n'));
-        flavorslines.add('```');
-        flavorslines.addNewLine();
+        flavorsLines.add(flavorsTitle);
+        flavorsLines.addNewLine();
+        flavorsLines.add('```');
+        flavorsLines.add(params.flavors.join('\n'));
+        flavorsLines.add('```');
+        flavorsLines.addNewLine();
       }
-      final flavors = flavorslines.join('\n');
+      final flavors = flavorsLines.join('\n');
       final platforms = params.platforms.map((e) => '* $e').join('\n');
       final commands = params.commands.join('\n');
       final mainFiles =
@@ -161,17 +184,20 @@ class DocsService implements BaseGenerationService<String> {
     return 'This applications have ${flavors.length} flavors, so it have ${flavors.length} different entry points and `main.dart` files';
   }
 
-  String _getPackageIds(
+  String _getPackageIdDeclarations(
     String org,
     String name,
     Set<String> flavors,
   ) {
     if (flavors.isEmpty) {
-      return '$org.$name';
+      return '`$org.$name`';
     }
     String output = '';
     for (var e in flavors) {
-      output += '$org.$name.$e\n';
+      final packageNamePrefix = '* ${e.titleCase} `';
+      final packageNameSuffix = e == 'prod' ? '' : '.$e';
+      output += packageNamePrefix;
+      output += '$org.$name$packageNameSuffix`\n';
     }
     return output;
   }

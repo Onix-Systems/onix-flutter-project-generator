@@ -3,6 +3,7 @@ import 'package:onix_flutter_bricks/domain/repository/data_component_repository.
 import 'package:onix_flutter_bricks/domain/repository/source_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
+import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 
 class GenerateDataComponentsUseCase {
   final OutputService _outputService;
@@ -43,7 +44,9 @@ class GenerateDataComponentsUseCase {
 
     if (needToGenerateDataComponents || needToGenerateSources) {
       ///generate components
-      _outputService.add('{#info}Generating entities!');
+      _outputService.add(
+        'Generating entities!'.toInfoMessage(),
+      );
       if (needToGenerateDataComponents) {
         for (final component in config.dataComponents) {
           await _fileGeneratorService.generateComponent(
@@ -101,7 +104,9 @@ class GenerateDataComponentsUseCase {
       _sourceRepository.setAllExists();
       _dataComponentRepository.setAllExists();
 
-      _outputService.add('{#info}Entities generated!');
+      _outputService.add(
+        'Entities generated!'.toInfoMessage(),
+      );
     }
   }
 }
