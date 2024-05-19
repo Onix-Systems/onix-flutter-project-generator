@@ -32,6 +32,7 @@ class LabeledCheckbox extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MSHCheckbox(
             value: initialValue,
