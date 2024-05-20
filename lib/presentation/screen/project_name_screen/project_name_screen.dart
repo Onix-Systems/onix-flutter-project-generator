@@ -12,9 +12,9 @@ import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/widget/branch_selector_widget.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/inputs/text_field_with_label.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widget/inputs/text_field_with_label.dart';
 
 class ProjectNameScreen extends StatefulWidget {
   final Config config;
@@ -65,95 +65,99 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
     BuildContext context,
     ProjectNameScreenState state,
   ) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Stack(
       children: [
-        Expanded(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFieldWithLabel(
-                  label: S.of(context).projectName,
-                  focusNode: projectNameFocusNode,
-                  autofocus: true,
-                  centered: true,
-                  textController: projectNameController,
-                  error: state.projectExists,
-                  onChanged: () => blocOf(context).add(
-                    ProjectNameScreenEvent.projectNameChanged(
-                      projectName: projectNameController.text,
-                    ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Spacer(),
+              TextFieldWithLabel(
+                label: S.of(context).projectName,
+                focusNode: projectNameFocusNode,
+                autofocus: true,
+                centered: true,
+                textController: projectNameController,
+                error: state.projectExists,
+                onChanged: () => blocOf(context).add(
+                  ProjectNameScreenEvent.projectNameChanged(
+                    projectName: projectNameController.text,
                   ),
-                  onEditingComplete: () => _nextFocus(state),
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9_]')),
-                  ],
                 ),
-                const Delimiter.height(20),
-                TextFieldWithLabel(
-                  focusNode: organizationFocusNode,
-                  label: S.of(context).organization,
-                  centered: true,
-                  textController: organizationController,
-                  onChanged: () => blocOf(context).add(
-                    ProjectNameScreenEvent.organizationChanged(
-                      organization: organizationController.text,
-                    ),
+                onEditingComplete: () => _nextFocus(state),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9_]')),
+                ],
+              ),
+              const Delimiter.height(20),
+              TextFieldWithLabel(
+                focusNode: organizationFocusNode,
+                label: S.of(context).organization,
+                centered: true,
+                textController: organizationController,
+                onChanged: () => blocOf(context).add(
+                  ProjectNameScreenEvent.organizationChanged(
+                    organization: organizationController.text,
                   ),
-                  onEditingComplete: () => _nextFocus(state),
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9-.]')),
-                  ],
                 ),
-                const Delimiter.height(40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AppFilledButton(
-                      label: S.of(context).goBack,
-                      icon: Icons.arrow_back_ios_rounded,
-                      onPressed: () => context.go(
-                        AppRouter.procedureSelectionScreen,
-                        extra: widget.config.copyWith(
-                          projectName: projectNameController.text,
-                          organization: organizationController.text,
-                        ),
+                onEditingComplete: () => _nextFocus(state),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9-.]')),
+                ],
+              ),
+              const Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  AppFilledButton(
+                    label: S.of(context).goBack,
+                    icon: Icons.arrow_back_ios_rounded,
+                    onPressed: () => context.go(
+                      AppRouter.procedureSelectionScreen,
+                      extra: widget.config.copyWith(
+                        projectName: projectNameController.text,
+                        organization: organizationController.text,
                       ),
                     ),
-                    const Delimiter.width(10),
-                    AppFilledButton(
-                      focusNode: nextFocusNode,
-                      active: state.config.projectName.isNotEmpty &&
-                          state.config.organization.isNotEmpty &&
-                          !state.projectExists,
-                      label: S.of(context).continueLabel,
-                      icon: Icons.arrow_forward_ios_rounded,
-                      iconLeft: false,
-                      onPressed: () {
-                        _onCheckNames(context, state.config);
-                      },
-                    )
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                  const Delimiter.width(10),
+                  AppFilledButton(
+                    focusNode: nextFocusNode,
+                    active: state.config.projectName.isNotEmpty &&
+                        state.config.organization.isNotEmpty &&
+                        !state.projectExists,
+                    label: S.of(context).continueLabel,
+                    icon: Icons.arrow_forward_ios_rounded,
+                    iconLeft: false,
+                    onPressed: () {
+                      _onCheckNames(context, state.config);
+                    },
+                  )
+                ],
+              ),
+            ],
           ),
         ),
-        (state.branches.isEmpty || !kDebugMode)
-            ? const SizedBox.shrink()
-            : BranchSelectorWidget(
-                branches: state.branches,
-                selectedBranch: state.config.branch,
-                onSelected: (newBranch) {
-                  blocOf(context).add(
-                    ProjectNameScreenEvent.branchChanged(
-                      newBranch: newBranch,
-                    ),
-                  );
-                },
-              ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          child: (state.branches.isEmpty || !kDebugMode)
+              ? const SizedBox.shrink()
+              : BranchSelectorWidget(
+                  branches: state.branches,
+                  selectedBranch: state.config.branch,
+                  onSelected: (newBranch) {
+                    blocOf(context).add(
+                      ProjectNameScreenEvent.branchChanged(
+                        newBranch: newBranch,
+                      ),
+                    );
+                  },
+                ),
+        )
       ],
     );
   }

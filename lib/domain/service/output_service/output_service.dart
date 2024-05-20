@@ -1,23 +1,24 @@
 import 'dart:async';
 
-import 'package:onix_flutter_bricks/domain/service/output_service/colored_line.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/output_line.dart';
 
 class OutputService {
-  final _outputController = StreamController<ColoredLine>();
+  final _outputController = StreamController<OutputLine>();
 
-  late final Stream<ColoredLine> _outputStream;
+  late final Stream<OutputLine> _outputStream;
 
-  Stream<ColoredLine> get outputStream => _outputStream;
+  Stream<OutputLine> get outputStream => _outputStream;
 
-  List<ColoredLine> outputLines = [];
+  List<OutputLine> outputLines = [];
 
   OutputService() {
     _outputStream = _outputController.stream.asBroadcastStream();
   }
 
-  void add(String output) {
-    _outputController.add(ColoredLine(line: output));
-    outputLines.add(ColoredLine(line: output));
+  void add(String input) {
+    final line = OutputLine.fromRaw(input);
+    _outputController.add(line);
+    outputLines.add(line);
   }
 
   void clear() {

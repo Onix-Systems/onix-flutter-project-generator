@@ -9,9 +9,9 @@ import 'package:onix_flutter_bricks/core/di/usecase.dart';
 
 void initializeDi(GetIt getIt) {
   registerLocal(getIt);
-  registerServices(getIt);
-  registerRepositories(getIt);
   registerSources(getIt);
+  registerRepositories(getIt);
+  registerAppServices(getIt);
   registerUseCases(getIt);
   registerApp(getIt);
   registerBloc(getIt);

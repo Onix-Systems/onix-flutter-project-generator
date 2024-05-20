@@ -13,7 +13,7 @@ import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summ
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_cell.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_styles_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:recase/recase.dart';
 
 class SummaryScreen extends StatefulWidget {
@@ -32,16 +32,12 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
     SummaryScreenBloc, SummaryScreenSR, SummaryScreen> {
   @override
   Widget buildWidget(BuildContext context) {
-    return srObserver(
-      context: context,
-      child: CupertinoPageScaffold(
-        child: SizedBox.expand(
-          child: blocConsumer(
-            stateListener: (state) => _buildMainContainer(context, state),
-          ),
+    return CupertinoPageScaffold(
+      child: SizedBox.expand(
+        child: blocConsumer(
+          stateListener: (state) => _buildMainContainer(context, state),
         ),
       ),
-      onSR: _onSingleResult,
     );
   }
 
@@ -49,12 +45,6 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
   void onBlocCreated(BuildContext context, SummaryScreenBloc bloc) {
     bloc.add(SummaryScreenEventInit(config: widget.config));
     super.onBlocCreated(context, bloc);
-  }
-
-  void _onSingleResult(BuildContext context, SummaryScreenSR singleResult) {
-    singleResult.when(
-      loadFinished: () {},
-    );
   }
 
   Widget _buildMainContainer(
@@ -185,10 +175,13 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppFilledButton(
-                    label: S.of(context).goBack,
-                    icon: Icons.arrow_back_ios_outlined,
-                    onPressed: () => context.go(AppRouter.dataComponentsScreen,
-                        extra: state.config)),
+                  label: S.of(context).goBack,
+                  icon: Icons.arrow_back_ios_outlined,
+                  onPressed: () => context.go(
+                    AppRouter.dataComponentsScreen,
+                    extra: state.config,
+                  ),
+                ),
                 const Delimiter.width(10),
                 AppFilledButton(
                   label: S.of(context).generateProject,
@@ -196,9 +189,10 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                   iconLeft: false,
                   onPressed: () => context.go(
                     AppRouter.generationScreen,
-                    extra: GenerationScreenExtra(config: state.config),
+                    extra: GenerationScreenExtra(
+                      config: state.config,
+                    ),
                   ),
-                  color: CupertinoColors.destructiveRed,
                 ),
               ],
             )

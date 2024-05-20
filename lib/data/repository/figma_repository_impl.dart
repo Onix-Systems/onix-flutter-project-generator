@@ -7,8 +7,10 @@ import 'package:onix_flutter_bricks/domain/repository/figma_repository.dart';
 
 class FigmaRepositoryImpl implements FigmaRepository {
   final FigmaRemoteDataSource _figmaRemoteDataSource;
+  final _figmaNodesMapper = FigmaNodesMapper();
+  final _figmaPropertyMapper = PropertyMapper();
 
-  const FigmaRepositoryImpl({
+  FigmaRepositoryImpl({
     required FigmaRemoteDataSource figmaRemoteDataSource,
   }) : _figmaRemoteDataSource = figmaRemoteDataSource;
 
@@ -17,13 +19,17 @@ class FigmaRepositoryImpl implements FigmaRepository {
     required String figmaId,
     required String token,
   }) async {
-    final result = await _figmaRemoteDataSource.getFigmaFiles(figmaId, token);
-    return result.styles.map(
-      (key, value) => MapEntry(
-        key,
-        PropertyMapper().mapNodeStyleDataModelToEntity(value),
-      ),
-    );
+    try {
+      final result = await _figmaRemoteDataSource.getFigmaFiles(figmaId, token);
+      return result.styles.map(
+        (key, value) => MapEntry(
+          key,
+          _figmaPropertyMapper.mapNodeStyleDataModelToEntity(value),
+        ),
+      );
+    } catch (e) {
+      return {};
+    }
   }
 
   @override
@@ -32,11 +38,15 @@ class FigmaRepositoryImpl implements FigmaRepository {
     required String token,
     required String figmaId,
   }) async {
-    final result = await _figmaRemoteDataSource.getFigmaNodes(
-      nodeIds,
-      token,
-      figmaId,
-    );
-    return FigmaNodesMapper().mapNodesDataModelToEntity(result.nodes ?? []);
+    try {
+      final result = await _figmaRemoteDataSource.getFigmaNodes(
+        nodeIds,
+        token,
+        figmaId,
+      );
+      return _figmaNodesMapper.mapNodesDataModelToEntity(result.nodes ?? []);
+    } catch (e) {
+      return List.empty();
+    }
   }
 }

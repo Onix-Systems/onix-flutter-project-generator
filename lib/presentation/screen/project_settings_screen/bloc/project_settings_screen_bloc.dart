@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/util/enum/project_localization.dart';
+import 'package:onix_flutter_bricks/util/enum/project_router.dart';
+import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
 
 class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenState, ProjectSettingsScreenSR> {
@@ -84,33 +87,42 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventRouterChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         config: state.config.copyWith(
             router: state.config.router == ProjectRouter.goRouter
                 ? ProjectRouter.autoRouter
-                : ProjectRouter.goRouter)));
+                : ProjectRouter.goRouter),
+      ),
+    );
   }
 
   FutureOr<void> _onLocalizationChange(
     ProjectSettingsScreenEventLocalizationChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         config: state.config.copyWith(
             localization: state.config.localization == ProjectLocalization.intl
                 ? ProjectLocalization.flutterGen
-                : ProjectLocalization.intl)));
+                : ProjectLocalization.intl),
+      ),
+    );
   }
 
   FutureOr<void> _onThemingChange(
     ProjectSettingsScreenEventThemingChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         config: state.config.copyWith(
             theming: state.config.theming == ProjectTheming.themeTailor
                 ? ProjectTheming.manual
-                : ProjectTheming.themeTailor)));
+                : ProjectTheming.themeTailor),
+      ),
+    );
   }
 
   FutureOr<void> _onFirebaseChange(

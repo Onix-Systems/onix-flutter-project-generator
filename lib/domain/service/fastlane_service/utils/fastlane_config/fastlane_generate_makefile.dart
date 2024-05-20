@@ -21,6 +21,8 @@ abstract final class FastlaneGenerateMakefile {
         flavorsIsNotEmpty: flavors.isNotEmpty,
         flavor: flavor,
         onCreate: (buildFlavor, mainDart, lineName, env) {
+          // (Ivan Modlo): The offset at the end of "flavor:$flavor "
+          // is the delimiter for the command. As a temporary solution
           final lineFlavor = flavors.isNotEmpty ? 'flavor:$flavor ' : '';
 
           contents
@@ -35,14 +37,10 @@ abstract final class FastlaneGenerateMakefile {
             ..add(
               'build_android${lineName}with_distribution: build_android${lineName}firebase_only build_android${lineName}store_only',
             )
-            ..add(
-              '\t@echo "Distributing"',
-            )
             ..addNewLine()
             ..add(
                 'build_android${lineName}firebase_only: build_android${lineName}apk')
-            ..add(
-                '\t@echo "Distributing"')
+            ..add('\t@echo "Distributing"')
             ..add(
               '\t@cd android && bundle exec fastlane build ${lineFlavor}firebase:true artifact_type:apk $env',
             )
@@ -52,7 +50,7 @@ abstract final class FastlaneGenerateMakefile {
             )
             ..add('\t@echo "Distributing"')
             ..add(
-              '\t@cd android && bundle exec fastlane build ${lineFlavor}firebase:true artifact_type:aab $env',
+              '\t@cd android && bundle exec fastlane build ${lineFlavor}store:true artifact_type:aab $env',
             )
             ..addNewLine();
         },
@@ -79,24 +77,22 @@ abstract final class FastlaneGenerateMakefile {
         flavorsIsNotEmpty: flavors.isNotEmpty,
         flavor: flavor,
         onCreate: (buildFlavor, mainDart, lineName, env) {
+          // (Ivan Modlo): The offset at the end of "flavor:$flavor "
+          // is the delimiter for the command. As a temporary solution
           final lineFlavor = flavors.isNotEmpty ? 'flavor:$flavor ' : '';
 
           contents
             ..add('build${lineName}ios:')
+            ..add('\t@echo "Building"')
             ..add('\t@flutter build ios --release $buildFlavor $mainDart')
             ..addNewLine()
             ..add('build_ios${lineName}with_distribution: build${lineName}ios')
-            ..add(
-              '\t@echo "Build and distribute iOS to the TestFlight and Firebase App Distribution"',
-            )
             ..add(
               '\t@cd ios && bundle exec fastlane build ${lineFlavor}firebase:true test_flight:true $env',
             )
             ..addNewLine()
             ..add('build_ios${lineName}firebase_only: build${lineName}ios')
-            ..add(
-              '\t@echo "Build and distribute iOS to the Firebase App Distribution"',
-            )
+            ..add('\t@echo "Distributing to the Firebase App Distribution"')
             ..add(
               '\t@cd ios && bundle exec fastlane build ${lineFlavor}firebase:true $env',
             )
@@ -104,11 +100,9 @@ abstract final class FastlaneGenerateMakefile {
             ..add(
               'build_ios${lineName}test_flight_only: build${lineName}ios',
             )
+            ..add('\t@echo "Distributing to the TestFlight"')
             ..add(
-              '\t@echo "Build and distribute iOS to the TestFlight"',
-            )
-            ..add(
-              '\t@cd ios && bundle exec fastlane build${lineFlavor}test_flight:true',
+              '\t@cd ios && bundle exec fastlane build ${lineFlavor}test_flight:true',
             )
             ..addNewLine();
         },
@@ -132,8 +126,11 @@ abstract final class FastlaneGenerateMakefile {
     }
 
     if (!contents.contains('clean:')) {
+      if (contents.isNotEmpty) {
+        contents.addNewLine();
+      }
+
       contents
-        ..addNewLine()
         ..add('clean:')
         ..add('\t@echo "Cleaning"')
         ..add('\t@flutter clean')
@@ -146,7 +143,7 @@ abstract final class FastlaneGenerateMakefile {
 
       for (final platform in platforms) {
         final platformWithFlavor =
-            flavors.isNotEmpty ? '_${platform}_${flavor}_' : '_${platform}_';
+        flavors.isNotEmpty ? '_${platform}_${flavor}_' : '_${platform}_';
 
         contents.add(
           '\t@make build${platformWithFlavor}with_distribution -f Makefile_$platform.mk',

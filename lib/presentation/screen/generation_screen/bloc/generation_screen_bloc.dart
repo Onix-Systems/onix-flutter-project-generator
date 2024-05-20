@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,28 +6,37 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/styles_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastlane_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/generate_styles.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
-import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/get_generation_output_stream_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
+import 'package:onix_flutter_bricks/util/extension/config_file_extension.dart';
+import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
+import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
+import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
 import 'package:onix_flutter_bricks/util/flavors_util.dart';
 import 'package:recase/recase.dart';
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenState, GenerationScreenSR> {
+  ///generators
+  final GenerateSigningConfigUseCase _generateSigningConfigUseCase;
   final GenerateDocumentationUseCase _generateDocumentationUseCase;
   final GenerateScreensUseCase _generateScreensUseCase;
   final GenerateDataComponentsUseCase _generateDataComponentsUseCase;
+  final GenerateStylesUseCase _generateStylesUseCase;
   final GenerateFastlaneFilesUseCase _generateFastlaneFilesUseCase;
 
   ///process runners
@@ -36,17 +44,19 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   final RunOsaScriptProcessUseCase _osaScriptProcessUseCase;
 
   ///output commands
-  final ClearOutputUseCase _clearOutputUseCase;
   final AddOutputMessageUseCase _addOutputMessageUseCase;
+  final GetGenerationOutputStream _getGenerationOutputStream;
 
   GenerationScreenBloc(
     this._generateDocumentationUseCase,
     this._generateScreensUseCase,
     this._generateDataComponentsUseCase,
-    this._clearOutputUseCase,
     this._addOutputMessageUseCase,
     this._runProcessUseCase,
     this._osaScriptProcessUseCase,
+    this._generateSigningConfigUseCase,
+    this._generateStylesUseCase,
+    this._getGenerationOutputStream,
     this._generateFastlaneFilesUseCase,
   ) : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
@@ -57,9 +67,15 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   FutureOr<void> _onInit(
     GenerationScreenEventInit event,
     Emitter<GenerationScreenState> emit,
-  ) {
-    _clearOutputUseCase();
-    emit(state.copyWith(config: event.config, isModify: event.isModify));
+  ) async {
+    final outputStream = await _getGenerationOutputStream();
+    emit(
+      state.copyWith(
+        config: event.config,
+        outputStream: outputStream,
+        isModify: event.isModify,
+      ),
+    );
     add(const GenerationScreenEventGenerateProject());
   }
 
@@ -71,7 +87,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     if (!state.config.projectExists) {
       ///get password for signing generation (Android)
-      String genPass = state.config.getSigningPassword();
+      String signingPassword = state.config.getSigningPassword();
 
       ///parse flavor string to Set<String>
       var flavors = state.config.getFlavorsAsSet();
@@ -84,25 +100,15 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       ///create a new configuration file
       configFile.createSync();
+      await configFile.saveJsonConfig(
+        config: state.config,
+        flavors: flavors.toList(),
+        signingPassword: signingPassword,
+      );
 
-      await configFile.writeAsString(jsonEncode({
-        'signing_password': genPass,
-        'project_name_dirt': state.config.projectName,
-        'project_org': state.config.organization,
-        'flavorizr': state.config.flavorize,
-        'flavors': flavors.toList(),
-        'navigation': state.config.router.name,
-        'localization': state.config.localization.name.snakeCase,
-        'use_keytool': state.config.generateSigningKey,
-        'use_sonar': state.config.useSonar,
-        'graphql': state.config.graphql,
-        'firebase_auth': state.config.firebaseAuth,
-        'platforms': state.config.platformsList.toString().replaceAll(' ', ''),
-        'theme_generate': state.config.theming.name == 'themeTailor',
-        'branch': state.config.branch,
-      }).toString());
-
-      _addOutputMessageUseCase(message: '{#info}Getting mason & brick...');
+      _addOutputMessageUseCase(
+        message: 'Getting mason & brick...'.toInfoMessage(),
+      );
 
       ///create brick archive file
       final brickZip = File('${state.config.projectPath}/brick.zip');
@@ -155,24 +161,28 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       ///generate Anroid signing key if configured
       if (state.config.generateSigningKey) {
-        await FileGeneratorService().generateSigning(
-          projectPath: state.config.projectPath,
-          projectName: state.config.projectName,
-          signingVars: state.config.signingVars,
-          genPass: genPass,
+        await _generateSigningConfigUseCase(
+          params: SingingGeneratorParams(
+            projectPath: state.config.projectPath,
+            projectName: state.config.projectName,
+            signingVars: state.config.signingVars,
+            signingPassword: signingPassword,
+          ),
         );
       }
     }
 
     ///generate styles if added
     if (!state.config.projectExists || state.config.styles.isNotEmpty) {
-      await GenerateStyles().call(
-        projectName: state.config.projectName,
-        projectPath: state.config.projectPath,
-        styles: state.config.styles,
-        theming: state.config.theming,
-        projectExists: state.config.projectExists,
-        useScreenUtil: state.config.platformsList.mobile,
+      await _generateStylesUseCase(
+        params: StylesGeneratorParams(
+          projectName: state.config.projectName,
+          projectPath: state.config.projectPath,
+          styles: state.config.styles,
+          theming: state.config.theming,
+          projectExists: state.config.projectExists,
+          useScreenUtil: state.config.platformsList.mobile,
+        ),
       );
     }
 

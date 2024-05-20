@@ -10,7 +10,7 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc/figma_styles_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/widgets/styles_widget.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 
 class FigmaStylesScreen extends StatefulWidget {
   final ValueChanged<List<AppStyle>>? onContinue;

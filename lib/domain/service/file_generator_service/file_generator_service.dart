@@ -1,44 +1,68 @@
 import 'dart:io';
 
 import 'package:onix_flutter_bricks/core/di/repository.dart';
-import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/generate_component_class.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/generate_component_enum.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/generate_mapper.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/generate_request.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/generate_response.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/generate_screen.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/generate_signing.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/generate_source.dart';
-import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
+import 'package:onix_flutter_bricks/domain/repository/data_component_repository.dart';
+import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/component_class_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/component_enum_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/mapper_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/params/data_component_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/request_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/response_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/screen_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/signing_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/data_layer_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/source_generators/params/data_layer_generator_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/styles_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:recase/recase.dart';
 
 class FileGeneratorService {
-  Future<void> generateScreen({
-    required String projectPath,
-    required String projectName,
-    required Screen screen,
-    required ProjectRouter router,
-    bool build = false,
-  }) async =>
-      GenerateScreen().call(
-        projectPath: projectPath,
-        projectName: projectName,
-        screen: screen,
-        router: router,
-        build: build,
-      );
+  final OutputService _outputService;
+  final DataComponentRepository _dataComponentRepository;
+
+  final BaseGenerationService<bool> _screenGenerator = ScreenGenerator();
+  final BaseGenerationService<bool> _stylesGenerator = StylesGenerator();
+  final BaseGenerationService<bool> _dataLayerGenerator = DataLayerGenerator();
+  final BaseGenerationService<bool> _componentEnumGenerator =
+      ComponentEnumGenerator();
+  late BaseGenerationService<bool> _signingGenerator;
+  late BaseGenerationService<bool> _componentClassGenerator;
+  late BaseGenerationService<bool> _mapperGenerator;
+  late BaseGenerationService<bool> _requestGenerator;
+  late BaseGenerationService<bool> _responseGenerator;
+
+  FileGeneratorService(
+    this._outputService,
+    this._dataComponentRepository,
+  ) {
+    _signingGenerator = SigningGenerator(_outputService);
+    _componentClassGenerator =
+        ComponentClassGenerator(_dataComponentRepository);
+    _mapperGenerator = MapperGenerator(_dataComponentRepository);
+    _requestGenerator = RequestGenerator(_dataComponentRepository);
+    _responseGenerator = ResponseGenerator(_dataComponentRepository);
+  }
+
+  Future<bool> generateScreen(BaseGenerationParams params) =>
+      _screenGenerator.generate(params);
+
+  Future<bool> generateStyles(BaseGenerationParams params) =>
+      _stylesGenerator.generate(params);
 
   Future<void> generateSource({
     required String projectName,
     required String projectPath,
     required Source source,
   }) async =>
-      GenerateSource().call(
-        projectName: projectName,
-        projectPath: projectPath,
-        source: source,
+      _dataLayerGenerator.generate(
+        DataLayerGeneratorParams(
+          projectName: projectName,
+          projectPath: projectPath,
+          source: source,
+        ),
       );
 
   Future<void> generateComponent({
@@ -48,40 +72,34 @@ class FileGeneratorService {
   }) async {
     final dataComponent = dataComponentRepository.getDataComponentByName(
         dataComponentName: dataComponentName)!;
-    if (dataComponent.isEnum && !dataComponent.exists) {
-      await GenerateComponentEnum().call(
-        projectName: projectName,
-        projectPath: projectPath,
-        dataComponent: dataComponent,
-      );
-    } else if (!dataComponent.exists) {
-      await GenerateComponentClass().call(
-        projectName: projectName,
-        projectPath: projectPath,
-        dataComponent: dataComponent,
-      );
-    }
-    if (!dataComponent.isEnum && dataComponent.generateResponse) {
-      await GenerateResponse().call(
-        projectName: projectName,
-        projectPath: projectPath,
-        dataComponent: dataComponent,
-      );
-    }
-    if (!dataComponent.isEnum && dataComponent.generateRequest) {
-      await GenerateRequest().call(
-        projectName: projectName,
-        projectPath: projectPath,
-        dataComponent: dataComponent,
-      );
-    }
-    if (!dataComponent.isEnum &&
-        (dataComponent.generateRequest || dataComponent.generateResponse)) {
-      await GenerateMapper().call(
-        projectName: projectName,
-        projectPath: projectPath,
-        dataComponent: dataComponent,
-      );
+    final params = DataComponentParams(
+      projectName: projectName,
+      projectPath: projectPath,
+      dataComponent: dataComponent,
+    );
+
+    ///Generate components by type
+    if (dataComponent.isEnum) {
+      ///Generate Enum
+      if (!dataComponent.exists) {
+        await _componentEnumGenerator.generate(params);
+      }
+    } else {
+      ///Generate components
+      if (!dataComponent.exists) {
+        await _componentClassGenerator.generate(params);
+      }
+      if (dataComponent.generateResponse) {
+        ///Generate response
+        await _responseGenerator.generate(params);
+      }
+      if (dataComponent.generateRequest) {
+        ///Generate request
+        await _requestGenerator.generate(params);
+      }
+      if (dataComponent.generateRequest || dataComponent.generateResponse) {
+        await _mapperGenerator.generate(params);
+      }
     }
   }
 
@@ -101,17 +119,6 @@ class FileGeneratorService {
         .create(recursive: true);
   }
 
-  Future<void> generateSigning({
-    required String projectPath,
-    required String projectName,
-    required String genPass,
-    required List<String> signingVars,
-  }) async {
-    GenerateSigning.call(
-      projectPath: projectPath,
-      projectName: projectName,
-      genPass: genPass,
-      signingVars: signingVars,
-    );
-  }
+  Future<bool> generateSigning(BaseGenerationParams params) =>
+      _signingGenerator.generate(params);
 }
