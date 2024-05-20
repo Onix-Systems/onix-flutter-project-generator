@@ -93,7 +93,7 @@ class PlatformScreenBody extends StatelessWidget {
   }) {
     return switch (platform) {
       AvailablePlatforms.mobile =>
-        config.platformsList.android || config.platformsList.ios,
+        config.platformsList.android && config.platformsList.ios,
       AvailablePlatforms.web => config.platformsList.web,
       AvailablePlatforms.windows => config.platformsList.windows,
       AvailablePlatforms.macos => config.platformsList.macos,

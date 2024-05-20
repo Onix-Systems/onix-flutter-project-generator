@@ -27,7 +27,7 @@ class PlatformsScreenBloc extends BaseBloc<PlatformsScreenEvent,
       case AvailablePlatforms.mobile:
         copiedPlatforms = copiedPlatforms.copyWith(
           android: !state.config.platformsList.android,
-          ios: !state.config.platformsList.android,
+          ios: !state.config.platformsList.ios,
         );
       case AvailablePlatforms.web:
         copiedPlatforms = copiedPlatforms.copyWith(
