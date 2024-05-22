@@ -17,6 +17,7 @@ import 'package:onix_flutter_bricks/presentation/widget/inputs/text_field_with_l
 import 'package:onix_flutter_bricks/util/enum/project_localization.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
+import 'package:onix_flutter_bricks/util/extra_space_formatter.dart';
 
 class ProjectSettingsScreen extends StatefulWidget {
   final Config config;
@@ -108,7 +109,9 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                             textController: _flavorsController,
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(
-                                  RegExp(r'[a-zA-Z ]')),
+                                RegExp(r'[a-zA-Z\s]', unicode: true),
+                              ),
+                              ExtraSpaceFormatter(),
                             ],
                             onChanged: () => blocOf(context)
                                 .add(ProjectSettingsScreenEventFlavorsChange(
