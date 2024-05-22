@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/util/extension/version_extension.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class SplashScreenBloc
@@ -51,8 +52,8 @@ class SplashScreenBloc
     await mainProcess.exitCode;
 
     try {
-      final localVersionNumber = int.parse(localVersion.replaceAll('.', ''));
-      final remoteVersionNumber = int.parse(remoteVersion.replaceAll('.', ''));
+      final localVersionNumber = localVersion.asIntVersion();
+      final remoteVersionNumber = remoteVersion.asIntVersion();
       if (localVersionNumber < remoteVersionNumber) {
         addSr(const SplashScreenSR.onNeedUpdate());
       } else {

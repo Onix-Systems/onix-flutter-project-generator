@@ -1,0 +1,125 @@
+require 'yaml'
+
+YAML_PATH = "../../fastlane_config.yaml" # An important note. Default path to configuration
+$yaml_vars = {}
+$selected_flavor = ""
+
+default_platform(:android)
+
+platform :android do
+  desc "Build android app"
+  lane :build do |options|
+    flavor = options[:flavor]
+    firebase = options[:firebase]
+    store = options[:store]
+    artifact_type = options[:artifact_type]
+
+    load_fastlane_vars(flavor)
+    path = get_artifact_path(artifact_type, flavor)
+    #gradle(task: "clean assembleRelease")
+    upload_to_play_store_if_possible(store, path, artifact_type)
+    upload_to_firebase_if_possible(firebase, path, artifact_type)
+  end
+
+  def load_fastlane_vars(flavor)
+    $yaml_vars = YAML.load_file(YAML_PATH)
+    $selected_flavor = flavor.nil? ? $yaml_vars['default_scheme'] : flavor
+  end
+
+  def get_artifact_path(artifact_type, flavor)
+    if artifact_type == "apk"
+        return "../build/app/outputs/flutter-apk/#{flavor.nil? ? 'app-release.apk' : "app-#{flavor}-release.apk"}"
+    elsif artifact_type == "aab"
+        return "../build/app/outputs/bundle/#{flavor.nil? ? 'release/app-release.aab' : "#{flavor}Release/app-#{flavor}-release.aab"}"
+    else
+     UI.user_error!("You must specify artifact type when calling the fastlane build method. Valid value apk or aab")
+     return
+    end
+  end
+
+  def upload_to_play_store_if_possible(distribute, path, artifact_type)
+    if distribute == nil || !distribute
+        return
+    end
+
+    if $yaml_vars['schemes'] == nil || $yaml_vars['schemes']['android'] == nil
+        UI.user_error!("distribute_store is specified, but the configuration is incomplete. Check scheme android #{$selected_flavor}")
+        return
+    end
+
+    play_store = $yaml_vars['schemes']['android']
+    play_store_flavor_settings = play_store.find { |scheme| scheme['name'] == $selected_flavor }
+
+    if play_store_flavor_settings.nil?
+        UI.user_error!("distribute_store is specified, but the configuration is incomplete. Check scheme android #{$selected_flavor}")
+        return
+    end
+
+    play_store_config = {
+        "release_status" => play_store_flavor_settings['release_status'],
+        "track" => play_store_flavor_settings['track'],
+        "rollout" => play_store_flavor_settings['rollout'],
+    }
+
+    if artifact_type == "apk"
+        UI.user_error!("You cannot submit a build to the Play Store using apk artifact")
+    end
+
+    validate_play_store_json_key json_key:CredentialsManager::AppfileConfig.try_fetch_value(:json_key_file)
+    upload_to_play_store(
+        package_name: play_store_config['package_name'],
+        aab: path,
+        release_status: play_store_config['release_status'],
+        track: play_store_config['track'],
+        skip_upload_metadata: true,
+        skip_upload_images: true,
+        skip_upload_screenshots: true,
+        skip_upload_changelogs: true,
+        skip_upload_apk: true,
+    )
+  end
+
+  def upload_to_firebase_if_possible(distribute, path, artifact_type)
+    if distribute == nil || !distribute
+        return
+    end
+
+    if $yaml_vars['firebase'] == nil || $yaml_vars['firebase']['android'] == nil
+        UI.user_error!("distribute_to_firebase is specified, but the configuration is incomplete. Check fastlane_config firebase")
+        return
+    end
+
+    firebase_settings = $yaml_vars['firebase']['android']
+    firebase_flavor_settings = firebase_settings.find { |scheme| scheme['name'] == $selected_flavor }
+
+    if firebase_flavor_settings == nil
+        UI.user_error!("distribute_to_firebase is specified, but the configuration is incomplete. Check fastlane_config firebase")
+        return
+    end
+
+    firebase_distribution = {
+        "app_id" => firebase_flavor_settings['app_id'],
+        "release_notes_file" => firebase_flavor_settings['release_notes_file'],
+        "testers" => firebase_flavor_settings['testers'],
+        "groups" => firebase_flavor_settings['groups'],
+        "deploy_apk_only" => firebase_flavor_settings['deploy_apk_only'],
+    }
+
+    if ENV['FIREBASE_APP_ID'] == nil
+        UI.user_error!("Using firebase app distribution you must specify a valid FIREBASE_APP_ID in the '.env.flavor_name' file located in the fastlane directory.")
+    end
+
+    if !firebase_distribution['deploy_apk_only'] || (firebase_distribution['deploy_apk_only'] && artifact_type == "apk")
+        firebase_app_distribution(
+            app: ENV['FIREBASE_APP_ID'],
+            release_notes_file: firebase_distribution['release_notes_file'],
+            testers: firebase_distribution['testers'],
+            groups: firebase_distribution['groups'],
+            android_artifact_path: path,
+            android_artifact_type: artifact_type.upcase,
+        )
+    else
+        UI.important "firebase_app_distribution was skipped because android artifact type is aab, and distribution is specified only for apk"
+    end
+  end
+end

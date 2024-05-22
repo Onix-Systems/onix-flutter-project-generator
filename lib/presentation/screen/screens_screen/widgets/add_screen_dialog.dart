@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
+import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 
@@ -83,7 +83,7 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
               onSubmitted: (_) => _onOk(context),
               placeholder: S.of(context).screenName,
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
               ],
             ),
             const SizedBox(height: 15),

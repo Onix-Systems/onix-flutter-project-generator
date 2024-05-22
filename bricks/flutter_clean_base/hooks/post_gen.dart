@@ -6,6 +6,7 @@ import 'dart:math';
 import 'package:recase/recase.dart';
 
 late String name;
+const flavorizrInjectKey = '#{flavorizer_injection_config}';
 
 void run(HookContext context) async {
   name = context.vars['project_name'].toString().toSnakeCase;
@@ -263,6 +264,9 @@ Future<void> getDependencies(HookContext context) async {
 
 Future<void> flavorize(HookContext context) async {
   'Flavorizing...'.log();
+
+  await injectFlavors(context);
+
   await Directory('$name/flavor_assets').create(recursive: true);
 
   for (var flavor in context.vars['flavors']) {
@@ -370,6 +374,60 @@ $flavor:
   }
 }
 
+Future<void> injectFlavors(HookContext context) async {
+  ///START:Flavorizer config injection
+  final isFlavorized = context.vars['flavorizr'] as bool;
+  File pubspecFile = File('$name/pubspec.yaml');
+  if (!pubspecFile.existsSync()) return;
+  String pubspecFileContent = await pubspecFile.readAsString();
+  if (isFlavorized) {
+    final flavors = (context.vars['flavors'] as List)
+        .map(
+          (e) => e as String,
+        )
+        .toList();
+    final String org = context.vars['project_org'] as String;
+    final lines = List<String>.empty(growable: true);
+    lines.add('flavorizr:');
+    lines.add('  app:');
+    lines.add('    android:');
+    lines.add('      flavorDimensions: "flavor-type"');
+    lines.add('');
+    lines.add('  flavors:');
+    for (String flavor in flavors) {
+      final packageSuffix = flavor.toLowerCase() == 'prod' ? '' : '.$flavor';
+      final nameSuffix = flavor.toLowerCase() == 'prod' ? '' : ' $flavor';
+      lines.add('    $flavor:');
+      lines.add('      app:');
+      lines.add('        name: "$name$nameSuffix"');
+      lines.add('');
+      lines.add('      android:');
+      lines.add('        applicationId: "$org.$name$packageSuffix"');
+      lines.add(
+          '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
+      lines.add('');
+      lines.add('      ios:');
+      lines.add('        bundleId: "$org.$name$packageSuffix"');
+      lines.add(
+          '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
+      lines.add('');
+      lines.add('');
+    }
+    final flavorLines = lines.join('\n');
+    final flavorContent = pubspecFileContent.replaceAll(
+      flavorizrInjectKey,
+      flavorLines,
+    );
+    pubspecFile.writeAsStringSync(flavorContent);
+  } else {
+    final clearedContent =
+        flavorizrInjectKey.replaceAll(flavorizrInjectKey, '');
+    pubspecFile.writeAsStringSync(pubspecFileContent);
+  }
+
+  ///END:Flavorizer config injection
+}
+
 Future<void> correct(HookContext context) async {
   if (context.vars['platforms'].contains('android')) {
     File appBuildGradle = File('$name/android/app/build.gradle');
@@ -452,6 +510,7 @@ coverage/
         '''
       
 /app/signing/signing.properties
+/fastlane/.env*
       ''');
 
     File androidBuildGradleFile = File('$name/android/app/build.gradle');
@@ -481,6 +540,25 @@ android {'''));
             android:value="\${googleMapsApiKey}" />-->
 
       </application>'''));
+  }
+
+  if (context.vars['platforms'].contains('ios')) {
+    final iosGitIgnoreFile = File('$name/ios/.gitignore');
+
+    if (!iosGitIgnoreFile.existsSync()) return;
+    String iosGitignoreContent = await iosGitIgnoreFile.readAsString();
+
+    iosGitIgnoreFile.writeAsStringSync(
+      iosGitignoreContent +
+          '''
+          
+Runner.app.dSYM.zip
+Runner.ipa
+
+/fastlane/.env*
+    
+    ''',
+    );
   }
 }
 

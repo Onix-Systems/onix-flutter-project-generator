@@ -8,11 +8,12 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/presentation/screen/generation_screen/generation_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summary_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_cell.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_styles_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:recase/recase.dart';
 
 class SummaryScreen extends StatefulWidget {
@@ -31,16 +32,12 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
     SummaryScreenBloc, SummaryScreenSR, SummaryScreen> {
   @override
   Widget buildWidget(BuildContext context) {
-    return srObserver(
-      context: context,
-      child: CupertinoPageScaffold(
-        child: SizedBox.expand(
-          child: blocConsumer(
-            stateListener: (state) => _buildMainContainer(context, state),
-          ),
+    return CupertinoPageScaffold(
+      child: SizedBox.expand(
+        child: blocConsumer(
+          stateListener: (state) => _buildMainContainer(context, state),
         ),
       ),
-      onSR: _onSingleResult,
     );
   }
 
@@ -48,12 +45,6 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
   void onBlocCreated(BuildContext context, SummaryScreenBloc bloc) {
     bloc.add(SummaryScreenEventInit(config: widget.config));
     super.onBlocCreated(context, bloc);
-  }
-
-  void _onSingleResult(BuildContext context, SummaryScreenSR singleResult) {
-    singleResult.when(
-      loadFinished: () {},
-    );
   }
 
   Widget _buildMainContainer(
@@ -109,8 +100,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                     if (state.config.flavorize)
                       SummaryCell(
                         variable: S.of(context).flavors,
-                        value:
-                            '${AppConsts.defaultFlavors.join(', ')} ${state.config.flavors.split(' ').join(', ')}',
+                        value: _getFlavors(state.config.flavors),
                       ),
                     SummaryCell(
                       variable: S.of(context).generateSigningKey,
@@ -185,18 +175,24 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppFilledButton(
-                    label: S.of(context).goBack,
-                    icon: Icons.arrow_back_ios_outlined,
-                    onPressed: () => context.go(AppRouter.dataComponentsScreen,
-                        extra: state.config)),
+                  label: S.of(context).goBack,
+                  icon: Icons.arrow_back_ios_outlined,
+                  onPressed: () => context.go(
+                    AppRouter.dataComponentsScreen,
+                    extra: state.config,
+                  ),
+                ),
                 const Delimiter.width(10),
                 AppFilledButton(
                   label: S.of(context).generateProject,
                   icon: Icons.local_fire_department,
                   iconLeft: false,
-                  onPressed: () => context.go(AppRouter.generationScreen,
-                      extra: state.config),
-                  color: CupertinoColors.destructiveRed,
+                  onPressed: () => context.go(
+                    AppRouter.generationScreen,
+                    extra: GenerationScreenExtra(
+                      config: state.config,
+                    ),
+                  ),
                 ),
               ],
             )
@@ -204,5 +200,15 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
         ),
       ),
     );
+  }
+
+  String _getFlavors(String flavors) {
+    var allFlavors = AppConsts.defaultFlavors.join(', ');
+
+    if (flavors.isNotEmpty) {
+      allFlavors += ', ${flavors.split(' ').join(', ')}';
+    }
+
+    return allFlavors;
   }
 }

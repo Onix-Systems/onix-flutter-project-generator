@@ -6,10 +6,13 @@ import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/enum/document_type.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
+import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
 import 'package:recase/recase.dart';
 
-class DocsService implements BaseGenerationService<bool> {
+class DocsService implements BaseGenerationService<String> {
+  final flavorsTitle =
+      '* **Flavor** - type of application configuration. Flavored 2 supports following flavors:';
   final _appNamePattern = '{app_name}';
   final _flavorsPattern = '{app_flavors}';
   final _platformsPattern = '{app_platforms}';
@@ -19,11 +22,12 @@ class DocsService implements BaseGenerationService<bool> {
   final _envExplanationPattern = '{app_env_explanation}';
   final _mainCountDescription = '{main_count_description}';
   final _platformPackageNames = '{platform_package_names}';
+  final _flavorizrInstructions = '{flavorizr_instructions}';
 
   @override
-  Future<bool> generate(BaseGenerationParams params) async {
+  Future<String> generate(BaseGenerationParams params) async {
     if (params is! DocsGenerationParams) {
-      return false;
+      return 'Incorrect params';
     }
     try {
       final projectPath = '${params.projectPath}/${params.projectName}';
@@ -40,10 +44,10 @@ class DocsService implements BaseGenerationService<bool> {
           params,
         );
       }
-      return true;
+      return '';
     } catch (e, trace) {
       logger.e(e, stackTrace: trace);
-      return false;
+      return e.toString();
     }
   }
 
@@ -75,17 +79,39 @@ class DocsService implements BaseGenerationService<bool> {
     DocsGenerationParams params,
   ) async {
     final projectNamePrettified = params.projectName.titleCase;
-    if (doc == DocumentType.readme) {
+    if (doc == DocumentType.techDescription) {
+      String output = input;
+      if (params.flavorize) {
+        final lines = List<String>.empty(growable: true);
+        lines.add('## Flavorizr');
+        lines.addNewLine();
+        lines.add(
+            'Project uses [Flavorizr](https://pub.dev/packages/flutter_flavorizr) package to create flavors configuration in native mobile projects.');
+        lines.add(
+            'Flavorizr configuration declared in `pubspec.yaml` file in `flavorizr` section.');
+        lines.add(
+            'When you changing something in `flavorizr` configuration make sure to regenerate configurations to apply changes using command:');
+        lines.add('```');
+        lines.add('flutter pub run flutter_flavorizr');
+        lines.add('```');
+        lines.addNewLine();
+        final content = lines.join('\n');
+        output = input.replaceAll(_flavorizrInstructions, content);
+      } else {
+        output = input.replaceAll(_flavorizrInstructions, '');
+      }
+      return output;
+    } else if (doc == DocumentType.readme) {
       final packages = List<String>.empty(growable: true);
       for (var platform in params.platforms) {
         if (platform.isFlavorCompatiblePlatform()) {
           final prefix = '* **${platform.toUpperCase()}**\n\n';
-          final package = _getPackageIds(
+          final package = _getPackageIdDeclarations(
             params.organization,
             params.projectName,
             params.flavors,
           );
-          packages.add('$prefix```\n$package\n```');
+          packages.add('$prefix\n$package\n');
         }
       }
       final output = input
@@ -93,7 +119,16 @@ class DocsService implements BaseGenerationService<bool> {
           .replaceAll(_platformPackageNames, packages.join('\n'));
       return output;
     } else if (doc == DocumentType.installInstructions) {
-      final flavors = params.flavors.join('\n');
+      final flavorsLines = List<String>.empty(growable: true);
+      if (params.flavorize) {
+        flavorsLines.add(flavorsTitle);
+        flavorsLines.addNewLine();
+        flavorsLines.add('```');
+        flavorsLines.add(params.flavors.join('\n'));
+        flavorsLines.add('```');
+        flavorsLines.addNewLine();
+      }
+      final flavors = flavorsLines.join('\n');
       final platforms = params.platforms.map((e) => '* $e').join('\n');
       final commands = params.commands.join('\n');
       final mainFiles =
@@ -112,6 +147,9 @@ class DocsService implements BaseGenerationService<bool> {
           .replaceAll(_envFilesPattern, flavors.isNotEmpty ? envFiles : '.env')
           .replaceAll(_envExplanationPattern, envExplanation)
           .replaceAll(_mainCountDescription, mainCountDescription);
+      if (!params.flavorize) {
+        return output.replaceAll(' --flavor {flavor}', '');
+      }
       return output;
     }
 
@@ -146,17 +184,20 @@ class DocsService implements BaseGenerationService<bool> {
     return 'This applications have ${flavors.length} flavors, so it have ${flavors.length} different entry points and `main.dart` files';
   }
 
-  String _getPackageIds(
+  String _getPackageIdDeclarations(
     String org,
     String name,
     Set<String> flavors,
   ) {
     if (flavors.isEmpty) {
-      return '$org.$name';
+      return '`$org.$name`';
     }
     String output = '';
     for (var e in flavors) {
-      output += '$org.$name.$e\n';
+      final packageNamePrefix = '* ${e.titleCase} `';
+      final packageNameSuffix = e == 'prod' ? '' : '.$e';
+      output += packageNamePrefix;
+      output += '$org.$name$packageNameSuffix`\n';
     }
     return output;
   }

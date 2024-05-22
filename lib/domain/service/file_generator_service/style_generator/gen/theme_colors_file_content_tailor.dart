@@ -2,6 +2,7 @@ import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dar
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_colors_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/style_generator_const.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 
 class ThemeColorsFileContentTailor implements BaseGenerationService<String> {
@@ -81,9 +82,10 @@ class ThemeColorsFileContentTailor implements BaseGenerationService<String> {
   List<_TailorColor> _getTailorColors(List<AppColorStyle> colors) {
     final names = <String>[];
 
-    for (final name in colors
-        .where((element) => element.validate())
-        .map((e) => e.name.replaceLast('Dark', '').replaceLast('Light', ''))) {
+    for (final name in colors.where((element) => element.validate()).map((e) =>
+        e.name
+            .replaceLast(StyleGeneratorConst.darkColorSuffix, '')
+            .replaceLast(StyleGeneratorConst.lightColorSuffix, ''))) {
       if (names.contains(name)) {
         continue;
       }
@@ -98,8 +100,8 @@ class ThemeColorsFileContentTailor implements BaseGenerationService<String> {
       final colorNames = <String>[];
 
       for (final color in colors.where((element) =>
-          element.name == '${name}Light' ||
-          element.name == '${name}Dark' ||
+          element.name == '$name${StyleGeneratorConst.lightColorSuffix}' ||
+          element.name == '$name${StyleGeneratorConst.darkColorSuffix}' ||
           element.name == name)) {
         colorNames.add(color.name);
       }

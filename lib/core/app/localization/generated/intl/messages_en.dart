@@ -65,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Check names before continue"),
         "cityOrLocality":
             MessageLookupByLibrary.simpleMessage(" City or Locality"),
+        "colorStyles": MessageLookupByLibrary.simpleMessage("Color Styles"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Component name"),
         "componentPreview": m0,
@@ -204,6 +205,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "swaggerParserScreenConflictError": MessageLookupByLibrary.simpleMessage(
             "Swagger file contains components conflicting with existing. Replace with parsed components or ignore conflicting parsed data?"),
         "swaggerURL": MessageLookupByLibrary.simpleMessage("Swagger URL"),
+        "textStyles": MessageLookupByLibrary.simpleMessage("Text Styles"),
         "theming": MessageLookupByLibrary.simpleMessage("Theming"),
         "title": MessageLookupByLibrary.simpleMessage(
             "Onix Flutter Project Generator"),

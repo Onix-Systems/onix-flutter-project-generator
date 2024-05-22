@@ -8,9 +8,9 @@ import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bloc/swagger_parser_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/buttons/app_filled_button.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/dialogs/dialog.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/inputs/text_field_with_label.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widget/inputs/text_field_with_label.dart';
 
 class SwaggerParserScreen extends StatefulWidget {
   final Config config;

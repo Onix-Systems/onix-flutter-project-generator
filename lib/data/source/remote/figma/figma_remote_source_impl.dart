@@ -19,7 +19,7 @@ class FigmaRemoteDataSourceImpl implements FigmaRemoteDataSource {
       headers: {'X-Figma-Token': token},
     );
     if (response.statusCode != 200) {
-      throw Exception('Error getting styles');
+      throw Exception('Failed to get styles From Figma API');
     }
 
     return FigmaFileResponse.fromJson(
@@ -34,12 +34,12 @@ class FigmaRemoteDataSourceImpl implements FigmaRemoteDataSource {
     String figmaId,
   ) async {
     final response = await http.get(
-        Uri.parse(
-            '${AppConsts.figmaBaseUrl}/files/$figmaId/nodes?ids=$nodeIds'),
-        headers: {'X-Figma-Token': token});
+      Uri.parse('${AppConsts.figmaBaseUrl}/files/$figmaId/nodes?ids=$nodeIds'),
+      headers: {'X-Figma-Token': token},
+    );
 
     if (response.statusCode != 200) {
-      throw Exception('Error getting nodes');
+      throw Exception('Failed to get nodes From Figma API');
     }
 
     return FigmaNodesResponse.fromJson(

@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1236,6 +1235,26 @@ class S {
     return Intl.message(
       'Mason Brick source',
       name: 'masonBrickSource',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Text Styles`
+  String get textStyles {
+    return Intl.message(
+      'Text Styles',
+      name: 'textStyles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Color Styles`
+  String get colorStyles {
+    return Intl.message(
+      'Color Styles',
+      name: 'colorStyles',
       desc: '',
       args: [],
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
-import 'package:onix_flutter_bricks/presentation/widgets/inputs/labeled_checkbox.dart';
+import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 
 class PlatformCheckbox extends StatelessWidget {
   final String label;
@@ -22,6 +22,9 @@ class PlatformCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Material(
           color: Colors.transparent,
@@ -40,14 +43,17 @@ class PlatformCheckbox extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 color: initialValue ? AppColors.orange : null,
               ),
-              child: SvgPicture.asset(assetPath,
-                  colorFilter: ColorFilter.mode(
-                      initialValue
-                          ? AppColors.bgDark
-                          : iconColor != null
-                              ? iconColor!
-                              : AppColors.white,
-                      BlendMode.srcIn)),
+              child: SvgPicture.asset(
+                assetPath,
+                colorFilter: ColorFilter.mode(
+                  initialValue
+                      ? AppColors.bgDark
+                      : iconColor != null
+                          ? iconColor!
+                          : AppColors.white,
+                  BlendMode.srcIn,
+                ),
+              ),
             ),
           ),
         ),

@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/util/enum/project_localization.dart';
+import 'package:onix_flutter_bricks/util/enum/project_router.dart';
+import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
 
 class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenState, ProjectSettingsScreenSR> {
@@ -23,102 +26,139 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     on<ProjectSettingsScreenEventFirebaseChange>(_onFirebaseChange);
   }
 
-  FutureOr<void> _onInit(
+  void _onInit(
     ProjectSettingsScreenEventInit event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
-      config: event.config,
-    ));
+    emit(
+      state.copyWith(
+        config: event.config,
+      ),
+    );
   }
 
-  FutureOr<void> _onFlavorizeChange(
+  void _onFlavorizeChange(
     ProjectSettingsScreenEventFlavorizeChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
-        config: state.config.copyWith(flavorize: !state.config.flavorize)));
+    emit(
+      state.copyWith(
+        config: state.config.copyWith(flavorize: !state.config.flavorize),
+      ),
+    );
   }
 
-  FutureOr<void> _onFlavorsChange(
+  void _onFlavorsChange(
     ProjectSettingsScreenEventFlavorsChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(config: state.config.copyWith(flavors: event.flavors)));
+    emit(
+      state.copyWith(
+        config: state.config.copyWith(
+          flavors: event.flavors.trim(),
+        ),
+      ),
+    );
   }
 
-  FutureOr<void> _onGenerateSigningKeyChange(
+  void _onGenerateSigningKeyChange(
     ProjectSettingsScreenEventGenerateSigningKeyChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         config: state.config
-            .copyWith(generateSigningKey: !state.config.generateSigningKey)));
+            .copyWith(generateSigningKey: !state.config.generateSigningKey),
+      ),
+    );
   }
 
-  FutureOr<void> _onSigningVarsChange(
+  void _onSigningVarsChange(
     ProjectSettingsScreenEventSigningVarsChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
-        config: state.config.copyWith(signingVars: event.signingVars)));
+    emit(
+      state.copyWith(
+        config: state.config.copyWith(signingVars: event.signingVars),
+      ),
+    );
   }
 
-  FutureOr<void> _onUseSonarChange(
+  void _onUseSonarChange(
     ProjectSettingsScreenEventUseSonarChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
-        config: state.config.copyWith(useSonar: !state.config.useSonar)));
+    emit(
+      state.copyWith(
+        config: state.config.copyWith(useSonar: !state.config.useSonar),
+      ),
+    );
   }
 
-  FutureOr<void> _onGraphQLChange(
+  void _onGraphQLChange(
     ProjectSettingsScreenEventGraphQLChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
-        config: state.config.copyWith(graphql: !state.config.graphql)));
+    emit(
+      state.copyWith(
+        config: state.config.copyWith(graphql: !state.config.graphql),
+      ),
+    );
   }
 
-  FutureOr<void> _onRouterChange(
+  void _onRouterChange(
     ProjectSettingsScreenEventRouterChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         config: state.config.copyWith(
-            router: state.config.router == ProjectRouter.goRouter
-                ? ProjectRouter.autoRouter
-                : ProjectRouter.goRouter)));
+          router: state.config.router == ProjectRouter.goRouter
+              ? ProjectRouter.autoRouter
+              : ProjectRouter.goRouter,
+        ),
+      ),
+    );
   }
 
-  FutureOr<void> _onLocalizationChange(
+  void _onLocalizationChange(
     ProjectSettingsScreenEventLocalizationChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         config: state.config.copyWith(
-            localization: state.config.localization == ProjectLocalization.intl
-                ? ProjectLocalization.flutterGen
-                : ProjectLocalization.intl)));
+          localization: state.config.localization == ProjectLocalization.intl
+              ? ProjectLocalization.flutterGen
+              : ProjectLocalization.intl,
+        ),
+      ),
+    );
   }
 
-  FutureOr<void> _onThemingChange(
+  void _onThemingChange(
     ProjectSettingsScreenEventThemingChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         config: state.config.copyWith(
-            theming: state.config.theming == ProjectTheming.themeTailor
-                ? ProjectTheming.manual
-                : ProjectTheming.themeTailor)));
+          theming: state.config.theming == ProjectTheming.themeTailor
+              ? ProjectTheming.manual
+              : ProjectTheming.themeTailor,
+        ),
+      ),
+    );
   }
 
-  FutureOr<void> _onFirebaseChange(
+  void _onFirebaseChange(
     ProjectSettingsScreenEventFirebaseChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
-    emit(state.copyWith(
-        config:
-            state.config.copyWith(firebaseAuth: !state.config.firebaseAuth)));
+    emit(
+      state.copyWith(
+        config: state.config.copyWith(firebaseAuth: !state.config.firebaseAuth),
+      ),
+    );
   }
 }

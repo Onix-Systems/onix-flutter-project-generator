@@ -7,6 +7,7 @@ class DocsGenerationParams implements BaseGenerationParams {
   final Set<String> flavors;
   final List<String> platforms;
   final List<String> commands;
+  final bool flavorize;
 
   const DocsGenerationParams({
     required this.projectName,
@@ -15,5 +16,6 @@ class DocsGenerationParams implements BaseGenerationParams {
     required this.flavors,
     required this.platforms,
     required this.commands,
+    required this.flavorize,
   });
 }

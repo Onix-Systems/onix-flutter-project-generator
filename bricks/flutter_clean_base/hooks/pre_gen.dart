@@ -4,10 +4,13 @@ import 'package:process_run/shell.dart';
 import 'package:tint/tint.dart';
 import 'package:recase/recase.dart';
 
+
 void run(HookContext context) async {
   'Creating flutter project...'.log();
 
-  String name = context.vars['project_name_dirt'].toString().toSnakeCase;
+  String name = context.vars['project_name_dirt']
+      .toString()
+      .toSnakeCase;
   String org = context.vars['project_org'];
 
   List<String> createArgs = [];
@@ -48,12 +51,13 @@ void run(HookContext context) async {
   }
 
   context.vars = await _initCustomVars(context);
+
 }
 
 Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
   final isGoRouter = context.vars['navigation'] == 'goRouter' ? true : false;
   final localizationByHand =
-      context.vars['localization'] == 'flutter_gen' ? true : false;
+  context.vars['localization'] == 'flutter_gen' ? true : false;
 
   var flavors = [];
 
@@ -78,7 +82,9 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
     'isGoRouter': isGoRouter,
     'handLocalization': localizationByHand,
     'flavors': flavors,
-    'project_name': context.vars['project_name_dirt'].toString().toSnakeCase,
+    'project_name': context.vars['project_name_dirt']
+        .toString()
+        .toSnakeCase,
     'web_only': context.vars['platforms'] == 'web',
   };
 }
