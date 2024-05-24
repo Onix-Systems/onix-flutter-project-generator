@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 
 class ThemeColors extends ThemeExtension<ThemeColors> {
+  ///TODO COLORS
   static const light = ThemeColors(
     backgroundColor: AppColors.bgLight,
     buttonColor: AppColors.greenLight,
@@ -10,7 +11,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     textColor: AppColors.outputBgdLight,
     contrastTextColor: AppColors.outputBgdLight,
   );
-
+///TODO colors
   static const dark = ThemeColors(
     backgroundColor: AppColors.bgDark,
     buttonColor: AppColors.greenDark,
