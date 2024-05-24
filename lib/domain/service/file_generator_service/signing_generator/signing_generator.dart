@@ -17,7 +17,6 @@ class SigningGenerator implements BaseGenerationService<Result<dynamic>> {
 
   SigningGenerator(this._outputService);
 
-  ///[separateFromBrick] means that process was run not as a part of a project generation
   @override
   Future<Result<dynamic>> generate(BaseGenerationParams params) async {
     if (params is! SingingGeneratorParams) {
