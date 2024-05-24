@@ -1053,7 +1053,7 @@ mixin _$ProcedureSelectionScreenSR {
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
     required TResult Function() onNewProject,
-    required TResult Function(bool success) onAndroidSigningCreated,
+    required TResult Function() onAndroidSigningCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1061,7 +1061,7 @@ mixin _$ProcedureSelectionScreenSR {
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
-    TResult? Function(bool success)? onAndroidSigningCreated,
+    TResult? Function()? onAndroidSigningCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1069,7 +1069,7 @@ mixin _$ProcedureSelectionScreenSR {
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
-    TResult Function(bool success)? onAndroidSigningCreated,
+    TResult Function()? onAndroidSigningCreated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1162,7 +1162,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
     required TResult Function() onNewProject,
-    required TResult Function(bool success) onAndroidSigningCreated,
+    required TResult Function() onAndroidSigningCreated,
   }) {
     return loadFinished();
   }
@@ -1173,7 +1173,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
-    TResult? Function(bool success)? onAndroidSigningCreated,
+    TResult? Function()? onAndroidSigningCreated,
   }) {
     return loadFinished?.call();
   }
@@ -1184,7 +1184,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
-    TResult Function(bool success)? onAndroidSigningCreated,
+    TResult Function()? onAndroidSigningCreated,
     required TResult orElse(),
   }) {
     if (loadFinished != null) {
@@ -1277,7 +1277,7 @@ class _$EmptyConfigImpl implements _EmptyConfig {
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
     required TResult Function() onNewProject,
-    required TResult Function(bool success) onAndroidSigningCreated,
+    required TResult Function() onAndroidSigningCreated,
   }) {
     return emptyConfig();
   }
@@ -1288,7 +1288,7 @@ class _$EmptyConfigImpl implements _EmptyConfig {
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
-    TResult? Function(bool success)? onAndroidSigningCreated,
+    TResult? Function()? onAndroidSigningCreated,
   }) {
     return emptyConfig?.call();
   }
@@ -1299,7 +1299,7 @@ class _$EmptyConfigImpl implements _EmptyConfig {
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
-    TResult Function(bool success)? onAndroidSigningCreated,
+    TResult Function()? onAndroidSigningCreated,
     required TResult orElse(),
   }) {
     if (emptyConfig != null) {
@@ -1392,7 +1392,7 @@ class _$onNewProjectImpl implements _onNewProject {
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
     required TResult Function() onNewProject,
-    required TResult Function(bool success) onAndroidSigningCreated,
+    required TResult Function() onAndroidSigningCreated,
   }) {
     return onNewProject();
   }
@@ -1403,7 +1403,7 @@ class _$onNewProjectImpl implements _onNewProject {
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
-    TResult? Function(bool success)? onAndroidSigningCreated,
+    TResult? Function()? onAndroidSigningCreated,
   }) {
     return onNewProject?.call();
   }
@@ -1414,7 +1414,7 @@ class _$onNewProjectImpl implements _onNewProject {
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
-    TResult Function(bool success)? onAndroidSigningCreated,
+    TResult Function()? onAndroidSigningCreated,
     required TResult orElse(),
   }) {
     if (onNewProject != null) {
@@ -1472,8 +1472,6 @@ abstract class _$$onAndroidSigningCreatedImplCopyWith<$Res> {
           _$onAndroidSigningCreatedImpl value,
           $Res Function(_$onAndroidSigningCreatedImpl) then) =
       __$$onAndroidSigningCreatedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool success});
 }
 
 /// @nodoc
@@ -1485,51 +1483,27 @@ class __$$onAndroidSigningCreatedImplCopyWithImpl<$Res>
       _$onAndroidSigningCreatedImpl _value,
       $Res Function(_$onAndroidSigningCreatedImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? success = null,
-  }) {
-    return _then(_$onAndroidSigningCreatedImpl(
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
-  const _$onAndroidSigningCreatedImpl({required this.success});
-
-  @override
-  final bool success;
+  const _$onAndroidSigningCreatedImpl();
 
   @override
   String toString() {
-    return 'ProcedureSelectionScreenSR.onAndroidSigningCreated(success: $success)';
+    return 'ProcedureSelectionScreenSR.onAndroidSigningCreated()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$onAndroidSigningCreatedImpl &&
-            (identical(other.success, success) || other.success == success));
+            other is _$onAndroidSigningCreatedImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, success);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$onAndroidSigningCreatedImplCopyWith<_$onAndroidSigningCreatedImpl>
-      get copyWith => __$$onAndroidSigningCreatedImplCopyWithImpl<
-          _$onAndroidSigningCreatedImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -1537,9 +1511,9 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
     required TResult Function() onNewProject,
-    required TResult Function(bool success) onAndroidSigningCreated,
+    required TResult Function() onAndroidSigningCreated,
   }) {
-    return onAndroidSigningCreated(success);
+    return onAndroidSigningCreated();
   }
 
   @override
@@ -1548,9 +1522,9 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
-    TResult? Function(bool success)? onAndroidSigningCreated,
+    TResult? Function()? onAndroidSigningCreated,
   }) {
-    return onAndroidSigningCreated?.call(success);
+    return onAndroidSigningCreated?.call();
   }
 
   @override
@@ -1559,11 +1533,11 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
-    TResult Function(bool success)? onAndroidSigningCreated,
+    TResult Function()? onAndroidSigningCreated,
     required TResult orElse(),
   }) {
     if (onAndroidSigningCreated != null) {
-      return onAndroidSigningCreated(success);
+      return onAndroidSigningCreated();
     }
     return orElse();
   }
@@ -1608,13 +1582,7 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
 }
 
 abstract class _onAndroidSigningCreated implements ProcedureSelectionScreenSR {
-  const factory _onAndroidSigningCreated({required final bool success}) =
-      _$onAndroidSigningCreatedImpl;
-
-  bool get success;
-  @JsonKey(ignore: true)
-  _$$onAndroidSigningCreatedImplCopyWith<_$onAndroidSigningCreatedImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  const factory _onAndroidSigningCreated() = _$onAndroidSigningCreatedImpl;
 }
 
 /// @nodoc

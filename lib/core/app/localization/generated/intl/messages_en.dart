@@ -193,8 +193,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Already exists"),
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
         "screens": MessageLookupByLibrary.simpleMessage("Screens"),
-        "signingToolErrorText": MessageLookupByLibrary.simpleMessage(
+        "signingErrorException": MessageLookupByLibrary.simpleMessage(
             "Failed to create signing config. Is Android platform enabled and android folder exist?"),
+        "signingErrorExist": MessageLookupByLibrary.simpleMessage(
+            "Failed to create signing config. Certificate of configuration already exist."),
+        "signingErrorParams": MessageLookupByLibrary.simpleMessage(
+            "Failed to create signing config. Internal error happened, please contact a developer."),
         "signingToolSuccessText": MessageLookupByLibrary.simpleMessage(
             "Keystore and signing configuration created."),
         "signingToolTitle": MessageLookupByLibrary.simpleMessage(

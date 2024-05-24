@@ -194,8 +194,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Вже є"),
         "screenName": MessageLookupByLibrary.simpleMessage("Назва екрану"),
         "screens": MessageLookupByLibrary.simpleMessage("Екрани"),
-        "signingToolErrorText": MessageLookupByLibrary.simpleMessage(
-            "Не вдалося завершити конфігурацію підпису. Перевірте чи ваш проект містить папку android та чи вона відповідає проекту Android? "),
+        "signingErrorException": MessageLookupByLibrary.simpleMessage(
+            "Не вдалося завершити конфігурацію підпису. Перевірте чи ваш проект містить папку android та чи вона відповідає проекту Android?"),
+        "signingErrorExist": MessageLookupByLibrary.simpleMessage(
+            "Не вдалося завершити конфігурацію підпису. Сертифікат або конфігурація вже існує."),
+        "signingErrorParams": MessageLookupByLibrary.simpleMessage(
+            "Не вдалося завершити конфігурацію підпису. Відбулась внутрішня помилка, зв\'яжіться з розробником."),
         "signingToolSuccessText": MessageLookupByLibrary.simpleMessage(
             "Сертифікат та конфігурація підпису додана до проекту."),
         "signingToolTitle":

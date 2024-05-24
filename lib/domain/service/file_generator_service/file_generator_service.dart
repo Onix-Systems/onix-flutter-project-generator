@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:onix_flutter_bricks/core/arch/domain/entity/result/result.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/domain/repository/data_component_repository.dart';
@@ -28,7 +29,7 @@ class FileGeneratorService {
   final BaseGenerationService<bool> _dataLayerGenerator = DataLayerGenerator();
   final BaseGenerationService<bool> _componentEnumGenerator =
       ComponentEnumGenerator();
-  late BaseGenerationService<bool> _signingGenerator;
+  late BaseGenerationService<Result<dynamic>> _signingGenerator;
   late BaseGenerationService<bool> _componentClassGenerator;
   late BaseGenerationService<bool> _mapperGenerator;
   late BaseGenerationService<bool> _requestGenerator;
@@ -119,6 +120,6 @@ class FileGeneratorService {
         .create(recursive: true);
   }
 
-  Future<bool> generateSigning(BaseGenerationParams params) =>
+  Future<Result<dynamic>> generateSigning(BaseGenerationParams params) =>
       _signingGenerator.generate(params);
 }

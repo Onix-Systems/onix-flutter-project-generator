@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
+import 'package:onix_flutter_bricks/core/arch/domain/entity/result/result.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
@@ -10,16 +12,18 @@ import 'package:onix_flutter_bricks/util/extension/output/output_message_extensi
 import 'package:onix_flutter_bricks/util/process_runner.dart';
 
 ///This class Generates Android keystore with given credentials and fix Gradle signing configuration
-class SigningGenerator implements BaseGenerationService<bool> {
+class SigningGenerator implements BaseGenerationService<Result<dynamic>> {
   final OutputService _outputService;
 
   SigningGenerator(this._outputService);
 
   ///[separateFromBrick] means that process was run not as a part of a project generation
   @override
-  Future<bool> generate(BaseGenerationParams params) async {
+  Future<Result<dynamic>> generate(BaseGenerationParams params) async {
     if (params is! SingingGeneratorParams) {
-      return false;
+      return Result.error(
+        failure: SigningFailure(SigningFailureType.invalidParams),
+      );
     }
     try {
       _outputService
@@ -110,10 +114,12 @@ if (propFile.canRead()) {
     }''',
         ),
       );
-      return true;
+      return const Result.success(0);
     } catch (e, trace) {
       logger.e(e, stackTrace: trace);
-      return false;
+      return  Result.error(
+        failure: SigningFailure(SigningFailureType.exception),
+      );
     }
   }
 }

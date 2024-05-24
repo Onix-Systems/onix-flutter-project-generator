@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1321,11 +1320,31 @@ class S {
     );
   }
 
+  /// `Failed to create signing config. Internal error happened, please contact a developer.`
+  String get signingErrorParams {
+    return Intl.message(
+      'Failed to create signing config. Internal error happened, please contact a developer.',
+      name: 'signingErrorParams',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Failed to create signing config. Is Android platform enabled and android folder exist?`
-  String get signingToolErrorText {
+  String get signingErrorException {
     return Intl.message(
       'Failed to create signing config. Is Android platform enabled and android folder exist?',
-      name: 'signingToolErrorText',
+      name: 'signingErrorException',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to create signing config. Certificate of configuration already exist.`
+  String get signingErrorExist {
+    return Intl.message(
+      'Failed to create signing config. Certificate of configuration already exist.',
+      name: 'signingErrorExist',
       desc: '',
       args: [],
     );

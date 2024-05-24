@@ -124,11 +124,13 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
       ),
     );
     hideProgress();
+    if (!result.success) {
+      onFailure(result.error.failure);
+      return;
+    }
 
     addSr(
-      ProcedureSelectionScreenSR.onAndroidSigningCreated(
-        success: result,
-      ),
+      const ProcedureSelectionScreenSR.onAndroidSigningCreated(),
     );
   }
 }

@@ -10,6 +10,7 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/tools_popup_button.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/widgets/signing_dialog.dart';
@@ -19,6 +20,7 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_butto
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/util/enum/tool_type.dart';
 import 'package:onix_flutter_bricks/util/extension/directory_extension.dart';
+import 'package:onix_flutter_bricks/util/extension/failure_dialog_extension.dart';
 
 class ProcedureSelectionScreen extends StatefulWidget {
   final Config config;
@@ -55,6 +57,13 @@ class _ProcedureSelectionScreenState extends BaseState<
 
   @override
   void onBlocCreated(BuildContext context, ProcedureSelectionScreenBloc bloc) {
+    bloc.failureStream.listen(
+      (failure) {
+        if (failure is SigningFailure) {
+          context.onSigningFailure(failure);
+        }
+      },
+    );
     bloc.add(ProcedureSelectionScreenEventInit(config: widget.config));
     super.onBlocCreated(context, bloc);
   }
@@ -80,15 +89,12 @@ class _ProcedureSelectionScreenState extends BaseState<
             .config
             .copyWith(projectPath: blocOf(context).state.config.projectPath),
       ),
-      onAndroidSigningCreated: (success) {
+      onAndroidSigningCreated: () {
         Dialogs.showOkDialog(
           context: context,
-          isError: !success,
           title: S.of(context).signingToolTitle,
           content: Text(
-            success
-                ? S.of(context).signingToolSuccessText
-                : S.of(context).signingToolErrorText,
+            S.of(context).signingToolSuccessText,
             style: context.appTextStyles.fs18?.copyWith(
               fontSize: 16,
             ),

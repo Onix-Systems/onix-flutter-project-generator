@@ -37,7 +37,7 @@ class ProcedureSelectionScreenSR with _$ProcedureSelectionScreenSR {
 
   const factory ProcedureSelectionScreenSR.onNewProject() = _onNewProject;
 
-  const factory ProcedureSelectionScreenSR.onAndroidSigningCreated({required bool success}) =
+  const factory ProcedureSelectionScreenSR.onAndroidSigningCreated() =
       _onAndroidSigningCreated;
 }
 
