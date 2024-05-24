@@ -36,6 +36,13 @@ class SigningGenerator implements BaseGenerationService<Result<dynamic>> {
         final directory = Directory(workDirectory);
         await directory.create();
       }
+      final certificateFile = File('$workDirectory/upload-keystore.jks');
+      final certificateExist = await certificateFile.exists();
+      if (certificateExist) {
+        return Result.error(
+          failure: SigningFailure(SigningFailureType.signingAlreadyExist),
+        );
+      }
 
       ///Run generate Keystore process
       final processRunner = ProcessRunner(_outputService);
@@ -117,7 +124,7 @@ if (propFile.canRead()) {
       return const Result.success(0);
     } catch (e, trace) {
       logger.e(e, stackTrace: trace);
-      return  Result.error(
+      return Result.error(
         failure: SigningFailure(SigningFailureType.exception),
       );
     }
