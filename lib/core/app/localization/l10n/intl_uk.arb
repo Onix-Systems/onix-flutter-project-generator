@@ -127,5 +127,11 @@
   "generateAndroidSigning": "Сконфігурувати підпис Android",
   "signingErrorParams": "Не вдалося завершити конфігурацію підпису. Відбулась внутрішня помилка, зв'яжіться з розробником.",
   "signingErrorException": "Не вдалося завершити конфігурацію підпису. Перевірте чи ваш проект містить папку android та чи вона відповідає проекту Android?",
-  "signingErrorExist": "Не вдалося завершити конфігурацію підпису. Сертифікат або конфігурація вже існує."
+  "signingErrorExist": "Не вдалося завершити конфігурацію підпису. Сертифікат або конфігурація вже існує.",
+  "enterProjectName": "Введіть Ім'я Проекту",
+  "selectProjectFolder": "Onix Project Generator",
+  "selectProjectPlatforms": "Виберіть Платформи",
+  "selectProjectSetting": "Налаштування Проекту",
+  "selectProjectScreens": "Генерація Екранів",
+  "initial": "Початковий екран?"
 }

@@ -87,6 +87,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator"),
         "emptyConfigTitle":
             MessageLookupByLibrary.simpleMessage("Config file load error!"),
+        "enterProjectName":
+            MessageLookupByLibrary.simpleMessage("Enter Project Name"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "exitLabel": MessageLookupByLibrary.simpleMessage("Exit"),
         "fields": MessageLookupByLibrary.simpleMessage("Fields"),
@@ -129,6 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Git permissions error!"),
         "goBack": MessageLookupByLibrary.simpleMessage("Back"),
         "ignore": MessageLookupByLibrary.simpleMessage("Ignore"),
+        "initial": MessageLookupByLibrary.simpleMessage("Initial screen?"),
         "integrateDevicePreview":
             MessageLookupByLibrary.simpleMessage("Integrate Device Preview?"),
         "integrateGraphQl":
@@ -193,6 +196,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Already exists"),
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
         "screens": MessageLookupByLibrary.simpleMessage("Screens"),
+        "selectProjectFolder":
+            MessageLookupByLibrary.simpleMessage("Onix Project Generator"),
+        "selectProjectPlatforms":
+            MessageLookupByLibrary.simpleMessage("Select Project Platforms"),
+        "selectProjectScreens":
+            MessageLookupByLibrary.simpleMessage("Add Screens to Generate"),
+        "selectProjectSetting":
+            MessageLookupByLibrary.simpleMessage("Select Project Features"),
         "signingErrorException": MessageLookupByLibrary.simpleMessage(
             "Failed to create signing config. Is Android platform enabled and android folder exist?"),
         "signingErrorExist": MessageLookupByLibrary.simpleMessage(

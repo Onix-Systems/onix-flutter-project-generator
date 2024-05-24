@@ -1349,6 +1349,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter Project Name`
+  String get enterProjectName {
+    return Intl.message(
+      'Enter Project Name',
+      name: 'enterProjectName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Onix Project Generator`
+  String get selectProjectFolder {
+    return Intl.message(
+      'Onix Project Generator',
+      name: 'selectProjectFolder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Project Platforms`
+  String get selectProjectPlatforms {
+    return Intl.message(
+      'Select Project Platforms',
+      name: 'selectProjectPlatforms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Project Features`
+  String get selectProjectSetting {
+    return Intl.message(
+      'Select Project Features',
+      name: 'selectProjectSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Screens to Generate`
+  String get selectProjectScreens {
+    return Intl.message(
+      'Add Screens to Generate',
+      name: 'selectProjectScreens',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Initial screen?`
+  String get initial {
+    return Intl.message(
+      'Initial screen?',
+      name: 'initial',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

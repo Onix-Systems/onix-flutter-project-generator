@@ -70,8 +70,11 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                   )
                 : BorderSide.none),
         padding: widget.padding ??
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        minimumSize: widget.minimumSize ?? const Size(100, 50),
+            const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 20,
+            ),
+        minimumSize: widget.minimumSize ?? const Size(100, 40),
       ),
       child: widget.big
           ? Column(

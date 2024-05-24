@@ -13,8 +13,10 @@ import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/widg
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/text_field_with_label.dart';
+import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 
 class ProjectNameScreen extends StatefulWidget {
   final Config config;
@@ -53,6 +55,9 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
   @override
   Widget buildWidget(BuildContext context) {
     return CupertinoPageScaffold(
+      navigationBar: TitleBar(
+        title: S.of(context).enterProjectName,
+      ),
       child: SizedBox.expand(
         child: blocConsumer(
           stateListener: (state) => _buildMainContainer(context, state),
@@ -108,35 +113,25 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
                 ],
               ),
               const Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  AppFilledButton(
-                    label: S.of(context).goBack,
-                    icon: Icons.arrow_back_ios_rounded,
-                    onPressed: () => context.go(
-                      AppRouter.procedureSelectionScreen,
-                      extra: widget.config.copyWith(
-                        projectName: projectNameController.text,
-                        organization: organizationController.text,
-                      ),
+              NavigationButtonBar(
+                focusNode: nextFocusNode,
+                isActive: state.config.projectName.isNotEmpty &&
+                    state.config.organization.isNotEmpty &&
+                    !state.projectExists,
+                nextText: S.of(context).continueLabel,
+                prevText: S.of(context).goBack,
+                onNextPressed: () {
+                  _onCheckNames(context, state.config);
+                },
+                onPrevPressed: () {
+                  context.go(
+                    AppRouter.procedureSelectionScreen,
+                    extra: widget.config.copyWith(
+                      projectName: projectNameController.text,
+                      organization: organizationController.text,
                     ),
-                  ),
-                  const Delimiter.width(10),
-                  AppFilledButton(
-                    focusNode: nextFocusNode,
-                    active: state.config.projectName.isNotEmpty &&
-                        state.config.organization.isNotEmpty &&
-                        !state.projectExists,
-                    label: S.of(context).continueLabel,
-                    icon: Icons.arrow_forward_ios_rounded,
-                    iconLeft: false,
-                    onPressed: () {
-                      _onCheckNames(context, state.config);
-                    },
-                  )
-                ],
+                  );
+                },
               ),
             ],
           ),

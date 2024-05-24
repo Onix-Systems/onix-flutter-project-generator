@@ -89,6 +89,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Файл конфіга вітсутній або невірний! Перевірте, чи був відкритий проект згенерований за допомогою Onix Flutter Project Generator"),
         "emptyConfigTitle": MessageLookupByLibrary.simpleMessage(
             "Помилка читання файлу конфіга!"),
+        "enterProjectName":
+            MessageLookupByLibrary.simpleMessage("Введіть Ім\'я Проекту"),
         "error": MessageLookupByLibrary.simpleMessage("Помілка"),
         "exitLabel": MessageLookupByLibrary.simpleMessage("Вийти"),
         "fields": MessageLookupByLibrary.simpleMessage("Поля"),
@@ -131,6 +133,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Помилка доступу до Git!"),
         "goBack": MessageLookupByLibrary.simpleMessage("Назад"),
         "ignore": MessageLookupByLibrary.simpleMessage("Ігнорувати"),
+        "initial": MessageLookupByLibrary.simpleMessage("Початковий екран?"),
         "integrateGraphQl":
             MessageLookupByLibrary.simpleMessage("Інтегрувати GraphQL?"),
         "keyStorePasswordPlaceholder": MessageLookupByLibrary.simpleMessage(
@@ -194,6 +197,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Вже є"),
         "screenName": MessageLookupByLibrary.simpleMessage("Назва екрану"),
         "screens": MessageLookupByLibrary.simpleMessage("Екрани"),
+        "selectProjectFolder":
+            MessageLookupByLibrary.simpleMessage("Onix Project Generator"),
+        "selectProjectPlatforms":
+            MessageLookupByLibrary.simpleMessage("Виберіть Платформи"),
+        "selectProjectScreens":
+            MessageLookupByLibrary.simpleMessage("Генерація Екранів"),
+        "selectProjectSetting":
+            MessageLookupByLibrary.simpleMessage("Налаштування Проекту"),
         "signingErrorException": MessageLookupByLibrary.simpleMessage(
             "Не вдалося завершити конфігурацію підпису. Перевірте чи ваш проект містить папку android та чи вона відповідає проекту Android?"),
         "signingErrorExist": MessageLookupByLibrary.simpleMessage(

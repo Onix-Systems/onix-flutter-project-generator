@@ -11,9 +11,11 @@ import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/widgets/signing_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_segmented_control.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/text_field_with_label.dart';
+import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 import 'package:onix_flutter_bricks/util/enum/project_localization.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
@@ -42,6 +44,9 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
     return srObserver(
       context: context,
       child: CupertinoPageScaffold(
+        navigationBar: TitleBar(
+          title: S.of(context).selectProjectSetting,
+        ),
         child: SizedBox.expand(
           child: blocConsumer(
             stateListener: (state) => _buildMainContainer(context, state),
@@ -72,10 +77,11 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
   ) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Spacer(),
             Row(
               children: [
                 Expanded(
@@ -83,7 +89,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                     height: _height,
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.orange),
+                      border: Border.all(color: AppColors.white),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
@@ -162,13 +168,13 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                     ),
                   ),
                 ),
-                const Delimiter.height(20),
+                const Delimiter.width(20),
                 Expanded(
                   child: Container(
                     height: _height,
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      border: Border.all(color: CupertinoColors.systemOrange),
+                      border: Border.all(color: AppColors.white),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
@@ -216,23 +222,12 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                 ),
               ],
             ),
-            const Delimiter.height(40),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AppFilledButton(
-                  label: S.of(context).goBack,
-                  icon: Icons.arrow_back_ios_rounded,
-                  onPressed: () => _goNext(state),
-                ),
-                const Delimiter.width(10),
-                AppFilledButton(
-                  label: S.of(context).continueLabel,
-                  icon: Icons.arrow_forward_ios_rounded,
-                  iconLeft: false,
-                  onPressed: () => _goBack(state),
-                ),
-              ],
+            const Spacer(),
+            NavigationButtonBar(
+              nextText: S.of(context).continueLabel,
+              prevText: S.of(context).goBack,
+              onNextPressed: () {_goNext(state);},
+              onPrevPressed: () {_goBack(state);},
             ),
           ],
         ),
@@ -261,7 +256,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
     );
   }
 
-  void _goNext(ProjectSettingsScreenState state) =>
+  void _goBack(ProjectSettingsScreenState state) =>
       context.go(AppRouter.platformsScreen,
           extra: widget.config.copyWith(
             flavorize: state.config.flavorize,
@@ -276,7 +271,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
             firebaseAuth: state.config.firebaseAuth,
           ));
 
-  void _goBack(ProjectSettingsScreenState state) => context.go(
+  void _goNext(ProjectSettingsScreenState state) => context.go(
         AppRouter.screensScreen,
         extra: widget.config.copyWith(
           flavorize: state.config.flavorize,

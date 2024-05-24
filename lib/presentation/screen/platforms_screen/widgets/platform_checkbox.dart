@@ -35,13 +35,13 @@ class PlatformCheckbox extends StatelessWidget {
             child: Container(
               height: 100,
               width: 100,
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: AppColors.orange,
+                  color: AppColors.white,
                 ),
                 borderRadius: BorderRadius.circular(20),
-                color: initialValue ? AppColors.orange : null,
+                color: initialValue ? AppColors.white : null,
               ),
               child: SvgPicture.asset(
                 assetPath,

@@ -129,5 +129,11 @@
   "generateAndroidSigning": "Generate Android signing config",
   "signingErrorParams": "Failed to create signing config. Internal error happened, please contact a developer.",
   "signingErrorException": "Failed to create signing config. Is Android platform enabled and android folder exist?",
-  "signingErrorExist": "Failed to create signing config. Certificate of configuration already exist."
+  "signingErrorExist": "Failed to create signing config. Certificate of configuration already exist.",
+  "enterProjectName": "Enter Project Name",
+  "selectProjectFolder": "Onix Project Generator",
+  "selectProjectPlatforms": "Select Project Platforms",
+  "selectProjectSetting": "Select Project Features",
+  "selectProjectScreens": "Add Screens to Generate",
+  "initial": "Initial screen?"
 }

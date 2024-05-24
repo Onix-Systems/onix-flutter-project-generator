@@ -25,7 +25,7 @@ class LabeledCheckbox extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color:
-              focused ? CupertinoColors.activeOrange : const Color(0x00E5E5EA),
+              focused ? CupertinoColors.white : const Color(0x00E5E5EA),
           width: 1,
           strokeAlign: BorderSide.strokeAlignInside,
         ),
@@ -39,9 +39,9 @@ class LabeledCheckbox extends StatelessWidget {
             isDisabled: disabled,
             duration: const Duration(milliseconds: 200),
             colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
-              checkedColor: CupertinoColors.activeOrange,
-              uncheckedColor: CupertinoColors.activeOrange,
-              disabledColor: CupertinoColors.activeOrange,
+              checkedColor: CupertinoColors.white,
+              uncheckedColor: CupertinoColors.white,
+              disabledColor: CupertinoColors.inactiveGray,
             ),
             onChanged: (value) {
               onAction();
