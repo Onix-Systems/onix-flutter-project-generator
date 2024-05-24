@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
@@ -33,15 +34,7 @@ class Config with _$Config {
     @Default(ProjectRouter.goRouter) ProjectRouter router,
     @Default(ProjectLocalization.intl) ProjectLocalization localization,
     @Default(ProjectTheming.manual) ProjectTheming theming,
-    @Default([
-      'Your Name',
-      'Department',
-      'Your Company',
-      'Your City',
-      'Your State or Province',
-      'UA',
-      '',
-    ])
+    @Default(AppConsts.defaultSigningVars)
     List<String> signingVars,
     @Default({}) Set<Screen> screens,
     // ignore: invalid_annotation_target

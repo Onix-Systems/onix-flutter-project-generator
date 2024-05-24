@@ -3,7 +3,7 @@ description: Onix Flutter Clean Architecture
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.1.0+25
+version: 1.1.1+26
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -72,6 +72,7 @@ flutter:
     - assets/
     - assets/platform_logo/
     - assets/documentation/
+    - assets/signing/
     - assets/documentation/docs/
     - assets/documentation/docs/dev_solutions/
     - assets/fastlane/

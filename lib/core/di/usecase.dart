@@ -3,8 +3,8 @@ import 'package:onix_flutter_bricks/domain/repository/data_component_repository.
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/domain/repository/source_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/docs_service.dart';
-import 'package:onix_flutter_bricks/domain/service/figma_service/figma_service.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/fastlane_service.dart';
+import 'package:onix_flutter_bricks/domain/service/figma_service/figma_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';

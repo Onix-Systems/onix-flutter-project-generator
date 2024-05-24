@@ -240,13 +240,16 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
     );
   }
 
-  void _showSigningVarsDialog(
-      {required BuildContext context,
-      required ProjectSettingsScreenState state}) {
+  void _showSigningVarsDialog({
+    required BuildContext context,
+    required ProjectSettingsScreenState state,
+  }) {
     showCupertinoModalPopup<List<String>>(
       context: context,
       barrierDismissible: false,
-      builder: (ctx) => SigningDialog(state: state),
+      builder: (ctx) => SigningDialog(
+        signingVars: state.config.signingVars,
+      ),
     ).then(
       (signingVars) {
         blocOf(context).add(

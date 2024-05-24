@@ -107,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "flavorize": MessageLookupByLibrary.simpleMessage("Flavorize?"),
         "flavors": MessageLookupByLibrary.simpleMessage("Flavors"),
         "generate": MessageLookupByLibrary.simpleMessage("Generate"),
+        "generateAndroidSigning": MessageLookupByLibrary.simpleMessage(
+            "Generate Android signing config"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Generate new project"),
         "generateProject":
@@ -176,6 +178,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Project already exists, choose different name"),
         "projectName": MessageLookupByLibrary.simpleMessage("Project name"),
         "projectPath": MessageLookupByLibrary.simpleMessage("Project path"),
+        "projectSelectErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "Pubspec file not found in selected folder."),
+        "projectSelectErrorTitle":
+            MessageLookupByLibrary.simpleMessage("Not a Flutter Project"),
         "replace": MessageLookupByLibrary.simpleMessage("Replace"),
         "request": MessageLookupByLibrary.simpleMessage("Request"),
         "response": MessageLookupByLibrary.simpleMessage("Response"),
@@ -187,6 +193,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Already exists"),
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
         "screens": MessageLookupByLibrary.simpleMessage("Screens"),
+        "signingToolErrorText": MessageLookupByLibrary.simpleMessage(
+            "Failed to create signing config. Is Android platform enabled and android folder exist?"),
+        "signingToolSuccessText": MessageLookupByLibrary.simpleMessage(
+            "Keystore and signing configuration created."),
+        "signingToolTitle": MessageLookupByLibrary.simpleMessage(
+            "Android signing configuration"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
         "sourceDeletingDialogTitle": m5,
         "sourceExistsError": m6,
@@ -209,6 +221,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "theming": MessageLookupByLibrary.simpleMessage("Theming"),
         "title": MessageLookupByLibrary.simpleMessage(
             "Onix Flutter Project Generator"),
+        "tools": MessageLookupByLibrary.simpleMessage("Tools"),
         "twoLetterCountryCode":
             MessageLookupByLibrary.simpleMessage(" Two-letter country code"),
         "url": MessageLookupByLibrary.simpleMessage("URL"),

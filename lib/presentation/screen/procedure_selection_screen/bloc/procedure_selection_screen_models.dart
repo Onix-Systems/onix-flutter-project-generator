@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 
@@ -20,6 +22,11 @@ class ProcedureSelectionScreenEvent with _$ProcedureSelectionScreenEvent {
   const factory ProcedureSelectionScreenEvent.onLocaleChange({
     required String language,
   }) = ProcedureSelectionScreenEventOnLocaleChange;
+
+  const factory ProcedureSelectionScreenEvent.onGenerateAndroidSigning({
+    required Directory directory,
+    required List<String> signingVars,
+  }) = ProcedureSelectionScreenEventOnAndroidSigning;
 }
 
 @freezed
@@ -29,6 +36,9 @@ class ProcedureSelectionScreenSR with _$ProcedureSelectionScreenSR {
   const factory ProcedureSelectionScreenSR.emptyConfig() = _EmptyConfig;
 
   const factory ProcedureSelectionScreenSR.onNewProject() = _onNewProject;
+
+  const factory ProcedureSelectionScreenSR.onAndroidSigningCreated({required bool success}) =
+      _onAndroidSigningCreated;
 }
 
 @freezed

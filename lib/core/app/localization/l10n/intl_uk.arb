@@ -118,5 +118,12 @@
   "figmaGetStylesEmptyToken": "Figma token пустий",
   "masonBrickSource": "Гілка Mason Brick",
   "textStyles": "Стилі тексту",
-  "colorStyles": "Кольори"
+  "colorStyles": "Кольори",
+  "tools": "Інструменти",
+  "projectSelectErrorTitle": "Не папка з проектом Flutter",
+  "projectSelectErrorMessage": "Pubspec файл не знайдено.",
+  "signingToolTitle": "Сертифікат підпису Android",
+  "signingToolSuccessText": "Сертифікат та конфігурація підпису додана до проекту.",
+  "generateAndroidSigning": "Сконфігурувати підпис Android",
+  "signingToolErrorText": "Не вдалося завершити конфігурацію підпису. Перевірте чи ваш проект містить папку android та чи вона відповідає проекту Android? "
 }

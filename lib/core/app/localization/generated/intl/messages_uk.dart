@@ -109,6 +109,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Генерувати флавори?"),
         "flavors": MessageLookupByLibrary.simpleMessage("Флавори"),
         "generate": MessageLookupByLibrary.simpleMessage("Генерувати"),
+        "generateAndroidSigning": MessageLookupByLibrary.simpleMessage(
+            "Сконфігурувати підпис Android"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Створити новий проект"),
         "generateProject":
@@ -177,6 +179,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Проект з такою назвою вже існує"),
         "projectName": MessageLookupByLibrary.simpleMessage("Назва проекту"),
         "projectPath": MessageLookupByLibrary.simpleMessage("Шлях до проекту"),
+        "projectSelectErrorMessage":
+            MessageLookupByLibrary.simpleMessage("Pubspec файл не знайдено."),
+        "projectSelectErrorTitle":
+            MessageLookupByLibrary.simpleMessage("Не папка з проектом Flutter"),
         "replace": MessageLookupByLibrary.simpleMessage("Замінити"),
         "request": MessageLookupByLibrary.simpleMessage("Запит"),
         "response": MessageLookupByLibrary.simpleMessage("Відповідь"),
@@ -188,6 +194,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Вже є"),
         "screenName": MessageLookupByLibrary.simpleMessage("Назва екрану"),
         "screens": MessageLookupByLibrary.simpleMessage("Екрани"),
+        "signingToolErrorText": MessageLookupByLibrary.simpleMessage(
+            "Не вдалося завершити конфігурацію підпису. Перевірте чи ваш проект містить папку android та чи вона відповідає проекту Android? "),
+        "signingToolSuccessText": MessageLookupByLibrary.simpleMessage(
+            "Сертифікат та конфігурація підпису додана до проекту."),
+        "signingToolTitle":
+            MessageLookupByLibrary.simpleMessage("Сертифікат підпису Android"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Дані підпису"),
         "sourceDeletingDialogTitle": m5,
         "sourceExistsError": m6,
@@ -210,6 +222,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "theming": MessageLookupByLibrary.simpleMessage("Theming"),
         "title": MessageLookupByLibrary.simpleMessage(
             "Onix Flutter Project Generator"),
+        "tools": MessageLookupByLibrary.simpleMessage("Інструменти"),
         "twoLetterCountryCode":
             MessageLookupByLibrary.simpleMessage(" Двохлітерний код країни"),
         "url": MessageLookupByLibrary.simpleMessage("URL"),

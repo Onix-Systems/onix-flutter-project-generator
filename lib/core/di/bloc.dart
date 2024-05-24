@@ -69,5 +69,8 @@ void registerBloc(GetIt getIt) {
     ..registerFactory<SplashScreenBloc>(SplashScreenBloc.new)
     ..registerFactory<AppBloc>(AppBloc.new)
     ..registerFactory<ProcedureSelectionScreenBloc>(
-        ProcedureSelectionScreenBloc.new);
+      () => ProcedureSelectionScreenBloc(
+        GetIt.I.get<GenerateSigningConfigUseCase>(),
+      ),
+    );
 }

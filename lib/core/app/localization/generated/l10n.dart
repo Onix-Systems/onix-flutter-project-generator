@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1255,6 +1256,76 @@ class S {
     return Intl.message(
       'Color Styles',
       name: 'colorStyles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tools`
+  String get tools {
+    return Intl.message(
+      'Tools',
+      name: 'tools',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not a Flutter Project`
+  String get projectSelectErrorTitle {
+    return Intl.message(
+      'Not a Flutter Project',
+      name: 'projectSelectErrorTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pubspec file not found in selected folder.`
+  String get projectSelectErrorMessage {
+    return Intl.message(
+      'Pubspec file not found in selected folder.',
+      name: 'projectSelectErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Android signing configuration`
+  String get signingToolTitle {
+    return Intl.message(
+      'Android signing configuration',
+      name: 'signingToolTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Keystore and signing configuration created.`
+  String get signingToolSuccessText {
+    return Intl.message(
+      'Keystore and signing configuration created.',
+      name: 'signingToolSuccessText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate Android signing config`
+  String get generateAndroidSigning {
+    return Intl.message(
+      'Generate Android signing config',
+      name: 'generateAndroidSigning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to create signing config. Is Android platform enabled and android folder exist?`
+  String get signingToolErrorText {
+    return Intl.message(
+      'Failed to create signing config. Is Android platform enabled and android folder exist?',
+      name: 'signingToolErrorText',
       desc: '',
       args: [],
     );

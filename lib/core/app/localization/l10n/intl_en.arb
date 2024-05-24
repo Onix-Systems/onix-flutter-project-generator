@@ -120,5 +120,12 @@
   "figmaGetStylesEmptyToken": "Figma token is empty",
   "masonBrickSource": "Mason Brick source",
   "textStyles": "Text Styles",
-  "colorStyles": "Color Styles"
+  "colorStyles": "Color Styles",
+  "tools": "Tools",
+  "projectSelectErrorTitle": "Not a Flutter Project",
+  "projectSelectErrorMessage": "Pubspec file not found in selected folder.",
+  "signingToolTitle": "Android signing configuration",
+  "signingToolSuccessText": "Keystore and signing configuration created.",
+  "generateAndroidSigning": "Generate Android signing config",
+  "signingToolErrorText": "Failed to create signing config. Is Android platform enabled and android folder exist?"
 }
