@@ -1400,11 +1400,71 @@ class S {
     );
   }
 
+  /// `Data Components`
+  String get addDataComponents {
+    return Intl.message(
+      'Data Components',
+      name: 'addDataComponents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import REST API requests`
+  String get importApi {
+    return Intl.message(
+      'Import REST API requests',
+      name: 'importApi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import Styles`
+  String get importStyles {
+    return Intl.message(
+      'Import Styles',
+      name: 'importStyles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Summary`
+  String get summary {
+    return Intl.message(
+      'Summary',
+      name: 'summary',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Initial screen?`
   String get initial {
     return Intl.message(
       'Initial screen?',
       name: 'initial',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Styles`
+  String get getStyles {
+    return Intl.message(
+      'Get Styles',
+      name: 'getStyles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear`
+  String get clear {
+    return Intl.message(
+      'Clear',
+      name: 'clear',
       desc: '',
       args: [],
     );

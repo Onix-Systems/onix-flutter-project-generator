@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
@@ -41,16 +42,12 @@ class PlatformCheckbox extends StatelessWidget {
                   color: AppColors.white,
                 ),
                 borderRadius: BorderRadius.circular(20),
-                color: initialValue ? AppColors.white : null,
+                color: initialValue ? CupertinoColors.activeBlue.withOpacity(0.1) : null,
               ),
               child: SvgPicture.asset(
                 assetPath,
-                colorFilter: ColorFilter.mode(
-                  initialValue
-                      ? AppColors.bgDark
-                      : iconColor != null
-                          ? iconColor!
-                          : AppColors.white,
+                colorFilter: const ColorFilter.mode(
+                   AppColors.white,
                   BlendMode.srcIn,
                 ),
               ),

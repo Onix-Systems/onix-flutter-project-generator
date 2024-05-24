@@ -9,6 +9,7 @@ class NavigationButtonBar extends StatelessWidget {
   final VoidCallback onPrevPressed;
   final bool isActive;
   final FocusNode? focusNode;
+  final IconData? nextIcon;
 
   const NavigationButtonBar({
     required this.nextText,
@@ -17,6 +18,7 @@ class NavigationButtonBar extends StatelessWidget {
     required this.onPrevPressed,
     this.isActive = true,
     this.focusNode,
+    this.nextIcon,
     super.key,
   });
 
@@ -36,7 +38,7 @@ class NavigationButtonBar extends StatelessWidget {
           focusNode: focusNode,
           active: isActive,
           label: nextText,
-          icon: Icons.arrow_forward_ios_rounded,
+          icon: nextIcon ?? Icons.arrow_forward_ios_rounded,
           iconLeft: false,
           onPressed: onNextPressed,
         )

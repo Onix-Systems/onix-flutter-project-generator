@@ -135,5 +135,11 @@
   "selectProjectPlatforms": "Select Project Platforms",
   "selectProjectSetting": "Select Project Features",
   "selectProjectScreens": "Add Screens to Generate",
-  "initial": "Initial screen?"
+  "addDataComponents": "Data Components",
+  "importApi": "Import REST API requests",
+  "importStyles": "Import Styles",
+  "summary": "Summary",
+  "initial": "Initial screen?",
+  "getStyles": "Get Styles",
+  "clear": "Clear"
 }

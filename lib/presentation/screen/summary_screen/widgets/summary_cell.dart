@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
 class SummaryCell extends StatelessWidget {
   final String variable;
@@ -17,11 +19,11 @@ class SummaryCell extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: AppColors.inactiveText,
+          color: AppColors.white.withOpacity(0.5),
           strokeAlign: BorderSide.strokeAlignOutside,
-          width: 2,
+          width: 0.5,
         ),
-        color: AppColors.orange,
+        color: CupertinoColors.activeBlue.withOpacity(0.1),
       ),
       child: Row(
         children: [
@@ -32,7 +34,7 @@ class SummaryCell extends StatelessWidget {
               child: Text(
                 variable,
                 style: context.appTextStyles.fs18?.copyWith(
-                  color: AppColors.bgDark,
+                  color: AppColors.white,
                 ),
               ),
             ),

@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
 abstract class AppColors {
+
+  ///New Colors
+
+
   static const Color bgLight = Color(0xFFF5F5F5);
   static const Color greenLight = Color(0xFF5DFF00);
   static const Color textLight = Color(0xFF3D3D3D);

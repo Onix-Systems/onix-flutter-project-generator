@@ -9,8 +9,10 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bloc/swagger_parser_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/text_field_with_label.dart';
+import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 
 class SwaggerParserScreen extends StatefulWidget {
   final Config config;
@@ -40,6 +42,9 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
     return srObserver(
       context: context,
       child: CupertinoPageScaffold(
+        navigationBar: TitleBar(
+          title: S.of(context).importApi,
+        ),
         child: SizedBox.expand(
           child: blocConsumer(
             stateListener: (state) => _buildMainContainer(context, state),
@@ -89,43 +94,42 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
     SwaggerParserScreenState state,
   ) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            S.of(context).swaggerParserPrompt,
-            textAlign: TextAlign.center,
-            style: context.appTextStyles.fs18,
-          ),
-          const Delimiter.height(40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextFieldWithLabel(
-              label: '${S.of(context).url}: ',
-              textController: _urlController,
-              onChanged: () {},
-              autofocus: true,
-              onEditingComplete: () => _onContinue(context, state),
-              expanded: true,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Spacer(),
+            Text(
+              S.of(context).swaggerParserPrompt,
+              textAlign: TextAlign.center,
+              style: context.appTextStyles.fs18,
             ),
-          ),
-          const Delimiter.height(40),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AppFilledButton(
-                  label: S.of(context).goBack,
-                  icon: Icons.arrow_back_ios_rounded,
-                  onPressed: () => _onBack(context, state)),
-              const Delimiter.width(10),
-              AppFilledButton(
-                  label: S.of(context).continueLabel,
-                  icon: Icons.arrow_forward_ios_rounded,
-                  iconLeft: false,
-                  onPressed: () => _onContinue(context, state)),
-            ],
-          ),
-        ],
+            const Delimiter.height(20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextFieldWithLabel(
+                label: '${S.of(context).url}: ',
+                textController: _urlController,
+                onChanged: () {},
+                autofocus: true,
+                onEditingComplete: () => _onContinue(context, state),
+                expanded: true,
+              ),
+            ),
+            const Spacer(),
+            NavigationButtonBar(
+              nextText: S.of(context).continueLabel,
+              prevText: S.of(context).goBack,
+              onNextPressed: () {
+                _onContinue(context, state);
+              },
+              onPrevPressed: () {
+                _onBack(context, state);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

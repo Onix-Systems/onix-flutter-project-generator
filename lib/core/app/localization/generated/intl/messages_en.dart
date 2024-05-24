@@ -41,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
         "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
+        "addDataComponents":
+            MessageLookupByLibrary.simpleMessage("Data Components"),
         "addField": MessageLookupByLibrary.simpleMessage("Add field"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Add flavors:"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),
@@ -65,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Check names before continue"),
         "cityOrLocality":
             MessageLookupByLibrary.simpleMessage(" City or Locality"),
+        "clear": MessageLookupByLibrary.simpleMessage("Clear"),
         "colorStyles": MessageLookupByLibrary.simpleMessage("Color Styles"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Component name"),
@@ -123,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Generate Sonar config?"),
         "getFromSwagger":
             MessageLookupByLibrary.simpleMessage("Get from swagger"),
+        "getStyles": MessageLookupByLibrary.simpleMessage("Get Styles"),
         "getStylesFromFigma":
             MessageLookupByLibrary.simpleMessage("Get styles from Figma"),
         "gitPermissionsContent": MessageLookupByLibrary.simpleMessage(
@@ -131,6 +135,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Git permissions error!"),
         "goBack": MessageLookupByLibrary.simpleMessage("Back"),
         "ignore": MessageLookupByLibrary.simpleMessage("Ignore"),
+        "importApi":
+            MessageLookupByLibrary.simpleMessage("Import REST API requests"),
+        "importStyles": MessageLookupByLibrary.simpleMessage("Import Styles"),
         "initial": MessageLookupByLibrary.simpleMessage("Initial screen?"),
         "integrateDevicePreview":
             MessageLookupByLibrary.simpleMessage("Integrate Device Preview?"),
@@ -227,6 +234,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "stateManager": MessageLookupByLibrary.simpleMessage("State manager"),
         "stateOrProvince":
             MessageLookupByLibrary.simpleMessage(" State or Province"),
+        "summary": MessageLookupByLibrary.simpleMessage("Summary"),
         "swaggerParserPrompt": MessageLookupByLibrary.simpleMessage(
             "Paste swagger config json file URL here to get data components from API\nor leave it empty to use default config"),
         "swaggerParserScreenConflictError": MessageLookupByLibrary.simpleMessage(

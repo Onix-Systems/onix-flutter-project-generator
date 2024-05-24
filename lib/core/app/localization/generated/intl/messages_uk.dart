@@ -41,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "actions": MessageLookupByLibrary.simpleMessage("Дії"),
         "addComponent":
             MessageLookupByLibrary.simpleMessage("Додати компонент"),
+        "addDataComponents":
+            MessageLookupByLibrary.simpleMessage("Компоненти Даних"),
         "addField": MessageLookupByLibrary.simpleMessage("Додати поле"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Додати флавори:"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Додати екран"),
@@ -66,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Перевірте назву проекту та організацію перед тим, як продовжити"),
         "cityOrLocality":
             MessageLookupByLibrary.simpleMessage(" Місто або локація"),
+        "clear": MessageLookupByLibrary.simpleMessage("Очистити"),
         "colorStyles": MessageLookupByLibrary.simpleMessage("Кольори"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Назва компонента"),
@@ -125,6 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Згенерувати конфіг Sonar?"),
         "getFromSwagger":
             MessageLookupByLibrary.simpleMessage("Отримати з свагера"),
+        "getStyles": MessageLookupByLibrary.simpleMessage("Імпортувати"),
         "getStylesFromFigma":
             MessageLookupByLibrary.simpleMessage("Отримати стилі з Figma"),
         "gitPermissionsContent": MessageLookupByLibrary.simpleMessage(
@@ -133,6 +137,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Помилка доступу до Git!"),
         "goBack": MessageLookupByLibrary.simpleMessage("Назад"),
         "ignore": MessageLookupByLibrary.simpleMessage("Ігнорувати"),
+        "importApi":
+            MessageLookupByLibrary.simpleMessage("Імпортувати запити REST API"),
+        "importStyles":
+            MessageLookupByLibrary.simpleMessage("Імпортувати Стилі"),
         "initial": MessageLookupByLibrary.simpleMessage("Початковий екран?"),
         "integrateGraphQl":
             MessageLookupByLibrary.simpleMessage("Інтегрувати GraphQL?"),
@@ -228,8 +236,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "stateManager": MessageLookupByLibrary.simpleMessage("Менеджер стану"),
         "stateOrProvince":
             MessageLookupByLibrary.simpleMessage(" Штат або провінція"),
+        "summary": MessageLookupByLibrary.simpleMessage("Підсумки"),
         "swaggerParserPrompt": MessageLookupByLibrary.simpleMessage(
-            "Вставте посалання на json файл конфігу свагера сюди для отримання компонентів від API\nабо залиште пустим для продовженя без інтеграції API"),
+            "Вставте посилання на json файл конфігу свагера сюди для отримання компонентів від API\nабо залиште пустим для продовженя без інтеграції API"),
         "swaggerParserScreenConflictError": MessageLookupByLibrary.simpleMessage(
             "Файл Свагера містить компоненти, що конфліктують з тими що є. Замінити зпарсеними компоненами або ігнорувати конфліктуючі дані?"),
         "swaggerURL": MessageLookupByLibrary.simpleMessage("Swagger URL"),
