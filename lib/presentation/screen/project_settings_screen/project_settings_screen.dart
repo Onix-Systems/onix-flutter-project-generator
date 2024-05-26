@@ -10,7 +10,6 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/widgets/signing_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
-import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_segmented_control.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label.dart';
@@ -126,7 +125,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                           ),
                           const Delimiter.height(20),
                         ],
-                        if (!state.config.platformsList.webOnly) ...[
+                        if (state.config.platformsList.mobile) ...[
                           SwitchWithLabel(
                             label: S.of(context).generateSigningKey,
                             initialValue: state.config.generateSigningKey,
@@ -137,7 +136,9 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                                   const ProjectSettingsScreenEventGenerateSigningKeyChange());
                               if (value) {
                                 _showSigningVarsDialog(
-                                    context: context, state: state);
+                                  context: context,
+                                  state: state,
+                                );
                               }
                             },
                           ),
@@ -226,8 +227,12 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
             NavigationButtonBar(
               nextText: S.of(context).continueLabel,
               prevText: S.of(context).goBack,
-              onNextPressed: () {_goNext(state);},
-              onPrevPressed: () {_goBack(state);},
+              onNextPressed: () {
+                _goNext(state);
+              },
+              onPrevPressed: () {
+                _goBack(state);
+              },
             ),
           ],
         ),

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/bloc/platforms_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/widgets/platform_checkbox.dart';
-import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
+
+typedef OnPlatformChanged = void Function(AvailablePlatforms platforms);
 
 class PlatformScreenBody extends StatelessWidget {
   final Config config;
-  final void Function(AvailablePlatforms platforms) onAction;
+  final OnPlatformChanged onAction;
 
   const PlatformScreenBody({
     required this.config,
@@ -66,7 +66,7 @@ class PlatformScreenBody extends StatelessWidget {
                   extra: config.copyWith(
                     platformsList: config.platformsList,
                     flavorize:
-                    config.platformsList.webOnly ? false : config.flavorize,
+                        config.platformsList.webOnly ? false : config.flavorize,
                     flavors: config.platformsList.webOnly ? '' : config.flavors,
                     generateSigningKey: config.platformsList.webOnly
                         ? false
