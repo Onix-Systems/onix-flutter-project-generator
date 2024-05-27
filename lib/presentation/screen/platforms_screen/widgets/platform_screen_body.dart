@@ -7,9 +7,11 @@ import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/bloc/pl
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/widgets/platform_checkbox.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 
+typedef OnPlatformChanged = void Function(AvailablePlatforms platforms);
+
 class PlatformScreenBody extends StatelessWidget {
   final Config config;
-  final void Function(AvailablePlatforms platforms) onAction;
+  final OnPlatformChanged onAction;
 
   const PlatformScreenBody({
     required this.config,
@@ -64,7 +66,7 @@ class PlatformScreenBody extends StatelessWidget {
                   extra: config.copyWith(
                     platformsList: config.platformsList,
                     flavorize:
-                    config.platformsList.webOnly ? false : config.flavorize,
+                        config.platformsList.webOnly ? false : config.flavorize,
                     flavors: config.platformsList.webOnly ? '' : config.flavors,
                     generateSigningKey: config.platformsList.webOnly
                         ? false

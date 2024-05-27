@@ -125,7 +125,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                           ),
                           const Delimiter.height(20),
                         ],
-                        if (!state.config.platformsList.webOnly) ...[
+                        if (state.config.platformsList.mobile) ...[
                           SwitchWithLabel(
                             label: S.of(context).generateSigningKey,
                             initialValue: state.config.generateSigningKey,
@@ -136,7 +136,9 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                                   const ProjectSettingsScreenEventGenerateSigningKeyChange());
                               if (value) {
                                 _showSigningVarsDialog(
-                                    context: context, state: state);
+                                  context: context,
+                                  state: state,
+                                );
                               }
                             },
                           ),
@@ -225,8 +227,12 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
             NavigationButtonBar(
               nextText: S.of(context).continueLabel,
               prevText: S.of(context).goBack,
-              onNextPressed: () {_goNext(state);},
-              onPrevPressed: () {_goBack(state);},
+              onNextPressed: () {
+                _goNext(state);
+              },
+              onPrevPressed: () {
+                _goBack(state);
+              },
             ),
           ],
         ),
