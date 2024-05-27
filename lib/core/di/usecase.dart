@@ -15,6 +15,7 @@ import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_sign
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/get_generation_output_stream_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/get_signing_fingerprint_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
@@ -84,5 +85,8 @@ void registerUseCases(GetIt getIt) {
         outputService: getIt.get<OutputService>(),
         fastlaneService: getIt.get<FastlaneService>(),
       ),
+    )
+    ..registerLazySingleton<GetSigningFingerprintUseCase>(
+      () => const GetSigningFingerprintUseCase(),
     );
 }

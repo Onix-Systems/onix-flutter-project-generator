@@ -1053,7 +1053,8 @@ mixin _$ProcedureSelectionScreenSR {
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
     required TResult Function() onNewProject,
-    required TResult Function() onAndroidSigningCreated,
+    required TResult Function(List<Fingerprint> fingerprints)
+        onAndroidSigningCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1061,7 +1062,7 @@ mixin _$ProcedureSelectionScreenSR {
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
-    TResult? Function()? onAndroidSigningCreated,
+    TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1069,7 +1070,7 @@ mixin _$ProcedureSelectionScreenSR {
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
-    TResult Function()? onAndroidSigningCreated,
+    TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1162,7 +1163,8 @@ class _$LoadFinishedImpl implements _LoadFinished {
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
     required TResult Function() onNewProject,
-    required TResult Function() onAndroidSigningCreated,
+    required TResult Function(List<Fingerprint> fingerprints)
+        onAndroidSigningCreated,
   }) {
     return loadFinished();
   }
@@ -1173,7 +1175,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
-    TResult? Function()? onAndroidSigningCreated,
+    TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
   }) {
     return loadFinished?.call();
   }
@@ -1184,7 +1186,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
-    TResult Function()? onAndroidSigningCreated,
+    TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
     required TResult orElse(),
   }) {
     if (loadFinished != null) {
@@ -1277,7 +1279,8 @@ class _$EmptyConfigImpl implements _EmptyConfig {
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
     required TResult Function() onNewProject,
-    required TResult Function() onAndroidSigningCreated,
+    required TResult Function(List<Fingerprint> fingerprints)
+        onAndroidSigningCreated,
   }) {
     return emptyConfig();
   }
@@ -1288,7 +1291,7 @@ class _$EmptyConfigImpl implements _EmptyConfig {
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
-    TResult? Function()? onAndroidSigningCreated,
+    TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
   }) {
     return emptyConfig?.call();
   }
@@ -1299,7 +1302,7 @@ class _$EmptyConfigImpl implements _EmptyConfig {
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
-    TResult Function()? onAndroidSigningCreated,
+    TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
     required TResult orElse(),
   }) {
     if (emptyConfig != null) {
@@ -1392,7 +1395,8 @@ class _$onNewProjectImpl implements _onNewProject {
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
     required TResult Function() onNewProject,
-    required TResult Function() onAndroidSigningCreated,
+    required TResult Function(List<Fingerprint> fingerprints)
+        onAndroidSigningCreated,
   }) {
     return onNewProject();
   }
@@ -1403,7 +1407,7 @@ class _$onNewProjectImpl implements _onNewProject {
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
-    TResult? Function()? onAndroidSigningCreated,
+    TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
   }) {
     return onNewProject?.call();
   }
@@ -1414,7 +1418,7 @@ class _$onNewProjectImpl implements _onNewProject {
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
-    TResult Function()? onAndroidSigningCreated,
+    TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
     required TResult orElse(),
   }) {
     if (onNewProject != null) {
@@ -1472,6 +1476,8 @@ abstract class _$$onAndroidSigningCreatedImplCopyWith<$Res> {
           _$onAndroidSigningCreatedImpl value,
           $Res Function(_$onAndroidSigningCreatedImpl) then) =
       __$$onAndroidSigningCreatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Fingerprint> fingerprints});
 }
 
 /// @nodoc
@@ -1483,27 +1489,60 @@ class __$$onAndroidSigningCreatedImplCopyWithImpl<$Res>
       _$onAndroidSigningCreatedImpl _value,
       $Res Function(_$onAndroidSigningCreatedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fingerprints = null,
+  }) {
+    return _then(_$onAndroidSigningCreatedImpl(
+      fingerprints: null == fingerprints
+          ? _value._fingerprints
+          : fingerprints // ignore: cast_nullable_to_non_nullable
+              as List<Fingerprint>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
-  const _$onAndroidSigningCreatedImpl();
+  const _$onAndroidSigningCreatedImpl(
+      {required final List<Fingerprint> fingerprints})
+      : _fingerprints = fingerprints;
+
+  final List<Fingerprint> _fingerprints;
+  @override
+  List<Fingerprint> get fingerprints {
+    if (_fingerprints is EqualUnmodifiableListView) return _fingerprints;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_fingerprints);
+  }
 
   @override
   String toString() {
-    return 'ProcedureSelectionScreenSR.onAndroidSigningCreated()';
+    return 'ProcedureSelectionScreenSR.onAndroidSigningCreated(fingerprints: $fingerprints)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$onAndroidSigningCreatedImpl);
+            other is _$onAndroidSigningCreatedImpl &&
+            const DeepCollectionEquality()
+                .equals(other._fingerprints, _fingerprints));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_fingerprints));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$onAndroidSigningCreatedImplCopyWith<_$onAndroidSigningCreatedImpl>
+      get copyWith => __$$onAndroidSigningCreatedImplCopyWithImpl<
+          _$onAndroidSigningCreatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1511,9 +1550,10 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
     required TResult Function() loadFinished,
     required TResult Function() emptyConfig,
     required TResult Function() onNewProject,
-    required TResult Function() onAndroidSigningCreated,
+    required TResult Function(List<Fingerprint> fingerprints)
+        onAndroidSigningCreated,
   }) {
-    return onAndroidSigningCreated();
+    return onAndroidSigningCreated(fingerprints);
   }
 
   @override
@@ -1522,9 +1562,9 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
     TResult? Function()? loadFinished,
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
-    TResult? Function()? onAndroidSigningCreated,
+    TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
   }) {
-    return onAndroidSigningCreated?.call();
+    return onAndroidSigningCreated?.call(fingerprints);
   }
 
   @override
@@ -1533,11 +1573,11 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
     TResult Function()? loadFinished,
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
-    TResult Function()? onAndroidSigningCreated,
+    TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
     required TResult orElse(),
   }) {
     if (onAndroidSigningCreated != null) {
-      return onAndroidSigningCreated();
+      return onAndroidSigningCreated(fingerprints);
     }
     return orElse();
   }
@@ -1582,7 +1622,14 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
 }
 
 abstract class _onAndroidSigningCreated implements ProcedureSelectionScreenSR {
-  const factory _onAndroidSigningCreated() = _$onAndroidSigningCreatedImpl;
+  const factory _onAndroidSigningCreated(
+          {required final List<Fingerprint> fingerprints}) =
+      _$onAndroidSigningCreatedImpl;
+
+  List<Fingerprint> get fingerprints;
+  @JsonKey(ignore: true)
+  _$$onAndroidSigningCreatedImplCopyWith<_$onAndroidSigningCreatedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

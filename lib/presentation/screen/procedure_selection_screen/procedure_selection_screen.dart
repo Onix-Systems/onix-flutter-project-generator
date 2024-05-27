@@ -12,6 +12,7 @@ import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/fingerprint_dialog_body.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/tools_popup_button.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/widgets/signing_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
@@ -232,15 +233,11 @@ class _ProcedureSelectionScreenState extends BaseState<
             .config
             .copyWith(projectPath: blocOf(context).state.config.projectPath),
       ),
-      onAndroidSigningCreated: () {
-        Dialogs.showOkDialog(
+      onAndroidSigningCreated: (fingerprints) {
+        showCupertinoDialog(
           context: context,
-          title: S.of(context).signingToolTitle,
-          content: Text(
-            S.of(context).signingToolSuccessText,
-            style: context.appTextStyles.fs18?.copyWith(
-              fontSize: 16,
-            ),
+          builder: (ctx) => FingerprintDialogBody(
+            fingerprints: fingerprints,
           ),
         );
       },
