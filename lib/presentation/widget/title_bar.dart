@@ -18,7 +18,7 @@ class TitleBar extends StatelessWidget
   Widget build(BuildContext context) {
     return Container(
       height: _titleBarHeight,
-      color: CupertinoColors.activeBlue.withOpacity(0.1),//AppColors.outputBgdLight,
+      color: context.appColors.contrastColor,
       padding: const EdgeInsets.all(20),
       child: Align(
           alignment: Alignment.bottomCenter,

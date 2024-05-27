@@ -5,36 +5,29 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   ///TODO COLORS
   static const light = ThemeColors(
     backgroundColor: AppColors.bgLight,
-    buttonColor: AppColors.greenLight,
+    buttonColor: AppColors.contrastColor,
     outputColor: AppColors.outputBgdLight,
-    contrastColor: AppColors.outputBgdLight,
-    textColor: AppColors.outputBgdLight,
-    contrastTextColor: AppColors.outputBgdLight,
+    contrastColor: AppColors.contrastColor,
   );
-///TODO colors
+
+  ///TODO colors
   static const dark = ThemeColors(
     backgroundColor: AppColors.bgDark,
-    buttonColor: AppColors.greenDark,
+    buttonColor: AppColors.contrastColor,
     outputColor: AppColors.outputBgdDark,
-    contrastColor: AppColors.outputBgdLight,
-    textColor: AppColors.outputBgdLight,
-    contrastTextColor: AppColors.outputBgdLight,
+    contrastColor: AppColors.contrastColor,
   );
 
   final Color backgroundColor;
   final Color buttonColor;
   final Color outputColor;
   final Color contrastColor;
-  final Color textColor;
-  final Color contrastTextColor;
 
   const ThemeColors({
     required this.backgroundColor,
     required this.buttonColor,
     required this.outputColor,
     required this.contrastColor,
-    required this.textColor,
-    required this.contrastTextColor,
   });
 
   @override
@@ -51,8 +44,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       buttonColor: buttonColor ?? this.buttonColor,
       outputColor: outputColor ?? this.outputColor,
       contrastColor: contrastColor ?? this.contrastColor,
-      textColor: textColor ?? this.textColor,
-      contrastTextColor: contrastTextColor ?? this.contrastTextColor,
     );
   }
 
@@ -71,10 +62,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       outputColor: Color.lerp(outputColor, other.outputColor, t) ?? outputColor,
       contrastColor:
           Color.lerp(contrastColor, other.contrastColor, t) ?? contrastColor,
-      textColor: Color.lerp(textColor, other.textColor, t) ?? textColor,
-      contrastTextColor:
-          Color.lerp(contrastTextColor, other.contrastTextColor, t) ??
-              contrastTextColor,
     );
   }
 }

@@ -47,6 +47,7 @@ class SwitchWithLabel extends StatelessWidget {
           ),
           CupertinoSwitch(
             value: initialValue,
+            activeColor: context.appColors.contrastColor,
             onChanged: (value) {
               valueSetter.call(value);
             },

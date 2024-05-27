@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
+import 'package:recase/recase.dart';
 
 class LabeledSegmentedControl extends StatelessWidget {
   final String label;
@@ -33,8 +34,8 @@ class LabeledSegmentedControl extends StatelessWidget {
             child: CupertinoSegmentedControl<String>(
               padding: EdgeInsets.zero,
               groupValue: selectedValue,
-              selectedColor: AppColors.green,
-              unselectedColor: AppColors.bgDark,
+              selectedColor: context.appColors.contrastColor,
+              unselectedColor: AppColors.outputBgdDark,
               borderColor: AppColors.white,
               children: _mapValues(context),
               onValueChanged: (value) {
@@ -52,10 +53,10 @@ class LabeledSegmentedControl extends StatelessWidget {
     for (String value in values) {
       result.addAll({
         value: Text(
-          value,
+          value.titleCase,
           style: context.appTextStyles.fs18?.copyWith(
             color: selectedValue == value
-                ? CupertinoColors.black
+                ? CupertinoColors.white
                 : AppColors.inactiveText,
           ),
         )
