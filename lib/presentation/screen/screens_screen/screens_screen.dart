@@ -106,7 +106,7 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: CupertinoColors.systemGrey,
+                    color: context.appColors.fadedColor,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),

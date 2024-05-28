@@ -70,8 +70,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _nameValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -90,8 +90,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _orgUnitValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -109,8 +109,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _orgValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -128,8 +128,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _cityValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -147,8 +147,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _stateValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -166,8 +166,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _countryCodeValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -186,8 +186,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _passwordValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -208,16 +208,16 @@ class _SigningDialogState extends State<SigningDialog> {
             onPressed: () => _varsValid ? _onOk(context) : null,
             textStyle: TextStyle(
               color: _varsValid
-                  ? CupertinoColors.activeBlue
-                  : CupertinoColors.inactiveGray,
+                  ? context.appColors.controlColor
+                  : context.appColors.fadedColor,
             ),
             child: Text(S.of(context).ok),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
             onPressed: () => Navigator.pop(context),
-            textStyle: const TextStyle(
-              color: CupertinoColors.activeBlue,
+            textStyle: TextStyle(
+              color: context.appColors.controlColor,
             ),
             child: Text(S.of(context).cancel),
           ),

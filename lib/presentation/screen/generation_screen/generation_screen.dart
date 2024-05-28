@@ -58,7 +58,7 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                  color: context.appColors.outputColor,
+                  color: context.appColors.darkContrastColor,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 padding: const EdgeInsets.all(20),

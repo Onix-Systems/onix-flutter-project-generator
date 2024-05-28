@@ -1,7 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 
@@ -33,28 +32,28 @@ class _AddFieldsTileDropDownState extends State<AddFieldsTileDropDown> {
             padding: const EdgeInsets.all(0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: AppColors.orange,
+              color: context.appColors.contrastColor,
             ),
           ),
           style: context.appTextStyles.fs18?.copyWith(
-            color: AppColors.bgDark,
+            color: context.appColors.textColor,
             fontWeight: FontWeight.w500,
           ),
-          dropdownStyleData: const DropdownStyleData(
+          dropdownStyleData: DropdownStyleData(
             elevation: 0,
-            offset: Offset(0, -2),
+            offset: const Offset(0, -2),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(10),
               ),
-              color: AppColors.orange,
+              color: context.appColors.contrastColor,
             ),
           ),
-          iconStyleData: const IconStyleData(
-            iconEnabledColor: AppColors.bgDark,
+          iconStyleData:  IconStyleData(
+            iconEnabledColor: context.appColors.darkColor,
             openMenuIcon: Icon(
               Icons.arrow_drop_up,
-              color: AppColors.bgDark,
+              color: context.appColors.darkColor,
             ),
           ),
           items: widget.values.map((e) {

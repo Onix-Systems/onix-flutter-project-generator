@@ -9,7 +9,6 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/b
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/component_preview_modal.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:recase/recase.dart';
@@ -29,7 +28,7 @@ class ComponentsTable extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: CupertinoColors.systemGrey,
+          color: context.appColors.fadedColor,
         ),
         borderRadius: BorderRadius.circular(10),
       ),
@@ -41,7 +40,7 @@ class ComponentsTable extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border.all(
-                color: CupertinoColors.systemGrey,
+                color: context.appColors.fadedColor,
                 strokeAlign: BorderSide.strokeAlignOutside,
               ),
               borderRadius: source == null
@@ -50,7 +49,7 @@ class ComponentsTable extends StatelessWidget {
                       topRight: Radius.circular(10),
                     )
                   : null,
-              color: CupertinoColors.activeBlue.withOpacity(0.1),
+              color: context.appColors.contrastColor,
             ),
             child: Row(
               children: [
@@ -92,7 +91,7 @@ class ComponentsTable extends StatelessWidget {
             (dataComponent) => Container(
               padding: const EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
-                color: AppColors.grayBG,
+                color: context.appColors.darkContrastColor,
                 borderRadius: dataComponent == dataComponents.last
                     ? const BorderRadius.only(
                         bottomLeft: Radius.circular(10),
@@ -101,9 +100,9 @@ class ComponentsTable extends StatelessWidget {
                     : null,
                 border: dataComponent == dataComponents.last
                     ? null
-                    : const Border(
+                    : Border(
                         bottom: BorderSide(
-                          color: CupertinoColors.systemGrey,
+                          color: context.appColors.fadedColor,
                           width: 1,
                         ),
                       ),
@@ -118,8 +117,8 @@ class ComponentsTable extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: context.appTextStyles.fs18?.copyWith(
                           color: dataComponent.exists
-                              ? CupertinoColors.inactiveGray
-                              : CupertinoColors.white),
+                              ? context.appColors.fadedColor
+                              : context.appColors.textColor),
                     ),
                     decorated: true,
                     alignment: Alignment.centerLeft,
@@ -141,16 +140,18 @@ class ComponentsTable extends StatelessWidget {
                             duration: const Duration(milliseconds: 200),
                             colorConfig: dataComponent.exists
                                 ? MSHColorConfig.fromCheckedUncheckedDisabled(
-                                    checkedColor: CupertinoColors.inactiveGray,
+                                    checkedColor: context.appColors.fadedColor,
                                     uncheckedColor:
-                                        CupertinoColors.inactiveGray,
-                                    disabledColor: CupertinoColors.inactiveGray,
+                                        context.appColors.fadedColor,
+                                    disabledColor: context.appColors.fadedColor,
                                   )
                                 : MSHColorConfig.fromCheckedUncheckedDisabled(
-                                    checkedColor: CupertinoColors.activeOrange,
+                                    checkedColor:
+                                        context.appColors.controlColor,
                                     uncheckedColor:
-                                        CupertinoColors.activeOrange,
-                                    disabledColor: CupertinoColors.activeOrange,
+                                        context.appColors.controlColor,
+                                    disabledColor:
+                                        context.appColors.controlColor,
                                   ),
                           ),
                       ],
@@ -174,16 +175,18 @@ class ComponentsTable extends StatelessWidget {
                             duration: const Duration(milliseconds: 200),
                             colorConfig: dataComponent.exists
                                 ? MSHColorConfig.fromCheckedUncheckedDisabled(
-                                    checkedColor: CupertinoColors.inactiveGray,
+                                    checkedColor: context.appColors.fadedColor,
                                     uncheckedColor:
-                                        CupertinoColors.inactiveGray,
-                                    disabledColor: CupertinoColors.inactiveGray,
+                                        context.appColors.fadedColor,
+                                    disabledColor: context.appColors.fadedColor,
                                   )
                                 : MSHColorConfig.fromCheckedUncheckedDisabled(
-                                    checkedColor: CupertinoColors.activeOrange,
+                                    checkedColor:
+                                        context.appColors.controlColor,
                                     uncheckedColor:
-                                        CupertinoColors.activeOrange,
-                                    disabledColor: CupertinoColors.activeOrange,
+                                        context.appColors.controlColor,
+                                    disabledColor:
+                                        context.appColors.controlColor,
                                   ),
                           ),
                       ],
@@ -202,7 +205,7 @@ class ComponentsTable extends StatelessWidget {
                             SizedBox(
                               width: 120,
                               child: CupertinoButton(
-                                color: CupertinoColors.activeOrange,
+                                color: context.appColors.contrastColor,
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 pressedOpacity: !dataComponent.isEnum ? 0.5 : 1,
@@ -246,8 +249,9 @@ class ComponentsTable extends StatelessWidget {
                                           !dataComponent.isGenerated
                                       ? S.of(context).modify
                                       : S.of(context).preview,
-                                  style: context.appTextStyles.fs18
-                                      ?.copyWith(color: AppColors.bgDark),
+                                  style: context.appTextStyles.fs18?.copyWith(
+                                    color: context.appColors.textColor,
+                                  ),
                                 ),
                               ),
                             ),
@@ -255,8 +259,8 @@ class ComponentsTable extends StatelessWidget {
                             CupertinoButton(
                               color: dataComponent.exists ||
                                       dataComponent.isGenerated
-                                  ? CupertinoColors.inactiveGray
-                                  : CupertinoColors.activeOrange,
+                                  ? context.appColors.fadedColor
+                                  : context.appColors.contrastColor,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               pressedOpacity: !dataComponent.exists &&
@@ -287,8 +291,8 @@ class ComponentsTable extends StatelessWidget {
                               },
                               child: Text(
                                 S.of(context).delete,
-                                style: context.appTextStyles.fs18
-                                    ?.copyWith(color: AppColors.bgDark),
+                                style: context.appTextStyles.fs18?.copyWith(
+                                    color: context.appColors.textColor),
                               ),
                             ),
                           ],

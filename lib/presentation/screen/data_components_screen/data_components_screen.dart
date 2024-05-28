@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
@@ -72,10 +71,12 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
       error: (message) => Dialogs.showOkDialog(
           context: context,
           title: '${S.of(context).error}!',
-          content: Text(message,
-              style: context.appTextStyles.fs18?.copyWith(
-                fontSize: 16,
-              )),
+          content: Text(
+            message,
+            style: context.appTextStyles.fs18?.copyWith(
+              fontSize: 16,
+            ),
+          ),
           isError: true),
     );
   }
@@ -86,8 +87,7 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
   ) {
     return Center(
       child: Padding(
-        padding:
-            const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -97,7 +97,9 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey),
+                  border: Border.all(
+                    color: context.appColors.controlColor,
+                  ),
                 ),
                 child: SingleChildScrollView(
                   child: Column(

@@ -2,48 +2,62 @@ import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 
 class ThemeColors extends ThemeExtension<ThemeColors> {
-  ///TODO COLORS
   static const light = ThemeColors(
-    backgroundColor: AppColors.bgLight,
-    buttonColor: AppColors.contrastColor,
-    outputColor: AppColors.outputBgdLight,
-    contrastColor: AppColors.contrastColor,
+    darkColor: AppThemeColors.darkColor,
+    controlColor: AppThemeColors.controlColor,
+    textColor: AppThemeColors.textColor,
+    contrastColor: AppThemeColors.contrastColor,
+    fadedColor: AppThemeColors.fadedColor,
+    alarmColor: AppThemeColors.alarmColor,
+    darkContrastColor: AppThemeColors.darkContrastColor,
   );
 
-  ///TODO colors
   static const dark = ThemeColors(
-    backgroundColor: AppColors.bgDark,
-    buttonColor: AppColors.contrastColor,
-    outputColor: AppColors.outputBgdDark,
-    contrastColor: AppColors.contrastColor,
+    darkColor: AppThemeColors.darkColor,
+    controlColor: AppThemeColors.controlColor,
+    textColor: AppThemeColors.textColor,
+    contrastColor: AppThemeColors.contrastColor,
+    fadedColor: AppThemeColors.fadedColor,
+    alarmColor: AppThemeColors.alarmColor,
+    darkContrastColor: AppThemeColors.darkContrastColor,
   );
 
-  final Color backgroundColor;
-  final Color buttonColor;
-  final Color outputColor;
+  final Color darkColor;
   final Color contrastColor;
+  final Color controlColor;
+  final Color textColor;
+  final Color fadedColor;
+  final Color alarmColor;
+  final Color darkContrastColor;
 
   const ThemeColors({
-    required this.backgroundColor,
-    required this.buttonColor,
-    required this.outputColor,
+    required this.darkColor,
+    required this.controlColor,
+    required this.textColor,
     required this.contrastColor,
+    required this.fadedColor,
+    required this.alarmColor,
+    required this.darkContrastColor,
   });
 
   @override
   ThemeExtension<ThemeColors> copyWith({
-    Color? backgroundColor,
-    Color? buttonColor,
-    Color? outputColor,
-    Color? contrastColor,
+    Color? darkColor,
+    Color? controlColor,
     Color? textColor,
-    Color? contrastTextColor,
+    Color? contrastColor,
+    Color? fadedColor,
+    Color? alarmColor,
+    Color? darkContrastColor,
   }) {
     return ThemeColors(
-      backgroundColor: backgroundColor ?? this.backgroundColor,
-      buttonColor: buttonColor ?? this.buttonColor,
-      outputColor: outputColor ?? this.outputColor,
+      darkColor: darkColor ?? this.darkColor,
+      controlColor: controlColor ?? this.controlColor,
+      textColor: textColor ?? this.textColor,
       contrastColor: contrastColor ?? this.contrastColor,
+      fadedColor: fadedColor ?? this.fadedColor,
+      alarmColor: alarmColor ?? this.alarmColor,
+      darkContrastColor: darkContrastColor ?? this.darkContrastColor,
     );
   }
 
@@ -56,12 +70,17 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       return this;
     }
     return ThemeColors(
-      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t) ??
-          backgroundColor,
-      buttonColor: Color.lerp(buttonColor, other.buttonColor, t) ?? buttonColor,
-      outputColor: Color.lerp(outputColor, other.outputColor, t) ?? outputColor,
+      darkColor: Color.lerp(darkColor, other.darkColor, t) ?? darkColor,
+      controlColor:
+          Color.lerp(controlColor, other.controlColor, t) ?? controlColor,
+      textColor: Color.lerp(textColor, other.textColor, t) ?? textColor,
       contrastColor:
           Color.lerp(contrastColor, other.contrastColor, t) ?? contrastColor,
+      fadedColor: Color.lerp(fadedColor, other.fadedColor, t) ?? fadedColor,
+      alarmColor: Color.lerp(alarmColor, other.alarmColor, t) ?? alarmColor,
+      darkContrastColor:
+          Color.lerp(darkContrastColor, other.darkContrastColor, t) ??
+              darkContrastColor,
     );
   }
 }

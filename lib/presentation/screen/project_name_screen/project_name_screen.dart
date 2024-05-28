@@ -10,7 +10,6 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/widget/branch_selector_widget.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/text_field_with_label.dart';
@@ -186,7 +185,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
             TextSpan(
               text: blocOf(context).state.config.projectName,
               style: context.appTextStyles.fs18?.copyWith(
-                color: AppColors.orange,
+                color: context.appColors.textColor,
                 fontSize: 16,
               ),
             ),
@@ -199,7 +198,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
             TextSpan(
               text: blocOf(context).state.config.organization,
               style: context.appTextStyles.fs18?.copyWith(
-                color: AppColors.orange,
+                color: context.appColors.textColor,
                 fontSize: 16,
               ),
             ),

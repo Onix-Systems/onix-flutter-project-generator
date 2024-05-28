@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 import 'package:recase/recase.dart';
 
 class LabeledSegmentedControl extends StatelessWidget {
@@ -27,7 +26,7 @@ class LabeledSegmentedControl extends StatelessWidget {
         children: [
           Text(
             label,
-            style: context.appTextStyles.fs18?.copyWith(color: AppColors.white),
+            style: context.appTextStyles.fs18?.copyWith(color: context.appColors.textColor,),
           ),
           SizedBox(
             width: 280,
@@ -35,8 +34,8 @@ class LabeledSegmentedControl extends StatelessWidget {
               padding: EdgeInsets.zero,
               groupValue: selectedValue,
               selectedColor: context.appColors.contrastColor,
-              unselectedColor: AppColors.outputBgdDark,
-              borderColor: AppColors.white,
+              unselectedColor: context.appColors.darkContrastColor,
+              borderColor: context.appColors.contrastColor,
               children: _mapValues(context),
               onValueChanged: (value) {
                 onChange.call(selectedValue);
@@ -56,8 +55,8 @@ class LabeledSegmentedControl extends StatelessWidget {
           value.titleCase,
           style: context.appTextStyles.fs18?.copyWith(
             color: selectedValue == value
-                ? CupertinoColors.white
-                : AppColors.inactiveText,
+                ? context.appColors.textColor
+                : context.appColors.fadedColor,
           ),
         )
       });

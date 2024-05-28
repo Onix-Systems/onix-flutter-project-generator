@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
@@ -20,7 +19,7 @@ class ComponentPreviewModal extends StatelessWidget {
         width: 500,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: AppColors.bgDark,
+            color: context.appColors.darkColor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
@@ -33,11 +32,11 @@ class ComponentPreviewModal extends StatelessWidget {
                 style: context.appTextStyles.fs18,
               ),
               const Delimiter.height(20),
-              const SizedBox(
+              SizedBox(
                 height: 1,
                 width: double.infinity,
                 child: ColoredBox(
-                  color: AppColors.inactiveText,
+                  color: context.appColors.fadedColor,
                 ),
               ),
               const Delimiter.height(20),
@@ -73,11 +72,11 @@ class ComponentPreviewModal extends StatelessWidget {
                 ),
               ),
               const Delimiter.height(20),
-              const SizedBox(
+              SizedBox(
                 height: 1,
                 width: double.infinity,
                 child: ColoredBox(
-                  color: AppColors.inactiveText,
+                  color: context.appColors.fadedColor,
                 ),
               ),
               Row(

@@ -132,7 +132,7 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
                           label: S.of(context).clear,
                           icon: Icons.delete_rounded,
                           active: true,
-                          color: CupertinoColors.destructiveRed,
+                          color: context.appColors.alarmColor,
                           onPressed: () => blocOf(context)
                               .add(const FigmaStylesScreenEventOnClear()),
                         ),

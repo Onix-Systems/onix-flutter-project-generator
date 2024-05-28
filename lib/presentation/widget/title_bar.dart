@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class TitleBar extends StatelessWidget
@@ -27,7 +26,7 @@ class TitleBar extends StatelessWidget
               Text(
                 title,
                 style: context.appTextStyles.fs28?.copyWith(
-                  color: AppColors.white,
+                  color: context.appColors.textColor,
                   fontWeight: FontWeight.w100,
                 ),
               ),

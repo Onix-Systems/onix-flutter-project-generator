@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 
 class PlatformCheckbox extends StatelessWidget {
@@ -39,15 +38,17 @@ class PlatformCheckbox extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: AppColors.white,
+                  color: context.appColors.controlColor,
                 ),
                 borderRadius: BorderRadius.circular(20),
-                color: initialValue ? CupertinoColors.activeBlue.withOpacity(0.1) : null,
+                color: initialValue
+                    ? context.appColors.contrastColor
+                    : null,
               ),
               child: SvgPicture.asset(
                 assetPath,
-                colorFilter: const ColorFilter.mode(
-                   AppColors.white,
+                colorFilter: ColorFilter.mode(
+                  context.appColors.controlColor,
                   BlendMode.srcIn,
                 ),
               ),

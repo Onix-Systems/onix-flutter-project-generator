@@ -15,7 +15,6 @@ import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_scre
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/fingerprint_dialog_body.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/tools_popup_button.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/widgets/signing_dialog.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
@@ -58,9 +57,9 @@ class _ProcedureSelectionScreenState extends BaseState<
                   child: CupertinoSegmentedControl<String>(
                     padding: EdgeInsets.zero,
                     groupValue: state.language,
-                    selectedColor: AppColors.white,
-                    unselectedColor: AppColors.bgDark,
-                    borderColor: AppColors.white,
+                    selectedColor: context.appColors.controlColor,
+                    unselectedColor: context.appColors.darkColor,
+                    borderColor: context.appColors.controlColor,
                     children: _mapValues(context),
                     onValueChanged: (value) {
                       blocOf(context).add(
@@ -137,10 +136,11 @@ class _ProcedureSelectionScreenState extends BaseState<
                                 isError: true,
                                 title: S.of(context).pathNotSelectedTitle,
                                 content: Text(
-                                    S.of(context).pathNotSelectedContent,
-                                    style: context.appTextStyles.fs18?.copyWith(
-                                      fontSize: 16,
-                                    )),
+                                  S.of(context).pathNotSelectedContent,
+                                  style: context.appTextStyles.fs18?.copyWith(
+                                    fontSize: 16,
+                                  ),
+                                ),
                                 onOk: () {},
                               );
                             }
@@ -204,7 +204,7 @@ class _ProcedureSelectionScreenState extends BaseState<
                 : '',
             style: context.appTextStyles.fs18?.copyWith(
               decoration: TextDecoration.none,
-              color: Colors.grey,
+              color: context.appColors.fadedColor,
             ),
           ),
         ),
@@ -221,10 +221,12 @@ class _ProcedureSelectionScreenState extends BaseState<
         context: context,
         isError: true,
         title: S.of(context).emptyConfigTitle,
-        content: Text(S.of(context).emptyConfigContent,
-            style: context.appTextStyles.fs18?.copyWith(
-              fontSize: 16,
-            )),
+        content: Text(
+          S.of(context).emptyConfigContent,
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
+          ),
+        ),
       ),
       onNewProject: () => context.go(
         AppRouter.projectNameScreen,
@@ -253,8 +255,8 @@ class _ProcedureSelectionScreenState extends BaseState<
           value.toUpperCase(),
           style: context.appTextStyles.fs18?.copyWith(
             color: blocOf(context).state.language == value
-                ? CupertinoColors.black
-                : AppColors.inactiveText,
+                ? context.appColors.darkColor
+                : context.appColors.fadedColor,
           ),
         )
       });

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
@@ -24,7 +23,7 @@ class _DeleteSourceDialogState extends State<DeleteSourceDialog> {
         width: 300,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: AppColors.bgDark,
+            color: context.appColors.darkColor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
@@ -37,15 +36,15 @@ class _DeleteSourceDialogState extends State<DeleteSourceDialog> {
                   S.of(context).sourceDeletingDialogTitle(widget.sourceName),
                   textAlign: TextAlign.center,
                   style: context.appTextStyles.fs18?.copyWith(
-                    color: AppColors.red,
+                    color: context.appColors.alarmColor,
                   ),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 1,
                 width: double.infinity,
                 child: ColoredBox(
-                  color: AppColors.inactiveText,
+                  color: context.appColors.fadedColor,
                 ),
               ),
               Padding(
@@ -64,11 +63,11 @@ class _DeleteSourceDialogState extends State<DeleteSourceDialog> {
                   ],
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 1,
                 width: double.infinity,
                 child: ColoredBox(
-                  color: AppColors.inactiveText,
+                  color: context.appColors.fadedColor,
                 ),
               ),
               Row(
@@ -83,11 +82,11 @@ class _DeleteSourceDialogState extends State<DeleteSourceDialog> {
                       },
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 55,
                     width: 1,
                     child: ColoredBox(
-                      color: AppColors.inactiveText,
+                      color: context.appColors.fadedColor,
                     ),
                   ),
                   Expanded(

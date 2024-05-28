@@ -18,7 +18,7 @@ class BranchSelectorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: context.appColors.backgroundColor,
+      color: context.appColors.darkColor,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Row(

@@ -9,7 +9,7 @@ import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/widgets/signing_dialog.dart';
-import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_segmented_control.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label.dart';
@@ -88,7 +88,9 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                     height: _height,
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.white),
+                      border: Border.all(
+                        color: context.appColors.contrastColor,
+                      ),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
@@ -175,7 +177,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                     height: _height,
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.white),
+                      border: Border.all(color: context.appColors.contrastColor),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
