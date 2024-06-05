@@ -40,7 +40,7 @@ class AddComponentSearchField extends StatelessWidget {
                   components.firstWhere((element) => element == property.type)),
       onSuggestionTap: (value) => onSelect(value.item!),
       searchStyle: context.appTextStyles.fs18?.copyWith(
-        color: context.appColors.darkColor,
+        color: context.appColors.textColor,
       ),
       searchInputDecoration: InputDecoration(
         filled: true,
@@ -74,7 +74,7 @@ class AddComponentSearchField extends StatelessWidget {
         ),
       ),
       suggestionStyle: context.appTextStyles.fs18?.copyWith(
-        color: context.appColors.fadedColor,
+        color: context.appColors.textColor,
       ),
       suggestionsDecoration: SuggestionDecoration(
         color: context.appColors.fadedColor,

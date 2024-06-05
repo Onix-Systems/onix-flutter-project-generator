@@ -185,7 +185,7 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
                                   S.of(context).componentNamePlaceholder,
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(
-                                    RegExp(r'[a-zA-Z]')),
+                                    RegExp(r'[a-zA-Z0-9]')),
                               ],
                               onSubmitted: (_) => _onOK(context),
                             ),

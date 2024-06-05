@@ -103,7 +103,7 @@ class _AddFieldTileState extends State<AddFieldTile> {
                     ),
                     controller: _propertyNameController,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
+                      FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]')),
                     ],
                     style: context.appTextStyles.fs18,
                     onEditingComplete: _onChanged,
