@@ -1,8 +1,6 @@
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/enums/fastlane_env_vars.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/utils/fastlane_config/fastlane_envs_creator.dart';
 
-
-
 abstract base class PlatformEnvCreator {
   const PlatformEnvCreator({
     this.creator = const FastlaneEnvsCreator(),

@@ -41,9 +41,7 @@ class PlatformCheckbox extends StatelessWidget {
                   color: context.appColors.controlColor,
                 ),
                 borderRadius: BorderRadius.circular(20),
-                color: initialValue
-                    ? context.appColors.contrastColor
-                    : null,
+                color: initialValue ? context.appColors.contrastColor : null,
               ),
               child: SvgPicture.asset(
                 assetPath,

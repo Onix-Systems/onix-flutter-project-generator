@@ -21,5 +21,6 @@ void registerAppServices(GetIt getIt) {
       () => FigmaService(
         figmaRepository: GetIt.I.get<FigmaRepository>(),
       ),
-    )..registerLazySingleton<FastlaneService>(() => const FastlaneService());
+    )
+    ..registerLazySingleton<FastlaneService>(() => const FastlaneService());
 }

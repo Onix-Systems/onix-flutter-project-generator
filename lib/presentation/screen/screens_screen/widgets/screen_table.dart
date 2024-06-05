@@ -92,7 +92,7 @@ class ScreenTable extends StatelessWidget {
                   left: 10,
                   right: 10,
                 ),
-                decoration:  BoxDecoration(
+                decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
                       color: context.appColors.fadedColor,

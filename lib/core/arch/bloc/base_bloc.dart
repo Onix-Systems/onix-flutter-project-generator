@@ -15,7 +15,6 @@ abstract class BaseBloc<Event, State, SR> extends Bloc<Event, State>
   Stream<Failure> get failureStream => _errorStreamController.stream;
   Stream<bool> get progressStream => _progressStreamController.stream;
 
-
   BaseBloc(super.initialState) {
     _errorStreamController = StreamController<Failure>.broadcast();
     _progressStreamController = StreamController<bool>.broadcast();
