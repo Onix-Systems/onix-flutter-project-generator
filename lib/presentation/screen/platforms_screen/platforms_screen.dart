@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/bloc/platforms_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/widgets/platform_screen_body.dart';
+import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 
 class PlatformsScreen extends StatefulWidget {
   final Config config;
@@ -27,6 +29,9 @@ class _PlatformsScreenState extends BaseState<PlatformsScreenState,
   @override
   Widget buildWidget(BuildContext context) {
     return CupertinoPageScaffold(
+      navigationBar: TitleBar(
+        title: S.of(context).selectProjectPlatforms,
+      ),
       child: SizedBox.expand(
         child: blocBuilder(
           builder: (context, state) {

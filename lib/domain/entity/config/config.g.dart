@@ -34,15 +34,7 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
       signingVars: (json['signingVars'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
-          const [
-            'Your Name',
-            'Department',
-            'Your Company',
-            'Your City',
-            'Your State or Province',
-            'UA',
-            ''
-          ],
+          AppConsts.defaultSigningVars,
       screens: (json['screens'] as List<dynamic>?)
               ?.map((e) => Screen.fromJson(e as Map<String, dynamic>))
               .toSet() ??

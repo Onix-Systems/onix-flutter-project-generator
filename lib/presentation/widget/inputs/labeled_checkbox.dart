@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
@@ -25,7 +25,7 @@ class LabeledCheckbox extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color:
-              focused ? CupertinoColors.activeOrange : const Color(0x00E5E5EA),
+              focused ? context.appColors.controlColor : Colors.transparent,
           width: 1,
           strokeAlign: BorderSide.strokeAlignInside,
         ),
@@ -39,9 +39,9 @@ class LabeledCheckbox extends StatelessWidget {
             isDisabled: disabled,
             duration: const Duration(milliseconds: 200),
             colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
-              checkedColor: CupertinoColors.activeOrange,
-              uncheckedColor: CupertinoColors.activeOrange,
-              disabledColor: CupertinoColors.activeOrange,
+              checkedColor: context.appColors.controlColor,
+              uncheckedColor: context.appColors.controlColor,
+              disabledColor: context.appColors.fadedColor,
             ),
             onChanged: (value) {
               onAction();

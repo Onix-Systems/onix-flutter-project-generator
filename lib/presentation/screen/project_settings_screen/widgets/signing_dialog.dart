@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class SigningDialog extends StatefulWidget {
-  final ProjectSettingsScreenState state;
+  final List<String> signingVars;
 
   const SigningDialog({
-    required this.state,
+    required this.signingVars,
     super.key,
   });
 
@@ -36,13 +35,13 @@ class _SigningDialogState extends State<SigningDialog> {
   @override
   void initState() {
     super.initState();
-    _nameController.text = widget.state.config.signingVars[0];
-    _orgUnitController.text = widget.state.config.signingVars[1];
-    _orgController.text = widget.state.config.signingVars[2];
-    _cityController.text = widget.state.config.signingVars[3];
-    _stateController.text = widget.state.config.signingVars[4];
-    _countryController.text = widget.state.config.signingVars[5];
-    _passwordController.text = widget.state.config.signingVars[6];
+    _nameController.text = widget.signingVars[0];
+    _orgUnitController.text = widget.signingVars[1];
+    _orgController.text = widget.signingVars[2];
+    _cityController.text = widget.signingVars[3];
+    _stateController.text = widget.signingVars[4];
+    _countryController.text = widget.signingVars[5];
+    _passwordController.text = widget.signingVars[6];
   }
 
   @override
@@ -71,8 +70,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _nameValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -91,8 +90,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _orgUnitValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -110,8 +109,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _orgValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -129,8 +128,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _cityValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -148,8 +147,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _stateValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -167,8 +166,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _countryCodeValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -187,8 +186,8 @@ class _SigningDialogState extends State<SigningDialog> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: _passwordValid()
-                    ? CupertinoColors.white
-                    : CupertinoColors.destructiveRed,
+                    ? context.appColors.textColor
+                    : context.appColors.alarmColor,
               ),
             ),
             const SizedBox(height: 5),
@@ -209,16 +208,16 @@ class _SigningDialogState extends State<SigningDialog> {
             onPressed: () => _varsValid ? _onOk(context) : null,
             textStyle: TextStyle(
               color: _varsValid
-                  ? CupertinoColors.activeBlue
-                  : CupertinoColors.inactiveGray,
+                  ? context.appColors.controlColor
+                  : context.appColors.fadedColor,
             ),
             child: Text(S.of(context).ok),
           ),
           CupertinoDialogAction(
             isDefaultAction: true,
             onPressed: () => Navigator.pop(context),
-            textStyle: const TextStyle(
-              color: CupertinoColors.activeBlue,
+            textStyle: TextStyle(
+              color: context.appColors.controlColor,
             ),
             child: Text(S.of(context).cancel),
           ),
@@ -274,25 +273,25 @@ class _SigningDialogState extends State<SigningDialog> {
     Navigator.pop(context, [
       _nameController.text.isNotEmpty
           ? _nameController.text
-          : widget.state.config.signingVars[0],
+          : widget.signingVars[0],
       _orgUnitController.text.isNotEmpty
           ? _orgUnitController.text
-          : widget.state.config.signingVars[1],
+          : widget.signingVars[1],
       _orgController.text.isNotEmpty
           ? _orgController.text
-          : widget.state.config.signingVars[2],
+          : widget.signingVars[2],
       _cityController.text.isNotEmpty
           ? _cityController.text
-          : widget.state.config.signingVars[3],
+          : widget.signingVars[3],
       _stateController.text.isNotEmpty
           ? _stateController.text
-          : widget.state.config.signingVars[4],
+          : widget.signingVars[4],
       _countryController.text.isNotEmpty
           ? _countryController.text
-          : widget.state.config.signingVars[5],
+          : widget.signingVars[5],
       _passwordController.text.isNotEmpty
           ? _passwordController.text
-          : widget.state.config.signingVars[6],
+          : widget.signingVars[6],
     ]);
   }
 }

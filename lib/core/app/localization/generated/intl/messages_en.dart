@@ -41,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
         "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
+        "addDataComponents":
+            MessageLookupByLibrary.simpleMessage("Data Components"),
         "addField": MessageLookupByLibrary.simpleMessage("Add field"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Add flavors:"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),
@@ -65,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Check names before continue"),
         "cityOrLocality":
             MessageLookupByLibrary.simpleMessage(" City or Locality"),
+        "clear": MessageLookupByLibrary.simpleMessage("Clear"),
         "colorStyles": MessageLookupByLibrary.simpleMessage("Color Styles"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Component name"),
@@ -87,6 +90,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator"),
         "emptyConfigTitle":
             MessageLookupByLibrary.simpleMessage("Config file load error!"),
+        "enterProjectName":
+            MessageLookupByLibrary.simpleMessage("Enter Project Name"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "exitLabel": MessageLookupByLibrary.simpleMessage("Exit"),
         "fields": MessageLookupByLibrary.simpleMessage("Fields"),
@@ -107,6 +112,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "flavorize": MessageLookupByLibrary.simpleMessage("Flavorize?"),
         "flavors": MessageLookupByLibrary.simpleMessage("Flavors"),
         "generate": MessageLookupByLibrary.simpleMessage("Generate"),
+        "generateAndroidSigning": MessageLookupByLibrary.simpleMessage(
+            "Generate Android signing config"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Generate new project"),
         "generateProject":
@@ -119,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Generate Sonar config?"),
         "getFromSwagger":
             MessageLookupByLibrary.simpleMessage("Get from swagger"),
+        "getStyles": MessageLookupByLibrary.simpleMessage("Get Styles"),
         "getStylesFromFigma":
             MessageLookupByLibrary.simpleMessage("Get styles from Figma"),
         "gitPermissionsContent": MessageLookupByLibrary.simpleMessage(
@@ -127,6 +135,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Git permissions error!"),
         "goBack": MessageLookupByLibrary.simpleMessage("Back"),
         "ignore": MessageLookupByLibrary.simpleMessage("Ignore"),
+        "importApi":
+            MessageLookupByLibrary.simpleMessage("Import REST API requests"),
+        "importStyles": MessageLookupByLibrary.simpleMessage("Import Styles"),
+        "initial": MessageLookupByLibrary.simpleMessage("Initial screen?"),
         "integrateDevicePreview":
             MessageLookupByLibrary.simpleMessage("Integrate Device Preview?"),
         "integrateGraphQl":
@@ -176,6 +188,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Project already exists, choose different name"),
         "projectName": MessageLookupByLibrary.simpleMessage("Project name"),
         "projectPath": MessageLookupByLibrary.simpleMessage("Project path"),
+        "projectSelectErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "Pubspec file not found in selected folder."),
+        "projectSelectErrorTitle":
+            MessageLookupByLibrary.simpleMessage("Not a Flutter Project"),
         "replace": MessageLookupByLibrary.simpleMessage("Replace"),
         "request": MessageLookupByLibrary.simpleMessage("Request"),
         "response": MessageLookupByLibrary.simpleMessage("Response"),
@@ -187,6 +203,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Already exists"),
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
         "screens": MessageLookupByLibrary.simpleMessage("Screens"),
+        "selectProjectFolder":
+            MessageLookupByLibrary.simpleMessage("Onix Project Generator"),
+        "selectProjectPlatforms":
+            MessageLookupByLibrary.simpleMessage("Select Project Platforms"),
+        "selectProjectScreens":
+            MessageLookupByLibrary.simpleMessage("Add Screens to Generate"),
+        "selectProjectSetting":
+            MessageLookupByLibrary.simpleMessage("Select Project Features"),
+        "signingErrorException": MessageLookupByLibrary.simpleMessage(
+            "Failed to create signing config. Is Android platform enabled and android folder exist?"),
+        "signingErrorExist": MessageLookupByLibrary.simpleMessage(
+            "Failed to create signing config. Certificate of configuration already exist."),
+        "signingErrorParams": MessageLookupByLibrary.simpleMessage(
+            "Failed to create signing config. Internal error happened, please contact a developer."),
+        "signingToolSuccessText": MessageLookupByLibrary.simpleMessage(
+            "Keystore and signing configuration created."),
+        "signingToolTitle": MessageLookupByLibrary.simpleMessage(
+            "Android signing configuration"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
         "sourceDeletingDialogTitle": m5,
         "sourceExistsError": m6,
@@ -200,6 +234,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "stateManager": MessageLookupByLibrary.simpleMessage("State manager"),
         "stateOrProvince":
             MessageLookupByLibrary.simpleMessage(" State or Province"),
+        "summary": MessageLookupByLibrary.simpleMessage("Summary"),
         "swaggerParserPrompt": MessageLookupByLibrary.simpleMessage(
             "Paste swagger config json file URL here to get data components from API\nor leave it empty to use default config"),
         "swaggerParserScreenConflictError": MessageLookupByLibrary.simpleMessage(
@@ -209,6 +244,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "theming": MessageLookupByLibrary.simpleMessage("Theming"),
         "title": MessageLookupByLibrary.simpleMessage(
             "Onix Flutter Project Generator"),
+        "tools": MessageLookupByLibrary.simpleMessage("Tools"),
         "twoLetterCountryCode":
             MessageLookupByLibrary.simpleMessage(" Two-letter country code"),
         "url": MessageLookupByLibrary.simpleMessage("URL"),

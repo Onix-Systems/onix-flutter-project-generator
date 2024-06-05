@@ -13,7 +13,7 @@ class TextStyleItem extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: CupertinoColors.systemGrey.withOpacity(0.1),
+        color: context.appColors.fadedColor,
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),

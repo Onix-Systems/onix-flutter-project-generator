@@ -13,7 +13,9 @@ import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/a
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 
 class ScreensScreen extends StatefulWidget {
   final Config config;
@@ -35,15 +37,34 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
   Widget buildWidget(BuildContext context) {
     return srObserver(
       context: context,
-      child: CupertinoPageScaffold(
-        child: SizedBox.expand(
-          child: blocConsumer(
-            stateListener: (state) {
-              return _buildMainContainer(context, state);
-            },
+      child: blocBuilder(builder: (context, state) {
+        return CupertinoPageScaffold(
+          navigationBar: TitleBar(
+            title: S.of(context).selectProjectScreens,
+            actions: [
+              AppFilledButton(
+                label: S.of(context).addScreen,
+                icon: Icons.add,
+                onPressed: () => showCupertinoModalPopup<Screen>(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) => const AddScreenDialog(),
+                ).then((screen) {
+                  if (screen != null) {
+                    if (state.config.screens.isEmpty) {
+                      screen.initial = true;
+                    }
+                    blocOf(context).add(
+                      ScreensScreenEventOnScreenAdd(screen: screen),
+                    );
+                  }
+                }),
+              ),
+            ],
           ),
-        ),
-      ),
+          child: _buildMainContainer(context, state),
+        );
+      }),
       onSR: _onSingleResult,
     );
   }
@@ -76,16 +97,16 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
   ) {
     return Center(
       child: Padding(
-        padding:
-            const EdgeInsets.only(top: 40, bottom: 20, left: 20, right: 20),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Flexible(
+            const Delimiter.height(100),
+            Expanded(
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: CupertinoColors.systemGrey,
+                    color: context.appColors.fadedColor,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -112,43 +133,16 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                 ),
               ),
             ),
-            const Delimiter.height(20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AppFilledButton(
-                  label: S.of(context).goBack,
-                  icon: Icons.arrow_back_ios_rounded,
-                  onPressed: () => _onBack(context, state),
-                ),
-                const Delimiter.width(10),
-                AppFilledButton(
-                  label: S.of(context).addScreen,
-                  icon: Icons.add,
-                  onPressed: () => showCupertinoModalPopup<Screen>(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (context) => const AddScreenDialog(),
-                  ).then((screen) {
-                    if (screen != null) {
-                      if (state.config.screens.isEmpty) {
-                        screen.initial = true;
-                      }
-                      blocOf(context).add(
-                        ScreensScreenEventOnScreenAdd(screen: screen),
-                      );
-                    }
-                  }),
-                ),
-                const Delimiter.width(10),
-                AppFilledButton(
-                  label: S.of(context).continueLabel,
-                  icon: Icons.arrow_forward_ios_rounded,
-                  iconLeft: false,
-                  active: true,
-                  onPressed: () => _onContinue(context, state),
-                ),
-              ],
+            const Delimiter.height(10),
+            NavigationButtonBar(
+              nextText: S.of(context).continueLabel,
+              prevText: S.of(context).goBack,
+              onNextPressed: () {
+                _onContinue(context, state);
+              },
+              onPrevPressed: () {
+                _onBack(context, state);
+              },
             ),
           ],
         ),

@@ -6,7 +6,7 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/figma_styles_dialog/bloc/figma_styles_dialog_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/figma_styles_dialog/widget/color_styles_wrap.dart';
-import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
 import 'package:recase/recase.dart';
 
@@ -53,7 +53,7 @@ class _FigmaStylesDialogState extends BaseState<FigmaStylesDialogState,
             width: MediaQuery.sizeOf(context).width * 0.7,
             height: MediaQuery.sizeOf(context).height * 0.7,
             decoration: BoxDecoration(
-              color: AppColors.bgDark,
+              color: context.appColors.darkColor,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -102,11 +102,11 @@ class _FigmaStylesDialogState extends BaseState<FigmaStylesDialogState,
                     ),
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 1,
                   width: double.infinity,
                   child: ColoredBox(
-                    color: AppColors.inactiveText,
+                    color: context.appColors.fadedColor,
                   ),
                 ),
                 Row(
@@ -120,11 +120,11 @@ class _FigmaStylesDialogState extends BaseState<FigmaStylesDialogState,
                         ),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 55,
                       width: 1,
                       child: ColoredBox(
-                        color: AppColors.inactiveText,
+                        color: context.appColors.fadedColor,
                       ),
                     ),
                     Expanded(

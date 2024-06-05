@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.dart';
-import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/platforms_screen.dart';
 
 part 'platforms_screen_models.freezed.dart';
 

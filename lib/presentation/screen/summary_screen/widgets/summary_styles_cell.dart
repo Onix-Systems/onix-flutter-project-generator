@@ -3,7 +3,6 @@ import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class SummaryStylesCell extends StatelessWidget {
@@ -21,11 +20,11 @@ class SummaryStylesCell extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: AppColors.inactiveText,
+          color: context.appColors.contrastColor,
           strokeAlign: BorderSide.strokeAlignOutside,
           width: 2,
         ),
-        color: AppColors.orange,
+        color: context.appColors.darkContrastColor,
       ),
       child: Row(
         children: [
@@ -36,7 +35,7 @@ class SummaryStylesCell extends StatelessWidget {
               child: Text(
                 variable,
                 style: context.appTextStyles.fs18?.copyWith(
-                  color: AppColors.bgDark,
+                  color: context.appColors.textColor,
                 ),
               ),
             ),
@@ -45,7 +44,7 @@ class SummaryStylesCell extends StatelessWidget {
             flex: 100,
             child: Container(
               padding: const EdgeInsets.all(10),
-              color: AppColors.bgDark,
+              color: context.appColors.darkColor,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

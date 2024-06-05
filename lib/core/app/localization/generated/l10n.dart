@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1255,6 +1256,216 @@ class S {
     return Intl.message(
       'Color Styles',
       name: 'colorStyles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tools`
+  String get tools {
+    return Intl.message(
+      'Tools',
+      name: 'tools',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not a Flutter Project`
+  String get projectSelectErrorTitle {
+    return Intl.message(
+      'Not a Flutter Project',
+      name: 'projectSelectErrorTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pubspec file not found in selected folder.`
+  String get projectSelectErrorMessage {
+    return Intl.message(
+      'Pubspec file not found in selected folder.',
+      name: 'projectSelectErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Android signing configuration`
+  String get signingToolTitle {
+    return Intl.message(
+      'Android signing configuration',
+      name: 'signingToolTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Keystore and signing configuration created.`
+  String get signingToolSuccessText {
+    return Intl.message(
+      'Keystore and signing configuration created.',
+      name: 'signingToolSuccessText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate Android signing config`
+  String get generateAndroidSigning {
+    return Intl.message(
+      'Generate Android signing config',
+      name: 'generateAndroidSigning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to create signing config. Internal error happened, please contact a developer.`
+  String get signingErrorParams {
+    return Intl.message(
+      'Failed to create signing config. Internal error happened, please contact a developer.',
+      name: 'signingErrorParams',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to create signing config. Is Android platform enabled and android folder exist?`
+  String get signingErrorException {
+    return Intl.message(
+      'Failed to create signing config. Is Android platform enabled and android folder exist?',
+      name: 'signingErrorException',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to create signing config. Certificate of configuration already exist.`
+  String get signingErrorExist {
+    return Intl.message(
+      'Failed to create signing config. Certificate of configuration already exist.',
+      name: 'signingErrorExist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Project Name`
+  String get enterProjectName {
+    return Intl.message(
+      'Enter Project Name',
+      name: 'enterProjectName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Onix Project Generator`
+  String get selectProjectFolder {
+    return Intl.message(
+      'Onix Project Generator',
+      name: 'selectProjectFolder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Project Platforms`
+  String get selectProjectPlatforms {
+    return Intl.message(
+      'Select Project Platforms',
+      name: 'selectProjectPlatforms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Project Features`
+  String get selectProjectSetting {
+    return Intl.message(
+      'Select Project Features',
+      name: 'selectProjectSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Screens to Generate`
+  String get selectProjectScreens {
+    return Intl.message(
+      'Add Screens to Generate',
+      name: 'selectProjectScreens',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data Components`
+  String get addDataComponents {
+    return Intl.message(
+      'Data Components',
+      name: 'addDataComponents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import REST API requests`
+  String get importApi {
+    return Intl.message(
+      'Import REST API requests',
+      name: 'importApi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import Styles`
+  String get importStyles {
+    return Intl.message(
+      'Import Styles',
+      name: 'importStyles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Summary`
+  String get summary {
+    return Intl.message(
+      'Summary',
+      name: 'summary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Initial screen?`
+  String get initial {
+    return Intl.message(
+      'Initial screen?',
+      name: 'initial',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Styles`
+  String get getStyles {
+    return Intl.message(
+      'Get Styles',
+      name: 'getStyles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear`
+  String get clear {
+    return Intl.message(
+      'Clear',
+      name: 'clear',
       desc: '',
       args: [],
     );

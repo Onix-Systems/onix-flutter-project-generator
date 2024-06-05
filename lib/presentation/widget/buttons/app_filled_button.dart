@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
 class AppFilledButton extends StatefulWidget {
   final FocusNode? focusNode;
@@ -35,9 +33,14 @@ class AppFilledButton extends StatefulWidget {
 }
 
 class _AppFilledButtonState extends State<AppFilledButton> {
-  final Color _defaultColor = AppColors.white;
+   Color get _defaultColor => context.appColors.textColor;
   bool hovered = false;
   bool focused = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +62,7 @@ class _AppFilledButtonState extends State<AppFilledButton> {
             ? hovered
                 ? _textColor()
                 : widget.color ?? _defaultColor
-            : AppColors.inactiveText,
+            : context.appColors.fadedColor,
         foregroundColor: _defaultColor,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
@@ -70,8 +73,11 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                   )
                 : BorderSide.none),
         padding: widget.padding ??
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        minimumSize: widget.minimumSize ?? const Size(100, 50),
+            const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 20,
+            ),
+        minimumSize: widget.minimumSize ?? const Size(100, 40),
       ),
       child: widget.big
           ? Column(
@@ -124,8 +130,8 @@ class _AppFilledButtonState extends State<AppFilledButton> {
   }
 
   Color _textColor() {
-    return (widget.color ?? AppColors.orange).computeLuminance() >= 0.4
-        ? AppColors.bgDark
-        : AppColors.bgLight;
+    return (widget.color ?? context.appColors.controlColor).computeLuminance() >= 0.4
+        ? context.appColors.darkColor
+        : context.appColors.textColor;
   }
 }

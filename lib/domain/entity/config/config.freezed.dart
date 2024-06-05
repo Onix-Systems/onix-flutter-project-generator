@@ -417,15 +417,7 @@ class _$ConfigImpl extends _Config {
       this.router = ProjectRouter.goRouter,
       this.localization = ProjectLocalization.intl,
       this.theming = ProjectTheming.manual,
-      final List<String> signingVars = const [
-        'Your Name',
-        'Department',
-        'Your Company',
-        'Your City',
-        'Your State or Province',
-        'UA',
-        ''
-      ],
+      final List<String> signingVars = AppConsts.defaultSigningVars,
       final Set<Screen> screens = const {},
       @JsonKey(includeFromJson: false, includeToJson: false)
       final List<AppStyle> styles = const [],

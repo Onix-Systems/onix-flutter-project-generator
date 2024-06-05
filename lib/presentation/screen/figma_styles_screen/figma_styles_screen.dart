@@ -11,6 +11,8 @@ import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/widgets/styles_widget.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
+import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 
 class FigmaStylesScreen extends StatefulWidget {
   final ValueChanged<List<AppStyle>>? onContinue;
@@ -38,6 +40,9 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
     return srObserver(
       context: context,
       child: CupertinoPageScaffold(
+        navigationBar: TitleBar(
+          title: S.of(context).importStyles,
+        ),
         child: SizedBox.expand(
           child: blocConsumer(
             stateListener: (state) => _buildMainContainer(context, state),
@@ -104,7 +109,7 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
                       SizedBox(
                         width: 200,
                         child: AppFilledButton(
-                          label: 'Get Styles',
+                          label: S.of(context).getStyles,
                           icon: Icons.download_rounded,
                           onPressed: () => blocOf(context).add(
                             FigmaStylesScreenEventOnGetStyles(
@@ -124,10 +129,10 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
                       SizedBox(
                         width: 200,
                         child: AppFilledButton(
-                          label: 'Clear',
+                          label: S.of(context).clear,
                           icon: Icons.delete_rounded,
                           active: true,
-                          color: CupertinoColors.destructiveRed,
+                          color: context.appColors.alarmColor,
                           onPressed: () => blocOf(context)
                               .add(const FigmaStylesScreenEventOnClear()),
                         ),
@@ -148,23 +153,15 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
                   ),
                 ),
               ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AppFilledButton(
-                  label: S.of(context).goBack,
-                  icon: Icons.arrow_back_ios_rounded,
-                  onPressed: () => _onBack(context, state),
-                ),
-                const Delimiter.width(10),
-                AppFilledButton(
-                  label: S.of(context).continueLabel,
-                  icon: Icons.arrow_forward_ios_rounded,
-                  iconLeft: false,
-                  active: true,
-                  onPressed: () => _onContinue(context, state),
-                ),
-              ],
+            NavigationButtonBar(
+              nextText: S.of(context).continueLabel,
+              prevText: S.of(context).goBack,
+              onNextPressed: () {
+                _onContinue(context, state);
+              },
+              onPrevPressed: () {
+                _onBack(context, state);
+              },
             ),
           ],
         ),
