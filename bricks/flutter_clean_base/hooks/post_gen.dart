@@ -11,6 +11,7 @@ const flavorizrInjectKey = '#{flavorizer_injection_config}';
 void run(HookContext context) async {
   name = context.vars['project_name'].toString().toSnakeCase;
 
+
   if (!context.vars['platforms'].contains('android')) {
     await Process.run('rm', ['-rf', '$name/android']);
   }
@@ -400,10 +401,10 @@ Future<void> injectFlavors(HookContext context) async {
     lines.add('  flavors:');
     for (String flavor in flavors) {
       final packageSuffix = flavor.toLowerCase() == 'prod' ? '' : '.$flavor';
-      final nameSuffix = flavor.toLowerCase() == 'Prod' ? '' : ' ${flavor.titleCase}';
+      final nameSuffix = flavor.toLowerCase() == 'Prod' ? '' : ' ${flavor.toTitleCase}';
       lines.add('    $flavor:');
       lines.add('      app:');
-      lines.add('        name: "${name.titleCase}$nameSuffix"');
+      lines.add('        name: "${name.toTitleCase}$nameSuffix"');
       lines.add('');
       if(isAndroidEnabled){
         lines.add('      android:');
@@ -673,4 +674,6 @@ extension Case on String {
   String get toCamelCase => ReCase(this).camelCase;
 
   String get toPascalCase => ReCase(this).pascalCase;
+
+  String get toTitleCase => ReCase(this).titleCase;
 }
