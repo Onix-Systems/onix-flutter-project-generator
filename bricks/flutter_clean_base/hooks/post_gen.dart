@@ -401,7 +401,7 @@ Future<void> injectFlavors(HookContext context) async {
     lines.add('  flavors:');
     for (String flavor in flavors) {
       final packageSuffix = flavor.toLowerCase() == 'prod' ? '' : '.$flavor';
-      final nameSuffix = flavor.toLowerCase() == 'Prod' ? '' : ' ${flavor.toTitleCase}';
+      final nameSuffix = flavor.toLowerCase() == 'prod' ? '' : ' ${flavor.toTitleCase}';
       lines.add('    $flavor:');
       lines.add('      app:');
       lines.add('        name: "${name.toTitleCase}$nameSuffix"');

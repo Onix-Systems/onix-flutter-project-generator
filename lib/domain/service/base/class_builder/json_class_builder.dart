@@ -42,10 +42,11 @@ class JsonClassBuilder extends ClassBuilder {
     lines.addNewLine();
     lines.add('part \'$classPartImport.g.dart\';');
     lines.addNewLine();
-    lines.addAll(_variableDeclarations);
-    lines.addNewLine();
     lines.add('@JsonSerializable()');
     lines.add('class $classFullName {');
+    lines.addNewLine();
+    lines.addAll(_variableDeclarations);
+    lines.addNewLine();
     lines.add('const $classFullName({');
     lines.addAll(_baseConstructorProperties);
     lines.add('});');
