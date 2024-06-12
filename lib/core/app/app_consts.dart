@@ -18,4 +18,14 @@ abstract final class AppConsts {
   static const Set<String> defaultFlavors = {'dev', 'prod'};
 
   static const String mainDartPath = 'lib/core/flavors/';
+
+  static const List<String> defaultSigningVars = [
+    'Your Name',
+    'Department',
+    'Your Company',
+    'Your City',
+    'Your State or Province',
+    'UA',
+    '',
+  ];
 }

@@ -6,7 +6,6 @@ import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/add_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/source_expansion_tile.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 
@@ -40,14 +39,14 @@ class _SourceTableExpansionTileState extends State<SourceTableExpansionTile> {
         return Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: CupertinoColors.systemGrey,
+              color: context.appColors.fadedColor,
               width: 0.0, // One physical pixel.
               style: BorderStyle.solid,
             ),
             borderRadius: BorderRadius.circular(10),
             color: expanded
-                ? AppColors.grayBG
-                : CupertinoColors.activeBlue.withOpacity(0.1),
+                ? context.appColors.darkContrastColor
+                : context.appColors.contrastColor,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -78,7 +77,8 @@ class _SourceTableExpansionTileState extends State<SourceTableExpansionTile> {
                                   '${S.of(context).sources}: ${widget.sources.length}',
                                   textAlign: TextAlign.center,
                                   style: context.appTextStyles.fs18?.copyWith(
-                                      color: CupertinoColors.activeOrange),
+                                    color: context.appColors.textColor,
+                                  ),
                                 ),
                               ),
                             ],
@@ -100,9 +100,10 @@ class _SourceTableExpansionTileState extends State<SourceTableExpansionTile> {
                                   blocOf(context)
                                       .add(DataComponentsScreenEvent.addSource(
                                     source: Source(
-                                        name: source.name,
-                                        dataComponentsNames: [],
-                                        isGenerated: false),
+                                      name: source.name,
+                                      dataComponentsNames: [],
+                                      isGenerated: false,
+                                    ),
                                   ));
                                 }
                               }),
@@ -114,7 +115,7 @@ class _SourceTableExpansionTileState extends State<SourceTableExpansionTile> {
                         expanded
                             ? CupertinoIcons.chevron_up
                             : CupertinoIcons.chevron_down,
-                        color: CupertinoColors.activeOrange,
+                        color: context.appColors.controlColor,
                       ),
                     ),
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class Cell extends StatelessWidget {
   final Widget value;
@@ -18,13 +19,14 @@ class Cell extends StatelessWidget {
       child: Container(
         alignment: alignment,
         decoration: decorated
-            ? const BoxDecoration(
+            ? BoxDecoration(
                 border: Border(
-                right: BorderSide(
-                  color: CupertinoColors.systemGrey,
-                  width: 1,
+                  right: BorderSide(
+                    color: context.appColors.fadedColor,
+                    width: 1,
+                  ),
                 ),
-              ))
+              )
             : null,
         child: value,
       ),

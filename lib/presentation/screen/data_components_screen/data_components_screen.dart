@@ -1,11 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
@@ -14,8 +12,9 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/w
 import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_models.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 
 class DataComponentsScreen extends StatefulWidget {
   final Config config;
@@ -42,6 +41,9 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
     return srObserver(
       context: context,
       child: CupertinoPageScaffold(
+        navigationBar: TitleBar(
+          title: S.of(context).dataComponents,
+        ),
         child: SizedBox.expand(
           child: blocConsumer(
             stateListener: (state) => _buildMainContainer(context, state),
@@ -69,10 +71,12 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
       error: (message) => Dialogs.showOkDialog(
           context: context,
           title: '${S.of(context).error}!',
-          content: Text(message,
-              style: context.appTextStyles.fs18?.copyWith(
-                fontSize: 16,
-              )),
+          content: Text(
+            message,
+            style: context.appTextStyles.fs18?.copyWith(
+              fontSize: 16,
+            ),
+          ),
           isError: true),
     );
   }
@@ -83,17 +87,19 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
   ) {
     return Center(
       child: Padding(
-        padding:
-            const EdgeInsets.only(top: 40, bottom: 20, left: 20, right: 20),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Flexible(
+            const Delimiter.height(100),
+            Expanded(
               child: Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey),
+                  border: Border.all(
+                    color: context.appColors.controlColor,
+                  ),
                 ),
                 child: SingleChildScrollView(
                   child: Column(
@@ -114,8 +120,20 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
                 ),
               ),
             ),
-            const Delimiter.height(20),
-            Row(
+            const Delimiter.height(10),
+            NavigationButtonBar(
+              nextText: S.of(context).continueLabel,
+              prevText: S.of(context).goBack,
+              onNextPressed: () {
+                _onContinue(context, state);
+              },
+              onPrevPressed: () {
+                _onBack(context, state);
+              },
+            ),
+
+            ///Todo existing project flow
+            /*  Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppFilledButton(
@@ -163,7 +181,7 @@ class _DataComponentsScreenState extends BaseState<DataComponentsScreenState,
                   onPressed: () => _onContinue(context, state),
                 ),
               ],
-            ),
+            ),*/
           ],
         ),
       ),

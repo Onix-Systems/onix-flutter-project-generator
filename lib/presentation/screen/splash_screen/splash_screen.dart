@@ -11,7 +11,6 @@ import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -69,8 +68,8 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
                 duration: const Duration(milliseconds: 2000),
                 child: SvgPicture.asset(
                   'assets/logo.svg',
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.white,
+                  colorFilter: ColorFilter.mode(
+                    context.appColors.controlColor,
                     BlendMode.srcIn,
                   ),
                 ),

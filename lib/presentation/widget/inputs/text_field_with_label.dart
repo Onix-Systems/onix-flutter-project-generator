@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
+
 
 class TextFieldWithLabel extends StatelessWidget {
   final String label;
@@ -52,7 +52,7 @@ class TextFieldWithLabel extends StatelessWidget {
                   subLabel ?? '',
                   textAlign: TextAlign.left,
                   style: context.appTextStyles.fs18
-                      ?.copyWith(color: AppColors.white, fontSize: 13),
+                      ?.copyWith(color: context.appColors.textColor, fontSize: 13),
                 ),
             ],
           )
@@ -71,7 +71,7 @@ class TextFieldWithLabel extends StatelessWidget {
                   Text(
                     subLabel ?? '',
                     style: context.appTextStyles.fs18
-                        ?.copyWith(color: AppColors.white, fontSize: 13),
+                        ?.copyWith(color: context.appColors.textColor, fontSize: 13),
                   ),
               ],
             ),
@@ -83,7 +83,7 @@ class TextFieldWithLabel extends StatelessWidget {
               focusNode: focusNode,
               autofocus: autofocus ?? false,
               style: TextStyle(
-                color: error ? CupertinoColors.destructiveRed : AppColors.white,
+                color: error ? context.appColors.alarmColor : context.appColors.textColor,
               ),
               controller: textController,
               keyboardType: TextInputType.text,
@@ -99,7 +99,7 @@ class TextFieldWithLabel extends StatelessWidget {
               focusNode: focusNode,
               autofocus: autofocus ?? false,
               style: context.appTextStyles.fs18?.copyWith(
-                color: error ? CupertinoColors.destructiveRed : AppColors.white,
+                color: error ? context.appColors.alarmColor : context.appColors.textColor,
               ),
               controller: textController,
               keyboardType: TextInputType.text,

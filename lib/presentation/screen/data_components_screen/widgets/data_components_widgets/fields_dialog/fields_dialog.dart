@@ -8,7 +8,6 @@ import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/add_component_tile.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/add_field_tile.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/bloc/fields_dialog_imports.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
@@ -62,7 +61,7 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
       width: 800,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: AppColors.bgDark,
+          color: context.appColors.darkColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Padding(
@@ -74,8 +73,8 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
                 '${widget.dataComponent.name.pascalCase} ${S.of(context).fields.toLowerCase()}',
                 style: context.appTextStyles.fs18,
               ),
-              const Divider(
-                color: AppColors.white,
+              Divider(
+                color: context.appColors.controlColor,
                 thickness: 0.25,
                 height: 40,
               ),
@@ -155,8 +154,8 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
                 ],
               ),
               const Delimiter.height(20),
-              const Divider(
-                color: AppColors.white,
+              Divider(
+                color: context.appColors.controlColor,
                 thickness: 0.25,
                 height: 0,
               ),
@@ -181,11 +180,11 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
                       },
                     ),
                   ),
-                  const SizedBox(
+                   SizedBox(
                       height: 56,
                       width: 0.3,
                       child: VerticalDivider(
-                        color: AppColors.white,
+                        color: context.appColors.controlColor,
                         thickness: 0.3,
                       )),
                   Expanded(

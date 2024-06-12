@@ -3,9 +3,10 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/data_component/json_class_variable.dart';
 import 'package:onix_flutter_bricks/domain/repository/data_component_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/class_builder/freezed_class_builder.dart';
+import 'package:onix_flutter_bricks/domain/service/base/class_builder/json_class_builder.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/params/data_component_params.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
@@ -29,16 +30,25 @@ class RequestGenerator implements BaseGenerationService<bool> {
       params.dataComponent,
     );
 
-    final constructorProperties =
-        _getConstructorProperties(params.dataComponent);
+    final properties = _getProperties(params.dataComponent);
 
-    final freezedClass = FreezedClassBuilder(
+    final variableDeclarations = JsonClassBuilder.variablesFromJsonVariable(
+      properties,
+    );
+    final constructorProperties =
+    JsonClassBuilder.constructorPropertiesFromJsonVariable(
+      properties,
+    );
+
+    final jsonClass = JsonClassBuilder(
       className: name,
       classNameSuffix: 'request',
     )
+      ..withToJson = true
       ..imports = imports
+      ..variableDeclarations = variableDeclarations
       ..baseConstructorProperties = constructorProperties;
-    final fileContent = freezedClass.build();
+    final fileContent = jsonClass.build();
 
     final path = await Directory(
             '${params.projectPath}/${params.projectName}/lib/data/model/remote/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.snakeCase}')
@@ -76,12 +86,17 @@ class RequestGenerator implements BaseGenerationService<bool> {
     return imports;
   }
 
-  Iterable<String> _getConstructorProperties(DataComponent dataComponent) {
-    final constructorProperties = dataComponent.properties.map(
+  Iterable<JsonClassVariable> _getProperties(
+    DataComponent dataComponent,
+  ) {
+    final properties = dataComponent.properties.map(
       (e) {
         String type = e.type;
-        if (!TypeMatcher.isStandardType(TypeMatcher.getDartType(type)) &&
-            !type.contains('dynamic')) {
+        final isDynamic = type.contains('dynamic');
+        final isStandardType = TypeMatcher.isStandardType(
+          TypeMatcher.getDartType(type),
+        );
+        if (!isStandardType && !isDynamic) {
           final import = dataComponent.imports.firstWhereOrNull(
               (element) => element.pascalCase == type.pascalCase);
           final isEnum =
@@ -96,12 +111,16 @@ class RequestGenerator implements BaseGenerationService<bool> {
         if (e.isList) {
           type = 'List<${TypeMatcher.getDartType(type)}>';
         }
-        final prefix =
-            e.nullable ? '@JsonKey(includeIfNull: false)' : 'required';
+
         final dartType = TypeMatcher.getDartType(type);
-        return '$prefix $dartType${e.nullable ? '?' : ''} ${e.name},';
+
+        return JsonClassVariable(
+          dartType: dartType,
+          name: e.name,
+          nullable: e.nullable,
+        );
       },
     );
-    return constructorProperties;
+    return properties;
   }
 }

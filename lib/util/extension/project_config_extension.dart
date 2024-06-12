@@ -5,8 +5,8 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/util/extension/flavor_extension.dart';
 
 extension ProjectConfigExtension on Config {
-  String getSigningPassword() {
-    if (!generateSigningKey) {
+  String getSigningPassword({bool ignoreSetting = false}) {
+    if (!generateSigningKey && !ignoreSetting) {
       return '';
     }
     if (signingVars[6].isEmpty) {

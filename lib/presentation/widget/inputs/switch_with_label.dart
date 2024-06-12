@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
 class SwitchWithLabel extends StatelessWidget {
   final String label;
@@ -33,20 +32,21 @@ class SwitchWithLabel extends StatelessWidget {
                   label,
                   textAlign: TextAlign.left,
                   style: context.appTextStyles.fs18
-                      ?.copyWith(color: AppColors.white),
+                      ?.copyWith(color: context.appColors.textColor),
                 ),
                 if (subLabel != null)
                   Text(
                     subLabel ?? '',
                     textAlign: TextAlign.left,
                     style: context.appTextStyles.fs18
-                        ?.copyWith(color: AppColors.white, fontSize: 13),
+                        ?.copyWith(color: context.appColors.textColor, fontSize: 13),
                   ),
               ],
             ),
           ),
           CupertinoSwitch(
             value: initialValue,
+            activeColor: context.appColors.contrastColor,
             onChanged: (value) {
               valueSetter.call(value);
             },

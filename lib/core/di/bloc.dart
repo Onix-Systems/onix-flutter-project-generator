@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-import 'package:onix_flutter_bricks/app/bloc/app_bloc_imports.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
@@ -8,6 +7,7 @@ import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_sign
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/get_generation_output_stream_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/get_signing_fingerprint_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
@@ -67,7 +67,10 @@ void registerBloc(GetIt getIt) {
       ),
     )
     ..registerFactory<SplashScreenBloc>(SplashScreenBloc.new)
-    ..registerFactory<AppBloc>(AppBloc.new)
     ..registerFactory<ProcedureSelectionScreenBloc>(
-        ProcedureSelectionScreenBloc.new);
+      () => ProcedureSelectionScreenBloc(
+        GetIt.I.get<GenerateSigningConfigUseCase>(),
+        GetIt.I.get<GetSigningFingerprintUseCase>(),
+      ),
+    );
 }

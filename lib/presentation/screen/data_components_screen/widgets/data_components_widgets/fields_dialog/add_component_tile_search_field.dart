@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:searchfield/searchfield.dart';
 
@@ -31,7 +30,7 @@ class AddComponentSearchField extends StatelessWidget {
           .map((e) => SearchFieldListItem<String>(e, item: e))
           .toList(),
       maxSuggestionsInViewPort: 8,
-      marginColor: AppColors.bgDark,
+      marginColor: context.appColors.darkColor,
       itemHeight: 45,
       offset: const Offset(0, 58),
       initialValue: property.type.isEmpty
@@ -41,17 +40,17 @@ class AddComponentSearchField extends StatelessWidget {
                   components.firstWhere((element) => element == property.type)),
       onSuggestionTap: (value) => onSelect(value.item!),
       searchStyle: context.appTextStyles.fs18?.copyWith(
-        color: AppColors.bgDark,
+        color: context.appColors.textColor,
       ),
       searchInputDecoration: InputDecoration(
         filled: true,
-        fillColor: AppColors.orange,
+        fillColor: context.appColors.darkContrastColor,
         contentPadding: const EdgeInsets.symmetric(horizontal: 10),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: searchController.text.isNotEmpty
-                ? AppColors.orange
-                : AppColors.red,
+                ? context.appColors.contrastColor
+                : context.appColors.alarmColor,
             width: searchController.text.isNotEmpty ? 1 : 5,
           ),
           borderRadius: BorderRadius.circular(10),
@@ -59,26 +58,26 @@ class AddComponentSearchField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: searchController.text.isNotEmpty
-                ? AppColors.orange
-                : AppColors.red,
+                ? context.appColors.contrastColor
+                : context.appColors.alarmColor,
             width: searchController.text.isNotEmpty ? 1 : 5,
           ),
           borderRadius: BorderRadius.circular(10),
         ),
         suffixIcon: IconButton(
           splashRadius: 27,
-          icon: const Icon(
+          icon: Icon(
             Icons.clear,
-            color: AppColors.bgDark,
+            color: context.appColors.controlColor,
           ),
           onPressed: () => onClear(),
         ),
       ),
       suggestionStyle: context.appTextStyles.fs18?.copyWith(
-        color: AppColors.bgDark,
+        color: context.appColors.textColor,
       ),
       suggestionsDecoration: SuggestionDecoration(
-        color: AppColors.orange,
+        color: context.appColors.fadedColor,
         borderRadius: BorderRadius.circular(10),
         padding: const EdgeInsets.symmetric(horizontal: 10),
       ),

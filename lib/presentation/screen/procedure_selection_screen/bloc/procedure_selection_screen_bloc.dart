@@ -8,18 +8,28 @@ import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/get_signing_fingerprint_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
 
 class ProcedureSelectionScreenBloc extends BaseBloc<
     ProcedureSelectionScreenEvent,
     ProcedureSelectionScreenState,
     ProcedureSelectionScreenSR> {
-  ProcedureSelectionScreenBloc()
-      : super(const ProcedureSelectionScreenStateData(config: Config())) {
+  final GenerateSigningConfigUseCase _generateSigningConfigUseCase;
+  final GetSigningFingerprintUseCase _getSigningFingerprintUseCase;
+
+  ProcedureSelectionScreenBloc(
+    this._generateSigningConfigUseCase,
+    this._getSigningFingerprintUseCase,
+  ) : super(const ProcedureSelectionScreenStateData(config: Config())) {
     on<ProcedureSelectionScreenEventInit>(_onInit);
     on<ProcedureSelectionScreenEventOnProjectOpen>(_onProjectOpen);
     on<ProcedureSelectionScreenEventOnNewProject>(_onNewProject);
     on<ProcedureSelectionScreenEventOnLocaleChange>(_onLocaleChange);
+    on<ProcedureSelectionScreenEventOnAndroidSigning>(_onnAndroidSigning);
   }
 
   FutureOr<void> _onInit(
@@ -97,5 +107,39 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     emit(state.copyWith(
       language: event.language,
     ));
+  }
+
+  FutureOr<void> _onnAndroidSigning(
+    ProcedureSelectionScreenEventOnAndroidSigning event,
+    Emitter<ProcedureSelectionScreenState> emit,
+  ) async {
+    showProgress();
+    String signingPassword = state.config.getSigningPassword(
+      ignoreSetting: true,
+    );
+
+    final result = await _generateSigningConfigUseCase(
+      params: SingingGeneratorParams(
+        projectFolder: event.directory.path,
+        signingVars: event.signingVars,
+        signingPassword: signingPassword,
+        separateFromBrick: true,
+      ),
+    );
+    hideProgress();
+    if (result.success) {
+      final fingerprints = await _getSigningFingerprintUseCase(
+        projectFolder: event.directory.path,
+        password: signingPassword,
+      );
+      addSr(
+        ProcedureSelectionScreenSR.onAndroidSigningCreated(
+          fingerprints: fingerprints,
+        ),
+      );
+    } else {
+      onFailure(result.error.failure);
+      return;
+    }
   }
 }

@@ -11,6 +11,7 @@ const flavorizrInjectKey = '#{flavorizer_injection_config}';
 void run(HookContext context) async {
   name = context.vars['project_name'].toString().toSnakeCase;
 
+
   if (!context.vars['platforms'].contains('android')) {
     await Process.run('rm', ['-rf', '$name/android']);
   }
@@ -377,10 +378,14 @@ $flavor:
 Future<void> injectFlavors(HookContext context) async {
   ///START:Flavorizer config injection
   final isFlavorized = context.vars['flavorizr'] as bool;
+  final isIOsEnabled = context.vars['platforms'].contains('ios') as bool;
+  final isAndroidEnabled = context.vars['platforms'].contains('android') as bool;
+  final isMacOsEnabled = context.vars['platforms'].contains('macos') as bool;
   File pubspecFile = File('$name/pubspec.yaml');
   if (!pubspecFile.existsSync()) return;
   String pubspecFileContent = await pubspecFile.readAsString();
   if (isFlavorized) {
+
     final flavors = (context.vars['flavors'] as List)
         .map(
           (e) => e as String,
@@ -396,21 +401,33 @@ Future<void> injectFlavors(HookContext context) async {
     lines.add('  flavors:');
     for (String flavor in flavors) {
       final packageSuffix = flavor.toLowerCase() == 'prod' ? '' : '.$flavor';
-      final nameSuffix = flavor.toLowerCase() == 'prod' ? '' : ' $flavor';
+      final nameSuffix = flavor.toLowerCase() == 'prod' ? '' : ' ${flavor.toTitleCase}';
       lines.add('    $flavor:');
       lines.add('      app:');
-      lines.add('        name: "$name$nameSuffix"');
+      lines.add('        name: "${name.toTitleCase}$nameSuffix"');
       lines.add('');
-      lines.add('      android:');
-      lines.add('        applicationId: "$org.$name$packageSuffix"');
-      lines.add(
-          '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
-      lines.add('');
-      lines.add('      ios:');
-      lines.add('        bundleId: "$org.$name$packageSuffix"');
-      lines.add(
-          '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
-      lines.add('');
+      if(isAndroidEnabled){
+        lines.add('      android:');
+        lines.add('        applicationId: "$org.$name$packageSuffix"');
+        lines.add(
+            '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
+        lines.add('');
+      }
+      if(isIOsEnabled){
+        lines.add('      ios:');
+        lines.add('        bundleId: "$org.$name$packageSuffix"');
+        lines.add(
+            '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
+        lines.add('');
+      }
+      if(isMacOsEnabled){
+        lines.add('      macos:');
+        lines.add('        bundleId: "$org.$name$packageSuffix"');
+        lines.add(
+            '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
+        lines.add('');
+      }
+
       lines.add('');
     }
     final flavorLines = lines.join('\n');
@@ -657,4 +674,6 @@ extension Case on String {
   String get toCamelCase => ReCase(this).camelCase;
 
   String get toPascalCase => ReCase(this).pascalCase;
+
+  String get toTitleCase => ReCase(this).titleCase;
 }

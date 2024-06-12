@@ -136,7 +136,7 @@ class MapperGenerator implements BaseGenerationService<bool> {
         } else {
           if (mappersDeclarations.isNotEmpty) {
             final responseImport = component.generateResponse
-                ? 'import \'package:$projectName/data/model/remote/$sourceName}${e.snakeCase}/${e.snakeCase}_response.dart\';'
+                ? 'import \'package:$projectName/data/model/remote/$sourceName${e.snakeCase}/${e.snakeCase}_response.dart\';'
                 : '';
             final requestImport = component.generateRequest
                 ? 'import \'package:$projectName/domain/entity/$sourceName${e.snakeCase}/${e.snakeCase}.dart\';'

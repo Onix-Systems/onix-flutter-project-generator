@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/add_component_tile_search_field.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 import 'package:recase/recase.dart';
@@ -51,7 +50,7 @@ class _AddComponentTileState extends State<AddComponentTile> {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.bgDark,
+        color: context.appColors.darkColor,
         borderRadius: BorderRadius.circular(10),
       ),
       child: SizedBox(
@@ -115,18 +114,18 @@ class _AddComponentTileState extends State<AddComponentTile> {
                 Flexible(
                   child: CupertinoTextField(
                     decoration: BoxDecoration(
-                      color: AppColors.bgDark,
+                      color: context.appColors.darkColor,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: widget.error && _property.type.isNotEmpty
-                            ? AppColors.red
-                            : AppColors.inactiveText,
+                            ? context.appColors.alarmColor
+                            : context.appColors.fadedColor,
                       ),
                     ),
                     focusNode: _propertyNameFocusNode,
                     controller: _propertyNameController,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
+                      FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]')),
                     ],
                     style: context.appTextStyles.fs18,
                     onEditingComplete: _onChanged,

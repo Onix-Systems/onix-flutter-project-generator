@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/property.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/add_fields_tile_dropdown.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
@@ -52,7 +51,7 @@ class _AddFieldTileState extends State<AddFieldTile> {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.bgDark,
+        color: context.appColors.darkColor,
         borderRadius: BorderRadius.circular(10),
       ),
       child: SizedBox(
@@ -94,17 +93,17 @@ class _AddFieldTileState extends State<AddFieldTile> {
                 Flexible(
                   child: CupertinoTextField(
                     decoration: BoxDecoration(
-                      color: AppColors.bgDark,
+                      color: context.appColors.darkColor,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: widget.error
-                            ? AppColors.red
-                            : AppColors.inactiveText,
+                            ? context.appColors.alarmColor
+                            : context.appColors.fadedColor,
                       ),
                     ),
                     controller: _propertyNameController,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
+                      FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]')),
                     ],
                     style: context.appTextStyles.fs18,
                     onEditingComplete: _onChanged,

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
 class Dialogs {
   static void showOkDialog({
@@ -20,7 +19,7 @@ class Dialogs {
           child: Text(
             title,
             style: context.appTextStyles.fs18?.copyWith(
-              color: isError ? AppColors.red : null,
+              color: isError ? context.appColors.alarmColor : null,
             ),
           ),
         ),
@@ -72,7 +71,7 @@ class Dialogs {
             child: Text(
               title,
               style: context.appTextStyles.fs18?.copyWith(
-                color: isError ? AppColors.red : null,
+                color: isError ? context.appColors.alarmColor : null,
               ),
             ),
           ),
@@ -131,7 +130,7 @@ class Dialogs {
             child: Text(
               title,
               style: context.appTextStyles.fs18?.copyWith(
-                color: isError ? AppColors.red : null,
+                color: isError ? context.appColors.alarmColor : null,
               ),
             ),
           ),

@@ -13,7 +13,6 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/w
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/add_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/source_widgets/delete_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:recase/recase.dart';
 
@@ -51,10 +50,10 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: CupertinoColors.systemGrey,
+          color: context.appColors.fadedColor,
           width: 1,
         ),
-        color: CupertinoColors.activeBlue.withOpacity(0.1),
+        color: context.appColors.darkContrastColor,
       ),
       child: Column(
         children: [
@@ -91,8 +90,8 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                               CupertinoButton(
                                 color: widget.source.exists ||
                                         widget.source.isGenerated
-                                    ? CupertinoColors.inactiveGray
-                                    : CupertinoColors.activeOrange,
+                                    ? context.appColors.fadedColor
+                                    : context.appColors.contrastColor,
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 pressedOpacity: _pressedOpacity(widget.source),
@@ -117,13 +116,14 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                 },
                                 child: Text(
                                   S.of(context).modify,
-                                  style: context.appTextStyles.fs18
-                                      ?.copyWith(color: AppColors.bgDark),
+                                  style: context.appTextStyles.fs18?.copyWith(
+                                    color: context.appColors.textColor,
+                                  ),
                                 ),
                               ),
                               const SizedBox(width: 10),
                               CupertinoButton(
-                                color: CupertinoColors.activeOrange,
+                                color: context.appColors.contrastColor,
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 onPressed: () {
@@ -146,16 +146,17 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                 },
                                 child: Text(
                                   S.of(context).addComponent,
-                                  style: context.appTextStyles.fs18
-                                      ?.copyWith(color: AppColors.bgDark),
+                                  style: context.appTextStyles.fs18?.copyWith(
+                                    color: context.appColors.textColor,
+                                  ),
                                 ),
                               ),
                               const SizedBox(width: 10),
                               CupertinoButton(
                                 color: widget.source.exists ||
                                         widget.source.isGenerated
-                                    ? CupertinoColors.inactiveGray
-                                    : CupertinoColors.activeOrange,
+                                    ? context.appColors.fadedColor
+                                    : context.appColors.contrastColor,
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 pressedOpacity: _pressedOpacity(widget.source),
@@ -183,8 +184,9 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                                 },
                                 child: Text(
                                   S.of(context).delete,
-                                  style: context.appTextStyles.fs18
-                                      ?.copyWith(color: AppColors.bgDark),
+                                  style: context.appTextStyles.fs18?.copyWith(
+                                    color: context.appColors.textColor,
+                                  ),
                                 ),
                               ),
                             ],
@@ -197,7 +199,7 @@ class _SourceExpansionTileState extends State<SourceExpansionTile> {
                         expanded
                             ? CupertinoIcons.chevron_up
                             : CupertinoIcons.chevron_down,
-                        color: CupertinoColors.activeOrange,
+                        color: context.appColors.controlColor,
                       )
                     else
                       const SizedBox(width: 24),

@@ -22,7 +22,6 @@ class ComponentClassGenerator implements BaseGenerationService<bool> {
     if (params is! DataComponentParams) {
       return false;
     }
-    final codeLines = List<String>.empty(growable: true);
 
     final sourceName = params.dataComponent.sourceName;
     final name = params.dataComponent.name;

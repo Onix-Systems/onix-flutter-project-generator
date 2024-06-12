@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
@@ -20,15 +19,15 @@ class AppActionButton extends StatelessWidget {
       child: TextButton(
         onPressed: active ? onPressed : null,
         style: TextButton.styleFrom(
-          foregroundColor: CupertinoColors.inactiveGray,
+          foregroundColor: context.appColors.contrastColor,
         ),
         child: Text(
           label,
           textAlign: TextAlign.center,
           style: context.appTextStyles.fs18?.copyWith(
             color: active
-                ? CupertinoColors.systemBlue.darkHighContrastColor
-                : CupertinoColors.inactiveGray,
+                ? context.appColors.textColor
+                : context.appColors.fadedColor,
           ),
         ),
       ),

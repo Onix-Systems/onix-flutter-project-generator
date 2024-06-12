@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class GenerationControls extends StatelessWidget {
   final VoidCallback onOpenAndroidStudio;
@@ -21,14 +22,15 @@ class GenerationControls extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
-          // color: CupertinoColors.activeOrange,
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(20),
           ),
           onPressed: onOpenAndroidStudio,
           child: Text(
             S.of(context).openInAndroidStudio,
-            style: const TextStyle(color: CupertinoColors.white),
+            style: TextStyle(
+              color: context.appColors.textColor,
+            ),
           ),
         ),
         const SizedBox(width: 10),
@@ -36,9 +38,9 @@ class GenerationControls extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(20),
           ),
-          child: const Icon(
+          child: Icon(
             CupertinoIcons.clear,
-            color: CupertinoColors.white,
+            color: context.appColors.controlColor,
             size: 20,
           ),
           onPressed: () {

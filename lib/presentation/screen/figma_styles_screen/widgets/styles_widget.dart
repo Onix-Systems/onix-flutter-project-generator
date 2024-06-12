@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
@@ -25,7 +24,7 @@ class StylesWidget extends StatelessWidget {
           child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: CupertinoColors.systemGrey),
+          border: Border.all(color: context.appColors.fadedColor),
         ),
         child: Padding(
           padding: const EdgeInsets.all(10),
@@ -66,7 +65,7 @@ class StylesWidget extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
-                            color: CupertinoColors.destructiveRed, width: 2),
+                            color: context.appColors.alarmColor, width: 2),
                       ),
                       child: Column(
                         children: [
@@ -74,7 +73,7 @@ class StylesWidget extends StatelessWidget {
                             'Invalid color styles:',
                             textAlign: TextAlign.center,
                             style: context.appTextStyles.fs18?.copyWith(
-                              color: CupertinoColors.destructiveRed,
+                              color: context.appColors.alarmColor,
                             ),
                           ),
                           const Delimiter.height(10),
@@ -127,7 +126,7 @@ class StylesWidget extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
-                            color: CupertinoColors.destructiveRed, width: 2),
+                            color: context.appColors.alarmColor, width: 2),
                       ),
                       child: Column(
                         children: [
@@ -135,7 +134,7 @@ class StylesWidget extends StatelessWidget {
                             'Invalid text styles:',
                             textAlign: TextAlign.center,
                             style: context.appTextStyles.fs18?.copyWith(
-                              color: CupertinoColors.destructiveRed,
+                              color: context.appColors.alarmColor,
                             ),
                           ),
                           const Delimiter.height(10),

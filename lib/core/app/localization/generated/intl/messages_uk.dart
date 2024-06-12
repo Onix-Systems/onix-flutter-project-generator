@@ -41,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "actions": MessageLookupByLibrary.simpleMessage("Дії"),
         "addComponent":
             MessageLookupByLibrary.simpleMessage("Додати компонент"),
+        "addDataComponents":
+            MessageLookupByLibrary.simpleMessage("Компоненти Даних"),
         "addField": MessageLookupByLibrary.simpleMessage("Додати поле"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Додати флавори:"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Додати екран"),
@@ -66,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Перевірте назву проекту та організацію перед тим, як продовжити"),
         "cityOrLocality":
             MessageLookupByLibrary.simpleMessage(" Місто або локація"),
+        "clear": MessageLookupByLibrary.simpleMessage("Очистити"),
         "colorStyles": MessageLookupByLibrary.simpleMessage("Кольори"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Назва компонента"),
@@ -89,6 +92,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Файл конфіга вітсутній або невірний! Перевірте, чи був відкритий проект згенерований за допомогою Onix Flutter Project Generator"),
         "emptyConfigTitle": MessageLookupByLibrary.simpleMessage(
             "Помилка читання файлу конфіга!"),
+        "enterProjectName":
+            MessageLookupByLibrary.simpleMessage("Введіть Ім\'я Проекту"),
         "error": MessageLookupByLibrary.simpleMessage("Помілка"),
         "exitLabel": MessageLookupByLibrary.simpleMessage("Вийти"),
         "fields": MessageLookupByLibrary.simpleMessage("Поля"),
@@ -109,6 +114,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Генерувати флавори?"),
         "flavors": MessageLookupByLibrary.simpleMessage("Флавори"),
         "generate": MessageLookupByLibrary.simpleMessage("Генерувати"),
+        "generateAndroidSigning": MessageLookupByLibrary.simpleMessage(
+            "Сконфігурувати підпис Android"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Створити новий проект"),
         "generateProject":
@@ -121,6 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Згенерувати конфіг Sonar?"),
         "getFromSwagger":
             MessageLookupByLibrary.simpleMessage("Отримати з свагера"),
+        "getStyles": MessageLookupByLibrary.simpleMessage("Імпортувати"),
         "getStylesFromFigma":
             MessageLookupByLibrary.simpleMessage("Отримати стилі з Figma"),
         "gitPermissionsContent": MessageLookupByLibrary.simpleMessage(
@@ -129,6 +137,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Помилка доступу до Git!"),
         "goBack": MessageLookupByLibrary.simpleMessage("Назад"),
         "ignore": MessageLookupByLibrary.simpleMessage("Ігнорувати"),
+        "importApi":
+            MessageLookupByLibrary.simpleMessage("Імпортувати запити REST API"),
+        "importStyles":
+            MessageLookupByLibrary.simpleMessage("Імпортувати Стилі"),
+        "initial": MessageLookupByLibrary.simpleMessage("Початковий екран?"),
         "integrateGraphQl":
             MessageLookupByLibrary.simpleMessage("Інтегрувати GraphQL?"),
         "keyStorePasswordPlaceholder": MessageLookupByLibrary.simpleMessage(
@@ -177,6 +190,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Проект з такою назвою вже існує"),
         "projectName": MessageLookupByLibrary.simpleMessage("Назва проекту"),
         "projectPath": MessageLookupByLibrary.simpleMessage("Шлях до проекту"),
+        "projectSelectErrorMessage":
+            MessageLookupByLibrary.simpleMessage("Pubspec файл не знайдено."),
+        "projectSelectErrorTitle":
+            MessageLookupByLibrary.simpleMessage("Не папка з проектом Flutter"),
         "replace": MessageLookupByLibrary.simpleMessage("Замінити"),
         "request": MessageLookupByLibrary.simpleMessage("Запит"),
         "response": MessageLookupByLibrary.simpleMessage("Відповідь"),
@@ -188,6 +205,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Вже є"),
         "screenName": MessageLookupByLibrary.simpleMessage("Назва екрану"),
         "screens": MessageLookupByLibrary.simpleMessage("Екрани"),
+        "selectProjectFolder":
+            MessageLookupByLibrary.simpleMessage("Onix Project Generator"),
+        "selectProjectPlatforms":
+            MessageLookupByLibrary.simpleMessage("Виберіть Платформи"),
+        "selectProjectScreens":
+            MessageLookupByLibrary.simpleMessage("Генерація Екранів"),
+        "selectProjectSetting":
+            MessageLookupByLibrary.simpleMessage("Налаштування Проекту"),
+        "signingErrorException": MessageLookupByLibrary.simpleMessage(
+            "Не вдалося завершити конфігурацію підпису. Перевірте чи ваш проект містить папку android та чи вона відповідає проекту Android?"),
+        "signingErrorExist": MessageLookupByLibrary.simpleMessage(
+            "Не вдалося завершити конфігурацію підпису. Сертифікат або конфігурація вже існує."),
+        "signingErrorParams": MessageLookupByLibrary.simpleMessage(
+            "Не вдалося завершити конфігурацію підпису. Відбулась внутрішня помилка, зв\'яжіться з розробником."),
+        "signingToolSuccessText": MessageLookupByLibrary.simpleMessage(
+            "Сертифікат та конфігурація підпису додана до проекту."),
+        "signingToolTitle":
+            MessageLookupByLibrary.simpleMessage("Сертифікат підпису Android"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Дані підпису"),
         "sourceDeletingDialogTitle": m5,
         "sourceExistsError": m6,
@@ -201,8 +236,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "stateManager": MessageLookupByLibrary.simpleMessage("Менеджер стану"),
         "stateOrProvince":
             MessageLookupByLibrary.simpleMessage(" Штат або провінція"),
+        "summary": MessageLookupByLibrary.simpleMessage("Підсумки"),
         "swaggerParserPrompt": MessageLookupByLibrary.simpleMessage(
-            "Вставте посалання на json файл конфігу свагера сюди для отримання компонентів від API\nабо залиште пустим для продовженя без інтеграції API"),
+            "Вставте посилання на json файл конфігу свагера сюди для отримання компонентів від API\nабо залиште пустим для продовженя без інтеграції API"),
         "swaggerParserScreenConflictError": MessageLookupByLibrary.simpleMessage(
             "Файл Свагера містить компоненти, що конфліктують з тими що є. Замінити зпарсеними компоненами або ігнорувати конфліктуючі дані?"),
         "swaggerURL": MessageLookupByLibrary.simpleMessage("Swagger URL"),
@@ -210,6 +246,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "theming": MessageLookupByLibrary.simpleMessage("Theming"),
         "title": MessageLookupByLibrary.simpleMessage(
             "Onix Flutter Project Generator"),
+        "tools": MessageLookupByLibrary.simpleMessage("Інструменти"),
         "twoLetterCountryCode":
             MessageLookupByLibrary.simpleMessage(" Двохлітерний код країни"),
         "url": MessageLookupByLibrary.simpleMessage("URL"),

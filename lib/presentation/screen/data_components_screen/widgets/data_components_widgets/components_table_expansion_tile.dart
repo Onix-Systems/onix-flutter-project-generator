@@ -6,7 +6,6 @@ import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/add_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/components_table.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 
@@ -40,14 +39,14 @@ class _EntityTableExpansionTileState extends State<EntityTableExpansionTile> {
         return Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: CupertinoColors.systemGrey,
+              color: context.appColors.fadedColor,
               width: 0.0,
               style: BorderStyle.solid,
             ),
             borderRadius: BorderRadius.circular(10),
             color: expanded
-                ? AppColors.grayBG
-                : CupertinoColors.activeBlue.withOpacity(0.1),
+                ? context.appColors.darkContrastColor
+                : context.appColors.contrastColor,
           ),
           child: Column(
             children: [
@@ -77,7 +76,8 @@ class _EntityTableExpansionTileState extends State<EntityTableExpansionTile> {
                                   '${S.of(context).standaloneDataComponents} ${widget.dataComponents.length}',
                                   textAlign: TextAlign.center,
                                   style: context.appTextStyles.fs18?.copyWith(
-                                      color: CupertinoColors.activeOrange),
+                                    color: context.appColors.textColor,
+                                  ),
                                 ),
                               ),
                             ],
@@ -114,7 +114,7 @@ class _EntityTableExpansionTileState extends State<EntityTableExpansionTile> {
                         expanded
                             ? CupertinoIcons.chevron_up
                             : CupertinoIcons.chevron_down,
-                        color: CupertinoColors.activeOrange,
+                        color: context.appColors.controlColor,
                       ),
                     ),
                   ),

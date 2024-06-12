@@ -6,7 +6,6 @@ import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/source/source.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/fields_dialog.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
@@ -134,7 +133,7 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
         child: Center(
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: AppColors.bgDark,
+              color: context.appColors.darkColor,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -149,11 +148,11 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
                   style: context.appTextStyles.fs18,
                 ),
                 const SizedBox(height: 20),
-                const SizedBox(
+                SizedBox(
                   height: 1,
                   width: double.infinity,
                   child: ColoredBox(
-                    color: AppColors.inactiveText,
+                    color: context.appColors.fadedColor,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -186,7 +185,7 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
                                   S.of(context).componentNamePlaceholder,
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(
-                                    RegExp(r'[a-zA-Z]')),
+                                    RegExp(r'[a-zA-Z0-9]')),
                               ],
                               onSubmitted: (_) => _onOK(context),
                             ),
@@ -264,11 +263,11 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
                       ),
                     ),
                     if (_dataComponent.name.isNotEmpty) ...[
-                      const SizedBox(
+                      SizedBox(
                         width: 1,
                         height: 210,
                         child: VerticalDivider(
-                          color: AppColors.inactiveText,
+                          color: context.appColors.fadedColor,
                           thickness: 1,
                           width: 1,
                         ),
@@ -312,11 +311,11 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
                     ],
                   ],
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 1,
                   width: double.infinity,
                   child: ColoredBox(
-                    color: AppColors.inactiveText,
+                    color: context.appColors.fadedColor,
                   ),
                 ),
                 Row(
@@ -328,11 +327,11 @@ class _AddComponentDialogState extends State<AddComponentDialog> {
                         onPressed: () => _onOK(context),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 55,
                       width: 1,
                       child: ColoredBox(
-                        color: AppColors.inactiveText,
+                        color: context.appColors.fadedColor,
                       ),
                     ),
                     Expanded(

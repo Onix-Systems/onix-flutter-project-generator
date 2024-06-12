@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/presentation/style/app_colors.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class RemoveButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -16,7 +16,7 @@ class RemoveButton extends StatelessWidget {
       shape: const CircleBorder(),
       child: IconButton(
         iconSize: 25,
-        color: AppColors.orange,
+        color: context.appColors.controlColor,
         splashRadius: 20,
         style: IconButton.styleFrom(
           padding: const EdgeInsets.all(0),
