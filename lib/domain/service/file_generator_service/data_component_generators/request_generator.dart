@@ -6,11 +6,9 @@ import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.
 import 'package:onix_flutter_bricks/domain/entity/data_component/json_class_variable.dart';
 import 'package:onix_flutter_bricks/domain/repository/data_component_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/class_builder/freezed_class_builder.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/json_class_builder.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/params/data_component_params.dart';
-import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
 import 'package:recase/recase.dart';
 
