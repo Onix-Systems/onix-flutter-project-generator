@@ -3,9 +3,11 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/domain/entity/data_component/data_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/data_component/json_class_variable.dart';
 import 'package:onix_flutter_bricks/domain/repository/data_component_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/freezed_class_builder.dart';
+import 'package:onix_flutter_bricks/domain/service/base/class_builder/json_class_builder.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/data_component_generators/params/data_component_params.dart';
 import 'package:onix_flutter_bricks/util/type_matcher.dart';
@@ -29,19 +31,25 @@ class ResponseGenerator implements BaseGenerationService<bool> {
       params.dataComponent,
     );
 
-    final constructorProperties =
-        _getConstructorProperties(params.dataComponent);
-    final emptyConstructorProperties =
-        _getEmptyConstructorProperties(params.dataComponent);
+    final properties = _getConstructorProperties(params.dataComponent);
 
-    final freezedClass = FreezedClassBuilder(
+    final variableDeclarations = JsonClassBuilder.variablesFromJsonVariable(
+      properties,
+    );
+    final constructorProperties =
+        JsonClassBuilder.constructorPropertiesFromJsonVariable(
+      properties,
+    );
+
+    final jsonClass = JsonClassBuilder(
       className: name,
       classNameSuffix: 'response',
     )
+      ..withToJson = false
       ..imports = imports
-      ..baseConstructorProperties = constructorProperties
-      ..emptyConstructorProperties = emptyConstructorProperties;
-    final fileContent = freezedClass.build();
+      ..variableDeclarations = variableDeclarations
+      ..baseConstructorProperties = constructorProperties;
+    final fileContent = jsonClass.build();
 
     final path = await Directory(
             '${params.projectPath}/${params.projectName}/lib/data/model/remote/${sourceName.isNotEmpty ? '${sourceName.snakeCase}/' : ''}${name.snakeCase}')
@@ -80,16 +88,61 @@ class ResponseGenerator implements BaseGenerationService<bool> {
     return imports;
   }
 
-  Iterable<String> _getConstructorProperties(DataComponent dataComponent) {
-    final properties = List<String>.empty(growable: true);
-
-    for (final property in dataComponent.properties) {
+  Iterable<JsonClassVariable> _getConstructorProperties(
+      DataComponent dataComponent) {
+    final properties = dataComponent.properties.map(
+      (e) {
+        if (e.isList) {
+          final isInImports = dataComponent.imports.contains(
+            e.type.pascalCase,
+          );
+          if (isInImports) {
+            return JsonClassVariable(
+              dartType: 'List<${e.type.pascalCase}Response>',
+              name: e.name,
+            );
+          } else {
+            return JsonClassVariable(
+              dartType: 'List<${TypeMatcher.getDartType(e.type)}>',
+              name: e.name,
+            );
+          }
+        } else {
+          ////
+          final isInImports = dataComponent.imports
+              .map((e) => e.pascalCase)
+              .contains(e.type.pascalCase);
+          if (isInImports) {
+            final isEnum = _dataComponentRepository.isEnum(
+                dataComponentName: dataComponent.imports.firstWhereOrNull(
+                    (a) => a.pascalCase == e.type.pascalCase)!);
+            if (isEnum) {
+              return JsonClassVariable(
+                dartType: 'String',
+                name: e.name,
+              );
+            } else {
+              return JsonClassVariable(
+                dartType: '${e.type.pascalCase}Response',
+                name: e.name,
+              );
+            }
+          } else {
+            return JsonClassVariable(
+              dartType: TypeMatcher.getDartType(e.type),
+              name: e.name,
+            );
+          }
+        }
+      },
+    );
+    /*for (final property in dataComponent.properties) {
       if (property.isList) {
         dataComponent.imports.contains(property.type.pascalCase)
             ? properties.add(
-                '        List<${property.type.pascalCase}Response>? ${property.name},')
+                'List<${property.type.pascalCase}Response>? ${property.name},')
             : properties.add(
-                '        List<${TypeMatcher.getDartType(property.type)}>? ${property.name},');
+                'List<${TypeMatcher.getDartType(property.type)}>? ${property.name},');
       } else {
         dataComponent.imports
                 .map((e) => e.pascalCase)
@@ -103,29 +156,8 @@ class ResponseGenerator implements BaseGenerationService<bool> {
             : properties.add(
                 '        ${TypeMatcher.getDartType(property.type)}? ${property.name},');
       }
-    }
+    }*/
 
     return properties;
-  }
-
-  Iterable<String> _getEmptyConstructorProperties(DataComponent dataComponent) {
-    return dataComponent.properties.map(
-      (property) {
-        if (property.isList) {
-          return '${property.name}: [],';
-        }
-        final isEnum = _dataComponentRepository.isEnum(
-            dataComponentName: dataComponent.imports.firstWhereOrNull(
-                    (e) => e.pascalCase == property.type.pascalCase) ??
-                '');
-        final isStandartType = TypeMatcher.isStandardType(
-          TypeMatcher.getDartType(property.type),
-        );
-        final type = !isStandartType
-            ? '${property.type}Response.empty()'
-            : TypeMatcher.defaultTypeValue(property.type);
-        return '${property.name}: ${isEnum ? '${property.type}.values.first.toString()' : type} ,';
-      },
-    );
   }
 }
