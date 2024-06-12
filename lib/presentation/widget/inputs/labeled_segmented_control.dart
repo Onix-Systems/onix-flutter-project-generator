@@ -26,9 +26,7 @@ class LabeledSegmentedControl extends StatelessWidget {
         children: [
           Text(
             label,
-            style: context.appTextStyles.fs18?.copyWith(
-              color: context.appColors.textColor,
-            ),
+            style: context.appTextStyles.fs18?.copyWith(color: context.appColors.textColor,),
           ),
           SizedBox(
             width: 280,

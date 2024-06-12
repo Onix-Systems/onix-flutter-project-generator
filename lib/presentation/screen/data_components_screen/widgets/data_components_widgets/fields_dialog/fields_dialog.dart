@@ -180,7 +180,7 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
                       },
                     ),
                   ),
-                  SizedBox(
+                   SizedBox(
                       height: 56,
                       width: 0.3,
                       child: VerticalDivider(

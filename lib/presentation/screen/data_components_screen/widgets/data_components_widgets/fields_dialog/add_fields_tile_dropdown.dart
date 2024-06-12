@@ -49,7 +49,7 @@ class _AddFieldsTileDropDownState extends State<AddFieldsTileDropDown> {
               color: context.appColors.contrastColor,
             ),
           ),
-          iconStyleData: IconStyleData(
+          iconStyleData:  IconStyleData(
             iconEnabledColor: context.appColors.darkColor,
             openMenuIcon: Icon(
               Icons.arrow_drop_up,

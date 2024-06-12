@@ -160,8 +160,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       if (state.config.generateSigningKey) {
         await _generateSigningConfigUseCase(
           params: SingingGeneratorParams(
-            projectFolder:
-                '${state.config.projectPath}/${state.config.projectName}',
+            projectFolder: '${state.config.projectPath}/${state.config.projectName}',
             signingVars: state.config.signingVars,
             signingPassword: signingPassword,
           ),

@@ -34,7 +34,8 @@ class Config with _$Config {
     @Default(ProjectRouter.goRouter) ProjectRouter router,
     @Default(ProjectLocalization.intl) ProjectLocalization localization,
     @Default(ProjectTheming.manual) ProjectTheming theming,
-    @Default(AppConsts.defaultSigningVars) List<String> signingVars,
+    @Default(AppConsts.defaultSigningVars)
+    List<String> signingVars,
     @Default({}) Set<Screen> screens,
     // ignore: invalid_annotation_target
     @JsonKey(includeFromJson: false, includeToJson: false)

@@ -38,8 +38,8 @@ class SwitchWithLabel extends StatelessWidget {
                   Text(
                     subLabel ?? '',
                     textAlign: TextAlign.left,
-                    style: context.appTextStyles.fs18?.copyWith(
-                        color: context.appColors.textColor, fontSize: 13),
+                    style: context.appTextStyles.fs18
+                        ?.copyWith(color: context.appColors.textColor, fontSize: 13),
                   ),
               ],
             ),

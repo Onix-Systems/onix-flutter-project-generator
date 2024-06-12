@@ -212,7 +212,6 @@ class ScreenCodeContent {
     required String screenName,
   }) {
     final screenClassName = screenName.pascalCase;
-    final screenClassImport = screenName.snakeCase;
     final codeLines = List<String>.empty(growable: true);
 
     ///Add imports
