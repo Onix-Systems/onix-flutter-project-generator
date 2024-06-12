@@ -143,7 +143,7 @@ abstract final class FastlaneGenerateMakefile {
 
       for (final platform in platforms) {
         final platformWithFlavor =
-        flavors.isNotEmpty ? '_${platform}_${flavor}_' : '_${platform}_';
+            flavors.isNotEmpty ? '_${platform}_${flavor}_' : '_${platform}_';
 
         contents.add(
           '\t@make build${platformWithFlavor}with_distribution -f Makefile_$platform.mk',

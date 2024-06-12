@@ -12,11 +12,14 @@ class GenerateDocumentationUseCase {
     this._docsGeneratorService,
   );
 
-
-  Future<void> call({required DocsGenerationParams params, required bool isModify,}) async {
-  if (isModify) {
+  Future<void> call({
+    required DocsGenerationParams params,
+    required bool isModify,
+  }) async {
+    if (isModify) {
       _outputService.add(
-        'Documentation generation omitted because of the project modification'..toInfoMessage(),
+        'Documentation generation omitted because of the project modification'
+          ..toInfoMessage(),
       );
 
       return;
@@ -31,7 +34,8 @@ class GenerateDocumentationUseCase {
       );
     } else {
       _outputService.add(
-        'Documentation generation completed with errors! Error: $result'.toErrorMessage(),
+        'Documentation generation completed with errors! Error: $result'
+            .toErrorMessage(),
       );
     }
   }

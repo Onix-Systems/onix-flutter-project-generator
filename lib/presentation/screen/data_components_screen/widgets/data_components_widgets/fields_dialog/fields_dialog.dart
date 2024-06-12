@@ -73,7 +73,7 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
                 '${widget.dataComponent.name.pascalCase} ${S.of(context).fields.toLowerCase()}',
                 style: context.appTextStyles.fs18,
               ),
-               Divider(
+              Divider(
                 color: context.appColors.controlColor,
                 thickness: 0.25,
                 height: 40,
@@ -154,7 +154,7 @@ class _FieldsDialogState extends BaseState<FieldsDialogState, FieldsDialogBloc,
                 ],
               ),
               const Delimiter.height(20),
-               Divider(
+              Divider(
                 color: context.appColors.controlColor,
                 thickness: 0.25,
                 height: 0,
