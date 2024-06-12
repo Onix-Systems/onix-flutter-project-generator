@@ -63,7 +63,7 @@ class ThemeTextStylesFileContent implements BaseGenerationService<String> {
             StyleGeneratorConst.darkColorSuffix, e, useScreenUtil, colors);
       },
     ).toList();
-    codeLines.addAll(lightColorsDeclarations);
+    codeLines.addAll(darkColorsDeclarations);
     codeLines.add(');');
     codeLines.addNewLine();
 
