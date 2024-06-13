@@ -42,7 +42,7 @@ class AppRouter {{^isGoRouter}}extends _$AppRouter{{/isGoRouter}}{
 
   {{^isGoRouter}}@override
   final List<AutoRoute> routes = [
-    //{routes end}
+      //{routes end}
   ];
 
   final InitGuard init;

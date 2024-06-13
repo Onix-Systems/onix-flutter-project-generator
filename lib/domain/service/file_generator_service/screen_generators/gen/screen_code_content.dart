@@ -52,15 +52,20 @@ class ScreenCodeContent {
           'static const _initialLocation = \'/${screenName.snakeCase}\'');
     }
     if (router == ProjectRouter.goRouter) {
+      final goRouteContent = _buildGoRouteContent(screenName);
       output = output
-          .replaceAll(_navigatorRoutesSuffix,
-              '${_buildGoRouteContent(screenName)}$_navigatorRoutesSuffix')
+          .replaceAll(
+              _navigatorRoutesSuffix, '$goRouteContent$_navigatorRoutesSuffix')
           .replaceAll(_navigatorImportsSuffix,
               'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart\';\n$_navigatorImportsSuffix');
     } else {
+      final autoRouteContent = _buildAutoRouteContent(
+        isInitialScreen,
+        screenName,
+      );
       output
           .replaceAll(_navigatorRoutesSuffix,
-              '${_buildAutoRouteContent(isInitialScreen, screenName)}\n$_navigatorRoutesSuffix')
+              '$autoRouteContent\n$_navigatorRoutesSuffix')
           .replaceAll(_navigatorImportsSuffix,
               'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart\';$_navigatorImportsSuffix');
     }
