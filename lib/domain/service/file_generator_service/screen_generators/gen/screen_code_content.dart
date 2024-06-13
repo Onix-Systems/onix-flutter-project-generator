@@ -60,7 +60,7 @@ class ScreenCodeContent {
     } else {
       output
           .replaceAll(_navigatorRoutesSuffix,
-              '${_buildAutoRouteContent(isInitialScreen, screenName)}//{routes end}')
+              '${_buildAutoRouteContent(isInitialScreen, screenName)}\n$_navigatorRoutesSuffix')
           .replaceAll(_navigatorImportsSuffix,
               'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart\';$_navigatorImportsSuffix');
     }

@@ -65,7 +65,7 @@ class ScreenGenerator implements BaseGenerationService<bool> {
     String routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations
-    final goRouterContent = _screenCodeContent.createScreenNavigationContent(
+    final filledRouterContent = _screenCodeContent.createScreenNavigationContent(
       input: routerContent,
       screenName: screenName,
       projectName: params.projectName,
@@ -73,7 +73,7 @@ class ScreenGenerator implements BaseGenerationService<bool> {
       router: params.router,
     );
 
-    routerFile.writeAsString(goRouterContent);
+    routerFile.writeAsString(filledRouterContent);
   }
 
   Future<void> _createDI(ScreenGeneratorParams params) async {
