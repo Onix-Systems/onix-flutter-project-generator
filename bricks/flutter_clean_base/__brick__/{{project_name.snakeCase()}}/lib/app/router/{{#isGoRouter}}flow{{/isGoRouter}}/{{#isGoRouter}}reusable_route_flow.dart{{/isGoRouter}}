@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:router_update/app/router/app_route.dart';
+import 'package:{{project_name}}/app/router/app_route.dart';
 
 
 ///[ReusableRouteFlow] designed to build nested flow with few screens
