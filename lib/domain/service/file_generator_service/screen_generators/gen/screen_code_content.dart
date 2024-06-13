@@ -32,7 +32,7 @@ class ScreenCodeContent {
     String output = input;
     final coda = isLastDeclaration ? ';' : ',';
     output = output.replaceAll(_routesDeclarationSuffix,
-        '${screenName.camelCase}(\'/$screenName\')$coda\n$_routesDeclarationSuffix');
+        '${screenName.camelCase}(\'/${screenName.snakeCase}\')$coda\n$_routesDeclarationSuffix');
     return output;
   }
 
