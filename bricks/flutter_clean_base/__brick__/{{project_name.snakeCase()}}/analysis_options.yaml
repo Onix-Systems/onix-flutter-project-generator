@@ -69,7 +69,6 @@ linter:
     avoid_empty_else: true
     avoid_print: true
     avoid_relative_lib_imports: true
-    avoid_returning_null_for_future: true
     avoid_slow_async_io: true
     avoid_type_to_string: true
     avoid_types_as_parameter_names: true
