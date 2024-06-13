@@ -63,7 +63,7 @@ class ScreenCodeContent {
         isInitialScreen,
         screenName,
       );
-      output
+      output =  output
           .replaceAll(_navigatorRoutesSuffix,
               '$autoRouteContent\n$_navigatorRoutesSuffix')
           .replaceAll(_navigatorImportsSuffix,
