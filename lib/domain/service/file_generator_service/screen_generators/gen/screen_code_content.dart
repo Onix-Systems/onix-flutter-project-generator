@@ -231,7 +231,7 @@ class ScreenCodeContent {
     ///Add screen widget code
     codeLines.add('class ${screenClassName}Screen extends StatelessWidget {');
     codeLines
-        .add('const ${screenClassName}Screen({Key? key}) : super(key: key);');
+        .add('const ${screenClassName}Screen({super.key});');
     codeLines.addNewLine();
     codeLines.add('@override');
     codeLines.add('Widget build(BuildContext context) {');
