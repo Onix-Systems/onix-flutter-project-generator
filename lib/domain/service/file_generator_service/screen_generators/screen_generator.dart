@@ -45,21 +45,35 @@ class ScreenGenerator implements BaseGenerationService<bool> {
   }
 
   Future<void> _createRoutes(ScreenGeneratorParams params) async {
-    final routesFile = File(
-        '${params.projectPath}/${params.projectName}/lib/app/router/app_router.dart');
     final screenName = params.screen.name;
-    String routesContent = routesFile.readAsStringSync();
+    if(params.router == ProjectRouter.goRouter){
+      final routesFile = File(
+          '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
+      String routesContent = routesFile.readAsStringSync();
+      //Generate routes enum for GoRouter
+     final appRoutesContent = _screenCodeContent.createScreenNavigationGoRoute(
+        input: routesContent,
+        screenName: screenName,
+        isLastDeclaration: params.lastScreenItem,
+      );
+      routesFile.writeAsString(appRoutesContent);
+    }
+
+
+    final routerFile = File(
+        '${params.projectPath}/${params.projectName}/lib/app/router/app_router.dart');
+    String routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations
     final goRouterContent = _screenCodeContent.createScreenNavigationContent(
-      input: routesContent,
+      input: routerContent,
       screenName: screenName,
       projectName: params.projectName,
       isInitialScreen: params.screen.initial,
       router: params.router,
     );
 
-    routesFile.writeAsString(goRouterContent);
+    routerFile.writeAsString(goRouterContent);
   }
 
   Future<void> _createDI(ScreenGeneratorParams params) async {

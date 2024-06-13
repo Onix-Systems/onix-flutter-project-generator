@@ -1,8 +1,10 @@
 //@formatter:off
 {{^isGoRouter}}import 'package:auto_route/auto_route.dart';{{/isGoRouter}}
+{{#isGoRouter}}import 'package:{{project_name}}/app/router/app_route.dart';{{/isGoRouter}}
 {{#isGoRouter}}import 'package:flutter_bloc/flutter_bloc.dart';{{/isGoRouter}}
 import 'package:flutter/material.dart';
 {{#isGoRouter}}import 'package:go_router/go_router.dart';{{/isGoRouter}}
+{{#isGoRouter}}import 'package:{{project_name}}/core/di/services.dart';{{/isGoRouter}}
 {{^isGoRouter}}import 'package:{{project_name}}/app/router/guard/init_guard.dart';{{/isGoRouter}}
 
 //{imports end}
@@ -14,12 +16,8 @@ part 'app_router.gr.dart';
 class AppRouter {{^isGoRouter}}extends _$AppRouter{{/isGoRouter}}{
   {{#isGoRouter}}static const _initialLocation = '/';
 
-  //{consts end}
-
   static final AppRouter _instance = AppRouter._privateConstructor();
   static late GoRouter router;
-
-  //{getters end}
 
   AppRouter._privateConstructor() {
     _initialize();
@@ -32,6 +30,10 @@ class AppRouter {{^isGoRouter}}extends _$AppRouter{{/isGoRouter}}{
   void _initialize({String initialLocation = _initialLocation}) {
     router = GoRouter(
       initialLocation: initialLocation,
+    refreshListenable: sessionService(),
+    redirect: (context,state){
+        return null;
+    },
       routes: <GoRoute>[
         //{routes end}
       ],

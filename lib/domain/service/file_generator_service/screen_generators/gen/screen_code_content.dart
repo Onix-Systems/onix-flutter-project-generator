@@ -4,8 +4,7 @@ import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
 class ScreenCodeContent {
-  final _navigatorConstsSuffix = '//{consts end}';
-  final _navigatorGettersSuffix = '//{getters end}';
+  final _routesDeclarationSuffix = '//{routes declaration end}';
   final _navigatorRoutesSuffix = '//{routes end}';
   final _navigatorImportsSuffix = '//{imports end}';
   final _diBlocSuffix = '//{bloc end}';
@@ -22,6 +21,18 @@ class ScreenCodeContent {
             'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_${stateManagement.name}.dart\';\n$_navigatorImportsSuffix')
         .replaceFirst(_diBlocSuffix,
             'getIt.registerFactory<${screenName.pascalCase}Screen${stateManagement.name.pascalCase}>(${screenName.pascalCase}Screen${stateManagement.name.pascalCase}.new);\n$_diBlocSuffix');
+    return output;
+  }
+
+  String createScreenNavigationGoRoute({
+    required String input,
+    required String screenName,
+    required bool isLastDeclaration,
+  }) {
+    String output = input;
+    final coda = isLastDeclaration ? ';' : ',';
+    output = output.replaceAll(_routesDeclarationSuffix,
+        '${screenName.camelCase}(\'/$screenName\')$coda\n$_routesDeclarationSuffix');
     return output;
   }
 
@@ -42,10 +53,6 @@ class ScreenCodeContent {
     }
     if (router == ProjectRouter.goRouter) {
       output = output
-          .replaceAll(_navigatorConstsSuffix,
-              'static const _${screenName.camelCase} = \'/$screenName\';\n$_navigatorConstsSuffix')
-          .replaceAll(_navigatorGettersSuffix,
-              'static String get ${screenName.camelCase}Screen => \'${screenName.pascalCase}Screen\';\n$_navigatorGettersSuffix')
           .replaceAll(_navigatorRoutesSuffix,
               '${_buildGoRouteContent(screenName)}$_navigatorRoutesSuffix')
           .replaceAll(_navigatorImportsSuffix,
@@ -64,8 +71,8 @@ class ScreenCodeContent {
   String _buildGoRouteContent(String screenName) {
     final codeLines = List<String>.empty(growable: true);
     codeLines.add('GoRoute(');
-    codeLines.add('path: _${screenName.camelCase},');
-    codeLines.add('name: ${screenName.camelCase}Screen,');
+    codeLines.add('path: AppRoute.${screenName.camelCase}.routePath,');
+    codeLines.add('name: AppRoute.${screenName.camelCase}.name,');
     codeLines.add('builder: (context, state) =>');
     codeLines.add('const ${screenName.pascalCase}Screen(),');
     codeLines.add(' ),');
@@ -230,8 +237,7 @@ class ScreenCodeContent {
 
     ///Add screen widget code
     codeLines.add('class ${screenClassName}Screen extends StatelessWidget {');
-    codeLines
-        .add('const ${screenClassName}Screen({super.key});');
+    codeLines.add('const ${screenClassName}Screen({super.key});');
     codeLines.addNewLine();
     codeLines.add('@override');
     codeLines.add('Widget build(BuildContext context) {');
