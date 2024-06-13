@@ -1,5 +1,4 @@
-import 'failure.dart';
-
+import 'package:{{project_name}}/core/arch/domain/entity/failure/failure.dart';
 class ApiFailure implements FeatureFailure {
   ApiFailure(this.failure, {this.message = ''});
 

@@ -14,7 +14,7 @@ class RefreshTokenRepositoryImpl implements RefreshTokenRepository {
     //     final entities = _authMappers.mapRefreshEntity(response.data);
     //     return Result.success(entities);
     //   } else {
-    //     final failure = MapCommonServerError.getServerFailureDetails(response);
+    //  final failure = MapCommonServerError.getServerFailureDetails(response);
     //     return Result.error(failure: failure);
     //   }
     // } catch (e) {

@@ -105,7 +105,7 @@ class ThemeColorsFileContent implements BaseGenerationService<String> {
     final lerpColors = colorNames
         .map(
           (e) =>
-              '${e}Color: Color.lerp(${e}Color, other.${e}Color, t) ?? ${e}Color,',
+              '${e}Color: Color.lerp(${e}Color, other.${e}Color, t,) ?? ${e}Color,',
         )
         .toList();
     codeLines.addAll(lerpColors);

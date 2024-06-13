@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:{{project_name}}/core/di/remote.dart';
 import 'package:{{project_name}}/core/di/repository.dart';
 import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
 import 'package:{{project_name}}/app/service/session_service/session_status.dart';

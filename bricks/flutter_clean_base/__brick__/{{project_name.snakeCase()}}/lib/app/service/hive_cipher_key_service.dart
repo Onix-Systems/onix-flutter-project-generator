@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:{{project_name}}/data/source/local/secure_storage/secure_storage_keys.dart';
 import 'package:{{project_name}}/data/source/local/secure_storage/secure_storage_source.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveCipherKeyService {
   final SecureStorageSource _storage;
