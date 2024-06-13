@@ -49,7 +49,7 @@ class ScreenCodeContent {
     ///Declare initial route
     if (isInitialScreen) {
       output = output.replaceAll('static const _initialLocation = \'/\'',
-          'static const _initialLocation = \'/$screenName\'');
+          'static const _initialLocation = \'/${screenName.snakeCase}\'');
     }
     if (router == ProjectRouter.goRouter) {
       output = output
