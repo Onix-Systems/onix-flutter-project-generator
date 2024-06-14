@@ -160,7 +160,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       if (state.config.generateSigningKey) {
         await _generateSigningConfigUseCase(
           params: SingingGeneratorParams(
-            projectFolder: '${state.config.projectPath}/${state.config.projectName}',
+            projectFolder:
+                '${state.config.projectPath}/${state.config.projectName}',
             signingVars: state.config.signingVars,
             signingPassword: signingPassword,
           ),
@@ -218,6 +219,19 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         workDir: '${state.config.projectPath}/${state.config.projectName}',
       );
     }
+
+    _addOutputMessageUseCase(
+      message: List.generate(10, (index) => '-').join('').toInfoMessage(),
+    );
+    _addOutputMessageUseCase(
+      message: 'Project generation completed.'.toInfoMessage(),
+    );
+    _addOutputMessageUseCase(
+      message: 'Don\'t forget to run "Optimize imports" after project opened.'.toInfoMessage(),
+    );
+    _addOutputMessageUseCase(
+      message: List.generate(10, (index) => '-').join('').toInfoMessage(),
+    );
 
     ///finish generation
     emit(state.copyWith(

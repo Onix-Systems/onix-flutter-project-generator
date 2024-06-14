@@ -52,7 +52,6 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
               );
             },
             scrollBehavior: const CupertinoScrollBehavior(),
-            title: '',
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
             themeMode: state.themeMode,

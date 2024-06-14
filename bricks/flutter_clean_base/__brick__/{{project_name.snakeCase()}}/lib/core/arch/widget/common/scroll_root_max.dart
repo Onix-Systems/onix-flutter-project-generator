@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class ScrollRootMax extends StatelessWidget {
   const ScrollRootMax({
-    super.key,
     required this.child,
+    super.key,
   });
 
   final Widget child;
@@ -11,7 +11,10 @@ class ScrollRootMax extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints viewportConstraints) {
+      builder: (
+        context,
+        viewportConstraints,
+      ) {
         return SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: ConstrainedBox(

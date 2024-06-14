@@ -19,7 +19,13 @@ class GenerateScreensUseCase {
   Future<void> call({
     required Config config,
   }) async {
-    for (var screen in config.screens.where((element) => !element.exists)) {
+    final screensNotExist = config.screens
+        .where(
+          (element) => !element.exists,
+        )
+        .toList();
+    for (int i = 0; i < screensNotExist.length; i++) {
+      final screen = screensNotExist[i];
       _outputService.add(
         'Generating screen ${screen.name}...'.toInfoMessage(),
       );
@@ -30,12 +36,13 @@ class GenerateScreensUseCase {
           projectPath: config.projectPath,
           projectName: config.projectName,
           router: config.router,
+          lastScreenItem: i == (screensNotExist.length - 1),
         ),
       );
-
       screen.exists = true;
       _screenRepository.modifyScreen(screen, screen.name);
     }
+
     _outputService.add(
       'Screens generated!'.toInfoMessage(),
     );

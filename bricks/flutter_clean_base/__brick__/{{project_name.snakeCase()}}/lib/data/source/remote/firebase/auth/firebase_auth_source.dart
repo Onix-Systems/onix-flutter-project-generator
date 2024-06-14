@@ -6,10 +6,14 @@ import 'package:{{project_name}}/core/arch/domain/entity/common/operation_status
 
 abstract class FirebaseAuthSource {
   Future<DataResponse<OperationStatus>> createUser(
-      String email, String password);
+    String email,
+    String password,
+  );
 
   Future<DataResponse<OperationStatus>> authenticate(
-      String email, String password);
+    String email,
+    String password,
+  );
 
   Future<OperationStatus> logOut();
 

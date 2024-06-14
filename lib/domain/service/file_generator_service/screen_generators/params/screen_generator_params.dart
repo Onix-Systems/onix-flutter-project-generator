@@ -8,12 +8,14 @@ class ScreenGeneratorParams implements BaseGenerationParams {
   final Screen screen;
   final ProjectRouter router;
   final bool build;
+  final bool lastScreenItem;
 
   ScreenGeneratorParams({
     required this.projectPath,
     required this.projectName,
     required this.screen,
     required this.router,
+    required this.lastScreenItem,
     this.build = false,
   });
 }

@@ -24,7 +24,8 @@ import 'package:flutter/rendering.dart';
 ///   ),
 ///
 /// Initial source code written by Collin Jackson.
-/// Extended (see highlighting) to cover the case when the keyboard is dismissed and the
+/// Extended (see highlighting) to cover the case when the keyboard
+/// is dismissed and the
 /// user clicks the TextFormField/TextField which still has the focus.
 ///
 class EnsureVisibleWhenFocused extends StatefulWidget {
@@ -65,7 +66,8 @@ class EnsureVisibleWhenFocused extends StatefulWidget {
 }
 
 ///
-/// We implement the WidgetsBindingObserver to be notified of any change to the window metrics
+/// We implement the WidgetsBindingObserver to be notified of any change
+/// to the window metrics
 ///
 class _EnsureVisibleWhenFocusedState extends State<EnsureVisibleWhenFocused>
     with WidgetsBindingObserver {

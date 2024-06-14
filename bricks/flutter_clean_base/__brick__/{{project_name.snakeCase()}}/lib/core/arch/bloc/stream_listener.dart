@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 
-/// Widget for managing the Stream [stream] life cycle supplied to the widget tree.
+/// Widget for managing the Stream [stream] life cycle supplied
+/// to the widget tree.
 class StreamListener<T> extends StatefulWidget {
   final Stream<T> stream;
 

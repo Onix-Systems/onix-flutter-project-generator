@@ -11,18 +11,17 @@ analyzer:
     - "**/*.mocks.dart"
     - "**/*.tailor.dart"
     - "ios/**"
-    - "lib/core/app/localization/**"
+    - "lib/app/localization/**"
 
   errors:
     prefer_mixin: ignore
     flutter_style_todos: ignore
     invalid_annotation_target: ignore
     always_use_package_imports: warning
-    avoid_dynamic_calls: info
+    avoid_dynamic_calls: ignore
     avoid_empty_else: error
     avoid_print: warning
     avoid_relative_lib_imports: warning
-    avoid_returning_null_for_future: error
     avoid_slow_async_io: warning
     avoid_type_to_string: error
     avoid_types_as_parameter_names: info
@@ -70,7 +69,6 @@ linter:
     avoid_empty_else: true
     avoid_print: true
     avoid_relative_lib_imports: true
-    avoid_returning_null_for_future: true
     avoid_slow_async_io: true
     avoid_type_to_string: true
     avoid_types_as_parameter_names: true
@@ -100,9 +98,8 @@ linter:
     # Style rules.
     always_declare_return_types: true
     always_put_required_named_parameters_first: true
-    always_require_non_null_named_parameters: true
     annotate_overrides: true
-    avoid_annotating_with_dynamic: true
+    avoid_annotating_with_dynamic: false
     avoid_bool_literals_in_conditional_expressions: true
     avoid_catching_errors: true
     avoid_equals_and_hash_code_on_mutable_classes: true
@@ -118,7 +115,6 @@ linter:
     avoid_private_typedef_functions: true
     avoid_renaming_method_parameters: true
     avoid_return_types_on_setters: true
-    avoid_returning_null: true
     avoid_returning_null_for_void: true
     avoid_returning_this: true
     avoid_setters_without_getters: true
@@ -150,7 +146,7 @@ linter:
     non_constant_identifier_names: true
     null_closures: true
     omit_local_variable_types: true
-    one_member_abstracts: true
+    one_member_abstracts: false
     only_throw_errors: true
     overridden_fields: true
     package_api_docs: true

@@ -13,7 +13,8 @@ abstract class DioRequestProcessor {
   ///Pass 2 required functions:
   ///onRequest - your request Future
   ///onResponse - your response converter, basically call fromJson inside
-  ///checkNetworkConnection - set to false if you need get data from cache interceptor
+  ///checkNetworkConnection - set to false if you need get data from
+  ///cache interceptor
   Future<DataResponse<R>> processRequest<T, R>({
     required OnRequest<T> onRequest,
     required OnResponse<R> onResponse,
