@@ -11,7 +11,7 @@ sealed class DataResponse<T> with _$DataResponse {
   const factory DataResponse.undefinedError(Object? errorObject) =
   _UndefinedError;
 
-  const factory DataResponse.apiError(dynamic error) = _ApiError;
+  const factory DataResponse.apiError( error) = _ApiError;
 
   const factory DataResponse.notConnected() = _NoInternetConnection;
 

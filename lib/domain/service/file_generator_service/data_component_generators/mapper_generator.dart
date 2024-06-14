@@ -39,7 +39,6 @@ class MapperGenerator implements BaseGenerationService<bool> {
     );
 
     ///Add imports
-    codeLines.add('import \'package:collection/collection.dart\';');
     codeLines.add(
         'import \'package:${params.projectName}/core/arch/domain/common/converter/mapper.dart\';');
     if (params.dataComponent.generateRequest) {

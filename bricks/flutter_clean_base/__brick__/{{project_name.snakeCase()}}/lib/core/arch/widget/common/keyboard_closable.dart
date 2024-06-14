@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class KeyboardClosable extends StatelessWidget {
   const KeyboardClosable({
-    super.key,
     required this.child,
+    super.key,
   });
 
   final Widget child;

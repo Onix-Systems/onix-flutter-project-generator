@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class ClickableWidget extends StatelessWidget {
   const ClickableWidget({
-    super.key,
     required this.child,
     this.onTap,
     this.color = Colors.transparent,
@@ -10,6 +9,7 @@ class ClickableWidget extends StatelessWidget {
     this.borderRadius,
     this.borderRadiusInk,
     this.elevation = 0,
+    super.key,
   });
 
   final Widget child;

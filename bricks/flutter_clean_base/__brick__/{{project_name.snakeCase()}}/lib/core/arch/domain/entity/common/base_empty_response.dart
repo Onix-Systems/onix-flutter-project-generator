@@ -1,3 +1,5 @@
 class BaseEmptyResponse {
-  static fromJson(dynamic json) => BaseEmptyResponse();
+  BaseEmptyResponse();
+  factory BaseEmptyResponse.fromJson(Map<String, dynamic> _) =>
+      BaseEmptyResponse();
 }

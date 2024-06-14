@@ -31,17 +31,18 @@ class AppStandardButton extends StatelessWidget {
       width: expanded ? double.infinity : width,
       height: height,
       child: FilledButton(
-          style: FilledButton.styleFrom(
-            backgroundColor: color ?? context.appColors.buttonColor,
-            disabledBackgroundColor:
-                disabledColor ?? context.appColors.buttonDisabledColor,
-            padding: padding ?? EdgeInsets.zero,
-          ),
-          onPressed: enabled ? onPressed : null,
-          child: Text(
-            value,
-            style: context.appTextStyles.text,
-          )),
+        style: FilledButton.styleFrom(
+          backgroundColor: color ?? context.appColors.buttonColor,
+          disabledBackgroundColor:
+              disabledColor ?? context.appColors.buttonDisabledColor,
+          padding: padding ?? EdgeInsets.zero,
+        ),
+        onPressed: enabled ? onPressed : null,
+        child: Text(
+          value,
+          style: context.appTextStyles.text,
+        ),
+      ),
     );
   }
 }

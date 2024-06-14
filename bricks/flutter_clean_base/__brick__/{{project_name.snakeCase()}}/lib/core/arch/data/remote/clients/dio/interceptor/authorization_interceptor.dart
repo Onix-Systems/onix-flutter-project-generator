@@ -38,7 +38,9 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
 
   @override
   Future<void> onError(
-      DioException err, ErrorInterceptorHandler handler) async {
+    DioException err,
+    ErrorInterceptorHandler handler,
+  ) async {
     if (err.response?.statusCode == HttpStatus.unauthorized) {
       final refreshToken = tokenRepository.refreshToken;
       final accessToken = tokenRepository.accessToken;
@@ -85,7 +87,9 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
       ),
       data: request.toJson(),
     );
-    final data = AuthenticationResponse.fromJson(result.data['data']);
+    final data = AuthenticationResponse.fromJson(
+      result.data['data'],
+    );
     logger.d('_refresh end');
     return AuthenticationMappers().mapRefreshEntity(data);
   }
