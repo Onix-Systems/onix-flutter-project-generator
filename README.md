@@ -1,50 +1,99 @@
-<p align="center">
-<a><img src="https://i.ibb.co/crD6N4B/icon.png" alt="icon" border="0" width="300" height="300"/></a>
-</p>
+<div align="center">
+<a href="https://onix-systems.com/">
+    <img alt="refine logo" src="images/banner_top.jpg">
+</a>
 
-# Onix Flutter Project Generator
+<br/>
+<br/>
 
-Flutter Project Generator is a tool for creating a new project with built-in Clean Architecture and boilerplate components for a quick start. 
+<div align="center">
+    <a href="https://onix-systems.com/">About Us</a> |
+    <a href="docs/INSTALL_INSTRUCTION.md">Installation</a> |
+<a href="docs/HOW_TO.md">How To</a> |
+    <a href="docs/CONTRIBUTE.md">Contribute</a> |
+    <a href="https://github.com/Onix-Systems/onix-flutter-project-generator/issues">Report an issue</a>
+</div>
+</div>
 
-Checkout the video instruction for more details and to quick start:
+<br/>
+<br/>
 
-[![Onix Project Generator](https://i.imgur.com/kHsmEvr.png)](https://www.youtube.com/watch?v=lgey4r3osJI)
+<div align="center"><strong>Create your new Flutter project just in a few clicks.</strong><br>Flutter project generator is as an open source utility for MacOS designed to provide a quick start with your Flutter application development.<br />
+<br/>
+</div>
+//TODO ADD IMAGE HOW IT WORKS
 
-## Main features:
+<br/>
+<br/>
 
-* Creating a new project based on Clean Architecture with predefined frameworks and libraries, a name, BundleId, and other options;
-* Ability to configure, enable or disable components;
-* Ability to add screen stubs with a generated BLoC for the screen;
-* Ability to configure the data layer using Swagger URLs;
-* Ability to edit some settings of a previously created project
+## What is Project Generator?
 
-## Generated project tech stack
+**Flutter Project Generator** is a utility for **MacOS** designed to quickly start a Flutter project from scratch.
 
-* Clean Architecture
-* BLoC
-* Dio/GraphQL
-* GetIt
-* Freezed
-* ScreenUtil
-* Navigation 2.0 (GoRouter/AutoRoute)
-* Flavorizer
-* Intl
-* ThemeTailor (Optional)
+**Flutter Project Generator** creates an empty project on **Clean Architecture** with already defined file structure and dependencies.
 
+You have an opportunity to modify the project creation settings and options, including **name and ID, navigation component, flavors, theming, pre-built screens, data components and more**.
 
-## Release
+## ⚡ Try Project Generator
 
-Check out the [Releases](https://github.com/Onix-Systems/onix-flutter-project-generator/releases) section to download latest version;
+Let's start with installing the application.
 
-## Bug reporting
+Go to [installing section](docs/INSTALL_INSTRUCTION.md) to download and install the latest version of the application.
 
-Found a bug? 
-Please [report it](https://github.com/Onix-Systems/onix-flutter-project-generator/issues).  
+Once the app has installed go to the [How To](docs/HOW_TO.md) sections to get detailed instructions about creating a new project.
+
+## Use cases
 
 
+Onix Project Generator shines on **creating Flutter projects on Clean Architecture with a techstack of commonly used and most popular Flutter libraries and packages**.
 
-[![Made in Ukraine](https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7)](https://stand-with-ukraine.pp.ua)
+Generated project tech consist of such libraries and packages:
 
-<p align="center">
-<a href="https://ibb.co/Jq7C042"><img src="https://i.ibb.co/C67WNZv/logo-white.png" alt="logo-white" border="0"></a>
-</p>
+
+* **State Management** - [BLoC](https://pub.dev/packages/flutter_bloc).
+* **Networking** - [Dio](https://pub.dev/packages/dio).
+* **Service Locator** - [GetIt](https://pub.dev/packages/get_it)
+* **UI** - [ScreenUtil](https://pub.dev/packages/flutter_screenutil)
+* **Code generator** - [Freezed](https://pub.dev/packages/freezed)
+* **Navigation** - [GoRouter](https://pub.dev/packages/go_router) or [AutoRoute](https://pub.dev/packages/auto_route)
+
+Also there an option to select **optional packages to include** to the project:
+
+* **Networking** - [GraphQL](https://pub.dev/packages/graphql)
+* **Services** - [Firebase](https://firebase.flutter.dev/)
+* **Flavors** - [Flavorizr](https://pub.dev/packages/flutter_flavorizr)
+* **Localization** - [Intl](https://pub.dev/packages/intl_utils)
+* **Theming** - [ThemeTailor](https://pub.dev/packages/theme_tailor)
+
+
+## Key Features
+
+The key features of the Onix Project Generator are:
+
+* **MacOS application** designed to **run on Intel on M** machines.
+* To **create a new project based on Clean Architecture** with chosen name, ID and options.
+* To **select a platforms** project will be built for.
+* To **add an application flavors** with [Flavorizr](https://pub.dev/packages/flutter_flavorizr).
+* **Choose your favorite Navigator** to use in the project ([GoRouter](https://pub.dev/packages/go_router) or [AutoRoute](https://pub.dev/packages/auto_route)
+  ).
+* To **configure optional components** to include to the project.
+* To **add screen mocks** with screen BLoC, navigation and GetIt declarations included.
+* To **configure data layer** from Swagger URL or manually.
+* To **configure the application theme** from Figma file.
+* To **edit settings** of a **previously created project**.
+* To **create Android signing** configuration automatically or manually.
+* To **add Sonar configurations and scripts**.
+* Generates **starter documentation** for the project.
+* Generates **Fastlane configurations** and make files to run Fastlane commands.
+* Automatically check for updates.
+
+
+## Contribution
+
+[Refer to the contribution docs for more information](docs/CONTRIBUTE.md).
+
+If you have any doubts related to the project or want to discuss something, then post a question on [GitHub](https://github.com/Onix-Systems/onix-flutter-project-generator/issues/new?assignees=&labels=question&projects=&template=question.md&title=Question%20about%20Onix%20Project%20Generator).
+
+## License
+
+Licensed under the MIT License, Copyright (c) 2023-present Onix-Systems
