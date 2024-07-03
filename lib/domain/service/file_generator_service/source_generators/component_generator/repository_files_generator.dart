@@ -144,12 +144,12 @@ class RepositoryFilesGenerator implements BaseGenerationService<bool> {
             .replaceAll('DataResponse', 'Result')
             .replaceAll('Response>>', '>>')
             .replaceAll(';', '');
-        codeLines.add('$sourceMethod async {');
-        codeLines.add(_getRepositoryImplBody(
+        bodyLines.add('$sourceMethod async {');
+        bodyLines.add(_getRepositoryImplBody(
             e, params.mutatedPathPrefix, params.sourceName.camelCase));
-        codeLines.add('}');
-        codeLines.addNewLine();
-        return codeLines.join('\n').replaceAll(('{}'), '');
+        bodyLines.add('}');
+        bodyLines.addNewLine();
+        return bodyLines.join('\n').replaceAll(('{}'), '');
       },
     );
     codeLines.addAll(implementationMethods);

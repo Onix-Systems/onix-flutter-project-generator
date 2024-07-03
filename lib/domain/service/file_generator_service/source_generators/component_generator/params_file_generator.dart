@@ -57,12 +57,12 @@ class ParamsFileGenerator implements BaseGenerationService<bool> {
     ///variable parameters
     final parameters = params.methodParamsNotRequired.map(
       (param) =>
-          '${TypeMatcher.getDartType(param.type)}? ${param.name.camelCase.replaceAll(RegExp('[\\[\\]]'), '')}',
+          '${TypeMatcher.getDartType(param.type)}? ${param.name.camelCase.replaceAll(RegExp('[\\[\\]]'), '')};',
     );
     codeLines.addAll(parameters);
     final methodParams = params.methodParamsNotRequired.map(
       (param) =>
-          'this.${param.name.camelCase.replaceAll(RegExp('[\\[\\]]'), '')}',
+          'this.${param.name.camelCase.replaceAll(RegExp('[\\[\\]]'), '')},',
     );
 
     ///method params
