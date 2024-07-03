@@ -6,7 +6,7 @@ sonarqube-check:
   tags:
     - kuber
   image:
-    name: nicadil/sonar-scanner-flutter-cli:6
+    name: {image_url}
     entrypoint: [""]
   variables:
     SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
