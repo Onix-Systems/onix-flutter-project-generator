@@ -56,29 +56,14 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
   void _onSingleResult(
       BuildContext context, SwaggerParserScreenSR singleResult) {
     singleResult.when(
-      onError: (error) => Dialogs.showOkDialog(
+      onParseError: () => Dialogs.showOkDialog(
         context: context,
         isError: true,
         title: S.of(context).error,
-        content: Text(error,
+        content: Text(S.of(context).parseErrorMessage,
             style: context.appTextStyles.fs18?.copyWith(
               fontSize: 16,
             )),
-      ),
-      onConflicting: () => Dialogs.showOkCancelDialog(
-        context: context,
-        isError: true,
-        okLabel: S.of(context).replace,
-        cancelLabel: S.of(context).ignore,
-        title: S.of(context).error,
-        content: Text(
-          S.of(context).swaggerParserScreenConflictError,
-          style: context.appTextStyles.fs18,
-        ),
-        onOk: () =>
-            blocOf(context).add(const SwaggerParserScreenEventOnReplace()),
-        onCancel: () =>
-            blocOf(context).add(const SwaggerParserScreenEventOnIgnore()),
       ),
       onContinue: () {
         _urlController.clear();

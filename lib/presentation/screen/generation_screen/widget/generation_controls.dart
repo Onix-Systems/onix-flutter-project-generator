@@ -52,20 +52,11 @@ class GenerationControls extends StatelessWidget {
   }
 
   void _onCloseGeneration(BuildContext context) {
-    if (config.projectExists) {
-      context.go(
-        AppRouter.modifyProjectScreen,
-        extra: config.copyWith(
-          projectExists: true,
-        ),
-      );
-    } else {
-      context.go(
-        AppRouter.procedureSelectionScreen,
-        extra: config.copyWith(
-          projectExists: true,
-        ),
-      );
-    }
+    context.go(
+      AppRouter.procedureSelectionScreen,
+      extra: config.copyWith(
+        projectExists: true,
+      ),
+    );
   }
 }

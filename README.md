@@ -78,9 +78,8 @@ The key features of the Onix Project Generator are:
   ).
 * To **configure optional components** to include to the project.
 * To **add screen mocks** with screen BLoC, navigation and GetIt declarations included.
-* To **configure data layer** from Swagger URL or manually.
+* To **configure data layer** from Swagger URL.
 * To **configure the application theme** from Figma file.
-* To **edit settings** of a **previously created project**.
 * To **create Android signing** configuration automatically or manually.
 * To **add Sonar configurations and scripts**.
 * Generates **starter documentation** for the project.

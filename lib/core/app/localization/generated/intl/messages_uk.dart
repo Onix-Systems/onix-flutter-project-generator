@@ -169,6 +169,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "newVersionAvailableTitle":
             MessageLookupByLibrary.simpleMessage("Доступна нова версія"),
         "no": MessageLookupByLibrary.simpleMessage("Ні"),
+        "noDataComponents":
+            MessageLookupByLibrary.simpleMessage("Компоненти не знайдено"),
         "nullable": MessageLookupByLibrary.simpleMessage("Опціональне"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
@@ -178,6 +180,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "organization": MessageLookupByLibrary.simpleMessage("Організація"),
         "organizationalUnit":
             MessageLookupByLibrary.simpleMessage(" Організаційний підрозділ"),
+        "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "Не вдалося отримати компоненти Swagger. Спробуйте знову або зв\'яжіться з підтримкою, якщо не вдається оторимати компоненти."),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
             "Будь ласка, виберіть шлях до проекту"),
         "pathNotSelectedTitle":

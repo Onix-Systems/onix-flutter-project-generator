@@ -141,5 +141,7 @@
   "summary": "Summary",
   "initial": "Initial screen?",
   "getStyles": "Get Styles",
-  "clear": "Clear"
+  "clear": "Clear",
+  "parseErrorMessage": "Failed to Parse Swagger Components. Please try again or contact support if issue not resolved.",
+  "noDataComponents": "No data components"
 }

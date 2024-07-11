@@ -16,7 +16,7 @@ This section **describing common processes in Onix Project Generator** applicati
 * **[Mason build steps](docs/MASON.md)**.
 * **[Mason pre-generation steps](docs/PRE_GEN.md)**.
 * **[Mason post-generation steps](docs/POST_GEN.md)**.
-* **[File generation](docs/FILE_GEN.md)**.
+* **[Swagger data components generation](docs/SWAGGER_GEN.md)**.
 * **[Documentation generation](docs/DOCS.md)**.
 
 

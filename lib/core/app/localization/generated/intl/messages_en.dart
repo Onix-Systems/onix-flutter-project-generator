@@ -168,6 +168,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "newVersionAvailableTitle":
             MessageLookupByLibrary.simpleMessage("New version available"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "noDataComponents":
+            MessageLookupByLibrary.simpleMessage("No data components"),
         "nullable": MessageLookupByLibrary.simpleMessage("Nullable"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
@@ -177,6 +179,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "organization": MessageLookupByLibrary.simpleMessage("Organization"),
         "organizationalUnit":
             MessageLookupByLibrary.simpleMessage(" Organizational unit"),
+        "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "Failed to Parse Swagger Components. Please try again or contact support if issue not resolved."),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
             "You must select path to projects folder"),
         "pathNotSelectedTitle":

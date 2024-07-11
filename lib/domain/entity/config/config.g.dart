@@ -40,14 +40,6 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
               .toSet() ??
           const {},
       swaggerUrl: json['swaggerUrl'] as String? ?? '',
-      dataComponents: (json['dataComponents'] as List<dynamic>?)
-              ?.map((e) => DataComponent.fromJson(e as Map<String, dynamic>))
-              .toSet() ??
-          const {},
-      sources: (json['sources'] as List<dynamic>?)
-              ?.map((e) => Source.fromJson(e as Map<String, dynamic>))
-              .toSet() ??
-          const {},
     );
 
 Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
@@ -72,8 +64,6 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'signingVars': instance.signingVars,
       'screens': instance.screens.toList(),
       'swaggerUrl': instance.swaggerUrl,
-      'dataComponents': instance.dataComponents.toList(),
-      'sources': instance.sources.toList(),
     };
 
 const _$ProjectRouterEnumMap = {

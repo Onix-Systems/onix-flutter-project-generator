@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
-import 'package:onix_flutter_bricks/domain/repository/data_component_repository.dart';
+
 import 'package:onix_flutter_bricks/domain/repository/figma_repository.dart';
+import 'package:onix_flutter_bricks/domain/service/component_generator/component_generator_service.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/docs_service.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/fastlane_service.dart';
 import 'package:onix_flutter_bricks/domain/service/figma_service/figma_service.dart';
@@ -13,7 +14,6 @@ void registerAppServices(GetIt getIt) {
     ..registerSingleton<FileGeneratorService>(
       FileGeneratorService(
         GetIt.I.get<OutputService>(),
-        GetIt.I.get<DataComponentRepository>(),
       ),
     )
     ..registerSingleton<DocsService>(DocsService())
@@ -22,5 +22,8 @@ void registerAppServices(GetIt getIt) {
         figmaRepository: GetIt.I.get<FigmaRepository>(),
       ),
     )
-    ..registerLazySingleton<FastlaneService>(() => const FastlaneService());
+    ..registerLazySingleton<FastlaneService>(() => const FastlaneService())
+    ..registerLazySingleton<ComponentGeneratorService>(() =>  ComponentGeneratorService())
+
+  ;
 }

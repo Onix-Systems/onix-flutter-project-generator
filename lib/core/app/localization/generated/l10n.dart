@@ -1469,6 +1469,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Failed to Parse Swagger Components. Please try again or contact support if issue not resolved.`
+  String get parseErrorMessage {
+    return Intl.message(
+      'Failed to Parse Swagger Components. Please try again or contact support if issue not resolved.',
+      name: 'parseErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No data components`
+  String get noDataComponents {
+    return Intl.message(
+      'No data components',
+      name: 'noDataComponents',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

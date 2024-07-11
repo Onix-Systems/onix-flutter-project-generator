@@ -1,0 +1,5 @@
+enum MapperType {
+  mapResponseToEntity,
+  mapEntityToRequest
+
+}

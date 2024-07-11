@@ -60,11 +60,12 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
   }
 
   void _onSingleResult(BuildContext context, FigmaStylesScreenSR singleResult) {
-    singleResult.when(
+    //TODO Resolve
+   /* singleResult.when(
       loadFinished: () => context.go(AppRouter.modifyProjectScreen,
           extra: blocOf(context).state.config),
       error: (error) => _showError(context, error),
-    );
+    );*/
   }
 
   Widget _buildMainContainer(
