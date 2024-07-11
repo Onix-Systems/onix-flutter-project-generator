@@ -9,14 +9,8 @@ import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/router/app_router.dart';
-import 'package:onix_flutter_bricks/data/repository/swagger_repository_impl.dart';
-
-import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source_impl.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
-import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
-import 'package:onix_flutter_bricks/domain/service/component_generator/component_generator_service.dart';
-import 'package:onix_flutter_bricks/domain/service/component_generator/params/component_generator_params.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/fingerprint_dialog_body.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/tools_popup_button.dart';

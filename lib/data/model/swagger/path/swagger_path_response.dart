@@ -1,11 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/swagger_const.dart';
-import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
+import 'package:onix_flutter_bricks/app/util/enum/swagger_path_input_type.dart';
+import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model/swagger_model_variable_response.dart';
-import 'package:onix_flutter_bricks/app/util/enum/swagger_path_input_type.dart';
-import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_request_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_response_type.dart';
 

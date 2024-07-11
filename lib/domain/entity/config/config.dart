@@ -10,7 +10,6 @@ import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
 
 part 'config.freezed.dart';
-
 part 'config.g.dart';
 
 @freezed

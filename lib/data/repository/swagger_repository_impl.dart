@@ -1,5 +1,4 @@
 import 'package:onix_flutter_bricks/core/arch/domain/entity/failure/api_failure.dart';
-import 'package:onix_flutter_bricks/core/arch/domain/entity/failure/failure.dart';
 import 'package:onix_flutter_bricks/core/arch/domain/entity/result/result.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/mapper/swagger/swagger_mapper.dart';

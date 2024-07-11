@@ -2,7 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 
-
 part 'data_components_screen_v2_models.freezed.dart';
 
 @freezed

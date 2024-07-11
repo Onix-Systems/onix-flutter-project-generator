@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
+import 'package:http/http.dart' as http;
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model/swagger_model_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/path/swagger_path_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/swagger_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/tag/swagger_tag_response.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
-import 'package:http/http.dart' as http;
 
 class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
   @override
