@@ -38,8 +38,8 @@ extension SwaggerTypeRefExtension on SwaggerType {
       return this as SwaggerReference;
     } else if (this is SwaggerArray) {
       final array = this as SwaggerArray;
-      if (array.itemType is SwaggerReference) {
-        return array.itemType as SwaggerReference;
+      if (array.itemType.type is SwaggerReference) {
+        return array.itemType.type as SwaggerReference;
       }
     }
     return null;
@@ -50,8 +50,8 @@ extension SwaggerTypeRefExtension on SwaggerType {
       return this as SwaggerEnum;
     } else if (this is SwaggerArray) {
       final array = this as SwaggerArray;
-      if (array.itemType is SwaggerEnum) {
-        return array.itemType as SwaggerEnum;
+      if (array.itemType.type is SwaggerEnum) {
+        return array.itemType.type as SwaggerEnum;
       }
     }
     return null;
