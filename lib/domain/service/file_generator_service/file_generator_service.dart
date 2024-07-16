@@ -19,10 +19,6 @@ class FileGeneratorService {
 
   final BaseGenerationService<bool> _stylesGenerator = StylesGenerator();
   late BaseGenerationService<Result<dynamic>> _signingGenerator;
-  late BaseGenerationService<bool> _componentClassGenerator;
-  late BaseGenerationService<bool> _mapperGenerator;
-  late BaseGenerationService<bool> _requestGenerator;
-  late BaseGenerationService<bool> _responseGenerator;
 
   FileGeneratorService(
     this._outputService,

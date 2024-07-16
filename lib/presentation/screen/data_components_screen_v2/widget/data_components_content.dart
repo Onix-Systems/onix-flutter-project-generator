@@ -55,7 +55,7 @@ class _DataComponentsContentState extends State<DataComponentsContent> {
         ),
         color: context.appColors.darkContrastColor,
       ),
-      child: Text('asdasdad'),
+      child: const Text('asdasdad'),
     );
   }
 }

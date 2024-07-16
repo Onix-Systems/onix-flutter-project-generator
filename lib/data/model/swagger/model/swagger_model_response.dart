@@ -142,7 +142,6 @@ class SwaggerModelResponse {
       if (e.containsKey('\$ref')) {
         final typeValue =
             (e['\$ref'] as String).split('/').last.clearDataComponentsName();
-        final names = crossReferences.map((e) => e.name).join('\n');
         final crossRef = crossReferences.singleWhereOrNull(
           (e) => e.name == typeValue,
         );

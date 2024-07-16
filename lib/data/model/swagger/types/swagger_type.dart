@@ -35,23 +35,23 @@ class SwaggerVariable extends SwaggerType {
   });
 
   @override
-  String getTypeDeclaration(DataFileType _) => type.toSwaggerDartType();
+  String getTypeDeclaration(DataFileType fileType) => type.toSwaggerDartType();
 
   @override
-  String getDefaultParserClosure(DataFileType _) =>
+  String getDefaultParserClosure(DataFileType fileType) =>
       'return ${type.getDefaultPrimitiveTypeClosure()};';
 
   @override
-  String? getFileImportName(DataFileType _) => null;
+  String? getFileImportName(DataFileType fileType) => null;
 
   @override
-  String? getFileName(DataFileType _) => null;
+  String? getFileName(DataFileType fileType) => null;
 
   @override
-  String? getFileFolder(DataFileType _) => null;
+  String? getFileFolder(DataFileType fileType) => null;
 
   @override
-  String? getDefaultReturnType(DataFileType _) =>
+  String? getDefaultReturnType(DataFileType fileType) =>
       type.getDefaultPrimitiveTypeClosure();
 }
 
@@ -150,7 +150,7 @@ class SwaggerArray extends SwaggerType {
       itemType.type.getFileFolder(fileType);
 
   @override
-  String? getDefaultReturnType(_) => '[]';
+  String? getDefaultReturnType(fileType) => '[]';
 }
 
 class SwaggerEnum extends SwaggerType {
@@ -165,7 +165,7 @@ class SwaggerEnum extends SwaggerType {
   });
 
   @override
-  String getTypeDeclaration(DataFileType _) =>
+  String getTypeDeclaration(DataFileType fileType) =>
       '${from.pascalCase}${name.pascalCase}Type';
 
   @override
@@ -178,7 +178,7 @@ class SwaggerEnum extends SwaggerType {
   }
 
   @override
-  String? getFileName(DataFileType _) {
+  String? getFileName(DataFileType fileType) {
     return '${from.snakeCase}_${name.snakeCase}_type.dart';
   }
 
@@ -194,24 +194,24 @@ class SwaggerOperationDefault extends SwaggerType {
   final type = 'OperationStatus';
 
   @override
-  String getTypeDeclaration(DataFileType _) => type;
+  String getTypeDeclaration(DataFileType fileType) => type;
 
   @override
-  String getDefaultParserClosure(DataFileType _) =>
+  String getDefaultParserClosure(DataFileType fileType) =>
       'return OperationStatus.success;';
 
   @override
-  String? getFileImportName(DataFileType _) =>
+  String? getFileImportName(DataFileType fileType) =>
       'core/arch/domain/entity/common/operation_status.dart';
 
   @override
-  String? getFileName(DataFileType _) => null;
+  String? getFileName(DataFileType fileType) => null;
 
   @override
   String? getFileFolder(DataFileType fileType) => null;
 
   @override
-  String? getDefaultReturnType(_) => null;
+  String? getDefaultReturnType(fileType) => null;
 }
 
 class SwaggerFile extends SwaggerType {
@@ -222,20 +222,20 @@ class SwaggerFile extends SwaggerType {
   });
 
   @override
-  String getTypeDeclaration(DataFileType _) => type;
+  String getTypeDeclaration(DataFileType fileType) => type;
 
   @override
-  String getDefaultParserClosure(DataFileType _) => 'return ' ';';
+  String getDefaultParserClosure(DataFileType fileType) => 'return ' ';';
 
   @override
-  String? getFileImportName(DataFileType _) => null;
+  String? getFileImportName(DataFileType fileType) => null;
 
   @override
-  String? getFileName(DataFileType _) => null;
+  String? getFileName(DataFileType fileType) => null;
 
   @override
   String? getFileFolder(DataFileType fileType) => null;
 
   @override
-  String? getDefaultReturnType(DataFileType _) => null;
+  String? getDefaultReturnType(DataFileType fileType) => null;
 }
