@@ -3,11 +3,13 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/swagger_const.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
+import 'package:onix_flutter_bricks/app/util/extenstion/data_components_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_reference.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
@@ -15,8 +17,6 @@ import 'package:onix_flutter_bricks/domain/service/component_generator/params/co
 import 'package:recase/recase.dart';
 
 class ComponentGeneratorService implements BaseGenerationService<String> {
-  final _addedDataComponents = List<DataObjectComponent>.empty(growable: true);
-
   @override
   Future<String> generate(BaseGenerationParams params) async {
     if (params is! ComponentGeneratorParams) {
@@ -25,8 +25,6 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
 
     final projectLibFolder = '${params.projectPath}/${params.projectName}/lib';
 
-    _addedDataComponents.clear();
-
     await _createEnums(
       projectLibFolder,
       params.projectName,
@@ -34,20 +32,25 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
       params.components.dataObjects,
     );
 
+    final addedDataComponents = List<DataObjectComponent>.empty(growable: true);
+
     for (var i = 0; i < params.components.sources.length; i++) {
       final source = params.components.sources[i];
+
+      await _createRequestEnums(
+        projectLibFolder,
+        params.projectName,
+        source.requests,
+      );
+
       final sourceObjects = source.getSourceObjects();
-      await _createObjects(
+      final createdComponents = await _createObjects(
         projectLibFolder,
         params.projectName,
         sourceObjects,
         params.components.dataObjects,
       );
-
-      await _createEntities(
-        projectLibFolder,
-        params.projectName,
-      );
+      addedDataComponents.addAll(createdComponents);
 
       await _createSource(
         projectLibFolder,
@@ -55,6 +58,12 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
         source,
       );
     }
+    final addedComponentsDistinct = addedDataComponents.distinct();
+    await _createEntities(
+      projectLibFolder,
+      params.projectName,
+      addedComponentsDistinct,
+    );
 
     return '';
   }
@@ -169,13 +178,14 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
     );
   }
 
-  Future<void> _createObjects(
+  Future<List<DataObjectComponent>> _createObjects(
     String projectLibFolder,
     String projectName,
     List<DataObjectReference> references,
     List<DataObjectComponent> components,
   ) async {
     ///List of components was created
+    final addedDataComponents = List<DataObjectComponent>.empty(growable: true);
 
     ///go through each reference and create object
     for (var e in references) {
@@ -200,9 +210,12 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
         projectName,
         e.type,
       );
-      final objectAdded = await _createFile(filePath: filePath, fileBody: body);
+      final objectAdded = await _createFile(
+        filePath: filePath,
+        fileBody: body,
+      );
       if (objectAdded) {
-        _addedDataComponents.add(dataObject);
+        addedDataComponents.add(dataObject);
       }
 
       final innerReferences = _getObjectInnerReferences(
@@ -211,23 +224,25 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
       );
 
       ///recursively add inner objects
-      if(innerReferences.isNotEmpty){
-        await _createObjects(
+      if (innerReferences.isNotEmpty) {
+        final createdInnerObjects = await _createObjects(
           projectLibFolder,
           projectName,
           innerReferences,
           components,
         );
+        addedDataComponents.addAll(createdInnerObjects);
       }
-
     }
+    return addedDataComponents;
   }
 
   Future<void> _createEntities(
     String projectLibFolder,
     String projectName,
+    List<DataObjectComponent> addedDataComponents,
   ) async {
-    for (var e in _addedDataComponents) {
+    for (var e in addedDataComponents) {
       ///Create Entities
 
       final entityRawFolder = e.getFileFolder(DataFileType.entity);
@@ -245,7 +260,8 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
       );
 
       await _createFile(filePath: entityPath, fileBody: entityBody);
-
+    }
+    for (var e in addedDataComponents) {
       ///Create mappers
       final mapperRawFolder = e.getObjectMapperFolder();
       final mapperRawPath = e.getObjectMapperFilePath();
@@ -282,11 +298,79 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
     for (var component in components) {
       for (var variable in component.variables) {
         final innerEnum = variable.type.getSwaggerEnumReference();
-        if (innerEnum !=null) {
+        if (innerEnum != null) {
           enumsCopy.add(
             EnumParamComponent(
               name: variable.name,
               type: innerEnum,
+            ),
+          );
+        }
+      }
+    }
+
+    for (var e in enumsCopy) {
+      final folderPath = e.getFolderPath(projectLibFolder);
+      await _createFolders(folderPath);
+      final filePath = e.getFilePath(projectLibFolder);
+
+      final body = e.getEnumFileBody();
+      await _createFile(filePath: filePath, fileBody: body);
+    }
+  }
+
+  Future<void> _createRequestEnums(
+    String projectLibFolder,
+    String projectName,
+    List<RequestComponent> requests,
+  ) async {
+    final enumsCopy = List<EnumParamComponent>.empty(growable: true);
+    for (var e in requests) {
+      ///Check request
+      if (e.requestBody != null) {
+        final enumRef = e.requestBody!.type.getSwaggerEnumReference();
+        if (enumRef != null) {
+          enumsCopy.add(
+            EnumParamComponent(
+              name: e.requestBody!.name,
+              type: enumRef,
+            ),
+          );
+        }
+      }
+
+      ///Check response
+      final responseEnum = e.response.type.getSwaggerEnumReference();
+      if (responseEnum != null) {
+        enumsCopy.add(
+          EnumParamComponent(
+            name: e.response.name,
+            type: responseEnum,
+          ),
+        );
+      }
+
+      ///Check query params
+      for (var qParam in e.queryParams) {
+        final enumRef = qParam.type.getSwaggerEnumReference();
+        if (enumRef != null) {
+          enumsCopy.add(
+            EnumParamComponent(
+              name: qParam.name,
+              type: enumRef,
+            ),
+          );
+        }
+      }
+
+      ///Check path params
+      for (var pParam in e.pathParams) {
+        final enumRef = pParam.type.getSwaggerEnumReference();
+        if (enumRef != null) {
+          enumsCopy.add(
+            EnumParamComponent(
+              name: pParam.name,
+              type: enumRef,
             ),
           );
         }
@@ -310,19 +394,11 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
   ) {
     final innerReferences = List<DataObjectReference>.empty(growable: true);
     for (var e in dataObject.variables) {
-      if (e.type is SwaggerReference) {
-        final ref = e.type as SwaggerReference;
+      final ref = e.type.getSwaggerObjectReference();
+      if (ref != null) {
         innerReferences.add(
           DataObjectReference(type: rootFileType, fileReference: ref),
         );
-      } else if (e.type is SwaggerArray) {
-        final array = e.type as SwaggerArray;
-        if (array.itemType is SwaggerReference) {
-          final ref = array.itemType as SwaggerReference;
-          innerReferences.add(
-            DataObjectReference(type: rootFileType, fileReference: ref),
-          );
-        }
       }
     }
     return innerReferences;

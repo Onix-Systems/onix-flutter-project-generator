@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/path/swagger_path_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/swagger_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_request_type.dart';
@@ -39,11 +40,12 @@ class SwaggerMapper {
     final enumList = List<EnumParamComponent>.empty(growable: true);
     for (var model in input.swaggerModels) {
       for (var e in model.variables) {
-        if (e.type is SwaggerEnum) {
+        final enumClass = e.type.getSwaggerEnumReference();
+        if (enumClass != null) {
           enumList.add(
             EnumParamComponent(
               name: e.name,
-              type: e.type as SwaggerEnum,
+              type: enumClass,
             ),
           );
         }

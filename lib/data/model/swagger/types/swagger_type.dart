@@ -26,7 +26,6 @@ sealed class SwaggerType {
   String? getDefaultReturnType(DataFileType fileType);
 }
 
-
 class SwaggerVariable extends SwaggerType {
   final String type;
 
@@ -126,12 +125,16 @@ class SwaggerArray extends SwaggerType {
 
   @override
   String getDefaultParserClosure(DataFileType fileType) {
-    final codeLines = List<String>.empty(growable: true);
-    codeLines.add('final jsonItems = response.data as List<dynamic>;');
-    codeLines.add(
-        'final items = jsonItems.map((e) => ${itemType.type.getTypeDeclaration(fileType)}.fromJson(e  as Map<String,dynamic>),).toList();');
-    codeLines.add('return items;');
-    return codeLines.join('\n');
+    if (itemType.type is SwaggerReference) {
+      final codeLines = List<String>.empty(growable: true);
+      codeLines.add('final jsonItems = response.data as List<dynamic>;');
+      codeLines.add(
+          'final items = jsonItems.map((e) => ${itemType.type.getTypeDeclaration(fileType)}.fromJson(e  as Map<String,dynamic>),).toList();');
+      codeLines.add('return items;');
+      return codeLines.join('\n');
+    } else {
+      return 'return response.data as List<${itemType.type.getTypeDeclaration(fileType)}>;';
+    }
   }
 
   @override
@@ -198,7 +201,8 @@ class SwaggerOperationDefault extends SwaggerType {
       'return OperationStatus.success;';
 
   @override
-  String? getFileImportName(DataFileType _) => null;
+  String? getFileImportName(DataFileType _) =>
+      'core/arch/domain/entity/common/operation_status.dart';
 
   @override
   String? getFileName(DataFileType _) => null;

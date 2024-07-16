@@ -163,11 +163,10 @@ class SourceComponent with _$SourceComponent {
 
       ///Add request body import
       if (requestBody != null) {
-        if (requestBody.type is SwaggerReference) {
+        final requestReference = requestBody.type.getSwaggerObjectReference();
+        if (requestReference != null) {
           final importLine =
-              (requestBody.type as SwaggerReference).getReferenceMapperImport(
-            projectName,
-          );
+              requestReference.getReferenceMapperImport(projectName);
           if (!mapperImports.contains(importLine)) {
             mapperImports.add(importLine);
           }
@@ -175,11 +174,10 @@ class SourceComponent with _$SourceComponent {
       }
 
       ///Add response mapper import
-      if (e.response.type is SwaggerReference) {
+      final responseReference = e.response.type.getSwaggerObjectReference();
+      if (responseReference != null) {
         final importLine =
-            (e.response.type as SwaggerReference).getReferenceMapperImport(
-          projectName,
-        );
+            responseReference.getReferenceMapperImport(projectName);
         if (!mapperImports.contains(importLine)) {
           mapperImports.add(importLine);
         }
@@ -196,9 +194,10 @@ class SourceComponent with _$SourceComponent {
     for (var e in requests) {
       final requestBody = e.requestBody;
       if (requestBody != null) {
-        if (requestBody.type is SwaggerReference) {
-          final mapperVariable = (requestBody.type as SwaggerReference)
-              .getReferenceMapperDeclaration();
+        final requestReference = requestBody.type.getSwaggerObjectReference();
+        if (requestReference != null) {
+          final mapperVariable =
+              requestReference.getReferenceMapperDeclaration();
           if (!mapperVariables.contains(mapperVariable)) {
             mapperVariables.add(mapperVariable);
           }
@@ -206,9 +205,10 @@ class SourceComponent with _$SourceComponent {
       }
 
       ///Add response variable declaration
-      if (e.response.type is SwaggerReference) {
-        final mapperVariable = (e.response.type as SwaggerReference)
-            .getReferenceMapperDeclaration();
+      final responseReference = e.response.type.getSwaggerObjectReference();
+      if (responseReference != null) {
+        final mapperVariable =
+            responseReference.getReferenceMapperDeclaration();
         if (!mapperVariables.contains(mapperVariable)) {
           mapperVariables.add(mapperVariable);
         }

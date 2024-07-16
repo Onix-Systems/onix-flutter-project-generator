@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart';
+import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
@@ -39,7 +40,10 @@ class RequestComponent with _$RequestComponent {
       final codeLines = List<String>.empty(growable: true);
       final paramsDeclaration = pathParams
           .map(
-            (e) => e.getParamBodyDeclaration(DataFileType.request),
+            (e) => e.getParamBodyDeclaration(
+              DataFileType.request,
+              true,
+            ),
           )
           .join('\n');
       codeLines
@@ -157,12 +161,17 @@ class RequestComponent with _$RequestComponent {
 
     ///Add request body, if exist
     if (requestBody != null) {
-      final requestBodyType = requestBody!.type;
-      if (requestBodyType is SwaggerArray) {
-        codeLines
-            .add('data: ${requestBody!.name.camelCase}.map((e)=> e.toJson()),');
+      final isObjectReference = requestBody!.type.isObjectReference();
+      if (isObjectReference) {
+        final requestBodyType = requestBody!.type;
+        if (requestBodyType is SwaggerArray) {
+          codeLines.add(
+              'data: ${requestBody!.name.camelCase}.map((e)=> e.toJson()),');
+        } else {
+          codeLines.add('data: ${requestBody!.name.camelCase}.toJson(),');
+        }
       } else {
-        codeLines.add('data: ${requestBody!.name.camelCase}.toJson(),');
+        codeLines.add('data: ${requestBody!.name.camelCase},');
       }
 
       ///Add multipart body, if exist
@@ -267,11 +276,12 @@ class RequestComponent with _$RequestComponent {
         codeLines.add(
             'final ${responseName}Objects = result.data.map(_${responseName}Mappers.mapResponseToEntity,).toList();');
         codeLines.add('return Result.success(${responseName}Objects);');
+      }else{
+        codeLines.add('return Result.success(result.data);');
       }
     } else {
       codeLines.add('return Result.success(result.data);');
     }
-
     codeLines.add('} else {');
     codeLines.add(
         'return Result.error(failure: MapCommonServerError.getServerFailureDetails(result),);');
@@ -293,21 +303,34 @@ class RequestComponent with _$RequestComponent {
   String _buildFunctionParams(DataFileType fileType) {
     final codeLines = List<String>.empty(growable: true);
     if (requestBody != null) {
-      codeLines.add(requestBody?.getParamBodyDeclaration(fileType) ?? '');
+      codeLines.add(requestBody?.getParamBodyDeclaration(
+            fileType,
+            true,
+          ) ??
+          '');
     }
     if (multipartBody.isNotEmpty) {
       for (var e in multipartBody) {
-        codeLines.add(e.getParamBodyDeclaration(fileType));
+        codeLines.add(e.getParamBodyDeclaration(
+          fileType,
+          true,
+        ));
       }
     }
     if (queryParams.isNotEmpty) {
       for (var e in queryParams) {
-        codeLines.add(e.getParamBodyDeclaration(fileType));
+        codeLines.add(e.getParamBodyDeclaration(
+          fileType,
+          false,
+        ));
       }
     }
     if (pathParams.isNotEmpty) {
       for (var e in pathParams) {
-        codeLines.add(e.getParamBodyDeclaration(fileType));
+        codeLines.add(e.getParamBodyDeclaration(
+          fileType,
+          false,
+        ));
       }
     }
     return codeLines.join('\n');
@@ -318,21 +341,18 @@ class RequestComponent with _$RequestComponent {
     if (requestBody != null) {
       final body = requestBody!;
       final requestBodyName = body.getNameDeclaration();
-      if (body.type is SwaggerArray) {
-        final array = body.type as SwaggerArray;
-        if (array.itemType.type is SwaggerReference) {
-          final requestBodyType = array.itemType.type.getTypeDeclaration(
+      final isObjectReference = requestBody!.type.isObjectReference();
+      if (isObjectReference) {
+        final ref = body.type.getSwaggerObjectReference();
+        if (ref != null) {
+          final requestBodyType = ref.getTypeDeclaration(
             DataFileType.none,
           );
           codeLines.add(
               '$requestBodyName: ${requestBodyType.camelCase}RequestBody,');
         }
       } else {
-        final requestBodyType = body.type.getTypeDeclaration(
-          DataFileType.none,
-        );
-        codeLines
-            .add('$requestBodyName: ${requestBodyType.camelCase}RequestBody,');
+        codeLines.add('$requestBodyName: ${requestBody!.name.camelCase},');
       }
     }
     if (multipartBody.isNotEmpty) {

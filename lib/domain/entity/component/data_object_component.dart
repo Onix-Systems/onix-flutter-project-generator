@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/enum/mapper_type.dart';
+import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_sort_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
@@ -110,30 +111,28 @@ class DataObjectComponent with _$DataObjectComponent {
     }
     codeLines.add(
         'import \'package:$projectName/${fileReference.getFileImportName(DataFileType.entity)}\';');
-    codeLines.addAll(_getImports(projectName, DataFileType.response));
-    codeLines.addAll(_getImports(projectName, DataFileType.entity));
+    codeLines.addAll(
+      _getImports(
+        projectName,
+        DataFileType.response,
+        createResponseToEntityMapper: createResponseToEntityMapper,
+        createEntityToRequestMapper: createEntityToRequestMapper,
+      ),
+    );
+    codeLines.addAll(_getImports(projectName, DataFileType.entity,
+        createResponseToEntityMapper: createResponseToEntityMapper,
+        createEntityToRequestMapper: createEntityToRequestMapper));
     codeLines.add(
         'import \'package:$projectName/core/arch/domain/common/converter/mapper.dart\';');
 
     ///Add imports to different variables and their mappers
     for (var variable in variables) {
-      if (variable.type is SwaggerReference) {
-        final variableImportName = (variable.type as SwaggerReference)
-            .getTypeDeclaration(
-              DataFileType.none,
-            )
-            .snakeCase;
+      final ref = variable.type.getSwaggerObjectReference();
+      if (ref != null) {
+        final variableImportName =
+            ref.getTypeDeclaration(DataFileType.none).snakeCase;
         codeLines.add(
             'import \'package:$projectName/data/mapper/$variableImportName/${variableImportName}_mapper.dart\';');
-      } else if (variable.type is SwaggerArray) {
-        final array = variable.type as SwaggerArray;
-        if (array.itemType.type is SwaggerReference) {
-          final reference = array.itemType.type as SwaggerReference;
-          final fileName =
-              reference.getTypeDeclaration(DataFileType.none).snakeCase;
-          codeLines.add(
-              'import \'package:$projectName/data/mapper/$fileName/${fileName}_mapper.dart\';');
-        }
       }
     }
     codeLines.addNewLine();
@@ -292,13 +291,32 @@ class DataObjectComponent with _$DataObjectComponent {
 
   List<String> _getImports(
     String projectName,
-    DataFileType type,
-  ) {
-    return variables
-        .where((e) => e.type.getFileImportName(type) != null)
-        .map((e) => e.type.getFileImportName(type))
-        .map((e) => 'import \'package:$projectName/$e\';')
-        .toList();
+    DataFileType type, {
+    bool? createEntityToRequestMapper,
+    bool? createResponseToEntityMapper,
+  }) {
+    final imports = List<String>.empty(growable: true);
+    final notNullImports =
+        variables.where((e) => e.type.getFileImportName(type) != null);
+    for (var e in notNullImports) {
+      if (createEntityToRequestMapper != null &&
+          createResponseToEntityMapper != null) {
+        if (type == DataFileType.request) {
+          if (createEntityToRequestMapper) {
+            imports.add(e.type.getFileImportName(type) ?? '');
+          }
+        } else if (type == DataFileType.response) {
+          if (createResponseToEntityMapper) {
+            imports.add(e.type.getFileImportName(type) ?? '');
+          }
+        } else {
+          imports.add(e.type.getFileImportName(type) ?? '');
+        }
+      } else {
+        imports.add(e.type.getFileImportName(type) ?? '');
+      }
+    }
+    return imports.map((e) => 'import \'package:$projectName/$e\';').toList();
   }
 
   List<String> _getFreezedConstructorProperties(

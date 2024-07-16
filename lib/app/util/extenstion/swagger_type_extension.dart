@@ -45,6 +45,16 @@ extension SwaggerTypeRefExtension on SwaggerType {
     return null;
   }
 
+  bool isObjectReference() {
+    if (this is SwaggerReference) {
+      return true;
+    } else if (this is SwaggerArray) {
+      final array = this as SwaggerArray;
+      return (array.itemType.type is SwaggerReference);
+    }
+    return false;
+  }
+
   SwaggerEnum? getSwaggerEnumReference() {
     if (this is SwaggerEnum) {
       return this as SwaggerEnum;

@@ -2,7 +2,6 @@ import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:recase/recase.dart';
 
-
 sealed class RequestParamComponent {
   final String name;
   final SwaggerType type;
@@ -14,10 +13,13 @@ sealed class RequestParamComponent {
     required this.isRequired,
   });
 
-  String getParamBodyDeclaration(DataFileType fileType, ) {
+  String getParamBodyDeclaration(
+    DataFileType fileType,
+    bool isRequiredRequestBody,
+  ) {
     var requiredCopy = isRequired;
-    if(fileType == DataFileType.entity){
-      requiredCopy = true;
+    if (isRequiredRequestBody) {
+      requiredCopy = isRequiredRequestBody;
     }
     final requiredPrefix = requiredCopy ? 'required' : '';
     final requiredSuffix = requiredCopy ? '' : '?';
@@ -25,7 +27,6 @@ sealed class RequestParamComponent {
   }
 
   String getNameDeclaration() => name.camelCase;
-
 }
 
 class RequestBodyComponent extends RequestParamComponent {
