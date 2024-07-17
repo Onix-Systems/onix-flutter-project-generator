@@ -21,8 +21,11 @@
 <div align="center"><strong>Create your new Flutter project just in a few clicks.</strong><br>Flutter project generator is as an open source utility for MacOS designed to provide a quick start with your Flutter application development.<br />
 <br/>
 </div>
-//TODO ADD IMAGE HOW IT WORKS
-
+<div align="center">
+<a href="https://onix-systems.com/">
+    <img alt="refine logo" src="images/banner_main.png">
+</a>
+</div>
 <br/>
 <br/>
 
