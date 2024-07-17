@@ -74,7 +74,6 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     final projectName = event.projectURI.split('/').last;
     final projectPath = event.projectURI.replaceAll('/$projectName', '');
 
-
     screenRepository.empty();
     screenRepository.addAll(screens: config.screens);
 

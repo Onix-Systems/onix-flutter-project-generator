@@ -34,14 +34,17 @@ class ObjectItem extends StatelessWidget {
           Container(
             color: context.appColors.darkContrastColor,
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8,),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 8,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: object.variables
                   .map(
-                    (e) =>
-                        Text('${e.type.getTypeDeclaration(DataFileType.none)} ${e.name.camelCase}'),
+                    (e) => Text(
+                        '${e.type.getTypeDeclaration(DataFileType.none)} ${e.name.camelCase}'),
                   )
                   .toList(),
             ),
