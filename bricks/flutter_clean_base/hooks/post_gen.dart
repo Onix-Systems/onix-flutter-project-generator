@@ -348,7 +348,7 @@ $flavor:
 ''');
 
       await Process.run('mv', ['main_$flavor.gen.dart', 'main_$flavor.dart'],
-          workingDirectory: '$name/lib/core/flavors');
+          workingDirectory: '$name/lib/app/flavors');
       await Process.run('rm', ['main_$flavor.dart'],
           workingDirectory: '$name/lib');
 
@@ -358,7 +358,7 @@ $flavor:
           String content = await file.readAsString();
           var writer = file.openWrite();
           writer.write(content.replaceAll('lib/main_${flavor}.dart',
-              'lib/core/flavors/main_${flavor}.dart'));
+              'lib/app/flavors/main_${flavor}.dart'));
           await writer.flush();
           await writer.close();
         }

@@ -18,6 +18,19 @@
 * **[Architecture overview](how_to/ARCH_OVERVIEW.md)**
 * **[How BLoC state management works in generated project](how_to/BLOC_HOW_TO.md)**
 * **[How networking component works in generated project](how_to/NETWORKING_HOW_TO.md)**
+* **[Where flavor main files are located?](#flvmainf)**
+
+<br/>
+<br/>
+
+### <a name="flvmainf"></a>Where flavor main files are located?
+
+Main files are located in: 
+
+```
+lib/app/flavors
+```
+
 
 <br/>
 <br/>
