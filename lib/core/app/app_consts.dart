@@ -2,6 +2,10 @@ abstract final class AppConsts {
   static const String releaseUri =
       'https://github.com/Onix-Systems/onix-flutter-project-generator/releases';
 
+  static const String repoUrl =
+      'https://github.com/Onix-Systems/onix-flutter-project-generator';
+
+
   static const String signingKeyPassChars =
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
@@ -17,7 +21,7 @@ abstract final class AppConsts {
 
   static const Set<String> defaultFlavors = {'dev', 'prod'};
 
-  static const String mainDartPath = 'lib/core/flavors/';
+  static const String mainDartPath = 'lib/app/flavors/';
 
   static const List<String> defaultSigningVars = [
     'Your Name',

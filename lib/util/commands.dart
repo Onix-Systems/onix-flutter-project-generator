@@ -1,3 +1,5 @@
+import 'package:onix_flutter_bricks/core/app/app_consts.dart';
+
 class Commands {
   ///common commands
   static String getCompletedWithCode0Command() =>
@@ -22,7 +24,7 @@ class Commands {
   static String getDownloadBrickCodeCommand({
     required String masonBrickBranch,
   }) =>
-      'curl -L https://github.com/Onix-Systems/onix-flutter-project-generator/archive/refs/heads/$masonBrickBranch.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip';
+      'curl -L ${AppConsts.repoUrl}/archive/refs/heads/$masonBrickBranch.zip --output brick.zip && unzip -qq brick.zip -d bricks && rm brick.zip';
 
   static String getMasonActivateCommand() =>
       'dart pub global activate mason_cli && mason cache clear';

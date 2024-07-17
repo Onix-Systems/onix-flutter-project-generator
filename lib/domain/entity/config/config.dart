@@ -15,7 +15,7 @@ part 'config.g.dart';
 @freezed
 class Config with _$Config {
   const factory Config({
-    @Default('main') String branch,
+    @Default('feat/update_28') String branch,
     @Default('') String localVersion,
     @Default('') String remoteVersion,
     @Default('') String projectPath,
