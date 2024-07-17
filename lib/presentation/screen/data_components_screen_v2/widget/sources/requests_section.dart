@@ -17,10 +17,7 @@ class RequestsSection extends StatelessWidget {
       color: context.appColors.darkContrastColor,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       margin: const EdgeInsets.symmetric(horizontal: 16),
-      child: ListView(
-        padding: EdgeInsets.zero,
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
+      child: Column(
         children: requests
             .map(
               (e) => RequestItem(request: e),

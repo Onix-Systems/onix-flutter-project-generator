@@ -48,64 +48,61 @@ class _DataComponentsScreenState extends BaseState<
         navigationBar: TitleBar(
           title: S.of(context).dataComponents,
         ),
-        child: SizedBox.expand(
-          child: blocBuilder(
-            builder: (
-              context,
-              state,
-            ) {
-              final components = state.components;
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Delimiter.height(100),
-                      (components == null)
-                          ? Material(
-                              color: Colors.transparent,
-                              child: Text(
-                                S.of(context).noDataComponents,
-                                style: const TextStyle(
-                                  fontSize: 22,
-                                ),
-                              ),
-                            )
-                          : Expanded(
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: context.appColors.controlColor,
-                                  ),
-                                ),
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: DataComponentsContent(
-                                    components: components,
-                                  ),
-                                ),
+        child: blocBuilder(
+          builder: (
+            context,
+            state,
+          ) {
+            final components = state.components;
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  const Delimiter.height(100),
+                  (components == null)
+                      ? Material(
+                          color: Colors.transparent,
+                          child: Text(
+                            S.of(context).noDataComponents,
+                            style: const TextStyle(
+                              fontSize: 22,
+                            ),
+                          ),
+                        )
+                      : Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: context.appColors.controlColor,
                               ),
                             ),
-                      const Delimiter.height(10),
-                      NavigationButtonBar(
-                        nextText: S.of(context).continueLabel,
-                        prevText: S.of(context).goBack,
-                        onNextPressed: () {
-                          _onContinue(context, state);
-                        },
-                        onPrevPressed: () {
-                          _onBack(context, state);
-                        },
-                      ),
-                    ],
+                            child: Material(
+                              color: Colors.transparent,
+                              child: DataComponentsContent(
+                                components: components,
+                              ),
+                            ),
+                          ),
+                        ),
+                  const Delimiter.height(10),
+                  NavigationButtonBar(
+                    nextText: S.of(context).continueLabel,
+                    prevText: S.of(context).goBack,
+                    onNextPressed: () {
+                      _onContinue(context, state);
+                    },
+                    onPrevPressed: () {
+                      _onBack(context, state);
+                    },
                   ),
-                ),
-              );
-            },
-          ),
+                ],
+              ),
+            );
+          },
         ),
       ),
       onSR: _onSingleResult,

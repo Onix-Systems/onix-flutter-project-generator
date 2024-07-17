@@ -106,7 +106,6 @@ class SwaggerPathResponseV3 extends BaseSwaggerPathResponse {
       final responses = json['responses'] as Map<String, dynamic>;
       responses.forEach(
         (code, value) {
-          print('$code, $value');
           final responseVariable = SwaggerModelVariableResponseV3.fromJson(
             code,
             [code],
