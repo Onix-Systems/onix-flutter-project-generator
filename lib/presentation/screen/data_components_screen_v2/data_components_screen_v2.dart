@@ -63,7 +63,7 @@ class _DataComponentsScreenState extends BaseState<
                     children: [
                       const Delimiter.height(100),
                       (components == null)
-                          ?  Material(
+                          ? Material(
                               color: Colors.transparent,
                               child: Text(
                                 S.of(context).noDataComponents,

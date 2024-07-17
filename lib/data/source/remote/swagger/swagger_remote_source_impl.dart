@@ -1,9 +1,13 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:onix_flutter_bricks/app/util/enum/swagger_version_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
-import 'package:onix_flutter_bricks/data/model/swagger/model/swagger_model_response.dart';
-import 'package:onix_flutter_bricks/data/model/swagger/path/swagger_path_response.dart';
+import 'package:onix_flutter_bricks/app/util/extenstion/swagger_version_extension.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model/base_swagger_model_response.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model/swagger_model_response_unsupported.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_response.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/path/swagger_path_response_unsupported.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/swagger_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/tag/swagger_tag_response.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
@@ -16,15 +20,9 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
     var response = await http.get(Uri.parse(url));
     var json = jsonDecode(response.body) as Map<String, dynamic>;
 
-    var version = -1;
-    if (json.containsKey('swagger')) {
-      final textVersion = (json['swagger'] as String).split('.').first;
-      version = int.parse(textVersion);
-    } else if (json.containsKey('openapi')) {
-      final textVersion = (json['openapi'] as String).split('.').first;
-      version = int.parse(textVersion);
-    }
-    if (version == -1) {
+    ///Get Swagger version
+    final swaggerVersion = json.getSwaggerVersion();
+    if (swaggerVersion == SwaggerVersionType.unsupported) {
       return SwaggerResponse(
         swaggerModels: [],
         swaggerPaths: [],
@@ -32,8 +30,8 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
       );
     }
 
-    final swaggerModels = List<SwaggerModelResponse>.empty(growable: true);
-    final swaggerPaths = List<SwaggerPathResponse>.empty(growable: true);
+    final swaggerModels = List<BaseSwaggerModelResponse>.empty(growable: true);
+    final swaggerPaths = List<BaseSwaggerPathResponse>.empty(growable: true);
     final swaggerTags = List<SwaggerTagResponse>.empty(growable: true);
 
     ///Tags are similar for all versions
@@ -41,7 +39,7 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
     if (json.containsKey('tags')) {
       final tags = json.asObjectList('tags');
       for (var tag in tags) {
-        final tagModel = SwaggerTagResponse.fromJsonAllVersions(tag);
+        final tagModel = SwaggerTagResponse.fromJson(tag);
         swaggerTags.add(tagModel);
       }
     } else {
@@ -58,29 +56,19 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
       paths.forEach(
         (path, value) {
           final pathRequestVariations = value as Map<String, dynamic>;
-          if (version == 2) {
-            pathRequestVariations.forEach(
-              (type, value) {
-                final pathResponse = SwaggerPathResponse.fromJsonV2(
-                  path,
-                  type,
-                  value,
-                );
+          pathRequestVariations.forEach(
+            (type, value) {
+              final pathResponse = BaseSwaggerPathResponse.fromJson(
+                swaggerVersion,
+                path,
+                type,
+                value as Map<String, dynamic>,
+              );
+              if (pathResponse is! SwaggerPathResponseUnsupported) {
                 swaggerPaths.add(pathResponse);
-              },
-            );
-          } else if (version >= 3) {
-            pathRequestVariations.forEach(
-              (type, value) {
-                final pathResponse = SwaggerPathResponse.fromJsonV3(
-                  path,
-                  type,
-                  value,
-                );
-                swaggerPaths.add(pathResponse);
-              },
-            );
-          }
+              }
+            },
+          );
         },
       );
     } else {
@@ -92,89 +80,60 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
     }
 
     ///Check swagger version
-    if (version == 2) {
-      if (json.containsKey('definitions')) {
-        final definitions = json['definitions'] as Map<String, dynamic>;
-        definitions.forEach(
-          (name, value) {
-            final swaggerModel = SwaggerModelResponse.fromJsonV2(
-              name,
-              value as Map<String, dynamic>,
+    Map<String, dynamic> objectsMap = {};
+    switch (swaggerVersion) {
+      case SwaggerVersionType.swagger2:
+        {
+          if (json.containsKey('definitions')) {
+            objectsMap = json['definitions'] as Map<String, dynamic>;
+            break;
+          } else {
+            return SwaggerResponse(
+              swaggerModels: [],
+              swaggerPaths: [],
+              swaggerTags: [],
             );
-            swaggerModels.add(swaggerModel);
-          },
-        );
-      } else {
+          }
+        }
+      case SwaggerVersionType.swagger3:
+        {
+          if (json.containsKey('components')) {
+            objectsMap = json['components']['schemas'] as Map<String, dynamic>;
+          } else {
+            return SwaggerResponse(
+              swaggerModels: [],
+              swaggerPaths: [],
+              swaggerTags: [],
+            );
+          }
+        }
+
+      case SwaggerVersionType.unsupported:
         return SwaggerResponse(
           swaggerModels: [],
           swaggerPaths: [],
           swaggerTags: [],
         );
-      }
-    } else if (version >= 3) {
-      if (json.containsKey('components')) {
-        final definitions =
-            json['components']['schemas'] as Map<String, dynamic>;
-        definitions.forEach(
-          (name, value) {
-            if (value.containsKey('allOf')) {
-              final allOff =
-                  (value as Map<String, dynamic>).asObjectList('allOf');
-              final crossReferences = _getCrossReferencesForV3(
-                allOff,
-                definitions,
-              );
-              final swaggerModel = SwaggerModelResponse.fromJsonV3(
-                name,
-                value,
-                crossReferences,
-              );
-              swaggerModels.add(swaggerModel);
-            } else {
-              final swaggerModel = SwaggerModelResponse.fromJsonV3(
-                name,
-                value as Map<String, dynamic>,
-                [],
-              );
-              swaggerModels.add(swaggerModel);
-            }
-          },
-        );
-      } else {
-        return SwaggerResponse(
-          swaggerModels: [],
-          swaggerPaths: [],
-          swaggerTags: [],
-        );
-      }
     }
+
+    objectsMap.forEach(
+      (name, value) {
+        final swaggerModel = BaseSwaggerModelResponse.fromJson(
+          swaggerVersion,
+          name,
+          value as Map<String, dynamic>,
+          objectsMap,
+        );
+        if (swaggerModel is! SwaggerModelResponseUnsupported) {
+          swaggerModels.add(swaggerModel);
+        }
+      },
+    );
 
     return SwaggerResponse(
       swaggerModels: swaggerModels,
       swaggerPaths: swaggerPaths,
       swaggerTags: swaggerTags,
     );
-  }
-
-  List<SwaggerModelResponse> _getCrossReferencesForV3(
-    List<Map<String, dynamic>> allOff,
-    Map<String, dynamic> definitions,
-  ) {
-    final crossReferences = List<SwaggerModelResponse>.empty(growable: true);
-    for (var e in allOff) {
-      if (!e.containsKey('\$ref')) {
-        continue;
-      }
-      final typeValue = (e['\$ref'] as String).split('/').last;
-      if (definitions.containsKey(typeValue)) {
-        final crossReference = SwaggerModelResponse.fromJsonV3(
-          typeValue,
-          definitions[typeValue] as Map<String, dynamic>,
-          [],
-        );
-        crossReferences.add(crossReference);
-      }
-    }
-    return crossReferences;
   }
 }

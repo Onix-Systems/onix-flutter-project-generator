@@ -8,15 +8,15 @@ extension VariableNameExtension on String {
       return cleanFromSpaces.replaceAll(SwaggerConst.swaggerRequestKey, '');
     }
     if (cleanFromSpaces.contains(SwaggerConst.swaggerResponseKey)) {
-      return cleanFromSpaces.replaceAll(SwaggerConst.swaggerResponseKey, '')
-         ;
+      return cleanFromSpaces.replaceAll(SwaggerConst.swaggerResponseKey, '');
     }
     if (cleanFromSpaces.contains(SwaggerConst.swaggerRequestTitleKey)) {
-      return cleanFromSpaces.replaceAll(SwaggerConst.swaggerRequestTitleKey, '')
-         ;
+      return cleanFromSpaces.replaceAll(
+          SwaggerConst.swaggerRequestTitleKey, '');
     }
     if (cleanFromSpaces.contains(SwaggerConst.swaggerResponseTitleKey)) {
-      return cleanFromSpaces.replaceAll(SwaggerConst.swaggerResponseTitleKey, '');
+      return cleanFromSpaces.replaceAll(
+          SwaggerConst.swaggerResponseTitleKey, '');
     }
     return cleanFromSpaces;
   }
@@ -27,8 +27,7 @@ extension VariableNameExtension on String {
       return cleanFromSpaces.replaceAll(SwaggerConst.swaggerTypeKey, '');
     }
     if (cleanFromSpaces.contains(SwaggerConst.swaggerTypeTitleKey)) {
-      return cleanFromSpaces.replaceAll(SwaggerConst.swaggerTypeTitleKey, '')
-      ;
+      return cleanFromSpaces.replaceAll(SwaggerConst.swaggerTypeTitleKey, '');
     }
     return cleanFromSpaces;
   }

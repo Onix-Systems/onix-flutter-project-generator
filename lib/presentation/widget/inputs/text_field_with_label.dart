@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
-
 class TextFieldWithLabel extends StatelessWidget {
   final String label;
   final String? subLabel;
@@ -51,8 +50,8 @@ class TextFieldWithLabel extends StatelessWidget {
                 Text(
                   subLabel ?? '',
                   textAlign: TextAlign.left,
-                  style: context.appTextStyles.fs18
-                      ?.copyWith(color: context.appColors.textColor, fontSize: 13),
+                  style: context.appTextStyles.fs18?.copyWith(
+                      color: context.appColors.textColor, fontSize: 13),
                 ),
             ],
           )
@@ -70,8 +69,8 @@ class TextFieldWithLabel extends StatelessWidget {
                 if (subLabel != null)
                   Text(
                     subLabel ?? '',
-                    style: context.appTextStyles.fs18
-                        ?.copyWith(color: context.appColors.textColor, fontSize: 13),
+                    style: context.appTextStyles.fs18?.copyWith(
+                        color: context.appColors.textColor, fontSize: 13),
                   ),
               ],
             ),
@@ -83,7 +82,9 @@ class TextFieldWithLabel extends StatelessWidget {
               focusNode: focusNode,
               autofocus: autofocus ?? false,
               style: TextStyle(
-                color: error ? context.appColors.alarmColor : context.appColors.textColor,
+                color: error
+                    ? context.appColors.alarmColor
+                    : context.appColors.textColor,
               ),
               controller: textController,
               keyboardType: TextInputType.text,
@@ -99,7 +100,9 @@ class TextFieldWithLabel extends StatelessWidget {
               focusNode: focusNode,
               autofocus: autofocus ?? false,
               style: context.appTextStyles.fs18?.copyWith(
-                color: error ? context.appColors.alarmColor : context.appColors.textColor,
+                color: error
+                    ? context.appColors.alarmColor
+                    : context.appColors.textColor,
               ),
               controller: textController,
               keyboardType: TextInputType.text,

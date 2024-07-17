@@ -14,6 +14,4 @@ class Components with _$Components {
     required List<EnumParamComponent> enums,
     required List<DataObjectComponent> dataObjects,
   }) = _Components;
-
-
 }

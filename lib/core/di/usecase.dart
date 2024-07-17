@@ -95,10 +95,8 @@ void registerUseCases(GetIt getIt) {
       ),
     )
     ..registerLazySingleton<GetSwaggerComponentsUseCase>(
-          () => GetSwaggerComponentsUseCase(
+      () => GetSwaggerComponentsUseCase(
         getIt.get<SwaggerRepository>(),
-
       ),
-    )
-  ;
+    );
 }

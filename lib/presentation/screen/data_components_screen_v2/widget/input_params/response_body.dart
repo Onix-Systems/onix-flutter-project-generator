@@ -13,7 +13,6 @@ class ResponseBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Center(
       child: Text(
         'Response: ${response.type.getTypeDeclaration(DataFileType.none)}',

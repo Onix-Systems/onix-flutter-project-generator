@@ -15,8 +15,7 @@ class EnumParamComponent with _$EnumParamComponent {
     required SwaggerEnum type,
   }) = _EnumParamComponent;
 
-  String getFolderPath(String projectRoot) =>
-      '$projectRoot/app/util/enums';
+  String getFolderPath(String projectRoot) => '$projectRoot/app/util/enums';
 
   String getFilePath(String projectRoot) =>
       '${getFolderPath(projectRoot)}/${type.getFileName(DataFileType.none)}';

@@ -15,7 +15,8 @@ class FileGeneratorService {
 
   final BaseGenerationService<bool> _screenGenerator = ScreenGenerator();
 
-  final BaseGenerationService<bool> _defaultScreenRouteGenerator = DefaultScreenRouteGenerator();
+  final BaseGenerationService<bool> _defaultScreenRouteGenerator =
+      DefaultScreenRouteGenerator();
 
   final BaseGenerationService<bool> _stylesGenerator = StylesGenerator();
   late BaseGenerationService<Result<dynamic>> _signingGenerator;
@@ -34,8 +35,6 @@ class FileGeneratorService {
 
   Future<bool> generateStyles(BaseGenerationParams params) =>
       _stylesGenerator.generate(params);
-
-
 
   Future<void> generateEmptySourceComponentFolders({
     required String projectName,

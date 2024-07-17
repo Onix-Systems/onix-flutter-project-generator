@@ -24,8 +24,7 @@ class LabeledCheckbox extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         border: Border.all(
-          color:
-              focused ? context.appColors.controlColor : Colors.transparent,
+          color: focused ? context.appColors.controlColor : Colors.transparent,
           width: 1,
           strokeAlign: BorderSide.strokeAlignInside,
         ),

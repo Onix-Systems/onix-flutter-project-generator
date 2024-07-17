@@ -12,8 +12,4 @@ class ResponseParamComponent with _$ResponseParamComponent {
     required SwaggerType type,
     required bool isRequired,
   }) = _ResponseParamComponent;
-
-
-
-
 }

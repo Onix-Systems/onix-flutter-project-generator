@@ -6,7 +6,6 @@ class ComponentGeneratorParams implements BaseGenerationParams {
   final String projectPath;
   final Components components;
 
-
   const ComponentGeneratorParams({
     required this.projectName,
     required this.projectPath,

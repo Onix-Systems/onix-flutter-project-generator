@@ -9,7 +9,7 @@ class SwaggerTagResponse {
     required this.description,
   });
 
-  factory SwaggerTagResponse.fromJsonAllVersions(Map<String, dynamic> json) {
+  factory SwaggerTagResponse.fromJson(Map<String, dynamic> json) {
     final name = (json['name'] as String).clearDataComponentsName();
     final description = json['description'];
     return SwaggerTagResponse(name: name, description: description);

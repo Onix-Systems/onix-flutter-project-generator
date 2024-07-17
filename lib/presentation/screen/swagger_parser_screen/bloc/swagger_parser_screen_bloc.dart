@@ -29,7 +29,7 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     SwaggerParserScreenEventParse event,
     Emitter<SwaggerParserScreenState> emit,
   ) async {
-    if(event.url.isEmpty){
+    if (event.url.isEmpty) {
       addSr(const SwaggerParserScreenSR.onContinue());
     }
     emit(state.copyWith(

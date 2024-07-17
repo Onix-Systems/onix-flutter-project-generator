@@ -6,7 +6,6 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 
 class DefaultScreenRouteGenerator implements BaseGenerationService<bool> {
-
   @override
   Future<bool> generate(BaseGenerationParams params) async {
     if (params is! DefaultScreenRouteGeneratorParams) {

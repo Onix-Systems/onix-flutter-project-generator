@@ -13,4 +13,3 @@ extension SwaggerReferenceExtenson on SwaggerReference {
     return 'final _${name.camelCase}Mappers = ${name}Mappers();';
   }
 }
-

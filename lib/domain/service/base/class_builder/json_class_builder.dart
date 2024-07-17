@@ -1,4 +1,3 @@
-
 import 'package:onix_flutter_bricks/domain/entity/json_class_variable.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/class_builder.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';

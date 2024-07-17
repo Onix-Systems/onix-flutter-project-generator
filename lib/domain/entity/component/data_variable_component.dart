@@ -12,6 +12,4 @@ class DataVariableComponent with _$DataVariableComponent {
     required SwaggerType type,
     required bool isRequired,
   }) = _DataVariableComponent;
-
-
 }

@@ -18,7 +18,6 @@ class FreezedClassBuilder extends ClassBuilder {
   set emptyConstructorProperties(Iterable<String> emptyConstructorProperties) =>
       _emptyConstructorProperties = emptyConstructorProperties;
 
-
   FreezedClassBuilder({
     required String className,
     String classNameSuffix = '',

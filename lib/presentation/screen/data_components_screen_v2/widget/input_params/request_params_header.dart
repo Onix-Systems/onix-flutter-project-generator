@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class RequestParamsHeader extends StatelessWidget {
-  const RequestParamsHeader({super. key}) ;
+  const RequestParamsHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

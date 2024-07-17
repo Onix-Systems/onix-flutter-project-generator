@@ -1,6 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:onix_flutter_bricks/core/arch/domain/entity/failure/api_failure.dart';
 import 'package:onix_flutter_bricks/core/arch/domain/entity/result/result.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/mapper/swagger/swagger_mapper.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
@@ -34,7 +34,11 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       components = parsedComponents;
       return Result.success(parsedComponents);
     } catch (e, trace) {
-      logger.e(e, stackTrace: trace);
+      if (kDebugMode) {
+        print(e);
+        print(trace);
+      }
+      //logger.e(e, stackTrace: trace);
       return Result.error(failure: SwaggerParserFailure());
     }
   }

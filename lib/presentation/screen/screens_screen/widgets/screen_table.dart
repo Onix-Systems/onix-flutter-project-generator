@@ -93,7 +93,7 @@ class ScreenTable extends StatelessWidget {
                     left: 10,
                     right: 10,
                   ),
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
                         color: context.appColors.fadedColor,
@@ -153,8 +153,8 @@ class ScreenTable extends StatelessWidget {
                                   color: screen.exists
                                       ? context.appColors.fadedColor
                                       : context.appColors.textColor,
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 10),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
                                   onPressed: () {
                                     if (!screen.exists) {
                                       showCupertinoModalPopup<Screen>(
@@ -181,8 +181,8 @@ class ScreenTable extends StatelessWidget {
                                   color: screen.exists
                                       ? context.appColors.fadedColor
                                       : context.appColors.textColor,
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 10),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
                                   onPressed: () {
                                     if (!screen.exists) {
                                       onDeleteScreen(screen);

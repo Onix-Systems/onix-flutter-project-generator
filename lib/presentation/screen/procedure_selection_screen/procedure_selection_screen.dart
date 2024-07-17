@@ -122,8 +122,8 @@ class _ProcedureSelectionScreenState extends BaseState<
                     getDirectoryPath().then(
                       (value) {
                         if (value != null) {
-                          blocOf(context).add(
-                              ProcedureSelectionScreenEventOnNewProject(
+                          blocOf(context)
+                              .add(ProcedureSelectionScreenEventOnNewProject(
                             projectPath: value,
                           ));
                         } else {
@@ -273,5 +273,4 @@ class _ProcedureSelectionScreenState extends BaseState<
       );
     }
   }
-
 }

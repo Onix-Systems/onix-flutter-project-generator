@@ -31,22 +31,23 @@ void registerBloc(GetIt getIt) {
   getIt
     ..registerFactory<GenerationScreenBloc>(
       () => GenerationScreenBloc(
-        GetIt.I.get<GenerateDocumentationUseCase>(),
-        GetIt.I.get<GenerateScreensUseCase>(),
-        GetIt.I.get<AddOutputMessageUseCase>(),
-        GetIt.I.get<RunProcessUseCase>(),
-        GetIt.I.get<RunOsaScriptProcessUseCase>(),
-        GetIt.I.get<GenerateSigningConfigUseCase>(),
-        GetIt.I.get<GenerateStylesUseCase>(),
-        GetIt.I.get<GetGenerationOutputStream>(),
-        GetIt.I.get<GenerateFastlaneFilesUseCase>(),
-          GetIt.I.get<CreateSwaggerComponentsUseCase>()
-      ),
+          GetIt.I.get<GenerateDocumentationUseCase>(),
+          GetIt.I.get<GenerateScreensUseCase>(),
+          GetIt.I.get<AddOutputMessageUseCase>(),
+          GetIt.I.get<RunProcessUseCase>(),
+          GetIt.I.get<RunOsaScriptProcessUseCase>(),
+          GetIt.I.get<GenerateSigningConfigUseCase>(),
+          GetIt.I.get<GenerateStylesUseCase>(),
+          GetIt.I.get<GetGenerationOutputStream>(),
+          GetIt.I.get<GenerateFastlaneFilesUseCase>(),
+          GetIt.I.get<CreateSwaggerComponentsUseCase>()),
     )
     ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)
-    ..registerFactory<SwaggerParserScreenBloc>(()=>SwaggerParserScreenBloc(
-      GetIt.I.get<FetchSwaggerDataUseCase>(),
-    ),)
+    ..registerFactory<SwaggerParserScreenBloc>(
+      () => SwaggerParserScreenBloc(
+        GetIt.I.get<FetchSwaggerDataUseCase>(),
+      ),
+    )
     ..registerFactory<ScreensScreenBloc>(ScreensScreenBloc.new)
     ..registerFactory<FigmaStylesScreenBloc>(
       () => FigmaStylesScreenBloc(
@@ -73,10 +74,8 @@ void registerBloc(GetIt getIt) {
       ),
     )
     ..registerFactory<DataComponentsScreenV2Bloc>(
-          () => DataComponentsScreenV2Bloc(
+      () => DataComponentsScreenV2Bloc(
         GetIt.I.get<GetSwaggerComponentsUseCase>(),
-
       ),
-    )
-  ;
+    );
 }

@@ -276,7 +276,7 @@ class RequestComponent with _$RequestComponent {
         codeLines.add(
             'final ${responseName}Objects = result.data.map(_${responseName}Mappers.mapResponseToEntity,).toList();');
         codeLines.add('return Result.success(${responseName}Objects);');
-      }else{
+      } else {
         codeLines.add('return Result.success(result.data);');
       }
     } else {

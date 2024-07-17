@@ -7,6 +7,6 @@ enum SwaggerPathRequestType {
 
   static SwaggerPathRequestType fromString(String input) =>
       SwaggerPathRequestType.values.firstWhere(
-            (e) => e.name == input,
+        (e) => e.name == input,
       );
 }

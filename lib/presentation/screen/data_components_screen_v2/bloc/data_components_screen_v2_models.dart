@@ -9,7 +9,6 @@ class DataComponentsScreenV2Event with _$DataComponentsScreenV2Event {
   const factory DataComponentsScreenV2Event.init({
     required Config config,
   }) = DataComponentsScreenV2IInit;
-
 }
 
 @freezed
@@ -23,6 +22,6 @@ class DataComponentsScreenV2SR with _$DataComponentsScreenV2SR {
 class DataComponentsScreenV2State with _$DataComponentsScreenV2State {
   const factory DataComponentsScreenV2State.data({
     required Config config,
-     Components? components,
+    Components? components,
   }) = DataComponentsScreenV2StateData;
 }

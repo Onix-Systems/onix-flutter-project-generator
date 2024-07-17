@@ -12,5 +12,4 @@ class DataObjectReference with _$DataObjectReference {
     required DataFileType type,
     required SwaggerReference fileReference,
   }) = _DataObjectReference;
-
 }

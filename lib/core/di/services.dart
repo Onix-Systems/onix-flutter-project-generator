@@ -22,7 +22,6 @@ void registerAppServices(GetIt getIt) {
       ),
     )
     ..registerLazySingleton<FastlaneService>(() => const FastlaneService())
-    ..registerLazySingleton<ComponentGeneratorService>(() =>  ComponentGeneratorService())
-
-  ;
+    ..registerLazySingleton<ComponentGeneratorService>(
+        () => ComponentGeneratorService());
 }

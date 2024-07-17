@@ -9,5 +9,4 @@ class Fingerprint with _$Fingerprint {
     required FingerprintType type,
     required String value,
   }) = _Fingerprint;
-
 }

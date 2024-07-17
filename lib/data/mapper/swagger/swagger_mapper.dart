@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
-import 'package:onix_flutter_bricks/data/model/swagger/path/swagger_path_response.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/swagger_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_request_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
@@ -73,7 +73,7 @@ class SwaggerMapper {
     return sources;
   }
 
-  List<RequestComponent> _mapRequests(List<SwaggerPathResponse> input) {
+  List<RequestComponent> _mapRequests(List<BaseSwaggerPathResponse> input) {
     final requests = List<RequestComponent>.empty(growable: true);
     for (var path in input) {
       final requestResponseParam = _mapResponseParams(path);
@@ -99,7 +99,7 @@ class SwaggerMapper {
     return requests;
   }
 
-  ResponseParamComponent _mapResponseParams(SwaggerPathResponse input) {
+  ResponseParamComponent _mapResponseParams(BaseSwaggerPathResponse input) {
     final successResponse = input.getSuccessResponse();
     return ResponseParamComponent(
       name: successResponse.variable.name,
@@ -108,7 +108,7 @@ class SwaggerMapper {
     );
   }
 
-  RequestBodyComponent? _mapRequestBodyParams(SwaggerPathResponse input) {
+  RequestBodyComponent? _mapRequestBodyParams(BaseSwaggerPathResponse input) {
     final bodyRequest = input.input.firstWhereOrNull((e) => e is RequestBody);
     if (bodyRequest != null) {
       return RequestBodyComponent(
@@ -121,7 +121,7 @@ class SwaggerMapper {
   }
 
   List<RequestMultipartComponent> _mapRequestMultipartParams(
-    SwaggerPathResponse input,
+    BaseSwaggerPathResponse input,
   ) {
     final multipartParams = input.input.whereType<RequestMultipart>();
     final paramComponents =
@@ -138,7 +138,7 @@ class SwaggerMapper {
   }
 
   List<RequestQueryComponent> _mapRequestQueryParams(
-    SwaggerPathResponse input,
+    BaseSwaggerPathResponse input,
   ) {
     final queryParams = input.input.whereType<RequestQuery>();
     final paramComponents = List<RequestQueryComponent>.empty(growable: true);
@@ -154,7 +154,7 @@ class SwaggerMapper {
   }
 
   List<RequestPathComponent> _mapRequestPathParams(
-    SwaggerPathResponse input,
+    BaseSwaggerPathResponse input,
   ) {
     final pathParams = input.input.whereType<RequestPath>();
     final paramComponents = List<RequestPathComponent>.empty(growable: true);
