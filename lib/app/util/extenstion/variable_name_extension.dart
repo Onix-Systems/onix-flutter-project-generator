@@ -31,4 +31,10 @@ extension VariableNameExtension on String {
     }
     return cleanFromSpaces;
   }
+
+  String clearPathToName() {
+    final cleanFromSpaces =
+        replaceAll('/', ' ').replaceAll(RegExp(r"[^\s\w]"), '').snakeCase;
+    return cleanFromSpaces;
+  }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
 import 'package:http/http.dart' as http;
 import 'package:onix_flutter_bricks/app/util/enum/swagger_version_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
@@ -43,11 +44,29 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
         swaggerTags.add(tagModel);
       }
     } else {
-      return SwaggerResponse(
-        swaggerModels: [],
-        swaggerPaths: [],
-        swaggerTags: [],
-      );
+      ///if there no tags key collect keys from requests
+      if (json.containsKey('paths')) {
+        final paths = json['paths'] as Map<String, dynamic>;
+        paths.forEach(
+          (path, value) {
+            final pathRequestVariations = value as Map<String, dynamic>;
+            final requestTags = pathRequestVariations.getTagsFromRequests();
+            for (var tag in requestTags) {
+              final thisTag =
+                  swaggerTags.singleWhereOrNull((e) => e.name == tag);
+              if (thisTag == null) {
+                swaggerTags.add(SwaggerTagResponse(name: tag, description: ''));
+              }
+            }
+          },
+        );
+      } else {
+        return SwaggerResponse(
+          swaggerModels: [],
+          swaggerPaths: [],
+          swaggerTags: [],
+        );
+      }
     }
 
     ///Requests paths are similar for all versions

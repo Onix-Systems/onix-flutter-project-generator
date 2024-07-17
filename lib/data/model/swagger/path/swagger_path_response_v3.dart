@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_mo
 import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_request_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_response_type.dart';
+import 'package:recase/recase.dart';
 
 class SwaggerPathResponseV3 extends BaseSwaggerPathResponse {
   SwaggerPathResponseV3({
@@ -44,6 +45,8 @@ class SwaggerPathResponseV3 extends BaseSwaggerPathResponse {
 
     if (json.containsKey('operationId')) {
       operationId = json['operationId'];
+    } else {
+      operationId = '${type}_${path.clearPathToName()}'.camelCase;
     }
 
     final hasParams = json.containsKey('parameters');
@@ -59,7 +62,7 @@ class SwaggerPathResponseV3 extends BaseSwaggerPathResponse {
             value,
             tag,
           );
-          if (key == 'multipart/form-data') {
+          if (key.contains('multipart/form-data')) {
             inputParameters.add(
               RequestMultipart(
                 SwaggerModelVariableResponseV3(
@@ -69,7 +72,7 @@ class SwaggerPathResponseV3 extends BaseSwaggerPathResponse {
                 ),
               ),
             );
-          } else if (key == 'application/json') {
+          } else if (key.contains('application/json')) {
             inputParameters.add(
               RequestBody(paramVariable),
             );

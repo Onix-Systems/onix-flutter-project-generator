@@ -1,3 +1,4 @@
+import 'package:onix_flutter_bricks/app/util/extenstion/content_key_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
@@ -49,10 +50,17 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       }
     } else if (json.containsKey('content')) {
       final content = json['content'] as Map<String, dynamic>;
-      if (content.containsKey('*/*')) {
-        final any = content['*/*'] as Map<String, dynamic>;
-        if (any.containsKey('schema')) {
-          final schema = any['schema'] as Map<String, dynamic>;
+      Map<String, dynamic> validContent = {};
+      content.forEach(
+        (key, value) {
+          if (key.isValidResponseContentKey()) {
+            validContent = value;
+          }
+        },
+      );
+      if (validContent.isNotEmpty) {
+        if (validContent.containsKey('schema')) {
+          final schema = validContent['schema'] as Map<String, dynamic>;
           final contentSchemaType = _parseType(
             name,
             from,

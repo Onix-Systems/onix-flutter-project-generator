@@ -8,4 +8,22 @@ extension DynamicExtension on Map<String, dynamic> {
         .map((e) => e as Map<String, dynamic>)
         .toList();
   }
+
+  List<String> getTagsFromRequests() {
+    final tags = List<String>.empty(growable: true);
+    forEach(
+      (key, value) {
+        final requestTags =
+            (value as Map<String, dynamic>).asStringList('tags');
+        if (requestTags.isNotEmpty) {
+          final tagName = requestTags.first;
+
+          if (!tags.contains(tagName)) {
+            tags.add(tagName);
+          }
+        }
+      },
+    );
+    return tags;
+  }
 }
