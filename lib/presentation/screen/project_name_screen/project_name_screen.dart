@@ -136,7 +136,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
         Positioned(
           bottom: 0,
           left: 0,
-          child: (state.branches.isEmpty || !kDebugMode)
+          child: (state.branches.isEmpty)
               ? const SizedBox.shrink()
               : BranchSelectorWidget(
                   branches: state.branches,
