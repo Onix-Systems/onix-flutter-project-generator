@@ -78,7 +78,7 @@ flutter:
     - assets/fastlane/
     - assets/fastlane/android/
     - assets/fastlane/ios/
-    - assets/git_cliff
+    - assets/git_cliff/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
