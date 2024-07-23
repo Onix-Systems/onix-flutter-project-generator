@@ -8,7 +8,8 @@ enum FastlaneEnvVars {
   developerPortalTeamId(variableName: 'DEVELOPER_PORTAL_TEAM_ID'),
   issuerId(variableName: 'ISSUER_ID'),
   keyId(variableName: 'KEY_ID'),
-  keyContent(variableName: 'KEY_CONTENT');
+  keyContent(variableName: 'KEY_CONTENT'),
+  slackURL(variableName: 'SLACK_URL');
 
   const FastlaneEnvVars({required this.variableName});
 

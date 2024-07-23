@@ -149,7 +149,7 @@ class FastlaneService implements BaseGenerationService<String> {
       );
       contents.addAll(firebase);
     }
-
+    contents.addAll(_generateSlackParams());
     await path.writeAsString(contents.join('\n'));
   }
 
@@ -295,6 +295,18 @@ class FastlaneService implements BaseGenerationService<String> {
     }
 
     return contents;
+  }
+
+  List<String> _generateSlackParams() {
+    final params = <String>[];
+    params
+      ..add('slack: #Don\'t forget to specify a SLACK_URL in the .env for each '
+          'flavor in the fastlane directory for each platform')
+      ..add('  username: Fastlane')
+      ..add('  send_when_error: false')
+      ..add('#   pretext: STRING')
+      ..add('#   icon_url: STRING_URL');
+    return params;
   }
 
   Future<void> _generateMakeFile(FastlaneGenerationParams params) async {

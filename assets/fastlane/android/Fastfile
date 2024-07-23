@@ -9,16 +9,25 @@ default_platform(:android)
 platform :android do
   desc "Build android app"
   lane :build do |options|
-    flavor = options[:flavor]
-    firebase = options[:firebase]
-    store = options[:store]
-    artifact_type = options[:artifact_type]
+    begin
+        flavor = options[:flavor]
+        firebase = options[:firebase]
+        store = options[:store]
+        artifact_type = options[:artifact_type]
+        load_fastlane_vars(flavor)
 
-    load_fastlane_vars(flavor)
-    path = get_artifact_path(artifact_type, flavor)
-    #gradle(task: "clean assembleRelease")
-    upload_to_play_store_if_possible(store, path, artifact_type)
-    upload_to_firebase_if_possible(firebase, path, artifact_type)
+        if(artifact_type != 'apk' && artifact_type != 'aab')
+            UI.user_error!("You must specify artifact type when calling the fastlane build method. Valid value apk or aab")
+        end
+
+        path = get_artifact_path(artifact_type, flavor)
+        upload_to_play_store_if_possible(store, path, artifact_type)
+        upload_to_firebase_if_possible(firebase, path, artifact_type)
+        sendToSlack(true, '')
+    rescue => e
+      sendToSlack(false, e.message)
+      raise e
+    end
   end
 
   def load_fastlane_vars(flavor)
@@ -29,11 +38,8 @@ platform :android do
   def get_artifact_path(artifact_type, flavor)
     if artifact_type == "apk"
         return "../build/app/outputs/flutter-apk/#{flavor.nil? ? 'app-release.apk' : "app-#{flavor}-release.apk"}"
-    elsif artifact_type == "aab"
-        return "../build/app/outputs/bundle/#{flavor.nil? ? 'release/app-release.aab' : "#{flavor}Release/app-#{flavor}-release.aab"}"
     else
-     UI.user_error!("You must specify artifact type when calling the fastlane build method. Valid value apk or aab")
-     return
+        return "../build/app/outputs/bundle/#{flavor.nil? ? 'release/app-release.aab' : "#{flavor}Release/app-#{flavor}-release.aab"}"
     end
   end
 
@@ -121,5 +127,36 @@ platform :android do
     else
         UI.important "firebase_app_distribution was skipped because android artifact type is aab, and distribution is specified only for apk"
     end
+  end
+
+  def sendToSlack(isSuccess, error)
+     status = isSuccess
+     message = error
+
+     slack_settings = $yaml_vars['slack']
+         puts slack_settings
+
+     if slack_settings == nil || ENV['SLACK_URL'] == nil
+        return
+     end
+
+     if !isSuccess && slack_settings['send_when_error'] != true
+       return
+     end
+
+     if isSuccess
+        sh("cd ../.. && git cliff --latest -c cliff_txt.toml -o changelog_tmp.txt")
+        message = File.read("../../changelog_tmp.txt")
+        sh("cd ../.. && rm -f changelog_tmp.txt")
+     end
+
+     slack(message: message,
+           success: status,
+           slack_url: ENV['SLACK_URL'],
+           username: slack_settings['username'],
+           pretext: slack_settings['pretext'],
+           icon_url: slack_settings['icon_url'],
+           pretext: status == true ? "New version Just Released!" : "",
+     )
   end
 end

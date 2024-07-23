@@ -9,14 +9,19 @@ default_platform(:ios)
 platform :ios do
   desc "Build iOS"
   lane :build do |options|
-    flavor = options[:flavor]
-    firebase = options[:firebase]
-    test_flight = options[:test_flight]
-
-    load_fastlane_vars(flavor)
-    create_archive
-    upload_to_firebase_if_possible(firebase)
-    upload_to_test_flight_if_possible(test_flight)
+   begin
+     flavor = options[:flavor]
+     firebase = options[:firebase]
+     test_flight = options[:test_flight]
+     load_fastlane_vars(flavor)
+     create_archive
+     upload_to_firebase_if_possible(firebase)
+     upload_to_test_flight_if_possible(test_flight)
+     sendToSlack(true, '')
+   rescue => e
+     sendToSlack(false, e.message)
+     raise e
+   end
   end
 
   def load_fastlane_vars(flavor)
@@ -152,5 +157,34 @@ platform :ios do
         testers: firebase_distribution['testers'],
         groups: firebase_distribution['groups'],
     )
+  end
+
+  def sendToSlack(isSuccess, error)
+     status = isSuccess
+     message = error
+     slack_settings = $yaml_vars['slack']
+
+     if slack_settings == nil || ENV['SLACK_URL'] == nil
+        return
+     end
+
+     if !isSuccess && slack_settings['send_when_error'] != true
+       return
+     end
+
+     if isSuccess
+        sh("cd ../.. && git cliff --latest -c cliff_txt.toml -o changelog_tmp.txt")
+        message = File.read("../../changelog_tmp.txt")
+        sh("cd ../.. && rm -f changelog_tmp.txt")
+     end
+
+     slack(message: message,
+           success: status,
+           slack_url: ENV['SLACK_URL'],
+           username: slack_settings['username'],
+           pretext: slack_settings['pretext'],
+           icon_url: slack_settings['icon_url'],
+           pretext: status == true ? "New version Just Released!" : ""
+     )
   end
 end

@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/domain/service/docs_service/docs_service.dar
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/fastlane_service.dart';
 import 'package:onix_flutter_bricks/domain/service/figma_service/figma_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
+import 'package:onix_flutter_bricks/domain/service/git_cliff_service/git_cliff_service.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 
 void registerAppServices(GetIt getIt) {
@@ -23,5 +24,6 @@ void registerAppServices(GetIt getIt) {
     )
     ..registerLazySingleton<FastlaneService>(() => const FastlaneService())
     ..registerLazySingleton<ComponentGeneratorService>(
-        () => ComponentGeneratorService());
+        () => ComponentGeneratorService())
+    ..registerLazySingleton<GitCliffService>(() => GitCliffService());
 }

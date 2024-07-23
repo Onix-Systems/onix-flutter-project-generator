@@ -9,10 +9,12 @@ import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_gene
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastlane_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/styles_generator_params.dart';
+import 'package:onix_flutter_bricks/domain/service/git_cliff_service/params/git_cliff_params.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/git_cliff/generate_git_cliff_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/get_generation_output_stream_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
@@ -36,6 +38,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   final GenerateStylesUseCase _generateStylesUseCase;
   final GenerateFastlaneFilesUseCase _generateFastlaneFilesUseCase;
   final CreateSwaggerComponentsUseCase _createSwaggerComponentsUseCase;
+  final GenerateGitCliffFilesUseCase _generateGitCliffFilesUseCase;
 
   ///process runners
   final RunProcessUseCase _runProcessUseCase;
@@ -56,6 +59,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     this._getGenerationOutputStream,
     this._generateFastlaneFilesUseCase,
     this._createSwaggerComponentsUseCase,
+    this._generateGitCliffFilesUseCase,
   ) : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
@@ -210,6 +214,13 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     await _generateDocumentation();
 
     await _generateFastlane();
+
+    await _generateGitCliffFilesUseCase(
+      GitCliffParams(
+        projectName: state.config.projectName,
+        projectPath: state.config.projectPath,
+      ),
+    );
 
     ///save project configuration
     await state.config.saveConfig(

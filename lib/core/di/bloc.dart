@@ -3,6 +3,7 @@ import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_docu
 import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/git_cliff/generate_git_cliff_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/get_generation_output_stream_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
@@ -31,16 +32,18 @@ void registerBloc(GetIt getIt) {
   getIt
     ..registerFactory<GenerationScreenBloc>(
       () => GenerationScreenBloc(
-          GetIt.I.get<GenerateDocumentationUseCase>(),
-          GetIt.I.get<GenerateScreensUseCase>(),
-          GetIt.I.get<AddOutputMessageUseCase>(),
-          GetIt.I.get<RunProcessUseCase>(),
-          GetIt.I.get<RunOsaScriptProcessUseCase>(),
-          GetIt.I.get<GenerateSigningConfigUseCase>(),
-          GetIt.I.get<GenerateStylesUseCase>(),
-          GetIt.I.get<GetGenerationOutputStream>(),
-          GetIt.I.get<GenerateFastlaneFilesUseCase>(),
-          GetIt.I.get<CreateSwaggerComponentsUseCase>()),
+        GetIt.I.get<GenerateDocumentationUseCase>(),
+        GetIt.I.get<GenerateScreensUseCase>(),
+        GetIt.I.get<AddOutputMessageUseCase>(),
+        GetIt.I.get<RunProcessUseCase>(),
+        GetIt.I.get<RunOsaScriptProcessUseCase>(),
+        GetIt.I.get<GenerateSigningConfigUseCase>(),
+        GetIt.I.get<GenerateStylesUseCase>(),
+        GetIt.I.get<GetGenerationOutputStream>(),
+        GetIt.I.get<GenerateFastlaneFilesUseCase>(),
+        GetIt.I.get<CreateSwaggerComponentsUseCase>(),
+        GetIt.I.get<GenerateGitCliffFilesUseCase>(),
+      ),
     )
     ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)
     ..registerFactory<SwaggerParserScreenBloc>(
