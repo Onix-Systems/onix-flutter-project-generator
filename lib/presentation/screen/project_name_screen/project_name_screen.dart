@@ -82,7 +82,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
                 autofocus: true,
                 centered: true,
                 textController: projectNameController,
-                error: state.projectExists,
+                error: !state.isValidProjectName,
                 onChanged: () => blocOf(context).add(
                   ProjectNameScreenEvent.projectNameChanged(
                     projectName: projectNameController.text,
@@ -114,7 +114,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
                 focusNode: nextFocusNode,
                 isActive: state.config.projectName.isNotEmpty &&
                     state.config.organization.isNotEmpty &&
-                    !state.projectExists,
+                    state.isValidProjectName,
                 nextText: S.of(context).continueLabel,
                 prevText: S.of(context).goBack,
                 onNextPressed: () {

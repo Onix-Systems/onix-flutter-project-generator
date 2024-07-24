@@ -31,7 +31,7 @@ class ProjectNameScreenSR with _$ProjectNameScreenSR {
 class ProjectNameScreenState with _$ProjectNameScreenState {
   const factory ProjectNameScreenState.data({
     required Config config,
-    @Default(false) bool projectExists,
+    @Default(false) bool isValidProjectName,
     @Default([]) List<String> branches,
   }) = ProjectNameScreenStateData;
 }
