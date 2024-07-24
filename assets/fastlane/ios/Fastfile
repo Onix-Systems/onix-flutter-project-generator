@@ -184,7 +184,6 @@ platform :ios do
            username: slack_settings['username'],
            pretext: slack_settings['pretext'],
            icon_url: slack_settings['icon_url'],
-           pretext: status == true ? "New version Just Released!" : ""
      )
   end
 end

@@ -132,9 +132,7 @@ platform :android do
   def sendToSlack(isSuccess, error)
      status = isSuccess
      message = error
-
      slack_settings = $yaml_vars['slack']
-         puts slack_settings
 
      if slack_settings == nil || ENV['SLACK_URL'] == nil
         return
@@ -156,7 +154,6 @@ platform :android do
            username: slack_settings['username'],
            pretext: slack_settings['pretext'],
            icon_url: slack_settings['icon_url'],
-           pretext: status == true ? "New version Just Released!" : "",
      )
   end
 end

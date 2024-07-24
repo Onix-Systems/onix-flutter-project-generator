@@ -1,5 +1,3 @@
-import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastlane_generation_params.dart';
-
 enum GitCliffAsset {
   cliffMD(
     assetPath: 'assets/git_cliff',
