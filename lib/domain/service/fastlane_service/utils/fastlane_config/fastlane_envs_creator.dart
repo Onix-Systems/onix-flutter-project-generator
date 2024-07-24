@@ -8,7 +8,7 @@ class FastlaneEnvsCreator {
   const FastlaneEnvsCreator();
 
   Future<File> create({required String path, required String name}) {
-    final flavorName = name.isEmpty ? '' : '_$name';
+    final flavorName = name.isEmpty ? '' : '.$name';
     return File('$path.env$flavorName').create();
   }
 
