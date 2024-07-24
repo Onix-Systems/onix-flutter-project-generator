@@ -1,17 +1,17 @@
 abstract class MakefileBase {
   final String name;
-  final String args;
+  final String dependencies;
   final List<String> commands;
 
   const MakefileBase({
     required this.name,
     required this.commands,
-    this.args = '',
+    this.dependencies = '',
   });
 
   List<String> toArray() {
     return [
-      '$name:${args.isNotEmpty ? ' $args' : ''}',
+      '$name:${dependencies.isNotEmpty ? ' $dependencies' : ''}',
       ...commands.map((e) => '\t$e'),
       ''
     ];

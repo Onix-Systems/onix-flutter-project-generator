@@ -61,9 +61,9 @@ class GitCliffService implements BaseGenerationService<String> {
           ],
         ),
         MakefileLine(
-          name: 'full_releases_history',
+          name: 'changelog',
           commands: [
-            '@git cliff -c cliff_md.toml -o full_releases_history.md',
+            '@git cliff -c cliff_md.toml -o CHANGELOG.md',
           ],
         )
       ],

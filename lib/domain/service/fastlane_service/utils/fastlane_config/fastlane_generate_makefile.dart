@@ -46,13 +46,13 @@ abstract final class FastlaneGenerateMakefile {
               ),
               MakefileLine(
                 name: 'build_android${lineName}with_distribution',
-                args:
+                dependencies:
                     'build_android${lineName}firebase_only build_android${lineName}store_only',
                 commands: [],
               ),
               MakefileLine(
                 name: 'build_android${lineName}firebase_only',
-                args: 'build_android${lineName}apk',
+                dependencies: 'build_android${lineName}apk',
                 commands: [
                   '@echo "Distributing"',
                   '@cd android && bundle exec fastlane build ${lineFlavor}firebase:true artifact_type:apk $env',
@@ -60,7 +60,7 @@ abstract final class FastlaneGenerateMakefile {
               ),
               MakefileLine(
                 name: 'build_android${lineName}store_only',
-                args: 'build_android${lineName}aab',
+                dependencies: 'build_android${lineName}aab',
                 commands: [
                   '@echo "Distributing"',
                   '@cd android && bundle exec fastlane build ${lineFlavor}store:true artifact_type:aab $env',
@@ -109,14 +109,14 @@ abstract final class FastlaneGenerateMakefile {
               ),
               MakefileLine(
                 name: 'build_ios${lineName}with_distribution',
-                args: 'build${lineName}ios',
+                dependencies: 'build${lineName}ios',
                 commands: [
                   '@cd ios && bundle exec fastlane build ${lineFlavor}firebase:true test_flight:true $env',
                 ],
               ),
               MakefileLine(
                 name: 'build_ios${lineName}firebase_only',
-                args: 'build${lineName}ios',
+                dependencies: 'build${lineName}ios',
                 commands: [
                   '@echo "Distributing to the Firebase App Distribution"',
                   '@cd ios && bundle exec fastlane build ${lineFlavor}firebase:true $env',
@@ -124,7 +124,7 @@ abstract final class FastlaneGenerateMakefile {
               ),
               MakefileLine(
                 name: 'build_ios${lineName}test_flight_only',
-                args: 'build${lineName}ios',
+                dependencies: 'build${lineName}ios',
                 commands: [
                   '@echo "Distributing to the TestFlight"',
                   '@cd ios && bundle exec fastlane build ${lineFlavor}test_flight:true',
@@ -185,7 +185,8 @@ abstract final class FastlaneGenerateMakefile {
 
       commands.add(
         MakefileLine(
-          name: 'build_and_distribute$lineName: clean',
+          name: 'build_and_distribute$lineName',
+          dependencies: 'clean',
           commands: commandLines,
         ),
       );

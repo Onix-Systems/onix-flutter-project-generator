@@ -4,6 +4,6 @@ class MakefileLine extends MakefileBase {
   const MakefileLine({
     required super.name,
     required super.commands,
-    super.args,
+    super.dependencies,
   });
 }
