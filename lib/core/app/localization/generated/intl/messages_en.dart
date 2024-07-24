@@ -191,6 +191,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "projectExistsError": MessageLookupByLibrary.simpleMessage(
             "Project already exists, choose different name"),
         "projectName": MessageLookupByLibrary.simpleMessage("Project name"),
+        "projectNameHelperText": MessageLookupByLibrary.simpleMessage(
+            "Project name must be fully lowercase, with underscores to separate words. Also make sure that the name is a valid Dart identifier - it does not start with numbers, is not a reserved word, and does not start or end with an underscore."),
         "projectPath": MessageLookupByLibrary.simpleMessage("Project path"),
         "projectSelectErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Pubspec file not found in selected folder."),

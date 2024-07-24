@@ -23,15 +23,21 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     on<ProjectNameScreenEventBranchChanged>(_onBranchChanged);
   }
 
-  FutureOr<void> _onInit(
+  Future<void> _onInit(
     ProjectNameScreenEventInit event,
     Emitter<ProjectNameScreenState> emit,
   ) async {
+    emit(
+      ProjectNameScreenState.data(
+        config: event.config,
+        isValidProjectName: await _isValidProjectName(event.config.projectName),
+      ),
+    );
     final branches = await _getBranchesProcessUseCase();
-    emit(ProjectNameScreenState.data(config: event.config, branches: branches));
+    emit(state.copyWith(branches: branches));
   }
 
-  FutureOr<void> _onProjectNameChanged(
+  Future<void> _onProjectNameChanged(
     ProjectNameScreenEventProjectNameChanged event,
     Emitter<ProjectNameScreenState> emit,
   ) async {
@@ -45,20 +51,15 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
       return;
     }
 
-    final projectName = event.projectName.snakeCase;
-    final projectExists =
-        await Directory('${state.config.projectPath}/$projectName').exists();
-    final isValidName = ProjectNameValidator.isValidName(projectName);
-
     emit(
       state.copyWith(
-        config: state.config.copyWith(projectName: projectName),
-        isValidProjectName: !projectExists && isValidName,
+        config: state.config.copyWith(projectName: event.projectName.snakeCase),
+        isValidProjectName: await _isValidProjectName(event.projectName),
       ),
     );
   }
 
-  FutureOr<void> _onOrganizationChanged(
+  void _onOrganizationChanged(
     ProjectNameScreenEventOrganizationChanged event,
     Emitter<ProjectNameScreenState> emit,
   ) {
@@ -70,12 +71,22 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     );
   }
 
-  FutureOr<void> _onBranchChanged(
+  void _onBranchChanged(
     ProjectNameScreenEventBranchChanged event,
     Emitter<ProjectNameScreenState> emit,
   ) {
     emit(
-      state.copyWith(config: state.config.copyWith(branch: event.newBranch)),
+      state.copyWith(
+        config: state.config.copyWith(branch: event.newBranch),
+      ),
     );
+  }
+
+  Future<bool> _isValidProjectName(String projectName) async {
+    final projectExists =
+        await Directory('${state.config.projectPath}/${projectName.snakeCase}')
+            .exists();
+    final isValidName = ProjectNameValidator.isValidName(projectName);
+    return projectName.isNotEmpty && !projectExists && isValidName;
   }
 }

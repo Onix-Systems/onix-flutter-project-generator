@@ -1489,6 +1489,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Project name must be fully lowercase, with underscores to separate words. Also make sure that the name is a valid Dart identifier - it does not start with numbers, is not a reserved word, and does not start or end with an underscore.`
+  String get projectNameHelperText {
+    return Intl.message(
+      'Project name must be fully lowercase, with underscores to separate words. Also make sure that the name is a valid Dart identifier - it does not start with numbers, is not a reserved word, and does not start or end with an underscore.',
+      name: 'projectNameHelperText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

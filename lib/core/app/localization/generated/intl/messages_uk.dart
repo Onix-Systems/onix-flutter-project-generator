@@ -193,6 +193,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "projectExistsError": MessageLookupByLibrary.simpleMessage(
             "Проект з такою назвою вже існує"),
         "projectName": MessageLookupByLibrary.simpleMessage("Назва проекту"),
+        "projectNameHelperText": MessageLookupByLibrary.simpleMessage(
+            "Назва проєкту має бути повністю маленькими літерами, з підкресленнями, щоб відокремити слова. Також переконайтеся, що назва є дійсним ідентифікатором Dart - вона не починається з цифр, не є зарезервованим словом, не починається і не закінчується символом підкреслення"),
         "projectPath": MessageLookupByLibrary.simpleMessage("Шлях до проекту"),
         "projectSelectErrorMessage":
             MessageLookupByLibrary.simpleMessage("Pubspec файл не знайдено."),

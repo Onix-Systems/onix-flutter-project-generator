@@ -14,10 +14,12 @@ class TextFieldWithLabel extends StatelessWidget {
   final TextEditingController textController;
   final FocusNode? focusNode;
   final bool? autofocus;
+  final MainAxisSize? mainAxisSize;
 
   const TextFieldWithLabel({
     required this.label,
     required this.textController,
+    required this.onChanged,
     this.inputFormatters,
     this.error = false,
     this.centered = false,
@@ -26,14 +28,14 @@ class TextFieldWithLabel extends StatelessWidget {
     this.focusNode,
     this.autofocus,
     this.onEditingComplete,
-    required this.onChanged,
+    this.mainAxisSize,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: mainAxisSize ?? MainAxisSize.max,
       mainAxisAlignment:
           centered ? MainAxisAlignment.center : MainAxisAlignment.start,
       children: [
