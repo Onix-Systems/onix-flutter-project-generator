@@ -7,6 +7,8 @@ import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_p
 import 'package:onix_flutter_bricks/domain/service/git_cliff_service/enums/git_cliff_asset.dart';
 import 'package:onix_flutter_bricks/domain/service/git_cliff_service/params/git_cliff_params.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
+import 'package:onix_flutter_bricks/util/makefile/makefile_content.dart';
+import 'package:onix_flutter_bricks/util/makefile/makefile_line.dart';
 
 class GitCliffService implements BaseGenerationService<String> {
   @override
@@ -50,13 +52,24 @@ class GitCliffService implements BaseGenerationService<String> {
       contents.addNewLine();
     }
 
-    contents
-      ..add('release_notes:')
-      ..add('\t@git cliff --latest -c cliff_txt.toml -o release_notes.txt')
-      ..addNewLine()
-      ..add('full_releases_history:')
-      ..add('\t@git cliff -c cliff_md.toml -o full_releases_history.md')
-      ..addNewLine();
+    const makefile = MakefileContent(
+      commands: [
+        MakefileLine(
+          name: 'release_notes',
+          commands: [
+            '@git cliff --latest -c cliff_txt.toml -o release_notes.txt',
+          ],
+        ),
+        MakefileLine(
+          name: 'full_releases_history',
+          commands: [
+            '@git cliff -c cliff_md.toml -o full_releases_history.md',
+          ],
+        )
+      ],
+    );
+
+    contents.addAll(makefile.convertCommandsToListString());
 
     await file.writeAsString(contents.join('\n'));
   }
