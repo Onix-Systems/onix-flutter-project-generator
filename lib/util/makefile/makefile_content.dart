@@ -1,4 +1,3 @@
-import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/makefile/makefile_base.dart';
 
 class MakefileContent {
@@ -10,9 +9,7 @@ class MakefileContent {
     final array = <String>[];
 
     for (final line in commands) {
-      array
-        ..addAll(line.toArray())
-        ..addNewLine();
+      array.addAll(line.toArray());
     }
     return array;
   }
