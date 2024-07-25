@@ -38,7 +38,7 @@ dependencies:
   loader_overlay: ^4.0.0
   dio: ^5.4.0
   retry: ^3.1.2
-  connectivity_plus: ^5.0.2
+  connectivity_plus: ^6.0.3
   internet_connection_checker: ^1.0.0+1
   shared_preferences: ^2.2.2
   dio_cache_interceptor: ^3.5.0
