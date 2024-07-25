@@ -8,8 +8,8 @@ import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 
 class MapCommonServerError {
   static Failure getServerFailureDetails<T>(
-      DataResponse<T> failure,
-      ) {
+    DataResponse<T> failure,
+  ) {
     try {
       return failure.maybeWhen(
         undefinedError: (error, statusCode) => ApiFailure(
