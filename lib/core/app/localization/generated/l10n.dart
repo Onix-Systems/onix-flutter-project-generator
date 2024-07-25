@@ -1499,6 +1499,16 @@ class S {
       args: [],
     );
   }
+
+  /// `A digit cannot be the first character in a package segment. The package must have at least one '.’ separator. Multiple '.' characters are not allowed in a row.`
+  String get organizationNameHelperText {
+    return Intl.message(
+      'A digit cannot be the first character in a package segment. The package must have at least one \'.’ separator. Multiple \'.\' characters are not allowed in a row.',
+      name: 'organizationNameHelperText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

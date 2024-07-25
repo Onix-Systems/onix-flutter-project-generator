@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
@@ -15,6 +15,7 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_butto
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/text_field_with_label.dart';
 import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
+import 'package:onix_flutter_bricks/presentation/widget/tooltip_wrapper.dart';
 
 class ProjectNameScreen extends StatefulWidget {
   final Config config;
@@ -88,42 +89,48 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
                     ),
                     onEditingComplete: () => _nextFocus(state),
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp('[a-z0-9_]')),
+                      FilteringTextInputFormatter.allow(
+                        AppConsts.projectNameInputRegExp,
+                      ),
                     ],
                     mainAxisSize: MainAxisSize.min,
                   ),
                   const SizedBox(width: 12),
-                  Tooltip(
-                    triggerMode: TooltipTriggerMode.tap,
+                  TooltipWrapper(
                     message: S.of(context).projectNameHelperText,
-                    margin: const EdgeInsets.symmetric(horizontal: 150),
-                    textStyle: context.appTextStyles.caption14?.copyWith(
-                      color: context.appColors.darkColor,
-                    ),
-                    child: Icon(
-                      Icons.info_outline,
-                      size: 32,
-                      color: context.appColors.textColor,
-                    ),
                   ),
                 ],
               ),
               const Delimiter.height(20),
-              TextFieldWithLabel(
-                focusNode: organizationFocusNode,
-                label: S.of(context).organization,
-                centered: false,
-                textController: organizationController,
-                onChanged: () => blocOf(context).add(
-                  ProjectNameScreenEvent.organizationChanged(
-                    organization: organizationController.text,
-                  ),
-                ),
-                onEditingComplete: () => _nextFocus(state),
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9-.]')),
-                ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextFieldWithLabel(
+                    focusNode: organizationFocusNode,
+                    label: S.of(context).organization,
+                    centered: false,
+                    textController: organizationController,
+                    error: !state.isValidOrganizationName,
+                    onChanged: () => blocOf(context).add(
+                      ProjectNameScreenEvent.organizationChanged(
+                        organization: organizationController.text,
+                      ),
+                    ),
+                    onEditingComplete: () => _nextFocus(state),
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                        AppConsts.organizationInputRegExp,
+                      ),
+                    ],
+                    mainAxisSize: MainAxisSize.min,
+                  ),
+                  const SizedBox(width: 12),
+                  TooltipWrapper(
+                    message: S.of(context).organizationNameHelperText,
+                  ),
+                ],
               ),
             ],
           ),
@@ -154,7 +161,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
               focusNode: nextFocusNode,
               isActive: state.config.projectName.isNotEmpty &&
                   state.config.organization.isNotEmpty &&
-                  state.isValidProjectName,
+                  state.isValid,
               nextText: S.of(context).continueLabel,
               prevText: S.of(context).goBack,
               onNextPressed: () {

@@ -1,8 +1,8 @@
+import 'package:onix_flutter_bricks/core/app/app_consts.dart';
+
 abstract final class ProjectNameValidator {
   static bool isValidName(String value) {
-    return !value.startsWith(RegExp('[0-9]')) &&
-        !value.startsWith('_') &&
-        !value.endsWith('_') &&
+    return AppConsts.projectNameRegExp.hasMatch(value) &&
         !_packageDependencies.contains(value);
   }
 

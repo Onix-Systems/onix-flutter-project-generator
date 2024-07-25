@@ -177,6 +177,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "openInAndroidStudio":
             MessageLookupByLibrary.simpleMessage("Open in Android Studio"),
         "organization": MessageLookupByLibrary.simpleMessage("Organization"),
+        "organizationNameHelperText": MessageLookupByLibrary.simpleMessage(
+            "A digit cannot be the first character in a package segment. The package must have at least one \'.’ separator. Multiple \'.\' characters are not allowed in a row."),
         "organizationalUnit":
             MessageLookupByLibrary.simpleMessage(" Organizational unit"),
         "parseErrorMessage": MessageLookupByLibrary.simpleMessage(

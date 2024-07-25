@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc_imports.dart';
-import 'package:onix_flutter_bricks/util/extension/org_case.dart';
 import 'package:onix_flutter_bricks/util/project_name_validator.dart';
 import 'package:recase/recase.dart';
 
@@ -31,6 +31,8 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
       ProjectNameScreenState.data(
         config: event.config,
         isValidProjectName: await _isValidProjectName(event.config.projectName),
+        isValidOrganizationName:
+            _isValidOrganizationName(event.config.organization),
       ),
     );
     final branches = await _getBranchesProcessUseCase();
@@ -63,10 +65,19 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     ProjectNameScreenEventOrganizationChanged event,
     Emitter<ProjectNameScreenState> emit,
   ) {
+    if (event.organization.isEmpty) {
+      emit(
+        state.copyWith(
+          config: state.config.copyWith(organization: ''),
+          isValidOrganizationName: false,
+        ),
+      );
+    }
+
     emit(
       state.copyWith(
-        config:
-            state.config.copyWith(organization: event.organization.orgCase()),
+        config: state.config.copyWith(organization: event.organization),
+        isValidOrganizationName: _isValidOrganizationName(event.organization),
       ),
     );
   }
@@ -89,4 +100,7 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     final isValidName = ProjectNameValidator.isValidName(projectName);
     return projectName.isNotEmpty && !projectExists && isValidName;
   }
+
+  bool _isValidOrganizationName(String organization) =>
+      AppConsts.organizationRegExp.hasMatch(organization);
 }

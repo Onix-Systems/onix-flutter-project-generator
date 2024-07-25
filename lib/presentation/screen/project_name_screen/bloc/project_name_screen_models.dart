@@ -29,9 +29,14 @@ class ProjectNameScreenSR with _$ProjectNameScreenSR {
 
 @freezed
 class ProjectNameScreenState with _$ProjectNameScreenState {
+  const ProjectNameScreenState._();
+
   const factory ProjectNameScreenState.data({
     required Config config,
     @Default(false) bool isValidProjectName,
+    @Default(false) bool isValidOrganizationName,
     @Default([]) List<String> branches,
   }) = ProjectNameScreenStateData;
+
+  bool get isValid => isValidProjectName && isValidOrganizationName;
 }

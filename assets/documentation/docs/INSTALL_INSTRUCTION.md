@@ -201,7 +201,3 @@ You can also generate release notes and changelog without using fastlane. To do 
 3. Make sure the git repository is initialized in the project, you have at least one commit and a git tag with the release version is set on the last commit
 4. To generate release notes, call the `make release_notes` command in the terminal
 5. To generate a CHANGELOG, call the `make changelog` command in the terminal 
-
-
-
-
