@@ -32,22 +32,22 @@ void main() {
     });
 
     test('DataResponse.undefinedError with non DioExceptionType case',
-        () async {
-      Future<void> mockedRequest() {
-        throw mockedException;
-      }
+            () async {
+          Future<void> mockedRequest() {
+            throw mockedException;
+          }
 
-      final result =
+          final result =
           await requestProcessor.processRequest<void, OperationStatus>(
-        onRequest: mockedRequest,
-        onResponse: (_) => OperationStatus.success,
-      );
+            onRequest: mockedRequest,
+            onResponse: (_) => OperationStatus.success,
+          );
 
-      expect(
-        result,
-        const DataResponse<OperationStatus>.undefinedError(mockedException),
-      );
-    });
+          expect(
+            result,
+            const DataResponse<OperationStatus>.undefinedError(mockedException),
+          );
+        });
 
     test('DioExceptionType.connectionTimeout case', () async {
       Future<void> mockedRequest() {
@@ -60,7 +60,7 @@ void main() {
       }
 
       final result =
-          await requestProcessor.processRequest<void, OperationStatus>(
+      await requestProcessor.processRequest<void, OperationStatus>(
         onRequest: mockedRequest,
         onResponse: (_) => OperationStatus.success,
       );
@@ -82,7 +82,7 @@ void main() {
       }
 
       final result =
-          await requestProcessor.processRequest<void, OperationStatus>(
+      await requestProcessor.processRequest<void, OperationStatus>(
         onRequest: mockedRequest,
         onResponse: (_) => OperationStatus.success,
       );
@@ -107,7 +107,7 @@ void main() {
       }
 
       final result =
-          await requestProcessor.processRequest<void, OperationStatus>(
+      await requestProcessor.processRequest<void, OperationStatus>(
         onRequest: mockedRequest,
         onResponse: (_) => OperationStatus.success,
       );
@@ -132,7 +132,7 @@ void main() {
       }
 
       final result =
-          await requestProcessor.processRequest<void, OperationStatus>(
+      await requestProcessor.processRequest<void, OperationStatus>(
         onRequest: mockedRequest,
         onResponse: (_) => OperationStatus.success,
       );
@@ -157,7 +157,7 @@ void main() {
       }
 
       final result =
-          await requestProcessor.processRequest<void, OperationStatus>(
+      await requestProcessor.processRequest<void, OperationStatus>(
         onRequest: mockedRequest,
         onResponse: (_) => OperationStatus.success,
       );
@@ -188,7 +188,7 @@ void main() {
       }
 
       final result =
-          await requestProcessor.processRequest<void, OperationStatus>(
+      await requestProcessor.processRequest<void, OperationStatus>(
         onRequest: mockedRequest,
         onResponse: (_) => OperationStatus.success,
       );
@@ -200,6 +200,7 @@ void main() {
             name: 'name',
             code: 'code',
           ),
+          HttpStatus.badRequest,
         ),
       );
     });
@@ -220,14 +221,17 @@ void main() {
       }
 
       final result =
-          await requestProcessor.processRequest<void, OperationStatus>(
+      await requestProcessor.processRequest<void, OperationStatus>(
         onRequest: mockedRequest,
         onResponse: (_) => OperationStatus.success,
       );
 
       expect(
         result,
-        DataResponse<OperationStatus>.undefinedError(mockedException),
+        DataResponse<OperationStatus>.undefinedError(
+          mockedException,
+          HttpStatus.badRequest,
+        ),
       );
     });
 
@@ -250,7 +254,7 @@ void main() {
       }
 
       final result =
-          await requestProcessor.processRequest<void, OperationStatus>(
+      await requestProcessor.processRequest<void, OperationStatus>(
         onRequest: mockedRequest,
         onResponse: (_) => OperationStatus.success,
       );
@@ -277,14 +281,17 @@ void main() {
       }
 
       final result1 =
-          await requestProcessor.processRequest<void, OperationStatus>(
+      await requestProcessor.processRequest<void, OperationStatus>(
         onRequest: mockedRequest,
         onResponse: (_) => OperationStatus.success,
       );
 
       expect(
         result1,
-        DataResponse<OperationStatus>.undefinedError(mockedException),
+        DataResponse<OperationStatus>.undefinedError(
+          mockedException,
+          HttpStatus.internalServerError,
+        ),
       );
     });
 
@@ -304,14 +311,17 @@ void main() {
       }
 
       final result1 =
-          await requestProcessor.processRequest<void, OperationStatus>(
+      await requestProcessor.processRequest<void, OperationStatus>(
         onRequest: mockedRequest,
         onResponse: (_) => OperationStatus.success,
       );
 
       expect(
         result1,
-        DataResponse<OperationStatus>.undefinedError(mockedException),
+        DataResponse<OperationStatus>.undefinedError(
+          mockedException,
+          HttpStatus.serviceUnavailable,
+        ),
       );
     });
 
@@ -331,49 +341,59 @@ void main() {
       }
 
       final result1 =
-          await requestProcessor.processRequest<void, OperationStatus>(
+      await requestProcessor.processRequest<void, OperationStatus>(
         onRequest: mockedRequest,
         onResponse: (_) => OperationStatus.success,
       );
 
       expect(
         result1,
-        DataResponse<OperationStatus>.undefinedError(mockedException),
-      );
-    });
-
-    test('HttpStatus.badRequest with onCustomError case', () async {
-      const mockedApiError = DefaultApiError(
-        name: 'customError',
-        code: 'customErrorCode',
-      );
-
-      final mockedException = DioException(
-        message: '',
-        requestOptions: RequestOptions(),
-        response: Response(
-          requestOptions: RequestOptions(),
-          statusCode: HttpStatus.badRequest,
+        DataResponse<OperationStatus>.undefinedError(
+          mockedException,
+          HttpStatus.forbidden,
         ),
-        error: '',
-      );
-
-      Future<void> mockedRequest() {
-        throw mockedException;
-      }
-
-      final result =
-          await requestProcessor.processRequest<void, OperationStatus>(
-        onRequest: mockedRequest,
-        onResponse: (_) => OperationStatus.success,
-        onCustomError: (_, __) => mockedApiError,
-      );
-
-      expect(
-        result,
-        const DataResponse<OperationStatus>.apiError(mockedApiError),
       );
     });
+
+    test('Request is cancelled', () async {
+      final cancelToken = CancelToken();
+      final fetchDataFuture = Dio().get(
+        'https://jsonplaceholder.typicode.com/posts',
+        cancelToken: cancelToken,
+      );
+      cancelToken.cancel('Cancelled by user');
+      try {
+        await fetchDataFuture;
+        fail('Expected DioError to be thrown');
+      } catch (e) {
+        expect(e, isA<DioException>());
+        expect((e as DioException).type, DioExceptionType.cancel);
+        expect(e.error, 'Cancelled by user');
+      }
+    });
+
+    test('Request is cancelled and DataResponse.requestCanceled returned',
+            () async {
+          final cancelToken = CancelToken();
+          final fetchDataFuture = Dio().get(
+            'https://jsonplaceholder.typicode.com/posts',
+            cancelToken: cancelToken,
+          );
+          cancelToken.cancel('Cancelled by user');
+
+          final result = await requestProcessor.processRequest(
+            onRequest: () => fetchDataFuture,
+            onResponse: (e) {},
+          );
+
+          final failure = result.maybeWhen(
+            canceledRequest: () => true,
+            orElse: () => false,
+          );
+
+          expect(result.isError(), true);
+          expect(failure, true);
+        });
   });
 
   group('HttpStatus.kCodeSuccess tests', () {
@@ -397,7 +417,7 @@ void main() {
       }
 
       final result =
-          await requestProcessor.processRequest<Response<String>, String>(
+      await requestProcessor.processRequest<Response<String>, String>(
         onRequest: mockedRequest,
         onResponse: (response) => response.data as String,
       );
@@ -424,11 +444,11 @@ void main() {
       const mockedData = 'test';
 
       when(connectivity.checkConnectivity()).thenAnswer(
-        (_) async => [ConnectivityResult.none],
+            (_) async => [ConnectivityResult.none],
       );
 
       when(internetConnectionChecker.hasConnection).thenAnswer(
-        (_) async => false,
+            (_) async => false,
       );
 
       Future<Response<String>> mockedRequest() {
@@ -442,7 +462,7 @@ void main() {
       }
 
       final result =
-          await requestProcessor.processRequest<Response<String>, String>(
+      await requestProcessor.processRequest<Response<String>, String>(
         onRequest: mockedRequest,
         onResponse: (response) => response.data as String,
       );
@@ -454,11 +474,11 @@ void main() {
       const mockedData = 'test';
 
       when(connectivity.checkConnectivity()).thenAnswer(
-        (_) async => [ConnectivityResult.mobile],
+            (_) async => [ConnectivityResult.mobile],
       );
 
       when(internetConnectionChecker.hasConnection).thenAnswer(
-        (_) async => true,
+            (_) async => true,
       );
 
       Future<Response<String>> mockedRequest() {
@@ -472,7 +492,7 @@ void main() {
       }
 
       final result =
-          await requestProcessor.processRequest<Response<String>, String>(
+      await requestProcessor.processRequest<Response<String>, String>(
         onRequest: mockedRequest,
         onResponse: (response) => response.data as String,
       );
