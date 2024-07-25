@@ -13,4 +13,5 @@ class SwaggerConst {
   static const swaggerSourceSLDeclarationKey = '//{sources end}';
   static const swaggerSLImportsKey = '//{imports end}';
   static const swaggerRepoSLDeclarationKey = '//{repositories end}';
+  static const swaggerObjectDTO = 'Dto';
 }

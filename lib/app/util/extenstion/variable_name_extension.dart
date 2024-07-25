@@ -18,6 +18,10 @@ extension VariableNameExtension on String {
       return cleanFromSpaces.replaceAll(
           SwaggerConst.swaggerResponseTitleKey, '');
     }
+
+    if (cleanFromSpaces.contains(SwaggerConst.swaggerObjectDTO)) {
+      return cleanFromSpaces.replaceAll(SwaggerConst.swaggerObjectDTO, '');
+    }
     return cleanFromSpaces;
   }
 
