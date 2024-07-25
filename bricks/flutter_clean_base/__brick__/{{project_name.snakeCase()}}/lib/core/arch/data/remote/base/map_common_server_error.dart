@@ -1,14 +1,15 @@
-import 'package:clean_arch_sample/core/arch/data/remote/error/default_api_error.dart';
-import 'package:clean_arch_sample/core/arch/domain/entity/common/data_response.dart';
-import 'package:clean_arch_sample/core/arch/domain/entity/failure/api_failure.dart';
-import 'package:clean_arch_sample/core/arch/domain/entity/failure/canceled_request_failure.dart';
-import 'package:clean_arch_sample/core/arch/domain/entity/failure/failure.dart';
-import 'package:clean_arch_sample/core/arch/logger/app_logger_impl.dart';
+//@formatter:off
+import 'package:{{project_name}}/core/arch/data/remote/error/default_api_error.dart';
+import 'package:{{project_name}}/core/arch/domain/entity/common/data_response.dart';
+import 'package:{{project_name}}/core/arch/domain/entity/failure/api_failure.dart';
+import 'package:{{project_name}}/core/arch/domain/entity/failure/canceled_request_failure.dart';
+import 'package:{{project_name}}/core/arch/domain/entity/failure/failure.dart';
+import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 
 class MapCommonServerError {
   static Failure getServerFailureDetails<T>(
-    DataResponse<T> failure,
-  ) {
+      DataResponse<T> failure,
+      ) {
     try {
       return failure.maybeWhen(
         undefinedError: (error, statusCode) => ApiFailure(
