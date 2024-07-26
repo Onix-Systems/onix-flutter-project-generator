@@ -143,7 +143,6 @@ Future<void> getDependencies(HookContext context) async {
     'flutter_bloc',
     'flutter_secure_storage:^9.0.0',
     'shared_preferences',
-    'connectivity_plus',
     'internet_connection_checker',
     'retry',
     'encrypt',
@@ -154,6 +153,7 @@ Future<void> getDependencies(HookContext context) async {
     'flutter_dotenv',
     'flutter_jailbreak_detection',
     'gap',
+    'connectivity_plus',
   ];
 
   if (!context.vars['web_only']) {
