@@ -1,6 +1,6 @@
 import 'package:{{project_name}}/core/arch/data/remote/base/http_status.dart';
 import 'package:{{project_name}}/core/arch/data/remote/clients/dio/dio_request_processor/dio_request_processor.dart';
-import 'package:{{project_name}}/core/arch/data/remote/clients/dio/dio_request_processor/dio_request_processor_impl_test.dart';
+import 'package:{{project_name}}/core/arch/data/remote/clients/dio/dio_request_processor/dio_request_processor_impl.dart';
 import 'package:{{project_name}}/core/arch/data/remote/error/default_api_error.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/common/data_response.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/common/operation_status.dart';
@@ -11,7 +11,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'dio_request_processor_impl.mocks.dart';
+import 'dio_request_processor_impl.mocks_test.dart';
 
 class _MockedException implements Exception {
   const _MockedException();
