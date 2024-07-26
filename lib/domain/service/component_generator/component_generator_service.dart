@@ -5,6 +5,8 @@ import 'package:onix_flutter_bricks/app/swagger_const.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/data_components_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
+import 'package:onix_flutter_bricks/core/extension/logger_extension.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_reference.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
@@ -22,49 +24,58 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
       return 'Incorrect params';
     }
 
-    final projectLibFolder = '${params.projectPath}/${params.projectName}/lib';
+    print(params.components.dataObjects);
 
-    await _createEnums(
-      projectLibFolder,
-      params.projectName,
-      params.components.enums,
-      params.components.dataObjects,
-    );
+    try {
+      final projectLibFolder =
+          '${params.projectPath}/${params.projectName}/lib';
 
-    final addedDataComponents = List<DataObjectComponent>.empty(growable: true);
-
-    for (var i = 0; i < params.components.sources.length; i++) {
-      final source = params.components.sources[i];
-
-      await _createRequestEnums(
+      await _createEnums(
         projectLibFolder,
         params.projectName,
-        source.requests,
-      );
-
-      final sourceObjects = source.getSourceObjects();
-      final createdComponents = await _createObjects(
-        projectLibFolder,
-        params.projectName,
-        sourceObjects,
+        params.components.enums,
         params.components.dataObjects,
       );
-      addedDataComponents.addAll(createdComponents);
 
-      await _createSource(
+      final addedDataComponents =
+          List<DataObjectComponent>.empty(growable: true);
+
+      for (final source in params.components.sources) {
+        await _createRequestEnums(
+          projectLibFolder,
+          params.projectName,
+          source.requests,
+        );
+
+        final sourceObjects = source.getSourceObjects();
+        final createdComponents = await _createObjects(
+          projectLibFolder,
+          params.projectName,
+          sourceObjects,
+          params.components.dataObjects,
+        );
+        addedDataComponents.addAll(createdComponents);
+
+        await _createSource(
+          projectLibFolder,
+          params.projectName,
+          source,
+        );
+      }
+
+      final addedComponentsDistinct = addedDataComponents.distinct();
+
+      await _createEntities(
         projectLibFolder,
         params.projectName,
-        source,
+        addedComponentsDistinct,
       );
-    }
-    final addedComponentsDistinct = addedDataComponents.distinct();
-    await _createEntities(
-      projectLibFolder,
-      params.projectName,
-      addedComponentsDistinct,
-    );
 
-    return '';
+      return '';
+    } catch (e, s) {
+      logger.crash(error: e, stackTrace: s);
+      return e.toString();
+    }
   }
 
   Future<void> _createSource(

@@ -9,6 +9,7 @@ import 'package:onix_flutter_bricks/domain/service/base/class_builder/class_buil
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/freezed_class_builder.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/json_class_builder.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
+import 'package:onix_flutter_bricks/util/reversed_word_processor.dart';
 import 'package:recase/recase.dart';
 
 part 'data_object_component.freezed.dart';
@@ -323,8 +324,10 @@ class DataObjectComponent with _$DataObjectComponent {
     DataFileType type,
   ) {
     final sorted = variables.sortByRequired();
+
     return sorted.map((e) {
-      return 'required ${e.type.getTypeDeclaration(type)} ${e.name.camelCase},';
+      final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
+      return 'required ${e.type.getTypeDeclaration(type)} $name,';
     }).toList();
   }
 
@@ -333,7 +336,8 @@ class DataObjectComponent with _$DataObjectComponent {
   ) {
     final sorted = variables.sortByRequired();
     return sorted.map((e) {
-      return '${e.name.camelCase}: ${e.type.getDefaultReturnType(type)} ,';
+      final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
+      return '$name: ${e.type.getDefaultReturnType(type)} ,';
     }).toList();
   }
 
@@ -342,8 +346,9 @@ class DataObjectComponent with _$DataObjectComponent {
   ) {
     final sorted = variables.sortByRequired();
     return sorted.map((e) {
+      final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
       final requiredPrefix = e.isRequired ? 'required' : '';
-      return '$requiredPrefix this.${e.name.camelCase},';
+      return '$requiredPrefix this.$name,';
     }).toList();
   }
 
@@ -353,7 +358,8 @@ class DataObjectComponent with _$DataObjectComponent {
     final sorted = variables.sortByRequired();
     return sorted.map((e) {
       final requiredSuffix = e.isRequired ? '' : '?';
-      return '@JsonKey(name: \'${e.name}\')\nfinal ${e.type.getTypeDeclaration(type)}$requiredSuffix ${e.name.camelCase};';
+      final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
+      return '@JsonKey(name: \'${e.name}\')\nfinal ${e.type.getTypeDeclaration(type)}$requiredSuffix $name;';
     }).toList();
   }
 }
