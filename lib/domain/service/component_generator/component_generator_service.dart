@@ -24,8 +24,6 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
       return 'Incorrect params';
     }
 
-    print(params.components.dataObjects);
-
     try {
       final projectLibFolder =
           '${params.projectPath}/${params.projectName}/lib';
@@ -84,7 +82,7 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
     SourceComponent sourceComponent,
   ) async {
     final rawFolder = sourceComponent.getFolderPath(projectLibFolder);
-    await _createFolders(rawFolder);
+    await _createFolders(rawFolder, '_createSource');
 
     ///Create declaration
     final declarationFilePath =
@@ -136,7 +134,7 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
         sourceComponent.getRepositoryDeclarationFolderPath(
       projectLibFolder,
     );
-    await _createFolders(repoDeclarationFolder);
+    await _createFolders(repoDeclarationFolder, '_createSource');
 
     final repoDeclarationFilePath =
         sourceComponent.getRepoDeclarationFilePath(projectLibFolder);
@@ -150,7 +148,7 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
     final repoImplFolder = sourceComponent.getRepositoryImplFolderPath(
       projectLibFolder,
     );
-    await _createFolders(repoImplFolder);
+    await _createFolders(repoImplFolder, '_createRepoImpl');
 
     final repoImplFilePath =
         sourceComponent.getRepoImplementationFilePath(projectLibFolder);
@@ -214,7 +212,7 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
       }
       final fileFolder = '$projectLibFolder/$fileRawFolder';
       final filePath = '$projectLibFolder/$fileRawPath';
-      await _createFolders(fileFolder);
+      await _createFolders(fileFolder, '_createObjects');
 
       final body = dataObject.getObjectBody(
         projectName,
@@ -226,6 +224,8 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
       );
       if (objectAdded) {
         addedDataComponents.add(dataObject);
+      } else {
+        continue;
       }
 
       final innerReferences = _getObjectInnerReferences(
@@ -262,7 +262,7 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
       }
       final entityFolder = '$projectLibFolder/$entityRawFolder';
       final entityPath = '$projectLibFolder/$entityRawPath';
-      await _createFolders(entityFolder);
+      await _createFolders(entityFolder, '_createEntities');
 
       final entityBody = e.getObjectBody(
         projectName,
@@ -277,7 +277,7 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
       final mapperRawPath = e.getObjectMapperFilePath();
       final mapperFolder = '$projectLibFolder/$mapperRawFolder';
       final mapperPath = '$projectLibFolder/$mapperRawPath';
-      await _createFolders(mapperFolder);
+      await _createFolders(mapperFolder, '_createMappersEntities');
       final requestRawFilePath =
           e.fileReference.getFileImportName(DataFileType.request);
       final responseRawFilePath =
@@ -321,7 +321,7 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
 
     for (var e in enumsCopy) {
       final folderPath = e.getFolderPath(projectLibFolder);
-      await _createFolders(folderPath);
+      await _createFolders(folderPath, '_createEnums');
       final filePath = e.getFilePath(projectLibFolder);
 
       final body = e.getEnumFileBody();
@@ -389,7 +389,7 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
 
     for (var e in enumsCopy) {
       final folderPath = e.getFolderPath(projectLibFolder);
-      await _createFolders(folderPath);
+      await _createFolders(folderPath, '_createRequestEnums');
       final filePath = e.getFilePath(projectLibFolder);
 
       final body = e.getEnumFileBody();
@@ -419,21 +419,36 @@ class ComponentGeneratorService implements BaseGenerationService<String> {
     required String fileBody,
   }) async {
     final file = File(filePath);
-    final isAlreadyExist = await file.exists();
-    if (isAlreadyExist) {
+    try {
+      final isAlreadyExist = await file.exists();
+      if (isAlreadyExist) {
+        logger.i('File already exists: $filePath');
+        return false;
+      }
+      await file.create(recursive: true);
+      await file.writeAsString(fileBody);
+      logger.i('File created: $filePath');
+      return true;
+    } catch (e) {
+      logger.crash(error: e, stackTrace: StackTrace.current);
       return false;
     }
-
-    await file.create();
-    await file.writeAsString(fileBody);
-    return true;
   }
 
-  Future<void> _createFolders(String path) async {
-    final directory = Directory(path);
-    final exist = await directory.exists();
-    if (!exist) {
-      await Directory(path).create(recursive: true);
+  Future<void> _createFolders(
+    String path,
+    String methodCaller,
+  ) async {
+    try {
+      final directory = Directory(path);
+      if (await directory.exists()) {
+        logger.i('$methodCaller. Directory already exists: $path');
+      } else {
+        await directory.create(recursive: true);
+        logger.i('$methodCaller. Directory created: $path');
+      }
+    } catch (e) {
+      logger.crash(error: e, stackTrace: StackTrace.current);
     }
   }
 }

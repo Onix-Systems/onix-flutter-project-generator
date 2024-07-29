@@ -47,9 +47,13 @@ class JsonClassBuilder extends ClassBuilder {
     lines.addNewLine();
     lines.addAll(_variableDeclarations);
     lines.addNewLine();
-    lines.add('const $classFullName({');
-    lines.addAll(_baseConstructorProperties);
-    lines.add('});');
+    if(_variableDeclarations.isEmpty) {
+      lines.add('const $classFullName();');
+    } else {
+      lines.add('const $classFullName({');
+      lines.addAll(_baseConstructorProperties);
+      lines.add('});');
+    }
     lines.addNewLine();
     lines.add(
         'factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);');

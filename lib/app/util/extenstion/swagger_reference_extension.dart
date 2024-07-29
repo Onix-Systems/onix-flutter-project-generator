@@ -8,8 +8,9 @@ extension SwaggerReferenceExtenson on SwaggerReference {
     return 'import \'package:$projectName/data/mapper/$name/${name}_mapper.dart\';';
   }
 
-  String getReferenceMapperDeclaration() {
+  String getReferenceMapperDeclaration({bool private = true}) {
     final name = getTypeDeclaration(DataFileType.none);
-    return 'final _${name.camelCase}Mappers = ${name}Mappers();';
+    final visibilitySymbol = private ? '_' : '';
+    return 'final $visibilitySymbol${name.camelCase}Mappers = ${name}Mappers();';
   }
 }

@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/enum/mapper_type.dart';
+import 'package:onix_flutter_bricks/app/util/extenstion/swagger_reference_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_sort_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
@@ -219,41 +220,41 @@ class DataObjectComponent with _$DataObjectComponent {
   }
 
   List<String> _getInnerMapperVariables() {
-    final codeLines = List<String>.empty(growable: true);
+    final codeLines = <String>{};
     for (var variable in variables) {
       if (variable.type is SwaggerReference) {
-        final namePrefix = variable.type.getTypeDeclaration(DataFileType.none);
-        codeLines.add(
-            'final ${namePrefix.camelCase}Mappers = ${namePrefix}Mappers();');
+        final reference = variable.type as SwaggerReference;
+        codeLines.add(reference.getReferenceMapperDeclaration(private: false));
       } else if (variable.type is SwaggerArray) {
         final array = variable.type as SwaggerArray;
         if (array.itemType.type is SwaggerReference) {
           final reference = array.itemType.type as SwaggerReference;
-          final namePrefix = reference.getTypeDeclaration(DataFileType.none);
-          final itemNamePrefix =
-              reference.getTypeDeclaration(DataFileType.none);
-          codeLines.add(
-              'final ${itemNamePrefix.camelCase}Mappers = ${namePrefix}Mappers();');
+          codeLines
+              .add(reference.getReferenceMapperDeclaration(private: false));
         }
       }
     }
-    return codeLines;
+    return codeLines.toList();
   }
 
   List<String> _getMapperObjectVariablesContent(MapperType type) {
     final codeLines = List<String>.empty(growable: true);
     for (var variable in variables) {
+      final variableName =
+          ReservedWordProcessor.checkAndReplaceReservedWord(variable.name)
+              .camelCase;
+
       if (variable.type is SwaggerReference) {
         final name = (variable.type as SwaggerReference)
             .getTypeDeclaration(DataFileType.none);
 
         if (variable.isRequired || type == MapperType.mapEntityToRequest) {
           codeLines.add(
-            '${variable.name.camelCase}: ${name.camelCase}Mappers.${type.name}(from.${variable.name.camelCase}),',
+            '$variableName: ${name.camelCase}Mappers.${type.name}(from.$variableName),',
           );
         } else {
           codeLines.add(
-              '${variable.name.camelCase}: (from.${variable.name.camelCase} != null) ? ${name.camelCase}Mappers.${type.name}(from.${variable.name.camelCase}!) : ${variable.type.getDefaultReturnType(DataFileType.entity)},');
+              '$variableName: (from.$variableName != null) ? ${name.camelCase}Mappers.${type.name}(from.$variableName!) : ${variable.type.getDefaultReturnType(DataFileType.entity)},');
         }
       } else if (variable.type is SwaggerArray) {
         final array = variable.type as SwaggerArray;
@@ -262,27 +263,25 @@ class DataObjectComponent with _$DataObjectComponent {
           final className = reference.getTypeDeclaration(DataFileType.none);
           if (variable.isRequired || type == MapperType.mapEntityToRequest) {
             codeLines.add(
-                '${variable.name.camelCase}: from.${variable.name.camelCase}.map(${className.camelCase}Mappers.${type.name},).toList(),');
+                '$variableName: from.$variableName.map(${className.camelCase}Mappers.${type.name},).toList(),');
           } else {
             codeLines.add(
-                '${variable.name.camelCase}: (from.${variable.name.camelCase} != null) ? from.${variable.name.camelCase}!.map(${className.camelCase}Mappers.${type.name},).toList() : [],');
+                '$variableName: (from.$variableName != null) ? from.$variableName!.map(${className.camelCase}Mappers.${type.name},).toList() : [],');
           }
         } else {
           if (variable.isRequired || type == MapperType.mapEntityToRequest) {
-            codeLines.add(
-                '${variable.name.camelCase}: from.${variable.name.camelCase},');
+            codeLines.add('$variableName: from.$variableName,');
           } else {
             codeLines.add(
-                '${variable.name.camelCase}: from.${variable.name.camelCase} ?? ${variable.type.getDefaultReturnType(DataFileType.entity)},');
+                '$variableName: from.$variableName ?? ${variable.type.getDefaultReturnType(DataFileType.entity)},');
           }
         }
       } else {
         if (variable.isRequired || type == MapperType.mapEntityToRequest) {
-          codeLines.add(
-              '${variable.name.camelCase}: from.${variable.name.camelCase},');
+          codeLines.add('$variableName: from.$variableName,');
         } else {
           codeLines.add(
-              '${variable.name.camelCase}: from.${variable.name.camelCase} ?? ${variable.type.getDefaultReturnType(DataFileType.entity)},');
+              '$variableName: from.$variableName ?? ${variable.type.getDefaultReturnType(DataFileType.entity)},');
         }
       }
     }
@@ -326,7 +325,8 @@ class DataObjectComponent with _$DataObjectComponent {
     final sorted = variables.sortByRequired();
 
     return sorted.map((e) {
-      final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
+      final name =
+          ReservedWordProcessor.checkAndReplaceReservedWord(e.name).camelCase;
       return 'required ${e.type.getTypeDeclaration(type)} $name,';
     }).toList();
   }
@@ -336,7 +336,8 @@ class DataObjectComponent with _$DataObjectComponent {
   ) {
     final sorted = variables.sortByRequired();
     return sorted.map((e) {
-      final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
+      final name =
+          ReservedWordProcessor.checkAndReplaceReservedWord(e.name).camelCase;
       return '$name: ${e.type.getDefaultReturnType(type)} ,';
     }).toList();
   }
@@ -346,7 +347,8 @@ class DataObjectComponent with _$DataObjectComponent {
   ) {
     final sorted = variables.sortByRequired();
     return sorted.map((e) {
-      final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
+      final name =
+          ReservedWordProcessor.checkAndReplaceReservedWord(e.name).camelCase;
       final requiredPrefix = e.isRequired ? 'required' : '';
       return '$requiredPrefix this.$name,';
     }).toList();
@@ -358,7 +360,8 @@ class DataObjectComponent with _$DataObjectComponent {
     final sorted = variables.sortByRequired();
     return sorted.map((e) {
       final requiredSuffix = e.isRequired ? '' : '?';
-      final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
+      final name =
+          ReservedWordProcessor.checkAndReplaceReservedWord(e.name).camelCase;
       return '@JsonKey(name: \'${e.name}\')\nfinal ${e.type.getTypeDeclaration(type)}$requiredSuffix $name;';
     }).toList();
   }

@@ -38,16 +38,22 @@ class FreezedClassBuilder extends ClassBuilder {
     lines.addNewLine();
     lines.add('@freezed');
     lines.add('class $classFullName with _\$$classFullName {');
-    lines.add('factory $classFullName({');
-    lines.addAll(_baseConstructorProperties);
-    lines.add('}) = _$classFullName;');
+    if (_baseConstructorProperties.isEmpty) {
+      lines.add('factory $classFullName() = _$classFullName;');
+    } else {
+      lines.add('factory $classFullName({');
+      lines.addAll(_baseConstructorProperties);
+      lines.add('}) = _$classFullName;');
+    }
     lines.addNewLine();
     if (_emptyConstructorProperties.isNotEmpty) {
       lines.add('factory $classFullName.empty() => $classFullName(');
       lines.addAll(_emptyConstructorProperties);
       lines.add(');');
-      lines.addNewLine();
+    } else {
+      lines.add('factory $classFullName.empty() => $classFullName();');
     }
+    lines.addNewLine();
     lines.add('}');
     lines.addNewLine();
     return super.build();
