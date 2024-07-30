@@ -211,7 +211,7 @@ class SwaggerOperationDefault extends SwaggerType {
   String? getFileFolder(DataFileType fileType) => null;
 
   @override
-  String? getDefaultReturnType(fileType) => 'OperationStatus.failed';
+  String? getDefaultReturnType(fileType) => 'OperationStatus.success';
 }
 
 class SwaggerFile extends SwaggerType {

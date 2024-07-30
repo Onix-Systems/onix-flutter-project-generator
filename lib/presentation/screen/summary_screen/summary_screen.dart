@@ -62,12 +62,13 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Delimiter.height(100),
+            const SizedBox(height: 10),
             Expanded(
               child: ListView(
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 children: [
+                  const Delimiter.height(100),
                   SummaryCell(
                     variable: S.of(context).projectPath,
                     value: state.config.projectPath,

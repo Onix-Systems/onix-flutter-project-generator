@@ -18,31 +18,31 @@ class StylesWidget extends StatelessWidget {
       ..sort((a, b) => a.name.compareTo(b.name));
     final textStyles = styles.whereType<AppTextStyle>().toList()
       ..sort((a, b) => a.name.compareTo(b.name));
+
     return Material(
       color: Colors.transparent,
       child: Center(
-          child: DecoratedBox(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: context.appColors.fadedColor),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: CustomScrollView(
-            shrinkWrap: false,
-            slivers: [
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: Text(
-                    'Color styles:',
-                    textAlign: TextAlign.center,
-                    style: context.appTextStyles.fs18,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: context.appColors.fadedColor),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Text(
+                      'Color styles:',
+                      textAlign: TextAlign.center,
+                      style: context.appTextStyles.fs18,
+                    ),
                   ),
                 ),
-              ),
-              SliverToBoxAdapter(
-                child: Wrap(
+                SliverToBoxAdapter(
+                  child: Wrap(
                     spacing: 10,
                     runSpacing: 10,
                     alignment: WrapAlignment.center,
@@ -51,33 +51,35 @@ class StylesWidget extends StatelessWidget {
                     children: List.generate(
                       colorStyles.where((e) => e.validate()).length,
                       (index) => ColorStyleItem(
-                          colorStyle: colorStyles
-                              .where((e) => e.validate())
-                              .toList()[index]),
-                    )),
-              ),
-              if (colorStyles.where((e) => !e.validate()).isNotEmpty)
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            color: context.appColors.alarmColor, width: 2),
+                        colorStyle: colorStyles
+                            .where((e) => e.validate())
+                            .toList()[index],
                       ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Invalid color styles:',
-                            textAlign: TextAlign.center,
-                            style: context.appTextStyles.fs18?.copyWith(
-                              color: context.appColors.alarmColor,
+                    ),
+                  ),
+                ),
+                if (colorStyles.where((e) => !e.validate()).isNotEmpty)
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              color: context.appColors.alarmColor, width: 2),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Invalid color styles:',
+                              textAlign: TextAlign.center,
+                              style: context.appTextStyles.fs18?.copyWith(
+                                color: context.appColors.alarmColor,
+                              ),
                             ),
-                          ),
-                          const Delimiter.height(10),
-                          Wrap(
+                            const Delimiter.height(10),
+                            Wrap(
                               spacing: 10,
                               runSpacing: 10,
                               alignment: WrapAlignment.center,
@@ -86,82 +88,87 @@ class StylesWidget extends StatelessWidget {
                               children: List.generate(
                                 colorStyles.where((e) => !e.validate()).length,
                                 (index) => ColorStyleItem(
-                                    colorStyle: colorStyles
-                                        .where((e) => !e.validate())
-                                        .toList()[index]),
-                              )),
-                        ],
+                                  colorStyle: colorStyles
+                                      .where((e) => !e.validate())
+                                      .toList()[index],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 10),
-                  child: Text(
-                    'Text styles:',
-                    textAlign: TextAlign.center,
-                    style: context.appTextStyles.fs18,
-                  ),
-                ),
-              ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) => Padding(
-                    padding: EdgeInsets.only(top: index > 0 ? 8 : 0),
-                    child: TextStyleItem(
-                        textStyle: textStyles
-                            .where((e) => e.validate())
-                            .toList()[index]),
-                  ),
-                  childCount: textStyles.where((e) => e.validate()).length,
-                ),
-              ),
-              if (textStyles.where((e) => !e.validate()).isNotEmpty)
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            color: context.appColors.alarmColor, width: 2),
+                    padding: const EdgeInsets.only(top: 20, bottom: 10),
+                    child: Text(
+                      'Text styles:',
+                      textAlign: TextAlign.center,
+                      style: context.appTextStyles.fs18,
+                    ),
+                  ),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => Padding(
+                      padding: EdgeInsets.only(top: index > 0 ? 8 : 0),
+                      child: TextStyleItem(
+                        textStyle: textStyles
+                            .where((e) => e.validate())
+                            .toList()[index],
                       ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Invalid text styles:',
-                            textAlign: TextAlign.center,
-                            style: context.appTextStyles.fs18?.copyWith(
-                              color: context.appColors.alarmColor,
+                    ),
+                    childCount: textStyles.where((e) => e.validate()).length,
+                  ),
+                ),
+                if (textStyles.where((e) => !e.validate()).isNotEmpty)
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              color: context.appColors.alarmColor, width: 2),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Invalid text styles:',
+                              textAlign: TextAlign.center,
+                              style: context.appTextStyles.fs18?.copyWith(
+                                color: context.appColors.alarmColor,
+                              ),
                             ),
-                          ),
-                          const Delimiter.height(10),
-                          ListView.builder(
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) => Padding(
+                            const Delimiter.height(10),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              padding: EdgeInsets.zero,
+                              itemBuilder: (context, index) => Padding(
                                 padding:
                                     EdgeInsets.only(top: index > 0 ? 8 : 0),
                                 child: TextStyleItem(
-                                    textStyle: textStyles
-                                        .where((e) => !e.validate())
-                                        .toList()[index])),
-                            itemCount:
-                                textStyles.where((e) => !e.validate()).length,
-                          ),
-                        ],
+                                  textStyle: textStyles
+                                      .where((e) => !e.validate())
+                                      .toList()[index],
+                                ),
+                              ),
+                              itemCount:
+                                  textStyles.where((e) => !e.validate()).length,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              const SliverToBoxAdapter(
-                child: Delimiter.height(20),
-              )
-            ],
+                const SliverToBoxAdapter(child: Delimiter.height(20))
+              ],
+            ),
           ),
         ),
-      )),
+      ),
     );
   }
 }

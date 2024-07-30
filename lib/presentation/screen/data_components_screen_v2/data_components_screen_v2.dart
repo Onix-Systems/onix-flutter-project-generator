@@ -45,49 +45,43 @@ class _DataComponentsScreenState extends BaseState<
     return srObserver(
       context: context,
       child: CupertinoPageScaffold(
-        navigationBar: TitleBar(
-          title: S.of(context).dataComponents,
-        ),
+        navigationBar: TitleBar(title: S.of(context).dataComponents),
         child: blocBuilder(
-          builder: (
-            context,
-            state,
-          ) {
+          builder: (context, state) {
             final components = state.components;
             return Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  const Delimiter.height(100),
-                  (components == null)
-                      ? Material(
-                          color: Colors.transparent,
-                          child: Text(
-                            S.of(context).noDataComponents,
-                            style: const TextStyle(
-                              fontSize: 22,
-                            ),
-                          ),
-                        )
-                      : Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                color: context.appColors.controlColor,
-                              ),
-                            ),
-                            child: Material(
-                              color: Colors.transparent,
-                              child: DataComponentsContent(
-                                components: components,
-                              ),
-                            ),
+                  if (components == null) ...[
+                    const Delimiter.height(100),
+                    Material(
+                      color: Colors.transparent,
+                      child: Text(
+                        S.of(context).noDataComponents,
+                        style: const TextStyle(fontSize: 22),
+                      ),
+                    ),
+                  ] else
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: context.appColors.controlColor,
                           ),
                         ),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: DataComponentsContent(
+                            components: components,
+                          ),
+                        ),
+                      ),
+                    ),
                   const Delimiter.height(10),
                   NavigationButtonBar(
                     nextText: S.of(context).continueLabel,
