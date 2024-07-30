@@ -66,7 +66,6 @@ class RequestComponent with _$RequestComponent {
     final codeLines = List<String>.empty(growable: true);
     final responseType =
         response.type.getTypeDeclaration(DataFileType.response);
-    codeLines.add('///$description');
 
     codeLines
         .add('Future<DataResponse<$responseType>> ${operationId.camelCase}(');
@@ -91,7 +90,7 @@ class RequestComponent with _$RequestComponent {
         response.type.getTypeDeclaration(DataFileType.response);
     final responseClosure =
         response.type.getDefaultParserClosure(DataFileType.response);
-    codeLines.add('///$description');
+    codeLines.addAll(_descriptionArray());
 
     ///Function start
     codeLines.add('@override');
@@ -201,7 +200,7 @@ class RequestComponent with _$RequestComponent {
   String getRepoDeclarationBody() {
     final codeLines = List<String>.empty(growable: true);
     final returnType = response.type.getTypeDeclaration(DataFileType.entity);
-    codeLines.add('///$description');
+    codeLines.addAll(_descriptionArray());
     codeLines.add('Future<Result<$returnType>> ${operationId.camelCase}(');
 
     ///Create function input params
@@ -221,7 +220,7 @@ class RequestComponent with _$RequestComponent {
     final returnType = response.type.getTypeDeclaration(DataFileType.entity);
     final codeLines = List<String>.empty(growable: true);
     codeLines.add('@override');
-    codeLines.add('///$description');
+    codeLines.addAll(_descriptionArray());
     codeLines.add('Future<Result<$returnType>> ${operationId.camelCase}(');
 
     ///Create function input params
@@ -371,5 +370,22 @@ class RequestComponent with _$RequestComponent {
       }
     }
     return codeLines.join('\n');
+  }
+
+  List<String> _descriptionArray() {
+    if (description.isEmpty) return <String>[];
+
+    final formattedArray = <String>[];
+    final descriptionArray = description.replaceAll('///', '').split('\n');
+
+    for (final desc in descriptionArray) {
+      if (desc.isEmpty) {
+        continue;
+      }
+
+      formattedArray.add('/// $desc');
+    }
+
+    return formattedArray;
   }
 }

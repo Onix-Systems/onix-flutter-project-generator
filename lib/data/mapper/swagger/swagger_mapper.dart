@@ -84,9 +84,7 @@ class SwaggerMapper {
       final request = RequestComponent(
         path: path.path,
         type: path.type,
-        // (Ivan Modlo): temporary commented code
-        // description: path.description,
-        description: '',
+        description: "${path.description}",
         operationId: path.operationId,
         response: requestResponseParam,
         requestBody: requestBody,
