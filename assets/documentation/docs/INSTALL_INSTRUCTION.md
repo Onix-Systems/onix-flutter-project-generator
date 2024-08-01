@@ -180,8 +180,24 @@ To fix that run following command in IDE terminal:
 
 `cd ios && pod cache clean --all && pod repo update && pod update && cd .. && flutter clean && flutter pub get`   
 
- 
+## Automatic posting of release notes to slack after build through fastlane
 
+In order for fastlane to send release notes to slack channel you need:
 
+1. Install the `git cliff` generator [following this link](https://git-cliff.org/docs/)
+2. Make sure that the `cliff_txt.toml` and `cliff_md.toml` files are created in the project root and configured correctly
+3. Make sure the git repository is initialized in the project, you have at least one commit and a git tag with the release version is set on the last commit
+4. Go to the ios or android fastlane directory, then and add/update the key `SLACK_URL` with a incoming webhook URL to each `.env_{flavor_name)` file
+5. Optionally. In `fastlane_config.yaml` you can specify additional settings for slack
 
+Now you can build and deploy builds through fastlane with message notification and release notes to the slack channel
 
+## Manual creation of release notes and changelogs
+
+You can also generate release notes and changelog without using fastlane. To do this you need to:
+
+1. Install the `git cliff` generator [following this link](https://git-cliff.org/docs/)
+2. Make sure that the `cliff_txt.toml` and `cliff_md.toml` files are created in the project root and configured correctly
+3. Make sure the git repository is initialized in the project, you have at least one commit and a git tag with the release version is set on the last commit
+4. To generate release notes, call the `make release_notes` command in the terminal
+5. To generate a CHANGELOG, call the `make changelog` command in the terminal 

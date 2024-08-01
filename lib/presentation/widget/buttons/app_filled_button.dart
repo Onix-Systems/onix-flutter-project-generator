@@ -33,7 +33,7 @@ class AppFilledButton extends StatefulWidget {
 }
 
 class _AppFilledButtonState extends State<AppFilledButton> {
-   Color get _defaultColor => context.appColors.textColor;
+  Color get _defaultColor => context.appColors.textColor;
   bool hovered = false;
   bool focused = false;
 
@@ -130,7 +130,9 @@ class _AppFilledButtonState extends State<AppFilledButton> {
   }
 
   Color _textColor() {
-    return (widget.color ?? context.appColors.controlColor).computeLuminance() >= 0.4
+    return (widget.color ?? context.appColors.controlColor)
+                .computeLuminance() >=
+            0.4
         ? context.appColors.darkColor
         : context.appColors.textColor;
   }

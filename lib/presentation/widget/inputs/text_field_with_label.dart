@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
-
 class TextFieldWithLabel extends StatelessWidget {
   final String label;
   final String? subLabel;
@@ -15,10 +14,12 @@ class TextFieldWithLabel extends StatelessWidget {
   final TextEditingController textController;
   final FocusNode? focusNode;
   final bool? autofocus;
+  final MainAxisSize? mainAxisSize;
 
   const TextFieldWithLabel({
     required this.label,
     required this.textController,
+    required this.onChanged,
     this.inputFormatters,
     this.error = false,
     this.centered = false,
@@ -27,14 +28,14 @@ class TextFieldWithLabel extends StatelessWidget {
     this.focusNode,
     this.autofocus,
     this.onEditingComplete,
-    required this.onChanged,
+    this.mainAxisSize,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: mainAxisSize ?? MainAxisSize.max,
       mainAxisAlignment:
           centered ? MainAxisAlignment.center : MainAxisAlignment.start,
       children: [
@@ -51,8 +52,8 @@ class TextFieldWithLabel extends StatelessWidget {
                 Text(
                   subLabel ?? '',
                   textAlign: TextAlign.left,
-                  style: context.appTextStyles.fs18
-                      ?.copyWith(color: context.appColors.textColor, fontSize: 13),
+                  style: context.appTextStyles.fs18?.copyWith(
+                      color: context.appColors.textColor, fontSize: 13),
                 ),
             ],
           )
@@ -70,8 +71,8 @@ class TextFieldWithLabel extends StatelessWidget {
                 if (subLabel != null)
                   Text(
                     subLabel ?? '',
-                    style: context.appTextStyles.fs18
-                        ?.copyWith(color: context.appColors.textColor, fontSize: 13),
+                    style: context.appTextStyles.fs18?.copyWith(
+                        color: context.appColors.textColor, fontSize: 13),
                   ),
               ],
             ),
@@ -83,7 +84,9 @@ class TextFieldWithLabel extends StatelessWidget {
               focusNode: focusNode,
               autofocus: autofocus ?? false,
               style: TextStyle(
-                color: error ? context.appColors.alarmColor : context.appColors.textColor,
+                color: error
+                    ? context.appColors.alarmColor
+                    : context.appColors.textColor,
               ),
               controller: textController,
               keyboardType: TextInputType.text,
@@ -99,7 +102,9 @@ class TextFieldWithLabel extends StatelessWidget {
               focusNode: focusNode,
               autofocus: autofocus ?? false,
               style: context.appTextStyles.fs18?.copyWith(
-                color: error ? context.appColors.alarmColor : context.appColors.textColor,
+                color: error
+                    ? context.appColors.alarmColor
+                    : context.appColors.textColor,
               ),
               controller: textController,
               keyboardType: TextInputType.text,

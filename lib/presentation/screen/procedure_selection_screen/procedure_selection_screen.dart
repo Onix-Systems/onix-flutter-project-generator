@@ -113,83 +113,38 @@ class _ProcedureSelectionScreenState extends BaseState<
           child: Center(
             child: SizedBox(
               height: 125,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: AppFilledButton(
-                      label: S.of(context).generateNewProject,
-                      big: true,
-                      onPressed: () {
-                        getDirectoryPath().then(
-                          (value) {
-                            if (value != null) {
-                              blocOf(context).add(
-                                  ProcedureSelectionScreenEventOnNewProject(
-                                projectPath: value,
-                              ));
-                            } else {
-                              Dialogs.showOkDialog(
-                                context: context,
-                                isError: true,
-                                title: S.of(context).pathNotSelectedTitle,
-                                content: Text(
-                                  S.of(context).pathNotSelectedContent,
-                                  style: context.appTextStyles.fs18?.copyWith(
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                onOk: () {},
-                              );
-                            }
-                          },
-                        );
-                      },
-                      icon: Icons.create_new_folder_outlined,
-                    ),
-                  ),
-                  if (state.config.projectExists &&
-                      state.config.projectName.isNotEmpty)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: AppFilledButton(
-                        label: S
-                            .of(context)
-                            .modifyGeneratedProject(state.config.projectName),
-                        big: true,
-                        onPressed: () {
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: AppFilledButton(
+                  label: S.of(context).generateNewProject,
+                  big: true,
+                  onPressed: () {
+                    getDirectoryPath().then(
+                      (value) {
+                        if (value != null) {
                           blocOf(context)
-                              .add(ProcedureSelectionScreenEventOnProjectOpen(
-                            projectURI:
-                                '${state.config.projectPath}/${state.config.projectName}',
+                              .add(ProcedureSelectionScreenEventOnNewProject(
+                            projectPath: value,
                           ));
-                        },
-                        icon: Icons.create_new_folder_outlined,
-                      ),
-                    ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: AppFilledButton(
-                      label: S.of(context).openExistingProject,
-                      big: true,
-                      onPressed: () {
-                        getDirectoryPath().then(
-                          (value) {
-                            if (value != null) {
-                              blocOf(context).add(
-                                  ProcedureSelectionScreenEventOnProjectOpen(
-                                projectURI: value,
-                              ));
-                            }
-                          },
-                        );
+                        } else {
+                          Dialogs.showOkDialog(
+                            context: context,
+                            isError: true,
+                            title: S.of(context).pathNotSelectedTitle,
+                            content: Text(
+                              S.of(context).pathNotSelectedContent,
+                              style: context.appTextStyles.fs18?.copyWith(
+                                fontSize: 16,
+                              ),
+                            ),
+                            onOk: () {},
+                          );
+                        }
                       },
-                      icon: Icons.folder_open_outlined,
-                    ),
-                  ),
-                ],
+                    );
+                  },
+                  icon: Icons.create_new_folder_outlined,
+                ),
               ),
             ),
           ),
@@ -215,8 +170,8 @@ class _ProcedureSelectionScreenState extends BaseState<
   void _onSingleResult(
       BuildContext context, ProcedureSelectionScreenSR singleResult) {
     singleResult.when(
-      loadFinished: () => context.go(AppRouter.modifyProjectScreen,
-          extra: blocOf(context).state.config),
+      //TODO Resolve
+      loadFinished: () {},
       emptyConfig: () => Dialogs.showOkDialog(
         context: context,
         isError: true,

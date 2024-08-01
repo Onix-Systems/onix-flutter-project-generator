@@ -2,6 +2,9 @@ abstract final class AppConsts {
   static const String releaseUri =
       'https://github.com/Onix-Systems/onix-flutter-project-generator/releases';
 
+  static const String repoUrl =
+      'https://github.com/Onix-Systems/onix-flutter-project-generator';
+
   static const String signingKeyPassChars =
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
@@ -17,7 +20,7 @@ abstract final class AppConsts {
 
   static const Set<String> defaultFlavors = {'dev', 'prod'};
 
-  static const String mainDartPath = 'lib/core/flavors/';
+  static const String mainDartPath = 'lib/app/flavors/';
 
   static const List<String> defaultSigningVars = [
     'Your Name',
@@ -28,4 +31,16 @@ abstract final class AppConsts {
     'UA',
     '',
   ];
+
+  static RegExp organizationRegExp = RegExp(
+    r'^[a-z]([a-z0-9]*[a-z0-9])*(\.[a-z]([a-z0-9]*[a-z0-9])*)+$',
+  );
+
+  static RegExp projectNameRegExp = RegExp(
+    r'^(?!_)(?![0-9])[a-z0-9]+(?:_[a-z0-9]+)*(?<!_)$',
+  );
+
+  static RegExp organizationInputRegExp = RegExp('[a-z0-9.]');
+
+  static RegExp projectNameInputRegExp = RegExp('[a-z0-9_]');
 }

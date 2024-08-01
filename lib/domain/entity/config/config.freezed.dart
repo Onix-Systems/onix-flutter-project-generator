@@ -43,8 +43,6 @@ mixin _$Config {
   @JsonKey(includeFromJson: false, includeToJson: false)
   List<AppStyle> get styles => throw _privateConstructorUsedError;
   String get swaggerUrl => throw _privateConstructorUsedError;
-  Set<DataComponent> get dataComponents => throw _privateConstructorUsedError;
-  Set<Source> get sources => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -78,9 +76,7 @@ abstract class $ConfigCopyWith<$Res> {
       Set<Screen> screens,
       @JsonKey(includeFromJson: false, includeToJson: false)
       List<AppStyle> styles,
-      String swaggerUrl,
-      Set<DataComponent> dataComponents,
-      Set<Source> sources});
+      String swaggerUrl});
 
   $PlatformsListCopyWith<$Res> get platformsList;
 }
@@ -119,8 +115,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? screens = null,
     Object? styles = null,
     Object? swaggerUrl = null,
-    Object? dataComponents = null,
-    Object? sources = null,
   }) {
     return _then(_value.copyWith(
       branch: null == branch
@@ -207,14 +201,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.swaggerUrl
           : swaggerUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      dataComponents: null == dataComponents
-          ? _value.dataComponents
-          : dataComponents // ignore: cast_nullable_to_non_nullable
-              as Set<DataComponent>,
-      sources: null == sources
-          ? _value.sources
-          : sources // ignore: cast_nullable_to_non_nullable
-              as Set<Source>,
     ) as $Val);
   }
 
@@ -256,9 +242,7 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       Set<Screen> screens,
       @JsonKey(includeFromJson: false, includeToJson: false)
       List<AppStyle> styles,
-      String swaggerUrl,
-      Set<DataComponent> dataComponents,
-      Set<Source> sources});
+      String swaggerUrl});
 
   @override
   $PlatformsListCopyWith<$Res> get platformsList;
@@ -296,8 +280,6 @@ class __$$ConfigImplCopyWithImpl<$Res>
     Object? screens = null,
     Object? styles = null,
     Object? swaggerUrl = null,
-    Object? dataComponents = null,
-    Object? sources = null,
   }) {
     return _then(_$ConfigImpl(
       branch: null == branch
@@ -384,14 +366,6 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value.swaggerUrl
           : swaggerUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      dataComponents: null == dataComponents
-          ? _value._dataComponents
-          : dataComponents // ignore: cast_nullable_to_non_nullable
-              as Set<DataComponent>,
-      sources: null == sources
-          ? _value._sources
-          : sources // ignore: cast_nullable_to_non_nullable
-              as Set<Source>,
     ));
   }
 }
@@ -421,14 +395,10 @@ class _$ConfigImpl extends _Config {
       final Set<Screen> screens = const {},
       @JsonKey(includeFromJson: false, includeToJson: false)
       final List<AppStyle> styles = const [],
-      this.swaggerUrl = '',
-      final Set<DataComponent> dataComponents = const {},
-      final Set<Source> sources = const {}})
+      this.swaggerUrl = ''})
       : _signingVars = signingVars,
         _screens = screens,
         _styles = styles,
-        _dataComponents = dataComponents,
-        _sources = sources,
         super._();
 
   factory _$ConfigImpl.fromJson(Map<String, dynamic> json) =>
@@ -517,27 +487,10 @@ class _$ConfigImpl extends _Config {
   @override
   @JsonKey()
   final String swaggerUrl;
-  final Set<DataComponent> _dataComponents;
-  @override
-  @JsonKey()
-  Set<DataComponent> get dataComponents {
-    if (_dataComponents is EqualUnmodifiableSetView) return _dataComponents;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_dataComponents);
-  }
-
-  final Set<Source> _sources;
-  @override
-  @JsonKey()
-  Set<Source> get sources {
-    if (_sources is EqualUnmodifiableSetView) return _sources;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_sources);
-  }
 
   @override
   String toString() {
-    return 'Config(branch: $branch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl, dataComponents: $dataComponents, sources: $sources)';
+    return 'Config(branch: $branch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl)';
   }
 
   @override
@@ -579,10 +532,7 @@ class _$ConfigImpl extends _Config {
             const DeepCollectionEquality().equals(other._screens, _screens) &&
             const DeepCollectionEquality().equals(other._styles, _styles) &&
             (identical(other.swaggerUrl, swaggerUrl) ||
-                other.swaggerUrl == swaggerUrl) &&
-            const DeepCollectionEquality()
-                .equals(other._dataComponents, _dataComponents) &&
-            const DeepCollectionEquality().equals(other._sources, _sources));
+                other.swaggerUrl == swaggerUrl));
   }
 
   @JsonKey(ignore: true)
@@ -609,9 +559,7 @@ class _$ConfigImpl extends _Config {
         const DeepCollectionEquality().hash(_signingVars),
         const DeepCollectionEquality().hash(_screens),
         const DeepCollectionEquality().hash(_styles),
-        swaggerUrl,
-        const DeepCollectionEquality().hash(_dataComponents),
-        const DeepCollectionEquality().hash(_sources)
+        swaggerUrl
       ]);
 
   @JsonKey(ignore: true)
@@ -651,9 +599,7 @@ abstract class _Config extends Config {
       final Set<Screen> screens,
       @JsonKey(includeFromJson: false, includeToJson: false)
       final List<AppStyle> styles,
-      final String swaggerUrl,
-      final Set<DataComponent> dataComponents,
-      final Set<Source> sources}) = _$ConfigImpl;
+      final String swaggerUrl}) = _$ConfigImpl;
   const _Config._() : super._();
 
   factory _Config.fromJson(Map<String, dynamic> json) = _$ConfigImpl.fromJson;
@@ -701,10 +647,6 @@ abstract class _Config extends Config {
   List<AppStyle> get styles;
   @override
   String get swaggerUrl;
-  @override
-  Set<DataComponent> get dataComponents;
-  @override
-  Set<Source> get sources;
   @override
   @JsonKey(ignore: true)
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>

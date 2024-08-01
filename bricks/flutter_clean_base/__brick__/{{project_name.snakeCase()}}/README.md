@@ -54,28 +54,28 @@ Regenerate splash screen:
 ## IOS
 
 * `flutter build ios --release`
-* `flutter build ios --flavor dev --release --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_dev.dart`
-* `flutter build ios --flavor prod --release --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_prod.dart`
+* `flutter build ios --flavor dev --release --obfuscate --split-debug-info=debug_info -t lib/app/flavors/main_dev.dart`
+* `flutter build ios --flavor prod --release --obfuscate --split-debug-info=debug_info -t lib/app/flavors/main_prod.dart`
 
 ## Android
 
 ### APK
 
 * `flutter build apk`
-* `flutter build apk --flavor dev --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_dev.dart`
-* `flutter build apk --flavor prod --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_prod.dart`
+* `flutter build apk --flavor dev --obfuscate --split-debug-info=debug_info -t lib/app/flavors/main_dev.dart`
+* `flutter build apk --flavor prod --obfuscate --split-debug-info=debug_info -t lib/app/flavors/main_prod.dart`
 
 ### AAB
 
 * `flutter build appbundle`
-* `flutter build appbundle --flavor dev --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_dev.dart`
-* `flutter build appbundle --flavor prod --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_prod.dart`
+* `flutter build appbundle --flavor dev --obfuscate --split-debug-info=debug_info -t lib/app/flavors/main_dev.dart`
+* `flutter build appbundle --flavor prod --obfuscate --split-debug-info=debug_info -t lib/app/flavors/main_prod.dart`
 
 ## run release
 
 * `flutter run --release`
-* `flutter run --flavor dev --release --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_dev.dart`
-* `flutter run --flavor prod --release --obfuscate --split-debug-info=debug_info -t lib/core/flavors/main_prod.dart`
+* `flutter run --flavor dev --release --obfuscate --split-debug-info=debug_info -t lib/app/flavors/main_dev.dart`
+* `flutter run --flavor prod --release --obfuscate --split-debug-info=debug_info -t lib/app/flavors/main_prod.dart`
 
 # update IOS repos:
 

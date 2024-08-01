@@ -912,24 +912,27 @@ abstract class ProjectNameScreenSRStub implements ProjectNameScreenSR {
 /// @nodoc
 mixin _$ProjectNameScreenState {
   Config get config => throw _privateConstructorUsedError;
-  bool get projectExists => throw _privateConstructorUsedError;
+  bool get isValidProjectName => throw _privateConstructorUsedError;
+  bool get isValidOrganizationName => throw _privateConstructorUsedError;
   List<String> get branches => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            Config config, bool projectExists, List<String> branches)
+    required TResult Function(Config config, bool isValidProjectName,
+            bool isValidOrganizationName, List<String> branches)
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, bool projectExists, List<String> branches)?
+    TResult? Function(Config config, bool isValidProjectName,
+            bool isValidOrganizationName, List<String> branches)?
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, bool projectExists, List<String> branches)?
+    TResult Function(Config config, bool isValidProjectName,
+            bool isValidOrganizationName, List<String> branches)?
         data,
     required TResult orElse(),
   }) =>
@@ -962,7 +965,11 @@ abstract class $ProjectNameScreenStateCopyWith<$Res> {
           $Res Function(ProjectNameScreenState) then) =
       _$ProjectNameScreenStateCopyWithImpl<$Res, ProjectNameScreenState>;
   @useResult
-  $Res call({Config config, bool projectExists, List<String> branches});
+  $Res call(
+      {Config config,
+      bool isValidProjectName,
+      bool isValidOrganizationName,
+      List<String> branches});
 
   $ConfigCopyWith<$Res> get config;
 }
@@ -982,7 +989,8 @@ class _$ProjectNameScreenStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? config = null,
-    Object? projectExists = null,
+    Object? isValidProjectName = null,
+    Object? isValidOrganizationName = null,
     Object? branches = null,
   }) {
     return _then(_value.copyWith(
@@ -990,9 +998,13 @@ class _$ProjectNameScreenStateCopyWithImpl<$Res,
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
-      projectExists: null == projectExists
-          ? _value.projectExists
-          : projectExists // ignore: cast_nullable_to_non_nullable
+      isValidProjectName: null == isValidProjectName
+          ? _value.isValidProjectName
+          : isValidProjectName // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isValidOrganizationName: null == isValidOrganizationName
+          ? _value.isValidOrganizationName
+          : isValidOrganizationName // ignore: cast_nullable_to_non_nullable
               as bool,
       branches: null == branches
           ? _value.branches
@@ -1019,7 +1031,11 @@ abstract class _$$ProjectNameScreenStateDataImplCopyWith<$Res>
       __$$ProjectNameScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Config config, bool projectExists, List<String> branches});
+  $Res call(
+      {Config config,
+      bool isValidProjectName,
+      bool isValidOrganizationName,
+      List<String> branches});
 
   @override
   $ConfigCopyWith<$Res> get config;
@@ -1039,7 +1055,8 @@ class __$$ProjectNameScreenStateDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? config = null,
-    Object? projectExists = null,
+    Object? isValidProjectName = null,
+    Object? isValidOrganizationName = null,
     Object? branches = null,
   }) {
     return _then(_$ProjectNameScreenStateDataImpl(
@@ -1047,9 +1064,13 @@ class __$$ProjectNameScreenStateDataImplCopyWithImpl<$Res>
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
-      projectExists: null == projectExists
-          ? _value.projectExists
-          : projectExists // ignore: cast_nullable_to_non_nullable
+      isValidProjectName: null == isValidProjectName
+          ? _value.isValidProjectName
+          : isValidProjectName // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isValidOrganizationName: null == isValidOrganizationName
+          ? _value.isValidOrganizationName
+          : isValidOrganizationName // ignore: cast_nullable_to_non_nullable
               as bool,
       branches: null == branches
           ? _value._branches
@@ -1061,18 +1082,23 @@ class __$$ProjectNameScreenStateDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProjectNameScreenStateDataImpl implements ProjectNameScreenStateData {
+class _$ProjectNameScreenStateDataImpl extends ProjectNameScreenStateData {
   const _$ProjectNameScreenStateDataImpl(
       {required this.config,
-      this.projectExists = false,
+      this.isValidProjectName = false,
+      this.isValidOrganizationName = false,
       final List<String> branches = const []})
-      : _branches = branches;
+      : _branches = branches,
+        super._();
 
   @override
   final Config config;
   @override
   @JsonKey()
-  final bool projectExists;
+  final bool isValidProjectName;
+  @override
+  @JsonKey()
+  final bool isValidOrganizationName;
   final List<String> _branches;
   @override
   @JsonKey()
@@ -1084,7 +1110,7 @@ class _$ProjectNameScreenStateDataImpl implements ProjectNameScreenStateData {
 
   @override
   String toString() {
-    return 'ProjectNameScreenState.data(config: $config, projectExists: $projectExists, branches: $branches)';
+    return 'ProjectNameScreenState.data(config: $config, isValidProjectName: $isValidProjectName, isValidOrganizationName: $isValidOrganizationName, branches: $branches)';
   }
 
   @override
@@ -1093,14 +1119,17 @@ class _$ProjectNameScreenStateDataImpl implements ProjectNameScreenStateData {
         (other.runtimeType == runtimeType &&
             other is _$ProjectNameScreenStateDataImpl &&
             (identical(other.config, config) || other.config == config) &&
-            (identical(other.projectExists, projectExists) ||
-                other.projectExists == projectExists) &&
+            (identical(other.isValidProjectName, isValidProjectName) ||
+                other.isValidProjectName == isValidProjectName) &&
+            (identical(
+                    other.isValidOrganizationName, isValidOrganizationName) ||
+                other.isValidOrganizationName == isValidOrganizationName) &&
             const DeepCollectionEquality().equals(other._branches, _branches));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config, projectExists,
-      const DeepCollectionEquality().hash(_branches));
+  int get hashCode => Object.hash(runtimeType, config, isValidProjectName,
+      isValidOrganizationName, const DeepCollectionEquality().hash(_branches));
 
   @JsonKey(ignore: true)
   @override
@@ -1112,31 +1141,35 @@ class _$ProjectNameScreenStateDataImpl implements ProjectNameScreenStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            Config config, bool projectExists, List<String> branches)
+    required TResult Function(Config config, bool isValidProjectName,
+            bool isValidOrganizationName, List<String> branches)
         data,
   }) {
-    return data(config, projectExists, branches);
+    return data(config, isValidProjectName, isValidOrganizationName, branches);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, bool projectExists, List<String> branches)?
+    TResult? Function(Config config, bool isValidProjectName,
+            bool isValidOrganizationName, List<String> branches)?
         data,
   }) {
-    return data?.call(config, projectExists, branches);
+    return data?.call(
+        config, isValidProjectName, isValidOrganizationName, branches);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, bool projectExists, List<String> branches)?
+    TResult Function(Config config, bool isValidProjectName,
+            bool isValidOrganizationName, List<String> branches)?
         data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(config, projectExists, branches);
+      return data(
+          config, isValidProjectName, isValidOrganizationName, branches);
     }
     return orElse();
   }
@@ -1170,16 +1203,20 @@ class _$ProjectNameScreenStateDataImpl implements ProjectNameScreenStateData {
   }
 }
 
-abstract class ProjectNameScreenStateData implements ProjectNameScreenState {
+abstract class ProjectNameScreenStateData extends ProjectNameScreenState {
   const factory ProjectNameScreenStateData(
       {required final Config config,
-      final bool projectExists,
+      final bool isValidProjectName,
+      final bool isValidOrganizationName,
       final List<String> branches}) = _$ProjectNameScreenStateDataImpl;
+  const ProjectNameScreenStateData._() : super._();
 
   @override
   Config get config;
   @override
-  bool get projectExists;
+  bool get isValidProjectName;
+  @override
+  bool get isValidOrganizationName;
   @override
   List<String> get branches;
   @override

@@ -15,8 +15,6 @@ class GenerateFastlaneFilesUseCase {
   Future<void> call(
     FastlaneGenerationParams params, {
     required bool isModify,
-
-    // TODO(Ivan Modlo): add errors
   }) async {
     if (isModify) {
       _outputService.add(

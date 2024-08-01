@@ -1,4 +1,4 @@
-import 'package:onix_flutter_bricks/domain/entity/data_component/json_class_variable.dart';
+import 'package:onix_flutter_bricks/domain/entity/json_class_variable.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/class_builder.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
@@ -47,9 +47,13 @@ class JsonClassBuilder extends ClassBuilder {
     lines.addNewLine();
     lines.addAll(_variableDeclarations);
     lines.addNewLine();
-    lines.add('const $classFullName({');
-    lines.addAll(_baseConstructorProperties);
-    lines.add('});');
+    if(_variableDeclarations.isEmpty) {
+      lines.add('const $classFullName();');
+    } else {
+      lines.add('const $classFullName({');
+      lines.addAll(_baseConstructorProperties);
+      lines.add('});');
+    }
     lines.addNewLine();
     lines.add(
         'factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);');

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:onix_flutter_bricks/core/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
 import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
@@ -14,6 +15,7 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_butto
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/text_field_with_label.dart';
 import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
+import 'package:onix_flutter_bricks/presentation/widget/tooltip_wrapper.dart';
 
 class ProjectNameScreen extends StatefulWidget {
   final Config config;
@@ -37,11 +39,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
 
   @override
   void onBlocCreated(BuildContext context, ProjectNameScreenBloc bloc) {
-    bloc.add(
-      ProjectNameScreenEvent.init(
-        config: widget.config,
-      ),
-    );
+    bloc.add(ProjectNameScreenEvent.init(config: widget.config));
 
     projectNameController.text = widget.config.projectName;
     organizationController.text = widget.config.organization;
@@ -52,9 +50,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
   @override
   Widget buildWidget(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: TitleBar(
-        title: S.of(context).enterProjectName,
-      ),
+      navigationBar: TitleBar(title: S.of(context).enterProjectName),
       child: SizedBox.expand(
         child: blocConsumer(
           stateListener: (state) => _buildMainContainer(context, state),
@@ -69,66 +65,72 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
   ) {
     return Stack(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
+        Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Spacer(),
-              TextFieldWithLabel(
-                label: S.of(context).projectName,
-                focusNode: projectNameFocusNode,
-                autofocus: true,
-                centered: true,
-                textController: projectNameController,
-                error: state.projectExists,
-                onChanged: () => blocOf(context).add(
-                  ProjectNameScreenEvent.projectNameChanged(
-                    projectName: projectNameController.text,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextFieldWithLabel(
+                    label: S.of(context).projectName,
+                    focusNode: projectNameFocusNode,
+                    autofocus: true,
+                    centered: false,
+                    textController: projectNameController,
+                    error: !state.isValidProjectName,
+                    onChanged: () => blocOf(context).add(
+                      ProjectNameScreenEvent.projectNameChanged(
+                        projectName: projectNameController.text,
+                      ),
+                    ),
+                    onEditingComplete: () => _nextFocus(state),
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                        AppConsts.projectNameInputRegExp,
+                      ),
+                    ],
+                    mainAxisSize: MainAxisSize.min,
                   ),
-                ),
-                onEditingComplete: () => _nextFocus(state),
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9_]')),
+                  const SizedBox(width: 12),
+                  TooltipWrapper(
+                    message: S.of(context).projectNameHelperText,
+                  ),
                 ],
               ),
               const Delimiter.height(20),
-              TextFieldWithLabel(
-                focusNode: organizationFocusNode,
-                label: S.of(context).organization,
-                centered: true,
-                textController: organizationController,
-                onChanged: () => blocOf(context).add(
-                  ProjectNameScreenEvent.organizationChanged(
-                    organization: organizationController.text,
-                  ),
-                ),
-                onEditingComplete: () => _nextFocus(state),
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9-.]')),
-                ],
-              ),
-              const Spacer(),
-              NavigationButtonBar(
-                focusNode: nextFocusNode,
-                isActive: state.config.projectName.isNotEmpty &&
-                    state.config.organization.isNotEmpty &&
-                    !state.projectExists,
-                nextText: S.of(context).continueLabel,
-                prevText: S.of(context).goBack,
-                onNextPressed: () {
-                  _onCheckNames(context, state.config);
-                },
-                onPrevPressed: () {
-                  context.go(
-                    AppRouter.procedureSelectionScreen,
-                    extra: widget.config.copyWith(
-                      projectName: projectNameController.text,
-                      organization: organizationController.text,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextFieldWithLabel(
+                    focusNode: organizationFocusNode,
+                    label: S.of(context).organization,
+                    centered: false,
+                    textController: organizationController,
+                    error: !state.isValidOrganizationName,
+                    onChanged: () => blocOf(context).add(
+                      ProjectNameScreenEvent.organizationChanged(
+                        organization: organizationController.text,
+                      ),
                     ),
-                  );
-                },
+                    onEditingComplete: () => _nextFocus(state),
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                        AppConsts.organizationInputRegExp,
+                      ),
+                    ],
+                    mainAxisSize: MainAxisSize.min,
+                  ),
+                  const SizedBox(width: 12),
+                  TooltipWrapper(
+                    message: S.of(context).organizationNameHelperText,
+                  ),
+                ],
               ),
             ],
           ),
@@ -136,7 +138,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
         Positioned(
           bottom: 0,
           left: 0,
-          child: (state.branches.isEmpty || !kDebugMode)
+          child: (state.branches.isEmpty && kDebugMode)
               ? const SizedBox.shrink()
               : BranchSelectorWidget(
                   branches: state.branches,
@@ -149,7 +151,34 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
                     );
                   },
                 ),
-        )
+        ),
+        Positioned(
+          bottom: 0,
+          right: 1,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 16, right: 16),
+            child: NavigationButtonBar(
+              focusNode: nextFocusNode,
+              isActive: state.config.projectName.isNotEmpty &&
+                  state.config.organization.isNotEmpty &&
+                  state.isValid,
+              nextText: S.of(context).continueLabel,
+              prevText: S.of(context).goBack,
+              onNextPressed: () {
+                _onCheckNames(context, state.config);
+              },
+              onPrevPressed: () {
+                context.go(
+                  AppRouter.procedureSelectionScreen,
+                  extra: widget.config.copyWith(
+                    projectName: projectNameController.text,
+                    organization: organizationController.text,
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
       ],
     );
   }

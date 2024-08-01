@@ -11,6 +11,7 @@ import 'package:onix_flutter_bricks/domain/service/fastlane_service/utils/fastla
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/utils/fastlane_config/fastlane_generate_makefile.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/utils/fastlane_config/fatlane_config_param.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/utils/platform_env_creator/platform_env_creator.dart';
+import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 
 const _android = 'android';
 const _ios = 'ios';
@@ -129,7 +130,7 @@ class FastlaneService implements BaseGenerationService<String> {
 
     contents
       ..add('default_scheme: default')
-      ..add('')
+      ..addNewLine()
       ..add('schemes:');
 
     for (final platform in platforms) {
@@ -149,7 +150,7 @@ class FastlaneService implements BaseGenerationService<String> {
       );
       contents.addAll(firebase);
     }
-
+    contents.addAll(_generateSlackParams());
     await path.writeAsString(contents.join('\n'));
   }
 
@@ -238,7 +239,7 @@ class FastlaneService implements BaseGenerationService<String> {
 
       contents
         ..addAll(configParams)
-        ..add('');
+        ..addNewLine();
     }
     return contents;
   }
@@ -291,10 +292,23 @@ class FastlaneService implements BaseGenerationService<String> {
 
       contents
         ..addAll(firebaseParams)
-        ..add('');
+        ..addNewLine();
     }
 
     return contents;
+  }
+
+  List<String> _generateSlackParams() {
+    final params = <String>[];
+    params
+      ..add(
+          'slack: # Don\'t forget to specify a SLACK_URL in the .env for each '
+          'flavor in the fastlane directory for each platform')
+      ..add('  username: Fastlane')
+      ..add('  send_when_error: false')
+      ..add('#   pretext: STRING')
+      ..add('#   icon_url: STRING_URL');
+    return params;
   }
 
   Future<void> _generateMakeFile(FastlaneGenerationParams params) async {

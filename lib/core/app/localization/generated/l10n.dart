@@ -1469,6 +1469,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Failed to Parse Swagger Components. Please try again or contact support if issue not resolved.`
+  String get parseErrorMessage {
+    return Intl.message(
+      'Failed to Parse Swagger Components. Please try again or contact support if issue not resolved.',
+      name: 'parseErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No data components`
+  String get noDataComponents {
+    return Intl.message(
+      'No data components',
+      name: 'noDataComponents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Project name must be fully lowercase, with underscores to separate words. Also make sure that the name is a valid Dart identifier - it does not start with numbers, is not a reserved word, and does not start or end with an underscore.`
+  String get projectNameHelperText {
+    return Intl.message(
+      'Project name must be fully lowercase, with underscores to separate words. Also make sure that the name is a valid Dart identifier - it does not start with numbers, is not a reserved word, and does not start or end with an underscore.',
+      name: 'projectNameHelperText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A digit cannot be the first character in a package segment. The package must have at least one '.’ separator. Multiple '.' characters are not allowed in a row.`
+  String get organizationNameHelperText {
+    return Intl.message(
+      'A digit cannot be the first character in a package segment. The package must have at least one \'.’ separator. Multiple \'.\' characters are not allowed in a row.',
+      name: 'organizationNameHelperText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -36,6 +36,7 @@ final class FastlaneIosEnvCreator extends PlatformEnvCreator {
         FastlaneEnvVars.keyId: '',
         FastlaneEnvVars.keyContent: '',
         FastlaneEnvVars.firebaseAppId: '',
+        FastlaneEnvVars.slackURL: '',
       }..addAll(data),
     );
   }
@@ -57,6 +58,7 @@ final class FastlaneAndroidEnvCreator extends PlatformEnvCreator {
         FastlaneEnvVars.jsonKeyFile: '',
         FastlaneEnvVars.packageId: '',
         FastlaneEnvVars.firebaseAppId: '',
+        FastlaneEnvVars.slackURL: '',
       }..addAll(data),
     );
   }

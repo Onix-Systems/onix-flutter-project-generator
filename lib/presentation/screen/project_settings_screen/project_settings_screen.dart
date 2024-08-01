@@ -177,7 +177,8 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                     height: _height,
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      border: Border.all(color: context.appColors.contrastColor),
+                      border:
+                          Border.all(color: context.appColors.contrastColor),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(

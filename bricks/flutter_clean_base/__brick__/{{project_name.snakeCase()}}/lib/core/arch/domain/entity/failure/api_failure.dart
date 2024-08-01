@@ -1,13 +1,20 @@
 import 'package:{{project_name}}/core/arch/domain/entity/failure/failure.dart';
-class ApiFailure implements FeatureFailure {
-  ApiFailure(this.failure, {this.message = ''});
 
+class ApiFailure implements FeatureFailure {
   final ServerFailure failure;
+  final int? statusCode;
+
   final String message;
+
+  ApiFailure(
+    this.failure, {
+    this.message = '',
+    this.statusCode,
+  });
 
   @override
   String toString() {
-    return 'ApiFailure{$failure, message: $message}';
+    return 'ApiFailure{$failure, message: $message, statusCode: $statusCode}';
   }
 }
 

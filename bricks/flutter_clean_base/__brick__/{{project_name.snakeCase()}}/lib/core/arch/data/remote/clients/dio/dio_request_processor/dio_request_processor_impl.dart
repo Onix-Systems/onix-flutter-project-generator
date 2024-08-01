@@ -65,6 +65,9 @@ class DioRequestProcessorImpl implements DioRequestProcessor {
       final response = await _call(onRequest);
       return DataResponse.success(onResponse(response as Response<dynamic>));
     } on DioException catch (e, trace) {
+      if(e.type == DioExceptionType.cancel) {
+        return const DataResponse.canceledRequest();
+      }
       logger.crash(reason: 'onDioError', error: e, stackTrace: trace);
       return _errorProcessor.processError(
         e,
