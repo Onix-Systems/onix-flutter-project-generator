@@ -1,13 +1,12 @@
 import 'package:get_it/get_it.dart';
-import 'package:onix_flutter_bricks/data/repository/data_component_repository_impl.dart';
 import 'package:onix_flutter_bricks/data/repository/figma_repository_impl.dart';
 import 'package:onix_flutter_bricks/data/repository/screen_repository_impl.dart';
-import 'package:onix_flutter_bricks/data/repository/source_repository_impl.dart';
+import 'package:onix_flutter_bricks/data/repository/swagger_repository_impl.dart';
 import 'package:onix_flutter_bricks/data/source/remote/figma/figma_remote_data_source.dart';
-import 'package:onix_flutter_bricks/domain/repository/data_component_repository.dart';
+import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
 import 'package:onix_flutter_bricks/domain/repository/figma_repository.dart';
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
-import 'package:onix_flutter_bricks/domain/repository/source_repository.dart';
+import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
 
 //{imports end}
 
@@ -16,22 +15,16 @@ void registerRepositories(GetIt getIt) {
     ..registerSingleton<ScreenRepository>(
       ScreenRepositoryImpl(),
     )
-    ..registerSingleton<DataComponentRepository>(
-      DataComponentRepositoryImpl(),
-    )
-    ..registerSingleton<SourceRepository>(
-      SourceRepositoryImpl(),
-    )
     ..registerLazySingleton<FigmaRepository>(
       () => FigmaRepositoryImpl(
         figmaRemoteDataSource: GetIt.I.get<FigmaRemoteDataSource>(),
+      ),
+    )
+    ..registerLazySingleton<SwaggerRepository>(
+      () => SwaggerRepositoryImpl(
+        GetIt.I.get<SwaggerRemoteSource>(),
       ),
     ); //{repositories end}
 }
 
 ScreenRepository get screenRepository => GetIt.I.get<ScreenRepository>();
-
-DataComponentRepository get dataComponentRepository =>
-    GetIt.I.get<DataComponentRepository>();
-
-SourceRepository get sourceRepository => GetIt.I.get<SourceRepository>();

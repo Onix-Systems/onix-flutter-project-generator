@@ -11,7 +11,6 @@ const flavorizrInjectKey = '#{flavorizer_injection_config}';
 void run(HookContext context) async {
   name = context.vars['project_name'].toString().toSnakeCase;
 
-
   if (!context.vars['platforms'].contains('android')) {
     await Process.run('rm', ['-rf', '$name/android']);
   }
@@ -143,7 +142,6 @@ Future<void> getDependencies(HookContext context) async {
     'flutter_bloc',
     'flutter_secure_storage:^9.0.0',
     'shared_preferences',
-    'connectivity_plus',
     'internet_connection_checker',
     'retry',
     'encrypt',
@@ -154,6 +152,9 @@ Future<void> getDependencies(HookContext context) async {
     'flutter_dotenv',
     'flutter_jailbreak_detection',
     'gap',
+    // (Ivan Modlo): Connectivity Service has been blocked due to
+    // unit tests that differ from the major version are lower than 6
+    'connectivity_plus: ^6.0.3',
   ];
 
   if (!context.vars['web_only']) {
@@ -348,7 +349,7 @@ $flavor:
 ''');
 
       await Process.run('mv', ['main_$flavor.gen.dart', 'main_$flavor.dart'],
-          workingDirectory: '$name/lib/core/flavors');
+          workingDirectory: '$name/lib/app/flavors');
       await Process.run('rm', ['main_$flavor.dart'],
           workingDirectory: '$name/lib');
 
@@ -358,7 +359,7 @@ $flavor:
           String content = await file.readAsString();
           var writer = file.openWrite();
           writer.write(content.replaceAll('lib/main_${flavor}.dart',
-              'lib/core/flavors/main_${flavor}.dart'));
+              'lib/app/flavors/main_${flavor}.dart'));
           await writer.flush();
           await writer.close();
         }
@@ -379,13 +380,13 @@ Future<void> injectFlavors(HookContext context) async {
   ///START:Flavorizer config injection
   final isFlavorized = context.vars['flavorizr'] as bool;
   final isIOsEnabled = context.vars['platforms'].contains('ios') as bool;
-  final isAndroidEnabled = context.vars['platforms'].contains('android') as bool;
+  final isAndroidEnabled =
+      context.vars['platforms'].contains('android') as bool;
   final isMacOsEnabled = context.vars['platforms'].contains('macos') as bool;
   File pubspecFile = File('$name/pubspec.yaml');
   if (!pubspecFile.existsSync()) return;
   String pubspecFileContent = await pubspecFile.readAsString();
   if (isFlavorized) {
-
     final flavors = (context.vars['flavors'] as List)
         .map(
           (e) => e as String,
@@ -401,26 +402,27 @@ Future<void> injectFlavors(HookContext context) async {
     lines.add('  flavors:');
     for (String flavor in flavors) {
       final packageSuffix = flavor.toLowerCase() == 'prod' ? '' : '.$flavor';
-      final nameSuffix = flavor.toLowerCase() == 'prod' ? '' : ' ${flavor.toTitleCase}';
+      final nameSuffix =
+          flavor.toLowerCase() == 'prod' ? '' : ' ${flavor.toTitleCase}';
       lines.add('    $flavor:');
       lines.add('      app:');
       lines.add('        name: "${name.toTitleCase}$nameSuffix"');
       lines.add('');
-      if(isAndroidEnabled){
+      if (isAndroidEnabled) {
         lines.add('      android:');
         lines.add('        applicationId: "$org.$name$packageSuffix"');
         lines.add(
             '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
         lines.add('');
       }
-      if(isIOsEnabled){
+      if (isIOsEnabled) {
         lines.add('      ios:');
         lines.add('        bundleId: "$org.$name$packageSuffix"');
         lines.add(
             '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"');
         lines.add('');
       }
-      if(isMacOsEnabled){
+      if (isMacOsEnabled) {
         lines.add('      macos:');
         lines.add('        bundleId: "$org.$name$packageSuffix"');
         lines.add(

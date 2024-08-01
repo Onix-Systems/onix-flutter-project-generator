@@ -60,11 +60,12 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
   }
 
   void _onSingleResult(BuildContext context, FigmaStylesScreenSR singleResult) {
-    singleResult.when(
+    //TODO Resolve
+    /* singleResult.when(
       loadFinished: () => context.go(AppRouter.modifyProjectScreen,
           extra: blocOf(context).state.config),
       error: (error) => _showError(context, error),
-    );
+    );*/
   }
 
   Widget _buildMainContainer(
@@ -73,8 +74,7 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
   ) {
     return Center(
       child: Padding(
-        padding:
-            const EdgeInsets.only(top: 40, bottom: 20, left: 20, right: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -98,7 +98,7 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
                 ),
               ],
             ),
-            const Delimiter.height(20),
+            const Delimiter.height(100),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

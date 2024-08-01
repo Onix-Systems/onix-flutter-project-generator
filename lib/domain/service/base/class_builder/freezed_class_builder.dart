@@ -9,7 +9,6 @@ class FreezedClassBuilder extends ClassBuilder {
   Iterable<String> _imports = List.empty();
   Iterable<String> _baseConstructorProperties = List.empty();
   Iterable<String> _emptyConstructorProperties = List.empty();
-  bool _withJsonAnnotation = true;
 
   set imports(Iterable<String> imports) => _imports = imports;
 
@@ -18,9 +17,6 @@ class FreezedClassBuilder extends ClassBuilder {
 
   set emptyConstructorProperties(Iterable<String> emptyConstructorProperties) =>
       _emptyConstructorProperties = emptyConstructorProperties;
-
-  set withJsonAnnotation(bool withJsonAnnotation) =>
-      _withJsonAnnotation = withJsonAnnotation;
 
   FreezedClassBuilder({
     required String className,
@@ -39,26 +35,25 @@ class FreezedClassBuilder extends ClassBuilder {
     lines.addAll(_imports);
     lines.addNewLine();
     lines.add('part \'$classPartImport.freezed.dart\';');
-    if (_withJsonAnnotation) {
-      lines.add('part \'$classPartImport.g.dart\';');
-    }
     lines.addNewLine();
     lines.add('@freezed');
     lines.add('class $classFullName with _\$$classFullName {');
-    lines.add('factory $classFullName({');
-    lines.addAll(_baseConstructorProperties);
-    lines.add('}) = _$classFullName;');
+    if (_baseConstructorProperties.isEmpty) {
+      lines.add('factory $classFullName() = _$classFullName;');
+    } else {
+      lines.add('factory $classFullName({');
+      lines.addAll(_baseConstructorProperties);
+      lines.add('}) = _$classFullName;');
+    }
     lines.addNewLine();
     if (_emptyConstructorProperties.isNotEmpty) {
       lines.add('factory $classFullName.empty() => $classFullName(');
       lines.addAll(_emptyConstructorProperties);
       lines.add(');');
-      lines.addNewLine();
+    } else {
+      lines.add('factory $classFullName.empty() => $classFullName();');
     }
-    if (_withJsonAnnotation) {
-      lines.add(
-          'factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);');
-    }
+    lines.addNewLine();
     lines.add('}');
     lines.addNewLine();
     return super.build();

@@ -62,12 +62,13 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Delimiter.height(100),
+            const SizedBox(height: 10),
             Expanded(
               child: ListView(
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 children: [
+                  const Delimiter.height(100),
                   SummaryCell(
                     variable: S.of(context).projectPath,
                     value: state.config.projectPath,
@@ -138,7 +139,8 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       variable: S.of(context).swaggerURL,
                       value: state.config.swaggerUrl,
                     ),
-                  if (state.config.sources.isNotEmpty)
+                  //Todo Resolve
+                  /*if (state.config.sources.isNotEmpty)
                     SummaryCell(
                       variable: S.of(context).sources,
                       value: state.config.sources
@@ -147,15 +149,16 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                           .map((e) =>
                               '${e.name.pascalCase}(${e.dataComponentsNames.sorted((a, b) => a.compareTo(b)).map((e) => e.pascalCase).join(', ')})')
                           .join('\n\n'),
-                    ),
-                  if (state.config.dataComponents.isNotEmpty)
+                    ),*/
+                  //Todo Resolve
+                  /*if (state.config.dataComponents.isNotEmpty)
                     SummaryCell(
                         variable: S.of(context).dataComponents,
                         value: state.config.dataComponents
                             .toList()
                             .sorted((a, b) => a.name.compareTo(b.name))
                             .map((e) => e.name.pascalCase)
-                            .join(', ')),
+                            .join(', ')),*/
                   if (state.config.styles.isNotEmpty)
                     SummaryStylesCell(
                       variable: 'Styles',

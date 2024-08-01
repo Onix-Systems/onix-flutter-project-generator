@@ -168,6 +168,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "newVersionAvailableTitle":
             MessageLookupByLibrary.simpleMessage("New version available"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "noDataComponents":
+            MessageLookupByLibrary.simpleMessage("No data components"),
         "nullable": MessageLookupByLibrary.simpleMessage("Nullable"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
@@ -175,8 +177,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "openInAndroidStudio":
             MessageLookupByLibrary.simpleMessage("Open in Android Studio"),
         "organization": MessageLookupByLibrary.simpleMessage("Organization"),
+        "organizationNameHelperText": MessageLookupByLibrary.simpleMessage(
+            "A digit cannot be the first character in a package segment. The package must have at least one \'.’ separator. Multiple \'.\' characters are not allowed in a row."),
         "organizationalUnit":
             MessageLookupByLibrary.simpleMessage(" Organizational unit"),
+        "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "Failed to Parse Swagger Components. Please try again or contact support if issue not resolved."),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
             "You must select path to projects folder"),
         "pathNotSelectedTitle":
@@ -187,6 +193,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "projectExistsError": MessageLookupByLibrary.simpleMessage(
             "Project already exists, choose different name"),
         "projectName": MessageLookupByLibrary.simpleMessage("Project name"),
+        "projectNameHelperText": MessageLookupByLibrary.simpleMessage(
+            "Project name must be fully lowercase, with underscores to separate words. Also make sure that the name is a valid Dart identifier - it does not start with numbers, is not a reserved word, and does not start or end with an underscore."),
         "projectPath": MessageLookupByLibrary.simpleMessage("Project path"),
         "projectSelectErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Pubspec file not found in selected folder."),

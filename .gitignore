@@ -32,7 +32,6 @@ migrate_working_dir/
 .pub/
 /build/
 
-
 # Symbolication related
 app.*.symbols
 
@@ -48,3 +47,6 @@ app.*.map.json
 .gen_config.json
 /release/
 /.fvm/
+
+# FVM Version Cache
+.fvm/

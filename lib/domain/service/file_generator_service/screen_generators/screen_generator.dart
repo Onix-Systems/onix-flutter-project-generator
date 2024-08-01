@@ -46,12 +46,12 @@ class ScreenGenerator implements BaseGenerationService<bool> {
 
   Future<void> _createRoutes(ScreenGeneratorParams params) async {
     final screenName = params.screen.name;
-    if(params.router == ProjectRouter.goRouter){
+    if (params.router == ProjectRouter.goRouter) {
       final routesFile = File(
           '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
       String routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
-     final appRoutesContent = _screenCodeContent.createScreenNavigationGoRoute(
+      final appRoutesContent = _screenCodeContent.createScreenNavigationGoRoute(
         input: routesContent,
         screenName: screenName,
         isLastDeclaration: params.lastScreenItem,
@@ -59,13 +59,13 @@ class ScreenGenerator implements BaseGenerationService<bool> {
       routesFile.writeAsString(appRoutesContent);
     }
 
-
     final routerFile = File(
         '${params.projectPath}/${params.projectName}/lib/app/router/app_router.dart');
     String routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations
-    final filledRouterContent = _screenCodeContent.createScreenNavigationContent(
+    final filledRouterContent =
+        _screenCodeContent.createScreenNavigationContent(
       input: routerContent,
       screenName: screenName,
       projectName: params.projectName,

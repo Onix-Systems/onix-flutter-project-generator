@@ -1,9 +1,9 @@
 import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
-import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/git_cliff/generate_git_cliff_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/get_generation_output_stream_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
@@ -12,11 +12,12 @@ import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
-import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/bloc/data_components_screen_bloc.dart';
-import 'package:onix_flutter_bricks/presentation/screen/data_components_screen/widgets/data_components_widgets/fields_dialog/bloc/fields_dialog_bloc.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/bloc/data_components_screen_v2_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc/figma_styles_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc.dart';
-import 'package:onix_flutter_bricks/presentation/screen/modify_project_screen/bloc/modify_project_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/bloc/platforms_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc.dart';
@@ -29,12 +30,10 @@ import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bl
 
 void registerBloc(GetIt getIt) {
   getIt
-    ..registerFactory<ModifyProjectScreenBloc>(ModifyProjectScreenBloc.new)
     ..registerFactory<GenerationScreenBloc>(
       () => GenerationScreenBloc(
         GetIt.I.get<GenerateDocumentationUseCase>(),
         GetIt.I.get<GenerateScreensUseCase>(),
-        GetIt.I.get<GenerateDataComponentsUseCase>(),
         GetIt.I.get<AddOutputMessageUseCase>(),
         GetIt.I.get<RunProcessUseCase>(),
         GetIt.I.get<RunOsaScriptProcessUseCase>(),
@@ -42,12 +41,16 @@ void registerBloc(GetIt getIt) {
         GetIt.I.get<GenerateStylesUseCase>(),
         GetIt.I.get<GetGenerationOutputStream>(),
         GetIt.I.get<GenerateFastlaneFilesUseCase>(),
+        GetIt.I.get<CreateSwaggerComponentsUseCase>(),
+        GetIt.I.get<GenerateGitCliffFilesUseCase>(),
       ),
     )
     ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)
-    ..registerFactory<SwaggerParserScreenBloc>(SwaggerParserScreenBloc.new)
-    ..registerFactory<DataComponentsScreenBloc>(DataComponentsScreenBloc.new)
-    ..registerFactory<FieldsDialogBloc>(FieldsDialogBloc.new)
+    ..registerFactory<SwaggerParserScreenBloc>(
+      () => SwaggerParserScreenBloc(
+        GetIt.I.get<FetchSwaggerDataUseCase>(),
+      ),
+    )
     ..registerFactory<ScreensScreenBloc>(ScreensScreenBloc.new)
     ..registerFactory<FigmaStylesScreenBloc>(
       () => FigmaStylesScreenBloc(
@@ -71,6 +74,11 @@ void registerBloc(GetIt getIt) {
       () => ProcedureSelectionScreenBloc(
         GetIt.I.get<GenerateSigningConfigUseCase>(),
         GetIt.I.get<GetSigningFingerprintUseCase>(),
+      ),
+    )
+    ..registerFactory<DataComponentsScreenV2Bloc>(
+      () => DataComponentsScreenV2Bloc(
+        GetIt.I.get<GetSwaggerComponentsUseCase>(),
       ),
     );
 }

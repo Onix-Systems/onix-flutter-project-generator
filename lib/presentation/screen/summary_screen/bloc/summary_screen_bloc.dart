@@ -19,10 +19,6 @@ class SummaryScreenBloc
     emit(state.copyWith(
         config: event.config.copyWith(
       screens: screenRepository.screens,
-      sources: sourceRepository.sources,
-      dataComponents: dataComponentRepository.dataComponents
-          .where((e) => e.sourceName.isEmpty)
-          .toSet(),
     )));
   }
 }

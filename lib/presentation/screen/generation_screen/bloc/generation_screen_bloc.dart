@@ -9,16 +9,18 @@ import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_gene
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastlane_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/styles_generator_params.dart';
+import 'package:onix_flutter_bricks/domain/service/git_cliff_service/params/git_cliff_params.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
-import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_data_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/git_cliff/generate_git_cliff_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/get_generation_output_stream_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
 import 'package:onix_flutter_bricks/util/extension/config_file_extension.dart';
@@ -32,9 +34,11 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   final GenerateSigningConfigUseCase _generateSigningConfigUseCase;
   final GenerateDocumentationUseCase _generateDocumentationUseCase;
   final GenerateScreensUseCase _generateScreensUseCase;
-  final GenerateDataComponentsUseCase _generateDataComponentsUseCase;
+
   final GenerateStylesUseCase _generateStylesUseCase;
   final GenerateFastlaneFilesUseCase _generateFastlaneFilesUseCase;
+  final CreateSwaggerComponentsUseCase _createSwaggerComponentsUseCase;
+  final GenerateGitCliffFilesUseCase _generateGitCliffFilesUseCase;
 
   ///process runners
   final RunProcessUseCase _runProcessUseCase;
@@ -47,7 +51,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   GenerationScreenBloc(
     this._generateDocumentationUseCase,
     this._generateScreensUseCase,
-    this._generateDataComponentsUseCase,
     this._addOutputMessageUseCase,
     this._runProcessUseCase,
     this._osaScriptProcessUseCase,
@@ -55,6 +58,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     this._generateStylesUseCase,
     this._getGenerationOutputStream,
     this._generateFastlaneFilesUseCase,
+    this._createSwaggerComponentsUseCase,
+    this._generateGitCliffFilesUseCase,
   ) : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
@@ -184,14 +189,15 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     }
 
     ///generating screens
-    bool hasScreensToGenerate =
-        state.config.screens.where((element) => !element.exists).isNotEmpty;
-    if (hasScreensToGenerate) {
-      await _generateScreensUseCase(config: state.config);
-    }
+    await _generateScreensUseCase(config: state.config);
 
-    ///generating data components
-    await _generateDataComponentsUseCase(config: state.config);
+    ///generating data components//TODO
+    //await _generateDataComponentsUseCase(config: state.config);
+
+    await _createSwaggerComponentsUseCase(
+      projectName: state.config.projectName,
+      projectPath: state.config.projectPath,
+    );
 
     ///build project
     await _runProcessUseCase(
@@ -208,6 +214,13 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     await _generateDocumentation();
 
     await _generateFastlane();
+
+    await _generateGitCliffFilesUseCase(
+      GitCliffParams(
+        projectName: state.config.projectName,
+        projectPath: state.config.projectPath,
+      ),
+    );
 
     ///save project configuration
     await state.config.saveConfig(
@@ -227,7 +240,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       message: 'Project generation completed.'.toInfoMessage(),
     );
     _addOutputMessageUseCase(
-      message: 'Don\'t forget to run "Optimize imports" after project opened.'.toInfoMessage(),
+      message: 'Don\'t forget to run "Optimize imports" after project opened.'
+          .toInfoMessage(),
     );
     _addOutputMessageUseCase(
       message: List.generate(10, (index) => '-').join('').toInfoMessage(),
@@ -237,8 +251,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     emit(state.copyWith(
       generatingState: GeneratingState.waiting,
       config: state.config.copyWith(
-        sources: sourceRepository.sources,
-        dataComponents: dataComponentRepository.dataComponents,
         screens: screenRepository.screens,
       ),
     ));

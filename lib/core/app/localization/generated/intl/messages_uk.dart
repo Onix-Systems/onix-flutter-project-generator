@@ -169,6 +169,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "newVersionAvailableTitle":
             MessageLookupByLibrary.simpleMessage("Доступна нова версія"),
         "no": MessageLookupByLibrary.simpleMessage("Ні"),
+        "noDataComponents":
+            MessageLookupByLibrary.simpleMessage("Компоненти не знайдено"),
         "nullable": MessageLookupByLibrary.simpleMessage("Опціональне"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
@@ -176,8 +178,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "openInAndroidStudio":
             MessageLookupByLibrary.simpleMessage("Відкрити в Android Studio"),
         "organization": MessageLookupByLibrary.simpleMessage("Організація"),
+        "organizationNameHelperText": MessageLookupByLibrary.simpleMessage(
+            "Цифра не може бути першим символом у сегменті пакету. У пакеті повинен бути хоча б один роздільник \'.\'. Кілька символів \'.\' підряд не допускаються."),
         "organizationalUnit":
             MessageLookupByLibrary.simpleMessage(" Організаційний підрозділ"),
+        "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "Не вдалося отримати компоненти Swagger. Спробуйте знову або зв\'яжіться з підтримкою, якщо не вдається оторимати компоненти."),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
             "Будь ласка, виберіть шлях до проекту"),
         "pathNotSelectedTitle":
@@ -189,6 +195,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "projectExistsError": MessageLookupByLibrary.simpleMessage(
             "Проект з такою назвою вже існує"),
         "projectName": MessageLookupByLibrary.simpleMessage("Назва проекту"),
+        "projectNameHelperText": MessageLookupByLibrary.simpleMessage(
+            "Назва проєкту має бути повністю маленькими літерами, з підкресленнями, щоб відокремити слова. Також переконайтеся, що назва є дійсним ідентифікатором Dart - вона не починається з цифр, не є зарезервованим словом, не починається і не закінчується символом підкреслення"),
         "projectPath": MessageLookupByLibrary.simpleMessage("Шлях до проекту"),
         "projectSelectErrorMessage":
             MessageLookupByLibrary.simpleMessage("Pubspec файл не знайдено."),
