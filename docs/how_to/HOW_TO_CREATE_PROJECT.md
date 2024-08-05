@@ -13,8 +13,8 @@ Onix Project Generator is built like the application creation wizard.
 
 **Each section** of this document **represents a single step** in the application.
 
-**Before create a new project make sure**:
-* Flutter SDK and Dart are installed and visible in the terminal.
+**Before create a new project make sure that**
+Flutter SDK and Dart are installed and visible in the terminal.
 
 
 **Don’t like read too much**? Okay, **check the [video instruction](todo)** then. 
@@ -30,6 +30,11 @@ Select a desired **application mode**:
 > Note: To modify an existing project it must be created with Onix Project Generator.
 
 After you **select mode** you **need to choose the folder where the project will be located**.
+
+<div align="center">
+<img alt="refine logo" src="images/0_entry.png">
+</div>
+
 
 ## Set the name 
 
@@ -54,16 +59,29 @@ Bundle ID: com.onix.my_app
 
 > Note If you enable flavors your Package name and Bundle ID will have flavor name suffix also (except prod flavor).
 
+<div align="center">
+<img alt="refine logo" src="images/1_names.png">
+</div>
+
+
 **Once you are ready press on Continue button**.
 
 ## Select platforms 📱
 
 Select platforms your project will support and **once you are ready press on Continue button**.
 
+<div align="center">
+<img alt="refine logo" src="images/2_platforms.png">
+</div>
+
 
 ## Configure project options
 
 Here you can configure the main options of the generated project. 
+
+<div align="center">
+<img alt="refine logo" src="images/3_features.png">
+</div>
 
 ### Flavorize
 
@@ -136,9 +154,17 @@ After you press `Add screen` button you will see dialog:
 
 **And once sreens added press on Continue button**.
 
+<div align="center">
+<img alt="refine logo" src="images/4_screens.png">
+</div>
+
 ## Configure theme 🎨
 
 Here you can import **colors and text styles from your Figma file**. 
+
+<div align="center">
+<img alt="refine logo" src="images/5_styles.png">
+</div>
 
 To import you need:
 
@@ -162,6 +188,14 @@ After the token has created paste it in to Figma token input.
 
 When you have pressed the import button you see colors and text style which will be imported to the project theme. 
 
+<div align="center">
+<img alt="refine logo" src="images/6_styles_colors.png">
+</div>
+
+<div align="center">
+<img alt="refine logo" src="images/7_styles_fonts.png">
+</div>
+
 **Once you finished press on Continue button**.
 
 **Or just press Continue button with empty inputs to skip this step**.
@@ -177,6 +211,10 @@ https://petstore.swagger.io/v2/swagger.json
 ``` 
 
 Paste your Swagger Json Url into the input field and press continue. 
+
+<div align="center">
+<img alt="refine logo" src="images/8_swagger.png">
+</div>
 
 **Once parsing completed you will be redirected to the next screen**. 
 
@@ -201,35 +239,11 @@ For each data component Onix Project Generator will create:
 * **Entity** (with Freezed declaration) 
 * **Mapper** (from Data Model to Entity)
 
-
-If something missing **you can add components and groups manually**.
-
-To a add new group press the **Add source** button and enter the group name. 
-
-To add a component to the group press the **Add component button** at the group header.
-
-In a dialog that will come up:
-
-* **Enter Name**.
-* **Select model types** to create.
-* **Press Fields button** to add parameters to component.
-
-In the field creation dialog you can add additional parameters to you data component.
-
-Add primitive fields:
- 
-* Press **Add field** to add new parameter with primitive type
-* Enter parameter name.
-* Check is it list or nullable.
-
-
-Add references:
-
-* Press **Add component** to add reference to other component.
-* **Select reference object** from dropdown and enter parameter name
-* Check is it list or nullable.
-
 **Once you finished press on Continue button**.
+
+<div align="center">
+<img alt="refine logo" src="images/9_components.png">
+</div>
 
 ## Review a summary 👀
 
@@ -237,13 +251,21 @@ Here you can review all parameters and data will be generated.
 
 **If looks good press on Generate project button**.
 
+<div align="center">
+<img alt="refine logo" src="images/10_summary.png">
+</div>
+
 ## Build ⚡
 
 Once you press the **Generate project** button you will see project generation progress in the improvised terminal window.
 
 Generation process will be stopped if critical error occurs. You able to see all logs in terminal window. 
 
-Once Generation completed successfully **Open Android studio** button will appear.  
+Once Generation completed successfully **Open Android studio** button will appear. 
+
+<div align="center">
+<img alt="refine logo" src="images/11_completed.png">
+</div> 
 
 ## What's Next? 🤔
 
@@ -255,6 +277,10 @@ Once the project opened:
 * Run **Organize imports**. 
  
  **Done. You are ready for to develop**.
+ 
+ <div align="center">
+<img alt="refine logo" src="images/12_project.png">
+</div>
 
 
 Have a question? Don't be shy to contact us via [GitHub](https://github.com/Onix-Systems/onix-flutter-project-generator/issues/new?assignees=&labels=question&projects=&template=question.md&title=Question%20about%20Onix%20Project%20Generator).
