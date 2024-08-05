@@ -17,9 +17,6 @@ Onix Project Generator is built like the application creation wizard.
 Flutter SDK and Dart are installed and visible in the terminal.
 
 
-**Don’t like read too much**? Okay, **check the [video instruction](todo)** then. 
-
-
 ## Select project folder 📁
 
 Select a desired **application mode**:
