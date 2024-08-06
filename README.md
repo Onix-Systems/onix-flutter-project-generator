@@ -29,6 +29,8 @@
 <br/>
 <br/>
 
+If you're a Onix Project Generator user and you like using our tool, don't **forget to star it on GitHub**! 🌟
+
 ## What is Project Generator?
 
 **Flutter Project Generator** is a utility for **MacOS** designed to quickly start a Flutter project from scratch.

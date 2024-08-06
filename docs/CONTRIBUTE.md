@@ -22,7 +22,7 @@ Before fork this repository you need to know few important key points:
 
 ## Ways to contribute
 
-* If you're a Onix Project Generator user and you like using our platform, don't **forget to star it on GitHub**! 🌟
+* If you're a Onix Project Generator user and you like using our tool, don't **forget to star it on GitHub**! 🌟
 * Improve the docs: Having good docs is key to a project's success. **You can make our docs the best** they need to be by **improving their quality or adding new ones**.
 * We'd love to **hear your feedback**! We're always looking for ways to make Onix Project Generator better, so please **share how you use our application, what features you think we should add** via [GitHub](https://github.com/Onix-Systems/onix-flutter-project-generator/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=).
 * **Spread the word about the Onix Project Generator**. If you know anyone who might be interested, **please share the repository** with them. Thanks!
