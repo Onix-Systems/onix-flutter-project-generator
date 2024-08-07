@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 {{^web_only}}import 'package:loader_overlay/loader_overlay.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';{{/web_only}}
-import 'package:{{project_name}}/core/arch/bloc/base_block_state.dart';
+import 'package:{{project_name}}/core/arch/bloc/base_bloc_state.dart';
 import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';
 import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
 {{#isGoRouter}}import 'package:{{project_name}}/app/router/app_router.dart';{{/isGoRouter}}
