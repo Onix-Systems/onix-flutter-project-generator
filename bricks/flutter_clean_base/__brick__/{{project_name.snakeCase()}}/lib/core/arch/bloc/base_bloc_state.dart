@@ -3,6 +3,7 @@ import 'package:{{project_name}}/core/arch/bloc/base_bloc.dart';
 import 'package:{{project_name}}/core/arch/bloc/bloc_builders_mixin.dart';
 import 'package:{{project_name}}/core/arch/bloc/bloc_typedefs.dart';
 import 'package:{{project_name}}/core/arch/bloc/stream_listener.dart';
+import 'package:{{project_name}}/core/arch/domain/entity/progress_state/progress_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
