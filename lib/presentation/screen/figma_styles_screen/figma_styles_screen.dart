@@ -37,19 +37,15 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
 
   @override
   Widget buildWidget(BuildContext context) {
-    return srObserver(
-      context: context,
-      child: CupertinoPageScaffold(
-        navigationBar: TitleBar(
-          title: S.of(context).importStyles,
-        ),
-        child: SizedBox.expand(
-          child: blocConsumer(
-            stateListener: (state) => _buildMainContainer(context, state),
-          ),
+    return CupertinoPageScaffold(
+      navigationBar: TitleBar(
+        title: S.of(context).importStyles,
+      ),
+      child: SizedBox.expand(
+        child: blocConsumer(
+          stateListener: (state) => _buildMainContainer(context, state),
         ),
       ),
-      onSR: _onSingleResult,
     );
   }
 
@@ -57,15 +53,6 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
   void onBlocCreated(BuildContext context, FigmaStylesScreenBloc bloc) {
     bloc.add(FigmaStylesScreenEventInit(config: widget.config));
     super.onBlocCreated(context, bloc);
-  }
-
-  void _onSingleResult(BuildContext context, FigmaStylesScreenSR singleResult) {
-    //TODO Resolve
-    /* singleResult.when(
-      loadFinished: () => context.go(AppRouter.modifyProjectScreen,
-          extra: blocOf(context).state.config),
-      error: (error) => _showError(context, error),
-    );*/
   }
 
   Widget _buildMainContainer(
@@ -189,21 +176,5 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
               styles: state.config.styles,
             ),
           );
-  }
-
-  void _showError(BuildContext context, String error) {
-    showCupertinoDialog(
-      context: context,
-      builder: (context) => CupertinoAlertDialog(
-        title: Text(S.of(context).error),
-        content: Text(error),
-        actions: [
-          CupertinoDialogAction(
-            child: Text(S.of(context).ok),
-            onPressed: () => context.pop(),
-          ),
-        ],
-      ),
-    );
   }
 }
