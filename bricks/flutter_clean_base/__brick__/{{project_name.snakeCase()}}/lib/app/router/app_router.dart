@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 part 'app_router.gr.dart';
 
 @AutoRouterConfig(){{/isGoRouter}}
-class AppRouter {{^isGoRouter}}extends _$AppRouter{{/isGoRouter}}{
+class AppRouter {{^isGoRouter}}extends RootStackRouter{{/isGoRouter}}{
   {{#isGoRouter}}static const _initialLocation = '/';
 
   static final AppRouter _instance = AppRouter._privateConstructor();
@@ -45,12 +45,13 @@ class AppRouter {{^isGoRouter}}extends _$AppRouter{{/isGoRouter}}{
       //{routes end}
   ];
 
-  final InitGuard init;
+  @override
+  late final List<AutoRouteGuard> guards;
 
   @override
   RouteType get defaultRouteType => const RouteType.adaptive();
 
   AppRouter({
-    required this.init,
-  }) : super();{{/isGoRouter}}
+    required List<AutoRoute> globalGuards,
+  }) : guars = globalGuards;{{/isGoRouter}}
 }
