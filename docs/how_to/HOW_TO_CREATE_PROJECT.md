@@ -22,9 +22,6 @@ Flutter SDK and Dart are installed and visible in the terminal.
 Select a desired **application mode**:
 
 * **Generate a new project** to create a new project from scratch.
-* **Open existing projects** to modify existing project.
-
-> Note: To modify an existing project it must be created with Onix Project Generator.
 
 After you **select mode** you **need to choose the folder where the project will be located**.
 
@@ -217,18 +214,11 @@ Paste your Swagger Json Url into the input field and press continue.
 
 **Or just press Continue button with empty input value to skip this step**.
 
-## Configure additional components 🗃️
+## Data Components 🗃️
 
 If you come to this screen after Swagger url parsed you will see a list of parsed data components.
 
-**Components are grouped as in Swagger UI**. In code perspective each group is a separate source where REST API requests will be declared and repository. 
-
-Each component have:
-
-* **Name** - name of class based on Swagger component name.
-* **Type** - request or response depending on how component are used in Swagger.
-* **Preview** - button to preview component content.
-
+**Components are grouped as in Swagger UI**. In code perspective each group is a separate source where REST API requests will be declared and repository.
 
 For each data component Onix Project Generator will create:
 
