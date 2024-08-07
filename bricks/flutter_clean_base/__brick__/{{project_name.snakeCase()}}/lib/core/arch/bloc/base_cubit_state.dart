@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 {{^web_only}}import 'package:loader_overlay/loader_overlay.dart';{{/web_only}}
 {{#web_only}}import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
-import 'package:{{project_name}}/core/extension/loader.dart';{{/web_only}}
+import 'package:{{project_name}}/app/util/extension/loader.dart';{{/web_only}}
 
 abstract class BaseCubitState<S, C extends BaseCubit<S, SR>, SR,
 W extends StatefulWidget> extends State<W>
