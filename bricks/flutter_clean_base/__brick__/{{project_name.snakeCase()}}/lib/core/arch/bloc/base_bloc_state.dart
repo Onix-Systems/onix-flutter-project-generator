@@ -67,12 +67,14 @@ W extends StatefulWidget> extends State<W>
 
   void onBlocCreated(BuildContext context, B bloc) {
     bloc.progressStream.listen((event) async {
-      if (event) {
-        {{#web_only}}context.progressShow();{{/web_only}}
-      {{^web_only}}context.loaderOverlay.show();{{/web_only}}
-      } else {
-      {{#web_only}}context.progressHide();{{/web_only}}
-      {{^web_only}}context.loaderOverlay.hide();{{/web_only}}
+      if (event is DefaultProgressState) {
+        if (event.showProgress) {
+          {{#web_only}}context.progressShow();{{/web_only}}
+          {{^web_only}}context.loaderOverlay.show();{{/web_only}}
+        } else {
+          {{#web_only}}context.progressHide();{{/web_only}}
+          {{^web_only}}context.loaderOverlay.hide();{{/web_only}}
+        }
       }
     });
   }
