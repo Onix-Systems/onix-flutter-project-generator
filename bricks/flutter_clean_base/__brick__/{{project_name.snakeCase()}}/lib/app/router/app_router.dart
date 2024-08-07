@@ -5,8 +5,6 @@
 import 'package:flutter/material.dart';
 {{#isGoRouter}}import 'package:go_router/go_router.dart';{{/isGoRouter}}
 {{#isGoRouter}}import 'package:{{project_name}}/core/di/services.dart';{{/isGoRouter}}
-{{^isGoRouter}}import 'package:{{project_name}}/app/router/guard/init_guard.dart';{{/isGoRouter}}
-
 //{imports end}
 
 {{^isGoRouter}}
@@ -52,6 +50,6 @@ class AppRouter {{^isGoRouter}}extends RootStackRouter{{/isGoRouter}}{
   RouteType get defaultRouteType => const RouteType.adaptive();
 
   AppRouter({
-    required List<AutoRoute> globalGuards,
-  }) : guars = globalGuards;{{/isGoRouter}}
+    required List<AutoRouteGuard> globalGuards,
+  }) : guards = globalGuards;{{/isGoRouter}}
 }
