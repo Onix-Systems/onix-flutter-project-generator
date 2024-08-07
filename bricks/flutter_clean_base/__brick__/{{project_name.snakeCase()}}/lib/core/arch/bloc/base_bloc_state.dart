@@ -1,5 +1,7 @@
 //@formatter:off
 import 'package:{{project_name}}/core/arch/bloc/base_bloc.dart';
+import 'package:{{project_name}}/core/arch/bloc/bloc_builders_mixin.dart';
+import 'package:{{project_name}}/core/arch/bloc/bloc_typedefs.dart';
 import 'package:{{project_name}}/core/arch/bloc/stream_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,16 +10,9 @@ import 'package:get_it/get_it.dart';
 {{#web_only}}import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:{{project_name}}/core/extension/loader.dart';{{/web_only}}
 
-
-typedef ListenDelegate<S> = void Function(BuildContext context, S state);
-typedef StateListener<S> = Widget Function(S state);
-typedef SingleResultListener<SR> = void Function(
-    BuildContext context,
-    SR singleResult,
-    );
-
 abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
-    W extends StatefulWidget> extends State<W> {
+W extends StatefulWidget> extends State<W>
+    with BlocBuildersMixin<B, S, SR> {
   bool lazyBloc = false;
   B? _bloc;
 
@@ -47,7 +42,7 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
     context.loaderOverlay.hide();
     }{{/web_only}}
     if (_bloc != null) {
-      _bloc?.dispose();
+    _bloc?.dispose();
     }
     super.dispose();
   }
@@ -70,35 +65,14 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
     );
   }
 
-  Widget blocConsumer({
-    required StateListener<S> stateListener,
-    required ListenDelegate<S>? listenDelegate,
-    BlocBuilderCondition<S>? buildWhen,
-    BlocListenerCondition<S>? listenWhen,
-  }) {
-    return BlocConsumer<B, S>(
-      builder: (_, state) => stateListener(state),
-      listener: listenDelegate ?? _defaultListenDelegate,
-      buildWhen: buildWhen,
-      listenWhen: listenWhen,
-    );
-  }
-
-  Widget blocBuilder({
-    required BlocWidgetBuilder<S> builder,
-    BlocBuilderCondition<S>? buildWhen,
-  }) {
-    return BlocBuilder<B, S>(builder: builder, buildWhen: buildWhen);
-  }
-
   void onBlocCreated(BuildContext context, B bloc) {
     bloc.progressStream.listen((event) async {
       if (event) {
         {{#web_only}}context.progressShow();{{/web_only}}
-        {{^web_only}}context.loaderOverlay.show();{{/web_only}}
+      {{^web_only}}context.loaderOverlay.show();{{/web_only}}
       } else {
-        {{#web_only}}context.progressHide();{{/web_only}}
-        {{^web_only}}context.loaderOverlay.hide();{{/web_only}}
+      {{#web_only}}context.progressHide();{{/web_only}}
+      {{^web_only}}context.loaderOverlay.hide();{{/web_only}}
       }
     });
   }
@@ -107,7 +81,4 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
   void initParams(BuildContext context) {}
 
   Widget buildWidget(BuildContext context);
-
-  // ignore: no-empty-block
-  void _defaultListenDelegate(BuildContext context, S state) {}
 }
