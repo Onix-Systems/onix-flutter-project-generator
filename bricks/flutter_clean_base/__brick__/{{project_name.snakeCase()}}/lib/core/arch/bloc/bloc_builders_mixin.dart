@@ -23,4 +23,16 @@ mixin BlocBuildersMixin<B extends StateStreamable<S>, S, SR> {
   }) {
     return BlocBuilder<B, S>(builder: builder, buildWhen: buildWhen);
   }
+
+  Widget blocListener({
+    required ListenDelegate<S> listener,
+    Widget? child,
+    BlocListenerCondition<S>? listenWhen,
+  }) {
+    return BlocListener<B, S>(
+      listener: listener,
+      listenWhen: listenWhen,
+      child: child,
+    );
+  }
 }
