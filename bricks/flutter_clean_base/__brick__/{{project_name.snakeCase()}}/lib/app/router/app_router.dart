@@ -1,8 +1,6 @@
 //@formatter:off
 {{^isGoRouter}}import 'package:auto_route/auto_route.dart';{{/isGoRouter}}
 {{#isGoRouter}}import 'package:{{project_name}}/app/router/app_route.dart';{{/isGoRouter}}
-{{#isGoRouter}}import 'package:flutter_bloc/flutter_bloc.dart';{{/isGoRouter}}
-import 'package:flutter/material.dart';
 {{#isGoRouter}}import 'package:go_router/go_router.dart';{{/isGoRouter}}
 {{#isGoRouter}}import 'package:{{project_name}}/core/di/services.dart';{{/isGoRouter}}
 //{imports end}
