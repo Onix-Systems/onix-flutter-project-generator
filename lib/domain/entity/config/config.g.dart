@@ -24,6 +24,7 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
       firebaseAuth: json['firebaseAuth'] as bool? ?? false,
       useSonar: json['useSonar'] as bool? ?? true,
       graphql: json['graphql'] as bool? ?? false,
+      screenUtil: json['screenUtil'] as bool? ?? true,
       router: $enumDecodeNullable(_$ProjectRouterEnumMap, json['router']) ??
           ProjectRouter.goRouter,
       localization: $enumDecodeNullable(
@@ -58,6 +59,7 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'firebaseAuth': instance.firebaseAuth,
       'useSonar': instance.useSonar,
       'graphql': instance.graphql,
+      'screenUtil': instance.screenUtil,
       'router': _$ProjectRouterEnumMap[instance.router]!,
       'localization': _$ProjectLocalizationEnumMap[instance.localization]!,
       'theming': _$ProjectThemingEnumMap[instance.theming]!,

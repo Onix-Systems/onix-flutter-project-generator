@@ -30,11 +30,11 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
     {{#isGoRouter}}AppRouter.init();{{/isGoRouter}}
     return {{^web_only}}GlobalLoaderOverlay(
       overlayColor: Colors.black.withOpacity(0.5),
-      child: ScreenUtilInit(
+      child: {{/web_only}}{{#screen_util}}ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
         builder: (context, child) {
-        return{{/web_only}} blocBuilder(
+        return{{/screen_util}} blocBuilder(
           builder: (context, state) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
@@ -83,10 +83,25 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             {{/handLocalization}}
           );
           },
-          {{^web_only}}
-        );
-        },
-      ),{{/web_only}}
-    );
+     {{#screen_util}}
+        ); // BLOC
+        }, // SU
+    {{#web_only}}
+    ); // SU
+    {{/web_only}}
+    {{^web_only}}
+    ), //SU
+    ); // GLO
+    {{/web_only}}
+    {{/screen_util}}
+    {{^screen_util}}
+    {{#web_only}}
+    ); // SU
+        {{/web_only}}
+    {{^web_only}}
+    ), // BLOC
+    ); // GLO
+        {{/web_only}}
+      {{/screen_util}}
   }
 }

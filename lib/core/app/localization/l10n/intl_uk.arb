@@ -49,6 +49,7 @@
   "router": "Роутер:",
   "useSonar": "Підключити Sonar?",
   "integrateGraphQl": "Інтегрувати GraphQL?",
+  "useScreenUtil": "Використовувати Screen Util?",
   "generateSonarConfig": "Згенерувати конфіг Sonar?",
   "modifySigningVars": "Змінити дані підпису...",
   "dialogWillOpenInSeparateWindow": "(Діалог видкріється в окремому вікні)",

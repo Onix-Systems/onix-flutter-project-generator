@@ -167,6 +167,17 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                           valueSetter: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventGraphQLChange()),
                         ),
+                        if (!state.config.platformsList.webOnly) ...[
+                          const Delimiter.height(20),
+                          SwitchWithLabel(
+                            label: S.of(context).useScreenUtil,
+                            initialValue: state.config.screenUtil,
+                            valueSetter: (_) => blocOf(context).add(
+                              const ProjectSettingsScreenEvent
+                                  .screenUtilChange(),
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   ),

@@ -256,6 +256,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "twoLetterCountryCode":
             MessageLookupByLibrary.simpleMessage(" Two-letter country code"),
         "url": MessageLookupByLibrary.simpleMessage("URL"),
+        "useScreenUtil":
+            MessageLookupByLibrary.simpleMessage("Use Screen Util?"),
         "useSonar": MessageLookupByLibrary.simpleMessage("Will you use Sonar?"),
         "usingBloc": MessageLookupByLibrary.simpleMessage("Using BLoC"),
         "usingCubit": MessageLookupByLibrary.simpleMessage("Using Cubit"),

@@ -258,6 +258,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "twoLetterCountryCode":
             MessageLookupByLibrary.simpleMessage(" Двохлітерний код країни"),
         "url": MessageLookupByLibrary.simpleMessage("URL"),
+        "useScreenUtil": MessageLookupByLibrary.simpleMessage(
+            "Використовувати Screen Util?"),
         "useSonar": MessageLookupByLibrary.simpleMessage("Підключити Sonar?"),
         "usingBloc": MessageLookupByLibrary.simpleMessage("Використати BLoC"),
         "usingCubit": MessageLookupByLibrary.simpleMessage("Використати Cubit"),
