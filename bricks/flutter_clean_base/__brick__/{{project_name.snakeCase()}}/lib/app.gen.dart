@@ -85,23 +85,23 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
           );
           },
      {{#screen_util}}
-            ); // BLOC
-          }, // SU
+            );
+          },
      {{#web_only}}
-        ); // SU
+        );
     {{/web_only}}
     {{^web_only}}
-          ), //SU
-        ); // GLO
+          ),
+        );
     {{/web_only}}
     {{/screen_util}}
     {{^screen_util}}
     {{#web_only}}
-        ); // SU
+        );
     {{/web_only}}
     {{^web_only}}
-        ), // BLOC
-       ); // GLO
+        ),
+       );
     {{/web_only}}
     {{/screen_util}}
   }

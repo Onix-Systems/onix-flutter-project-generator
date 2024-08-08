@@ -109,15 +109,16 @@ class _DataComponentsScreenState extends BaseState<
   ) {
     singleResult.when(
       error: (message) => Dialogs.showOkDialog(
-          context: context,
-          title: '${S.of(context).error}!',
-          content: Text(
-            message,
-            style: context.appTextStyles.fs18?.copyWith(
-              fontSize: 16,
-            ),
+        context: context,
+        title: '${S.of(context).error}!',
+        content: Text(
+          message,
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
           ),
-          isError: true),
+        ),
+        isError: true,
+      ),
     );
   }
 
