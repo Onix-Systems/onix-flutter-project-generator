@@ -30,7 +30,8 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
     {{#isGoRouter}}AppRouter.init();{{/isGoRouter}}
     return {{^web_only}}GlobalLoaderOverlay(
       overlayColor: Colors.black.withOpacity(0.5),
-      child: {{/web_only}}{{#screen_util}}ScreenUtilInit(
+      child: {{/web_only}}
+      {{#screen_util}}ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
         builder: (context, child) {
@@ -84,24 +85,24 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
           );
           },
      {{#screen_util}}
-        ); // BLOC
-        }, // SU
-    {{#web_only}}
-    ); // SU
+            ); // BLOC
+          }, // SU
+     {{#web_only}}
+        ); // SU
     {{/web_only}}
     {{^web_only}}
-    ), //SU
-    ); // GLO
+          ), //SU
+        ); // GLO
     {{/web_only}}
     {{/screen_util}}
     {{^screen_util}}
     {{#web_only}}
-    ); // SU
-        {{/web_only}}
+        ); // SU
+    {{/web_only}}
     {{^web_only}}
-    ), // BLOC
-    ); // GLO
-        {{/web_only}}
-      {{/screen_util}}
+        ), // BLOC
+       ); // GLO
+    {{/web_only}}
+    {{/screen_util}}
   }
 }

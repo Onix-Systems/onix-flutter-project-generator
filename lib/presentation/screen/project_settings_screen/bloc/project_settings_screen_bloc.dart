@@ -165,6 +165,8 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventScreenUtilChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    print(state.config.platformsList.webOnly);
+    print(state.config.screenUtil);
     emit(
       state.copyWith(
         config: state.config.copyWith(
@@ -174,5 +176,6 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
         ),
       ),
     );
+    print(state.config.screenUtil);
   }
 }

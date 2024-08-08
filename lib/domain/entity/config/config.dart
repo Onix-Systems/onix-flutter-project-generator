@@ -50,7 +50,6 @@ class Config with _$Config {
         screens: {},
       );
 
-  //(Ivan Modlo): TODO
   bool get useScreenUtil => screenUtil && !platformsList.webOnly;
 
   Future<void> saveConfig({required String projectPath}) async {

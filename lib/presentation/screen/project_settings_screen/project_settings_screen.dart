@@ -292,17 +292,6 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
 
   void _goNext(ProjectSettingsScreenState state) => context.go(
         AppRouter.screensScreen,
-        extra: widget.config.copyWith(
-          flavorize: state.config.flavorize,
-          flavors: state.config.flavors,
-          generateSigningKey: state.config.generateSigningKey,
-          useSonar: state.config.useSonar,
-          graphql: state.config.graphql,
-          router: state.config.router,
-          localization: state.config.localization,
-          theming: state.config.theming,
-          signingVars: state.config.signingVars,
-          firebaseAuth: state.config.firebaseAuth,
-        ),
+        extra: state.config,
       );
 }

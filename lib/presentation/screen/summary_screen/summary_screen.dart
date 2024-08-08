@@ -139,6 +139,11 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       variable: S.of(context).swaggerURL,
                       value: state.config.swaggerUrl,
                     ),
+                  if (!state.config.platformsList.webOnly)
+                    SummaryCell(
+                      variable: S.of(context).useScreenUtil,
+                      value: state.config.screenUtil.toString(),
+                    ),
                   //Todo Resolve
                   /*if (state.config.sources.isNotEmpty)
                     SummaryCell(
@@ -164,6 +169,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       variable: 'Styles',
                       value: state.config.styles,
                     ),
+                  const Delimiter.height(10),
                 ],
               ),
             ),
