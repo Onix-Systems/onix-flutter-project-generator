@@ -122,6 +122,10 @@ Select preferred type of localization to be included in the application.
 
 Select preferred configuration of ThemeExtension: Manual or based on generated classes by ThemeTailor.
 
+### ScreenUtil
+
+Enable if need to include support of ScreenUtil package.
+
 ### Firebase
 
 Enable if you need to include Firebase dependencies and Firebase Auth client into the application. 
@@ -147,7 +151,7 @@ After you press `Add screen` button you will see dialog:
 * **Select BLoC or Cubit** if you need state management on this screen. 
 * Press OK.
 
-**And once sreens added press on Continue button**.
+**And once screens added press on Continue button**.
 
 <div align="center">
 <img alt="refine logo" src="images/4_screens.png">
