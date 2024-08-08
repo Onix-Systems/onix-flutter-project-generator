@@ -16,9 +16,17 @@
 </div>
 
 <br/>
-<br/>
 
-<div align="center"><strong>Create your new Flutter project just in a few clicks.</strong><br>Flutter project generator is as an open source utility for MacOS designed to provide a quick start with your Flutter application development.<br />
+<div align="center"><strong>How does it work?  Watch the video!</strong></div>
+
+<div align="center">
+<a href="TODO VIDEO">
+    <img alt="refine logo" src="images/watch_yt_normal.png">
+</a>
+</div>
+
+<br/>
+<div align="center"><strong>Create your new Flutter project just in a few clicks.</strong><br>Flutter project generator is an open source utility for MacOS designed to provide a quick start with your Flutter application development.<br/>
 <br/>
 </div>
 <div align="center">
@@ -33,7 +41,7 @@ If you're a Onix Project Generator user and you like using our tool, don't **for
 
 ## What is Project Generator?
 
-**Flutter Project Generator** is a utility for **MacOS** designed to quickly start a Flutter project from scratch.
+**Flutter Project Generator** is an utility for **MacOS** designed to quickly start a Flutter project from scratch.
 
 **Flutter Project Generator** creates an empty project on **Clean Architecture** with already defined file structure and dependencies.
 
@@ -58,7 +66,6 @@ Generated project tech consist of such libraries and packages:
 * **State Management** - [BLoC](https://pub.dev/packages/flutter_bloc).
 * **Networking** - [Dio](https://pub.dev/packages/dio).
 * **Service Locator** - [GetIt](https://pub.dev/packages/get_it)
-* **UI** - [ScreenUtil](https://pub.dev/packages/flutter_screenutil)
 * **Code generator** - [Freezed](https://pub.dev/packages/freezed)
 * **Navigation** - [GoRouter](https://pub.dev/packages/go_router) or [AutoRoute](https://pub.dev/packages/auto_route)
 
@@ -69,6 +76,7 @@ Also there an option to select **optional packages to include** to the project:
 * **Flavors** - [Flavorizr](https://pub.dev/packages/flutter_flavorizr)
 * **Localization** - [Intl](https://pub.dev/packages/intl_utils)
 * **Theming** - [ThemeTailor](https://pub.dev/packages/theme_tailor)
+* **UI** - [ScreenUtil](https://pub.dev/packages/flutter_screenutil)
 
 
 ## Key Features

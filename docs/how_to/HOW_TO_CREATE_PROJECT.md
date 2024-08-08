@@ -16,6 +16,7 @@ Onix Project Generator is built like the application creation wizard.
 **Before create a new project make sure that**
 Flutter SDK and Dart are installed and visible in the terminal.
 
+**Don’t like read too much**? Okay, **check the [video instruction](todo)** then.
 
 ## Select project folder 📁
 
@@ -38,16 +39,16 @@ Notice that **organization name works like Package name and Bundle ID prefix**.
 Fox example names are:
 
 ```
-name: MyApp
+name: demo
 organization: com.onix
 ``` 
 
 Outputs:
 
 ```
-Flutter project name: my_app
-Android package name: com.onix.my_app
-Bundle ID: com.onix.my_app
+Flutter project name: demo
+Android package name: com.onix.demo
+Bundle ID: com.onix.demo
 ```
 
 
