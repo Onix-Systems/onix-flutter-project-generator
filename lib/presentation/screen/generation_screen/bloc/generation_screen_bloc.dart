@@ -183,7 +183,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           styles: state.config.styles,
           theming: state.config.theming,
           projectExists: state.config.projectExists,
-          useScreenUtil: state.config.platformsList.mobile,
+          useScreenUtil:
+              state.config.platformsList.mobile && state.config.useScreenUtil,
         ),
       );
     }

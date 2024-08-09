@@ -273,7 +273,7 @@ class ScreenCodeContent {
     }
     if (stateManagement == ScreenStateManager.bloc) {
       codeLines.add(
-          'import \'package:$projectName/core/arch/bloc/base_block_state.dart\';');
+          'import \'package:$projectName/core/arch/bloc/base_bloc_state.dart\';');
     } else {
       codeLines.add(
           'import \'package:$projectName/core/arch/bloc/base_cubit_state.dart\';');
@@ -315,10 +315,10 @@ class ScreenCodeContent {
     codeLines.add('child: Scaffold(');
     codeLines.add('body: SizedBox.expand(');
     codeLines.add('child: blocConsumer(');
-    codeLines.add('stateListener: (state) => const Center(');
+    codeLines.add('builder: (state) => const Center(');
     codeLines.add('child: Text(\'$screenClassName screen\'),');
     codeLines.add('),');
-    codeLines.add('listenDelegate: (context, state) {},');
+    codeLines.add('listener: (context, state) {},');
     codeLines.add('),),),');
     codeLines.add('onSR: _onSingleResult,');
     codeLines.add(' );}');

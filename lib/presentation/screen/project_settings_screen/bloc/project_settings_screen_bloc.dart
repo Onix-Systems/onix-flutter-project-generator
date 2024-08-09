@@ -22,6 +22,7 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     on<ProjectSettingsScreenEventLocalizationChange>(_onLocalizationChange);
     on<ProjectSettingsScreenEventThemingChange>(_onThemingChange);
     on<ProjectSettingsScreenEventFirebaseChange>(_onFirebaseChange);
+    on<ProjectSettingsScreenEventScreenUtilChange>(_onScreenUtilChange);
   }
 
   void _onInit(
@@ -156,6 +157,21 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     emit(
       state.copyWith(
         config: state.config.copyWith(firebaseAuth: !state.config.firebaseAuth),
+      ),
+    );
+  }
+
+  void _onScreenUtilChange(
+    ProjectSettingsScreenEventScreenUtilChange event,
+    Emitter<ProjectSettingsScreenState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        config: state.config.copyWith(
+          screenUtil: state.config.platformsList.webOnly
+              ? false
+              : !state.config.screenUtil,
+        ),
       ),
     );
   }

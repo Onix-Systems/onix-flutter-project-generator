@@ -40,6 +40,9 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
 
   const factory ProjectSettingsScreenEvent.firebaseChange() =
       ProjectSettingsScreenEventFirebaseChange;
+
+  const factory ProjectSettingsScreenEvent.screenUtilChange() =
+      ProjectSettingsScreenEventScreenUtilChange;
 }
 
 @freezed

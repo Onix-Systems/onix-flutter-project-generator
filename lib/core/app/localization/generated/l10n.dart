@@ -560,6 +560,16 @@ class S {
     );
   }
 
+  /// `Use Screen Util?`
+  String get useScreenUtil {
+    return Intl.message(
+      'Use Screen Util?',
+      name: 'useScreenUtil',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Generate Sonar config?`
   String get generateSonarConfig {
     return Intl.message(

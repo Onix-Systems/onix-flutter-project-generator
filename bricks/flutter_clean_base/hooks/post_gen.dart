@@ -1,9 +1,10 @@
-import 'package:mason/mason.dart';
 import 'dart:io';
-import 'package:process_run/shell.dart';
-import 'package:tint/tint.dart';
 import 'dart:math';
+
+import 'package:mason/mason.dart';
+import 'package:process_run/shell.dart';
 import 'package:recase/recase.dart';
+import 'package:tint/tint.dart';
 
 late String name;
 const flavorizrInjectKey = '#{flavorizer_injection_config}';
@@ -158,7 +159,9 @@ Future<void> getDependencies(HookContext context) async {
   ];
 
   if (!context.vars['web_only']) {
-    dependencies.add('flutter_screenutil');
+    if (context.vars['screen_util']) {
+      dependencies.add('flutter_screenutil');
+    }
     dependencies.add('loader_overlay');
   } else {
     dependencies.add('flutter_overlay_loader');

@@ -21,7 +21,7 @@ When user enter Swagger URL in the UI and press the Continue button, components 
 
 Once Swagger JSON has fetched parsing starts in `swagger_remote_source.dart`. Components will be parsed depending on the Swagger version. 
 
-Each data model have corresponding to version parser function. (`fromJsonV2` and `fromJsonV3`).
+Each data model have corresponding to version `fromJson` function in corresponding classes. (for example `SwaggerModelResponseV2.fromJson` and `SwaggerModelResponseV3.fromJson`).
  
 General parsing flow looks like: 
 
@@ -39,11 +39,11 @@ F -->|V3+| H[Parse Paths with V3 parser]
 F -->|Other version| ERR
 G ----> J{Check version}
 H ----> J
-J -->|V2| K{Has defintions in JSON?}
+J -->|V2| K{Has definitions in JSON?}
 J -->|V3| L{Has components in JSON?}
 K -->|Yes| M[Parse definitions with V2 parser]
 K -->|No| ERR
-L -->|Yes| N[Parse coomponents with V3 parser]
+L -->|Yes| N[Parse components with V3 parser]
 L -->|No| ERR
 M ----> O[Return parsed result]
 N ----> O[Return parsed result]
@@ -53,7 +53,7 @@ Once components are parsed they will be stored in `SwaggerRepository`.
 
 ## Generation
 
-Generation step starts if components were parsed sucessfully and stored in `SwaggerRepository `. 
+Generation step starts if components were parsed successfully and stored in `SwaggerRepository `. 
 
 Generation process begins in `ComponentGeneratorService` and consist wth 4 main generation steps:
 

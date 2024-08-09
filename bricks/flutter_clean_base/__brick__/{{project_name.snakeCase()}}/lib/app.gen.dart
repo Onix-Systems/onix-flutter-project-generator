@@ -1,9 +1,9 @@
 //@formatter:off
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-{{^web_only}}import 'package:loader_overlay/loader_overlay.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';{{/web_only}}
-import 'package:{{project_name}}/core/arch/bloc/base_block_state.dart';
+{{^web_only}}import 'package:loader_overlay/loader_overlay.dart';{{/web_only}}
+{{#screen_util}}import 'package:flutter_screenutil/flutter_screenutil.dart';{{/screen_util}}
+import 'package:{{project_name}}/core/arch/bloc/base_bloc_state.dart';
 import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';
 import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
 {{#isGoRouter}}import 'package:{{project_name}}/app/router/app_router.dart';{{/isGoRouter}}
@@ -30,11 +30,12 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
     {{#isGoRouter}}AppRouter.init();{{/isGoRouter}}
     return {{^web_only}}GlobalLoaderOverlay(
       overlayColor: Colors.black.withOpacity(0.5),
-      child: ScreenUtilInit(
+      child: {{/web_only}}
+      {{#screen_util}}ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
         builder: (context, child) {
-        return{{/web_only}} blocBuilder(
+        return{{/screen_util}} blocBuilder(
           builder: (context, state) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
@@ -83,10 +84,25 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             {{/handLocalization}}
           );
           },
-          {{^web_only}}
+     {{#screen_util}}
+            );
+          },
+     {{#web_only}}
         );
-        },
-      ),{{/web_only}}
-    );
+    {{/web_only}}
+    {{^web_only}}
+          ),
+        );
+    {{/web_only}}
+    {{/screen_util}}
+    {{^screen_util}}
+    {{#web_only}}
+        );
+    {{/web_only}}
+    {{^web_only}}
+        ),
+       );
+    {{/web_only}}
+    {{/screen_util}}
   }
 }

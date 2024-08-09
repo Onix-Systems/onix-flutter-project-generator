@@ -29,6 +29,7 @@ class Config with _$Config {
     @Default(false) bool firebaseAuth,
     @Default(true) bool useSonar,
     @Default(false) bool graphql,
+    @Default(true) bool screenUtil,
     @Default(ProjectRouter.goRouter) ProjectRouter router,
     @Default(ProjectLocalization.intl) ProjectLocalization localization,
     @Default(ProjectTheming.manual) ProjectTheming theming,
@@ -48,6 +49,8 @@ class Config with _$Config {
   factory Config.empty() => const Config(
         screens: {},
       );
+
+  bool get useScreenUtil => screenUtil && !platformsList.webOnly;
 
   Future<void> saveConfig({required String projectPath}) async {
     await configSource.saveConfig(
