@@ -26,6 +26,7 @@ extension ConfigFileExtension on File {
         'platforms': config.platformsList.toString().replaceAll(' ', ''),
         'theme_generate': config.theming.name == 'themeTailor',
         'branch': config.branch,
+        'screen_util': config.useScreenUtil,
       },
     );
     return writeAsString(configContent);

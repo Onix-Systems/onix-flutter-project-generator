@@ -4,7 +4,7 @@ import 'package:{{project_name}}/app/router/router_logging_observer.dart';
 
 abstract class RouterModule {
   AppRouter appRouter() {
-    return AppRouter(init: InitGuard());
+    return AppRouter(globalGuards: [InitGuard()]);
   }
 
   RouterLoggingObserver routerLoggingObserver(

@@ -16,15 +16,13 @@ Onix Project Generator is built like the application creation wizard.
 **Before create a new project make sure that**
 Flutter SDK and Dart are installed and visible in the terminal.
 
+**Don’t like read too much**? Okay, **check the [video instruction](https://www.youtube.com/watch?v=E8kBX7HoqMU)** then.
 
 ## Select project folder 📁
 
 Select a desired **application mode**:
 
 * **Generate a new project** to create a new project from scratch.
-* **Open existing projects** to modify existing project.
-
-> Note: To modify an existing project it must be created with Onix Project Generator.
 
 After you **select mode** you **need to choose the folder where the project will be located**.
 
@@ -41,16 +39,16 @@ Notice that **organization name works like Package name and Bundle ID prefix**.
 Fox example names are:
 
 ```
-name: MyApp
+name: demo
 organization: com.onix
 ``` 
 
 Outputs:
 
 ```
-Flutter project name: my_app
-Android package name: com.onix.my_app
-Bundle ID: com.onix.my_app
+Flutter project name: demo
+Android package name: com.onix.demo
+Bundle ID: com.onix.demo
 ```
 
 
@@ -124,6 +122,10 @@ Select preferred type of localization to be included in the application.
 
 Select preferred configuration of ThemeExtension: Manual or based on generated classes by ThemeTailor.
 
+### ScreenUtil
+
+Enable if need to include support of ScreenUtil package.
+
 ### Firebase
 
 Enable if you need to include Firebase dependencies and Firebase Auth client into the application. 
@@ -149,7 +151,7 @@ After you press `Add screen` button you will see dialog:
 * **Select BLoC or Cubit** if you need state management on this screen. 
 * Press OK.
 
-**And once sreens added press on Continue button**.
+**And once screens added press on Continue button**.
 
 <div align="center">
 <img alt="refine logo" src="images/4_screens.png">
@@ -217,18 +219,11 @@ Paste your Swagger Json Url into the input field and press continue.
 
 **Or just press Continue button with empty input value to skip this step**.
 
-## Configure additional components 🗃️
+## Data Components 🗃️
 
 If you come to this screen after Swagger url parsed you will see a list of parsed data components.
 
-**Components are grouped as in Swagger UI**. In code perspective each group is a separate source where REST API requests will be declared and repository. 
-
-Each component have:
-
-* **Name** - name of class based on Swagger component name.
-* **Type** - request or response depending on how component are used in Swagger.
-* **Preview** - button to preview component content.
-
+**Components are grouped as in Swagger UI**. In code perspective each group is a separate source where REST API requests will be declared and repository.
 
 For each data component Onix Project Generator will create:
 

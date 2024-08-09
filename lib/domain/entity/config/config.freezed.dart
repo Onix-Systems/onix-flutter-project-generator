@@ -34,6 +34,7 @@ mixin _$Config {
   bool get firebaseAuth => throw _privateConstructorUsedError;
   bool get useSonar => throw _privateConstructorUsedError;
   bool get graphql => throw _privateConstructorUsedError;
+  bool get screenUtil => throw _privateConstructorUsedError;
   ProjectRouter get router => throw _privateConstructorUsedError;
   ProjectLocalization get localization => throw _privateConstructorUsedError;
   ProjectTheming get theming => throw _privateConstructorUsedError;
@@ -69,6 +70,7 @@ abstract class $ConfigCopyWith<$Res> {
       bool firebaseAuth,
       bool useSonar,
       bool graphql,
+      bool screenUtil,
       ProjectRouter router,
       ProjectLocalization localization,
       ProjectTheming theming,
@@ -108,6 +110,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? firebaseAuth = null,
     Object? useSonar = null,
     Object? graphql = null,
+    Object? screenUtil = null,
     Object? router = null,
     Object? localization = null,
     Object? theming = null,
@@ -173,6 +176,10 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.graphql
           : graphql // ignore: cast_nullable_to_non_nullable
               as bool,
+      screenUtil: null == screenUtil
+          ? _value.screenUtil
+          : screenUtil // ignore: cast_nullable_to_non_nullable
+              as bool,
       router: null == router
           ? _value.router
           : router // ignore: cast_nullable_to_non_nullable
@@ -235,6 +242,7 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       bool firebaseAuth,
       bool useSonar,
       bool graphql,
+      bool screenUtil,
       ProjectRouter router,
       ProjectLocalization localization,
       ProjectTheming theming,
@@ -273,6 +281,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
     Object? firebaseAuth = null,
     Object? useSonar = null,
     Object? graphql = null,
+    Object? screenUtil = null,
     Object? router = null,
     Object? localization = null,
     Object? theming = null,
@@ -338,6 +347,10 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value.graphql
           : graphql // ignore: cast_nullable_to_non_nullable
               as bool,
+      screenUtil: null == screenUtil
+          ? _value.screenUtil
+          : screenUtil // ignore: cast_nullable_to_non_nullable
+              as bool,
       router: null == router
           ? _value.router
           : router // ignore: cast_nullable_to_non_nullable
@@ -388,6 +401,7 @@ class _$ConfigImpl extends _Config {
       this.firebaseAuth = false,
       this.useSonar = true,
       this.graphql = false,
+      this.screenUtil = true,
       this.router = ProjectRouter.goRouter,
       this.localization = ProjectLocalization.intl,
       this.theming = ProjectTheming.manual,
@@ -448,6 +462,9 @@ class _$ConfigImpl extends _Config {
   final bool graphql;
   @override
   @JsonKey()
+  final bool screenUtil;
+  @override
+  @JsonKey()
   final ProjectRouter router;
   @override
   @JsonKey()
@@ -490,7 +507,7 @@ class _$ConfigImpl extends _Config {
 
   @override
   String toString() {
-    return 'Config(branch: $branch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl)';
+    return 'Config(branch: $branch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, screenUtil: $screenUtil, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl)';
   }
 
   @override
@@ -523,6 +540,8 @@ class _$ConfigImpl extends _Config {
             (identical(other.useSonar, useSonar) ||
                 other.useSonar == useSonar) &&
             (identical(other.graphql, graphql) || other.graphql == graphql) &&
+            (identical(other.screenUtil, screenUtil) ||
+                other.screenUtil == screenUtil) &&
             (identical(other.router, router) || other.router == router) &&
             (identical(other.localization, localization) ||
                 other.localization == localization) &&
@@ -553,6 +572,7 @@ class _$ConfigImpl extends _Config {
         firebaseAuth,
         useSonar,
         graphql,
+        screenUtil,
         router,
         localization,
         theming,
@@ -592,6 +612,7 @@ abstract class _Config extends Config {
       final bool firebaseAuth,
       final bool useSonar,
       final bool graphql,
+      final bool screenUtil,
       final ProjectRouter router,
       final ProjectLocalization localization,
       final ProjectTheming theming,
@@ -632,6 +653,8 @@ abstract class _Config extends Config {
   bool get useSonar;
   @override
   bool get graphql;
+  @override
+  bool get screenUtil;
   @override
   ProjectRouter get router;
   @override

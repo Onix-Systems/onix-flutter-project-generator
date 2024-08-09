@@ -1,6 +1,8 @@
-{{^web_only}}import 'package:flutter_screenutil/flutter_screenutil.dart';{{/web_only}}
+{{#screen_util}}import 'package:flutter_screenutil/flutter_screenutil.dart';{{/screen_util}}
 
-class Dimensions {
-{{^web_only}}static final delimiterH10 = 10.h;{{/web_only}}
-{{#web_only}}static final delimiterH10 = 10.0;{{/web_only}}
+final class Dimensions {
+{{#screen_util}} static final delimiterH10 = 10.h;{{/screen_util}}
+{{^screen_util}} static const delimiterH10 = 10.0;{{/screen_util}}
+
+  const Dimensions._();
 }
