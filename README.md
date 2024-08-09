@@ -20,7 +20,7 @@
 <div align="center"><strong>How does it work?  Watch the video!</strong></div>
 
 <div align="center">
-<a href="TODO VIDEO">
+<a href="https://www.youtube.com/watch?v=E8kBX7HoqMU">
     <img alt="refine logo" src="images/watch_yt_normal.png">
 </a>
 </div>

@@ -16,7 +16,7 @@ Onix Project Generator is built like the application creation wizard.
 **Before create a new project make sure that**
 Flutter SDK and Dart are installed and visible in the terminal.
 
-**Don’t like read too much**? Okay, **check the [video instruction](todo)** then.
+**Don’t like read too much**? Okay, **check the [video instruction](https://www.youtube.com/watch?v=E8kBX7HoqMU)** then.
 
 ## Select project folder 📁
 
