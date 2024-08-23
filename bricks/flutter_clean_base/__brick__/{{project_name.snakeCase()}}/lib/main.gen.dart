@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:{{project_name}}/app/banned_app.dart';
 import 'package:{{project_name}}/core/arch/bloc/app_bloc_observer.dart';
@@ -19,6 +20,13 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
         await Initialization.I.initApp();
 
         await OrientationExtension.lockVertical();
+        
+        await SentryFlutter.init(
+        (options) {
+        options.dsn = const String.fromEnvironment('SENTRY_DSN');
+         },
+        appRunner: () => runApp(const MainApp()),
+        );
 
         Bloc.observer = AppBlocObserver();
         final isAllowedToUseApp = await environmentService().initialize();
