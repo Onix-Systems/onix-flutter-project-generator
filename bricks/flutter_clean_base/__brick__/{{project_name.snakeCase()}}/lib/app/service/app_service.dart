@@ -14,6 +14,8 @@ import 'package:flutter_jailbreak_detection/flutter_jailbreak_detection.dart';
 class AppService {
   static const apiKey1 = 'APIKEY1';
   static const apiKey2 = 'APIKEY2';
+  static const sentryDsn = 'SENTRYDSN';
+
 
   //Change if not need to check for root or jail brake
   final _secureFromJailbreak = true;

@@ -133,6 +133,7 @@ Future<void> getDependencies(HookContext context) async {
   List<String> dependencies = [
     'cupertino_icons',
     'dio',
+    'sentry_flutter',
     'pretty_dio_logger',
     'dio_cache_interceptor',
     'dio_cache_interceptor_hive_store',

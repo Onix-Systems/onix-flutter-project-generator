@@ -13,35 +13,35 @@ import 'package:{{project_name}}/app/util/extension/orientation_extension.dart';
 import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 
 Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
-  unawaited(
-    runZonedGuarded(
-      () async {
-        WidgetsFlutterBinding.ensureInitialized();
-        await Initialization.I.initApp();
+  await SentryFlutter.init(
+    (options) {
+      options.dsn = const String.fromEnvironment(AppService.sentryDsn);
+    },
+    appRunner: () {
+      unawaited(
+        runZonedGuarded(
+          () async {
+            WidgetsFlutterBinding.ensureInitialized();
+            await Initialization.I.initApp();
 
-        await OrientationExtension.lockVertical();
-        
-        await SentryFlutter.init(
-        (options) {
-        options.dsn = const String.fromEnvironment('SENTRY_DSN');
-         },
-        appRunner: () => runApp(const MainApp()),
-        );
+            await OrientationExtension.lockVertical();
 
-        Bloc.observer = AppBlocObserver();
-        final isAllowedToUseApp = await environmentService().initialize();
-        if (isAllowedToUseApp) {
-          runApp(const App());
-        } else {
-          runApp(const BannedApp());
-        }
-        },
-        (error, stackTrace) {
-          logger.crash(error: error, stackTrace: stackTrace, reason: 'main');
-        },
+            Bloc.observer = AppBlocObserver();
+            final isAllowedToUseApp = await environmentService().initialize();
+            if (isAllowedToUseApp) {
+              runApp(const App());
+            } else {
+              runApp(const BannedApp());
+            }
+          },
+          (error, stackTrace) {
+            logger.crash(error: error, stackTrace: stackTrace, reason: 'main');
+          },
         )?.catchError((e, trace) {
           logger.crash(error: e, stackTrace: trace, reason: 'main');
           exit(-1);
-    }),
+        }),
+      );
+    },
   );
 }

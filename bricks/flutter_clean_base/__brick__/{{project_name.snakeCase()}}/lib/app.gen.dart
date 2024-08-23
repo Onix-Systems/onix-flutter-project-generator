@@ -82,6 +82,9 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             {{/handLocalization}}
+            navigatorObservers: [
+              SentryNavigatorObserver(), // Add Sentry Navigator Observer
+            ],
           );
           },
      {{#screen_util}}
