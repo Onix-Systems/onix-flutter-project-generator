@@ -11,6 +11,7 @@
 ## Technologies used in Example
 
 * [GetIt](https://pub.dev/packages/get_it) - service locator (DI)
+* [Sentry](https://pub.dev/packages/sentry_flutter) - error reporting
 * [Screen Util](https://pub.dev/packages/flutter_screenutil) - adaptive UI tools
 * [Go Router](https://pub.dev/packages/go_router) - navigation
 * [Json Annotation](https://pub.dev/packages/json_annotation) - code generation based for JSON

@@ -68,6 +68,7 @@ Generated project tech consist of such libraries and packages:
 * **Service Locator** - [GetIt](https://pub.dev/packages/get_it)
 * **Code generator** - [Freezed](https://pub.dev/packages/freezed)
 * **Navigation** - [GoRouter](https://pub.dev/packages/go_router) or [AutoRoute](https://pub.dev/packages/auto_route)
+* **Error Reporting** - [Sentry](https://pub.dev/packages/sentry_flutter)
 
 Also there an option to select **optional packages to include** to the project:
 
