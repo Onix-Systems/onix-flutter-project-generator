@@ -41,7 +41,6 @@ void registerUseCases(GetIt getIt) {
     ..registerLazySingleton<GenerateScreensUseCase>(
       () => GenerateScreensUseCase(
         GetIt.I.get<OutputService>(),
-        GetIt.I.get<FileGeneratorService>(),
         GetIt.I.get<ScreenRepository>(),
       ),
     )

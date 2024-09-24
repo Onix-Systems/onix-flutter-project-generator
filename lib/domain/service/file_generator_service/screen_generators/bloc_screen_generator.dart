@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/screen_code_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/bloc_screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:recase/recase.dart';
 
-class ScreenGenerator implements BaseGenerationService<bool> {
-  final _screenCodeContent = ScreenCodeContent();
+class BlocScreenGenerator implements BaseGenerationService<bool> {
+  final _screenCodeContent = BlocScreenCodeContent();
 
   @override
   Future<bool> generate(BaseGenerationParams params) async {

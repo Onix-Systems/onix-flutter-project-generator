@@ -3,7 +3,7 @@ import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
-class ScreenCodeContent {
+class BlocScreenCodeContent {
   final _routesDeclarationSuffix = '//{routes declaration end}';
   final _navigatorRoutesSuffix = '//{routes end}';
   final _navigatorImportsSuffix = '//{imports end}';
