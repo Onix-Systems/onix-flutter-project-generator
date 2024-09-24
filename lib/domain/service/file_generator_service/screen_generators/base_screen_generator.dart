@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/base_screen_code_content.dart';
@@ -77,13 +78,13 @@ class BaseScreenGenerator implements BaseGenerationService<bool> {
 
     String screenContent = '';
 
-    switch (params.screen.stateManager) {
-      case 'stateful':
+    switch (params.screen.stateVariant) {
+      case StatefulStateManagementVariant():
         screenContent = _screenCodeContent.createStatefulScreen(
           isGoRouter: params.router == ProjectRouter.goRouter,
           screenName: screenName,
         );
-      case 'stateless':
+      case StatelessStateManagementVariant():
         screenContent = _screenCodeContent.createStatelessScreen(
           isGoRouter: params.router == ProjectRouter.goRouter,
           screenName: screenName,

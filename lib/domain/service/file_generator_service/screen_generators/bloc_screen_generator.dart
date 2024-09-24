@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/bloc_screen_code_content.dart';
@@ -26,7 +27,7 @@ class BlocScreenGenerator implements BaseGenerationService<bool> {
         '${params.projectPath}/${params.projectName}/lib/presentation/screen/${screenName}_screen';
     await Directory(screenPath).create(recursive: true);
 
-    if (params.screen.stateManager != 'none') {
+    if (params.screen.stateVariant != const StatelessStateManagementVariant()) {
       await Directory('$screenPath/bloc').create(recursive: true);
     }
 
@@ -36,7 +37,7 @@ class BlocScreenGenerator implements BaseGenerationService<bool> {
     ///Add screen configuration to Navigation Router file
     await _createRoutes(params);
 
-    if (params.screen.stateManager != 'none') {
+    if (params.screen.stateVariant != const StatelessStateManagementVariant()) {
       ///Add DI configuration for state management
       await _createDI(params);
     }
@@ -84,7 +85,7 @@ class BlocScreenGenerator implements BaseGenerationService<bool> {
       input: content,
       screenName: screenName,
       projectName: params.projectName,
-      stateManagement: params.screen.stateManager,
+      stateManagement: params.screen.stateVariant,
     );
     await diFile.writeAsString(diOutputContent);
   }
@@ -97,15 +98,15 @@ class BlocScreenGenerator implements BaseGenerationService<bool> {
     final screenFile =
         await File('$screenPath/${screenName}_screen.dart').create();
 
-    switch (params.screen.stateManager) {
-      case 'bloc' || 'cubit':
+    switch (params.screen.stateVariant) {
+      case BlocStateManagementVariant() || CubitStateManagementVariant():
 
         ///Write screen file
         final screenContent = _screenCodeContent.createStateManagementScreen(
           isGoRouter: params.router == ProjectRouter.goRouter,
           screenName: screenName,
           projectName: params.projectName,
-          stateManagement: params.screen.stateManager,
+          stateManagement: params.screen.stateVariant,
         );
         await screenFile.writeAsString(screenContent);
 
@@ -115,7 +116,7 @@ class BlocScreenGenerator implements BaseGenerationService<bool> {
                 .create();
         final importsContent = _screenCodeContent.createBlocImportsContent(
           screenName: screenName,
-          stateManagement: params.screen.stateManager,
+          stateManagement: params.screen.stateVariant,
         );
         await importsFile.writeAsString(importsContent);
 
@@ -125,23 +126,23 @@ class BlocScreenGenerator implements BaseGenerationService<bool> {
                 .create();
         final modelsContent = _screenCodeContent.createBlocModels(
           screenName: screenName,
-          stateManagement: params.screen.stateManager,
+          stateManagement: params.screen.stateVariant,
         );
         await modelsFile.writeAsString(modelsContent);
 
         ///Write BLoC file
         var blocFile = await File(
-                '$screenPath/bloc/${screenName}_screen_${params.screen.stateManager}.dart')
+                '$screenPath/bloc/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart')
             .create();
         final blocFileContent = _screenCodeContent.createBlocContent(
           projectName: params.projectName,
           screenName: screenName,
-          stateManagement: params.screen.stateManager,
+          stateManagement: params.screen.stateVariant,
         );
         await blocFile.writeAsString(blocFileContent);
 
         break;
-      case 'none':
+      case StatelessStateManagementVariant():
 
         ///Write screen without state management
         final screenContent = _screenCodeContent.createNoStateManagementScreen(

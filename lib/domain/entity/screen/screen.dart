@@ -1,17 +1,19 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
 
 part 'screen.g.dart';
 
 @JsonSerializable()
 class Screen {
   String name;
-  String stateManager;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  StateManagementVariant stateVariant;
   bool exists;
   bool initial;
 
   Screen({
     required this.name,
-    this.stateManager = '',
+    this.stateVariant = const StatelessStateManagementVariant(),
     this.exists = false,
     this.initial = false,
   });
@@ -19,7 +21,7 @@ class Screen {
   Screen.copyOf(Screen screen)
       : this(
             name: screen.name,
-            stateManager: screen.stateManager,
+            stateVariant: screen.stateVariant,
             exists: screen.exists,
             initial: screen.initial);
 
@@ -29,7 +31,7 @@ class Screen {
       other is Screen &&
           runtimeType == other.runtimeType &&
           name == other.name &&
-          stateManager == other.stateManager &&
+          stateVariant == other.stateVariant &&
           exists == other.exists &&
           initial == other.initial;
 
@@ -38,12 +40,10 @@ class Screen {
 
   @override
   String toString() {
-    return 'ScreenEntity{name: $name, bloc: $stateManager, exists: $exists, initial: $initial}';
+    return 'ScreenEntity{name: $name, bloc: $stateVariant, exists: $exists, initial: $initial}';
   }
 
   Map<String, dynamic> toJson() => _$ScreenToJson(this);
 
   factory Screen.fromJson(Map<String, dynamic> json) => _$ScreenFromJson(json);
 }
-
-//enum ScreenStateManager { bloc, cubit, none }

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/domain/entity/project_state_manager.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
 
 part 'project_settings_screen_models.freezed.dart';
 

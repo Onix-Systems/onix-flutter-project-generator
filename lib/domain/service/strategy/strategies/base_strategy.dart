@@ -1,4 +1,5 @@
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/default_screen_route_generator.dart';
@@ -17,7 +18,10 @@ class BaseStrategy implements StateManagerStrategy {
       DefaultScreenRouteGenerator();
 
   @override
-  List<String> get variants => ['stateful', 'stateless'];
+  List<StateManagementVariant> get variants => [
+        StatefulStateManagementVariant(),
+        StatelessStateManagementVariant(),
+      ];
 
   @override
   Future<void> generate({

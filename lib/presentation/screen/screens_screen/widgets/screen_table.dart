@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/add_screen_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -9,7 +10,7 @@ import 'package:recase/recase.dart';
 
 class ScreenTable extends StatelessWidget {
   final Set<Screen> screens;
-  final List<String> stateManagers;
+  final List<StateManagementVariant> stateManagers;
   final Function(Screen, String) onModifyScreen;
   final Function(Screen) onDeleteScreen;
   final Function(Screen) onChangeInitial;
@@ -135,7 +136,7 @@ class ScreenTable extends StatelessWidget {
                       ),
                       Cell(
                         value: Text(
-                          screen.stateManager.pascalCase,
+                          screen.stateVariant.name,
                           style: context.appTextStyles.fs18?.copyWith(
                               color: screen.exists
                                   ? context.appColors.fadedColor

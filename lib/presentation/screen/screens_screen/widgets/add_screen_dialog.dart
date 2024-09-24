@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
@@ -10,7 +11,7 @@ import 'package:recase/recase.dart';
 
 class AddScreenDialog extends StatefulWidget {
   final Screen? screen;
-  final List<String> stateManagers;
+  final List<StateManagementVariant> stateManagers;
 
   const AddScreenDialog({
     required this.stateManagers,
@@ -25,7 +26,7 @@ class AddScreenDialog extends StatefulWidget {
 class _AddScreenDialogState extends State<AddScreenDialog> {
   final TextEditingController _screenNameController = TextEditingController();
 
-  String _stateManagement = '';
+  StateManagementVariant _stateManagement = StatelessStateManagementVariant();
 
   final _dialogFocusNode = FocusNode();
   final _textFieldFocusNode = FocusNode();
@@ -38,7 +39,7 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
     _currentFocusNode.requestFocus();
     if (widget.screen != null) {
       _screenNameController.text = widget.screen!.name;
-      _stateManagement = widget.screen!.stateManager;
+      _stateManagement = widget.screen!.stateVariant;
     } else {
       _stateManagement = widget.stateManagers.first;
     }
@@ -96,7 +97,7 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
               (stateManager) {
                 return LabeledCheckbox(
                   focused: _currentFocusNode == _dialogFocusNode,
-                  label: stateManager,
+                  label: stateManager.name,
                   initialValue: _stateManagement == stateManager,
                   mainAxisAlignment: MainAxisAlignment.start,
                   onAction: () {
@@ -141,14 +142,14 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
 
       if (widget.screen != null) {
         widget.screen!.name = screenName;
-        widget.screen!.stateManager = _stateManagement;
+        widget.screen!.stateVariant = _stateManagement;
         Navigator.pop(context, widget.screen);
       } else {
         Navigator.pop(
             context,
             Screen(
                 name: screenName,
-                stateManager: _stateManagement,
+                stateVariant: _stateManagement,
                 exists: false));
       }
     } else {
