@@ -15,9 +15,8 @@ class GenerateScreensUseCase {
 
   Future<void> call({
     required Config config,
-    required StateManagerStrategy stateManagerStrategy,
   }) async {
-    await stateManagerStrategy.generate(
+    await config.stateManager.strategy.generate(
         config: config,
         screenRepository: _screenRepository,
         outputService: _outputService);

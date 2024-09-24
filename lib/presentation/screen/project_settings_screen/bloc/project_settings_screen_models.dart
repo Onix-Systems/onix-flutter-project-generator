@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/entity/project_state_manager.dart';
 
 part 'project_settings_screen_models.freezed.dart';
 
@@ -28,6 +29,10 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
 
   const factory ProjectSettingsScreenEvent.graphQLChange() =
       ProjectSettingsScreenEventGraphQLChange;
+
+  const factory ProjectSettingsScreenEvent.stateManagerChange({
+    required ProjectStateManager stateManager,
+  }) = ProjectSettingsScreenEventStateManagerChange;
 
   const factory ProjectSettingsScreenEvent.routerChange() =
       ProjectSettingsScreenEventRouterChange;

@@ -194,7 +194,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     ///generating screens
     await _generateScreensUseCase(
       config: state.config,
-      stateManagerStrategy: StatefulStrategy(),
     );
 
     ///generating data components//TODO
