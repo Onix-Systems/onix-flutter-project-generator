@@ -1,4 +1,3 @@
-import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
@@ -13,14 +12,14 @@ class BlocScreenCodeContent {
     required String input,
     required String screenName,
     required String projectName,
-    required ScreenStateManager stateManagement,
+    required String stateManagement,
   }) {
     String output = input;
     output = output
         .replaceFirst(_navigatorImportsSuffix,
-            'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_${stateManagement.name}.dart\';\n$_navigatorImportsSuffix')
+            'import \'package:$projectName/presentation/screen/${screenName}_screen/bloc/${screenName}_screen_${stateManagement}.dart\';\n$_navigatorImportsSuffix')
         .replaceFirst(_diBlocSuffix,
-            'getIt.registerFactory<${screenName.pascalCase}Screen${stateManagement.name.pascalCase}>(${screenName.pascalCase}Screen${stateManagement.name.pascalCase}.new);\n$_diBlocSuffix');
+            'getIt.registerFactory<${screenName.pascalCase}Screen${stateManagement.pascalCase}>(${screenName.pascalCase}Screen${stateManagement.pascalCase}.new);\n$_diBlocSuffix');
     return output;
   }
 
@@ -99,12 +98,12 @@ class BlocScreenCodeContent {
 
   String createBlocImportsContent({
     required String screenName,
-    required ScreenStateManager stateManagement,
+    required String stateManagement,
   }) {
     final screenClassImport = screenName.snakeCase;
     final codeLines = List<String>.empty(growable: true);
-    codeLines.add(
-        'export \'${screenClassImport}_screen_${stateManagement.name}.dart\';');
+    codeLines
+        .add('export \'${screenClassImport}_screen_$stateManagement.dart\';');
     codeLines.add('export \'${screenClassImport}_screen_models.dart\';');
     codeLines.addNewLine();
     return codeLines.join('\n');
@@ -113,27 +112,26 @@ class BlocScreenCodeContent {
   String createBlocContent({
     required String projectName,
     required String screenName,
-    required ScreenStateManager stateManagement,
+    required String stateManagement,
   }) {
     ///Declare BLoC classes names
-    final stateManagementSuffix = stateManagement.name.pascalCase;
+    final stateManagementSuffix = stateManagement.pascalCase;
     final screenClassImport = screenName.snakeCase;
     final className = '${screenName.pascalCase}Screen$stateManagementSuffix';
-    final eventName = stateManagement == ScreenStateManager.bloc
+    final eventName = stateManagement == 'bloc'
         ? '${screenName.pascalCase}ScreenEvent, '
         : '';
     final stateName = '${screenName.pascalCase}ScreenState';
     final srName = '${screenName.pascalCase}ScreenSR';
-    final initFunctionName =
-        stateManagement == ScreenStateManager.bloc ? '_onInit' : 'init';
+    final initFunctionName = stateManagement == 'bloc' ? '_onInit' : 'init';
     final codeLines = List<String>.empty(growable: true);
 
     ///Create BLoC class code
     codeLines.add('import \'dart:async\';');
     codeLines.addNewLine();
     codeLines.add(
-        'import \'package:$projectName/core/arch/bloc/base_${stateManagement.name}.dart\';');
-    if (stateManagement == ScreenStateManager.bloc) {
+        'import \'package:$projectName/core/arch/bloc/base_$stateManagement.dart\';');
+    if (stateManagement == 'bloc') {
       codeLines.add('import \'package:flutter_bloc/flutter_bloc.dart\';');
     }
     codeLines.add(
@@ -142,13 +140,11 @@ class BlocScreenCodeContent {
     codeLines.add(
         'class $className extends Base$stateManagementSuffix<$eventName$stateName, $srName> {');
 
-    final defaultStatePrefix =
-        stateManagement == ScreenStateManager.bloc ? '' : 'const ';
-    final constructorSuffix =
-        stateManagement == ScreenStateManager.bloc ? ' {' : ';';
+    final defaultStatePrefix = stateManagement == 'bloc' ? '' : 'const ';
+    final constructorSuffix = stateManagement == 'bloc' ? ' {' : ';';
     codeLines.add(
         '$className() : super($defaultStatePrefix$stateName())$constructorSuffix');
-    if (stateManagement == ScreenStateManager.bloc) {
+    if (stateManagement == 'bloc') {
       codeLines.add('on<${screenName.pascalCase}ScreenEventInit>(_onInit);');
       codeLines.add('add(const ${screenName.pascalCase}ScreenEvent.init());');
       codeLines.add('}');
@@ -157,12 +153,12 @@ class BlocScreenCodeContent {
 
     codeLines.addNewLine();
     codeLines.add('FutureOr<void> $initFunctionName (');
-    if (stateManagement == ScreenStateManager.bloc) {
+    if (stateManagement == 'bloc') {
       codeLines.add('${screenName.pascalCase}ScreenEventInit event,');
       codeLines.add('Emitter<${screenName.pascalCase}ScreenState> emit,');
     }
     codeLines.add(') {');
-    if (stateManagement == ScreenStateManager.cubit) {
+    if (stateManagement == 'cubit') {
       codeLines.add('emit(state.copyWith(isLoading: false));');
     }
     codeLines.add('}');
@@ -173,7 +169,7 @@ class BlocScreenCodeContent {
 
   String createBlocModels({
     required String screenName,
-    required ScreenStateManager stateManagement,
+    required String stateManagement,
   }) {
     final screenModelName = screenName.pascalCase;
     final screenClassImport = screenName.snakeCase;
@@ -184,7 +180,7 @@ class BlocScreenCodeContent {
     codeLines.add('part \'${screenClassImport}_screen_models.freezed.dart\';');
 
     ///If BLoC - add Event model
-    if (stateManagement == ScreenStateManager.bloc) {
+    if (stateManagement == 'bloc') {
       codeLines.add('@freezed');
       codeLines.add(
           'class ${screenModelName}ScreenEvent with _\$${screenModelName}ScreenEvent {');
@@ -204,7 +200,7 @@ class BlocScreenCodeContent {
     codeLines.addNewLine();
 
     ///Add BLoC State
-    if (stateManagement == ScreenStateManager.bloc) {
+    if (stateManagement == 'bloc') {
       codeLines.add('class ${screenModelName}ScreenState {}');
     } else {
       codeLines.add('@freezed');
@@ -260,7 +256,7 @@ class BlocScreenCodeContent {
     required bool isGoRouter,
     required String screenName,
     required String projectName,
-    required ScreenStateManager stateManagement,
+    required String stateManagement,
   }) {
     final screenClassName = screenName.pascalCase;
     final screenClassImport = screenName.snakeCase;
@@ -271,7 +267,7 @@ class BlocScreenCodeContent {
     if (!isGoRouter) {
       codeLines.add('import \'package:auto_route/annotations.dart\';');
     }
-    if (stateManagement == ScreenStateManager.bloc) {
+    if (stateManagement == 'bloc') {
       codeLines.add(
           'import \'package:$projectName/core/arch/bloc/base_bloc_state.dart\';');
     } else {
@@ -301,11 +297,10 @@ class BlocScreenCodeContent {
 
     ///Add screen widget state code
     codeLines.add('class _${screenClassName}ScreenState');
-    codeLines.add(
-        'extends Base${stateManagement == ScreenStateManager.cubit ? 'Cubit' : ''}State<');
-    codeLines.add('${screenClassName}ScreenState, ');
     codeLines
-        .add('${screenClassName}Screen${stateManagement.name.pascalCase}, ');
+        .add('extends Base${stateManagement == 'cubit' ? 'Cubit' : ''}State<');
+    codeLines.add('${screenClassName}ScreenState, ');
+    codeLines.add('${screenClassName}Screen${stateManagement.pascalCase}, ');
     codeLines.add('${screenClassName}ScreenSR, ');
     codeLines.add('${screenClassName}Screen> {');
     codeLines.add('@override');

@@ -74,7 +74,7 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
 
 const _$ProjectStateManagerEnumMap = {
   ProjectStateManager.bloc: 'bloc',
-  ProjectStateManager.none: 'none',
+  ProjectStateManager.base: 'base',
 };
 
 const _$ProjectRouterEnumMap = {

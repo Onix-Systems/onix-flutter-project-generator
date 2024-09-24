@@ -48,7 +48,9 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                 onPressed: () => showCupertinoModalPopup<Screen>(
                   context: context,
                   barrierDismissible: false,
-                  builder: (context) => const AddScreenDialog(),
+                  builder: (context) => AddScreenDialog(
+                    stateManagers: state.config.stateManager.strategy.variants,
+                  ),
                 ).then((screen) {
                   if (screen != null) {
                     if (state.config.screens.isEmpty) {
@@ -116,6 +118,7 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                       .toList()
                       .sorted((a, b) => a.name.compareTo(b.name))
                       .toSet(),
+                  stateManagers: state.config.stateManager.strategy.variants,
                   onModifyScreen: (screen, name) => blocOf(context).add(
                     ScreensScreenEventOnScreenModify(
                         screen: screen, oldName: name),

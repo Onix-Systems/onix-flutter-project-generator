@@ -10,8 +10,6 @@ import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastl
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/styles_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/git_cliff_service/params/git_cliff_params.dart';
-import 'package:onix_flutter_bricks/domain/service/strategy/strategies/bloc_strategy.dart';
-import 'package:onix_flutter_bricks/domain/service/strategy/strategies/stateful_strategy.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';

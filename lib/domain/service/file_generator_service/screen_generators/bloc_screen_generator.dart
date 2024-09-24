@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/bloc_screen_code_content.dart';
@@ -27,7 +26,7 @@ class BlocScreenGenerator implements BaseGenerationService<bool> {
         '${params.projectPath}/${params.projectName}/lib/presentation/screen/${screenName}_screen';
     await Directory(screenPath).create(recursive: true);
 
-    if (params.screen.stateManager != ScreenStateManager.none) {
+    if (params.screen.stateManager != 'none') {
       await Directory('$screenPath/bloc').create(recursive: true);
     }
 
@@ -37,7 +36,7 @@ class BlocScreenGenerator implements BaseGenerationService<bool> {
     ///Add screen configuration to Navigation Router file
     await _createRoutes(params);
 
-    if (params.screen.stateManager != ScreenStateManager.none) {
+    if (params.screen.stateManager != 'none') {
       ///Add DI configuration for state management
       await _createDI(params);
     }
@@ -99,7 +98,7 @@ class BlocScreenGenerator implements BaseGenerationService<bool> {
         await File('$screenPath/${screenName}_screen.dart').create();
 
     switch (params.screen.stateManager) {
-      case ScreenStateManager.bloc || ScreenStateManager.cubit:
+      case 'bloc' || 'cubit':
 
         ///Write screen file
         final screenContent = _screenCodeContent.createStateManagementScreen(
@@ -132,7 +131,7 @@ class BlocScreenGenerator implements BaseGenerationService<bool> {
 
         ///Write BLoC file
         var blocFile = await File(
-                '$screenPath/bloc/${screenName}_screen_${params.screen.stateManager.name}.dart')
+                '$screenPath/bloc/${screenName}_screen_${params.screen.stateManager}.dart')
             .create();
         final blocFileContent = _screenCodeContent.createBlocContent(
           projectName: params.projectName,
@@ -142,7 +141,7 @@ class BlocScreenGenerator implements BaseGenerationService<bool> {
         await blocFile.writeAsString(blocFileContent);
 
         break;
-      case ScreenStateManager.none:
+      case 'none':
 
         ///Write screen without state management
         final screenContent = _screenCodeContent.createNoStateManagementScreen(

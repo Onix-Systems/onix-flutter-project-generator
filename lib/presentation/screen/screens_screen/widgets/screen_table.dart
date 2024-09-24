@@ -9,12 +9,14 @@ import 'package:recase/recase.dart';
 
 class ScreenTable extends StatelessWidget {
   final Set<Screen> screens;
+  final List<String> stateManagers;
   final Function(Screen, String) onModifyScreen;
   final Function(Screen) onDeleteScreen;
   final Function(Screen) onChangeInitial;
 
   const ScreenTable({
     required this.screens,
+    required this.stateManagers,
     required this.onModifyScreen,
     required this.onDeleteScreen,
     required this.onChangeInitial,
@@ -133,7 +135,7 @@ class ScreenTable extends StatelessWidget {
                       ),
                       Cell(
                         value: Text(
-                          screen.stateManager.name.pascalCase,
+                          screen.stateManager.pascalCase,
                           style: context.appTextStyles.fs18?.copyWith(
                               color: screen.exists
                                   ? context.appColors.fadedColor
@@ -161,7 +163,9 @@ class ScreenTable extends StatelessWidget {
                                         context: context,
                                         barrierDismissible: false,
                                         builder: (context) => AddScreenDialog(
-                                            screen: Screen.copyOf(screen)),
+                                          screen: Screen.copyOf(screen),
+                                          stateManagers: stateManagers,
+                                        ),
                                       ).then((modifiedScreen) {
                                         if (modifiedScreen != null) {
                                           onModifyScreen(

@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/stateful_screen_code_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/base_screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:recase/recase.dart';
 
-class StatefulScreenGenerator implements BaseGenerationService<bool> {
-  final _screenCodeContent = StatefulScreenCodeContent();
+class BaseScreenGenerator implements BaseGenerationService<bool> {
+  final _screenCodeContent = BaseScreenCodeContent();
 
   @override
   Future<bool> generate(BaseGenerationParams params) async {
@@ -75,10 +75,25 @@ class StatefulScreenGenerator implements BaseGenerationService<bool> {
     final screenFile =
         await File('$screenPath/${screenName}_screen.dart').create();
 
-    final screenContent = _screenCodeContent.createScreen(
-      isGoRouter: params.router == ProjectRouter.goRouter,
-      screenName: screenName,
-    );
+    String screenContent = '';
+
+    switch (params.screen.stateManager) {
+      case 'stateful':
+        screenContent = _screenCodeContent.createStatefulScreen(
+          isGoRouter: params.router == ProjectRouter.goRouter,
+          screenName: screenName,
+        );
+      case 'stateless':
+        screenContent = _screenCodeContent.createStatelessScreen(
+          isGoRouter: params.router == ProjectRouter.goRouter,
+          screenName: screenName,
+        );
+    }
+
+    if (screenContent.isEmpty) {
+      return;
+    }
+
     await screenFile.writeAsString(screenContent);
   }
 }

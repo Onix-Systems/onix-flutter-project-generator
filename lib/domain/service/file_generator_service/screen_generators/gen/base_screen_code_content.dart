@@ -2,7 +2,7 @@ import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
-class StatefulScreenCodeContent {
+class BaseScreenCodeContent {
   final _routesDeclarationSuffix = '//{routes declaration end}';
   final _navigatorRoutesSuffix = '//{routes end}';
   final _navigatorImportsSuffix = '//{imports end}';
@@ -80,7 +80,7 @@ class StatefulScreenCodeContent {
     return codeLines.join('\n');
   }
 
-  String createScreen({
+  String createStatefulScreen({
     required bool isGoRouter,
     required String screenName,
   }) {
@@ -111,6 +111,43 @@ class StatefulScreenCodeContent {
     codeLines.add('}');
     codeLines.add(
         'class _${screenClassName}State extends State<${screenClassName}Screen> {');
+    codeLines.add('@override');
+    codeLines.add('Widget build(BuildContext context) {');
+    codeLines.add('return const Scaffold(');
+    codeLines.add('body: Center(child: Text(\'$screenClassName screen\'),),');
+    codeLines.add(');');
+    codeLines.add('}');
+    codeLines.add('}');
+    codeLines.addNewLine();
+
+    return codeLines.join('\n');
+  }
+
+  String createStatelessScreen({
+    required bool isGoRouter,
+    required String screenName,
+  }) {
+    final screenClassName = screenName.pascalCase;
+    final codeLines = List<String>.empty(growable: true);
+
+    ///Add imports
+    if (isGoRouter) {
+      codeLines.add('import \'package:go_router/go_router.dart\';');
+    } else {
+      codeLines.add('import \'package:auto_route/annotations.dart\';');
+    }
+    codeLines.add('import \'package:flutter/material.dart\';');
+    codeLines.addNewLine();
+
+    ///Add annotation in AutoRoute navigation used
+    if (!isGoRouter) {
+      codeLines.add('@RoutePage()');
+    }
+
+    ///Add screen widget code
+    codeLines.add('class ${screenClassName}Screen extends StatelessWidget {');
+    codeLines.add('const ${screenClassName}Screen({super.key});');
+    codeLines.addNewLine();
     codeLines.add('@override');
     codeLines.add('Widget build(BuildContext context) {');
     codeLines.add('return const Scaffold(');

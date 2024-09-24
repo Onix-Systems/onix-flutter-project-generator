@@ -17,6 +17,9 @@ class BlocStateManagerStrategy implements StateManagerStrategy {
       DefaultScreenRouteGenerator();
 
   @override
+  List<String> get variants => ['stateless', 'bloc', 'cubit'];
+
+  @override
   Future<void> generate({
     required Config config,
     required ScreenRepository screenRepository,

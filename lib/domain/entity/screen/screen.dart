@@ -5,13 +5,13 @@ part 'screen.g.dart';
 @JsonSerializable()
 class Screen {
   String name;
-  ScreenStateManager stateManager;
+  String stateManager;
   bool exists;
   bool initial;
 
   Screen({
     required this.name,
-    this.stateManager = ScreenStateManager.none,
+    this.stateManager = '',
     this.exists = false,
     this.initial = false,
   });
@@ -46,4 +46,4 @@ class Screen {
   factory Screen.fromJson(Map<String, dynamic> json) => _$ScreenFromJson(json);
 }
 
-enum ScreenStateManager { bloc, cubit, none }
+//enum ScreenStateManager { bloc, cubit, none }
