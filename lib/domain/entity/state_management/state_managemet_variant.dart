@@ -2,6 +2,14 @@ abstract class StateManagementVariant {
   String get name;
 
   const StateManagementVariant();
+
+  @override
+  bool operator ==(Object other) {
+    return runtimeType == other.runtimeType;
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 final class StatelessStateManagementVariant extends StateManagementVariant {

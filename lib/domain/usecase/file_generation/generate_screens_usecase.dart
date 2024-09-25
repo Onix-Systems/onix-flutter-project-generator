@@ -1,7 +1,6 @@
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
-import 'package:onix_flutter_bricks/domain/service/strategy/state_manager_strategy.dart';
 import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 
 class GenerateScreensUseCase {

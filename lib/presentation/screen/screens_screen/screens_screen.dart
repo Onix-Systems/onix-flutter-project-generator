@@ -165,7 +165,7 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
           )
         : context.go(
             AppRouter.projectSettingsScreen,
-            extra: widget.config,
+            extra: state.config,
           );
   }
 
@@ -174,7 +174,7 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
         ? widget.onContinue?.call()
         : context.go(
             AppRouter.stylesScreen,
-            extra: widget.config,
+            extra: state.config,
           );
   }
 }

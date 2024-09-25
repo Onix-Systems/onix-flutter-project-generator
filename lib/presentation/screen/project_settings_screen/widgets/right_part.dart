@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_segmented_control.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label.dart';
 import 'package:onix_flutter_bricks/util/enum/project_localization.dart';
@@ -68,11 +69,26 @@ class RightPart extends StatelessWidget {
                         .toList(),
                     onChanged: (manager) {
                       if (manager != null) {
-                        bloc.add(
-                          ProjectSettingsScreenEventStateManagerChange(
-                            stateManager: manager,
-                          ),
-                        );
+                        if (manager != state.config.stateManager &&
+                            state.config.screens.isNotEmpty &&
+                            !bloc.screensMatchStrategy(manager)) {
+                          Dialogs.showOkCancelDialog(
+                            context: context,
+                            title: S.of(context).changeStateManagerError,
+                            content: Text(
+                              S.of(context).changeStateManagerErrorContent(
+                                    manager.strategy.variants.first.name,
+                                  ),
+                              style: context.appTextStyles.fs18,
+                            ),
+                            onOk: () => _onStateManagerChange(
+                              manager: manager,
+                              bloc: bloc,
+                            ),
+                          );
+                        } else {
+                          _onStateManagerChange(manager: manager, bloc: bloc);
+                        }
                       }
                     },
                   ),
@@ -122,6 +138,17 @@ class RightPart extends StatelessWidget {
             ),
           ],
         ],
+      ),
+    );
+  }
+
+  void _onStateManagerChange({
+    required ProjectStateManager manager,
+    required ProjectSettingsScreenBloc bloc,
+  }) {
+    bloc.add(
+      ProjectSettingsScreenEventStateManagerChange(
+        stateManager: manager,
       ),
     );
   }

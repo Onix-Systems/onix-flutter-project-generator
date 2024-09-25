@@ -26,7 +26,8 @@ class AddScreenDialog extends StatefulWidget {
 class _AddScreenDialogState extends State<AddScreenDialog> {
   final TextEditingController _screenNameController = TextEditingController();
 
-  StateManagementVariant _stateManagement = StatelessStateManagementVariant();
+  StateManagementVariant _stateManagement =
+      const StatelessStateManagementVariant();
 
   final _dialogFocusNode = FocusNode();
   final _textFieldFocusNode = FocusNode();

@@ -19,8 +19,8 @@ class BaseStrategy implements StateManagerStrategy {
 
   @override
   List<StateManagementVariant> get variants => [
-        StatefulStateManagementVariant(),
-        StatelessStateManagementVariant(),
+        const StatefulStateManagementVariant(),
+        const StatelessStateManagementVariant(),
       ];
 
   @override

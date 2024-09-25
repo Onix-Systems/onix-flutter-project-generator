@@ -40,7 +40,7 @@ class Screen {
 
   @override
   String toString() {
-    return 'ScreenEntity{name: $name, bloc: $stateVariant, exists: $exists, initial: $initial}';
+    return 'ScreenEntity{name: $name, stateManager: ${stateVariant.name}, exists: $exists, initial: $initial}';
   }
 
   Map<String, dynamic> toJson() => _$ScreenToJson(this);
