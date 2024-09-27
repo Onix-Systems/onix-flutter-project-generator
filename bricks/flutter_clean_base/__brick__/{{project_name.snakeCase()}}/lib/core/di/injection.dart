@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:{{project_name}}/core/di/app.dart';
 import 'package:{{project_name}}/core/di/bloc.dart';
 import 'package:{{project_name}}/core/di/local.dart';
+import 'package:{{project_name}}/core/di/provider.dart';
 import 'package:{{project_name}}/core/di/remote.dart';
 import 'package:{{project_name}}/core/di/repository.dart';
 import 'package:{{project_name}}/core/di/services.dart';
@@ -18,4 +19,5 @@ void initializeDi(GetIt getIt) {
   registerAppServices(getIt);
   registerUseCases(getIt);
   registerBloc(getIt);
+  registerProvider(getIt);
 }
