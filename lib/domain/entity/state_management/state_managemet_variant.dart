@@ -39,3 +39,10 @@ final class CubitStateManagementVariant extends StateManagementVariant {
 
   const CubitStateManagementVariant();
 }
+
+final class ProviderStateManagementVariant extends StateManagementVariant {
+  @override
+  String get name => 'Provider';
+
+  const ProviderStateManagementVariant();
+}
