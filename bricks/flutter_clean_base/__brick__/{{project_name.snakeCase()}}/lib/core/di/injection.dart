@@ -18,4 +18,5 @@ void initializeDi(GetIt getIt) {
   registerAppServices(getIt);
   registerUseCases(getIt);
   registerBloc(getIt);
+  registerProvider(getIt);
 }
