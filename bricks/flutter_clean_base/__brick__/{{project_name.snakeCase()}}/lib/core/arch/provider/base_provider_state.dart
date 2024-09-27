@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:onix_flutter_bricks/core/arch/provider/base_provider.dart';
+import 'package:{{project_name}}/core/arch/provider/base_provider.dart';
 import 'package:provider/provider.dart';
 
 typedef StateListener<S> = Widget Function(S state);

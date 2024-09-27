@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/core/arch/domain/entity/failure/failure.dart';
+import 'package:{{project_name}}/core/arch/domain/entity/failure/failure.dart';
 
 abstract class BaseProvider<S> extends ChangeNotifier {
   @protected
