@@ -140,8 +140,11 @@ Future<void> getDependencies(HookContext context) async {
     'freezed_annotation',
     'json_annotation',
     'get_it',
+    // TODO: Include proper dependency for the selected state management
     'flutter_bloc',
-    'flutter_secure_storage:^9.0.0',
+    'provider'
+        //
+        'flutter_secure_storage:^9.0.0',
     'shared_preferences',
     'internet_connection_checker',
     'retry',
