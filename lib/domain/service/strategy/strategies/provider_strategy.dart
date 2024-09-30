@@ -26,39 +26,45 @@ class ProviderStrategy implements StateManagerStrategy {
     required ScreenRepository screenRepository,
     required OutputService outputService,
   }) async {
-    final screensNotExist = config.screens
-        .where(
-          (element) => !element.exists,
-        )
-        .toList();
+    try {
+      final screensNotExist = config.screens
+          .where(
+            (element) => !element.exists,
+          )
+          .toList();
 
-    if (screensNotExist.isEmpty) {
-      await _defaultScreenRouteGenerator.generate(
-        DefaultScreenRouteGeneratorParams(
-          projectPath: config.projectPath,
-          projectName: config.projectName,
-          router: config.router,
-        ),
-      );
-    } else {
-      for (int i = 0; i < screensNotExist.length; i++) {
-        final screen = screensNotExist[i];
-        outputService.add(
-          'Generating screen ${screen.name}...'.toInfoMessage(),
-        );
-
-        await screen.stateVariant.screenGenerator.generate(
-          ScreenGeneratorParams(
-            screen: screen,
+      if (screensNotExist.isEmpty) {
+        await _defaultScreenRouteGenerator.generate(
+          DefaultScreenRouteGeneratorParams(
             projectPath: config.projectPath,
             projectName: config.projectName,
             router: config.router,
-            lastScreenItem: i == (screensNotExist.length - 1),
           ),
         );
-        screen.exists = true;
-        screenRepository.modifyScreen(screen, screen.name);
+      } else {
+        for (int i = 0; i < screensNotExist.length; i++) {
+          final screen = screensNotExist[i];
+          outputService.add(
+            'Generating screen ${screen.name}...'.toInfoMessage(),
+          );
+
+          await screen.stateVariant.screenGenerator.generate(
+            ScreenGeneratorParams(
+              screen: screen,
+              projectPath: config.projectPath,
+              projectName: config.projectName,
+              router: config.router,
+              lastScreenItem: i == (screensNotExist.length - 1),
+            ),
+          );
+          screen.exists = true;
+          screenRepository.modifyScreen(screen, screen.name);
+        }
       }
+    } catch (e) {
+      outputService.add(
+        'Error generating screens: $e'.toErrorMessage(),
+      );
     }
   }
 }
