@@ -6,15 +6,13 @@ import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_p
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/cubit_screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/bloc_content_mixin.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/di_content_mixin.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:recase/recase.dart';
 
 class CubitScreenGenerator extends ScreenGenerationService
     with DIContentMixin, BlocContentMixin {
-  @override
-  ScreenCodeContent screenCodeContent = CubitScreenCodeContent();
+  final _screenCodeContent = CubitScreenCodeContent();
 
   @override
   Future<bool> generate(BaseGenerationParams params) async {
@@ -56,7 +54,7 @@ class CubitScreenGenerator extends ScreenGenerationService
           '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
       String routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
-      final appRoutesContent = screenCodeContent.createScreenNavigationGoRoute(
+      final appRoutesContent = _screenCodeContent.createScreenNavigationGoRoute(
         input: routesContent,
         screenName: screenName,
         isLastDeclaration: params.lastScreenItem,
@@ -69,7 +67,8 @@ class CubitScreenGenerator extends ScreenGenerationService
     String routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations
-    final filledRouterContent = screenCodeContent.createScreenNavigationContent(
+    final filledRouterContent =
+        _screenCodeContent.createScreenNavigationContent(
       input: routerContent,
       screenName: screenName,
       projectName: params.projectName,
@@ -103,7 +102,7 @@ class CubitScreenGenerator extends ScreenGenerationService
         await File('$screenPath/${screenName}_screen.dart').create();
 
     ///Write screen file
-    final screenContent = screenCodeContent.createScreen(
+    final screenContent = _screenCodeContent.createScreen(
       isGoRouter: params.router == ProjectRouter.goRouter,
       screenName: screenName,
       projectName: params.projectName,

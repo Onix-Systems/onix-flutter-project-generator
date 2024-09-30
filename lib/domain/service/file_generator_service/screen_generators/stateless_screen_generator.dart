@@ -2,15 +2,13 @@ import 'dart:io';
 
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/stateless_screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:recase/recase.dart';
 
-class StatelessScreenGenerator implements ScreenGenerationService {
-  @override
-  ScreenCodeContent screenCodeContent = StatelessScreenCodeContent();
+class StatelessScreenGenerator extends ScreenGenerationService {
+  final _screenCodeContent = StatelessScreenCodeContent();
 
   @override
   Future<bool> generate(BaseGenerationParams params) async {
@@ -44,7 +42,7 @@ class StatelessScreenGenerator implements ScreenGenerationService {
           '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
       String routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
-      final appRoutesContent = screenCodeContent.createScreenNavigationGoRoute(
+      final appRoutesContent = _screenCodeContent.createScreenNavigationGoRoute(
         input: routesContent,
         screenName: screenName,
         isLastDeclaration: params.lastScreenItem,
@@ -57,7 +55,8 @@ class StatelessScreenGenerator implements ScreenGenerationService {
     String routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations
-    final filledRouterContent = screenCodeContent.createScreenNavigationContent(
+    final filledRouterContent =
+        _screenCodeContent.createScreenNavigationContent(
       input: routerContent,
       screenName: screenName,
       projectName: params.projectName,
@@ -78,7 +77,7 @@ class StatelessScreenGenerator implements ScreenGenerationService {
 
     String screenContent = '';
 
-    screenContent = screenCodeContent.createScreen(
+    screenContent = _screenCodeContent.createScreen(
       isGoRouter: params.router == ProjectRouter.goRouter,
       screenName: screenName,
       projectName: params.projectName,
