@@ -1,15 +1,16 @@
 import 'dart:io';
 
-import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/base_screen_code_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/screen_code_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/stateful_screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:recase/recase.dart';
 
-class BaseScreenGenerator implements BaseGenerationService<bool> {
-  final _screenCodeContent = BaseScreenCodeContent();
+class StatefulScreenGenerator implements ScreenGenerationService {
+  @override
+  ScreenCodeContent screenCodeContent = StatefulScreenCodeContent();
 
   @override
   Future<bool> generate(BaseGenerationParams params) async {
@@ -43,7 +44,7 @@ class BaseScreenGenerator implements BaseGenerationService<bool> {
           '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
       String routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
-      final appRoutesContent = _screenCodeContent.createScreenNavigationGoRoute(
+      final appRoutesContent = screenCodeContent.createScreenNavigationGoRoute(
         input: routesContent,
         screenName: screenName,
         isLastDeclaration: params.lastScreenItem,
@@ -56,8 +57,7 @@ class BaseScreenGenerator implements BaseGenerationService<bool> {
     String routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations
-    final filledRouterContent =
-        _screenCodeContent.createScreenNavigationContent(
+    final filledRouterContent = screenCodeContent.createScreenNavigationContent(
       input: routerContent,
       screenName: screenName,
       projectName: params.projectName,
@@ -78,19 +78,11 @@ class BaseScreenGenerator implements BaseGenerationService<bool> {
 
     String screenContent = '';
 
-    switch (params.screen.stateVariant) {
-      case StatefulStateManagementVariant():
-        screenContent = _screenCodeContent.createStatefulScreen(
-          isGoRouter: params.router == ProjectRouter.goRouter,
-          screenName: screenName,
-        );
-      case StatelessStateManagementVariant():
-      default:
-        screenContent = _screenCodeContent.createStatelessScreen(
-          isGoRouter: params.router == ProjectRouter.goRouter,
-          screenName: screenName,
-        );
-    }
+    screenContent = screenCodeContent.createScreen(
+      isGoRouter: params.router == ProjectRouter.goRouter,
+      screenName: screenName,
+      projectName: params.projectName,
+    );
 
     if (screenContent.isEmpty) {
       return;

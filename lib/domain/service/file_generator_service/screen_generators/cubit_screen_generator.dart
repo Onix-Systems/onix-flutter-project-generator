@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/bloc_screen_code_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/cubit_screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/bloc_content_mixin.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/di_content_mixin.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/screen_code_content.dart';
@@ -11,10 +11,10 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:recase/recase.dart';
 
-class BlocScreenGenerator extends ScreenGenerationService
+class CubitScreenGenerator extends ScreenGenerationService
     with DIContentMixin, BlocContentMixin {
   @override
-  ScreenCodeContent screenCodeContent = BlocScreenCodeContent();
+  ScreenCodeContent screenCodeContent = CubitScreenCodeContent();
 
   @override
   Future<bool> generate(BaseGenerationParams params) async {

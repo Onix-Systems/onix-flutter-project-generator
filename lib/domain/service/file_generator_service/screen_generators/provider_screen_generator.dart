@@ -3,13 +3,19 @@ import 'dart:io';
 import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/provider_content_mixin.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/provider_screen_code_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:recase/recase.dart';
 
-class ProviderScreenGenerator implements BaseGenerationService<bool> {
-  final _screenCodeContent = ProviderScreenCodeContent();
+import 'gen/mixins/di_content_mixin.dart';
+
+class ProviderScreenGenerator extends ScreenGenerationService
+    with DIContentMixin, ProviderContentMixin {
+  @override
+  ScreenCodeContent screenCodeContent = ProviderScreenCodeContent();
 
   @override
   Future<bool> generate(BaseGenerationParams params) async {
@@ -48,7 +54,7 @@ class ProviderScreenGenerator implements BaseGenerationService<bool> {
           '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
       String routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
-      final appRoutesContent = _screenCodeContent.createScreenNavigationGoRoute(
+      final appRoutesContent = screenCodeContent.createScreenNavigationGoRoute(
         input: routesContent,
         screenName: screenName,
         isLastDeclaration: params.lastScreenItem,
@@ -61,8 +67,7 @@ class ProviderScreenGenerator implements BaseGenerationService<bool> {
     String routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations
-    final filledRouterContent =
-        _screenCodeContent.createScreenNavigationContent(
+    final filledRouterContent = screenCodeContent.createScreenNavigationContent(
       input: routerContent,
       screenName: screenName,
       projectName: params.projectName,
@@ -78,10 +83,11 @@ class ProviderScreenGenerator implements BaseGenerationService<bool> {
         '${params.projectPath}/${params.projectName}/lib/core/di/provider.dart');
     String screenName = params.screen.name.snakeCase;
     String content = await diFile.readAsString();
-    final diOutputContent = _screenCodeContent.createScreenDIContent(
+    final diOutputContent = createScreenDIContent(
       input: content,
       screenName: screenName,
       projectName: params.projectName,
+      stateManagement: params.screen.stateVariant,
     );
     await diFile.writeAsString(diOutputContent);
   }
@@ -96,51 +102,41 @@ class ProviderScreenGenerator implements BaseGenerationService<bool> {
 
     String screenContent = '';
 
-    switch (params.screen.stateVariant) {
-      case ProviderStateManagementVariant():
-        screenContent = _screenCodeContent.createProviderScreen(
-          isGoRouter: params.router == ProjectRouter.goRouter,
-          projectName: params.projectName,
-          screenName: screenName,
-        );
+    screenContent = screenCodeContent.createScreen(
+      isGoRouter: params.router == ProjectRouter.goRouter,
+      projectName: params.projectName,
+      screenName: screenName,
+    );
 
-        await screenFile.writeAsString(screenContent);
+    await screenFile.writeAsString(screenContent);
 
-        var importsFile =
-            await File('$screenPath/provider/${screenName}_screen_imports.dart')
-                .create(recursive: true);
-        final importsContent = _screenCodeContent.createProviderImportsContent(
-          screenName: screenName,
-          stateManagement: params.screen.stateVariant,
-        );
-        await importsFile.writeAsString(importsContent);
+    var importsFile =
+        await File('$screenPath/provider/${screenName}_screen_imports.dart')
+            .create(recursive: true);
+    final importsContent = createProviderImportsContent(
+      screenName: screenName,
+      stateManagement: params.screen.stateVariant,
+    );
+    await importsFile.writeAsString(importsContent);
 
-        ///Write Provider state file
-        var modelsFile =
-            await File('$screenPath/provider/${screenName}_screen_state.dart')
-                .create();
-        final modelsContent = _screenCodeContent.createProviderState(
-          screenName: screenName,
-          projectName: params.projectName,
-        );
-        await modelsFile.writeAsString(modelsContent);
-
-        ///Write Provider file
-        var providerFile = await File(
-                '$screenPath/provider/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart')
+    ///Write Provider state file
+    var modelsFile =
+        await File('$screenPath/provider/${screenName}_screen_state.dart')
             .create();
-        final providerFileContent = _screenCodeContent.createProviderContent(
-          projectName: params.projectName,
-          screenName: screenName,
-        );
-        await providerFile.writeAsString(providerFileContent);
-      case StatelessStateManagementVariant():
-        screenContent = _screenCodeContent.createStatelessScreen(
-          isGoRouter: params.router == ProjectRouter.goRouter,
-          screenName: screenName,
-        );
+    final modelsContent = createProviderState(
+      screenName: screenName,
+      projectName: params.projectName,
+    );
+    await modelsFile.writeAsString(modelsContent);
 
-        await screenFile.writeAsString(screenContent);
-    }
+    ///Write Provider file
+    var providerFile = await File(
+            '$screenPath/provider/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart')
+        .create();
+    final providerFileContent = createProviderContent(
+      projectName: params.projectName,
+      screenName: screenName,
+    );
+    await providerFile.writeAsString(providerFileContent);
   }
 }

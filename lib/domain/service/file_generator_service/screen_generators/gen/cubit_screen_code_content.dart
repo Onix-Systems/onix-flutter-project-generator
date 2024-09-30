@@ -2,7 +2,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
-class ProviderScreenCodeContent extends ScreenCodeContent {
+class CubitScreenCodeContent extends ScreenCodeContent {
   @override
   String createScreen({
     required bool isGoRouter,
@@ -20,10 +20,10 @@ class ProviderScreenCodeContent extends ScreenCodeContent {
     }
 
     codeLines.add(
-        'import \'package:$projectName/core/arch/provider/base_provider_state.dart\';');
+        'import \'package:$projectName/core/arch/bloc/base_cubit_state.dart\';');
 
     codeLines.add(
-        'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/provider/${screenClassImport}_screen_imports.dart\';');
+        'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart\';');
     codeLines.addNewLine();
 
     ///Add annotation in AutoRoute navigation used
@@ -45,21 +45,36 @@ class ProviderScreenCodeContent extends ScreenCodeContent {
 
     ///Add screen widget state code
     codeLines.add('class _${screenClassName}ScreenState');
-    codeLines.add('extends BaseProviderState<');
-    codeLines.add('${screenClassName}ScreenProvider, ');
+    codeLines.add('extends BaseCubitState<');
     codeLines.add('${screenClassName}ScreenState, ');
+    codeLines.add('${screenClassName}ScreenCubit, ');
+    codeLines.add('${screenClassName}ScreenSR, ');
     codeLines.add('${screenClassName}Screen> {');
     codeLines.add('@override');
     codeLines.add('Widget buildWidget(BuildContext context) {');
-    codeLines.add('return Scaffold(');
+    codeLines.add('return srObserver(');
+    codeLines.add('context: context,');
+    codeLines.add('child: Scaffold(');
     codeLines.add('body: SizedBox.expand(');
-    codeLines.add('child: providerConsumer(');
-    codeLines.add('stateListener: (state) => const Center(');
+    codeLines.add('child: blocConsumer(');
+    codeLines.add('builder: (state) => const Center(');
     codeLines.add('child: Text(\'$screenClassName screen\'),');
     codeLines.add('),');
-    codeLines.add('),),);}}');
+    codeLines.add('listener: (context, state) {},');
+    codeLines.add('),),),');
+    codeLines.add('onSR: _onSingleResult,');
+    codeLines.add(' );}');
     codeLines.addNewLine();
 
+    ///Add SR callback handler
+    codeLines.add(
+        'void _onSingleResult(BuildContext context, ${screenClassName}ScreenSR singleResult) {');
+    codeLines.add('singleResult.when(');
+    codeLines.add('loadFinished: () {');
+    codeLines.add('},);}');
+    codeLines.addNewLine();
+    codeLines.add('}');
+    codeLines.addNewLine();
     return codeLines.join('\n');
   }
 }

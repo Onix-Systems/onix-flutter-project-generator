@@ -5,15 +5,11 @@ import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/default_screen_route_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/default_screen_route_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/base_screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:onix_flutter_bricks/domain/service/strategy/state_manager_strategy.dart';
 import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 
 class BaseStrategy implements StateManagerStrategy {
-  final BaseGenerationService<bool> _baseScreenGenerator =
-      BaseScreenGenerator();
-
   final BaseGenerationService<bool> _defaultScreenRouteGenerator =
       DefaultScreenRouteGenerator();
 
@@ -51,7 +47,7 @@ class BaseStrategy implements StateManagerStrategy {
             'Generating screen ${screen.name}...'.toInfoMessage(),
           );
 
-          await _baseScreenGenerator.generate(
+          await screen.stateVariant.screenGenerator.generate(
             ScreenGeneratorParams(
               screen: screen,
               projectPath: config.projectPath,
