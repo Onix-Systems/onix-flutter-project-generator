@@ -1,7 +1,6 @@
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
-import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 
 class GenerateScreensUseCase {
   final OutputService _outputService;
@@ -14,14 +13,10 @@ class GenerateScreensUseCase {
 
   Future<void> call({
     required Config config,
-  }) async {
-    await config.stateManager.strategy.generate(
+  }) =>
+      config.stateManager.strategy.generate(
         config: config,
         screenRepository: _screenRepository,
-        outputService: _outputService);
-
-    _outputService.add(
-      'Screens generated!'.toInfoMessage(),
-    );
-  }
+        outputService: _outputService,
+      );
 }
