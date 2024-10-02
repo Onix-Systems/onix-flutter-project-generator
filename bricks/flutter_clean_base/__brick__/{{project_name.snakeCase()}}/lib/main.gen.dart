@@ -18,13 +18,11 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
       () async {
         WidgetsFlutterBinding.ensureInitialized();
         await Initialization.I.initApp();
-        {{#sentry}}
-        await SentryFlutter.init(
+        {{#sentry}}await SentryFlutter.init(
           (options) {
               options.dsn = 'SENTRY_DSN';
           },
-        );
-        {{/sentry}}
+        );{{/sentry}}
         await OrientationExtension.lockVertical();
         Bloc.observer = AppBlocObserver();
         final isAllowedToUseApp = await environmentService().initialize();
