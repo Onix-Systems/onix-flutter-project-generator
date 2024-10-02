@@ -147,14 +147,24 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
         Navigator.pop(context, widget.screen);
       } else {
         Navigator.pop(
-            context,
-            Screen(
-                name: screenName,
-                stateVariant: _stateManagement,
-                exists: false));
+          context,
+          Screen(
+            name: screenName,
+            stateVariant: _stateManagement,
+            exists: false,
+          ),
+        );
       }
     } else {
       Navigator.pop(context);
     }
+  }
+
+  @override
+  void dispose() {
+    _screenNameController.dispose();
+    _dialogFocusNode.dispose();
+    _textFieldFocusNode.dispose();
+    super.dispose();
   }
 }

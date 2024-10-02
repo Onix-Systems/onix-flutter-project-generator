@@ -51,6 +51,7 @@ abstract class BaseProviderState<P extends BaseProvider,
   }
 
   void onProviderCreated(BuildContext context, P provider) {
+    if (!context.mounted) return;
     provider.progressStream.listen((event) async {
       if (event) {
         context.loaderOverlay.show();

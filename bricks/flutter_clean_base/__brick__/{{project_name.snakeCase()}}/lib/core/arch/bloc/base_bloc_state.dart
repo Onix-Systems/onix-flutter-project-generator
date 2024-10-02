@@ -67,6 +67,7 @@ W extends StatefulWidget> extends State<W>
   }
 
   void onBlocCreated(BuildContext context, B bloc) {
+    if(!context.mounted) return;
     bloc.progressStream.listen((event) async {
       if (event is DefaultProgressState) {
         if (event.showProgress) {
