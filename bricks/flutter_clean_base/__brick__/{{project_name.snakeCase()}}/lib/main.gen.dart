@@ -21,7 +21,7 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
         {{#sentry}}
         await SentryFlutter.init(
           (options) {
-              options.dsn = 'SENTRY_DNS';
+              options.dsn = 'SENTRY_DSN';
           },
         );
         {{/sentry}}
