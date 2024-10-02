@@ -34,9 +34,7 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
           runApp(const BannedApp());
         }
         },
-        (error, stackTrace) {
-          _onError(error, stackTrace);
-        },
+        _onError,
         )?.catchError((error, stackTrace) {
           _onError(error, stackTrace);
           exit(-1);
