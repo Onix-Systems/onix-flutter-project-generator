@@ -142,9 +142,8 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       variable: S.of(context).useScreenUtil,
                       value: state.config.screenUtil.toString(),
                     ),
-                  if (!state.config.sentry)
                     SummaryCell(
-                      variable: 'Use Screen Util?',
+                      variable: 'Use Sentry?',
                       value: state.config.sentry.toString(),
                     ),
                   //Todo Resolve
