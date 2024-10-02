@@ -13,7 +13,7 @@ import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';{{/handLocalization}}
 {{#flavorizr}}import 'package:{{project_name}}/core/arch/widget/common/flavor_banner.dart';{{/flavorizr}}
 {{^handLocalization}}import 'package:{{project_name}}/app/localization/generated/l10n.dart';{{/handLocalization}}
-{{#sentry}}import 'package:sentry_flutter/sentry_flutter.dart';{{/sentry}}
+{{^isGoRouter}}{{#sentry}}import 'package:sentry_flutter/sentry_flutter.dart';{{/sentry}}{{/isGoRouter}}
 
 class App extends StatefulWidget {
   const App({super.key});
