@@ -44,9 +44,14 @@ mixin _$Config {
   @JsonKey(includeFromJson: false, includeToJson: false)
   List<AppStyle> get styles => throw _privateConstructorUsedError;
   String get swaggerUrl => throw _privateConstructorUsedError;
+  bool get sentry => throw _privateConstructorUsedError;
 
+  /// Serializes this Config to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Config
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -78,7 +83,8 @@ abstract class $ConfigCopyWith<$Res> {
       Set<Screen> screens,
       @JsonKey(includeFromJson: false, includeToJson: false)
       List<AppStyle> styles,
-      String swaggerUrl});
+      String swaggerUrl,
+      bool sentry});
 
   $PlatformsListCopyWith<$Res> get platformsList;
 }
@@ -93,6 +99,8 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Config
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -118,6 +126,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? screens = null,
     Object? styles = null,
     Object? swaggerUrl = null,
+    Object? sentry = null,
   }) {
     return _then(_value.copyWith(
       branch: null == branch
@@ -208,9 +217,15 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.swaggerUrl
           : swaggerUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      sentry: null == sentry
+          ? _value.sentry
+          : sentry // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
+  /// Create a copy of Config
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PlatformsListCopyWith<$Res> get platformsList {
@@ -250,7 +265,8 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       Set<Screen> screens,
       @JsonKey(includeFromJson: false, includeToJson: false)
       List<AppStyle> styles,
-      String swaggerUrl});
+      String swaggerUrl,
+      bool sentry});
 
   @override
   $PlatformsListCopyWith<$Res> get platformsList;
@@ -264,6 +280,8 @@ class __$$ConfigImplCopyWithImpl<$Res>
       _$ConfigImpl _value, $Res Function(_$ConfigImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Config
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -289,6 +307,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
     Object? screens = null,
     Object? styles = null,
     Object? swaggerUrl = null,
+    Object? sentry = null,
   }) {
     return _then(_$ConfigImpl(
       branch: null == branch
@@ -379,6 +398,10 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value.swaggerUrl
           : swaggerUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      sentry: null == sentry
+          ? _value.sentry
+          : sentry // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -409,7 +432,8 @@ class _$ConfigImpl extends _Config {
       final Set<Screen> screens = const {},
       @JsonKey(includeFromJson: false, includeToJson: false)
       final List<AppStyle> styles = const [],
-      this.swaggerUrl = ''})
+      this.swaggerUrl = '',
+      this.sentry = false})
       : _signingVars = signingVars,
         _screens = screens,
         _styles = styles,
@@ -504,10 +528,13 @@ class _$ConfigImpl extends _Config {
   @override
   @JsonKey()
   final String swaggerUrl;
+  @override
+  @JsonKey()
+  final bool sentry;
 
   @override
   String toString() {
-    return 'Config(branch: $branch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, screenUtil: $screenUtil, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl)';
+    return 'Config(branch: $branch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, screenUtil: $screenUtil, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl, sentry: $sentry)';
   }
 
   @override
@@ -551,10 +578,11 @@ class _$ConfigImpl extends _Config {
             const DeepCollectionEquality().equals(other._screens, _screens) &&
             const DeepCollectionEquality().equals(other._styles, _styles) &&
             (identical(other.swaggerUrl, swaggerUrl) ||
-                other.swaggerUrl == swaggerUrl));
+                other.swaggerUrl == swaggerUrl) &&
+            (identical(other.sentry, sentry) || other.sentry == sentry));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -579,10 +607,13 @@ class _$ConfigImpl extends _Config {
         const DeepCollectionEquality().hash(_signingVars),
         const DeepCollectionEquality().hash(_screens),
         const DeepCollectionEquality().hash(_styles),
-        swaggerUrl
+        swaggerUrl,
+        sentry
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Config
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>
@@ -620,7 +651,8 @@ abstract class _Config extends Config {
       final Set<Screen> screens,
       @JsonKey(includeFromJson: false, includeToJson: false)
       final List<AppStyle> styles,
-      final String swaggerUrl}) = _$ConfigImpl;
+      final String swaggerUrl,
+      final bool sentry}) = _$ConfigImpl;
   const _Config._() : super._();
 
   factory _Config.fromJson(Map<String, dynamic> json) = _$ConfigImpl.fromJson;
@@ -664,14 +696,19 @@ abstract class _Config extends Config {
   @override
   List<String> get signingVars;
   @override
-  Set<Screen> get screens;
-  @override // ignore: invalid_annotation_target
+  Set<Screen> get screens; // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   List<AppStyle> get styles;
   @override
   String get swaggerUrl;
   @override
-  @JsonKey(ignore: true)
+  bool get sentry;
+
+  /// Create a copy of Config
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

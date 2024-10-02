@@ -50,7 +50,9 @@ mixin _$SummaryScreenEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SummaryScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SummaryScreenEventCopyWith<SummaryScreenEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -76,6 +78,8 @@ class _$SummaryScreenEventCopyWithImpl<$Res, $Val extends SummaryScreenEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SummaryScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +93,8 @@ class _$SummaryScreenEventCopyWithImpl<$Res, $Val extends SummaryScreenEvent>
     ) as $Val);
   }
 
+  /// Create a copy of SummaryScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -122,6 +128,8 @@ class __$$SummaryScreenEventInitImplCopyWithImpl<$Res>
       $Res Function(_$SummaryScreenEventInitImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SummaryScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,7 +168,9 @@ class _$SummaryScreenEventInitImpl implements SummaryScreenEventInit {
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SummaryScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SummaryScreenEventInitImplCopyWith<_$SummaryScreenEventInitImpl>
@@ -230,8 +240,11 @@ abstract class SummaryScreenEventInit implements SummaryScreenEvent {
 
   @override
   Config get config;
+
+  /// Create a copy of SummaryScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SummaryScreenEventInitImplCopyWith<_$SummaryScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -288,6 +301,9 @@ class _$SummaryScreenSRCopyWithImpl<$Res, $Val extends SummaryScreenSR>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SummaryScreenSR
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -304,6 +320,9 @@ class __$$LoadFinishedImplCopyWithImpl<$Res>
   __$$LoadFinishedImplCopyWithImpl(
       _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SummaryScreenSR
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -422,7 +441,9 @@ mixin _$SummaryScreenState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SummaryScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SummaryScreenStateCopyWith<SummaryScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -448,6 +469,8 @@ class _$SummaryScreenStateCopyWithImpl<$Res, $Val extends SummaryScreenState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SummaryScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -461,6 +484,8 @@ class _$SummaryScreenStateCopyWithImpl<$Res, $Val extends SummaryScreenState>
     ) as $Val);
   }
 
+  /// Create a copy of SummaryScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -494,6 +519,8 @@ class __$$SummaryScreenStateDataImplCopyWithImpl<$Res>
       $Res Function(_$SummaryScreenStateDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SummaryScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -532,7 +559,9 @@ class _$SummaryScreenStateDataImpl implements SummaryScreenStateData {
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SummaryScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SummaryScreenStateDataImplCopyWith<_$SummaryScreenStateDataImpl>
@@ -602,8 +631,11 @@ abstract class SummaryScreenStateData implements SummaryScreenState {
 
   @override
   Config get config;
+
+  /// Create a copy of SummaryScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SummaryScreenStateDataImplCopyWith<_$SummaryScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

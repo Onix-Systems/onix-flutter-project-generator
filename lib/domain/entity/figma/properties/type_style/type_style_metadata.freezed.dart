@@ -21,7 +21,9 @@ mixin _$TypeStyleMetadata {
   num get fontSize => throw _privateConstructorUsedError;
   num get letterSpacing => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TypeStyleMetadata
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TypeStyleMetadataCopyWith<TypeStyleMetadata> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,6 +48,8 @@ class _$TypeStyleMetadataCopyWithImpl<$Res, $Val extends TypeStyleMetadata>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TypeStyleMetadata
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -95,6 +99,8 @@ class __$$TypeStyleMetadataImplCopyWithImpl<$Res>
       $Res Function(_$TypeStyleMetadataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TypeStyleMetadata
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -166,7 +172,9 @@ class _$TypeStyleMetadataImpl implements _TypeStyleMetadata {
   int get hashCode =>
       Object.hash(runtimeType, fontFamily, fontWeight, fontSize, letterSpacing);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TypeStyleMetadata
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TypeStyleMetadataImplCopyWith<_$TypeStyleMetadataImpl> get copyWith =>
@@ -189,8 +197,11 @@ abstract class _TypeStyleMetadata implements TypeStyleMetadata {
   num get fontSize;
   @override
   num get letterSpacing;
+
+  /// Create a copy of TypeStyleMetadata
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TypeStyleMetadataImplCopyWith<_$TypeStyleMetadataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
