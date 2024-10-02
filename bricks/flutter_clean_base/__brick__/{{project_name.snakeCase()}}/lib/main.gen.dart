@@ -17,7 +17,7 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
     runZonedGuarded(
       () async {
         WidgetsFlutterBinding.ensureInitialized();
-        {{^sentry}}
+        {{#sentry}}
         await SentryFlutter.init(
           (options) {
               options.dsn = 'https://example@sentry.io/add-your-dsn-here';
