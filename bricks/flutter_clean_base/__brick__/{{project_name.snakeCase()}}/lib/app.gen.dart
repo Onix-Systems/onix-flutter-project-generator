@@ -13,6 +13,7 @@ import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';{{/handLocalization}}
 {{#flavorizr}}import 'package:{{project_name}}/core/arch/widget/common/flavor_banner.dart';{{/flavorizr}}
 {{^handLocalization}}import 'package:{{project_name}}/app/localization/generated/l10n.dart';{{/handLocalization}}
+{{#sentry}}import 'package:sentry_flutter/sentry_flutter.dart';{{/sentry}}
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -56,7 +57,15 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
             themeMode: state.themeMode,
-            {{^isGoRouter}}routerConfig: appRouter().delegate(),{{/isGoRouter}}
+            {{^isGoRouter}}
+            {{^sentry}}routerConfig: appRouter().delegate(),{{/sentry}}
+            {{#sentry}}routerConfig: appRouter().config(
+              navigatorObservers: () => [
+                 SentryNavigatorObserver(),
+              ],
+            ),
+            {{.sentry}}
+            {{/isGoRouter}}
             {{#isGoRouter}}routerConfig: AppRouter.router,{{/isGoRouter}}
             locale: locale,
             {{^handLocalization}}
