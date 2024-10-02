@@ -34,11 +34,11 @@ class AppRouter {{^isGoRouter}}extends RootStackRouter{{/isGoRouter}}{
       routes: <GoRoute>[
         //{routes end}
       ],
-    {{#isGoRouter}}
+    {{#sentry}}
     observers: [
       SentryNavigatorObserver(),
     ],
-    {{/isGoRouter}}
+    {{/sentry}}
     );
   }{{/isGoRouter}}
 
