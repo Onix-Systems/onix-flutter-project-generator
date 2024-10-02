@@ -11,9 +11,9 @@ import 'package:recase/recase.dart';
 class ScreenTable extends StatelessWidget {
   final Set<Screen> screens;
   final List<StateManagementVariant> stateManagers;
-  final Function(Screen, String) onModifyScreen;
-  final Function(Screen) onDeleteScreen;
-  final Function(Screen) onChangeInitial;
+  final void Function(Screen, String) onModifyScreen;
+  final void Function(Screen) onDeleteScreen;
+  final void Function(Screen) onChangeInitial;
 
   const ScreenTable({
     required this.screens,

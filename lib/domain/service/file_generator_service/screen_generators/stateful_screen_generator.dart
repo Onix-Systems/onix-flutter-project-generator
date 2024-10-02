@@ -5,7 +5,6 @@ import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_p
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/stateful_screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
-import 'package:recase/recase.dart';
 
 class StatefulScreenGenerator extends ScreenGenerationService {
   final _screenCodeContent = StatefulScreenCodeContent();
@@ -16,11 +15,7 @@ class StatefulScreenGenerator extends ScreenGenerationService {
       return false;
     }
 
-    String screenName = params.screen.name.snakeCase;
-
-    if (screenName.endsWith('_screen')) {
-      screenName = screenName.substring(0, screenName.length - 7);
-    }
+    final screenName = params.normalizedScreenName;
 
     final screenPath =
         '${params.projectPath}/${params.projectName}/lib/presentation/screen/${screenName}_screen';
@@ -36,7 +31,7 @@ class StatefulScreenGenerator extends ScreenGenerationService {
   }
 
   Future<void> _createRoutes(ScreenGeneratorParams params) async {
-    final screenName = params.screen.name;
+    final screenName = params.normalizedScreenName;
     if (params.router == ProjectRouter.goRouter) {
       final routesFile = File(
           '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
@@ -71,7 +66,7 @@ class StatefulScreenGenerator extends ScreenGenerationService {
     ScreenGeneratorParams params,
     String screenPath,
   ) async {
-    final screenName = params.screen.name.snakeCase;
+    final screenName = params.normalizedScreenName;
     final screenFile =
         await File('$screenPath/${screenName}_screen.dart').create();
 

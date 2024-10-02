@@ -16,11 +16,7 @@ class StatelessScreenGenerator extends ScreenGenerationService {
       return false;
     }
 
-    String screenName = params.screen.name.snakeCase;
-
-    if (screenName.endsWith('_screen')) {
-      screenName = screenName.substring(0, screenName.length - 7);
-    }
+    final screenName = params.normalizedScreenName;
 
     final screenPath =
         '${params.projectPath}/${params.projectName}/lib/presentation/screen/${screenName}_screen';
