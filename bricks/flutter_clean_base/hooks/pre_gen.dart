@@ -82,6 +82,7 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
     'project_name': context.vars['project_name_dirt'].toString().toSnakeCase,
     'web_only': context.vars['platforms'] == 'web',
     'screen_util': context.vars['screen_util'],
+    'sentry': context.vars['sentry'],
   };
 }
 
