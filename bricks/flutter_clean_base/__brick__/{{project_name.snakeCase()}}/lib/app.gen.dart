@@ -64,7 +64,7 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
                  SentryNavigatorObserver(),
               ],
             ),
-            {{.sentry}}
+            {{/sentry}}
             {{/isGoRouter}}
             {{#isGoRouter}}routerConfig: AppRouter.router,{{/isGoRouter}}
             locale: locale,
