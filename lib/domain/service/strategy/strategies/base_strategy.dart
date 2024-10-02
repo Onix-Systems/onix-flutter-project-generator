@@ -5,13 +5,15 @@ import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/default_screen_route_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/default_screen_route_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
-import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:onix_flutter_bricks/domain/service/strategy/state_manager_strategy.dart';
 import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 
 class BaseStrategy implements StateManagerStrategy {
-  final BaseGenerationService<bool> _defaultScreenRouteGenerator =
-      DefaultScreenRouteGenerator();
+  final BaseGenerationService<bool> _defaultScreenRouteGenerator;
+
+  BaseStrategy({
+    required DefaultScreenRouteGenerator defaultScreenRouteGenerator,
+  }) : _defaultScreenRouteGenerator = defaultScreenRouteGenerator;
 
   @override
   List<StateManagementVariant> get variants => [
@@ -23,7 +25,7 @@ class BaseStrategy implements StateManagerStrategy {
   Future<void> generate({
     required Config config,
     required ScreenRepository screenRepository,
-    required OutputService outputService,
+    required void Function(String) logResult,
   }) async {
     try {
       final screensNotExist = config.screens
@@ -43,7 +45,7 @@ class BaseStrategy implements StateManagerStrategy {
       } else {
         for (int i = 0; i < screensNotExist.length; i++) {
           final screen = screensNotExist[i];
-          outputService.add(
+          logResult(
             'Generating screen ${screen.name}...'.toInfoMessage(),
           );
 
@@ -61,11 +63,11 @@ class BaseStrategy implements StateManagerStrategy {
         }
       }
 
-      outputService.add(
+      logResult(
         'Screens generated!'.toInfoMessage(),
       );
     } catch (e) {
-      outputService.add(
+      logResult(
         'Error generating screens: $e'.toErrorMessage(),
       );
     }

@@ -17,6 +17,6 @@ class GenerateScreensUseCase {
       config.stateManager.strategy.generate(
         config: config,
         screenRepository: _screenRepository,
-        outputService: _outputService,
+        logResult: (result) => _outputService.add(result),
       );
 }
