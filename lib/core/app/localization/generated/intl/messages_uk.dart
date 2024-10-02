@@ -144,6 +144,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "initial": MessageLookupByLibrary.simpleMessage("Початковий екран?"),
         "integrateGraphQl":
             MessageLookupByLibrary.simpleMessage("Інтегрувати GraphQL?"),
+        "integrateSentry":
+            MessageLookupByLibrary.simpleMessage("Інтегрувати Sentry?"),
         "keyStorePasswordPlaceholder": MessageLookupByLibrary.simpleMessage(
             "Залиште пустим для автогенерації..."),
         "keystorePassword":
