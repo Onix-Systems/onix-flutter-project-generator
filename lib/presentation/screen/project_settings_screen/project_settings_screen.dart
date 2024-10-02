@@ -169,7 +169,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                         ),
                         const Delimiter.height(20),
                         SwitchWithLabel(
-                          label: 'Integrate Sentry?',
+                          label: S.of(context).integrateSentry,
                           initialValue: state.config.sentry,
                           valueSetter: (_) => blocOf(context).add(
                             const ProjectSettingsScreenEvent.sentryChange(),

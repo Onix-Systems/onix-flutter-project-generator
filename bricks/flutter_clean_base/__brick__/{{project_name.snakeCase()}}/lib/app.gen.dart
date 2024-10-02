@@ -58,7 +58,7 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             darkTheme: createDarkTheme(),
             themeMode: state.themeMode,
             {{^isGoRouter}}
-            {{^sentry}}routerConfig: appRouter().delegate(),{{/sentry}}
+            {{^sentry}}routerConfig: appRouter().config(),{{/sentry}}
             {{#sentry}}routerConfig: appRouter().config(
               navigatorObservers: () => [
                  SentryNavigatorObserver(),
