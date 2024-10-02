@@ -34,17 +34,12 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
           runApp(const BannedApp());
         }
         },
-        (error, stackTrace) => _onError(error, stackTrace),
+        (error, stackTrace) {},
 
         )?.catchError((error, stackTrace) {
-          _onError(error, stackTrace);
           exit(-1);
       },
     ),
   );
 
-  Future<void> _onError(dynamic error, dynamic stackTrace) async {
-    logger.crash(error: error, stackTrace: stackTrace, reason: 'main');
-    {{^sentry}}await Sentry.captureException(exception, stackTrace: stackTrace);{{/sentry}}
-  }
 }
