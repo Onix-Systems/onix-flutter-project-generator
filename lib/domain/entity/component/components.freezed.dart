@@ -21,7 +21,9 @@ mixin _$Components {
   List<DataObjectComponent> get dataObjects =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Components
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ComponentsCopyWith<Components> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +50,8 @@ class _$ComponentsCopyWithImpl<$Res, $Val extends Components>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Components
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -94,6 +98,8 @@ class __$$ComponentsImplCopyWithImpl<$Res>
       _$ComponentsImpl _value, $Res Function(_$ComponentsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Components
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -177,7 +183,9 @@ class _$ComponentsImpl extends _Components {
       const DeepCollectionEquality().hash(_enums),
       const DeepCollectionEquality().hash(_dataObjects));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Components
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ComponentsImplCopyWith<_$ComponentsImpl> get copyWith =>
@@ -197,8 +205,11 @@ abstract class _Components extends Components {
   List<EnumParamComponent> get enums;
   @override
   List<DataObjectComponent> get dataObjects;
+
+  /// Create a copy of Components
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ComponentsImplCopyWith<_$ComponentsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

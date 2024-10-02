@@ -167,6 +167,10 @@ Future<void> getDependencies(HookContext context) async {
     dependencies.add('flutter_overlay_loader');
   }
 
+  if(context.vars['sentry']) {
+    dependencies.add('sentry_flutter');
+  }
+
   List<String> devDependencies = [
     'flutter_lints',
     'build_runner',

@@ -23,7 +23,9 @@ mixin _$TextNodeEntity {
   String get type => throw _privateConstructorUsedError;
   List<PaintProperty> get fills => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TextNodeEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TextNodeEntityCopyWith<TextNodeEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -55,6 +57,8 @@ class _$TextNodeEntityCopyWithImpl<$Res, $Val extends TextNodeEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TextNodeEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class _$TextNodeEntityCopyWithImpl<$Res, $Val extends TextNodeEntity>
     ) as $Val);
   }
 
+  /// Create a copy of TextNodeEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TypeStyleMetadataCopyWith<$Res> get style {
@@ -130,6 +136,8 @@ class __$$TextNodeEntityImplCopyWithImpl<$Res>
       _$TextNodeEntityImpl _value, $Res Function(_$TextNodeEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TextNodeEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -221,7 +229,9 @@ class _$TextNodeEntityImpl implements _TextNodeEntity {
   int get hashCode => Object.hash(runtimeType, style, id, key, name, type,
       const DeepCollectionEquality().hash(_fills));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TextNodeEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TextNodeEntityImplCopyWith<_$TextNodeEntityImpl> get copyWith =>
@@ -250,8 +260,11 @@ abstract class _TextNodeEntity implements TextNodeEntity {
   String get type;
   @override
   List<PaintProperty> get fills;
+
+  /// Create a copy of TextNodeEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TextNodeEntityImplCopyWith<_$TextNodeEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

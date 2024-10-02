@@ -27,8 +27,12 @@ mixin _$PlatformsList {
   bool get windows => throw _privateConstructorUsedError;
   bool get linux => throw _privateConstructorUsedError;
 
+  /// Serializes this PlatformsList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlatformsList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlatformsListCopyWith<PlatformsList> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$PlatformsListCopyWithImpl<$Res, $Val extends PlatformsList>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlatformsList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -112,6 +118,8 @@ class __$$PlatformsListImplCopyWithImpl<$Res>
       _$PlatformsListImpl _value, $Res Function(_$PlatformsListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlatformsList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -198,12 +206,14 @@ class _$PlatformsListImpl extends _PlatformsList {
             (identical(other.linux, linux) || other.linux == linux));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, android, ios, web, macos, windows, linux);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlatformsList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlatformsListImplCopyWith<_$PlatformsListImpl> get copyWith =>
@@ -242,8 +252,11 @@ abstract class _PlatformsList extends PlatformsList {
   bool get windows;
   @override
   bool get linux;
+
+  /// Create a copy of PlatformsList
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlatformsListImplCopyWith<_$PlatformsListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

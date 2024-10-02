@@ -38,13 +38,7 @@ Future<void> main() async {
 
       runApp(const App());
     },
-    (error, stackTrace) {
-      if (kDebugMode) {
-        print('runZonedGuarded: Caught error in root zone.\n$error');
-        print(stackTrace);
-      }
-      //there we can add FirebaseCrashlytics recordError method
-    },
+    (error, stackTrace) => _onError(error, stackTrace),
   )?.catchError((e, trace) {
     if (kDebugMode) {
       print('ERROR: $e');
@@ -52,4 +46,11 @@ Future<void> main() async {
     }
     exit(-1);
   });
+}
+
+void _onError(dynamic error, dynamic stackTrace) {
+  if (kDebugMode) {
+    print('ERROR: $error');
+    print(stackTrace);
+  }
 }

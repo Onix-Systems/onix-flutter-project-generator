@@ -23,6 +23,7 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     on<ProjectSettingsScreenEventThemingChange>(_onThemingChange);
     on<ProjectSettingsScreenEventFirebaseChange>(_onFirebaseChange);
     on<ProjectSettingsScreenEventScreenUtilChange>(_onScreenUtilChange);
+    on<ProjectSettingsScreenEventSentryChange>(_onSentryChange);
   }
 
   void _onInit(
@@ -162,7 +163,7 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
   }
 
   void _onScreenUtilChange(
-    ProjectSettingsScreenEventScreenUtilChange event,
+    ProjectSettingsScreenEventScreenUtilChange _,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
     emit(
@@ -171,6 +172,19 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
           screenUtil: state.config.platformsList.webOnly
               ? false
               : !state.config.screenUtil,
+        ),
+      ),
+    );
+  }
+
+  void _onSentryChange(
+    ProjectSettingsScreenEventSentryChange _,
+    Emitter<ProjectSettingsScreenState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        config: state.config.copyWith(
+          sentry: !state.config.sentry,
         ),
       ),
     );
