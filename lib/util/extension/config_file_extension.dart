@@ -27,6 +27,7 @@ extension ConfigFileExtension on File {
         'theme_generate': config.theming.name == 'themeTailor',
         'branch': config.branch,
         'screen_util': config.useScreenUtil,
+        'sentry': config.sentry,
       },
     );
     return writeAsString(configContent);
