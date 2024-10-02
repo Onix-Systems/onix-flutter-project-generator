@@ -17,14 +17,14 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
     runZonedGuarded(
       () async {
         WidgetsFlutterBinding.ensureInitialized();
+        await Initialization.I.initApp();
         {{#sentry}}
         await SentryFlutter.init(
           (options) {
-              options.dsn = 'https://example@sentry.io/add-your-dsn-here';
+              options.dsn = 'SENTRY_DNS';
           },
         );
         {{/sentry}}
-        await Initialization.I.initApp();
         await OrientationExtension.lockVertical();
         Bloc.observer = AppBlocObserver();
         final isAllowedToUseApp = await environmentService().initialize();
@@ -43,9 +43,10 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
       },
     ),
   );
+}
 
-  Future<void> _onError(dynamic error, dynamic stackTrace) async {
-    logger.crash(error: error, stackTrace: stackTrace, reason: 'main');
-    {{#sentry}}await Sentry.captureException(exception, stackTrace: stackTrace);{{/sentry}}
-  }
+
+Future<void> _onError(dynamic error, dynamic stackTrace) async {
+  logger.crash(error: error, stackTrace: stackTrace, reason: 'main');
+  {{#sentry}}await Sentry.captureException(error, stackTrace: stackTrace);{{/sentry}}
 }
