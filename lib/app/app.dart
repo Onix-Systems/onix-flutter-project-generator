@@ -37,9 +37,7 @@ class _AppState extends State<App> {
         theme: createLightTheme(),
         darkTheme: createDarkTheme(),
         themeMode: ThemeMode.dark,
-        routeInformationProvider: AppRouter.router.routeInformationProvider,
-        routeInformationParser: AppRouter.router.routeInformationParser,
-        routerDelegate: AppRouter.router.routerDelegate,
+        routerConfig: AppRouter.router,
         locale: locale,
         localizationsDelegates: const [
           S.delegate,

@@ -56,11 +56,8 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
             themeMode: state.themeMode,
-            {{#isGoRouter}}routeInformationProvider: AppRouter.router.routeInformationProvider,{{/isGoRouter}}
-            routeInformationParser: {{#isGoRouter}}AppRouter.router.routeInformationParser,{{/isGoRouter}}
-            {{^isGoRouter}}appRouter().defaultRouteParser(),{{/isGoRouter}}
-            routerDelegate: {{#isGoRouter}}AppRouter.router.routerDelegate,{{/isGoRouter}}
-            {{^isGoRouter}}appRouter().delegate(),{{/isGoRouter}}
+            {{^isGoRouter}}routerConfig: appRouter().delegate(),{{/isGoRouter}}
+            {{#isGoRouter}}routerConfig: AppRouter.router,{{/isGoRouter}}
             locale: locale,
             {{^handLocalization}}
             localizationsDelegates: const [

@@ -21,7 +21,9 @@ mixin _$BaseNodeEntity {
   String get name => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BaseNodeEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BaseNodeEntityCopyWith<BaseNodeEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$BaseNodeEntityCopyWithImpl<$Res, $Val extends BaseNodeEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BaseNodeEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$BaseNodeEntityImplCopyWithImpl<$Res>
       _$BaseNodeEntityImpl _value, $Res Function(_$BaseNodeEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BaseNodeEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -159,7 +165,9 @@ class _$BaseNodeEntityImpl implements _BaseNodeEntity {
   @override
   int get hashCode => Object.hash(runtimeType, id, key, name, type);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BaseNodeEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BaseNodeEntityImplCopyWith<_$BaseNodeEntityImpl> get copyWith =>
@@ -182,8 +190,11 @@ abstract class _BaseNodeEntity implements BaseNodeEntity {
   String get name;
   @override
   String get type;
+
+  /// Create a copy of BaseNodeEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BaseNodeEntityImplCopyWith<_$BaseNodeEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
