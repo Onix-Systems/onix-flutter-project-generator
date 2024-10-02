@@ -143,7 +143,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       value: state.config.screenUtil.toString(),
                     ),
                     SummaryCell(
-                      variable: 'Use Sentry?',
+                      variable: S.of(context).integrateSentry,
                       value: state.config.sentry.toString(),
                     ),
                   //Todo Resolve
