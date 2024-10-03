@@ -43,6 +43,9 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
 
   const factory ProjectSettingsScreenEvent.screenUtilChange() =
       ProjectSettingsScreenEventScreenUtilChange;
+
+  const factory ProjectSettingsScreenEvent.sentryChange() =
+      ProjectSettingsScreenEventSentryChange;
 }
 
 @freezed

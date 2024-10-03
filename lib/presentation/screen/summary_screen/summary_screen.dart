@@ -54,11 +54,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
   ) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(
-          bottom: 16,
-          left: 16,
-          right: 16,
-        ),
+        padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -145,6 +141,10 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                     SummaryCell(
                       variable: S.of(context).useScreenUtil,
                       value: state.config.screenUtil.toString(),
+                    ),
+                    SummaryCell(
+                      variable: S.of(context).integrateSentry,
+                      value: state.config.sentry.toString(),
                     ),
                   //Todo Resolve
                   /*if (state.config.sources.isNotEmpty)

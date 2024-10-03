@@ -167,6 +167,14 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
                           valueSetter: (_) => blocOf(context).add(
                               const ProjectSettingsScreenEventGraphQLChange()),
                         ),
+                        const Delimiter.height(20),
+                        SwitchWithLabel(
+                          label: S.of(context).integrateSentry,
+                          initialValue: state.config.sentry,
+                          valueSetter: (_) => blocOf(context).add(
+                            const ProjectSettingsScreenEvent.sentryChange(),
+                          ),
+                        ),
                       ],
                     ),
                   ),
