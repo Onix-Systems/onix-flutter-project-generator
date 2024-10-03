@@ -163,6 +163,8 @@ Future<void> getDependencies(HookContext context) async {
         workingDirectory: '$name/lib/app');
     await Process.run('rm', ['-r', 'provider'],
         workingDirectory: '$name/lib/core/arch');
+    await Process.run('rm', ['-r', 'provider'],
+        workingDirectory: '$name/lib/core/di');
   }
 
   if (context.vars['isProvider']) {
@@ -170,6 +172,8 @@ Future<void> getDependencies(HookContext context) async {
     await Process.run('rm', ['-r', 'bloc'], workingDirectory: '$name/lib/app');
     await Process.run('rm', ['-r', 'bloc'],
         workingDirectory: '$name/lib/core/arch');
+    await Process.run('rm', ['-r', 'bloc'],
+        workingDirectory: '$name/lib/core/di');
   }
 
   if (!context.vars['web_only']) {
