@@ -1,5 +1,5 @@
 
-build:
+build_macos:
 	@flutter clean
 	@flutter build macos --release
 	@mkdir release
