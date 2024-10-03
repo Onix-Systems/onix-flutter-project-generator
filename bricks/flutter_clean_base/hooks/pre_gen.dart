@@ -61,7 +61,7 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
   final isProvider =
       context.vars['state_management'] == 'provider' ? true : false;
 
-  log('state_management: ${context.vars['state_management']}');
+  'state_management: ${context.vars['state_management']}'.log();
 
   var flavors = [];
 
