@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+{{#isBase}}import 'package:{{project_name}}/app/util/theme_util.dart';{{/isBase}}
 {{#isBloc}}import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';{{/isBloc}}
 {{#isProvider}}import 'package:{{project_name}}/app/provider/app_provider_imports.dart';

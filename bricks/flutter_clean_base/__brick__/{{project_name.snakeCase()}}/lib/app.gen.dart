@@ -110,14 +110,14 @@ class _AppState extends State<App>
           );
           },
      {{#screen_util}}
-            );
+            ){{#isBase}},){{/isBase}};
           },
      {{#web_only}}
         );
     {{/web_only}}
     {{^web_only}}
           ),
-        ){{#isBase}},){{/isBase}};
+        );
     {{/web_only}}
     {{/screen_util}}
     {{^screen_util}}
