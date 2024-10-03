@@ -39,8 +39,12 @@ class _AppState extends BaseProviderState<AppProvider, AppState, App>
         designSize: const Size(375, 812),
         minTextAdapt: true,
         builder: (context, child) {
-        return{{/screen_util}} blocBuilder(
-          builder: (context, state) {
+        return{{/screen_util}}
+        {{#isBloc}}blocBuilder(
+              builder: (context, state){{/isBloc}}
+        {{#isProvider}}providerConsumer(
+              stateListener: (state){{/isProvider}}
+          {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             builder: (context, widget) {
