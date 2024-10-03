@@ -56,6 +56,11 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
   final localizationByHand =
       context.vars['localization'] == 'flutter_gen' ? true : false;
 
+  final isBase = context.vars['state_management'] == 'base' ? true : false;
+  final isBloc = context.vars['state_management'] == 'bloc' ? true : false;
+  final isProvider =
+      context.vars['state_management'] == 'provider' ? true : false;
+
   var flavors = [];
 
   if (context.vars['flavorizr'] == true) {
@@ -82,6 +87,9 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
     'project_name': context.vars['project_name_dirt'].toString().toSnakeCase,
     'web_only': context.vars['platforms'] == 'web',
     'screen_util': context.vars['screen_util'],
+    'isBase': isBase,
+    'isBloc': isBloc,
+    'isProvider': isProvider,
   };
 }
 
