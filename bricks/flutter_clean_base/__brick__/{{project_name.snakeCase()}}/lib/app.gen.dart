@@ -21,8 +21,8 @@ class App extends StatefulWidget {
   State<App> createState() => _AppState();
 }
 
-{{isBloc}}class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {{{/isBloc}}
-{{isProvider}}class _AppState extends BaseProviderState<AppProvider, AppState, App> {{{/isBloc}}
+{{#isBloc}}class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {{{/isBloc}}
+{{#isProvider}}class _AppState extends BaseProviderState<AppProvider, AppState, App> {{{/isBloc}}
   Locale? locale;
 
 
