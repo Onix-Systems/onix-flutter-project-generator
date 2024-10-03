@@ -48,6 +48,8 @@ class _AppState extends State<App>
               builder: (context, state){{/isBloc}}
         {{#isProvider}}providerConsumer(
               stateListener: (state){{/isProvider}}
+        {{#isBase}}Builder(
+              builder: (context){{/isBase}}
           {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
