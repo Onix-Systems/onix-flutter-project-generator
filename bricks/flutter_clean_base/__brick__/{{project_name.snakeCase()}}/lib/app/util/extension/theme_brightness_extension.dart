@@ -1,6 +1,8 @@
-import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+{{#isBloc}}import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';{{/isBloc}}
+{{#isProvider}}import 'package:{{project_name}}/app/provider/app_provider_imports.dart';
+import 'package:provider/provider.dart';{{/isProvider}}
 
 extension ThemeBrightnessExtension on BuildContext {
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
@@ -30,10 +32,11 @@ extension ThemeBrightnessExtension on BuildContext {
           break;
         }
     }
-    BlocProvider.of<AppBloc>(this).add(
+    {{#isBloc}}BlocProvider.of<AppBloc>(this).add(
       AppEvent.changeTheme(
         newThemeMode,
       ),
-    );
+    );{{/isBloc}}
+    {{#isProvider}}read<AppProvider>().onChangeTheme(newThemeMode);{{/isProvider}
   }
 }

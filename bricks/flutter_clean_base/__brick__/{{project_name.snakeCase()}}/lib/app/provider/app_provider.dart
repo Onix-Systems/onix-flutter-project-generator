@@ -4,12 +4,10 @@ import 'package:{{project_name}}/app/provider/app_provider_imports.dart';
 import 'package:{{project_name}}/core/arch/provider/base_provider.dart';
 
 class AppProvider extends BaseProvider<AppState> {
-  AppProvider() : super(const AppState()) {
-    init();
-  }
+  AppProvider() : super(const AppState());
 
-  void init() {
-// Add your initialization code here
+  void onChangeTheme(ThemeMode themeMode) {
+    state = state.copyWith(themeMode: themeMode);
     notifyListeners();
   }
 }
