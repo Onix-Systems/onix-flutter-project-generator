@@ -140,10 +140,6 @@ Future<void> getDependencies(HookContext context) async {
     'freezed_annotation',
     'json_annotation',
     'get_it',
-    // TODO: Include proper dependency for the selected state management
-    'flutter_bloc',
-    'provider',
-    //
     'flutter_secure_storage:^9.0.0',
     'shared_preferences',
     'internet_connection_checker',
@@ -160,6 +156,17 @@ Future<void> getDependencies(HookContext context) async {
     // unit tests that differ from the major version are lower than 6
     'connectivity_plus: ^6.0.3',
   ];
+
+  if (context.vars['isBloc']) {
+    dependencies.add('flutter_bloc');
+    await Process.run('rm', ['-r', 'provider'],
+        workingDirectory: '$name/lib/app');
+  }
+
+  if (context.vars['isProvider']) {
+    dependencies.add('provider');
+    await Process.run('rm', ['-r', 'bloc'], workingDirectory: '$name/lib/app');
+  }
 
   if (!context.vars['web_only']) {
     if (context.vars['screen_util']) {

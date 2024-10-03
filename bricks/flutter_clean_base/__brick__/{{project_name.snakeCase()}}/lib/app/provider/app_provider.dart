@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:flutter/material.dart';
 import 'package:{{project_name}}/app/provider/app_provider_imports.dart';
 import 'package:{{project_name}}/core/arch/provider/base_provider.dart';
 
