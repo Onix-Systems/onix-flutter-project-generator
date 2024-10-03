@@ -27,12 +27,14 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App>
 {{/isBloc}}
 {{#isProvider}}
 class _AppState extends BaseProviderState<AppProvider, AppState, App>
-{{/isProvider}} {
+{{/isProvider}}
+{{#isBase}}
+class _AppState extends State<App>
+{{/isBase}} {
   Locale? locale;
 
-
   @override
-  Widget buildWidget(BuildContext context) {
+  Widget {{#isBase}}build{{/isBase}}{{^isBase}}buildWidget{{/isBase}}(BuildContext context) {
     {{#isGoRouter}}AppRouter.init();{{/isGoRouter}}
     return {{^web_only}}GlobalLoaderOverlay(
       overlayColor: Colors.black.withOpacity(0.5),
