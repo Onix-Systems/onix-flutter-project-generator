@@ -36,9 +36,9 @@ class App extends StatefulWidget {
         designSize: const Size(375, 812),
         minTextAdapt: true,
         builder: (context, child) {
-        {{#isBloc}}return{{/screen_util}} blocBuilder(
+        return{{/screen_util}} {{#isBloc}}blocBuilder(
           builder: (context, state) { {{/isBloc}}
-        {{#isProvider}}return{{/screen_util}} providerConsumer(
+        {{#isProvider}}providerConsumer(
           stateListener: (state) { {{/isProvider}}
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
