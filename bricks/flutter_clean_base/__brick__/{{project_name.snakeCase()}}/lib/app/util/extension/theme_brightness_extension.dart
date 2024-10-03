@@ -37,6 +37,6 @@ extension ThemeBrightnessExtension on BuildContext {
         newThemeMode,
       ),
     );{{/isBloc}}
-    {{#isProvider}}read<AppProvider>().onChangeTheme(newThemeMode);{{/isProvider}
+    {{#isProvider}}read<AppProvider>().onChangeTheme(newThemeMode);{{/isProvider}}
   }
 }
