@@ -161,11 +161,15 @@ Future<void> getDependencies(HookContext context) async {
     dependencies.add('flutter_bloc');
     await Process.run('rm', ['-r', 'provider'],
         workingDirectory: '$name/lib/app');
+    await Process.run('rm', ['-r', 'provider'],
+        workingDirectory: '$name/lib/core/arch');
   }
 
   if (context.vars['isProvider']) {
     dependencies.add('provider');
     await Process.run('rm', ['-r', 'bloc'], workingDirectory: '$name/lib/app');
+    await Process.run('rm', ['-r', 'bloc'],
+        workingDirectory: '$name/lib/core/arch');
   }
 
   if (!context.vars['web_only']) {
