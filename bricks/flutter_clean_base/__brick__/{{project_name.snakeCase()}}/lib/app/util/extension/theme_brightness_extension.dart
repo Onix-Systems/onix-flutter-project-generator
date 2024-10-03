@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';{{/isBloc}}
 import 'package:provider/provider.dart';{{/isProvider}}
 
 extension ThemeBrightnessExtension on BuildContext {
-  {{$isBase}}void switchThemeBrightness() {
+  {{#isBase}}void switchThemeBrightness() {
   ThemeModeUtil.of(this).changeTheme();
   }{{/isBase}}
 

@@ -8,6 +8,7 @@ import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';{{/isBloc}}
 {{#isProvider}}import 'package:{{project_name}}/core/arch/provider/base_provider_state.dart';
 import 'package:{{project_name}}/app/provider/app_provider_imports.dart';{{/isProvider}}
 import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
+{{#isBase}}import 'package:{{project_name}}/app/util/theme_util.dart';{{/isBase}}
 {{#isGoRouter}}import 'package:{{project_name}}/app/router/app_router.dart';{{/isGoRouter}}
 {{^isGoRouter}}import 'package:{{project_name}}/core/di/app.dart';{{/isGoRouter}}
 {{^handLocalization}}import 'package:flutter_localizations/flutter_localizations.dart';{{/handLocalization}}
@@ -79,7 +80,7 @@ class _AppState extends State<App>
             scrollBehavior: const CupertinoScrollBehavior(),
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
-            themeMode: state.themeMode,
+            themeMode: {{#isBase}}themeNotifier.value{{/isBase}}{{^isBase}}state.themeMode{{/isBase}},
             {{#isGoRouter}}routeInformationProvider: AppRouter.router.routeInformationProvider,{{/isGoRouter}}
             routeInformationParser: {{#isGoRouter}}AppRouter.router.routeInformationParser,{{/isGoRouter}}
             {{^isGoRouter}}appRouter().defaultRouteParser(),{{/isGoRouter}}
@@ -116,7 +117,7 @@ class _AppState extends State<App>
     {{/web_only}}
     {{^web_only}}
           ),
-        );
+        ){{#isBase}},){{/isBase}};
     {{/web_only}}
     {{/screen_util}}
     {{^screen_util}}
