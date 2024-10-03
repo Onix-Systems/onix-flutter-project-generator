@@ -5,7 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';{{/isBloc}}
 import 'package:provider/provider.dart';{{/isProvider}}
 
 extension ThemeBrightnessExtension on BuildContext {
-  bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
+  {{$isBase}}void switchThemeBrightness() {
+  ThemeModeUtil.of(this).changeTheme();
+  }{{/isBase}}
+
+  {{^isBase}}bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
 
   void switchThemeBrightness({
     required ThemeMode currentThemeMode,
@@ -39,4 +43,5 @@ extension ThemeBrightnessExtension on BuildContext {
     );{{/isBloc}}
     {{#isProvider}}read<AppProvider>().onChangeTheme(newThemeMode);{{/isProvider}}
   }
+  {{/isBase}}
 }

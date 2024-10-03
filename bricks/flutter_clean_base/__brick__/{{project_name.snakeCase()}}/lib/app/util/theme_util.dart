@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 
-class ThemeUtil extends InheritedWidget {
-  final ThemeMode mode;
+class ThemeModeUtil extends InheritedWidget {
+  final ValueNotifier<ThemeMode> notifier;
 
-  const ThemeUtil({
-    required this.mode,
+  const ThemeModeUtil({
+    required this.notifier,
     required super.child,
     super.key,
   });
 
-  static ThemeUtil of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ThemeUtil>()!;
+  void changeTheme() {
+    if (notifier.value == ThemeMode.light) {
+      notifier.value = ThemeMode.dark;
+    } else {
+      notifier.value = ThemeMode.light;
+    }
+  }
+
+  static ThemeModeUtil of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<ThemeModeUtil>()!;
   }
 
   @override
-  bool updateShouldNotify(ThemeUtil oldWidget) {
-    return mode != oldWidget.mode;
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
+    return true;
   }
 }
