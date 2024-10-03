@@ -159,21 +159,16 @@ Future<void> getDependencies(HookContext context) async {
 
   if (context.vars['isBloc']) {
     dependencies.add('flutter_bloc');
-    await Process.run('rm', ['-r', 'provider'],
-        workingDirectory: '$name/lib/app');
-    await Process.run('rm', ['-r', 'provider'],
-        workingDirectory: '$name/lib/core/arch');
-    await Process.run('rm', ['provider.dart'],
-        workingDirectory: '$name/lib/core/di');
+    await removeStateManagers(['provider']);
   }
 
   if (context.vars['isProvider']) {
     dependencies.add('provider');
-    await Process.run('rm', ['-r', 'bloc'], workingDirectory: '$name/lib/app');
-    await Process.run('rm', ['-r', 'bloc'],
-        workingDirectory: '$name/lib/core/arch');
-    await Process.run('rm', ['bloc.dart'],
-        workingDirectory: '$name/lib/core/di');
+    await removeStateManagers(['bloc']);
+  }
+
+  if (context.vars['isBase']) {
+    await removeStateManagers(['bloc', 'provider']);
   }
 
   if (!context.vars['web_only']) {
@@ -282,6 +277,16 @@ Future<void> getDependencies(HookContext context) async {
   } else {
     'Failed to install flutter_native_splash... Exit code: $exitCode'.error();
     //exitBrick();
+  }
+}
+
+Future<void> removeStateManagers(List<String> managers) async {
+  for (var manager in managers) {
+    await Process.run('rm', ['-r', manager], workingDirectory: '$name/lib/app');
+    await Process.run('rm', ['-r', manager],
+        workingDirectory: '$name/lib/core/arch');
+    await Process.run('rm', ['$manager.dart'],
+        workingDirectory: '$name/lib/core/di');
   }
 }
 
