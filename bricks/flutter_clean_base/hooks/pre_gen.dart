@@ -61,10 +61,12 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
   final isProvider =
       context.vars['state_management'] == 'provider' ? true : false;
 
+  '====================================='.log();
   'isBase: $isBase'.log();
   'isBloc: $isBloc'.log();
   'isProvider: $isProvider'.log();
   'project_name: ${context.vars['project_name_dirt']}'.log();
+  '====================================='.log();
 
   var flavors = [];
 
