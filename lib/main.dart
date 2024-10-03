@@ -38,12 +38,9 @@ Future<void> main() async {
 
       runApp(const App());
     },
-    (error, stackTrace) => _onError(error, stackTrace),
-  )?.catchError((e, trace) {
-    if (kDebugMode) {
-      print('ERROR: $e');
-      print(trace);
-    }
+    _onError,
+  )?.catchError((error, stackTrace) {
+    _onError(error, stackTrace);
     exit(-1);
   });
 }
