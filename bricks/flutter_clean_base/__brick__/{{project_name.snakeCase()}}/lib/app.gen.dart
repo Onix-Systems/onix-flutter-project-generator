@@ -20,15 +20,9 @@ class App extends StatefulWidget {
   @override
   State<App> createState() => _AppState();
 }
-
-class _AppState extends
 {{#isBloc}}
-BaseState<AppScreenState, AppBloc, AppSR, App>
-{{/isBloc}}
-{{#isProvider}}
-BaseProviderState<AppProvider, AppState, App>
-{{/isProvider}}
-{
+class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App>
+{{/isBloc}} {
   Locale? locale;
 
 
@@ -42,10 +36,8 @@ BaseProviderState<AppProvider, AppState, App>
         designSize: const Size(375, 812),
         minTextAdapt: true,
         builder: (context, child) {
-        {{#isBloc}}return{{/screen_util}} blocBuilder(
-          builder: (context, state) {{/isBloc}}
-        {{#isProvider}}return{{/screen_util}} providerConsumer(
-          stateListener: (state){{/isProvider}} {
+        return{{/screen_util}} blocBuilder(
+          builder: (context, state) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             builder: (context, widget) {
