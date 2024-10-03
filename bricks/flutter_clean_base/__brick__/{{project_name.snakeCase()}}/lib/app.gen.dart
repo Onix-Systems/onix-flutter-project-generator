@@ -43,9 +43,9 @@ BaseProviderState<AppProvider, AppState, App>
         minTextAdapt: true,
         builder: (context, child) {
         {{#isBloc}}return{{/screen_util}} blocBuilder(
-          builder: (context, state) { {{/isBloc}}
+          builder: (context, state) {{/isBloc}}
         {{#isProvider}}return{{/screen_util}} providerConsumer(
-          stateListener: (state) { {{/isProvider}}
+          stateListener: (state){{/isProvider}} {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             builder: (context, widget) {
