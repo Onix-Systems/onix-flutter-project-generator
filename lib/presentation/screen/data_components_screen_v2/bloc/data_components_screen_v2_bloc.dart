@@ -20,6 +20,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     Emitter<DataComponentsScreenV2State> emit,
   ) async {
     final components = await _getSwaggerComponentsUseCase();
+    print(components?.sources);
     emit(
       state.copyWith(
         config: event.config,

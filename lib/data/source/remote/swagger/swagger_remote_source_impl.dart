@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:onix_flutter_bricks/app/util/enum/swagger_version_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
@@ -18,8 +20,8 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
   Future<SwaggerResponse> getSwaggerComponents({
     required String url,
   }) async {
-    var response = await http.get(Uri.parse(url));
-    var json = jsonDecode(response.body) as Map<String, dynamic>;
+    var response = await rootBundle.loadString('assets/openapi.json');
+    var json = jsonDecode(response) as Map<String, dynamic>;
 
     ///Get Swagger version
     final swaggerVersion = json.getSwaggerVersion();

@@ -25,6 +25,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       requiredVariables,
       json,
     );
+
     if (rootType != null) {
       return SwaggerModelVariableResponseV3(
         name: name,
@@ -125,5 +126,10 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       );
     }
     return null;
+  }
+
+  @override
+  String toString() {
+    return 'SwaggerModelVariableResponseV3(name: $name, type: $type, isRequired: $isRequired)';
   }
 }
