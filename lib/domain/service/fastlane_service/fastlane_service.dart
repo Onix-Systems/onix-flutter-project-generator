@@ -340,22 +340,3 @@ class FastlaneService implements BaseGenerationService<String> {
   String _getProjectFullPath(FastlaneGenerationParams params) =>
       '${params.projectPath}/${params.projectName}';
 }
-
-
-enum UserRole {
-  forwarder,
-  client,
-  keyManager,
-}
-
-void main() {
-  final role = UserRole.client;
-  switch(role) {
-    case UserRole.forwarder:
-      // TODO: Handle this case.
-    case UserRole.client:
-      // TODO: Handle this case.
-    case UserRole.keyManager:
-      // TODO: Handle this case.
-  }
-}
