@@ -22,10 +22,10 @@ class App extends StatefulWidget {
 }
 
 {{#isBloc}}
-  //Bloc
+class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
 {{/isBloc}}
 
-class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
+//class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
   Locale? locale;
 
 
