@@ -80,7 +80,7 @@ class _AppState extends State<App>
             scrollBehavior: const CupertinoScrollBehavior(),
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
-            themeMode: {{#isBase}}themeNotifier.value{{/isBase}}{{^isBase}}state.themeMode{{/isBase}},
+            themeMode: {{#isBase}}themeMode{{/isBase}}{{^isBase}}state.themeMode{{/isBase}},
             {{#isGoRouter}}routeInformationProvider: AppRouter.router.routeInformationProvider,{{/isGoRouter}}
             routeInformationParser: {{#isGoRouter}}AppRouter.router.routeInformationParser,{{/isGoRouter}}
             {{^isGoRouter}}appRouter().defaultRouteParser(),{{/isGoRouter}}
