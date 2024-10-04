@@ -56,10 +56,7 @@ class _AppState extends State<App>
               builder: (context, state){{/isBloc}}
         {{#isProvider}}providerConsumer(
               stateListener: (state){{/isProvider}}
-        {{#isBase}}ThemeModeUtil(
-              notifier: themeNotifier,
-              child: ValueListenableBuilder<ThemeMode>(
-              valueListenable: themeNotifier,
+        {{#isBase}}ThemeModeSwitcher(
               builder: (context, themeMode, _) {{/isBase}}
           {
           return MaterialApp.router(
@@ -110,7 +107,7 @@ class _AppState extends State<App>
           );
           },
      {{#screen_util}}
-            ){{#isBase}},){{/isBase}};
+            );
           },
      {{#web_only}}
         );
