@@ -77,7 +77,7 @@ Also there an option to select **optional packages to include** to the project:
 * **Localization** - [Intl](https://pub.dev/packages/intl_utils)
 * **Theming** - [ThemeTailor](https://pub.dev/packages/theme_tailor)
 * **UI** - [ScreenUtil](https://pub.dev/packages/flutter_screenutil)
-
+* **Monitor and capture errors** - [Sentry](https://pub.dev/packages/sentry_flutter)
 
 ## Key Features
 
