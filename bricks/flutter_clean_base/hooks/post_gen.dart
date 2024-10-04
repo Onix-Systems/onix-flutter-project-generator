@@ -160,11 +160,15 @@ Future<void> getDependencies(HookContext context) async {
   if (context.vars['isBloc']) {
     dependencies.add('flutter_bloc');
     await removeStateManagers(['provider']);
+    await Process.run('rm', ['theme_util.dart'],
+        workingDirectory: '$name/lib/app/util');
   }
 
   if (context.vars['isProvider']) {
     dependencies.add('provider');
     await removeStateManagers(['bloc']);
+    await Process.run('rm', ['theme_util.dart'],
+        workingDirectory: '$name/lib/app/util');
   }
 
   if (context.vars['isBase']) {
@@ -288,9 +292,6 @@ Future<void> removeStateManagers(List<String> managers) async {
     await Process.run('rm', ['$manager.dart'],
         workingDirectory: '$name/lib/core/di');
   }
-
-  await Process.run('rm', ['theme_util.dart'],
-      workingDirectory: '$name/lib/app/util');
 }
 
 Future<void> flavorize(HookContext context) async {
