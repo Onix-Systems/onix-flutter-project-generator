@@ -34,16 +34,9 @@ class _AppState extends State<App>
 {{/isBase}} {
   Locale? locale;
 
-  {{#isBase}}late final ValueNotifier<ThemeMode> themeNotifier;{{/isBase}}
-
   @override
   Widget {{#isBase}}build{{/isBase}}{{^isBase}}buildWidget{{/isBase}}(BuildContext context) {
     {{#isGoRouter}}AppRouter.init();{{/isGoRouter}}
-    {{#isBase}}themeNotifier = ValueNotifier(
-      Theme.of(context).brightness == Brightness.dark
-        ? ThemeMode.dark
-        : ThemeMode.light,
-    );{{/isBase}}
     return {{^web_only}}GlobalLoaderOverlay(
       overlayColor: Colors.black.withOpacity(0.5),
       child: {{/web_only}}
