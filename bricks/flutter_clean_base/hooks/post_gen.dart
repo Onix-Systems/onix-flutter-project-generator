@@ -288,6 +288,9 @@ Future<void> removeStateManagers(List<String> managers) async {
     await Process.run('rm', ['$manager.dart'],
         workingDirectory: '$name/lib/core/di');
   }
+
+  await Process.run('rm', ['theme_util.dart'],
+      workingDirectory: '$name/lib/app/util');
 }
 
 Future<void> flavorize(HookContext context) async {
