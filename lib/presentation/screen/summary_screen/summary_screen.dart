@@ -126,6 +126,10 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                     variable: S.of(context).theming,
                     value: state.config.theming.name,
                   ),
+                  SummaryCell(
+                    variable: S.of(context).stateManager,
+                    value: state.config.stateManager.name.titleCase,
+                  ),
                   if (state.config.screens.isNotEmpty)
                     SummaryCell(
                       variable: S.of(context).generateScreens,
