@@ -58,6 +58,6 @@ class FileGeneratorService {
         .create(recursive: true);
   }
 
-  Future<Result<dynamic>> generateSigning(SingingGeneratorParams params) =>
+  Future<Result<int>> generateSigning(SingingGeneratorParams params) =>
       _signingGenerator.generate(params);
 }

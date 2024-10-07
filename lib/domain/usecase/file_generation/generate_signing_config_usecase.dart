@@ -9,7 +9,7 @@ class GenerateSigningConfigUseCase {
     this._fileGeneratorService,
   );
 
-  Future<Result<dynamic>> call({
+  Future<Result<int>> call({
     required SingingGeneratorParams params,
   }) async =>
       _fileGeneratorService.generateSigning(params);
