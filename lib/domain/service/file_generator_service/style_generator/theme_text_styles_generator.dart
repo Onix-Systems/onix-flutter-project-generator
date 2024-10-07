@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/gen/theme_text_styles_file_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/gen/theme_text_styles_file_content_tailor.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_text_style_generation_params.dart';
@@ -9,16 +8,14 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/parser/text_styles_parser.dart';
 import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
 
-class ThemeTextStylesGenerator implements BaseGenerationService<bool> {
+class ThemeTextStylesGenerator
+    implements BaseGenerationService<bool, ThemeTextStyleGeneratorParams> {
   final _textStylesParser = TextStylesParser();
   final _defaultTextStylesGenerator = ThemeTextStylesFileContent();
   final _tailorTextStylesGenerator = ThemeTextStylesFileContentTailor();
 
   @override
-  Future<bool> generate(BaseGenerationParams params) async {
-    if (params is! ThemeTextStyleGeneratorParams) {
-      return false;
-    }
+  Future<bool> generate(ThemeTextStyleGeneratorParams params) async {
     final libFolder = '${params.projectPath}/${params.projectName}/lib';
     final appTextStylesFile = await File(
             '$libFolder/presentation/style/theme/theme_extension/theme_text_styles.dart')
