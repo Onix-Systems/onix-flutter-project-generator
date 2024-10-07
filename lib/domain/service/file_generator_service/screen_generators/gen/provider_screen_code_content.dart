@@ -20,10 +20,7 @@ class ProviderScreenCodeContent extends ScreenCodeContent {
     }
 
     codeLines.add(
-        'import \'package:$projectName/core/arch/provider/base_provider_state.dart\';');
-
-    codeLines.add(
-        'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/provider/${screenClassImport}_screen_imports.dart\';');
+        'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/provider/${screenClassImport}_screen_provider.dart\';');
     codeLines.addNewLine();
 
     ///Add annotation in AutoRoute navigation used
@@ -47,14 +44,13 @@ class ProviderScreenCodeContent extends ScreenCodeContent {
     codeLines.add('class _${screenClassName}ScreenState');
     codeLines.add('extends BaseProviderState<');
     codeLines.add('${screenClassName}ScreenProvider, ');
-    codeLines.add('${screenClassName}ScreenState, ');
     codeLines.add('${screenClassName}Screen> {');
     codeLines.add('@override');
     codeLines.add('Widget buildWidget(BuildContext context) {');
     codeLines.add('return Scaffold(');
     codeLines.add('body: SizedBox.expand(');
     codeLines.add('child: providerConsumer(');
-    codeLines.add('stateListener: (state) => const Center(');
+    codeLines.add('stateListener: (provider) => const Center(');
     codeLines.add('child: Text(\'$screenClassName screen\'),');
     codeLines.add('),');
     codeLines.add('),),);}}');

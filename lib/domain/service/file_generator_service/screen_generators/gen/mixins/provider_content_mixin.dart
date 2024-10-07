@@ -22,11 +22,8 @@ mixin ProviderContentMixin on ScreenGenerationService {
   }) {
     ///Declare Provider classes names
     final stateManagementSuffix = const ProviderStateManagementVariant().name;
-    final screenClassImport = screenName.snakeCase;
     final screenModelName = screenName.pascalCase;
     final className = '${screenName.pascalCase}Screen$stateManagementSuffix';
-
-    final stateName = '${screenName.pascalCase}ScreenState';
 
     final codeLines = List<String>.empty(growable: true);
 
@@ -36,13 +33,10 @@ mixin ProviderContentMixin on ScreenGenerationService {
     codeLines.add(
         'import \'package:$projectName/core/arch/provider/base_provider.dart\';');
 
-    codeLines.add(
-        'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/provider/${screenClassImport}_screen_state.dart\';');
     codeLines.addNewLine();
-    codeLines.add('class $className extends BaseProvider<$stateName> {');
+    codeLines.add('class $className extends BaseProvider {');
 
-    codeLines.add(
-        '${screenModelName}ScreenProvider() : super(const ${screenModelName}ScreenState()) {');
+    codeLines.add('${screenModelName}ScreenProvider() : super() {');
     codeLines.add('init();');
     codeLines.add('}');
     codeLines.addNewLine();
