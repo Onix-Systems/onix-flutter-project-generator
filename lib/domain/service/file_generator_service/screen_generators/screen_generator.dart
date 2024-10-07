@@ -2,21 +2,17 @@ import 'dart:io';
 
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:recase/recase.dart';
 
-class ScreenGenerator implements BaseGenerationService<bool> {
+class ScreenGenerator
+    implements BaseGenerationService<bool, ScreenGeneratorParams> {
   final _screenCodeContent = ScreenCodeContent();
 
   @override
-  Future<bool> generate(BaseGenerationParams params) async {
-    if (params is! ScreenGeneratorParams) {
-      return false;
-    }
-
+  Future<bool> generate(ScreenGeneratorParams params) async {
     String screenName = params.screen.name.snakeCase;
 
     if (screenName.endsWith('_screen')) {

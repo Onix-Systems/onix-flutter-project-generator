@@ -5,25 +5,20 @@ import 'package:onix_flutter_bricks/core/arch/domain/entity/result/result.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 import 'package:onix_flutter_bricks/util/process_runner.dart';
 
 ///This class Generates Android keystore with given credentials and fix Gradle signing configuration
-class SigningGenerator implements BaseGenerationService<Result<dynamic>> {
+class SigningGenerator
+    implements BaseGenerationService<Result<int>, SingingGeneratorParams> {
   final OutputService _outputService;
 
   SigningGenerator(this._outputService);
 
   @override
-  Future<Result<dynamic>> generate(BaseGenerationParams params) async {
-    if (params is! SingingGeneratorParams) {
-      return Result.error(
-        failure: SigningFailure(SigningFailureType.invalidParams),
-      );
-    }
+  Future<Result<int>> generate(SingingGeneratorParams params) async {
     try {
       _outputService
           .add('Keystore password: ${params.signingPassword}'.toInfoMessage());

@@ -13,17 +13,13 @@ import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/component_generator/params/component_generator_params.dart';
 import 'package:recase/recase.dart';
 
-class ComponentGeneratorService implements BaseGenerationService<String> {
+class ComponentGeneratorService
+    implements BaseGenerationService<String, ComponentGeneratorParams> {
   @override
-  Future<String> generate(BaseGenerationParams params) async {
-    if (params is! ComponentGeneratorParams) {
-      return 'Incorrect params';
-    }
-
+  Future<String> generate(ComponentGeneratorParams params) async {
     try {
       final projectLibFolder =
           '${params.projectPath}/${params.projectName}/lib';
