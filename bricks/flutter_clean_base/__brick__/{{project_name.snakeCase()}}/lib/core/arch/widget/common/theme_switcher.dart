@@ -36,10 +36,10 @@ class _ThemeModeSwitcherState extends State<ThemeModeSwitcher> {
   }
 }
 
-class ThemeModeUtil extends InheritedWidget {
+class ThemeModeNotifier extends InheritedWidget {
   final ValueNotifier<ThemeMode> notifier;
 
-  const ThemeModeUtil({
+  const ThemeModeNotifier({
     required this.notifier,
     required super.child,
     super.key,
@@ -51,12 +51,12 @@ class ThemeModeUtil extends InheritedWidget {
     }
   }
 
-  static ThemeModeUtil of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ThemeModeUtil>()!;
+  static ThemeModeNotifier of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<ThemeModeNotifier>()!;
   }
 
   @override
-  bool updateShouldNotify(covariant ThemeModeUtil oldWidget) {
+  bool updateShouldNotify(covariant ThemeModeNotifier oldWidget) {
     if (notifier.value != oldWidget.notifier.value) {
       return true;
     }

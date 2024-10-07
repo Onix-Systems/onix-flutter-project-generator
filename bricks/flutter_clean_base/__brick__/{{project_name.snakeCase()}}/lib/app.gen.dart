@@ -8,7 +8,7 @@ import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';{{/isBloc}}
 {{#isProvider}}import 'package:{{project_name}}/core/arch/provider/base_provider_state.dart';
 import 'package:{{project_name}}/app/provider/app_provider_imports.dart';{{/isProvider}}
 import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
-{{#isBase}}import 'package:{{project_name}}/app/util/theme_util.dart';{{/isBase}}
+{{#isBase}}import 'package:{{project_name}}/app/core/widget/common/theme_switcher.dart';{{/isBase}}
 {{#isGoRouter}}import 'package:{{project_name}}/app/router/app_router.dart';{{/isGoRouter}}
 {{^isGoRouter}}import 'package:{{project_name}}/core/di/app.dart';{{/isGoRouter}}
 {{^handLocalization}}import 'package:flutter_localizations/flutter_localizations.dart';{{/handLocalization}}
