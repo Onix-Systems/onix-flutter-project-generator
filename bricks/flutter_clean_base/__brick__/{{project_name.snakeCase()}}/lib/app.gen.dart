@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 {{#isBloc}}import 'package:{{project_name}}/core/arch/bloc/base_bloc_state.dart';
 import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';{{/isBloc}}
 {{#isProvider}}import 'package:{{project_name}}/core/arch/provider/base_provider_state.dart';
-import 'package:{{project_name}}/app/provider/app_provider_imports.dart';{{/isProvider}}
+import 'package:{{project_name}}/app/provider/app_provider.dart';{{/isProvider}}
 import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
 {{#isBase}}import 'package:{{project_name}}/core/arch/widget/common/theme_switcher.dart';{{/isBase}}
 {{#isGoRouter}}import 'package:{{project_name}}/app/router/app_router.dart';{{/isGoRouter}}
@@ -27,7 +27,7 @@ class App extends StatefulWidget {
 class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App>
 {{/isBloc}}
 {{#isProvider}}
-class _AppState extends BaseProviderState<AppProvider, AppState, App>
+class _AppState extends BaseProviderState<AppProvider, App>
 {{/isProvider}}
 {{#isBase}}
 class _AppState extends State<App>
