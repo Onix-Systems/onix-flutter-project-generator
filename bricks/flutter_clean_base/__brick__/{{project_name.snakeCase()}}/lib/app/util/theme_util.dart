@@ -19,11 +19,7 @@ class _ThemeModeSwitcherState extends State<ThemeModeSwitcher> {
   void initState() {
     super.initState();
 
-    themeNotifier = ValueNotifier(
-      Theme.of(context).brightness == Brightness.dark
-          ? ThemeMode.dark
-          : ThemeMode.light,
-    );
+    themeNotifier = ValueNotifier(ThemeMode.system);
   }
 
   @override
@@ -47,11 +43,9 @@ class ThemeModeUtil extends InheritedWidget {
     super.key,
   });
 
-  void changeTheme() {
-    if (notifier.value == ThemeMode.light) {
-      notifier.value = ThemeMode.dark;
-    } else {
-      notifier.value = ThemeMode.light;
+  void changeTheme(ThemeMode themeMode) {
+    if (notifier.value != themeMode) {
+      notifier.value = themeMode;
     }
   }
 
@@ -61,6 +55,9 @@ class ThemeModeUtil extends InheritedWidget {
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) {
-    return true;
+    if (themeMode != oldWidget.themeMode) {
+      return true;
+    }
+    return false;
   }
 }
