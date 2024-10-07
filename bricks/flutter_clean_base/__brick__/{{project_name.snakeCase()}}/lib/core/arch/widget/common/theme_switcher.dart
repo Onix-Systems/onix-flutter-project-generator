@@ -15,21 +15,15 @@ class ThemeModeSwitcher extends StatefulWidget {
 }
 
 class _ThemeModeSwitcherState extends State<ThemeModeSwitcher> {
-  late final ValueNotifier<ThemeMode> themeNotifier;
-
-  @override
-  void initState() {
-    super.initState();
-
-    themeNotifier = ValueNotifier(widget.initialThemeMode);
-  }
+  late final ValueNotifier _themeNotifier =
+      ValueNotifier(widget.initialThemeMode);
 
   @override
   Widget build(BuildContext context) {
     return ThemeModeNotifier(
-      notifier: themeNotifier,
+      notifier: _themeNotifier,
       child: ValueListenableBuilder<ThemeMode>(
-        valueListenable: themeNotifier,
+        valueListenable: _themeNotifier,
         builder: widget.builder,
       ),
     );
@@ -46,9 +40,7 @@ class ThemeModeNotifier extends InheritedWidget {
   });
 
   void changeTheme(ThemeMode themeMode) {
-    if (notifier.value != themeMode) {
-      notifier.value = themeMode;
-    }
+    notifier.value = themeMode;
   }
 
   static ThemeModeNotifier of(BuildContext context) {
