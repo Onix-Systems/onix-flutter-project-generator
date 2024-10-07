@@ -20,6 +20,9 @@ class ProviderScreenCodeContent extends ScreenCodeContent {
     }
 
     codeLines.add(
+        'import \'package:$projectName/core/arch/provider/base_provider_state.dart\';');
+
+    codeLines.add(
         'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/provider/${screenClassImport}_screen_provider.dart\';');
     codeLines.addNewLine();
 
