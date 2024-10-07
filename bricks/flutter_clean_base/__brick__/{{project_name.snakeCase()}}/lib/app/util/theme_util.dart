@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class ThemeModeSwitcher extends StatefulWidget {
   final Widget Function(BuildContext, ThemeMode, Widget?) builder;
+  final ThemeMode initialThemeMode;
 
   const ThemeModeSwitcher({
     required this.builder,
+    this.initialThemeMode = ThemeMode.system,
     super.key,
   });
 
@@ -19,7 +21,7 @@ class _ThemeModeSwitcherState extends State<ThemeModeSwitcher> {
   void initState() {
     super.initState();
 
-    themeNotifier = ValueNotifier(ThemeMode.system);
+    themeNotifier = ValueNotifier(widget.initialThemeMode);
   }
 
   @override
@@ -54,8 +56,8 @@ class ThemeModeUtil extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
-    if (themeMode != oldWidget.themeMode) {
+  bool updateShouldNotify(covariant ThemeModeUtil oldWidget) {
+    if (notifier.value != oldWidget.notifier.value) {
       return true;
     }
     return false;
