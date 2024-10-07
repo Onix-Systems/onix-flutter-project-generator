@@ -8,10 +8,9 @@ import 'package:provider/provider.dart';{{/isProvider}}
 extension ThemeBrightnessExtension on BuildContext {
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
 
-  void switchThemeBrightness({{^isBase}}{
+  void switchThemeBrightness({
     required ThemeMode currentThemeMode,
-  }{{/isBase}}) {
-    {{#isBase}}final currentThemeMode = ThemeModeNotifier.of(this).notifier.value;{{/isBase}}
+  }) {
     var newThemeMode = ThemeMode.system;
     switch (currentThemeMode) {
       case ThemeMode.system:
