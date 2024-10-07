@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-{{#isBase}}import 'package:{{project_name}}/app/util/theme_util.dart';{{/isBase}}
+{{#isBase}}import 'package:{{project_name}}/core/arch/widget/common/theme_switcher.dart';{{/isBase}}
 {{#isBloc}}import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';{{/isBloc}}
 {{#isProvider}}import 'package:{{project_name}}/app/provider/app_provider_imports.dart';
@@ -39,6 +39,6 @@ extension ThemeBrightnessExtension on BuildContext {
       ),
     );{{/isBloc}}
     {{#isProvider}}read<AppProvider>().onChangeTheme(newThemeMode);{{/isProvider}}
-    {{#isBase}}ThemeModeUtil.of(this).changeTheme(newThemeMode);{{/isBase}}
+    {{#isBase}}ThemeModeNotifier.of(this).changeTheme(newThemeMode);{{/isBase}}
   }
 }

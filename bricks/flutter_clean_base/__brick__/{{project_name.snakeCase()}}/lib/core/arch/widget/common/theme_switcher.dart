@@ -26,7 +26,7 @@ class _ThemeModeSwitcherState extends State<ThemeModeSwitcher> {
 
   @override
   Widget build(BuildContext context) {
-    return ThemeModeUtil(
+    return ThemeModeNotifier(
       notifier: themeNotifier,
       child: ValueListenableBuilder<ThemeMode>(
         valueListenable: themeNotifier,
