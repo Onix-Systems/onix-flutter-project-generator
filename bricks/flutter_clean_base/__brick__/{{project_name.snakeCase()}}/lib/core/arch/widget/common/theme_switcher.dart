@@ -15,7 +15,13 @@ class ThemeModeSwitcher extends StatefulWidget {
 }
 
 class _ThemeModeSwitcherState extends State<ThemeModeSwitcher> {
-  final ValueNotifier _themeNotifier = ValueNotifier(widget.initialThemeMode);
+  late final ValueNotifier<ThemeMode> _themeNotifier;
+
+  @override
+  void initState() {
+    _themeNotifier = ValueNotifier<ThemeMode>(widget.initialThemeMode);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
