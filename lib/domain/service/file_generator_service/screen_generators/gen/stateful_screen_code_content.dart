@@ -13,9 +13,7 @@ class StatefulScreenCodeContent extends ScreenCodeContent {
     final codeLines = List<String>.empty(growable: true);
 
     ///Add imports
-    if (isGoRouter) {
-      codeLines.add('import \'package:go_router/go_router.dart\';');
-    } else {
+    if (!isGoRouter) {
       codeLines.add('import \'package:auto_route/annotations.dart\';');
     }
     codeLines.add('import \'package:flutter/material.dart\';');
