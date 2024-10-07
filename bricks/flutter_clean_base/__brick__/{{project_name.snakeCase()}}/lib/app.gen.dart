@@ -48,7 +48,7 @@ class _AppState extends State<App>
         {{#isBloc}}blocBuilder(
               builder: (context, state){{/isBloc}}
         {{#isProvider}}providerConsumer(
-              stateListener: (state){{/isProvider}}
+              stateListener: (provider){{/isProvider}}
         {{#isBase}}ThemeModeSwitcher(
               builder: (context, themeMode, _) {{/isBase}}
           {
@@ -70,7 +70,7 @@ class _AppState extends State<App>
             scrollBehavior: const CupertinoScrollBehavior(),
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
-            themeMode: {{#isBase}}themeMode{{/isBase}}{{^isBase}}state.themeMode{{/isBase}},
+            themeMode: {{#isBase}}themeMode{{/isBase}}{{#isBloc}}state.themeMode{{/isBloc}}{{#isProvider}}provider.themeMode{{/isProvider}},
             {{#isGoRouter}}routeInformationProvider: AppRouter.router.routeInformationProvider,{{/isGoRouter}}
             routeInformationParser: {{#isGoRouter}}AppRouter.router.routeInformationParser,{{/isGoRouter}}
             {{^isGoRouter}}appRouter().defaultRouteParser(),{{/isGoRouter}}

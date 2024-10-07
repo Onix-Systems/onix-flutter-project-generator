@@ -6,10 +6,10 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:{{project_name}}/core/arch/provider/base_provider.dart';
 import 'package:provider/provider.dart';
 
-typedef StateListener<S> = Widget Function(S state);
+typedef StateListener<P> = Widget Function(P provider);
 
 abstract class BaseProviderState<P extends BaseProvider,
-    S extends ProviderState, W extends StatefulWidget> extends State<W> {
+    W extends StatefulWidget> extends State<W> {
   bool lazyProvider = false;
 
   @override
@@ -43,10 +43,10 @@ abstract class BaseProviderState<P extends BaseProvider,
   P createProvider() => GetIt.I.get<P>();
 
   Widget providerConsumer({
-    required StateListener<S> stateListener,
+    required StateListener<P> stateListener,
   }) {
     return Consumer<P>(
-      builder: (_, provider, __) => stateListener(provider.state),
+      builder: (_, provider, __) => stateListener(provider),
     );
   }
 

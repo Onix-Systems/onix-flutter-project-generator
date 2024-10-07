@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:{{project_name}}/core/arch/domain/entity/failure/failure.dart';
 
-abstract class BaseProvider<S> extends ChangeNotifier {
+abstract class BaseProvider extends ChangeNotifier {
   @protected
   late StreamController<Failure> _errorStreamController;
 
@@ -14,11 +14,7 @@ abstract class BaseProvider<S> extends ChangeNotifier {
 
   Stream<bool> get progressStream => _progressStreamController.stream;
 
-  late S state;
-
-  BaseProvider(
-    this.state,
-  ) {
+  BaseProvider() {
     _errorStreamController = StreamController<Failure>.broadcast();
     _progressStreamController = StreamController<bool>.broadcast();
   }
@@ -62,5 +58,3 @@ abstract class BaseProvider<S> extends ChangeNotifier {
     super.dispose();
   }
 }
-
-abstract class ProviderState {}

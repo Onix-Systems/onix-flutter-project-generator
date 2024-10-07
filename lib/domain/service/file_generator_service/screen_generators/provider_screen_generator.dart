@@ -104,25 +104,6 @@ class ProviderScreenGenerator extends ScreenGenerationService
 
     await screenFile.writeAsString(screenContent);
 
-    var importsFile =
-        await File('$screenPath/provider/${screenName}_screen_imports.dart')
-            .create(recursive: true);
-    final importsContent = createProviderImportsContent(
-      screenName: screenName,
-      stateManagement: params.screen.stateVariant,
-    );
-    await importsFile.writeAsString(importsContent);
-
-    ///Write Provider state file
-    var modelsFile =
-        await File('$screenPath/provider/${screenName}_screen_state.dart')
-            .create();
-    final modelsContent = createProviderState(
-      screenName: screenName,
-      projectName: params.projectName,
-    );
-    await modelsFile.writeAsString(modelsContent);
-
     ///Write Provider file
     var providerFile = await File(
             '$screenPath/provider/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart')
