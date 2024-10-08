@@ -105,36 +105,47 @@ class DataObjectComponent with _$DataObjectComponent {
     ///Add common imports
     if (createResponseToEntityMapper) {
       codeLines.add(
-          'import \'package:$projectName/${fileReference.getFileImportName(DataFileType.response)}\';');
+        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.response)}';",
+      );
     }
     if (createEntityToRequestMapper) {
       codeLines.add(
-          'import \'package:$projectName/${fileReference.getFileImportName(DataFileType.request)}\';');
+        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.request)}';",
+      );
     }
-    codeLines.add(
-        'import \'package:$projectName/${fileReference.getFileImportName(DataFileType.entity)}\';');
-    codeLines.addAll(
-      _getImports(
-        projectName,
-        DataFileType.response,
-        createResponseToEntityMapper: createResponseToEntityMapper,
-        createEntityToRequestMapper: createEntityToRequestMapper,
-      ),
-    );
-    codeLines.addAll(_getImports(projectName, DataFileType.entity,
-        createResponseToEntityMapper: createResponseToEntityMapper,
-        createEntityToRequestMapper: createEntityToRequestMapper));
-    codeLines.add(
-        'import \'package:$projectName/core/arch/domain/common/converter/mapper.dart\';');
+    codeLines
+      ..add(
+        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.entity)}';",
+      )
+      ..addAll(
+        _getImports(
+          projectName,
+          DataFileType.response,
+          createResponseToEntityMapper: createResponseToEntityMapper,
+          createEntityToRequestMapper: createEntityToRequestMapper,
+        ),
+      )
+      ..addAll(
+        _getImports(
+          projectName,
+          DataFileType.entity,
+          createResponseToEntityMapper: createResponseToEntityMapper,
+          createEntityToRequestMapper: createEntityToRequestMapper,
+        ),
+      )
+      ..add(
+        "import 'package:$projectName/core/arch/domain/common/converter/mapper.dart';",
+      );
 
     ///Add imports to different variables and their mappers
-    for (var variable in variables) {
+    for (final variable in variables) {
       final ref = variable.type.getSwaggerObjectReference();
       if (ref != null) {
         final variableImportName =
             ref.getTypeDeclaration(DataFileType.none).snakeCase;
         codeLines.add(
-            'import \'package:$projectName/data/mapper/$variableImportName/${variableImportName}_mapper.dart\';');
+          "import 'package:$projectName/data/mapper/$variableImportName/${variableImportName}_mapper.dart';",
+        );
       }
     }
     codeLines.addNewLine();
@@ -143,85 +154,94 @@ class DataObjectComponent with _$DataObjectComponent {
     ///Inner mapper class declaration
     ///Response to Entity
     if (createResponseToEntityMapper) {
-      codeLines.add(
-          'class _Map${classNamePrefix}ResponseToEntity implements Mapper<$responseName, $entityName> {');
-      codeLines.addNewLine();
-      codeLines.add('const _Map${classNamePrefix}ResponseToEntity();');
-      codeLines.add('@override');
+      codeLines
+        ..add(
+          'class _Map${classNamePrefix}ResponseToEntity implements Mapper<$responseName, $entityName> {',
+        )
+        ..addNewLine()
+        ..add('const _Map${classNamePrefix}ResponseToEntity();')
+        ..add('@override')
 
-      ///Mapper functions
-      codeLines.add('$entityName map($responseName from) {');
+        ///Mapper functions
+        ..add('$entityName map($responseName from) {')
 
-      ///Declare inner objects mapper variables
-      codeLines.addAll(_getInnerMapperVariables());
+        ///Declare inner objects mapper variables
+        ..addAll(_getInnerMapperVariables())
 
-      ///return function
-      codeLines.add('return $entityName(');
+        ///return function
+        ..add('return $entityName(')
 
-      ///Use inner variable mapper for inner variables
-      codeLines.addAll(
-          _getMapperObjectVariablesContent(MapperType.mapResponseToEntity));
-
-      codeLines.add(');');
-      codeLines.add('}');
-      codeLines.add('}');
-      codeLines.addNewLine();
+        ///Use inner variable mapper for inner variables
+        ..addAll(
+            _getMapperObjectVariablesContent(MapperType.mapResponseToEntity))
+        ..add(');')
+        ..add('}')
+        ..add('}')
+        ..addNewLine();
     }
 
     ///Entity to Request
     if (createEntityToRequestMapper) {
-      codeLines.add(
-          'class _Map${classNamePrefix}EntityToRequest implements Mapper<$entityName, $requestName> {');
-      codeLines.addNewLine();
-      codeLines.add('const _Map${classNamePrefix}EntityToRequest();');
-      codeLines.add('@override');
+      codeLines
+        ..add(
+          'class _Map${classNamePrefix}EntityToRequest implements Mapper<$entityName, $requestName> {',
+        )
+        ..addNewLine()
+        ..add('const _Map${classNamePrefix}EntityToRequest();')
+        ..add('@override')
 
-      ///Mapper functions
-      codeLines.add('$requestName map($entityName from) {');
+        ///Mapper functions
+        ..add('$requestName map($entityName from) {')
 
-      ///Declare inner objects mapper variables
-      codeLines.addAll(_getInnerMapperVariables());
+        ///Declare inner objects mapper variables
+        ..addAll(_getInnerMapperVariables())
 
-      ///return function
-      codeLines.add('return $requestName(');
+        ///return function
+        ..add('return $requestName(')
 
-      ///Use inner variable mapper for inner variables
-      codeLines.addAll(
-          _getMapperObjectVariablesContent(MapperType.mapEntityToRequest));
-      codeLines.add(');');
-      codeLines.add('}');
-      codeLines.add('}');
+        ///Use inner variable mapper for inner variables
+        ..addAll(
+            _getMapperObjectVariablesContent(MapperType.mapEntityToRequest))
+        ..add(');')
+        ..add('}')
+        ..add('}');
     }
-    codeLines.addNewLine();
+    codeLines
+      ..addNewLine()
 
-    ///Main mapper class declaration
-    codeLines.add('class ${classNamePrefix}Mappers {');
+      ///Main mapper class declaration
+      ..add('class ${classNamePrefix}Mappers {');
     if (createResponseToEntityMapper) {
       codeLines.add(
-          'final _mapResponseToEntity = const _Map${classNamePrefix}ResponseToEntity();');
+        'final _mapResponseToEntity = const _Map${classNamePrefix}ResponseToEntity();',
+      );
     }
     if (createEntityToRequestMapper) {
       codeLines.add(
-          'final _mapEntityToRequest = const _Map${classNamePrefix}EntityToRequest();');
+        'final _mapEntityToRequest = const _Map${classNamePrefix}EntityToRequest();',
+      );
     }
     codeLines.addNewLine();
     if (createResponseToEntityMapper) {
-      codeLines.add('$entityName mapResponseToEntity($responseName from) =>');
-      codeLines.add('_mapResponseToEntity.map(from);');
+      codeLines
+        ..add('$entityName mapResponseToEntity($responseName from) =>')
+        ..add('_mapResponseToEntity.map(from);');
     }
     codeLines.addNewLine();
     if (createEntityToRequestMapper) {
-      codeLines.add('$requestName mapEntityToRequest($entityName from) =>');
-      codeLines.add('_mapEntityToRequest.map(from);');
+      codeLines
+        ..add('$requestName mapEntityToRequest($entityName from) =>')
+        ..add('_mapEntityToRequest.map(from);');
     }
-    codeLines.add('}');
-    codeLines.addNewLine();
+    codeLines
+      ..add('}')
+      ..addNewLine();
     return codeLines.join('\n');
   }
 
   List<String> _getInnerMapperVariables() {
     final codeLines = <String>{};
-    for (var variable in variables) {
+    for (final variable in variables) {
       if (variable.type is SwaggerReference) {
         final reference = variable.type as SwaggerReference;
         codeLines.add(reference.getReferenceMapperDeclaration(private: false));
@@ -239,7 +259,7 @@ class DataObjectComponent with _$DataObjectComponent {
 
   List<String> _getMapperObjectVariablesContent(MapperType type) {
     final codeLines = List<String>.empty(growable: true);
-    for (var variable in variables) {
+    for (final variable in variables) {
       final variableName =
           ReservedWordProcessor.checkAndReplaceReservedWord(variable.name)
               .camelCase;
@@ -254,7 +274,8 @@ class DataObjectComponent with _$DataObjectComponent {
           );
         } else {
           codeLines.add(
-              '$variableName: (from.$variableName != null) ? ${name.camelCase}Mappers.${type.name}(from.$variableName!) : ${variable.type.getDefaultReturnType(DataFileType.entity)},');
+            '$variableName: (from.$variableName != null) ? ${name.camelCase}Mappers.${type.name}(from.$variableName!) : ${variable.type.getDefaultReturnType(DataFileType.entity)},',
+          );
         }
       } else if (variable.type is SwaggerArray) {
         final array = variable.type as SwaggerArray;
@@ -263,17 +284,20 @@ class DataObjectComponent with _$DataObjectComponent {
           final className = reference.getTypeDeclaration(DataFileType.none);
           if (variable.isRequired || type == MapperType.mapEntityToRequest) {
             codeLines.add(
-                '$variableName: from.$variableName.map(${className.camelCase}Mappers.${type.name},).toList(),');
+              '$variableName: from.$variableName.map(${className.camelCase}Mappers.${type.name},).toList(),',
+            );
           } else {
             codeLines.add(
-                '$variableName: (from.$variableName != null) ? from.$variableName!.map(${className.camelCase}Mappers.${type.name},).toList() : [],');
+              '$variableName: (from.$variableName != null) ? from.$variableName!.map(${className.camelCase}Mappers.${type.name},).toList() : [],',
+            );
           }
         } else {
           if (variable.isRequired || type == MapperType.mapEntityToRequest) {
             codeLines.add('$variableName: from.$variableName,');
           } else {
             codeLines.add(
-                '$variableName: from.$variableName ?? ${variable.type.getDefaultReturnType(DataFileType.entity)},');
+              '$variableName: from.$variableName ?? ${variable.type.getDefaultReturnType(DataFileType.entity)},',
+            );
           }
         }
       } else {
@@ -281,7 +305,8 @@ class DataObjectComponent with _$DataObjectComponent {
           codeLines.add('$variableName: from.$variableName,');
         } else {
           codeLines.add(
-              '$variableName: from.$variableName ?? ${variable.type.getDefaultReturnType(DataFileType.entity)},');
+            '$variableName: from.$variableName ?? ${variable.type.getDefaultReturnType(DataFileType.entity)},',
+          );
         }
       }
     }
@@ -298,7 +323,7 @@ class DataObjectComponent with _$DataObjectComponent {
     final imports = List<String>.empty(growable: true);
     final notNullImports =
         variables.where((e) => e.type.getFileImportName(type) != null);
-    for (var e in notNullImports) {
+    for (final e in notNullImports) {
       if (createEntityToRequestMapper != null &&
           createResponseToEntityMapper != null) {
         if (type == DataFileType.request) {
@@ -316,7 +341,7 @@ class DataObjectComponent with _$DataObjectComponent {
         imports.add(e.type.getFileImportName(type) ?? '');
       }
     }
-    return imports.map((e) => 'import \'package:$projectName/$e\';').toList();
+    return imports.map((e) => "import 'package:$projectName/$e';").toList();
   }
 
   List<String> _getFreezedConstructorProperties(
@@ -362,7 +387,7 @@ class DataObjectComponent with _$DataObjectComponent {
       final requiredSuffix = e.isRequired ? '' : '?';
       final name =
           ReservedWordProcessor.checkAndReplaceReservedWord(e.name).camelCase;
-      return '@JsonKey(name: \'${e.name}\')\nfinal ${e.type.getTypeDeclaration(type)}$requiredSuffix $name;';
+      return "@JsonKey(name: '${e.name}')\nfinal ${e.type.getTypeDeclaration(type)}$requiredSuffix $name;";
     }).toList();
   }
 }

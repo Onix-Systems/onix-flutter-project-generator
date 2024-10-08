@@ -8,8 +8,8 @@ class Delimiter extends SizedBox {
 
 class ClickableWidget extends StatelessWidget {
   const ClickableWidget({
-    super.key,
     required this.child,
+    super.key,
     this.onTap,
     this.color = Colors.transparent,
     this.splashColor,
@@ -32,7 +32,7 @@ class ClickableWidget extends StatelessWidget {
         elevation: elevation,
         borderRadius: borderRadius ?? borderRadiusInk,
         child: InkWell(
-          borderRadius: borderRadiusInk ?? BorderRadius.circular(0.0),
+          borderRadius: borderRadiusInk ?? BorderRadius.circular(0),
           splashColor:
               splashColor ?? Theme.of(context).primaryColor.withOpacity(0.03),
           highlightColor:

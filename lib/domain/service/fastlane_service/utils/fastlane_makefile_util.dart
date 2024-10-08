@@ -1,4 +1,4 @@
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
 
 typedef FastlaneMakefileParams = void Function(
   String flavor,

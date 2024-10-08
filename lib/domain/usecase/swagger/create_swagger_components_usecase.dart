@@ -19,7 +19,7 @@ class CreateSwaggerComponentsUseCase {
     if (components == null) {
       return 'Invalid Data Components';
     }
-    _componentGenerator.generate(
+    await _componentGenerator.generate(
       ComponentGeneratorParams(
         projectName: projectName,
         projectPath: projectPath,

@@ -5,7 +5,7 @@ import 'package:recase/recase.dart';
 extension SwaggerReferenceExtenson on SwaggerReference {
   String getReferenceMapperImport(String projectName) {
     final name = getTypeDeclaration(DataFileType.none).snakeCase;
-    return 'import \'package:$projectName/data/mapper/$name/${name}_mapper.dart\';';
+    return "import 'package:$projectName/data/mapper/$name/${name}_mapper.dart';";
   }
 
   String getReferenceMapperDeclaration({bool private = true}) {

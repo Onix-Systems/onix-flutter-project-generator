@@ -21,10 +21,10 @@ class EnumParamComponent with _$EnumParamComponent {
       '${getFolderPath(projectRoot)}/${type.getFileName(DataFileType.none)}';
 
   String getEnumFileBody() {
-    final codeLines = List<String>.empty(growable: true);
-    codeLines.addNewLine();
-    codeLines.add('enum ${type.getTypeDeclaration(DataFileType.none)} {');
-    for (var e in type.enumValues) {
+    final codeLines = List<String>.empty(growable: true)
+      ..addNewLine()
+      ..add('enum ${type.getTypeDeclaration(DataFileType.none)} {');
+    for (final e in type.enumValues) {
       codeLines.add('${e.camelCase},');
     }
     codeLines.add('}');

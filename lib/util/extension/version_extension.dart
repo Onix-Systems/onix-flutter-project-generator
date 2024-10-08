@@ -1,7 +1,7 @@
 extension VersionExtension on String {
   int asIntVersion() {
-    var versionClear = replaceAll('.', '');
-    var versionMissedSymbols = 4 - versionClear.length;
+    final versionClear = replaceAll('.', '');
+    final versionMissedSymbols = 4 - versionClear.length;
     var addition = '';
     if (versionMissedSymbols > 0) {
       for (var i = 0; i < versionMissedSymbols; i++) {

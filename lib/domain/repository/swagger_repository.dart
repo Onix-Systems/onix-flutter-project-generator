@@ -1,7 +1,7 @@
-import 'package:onix_flutter_bricks/core/arch/domain/entity/result/result.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
+import 'package:onix_flutter_core/onix_flutter_core.dart';
 
-abstract class SwaggerRepository {
+abstract interface class SwaggerRepository {
   Components? components;
 
   Future<Result<Components>> fetchSwaggerData({

@@ -6,9 +6,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/app.dart';
-import 'package:onix_flutter_bricks/core/app/app_initialization.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/app_bloc_observer.dart';
+import 'package:onix_flutter_bricks/app/app_initialization.dart';
 import 'package:window_manager/window_manager.dart';
 
 Future<void> main() async {
@@ -20,7 +20,7 @@ Future<void> main() async {
 
       await windowManager.ensureInitialized();
 
-      WindowOptions windowOptions = const WindowOptions(
+      const windowOptions = WindowOptions(
         minimumSize: Size(1100, 750),
         size: Size(1100, 750),
         center: true,

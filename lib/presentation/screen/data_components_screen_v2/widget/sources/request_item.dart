@@ -18,7 +18,7 @@ class RequestItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: context.appColors.contrastColor,
       child: Column(
         children: [
@@ -26,14 +26,14 @@ class RequestItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(request.operationId,
-                    style: TextStyle(
-                      color: context.appColors.textColor,
-                      fontSize: 16,
-                    )),
+                Text(
+                  request.operationId,
+                  style: TextStyle(
+                    color: context.appColors.textColor,
+                    fontSize: 16,
+                  ),
+                ),
                 const SizedBox(width: 16),
                 Text(
                   '(${request.path})',
@@ -46,7 +46,7 @@ class RequestItem extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          Container(
+          ColoredBox(
             color: context.appColors.darkContrastColor,
             child: Column(
               children: [

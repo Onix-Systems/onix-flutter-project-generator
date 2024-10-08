@@ -29,10 +29,18 @@ abstract class BaseSwaggerModelVariableResponse {
     switch (swaggerVersion) {
       case SwaggerVersionType.swagger2:
         return SwaggerModelVariableResponseV2.fromJson(
-            name, requiredVariables, json, from);
+          name,
+          requiredVariables,
+          json,
+          from,
+        );
       case SwaggerVersionType.swagger3:
         return SwaggerModelVariableResponseV3.fromJson(
-            name, requiredVariables, json, from);
+          name,
+          requiredVariables,
+          json,
+          from,
+        );
       case SwaggerVersionType.unsupported:
         return SwaggerModelVariableResponseUnsupported.unsupported();
     }
@@ -48,7 +56,7 @@ abstract class BaseSwaggerModelVariableResponse {
   @override
   String toString() {
     final typeSuffix = isRequired ? '' : '?';
-    return '${type.toString()}$typeSuffix $name';
+    return '$type$typeSuffix $name';
   }
 
   @protected

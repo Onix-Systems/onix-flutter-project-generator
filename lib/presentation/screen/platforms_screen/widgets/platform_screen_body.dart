@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/bloc/platforms_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/widgets/platform_checkbox.dart';
@@ -22,10 +22,9 @@ class PlatformScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Spacer(),
           GridView.builder(
@@ -36,7 +35,6 @@ class PlatformScreenBody extends StatelessWidget {
               crossAxisCount: 3,
               mainAxisSpacing: 40,
               mainAxisExtent: 150,
-              childAspectRatio: 1,
             ),
             itemBuilder: (context, index) {
               final platform = AvailablePlatforms.values[index];
