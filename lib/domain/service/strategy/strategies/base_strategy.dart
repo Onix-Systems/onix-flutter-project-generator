@@ -9,7 +9,7 @@ import 'package:onix_flutter_bricks/domain/service/strategy/state_manager_strate
 import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 
 class BaseStrategy implements StateManagerStrategy {
-  final BaseGenerationService<bool> _defaultScreenRouteGenerator;
+  final BaseGenerationService _defaultScreenRouteGenerator;
 
   BaseStrategy({
     required DefaultScreenRouteGenerator defaultScreenRouteGenerator,
