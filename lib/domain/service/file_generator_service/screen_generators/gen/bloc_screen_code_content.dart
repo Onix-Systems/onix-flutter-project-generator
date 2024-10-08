@@ -50,7 +50,7 @@ class BlocScreenCodeContent extends ScreenCodeContent {
       ..add('class _${screenClassName}ScreenState')
       ..add('extends BaseState<')
       ..add('${screenClassName}ScreenState, ')
-      ..add(blocClassType)
+      ..add('$blocClassType, ')
       ..add('${screenClassName}ScreenSR, ')
       ..add('${screenClassName}Screen> {')
       ..add('@override')
