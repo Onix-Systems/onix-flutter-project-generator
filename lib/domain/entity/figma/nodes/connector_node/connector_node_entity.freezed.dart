@@ -22,9 +22,7 @@ mixin _$ConnectorNodeEntity {
   String get type => throw _privateConstructorUsedError;
   List<PaintProperty> get fills => throw _privateConstructorUsedError;
 
-  /// Create a copy of ConnectorNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ConnectorNodeEntityCopyWith<ConnectorNodeEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,8 +51,6 @@ class _$ConnectorNodeEntityCopyWithImpl<$Res, $Val extends ConnectorNodeEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ConnectorNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,8 +109,6 @@ class __$$ConnectorNodeEntityImplCopyWithImpl<$Res>
       $Res Function(_$ConnectorNodeEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ConnectorNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -197,9 +191,7 @@ class _$ConnectorNodeEntityImpl implements _ConnectorNodeEntity {
   int get hashCode => Object.hash(runtimeType, id, key, name, type,
       const DeepCollectionEquality().hash(_fills));
 
-  /// Create a copy of ConnectorNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ConnectorNodeEntityImplCopyWith<_$ConnectorNodeEntityImpl> get copyWith =>
@@ -225,11 +217,8 @@ abstract class _ConnectorNodeEntity implements ConnectorNodeEntity {
   String get type;
   @override
   List<PaintProperty> get fills;
-
-  /// Create a copy of ConnectorNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ConnectorNodeEntityImplCopyWith<_$ConnectorNodeEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

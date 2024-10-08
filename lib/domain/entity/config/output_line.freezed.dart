@@ -20,9 +20,7 @@ mixin _$OutputLine {
   Color get color => throw _privateConstructorUsedError;
   OutputType get tag => throw _privateConstructorUsedError;
 
-  /// Create a copy of OutputLine
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $OutputLineCopyWith<OutputLine> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,8 +44,6 @@ class _$OutputLineCopyWithImpl<$Res, $Val extends OutputLine>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OutputLine
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,8 +87,6 @@ class __$$OutputLineImplCopyWithImpl<$Res>
       _$OutputLineImpl _value, $Res Function(_$OutputLineImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OutputLine
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,9 +142,7 @@ class _$OutputLineImpl implements _OutputLine {
   @override
   int get hashCode => Object.hash(runtimeType, line, color, tag);
 
-  /// Create a copy of OutputLine
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OutputLineImplCopyWith<_$OutputLineImpl> get copyWith =>
@@ -169,11 +161,8 @@ abstract class _OutputLine implements OutputLine {
   Color get color;
   @override
   OutputType get tag;
-
-  /// Create a copy of OutputLine
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OutputLineImplCopyWith<_$OutputLineImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

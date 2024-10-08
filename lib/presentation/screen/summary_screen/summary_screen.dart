@@ -122,6 +122,10 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                     variable: S.of(context).theming,
                     value: state.config.theming.name,
                   ),
+                  SummaryCell(
+                    variable: S.of(context).stateManager,
+                    value: state.config.stateManager.name.titleCase,
+                  ),
                   if (state.config.screens.isNotEmpty)
                     SummaryCell(
                       variable: S.of(context).generateScreens,
@@ -129,7 +133,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                           .toList()
                           .sorted((a, b) => a.name.compareTo(b.name))
                           .map((e) =>
-                              '{name: ${e.name.pascalCase}Screen, bloc: ${e.stateManager}, initial: ${e.initial}}')
+                              'name: ${e.name.pascalCase}Screen, type: ${e.stateVariant.name}, initial: ${e.initial}')
                           .join(',\n'),
                     ),
                   if (state.config.swaggerUrl.isNotEmpty)

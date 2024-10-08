@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
@@ -9,8 +11,10 @@ import 'package:recase/recase.dart';
 
 class AddScreenDialog extends StatefulWidget {
   final Screen? screen;
+  final List<StateManagementVariant> stateManagers;
 
   const AddScreenDialog({
+    required this.stateManagers,
     this.screen,
     super.key,
   });
@@ -22,7 +26,8 @@ class AddScreenDialog extends StatefulWidget {
 class _AddScreenDialogState extends State<AddScreenDialog> {
   final TextEditingController _screenNameController = TextEditingController();
 
-  ScreenStateManager _stateManagement = ScreenStateManager.none;
+  StateManagementVariant _stateManagement =
+      const StatelessStateManagementVariant();
 
   final _dialogFocusNode = FocusNode();
   final _textFieldFocusNode = FocusNode();
@@ -35,7 +40,9 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
     _currentFocusNode.requestFocus();
     if (widget.screen != null) {
       _screenNameController.text = widget.screen!.name;
-      _stateManagement = widget.screen!.stateManager;
+      _stateManagement = widget.screen!.stateVariant;
+    } else {
+      _stateManagement = widget.stateManagers.first;
     }
     super.initState();
   }
@@ -86,33 +93,24 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
               ],
             ),
-            const SizedBox(height: 15),
-            LabeledCheckbox(
-              focused: _currentFocusNode == _dialogFocusNode,
-              label: S.of(context).usingBloc,
-              initialValue: _stateManagement == ScreenStateManager.bloc,
-              onAction: () {
-                setState(() {
-                  if (_stateManagement == ScreenStateManager.bloc) {
-                    _stateManagement = ScreenStateManager.none;
-                  } else {
-                    _stateManagement = ScreenStateManager.bloc;
-                  }
-                });
-              },
-            ),
-            LabeledCheckbox(
-              focused: _currentFocusNode == _dialogFocusNode,
-              label: S.of(context).usingCubit,
-              initialValue: _stateManagement == ScreenStateManager.cubit,
-              onAction: () {
-                setState(() {
-                  if (_stateManagement == ScreenStateManager.cubit) {
-                    _stateManagement = ScreenStateManager.none;
-                  } else {
-                    _stateManagement = ScreenStateManager.cubit;
-                  }
-                });
+            const Gap(15),
+            ...widget.stateManagers.map(
+              (stateManager) {
+                return LabeledCheckbox(
+                  focused: _currentFocusNode == _dialogFocusNode,
+                  label: stateManager.name,
+                  initialValue: _stateManagement == stateManager,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  onAction: () {
+                    setState(
+                      () {
+                        if (_stateManagement != stateManager) {
+                          _stateManagement = stateManager;
+                        }
+                      },
+                    );
+                  },
+                );
               },
             ),
           ],
@@ -145,18 +143,28 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
 
       if (widget.screen != null) {
         widget.screen!.name = screenName;
-        widget.screen!.stateManager = _stateManagement;
+        widget.screen!.stateVariant = _stateManagement;
         Navigator.pop(context, widget.screen);
       } else {
         Navigator.pop(
-            context,
-            Screen(
-                name: screenName,
-                stateManager: _stateManagement,
-                exists: false));
+          context,
+          Screen(
+            name: screenName,
+            stateVariant: _stateManagement,
+            exists: false,
+          ),
+        );
       }
     } else {
       Navigator.pop(context);
     }
+  }
+
+  @override
+  void dispose() {
+    _screenNameController.dispose();
+    _dialogFocusNode.dispose();
+    _textFieldFocusNode.dispose();
+    super.dispose();
   }
 }

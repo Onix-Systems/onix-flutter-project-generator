@@ -1,6 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
+import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/enum/project_localization.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
@@ -8,8 +11,12 @@ import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
 
 class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenState, ProjectSettingsScreenSR> {
-  ProjectSettingsScreenBloc()
-      : super(const ProjectSettingsScreenStateData(config: Config())) {
+  final ScreenRepository _screenRepository;
+
+  ProjectSettingsScreenBloc({
+    required ScreenRepository screenRepository,
+  })  : _screenRepository = screenRepository,
+        super(const ProjectSettingsScreenStateData(config: Config())) {
     on<ProjectSettingsScreenEventInit>(_onInit);
     on<ProjectSettingsScreenEventFlavorizeChange>(_onFlavorizeChange);
     on<ProjectSettingsScreenEventFlavorsChange>(_onFlavorsChange);
@@ -18,6 +25,7 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     on<ProjectSettingsScreenEventSigningVarsChange>(_onSigningVarsChange);
     on<ProjectSettingsScreenEventUseSonarChange>(_onUseSonarChange);
     on<ProjectSettingsScreenEventGraphQLChange>(_onGraphQLChange);
+    on<ProjectSettingsScreenEventStateManagerChange>(_onStateManagerChange);
     on<ProjectSettingsScreenEventRouterChange>(_onRouterChange);
     on<ProjectSettingsScreenEventLocalizationChange>(_onLocalizationChange);
     on<ProjectSettingsScreenEventThemingChange>(_onThemingChange);
@@ -106,6 +114,46 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     );
   }
 
+  void _onStateManagerChange(
+    ProjectSettingsScreenEventStateManagerChange event,
+    Emitter<ProjectSettingsScreenState> emit,
+  ) {
+    final isStrategyMatch = screensMatchStrategy(event.stateManager);
+
+    if (!isStrategyMatch) {
+      logger.f('Screens do not match the strategy');
+      logger.f(event.stateManager.strategy.variants);
+
+      final screens = state.config.screens.map((e) {
+        e.stateVariant = event.stateManager.strategy.variants.first;
+        return e;
+      }).toSet();
+
+      _screenRepository
+        ..empty()
+        ..addAll(screens: screens);
+
+      emit(
+        state.copyWith(
+          config: state.config.copyWith(
+            stateManager: event.stateManager,
+            screens: screens,
+          ),
+        ),
+      );
+
+      return;
+    }
+
+    emit(
+      state.copyWith(
+        config: state.config.copyWith(
+          stateManager: event.stateManager,
+        ),
+      ),
+    );
+  }
+
   void _onRouterChange(
     ProjectSettingsScreenEventRouterChange event,
     Emitter<ProjectSettingsScreenState> emit,
@@ -188,5 +236,19 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
         ),
       ),
     );
+  }
+
+  bool screensMatchStrategy(ProjectStateManager manager) {
+    final strategyVariants = manager.strategy.variants;
+
+    bool screensMatch = true;
+
+    for (final screen in state.config.screens) {
+      if (!strategyVariants.contains(screen.stateVariant)) {
+        screensMatch = false;
+      }
+    }
+
+    return screensMatch;
   }
 }

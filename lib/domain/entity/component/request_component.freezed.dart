@@ -29,9 +29,7 @@ mixin _$RequestComponent {
       throw _privateConstructorUsedError;
   ResponseParamComponent get response => throw _privateConstructorUsedError;
 
-  /// Create a copy of RequestComponent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RequestComponentCopyWith<RequestComponent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -66,8 +64,6 @@ class _$RequestComponentCopyWithImpl<$Res, $Val extends RequestComponent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RequestComponent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -121,8 +117,6 @@ class _$RequestComponentCopyWithImpl<$Res, $Val extends RequestComponent>
     ) as $Val);
   }
 
-  /// Create a copy of RequestComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ResponseParamComponentCopyWith<$Res> get response {
@@ -163,8 +157,6 @@ class __$$RequestComponentImplCopyWithImpl<$Res>
       $Res Function(_$RequestComponentImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RequestComponent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -315,9 +307,7 @@ class _$RequestComponentImpl extends _RequestComponent {
       const DeepCollectionEquality().hash(_pathParams),
       response);
 
-  /// Create a copy of RequestComponent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestComponentImplCopyWith<_$RequestComponentImpl> get copyWith =>
@@ -356,11 +346,8 @@ abstract class _RequestComponent extends RequestComponent {
   List<RequestPathComponent> get pathParams;
   @override
   ResponseParamComponent get response;
-
-  /// Create a copy of RequestComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RequestComponentImplCopyWith<_$RequestComponentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

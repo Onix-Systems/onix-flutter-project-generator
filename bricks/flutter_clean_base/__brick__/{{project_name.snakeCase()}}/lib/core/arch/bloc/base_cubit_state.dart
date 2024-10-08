@@ -67,6 +67,7 @@ W extends StatefulWidget> extends State<W>
   }
 
   void onCubitCreated(BuildContext context, C cubit) {
+    if(!context.mounted) return;
     cubit.progressStream.listen((event) async {
       if (event is DefaultProgressState) {
         if (event.showProgress) {

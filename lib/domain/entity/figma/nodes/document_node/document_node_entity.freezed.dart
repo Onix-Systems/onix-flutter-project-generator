@@ -22,9 +22,7 @@ mixin _$DocumentNodeEntity {
   String get type => throw _privateConstructorUsedError;
   List<BaseNode> get children => throw _privateConstructorUsedError;
 
-  /// Create a copy of DocumentNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $DocumentNodeEntityCopyWith<DocumentNodeEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,8 +51,6 @@ class _$DocumentNodeEntityCopyWithImpl<$Res, $Val extends DocumentNodeEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DocumentNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,8 +109,6 @@ class __$$DocumentNodeEntityImplCopyWithImpl<$Res>
       $Res Function(_$DocumentNodeEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DocumentNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -197,9 +191,7 @@ class _$DocumentNodeEntityImpl implements _DocumentNodeEntity {
   int get hashCode => Object.hash(runtimeType, id, key, name, type,
       const DeepCollectionEquality().hash(_children));
 
-  /// Create a copy of DocumentNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DocumentNodeEntityImplCopyWith<_$DocumentNodeEntityImpl> get copyWith =>
@@ -225,11 +217,8 @@ abstract class _DocumentNodeEntity implements DocumentNodeEntity {
   String get type;
   @override
   List<BaseNode> get children;
-
-  /// Create a copy of DocumentNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DocumentNodeEntityImplCopyWith<_$DocumentNodeEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

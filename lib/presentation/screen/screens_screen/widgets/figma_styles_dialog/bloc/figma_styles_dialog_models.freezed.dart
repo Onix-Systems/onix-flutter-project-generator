@@ -51,9 +51,7 @@ mixin _$FigmaStylesDialogEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of FigmaStylesDialogEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FigmaStylesDialogEventCopyWith<FigmaStylesDialogEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -78,8 +76,6 @@ class _$FigmaStylesDialogEventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FigmaStylesDialogEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -119,8 +115,6 @@ class __$$FigmaStylesEventInitImplCopyWithImpl<$Res>
       $Res Function(_$FigmaStylesEventInitImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FigmaStylesDialogEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -168,9 +162,7 @@ class _$FigmaStylesEventInitImpl implements FigmaStylesEventInit {
   @override
   int get hashCode => Object.hash(runtimeType, figmaId, token);
 
-  /// Create a copy of FigmaStylesDialogEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FigmaStylesEventInitImplCopyWith<_$FigmaStylesEventInitImpl>
@@ -244,11 +236,8 @@ abstract class FigmaStylesEventInit implements FigmaStylesDialogEvent {
   String get figmaId;
   @override
   String get token;
-
-  /// Create a copy of FigmaStylesDialogEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FigmaStylesEventInitImplCopyWith<_$FigmaStylesEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -305,9 +294,6 @@ class _$FigmaStylesDialogSRCopyWithImpl<$Res, $Val extends FigmaStylesDialogSR>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of FigmaStylesDialogSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -324,9 +310,6 @@ class __$$FigmaStylesStubSRImplCopyWithImpl<$Res>
   __$$FigmaStylesStubSRImplCopyWithImpl(_$FigmaStylesStubSRImpl _value,
       $Res Function(_$FigmaStylesStubSRImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of FigmaStylesDialogSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -474,9 +457,6 @@ class _$FigmaStylesDialogStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of FigmaStylesDialogState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -496,9 +476,6 @@ class __$$FigmaStylesDialogStateErrorImplCopyWithImpl<$Res>
       _$FigmaStylesDialogStateErrorImpl _value,
       $Res Function(_$FigmaStylesDialogStateErrorImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of FigmaStylesDialogState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -618,8 +595,6 @@ class __$$FigmaStylesDialogStateDataImplCopyWithImpl<$Res>
       $Res Function(_$FigmaStylesDialogStateDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FigmaStylesDialogState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -701,9 +676,7 @@ class _$FigmaStylesDialogStateDataImpl implements FigmaStylesDialogStateData {
       const DeepCollectionEquality().hash(_textStyles),
       isLoading);
 
-  /// Create a copy of FigmaStylesDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FigmaStylesDialogStateDataImplCopyWith<_$FigmaStylesDialogStateDataImpl>
@@ -788,10 +761,7 @@ abstract class FigmaStylesDialogStateData implements FigmaStylesDialogState {
   List<AppColorStyle> get colorStyles;
   List<AppTextStyle> get textStyles;
   bool get isLoading;
-
-  /// Create a copy of FigmaStylesDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FigmaStylesDialogStateDataImplCopyWith<_$FigmaStylesDialogStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

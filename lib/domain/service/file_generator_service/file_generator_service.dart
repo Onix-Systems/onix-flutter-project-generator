@@ -4,8 +4,6 @@ import 'package:onix_flutter_bricks/core/arch/domain/entity/result/result.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/default_screen_route_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/default_screen_route_generator_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/signing_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/styles_generator_params.dart';
@@ -16,8 +14,6 @@ import 'package:recase/recase.dart';
 class FileGeneratorService {
   final OutputService _outputService;
 
-  final BaseGenerationService<bool, ScreenGeneratorParams> _screenGenerator =
-      ScreenGenerator();
   final BaseGenerationService<bool, DefaultScreenRouteGeneratorParams>
       _defaultScreenRouteGenerator = DefaultScreenRouteGenerator();
   final BaseGenerationService<bool, StylesGeneratorParams> _stylesGenerator =
@@ -30,9 +26,6 @@ class FileGeneratorService {
   ) {
     _signingGenerator = SigningGenerator(_outputService);
   }
-
-  Future<bool> generateScreen(ScreenGeneratorParams params) =>
-      _screenGenerator.generate(params);
 
   Future<bool> generateDefaultScreenRoute(
     DefaultScreenRouteGeneratorParams params,

@@ -25,6 +25,8 @@ mixin _$ProjectSettingsScreenEvent {
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -42,6 +44,7 @@ mixin _$ProjectSettingsScreenEvent {
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -59,6 +62,7 @@ mixin _$ProjectSettingsScreenEvent {
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -84,6 +88,9 @@ mixin _$ProjectSettingsScreenEvent {
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -114,6 +121,8 @@ mixin _$ProjectSettingsScreenEvent {
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -143,6 +152,8 @@ mixin _$ProjectSettingsScreenEvent {
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -178,9 +189,6 @@ class _$ProjectSettingsScreenEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -205,8 +213,6 @@ class __$$ProjectSettingsScreenEventInitImplCopyWithImpl<$Res>
       $Res Function(_$ProjectSettingsScreenEventInitImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -220,8 +226,6 @@ class __$$ProjectSettingsScreenEventInitImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -256,9 +260,7 @@ class _$ProjectSettingsScreenEventInitImpl
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectSettingsScreenEventInitImplCopyWith<
@@ -276,6 +278,8 @@ class _$ProjectSettingsScreenEventInitImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -296,6 +300,7 @@ class _$ProjectSettingsScreenEventInitImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -316,6 +321,7 @@ class _$ProjectSettingsScreenEventInitImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -347,6 +353,9 @@ class _$ProjectSettingsScreenEventInitImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -380,6 +389,8 @@ class _$ProjectSettingsScreenEventInitImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -412,6 +423,8 @@ class _$ProjectSettingsScreenEventInitImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -439,10 +452,7 @@ abstract class ProjectSettingsScreenEventInit
       _$ProjectSettingsScreenEventInitImpl;
 
   Config get config;
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProjectSettingsScreenEventInitImplCopyWith<
           _$ProjectSettingsScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -465,9 +475,6 @@ class __$$ProjectSettingsScreenEventFlavorizeChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventFlavorizeChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventFlavorizeChangeImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -501,6 +508,8 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -521,6 +530,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -541,6 +551,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -572,6 +583,9 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -605,6 +619,8 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -637,6 +653,8 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -684,8 +702,6 @@ class __$$ProjectSettingsScreenEventFlavorsChangeImplCopyWithImpl<$Res>
       $Res Function(_$ProjectSettingsScreenEventFlavorsChangeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -725,9 +741,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
   @override
   int get hashCode => Object.hash(runtimeType, flavors);
 
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectSettingsScreenEventFlavorsChangeImplCopyWith<
@@ -746,6 +760,8 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -766,6 +782,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -786,6 +803,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -817,6 +835,9 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -850,6 +871,8 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -882,6 +905,8 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -910,10 +935,7 @@ abstract class ProjectSettingsScreenEventFlavorsChange
       _$ProjectSettingsScreenEventFlavorsChangeImpl;
 
   String get flavors;
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProjectSettingsScreenEventFlavorsChangeImplCopyWith<
           _$ProjectSettingsScreenEventFlavorsChangeImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -944,9 +966,6 @@ class __$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWithImpl<
       $Res Function(_$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl)
           _then)
       : super(_value, _then);
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -980,6 +999,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -1000,6 +1021,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -1020,6 +1042,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -1051,6 +1074,9 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1084,6 +1110,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1116,6 +1144,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1166,8 +1196,6 @@ class __$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWithImpl<$Res>
       $Res Function(_$ProjectSettingsScreenEventSigningVarsChangeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1216,9 +1244,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_signingVars));
 
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWith<
@@ -1238,6 +1264,8 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -1258,6 +1286,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -1278,6 +1307,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -1309,6 +1339,9 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1342,6 +1375,8 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1374,6 +1409,8 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1402,10 +1439,7 @@ abstract class ProjectSettingsScreenEventSigningVarsChange
       _$ProjectSettingsScreenEventSigningVarsChangeImpl;
 
   List<String> get signingVars;
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWith<
           _$ProjectSettingsScreenEventSigningVarsChangeImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1428,9 +1462,6 @@ class __$$ProjectSettingsScreenEventUseSonarChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventUseSonarChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventUseSonarChangeImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1464,6 +1495,8 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -1484,6 +1517,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -1504,6 +1538,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -1535,6 +1570,9 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1568,6 +1606,8 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1600,6 +1640,8 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1644,9 +1686,6 @@ class __$$ProjectSettingsScreenEventGraphQLChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventGraphQLChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventGraphQLChangeImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1680,6 +1719,8 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -1700,6 +1741,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -1720,6 +1762,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -1751,6 +1794,9 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1784,6 +1830,8 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1816,6 +1864,8 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1844,6 +1894,271 @@ abstract class ProjectSettingsScreenEventGraphQLChange
 }
 
 /// @nodoc
+abstract class _$$ProjectSettingsScreenEventStateManagerChangeImplCopyWith<
+    $Res> {
+  factory _$$ProjectSettingsScreenEventStateManagerChangeImplCopyWith(
+          _$ProjectSettingsScreenEventStateManagerChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventStateManagerChangeImpl)
+              then) =
+      __$$ProjectSettingsScreenEventStateManagerChangeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ProjectStateManager stateManager});
+}
+
+/// @nodoc
+class __$$ProjectSettingsScreenEventStateManagerChangeImplCopyWithImpl<$Res>
+    extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
+        _$ProjectSettingsScreenEventStateManagerChangeImpl>
+    implements
+        _$$ProjectSettingsScreenEventStateManagerChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventStateManagerChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventStateManagerChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventStateManagerChangeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? stateManager = null,
+  }) {
+    return _then(_$ProjectSettingsScreenEventStateManagerChangeImpl(
+      stateManager: null == stateManager
+          ? _value.stateManager
+          : stateManager // ignore: cast_nullable_to_non_nullable
+              as ProjectStateManager,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProjectSettingsScreenEventStateManagerChangeImpl
+    implements ProjectSettingsScreenEventStateManagerChange {
+  const _$ProjectSettingsScreenEventStateManagerChangeImpl(
+      {required this.stateManager});
+
+  @override
+  final ProjectStateManager stateManager;
+
+  @override
+  String toString() {
+    return 'ProjectSettingsScreenEvent.stateManagerChange(stateManager: $stateManager)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectSettingsScreenEventStateManagerChangeImpl &&
+            (identical(other.stateManager, stateManager) ||
+                other.stateManager == stateManager));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, stateManager);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectSettingsScreenEventStateManagerChangeImplCopyWith<
+          _$ProjectSettingsScreenEventStateManagerChangeImpl>
+      get copyWith =>
+          __$$ProjectSettingsScreenEventStateManagerChangeImplCopyWithImpl<
+                  _$ProjectSettingsScreenEventStateManagerChangeImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function() flavorizeChange,
+    required TResult Function(String flavors) flavorsChange,
+    required TResult Function() generateSigningKeyChange,
+    required TResult Function(List<String> signingVars) signingVarsChange,
+    required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
+    required TResult Function() routerChange,
+    required TResult Function() localizationChange,
+    required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
+    required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
+  }) {
+    return stateManagerChange(stateManager);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function()? flavorizeChange,
+    TResult? Function(String flavors)? flavorsChange,
+    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(List<String> signingVars)? signingVarsChange,
+    TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
+    TResult? Function()? routerChange,
+    TResult? Function()? localizationChange,
+    TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
+    TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
+  }) {
+    return stateManagerChange?.call(stateManager);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function()? flavorizeChange,
+    TResult Function(String flavors)? flavorsChange,
+    TResult Function()? generateSigningKeyChange,
+    TResult Function(List<String> signingVars)? signingVarsChange,
+    TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
+    TResult Function()? routerChange,
+    TResult Function()? localizationChange,
+    TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
+    TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
+    required TResult orElse(),
+  }) {
+    if (stateManagerChange != null) {
+      return stateManagerChange(stateManager);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectSettingsScreenEventInit value) init,
+    required TResult Function(ProjectSettingsScreenEventFlavorizeChange value)
+        flavorizeChange,
+    required TResult Function(ProjectSettingsScreenEventFlavorsChange value)
+        flavorsChange,
+    required TResult Function(
+            ProjectSettingsScreenEventGenerateSigningKeyChange value)
+        generateSigningKeyChange,
+    required TResult Function(ProjectSettingsScreenEventSigningVarsChange value)
+        signingVarsChange,
+    required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
+        useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
+    required TResult Function(ProjectSettingsScreenEventRouterChange value)
+        routerChange,
+    required TResult Function(
+            ProjectSettingsScreenEventLocalizationChange value)
+        localizationChange,
+    required TResult Function(ProjectSettingsScreenEventThemingChange value)
+        themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
+    required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
+        screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
+  }) {
+    return stateManagerChange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectSettingsScreenEventInit value)? init,
+    TResult? Function(ProjectSettingsScreenEventFlavorizeChange value)?
+        flavorizeChange,
+    TResult? Function(ProjectSettingsScreenEventFlavorsChange value)?
+        flavorsChange,
+    TResult? Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+        generateSigningKeyChange,
+    TResult? Function(ProjectSettingsScreenEventSigningVarsChange value)?
+        signingVarsChange,
+    TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
+        useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
+    TResult? Function(ProjectSettingsScreenEventRouterChange value)?
+        routerChange,
+    TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
+        localizationChange,
+    TResult? Function(ProjectSettingsScreenEventThemingChange value)?
+        themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
+    TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
+        screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
+  }) {
+    return stateManagerChange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectSettingsScreenEventInit value)? init,
+    TResult Function(ProjectSettingsScreenEventFlavorizeChange value)?
+        flavorizeChange,
+    TResult Function(ProjectSettingsScreenEventFlavorsChange value)?
+        flavorsChange,
+    TResult Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+        generateSigningKeyChange,
+    TResult Function(ProjectSettingsScreenEventSigningVarsChange value)?
+        signingVarsChange,
+    TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
+        useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
+    TResult Function(ProjectSettingsScreenEventRouterChange value)?
+        routerChange,
+    TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
+        localizationChange,
+    TResult Function(ProjectSettingsScreenEventThemingChange value)?
+        themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
+    TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
+        screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
+    required TResult orElse(),
+  }) {
+    if (stateManagerChange != null) {
+      return stateManagerChange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProjectSettingsScreenEventStateManagerChange
+    implements ProjectSettingsScreenEvent {
+  const factory ProjectSettingsScreenEventStateManagerChange(
+          {required final ProjectStateManager stateManager}) =
+      _$ProjectSettingsScreenEventStateManagerChangeImpl;
+
+  ProjectStateManager get stateManager;
+  @JsonKey(ignore: true)
+  _$$ProjectSettingsScreenEventStateManagerChangeImplCopyWith<
+          _$ProjectSettingsScreenEventStateManagerChangeImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$ProjectSettingsScreenEventRouterChangeImplCopyWith<$Res> {
   factory _$$ProjectSettingsScreenEventRouterChangeImplCopyWith(
           _$ProjectSettingsScreenEventRouterChangeImpl value,
@@ -1860,9 +2175,6 @@ class __$$ProjectSettingsScreenEventRouterChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventRouterChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventRouterChangeImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1896,6 +2208,8 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -1916,6 +2230,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -1936,6 +2251,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -1967,6 +2283,9 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -2000,6 +2319,8 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2032,6 +2353,8 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2079,9 +2402,6 @@ class __$$ProjectSettingsScreenEventLocalizationChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventLocalizationChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventLocalizationChangeImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2115,6 +2435,8 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -2135,6 +2457,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -2155,6 +2478,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -2186,6 +2510,9 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -2219,6 +2546,8 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2251,6 +2580,8 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2295,9 +2626,6 @@ class __$$ProjectSettingsScreenEventThemingChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventThemingChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventThemingChangeImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2331,6 +2659,8 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -2351,6 +2681,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -2371,6 +2702,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -2402,6 +2734,9 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -2435,6 +2770,8 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2467,6 +2804,8 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2511,9 +2850,6 @@ class __$$ProjectSettingsScreenEventFirebaseChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventFirebaseChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventFirebaseChangeImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2547,6 +2883,8 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -2567,6 +2905,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -2587,6 +2926,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -2618,6 +2958,9 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -2651,6 +2994,8 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2683,6 +3028,8 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2728,9 +3075,6 @@ class __$$ProjectSettingsScreenEventScreenUtilChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventScreenUtilChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventScreenUtilChangeImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2764,6 +3108,8 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -2784,6 +3130,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -2804,6 +3151,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -2835,6 +3183,9 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -2868,6 +3219,8 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2900,6 +3253,8 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2944,9 +3299,6 @@ class __$$ProjectSettingsScreenEventSentryChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventSentryChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventSentryChangeImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2980,6 +3332,8 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
@@ -3000,6 +3354,7 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
@@ -3020,6 +3375,7 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
@@ -3051,6 +3407,9 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -3084,6 +3443,8 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -3116,6 +3477,8 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -3196,9 +3559,6 @@ class _$ProjectSettingsScreenSRCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ProjectSettingsScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -3215,9 +3575,6 @@ class __$$LoadFinishedImplCopyWithImpl<$Res>
   __$$LoadFinishedImplCopyWithImpl(
       _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProjectSettingsScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -3336,9 +3693,7 @@ mixin _$ProjectSettingsScreenState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of ProjectSettingsScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ProjectSettingsScreenStateCopyWith<ProjectSettingsScreenState>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3366,8 +3721,6 @@ class _$ProjectSettingsScreenStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProjectSettingsScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3381,8 +3734,6 @@ class _$ProjectSettingsScreenStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ProjectSettingsScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -3417,8 +3768,6 @@ class __$$ProjectSettingsScreenStateDataImplCopyWithImpl<$Res>
       $Res Function(_$ProjectSettingsScreenStateDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProjectSettingsScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3458,9 +3807,7 @@ class _$ProjectSettingsScreenStateDataImpl
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  /// Create a copy of ProjectSettingsScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectSettingsScreenStateDataImplCopyWith<
@@ -3532,11 +3879,8 @@ abstract class ProjectSettingsScreenStateData
 
   @override
   Config get config;
-
-  /// Create a copy of ProjectSettingsScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProjectSettingsScreenStateDataImplCopyWith<
           _$ProjectSettingsScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;

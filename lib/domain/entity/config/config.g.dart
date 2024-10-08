@@ -18,6 +18,9 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
           ? const PlatformsList()
           : PlatformsList.fromJson(
               json['platformsList'] as Map<String, dynamic>),
+      stateManager: $enumDecodeNullable(
+              _$ProjectStateManagerEnumMap, json['stateManager']) ??
+          ProjectStateManager.bloc,
       flavorize: json['flavorize'] as bool? ?? false,
       flavors: json['flavors'] as String? ?? '',
       generateSigningKey: json['generateSigningKey'] as bool? ?? false,
@@ -54,6 +57,7 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'projectExists': instance.projectExists,
       'organization': instance.organization,
       'platformsList': instance.platformsList,
+      'stateManager': _$ProjectStateManagerEnumMap[instance.stateManager]!,
       'flavorize': instance.flavorize,
       'flavors': instance.flavors,
       'generateSigningKey': instance.generateSigningKey,
@@ -69,6 +73,12 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'swaggerUrl': instance.swaggerUrl,
       'sentry': instance.sentry,
     };
+
+const _$ProjectStateManagerEnumMap = {
+  ProjectStateManager.bloc: 'bloc',
+  ProjectStateManager.provider: 'provider',
+  ProjectStateManager.base: 'base',
+};
 
 const _$ProjectRouterEnumMap = {
   ProjectRouter.goRouter: 'goRouter',

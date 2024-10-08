@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
@@ -62,7 +63,11 @@ void registerBloc(GetIt getIt) {
         GetIt.I.get<GetFigmaStylesUseCase>(),
       ),
     )
-    ..registerFactory<ProjectSettingsScreenBloc>(ProjectSettingsScreenBloc.new)
+    ..registerFactory<ProjectSettingsScreenBloc>(
+      () => ProjectSettingsScreenBloc(
+        screenRepository: GetIt.I.get<ScreenRepository>(),
+      ),
+    )
     ..registerFactory<PlatformsScreenBloc>(PlatformsScreenBloc.new)
     ..registerFactory<ProjectNameScreenBloc>(
       () => ProjectNameScreenBloc(

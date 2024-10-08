@@ -20,22 +20,25 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(componentName) => "${componentName} component preview";
+  static String m0(variant) =>
+      "Changing state manager will change ... to ${variant}. Are you sure you want to continue?";
 
-  static String m1(componentName) =>
+  static String m1(componentName) => "${componentName} component preview";
+
+  static String m2(componentName) =>
       "Data component ${componentName} already exists";
 
-  static String m2(sourceName) => " in ${sourceName} source";
+  static String m3(sourceName) => " in ${sourceName} source";
 
-  static String m3(componentName) =>
+  static String m4(componentName) =>
       "Do you really want to delete component ${componentName}?";
 
-  static String m4(projectName) => "Modify ${projectName}";
+  static String m5(projectName) => "Modify ${projectName}";
 
-  static String m5(sourceName) =>
+  static String m6(sourceName) =>
       "Do you really want to delete source ${sourceName}?";
 
-  static String m6(sourceName) => "${sourceName}Source already exists";
+  static String m7(sourceName) => "${sourceName}Source already exists";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -57,6 +60,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "apiFailureUndefined": MessageLookupByLibrary.simpleMessage(
             "Uh oh! Looks like we ran into an issue while processing this request. Please try again.\n\nReach out to support if you continue to experience issues."),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "changeStateManagerError": MessageLookupByLibrary.simpleMessage(
+            "Change state manager warning"),
+        "changeStateManagerErrorContent": m0,
         "checkNamesContentFirstPart":
             MessageLookupByLibrary.simpleMessage("Is project name\n"),
         "checkNamesContentLastPart":
@@ -71,19 +77,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "colorStyles": MessageLookupByLibrary.simpleMessage("Color Styles"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Component name"),
-        "componentPreview": m0,
+        "componentPreview": m1,
         "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
         "createRequestCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Create request?"),
         "createResponseCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Create response?"),
         "dataComponent": MessageLookupByLibrary.simpleMessage("Data component"),
-        "dataComponentExistsError": m1,
-        "dataComponentExistsInSource": m2,
+        "dataComponentExistsError": m2,
+        "dataComponentExistsInSource": m3,
         "dataComponents":
             MessageLookupByLibrary.simpleMessage("Data components"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
-        "deleteComponentConfirmation": m3,
+        "deleteComponentConfirmation": m4,
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
@@ -158,7 +164,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Modify"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Modify component"),
-        "modifyGeneratedProject": m4,
+        "modifyGeneratedProject": m5,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Modify signing vars..."),
@@ -232,8 +238,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "signingToolTitle": MessageLookupByLibrary.simpleMessage(
             "Android signing configuration"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
-        "sourceDeletingDialogTitle": m5,
-        "sourceExistsError": m6,
+        "sourceDeletingDialogTitle": m6,
+        "sourceExistsError": m7,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),
         "sources": MessageLookupByLibrary.simpleMessage("Sources"),

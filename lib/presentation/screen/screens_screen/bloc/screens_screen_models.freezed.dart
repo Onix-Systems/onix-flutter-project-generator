@@ -95,9 +95,6 @@ class _$ScreensScreenEventCopyWithImpl<$Res, $Val extends ScreensScreenEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -121,8 +118,6 @@ class __$$ScreensScreenEventInitImplCopyWithImpl<$Res>
       $Res Function(_$ScreensScreenEventInitImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -136,8 +131,6 @@ class __$$ScreensScreenEventInitImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -171,9 +164,7 @@ class _$ScreensScreenEventInitImpl implements ScreensScreenEventInit {
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ScreensScreenEventInitImplCopyWith<_$ScreensScreenEventInitImpl>
@@ -271,10 +262,7 @@ abstract class ScreensScreenEventInit implements ScreensScreenEvent {
       _$ScreensScreenEventInitImpl;
 
   Config get config;
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ScreensScreenEventInitImplCopyWith<_$ScreensScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -299,8 +287,6 @@ class __$$ScreensScreenEventOnScreenAddImplCopyWithImpl<$Res>
       $Res Function(_$ScreensScreenEventOnScreenAddImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -340,9 +326,7 @@ class _$ScreensScreenEventOnScreenAddImpl
   @override
   int get hashCode => Object.hash(runtimeType, screen);
 
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ScreensScreenEventOnScreenAddImplCopyWith<
@@ -441,10 +425,7 @@ abstract class ScreensScreenEventOnScreenAdd implements ScreensScreenEvent {
       _$ScreensScreenEventOnScreenAddImpl;
 
   Screen get screen;
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ScreensScreenEventOnScreenAddImplCopyWith<
           _$ScreensScreenEventOnScreenAddImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -470,8 +451,6 @@ class __$$ScreensScreenEventOnScreenDeleteImplCopyWithImpl<$Res>
       $Res Function(_$ScreensScreenEventOnScreenDeleteImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -512,9 +491,7 @@ class _$ScreensScreenEventOnScreenDeleteImpl
   @override
   int get hashCode => Object.hash(runtimeType, screenName);
 
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ScreensScreenEventOnScreenDeleteImplCopyWith<
@@ -614,10 +591,7 @@ abstract class ScreensScreenEventOnScreenDelete implements ScreensScreenEvent {
       _$ScreensScreenEventOnScreenDeleteImpl;
 
   String get screenName;
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ScreensScreenEventOnScreenDeleteImplCopyWith<
           _$ScreensScreenEventOnScreenDeleteImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -643,8 +617,6 @@ class __$$ScreensScreenEventOnScreenModifyImplCopyWithImpl<$Res>
       $Res Function(_$ScreensScreenEventOnScreenModifyImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -693,9 +665,7 @@ class _$ScreensScreenEventOnScreenModifyImpl
   @override
   int get hashCode => Object.hash(runtimeType, screen, oldName);
 
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ScreensScreenEventOnScreenModifyImplCopyWith<
@@ -796,10 +766,7 @@ abstract class ScreensScreenEventOnScreenModify implements ScreensScreenEvent {
 
   Screen get screen;
   String get oldName;
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ScreensScreenEventOnScreenModifyImplCopyWith<
           _$ScreensScreenEventOnScreenModifyImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -825,8 +792,6 @@ class __$$ScreensScreenEventOnScreenChangeInitialImplCopyWithImpl<$Res>
       $Res Function(_$ScreensScreenEventOnScreenChangeInitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -866,9 +831,7 @@ class _$ScreensScreenEventOnScreenChangeInitialImpl
   @override
   int get hashCode => Object.hash(runtimeType, screen);
 
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ScreensScreenEventOnScreenChangeInitialImplCopyWith<
@@ -970,10 +933,7 @@ abstract class ScreensScreenEventOnScreenChangeInitial
       _$ScreensScreenEventOnScreenChangeInitialImpl;
 
   Screen get screen;
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ScreensScreenEventOnScreenChangeInitialImplCopyWith<
           _$ScreensScreenEventOnScreenChangeInitialImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1031,9 +991,6 @@ class _$ScreensScreenSRCopyWithImpl<$Res, $Val extends ScreensScreenSR>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ScreensScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1050,9 +1007,6 @@ class __$$ExistsErrorImplCopyWithImpl<$Res>
   __$$ExistsErrorImplCopyWithImpl(
       _$ExistsErrorImpl _value, $Res Function(_$ExistsErrorImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ScreensScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1172,9 +1126,7 @@ mixin _$ScreensScreenState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of ScreensScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ScreensScreenStateCopyWith<ScreensScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1200,8 +1152,6 @@ class _$ScreensScreenStateCopyWithImpl<$Res, $Val extends ScreensScreenState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ScreensScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1220,8 +1170,6 @@ class _$ScreensScreenStateCopyWithImpl<$Res, $Val extends ScreensScreenState>
     ) as $Val);
   }
 
-  /// Create a copy of ScreensScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -1255,8 +1203,6 @@ class __$$ScreensScreenStateDataImplCopyWithImpl<$Res>
       $Res Function(_$ScreensScreenStateDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ScreensScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1306,9 +1252,7 @@ class _$ScreensScreenStateDataImpl implements ScreensScreenStateData {
   @override
   int get hashCode => Object.hash(runtimeType, config, stateUpdate);
 
-  /// Create a copy of ScreensScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ScreensScreenStateDataImplCopyWith<_$ScreensScreenStateDataImpl>
@@ -1381,11 +1325,8 @@ abstract class ScreensScreenStateData implements ScreensScreenState {
   Config get config;
   @override
   int get stateUpdate;
-
-  /// Create a copy of ScreensScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ScreensScreenStateDataImplCopyWith<_$ScreensScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

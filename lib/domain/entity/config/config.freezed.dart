@@ -28,6 +28,7 @@ mixin _$Config {
   bool get projectExists => throw _privateConstructorUsedError;
   String get organization => throw _privateConstructorUsedError;
   PlatformsList get platformsList => throw _privateConstructorUsedError;
+  ProjectStateManager get stateManager => throw _privateConstructorUsedError;
   bool get flavorize => throw _privateConstructorUsedError;
   String get flavors => throw _privateConstructorUsedError;
   bool get generateSigningKey => throw _privateConstructorUsedError;
@@ -46,12 +47,8 @@ mixin _$Config {
   String get swaggerUrl => throw _privateConstructorUsedError;
   bool get sentry => throw _privateConstructorUsedError;
 
-  /// Serializes this Config to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -69,6 +66,7 @@ abstract class $ConfigCopyWith<$Res> {
       bool projectExists,
       String organization,
       PlatformsList platformsList,
+      ProjectStateManager stateManager,
       bool flavorize,
       String flavors,
       bool generateSigningKey,
@@ -99,8 +97,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -112,6 +108,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? projectExists = null,
     Object? organization = null,
     Object? platformsList = null,
+    Object? stateManager = null,
     Object? flavorize = null,
     Object? flavors = null,
     Object? generateSigningKey = null,
@@ -161,6 +158,10 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.platformsList
           : platformsList // ignore: cast_nullable_to_non_nullable
               as PlatformsList,
+      stateManager: null == stateManager
+          ? _value.stateManager
+          : stateManager // ignore: cast_nullable_to_non_nullable
+              as ProjectStateManager,
       flavorize: null == flavorize
           ? _value.flavorize
           : flavorize // ignore: cast_nullable_to_non_nullable
@@ -224,8 +225,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     ) as $Val);
   }
 
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PlatformsListCopyWith<$Res> get platformsList {
@@ -251,6 +250,7 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       bool projectExists,
       String organization,
       PlatformsList platformsList,
+      ProjectStateManager stateManager,
       bool flavorize,
       String flavors,
       bool generateSigningKey,
@@ -280,8 +280,6 @@ class __$$ConfigImplCopyWithImpl<$Res>
       _$ConfigImpl _value, $Res Function(_$ConfigImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -293,6 +291,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
     Object? projectExists = null,
     Object? organization = null,
     Object? platformsList = null,
+    Object? stateManager = null,
     Object? flavorize = null,
     Object? flavors = null,
     Object? generateSigningKey = null,
@@ -342,6 +341,10 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value.platformsList
           : platformsList // ignore: cast_nullable_to_non_nullable
               as PlatformsList,
+      stateManager: null == stateManager
+          ? _value.stateManager
+          : stateManager // ignore: cast_nullable_to_non_nullable
+              as ProjectStateManager,
       flavorize: null == flavorize
           ? _value.flavorize
           : flavorize // ignore: cast_nullable_to_non_nullable
@@ -418,6 +421,7 @@ class _$ConfigImpl extends _Config {
       this.projectExists = false,
       this.organization = '',
       this.platformsList = const PlatformsList(),
+      this.stateManager = ProjectStateManager.bloc,
       this.flavorize = false,
       this.flavors = '',
       this.generateSigningKey = false,
@@ -466,6 +470,9 @@ class _$ConfigImpl extends _Config {
   @override
   @JsonKey()
   final PlatformsList platformsList;
+  @override
+  @JsonKey()
+  final ProjectStateManager stateManager;
   @override
   @JsonKey()
   final bool flavorize;
@@ -534,7 +541,7 @@ class _$ConfigImpl extends _Config {
 
   @override
   String toString() {
-    return 'Config(branch: $branch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, screenUtil: $screenUtil, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl, sentry: $sentry)';
+    return 'Config(branch: $branch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, stateManager: $stateManager, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, screenUtil: $screenUtil, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl, sentry: $sentry)';
   }
 
   @override
@@ -557,6 +564,8 @@ class _$ConfigImpl extends _Config {
                 other.organization == organization) &&
             (identical(other.platformsList, platformsList) ||
                 other.platformsList == platformsList) &&
+            (identical(other.stateManager, stateManager) ||
+                other.stateManager == stateManager) &&
             (identical(other.flavorize, flavorize) ||
                 other.flavorize == flavorize) &&
             (identical(other.flavors, flavors) || other.flavors == flavors) &&
@@ -582,7 +591,7 @@ class _$ConfigImpl extends _Config {
             (identical(other.sentry, sentry) || other.sentry == sentry));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -594,6 +603,7 @@ class _$ConfigImpl extends _Config {
         projectExists,
         organization,
         platformsList,
+        stateManager,
         flavorize,
         flavors,
         generateSigningKey,
@@ -611,9 +621,7 @@ class _$ConfigImpl extends _Config {
         sentry
       ]);
 
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>
@@ -637,6 +645,7 @@ abstract class _Config extends Config {
       final bool projectExists,
       final String organization,
       final PlatformsList platformsList,
+      final ProjectStateManager stateManager,
       final bool flavorize,
       final String flavors,
       final bool generateSigningKey,
@@ -674,6 +683,8 @@ abstract class _Config extends Config {
   @override
   PlatformsList get platformsList;
   @override
+  ProjectStateManager get stateManager;
+  @override
   bool get flavorize;
   @override
   String get flavors;
@@ -696,19 +707,16 @@ abstract class _Config extends Config {
   @override
   List<String> get signingVars;
   @override
-  Set<Screen> get screens; // ignore: invalid_annotation_target
-  @override
+  Set<Screen> get screens;
+  @override // ignore: invalid_annotation_target
   @JsonKey(includeFromJson: false, includeToJson: false)
   List<AppStyle> get styles;
   @override
   String get swaggerUrl;
   @override
   bool get sentry;
-
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

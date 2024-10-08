@@ -50,9 +50,7 @@ mixin _$DataComponentsScreenV2Event {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $DataComponentsScreenV2EventCopyWith<DataComponentsScreenV2Event>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -81,8 +79,6 @@ class _$DataComponentsScreenV2EventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -96,8 +92,6 @@ class _$DataComponentsScreenV2EventCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -132,8 +126,6 @@ class __$$DataComponentsScreenV2IInitImplCopyWithImpl<$Res>
       $Res Function(_$DataComponentsScreenV2IInitImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -172,9 +164,7 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DataComponentsScreenV2IInitImplCopyWith<_$DataComponentsScreenV2IInitImpl>
@@ -245,11 +235,8 @@ abstract class DataComponentsScreenV2IInit
 
   @override
   Config get config;
-
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DataComponentsScreenV2IInitImplCopyWith<_$DataComponentsScreenV2IInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -290,9 +277,7 @@ mixin _$DataComponentsScreenV2SR {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of DataComponentsScreenV2SR
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $DataComponentsScreenV2SRCopyWith<DataComponentsScreenV2SR> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -317,8 +302,6 @@ class _$DataComponentsScreenV2SRCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DataComponentsScreenV2SR
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -352,8 +335,6 @@ class __$$ErrorImplCopyWithImpl<$Res>
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DataComponentsScreenV2SR
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -392,9 +373,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of DataComponentsScreenV2SR
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -462,11 +441,8 @@ abstract class _Error implements DataComponentsScreenV2SR {
 
   @override
   String get message;
-
-  /// Create a copy of DataComponentsScreenV2SR
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -508,9 +484,7 @@ mixin _$DataComponentsScreenV2State {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of DataComponentsScreenV2State
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $DataComponentsScreenV2StateCopyWith<DataComponentsScreenV2State>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -540,8 +514,6 @@ class _$DataComponentsScreenV2StateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DataComponentsScreenV2State
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -560,8 +532,6 @@ class _$DataComponentsScreenV2StateCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of DataComponentsScreenV2State
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -570,8 +540,6 @@ class _$DataComponentsScreenV2StateCopyWithImpl<$Res,
     });
   }
 
-  /// Create a copy of DataComponentsScreenV2State
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ComponentsCopyWith<$Res>? get components {
@@ -612,8 +580,6 @@ class __$$DataComponentsScreenV2StateDataImplCopyWithImpl<$Res>
       $Res Function(_$DataComponentsScreenV2StateDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DataComponentsScreenV2State
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -663,9 +629,7 @@ class _$DataComponentsScreenV2StateDataImpl
   @override
   int get hashCode => Object.hash(runtimeType, config, components);
 
-  /// Create a copy of DataComponentsScreenV2State
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DataComponentsScreenV2StateDataImplCopyWith<
@@ -740,11 +704,8 @@ abstract class DataComponentsScreenV2StateData
   Config get config;
   @override
   Components? get components;
-
-  /// Create a copy of DataComponentsScreenV2State
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DataComponentsScreenV2StateDataImplCopyWith<
           _$DataComponentsScreenV2StateDataImpl>
       get copyWith => throw _privateConstructorUsedError;

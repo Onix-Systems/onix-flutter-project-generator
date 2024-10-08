@@ -22,9 +22,7 @@ mixin _$FrameNodeEntity {
   String get name => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
 
-  /// Create a copy of FrameNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FrameNodeEntityCopyWith<FrameNodeEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,8 +51,6 @@ class _$FrameNodeEntityCopyWithImpl<$Res, $Val extends FrameNodeEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FrameNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,8 +109,6 @@ class __$$FrameNodeEntityImplCopyWithImpl<$Res>
       _$FrameNodeEntityImpl _value, $Res Function(_$FrameNodeEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FrameNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -198,9 +192,7 @@ class _$FrameNodeEntityImpl implements _FrameNodeEntity {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_fills), id, key, name, type);
 
-  /// Create a copy of FrameNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FrameNodeEntityImplCopyWith<_$FrameNodeEntityImpl> get copyWith =>
@@ -226,11 +218,8 @@ abstract class _FrameNodeEntity implements FrameNodeEntity {
   String get name;
   @override
   String get type;
-
-  /// Create a copy of FrameNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FrameNodeEntityImplCopyWith<_$FrameNodeEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

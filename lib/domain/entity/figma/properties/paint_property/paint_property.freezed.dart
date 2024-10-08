@@ -19,9 +19,7 @@ mixin _$PaintProperty {
   ColorProperty get color => throw _privateConstructorUsedError;
   PaintPropertyType get type => throw _privateConstructorUsedError;
 
-  /// Create a copy of PaintProperty
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PaintPropertyCopyWith<PaintProperty> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,8 +45,6 @@ class _$PaintPropertyCopyWithImpl<$Res, $Val extends PaintProperty>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PaintProperty
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -67,8 +63,6 @@ class _$PaintPropertyCopyWithImpl<$Res, $Val extends PaintProperty>
     ) as $Val);
   }
 
-  /// Create a copy of PaintProperty
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ColorPropertyCopyWith<$Res> get color {
@@ -100,8 +94,6 @@ class __$$PaintPropertyImplCopyWithImpl<$Res>
       _$PaintPropertyImpl _value, $Res Function(_$PaintPropertyImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PaintProperty
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,9 +140,7 @@ class _$PaintPropertyImpl implements _PaintProperty {
   @override
   int get hashCode => Object.hash(runtimeType, color, type);
 
-  /// Create a copy of PaintProperty
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PaintPropertyImplCopyWith<_$PaintPropertyImpl> get copyWith =>
@@ -166,11 +156,8 @@ abstract class _PaintProperty implements PaintProperty {
   ColorProperty get color;
   @override
   PaintPropertyType get type;
-
-  /// Create a copy of PaintProperty
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PaintPropertyImplCopyWith<_$PaintPropertyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

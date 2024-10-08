@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/add_screen_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -9,12 +10,14 @@ import 'package:recase/recase.dart';
 
 class ScreenTable extends StatelessWidget {
   final Set<Screen> screens;
-  final Function(Screen, String) onModifyScreen;
-  final Function(Screen) onDeleteScreen;
-  final Function(Screen) onChangeInitial;
+  final List<StateManagementVariant> stateManagers;
+  final void Function(Screen, String) onModifyScreen;
+  final void Function(Screen) onDeleteScreen;
+  final void Function(Screen) onChangeInitial;
 
   const ScreenTable({
     required this.screens,
+    required this.stateManagers,
     required this.onModifyScreen,
     required this.onDeleteScreen,
     required this.onChangeInitial,
@@ -133,7 +136,7 @@ class ScreenTable extends StatelessWidget {
                       ),
                       Cell(
                         value: Text(
-                          screen.stateManager.name.pascalCase,
+                          screen.stateVariant.name,
                           style: context.appTextStyles.fs18?.copyWith(
                               color: screen.exists
                                   ? context.appColors.fadedColor
@@ -161,7 +164,9 @@ class ScreenTable extends StatelessWidget {
                                         context: context,
                                         barrierDismissible: false,
                                         builder: (context) => AddScreenDialog(
-                                            screen: Screen.copyOf(screen)),
+                                          screen: Screen.copyOf(screen),
+                                          stateManagers: stateManagers,
+                                        ),
                                       ).then((modifiedScreen) {
                                         if (modifiedScreen != null) {
                                           onModifyScreen(

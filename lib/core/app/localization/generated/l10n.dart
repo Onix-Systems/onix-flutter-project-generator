@@ -1529,6 +1529,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Change state manager warning`
+  String get changeStateManagerError {
+    return Intl.message(
+      'Change state manager warning',
+      name: 'changeStateManagerError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Changing state manager will change ... to {variant}. Are you sure you want to continue?`
+  String changeStateManagerErrorContent(Object variant) {
+    return Intl.message(
+      'Changing state manager will change ... to $variant. Are you sure you want to continue?',
+      name: 'changeStateManagerErrorContent',
+      desc: '',
+      args: [variant],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

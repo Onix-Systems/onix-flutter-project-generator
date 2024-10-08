@@ -19,9 +19,7 @@ mixin _$EnumParamComponent {
   String get name => throw _privateConstructorUsedError;
   SwaggerEnum get type => throw _privateConstructorUsedError;
 
-  /// Create a copy of EnumParamComponent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $EnumParamComponentCopyWith<EnumParamComponent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,8 +43,6 @@ class _$EnumParamComponentCopyWithImpl<$Res, $Val extends EnumParamComponent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of EnumParamComponent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,8 +81,6 @@ class __$$EnumParamComponentImplCopyWithImpl<$Res>
       $Res Function(_$EnumParamComponentImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EnumParamComponent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,9 +128,7 @@ class _$EnumParamComponentImpl extends _EnumParamComponent {
   @override
   int get hashCode => Object.hash(runtimeType, name, type);
 
-  /// Create a copy of EnumParamComponent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$EnumParamComponentImplCopyWith<_$EnumParamComponentImpl> get copyWith =>
@@ -154,11 +146,8 @@ abstract class _EnumParamComponent extends EnumParamComponent {
   String get name;
   @override
   SwaggerEnum get type;
-
-  /// Create a copy of EnumParamComponent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$EnumParamComponentImplCopyWith<_$EnumParamComponentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

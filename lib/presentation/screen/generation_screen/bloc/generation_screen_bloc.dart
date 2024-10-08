@@ -190,7 +190,9 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     }
 
     ///generating screens
-    await _generateScreensUseCase(config: state.config);
+    await _generateScreensUseCase(
+      config: state.config,
+    );
 
     ///generating data components//TODO
     //await _generateDataComponentsUseCase(config: state.config);

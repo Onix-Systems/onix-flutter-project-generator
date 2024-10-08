@@ -75,9 +75,6 @@ class _$SplashScreenEventCopyWithImpl<$Res, $Val extends SplashScreenEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of SplashScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -95,9 +92,6 @@ class __$$SplashScreenEventInitImplCopyWithImpl<$Res>
   __$$SplashScreenEventInitImplCopyWithImpl(_$SplashScreenEventInitImpl _value,
       $Res Function(_$SplashScreenEventInitImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SplashScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -207,9 +201,6 @@ class __$$SplashScreenEventOnAnimationFinishedImplCopyWithImpl<$Res>
       _$SplashScreenEventOnAnimationFinishedImpl _value,
       $Res Function(_$SplashScreenEventOnAnimationFinishedImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SplashScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -363,9 +354,6 @@ class _$SplashScreenSRCopyWithImpl<$Res, $Val extends SplashScreenSR>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of SplashScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -382,9 +370,6 @@ class __$$onNeedUpdateImplCopyWithImpl<$Res>
   __$$onNeedUpdateImplCopyWithImpl(
       _$onNeedUpdateImpl _value, $Res Function(_$onNeedUpdateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SplashScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -487,9 +472,6 @@ class __$$onContinueImplCopyWithImpl<$Res>
   __$$onContinueImplCopyWithImpl(
       _$onContinueImpl _value, $Res Function(_$onContinueImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SplashScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -622,9 +604,7 @@ mixin _$SplashScreenState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of SplashScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SplashScreenStateCopyWith<SplashScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -648,8 +628,6 @@ class _$SplashScreenStateCopyWithImpl<$Res, $Val extends SplashScreenState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SplashScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -692,8 +670,6 @@ class __$$DataImplCopyWithImpl<$Res>
   __$$DataImplCopyWithImpl(_$DataImpl _value, $Res Function(_$DataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SplashScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -758,9 +734,7 @@ class _$DataImpl implements Data {
   int get hashCode =>
       Object.hash(runtimeType, remoteVersion, localVersion, logoVisible);
 
-  /// Create a copy of SplashScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DataImplCopyWith<_$DataImpl> get copyWith =>
@@ -841,11 +815,8 @@ abstract class Data implements SplashScreenState {
   String get localVersion;
   @override
   bool get logoVisible;
-
-  /// Create a copy of SplashScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DataImplCopyWith<_$DataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
