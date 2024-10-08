@@ -786,22 +786,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.0"
-  onix_flutter_bloc:
-    dependency: "direct main"
-    description:
-      name: onix_flutter_bloc
-      sha256: c466bb93996e89de394f4cf8750f73cf88d9715cb6e61e5d9e0ec6a0f91a28c9
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.3"
-  onix_flutter_core_models:
-    dependency: "direct main"
-    description:
-      name: onix_flutter_core_models
-      sha256: "6e247447fb877221d4a8c3512da491db9da86af746cf6cfa91c9d9eaa79b7588"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.2"
   package_config:
     dependency: transitive
     description:

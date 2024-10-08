@@ -54,8 +54,6 @@ dependencies:
   google_fonts: ^6.1.0
   flutter_styled_toast: ^2.2.1
   gap: ^3.0.1
-  onix_flutter_bloc: ^0.0.3
-  onix_flutter_core_models: ^0.0.2
 
 dev_dependencies:
   flutter_test:
