@@ -28,6 +28,7 @@ extension ConfigFileExtension on File {
         'branch': config.branch,
         'screen_util': config.useScreenUtil,
         'state_management': config.stateManager.name,
+        'sentry': config.sentry,
       },
     );
     return writeAsString(configContent);

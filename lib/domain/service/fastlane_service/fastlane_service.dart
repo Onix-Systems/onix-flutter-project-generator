@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/enums/fastlane_assets.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/enums/fastlane_env_vars.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastlane_generation_params.dart';
@@ -18,13 +17,12 @@ const _ios = 'ios';
 const _androidFastlane = '/android/fastlane/';
 const _iosFastlane = '/ios/fastlane/';
 
-class FastlaneService implements BaseGenerationService<String> {
+class FastlaneService
+    implements BaseGenerationService<String, FastlaneGenerationParams> {
   const FastlaneService();
 
   @override
-  Future<String> generate(BaseGenerationParams params) async {
-    if (params is! FastlaneGenerationParams) return 'Incorrect params';
-
+  Future<String> generate(FastlaneGenerationParams params) async {
     final platforms = params.platforms
         .where((element) => element == _android || element == _ios);
 

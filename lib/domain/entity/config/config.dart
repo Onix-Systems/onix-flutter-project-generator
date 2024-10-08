@@ -42,6 +42,7 @@ class Config with _$Config {
     @Default([])
     List<AppStyle> styles,
     @Default('') String swaggerUrl,
+    @Default(false) bool sentry,
   }) = _Config;
 
   const Config._();

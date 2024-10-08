@@ -560,6 +560,16 @@ class S {
     );
   }
 
+  /// `Integrate Sentry?`
+  String get integrateSentry {
+    return Intl.message(
+      'Integrate Sentry?',
+      name: 'integrateSentry',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Use Screen Util?`
   String get useScreenUtil {
     return Intl.message(

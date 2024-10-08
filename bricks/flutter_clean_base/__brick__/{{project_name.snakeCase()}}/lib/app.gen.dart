@@ -16,6 +16,7 @@ import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';{{/handLocalization}}
 {{#flavorizr}}import 'package:{{project_name}}/core/arch/widget/common/flavor_banner.dart';{{/flavorizr}}
 {{^handLocalization}}import 'package:{{project_name}}/app/localization/generated/l10n.dart';{{/handLocalization}}
+{{^isGoRouter}}{{#sentry}}import 'package:sentry_flutter/sentry_flutter.dart';{{/sentry}}{{/isGoRouter}}
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -71,11 +72,16 @@ class _AppState extends State<App>
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
             themeMode: {{#isBase}}themeMode{{/isBase}}{{#isBloc}}state.themeMode{{/isBloc}}{{#isProvider}}provider.themeMode{{/isProvider}},
-            {{#isGoRouter}}routeInformationProvider: AppRouter.router.routeInformationProvider,{{/isGoRouter}}
-            routeInformationParser: {{#isGoRouter}}AppRouter.router.routeInformationParser,{{/isGoRouter}}
-            {{^isGoRouter}}appRouter().defaultRouteParser(),{{/isGoRouter}}
-            routerDelegate: {{#isGoRouter}}AppRouter.router.routerDelegate,{{/isGoRouter}}
-            {{^isGoRouter}}appRouter().delegate(),{{/isGoRouter}}
+            {{^isGoRouter}}
+            {{^sentry}}routerConfig: appRouter().config(),{{/sentry}}
+            {{#sentry}}routerConfig: appRouter().config(
+              navigatorObservers: () => [
+                 SentryNavigatorObserver(),
+              ],
+            ),
+            {{/sentry}}
+            {{/isGoRouter}}
+            {{#isGoRouter}}routerConfig: AppRouter.router,{{/isGoRouter}}
             locale: locale,
             {{^handLocalization}}
             localizationsDelegates: const [

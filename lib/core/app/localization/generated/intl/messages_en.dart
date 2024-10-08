@@ -149,6 +149,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Integrate Device Preview?"),
         "integrateGraphQl":
             MessageLookupByLibrary.simpleMessage("Integrate GraphQL?"),
+        "integrateSentry":
+            MessageLookupByLibrary.simpleMessage("Integrate Sentry?"),
         "keyStorePasswordPlaceholder":
             MessageLookupByLibrary.simpleMessage("Leave blank to auto-gen..."),
         "keystorePassword":

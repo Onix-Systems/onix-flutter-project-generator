@@ -57,11 +57,8 @@ class SwaggerMapper {
   List<SourceComponent> mapSources(SwaggerResponse input) {
     final sources = List<SourceComponent>.empty(growable: true);
     for (var tag in input.swaggerTags) {
-      final sourceRequests = input.swaggerPaths
-          .where(
-            (e) => e.primaryTag == tag.name,
-          )
-          .toList();
+      final sourceRequests =
+          input.swaggerPaths.where((e) => e.primaryTag == tag.name).toList();
       final requests = _mapRequests(sourceRequests);
       sources.add(
         SourceComponent(
@@ -94,6 +91,7 @@ class SwaggerMapper {
       );
       requests.add(request);
     }
+
     return requests;
   }
 

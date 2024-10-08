@@ -92,6 +92,9 @@ class _$ProjectNameScreenEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -116,6 +119,8 @@ class __$$ProjectNameScreenEventInitImplCopyWithImpl<$Res>
       $Res Function(_$ProjectNameScreenEventInitImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,6 +134,8 @@ class __$$ProjectNameScreenEventInitImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -162,7 +169,9 @@ class _$ProjectNameScreenEventInitImpl implements ProjectNameScreenEventInit {
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectNameScreenEventInitImplCopyWith<_$ProjectNameScreenEventInitImpl>
@@ -256,7 +265,10 @@ abstract class ProjectNameScreenEventInit implements ProjectNameScreenEvent {
       _$ProjectNameScreenEventInitImpl;
 
   Config get config;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectNameScreenEventInitImplCopyWith<_$ProjectNameScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -281,6 +293,8 @@ class __$$ProjectNameScreenEventProjectNameChangedImplCopyWithImpl<$Res>
       $Res Function(_$ProjectNameScreenEventProjectNameChangedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -322,7 +336,9 @@ class _$ProjectNameScreenEventProjectNameChangedImpl
   @override
   int get hashCode => Object.hash(runtimeType, projectName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectNameScreenEventProjectNameChangedImplCopyWith<
@@ -420,7 +436,10 @@ abstract class ProjectNameScreenEventProjectNameChanged
       _$ProjectNameScreenEventProjectNameChangedImpl;
 
   String get projectName;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectNameScreenEventProjectNameChangedImplCopyWith<
           _$ProjectNameScreenEventProjectNameChangedImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -446,6 +465,8 @@ class __$$ProjectNameScreenEventOrganizationChangedImplCopyWithImpl<$Res>
       $Res Function(_$ProjectNameScreenEventOrganizationChangedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -487,7 +508,9 @@ class _$ProjectNameScreenEventOrganizationChangedImpl
   @override
   int get hashCode => Object.hash(runtimeType, organization);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectNameScreenEventOrganizationChangedImplCopyWith<
@@ -586,7 +609,10 @@ abstract class ProjectNameScreenEventOrganizationChanged
       _$ProjectNameScreenEventOrganizationChangedImpl;
 
   String get organization;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectNameScreenEventOrganizationChangedImplCopyWith<
           _$ProjectNameScreenEventOrganizationChangedImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -612,6 +638,8 @@ class __$$ProjectNameScreenEventBranchChangedImplCopyWithImpl<$Res>
       $Res Function(_$ProjectNameScreenEventBranchChangedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -652,7 +680,9 @@ class _$ProjectNameScreenEventBranchChangedImpl
   @override
   int get hashCode => Object.hash(runtimeType, newBranch);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectNameScreenEventBranchChangedImplCopyWith<
@@ -749,7 +779,10 @@ abstract class ProjectNameScreenEventBranchChanged
       _$ProjectNameScreenEventBranchChangedImpl;
 
   String get newBranch;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectNameScreenEventBranchChangedImplCopyWith<
           _$ProjectNameScreenEventBranchChangedImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -807,6 +840,9 @@ class _$ProjectNameScreenSRCopyWithImpl<$Res, $Val extends ProjectNameScreenSR>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ProjectNameScreenSR
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -826,6 +862,9 @@ class __$$ProjectNameScreenSRStubImplCopyWithImpl<$Res>
       _$ProjectNameScreenSRStubImpl _value,
       $Res Function(_$ProjectNameScreenSRStubImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProjectNameScreenSR
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -954,7 +993,9 @@ mixin _$ProjectNameScreenState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProjectNameScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProjectNameScreenStateCopyWith<ProjectNameScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -985,6 +1026,8 @@ class _$ProjectNameScreenStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProjectNameScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1013,6 +1056,8 @@ class _$ProjectNameScreenStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ProjectNameScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -1051,6 +1096,8 @@ class __$$ProjectNameScreenStateDataImplCopyWithImpl<$Res>
       $Res Function(_$ProjectNameScreenStateDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProjectNameScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1131,7 +1178,9 @@ class _$ProjectNameScreenStateDataImpl extends ProjectNameScreenStateData {
   int get hashCode => Object.hash(runtimeType, config, isValidProjectName,
       isValidOrganizationName, const DeepCollectionEquality().hash(_branches));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProjectNameScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectNameScreenStateDataImplCopyWith<_$ProjectNameScreenStateDataImpl>
@@ -1219,8 +1268,11 @@ abstract class ProjectNameScreenStateData extends ProjectNameScreenState {
   bool get isValidOrganizationName;
   @override
   List<String> get branches;
+
+  /// Create a copy of ProjectNameScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectNameScreenStateDataImplCopyWith<_$ProjectNameScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

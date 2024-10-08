@@ -22,6 +22,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       final swaggerResponse = await _swaggerSource.getSwaggerComponents(
         url: url,
       );
+
       final sources = _swaggerMapper.mapSources(swaggerResponse);
       final enums = _swaggerMapper.mapEnums(swaggerResponse);
       final dataObjects = _swaggerMapper.mapDataObjects(swaggerResponse);

@@ -3,20 +3,15 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/git_cliff_service/enums/git_cliff_asset.dart';
 import 'package:onix_flutter_bricks/domain/service/git_cliff_service/params/git_cliff_params.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/makefile/makefile_content.dart';
 import 'package:onix_flutter_bricks/util/makefile/makefile_line.dart';
 
-class GitCliffService implements BaseGenerationService<String> {
+class GitCliffService implements BaseGenerationService<String, GitCliffParams> {
   @override
-  Future<String> generate(BaseGenerationParams params) async {
-    if (params is! GitCliffParams) {
-      return 'Incorrect params';
-    }
-
+  Future<String> generate(GitCliffParams params) async {
     try {
       await _copyAndPasteFiles(params);
       await _updateMainMakeFile(params);

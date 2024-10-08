@@ -61,14 +61,6 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
   final isProvider =
       context.vars['state_management'] == 'provider' ? true : false;
 
-  '====================================='.log();
-  'isBase: $isBase'.log();
-  'isBloc: $isBloc'.log();
-  'isProvider: $isProvider'.log();
-  'project_name: ${context.vars['project_name_dirt'].toString().toSnakeCase}'
-      .log();
-  '====================================='.log();
-
   var flavors = [];
 
   if (context.vars['flavorizr'] == true) {
@@ -98,6 +90,7 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
     'isBase': isBase,
     'isBloc': isBloc,
     'isProvider': isProvider,
+    'sentry': context.vars['sentry'],
   };
 }
 

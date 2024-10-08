@@ -32,6 +32,7 @@ mixin _$ProjectSettingsScreenEvent {
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,6 +50,7 @@ mixin _$ProjectSettingsScreenEvent {
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,6 +68,7 @@ mixin _$ProjectSettingsScreenEvent {
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -99,6 +102,8 @@ mixin _$ProjectSettingsScreenEvent {
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -128,6 +133,8 @@ mixin _$ProjectSettingsScreenEvent {
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -157,6 +164,8 @@ mixin _$ProjectSettingsScreenEvent {
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -180,6 +189,9 @@ class _$ProjectSettingsScreenEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -204,6 +216,8 @@ class __$$ProjectSettingsScreenEventInitImplCopyWithImpl<$Res>
       $Res Function(_$ProjectSettingsScreenEventInitImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -217,6 +231,8 @@ class __$$ProjectSettingsScreenEventInitImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -251,7 +267,9 @@ class _$ProjectSettingsScreenEventInitImpl
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectSettingsScreenEventInitImplCopyWith<
@@ -276,6 +294,7 @@ class _$ProjectSettingsScreenEventInitImpl
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return init(config);
   }
@@ -296,6 +315,7 @@ class _$ProjectSettingsScreenEventInitImpl
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return init?.call(config);
   }
@@ -316,6 +336,7 @@ class _$ProjectSettingsScreenEventInitImpl
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -355,6 +376,8 @@ class _$ProjectSettingsScreenEventInitImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return init(this);
   }
@@ -387,6 +410,8 @@ class _$ProjectSettingsScreenEventInitImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return init?.call(this);
   }
@@ -419,6 +444,8 @@ class _$ProjectSettingsScreenEventInitImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -434,7 +461,10 @@ abstract class ProjectSettingsScreenEventInit
       _$ProjectSettingsScreenEventInitImpl;
 
   Config get config;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectSettingsScreenEventInitImplCopyWith<
           _$ProjectSettingsScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -457,6 +487,9 @@ class __$$ProjectSettingsScreenEventFlavorizeChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventFlavorizeChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventFlavorizeChangeImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -497,6 +530,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return flavorizeChange();
   }
@@ -517,6 +551,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return flavorizeChange?.call();
   }
@@ -537,6 +572,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (flavorizeChange != null) {
@@ -576,6 +612,8 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return flavorizeChange(this);
   }
@@ -608,6 +646,8 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return flavorizeChange?.call(this);
   }
@@ -640,6 +680,8 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (flavorizeChange != null) {
@@ -675,6 +717,8 @@ class __$$ProjectSettingsScreenEventFlavorsChangeImplCopyWithImpl<$Res>
       $Res Function(_$ProjectSettingsScreenEventFlavorsChangeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -714,7 +758,9 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
   @override
   int get hashCode => Object.hash(runtimeType, flavors);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectSettingsScreenEventFlavorsChangeImplCopyWith<
@@ -740,6 +786,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return flavorsChange(flavors);
   }
@@ -760,6 +807,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return flavorsChange?.call(flavors);
   }
@@ -780,6 +828,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (flavorsChange != null) {
@@ -819,6 +868,8 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return flavorsChange(this);
   }
@@ -851,6 +902,8 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return flavorsChange?.call(this);
   }
@@ -883,6 +936,8 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (flavorsChange != null) {
@@ -899,7 +954,10 @@ abstract class ProjectSettingsScreenEventFlavorsChange
       _$ProjectSettingsScreenEventFlavorsChangeImpl;
 
   String get flavors;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectSettingsScreenEventFlavorsChangeImplCopyWith<
           _$ProjectSettingsScreenEventFlavorsChangeImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -930,6 +988,9 @@ class __$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWithImpl<
       $Res Function(_$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl)
           _then)
       : super(_value, _then);
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -970,6 +1031,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return generateSigningKeyChange();
   }
@@ -990,6 +1052,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return generateSigningKeyChange?.call();
   }
@@ -1010,6 +1073,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (generateSigningKeyChange != null) {
@@ -1049,6 +1113,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return generateSigningKeyChange(this);
   }
@@ -1081,6 +1147,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return generateSigningKeyChange?.call(this);
   }
@@ -1113,6 +1181,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (generateSigningKeyChange != null) {
@@ -1151,6 +1221,8 @@ class __$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWithImpl<$Res>
       $Res Function(_$ProjectSettingsScreenEventSigningVarsChangeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1199,7 +1271,9 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_signingVars));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWith<
@@ -1226,6 +1300,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return signingVarsChange(signingVars);
   }
@@ -1246,6 +1321,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return signingVarsChange?.call(signingVars);
   }
@@ -1266,6 +1342,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (signingVarsChange != null) {
@@ -1305,6 +1382,8 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return signingVarsChange(this);
   }
@@ -1337,6 +1416,8 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return signingVarsChange?.call(this);
   }
@@ -1369,6 +1450,8 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (signingVarsChange != null) {
@@ -1385,7 +1468,10 @@ abstract class ProjectSettingsScreenEventSigningVarsChange
       _$ProjectSettingsScreenEventSigningVarsChangeImpl;
 
   List<String> get signingVars;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectSettingsScreenEventSigningVarsChangeImplCopyWith<
           _$ProjectSettingsScreenEventSigningVarsChangeImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1408,6 +1494,9 @@ class __$$ProjectSettingsScreenEventUseSonarChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventUseSonarChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventUseSonarChangeImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1448,6 +1537,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return useSonarChange();
   }
@@ -1468,6 +1558,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return useSonarChange?.call();
   }
@@ -1488,6 +1579,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (useSonarChange != null) {
@@ -1527,6 +1619,8 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return useSonarChange(this);
   }
@@ -1559,6 +1653,8 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return useSonarChange?.call(this);
   }
@@ -1591,6 +1687,8 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (useSonarChange != null) {
@@ -1623,6 +1721,9 @@ class __$$ProjectSettingsScreenEventGraphQLChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventGraphQLChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventGraphQLChangeImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1663,6 +1764,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return graphQLChange();
   }
@@ -1683,6 +1785,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return graphQLChange?.call();
   }
@@ -1703,6 +1806,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (graphQLChange != null) {
@@ -1742,6 +1846,8 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return graphQLChange(this);
   }
@@ -1774,6 +1880,8 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return graphQLChange?.call(this);
   }
@@ -1806,6 +1914,8 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (graphQLChange != null) {
@@ -2094,6 +2204,9 @@ class __$$ProjectSettingsScreenEventRouterChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventRouterChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventRouterChangeImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2134,6 +2247,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return routerChange();
   }
@@ -2154,6 +2268,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return routerChange?.call();
   }
@@ -2174,6 +2289,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (routerChange != null) {
@@ -2213,6 +2329,8 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return routerChange(this);
   }
@@ -2245,6 +2363,8 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return routerChange?.call(this);
   }
@@ -2277,6 +2397,8 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (routerChange != null) {
@@ -2312,6 +2434,9 @@ class __$$ProjectSettingsScreenEventLocalizationChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventLocalizationChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventLocalizationChangeImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2352,6 +2477,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return localizationChange();
   }
@@ -2372,6 +2498,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return localizationChange?.call();
   }
@@ -2392,6 +2519,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (localizationChange != null) {
@@ -2431,6 +2559,8 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return localizationChange(this);
   }
@@ -2463,6 +2593,8 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return localizationChange?.call(this);
   }
@@ -2495,6 +2627,8 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (localizationChange != null) {
@@ -2527,6 +2661,9 @@ class __$$ProjectSettingsScreenEventThemingChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventThemingChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventThemingChangeImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2567,6 +2704,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return themingChange();
   }
@@ -2587,6 +2725,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return themingChange?.call();
   }
@@ -2607,6 +2746,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (themingChange != null) {
@@ -2646,6 +2786,8 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return themingChange(this);
   }
@@ -2678,6 +2820,8 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return themingChange?.call(this);
   }
@@ -2710,6 +2854,8 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (themingChange != null) {
@@ -2742,6 +2888,9 @@ class __$$ProjectSettingsScreenEventFirebaseChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventFirebaseChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventFirebaseChangeImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2782,6 +2931,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return firebaseChange();
   }
@@ -2802,6 +2952,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return firebaseChange?.call();
   }
@@ -2822,6 +2973,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (firebaseChange != null) {
@@ -2861,6 +3013,8 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return firebaseChange(this);
   }
@@ -2893,6 +3047,8 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return firebaseChange?.call(this);
   }
@@ -2925,6 +3081,8 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (firebaseChange != null) {
@@ -2958,6 +3116,9 @@ class __$$ProjectSettingsScreenEventScreenUtilChangeImplCopyWithImpl<$Res>
       _$ProjectSettingsScreenEventScreenUtilChangeImpl _value,
       $Res Function(_$ProjectSettingsScreenEventScreenUtilChangeImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2998,6 +3159,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return screenUtilChange();
   }
@@ -3018,6 +3180,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return screenUtilChange?.call();
   }
@@ -3038,6 +3201,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (screenUtilChange != null) {
@@ -3077,6 +3241,8 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return screenUtilChange(this);
   }
@@ -3109,6 +3275,8 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return screenUtilChange?.call(this);
   }
@@ -3141,6 +3309,8 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (screenUtilChange != null) {
@@ -3154,6 +3324,222 @@ abstract class ProjectSettingsScreenEventScreenUtilChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventScreenUtilChange() =
       _$ProjectSettingsScreenEventScreenUtilChangeImpl;
+}
+
+/// @nodoc
+abstract class _$$ProjectSettingsScreenEventSentryChangeImplCopyWith<$Res> {
+  factory _$$ProjectSettingsScreenEventSentryChangeImplCopyWith(
+          _$ProjectSettingsScreenEventSentryChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventSentryChangeImpl) then) =
+      __$$ProjectSettingsScreenEventSentryChangeImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ProjectSettingsScreenEventSentryChangeImplCopyWithImpl<$Res>
+    extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
+        _$ProjectSettingsScreenEventSentryChangeImpl>
+    implements _$$ProjectSettingsScreenEventSentryChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventSentryChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventSentryChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventSentryChangeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProjectSettingsScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ProjectSettingsScreenEventSentryChangeImpl
+    implements ProjectSettingsScreenEventSentryChange {
+  const _$ProjectSettingsScreenEventSentryChangeImpl();
+
+  @override
+  String toString() {
+    return 'ProjectSettingsScreenEvent.sentryChange()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectSettingsScreenEventSentryChangeImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function() flavorizeChange,
+    required TResult Function(String flavors) flavorsChange,
+    required TResult Function() generateSigningKeyChange,
+    required TResult Function(List<String> signingVars) signingVarsChange,
+    required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
+    required TResult Function() routerChange,
+    required TResult Function() localizationChange,
+    required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
+    required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
+  }) {
+    return sentryChange();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function()? flavorizeChange,
+    TResult? Function(String flavors)? flavorsChange,
+    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(List<String> signingVars)? signingVarsChange,
+    TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
+    TResult? Function()? routerChange,
+    TResult? Function()? localizationChange,
+    TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
+    TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
+  }) {
+    return sentryChange?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function()? flavorizeChange,
+    TResult Function(String flavors)? flavorsChange,
+    TResult Function()? generateSigningKeyChange,
+    TResult Function(List<String> signingVars)? signingVarsChange,
+    TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
+    TResult Function()? routerChange,
+    TResult Function()? localizationChange,
+    TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
+    TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
+    required TResult orElse(),
+  }) {
+    if (sentryChange != null) {
+      return sentryChange();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectSettingsScreenEventInit value) init,
+    required TResult Function(ProjectSettingsScreenEventFlavorizeChange value)
+        flavorizeChange,
+    required TResult Function(ProjectSettingsScreenEventFlavorsChange value)
+        flavorsChange,
+    required TResult Function(
+            ProjectSettingsScreenEventGenerateSigningKeyChange value)
+        generateSigningKeyChange,
+    required TResult Function(ProjectSettingsScreenEventSigningVarsChange value)
+        signingVarsChange,
+    required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
+        useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
+    required TResult Function(ProjectSettingsScreenEventRouterChange value)
+        routerChange,
+    required TResult Function(
+            ProjectSettingsScreenEventLocalizationChange value)
+        localizationChange,
+    required TResult Function(ProjectSettingsScreenEventThemingChange value)
+        themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
+    required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
+        screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
+  }) {
+    return sentryChange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectSettingsScreenEventInit value)? init,
+    TResult? Function(ProjectSettingsScreenEventFlavorizeChange value)?
+        flavorizeChange,
+    TResult? Function(ProjectSettingsScreenEventFlavorsChange value)?
+        flavorsChange,
+    TResult? Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+        generateSigningKeyChange,
+    TResult? Function(ProjectSettingsScreenEventSigningVarsChange value)?
+        signingVarsChange,
+    TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
+        useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventRouterChange value)?
+        routerChange,
+    TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
+        localizationChange,
+    TResult? Function(ProjectSettingsScreenEventThemingChange value)?
+        themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
+    TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
+        screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
+  }) {
+    return sentryChange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectSettingsScreenEventInit value)? init,
+    TResult Function(ProjectSettingsScreenEventFlavorizeChange value)?
+        flavorizeChange,
+    TResult Function(ProjectSettingsScreenEventFlavorsChange value)?
+        flavorsChange,
+    TResult Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+        generateSigningKeyChange,
+    TResult Function(ProjectSettingsScreenEventSigningVarsChange value)?
+        signingVarsChange,
+    TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
+        useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
+    TResult Function(ProjectSettingsScreenEventRouterChange value)?
+        routerChange,
+    TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
+        localizationChange,
+    TResult Function(ProjectSettingsScreenEventThemingChange value)?
+        themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
+    TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
+        screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
+    required TResult orElse(),
+  }) {
+    if (sentryChange != null) {
+      return sentryChange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProjectSettingsScreenEventSentryChange
+    implements ProjectSettingsScreenEvent {
+  const factory ProjectSettingsScreenEventSentryChange() =
+      _$ProjectSettingsScreenEventSentryChangeImpl;
 }
 
 /// @nodoc
@@ -3209,6 +3595,9 @@ class _$ProjectSettingsScreenSRCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ProjectSettingsScreenSR
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -3225,6 +3614,9 @@ class __$$LoadFinishedImplCopyWithImpl<$Res>
   __$$LoadFinishedImplCopyWithImpl(
       _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProjectSettingsScreenSR
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -3343,7 +3735,9 @@ mixin _$ProjectSettingsScreenState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProjectSettingsScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProjectSettingsScreenStateCopyWith<ProjectSettingsScreenState>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3371,6 +3765,8 @@ class _$ProjectSettingsScreenStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProjectSettingsScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3384,6 +3780,8 @@ class _$ProjectSettingsScreenStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ProjectSettingsScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -3418,6 +3816,8 @@ class __$$ProjectSettingsScreenStateDataImplCopyWithImpl<$Res>
       $Res Function(_$ProjectSettingsScreenStateDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProjectSettingsScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3457,7 +3857,9 @@ class _$ProjectSettingsScreenStateDataImpl
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProjectSettingsScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectSettingsScreenStateDataImplCopyWith<
@@ -3529,8 +3931,11 @@ abstract class ProjectSettingsScreenStateData
 
   @override
   Config get config;
+
+  /// Create a copy of ProjectSettingsScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectSettingsScreenStateDataImplCopyWith<
           _$ProjectSettingsScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;

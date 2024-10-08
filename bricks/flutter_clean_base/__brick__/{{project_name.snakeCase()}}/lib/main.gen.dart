@@ -10,6 +10,7 @@ import 'package:{{project_name}}/app/app_initialization.dart';
 import 'package:{{project_name}}/core/di/services.dart';
 import 'package:{{project_name}}/app/util/extension/orientation_extension.dart';
 import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
+{{#sentry}}import 'package:sentry_flutter/sentry_flutter.dart';{{/sentry}}
 
 Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
   unawaited(
@@ -17,7 +18,11 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
       () async {
         WidgetsFlutterBinding.ensureInitialized();
         await Initialization.I.initApp();
-
+        {{#sentry}}await SentryFlutter.init(
+          (options) {
+              options.dsn = 'SENTRY_DSN';
+          },
+        );{{/sentry}}
         await OrientationExtension.lockVertical();
 
         {{#isBloc}}Bloc.observer = AppBlocObserver();{{/isBloc}}
@@ -28,12 +33,17 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
           runApp(const BannedApp());
         }
         },
-        (error, stackTrace) {
-          logger.crash(error: error, stackTrace: stackTrace, reason: 'main');
-        },
-        )?.catchError((e, trace) {
-          logger.crash(error: e, stackTrace: trace, reason: 'main');
+        _onError,
+        )?.catchError((error, stackTrace) {
+          _onError(error, stackTrace);
           exit(-1);
-    }),
+      },
+    ),
   );
+}
+
+
+Future<void> _onError(dynamic error, dynamic stackTrace) async {
+  logger.crash(error: error, stackTrace: stackTrace, reason: 'main');
+  {{#sentry}}await Sentry.captureException(error, stackTrace: stackTrace);{{/sentry}}
 }
