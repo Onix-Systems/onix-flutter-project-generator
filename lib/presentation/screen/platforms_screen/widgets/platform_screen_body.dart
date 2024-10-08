@@ -64,11 +64,10 @@ class PlatformScreenBody extends StatelessWidget {
                   extra: config.copyWith(
                     platformsList: config.platformsList,
                     flavorize:
-                        config.platformsList.webOnly ? false : config.flavorize,
+                        !config.platformsList.webOnly && config.flavorize,
                     flavors: config.platformsList.webOnly ? '' : config.flavors,
-                    generateSigningKey: config.platformsList.webOnly
-                        ? false
-                        : config.generateSigningKey,
+                    generateSigningKey: !config.platformsList.webOnly &&
+                        config.generateSigningKey,
                   ),
                 );
               },

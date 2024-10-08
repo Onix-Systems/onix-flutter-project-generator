@@ -219,9 +219,8 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     emit(
       state.copyWith(
         config: state.config.copyWith(
-          screenUtil: state.config.platformsList.webOnly
-              ? false
-              : !state.config.screenUtil,
+          screenUtil:
+              !state.config.platformsList.webOnly && state.config.screenUtil,
         ),
       ),
     );
