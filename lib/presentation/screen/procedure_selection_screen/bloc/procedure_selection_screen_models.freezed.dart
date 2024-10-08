@@ -109,9 +109,6 @@ class _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -136,8 +133,6 @@ class __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<$Res>
       $Res Function(_$ProcedureSelectionScreenEventInitImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -151,8 +146,6 @@ class __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -187,9 +180,7 @@ class _$ProcedureSelectionScreenEventInitImpl
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProcedureSelectionScreenEventInitImplCopyWith<
@@ -300,10 +291,7 @@ abstract class ProcedureSelectionScreenEventInit
       {required final Config config}) = _$ProcedureSelectionScreenEventInitImpl;
 
   Config get config;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProcedureSelectionScreenEventInitImplCopyWith<
           _$ProcedureSelectionScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -329,8 +317,6 @@ class __$$ProcedureSelectionScreenEventOnNewProjectImplCopyWithImpl<$Res>
       $Res Function(_$ProcedureSelectionScreenEventOnNewProjectImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -372,9 +358,7 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
   @override
   int get hashCode => Object.hash(runtimeType, projectPath);
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProcedureSelectionScreenEventOnNewProjectImplCopyWith<
@@ -488,10 +472,7 @@ abstract class ProcedureSelectionScreenEventOnNewProject
       _$ProcedureSelectionScreenEventOnNewProjectImpl;
 
   String get projectPath;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProcedureSelectionScreenEventOnNewProjectImplCopyWith<
           _$ProcedureSelectionScreenEventOnNewProjectImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -518,8 +499,6 @@ class __$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWithImpl<$Res>
       $Res Function(_$ProcedureSelectionScreenEventOnProjectOpenImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -561,9 +540,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
   @override
   int get hashCode => Object.hash(runtimeType, projectURI);
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWith<
@@ -677,10 +654,7 @@ abstract class ProcedureSelectionScreenEventOnProjectOpen
       _$ProcedureSelectionScreenEventOnProjectOpenImpl;
 
   String get projectURI;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWith<
           _$ProcedureSelectionScreenEventOnProjectOpenImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -709,8 +683,6 @@ class __$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWithImpl<$Res>
       $Res Function(_$ProcedureSelectionScreenEventOnLocaleChangeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -752,9 +724,7 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
   @override
   int get hashCode => Object.hash(runtimeType, language);
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWith<
@@ -868,10 +838,7 @@ abstract class ProcedureSelectionScreenEventOnLocaleChange
       _$ProcedureSelectionScreenEventOnLocaleChangeImpl;
 
   String get language;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWith<
           _$ProcedureSelectionScreenEventOnLocaleChangeImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -900,8 +867,6 @@ class __$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWithImpl<$Res>
       $Res Function(_$ProcedureSelectionScreenEventOnAndroidSigningImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -959,9 +924,7 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
   int get hashCode => Object.hash(runtimeType, directory,
       const DeepCollectionEquality().hash(_signingVars));
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWith<
@@ -1077,10 +1040,7 @@ abstract class ProcedureSelectionScreenEventOnAndroidSigning
 
   Directory get directory;
   List<String> get signingVars;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWith<
           _$ProcedureSelectionScreenEventOnAndroidSigningImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1160,9 +1120,6 @@ class _$ProcedureSelectionScreenSRCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ProcedureSelectionScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1179,9 +1136,6 @@ class __$$LoadFinishedImplCopyWithImpl<$Res>
   __$$LoadFinishedImplCopyWithImpl(
       _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProcedureSelectionScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1298,9 +1252,6 @@ class __$$EmptyConfigImplCopyWithImpl<$Res>
   __$$EmptyConfigImplCopyWithImpl(
       _$EmptyConfigImpl _value, $Res Function(_$EmptyConfigImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProcedureSelectionScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1417,9 +1368,6 @@ class __$$onNewProjectImplCopyWithImpl<$Res>
   __$$onNewProjectImplCopyWithImpl(
       _$onNewProjectImpl _value, $Res Function(_$onNewProjectImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProcedureSelectionScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1542,8 +1490,6 @@ class __$$onAndroidSigningCreatedImplCopyWithImpl<$Res>
       $Res Function(_$onAndroidSigningCreatedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProcedureSelectionScreenSR
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1591,9 +1537,7 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_fingerprints));
 
-  /// Create a copy of ProcedureSelectionScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$onAndroidSigningCreatedImplCopyWith<_$onAndroidSigningCreatedImpl>
@@ -1683,10 +1627,7 @@ abstract class _onAndroidSigningCreated implements ProcedureSelectionScreenSR {
       _$onAndroidSigningCreatedImpl;
 
   List<Fingerprint> get fingerprints;
-
-  /// Create a copy of ProcedureSelectionScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$onAndroidSigningCreatedImplCopyWith<_$onAndroidSigningCreatedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1728,9 +1669,7 @@ mixin _$ProcedureSelectionScreenState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of ProcedureSelectionScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ProcedureSelectionScreenStateCopyWith<ProcedureSelectionScreenState>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1759,8 +1698,6 @@ class _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProcedureSelectionScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1779,8 +1716,6 @@ class _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of ProcedureSelectionScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -1815,8 +1750,6 @@ class __$$ProcedureSelectionScreenStateDataImplCopyWithImpl<$Res>
       $Res Function(_$ProcedureSelectionScreenStateDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProcedureSelectionScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1864,9 +1797,7 @@ class _$ProcedureSelectionScreenStateDataImpl
   int get hashCode => Object.hash(
       runtimeType, config, const DeepCollectionEquality().hash(language));
 
-  /// Create a copy of ProcedureSelectionScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProcedureSelectionScreenStateDataImplCopyWith<
@@ -1941,11 +1872,8 @@ abstract class ProcedureSelectionScreenStateData
   Config get config;
   @override
   dynamic get language;
-
-  /// Create a copy of ProcedureSelectionScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProcedureSelectionScreenStateDataImplCopyWith<
           _$ProcedureSelectionScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;

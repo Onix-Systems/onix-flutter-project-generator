@@ -73,9 +73,6 @@ class _$SwaggerParserScreenEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of SwaggerParserScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -100,8 +97,6 @@ class __$$SwaggerParserScreenEventInitImplCopyWithImpl<$Res>
       $Res Function(_$SwaggerParserScreenEventInitImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SwaggerParserScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -115,8 +110,6 @@ class __$$SwaggerParserScreenEventInitImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of SwaggerParserScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -151,9 +144,7 @@ class _$SwaggerParserScreenEventInitImpl
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  /// Create a copy of SwaggerParserScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SwaggerParserScreenEventInitImplCopyWith<
@@ -230,10 +221,7 @@ abstract class SwaggerParserScreenEventInit
       _$SwaggerParserScreenEventInitImpl;
 
   Config get config;
-
-  /// Create a copy of SwaggerParserScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SwaggerParserScreenEventInitImplCopyWith<
           _$SwaggerParserScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -259,8 +247,6 @@ class __$$SwaggerParserScreenEventParseImplCopyWithImpl<$Res>
       $Res Function(_$SwaggerParserScreenEventParseImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SwaggerParserScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -300,9 +286,7 @@ class _$SwaggerParserScreenEventParseImpl
   @override
   int get hashCode => Object.hash(runtimeType, url);
 
-  /// Create a copy of SwaggerParserScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SwaggerParserScreenEventParseImplCopyWith<
@@ -379,10 +363,7 @@ abstract class SwaggerParserScreenEventParse
       _$SwaggerParserScreenEventParseImpl;
 
   String get url;
-
-  /// Create a copy of SwaggerParserScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SwaggerParserScreenEventParseImplCopyWith<
           _$SwaggerParserScreenEventParseImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -447,9 +428,6 @@ class _$SwaggerParserScreenSRCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of SwaggerParserScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -466,9 +444,6 @@ class __$$OnErrorImplCopyWithImpl<$Res>
   __$$OnErrorImplCopyWithImpl(
       _$OnErrorImpl _value, $Res Function(_$OnErrorImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SwaggerParserScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -571,9 +546,6 @@ class __$$OnContinueImplCopyWithImpl<$Res>
   __$$OnContinueImplCopyWithImpl(
       _$OnContinueImpl _value, $Res Function(_$OnContinueImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SwaggerParserScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -698,9 +670,7 @@ mixin _$SwaggerParserScreenState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of SwaggerParserScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SwaggerParserScreenStateCopyWith<SwaggerParserScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -727,8 +697,6 @@ class _$SwaggerParserScreenStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SwaggerParserScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -742,8 +710,6 @@ class _$SwaggerParserScreenStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of SwaggerParserScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -778,8 +744,6 @@ class __$$SwaggerParserScreenStateDataImplCopyWithImpl<$Res>
       $Res Function(_$SwaggerParserScreenStateDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SwaggerParserScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -819,9 +783,7 @@ class _$SwaggerParserScreenStateDataImpl
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  /// Create a copy of SwaggerParserScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SwaggerParserScreenStateDataImplCopyWith<
@@ -893,11 +855,8 @@ abstract class SwaggerParserScreenStateData
 
   @override
   Config get config;
-
-  /// Create a copy of SwaggerParserScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SwaggerParserScreenStateDataImplCopyWith<
           _$SwaggerParserScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;

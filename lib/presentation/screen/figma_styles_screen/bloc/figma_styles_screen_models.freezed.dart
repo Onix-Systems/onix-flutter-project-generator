@@ -80,9 +80,6 @@ class _$FigmaStylesScreenEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -107,8 +104,6 @@ class __$$FigmaStylesScreenEventInitImplCopyWithImpl<$Res>
       $Res Function(_$FigmaStylesScreenEventInitImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,8 +117,6 @@ class __$$FigmaStylesScreenEventInitImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -157,9 +150,7 @@ class _$FigmaStylesScreenEventInitImpl implements FigmaStylesScreenEventInit {
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FigmaStylesScreenEventInitImplCopyWith<_$FigmaStylesScreenEventInitImpl>
@@ -241,10 +232,7 @@ abstract class FigmaStylesScreenEventInit implements FigmaStylesScreenEvent {
       _$FigmaStylesScreenEventInitImpl;
 
   Config get config;
-
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FigmaStylesScreenEventInitImplCopyWith<_$FigmaStylesScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -269,8 +257,6 @@ class __$$FigmaStylesScreenEventOnGetStylesImplCopyWithImpl<$Res>
       $Res Function(_$FigmaStylesScreenEventOnGetStylesImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -319,9 +305,7 @@ class _$FigmaStylesScreenEventOnGetStylesImpl
   @override
   int get hashCode => Object.hash(runtimeType, figmaId, token);
 
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FigmaStylesScreenEventOnGetStylesImplCopyWith<
@@ -407,10 +391,7 @@ abstract class FigmaStylesScreenEventOnGetStyles
 
   String get figmaId;
   String get token;
-
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FigmaStylesScreenEventOnGetStylesImplCopyWith<
           _$FigmaStylesScreenEventOnGetStylesImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -433,9 +414,6 @@ class __$$FigmaStylesScreenEventOnClearImplCopyWithImpl<$Res>
       _$FigmaStylesScreenEventOnClearImpl _value,
       $Res Function(_$FigmaStylesScreenEventOnClearImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -592,9 +570,6 @@ class _$FigmaStylesScreenSRCopyWithImpl<$Res, $Val extends FigmaStylesScreenSR>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of FigmaStylesScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -611,9 +586,6 @@ class __$$LoadFinishedImplCopyWithImpl<$Res>
   __$$LoadFinishedImplCopyWithImpl(
       _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of FigmaStylesScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -719,8 +691,6 @@ class __$$ErrorImplCopyWithImpl<$Res>
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FigmaStylesScreenSR
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -759,9 +729,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  /// Create a copy of FigmaStylesScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -834,10 +802,7 @@ abstract class _Error implements FigmaStylesScreenSR {
   const factory _Error({required final String error}) = _$ErrorImpl;
 
   String get error;
-
-  /// Create a copy of FigmaStylesScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -878,9 +843,7 @@ mixin _$FigmaStylesScreenState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of FigmaStylesScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FigmaStylesScreenStateCopyWith<FigmaStylesScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -907,8 +870,6 @@ class _$FigmaStylesScreenStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FigmaStylesScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -922,8 +883,6 @@ class _$FigmaStylesScreenStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of FigmaStylesScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -958,8 +917,6 @@ class __$$FigmaStylesScreenStateDataImplCopyWithImpl<$Res>
       $Res Function(_$FigmaStylesScreenStateDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FigmaStylesScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -998,9 +955,7 @@ class _$FigmaStylesScreenStateDataImpl implements FigmaStylesScreenStateData {
   @override
   int get hashCode => Object.hash(runtimeType, config);
 
-  /// Create a copy of FigmaStylesScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FigmaStylesScreenStateDataImplCopyWith<_$FigmaStylesScreenStateDataImpl>
@@ -1070,11 +1025,8 @@ abstract class FigmaStylesScreenStateData implements FigmaStylesScreenState {
 
   @override
   Config get config;
-
-  /// Create a copy of FigmaStylesScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FigmaStylesScreenStateDataImplCopyWith<_$FigmaStylesScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -47,12 +47,8 @@ mixin _$Config {
   String get swaggerUrl => throw _privateConstructorUsedError;
   bool get sentry => throw _privateConstructorUsedError;
 
-  /// Serializes this Config to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -101,8 +97,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -231,8 +225,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     ) as $Val);
   }
 
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PlatformsListCopyWith<$Res> get platformsList {
@@ -288,8 +280,6 @@ class __$$ConfigImplCopyWithImpl<$Res>
       _$ConfigImpl _value, $Res Function(_$ConfigImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -601,7 +591,7 @@ class _$ConfigImpl extends _Config {
             (identical(other.sentry, sentry) || other.sentry == sentry));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -631,9 +621,7 @@ class _$ConfigImpl extends _Config {
         sentry
       ]);
 
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>
@@ -719,19 +707,16 @@ abstract class _Config extends Config {
   @override
   List<String> get signingVars;
   @override
-  Set<Screen> get screens; // ignore: invalid_annotation_target
-  @override
+  Set<Screen> get screens;
+  @override // ignore: invalid_annotation_target
   @JsonKey(includeFromJson: false, includeToJson: false)
   List<AppStyle> get styles;
   @override
   String get swaggerUrl;
   @override
   bool get sentry;
-
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

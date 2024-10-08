@@ -22,9 +22,7 @@ mixin _$VectorNodeEntity {
   String get type => throw _privateConstructorUsedError;
   List<PaintProperty> get fills => throw _privateConstructorUsedError;
 
-  /// Create a copy of VectorNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $VectorNodeEntityCopyWith<VectorNodeEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,8 +51,6 @@ class _$VectorNodeEntityCopyWithImpl<$Res, $Val extends VectorNodeEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of VectorNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,8 +109,6 @@ class __$$VectorNodeEntityImplCopyWithImpl<$Res>
       $Res Function(_$VectorNodeEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of VectorNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -197,9 +191,7 @@ class _$VectorNodeEntityImpl implements _VectorNodeEntity {
   int get hashCode => Object.hash(runtimeType, id, key, name, type,
       const DeepCollectionEquality().hash(_fills));
 
-  /// Create a copy of VectorNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$VectorNodeEntityImplCopyWith<_$VectorNodeEntityImpl> get copyWith =>
@@ -225,11 +217,8 @@ abstract class _VectorNodeEntity implements VectorNodeEntity {
   String get type;
   @override
   List<PaintProperty> get fills;
-
-  /// Create a copy of VectorNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$VectorNodeEntityImplCopyWith<_$VectorNodeEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -82,9 +82,6 @@ class _$GenerationScreenEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of GenerationScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -109,8 +106,6 @@ class __$$GenerationScreenEventInitImplCopyWithImpl<$Res>
       $Res Function(_$GenerationScreenEventInitImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GenerationScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,8 +124,6 @@ class __$$GenerationScreenEventInitImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of GenerationScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -169,9 +162,7 @@ class _$GenerationScreenEventInitImpl implements GenerationScreenEventInit {
   @override
   int get hashCode => Object.hash(runtimeType, config, isModify);
 
-  /// Create a copy of GenerationScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$GenerationScreenEventInitImplCopyWith<_$GenerationScreenEventInitImpl>
@@ -257,10 +248,7 @@ abstract class GenerationScreenEventInit implements GenerationScreenEvent {
 
   Config get config;
   bool get isModify;
-
-  /// Create a copy of GenerationScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$GenerationScreenEventInitImplCopyWith<_$GenerationScreenEventInitImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -282,9 +270,6 @@ class __$$GenerationScreenEventGenerateProjectImplCopyWithImpl<$Res>
       _$GenerationScreenEventGenerateProjectImpl _value,
       $Res Function(_$GenerationScreenEventGenerateProjectImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of GenerationScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -403,9 +388,6 @@ class __$$GenerationScreenEventOpenProjectImplCopyWithImpl<$Res>
       _$GenerationScreenEventOpenProjectImpl _value,
       $Res Function(_$GenerationScreenEventOpenProjectImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of GenerationScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -559,9 +541,6 @@ class _$GenerationScreenSRCopyWithImpl<$Res, $Val extends GenerationScreenSR>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of GenerationScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -578,9 +557,6 @@ class __$$StubSRImplCopyWithImpl<$Res>
   __$$StubSRImplCopyWithImpl(
       _$StubSRImpl _value, $Res Function(_$StubSRImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of GenerationScreenSR
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -718,9 +694,7 @@ mixin _$GenerationScreenState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of GenerationScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $GenerationScreenStateCopyWith<GenerationScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -751,8 +725,6 @@ class _$GenerationScreenStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of GenerationScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -781,8 +753,6 @@ class _$GenerationScreenStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of GenerationScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
@@ -821,8 +791,6 @@ class __$$GenerationScreenStateDataImplCopyWithImpl<$Res>
       $Res Function(_$GenerationScreenStateDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GenerationScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -895,9 +863,7 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
   int get hashCode =>
       Object.hash(runtimeType, config, isModify, generatingState, outputStream);
 
-  /// Create a copy of GenerationScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$GenerationScreenStateDataImplCopyWith<_$GenerationScreenStateDataImpl>
@@ -992,11 +958,8 @@ abstract class GenerationScreenStateData implements GenerationScreenState {
   GeneratingState get generatingState;
   @override
   Stream<List<OutputLine>>? get outputStream;
-
-  /// Create a copy of GenerationScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$GenerationScreenStateDataImplCopyWith<_$GenerationScreenStateDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

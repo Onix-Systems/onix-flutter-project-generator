@@ -22,9 +22,7 @@ mixin _$ShapeWithTextNodeEntity {
   String get type => throw _privateConstructorUsedError;
   List<PaintProperty> get fills => throw _privateConstructorUsedError;
 
-  /// Create a copy of ShapeWithTextNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ShapeWithTextNodeEntityCopyWith<ShapeWithTextNodeEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,8 +52,6 @@ class _$ShapeWithTextNodeEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ShapeWithTextNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -117,8 +113,6 @@ class __$$ShapeWithTextNodeEntityImplCopyWithImpl<$Res>
       $Res Function(_$ShapeWithTextNodeEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ShapeWithTextNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -201,9 +195,7 @@ class _$ShapeWithTextNodeEntityImpl implements _ShapeWithTextNodeEntity {
   int get hashCode => Object.hash(runtimeType, id, key, name, type,
       const DeepCollectionEquality().hash(_fills));
 
-  /// Create a copy of ShapeWithTextNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ShapeWithTextNodeEntityImplCopyWith<_$ShapeWithTextNodeEntityImpl>
@@ -230,11 +222,8 @@ abstract class _ShapeWithTextNodeEntity implements ShapeWithTextNodeEntity {
   String get type;
   @override
   List<PaintProperty> get fills;
-
-  /// Create a copy of ShapeWithTextNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ShapeWithTextNodeEntityImplCopyWith<_$ShapeWithTextNodeEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

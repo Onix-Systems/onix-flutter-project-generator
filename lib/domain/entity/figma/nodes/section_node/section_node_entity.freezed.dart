@@ -22,9 +22,7 @@ mixin _$SectionNodeEntity {
   String get name => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
 
-  /// Create a copy of SectionNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SectionNodeEntityCopyWith<SectionNodeEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,8 +51,6 @@ class _$SectionNodeEntityCopyWithImpl<$Res, $Val extends SectionNodeEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SectionNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,8 +109,6 @@ class __$$SectionNodeEntityImplCopyWithImpl<$Res>
       $Res Function(_$SectionNodeEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SectionNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -198,9 +192,7 @@ class _$SectionNodeEntityImpl implements _SectionNodeEntity {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_fills), id, key, name, type);
 
-  /// Create a copy of SectionNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SectionNodeEntityImplCopyWith<_$SectionNodeEntityImpl> get copyWith =>
@@ -226,11 +218,8 @@ abstract class _SectionNodeEntity implements SectionNodeEntity {
   String get name;
   @override
   String get type;
-
-  /// Create a copy of SectionNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SectionNodeEntityImplCopyWith<_$SectionNodeEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
