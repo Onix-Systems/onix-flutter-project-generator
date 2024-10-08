@@ -43,22 +43,20 @@ class ProviderScreenGenerator extends ScreenGenerationService
     final screenName = params.normalizedScreenName;
     if (params.router == ProjectRouter.goRouter) {
       final routesFile = File(
-        '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart',
-      );
-      final routesContent = routesFile.readAsStringSync();
+          '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
+      String routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
       final appRoutesContent = _screenCodeContent.createScreenNavigationGoRoute(
         input: routesContent,
         screenName: screenName,
         isLastDeclaration: params.lastScreenItem,
       );
-      await routesFile.writeAsString(appRoutesContent);
+      routesFile.writeAsString(appRoutesContent);
     }
 
     final routerFile = File(
-      '${params.projectPath}/${params.projectName}/lib/app/router/app_router.dart',
-    );
-    final routerContent = routerFile.readAsStringSync();
+        '${params.projectPath}/${params.projectName}/lib/app/router/app_router.dart');
+    String routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations
     final filledRouterContent =
@@ -70,15 +68,14 @@ class ProviderScreenGenerator extends ScreenGenerationService
       router: params.router,
     );
 
-    await routerFile.writeAsString(filledRouterContent);
+    routerFile.writeAsString(filledRouterContent);
   }
 
   Future<void> _createDI(ScreenGeneratorParams params) async {
-    final diFile = File(
-      '${params.projectPath}/${params.projectName}/lib/core/di/provider.dart',
-    );
+    var diFile = File(
+        '${params.projectPath}/${params.projectName}/lib/core/di/provider.dart');
     final screenName = params.normalizedScreenName;
-    final content = await diFile.readAsString();
+    String content = await diFile.readAsString();
     final diOutputContent = createScreenDIContent(
       input: content,
       screenName: screenName,
@@ -96,7 +93,9 @@ class ProviderScreenGenerator extends ScreenGenerationService
     final screenFile =
         await File('$screenPath/${screenName}_screen.dart').create();
 
-    final screenContent = _screenCodeContent.createScreen(
+    String screenContent = '';
+
+    screenContent = _screenCodeContent.createScreen(
       isGoRouter: params.router == ProjectRouter.goRouter,
       projectName: params.projectName,
       screenName: screenName,
@@ -105,9 +104,9 @@ class ProviderScreenGenerator extends ScreenGenerationService
     await screenFile.writeAsString(screenContent);
 
     ///Write Provider file
-    final providerFile = await File(
-      '$screenPath/provider/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart',
-    ).create(recursive: true);
+    var providerFile = await File(
+            '$screenPath/provider/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart')
+        .create(recursive: true);
     final providerFileContent = createProviderContent(
       projectName: params.projectName,
       screenName: screenName,
