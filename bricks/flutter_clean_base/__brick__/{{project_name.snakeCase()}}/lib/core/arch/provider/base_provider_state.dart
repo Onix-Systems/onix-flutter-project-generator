@@ -22,7 +22,7 @@ abstract class BaseProviderState<P extends BaseProvider,
       },
       lazy: lazyProvider,
       child: Builder(
-        builder: (ctx) {
+        builder: (context) {
           initParams(context);
           return buildWidget(context);
         },
