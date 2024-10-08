@@ -51,7 +51,7 @@ class CubitScreenCodeContent extends ScreenCodeContent {
 
       ..add('class _${screenClassName}ScreenState')
       ..add('extends BaseCubitState<')
-      ..add('${screenClassName}ScreenCubit, ')
+      ..add('${screenClassName}ScreenState, ')
       ..add('$cubitClassType, ')
       ..add('${screenClassName}ScreenSR, ')
       ..add('${screenClassName}Screen> {')
