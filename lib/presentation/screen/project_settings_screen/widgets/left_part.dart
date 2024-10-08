@@ -110,6 +110,14 @@ class LeftPart extends StatelessWidget {
             valueSetter: (_) =>
                 bloc.add(const ProjectSettingsScreenEventGraphQLChange()),
           ),
+          const Gap(20),
+          SwitchWithLabel(
+            label: S.of(context).integrateSentry,
+            initialValue: state.config.sentry,
+            valueSetter: (_) => bloc.add(
+              const ProjectSettingsScreenEvent.sentryChange(),
+            ),
+          ),
         ],
       ),
     );
