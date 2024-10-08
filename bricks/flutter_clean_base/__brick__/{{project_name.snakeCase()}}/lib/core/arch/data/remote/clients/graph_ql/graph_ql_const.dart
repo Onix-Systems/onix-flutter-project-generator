@@ -1,3 +1,6 @@
 class GraphQlConst {
-  static const String graphQLBaseUrl = 'https://jsonplaceholder.typicode.com';
+  //TODO: Specify Api client Base URL
+  static const String graphQLBaseUrl = 'https://host.todo';
+
+  const GraphQlConst._();
 }

@@ -133,18 +133,11 @@ Future<void> getDependencies(HookContext context) async {
   List<String> dependencies = [
     'cupertino_icons',
     'dio',
-    'pretty_dio_logger',
-    'dio_cache_interceptor',
-    'dio_cache_interceptor_hive_store',
-    'hive_flutter',
     'freezed_annotation',
     'json_annotation',
     'get_it',
     'flutter_secure_storage:^9.0.0',
     'shared_preferences',
-    'internet_connection_checker',
-    'retry',
-    'encrypt',
     'path_provider',
     'logger',
     'fluttertoast',
@@ -155,6 +148,8 @@ Future<void> getDependencies(HookContext context) async {
     // (Ivan Modlo): Connectivity Service has been blocked due to
     // unit tests that differ from the major version are lower than 6
     'connectivity_plus: ^6.0.3',
+    'onix_flutter_core',
+    'onix_flutter_core_models',
   ];
 
   if (context.vars['isBloc']) {

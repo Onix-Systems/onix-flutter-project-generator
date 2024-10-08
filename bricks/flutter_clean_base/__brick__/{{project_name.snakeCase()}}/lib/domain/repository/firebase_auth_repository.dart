@@ -1,4 +1,4 @@
-import 'package:{{project_name}}/core/arch/domain/entity/common/result.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 import 'package:{{project_name}}/domain/params/create_user/create_account_params.dart';
 
 //{entities_imports}
