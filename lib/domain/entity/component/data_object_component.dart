@@ -150,13 +150,14 @@ class DataObjectComponent with _$DataObjectComponent {
     }
     codeLines.addNewLine();
     final classNamePrefix = fileReference.getTypeDeclaration(DataFileType.none);
-    final objects =
-        _getMapperObjectVariablesContent(MapperType.mapEntityToRequest);
-    final classModifier = objects.isEmpty ? 'const ' : '';
 
     ///Inner mapper class declaration
     ///Response to Entity
     if (createResponseToEntityMapper) {
+      final objects =
+          _getMapperObjectVariablesContent(MapperType.mapResponseToEntity);
+      final classModifier = objects.isEmpty ? 'const ' : '';
+
       codeLines
         ..add(
           'class _Map${classNamePrefix}ResponseToEntity implements Mapper<$responseName, $entityName> {',
@@ -175,9 +176,7 @@ class DataObjectComponent with _$DataObjectComponent {
         ..add('return $classModifier$entityName(')
 
         ///Use inner variable mapper for inner variables
-        ..addAll(
-          _getMapperObjectVariablesContent(MapperType.mapResponseToEntity),
-        )
+        ..addAll(objects)
         ..add(');')
         ..add('}')
         ..add('}')
@@ -186,6 +185,10 @@ class DataObjectComponent with _$DataObjectComponent {
 
     ///Entity to Request
     if (createEntityToRequestMapper) {
+      final objects =
+          _getMapperObjectVariablesContent(MapperType.mapEntityToRequest);
+      final classModifier = objects.isEmpty ? 'const ' : '';
+
       codeLines
         ..add(
           'class _Map${classNamePrefix}EntityToRequest implements Mapper<$entityName, $requestName> {',
@@ -204,9 +207,7 @@ class DataObjectComponent with _$DataObjectComponent {
         ..add('return $classModifier$requestName(')
 
         ///Use inner variable mapper for inner variables
-        ..addAll(
-          _getMapperObjectVariablesContent(MapperType.mapEntityToRequest),
-        )
+        ..addAll(objects)
         ..add(');')
         ..add('}')
         ..add('}');
