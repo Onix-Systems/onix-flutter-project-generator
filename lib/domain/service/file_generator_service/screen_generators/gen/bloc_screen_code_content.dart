@@ -57,6 +57,7 @@ class BlocScreenCodeContent extends ScreenCodeContent {
       ..add(
         '$blocClassType createBloc() => GetIt.I.get<$blocClassType>();',
       )
+      ..addNewLine()
       ..add('@override')
       ..add('Widget buildWidget(BuildContext context) {')
       ..add('return srObserver(')
