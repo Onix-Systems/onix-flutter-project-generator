@@ -159,12 +159,14 @@ Future<void> getDependencies(HookContext context) async {
 
   if (context.vars['isBloc']) {
     dependencies..addAll(['flutter_bloc', 'onix_flutter_bloc']);
+    await removeStateManagers(['provider']);
     await Process.run('rm', ['theme_util.dart'],
         workingDirectory: '$name/lib/app/util');
   }
 
   if (context.vars['isProvider']) {
     dependencies.addAll(['provider', 'onix_flutter_provider']);
+    await removeStateManagers(['bloc']);
     await Process.run('rm', ['theme_util.dart'],
         workingDirectory: '$name/lib/app/util');
   }
@@ -175,7 +177,7 @@ Future<void> getDependencies(HookContext context) async {
 
   if (context.vars['isBase']) {
     // TODO(Ivan Modlo): Remove it later
-    await removeStateManagers(['provider']);
+    await removeStateManagers(['provider', 'bloc']);
   }
 
   if (!context.vars['web_only']) {
@@ -294,8 +296,7 @@ Future<void> getDependencies(HookContext context) async {
 Future<void> removeStateManagers(List<String> managers) async {
   for (var manager in managers) {
     await Process.run('rm', ['-r', manager], workingDirectory: '$name/lib/app');
-    await Process.run('rm', ['-r', manager],
-        workingDirectory: '$name/lib/core/arch');
+
     await Process.run('rm', ['$manager.dart'],
         workingDirectory: '$name/lib/core/di');
   }
