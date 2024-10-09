@@ -43,7 +43,7 @@ class BaseStrategy implements StateManagerStrategy {
           ),
         );
       } else {
-        for (int i = 0; i < screensNotExist.length; i++) {
+        for (var i = 0; i < screensNotExist.length; i++) {
           final screen = screensNotExist[i];
           logResult(
             'Generating screen ${screen.name}...'.toInfoMessage(),

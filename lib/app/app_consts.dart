@@ -1,4 +1,4 @@
-abstract final class AppConsts {
+class AppConsts {
   static const String releaseUri =
       'https://github.com/Onix-Systems/onix-flutter-project-generator/releases';
 
@@ -43,4 +43,8 @@ abstract final class AppConsts {
   static RegExp organizationInputRegExp = RegExp('[a-z0-9.]');
 
   static RegExp projectNameInputRegExp = RegExp('[a-z0-9_]');
+
+  static RegExp digitsAndLatinWithSpaceOnly = RegExp(r'[a-zA-Z\d ]');
+
+  const AppConsts._();
 }

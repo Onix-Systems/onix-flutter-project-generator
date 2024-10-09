@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:onix_flutter_bricks/core/arch/domain/entity/result/result.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/default_screen_route_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/default_screen_route_generator_params.dart';
@@ -9,6 +8,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/signin
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/styles_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/styles_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
+import 'package:onix_flutter_core/onix_flutter_core.dart';
 import 'package:recase/recase.dart';
 
 class FileGeneratorService {

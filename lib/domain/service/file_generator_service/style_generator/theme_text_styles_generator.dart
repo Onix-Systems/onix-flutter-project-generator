@@ -18,8 +18,8 @@ class ThemeTextStylesGenerator
   Future<bool> generate(ThemeTextStyleGeneratorParams params) async {
     final libFolder = '${params.projectPath}/${params.projectName}/lib';
     final appTextStylesFile = await File(
-            '$libFolder/presentation/style/theme/theme_extension/theme_text_styles.dart')
-        .create(recursive: true);
+      '$libFolder/presentation/style/theme/theme_extension/theme_text_styles.dart',
+    ).create(recursive: true);
 
     final parsedTextStyles = _textStylesParser
         .parseFromFile(
@@ -37,19 +37,21 @@ class ThemeTextStylesGenerator
     if (params.theming == ProjectTheming.themeTailor) {
       final result = await _tailorTextStylesGenerator.generate(
         ThemeTextStyleGenerationParams(
-            textStyles: allTextStyles,
-            colors: params.colors,
-            projectName: params.projectName,
-            useScreenUtil: params.useScreenUtil),
+          textStyles: allTextStyles,
+          colors: params.colors,
+          projectName: params.projectName,
+          useScreenUtil: params.useScreenUtil,
+        ),
       );
       await appTextStylesFile.writeAsString(result);
     } else {
       final result = await _defaultTextStylesGenerator.generate(
         ThemeTextStyleGenerationParams(
-            textStyles: allTextStyles,
-            colors: params.colors,
-            projectName: params.projectName,
-            useScreenUtil: params.useScreenUtil),
+          textStyles: allTextStyles,
+          colors: params.colors,
+          projectName: params.projectName,
+          useScreenUtil: params.useScreenUtil,
+        ),
       );
       await appTextStylesFile.writeAsString(result);
     }

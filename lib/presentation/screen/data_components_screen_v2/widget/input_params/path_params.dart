@@ -28,13 +28,15 @@ class PathParams extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
-        ...pathParams.map((e) => Text(
-              '${e.type.getTypeDeclaration(DataFileType.none)} ${e.name}',
-              style: TextStyle(
-                color: context.appColors.textColor,
-                fontSize: 14,
-              ),
-            )),
+        ...pathParams.map(
+          (e) => Text(
+            '${e.type.getTypeDeclaration(DataFileType.none)} ${e.name}',
+            style: TextStyle(
+              color: context.appColors.textColor,
+              fontSize: 14,
+            ),
+          ),
+        ),
       ],
     );
   }

@@ -14,6 +14,7 @@ import 'package:onix_flutter_bricks/presentation/screen/summary_screen/summary_s
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/swagger_parser_screen.dart';
 //{imports end}
 
+// ignore_for_file: cast_nullable_to_non_nullable
 class AppRouter {
   static const _initialLocation = '/';
   static const _splashScreen = '/';

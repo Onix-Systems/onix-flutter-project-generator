@@ -35,7 +35,8 @@ class RequestComponent with _$RequestComponent {
 
   ///Write REST API ath declaration
   String getVariableDeclaration() {
-    ///If there pathParams - build declaration as functions and pass params into the path
+    /// If there pathParams - build declaration as functions and
+    /// pass params into the path
     if (pathParams.isNotEmpty) {
       final codeLines = List<String>.empty(growable: true);
       final paramsDeclaration = pathParams
@@ -50,15 +51,15 @@ class RequestComponent with _$RequestComponent {
           .add('String _${operationId.camelCase}({$paramsDeclaration}) =>');
       final names = pathParams.map((e) => e.name);
       var pathWithParams = path;
-      for (var e in names) {
+      for (final e in names) {
         pathWithParams = pathWithParams.replaceAll('{$e}', '\$${e.camelCase}');
       }
-      codeLines.add('\'$pathWithParams\';');
+      codeLines.add("'$pathWithParams';");
       return codeLines.join('\n');
     }
 
     ///Build regular declaration
-    return 'static const  _${operationId.camelCase} = \'$path\';';
+    return "static const  _${operationId.camelCase} = '$path';";
   }
 
   ///Create declaration for request in source interface
@@ -90,14 +91,16 @@ class RequestComponent with _$RequestComponent {
         response.type.getTypeDeclaration(DataFileType.response);
     final responseClosure =
         response.type.getDefaultParserClosure(DataFileType.response);
-    codeLines.addAll(_descriptionArray());
-
-    ///Function start
-    codeLines.add('@override');
-
-    ///Declare a new function
     codeLines
-        .add('Future<DataResponse<$responseType>> ${operationId.camelCase}(');
+      ..addAll(_descriptionArray())
+
+      ///Function start
+      ..add('@override')
+
+      ///Declare a new function
+      ..add(
+        'Future<DataResponse<$responseType>> ${operationId.camelCase}(',
+      );
 
     ///Create function input params
     final functionParams = _buildFunctionParams(DataFileType.request);
@@ -115,33 +118,32 @@ class RequestComponent with _$RequestComponent {
       final multipartFiles = multipartBody.where(
         (e) => e.type is SwaggerFile,
       );
-      for (var e in multipartFiles) {
+      for (final e in multipartFiles) {
         codeLines.add(
             'final ${e.getNameDeclaration()}MultipartFile = await MultipartFile.fromFile(${e.getNameDeclaration()});');
       }
 
       ///create form data
       codeLines.add('final formData = FormData.fromMap({');
-      for (var e in multipartBody) {
+      for (final e in multipartBody) {
         if (e.type is SwaggerFile) {
-          codeLines
-              .add('\'${e.name}\': ${e.getNameDeclaration()}MultipartFile,');
+          codeLines.add("'${e.name}': ${e.getNameDeclaration()}MultipartFile,");
         } else {
-          codeLines.add('\'${e.name}\': ${e.getNameDeclaration()},');
+          codeLines.add("'${e.name}': ${e.getNameDeclaration()},");
         }
       }
-      codeLines.add('},);');
-      codeLines.addNewLine();
+      codeLines..add('},);')
+      ..addNewLine();
     }
 
     ///If query params not empty - create query parameter variables
     if (queryParams.isNotEmpty) {
       codeLines.add('final queryParams = {');
-      for (var e in queryParams) {
-        codeLines.add('\'${e.name}\': ${e.getNameDeclaration()},');
+      for (final e in queryParams) {
+        codeLines.add("'${e.name}': ${e.getNameDeclaration()},");
       }
-      codeLines.add('};');
-      codeLines.addNewLine();
+      codeLines..add('};')
+      ..addNewLine();
     }
 
     ///If create a new request
@@ -182,17 +184,18 @@ class RequestComponent with _$RequestComponent {
     if (queryParams.isNotEmpty) {
       codeLines.add('queryParameters: queryParams,');
     }
-    codeLines.add(');');
+    codeLines
+      ..add(');')
 
-    ///End request build
-    codeLines.addNewLine();
+      ///End request build
+      ..addNewLine()
 
-    ///Call dio request processor
-    codeLines.add('return _dioRequestProcessor.processRequest(');
-    codeLines.add('onRequest: () => request,');
-    codeLines.add('onResponse: (response) {');
-    codeLines.add(responseClosure);
-    codeLines.add('},);}');
+      ///Call dio request processor
+      ..add('return _dioRequestProcessor.processRequest(')
+      ..add('onRequest: () => request,')
+      ..add('onResponse: (response) {')
+      ..add(responseClosure)
+      ..add('},);}');
 
     return codeLines.join('\n');
   }
@@ -200,8 +203,9 @@ class RequestComponent with _$RequestComponent {
   String getRepoDeclarationBody() {
     final codeLines = List<String>.empty(growable: true);
     final returnType = response.type.getTypeDeclaration(DataFileType.entity);
-    codeLines.addAll(_descriptionArray());
-    codeLines.add('Future<Result<$returnType>> ${operationId.camelCase}(');
+    codeLines
+      ..addAll(_descriptionArray())
+      ..add('Future<Result<$returnType>> ${operationId.camelCase}(');
 
     ///Create function input params
     final functionParams = _buildFunctionParams(DataFileType.entity);
@@ -218,10 +222,10 @@ class RequestComponent with _$RequestComponent {
 
   String getRepoImplementationBody(String repoName) {
     final returnType = response.type.getTypeDeclaration(DataFileType.entity);
-    final codeLines = List<String>.empty(growable: true);
-    codeLines.add('@override');
-    codeLines.addAll(_descriptionArray());
-    codeLines.add('Future<Result<$returnType>> ${operationId.camelCase}(');
+    final codeLines = List<String>.empty(growable: true)
+      ..add('@override')
+      ..addAll(_descriptionArray())
+      ..add('Future<Result<$returnType>> ${operationId.camelCase}(');
 
     ///Create function input params
     final functionParams = _buildFunctionParams(DataFileType.entity);
@@ -232,15 +236,17 @@ class RequestComponent with _$RequestComponent {
     if (functionParams.isNotEmpty) {
       codeLines.add('}');
     }
-    codeLines.add(') async {');
-    codeLines.add('try {');
+    codeLines
+      ..add(') async {')
+      ..add('try {');
     if (requestBody != null) {
       if (requestBody!.type is SwaggerReference) {
         final body = requestBody!.type as SwaggerReference;
         final requestBodyType = body.getTypeDeclaration(DataFileType.none);
         final requestBodyName = requestBody!.getNameDeclaration();
         codeLines.add(
-            'final ${requestBodyType.camelCase}RequestBody = _${requestBodyType.camelCase}Mappers.mapEntityToRequest($requestBodyName);');
+          'final ${requestBodyType.camelCase}RequestBody = _${requestBodyType.camelCase}Mappers.mapEntityToRequest($requestBodyName);',
+        );
       } else if (requestBody!.type is SwaggerArray) {
         final array = requestBody!.type as SwaggerArray;
         if (array.itemType.type is SwaggerReference) {
@@ -248,7 +254,8 @@ class RequestComponent with _$RequestComponent {
           final requestBodyName = requestBody!.getNameDeclaration();
           final requestBodyType = ref.getTypeDeclaration(DataFileType.none);
           codeLines.add(
-              'final ${requestBodyType.camelCase}RequestBody = $requestBodyName.map(_${requestBodyType.camelCase}Mappers.mapEntityToRequest,).toList();');
+            'final ${requestBodyType.camelCase}RequestBody = $requestBodyName.map(_${requestBodyType.camelCase}Mappers.mapEntityToRequest,).toList();',
+          );
         }
       }
     }
@@ -256,45 +263,52 @@ class RequestComponent with _$RequestComponent {
         'final result = await _${repoName}Source.${operationId.camelCase}(');
     //TODO
     final sourceCallParams = _buildSourceCallParams(DataFileType.none);
-    codeLines.add(sourceCallParams);
-    codeLines.add(');');
-    codeLines.addNewLine();
-    codeLines.add('if (result.isSuccess()) {');
+    codeLines
+      ..add(sourceCallParams)
+      ..add(');')
+      ..addNewLine()
+      ..add('if (result.isSuccess()) {');
     if (response.type is SwaggerReference) {
       final ref = response.type as SwaggerReference;
       final responseName = ref.getTypeDeclaration(DataFileType.none).camelCase;
-      codeLines.add(
-          'final ${responseName}Object = _${responseName}Mappers.mapResponseToEntity(result.data);');
-      codeLines.add('return Result.success(${responseName}Object);');
+      codeLines
+        ..add(
+          'final ${responseName}Object = _${responseName}Mappers.mapResponseToEntity(result.data);',
+        )
+        ..add('return Result.success(${responseName}Object);');
     } else if (response.type is SwaggerArray) {
       final array = response.type as SwaggerArray;
       if (array.itemType.type is SwaggerReference) {
         final ref = array.itemType.type as SwaggerReference;
         final responseName =
             ref.getTypeDeclaration(DataFileType.none).camelCase;
-        codeLines.add(
-            'final ${responseName}Objects = result.data.map(_${responseName}Mappers.mapResponseToEntity,).toList();');
-        codeLines.add('return Result.success(${responseName}Objects);');
+        codeLines
+          ..add(
+            'final ${responseName}Objects = result.data.map(_${responseName}Mappers.mapResponseToEntity,).toList();',
+          )
+          ..add('return Result.success(${responseName}Objects);');
       } else {
         codeLines.add('return Result.success(result.data);');
       }
     } else {
       codeLines.add('return Result.success(result.data);');
     }
-    codeLines.add('} else {');
-    codeLines.add(
-        'return Result.error(failure: MapCommonServerError.getServerFailureDetails(result),);');
-    codeLines.add('}');
-
-    codeLines.add('} catch (e, trace) {');
-    codeLines.add(
-        'logger.crash(reason: \'${operationId.camelCase}\', error: e, stackTrace: trace,);');
-    codeLines.add('return Result.error(');
-    codeLines.add('failure: ApiFailure(');
-    codeLines.add('ServerFailure.exception,');
-    codeLines.add('message: e.toString(),');
-    codeLines.add('),);}');
-    codeLines.add('}');
+    codeLines
+      ..add('} else {')
+      ..add(
+        'return Result.error(failure: MapCommonServerError.getServerFailureDetails(result),);',
+      )
+      ..add('}')
+      ..add('} catch (e, trace) {')
+      ..add(
+        "logger.crash(reason: '${operationId.camelCase}', error: e, stackTrace: trace,);",
+      )
+      ..add('return Result.error(')
+      ..add('failure: ApiFailure(')
+      ..add('ServerFailure.exception,')
+      ..add('message: e.toString(),')
+      ..add('),);}')
+      ..add('}');
     return codeLines.join('\n');
   }
 
@@ -302,34 +316,42 @@ class RequestComponent with _$RequestComponent {
   String _buildFunctionParams(DataFileType fileType) {
     final codeLines = List<String>.empty(growable: true);
     if (requestBody != null) {
-      codeLines.add(requestBody?.getParamBodyDeclaration(
-            fileType,
-            true,
-          ) ??
-          '');
+      codeLines.add(
+        requestBody?.getParamBodyDeclaration(
+              fileType,
+              true,
+            ) ??
+            '',
+      );
     }
     if (multipartBody.isNotEmpty) {
-      for (var e in multipartBody) {
-        codeLines.add(e.getParamBodyDeclaration(
-          fileType,
-          true,
-        ));
+      for (final e in multipartBody) {
+        codeLines.add(
+          e.getParamBodyDeclaration(
+            fileType,
+            true,
+          ),
+        );
       }
     }
     if (queryParams.isNotEmpty) {
-      for (var e in queryParams) {
-        codeLines.add(e.getParamBodyDeclaration(
-          fileType,
-          false,
-        ));
+      for (final e in queryParams) {
+        codeLines.add(
+          e.getParamBodyDeclaration(
+            fileType,
+            false,
+          ),
+        );
       }
     }
     if (pathParams.isNotEmpty) {
-      for (var e in pathParams) {
-        codeLines.add(e.getParamBodyDeclaration(
-          fileType,
-          false,
-        ));
+      for (final e in pathParams) {
+        codeLines.add(
+          e.getParamBodyDeclaration(
+            fileType,
+            false,
+          ),
+        );
       }
     }
     return codeLines.join('\n');
@@ -348,24 +370,25 @@ class RequestComponent with _$RequestComponent {
             DataFileType.none,
           );
           codeLines.add(
-              '$requestBodyName: ${requestBodyType.camelCase}RequestBody,');
+            '$requestBodyName: ${requestBodyType.camelCase}RequestBody,',
+          );
         }
       } else {
         codeLines.add('$requestBodyName: ${requestBody!.name.camelCase},');
       }
     }
     if (multipartBody.isNotEmpty) {
-      for (var e in multipartBody) {
+      for (final e in multipartBody) {
         codeLines.add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
       }
     }
     if (queryParams.isNotEmpty) {
-      for (var e in queryParams) {
+      for (final e in queryParams) {
         codeLines.add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
       }
     }
     if (pathParams.isNotEmpty) {
-      for (var e in pathParams) {
+      for (final e in pathParams) {
         codeLines.add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
       }
     }

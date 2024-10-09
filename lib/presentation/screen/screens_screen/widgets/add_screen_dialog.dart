@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/domain/entity/state_management/state_management_variant.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -90,7 +90,7 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
               onSubmitted: (_) => _onOk(context),
               placeholder: S.of(context).screenName,
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+                FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]')),
               ],
             ),
             const Gap(15),
@@ -135,7 +135,7 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
 
   Future<void> _onOk(BuildContext context) async {
     if (_screenNameController.text.isNotEmpty) {
-      String screenName = _screenNameController.text.pascalCase;
+      var screenName = _screenNameController.text.pascalCase;
 
       while (screenName.endsWith('Screen')) {
         screenName = screenName.replaceLast('Screen', '');
@@ -151,7 +151,6 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
           Screen(
             name: screenName,
             stateVariant: _stateManagement,
-            exists: false,
           ),
         );
       }

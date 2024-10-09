@@ -59,6 +59,7 @@ class CubitScreenCodeContent extends ScreenCodeContent {
       ..add(
         '$cubitClassType createCubit() => GetIt.I.get<$cubitClassType>();',
       )
+      ..addNewLine()
       ..add('@override')
       ..add('Widget buildWidget(BuildContext context) {')
       ..add('return srObserver(')

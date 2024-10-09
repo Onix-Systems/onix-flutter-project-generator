@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/app/extension/logger_extension.dart';
 import 'package:onix_flutter_bricks/app/swagger_const.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/data_components_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
-import 'package:onix_flutter_bricks/core/extension/logger_extension.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_reference.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
@@ -18,6 +18,8 @@ import 'package:recase/recase.dart';
 
 class ComponentGeneratorService
     implements BaseGenerationService<String, ComponentGeneratorParams> {
+  const ComponentGeneratorService();
+
   @override
   Future<String> generate(ComponentGeneratorParams params) async {
     try {
@@ -94,7 +96,9 @@ class ComponentGeneratorService
     final implementationBody =
         sourceComponent.getImplementationBody(projectName);
     await _createFile(
-        filePath: implementationFilePath, fileBody: implementationBody);
+      filePath: implementationFilePath,
+      fileBody: implementationBody,
+    );
 
     ///Create SL declarations
     final sourceSLPath = '$projectLibFolder/core/di/source.dart';
@@ -102,21 +106,24 @@ class ComponentGeneratorService
     final slContent = await sourceSlFile.readAsString();
 
     ///SL Imports
-    final importLines = List<String>.empty(growable: true);
-    importLines.add(sourceComponent.getDeclarationImport(projectName));
-    importLines.add(sourceComponent.getImplementationImport(projectName));
-    importLines.add(SwaggerConst.swaggerSLImportsKey);
+    final importLines = List<String>.empty(growable: true)
+      ..add(sourceComponent.getDeclarationImport(projectName))
+      ..add(sourceComponent.getImplementationImport(projectName))
+      ..add(SwaggerConst.swaggerSLImportsKey);
 
     ///SL Code
     final className = sourceComponent.name.pascalCase;
-    final codeLines = List<String>.empty(growable: true);
-    codeLines.add(
-        'getIt.registerSingleton<${className}Source>(${className}SourceImpl(');
-    codeLines.add(
-        'getIt.get<ApiClient>(instanceName: DioConst.defaultApiClientName),');
-    codeLines.add('getIt.get<DioRequestProcessor>(),');
-    codeLines.add('),);');
-    codeLines.add(SwaggerConst.swaggerSourceSLDeclarationKey);
+    final codeLines = List<String>.empty(growable: true)
+      ..add(
+        'getIt.registerSingleton<${className}Source>(${className}SourceImpl(',
+      )
+      ..add(
+        'getIt.get<ApiClient>(instanceName: DioConst.defaultApiClientName),',
+      )
+      ..add('getIt.get<DioRequestProcessor>(),')
+      ..add('),);')
+      ..add(SwaggerConst.swaggerSourceSLDeclarationKey);
+
     final imports = importLines.join('\n');
     final code = codeLines.join('\n');
     await sourceSlFile.writeAsString(
@@ -138,7 +145,9 @@ class ComponentGeneratorService
     final repoDeclarationBody =
         sourceComponent.getRepoDeclarationBody(projectName);
     await _createFile(
-        filePath: repoDeclarationFilePath, fileBody: repoDeclarationBody);
+      filePath: repoDeclarationFilePath,
+      fileBody: repoDeclarationBody,
+    );
 
     ///Create repo implementation
     final repoImplFolder = sourceComponent.getRepositoryImplFolderPath(
@@ -158,21 +167,20 @@ class ComponentGeneratorService
     final repoSlContent = await repoSlFile.readAsString();
 
     ///SL Imports
-    final repoImportLines = List<String>.empty(growable: true);
-    repoImportLines.add(sourceComponent.getDeclarationImport(projectName));
-    repoImportLines.add(sourceComponent.getRepoDeclarationImport(projectName));
-    repoImportLines
-        .add(sourceComponent.getRepoImplementationImport(projectName));
-    repoImportLines.add(SwaggerConst.swaggerSLImportsKey);
+    final repoImportLines = List<String>.empty(growable: true)
+      ..add(sourceComponent.getDeclarationImport(projectName))
+      ..add(sourceComponent.getRepoDeclarationImport(projectName))
+      ..add(sourceComponent.getRepoImplementationImport(projectName))
+      ..add(SwaggerConst.swaggerSLImportsKey);
 
     final repoClassName = sourceComponent.name.pascalCase;
-    final repoSLCodeLines = List<String>.empty(growable: true);
-    repoSLCodeLines
-        .add('getIt.registerLazySingleton<${repoClassName}Repository>(');
-    repoSLCodeLines.add(
-        '() => ${repoClassName}RepositoryImpl(getIt<${repoClassName}Source>()),');
-    repoSLCodeLines.add(');');
-    repoSLCodeLines.add(SwaggerConst.swaggerRepoSLDeclarationKey);
+    final repoSLCodeLines = List<String>.empty(growable: true)
+      ..add('getIt.registerLazySingleton<${repoClassName}Repository>(')
+      ..add(
+        '() => ${repoClassName}RepositoryImpl(getIt<${repoClassName}Source>()),',
+      )
+      ..add(');')
+      ..add(SwaggerConst.swaggerRepoSLDeclarationKey);
     final repoSLImports = repoImportLines.join('\n');
     final repoSLCode = repoSLCodeLines.join('\n');
     await repoSlFile.writeAsString(
@@ -192,7 +200,7 @@ class ComponentGeneratorService
     final addedDataComponents = List<DataObjectComponent>.empty(growable: true);
 
     ///go through each reference and create object
-    for (var e in references) {
+    for (final e in references) {
       final dataObject = components.firstWhereOrNull(
         (component) => component.name == e.fileReference.reference,
       );
@@ -248,7 +256,7 @@ class ComponentGeneratorService
     String projectName,
     List<DataObjectComponent> addedDataComponents,
   ) async {
-    for (var e in addedDataComponents) {
+    for (final e in addedDataComponents) {
       ///Create Entities
 
       final entityRawFolder = e.getFileFolder(DataFileType.entity);
@@ -267,7 +275,7 @@ class ComponentGeneratorService
 
       await _createFile(filePath: entityPath, fileBody: entityBody);
     }
-    for (var e in addedDataComponents) {
+    for (final e in addedDataComponents) {
       ///Create mappers
       final mapperRawFolder = e.getObjectMapperFolder();
       final mapperRawPath = e.getObjectMapperFilePath();
@@ -280,8 +288,8 @@ class ComponentGeneratorService
           e.fileReference.getFileImportName(DataFileType.response);
       final requestFilePath = '$projectLibFolder/$requestRawFilePath';
       final responseFilePath = '$projectLibFolder/$responseRawFilePath';
-      final isRequestFileExist = await File(requestFilePath).exists();
-      final isResponseFileExist = await File(responseFilePath).exists();
+      final isRequestFileExist = File(requestFilePath).existsSync();
+      final isResponseFileExist = File(responseFilePath).existsSync();
       if (isRequestFileExist || isResponseFileExist) {
         final mapperBody = e.getMapperBody(
           projectName: projectName,
@@ -300,9 +308,9 @@ class ComponentGeneratorService
     List<EnumParamComponent> enums,
     List<DataObjectComponent> components,
   ) async {
-    final enumsCopy = List.from(enums, growable: true);
-    for (var component in components) {
-      for (var variable in component.variables) {
+    final enumsCopy = List.of(enums);
+    for (final component in components) {
+      for (final variable in component.variables) {
         final innerEnum = variable.type.getSwaggerEnumReference();
         if (innerEnum != null) {
           enumsCopy.add(
@@ -315,7 +323,7 @@ class ComponentGeneratorService
       }
     }
 
-    for (var e in enumsCopy) {
+    for (final e in enumsCopy) {
       final folderPath = e.getFolderPath(projectLibFolder);
       await _createFolders(folderPath, '_createEnums');
       final filePath = e.getFilePath(projectLibFolder);
@@ -331,7 +339,7 @@ class ComponentGeneratorService
     List<RequestComponent> requests,
   ) async {
     final enumsCopy = List<EnumParamComponent>.empty(growable: true);
-    for (var e in requests) {
+    for (final e in requests) {
       ///Check request
       if (e.requestBody != null) {
         final enumRef = e.requestBody!.type.getSwaggerEnumReference();
@@ -357,7 +365,7 @@ class ComponentGeneratorService
       }
 
       ///Check query params
-      for (var qParam in e.queryParams) {
+      for (final qParam in e.queryParams) {
         final enumRef = qParam.type.getSwaggerEnumReference();
         if (enumRef != null) {
           enumsCopy.add(
@@ -370,7 +378,7 @@ class ComponentGeneratorService
       }
 
       ///Check path params
-      for (var pParam in e.pathParams) {
+      for (final pParam in e.pathParams) {
         final enumRef = pParam.type.getSwaggerEnumReference();
         if (enumRef != null) {
           enumsCopy.add(
@@ -383,7 +391,7 @@ class ComponentGeneratorService
       }
     }
 
-    for (var e in enumsCopy) {
+    for (final e in enumsCopy) {
       final folderPath = e.getFolderPath(projectLibFolder);
       await _createFolders(folderPath, '_createRequestEnums');
       final filePath = e.getFilePath(projectLibFolder);
@@ -399,7 +407,7 @@ class ComponentGeneratorService
     DataObjectComponent dataObject,
   ) {
     final innerReferences = List<DataObjectReference>.empty(growable: true);
-    for (var e in dataObject.variables) {
+    for (final e in dataObject.variables) {
       final ref = e.type.getSwaggerObjectReference();
       if (ref != null) {
         innerReferences.add(
@@ -416,7 +424,7 @@ class ComponentGeneratorService
   }) async {
     final file = File(filePath);
     try {
-      final isAlreadyExist = await file.exists();
+      final isAlreadyExist = file.existsSync();
       if (isAlreadyExist) {
         logger.i('File already exists: $filePath');
         return false;
@@ -437,7 +445,7 @@ class ComponentGeneratorService
   ) async {
     try {
       final directory = Directory(path);
-      if (await directory.exists()) {
+      if (directory.existsSync()) {
         logger.i('$methodCaller. Directory already exists: $path');
       } else {
         await directory.create(recursive: true);

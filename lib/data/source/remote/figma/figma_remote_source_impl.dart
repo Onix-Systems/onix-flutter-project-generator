@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/data/model/figma/responses/file_response/figma_file_response.dart';
 import 'package:onix_flutter_bricks/data/model/figma/responses/node/figma_nodes_response.dart';
 import 'package:onix_flutter_bricks/data/source/remote/figma/figma_remote_data_source.dart';

@@ -1,6 +1,6 @@
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
 
-abstract final class FlavorsUtil {
+class FlavorsUtil {
   static Set<String> joinFlavors({
     required bool flavorize,
     required String selectedFlavors,
@@ -16,4 +16,6 @@ abstract final class FlavorsUtil {
 
     return flavors;
   }
+
+  const FlavorsUtil._();
 }

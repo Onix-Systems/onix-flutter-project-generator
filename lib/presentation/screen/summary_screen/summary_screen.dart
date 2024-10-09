@@ -1,12 +1,13 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/router/app_router.dart';
+import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/generation_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summary_screen_bloc_imports.dart';
@@ -31,13 +32,16 @@ class SummaryScreen extends StatefulWidget {
 class _SummaryScreenState extends BaseState<SummaryScreenState,
     SummaryScreenBloc, SummaryScreenSR, SummaryScreen> {
   @override
+  SummaryScreenBloc createBloc() => GetIt.I.get<SummaryScreenBloc>();
+
+  @override
   Widget buildWidget(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: TitleBar(
         title: S.of(context).summary,
       ),
-      child: blocConsumer(
-        stateListener: (state) => _buildMainContainer(context, state),
+      child: blocBuilder(
+        builder: _buildMainContainer,
       ),
     );
   }
@@ -132,8 +136,11 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       value: state.config.screens
                           .toList()
                           .sorted((a, b) => a.name.compareTo(b.name))
-                          .map((e) =>
-                              'name: ${e.name.pascalCase}Screen, type: ${e.stateVariant.name}, initial: ${e.initial}')
+                          .map(
+                            (e) => 'name: ${e.name.pascalCase}Screen, type:'
+                                ' ${e.stateVariant.name},'
+                                ' initial: ${e.initial}',
+                          )
                           .join(',\n'),
                     ),
                   if (state.config.swaggerUrl.isNotEmpty)
@@ -146,30 +153,10 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                       variable: S.of(context).useScreenUtil,
                       value: state.config.screenUtil.toString(),
                     ),
-                    SummaryCell(
-                      variable: S.of(context).integrateSentry,
-                      value: state.config.sentry.toString(),
-                    ),
-                  //Todo Resolve
-                  /*if (state.config.sources.isNotEmpty)
-                    SummaryCell(
-                      variable: S.of(context).sources,
-                      value: state.config.sources
-                          .toList()
-                          .sorted((a, b) => a.name.compareTo(b.name))
-                          .map((e) =>
-                              '${e.name.pascalCase}(${e.dataComponentsNames.sorted((a, b) => a.compareTo(b)).map((e) => e.pascalCase).join(', ')})')
-                          .join('\n\n'),
-                    ),*/
-                  //Todo Resolve
-                  /*if (state.config.dataComponents.isNotEmpty)
-                    SummaryCell(
-                        variable: S.of(context).dataComponents,
-                        value: state.config.dataComponents
-                            .toList()
-                            .sorted((a, b) => a.name.compareTo(b.name))
-                            .map((e) => e.name.pascalCase)
-                            .join(', ')),*/
+                  SummaryCell(
+                    variable: S.of(context).integrateSentry,
+                    value: state.config.sentry.toString(),
+                  ),
                   if (state.config.styles.isNotEmpty)
                     SummaryStylesCell(
                       variable: 'Styles',

@@ -20,7 +20,7 @@ extension SwaggerTypeExtension on String {
     //['string', 'integer', 'boolean', 'number']
     switch (this) {
       case 'string':
-        return '\'\'';
+        return "''";
       case 'integer':
         return '-1';
       case 'boolean':
@@ -50,7 +50,7 @@ extension SwaggerTypeRefExtension on SwaggerType {
       return true;
     } else if (this is SwaggerArray) {
       final array = this as SwaggerArray;
-      return (array.itemType.type is SwaggerReference);
+      return array.itemType.type is SwaggerReference;
     }
     return false;
   }

@@ -6,8 +6,8 @@ class ColoredLine extends StatelessWidget {
   final OutputLine line;
 
   const ColoredLine({
-    super.key,
     required this.line,
+    super.key,
   });
 
   @override

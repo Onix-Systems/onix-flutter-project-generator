@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/widgets/signing_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -78,7 +78,8 @@ class LeftPart extends StatelessWidget {
               subLabel: S.of(context).dialogWillOpenInSeparateWindow,
               valueSetter: (value) {
                 bloc.add(
-                    const ProjectSettingsScreenEventGenerateSigningKeyChange());
+                  const ProjectSettingsScreenEventGenerateSigningKeyChange(),
+                );
                 if (value) {
                   _showSigningVarsDialog(
                     context: context,
@@ -135,9 +136,11 @@ class LeftPart extends StatelessWidget {
       ),
     ).then(
       (signingVars) {
+        if (!context.mounted) return;
         bloc.add(
           ProjectSettingsScreenEventSigningVarsChange(
-              signingVars: signingVars ?? state.config.signingVars),
+            signingVars: signingVars ?? state.config.signingVars,
+          ),
         );
       },
     );

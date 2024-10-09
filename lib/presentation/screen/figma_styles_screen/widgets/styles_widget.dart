@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
@@ -67,7 +67,9 @@ class StylesWidget extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(
-                              color: context.appColors.alarmColor, width: 2),
+                            color: context.appColors.alarmColor,
+                            width: 2,
+                          ),
                         ),
                         child: Column(
                           children: [
@@ -131,7 +133,9 @@ class StylesWidget extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(
-                              color: context.appColors.alarmColor, width: 2),
+                            color: context.appColors.alarmColor,
+                            width: 2,
+                          ),
                         ),
                         child: Column(
                           children: [
@@ -163,7 +167,7 @@ class StylesWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                const SliverToBoxAdapter(child: Delimiter.height(20))
+                const SliverToBoxAdapter(child: Delimiter.height(20)),
               ],
             ),
           ),

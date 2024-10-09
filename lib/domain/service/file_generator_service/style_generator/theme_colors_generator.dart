@@ -18,8 +18,8 @@ class ThemeColorsGenerator
   Future<bool> generate(ThemeColorsGeneratorParams params) async {
     final libFolder = '${params.projectPath}/${params.projectName}/lib';
     final appColorsFile = await File(
-            '$libFolder/presentation/style/theme/theme_extension/theme_colors.dart')
-        .create(recursive: true);
+      '$libFolder/presentation/style/theme/theme_extension/theme_colors.dart',
+    ).create(recursive: true);
 
     final themeColorsFile =
         File('$libFolder/presentation/style/app_colors.dart');

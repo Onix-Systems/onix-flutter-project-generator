@@ -1,4 +1,4 @@
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:recase/recase.dart';
 
 abstract class AppStyle {
@@ -11,7 +11,7 @@ abstract class AppStyle {
   });
 
   bool validate() {
-    bool valid = true;
+    var valid = true;
     var newName = name;
 
     if (!AppConsts.figmaStylesFirstCharValidChars

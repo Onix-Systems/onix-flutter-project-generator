@@ -54,8 +54,8 @@ class ProcessRunner {
       },
     );
 
-    _process?.stdin.writeln('source \$HOME/.zshrc');
-    _process?.stdin.writeln('source \$HOME/.bash_profile');
+    _process?.stdin.writeln(r'source $HOME/.zshrc');
+    _process?.stdin.writeln(r'source $HOME/.bash_profile');
   }
 
   void execCommand(String command) {

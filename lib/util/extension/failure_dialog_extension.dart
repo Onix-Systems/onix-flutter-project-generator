@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';

@@ -20,10 +20,11 @@ class Screen {
 
   Screen.copyOf(Screen screen)
       : this(
-            name: screen.name,
-            stateVariant: screen.stateVariant,
-            exists: screen.exists,
-            initial: screen.initial);
+          name: screen.name,
+          stateVariant: screen.stateVariant,
+          exists: screen.exists,
+          initial: screen.initial,
+        );
 
   @override
   bool operator ==(Object other) =>
