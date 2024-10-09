@@ -3,8 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 {{^web_only}}import 'package:loader_overlay/loader_overlay.dart';{{/web_only}}
 {{#screen_util}}import 'package:flutter_screenutil/flutter_screenutil.dart';{{/screen_util}}
-{{#isBloc}}import 'package:{{project_name}}/core/arch/bloc/base_bloc_state.dart';
-import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';{{/isBloc}}
+{{#isBloc}}import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';
+import 'package:get_it/get_it.dart';{{/isBloc}}
 {{#isProvider}}import 'package:{{project_name}}/core/arch/provider/base_provider_state.dart';
 import 'package:{{project_name}}/app/provider/app_provider.dart';{{/isProvider}}
 import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
@@ -34,6 +35,10 @@ class _AppState extends BaseProviderState<AppProvider, App>
 class _AppState extends State<App>
 {{/isBase}} {
   Locale? locale;
+  {{#isBloc}}
+  @override
+  AppBloc createBloc() => GetIt.I.get<AppBloc>();
+  {{/isBloc}}
 
   @override
   Widget {{#isBase}}build{{/isBase}}{{^isBase}}buildWidget{{/isBase}}(BuildContext context) {
