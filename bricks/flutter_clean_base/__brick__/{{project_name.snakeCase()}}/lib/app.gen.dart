@@ -39,6 +39,10 @@ class _AppState extends State<App>
   @override
   AppBloc createBloc() => GetIt.I.get<AppBloc>();
   {{/isBloc}}
+  {{#isProvider}}
+  @override
+  AppProvider createProvider() => GetIt.I.get<AppProvider>();
+  {{/isProvider}}
 
   @override
   Widget {{#isBase}}build{{/isBase}}{{^isBase}}buildWidget{{/isBase}}(BuildContext context) {

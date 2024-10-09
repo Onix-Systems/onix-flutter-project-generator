@@ -158,17 +158,13 @@ Future<void> getDependencies(HookContext context) async {
   ];
 
   if (context.vars['isBloc']) {
-    dependencies
-      ..add('flutter_bloc')
-      ..add('onix_flutter_bloc');
-    await removeStateManagers(['provider']);
+    dependencies..addAll(['flutter_bloc', 'onix_flutter_bloc']);
     await Process.run('rm', ['theme_util.dart'],
         workingDirectory: '$name/lib/app/util');
   }
 
   if (context.vars['isProvider']) {
-    dependencies.add('provider');
-    await removeStateManagers(['bloc']);
+    dependencies.addAll(['provider', 'onix_flutter_provider']);
     await Process.run('rm', ['theme_util.dart'],
         workingDirectory: '$name/lib/app/util');
   }
