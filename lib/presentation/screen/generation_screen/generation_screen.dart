@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
+import 'package:get_it/get_it.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/widget/generation_controls.dart';
@@ -22,11 +23,14 @@ class GenerationScreen extends StatefulWidget {
 class _GenerationScreenState extends BaseState<GenerationScreenState,
     GenerationScreenBloc, GenerationScreenSR, GenerationScreen> {
   @override
+  GenerationScreenBloc createBloc() => GetIt.I.get<GenerationScreenBloc>();
+
+  @override
   Widget buildWidget(BuildContext context) {
     return CupertinoPageScaffold(
       child: SizedBox.expand(
-        child: blocConsumer(
-          stateListener: (state) => _buildMainContainer(context, state),
+        child: blocBuilder(
+          builder: (_, state) => _buildMainContainer(context, state),
         ),
       ),
     );
@@ -53,7 +57,6 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
             const EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
               child: Container(
@@ -62,27 +65,29 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 padding: const EdgeInsets.all(20),
-                child: Stack(children: [
-                  SizedBox.expand(
-                    child: OutputConsole(
-                      outputStream:
-                          state.outputStream ?? StreamUtil.emptyStream(),
-                    ),
-                  ),
-                  if (blocOf(context).state.generatingState ==
-                      GeneratingState.waiting)
-                    Positioned(
-                      top: 0,
-                      right: 0,
-                      child: GenerationControls(
-                        onOpenAndroidStudio: () {
-                          blocOf(context)
-                              .add(const GenerationScreenEventOpenProject());
-                        },
-                        config: state.config,
+                child: Stack(
+                  children: [
+                    SizedBox.expand(
+                      child: OutputConsole(
+                        outputStream:
+                            state.outputStream ?? StreamUtil.emptyStream(),
                       ),
                     ),
-                ]),
+                    if (blocOf(context).state.generatingState ==
+                        GeneratingState.waiting)
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: GenerationControls(
+                          onOpenAndroidStudio: () {
+                            blocOf(context)
+                                .add(const GenerationScreenEventOpenProject());
+                          },
+                          config: state.config,
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           ],

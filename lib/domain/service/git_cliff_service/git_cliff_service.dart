@@ -10,6 +10,8 @@ import 'package:onix_flutter_bricks/util/makefile/makefile_content.dart';
 import 'package:onix_flutter_bricks/util/makefile/makefile_line.dart';
 
 class GitCliffService implements BaseGenerationService<String, GitCliffParams> {
+  const GitCliffService();
+
   @override
   Future<String> generate(GitCliffParams params) async {
     try {
@@ -60,7 +62,7 @@ class GitCliffService implements BaseGenerationService<String, GitCliffParams> {
           commands: [
             '@git cliff -c cliff_md.toml -o CHANGELOG.md',
           ],
-        )
+        ),
       ],
     );
 

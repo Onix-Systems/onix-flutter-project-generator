@@ -1,5 +1,5 @@
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_management_variant.dart';
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/default_screen_route_generator.dart';
@@ -45,7 +45,7 @@ class BlocStateManagerStrategy implements StateManagerStrategy {
           ),
         );
       } else {
-        for (int i = 0; i < screensNotExist.length; i++) {
+        for (var i = 0; i < screensNotExist.length; i++) {
           final screen = screensNotExist[i];
           logResult(
             'Generating screen ${screen.name}...'.toInfoMessage(),

@@ -3,11 +3,12 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
-import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -26,13 +27,16 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
     SplashScreenSR, SplashScreen> {
   @override
+  SplashScreenBloc createBloc() => GetIt.I.get<SplashScreenBloc>();
+
+  @override
   Widget buildWidget(BuildContext context) {
     return srObserver(
       context: context,
       child: CupertinoPageScaffold(
         child: SizedBox.expand(
-          child: blocConsumer(
-            stateListener: (state) => _buildMainContainer(context, state),
+          child: blocBuilder(
+            builder: _buildMainContainer,
           ),
         ),
       ),
@@ -108,7 +112,7 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
     }
   }
 
-  _onNeedUpdate(BuildContext context) {
+  void _onNeedUpdate(BuildContext context) {
     Dialogs.showOkCancelDialog(
       context: context,
       title: S.of(context).newVersionAvailableTitle,

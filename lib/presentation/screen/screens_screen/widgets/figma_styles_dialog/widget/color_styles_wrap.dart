@@ -13,30 +13,31 @@ class ColorStylesWrap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-        spacing: 10,
-        runSpacing: 10,
-        alignment: WrapAlignment.center,
-        runAlignment: WrapAlignment.center,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: List.generate(
-          styles.length,
-          (index) => Container(
-            width: 100,
-            height: 100,
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+      spacing: 10,
+      runSpacing: 10,
+      alignment: WrapAlignment.center,
+      runAlignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: List.generate(
+        styles.length,
+        (index) => Container(
+          width: 100,
+          height: 100,
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: styles[index].color,
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            styles[index].name.sentenceCase.toLowerCase(),
+            textAlign: TextAlign.center,
+            style: TextStyle(
               color: styles[index].color,
             ),
-            alignment: Alignment.center,
-            child: Text(
-              styles[index].name.sentenceCase.toLowerCase(),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: styles[index].color,
-              ),
-            ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

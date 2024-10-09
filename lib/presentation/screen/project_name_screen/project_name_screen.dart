@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/router/app_router.dart';
+import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/widget/branch_selector_widget.dart';
@@ -31,19 +32,20 @@ class ProjectNameScreen extends StatefulWidget {
 
 class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
     ProjectNameScreenBloc, ProjectNameScreenSR, ProjectNameScreen> {
-  TextEditingController projectNameController = TextEditingController();
-  TextEditingController organizationController = TextEditingController();
-  FocusNode projectNameFocusNode = FocusNode();
-  FocusNode organizationFocusNode = FocusNode();
-  FocusNode nextFocusNode = FocusNode();
+  final TextEditingController projectNameController = TextEditingController();
+  final TextEditingController organizationController = TextEditingController();
+  final FocusNode projectNameFocusNode = FocusNode();
+  final FocusNode organizationFocusNode = FocusNode();
+  final FocusNode nextFocusNode = FocusNode();
+
+  @override
+  ProjectNameScreenBloc createBloc() => GetIt.I.get<ProjectNameScreenBloc>();
 
   @override
   void onBlocCreated(BuildContext context, ProjectNameScreenBloc bloc) {
     bloc.add(ProjectNameScreenEvent.init(config: widget.config));
-
     projectNameController.text = widget.config.projectName;
     organizationController.text = widget.config.organization;
-
     super.onBlocCreated(context, bloc);
   }
 
@@ -52,9 +54,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
     return CupertinoPageScaffold(
       navigationBar: TitleBar(title: S.of(context).enterProjectName),
       child: SizedBox.expand(
-        child: blocConsumer(
-          stateListener: (state) => _buildMainContainer(context, state),
-        ),
+        child: blocBuilder(builder: _buildMainContainer),
       ),
     );
   }
@@ -71,15 +71,12 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFieldWithLabel(
                     label: S.of(context).projectName,
                     focusNode: projectNameFocusNode,
                     autofocus: true,
-                    centered: false,
                     textController: projectNameController,
                     error: !state.isValidProjectName,
                     onChanged: () => blocOf(context).add(
@@ -103,14 +100,11 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
               ),
               const Delimiter.height(20),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFieldWithLabel(
                     focusNode: organizationFocusNode,
                     label: S.of(context).organization,
-                    centered: false,
                     textController: organizationController,
                     error: !state.isValidOrganizationName,
                     onChanged: () => blocOf(context).add(

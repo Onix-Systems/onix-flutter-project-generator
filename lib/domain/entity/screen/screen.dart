@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_management_variant.dart';
 
 part 'screen.g.dart';
 
@@ -20,10 +20,11 @@ class Screen {
 
   Screen.copyOf(Screen screen)
       : this(
-            name: screen.name,
-            stateVariant: screen.stateVariant,
-            exists: screen.exists,
-            initial: screen.initial);
+          name: screen.name,
+          stateVariant: screen.stateVariant,
+          exists: screen.exists,
+          initial: screen.initial,
+        );
 
   @override
   bool operator ==(Object other) =>

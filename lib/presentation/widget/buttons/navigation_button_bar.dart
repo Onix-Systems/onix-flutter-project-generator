@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 
 class NavigationButtonBar extends StatelessWidget {
@@ -26,7 +26,6 @@ class NavigationButtonBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         AppFilledButton(
           label: prevText,
@@ -41,7 +40,7 @@ class NavigationButtonBar extends StatelessWidget {
           icon: nextIcon ?? Icons.arrow_forward_ios_rounded,
           iconLeft: false,
           onPressed: onNextPressed,
-        )
+        ),
       ],
     );
   }

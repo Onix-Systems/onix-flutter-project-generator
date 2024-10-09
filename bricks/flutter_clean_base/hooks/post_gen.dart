@@ -153,7 +153,9 @@ Future<void> getDependencies(HookContext context) async {
   ];
 
   if (context.vars['isBloc']) {
-    dependencies.add('flutter_bloc');
+    dependencies
+      ..add('flutter_bloc')
+      ..add('onix_flutter_bloc');
     await removeStateManagers(['provider']);
     await Process.run('rm', ['theme_util.dart'],
         workingDirectory: '$name/lib/app/util');
@@ -166,8 +168,13 @@ Future<void> getDependencies(HookContext context) async {
         workingDirectory: '$name/lib/app/util');
   }
 
+  if (context.vars['isProvider'] || context.vars['isBloc']) {
+    dependencies.add('onix_flutter_core_models');
+  }
+
   if (context.vars['isBase']) {
-    await removeStateManagers(['bloc', 'provider']);
+    // TODO(Ivan Modlo): Remove it later
+    await removeStateManagers(['provider']);
   }
 
   if (!context.vars['web_only']) {
@@ -179,7 +186,7 @@ Future<void> getDependencies(HookContext context) async {
     dependencies.add('flutter_overlay_loader');
   }
 
-  if(context.vars['sentry']) {
+  if (context.vars['sentry']) {
     dependencies.add('sentry_flutter');
   }
 

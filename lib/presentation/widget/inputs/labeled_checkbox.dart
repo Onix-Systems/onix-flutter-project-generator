@@ -29,8 +29,6 @@ class LabeledCheckbox extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color: focused ? context.appColors.controlColor : Colors.transparent,
-          width: 1,
-          strokeAlign: BorderSide.strokeAlignInside,
         ),
         borderRadius: BorderRadius.circular(5),
       ),

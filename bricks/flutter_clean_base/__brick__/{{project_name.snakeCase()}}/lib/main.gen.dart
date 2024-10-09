@@ -3,7 +3,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 {{#isBloc}}import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:{{project_name}}/core/arch/bloc/app_bloc_observer.dart';{{/isBloc}}
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';{{/isBloc}}
 import 'package:{{project_name}}/app/banned_app.dart';
 import 'package:{{project_name}}/app/app.dart';
 import 'package:{{project_name}}/app/app_initialization.dart';

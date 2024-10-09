@@ -1,5 +1,5 @@
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/domain/entity/state_management/state_managemet_variant.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_management_variant.dart';
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 
 abstract interface class StateManagerStrategy {

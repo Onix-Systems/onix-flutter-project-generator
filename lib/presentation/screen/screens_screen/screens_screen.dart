@@ -1,11 +1,12 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/router/app_router.dart';
+import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc_imports.dart';
@@ -34,39 +35,49 @@ class ScreensScreen extends StatefulWidget {
 class _ScreensScreenState extends BaseState<ScreensScreenState,
     ScreensScreenBloc, ScreensScreenSR, ScreensScreen> {
   @override
+  ScreensScreenBloc createBloc() => GetIt.I.get<ScreensScreenBloc>();
+
+  @override
   Widget buildWidget(BuildContext context) {
     return srObserver(
       context: context,
-      child: blocBuilder(builder: (context, state) {
-        return CupertinoPageScaffold(
-          navigationBar: TitleBar(
-            title: S.of(context).selectProjectScreens,
-            actions: [
-              AppFilledButton(
-                label: S.of(context).addScreen,
-                icon: Icons.add,
-                onPressed: () => showCupertinoModalPopup<Screen>(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (context) => AddScreenDialog(
-                    stateManagers: state.config.stateManager.strategy.variants,
+      child: blocBuilder(
+        builder: (context, state) {
+          return CupertinoPageScaffold(
+            navigationBar: TitleBar(
+              title: S.of(context).selectProjectScreens,
+              actions: [
+                AppFilledButton(
+                  label: S.of(context).addScreen,
+                  icon: Icons.add,
+                  onPressed: () => showCupertinoModalPopup<Screen>(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (context) => AddScreenDialog(
+                      stateManagers:
+                          state.config.stateManager.strategy.variants,
+                    ),
+                  ).then(
+                    (screen) {
+                      if (!context.mounted) return;
+
+                      if (screen != null) {
+                        if (state.config.screens.isEmpty) {
+                          screen.initial = true;
+                        }
+                        blocOf(context).add(
+                          ScreensScreenEventOnScreenAdd(screen: screen),
+                        );
+                      }
+                    },
                   ),
-                ).then((screen) {
-                  if (screen != null) {
-                    if (state.config.screens.isEmpty) {
-                      screen.initial = true;
-                    }
-                    blocOf(context).add(
-                      ScreensScreenEventOnScreenAdd(screen: screen),
-                    );
-                  }
-                }),
-              ),
-            ],
-          ),
-          child: _buildMainContainer(context, state),
-        );
-      }),
+                ),
+              ],
+            ),
+            child: _buildMainContainer(context, state),
+          );
+        },
+      ),
       onSR: _onSingleResult,
     );
   }
@@ -84,10 +95,12 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
           context: context,
           isError: true,
           title: S.of(context).screenAlreadyExistsTitle,
-          content: Text(S.of(context).screenAlreadyExistsContent,
-              style: context.appTextStyles.fs18?.copyWith(
-                fontSize: 16,
-              )),
+          content: Text(
+            S.of(context).screenAlreadyExistsContent,
+            style: context.appTextStyles.fs18?.copyWith(
+              fontSize: 16,
+            ),
+          ),
         );
       },
     );
@@ -121,7 +134,9 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                   stateManagers: state.config.stateManager.strategy.variants,
                   onModifyScreen: (screen, name) => blocOf(context).add(
                     ScreensScreenEventOnScreenModify(
-                        screen: screen, oldName: name),
+                      screen: screen,
+                      oldName: name,
+                    ),
                   ),
                   onDeleteScreen: (screen) => blocOf(context).add(
                     ScreensScreenEventOnScreenDelete(

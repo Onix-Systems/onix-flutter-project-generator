@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
@@ -21,7 +21,8 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     on<ProjectSettingsScreenEventFlavorizeChange>(_onFlavorizeChange);
     on<ProjectSettingsScreenEventFlavorsChange>(_onFlavorsChange);
     on<ProjectSettingsScreenEventGenerateSigningKeyChange>(
-        _onGenerateSigningKeyChange);
+      _onGenerateSigningKeyChange,
+    );
     on<ProjectSettingsScreenEventSigningVarsChange>(_onSigningVarsChange);
     on<ProjectSettingsScreenEventUseSonarChange>(_onUseSonarChange);
     on<ProjectSettingsScreenEventGraphQLChange>(_onGraphQLChange);
@@ -121,8 +122,9 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     final isStrategyMatch = screensMatchStrategy(event.stateManager);
 
     if (!isStrategyMatch) {
-      logger.f('Screens do not match the strategy');
-      logger.f(event.stateManager.strategy.variants);
+      logger
+        ..f('Screens do not match the strategy')
+        ..f(event.stateManager.strategy.variants);
 
       final screens = state.config.screens.map((e) {
         e.stateVariant = event.stateManager.strategy.variants.first;
@@ -217,9 +219,8 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     emit(
       state.copyWith(
         config: state.config.copyWith(
-          screenUtil: state.config.platformsList.webOnly
-              ? false
-              : !state.config.screenUtil,
+          screenUtil:
+              !state.config.platformsList.webOnly && state.config.screenUtil,
         ),
       ),
     );
@@ -241,7 +242,7 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
   bool screensMatchStrategy(ProjectStateManager manager) {
     final strategyVariants = manager.strategy.variants;
 
-    bool screensMatch = true;
+    var screensMatch = true;
 
     for (final screen in state.config.screens) {
       if (!strategyVariants.contains(screen.stateVariant)) {

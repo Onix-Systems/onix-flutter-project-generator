@@ -1,4 +1,4 @@
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
 
 class Commands {
   ///common commands
@@ -6,7 +6,7 @@ class Commands {
       'echo "Complete with exit code: 0"';
 
   static String getOpenAndroidStudioCommand() =>
-      'open -a \'Android Studio.app\' .';
+      "open -a 'Android Studio.app' .";
 
   static String getGitBranchesCommand() =>
       'git ls-remote https://github.com/Onix-Systems/onix-flutter-project-generator.git';
@@ -34,7 +34,7 @@ class Commands {
     required String masonBrickBranch,
   }) {
     final branchFolder = masonBrickBranch.replaceAll('/', '-');
-    return 'mason add -g flutter_clean_base --path \'$projectPath/bricks/onix-flutter-project-generator-$branchFolder/bricks/flutter_clean_base\'';
+    return "mason add -g flutter_clean_base --path '$projectPath/bricks/onix-flutter-project-generator-$branchFolder/bricks/flutter_clean_base'";
   }
 
   static String getMasonMakeBrickCommand() =>

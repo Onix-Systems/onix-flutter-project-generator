@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
@@ -66,7 +66,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     on<GenerationScreenEventOpenProject>(_openProject);
   }
 
-  FutureOr<void> _onInit(
+  Future<void> _onInit(
     GenerationScreenEventInit event,
     Emitter<GenerationScreenState> emit,
   ) async {
@@ -81,7 +81,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     add(const GenerationScreenEventGenerateProject());
   }
 
-  FutureOr<void> _onGenerateProject(
+  Future<void> _onGenerateProject(
     GenerationScreenEventGenerateProject event,
     Emitter<GenerationScreenState> emit,
   ) async {
@@ -89,13 +89,13 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     if (!state.config.projectExists) {
       ///get password for signing generation (Android)
-      String signingPassword = state.config.getSigningPassword();
+      final signingPassword = state.config.getSigningPassword();
 
       ///parse flavor string to Set<String>
-      var flavors = state.config.getFlavorsAsSet();
+      final flavors = state.config.getFlavorsAsSet();
 
       ///create config file, clear old possible copy
-      var configFile = File('${state.config.projectPath}/config.json');
+      final configFile = File('${state.config.projectPath}/config.json');
       if (configFile.existsSync()) {
         configFile.deleteSync();
       }
@@ -149,16 +149,16 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       );
 
       ///clear temporary brick files
-      configFile.delete();
+      await configFile.delete();
       brickFolder.deleteSync(recursive: true);
 
       if (!state.config.graphql) {
         await Directory(
-                '${state.config.projectPath}/${state.config.projectName}/lib/core/arch/data/remote/clients/graph_ql')
-            .delete(recursive: true);
+          '${state.config.projectPath}/${state.config.projectName}/lib/core/arch/data/remote/clients/graph_ql',
+        ).delete(recursive: true);
         await Directory(
-                '${state.config.projectPath}/${state.config.projectName}/lib/data/source/remote/auth')
-            .delete(recursive: true);
+          '${state.config.projectPath}/${state.config.projectName}/lib/data/source/remote/auth',
+        ).delete(recursive: true);
       }
 
       ///generate Anroid signing key if configured
@@ -227,7 +227,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     ///save project configuration
     await state.config.saveConfig(
-        projectPath: '${state.config.projectPath}/${state.config.projectName}');
+      projectPath: '${state.config.projectPath}/${state.config.projectName}',
+    );
 
     /// run osascript
     if (!state.config.projectExists && state.config.firebaseAuth) {
@@ -237,7 +238,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     }
 
     _addOutputMessageUseCase(
-      message: List.generate(10, (index) => '-').join('').toInfoMessage(),
+      message: List.generate(10, (index) => '-').join().toInfoMessage(),
     );
     _addOutputMessageUseCase(
       message: 'Project generation completed.'.toInfoMessage(),
@@ -247,20 +248,22 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           .toInfoMessage(),
     );
     _addOutputMessageUseCase(
-      message: List.generate(10, (index) => '-').join('').toInfoMessage(),
+      message: List.generate(10, (index) => '-').join().toInfoMessage(),
     );
 
     ///finish generation
-    emit(state.copyWith(
-      generatingState: GeneratingState.waiting,
-      config: state.config.copyWith(
-        screens: screenRepository.screens,
+    emit(
+      state.copyWith(
+        generatingState: GeneratingState.waiting,
+        config: state.config.copyWith(
+          screens: screenRepository.screens,
+        ),
       ),
-    ));
+    );
   }
 
   ///when user tap on "Open Android Studio"
-  FutureOr<void> _openProject(
+  Future<void> _openProject(
     GenerationScreenEventOpenProject event,
     Emitter<GenerationScreenState> emit,
   ) async {

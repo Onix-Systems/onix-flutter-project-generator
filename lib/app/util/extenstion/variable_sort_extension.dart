@@ -4,16 +4,14 @@ extension VariiableSortExtenson on List<DataVariableComponent> {
   List<DataVariableComponent> sortByRequired() {
     final copy = List<DataVariableComponent>.from(
       this,
-      growable: true,
-    );
-    copy.sort(
-      (a, b) {
-        if (b.isRequired) {
-          return 1;
-        }
-        return -1;
-      },
-    );
+    )..sort(
+        (a, b) {
+          if (b.isRequired) {
+            return 1;
+          }
+          return -1;
+        },
+      );
     return copy;
   }
 }

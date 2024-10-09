@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:onix_flutter_bricks/core/arch/domain/entity/result/result.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
@@ -9,8 +8,10 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/signin
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 import 'package:onix_flutter_bricks/util/process_runner.dart';
+import 'package:onix_flutter_core/onix_flutter_core.dart';
 
-///This class Generates Android keystore with given credentials and fix Gradle signing configuration
+///This class Generates Android keystore with given credentials
+///and fix Gradle signing configuration
 class SigningGenerator
     implements BaseGenerationService<Result<int>, SingingGeneratorParams> {
   final OutputService _outputService;
@@ -31,7 +32,7 @@ class SigningGenerator
         await directory.create();
       }
       final certificateFile = File('$workDirectory/upload-keystore.jks');
-      final certificateExist = await certificateFile.exists();
+      final certificateExist = certificateFile.existsSync();
       if (certificateExist) {
         return Result.error(
           failure: SigningFailure(SigningFailureType.signingAlreadyExist),
