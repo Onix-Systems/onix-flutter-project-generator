@@ -9,11 +9,12 @@ mixin BlocContentMixin on ScreenGenerationService {
     required StateManagementVariant stateManagement,
   }) {
     final screenClassImport = screenName.snakeCase;
-    final codeLines = List<String>.empty(growable: true);
-    codeLines.add(
-        'export \'${screenClassImport}_screen_${stateManagement.name.toLowerCase()}.dart\';');
-    codeLines.add('export \'${screenClassImport}_screen_models.dart\';');
-    codeLines.addNewLine();
+    final codeLines = List<String>.empty(growable: true)
+      ..add(
+        'export \'${screenClassImport}_screen_${stateManagement.name.toLowerCase()}.dart\';',
+      )
+      ..add('export \'${screenClassImport}_screen_models.dart\';')
+      ..addNewLine();
     return codeLines.join('\n');
   }
 
@@ -35,21 +36,22 @@ mixin BlocContentMixin on ScreenGenerationService {
         stateManagement == const BlocStateManagementVariant()
             ? '_onInit'
             : 'init';
-    final codeLines = List<String>.empty(growable: true);
+    final codeLines = List<String>.empty(growable: true)
 
-    ///Create BLoC class code
-    codeLines.add('import \'dart:async\';');
-    codeLines.addNewLine();
-    codeLines.add(
-        'import \'package:$projectName/core/arch/bloc/base_${stateManagement.name.toLowerCase()}.dart\';');
+      ///Create BLoC class code
+      ..add('import \'dart:async\';')
+      ..addNewLine()
+      ..add("import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';");
     if (stateManagement == const BlocStateManagementVariant()) {
       codeLines.add('import \'package:flutter_bloc/flutter_bloc.dart\';');
     }
-    codeLines.add(
-        'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart\';');
-    codeLines.addNewLine();
-    codeLines.add(
-        'class $className extends Base$stateManagementSuffix<$eventName$stateName, $srName> {');
+    codeLines
+      ..add(
+        'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart\';',
+      )
+      ..addNewLine()
+      ..add(
+          'class $className extends Base$stateManagementSuffix<$eventName$stateName, $srName> {');
 
     final defaultStatePrefix =
         stateManagement == const BlocStateManagementVariant() ? '' : 'const ';
@@ -58,25 +60,28 @@ mixin BlocContentMixin on ScreenGenerationService {
     codeLines.add(
         '$className() : super($defaultStatePrefix$stateName())$constructorSuffix');
     if (stateManagement == const BlocStateManagementVariant()) {
-      codeLines.add('on<${screenName.pascalCase}ScreenEventInit>(_onInit);');
-      codeLines.add('add(const ${screenName.pascalCase}ScreenEvent.init());');
-      codeLines.add('}');
+      codeLines
+        ..add('on<${screenName.pascalCase}ScreenEventInit>(_onInit);')
+        ..add('add(const ${screenName.pascalCase}ScreenEvent.init());')
+        ..add('}');
     }
-    codeLines.addNewLine();
-
-    codeLines.addNewLine();
-    codeLines.add('FutureOr<void> $initFunctionName (');
+    codeLines
+      ..addNewLine()
+      ..addNewLine()
+      ..add('void $initFunctionName (');
     if (stateManagement == const BlocStateManagementVariant()) {
-      codeLines.add('${screenName.pascalCase}ScreenEventInit event,');
-      codeLines.add('Emitter<${screenName.pascalCase}ScreenState> emit,');
+      codeLines
+        ..add('${screenName.pascalCase}ScreenEventInit event,')
+        ..add('Emitter<${screenName.pascalCase}ScreenState> emit,');
     }
     codeLines.add(') {');
     if (stateManagement == const CubitStateManagementVariant()) {
       codeLines.add('emit(state.copyWith(isLoading: false));');
     }
-    codeLines.add('}');
-    codeLines.addNewLine();
-    codeLines.add('}');
+    codeLines
+      ..add('}')
+      ..addNewLine()
+      ..add('}');
     return codeLines.join('\n');
   }
 
@@ -86,43 +91,50 @@ mixin BlocContentMixin on ScreenGenerationService {
   }) {
     final screenModelName = screenName.pascalCase;
     final screenClassImport = screenName.snakeCase;
-    final codeLines = List<String>.empty(growable: true);
-    codeLines
-        .add('import \'package:freezed_annotation/freezed_annotation.dart\';');
-    codeLines.addNewLine();
-    codeLines.add('part \'${screenClassImport}_screen_models.freezed.dart\';');
+    final codeLines = List<String>.empty(growable: true)
+      ..add('import \'package:freezed_annotation/freezed_annotation.dart\';')
+      ..addNewLine()
+      ..add('part \'${screenClassImport}_screen_models.freezed.dart\';');
 
     ///If BLoC - add Event model
     if (stateManagement == const BlocStateManagementVariant()) {
-      codeLines.add('@freezed');
-      codeLines.add(
-          'class ${screenModelName}ScreenEvent with _\$${screenModelName}ScreenEvent {');
-      codeLines.add(
-          'const factory ${screenModelName}ScreenEvent.init() = ${screenModelName}ScreenEventInit;');
-      codeLines.add('}');
+      codeLines
+        ..add('@freezed')
+        ..add(
+          'class ${screenModelName}ScreenEvent with _\$${screenModelName}ScreenEvent {',
+        )
+        ..add(
+          'const factory ${screenModelName}ScreenEvent.init() = ${screenModelName}ScreenEventInit;',
+        )
+        ..add('}');
     }
-    codeLines.addNewLine();
+    codeLines
+      ..addNewLine()
 
-    ///Add SR events
-    codeLines.add('@freezed');
-    codeLines.add(
-        'class ${screenModelName}ScreenSR with _\$${screenModelName}ScreenSR {');
-    codeLines.add(
-        'const factory ${screenModelName}ScreenSR.loadFinished() = _LoadFinished;');
-    codeLines.add('}');
-    codeLines.addNewLine();
+      ///Add SR events
+      ..add('@freezed')
+      ..add(
+        'class ${screenModelName}ScreenSR with _\$${screenModelName}ScreenSR {',
+      )
+      ..add(
+        'const factory ${screenModelName}ScreenSR.loadFinished() = _LoadFinished;',
+      )
+      ..add('}')
+      ..addNewLine();
 
     ///Add BLoC State
     if (stateManagement == const BlocStateManagementVariant()) {
       codeLines.add('class ${screenModelName}ScreenState {}');
     } else {
-      codeLines.add('@freezed');
-      codeLines.add(
-          'class ${screenModelName}ScreenState with _\$${screenModelName}ScreenState{');
-      codeLines.add('const factory ${screenModelName}ScreenState({');
-      codeLines.add('@Default(true) bool isLoading,');
-      codeLines.add('}) = _${screenName.pascalCase}ScreenState;');
-      codeLines.add('}');
+      codeLines
+        ..add('@freezed')
+        ..add(
+          'class ${screenModelName}ScreenState with _\$${screenModelName}ScreenState{',
+        )
+        ..add('const factory ${screenModelName}ScreenState({')
+        ..add('@Default(true) bool isLoading,')
+        ..add('}) = _${screenName.pascalCase}ScreenState;')
+        ..add('}');
     }
     codeLines.addNewLine();
     return codeLines.join('\n');
