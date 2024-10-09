@@ -46,7 +46,7 @@ class BlocScreenCodeContent extends ScreenCodeContent {
       ..add('}')
       ..addNewLine()
 
-      ///Add screen widget state code
+      /// Add screen widget state code
       ..add('class _${screenClassName}ScreenState')
       ..add('extends BaseState<')
       ..add('${screenClassName}ScreenState, ')
