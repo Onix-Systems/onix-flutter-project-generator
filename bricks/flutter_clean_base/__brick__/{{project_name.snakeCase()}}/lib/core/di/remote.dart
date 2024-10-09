@@ -1,11 +1,11 @@
 //@formatter:off
 import 'package:get_it/get_it.dart';
-import 'package:{{project_name}}/core/arch/data/remote/clients/dio/dio_const.dart';
-{{#graphql}}import 'package:{{project_name}}/core/arch/data/remote/clients/graph_ql/graph_ql_client.dart';
-import 'package:{{project_name}}/core/arch/data/remote/clients/graph_ql/request_processor/graph_ql_request_processor.dart';
-import 'package:{{project_name}}/core/arch/data/remote/clients/graph_ql/request_processor/graph_ql_request_processor_impl.dart';{{/graphql}}
+import 'package:{{project_name}}/core/arch/data/remote/dio/dio_const.dart';
+{{#graphql}}import 'package:{{project_name}}/core/arch/data/remote/graph_ql/graph_ql_client.dart';
+import 'package:{{project_name}}/core/arch/data/remote/graph_ql/request_processor/graph_ql_request_processor.dart';
+import 'package:{{project_name}}/core/arch/data/remote/graph_ql/request_processor/graph_ql_request_processor_impl.dart';{{/graphql}}
 {{#firebase_auth}}import 'package:firebase_auth/firebase_auth.dart';{{/firebase_auth}}
-import 'package:{{project_name}}/core/arch/data/remote/clients/dio/dio_const.dart';
+import 'package:{{project_name}}/core/arch/data/remote/dio/dio_const.dart';
 import 'package:onix_flutter_core/onix_flutter_core.dart';
 void registerRemote(GetIt getIt) {
   final dioClientModule = _DioClientModule();

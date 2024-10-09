@@ -1,4 +1,5 @@
 import 'package:onix_flutter_core/onix_flutter_core.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 import 'package:{{project_name}}/data/source/remote/firebase/auth/firebase_auth_source.dart';
 import 'package:{{project_name}}/domain/entity/failure/firebase_failure.dart';

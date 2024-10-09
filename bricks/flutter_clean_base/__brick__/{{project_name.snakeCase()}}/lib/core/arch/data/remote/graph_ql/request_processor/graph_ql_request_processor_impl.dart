@@ -1,8 +1,8 @@
 import 'package:graphql/client.dart';
 import 'package:onix_flutter_core/onix_flutter_core.dart'
     hide OnRequest, OnResponse;
-import 'package:{{project_name}}/core/arch/data/remote/clients/graph_ql/graph_ql_client.dart';
-import 'package:{{project_name}}/core/arch/data/remote/clients/graph_ql/request_processor/graph_ql_request_processor.dart';
+import 'package:{{project_name}}/core/arch/data/remote/graph_ql/graph_ql_client.dart';
+import 'package:{{project_name}}/core/arch/data/remote/graph_ql/request_processor/graph_ql_request_processor.dart';
 import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 
 class GraphQlRequestProcessorImpl implements GraphQlRequestProcessor {
