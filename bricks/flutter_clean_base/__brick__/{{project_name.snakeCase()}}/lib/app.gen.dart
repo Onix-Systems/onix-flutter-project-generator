@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 {{^web_only}}import 'package:loader_overlay/loader_overlay.dart';{{/web_only}}
 {{#screen_util}}import 'package:flutter_screenutil/flutter_screenutil.dart';{{/screen_util}}
 {{#isBloc}}import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
-import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';
-import 'package:get_it/get_it.dart';{{/isBloc}}
-{{#isProvider}}import 'package:{{project_name}}/core/arch/provider/base_provider_state.dart';
+import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';{{/isBloc}}
+{{^isBase}}import 'package:get_it/get_it.dart';{{/isBase}}
+{{#isProvider}}import 'package:onix_flutter_provider/onix_flutter_provider.dart';
 import 'package:{{project_name}}/app/provider/app_provider.dart';{{/isProvider}}
 import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
 {{#isBase}}import 'package:{{project_name}}/core/arch/widget/common/theme_switcher.dart';{{/isBase}}

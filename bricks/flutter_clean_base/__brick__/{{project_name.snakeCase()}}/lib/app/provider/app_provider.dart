@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:{{project_name}}/core/arch/provider/base_provider.dart';
+import 'package:onix_flutter_provider/onix_flutter_provider.dart';
 
 class AppProvider extends BaseProvider {
   ThemeMode _themeMode = ThemeMode.system;
