@@ -47,7 +47,7 @@ class DataObjectComponent with _$DataObjectComponent {
     String projectName,
     DataFileType type,
   ) {
-    final imports = _getImports(projectName, type);
+    final imports = Set.of(_getImports(projectName, type));
     late ClassBuilder classBuilder;
     switch (type) {
       case DataFileType.request:
@@ -99,24 +99,8 @@ class DataObjectComponent with _$DataObjectComponent {
         fileReference.getTypeDeclaration(DataFileType.response);
     final requestName = fileReference.getTypeDeclaration(DataFileType.request);
     final entityName = fileReference.getTypeDeclaration(DataFileType.entity);
-
     final codeLines = List<String>.empty(growable: true);
-
-    ///Add common imports
-    if (createResponseToEntityMapper) {
-      codeLines.add(
-        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.response)}';",
-      );
-    }
-    if (createEntityToRequestMapper) {
-      codeLines.add(
-        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.request)}';",
-      );
-    }
-    codeLines
-      ..add(
-        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.entity)}';",
-      )
+    final imports = <String>{}
       ..addAll(
         _getImports(
           projectName,
@@ -136,6 +120,23 @@ class DataObjectComponent with _$DataObjectComponent {
       ..add(
         "import 'package:onix_flutter_core/onix_flutter_core.dart';",
       );
+
+    ///Add common imports
+    if (createResponseToEntityMapper) {
+      codeLines.add(
+        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.response)}';",
+      );
+    }
+    if (createEntityToRequestMapper) {
+      codeLines.add(
+        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.request)}';",
+      );
+    }
+    codeLines
+      ..add(
+        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.entity)}';",
+      )
+      ..addAll(imports);
 
     ///Add imports to different variables and their mappers
     for (final variable in variables) {
