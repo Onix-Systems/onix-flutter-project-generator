@@ -93,7 +93,7 @@ class ProviderScreenGenerator extends ScreenGenerationService
     final screenFile =
         await File('$screenPath/${screenName}_screen.dart').create();
 
-    String screenContent = '';
+    var screenContent = '';
 
     screenContent = _screenCodeContent.createScreen(
       isGoRouter: params.router == ProjectRouter.goRouter,
@@ -104,7 +104,7 @@ class ProviderScreenGenerator extends ScreenGenerationService
     await screenFile.writeAsString(screenContent);
 
     ///Write Provider file
-    var providerFile = await File(
+    final providerFile = await File(
             '$screenPath/provider/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart')
         .create(recursive: true);
     final providerFileContent = createProviderContent(
