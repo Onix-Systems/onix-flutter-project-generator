@@ -86,7 +86,7 @@ class ComponentGeneratorService
     final declarationFilePath =
         sourceComponent.getDeclarationFilePath(projectLibFolder);
 
-    final declarationBody = sourceComponent.getDeclarationBody(projectName);
+    final declarationBody = sourceComponent.getSourceDeclarationBody(projectName);
     await _createFile(filePath: declarationFilePath, fileBody: declarationBody);
 
     ///Create Implementation
@@ -94,7 +94,7 @@ class ComponentGeneratorService
         sourceComponent.getImplementationFilePath(projectLibFolder);
 
     final implementationBody =
-        sourceComponent.getImplementationBody(projectName);
+        sourceComponent.getSourceImplementationBody(projectName);
     await _createFile(
       filePath: implementationFilePath,
       fileBody: implementationBody,
@@ -177,7 +177,7 @@ class ComponentGeneratorService
     final repoSLCodeLines = List<String>.empty(growable: true)
       ..add('getIt.registerLazySingleton<${repoClassName}Repository>(')
       ..add(
-        '() => ${repoClassName}RepositoryImpl(getIt<${repoClassName}Source>()),',
+        '() => ${repoClassName}RepositoryImpl(getIt<${repoClassName}Source>(),),',
       )
       ..add(');')
       ..add(SwaggerConst.swaggerRepoSLDeclarationKey);

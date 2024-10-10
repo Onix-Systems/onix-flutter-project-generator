@@ -1,5 +1,4 @@
-import 'package:{{project_name}}/core/arch/data/local/prefs/base_preferences.dart';
-
+import 'package:onix_flutter_core/onix_flutter_core.dart';
 import 'package:{{project_name}}/data/source/local/preferences_source/preferences_keys.dart';
 import 'package:{{project_name}}/data/source/local/preferences_source/preferences_source.dart';
 

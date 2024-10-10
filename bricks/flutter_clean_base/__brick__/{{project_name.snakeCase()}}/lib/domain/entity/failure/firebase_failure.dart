@@ -1,6 +1,6 @@
-import 'package:{{project_name}}/core/arch/domain/entity/failure/failure.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
-class FirebaseFailure implements FeatureFailure {
+class FirebaseFailure implements Failure {
   FirebaseFailure(this.code);
 
   final String code;

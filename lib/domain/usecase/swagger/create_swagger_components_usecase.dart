@@ -4,7 +4,8 @@ import 'package:onix_flutter_bricks/domain/service/component_generator/params/co
 
 class CreateSwaggerComponentsUseCase {
   final SwaggerRepository _swaggerRepository;
-  final BaseGenerationService _componentGenerator;
+  final BaseGenerationService<String, ComponentGeneratorParams>
+      _componentGenerator;
 
   const CreateSwaggerComponentsUseCase(
     this._swaggerRepository,

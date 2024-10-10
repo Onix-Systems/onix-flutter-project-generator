@@ -4,5 +4,6 @@ class DioConst {
 
   static const String defaultApiClientName = 'DefaultApiClient';
 
+  const DioConst._();
 //{dio const end}
 }

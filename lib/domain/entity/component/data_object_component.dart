@@ -134,7 +134,7 @@ class DataObjectComponent with _$DataObjectComponent {
         ),
       )
       ..add(
-        "import 'package:$projectName/core/arch/domain/common/converter/mapper.dart';",
+        "import 'package:onix_flutter_core/onix_flutter_core.dart';",
       );
 
     ///Add imports to different variables and their mappers
@@ -154,6 +154,10 @@ class DataObjectComponent with _$DataObjectComponent {
     ///Inner mapper class declaration
     ///Response to Entity
     if (createResponseToEntityMapper) {
+      final objects =
+          _getMapperObjectVariablesContent(MapperType.mapResponseToEntity);
+      final classModifier = objects.isEmpty ? 'const ' : '';
+
       codeLines
         ..add(
           'class _Map${classNamePrefix}ResponseToEntity implements Mapper<$responseName, $entityName> {',
@@ -163,17 +167,16 @@ class DataObjectComponent with _$DataObjectComponent {
         ..add('@override')
 
         ///Mapper functions
-        ..add('$entityName map($responseName from) {')
+        ..add('$entityName map($responseName from,) {')
 
         ///Declare inner objects mapper variables
         ..addAll(_getInnerMapperVariables())
 
         ///return function
-        ..add('return $entityName(')
+        ..add('return $classModifier$entityName(')
 
         ///Use inner variable mapper for inner variables
-        ..addAll(
-            _getMapperObjectVariablesContent(MapperType.mapResponseToEntity))
+        ..addAll(objects)
         ..add(');')
         ..add('}')
         ..add('}')
@@ -182,6 +185,10 @@ class DataObjectComponent with _$DataObjectComponent {
 
     ///Entity to Request
     if (createEntityToRequestMapper) {
+      final objects =
+          _getMapperObjectVariablesContent(MapperType.mapEntityToRequest);
+      final classModifier = objects.isEmpty ? 'const ' : '';
+
       codeLines
         ..add(
           'class _Map${classNamePrefix}EntityToRequest implements Mapper<$entityName, $requestName> {',
@@ -191,17 +198,16 @@ class DataObjectComponent with _$DataObjectComponent {
         ..add('@override')
 
         ///Mapper functions
-        ..add('$requestName map($entityName from) {')
+        ..add('$requestName map($entityName from,) {')
 
         ///Declare inner objects mapper variables
         ..addAll(_getInnerMapperVariables())
 
         ///return function
-        ..add('return $requestName(')
+        ..add('return $classModifier$requestName(')
 
         ///Use inner variable mapper for inner variables
-        ..addAll(
-            _getMapperObjectVariablesContent(MapperType.mapEntityToRequest))
+        ..addAll(objects)
         ..add(');')
         ..add('}')
         ..add('}');
@@ -224,13 +230,13 @@ class DataObjectComponent with _$DataObjectComponent {
     codeLines.addNewLine();
     if (createResponseToEntityMapper) {
       codeLines
-        ..add('$entityName mapResponseToEntity($responseName from) =>')
+        ..add('$entityName mapResponseToEntity($responseName from,) =>')
         ..add('_mapResponseToEntity.map(from);');
     }
     codeLines.addNewLine();
     if (createEntityToRequestMapper) {
       codeLines
-        ..add('$requestName mapEntityToRequest($entityName from) =>')
+        ..add('$requestName mapEntityToRequest($entityName from,) =>')
         ..add('_mapEntityToRequest.map(from);');
     }
     codeLines
@@ -320,7 +326,7 @@ class DataObjectComponent with _$DataObjectComponent {
     bool? createEntityToRequestMapper,
     bool? createResponseToEntityMapper,
   }) {
-    final imports = List<String>.empty(growable: true);
+    final imports = List<SwaggerType>.empty(growable: true);
     final notNullImports =
         variables.where((e) => e.type.getFileImportName(type) != null);
     for (final e in notNullImports) {
@@ -328,20 +334,22 @@ class DataObjectComponent with _$DataObjectComponent {
           createResponseToEntityMapper != null) {
         if (type == DataFileType.request) {
           if (createEntityToRequestMapper) {
-            imports.add(e.type.getFileImportName(type) ?? '');
+            imports.add(e.type);
           }
         } else if (type == DataFileType.response) {
           if (createResponseToEntityMapper) {
-            imports.add(e.type.getFileImportName(type) ?? '');
+            imports.add(e.type);
           }
         } else {
-          imports.add(e.type.getFileImportName(type) ?? '');
+          imports.add(e.type);
         }
       } else {
-        imports.add(e.type.getFileImportName(type) ?? '');
+        imports.add(e.type);
       }
     }
-    return imports.map((e) => "import 'package:$projectName/$e';").toList();
+    return imports
+        .map((e) => e.getFullFileImport(projectName, type) ?? '')
+        .toList();
   }
 
   List<String> _getFreezedConstructorProperties(

@@ -1,12 +1,10 @@
-import 'package:{{project_name}}/core/arch/domain/entity/common/operation_status.dart';
-import 'package:{{project_name}}/core/arch/domain/entity/common/result.dart';
-import 'package:{{project_name}}/core/arch/domain/entity/failure/api_failure.dart';
-import 'package:{{project_name}}/core/arch/domain/entity/failure/firebase_failure.dart';
+import 'package:onix_flutter_core/onix_flutter_core.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 import 'package:{{project_name}}/data/source/remote/firebase/auth/firebase_auth_source.dart';
+import 'package:{{project_name}}/domain/entity/failure/firebase_failure.dart';
 import 'package:{{project_name}}/domain/params/create_user/create_account_params.dart';
 import 'package:{{project_name}}/domain/repository/firebase_auth_repository.dart';
-
 //{entities_imports}
 
 class FirebaseAuthRepositoryImpl extends FirebaseAuthRepository {
