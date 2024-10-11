@@ -52,8 +52,7 @@ class SourceComponent with _$SourceComponent {
       "import 'package:$projectName/data/repository/${name.snakeCase}/${name.snakeCase}_repository_impl.dart';";
 
   String getSourceDeclarationBody(String projectName) {
-    final codeLines = List<String>.empty(growable: true)
-      ..add("import 'package:onix_flutter_core/onix_flutter_core.dart';");
+    final codeLines = List<String>.empty(growable: true);
 
     ///Add Imports
     final modelImports = _buildSourceImports(projectName);
@@ -75,7 +74,6 @@ class SourceComponent with _$SourceComponent {
 
   String getSourceImplementationBody(String projectName) {
     final codeLines = List<String>.empty(growable: true)
-      ..add("import 'package:onix_flutter_core/onix_flutter_core.dart';")
       ..add("import 'package:dio/dio.dart';")
       ..add(
         "import 'package:$projectName/data/source/remote/${name.snakeCase}/${name.snakeCase}_source.dart';",
@@ -114,8 +112,7 @@ class SourceComponent with _$SourceComponent {
   }
 
   String getRepoDeclarationBody(String projectName) {
-    final codeLines = List<String>.empty(growable: true)
-      ..add("import 'package:onix_flutter_core/onix_flutter_core.dart';");
+    final codeLines = List<String>.empty(growable: true);
     final modelImports = _buildRepositoryImports(projectName);
     codeLines
       ..add(modelImports)
@@ -134,16 +131,12 @@ class SourceComponent with _$SourceComponent {
   }
 
   String getRepoImplementationBody(String projectName) {
-    final codeLines = List<String>.empty(growable: true)
-      ..add("import 'package:onix_flutter_core/onix_flutter_core.dart';")
-      ..add(
-        "import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';",
-      )
-      ..add(
-        "import 'package:$projectName/core/arch/logger/app_logger_impl.dart';",
-      );
+    final codeLines = <String>{};
     final modelImports = _buildRepositoryImports(projectName);
     codeLines
+      ..add(
+        "import 'package:$projectName/core/arch/logger/app_logger_impl.dart';",
+      )
       ..add(modelImports)
       ..add(getRepoDeclarationImport(projectName))
       ..add(getDeclarationImport(projectName));
@@ -225,7 +218,9 @@ class SourceComponent with _$SourceComponent {
   }
 
   String _buildSourceImports(String projectName) {
-    final imports = List<String>.empty(growable: true);
+    final imports = <String>{}
+      ..add("import 'package:onix_flutter_core/onix_flutter_core.dart';");
+
     for (final request in requests) {
       ///build response imports
       ///Add response body import
@@ -281,7 +276,12 @@ class SourceComponent with _$SourceComponent {
   }
 
   String _buildRepositoryImports(String projectName) {
-    final imports = List<String>.empty(growable: true);
+    final imports = <String>{}
+      ..add("import 'package:onix_flutter_core/onix_flutter_core.dart';")
+      ..add(
+        "import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';",
+      );
+
     for (final request in requests) {
       ///build response imports
       ///Add response body import

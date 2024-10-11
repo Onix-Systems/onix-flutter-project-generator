@@ -43,7 +43,7 @@ class RequestComponent with _$RequestComponent {
           .map(
             (e) => e.getParamBodyDeclaration(
               DataFileType.request,
-              true,
+              isRequiredRequestBody: true,
             ),
           )
           .join('\n');
@@ -132,8 +132,9 @@ class RequestComponent with _$RequestComponent {
           codeLines.add("'${e.name}': ${e.getNameDeclaration()},");
         }
       }
-      codeLines..add('},);')
-      ..addNewLine();
+      codeLines
+        ..add('},);')
+        ..addNewLine();
     }
 
     ///If query params not empty - create query parameter variables
@@ -142,8 +143,9 @@ class RequestComponent with _$RequestComponent {
       for (final e in queryParams) {
         codeLines.add("'${e.name}': ${e.getNameDeclaration()},");
       }
-      codeLines..add('};')
-      ..addNewLine();
+      codeLines
+        ..add('};')
+        ..addNewLine();
     }
 
     ///If create a new request
@@ -261,7 +263,6 @@ class RequestComponent with _$RequestComponent {
     }
     codeLines.add(
         'final result = await _${repoName}Source.${operationId.camelCase}(');
-    //TODO
     final sourceCallParams = _buildSourceCallParams(DataFileType.none);
     codeLines
       ..add(sourceCallParams)
@@ -319,7 +320,7 @@ class RequestComponent with _$RequestComponent {
       codeLines.add(
         requestBody?.getParamBodyDeclaration(
               fileType,
-              true,
+              isRequiredRequestBody: true,
             ) ??
             '',
       );
@@ -329,7 +330,7 @@ class RequestComponent with _$RequestComponent {
         codeLines.add(
           e.getParamBodyDeclaration(
             fileType,
-            true,
+            isRequiredRequestBody: true,
           ),
         );
       }
@@ -339,7 +340,7 @@ class RequestComponent with _$RequestComponent {
         codeLines.add(
           e.getParamBodyDeclaration(
             fileType,
-            false,
+            isRequiredRequestBody: false,
           ),
         );
       }
@@ -349,11 +350,13 @@ class RequestComponent with _$RequestComponent {
         codeLines.add(
           e.getParamBodyDeclaration(
             fileType,
-            false,
+            isRequiredRequestBody: false,
           ),
         );
       }
     }
+
+    codeLines.sort((a, b) => b.startsWith('required') ? 1 : -1);
     return codeLines.join('\n');
   }
 
