@@ -34,6 +34,12 @@ mixin DIContentMixin on ScreenGenerationService {
               "import 'package:$projectName/presentation/screen/${screenName}_screen/$folder/${screenName}_screen_imports.dart';\n$_importsSuffix")
           .replaceFirst(diSuffix,
               'getIt.registerSingleton<StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>>(StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>((ref) => ${screenName.pascalCase}ScreenProvider(),),);\n$diSuffix');
+
+      output = '''$output
+      
+      StateNotifierProvider<${screenName.pascalCase}Provider, ${screenName.pascalCase}State> ${screenName.snakeCase}Provider() =>
+    GetIt.I.get<StateNotifierProvider<${screenName.pascalCase}Provider, ${screenName.pascalCase}State>>();
+      ''';
     } else {
       output = output
           .replaceFirst(_importsSuffix,

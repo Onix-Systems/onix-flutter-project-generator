@@ -76,7 +76,7 @@ final class ProviderStateManagementVariant extends StateManagementVariant {
 final class RiverpodStatelessStateManagementVariant
     extends StateManagementVariant {
   @override
-  String get name => 'RiverpodStatless';
+  String get name => 'RiverpodStateless';
 
   @override
   ScreenGenerationService get screenGenerator =>
