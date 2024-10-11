@@ -156,7 +156,6 @@ Future<void> getDependencies(HookContext context) async {
     // unit tests that differ from the major version are lower than 6
     'connectivity_plus: ^6.0.3',
     'onix_flutter_core',
-    'onix_flutter_core_models',
   ];
 
   if (context.vars['isBloc']) {
