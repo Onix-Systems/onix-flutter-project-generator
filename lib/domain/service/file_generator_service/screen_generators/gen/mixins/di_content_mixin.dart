@@ -28,15 +28,18 @@ mixin DIContentMixin on ScreenGenerationService {
 
     final projectName = params.projectName;
 
-    output = output.replaceFirst(_importsSuffix,
-        "import 'package:$projectName/presentation/screen/${screenName}_screen/$folder/${screenName}_screen_${stateManagement.name.toLowerCase()}.dart';\n$_importsSuffix");
-
     if (diSuffix == _diRiverpodSuffix) {
-      output = output.replaceFirst(diSuffix,
-          'getIt.registerSingleton<StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>>(StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>((ref) => ${screenName.pascalCase}ScreenProvider(),),);\n$diSuffix');
+      output = output
+          .replaceFirst(_importsSuffix,
+              "import 'package:$projectName/presentation/screen/${screenName}_screen/$folder/${screenName}_screen_imports.dart';\n$_importsSuffix")
+          .replaceFirst(diSuffix,
+              'getIt.registerSingleton<StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>>(StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>((ref) => ${screenName.pascalCase}ScreenProvider(),),);\n$diSuffix');
     } else {
-      output = output.replaceFirst(diSuffix,
-          'getIt.registerFactory<${screenName.pascalCase}Screen${stateManagement.name}>(${screenName.pascalCase}Screen${stateManagement.name}.new);\n$diSuffix');
+      output = output
+          .replaceFirst(_importsSuffix,
+              "import 'package:$projectName/presentation/screen/${screenName}_screen/$folder/${screenName}_screen_${stateManagement.name.toLowerCase()}.dart';\n$_importsSuffix")
+          .replaceFirst(diSuffix,
+              'getIt.registerFactory<${screenName.pascalCase}Screen${stateManagement.name}>(${screenName.pascalCase}Screen${stateManagement.name}.new);\n$diSuffix');
     }
     await diFile.writeAsString(output);
   }
