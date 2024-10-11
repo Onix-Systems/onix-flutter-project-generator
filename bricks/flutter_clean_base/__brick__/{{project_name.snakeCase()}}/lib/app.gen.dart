@@ -49,7 +49,12 @@ class _AppState extends State<App>
   {{/isProvider}}
 
   @override
-  Widget {{#isBase}}build{{/isBase}}{{^isBase}}buildWidget{{/isBase}}(BuildContext context) {
+  Widget
+  {{#isBase}}build{{/isBase}}
+  {{#isRiverpod}}build{{/isRiverpod}}
+  {{#isBloc}}buildWidget{{/isBloc}}
+  {{#isProvider}}buildWidget{{/isProvider}}
+  (BuildContext context) {
     {{#isGoRouter}}AppRouter.init();{{/isGoRouter}}
     return {{^web_only}}GlobalLoaderOverlay(
       overlayColor: Colors.black.withOpacity(0.5),
