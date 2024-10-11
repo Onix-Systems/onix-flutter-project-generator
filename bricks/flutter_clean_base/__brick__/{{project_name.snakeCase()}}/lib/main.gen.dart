@@ -28,7 +28,12 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
         {{#isBloc}}Bloc.observer = AppBlocObserver();{{/isBloc}}
         final isAllowedToUseApp = await environmentService().initialize();
         if (isAllowedToUseApp) {
+          {{#isRiverpod}}
+          runApp(ProviderScope(child: const App()));
+          {{/isRiverpod}}
+          {{^isRiverpod}}
           runApp(const App());
+          {{/isRiverpod}}
         } else {
           runApp(const BannedApp());
         }
