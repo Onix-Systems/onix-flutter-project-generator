@@ -58,14 +58,16 @@ class _AppState extends State<App>
         designSize: const Size(375, 812),
         minTextAdapt: true,
         builder: (context, child) {
-        return{{/screen_util}}
+        {{/screen_util}}{{^isRiverpod}}return{{/isRiverpod}}
         {{#isBloc}}blocBuilder(
               builder: (context, state){{/isBloc}}
         {{#isProvider}}providerConsumer(
               stateListener: (provider){{/isProvider}}
         {{#isBase}}ThemeModeSwitcher(
               builder: (context, themeMode, _) {{/isBase}}
+          {{^isRiverpod}}
           {
+          {{/isRiverpod}}
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             builder: (context, widget) {

@@ -3,8 +3,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 {{#isBloc}}import 'package:flutter_bloc/flutter_bloc.dart';
-{{#isRiverpod}}import 'package:flutter_riverpod/flutter_riverpod.dart';{{/isRiverpod}}
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';{{/isBloc}}
+{{#isRiverpod}}import 'package:flutter_riverpod/flutter_riverpod.dart';{{/isRiverpod}}
 import 'package:{{project_name}}/app/banned_app.dart';
 import 'package:{{project_name}}/app/app.dart';
 import 'package:{{project_name}}/app/app_initialization.dart';
