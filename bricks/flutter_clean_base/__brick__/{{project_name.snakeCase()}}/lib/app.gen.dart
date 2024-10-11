@@ -8,6 +8,7 @@ import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';{{/isBloc}}
 {{^isBase}}import 'package:get_it/get_it.dart';{{/isBase}}
 {{#isProvider}}import 'package:onix_flutter_provider/onix_flutter_provider.dart';
 import 'package:{{project_name}}/app/provider/app_provider.dart';{{/isProvider}}
+{{#isRiverpod}} import 'package:flutter_riverpod/flutter_riverpod.dart';{{/isRiverpod}}
 import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
 {{#isBase}}import 'package:{{project_name}}/core/arch/widget/common/theme_switcher.dart';{{/isBase}}
 {{#isGoRouter}}import 'package:{{project_name}}/app/router/app_router.dart';{{/isGoRouter}}
@@ -19,11 +20,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';{{/handLocalization
 {{^handLocalization}}import 'package:{{project_name}}/app/localization/generated/l10n.dart';{{/handLocalization}}
 {{^isGoRouter}}{{#sentry}}import 'package:sentry_flutter/sentry_flutter.dart';{{/sentry}}{{/isGoRouter}}
 
-class App extends StatefulWidget {
+class App extends {{#isRiverpod}}Consumer{{/isRiverpod}}StatefulWidget {
   const App({super.key});
 
   @override
-  State<App> createState() => _AppState();
+{{#isRiverpod}}Consumer{{/isRiverpod}}State<App> createState() => _AppState();
 }
 {{#isBloc}}
 class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App>
@@ -31,6 +32,9 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App>
 {{#isProvider}}
 class _AppState extends BaseProviderState<AppProvider, App>
 {{/isProvider}}
+{{#isRiverpod}}
+class _AppState extends ConsumerState<App>
+{{/isRiverpod}}
 {{#isBase}}
 class _AppState extends State<App>
 {{/isBase}} {
@@ -80,7 +84,7 @@ class _AppState extends State<App>
             scrollBehavior: const CupertinoScrollBehavior(),
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
-            themeMode: {{#isBase}}themeMode{{/isBase}}{{#isBloc}}state.themeMode{{/isBloc}}{{#isProvider}}provider.themeMode{{/isProvider}},
+            themeMode: {{#isBase}}themeMode{{/isBase}}{{#isBloc}}state.themeMode{{/isBloc}}{{#isProvider}}provider.themeMode{{/isProvider}}{{#isRiverpod}}ref.watch(appProvider).themeMode{{/isRiverpod}},
             {{^isGoRouter}}
             {{^sentry}}routerConfig: appRouter().config(),{{/sentry}}
             {{#sentry}}routerConfig: appRouter().config(
