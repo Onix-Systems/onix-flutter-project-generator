@@ -170,7 +170,7 @@ Future<void> getDependencies(HookContext context) async {
   }
 
   if (context.vars['isRiverpod']) {
-    dependencies.addAll('flutter_riverpod');
+    dependencies.add('flutter_riverpod');
     await removeStateManagers(managers: ['bloc', 'provider']);
   }
 
