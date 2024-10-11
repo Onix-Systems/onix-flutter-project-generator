@@ -17,6 +17,8 @@ class RiverpodStrategy implements StateManagerStrategy {
 
   @override
   List<StateManagementVariant> get variants => [
+        const RiverpodStatefulStateManagementVariant(),
+        const RiverpodStatelessStateManagementVariant(),
         const StatefulStateManagementVariant(),
         const StatelessStateManagementVariant(),
       ];

@@ -37,7 +37,7 @@ class CubitScreenGenerator extends ScreenGenerationService
 
     if (params.screen.stateVariant != const StatelessStateManagementVariant()) {
       ///Add DI configuration for state management
-      await _createDI(params);
+      await createScreenDIContent(params: params);
     }
     return true;
   }
@@ -54,7 +54,7 @@ class CubitScreenGenerator extends ScreenGenerationService
         screenName: screenName,
         isLastDeclaration: params.lastScreenItem,
       );
-      routesFile.writeAsString(appRoutesContent);
+      await routesFile.writeAsString(appRoutesContent);
     }
 
     final routerFile = File(
@@ -71,21 +71,7 @@ class CubitScreenGenerator extends ScreenGenerationService
       router: params.router,
     );
 
-    routerFile.writeAsString(filledRouterContent);
-  }
-
-  Future<void> _createDI(ScreenGeneratorParams params) async {
-    var diFile = File(
-        '${params.projectPath}/${params.projectName}/lib/core/di/bloc.dart');
-    final screenName = params.normalizedScreenName;
-    String content = await diFile.readAsString();
-    final diOutputContent = createScreenDIContent(
-      input: content,
-      screenName: screenName,
-      projectName: params.projectName,
-      stateManagement: params.screen.stateVariant,
-    );
-    await diFile.writeAsString(diOutputContent);
+    await routerFile.writeAsString(filledRouterContent);
   }
 
   Future<void> _createFiles(

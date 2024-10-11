@@ -1,17 +1,13 @@
 import 'dart:io';
 
-import 'package:onix_flutter_bricks/domain/entity/state_management/state_management_variant.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/di_content_mixin.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/provider_content_mixin.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/provider_screen_code_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/riverpod_stateless_screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 
-class ProviderScreenGenerator extends ScreenGenerationService
-    with DIContentMixin, ProviderContentMixin {
-  final _screenCodeContent = ProviderScreenCodeContent();
+class RiverpodStatelessScreenGenerator extends ScreenGenerationService {
+  final _screenCodeContent = RiverpodStatelessScreenCodeContent();
 
   @override
   Future<bool> generate(BaseGenerationParams params) async {
@@ -25,16 +21,11 @@ class ProviderScreenGenerator extends ScreenGenerationService
         '${params.projectPath}/${params.projectName}/lib/presentation/screen/${screenName}_screen';
     await Directory(screenPath).create(recursive: true);
 
-    ///Create screen files and Provider files for a screen
+    ///Create screen files and BLoC files for a screen
     await _createFiles(params, screenPath);
 
     ///Add screen configuration to Navigation Router file
     await _createRoutes(params);
-
-    if (params.screen.stateVariant != const StatelessStateManagementVariant()) {
-      ///Add DI configuration for state management
-      await createScreenDIContent(params: params);
-    }
 
     return true;
   }
@@ -56,7 +47,7 @@ class ProviderScreenGenerator extends ScreenGenerationService
 
     final routerFile = File(
         '${params.projectPath}/${params.projectName}/lib/app/router/app_router.dart');
-    final routerContent = routerFile.readAsStringSync();
+    String routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations
     final filledRouterContent =
@@ -68,7 +59,7 @@ class ProviderScreenGenerator extends ScreenGenerationService
       router: params.router,
     );
 
-    await routerFile.writeAsString(filledRouterContent);
+    routerFile.writeAsString(filledRouterContent);
   }
 
   Future<void> _createFiles(
@@ -79,24 +70,18 @@ class ProviderScreenGenerator extends ScreenGenerationService
     final screenFile =
         await File('$screenPath/${screenName}_screen.dart').create();
 
-    var screenContent = '';
+    String screenContent = '';
 
     screenContent = _screenCodeContent.createScreen(
       isGoRouter: params.router == ProjectRouter.goRouter,
-      projectName: params.projectName,
       screenName: screenName,
+      projectName: params.projectName,
     );
+
+    if (screenContent.isEmpty) {
+      return;
+    }
 
     await screenFile.writeAsString(screenContent);
-
-    ///Write Provider file
-    final providerFile = await File(
-            '$screenPath/provider/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart')
-        .create(recursive: true);
-    final providerFileContent = createProviderContent(
-      projectName: params.projectName,
-      screenName: screenName,
-    );
-    await providerFile.writeAsString(providerFileContent);
   }
 }

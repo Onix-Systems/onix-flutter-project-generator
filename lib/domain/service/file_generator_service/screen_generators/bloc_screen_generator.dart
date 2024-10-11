@@ -35,9 +35,10 @@ class BlocScreenGenerator extends ScreenGenerationService
     ///Add screen configuration to Navigation Router file
     await _createRoutes(params);
 
-    if (params.screen.stateVariant != const StatelessStateManagementVariant()) {
+    if (params.screen.stateVariant != const StatelessStateManagementVariant() &&
+        params.screen.stateVariant != const StatefulStateManagementVariant()) {
       ///Add DI configuration for state management
-      await _createDI(params);
+      await createScreenDIContent(params: params);
     }
     return true;
   }
@@ -72,20 +73,6 @@ class BlocScreenGenerator extends ScreenGenerationService
     );
 
     routerFile.writeAsString(filledRouterContent);
-  }
-
-  Future<void> _createDI(ScreenGeneratorParams params) async {
-    var diFile = File(
-        '${params.projectPath}/${params.projectName}/lib/core/di/bloc.dart');
-    final screenName = params.normalizedScreenName;
-    String content = await diFile.readAsString();
-    final diOutputContent = createScreenDIContent(
-      input: content,
-      screenName: screenName,
-      projectName: params.projectName,
-      stateManagement: params.screen.stateVariant,
-    );
-    await diFile.writeAsString(diOutputContent);
   }
 
   Future<void> _createFiles(
