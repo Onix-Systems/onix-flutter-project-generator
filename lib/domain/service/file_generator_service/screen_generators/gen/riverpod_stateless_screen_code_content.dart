@@ -28,11 +28,11 @@ class RiverpodStatelessScreenCodeContent extends ScreenCodeContent {
 
     ///Add screen widget code
     codeLines
-      ..add('class ${screenClassName}Screen extends ConsumerStatelessWidget {')
+      ..add('class ${screenClassName}Screen extends ConsumerWidget {')
       ..add('const ${screenClassName}Screen({super.key});')
       ..addNewLine()
       ..add('@override')
-      ..add('Widget build(BuildContext context) {')
+      ..add('Widget build(BuildContext context, WidgetRef ref) {')
       ..add('return const Scaffold(')
       ..add("body: Center(child: Text('$screenClassName screen'),),")
       ..add(');')

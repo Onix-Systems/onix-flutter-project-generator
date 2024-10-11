@@ -28,7 +28,7 @@ mixin RiverpodContentMixin on ScreenGenerationService {
     final codeLines = List<String>.empty(growable: true)
       ..add("import 'package:flutter_riverpod/flutter_riverpod.dart';")
       ..add(
-        "import 'package:$projectName/presentation/screen/$screenClassImport/riverpod/$screenClassImport\_screen_state.dart';",
+        "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/riverpod/$screenClassImport\_screen_state.dart';",
       )
       ..addNewLine()
       ..add(

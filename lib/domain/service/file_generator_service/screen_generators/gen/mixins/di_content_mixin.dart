@@ -20,11 +20,7 @@ mixin DIContentMixin on ScreenGenerationService {
 
     final diSuffix = '//{${stateManagement.name.toLowerCase()} end}';
 
-    var folder = stateManagement.name.toLowerCase();
-
-    if (stateManagement.name.toLowerCase() == 'riverpod') {
-      folder = 'provider';
-    }
+    final folder = stateManagement.name.toLowerCase();
 
     final projectName = params.projectName;
 
