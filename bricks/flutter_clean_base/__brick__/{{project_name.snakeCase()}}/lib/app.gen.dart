@@ -125,9 +125,9 @@ class _AppState extends State<App>
             {{/handLocalization}}
           );
           },
-     {{#screen_util}}
+     {{#screen_util}}{{^isRiverpod}}
             );
-          },
+          },{{/isRiverpod}}
      {{#web_only}}
         );
     {{/web_only}}
@@ -140,9 +140,9 @@ class _AppState extends State<App>
     {{#web_only}}
         );
     {{/web_only}}
-    {{^web_only}}{{^isRiverpod}}
+    {{^web_only}}
           );
-        ),{{/isRiverpod}}
+        ),
        );
     {{/web_only}}
     {{/screen_util}}
