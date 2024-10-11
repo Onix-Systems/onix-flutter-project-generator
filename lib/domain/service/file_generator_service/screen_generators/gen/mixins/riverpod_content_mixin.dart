@@ -32,7 +32,7 @@ mixin RiverpodContentMixin on ScreenGenerationService {
       )
       ..addNewLine()
       ..add(
-          'class ${screenName.pascalCase}Provider extends StateNotifier<${screenName.pascalCase}ScreenState> {')
+          'class ${screenName.pascalCase}ScreenProvider extends StateNotifier<${screenName.pascalCase}ScreenState> {')
       ..add('MainScreenProvider() : super(const MainScreenState());')
       ..addNewLine()
       ..add('void increment() {')

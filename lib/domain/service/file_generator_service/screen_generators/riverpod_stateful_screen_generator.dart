@@ -94,10 +94,10 @@ class RiverpodStatefulScreenGenerator extends ScreenGenerationService
 
     await screenFile.writeAsString(screenContent);
 
-    ///Write BLoC imports file
-    var importsFile =
+    ///Write Riverpod imports file
+    final importsFile =
         await File('$screenPath/riverpod/${screenName}_screen_imports.dart')
-            .create();
+            .create(recursive: true);
     final importsContent = createRiverpodImportsContent(
       screenName: screenName,
       stateManagement: params.screen.stateVariant,
@@ -105,8 +105,8 @@ class RiverpodStatefulScreenGenerator extends ScreenGenerationService
     await importsFile.writeAsString(importsContent);
 
     ///Write Riverpod state file
-    var modelsFile =
-        await File('$screenPath/riverpod/${screenName}_screen_models.dart')
+    final modelsFile =
+        await File('$screenPath/riverpod/${screenName}_screen_state.dart')
             .create();
     final modelsContent = createRiverpodState(
       screenName: screenName,
@@ -115,9 +115,9 @@ class RiverpodStatefulScreenGenerator extends ScreenGenerationService
     await modelsFile.writeAsString(modelsContent);
 
     ///Write Riverpod file
-    var blocFile = await File(
-            '$screenPath/riverpod/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart')
-        .create();
+    final blocFile = await File(
+      '$screenPath/riverpod/${screenName}_screen_provider.dart',
+    ).create();
     final blocFileContent = createRiverpodContent(
       projectName: params.projectName,
       screenName: screenName,
