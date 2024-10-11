@@ -140,8 +140,9 @@ class _AppState extends State<App>
     {{#web_only}}
         );
     {{/web_only}}
-    {{^web_only}}
-        ),
+    {{^web_only}}{{^isRiverpod}}
+          );
+        ),{{/isRiverpod}}
        );
     {{/web_only}}
     {{/screen_util}}
