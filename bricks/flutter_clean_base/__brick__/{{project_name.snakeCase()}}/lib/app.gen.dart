@@ -9,7 +9,7 @@ import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';{{/isBloc}}
 {{#isProvider}}import 'package:onix_flutter_provider/onix_flutter_provider.dart';
 import 'package:{{project_name}}/app/provider/app_provider.dart';{{/isProvider}}
 {{#isRiverpod}} import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:river_test/core/di/riverpod.dart';{{/isRiverpod}}
+import 'package:{{project_name}}/core/di/riverpod.dart';{{/isRiverpod}}
 import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
 {{#isBase}}import 'package:{{project_name}}/core/arch/widget/common/theme_switcher.dart';{{/isBase}}
 {{#isGoRouter}}import 'package:{{project_name}}/app/router/app_router.dart';{{/isGoRouter}}
