@@ -52,7 +52,7 @@ mixin RiverpodContentMixin on ScreenGenerationService {
     final codeLines = List<String>.empty(growable: true)
       ..add("import 'package:freezed_annotation/freezed_annotation.dart';")
       ..addNewLine()
-      ..add("part '${screenClassImport}_screen_models.freezed.dart';")
+      ..add("part '${screenClassImport}_screen_state.freezed.dart';")
       ..addNewLine()
       ..add("@freezed")
       ..add(
