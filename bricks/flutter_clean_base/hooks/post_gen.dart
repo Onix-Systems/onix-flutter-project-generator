@@ -160,26 +160,27 @@ Future<void> getDependencies(HookContext context) async {
   ];
 
   if (context.vars['isBloc']) {
-    dependencies..addAll(['flutter_bloc', 'onix_flutter_bloc']);
-    await removeStateManagers(['provider']);
-    await Process.run('rm', ['theme_util.dart'],
-        workingDirectory: '$name/lib/app/util');
+    dependencies.addAll(['flutter_bloc', 'onix_flutter_bloc']);
+    await removeStateManagers(managers: ['provider', 'riverpod']);
   }
 
   if (context.vars['isProvider']) {
     dependencies.addAll(['provider', 'onix_flutter_provider']);
-    await removeStateManagers(['bloc']);
-    await Process.run('rm', ['theme_util.dart'],
-        workingDirectory: '$name/lib/app/util');
+    await removeStateManagers(managers: ['bloc', 'riverpod']);
   }
 
-  if (context.vars['isProvider'] || context.vars['isBloc']) {
+  if (context.vars['isRiverpod']) {
+    dependencies.addAll('flutter_riverpod');
+    await removeStateManagers(managers: ['bloc', 'provider']);
+  }
+
+  if (!context.vars['isBase']) {
     dependencies.add('onix_flutter_core_models');
   }
 
   if (context.vars['isBase']) {
-    // TODO(Ivan Modlo): Remove it later
-    await removeStateManagers(['provider', 'bloc']);
+    await removeStateManagers(
+        managers: ['provider', 'bloc', 'riverpod'], removeThemeUtil: false);
   }
 
   if (!context.vars['web_only']) {
@@ -295,12 +296,17 @@ Future<void> getDependencies(HookContext context) async {
   }
 }
 
-Future<void> removeStateManagers(List<String> managers) async {
+Future<void> removeStateManagers(
+    {required List<String> managers, bool removeThemeUtil = true}) async {
   for (var manager in managers) {
     await Process.run('rm', ['-r', manager], workingDirectory: '$name/lib/app');
 
     await Process.run('rm', ['$manager.dart'],
         workingDirectory: '$name/lib/core/di');
+  }
+  if (removeThemeUtil) {
+    await Process.run('rm', ['theme_util.dart'],
+        workingDirectory: '$name/lib/app/util');
   }
 }
 
