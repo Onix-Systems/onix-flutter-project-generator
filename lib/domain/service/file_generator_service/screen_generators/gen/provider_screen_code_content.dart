@@ -55,7 +55,7 @@ class ProviderScreenCodeContent extends ScreenCodeContent {
       ..add('${screenClassName}Screen> {')
       ..add('@override')
       ..add(
-        'MainScreenProvider createProvider() => GetIt.I<MainScreenProvider>();',
+        '${screenClassName}ScreenProvider createProvider() => GetIt.I<${screenClassName}ScreenProvider>();',
       )
       ..addNewLine()
       ..add('@override')

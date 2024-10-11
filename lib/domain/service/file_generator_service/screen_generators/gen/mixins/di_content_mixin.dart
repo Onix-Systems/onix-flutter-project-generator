@@ -11,27 +11,25 @@ mixin DIContentMixin on ScreenGenerationService {
   Future<void> createScreenDIContent({
     required ScreenGeneratorParams params,
   }) async {
-    final diFile = File(
-        '${params.projectPath}/${params.projectName}/lib/core/di/riverpod.dart');
-    final screenName = params.normalizedScreenName;
-    var output = await diFile.readAsString();
+    var stateManagement = params.screen.stateVariant.name.toLowerCase();
 
-    var stateManagement = params.screen.stateVariant.name;
-
-    if (stateManagement.startsWith('Riverpod')) {
+    if (stateManagement.startsWith('riverpod')) {
       stateManagement = 'riverpod';
     }
 
-    final diSuffix = '//{${stateManagement.toLowerCase()} end}';
+    final diFile = File(
+        '${params.projectPath}/${params.projectName}/lib/core/di/$stateManagement.dart');
+    final screenName = params.normalizedScreenName;
+    var output = await diFile.readAsString();
 
-    final folder = stateManagement.toLowerCase();
+    final diSuffix = '//{$stateManagement end}';
 
     final projectName = params.projectName;
 
     if (diSuffix == _diRiverpodSuffix) {
       output = output
           .replaceFirst(_importsSuffix,
-              "import 'package:$projectName/presentation/screen/${screenName}_screen/$folder/${screenName}_screen_imports.dart';\n$_importsSuffix")
+              "import 'package:$projectName/presentation/screen/${screenName}_screen/$stateManagement/${screenName}_screen_imports.dart';\n$_importsSuffix")
           .replaceFirst(diSuffix,
               'getIt.registerSingleton<StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>>(StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>((ref) => ${screenName.pascalCase}ScreenProvider(),),);\n$diSuffix');
 
@@ -43,9 +41,9 @@ mixin DIContentMixin on ScreenGenerationService {
     } else {
       output = output
           .replaceFirst(_importsSuffix,
-              "import 'package:$projectName/presentation/screen/${screenName}_screen/$folder/${screenName}_screen_${stateManagement.toLowerCase()}.dart';\n$_importsSuffix")
+              "import 'package:$projectName/presentation/screen/${screenName}_screen/$stateManagement/${screenName}_screen_${stateManagement.toLowerCase()}.dart';\n$_importsSuffix")
           .replaceFirst(diSuffix,
-              'getIt.registerFactory<${screenName.pascalCase}Screen$stateManagement>(${screenName.pascalCase}Screen$stateManagement.new);\n$diSuffix');
+              'getIt.registerFactory<${screenName.pascalCase}Screen${stateManagement.pascalCase}>(${screenName.pascalCase}Screen${stateManagement.pascalCase}.new);\n$diSuffix');
     }
     await diFile.writeAsString(output);
   }
