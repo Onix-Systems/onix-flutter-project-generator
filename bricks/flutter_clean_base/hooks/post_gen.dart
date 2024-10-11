@@ -178,6 +178,10 @@ Future<void> getDependencies(HookContext context) async {
         managers: ['provider', 'bloc', 'riverpod'], removeThemeUtil: false);
   }
 
+  if (!context.vars['isBase']) {
+    dependencies.add('onix_flutter_core_models');
+  }
+
   if (!context.vars['web_only']) {
     if (context.vars['screen_util']) {
       dependencies.add('flutter_screenutil');
