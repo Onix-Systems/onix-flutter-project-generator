@@ -91,7 +91,7 @@ class _AppState extends State<App>
             scrollBehavior: const CupertinoScrollBehavior(),
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
-            themeMode: {{#isBase}}themeMode{{/isBase}}{{#isBloc}}state.themeMode{{/isBloc}}{{#isProvider}}provider.themeMode{{/isProvider}}{{#isRiverpod}}ref.watch(appProvider).themeMode{{/isRiverpod}},
+            themeMode: {{#isBase}}themeMode{{/isBase}}{{#isBloc}}state.themeMode{{/isBloc}}{{#isProvider}}provider.themeMode{{/isProvider}}{{#isRiverpod}}ref.watch(appProvider()).themeMode{{/isRiverpod}},
             {{^isGoRouter}}
             {{^sentry}}routerConfig: appRouter().config(),{{/sentry}}
             {{#sentry}}routerConfig: appRouter().config(
