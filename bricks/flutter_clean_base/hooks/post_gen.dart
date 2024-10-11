@@ -174,10 +174,6 @@ Future<void> getDependencies(HookContext context) async {
     await removeStateManagers(managers: ['bloc', 'provider']);
   }
 
-  if (!context.vars['isBase']) {
-    dependencies.add('onix_flutter_core_models');
-  }
-
   if (context.vars['isBase']) {
     await removeStateManagers(
         managers: ['provider', 'bloc', 'riverpod'], removeThemeUtil: false);
