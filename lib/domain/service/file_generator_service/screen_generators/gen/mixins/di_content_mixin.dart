@@ -16,11 +16,15 @@ mixin DIContentMixin on ScreenGenerationService {
     final screenName = params.normalizedScreenName;
     var output = await diFile.readAsString();
 
-    final stateManagement = params.screen.stateVariant;
+    var stateManagement = params.screen.stateVariant.name;
 
-    final diSuffix = '//{${stateManagement.name.toLowerCase()} end}';
+    if (stateManagement.startsWith('Riverpod')) {
+      stateManagement = 'riverpod';
+    }
 
-    final folder = stateManagement.name.toLowerCase();
+    final diSuffix = '//{${stateManagement.toLowerCase()} end}';
+
+    final folder = stateManagement.toLowerCase();
 
     final projectName = params.projectName;
 
@@ -33,9 +37,9 @@ mixin DIContentMixin on ScreenGenerationService {
     } else {
       output = output
           .replaceFirst(_importsSuffix,
-              "import 'package:$projectName/presentation/screen/${screenName}_screen/$folder/${screenName}_screen_${stateManagement.name.toLowerCase()}.dart';\n$_importsSuffix")
+              "import 'package:$projectName/presentation/screen/${screenName}_screen/$folder/${screenName}_screen_${stateManagement.toLowerCase()}.dart';\n$_importsSuffix")
           .replaceFirst(diSuffix,
-              'getIt.registerFactory<${screenName.pascalCase}Screen${stateManagement.name}>(${screenName.pascalCase}Screen${stateManagement.name}.new);\n$diSuffix');
+              'getIt.registerFactory<${screenName.pascalCase}Screen$stateManagement>(${screenName.pascalCase}Screen$stateManagement.new);\n$diSuffix');
     }
     await diFile.writeAsString(output);
   }
