@@ -315,7 +315,6 @@ class RequestComponent with _$RequestComponent {
 
   ///Build function input parameters
   String _buildFunctionParams(DataFileType fileType) {
-    // TODO(Ivan Modlo):
     final codeLines = List<String>.empty(growable: true);
     if (requestBody != null) {
       codeLines.add(
