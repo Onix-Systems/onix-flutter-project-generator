@@ -174,11 +174,8 @@ Future<void> getDependencies(HookContext context) async {
   }
 
   if (context.vars['isBase']) {
-    await removeStateManagers(
-        managers: ['provider', 'bloc', 'riverpod'], removeThemeUtil: false);
-  }
-
-  if (!context.vars['isBase']) {
+    await removeStateManagers(managers: ['provider', 'bloc', 'riverpod']);
+  } else {
     dependencies.add('onix_flutter_core_models');
   }
 
@@ -295,15 +292,10 @@ Future<void> getDependencies(HookContext context) async {
   }
 }
 
-Future<void> removeStateManagers(
-    {required List<String> managers, bool removeThemeUtil = true}) async {
+Future<void> removeStateManagers({required List<String> managers}) async {
   for (var manager in managers) {
     await Process.run('rm', ['$manager.dart'],
         workingDirectory: '$name/lib/core/di');
-  }
-  if (removeThemeUtil) {
-    await Process.run('rm', ['theme_util.dart'],
-        workingDirectory: '$name/lib/app/util');
   }
 }
 
