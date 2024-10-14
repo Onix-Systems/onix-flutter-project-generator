@@ -32,10 +32,12 @@ class StatefulScreenCodeContent extends ScreenCodeContent {
       ..addNewLine()
       ..add('@override')
       ..add(
-          'State<${screenClassName}Screen> createState() => _${screenClassName}State();')
+        'State<${screenClassName}Screen> createState() => _${screenClassName}State();',
+      )
       ..add('}')
       ..add(
-          'class _${screenClassName}State extends State<${screenClassName}Screen> {')
+        'class _${screenClassName}State extends State<${screenClassName}Screen> {',
+      )
       ..add('@override')
       ..add('Widget build(BuildContext context) {')
       ..add('return const Scaffold(')

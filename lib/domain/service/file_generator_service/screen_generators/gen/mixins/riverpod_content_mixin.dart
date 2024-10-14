@@ -32,9 +32,11 @@ mixin RiverpodContentMixin on ScreenGenerationService {
       )
       ..addNewLine()
       ..add(
-          'class ${screenName.pascalCase}ScreenProvider extends StateNotifier<${screenName.pascalCase}ScreenState> {')
+        'class ${screenName.pascalCase}ScreenProvider extends StateNotifier<${screenName.pascalCase}ScreenState> {',
+      )
       ..add(
-          '${screenName.pascalCase}ScreenProvider() : super(const ${screenName.pascalCase}ScreenState());')
+        '${screenName.pascalCase}ScreenProvider() : super(const ${screenName.pascalCase}ScreenState());',
+      )
       ..addNewLine()
       ..add('void increment() {')
       ..add('state = state.copyWith(count: state.count + 1);')
@@ -57,7 +59,8 @@ mixin RiverpodContentMixin on ScreenGenerationService {
       ..addNewLine()
       ..add('@freezed')
       ..add(
-          'class ${screenModelName}ScreenState with _\$${screenModelName}ScreenState {')
+        'class ${screenModelName}ScreenState with _\$${screenModelName}ScreenState {',
+      )
       ..add('const factory ${screenModelName}ScreenState({')
       ..add('@Default(0) int count,')
       ..add('}) = _${screenModelName}ScreenState;')

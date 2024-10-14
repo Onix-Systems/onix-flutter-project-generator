@@ -34,10 +34,12 @@ class RiverpodStatefulScreenCodeContent extends ScreenCodeContent {
       ..addNewLine()
       ..add('@override')
       ..add(
-          'ConsumerState<${screenClassName}Screen> createState() => _${screenClassName}State();')
+        'ConsumerState<${screenClassName}Screen> createState() => _${screenClassName}State();',
+      )
       ..add('}')
       ..add(
-          'class _${screenClassName}State extends ConsumerState<${screenClassName}Screen> {')
+        'class _${screenClassName}State extends ConsumerState<${screenClassName}Screen> {',
+      )
       ..add('@override')
       ..add('Widget build(BuildContext context) {')
       ..add('return const Scaffold(')

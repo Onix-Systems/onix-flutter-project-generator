@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:onix_flutter_bricks/domain/entity/state_management/state_management_variant.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/di_content_mixin.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/riverpod_content_mixin.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/riverpod_stateless_screen_code_content.dart';
@@ -14,11 +13,7 @@ class RiverpodStatelessScreenGenerator extends ScreenGenerationService
   final _screenCodeContent = RiverpodStatelessScreenCodeContent();
 
   @override
-  Future<bool> generate(BaseGenerationParams params) async {
-    if (params is! ScreenGeneratorParams) {
-      return false;
-    }
-
+  Future<bool> generate(ScreenGeneratorParams params) async {
     final screenName = params.normalizedScreenName;
 
     final screenPath =
@@ -44,7 +39,8 @@ class RiverpodStatelessScreenGenerator extends ScreenGenerationService
     final screenName = params.normalizedScreenName;
     if (params.router == ProjectRouter.goRouter) {
       final routesFile = File(
-          '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
+        '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart',
+      );
       final routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
       final appRoutesContent = _screenCodeContent.createScreenNavigationGoRoute(
@@ -56,7 +52,8 @@ class RiverpodStatelessScreenGenerator extends ScreenGenerationService
     }
 
     final routerFile = File(
-        '${params.projectPath}/${params.projectName}/lib/app/router/app_router.dart');
+      '${params.projectPath}/${params.projectName}/lib/app/router/app_router.dart',
+    );
     final routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations

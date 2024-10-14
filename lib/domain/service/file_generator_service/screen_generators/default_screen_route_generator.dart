@@ -15,10 +15,12 @@ class DefaultScreenRouteGenerator
   }
 
   Future<void> _createDefaultRoute(
-      DefaultScreenRouteGeneratorParams params) async {
+    DefaultScreenRouteGeneratorParams params,
+  ) async {
     if (params.router == ProjectRouter.goRouter) {
       final routesFile = File(
-          '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
+        '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart',
+      );
       final routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
       final appRoutesContent = routesContent.replaceAll(

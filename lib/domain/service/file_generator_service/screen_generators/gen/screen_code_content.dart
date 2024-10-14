@@ -13,8 +13,10 @@ abstract class ScreenCodeContent {
   }) {
     final output = input;
     final coda = isLastDeclaration ? ';' : ',';
-    return output.replaceAll(routesDeclarationSuffix,
-        "${screenName.camelCase}('/${screenName.snakeCase}')$coda\n$routesDeclarationSuffix");
+    return output.replaceAll(
+      routesDeclarationSuffix,
+      "${screenName.camelCase}('/${screenName.snakeCase}')$coda\n$routesDeclarationSuffix",
+    );
   }
 
   String createScreenNavigationContent({
@@ -29,16 +31,20 @@ abstract class ScreenCodeContent {
 
     ///Declare initial route
     if (isInitialScreen) {
-      output = output.replaceAll("static const _initialLocation = '/'",
-          "static const _initialLocation = '/${screenName.snakeCase}'");
+      output = output.replaceAll(
+        "static const _initialLocation = '/'",
+        "static const _initialLocation = '/${screenName.snakeCase}'",
+      );
     }
     if (router == ProjectRouter.goRouter) {
       final goRouteContent = _buildGoRouteContent(screenName);
       output = output
           .replaceAll(
               navigatorRoutesSuffix, '$goRouteContent$navigatorRoutesSuffix')
-          .replaceAll(navigatorImportsSuffix,
-              "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart';\n$navigatorImportsSuffix");
+          .replaceAll(
+            navigatorImportsSuffix,
+            "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart';\n$navigatorImportsSuffix",
+          );
     } else {
       final autoRouteContent = _buildAutoRouteContent(
         isInitialScreen,
@@ -47,8 +53,10 @@ abstract class ScreenCodeContent {
       output = output
           .replaceAll(navigatorRoutesSuffix,
               '$autoRouteContent\n$navigatorRoutesSuffix')
-          .replaceAll(navigatorImportsSuffix,
-              "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart';$navigatorImportsSuffix");
+          .replaceAll(
+            navigatorImportsSuffix,
+            "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart';$navigatorImportsSuffix",
+          );
     }
 
     return output;

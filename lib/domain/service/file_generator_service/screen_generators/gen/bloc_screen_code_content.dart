@@ -24,7 +24,8 @@ class BlocScreenCodeContent extends ScreenCodeContent {
       ..add("import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';")
       ..add("import 'package:get_it/get_it.dart';")
       ..add(
-          "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart';")
+        "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart';",
+      )
       ..addNewLine();
 
     /// Add annotation in AutoRoute navigation used

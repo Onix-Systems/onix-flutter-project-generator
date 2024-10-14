@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/stateless_screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
@@ -11,11 +10,7 @@ class StatelessScreenGenerator extends ScreenGenerationService {
   final _screenCodeContent = StatelessScreenCodeContent();
 
   @override
-  Future<bool> generate(BaseGenerationParams params) async {
-    if (params is! ScreenGeneratorParams) {
-      return false;
-    }
-
+  Future<bool> generate(ScreenGeneratorParams params) async {
     final screenName = params.normalizedScreenName;
 
     final screenPath =
