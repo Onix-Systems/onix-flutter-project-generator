@@ -298,8 +298,6 @@ Future<void> getDependencies(HookContext context) async {
 Future<void> removeStateManagers(
     {required List<String> managers, bool removeThemeUtil = true}) async {
   for (var manager in managers) {
-    await Process.run('rm', ['-r', manager], workingDirectory: '$name/lib/app');
-
     await Process.run('rm', ['$manager.dart'],
         workingDirectory: '$name/lib/core/di');
   }
