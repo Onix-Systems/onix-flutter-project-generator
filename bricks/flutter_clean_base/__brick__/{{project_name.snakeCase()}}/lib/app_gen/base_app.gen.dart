@@ -1,13 +1,15 @@
 //@formatter:off
-//BlocAppGen
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 {{^web_only}}import 'package:loader_overlay/loader_overlay.dart';{{/web_only}}
 {{#screen_util}}import 'package:flutter_screenutil/flutter_screenutil.dart';{{/screen_util}}
-import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
-import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';
-import 'package:get_it/get_it.dart';
+{{#isBloc}}import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';{{/isBloc}}
+{{^isBase}}import 'package:get_it/get_it.dart';{{/isBase}}
+{{#isProvider}}import 'package:onix_flutter_provider/onix_flutter_provider.dart';
+import 'package:{{project_name}}/app/provider/app_provider.dart';{{/isProvider}}
 import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
+{{#isBase}}import 'package:{{project_name}}/core/arch/widget/common/theme_switcher.dart';{{/isBase}}
 {{#isGoRouter}}import 'package:{{project_name}}/app/router/app_router.dart';{{/isGoRouter}}
 {{^isGoRouter}}import 'package:{{project_name}}/core/di/app.dart';{{/isGoRouter}}
 {{^handLocalization}}import 'package:flutter_localizations/flutter_localizations.dart';{{/handLocalization}}
@@ -23,15 +25,27 @@ class App extends StatefulWidget {
   @override
   State<App> createState() => _AppState();
 }
-
-class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
+{{#isBloc}}
+class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App>
+{{/isBloc}}
+{{#isProvider}}
+class _AppState extends BaseProviderState<AppProvider, App>
+{{/isProvider}}
+{{#isBase}}
+class _AppState extends State<App>
+{{/isBase}} {
   Locale? locale;
-
+  {{#isBloc}}
   @override
   AppBloc createBloc() => GetIt.I.get<AppBloc>();
+  {{/isBloc}}
+  {{#isProvider}}
+  @override
+  AppProvider createProvider() => GetIt.I.get<AppProvider>();
+  {{/isProvider}}
 
   @override
-  Widget buildWidget(BuildContext context) {
+  Widget {{#isBase}}build{{/isBase}}{{^isBase}}buildWidget{{/isBase}}(BuildContext context) {
     {{#isGoRouter}}AppRouter.init();{{/isGoRouter}}
     return {{^web_only}}GlobalLoaderOverlay(
       overlayColor: Colors.black.withOpacity(0.5),
@@ -41,8 +55,13 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
         minTextAdapt: true,
         builder: (context, child) {
         return{{/screen_util}}
-        blocBuilder(
-              builder: (context, state) {
+        {{#isBloc}}blocBuilder(
+              builder: (context, state){{/isBloc}}
+        {{#isProvider}}providerConsumer(
+              stateListener: (provider){{/isProvider}}
+        {{#isBase}}ThemeModeSwitcher(
+              builder: (context, themeMode, _) {{/isBase}}
+          {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             builder: (context, widget) {
@@ -61,7 +80,7 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             scrollBehavior: const CupertinoScrollBehavior(),
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
-            themeMode: state.themeMode,
+            themeMode: {{#isBase}}themeMode{{/isBase}}{{#isBloc}}state.themeMode{{/isBloc}}{{#isProvider}}provider.themeMode{{/isProvider}},
             {{^isGoRouter}}
             {{^sentry}}routerConfig: appRouter().config(),{{/sentry}}
             {{#sentry}}routerConfig: appRouter().config(
