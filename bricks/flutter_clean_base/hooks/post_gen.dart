@@ -12,8 +12,6 @@ const flavorizrInjectKey = '#{flavorizer_injection_config}';
 void run(HookContext context) async {
   name = context.vars['project_name'].toString().toSnakeCase;
 
-  await moveAppGen(name);
-
   if (!context.vars['platforms'].contains('android')) {
     await Process.run('rm', ['-rf', '$name/android']);
   }
@@ -81,8 +79,13 @@ void run(HookContext context) async {
     iconsProc.log();
   }
 
-  await Process.run('mv', ['app_gen/app.gen.dart', 'app/app.dart'],
+  final managerVariant = context.vars['state_management'];
+
+  await Process.run(
+      'mv', ['app_gen/${managerVariant}_app.gen.dart', 'app/app.dart'],
       workingDirectory: '$name/lib');
+
+  await Process.run('rm', ['-r', 'app_gen'], workingDirectory: '$name/lib');
 
   await Process.run('rm', ['app.dart'], workingDirectory: '$name/lib');
 
@@ -129,15 +132,6 @@ void run(HookContext context) async {
   await secure(context);
 
   'Complete with exit code: $exitCode!'.log();
-}
-
-Future<void> moveAppGen(String projectName) async {
-  final shell = Shell();
-
-  'Moving app_gen to $projectName...'.log();
-
-  await Process.run('cp', ['lib/app_gen/app.gen.dart', 'lib/gen.dart'],
-      workingDirectory: projectName);
 }
 
 Future<void> getDependencies(HookContext context) async {
