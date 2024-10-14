@@ -47,7 +47,7 @@ class CubitScreenGenerator extends ScreenGenerationService
     if (params.router == ProjectRouter.goRouter) {
       final routesFile = File(
           '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
-      String routesContent = routesFile.readAsStringSync();
+      final routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
       final appRoutesContent = _screenCodeContent.createScreenNavigationGoRoute(
         input: routesContent,
@@ -59,7 +59,7 @@ class CubitScreenGenerator extends ScreenGenerationService
 
     final routerFile = File(
         '${params.projectPath}/${params.projectName}/lib/app/router/app_router.dart');
-    String routerContent = routerFile.readAsStringSync();
+    final routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations
     final filledRouterContent =
@@ -91,7 +91,7 @@ class CubitScreenGenerator extends ScreenGenerationService
     await screenFile.writeAsString(screenContent);
 
     ///Write BLoC imports file
-    var importsFile =
+    final importsFile =
         await File('$screenPath/bloc/${screenName}_screen_imports.dart')
             .create();
     final importsContent = createBlocImportsContent(
@@ -101,7 +101,7 @@ class CubitScreenGenerator extends ScreenGenerationService
     await importsFile.writeAsString(importsContent);
 
     ///Write BLoC models file
-    var modelsFile =
+    final modelsFile =
         await File('$screenPath/bloc/${screenName}_screen_models.dart')
             .create();
     final modelsContent = createBlocModels(
@@ -111,7 +111,7 @@ class CubitScreenGenerator extends ScreenGenerationService
     await modelsFile.writeAsString(modelsContent);
 
     ///Write BLoC file
-    var blocFile = await File(
+    final blocFile = await File(
             '$screenPath/bloc/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart')
         .create();
     final blocFileContent = createBlocContent(

@@ -19,12 +19,13 @@ class DefaultScreenRouteGenerator
     if (params.router == ProjectRouter.goRouter) {
       final routesFile = File(
           '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
-      String routesContent = routesFile.readAsStringSync();
+      final routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
       final appRoutesContent = routesContent.replaceAll(
-          '//{routes declaration end}',
-          'root(\'/\');\n//{routes declaration end}');
-      routesFile.writeAsString(appRoutesContent);
+        '//{routes declaration end}',
+        "root('/');\n//{routes declaration end}",
+      );
+      await routesFile.writeAsString(appRoutesContent);
     }
   }
 }

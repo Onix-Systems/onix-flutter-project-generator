@@ -11,9 +11,9 @@ mixin BlocContentMixin on ScreenGenerationService {
     final screenClassImport = screenName.snakeCase;
     final codeLines = List<String>.empty(growable: true)
       ..add(
-        'export \'${screenClassImport}_screen_${stateManagement.name.toLowerCase()}.dart\';',
+        "export '${screenClassImport}_screen_${stateManagement.name.toLowerCase()}.dart';",
       )
-      ..add('export \'${screenClassImport}_screen_models.dart\';')
+      ..add("export '${screenClassImport}_screen_models.dart';")
       ..addNewLine();
     return codeLines.join('\n');
   }
@@ -39,15 +39,15 @@ mixin BlocContentMixin on ScreenGenerationService {
     final codeLines = List<String>.empty(growable: true)
 
       ///Create BLoC class code
-      ..add('import \'dart:async\';')
+      ..add("import 'dart:async';")
       ..addNewLine()
       ..add("import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';");
     if (stateManagement == const BlocStateManagementVariant()) {
-      codeLines.add('import \'package:flutter_bloc/flutter_bloc.dart\';');
+      codeLines.add("import 'package:flutter_bloc/flutter_bloc.dart';");
     }
     codeLines
       ..add(
-        'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart\';',
+        "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart';",
       )
       ..addNewLine()
       ..add(
@@ -92,9 +92,9 @@ mixin BlocContentMixin on ScreenGenerationService {
     final screenModelName = screenName.pascalCase;
     final screenClassImport = screenName.snakeCase;
     final codeLines = List<String>.empty(growable: true)
-      ..add('import \'package:freezed_annotation/freezed_annotation.dart\';')
+      ..add("import 'package:freezed_annotation/freezed_annotation.dart';")
       ..addNewLine()
-      ..add('part \'${screenClassImport}_screen_models.freezed.dart\';');
+      ..add("part '${screenClassImport}_screen_models.freezed.dart';");
 
     ///If BLoC - add Event model
     if (stateManagement == const BlocStateManagementVariant()) {

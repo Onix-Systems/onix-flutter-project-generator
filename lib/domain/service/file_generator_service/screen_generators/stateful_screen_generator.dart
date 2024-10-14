@@ -35,19 +35,19 @@ class StatefulScreenGenerator extends ScreenGenerationService {
     if (params.router == ProjectRouter.goRouter) {
       final routesFile = File(
           '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
-      String routesContent = routesFile.readAsStringSync();
+      final routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
       final appRoutesContent = _screenCodeContent.createScreenNavigationGoRoute(
         input: routesContent,
         screenName: screenName,
         isLastDeclaration: params.lastScreenItem,
       );
-      routesFile.writeAsString(appRoutesContent);
+      await routesFile.writeAsString(appRoutesContent);
     }
 
     final routerFile = File(
         '${params.projectPath}/${params.projectName}/lib/app/router/app_router.dart');
-    String routerContent = routerFile.readAsStringSync();
+    final routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations
     final filledRouterContent =
@@ -59,7 +59,7 @@ class StatefulScreenGenerator extends ScreenGenerationService {
       router: params.router,
     );
 
-    routerFile.writeAsString(filledRouterContent);
+    await routerFile.writeAsString(filledRouterContent);
   }
 
   Future<void> _createFiles(
@@ -70,7 +70,7 @@ class StatefulScreenGenerator extends ScreenGenerationService {
     final screenFile =
         await File('$screenPath/${screenName}_screen.dart').create();
 
-    String screenContent = '';
+    var screenContent = '';
 
     screenContent = _screenCodeContent.createScreen(
       isGoRouter: params.router == ProjectRouter.goRouter,

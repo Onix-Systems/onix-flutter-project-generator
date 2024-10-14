@@ -37,7 +37,8 @@ mixin DIContentMixin on ScreenGenerationService {
           .replaceFirst(diSuffix,
               'getIt.registerSingleton<StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>>(StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>((ref) => ${screenName.pascalCase}ScreenProvider(),),);\n$diSuffix');
 
-      output = '''$output
+      output = '''
+$output
       
       StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState> ${screenName.snakeCase}ScreenProvider() =>
     GetIt.I.get<StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>>();

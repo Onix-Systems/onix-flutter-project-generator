@@ -14,10 +14,11 @@ class StatefulScreenCodeContent extends ScreenCodeContent {
 
     ///Add imports
     if (!isGoRouter) {
-      codeLines.add('import \'package:auto_route/annotations.dart\';');
+      codeLines.add("import 'package:auto_route/annotations.dart';");
     }
-    codeLines.add('import \'package:flutter/material.dart\';');
-    codeLines.addNewLine();
+    codeLines
+      ..add("import 'package:flutter/material.dart';")
+      ..addNewLine();
 
     ///Add annotation in AutoRoute navigation used
     if (!isGoRouter) {
@@ -25,23 +26,24 @@ class StatefulScreenCodeContent extends ScreenCodeContent {
     }
 
     ///Add screen widget code
-    codeLines.add('class ${screenClassName}Screen extends StatefulWidget {');
-    codeLines.add('const ${screenClassName}Screen({super.key});');
-    codeLines.addNewLine();
-    codeLines.add('@override');
-    codeLines.add(
-        'State<${screenClassName}Screen> createState() => _${screenClassName}State();');
-    codeLines.add('}');
-    codeLines.add(
-        'class _${screenClassName}State extends State<${screenClassName}Screen> {');
-    codeLines.add('@override');
-    codeLines.add('Widget build(BuildContext context) {');
-    codeLines.add('return const Scaffold(');
-    codeLines.add('body: Center(child: Text(\'$screenClassName screen\'),),');
-    codeLines.add(');');
-    codeLines.add('}');
-    codeLines.add('}');
-    codeLines.addNewLine();
+    codeLines
+      ..add('class ${screenClassName}Screen extends StatefulWidget {')
+      ..add('const ${screenClassName}Screen({super.key});')
+      ..addNewLine()
+      ..add('@override')
+      ..add(
+          'State<${screenClassName}Screen> createState() => _${screenClassName}State();')
+      ..add('}')
+      ..add(
+          'class _${screenClassName}State extends State<${screenClassName}Screen> {')
+      ..add('@override')
+      ..add('Widget build(BuildContext context) {')
+      ..add('return const Scaffold(')
+      ..add("body: Center(child: Text('$screenClassName screen'),),")
+      ..add(');')
+      ..add('}')
+      ..add('}')
+      ..addNewLine();
 
     return codeLines.join('\n');
   }

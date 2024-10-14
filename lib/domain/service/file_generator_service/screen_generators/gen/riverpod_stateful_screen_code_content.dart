@@ -16,10 +16,11 @@ class RiverpodStatefulScreenCodeContent extends ScreenCodeContent {
     if (!isGoRouter) {
       codeLines.add("import 'package:auto_route/annotations.dart';");
     }
-    codeLines.add("import 'package:flutter/material.dart';");
-    codeLines.add("import 'package:flutter_riverpod/flutter_riverpod.dart';");
-    codeLines.add("import 'package:$projectName/core/di/riverpod.dart';");
-    codeLines.addNewLine();
+    codeLines
+      ..add("import 'package:flutter/material.dart';")
+      ..add("import 'package:flutter_riverpod/flutter_riverpod.dart';")
+      ..add("import 'package:$projectName/core/di/riverpod.dart';")
+      ..addNewLine();
 
     ///Add annotation in AutoRoute navigation used
     if (!isGoRouter) {
@@ -28,23 +29,23 @@ class RiverpodStatefulScreenCodeContent extends ScreenCodeContent {
 
     ///Add screen widget code
     codeLines
-        .add('class ${screenClassName}Screen extends ConsumerStatefulWidget {');
-    codeLines.add('const ${screenClassName}Screen({super.key});');
-    codeLines.addNewLine();
-    codeLines.add('@override');
-    codeLines.add(
-        'ConsumerState<${screenClassName}Screen> createState() => _${screenClassName}State();');
-    codeLines.add('}');
-    codeLines.add(
-        'class _${screenClassName}State extends ConsumerState<${screenClassName}Screen> {');
-    codeLines.add('@override');
-    codeLines.add('Widget build(BuildContext context) {');
-    codeLines.add('return const Scaffold(');
-    codeLines.add("body: Center(child: Text('$screenClassName screen'),),");
-    codeLines.add(');');
-    codeLines.add('}');
-    codeLines.add('}');
-    codeLines.addNewLine();
+      ..add('class ${screenClassName}Screen extends ConsumerStatefulWidget {')
+      ..add('const ${screenClassName}Screen({super.key});')
+      ..addNewLine()
+      ..add('@override')
+      ..add(
+          'ConsumerState<${screenClassName}Screen> createState() => _${screenClassName}State();')
+      ..add('}')
+      ..add(
+          'class _${screenClassName}State extends ConsumerState<${screenClassName}Screen> {')
+      ..add('@override')
+      ..add('Widget build(BuildContext context) {')
+      ..add('return const Scaffold(')
+      ..add("body: Center(child: Text('$screenClassName screen'),),")
+      ..add(');')
+      ..add('}')
+      ..add('}')
+      ..addNewLine();
 
     return codeLines.join('\n');
   }

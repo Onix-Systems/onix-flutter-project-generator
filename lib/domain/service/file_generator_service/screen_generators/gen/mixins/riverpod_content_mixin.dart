@@ -55,13 +55,13 @@ mixin RiverpodContentMixin on ScreenGenerationService {
       ..addNewLine()
       ..add("part '${screenClassImport}_screen_state.freezed.dart';")
       ..addNewLine()
-      ..add("@freezed")
+      ..add('@freezed')
       ..add(
-          "class ${screenModelName}ScreenState with _\$${screenModelName}ScreenState {")
-      ..add("const factory ${screenModelName}ScreenState({")
-      ..add("@Default(0) int count,")
-      ..add("}) = _${screenModelName}ScreenState;")
-      ..add("}")
+          'class ${screenModelName}ScreenState with _\$${screenModelName}ScreenState {')
+      ..add('const factory ${screenModelName}ScreenState({')
+      ..add('@Default(0) int count,')
+      ..add('}) = _${screenModelName}ScreenState;')
+      ..add('}')
       ..addNewLine();
     return codeLines.join('\n');
   }
