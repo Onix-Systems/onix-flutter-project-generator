@@ -4,6 +4,5 @@ import 'package:{{project_name}}/app/provider/app_provider.dart';
 //{imports end}
 
 void registerProvider(GetIt getIt) {
-  getIt.registerFactory<AppProvider>(AppProvider.new);
   //{provider end}
 }
