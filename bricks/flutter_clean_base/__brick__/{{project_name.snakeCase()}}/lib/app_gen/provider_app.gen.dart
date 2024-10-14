@@ -1,5 +1,4 @@
 //@formatter:off
-//ProviderAppGen
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 {{^web_only}}import 'package:loader_overlay/loader_overlay.dart';{{/web_only}}
