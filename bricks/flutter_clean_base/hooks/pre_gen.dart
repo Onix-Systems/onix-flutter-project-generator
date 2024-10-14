@@ -62,8 +62,6 @@ Future<void> moveAppGen(String projectName) async {
       ['$projectName/lib/app_gen/app.gen.dart', '$projectName/lib/gen.dart']);
 
   moveAppGenProcess.log();
-
-  moveAppGen.log();
 }
 
 Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
