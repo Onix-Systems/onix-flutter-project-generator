@@ -59,7 +59,7 @@ Future<void> moveAppGen(String projectName) async {
   'Moving app_gen to $projectName...'.log();
 
   await Process.run('cp', ['lib/app_gen/app.gen.dart', 'lib/gen.dart'],
-      workingDirectory: name);
+      workingDirectory: projectName);
 }
 
 Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
