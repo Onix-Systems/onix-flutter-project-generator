@@ -81,7 +81,7 @@ void run(HookContext context) async {
     iconsProc.log();
   }
 
-  await Process.run('mv', ['app.gen.dart', 'app/app.dart'],
+  await Process.run('mv', ['app_gen/app.gen.dart', 'app/app.dart'],
       workingDirectory: '$name/lib');
 
   await Process.run('rm', ['app.dart'], workingDirectory: '$name/lib');
