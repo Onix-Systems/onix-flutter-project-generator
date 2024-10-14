@@ -53,15 +53,6 @@ void run(HookContext context) async {
   context.vars = await _initCustomVars(context);
 }
 
-Future<void> moveAppGen(String projectName) async {
-  final shell = Shell();
-
-  'Moving app_gen to $projectName...'.log();
-
-  await Process.run('cp', ['lib/app_gen/app.gen.dart', 'lib/gen.dart'],
-      workingDirectory: projectName);
-}
-
 Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
   final isGoRouter = context.vars['navigation'] == 'goRouter' ? true : false;
   final localizationByHand =
