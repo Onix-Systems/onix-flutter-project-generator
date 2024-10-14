@@ -58,7 +58,10 @@ Future<void> moveAppGen(String projectName) async {
 
   'Moving app_gen to $name...'.log();
 
-  final moveAppGenProcess = await Process.start('cp', ['$projectName/lib/app_gen/app.gen.dart', '$projectName/lib/gen.dart']');
+  final moveAppGenProcess = await Process.start('cp',
+      ['$projectName/lib/app_gen/app.gen.dart', '$projectName/lib/gen.dart']);
+
+  flutterCreateProcess.log();
 
   moveAppGen.log();
 }
