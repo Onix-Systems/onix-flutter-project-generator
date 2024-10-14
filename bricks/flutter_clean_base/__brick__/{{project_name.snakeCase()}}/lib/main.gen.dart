@@ -30,7 +30,7 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
         final isAllowedToUseApp = await environmentService().initialize();
         if (isAllowedToUseApp) {
           {{#isRiverpod}}
-          runApp(ProviderScope(child: const App()));
+          runApp(const ProviderScope(child: App()));
           {{/isRiverpod}}
           {{^isRiverpod}}
           runApp(const App());
