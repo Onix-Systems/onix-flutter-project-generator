@@ -26,7 +26,7 @@ class ProviderScreenGenerator extends ScreenGenerationService
     ///Add screen configuration to Navigation Router file
     await _createRoutes(params);
 
-    if (params.screen.stateVariant != const StatelessStateManagementVariant()) {
+    if (params.screen.stateVariant is! StatelessStateManagementVariant) {
       ///Add DI configuration for state management
       await createScreenDIContent(params: params);
     }

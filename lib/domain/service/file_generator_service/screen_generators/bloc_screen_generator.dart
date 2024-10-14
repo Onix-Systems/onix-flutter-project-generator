@@ -20,7 +20,7 @@ class BlocScreenGenerator extends ScreenGenerationService
         '${params.projectPath}/${params.projectName}/lib/presentation/screen/${screenName}_screen';
     await Directory(screenPath).create(recursive: true);
 
-    if (params.screen.stateVariant != const StatelessStateManagementVariant()) {
+    if (params.screen.stateVariant is! StatelessStateManagementVariant) {
       await Directory('$screenPath/bloc').create(recursive: true);
     }
 
@@ -30,8 +30,8 @@ class BlocScreenGenerator extends ScreenGenerationService
     ///Add screen configuration to Navigation Router file
     await _createRoutes(params);
 
-    if (params.screen.stateVariant != const StatelessStateManagementVariant() &&
-        params.screen.stateVariant != const StatefulStateManagementVariant()) {
+    if (params.screen.stateVariant is! StatelessStateManagementVariant &&
+        params.screen.stateVariant is! StatefulStateManagementVariant) {
       ///Add DI configuration for state management
       await createScreenDIContent(params: params);
     }
