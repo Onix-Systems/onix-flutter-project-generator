@@ -56,12 +56,12 @@ void run(HookContext context) async {
 Future<void> moveAppGen(String projectName) async {
   final shell = Shell();
 
-  'Moving app_gen to $name...'.log();
+  'Moving app_gen to $projectName...'.log();
 
   final moveAppGenProcess = await Process.start('cp',
       ['$projectName/lib/app_gen/app.gen.dart', '$projectName/lib/gen.dart']);
 
-  flutterCreateProcess.log();
+  moveAppGenProcess.log();
 
   moveAppGen.log();
 }
