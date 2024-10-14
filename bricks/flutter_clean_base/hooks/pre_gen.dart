@@ -48,8 +48,6 @@ void run(HookContext context) async {
     exit(1);
   }
 
-  await moveAppGen(name);
-
   context.vars = await _initCustomVars(context);
 }
 
