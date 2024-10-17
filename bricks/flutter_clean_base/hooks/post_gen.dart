@@ -158,8 +158,19 @@ Future<void> getDependencies(HookContext context) async {
     'onix_flutter_core',
   ];
 
+  List<String> devDependencies = [
+    'flutter_lints',
+    'build_runner',
+    'freezed',
+    'json_serializable',
+    'import_sorter',
+    'mockito',
+    'test',
+  ];
+
   if (context.vars['isBloc']) {
     dependencies.addAll(['flutter_bloc', 'onix_flutter_bloc']);
+    devDependencies.add('bloc_test');
     await removeStateManagers(managers: ['provider', 'riverpod']);
   }
 
@@ -191,17 +202,6 @@ Future<void> getDependencies(HookContext context) async {
   if (context.vars['sentry']) {
     dependencies.add('sentry_flutter');
   }
-
-  List<String> devDependencies = [
-    'flutter_lints',
-    'build_runner',
-    'freezed',
-    'json_serializable',
-    'import_sorter',
-    'mockito',
-    'bloc_test',
-    'test',
-  ];
 
   if (context.vars['theme_generate']) {
     dependencies.add('theme_tailor_annotation:3.0.1');
