@@ -48,7 +48,10 @@ class PlatformsScreenBloc extends BaseBloc<PlatformsScreenEvent,
     }
     emit(
       state.copyWith(
-        config: state.config.copyWith(platformsList: copiedPlatforms),
+        config: state.config.copyWith(
+          platformsList: copiedPlatforms,
+          screenUtil: !copiedPlatforms.webOnly && state.config.screenUtil,
+        ),
       ),
     );
   }

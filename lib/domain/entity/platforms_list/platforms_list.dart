@@ -23,7 +23,7 @@ class PlatformsList with _$PlatformsList {
   bool get mobile => android || ios;
 
   List<String> asList() {
-    List<String> platforms = [];
+    final platforms = <String>[];
 
     if (android) platforms.add('android');
     if (ios) platforms.add('ios');
@@ -35,11 +35,12 @@ class PlatformsList with _$PlatformsList {
   }
 
   List<String> asPlatformCommandsList() {
-    List<String> commands = [];
+    final commands = <String>[];
 
     if (android) {
-      commands.add('apk');
-      commands.add('appbundle');
+      commands
+        ..add('apk')
+        ..add('appbundle');
     }
     if (ios) commands.add('ios');
     if (web) commands.add('web');

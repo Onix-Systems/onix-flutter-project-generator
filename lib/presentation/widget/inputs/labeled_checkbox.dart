@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:recase/recase.dart';
 
 class LabeledCheckbox extends StatelessWidget {
   final String label;
@@ -51,7 +50,7 @@ class LabeledCheckbox extends StatelessWidget {
           ),
           const Gap(10),
           Text(
-            label.titleCase,
+            label,
             style: context.appTextStyles.fs18,
           ),
         ],
