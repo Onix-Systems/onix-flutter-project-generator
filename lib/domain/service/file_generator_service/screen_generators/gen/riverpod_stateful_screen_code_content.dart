@@ -2,7 +2,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
-class StatefulScreenCodeContent extends ScreenCodeContent {
+class RiverpodStatefulScreenCodeContent extends ScreenCodeContent {
   @override
   String createScreen({
     required bool isGoRouter,
@@ -18,6 +18,8 @@ class StatefulScreenCodeContent extends ScreenCodeContent {
     }
     codeLines
       ..add("import 'package:flutter/material.dart';")
+      ..add("import 'package:flutter_riverpod/flutter_riverpod.dart';")
+      ..add("import 'package:$projectName/core/di/riverpod.dart';")
       ..addNewLine();
 
     ///Add annotation in AutoRoute navigation used
@@ -27,16 +29,16 @@ class StatefulScreenCodeContent extends ScreenCodeContent {
 
     ///Add screen widget code
     codeLines
-      ..add('class ${screenClassName}Screen extends StatefulWidget {')
+      ..add('class ${screenClassName}Screen extends ConsumerStatefulWidget {')
       ..add('const ${screenClassName}Screen({super.key});')
       ..addNewLine()
       ..add('@override')
       ..add(
-        'State<${screenClassName}Screen> createState() => _${screenClassName}State();',
+        'ConsumerState<${screenClassName}Screen> createState() => _${screenClassName}State();',
       )
       ..add('}')
       ..add(
-        'class _${screenClassName}State extends State<${screenClassName}Screen> {',
+        'class _${screenClassName}State extends ConsumerState<${screenClassName}Screen> {',
       )
       ..add('@override')
       ..add('Widget build(BuildContext context) {')

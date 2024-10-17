@@ -60,6 +60,8 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
   final isBloc = context.vars['state_management'] == 'bloc' ? true : false;
   final isProvider =
       context.vars['state_management'] == 'provider' ? true : false;
+  final isRiverpod =
+      context.vars['state_management'] == 'riverpod' ? true : false;
 
   var flavors = [];
 
@@ -90,6 +92,7 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
     'isBase': isBase,
     'isBloc': isBloc,
     'isProvider': isProvider,
+    'isRiverpod': isRiverpod,
     'sentry': context.vars['sentry'],
   };
 }

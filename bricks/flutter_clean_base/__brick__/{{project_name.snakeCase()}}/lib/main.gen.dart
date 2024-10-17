@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 {{#isBloc}}import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';{{/isBloc}}
+{{#isRiverpod}}import 'package:flutter_riverpod/flutter_riverpod.dart';{{/isRiverpod}}
 import 'package:{{project_name}}/app/banned_app.dart';
 import 'package:{{project_name}}/app/app.dart';
 import 'package:{{project_name}}/app/app_initialization.dart';
@@ -28,7 +29,12 @@ Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
         {{#isBloc}}Bloc.observer = AppBlocObserver();{{/isBloc}}
         final isAllowedToUseApp = await environmentService().initialize();
         if (isAllowedToUseApp) {
+          {{#isRiverpod}}
+          runApp(const ProviderScope(child: App()));
+          {{/isRiverpod}}
+          {{^isRiverpod}}
           runApp(const App());
+          {{/isRiverpod}}
         } else {
           runApp(const BannedApp());
         }

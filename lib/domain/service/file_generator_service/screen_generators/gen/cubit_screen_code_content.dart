@@ -15,16 +15,16 @@ class CubitScreenCodeContent extends ScreenCodeContent {
     final cubitClassType = '${screenClassName}ScreenCubit';
 
     /// Add imports
-    codeLines.add('import \'package:flutter/material.dart\';');
+    codeLines.add("import 'package:flutter/material.dart';");
     if (!isGoRouter) {
-      codeLines.add('import \'package:auto_route/annotations.dart\';');
+      codeLines.add("import 'package:auto_route/annotations.dart';");
     }
 
     codeLines
       ..add("import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';")
       ..add("import 'package:get_it/get_it.dart';")
       ..add(
-        'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart\';',
+        "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart';",
       )
       ..addNewLine();
 
@@ -68,7 +68,7 @@ class CubitScreenCodeContent extends ScreenCodeContent {
       ..add('body: SizedBox.expand(')
       ..add('child: blocConsumer(')
       ..add('builder: (state) => const Center(')
-      ..add('child: Text(\'$screenClassName screen\'),')
+      ..add("child: Text('$screenClassName screen'),")
       ..add('),')
       ..add('listener: (context, state) {},')
       ..add('),),),')

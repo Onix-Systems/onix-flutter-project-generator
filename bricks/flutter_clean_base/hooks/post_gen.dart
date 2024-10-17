@@ -159,25 +159,24 @@ Future<void> getDependencies(HookContext context) async {
   ];
 
   if (context.vars['isBloc']) {
-    dependencies..addAll(['flutter_bloc', 'onix_flutter_bloc']);
-    await removeStateManagers(['provider']);
-    await Process.run('rm', ['theme_util.dart'],
-        workingDirectory: '$name/lib/app/util');
+    dependencies.addAll(['flutter_bloc', 'onix_flutter_bloc']);
+    await removeStateManagers(managers: ['provider', 'riverpod']);
   }
 
   if (context.vars['isProvider']) {
     dependencies.addAll(['provider', 'onix_flutter_provider']);
-    await removeStateManagers(['bloc']);
-    await Process.run('rm', ['theme_util.dart'],
-        workingDirectory: '$name/lib/app/util');
+    await removeStateManagers(managers: ['bloc', 'riverpod']);
   }
 
-  if (context.vars['isProvider'] || context.vars['isBloc']) {
-    dependencies.add('onix_flutter_core_models');
+  if (context.vars['isRiverpod']) {
+    dependencies.add('flutter_riverpod');
+    await removeStateManagers(managers: ['bloc', 'provider']);
   }
 
   if (context.vars['isBase']) {
-    await removeStateManagers(['provider', 'bloc']);
+    await removeStateManagers(managers: ['provider', 'bloc', 'riverpod']);
+  } else {
+    dependencies.add('onix_flutter_core_models');
   }
 
   if (!context.vars['web_only']) {
@@ -293,7 +292,7 @@ Future<void> getDependencies(HookContext context) async {
   }
 }
 
-Future<void> removeStateManagers(List<String> managers) async {
+Future<void> removeStateManagers({required List<String> managers}) async {
   for (var manager in managers) {
     await Process.run('rm', ['$manager.dart'],
         workingDirectory: '$name/lib/core/di');

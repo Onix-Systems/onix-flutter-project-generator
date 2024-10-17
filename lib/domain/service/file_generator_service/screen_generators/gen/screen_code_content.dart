@@ -11,11 +11,12 @@ abstract class ScreenCodeContent {
     required String screenName,
     required bool isLastDeclaration,
   }) {
-    String output = input;
+    final output = input;
     final coda = isLastDeclaration ? ';' : ',';
-    output = output.replaceAll(routesDeclarationSuffix,
-        '${screenName.camelCase}(\'/${screenName.snakeCase}\')$coda\n$routesDeclarationSuffix');
-    return output;
+    return output.replaceAll(
+      routesDeclarationSuffix,
+      "${screenName.camelCase}('/${screenName.snakeCase}')$coda\n$routesDeclarationSuffix",
+    );
   }
 
   String createScreenNavigationContent({
@@ -25,21 +26,25 @@ abstract class ScreenCodeContent {
     required bool isInitialScreen,
     required ProjectRouter router,
   }) {
-    String output = input;
+    var output = input;
     final screenClassImport = screenName.snakeCase;
 
     ///Declare initial route
     if (isInitialScreen) {
-      output = output.replaceAll('static const _initialLocation = \'/\'',
-          'static const _initialLocation = \'/${screenName.snakeCase}\'');
+      output = output.replaceAll(
+        "static const _initialLocation = '/'",
+        "static const _initialLocation = '/${screenName.snakeCase}'",
+      );
     }
     if (router == ProjectRouter.goRouter) {
       final goRouteContent = _buildGoRouteContent(screenName);
       output = output
           .replaceAll(
               navigatorRoutesSuffix, '$goRouteContent$navigatorRoutesSuffix')
-          .replaceAll(navigatorImportsSuffix,
-              'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart\';\n$navigatorImportsSuffix');
+          .replaceAll(
+            navigatorImportsSuffix,
+            "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart';\n$navigatorImportsSuffix",
+          );
     } else {
       final autoRouteContent = _buildAutoRouteContent(
         isInitialScreen,
@@ -48,8 +53,10 @@ abstract class ScreenCodeContent {
       output = output
           .replaceAll(navigatorRoutesSuffix,
               '$autoRouteContent\n$navigatorRoutesSuffix')
-          .replaceAll(navigatorImportsSuffix,
-              'import \'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart\';$navigatorImportsSuffix');
+          .replaceAll(
+            navigatorImportsSuffix,
+            "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart';$navigatorImportsSuffix",
+          );
     }
 
     return output;
@@ -59,23 +66,23 @@ abstract class ScreenCodeContent {
     bool isInitialScreen,
     String screenName,
   ) {
-    final codeLines = List<String>.empty(growable: true);
-    codeLines.add('AdaptiveRoute(');
-    codeLines.add('page: ${screenName.pascalCase}Route.page,');
-    codeLines.add('path: \'/${screenName.camelCase}Screen\',');
-    codeLines.add(isInitialScreen ? 'initial: true,' : '');
-    codeLines.add('),');
+    final codeLines = List<String>.empty(growable: true)
+      ..add('AdaptiveRoute(')
+      ..add('page: ${screenName.pascalCase}Route.page,')
+      ..add("path: '/${screenName.camelCase}Screen',")
+      ..add(isInitialScreen ? 'initial: true,' : '')
+      ..add('),');
     return codeLines.join('\n');
   }
 
   String _buildGoRouteContent(String screenName) {
-    final codeLines = List<String>.empty(growable: true);
-    codeLines.add('GoRoute(');
-    codeLines.add('path: AppRoute.${screenName.camelCase}.routePath,');
-    codeLines.add('name: AppRoute.${screenName.camelCase}.name,');
-    codeLines.add('builder: (context, state) =>');
-    codeLines.add('const ${screenName.pascalCase}Screen(),');
-    codeLines.add(' ),');
+    final codeLines = List<String>.empty(growable: true)
+      ..add('GoRoute(')
+      ..add('path: AppRoute.${screenName.camelCase}.routePath,')
+      ..add('name: AppRoute.${screenName.camelCase}.name,')
+      ..add('builder: (context, state) =>')
+      ..add('const ${screenName.pascalCase}Screen(),')
+      ..add(' ),');
     return codeLines.join('\n');
   }
 

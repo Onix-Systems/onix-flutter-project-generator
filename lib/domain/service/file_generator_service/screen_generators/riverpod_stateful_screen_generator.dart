@@ -1,12 +1,16 @@
 import 'dart:io';
 
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_management_variant.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/stateful_screen_code_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/di_content_mixin.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/riverpod_content_mixin.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/riverpod_stateful_screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 
-class StatefulScreenGenerator extends ScreenGenerationService {
-  final _screenCodeContent = StatefulScreenCodeContent();
+class RiverpodStatefulScreenGenerator extends ScreenGenerationService
+    with DIContentMixin, RiverpodContentMixin {
+  final _screenCodeContent = RiverpodStatefulScreenCodeContent();
 
   @override
   Future<bool> generate(ScreenGeneratorParams params) async {
@@ -21,6 +25,12 @@ class StatefulScreenGenerator extends ScreenGenerationService {
 
     ///Add screen configuration to Navigation Router file
     await _createRoutes(params);
+
+    if (params.screen.stateVariant is! StatelessStateManagementVariant &&
+        params.screen.stateVariant is! StatefulStateManagementVariant) {
+      ///Add DI configuration for state management
+      await createScreenDIContent(params: params);
+    }
 
     return true;
   }
@@ -78,5 +88,36 @@ class StatefulScreenGenerator extends ScreenGenerationService {
     }
 
     await screenFile.writeAsString(screenContent);
+
+    ///Write Riverpod imports file
+    final importsFile =
+        await File('$screenPath/riverpod/${screenName}_screen_imports.dart')
+            .create(recursive: true);
+    final importsContent = createRiverpodImportsContent(
+      screenName: screenName,
+      stateManagement: params.screen.stateVariant,
+    );
+    await importsFile.writeAsString(importsContent);
+
+    ///Write Riverpod state file
+    final modelsFile =
+        await File('$screenPath/riverpod/${screenName}_screen_state.dart')
+            .create();
+    final modelsContent = createRiverpodState(
+      screenName: screenName,
+      stateManagement: params.screen.stateVariant,
+    );
+    await modelsFile.writeAsString(modelsContent);
+
+    ///Write Riverpod file
+    final blocFile = await File(
+      '$screenPath/riverpod/${screenName}_screen_provider.dart',
+    ).create();
+    final blocFileContent = createRiverpodContent(
+      projectName: params.projectName,
+      screenName: screenName,
+      stateManagement: params.screen.stateVariant,
+    );
+    await blocFile.writeAsString(blocFileContent);
   }
 }
