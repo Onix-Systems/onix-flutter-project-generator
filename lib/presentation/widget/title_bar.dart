@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
+const double _titleBarHeight = 100;
+
 class TitleBar extends StatelessWidget
     implements ObstructingPreferredSizeWidget {
   final String title;
   final List<Widget>? actions;
-  final _titleBarHeight = 100.0;
 
   const TitleBar({
     required this.title,
@@ -20,25 +21,26 @@ class TitleBar extends StatelessWidget
       color: context.appColors.contrastColor,
       padding: const EdgeInsets.all(20),
       child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Row(
-            children: [
-              Text(
-                title,
-                style: context.appTextStyles.fs28?.copyWith(
-                  color: context.appColors.textColor,
-                  fontWeight: FontWeight.w100,
-                ),
+        alignment: Alignment.bottomCenter,
+        child: Row(
+          children: [
+            Text(
+              title,
+              style: context.appTextStyles.fs28?.copyWith(
+                color: context.appColors.textColor,
+                fontWeight: FontWeight.w100,
               ),
-              const Spacer(),
-              ...actions ?? List<Widget>.empty(),
-            ],
-          )),
+            ),
+            const Spacer(),
+            ...actions ?? List<Widget>.empty(),
+          ],
+        ),
+      ),
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(_titleBarHeight);
+  Size get preferredSize => const Size.fromHeight(_titleBarHeight);
 
   @override
   bool shouldFullyObstruct(BuildContext context) {

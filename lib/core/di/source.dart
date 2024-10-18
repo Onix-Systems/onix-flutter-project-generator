@@ -15,7 +15,7 @@ void registerSources(GetIt getIt) {
       () => const FigmaRemoteDataSourceImpl(),
     )
     ..registerLazySingleton<SwaggerRemoteSource>(
-      () => SwaggerRemoteSourceImpl(),
+      () => const SwaggerRemoteSourceImpl(),
     );
   //{sources end}
 }

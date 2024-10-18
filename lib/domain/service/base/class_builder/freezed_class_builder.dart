@@ -2,6 +2,7 @@ import 'package:onix_flutter_bricks/domain/service/base/class_builder/class_buil
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
+// ignore_for_file: avoid_setters_without_getters
 class FreezedClassBuilder extends ClassBuilder {
   final String _className;
   final String _classNameSuffix;
@@ -31,31 +32,35 @@ class FreezedClassBuilder extends ClassBuilder {
     final classPartImport = '${_className.snakeCase}$importSuffix';
     final classFullName =
         '${_className.pascalCase}${_classNameSuffix.pascalCase}';
-    lines.add('import \'package:freezed_annotation/freezed_annotation.dart\';');
-    lines.addAll(_imports);
-    lines.addNewLine();
-    lines.add('part \'$classPartImport.freezed.dart\';');
-    lines.addNewLine();
-    lines.add('@freezed');
-    lines.add('class $classFullName with _\$$classFullName {');
+    lines
+      ..add("import 'package:freezed_annotation/freezed_annotation.dart';")
+      ..addAll(_imports)
+      ..addNewLine()
+      ..add("part '$classPartImport.freezed.dart';")
+      ..addNewLine()
+      ..add('@freezed')
+      ..add('class $classFullName with _\$$classFullName {');
     if (_baseConstructorProperties.isEmpty) {
-      lines.add('factory $classFullName() = _$classFullName;');
+      lines.add('const factory $classFullName() = _$classFullName;');
     } else {
-      lines.add('factory $classFullName({');
-      lines.addAll(_baseConstructorProperties);
-      lines.add('}) = _$classFullName;');
+      lines
+        ..add('factory $classFullName({')
+        ..addAll(_baseConstructorProperties)
+        ..add('}) = _$classFullName;');
     }
     lines.addNewLine();
     if (_emptyConstructorProperties.isNotEmpty) {
-      lines.add('factory $classFullName.empty() => $classFullName(');
-      lines.addAll(_emptyConstructorProperties);
-      lines.add(');');
+      lines
+        ..add('factory $classFullName.empty() => $classFullName(')
+        ..addAll(_emptyConstructorProperties)
+        ..add(');');
     } else {
-      lines.add('factory $classFullName.empty() => $classFullName();');
+      lines.add('factory $classFullName.empty() => const $classFullName();');
     }
-    lines.addNewLine();
-    lines.add('}');
-    lines.addNewLine();
+    lines
+      ..addNewLine()
+      ..add('}')
+      ..addNewLine();
     return super.build();
   }
 }

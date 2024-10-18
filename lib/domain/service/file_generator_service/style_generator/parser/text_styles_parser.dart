@@ -32,8 +32,10 @@ class TextStylesParser {
   }
 
   static void _parseTailor(
-      List<String> lines, List<AppTextStyle> existingTextStyles) {
-    for (var line in lines) {
+    List<String> lines,
+    List<AppTextStyle> existingTextStyles,
+  ) {
+    for (final line in lines) {
       if (line.contains('static List<TextStyle> ')) {
         final startLine = line
           ..replaceAll('static List<TextStyle> ', '')
@@ -48,7 +50,7 @@ class TextStylesParser {
           continue;
         }
 
-        String styleContent = '';
+        var styleContent = '';
 
         var lineIndex = lines.indexOf(startLine) + 1;
 
@@ -62,11 +64,11 @@ class TextStylesParser {
             .where((element) => element != '')
             .toList();
 
-        for (var line in stylesLines) {
+        for (final line in stylesLines) {
           final styleLine =
               line.replaceAll('TextStyle(', '').replaceAll('//', '');
 
-          Map<String, String> styleMap = {};
+          final styleMap = <String, String>{};
 
           for (final part in styleLine.split(',')) {
             final key = part.split(':')[0].trim();
@@ -80,10 +82,13 @@ class TextStylesParser {
               name: name,
               fontFamily: '',
               fontSize: double.tryParse(
-                      (styleMap['fontSize'] ?? '').replaceAll('.sp', '')) ??
+                    (styleMap['fontSize'] ?? '').replaceAll('.sp', ''),
+                  ) ??
                   18,
-              fontWeight: int.tryParse((styleMap['fontWeight'] ?? '')
-                      .replaceAll('FontWeight.w', '')) ??
+              fontWeight: int.tryParse(
+                    (styleMap['fontWeight'] ?? '')
+                        .replaceAll('FontWeight.w', ''),
+                  ) ??
                   600,
               letterSpacing:
                   double.tryParse(styleMap['letterSpacing'] ?? '') ?? 0,
@@ -96,8 +101,10 @@ class TextStylesParser {
   }
 
   static void _parseManual(
-      List<String> lines, List<AppTextStyle> existingTextStyles) {
-    for (var line in lines) {
+    List<String> lines,
+    List<AppTextStyle> existingTextStyles,
+  ) {
+    for (final line in lines) {
       if (line.contains(': TextStyle(')) {
         final startLine = line;
 
@@ -107,7 +114,7 @@ class TextStylesParser {
           continue;
         }
 
-        String styleContent = '';
+        var styleContent = '';
 
         var lineIndex = lines.indexOf(startLine) + 1;
 
@@ -123,8 +130,8 @@ class TextStylesParser {
 
         logger.f(stylesLines);
 
-        for (var line in stylesLines) {
-          Map<String, String> styleMap = {};
+        for (final line in stylesLines) {
+          final styleMap = <String, String>{};
 
           final parts = line
               .replaceAll('//', '')
@@ -144,10 +151,13 @@ class TextStylesParser {
               name: name,
               fontFamily: '',
               fontSize: double.tryParse(
-                      (styleMap['fontSize'] ?? '').replaceAll('.sp', '')) ??
+                    (styleMap['fontSize'] ?? '').replaceAll('.sp', ''),
+                  ) ??
                   18,
-              fontWeight: int.tryParse((styleMap['fontWeight'] ?? '')
-                      .replaceAll('FontWeight.w', '')) ??
+              fontWeight: int.tryParse(
+                    (styleMap['fontWeight'] ?? '')
+                        .replaceAll('FontWeight.w', ''),
+                  ) ??
                   600,
               letterSpacing:
                   double.tryParse(styleMap['letterSpacing'] ?? '') ?? 0,

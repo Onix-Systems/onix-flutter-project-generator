@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class Dialogs {
@@ -37,13 +37,13 @@ class Dialogs {
     );
   }
 
-  static showOkCancelDialog({
+  static void showOkCancelDialog({
     required BuildContext context,
+    required Widget content,
     bool isError = false,
     String title = '',
     String? okLabel,
     String? cancelLabel,
-    required Widget content,
     VoidCallback? onOk,
     VoidCallback? onCancel,
   }) {
@@ -97,11 +97,11 @@ class Dialogs {
     );
   }
 
-  static showYesNoCancelDialog({
+  static void showYesNoCancelDialog({
     required BuildContext context,
+    required Widget content,
     bool isError = false,
     String title = '',
-    required Widget content,
     VoidCallback? onYes,
     VoidCallback? onNo,
     VoidCallback? onCancel,

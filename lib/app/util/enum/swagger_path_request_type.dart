@@ -3,6 +3,7 @@ enum SwaggerPathRequestType {
   post,
   put,
   delete,
+  patch,
   update;
 
   static SwaggerPathRequestType fromString(String input) =>

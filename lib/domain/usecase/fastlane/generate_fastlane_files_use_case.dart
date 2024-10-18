@@ -18,7 +18,8 @@ class GenerateFastlaneFilesUseCase {
   }) async {
     if (isModify) {
       _outputService.add(
-        '{#info}Fastlane generation omitted because of the project modification',
+        '{#info}Fastlane generation omitted because of the project '
+        'modification',
       );
       return;
     }

@@ -28,13 +28,15 @@ class QueryParams extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
-        ...queryParams.map((e) => Text(
-              '${e.type.getTypeDeclaration(DataFileType.none)} ${e.name}',
-              style: TextStyle(
-                color: context.appColors.textColor,
-                fontSize: 14,
-              ),
-            )),
+        ...queryParams.map(
+          (e) => Text(
+            '${e.type.getTypeDeclaration(DataFileType.none)} ${e.name}',
+            style: TextStyle(
+              color: context.appColors.textColor,
+              fontSize: 14,
+            ),
+          ),
+        ),
       ],
     );
   }

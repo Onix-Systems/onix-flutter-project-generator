@@ -18,7 +18,7 @@ sealed class SwaggerRequestType {
       case RequestPath():
         type = 'pathParam';
     }
-    return '$type - ${variable.type.toString()} ${variable.name}';
+    return '$type - ${variable.type} ${variable.name}';
   }
 }
 

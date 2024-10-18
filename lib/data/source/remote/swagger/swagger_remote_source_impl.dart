@@ -14,12 +14,14 @@ import 'package:onix_flutter_bricks/data/model/swagger/tag/swagger_tag_response.
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
 
 class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
+  const SwaggerRemoteSourceImpl();
+
   @override
   Future<SwaggerResponse> getSwaggerComponents({
     required String url,
   }) async {
-    var response = await http.get(Uri.parse(url));
-    var json = jsonDecode(response.body) as Map<String, dynamic>;
+    final response = await http.get(Uri.parse(url));
+    final json = jsonDecode(response.body) as Map<String, dynamic>;
 
     ///Get Swagger version
     final swaggerVersion = json.getSwaggerVersion();
@@ -39,7 +41,7 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
     //get tags
     if (json.containsKey('tags')) {
       final tags = json.asObjectList('tags');
-      for (var tag in tags) {
+      for (final tag in tags) {
         final tagModel = SwaggerTagResponse.fromJson(tag);
         swaggerTags.add(tagModel);
       }
@@ -51,7 +53,7 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
           (path, value) {
             final pathRequestVariations = value as Map<String, dynamic>;
             final requestTags = pathRequestVariations.getTagsFromRequests();
-            for (var tag in requestTags) {
+            for (final tag in requestTags) {
               final thisTag =
                   swaggerTags.singleWhereOrNull((e) => e.name == tag);
               if (thisTag == null) {
@@ -99,7 +101,7 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
     }
 
     ///Check swagger version
-    Map<String, dynamic> objectsMap = {};
+    var objectsMap = <String, dynamic>{};
     switch (swaggerVersion) {
       case SwaggerVersionType.swagger2:
         {

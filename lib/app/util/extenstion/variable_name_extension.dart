@@ -3,7 +3,7 @@ import 'package:recase/recase.dart';
 
 extension VariableNameExtension on String {
   String clearDataComponentsName() {
-    final cleanFromSpaces = pascalCase.replaceAll(RegExp(r"[^\s\w]"), '');
+    final cleanFromSpaces = pascalCase.replaceAll(RegExp(r'[^\s\w]'), '');
     if (cleanFromSpaces.contains(SwaggerConst.swaggerRequestKey)) {
       return cleanFromSpaces.replaceAll(SwaggerConst.swaggerRequestKey, '');
     }
@@ -12,11 +12,15 @@ extension VariableNameExtension on String {
     }
     if (cleanFromSpaces.contains(SwaggerConst.swaggerRequestTitleKey)) {
       return cleanFromSpaces.replaceAll(
-          SwaggerConst.swaggerRequestTitleKey, '');
+        SwaggerConst.swaggerRequestTitleKey,
+        '',
+      );
     }
     if (cleanFromSpaces.contains(SwaggerConst.swaggerResponseTitleKey)) {
       return cleanFromSpaces.replaceAll(
-          SwaggerConst.swaggerResponseTitleKey, '');
+        SwaggerConst.swaggerResponseTitleKey,
+        '',
+      );
     }
 
     if (cleanFromSpaces.contains(SwaggerConst.swaggerObjectDTO)) {
@@ -26,7 +30,7 @@ extension VariableNameExtension on String {
   }
 
   String clearEnumComponentName() {
-    final cleanFromSpaces = pascalCase.replaceAll(RegExp(r"[^\s\w]"), '');
+    final cleanFromSpaces = pascalCase.replaceAll(RegExp(r'[^\s\w]'), '');
     if (cleanFromSpaces.contains(SwaggerConst.swaggerTypeKey)) {
       return cleanFromSpaces.replaceAll(SwaggerConst.swaggerTypeKey, '');
     }
@@ -38,7 +42,7 @@ extension VariableNameExtension on String {
 
   String clearPathToName() {
     final cleanFromSpaces =
-        replaceAll('/', ' ').replaceAll(RegExp(r"[^\s\w]"), '').snakeCase;
+        replaceAll('/', ' ').replaceAll(RegExp(r'[^\s\w]'), '').snakeCase;
     return cleanFromSpaces;
   }
 }

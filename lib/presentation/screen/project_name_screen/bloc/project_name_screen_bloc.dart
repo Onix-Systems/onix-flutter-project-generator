@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc_imports.dart';
@@ -30,7 +30,7 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     emit(
       ProjectNameScreenState.data(
         config: event.config,
-        isValidProjectName: await _isValidProjectName(event.config.projectName),
+        isValidProjectName: _isValidProjectName(event.config.projectName),
         isValidOrganizationName:
             _isValidOrganizationName(event.config.organization),
       ),
@@ -56,7 +56,7 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     emit(
       state.copyWith(
         config: state.config.copyWith(projectName: event.projectName.snakeCase),
-        isValidProjectName: await _isValidProjectName(event.projectName),
+        isValidProjectName: _isValidProjectName(event.projectName),
       ),
     );
   }
@@ -93,10 +93,10 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     );
   }
 
-  Future<bool> _isValidProjectName(String projectName) async {
+  bool _isValidProjectName(String projectName) {
     final projectExists =
-        await Directory('${state.config.projectPath}/${projectName.snakeCase}')
-            .exists();
+        Directory('${state.config.projectPath}/${projectName.snakeCase}')
+            .existsSync();
     final isValidName = ProjectNameValidator.isValidName(projectName);
     return projectName.isNotEmpty && !projectExists && isValidName;
   }

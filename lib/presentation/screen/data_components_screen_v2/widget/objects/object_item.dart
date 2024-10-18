@@ -16,7 +16,7 @@ class ObjectItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: context.appColors.contrastColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,11 +24,13 @@ class ObjectItem extends StatelessWidget {
           const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(object.name.titleCase,
-                style: TextStyle(
-                  color: context.appColors.textColor,
-                  fontSize: 16,
-                )),
+            child: Text(
+              object.name.titleCase,
+              style: TextStyle(
+                color: context.appColors.textColor,
+                fontSize: 16,
+              ),
+            ),
           ),
           const SizedBox(height: 8),
           Container(
@@ -39,12 +41,12 @@ class ObjectItem extends StatelessWidget {
               vertical: 8,
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: object.variables
                   .map(
-                    (e) => Text(
-                        '${e.type.getTypeDeclaration(DataFileType.none)} ${e.name.camelCase}'),
+                    (e) =>
+                        Text('${e.type.getTypeDeclaration(DataFileType.none)} '
+                            '${e.name.camelCase}'),
                   )
                   .toList(),
             ),

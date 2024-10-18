@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
@@ -17,7 +17,7 @@ class SummaryStylesCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         border: Border.all(
           color: context.appColors.contrastColor,
@@ -71,7 +71,10 @@ class SummaryStylesCell extends StatelessWidget {
                         .toList()
                         .map(
                           (e) => Text(
-                            '${e.name}: ${e.fontFamily}, size: ${e.fontSize}, weight: ${e.fontWeight}, letterSpacing: ${e.letterSpacing.toStringAsFixed(2)}',
+                            '${e.name}: ${e.fontFamily}, size: ${e.fontSize},'
+                            ' weight: ${e.fontWeight}, '
+                            'letterSpacing:'
+                            ' ${e.letterSpacing.toStringAsFixed(2)}',
                             style: context.appTextStyles.fs18,
                           ),
                         )

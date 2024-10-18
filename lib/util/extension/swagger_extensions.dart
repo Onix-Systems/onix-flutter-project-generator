@@ -9,6 +9,7 @@ extension SwaggerExtensions on String {
       final after = substring(startIndex + from.length);
       return '$before$to$after';
     }
+
     return this;
   }
 

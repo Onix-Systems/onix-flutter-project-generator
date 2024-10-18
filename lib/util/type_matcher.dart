@@ -68,7 +68,7 @@ class TypeMatcher {
   static String defaultTypeValue(String type) {
     switch (type) {
       case 'string':
-        return '\'\'';
+        return "''";
       case 'integer':
         return '-1';
       case 'number':

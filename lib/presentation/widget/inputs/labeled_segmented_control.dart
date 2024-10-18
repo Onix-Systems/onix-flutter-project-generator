@@ -21,7 +21,6 @@ class LabeledSegmentedControl extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 10),
       child: Row(
-        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
@@ -50,18 +49,20 @@ class LabeledSegmentedControl extends StatelessWidget {
   }
 
   Map<String, Widget> _mapValues(BuildContext context) {
-    Map<String, Widget> result = {};
-    for (String value in values) {
-      result.addAll({
-        value: Text(
-          value.titleCase,
-          style: context.appTextStyles.fs18?.copyWith(
-            color: selectedValue == value
-                ? context.appColors.textColor
-                : context.appColors.fadedColor,
+    final result = <String, Widget>{};
+    for (final value in values) {
+      result.addAll(
+        {
+          value: Text(
+            value.titleCase,
+            style: context.appTextStyles.fs18?.copyWith(
+              color: selectedValue == value
+                  ? context.appColors.textColor
+                  : context.appColors.fadedColor,
+            ),
           ),
-        )
-      });
+        },
+      );
     }
     return result;
   }

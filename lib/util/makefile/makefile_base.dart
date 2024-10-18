@@ -13,7 +13,7 @@ abstract class MakefileBase {
     return [
       '$name:${dependencies.isNotEmpty ? ' $dependencies' : ''}',
       ...commands.map((e) => '\t$e'),
-      ''
+      '',
     ];
   }
 }

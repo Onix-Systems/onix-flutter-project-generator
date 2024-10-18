@@ -1,6 +1,6 @@
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 
-abstract class ScreenRepository {
+abstract interface class ScreenRepository {
   Set<Screen> get screens;
 
   bool exists({required String screenName});

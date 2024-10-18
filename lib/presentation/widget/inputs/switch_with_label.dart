@@ -9,9 +9,9 @@ class SwitchWithLabel extends StatelessWidget {
 
   const SwitchWithLabel({
     required this.label,
-    this.subLabel,
     required this.valueSetter,
     required this.initialValue,
+    this.subLabel,
     super.key,
   });
 
@@ -20,7 +20,6 @@ class SwitchWithLabel extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: Row(
-        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
@@ -39,7 +38,9 @@ class SwitchWithLabel extends StatelessWidget {
                     subLabel ?? '',
                     textAlign: TextAlign.left,
                     style: context.appTextStyles.fs18?.copyWith(
-                        color: context.appColors.textColor, fontSize: 13),
+                      color: context.appColors.textColor,
+                      fontSize: 13,
+                    ),
                   ),
               ],
             ),
@@ -47,9 +48,7 @@ class SwitchWithLabel extends StatelessWidget {
           CupertinoSwitch(
             value: initialValue,
             activeColor: context.appColors.contrastColor,
-            onChanged: (value) {
-              valueSetter.call(value);
-            },
+            onChanged: valueSetter.call,
           ),
         ],
       ),

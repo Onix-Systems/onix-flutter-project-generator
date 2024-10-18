@@ -1,19 +1,15 @@
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_colors_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/style_generator_const.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 
-class ThemeColorsFileContent implements BaseGenerationService<String> {
+class ThemeColorsFileContent
+    implements BaseGenerationService<String, ThemeColorsGenerationParams> {
   @override
-  Future<String> generate(BaseGenerationParams params) async {
-    if (params is! ThemeColorsGenerationParams) {
-      return '';
-    }
-
+  Future<String> generate(ThemeColorsGenerationParams params) async {
     return _generateInternal(
       colors: params.colors,
       projectName: params.projectName,

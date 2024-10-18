@@ -1,17 +1,13 @@
 import 'dart:io';
 
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/default_screen_route_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 
-class DefaultScreenRouteGenerator implements BaseGenerationService<bool> {
+class DefaultScreenRouteGenerator
+    implements BaseGenerationService<bool, DefaultScreenRouteGeneratorParams> {
   @override
-  Future<bool> generate(BaseGenerationParams params) async {
-    if (params is! DefaultScreenRouteGeneratorParams) {
-      return false;
-    }
-
+  Future<bool> generate(DefaultScreenRouteGeneratorParams params) async {
     ///Add default configuration to Navigation Router file
     await _createDefaultRoute(params);
 
@@ -19,16 +15,19 @@ class DefaultScreenRouteGenerator implements BaseGenerationService<bool> {
   }
 
   Future<void> _createDefaultRoute(
-      DefaultScreenRouteGeneratorParams params) async {
+    DefaultScreenRouteGeneratorParams params,
+  ) async {
     if (params.router == ProjectRouter.goRouter) {
       final routesFile = File(
-          '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
-      String routesContent = routesFile.readAsStringSync();
+        '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart',
+      );
+      final routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
       final appRoutesContent = routesContent.replaceAll(
-          '//{routes declaration end}',
-          'root(\'/\');\n//{routes declaration end}');
-      routesFile.writeAsString(appRoutesContent);
+        '//{routes declaration end}',
+        "root('/');\n//{routes declaration end}",
+      );
+      await routesFile.writeAsString(appRoutesContent);
     }
   }
 }

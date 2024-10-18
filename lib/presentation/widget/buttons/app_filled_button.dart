@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class AppFilledButton extends StatefulWidget {
@@ -65,13 +65,14 @@ class _AppFilledButtonState extends State<AppFilledButton> {
             : context.appColors.fadedColor,
         foregroundColor: _defaultColor,
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
-            side: focused
-                ? BorderSide(
-                    color: _defaultColor.withOpacity(0.7),
-                    width: 2,
-                  )
-                : BorderSide.none),
+          borderRadius: BorderRadius.circular(5),
+          side: focused
+              ? BorderSide(
+                  color: _defaultColor.withOpacity(0.7),
+                  width: 2,
+                )
+              : BorderSide.none,
+        ),
         padding: widget.padding ??
             const EdgeInsets.symmetric(
               horizontal: 20,
@@ -89,12 +90,13 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                     color:
                         hovered ? widget.color ?? _defaultColor : _textColor(),
                   ),
-                Text(widget.label,
-                    style: context.appTextStyles.fs18?.copyWith(
-                      color: hovered
-                          ? widget.color ?? _defaultColor
-                          : _textColor(),
-                    )),
+                Text(
+                  widget.label,
+                  style: context.appTextStyles.fs18?.copyWith(
+                    color:
+                        hovered ? widget.color ?? _defaultColor : _textColor(),
+                  ),
+                ),
               ],
             )
           : Row(
@@ -109,12 +111,13 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                   ),
                   const Delimiter.width(10),
                 ],
-                Text(widget.label,
-                    style: context.appTextStyles.fs18?.copyWith(
-                      color: hovered
-                          ? widget.color ?? _defaultColor
-                          : _textColor(),
-                    )),
+                Text(
+                  widget.label,
+                  style: context.appTextStyles.fs18?.copyWith(
+                    color:
+                        hovered ? widget.color ?? _defaultColor : _textColor(),
+                  ),
+                ),
                 if (widget.icon != null && !widget.iconLeft) ...[
                   const Delimiter.width(10),
                   Icon(
