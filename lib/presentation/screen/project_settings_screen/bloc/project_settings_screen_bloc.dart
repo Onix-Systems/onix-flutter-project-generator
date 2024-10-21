@@ -76,8 +76,8 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
   ) {
     emit(
       state.copyWith(
-        config: state.config
-            .copyWith(generateSigningKey: !state.config.generateSigningKey),
+        config:
+            state.config.copyWith(generateSigningKey: event.generateSigningKey),
       ),
     );
   }

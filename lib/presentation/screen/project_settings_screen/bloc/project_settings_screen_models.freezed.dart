@@ -21,7 +21,7 @@ mixin _$ProjectSettingsScreenEvent {
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -40,7 +40,7 @@ mixin _$ProjectSettingsScreenEvent {
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -58,7 +58,7 @@ mixin _$ProjectSettingsScreenEvent {
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -274,7 +274,7 @@ class _$ProjectSettingsScreenEventInitImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -296,7 +296,7 @@ class _$ProjectSettingsScreenEventInitImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -317,7 +317,7 @@ class _$ProjectSettingsScreenEventInitImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -504,7 +504,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -526,7 +526,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -547,7 +547,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -756,7 +756,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -778,7 +778,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -799,7 +799,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -951,6 +951,8 @@ abstract class _$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWith
               then) =
       __$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWithImpl<
           $Res>;
+  @useResult
+  $Res call({bool generateSigningKey});
 }
 
 /// @nodoc
@@ -966,28 +968,57 @@ class __$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWithImpl<
       $Res Function(_$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl)
           _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? generateSigningKey = null,
+  }) {
+    return _then(_$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl(
+      generateSigningKey: null == generateSigningKey
+          ? _value.generateSigningKey
+          : generateSigningKey // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     implements ProjectSettingsScreenEventGenerateSigningKeyChange {
-  const _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl();
+  const _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl(
+      {required this.generateSigningKey});
+
+  @override
+  final bool generateSigningKey;
 
   @override
   String toString() {
-    return 'ProjectSettingsScreenEvent.generateSigningKeyChange()';
+    return 'ProjectSettingsScreenEvent.generateSigningKeyChange(generateSigningKey: $generateSigningKey)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl);
+            other is _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl &&
+            (identical(other.generateSigningKey, generateSigningKey) ||
+                other.generateSigningKey == generateSigningKey));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, generateSigningKey);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWith<
+          _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl>
+      get copyWith =>
+          __$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWithImpl<
+                  _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -995,7 +1026,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -1008,7 +1039,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
   }) {
-    return generateSigningKeyChange();
+    return generateSigningKeyChange(generateSigningKey);
   }
 
   @override
@@ -1017,7 +1048,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -1029,7 +1060,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
   }) {
-    return generateSigningKeyChange?.call();
+    return generateSigningKeyChange?.call(generateSigningKey);
   }
 
   @override
@@ -1038,7 +1069,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -1052,7 +1083,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     required TResult orElse(),
   }) {
     if (generateSigningKeyChange != null) {
-      return generateSigningKeyChange();
+      return generateSigningKeyChange(generateSigningKey);
     }
     return orElse();
   }
@@ -1169,8 +1200,15 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
 
 abstract class ProjectSettingsScreenEventGenerateSigningKeyChange
     implements ProjectSettingsScreenEvent {
-  const factory ProjectSettingsScreenEventGenerateSigningKeyChange() =
+  const factory ProjectSettingsScreenEventGenerateSigningKeyChange(
+          {required final bool generateSigningKey}) =
       _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl;
+
+  bool get generateSigningKey;
+  @JsonKey(ignore: true)
+  _$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWith<
+          _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1260,7 +1298,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -1282,7 +1320,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -1303,7 +1341,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -1491,7 +1529,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -1513,7 +1551,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -1534,7 +1572,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -1715,7 +1753,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -1737,7 +1775,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -1758,7 +1796,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -1973,7 +2011,7 @@ class _$ProjectSettingsScreenEventStateManagerChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -1995,7 +2033,7 @@ class _$ProjectSettingsScreenEventStateManagerChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -2016,7 +2054,7 @@ class _$ProjectSettingsScreenEventStateManagerChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -2204,7 +2242,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -2226,7 +2264,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -2247,7 +2285,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -2431,7 +2469,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -2453,7 +2491,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -2474,7 +2512,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -2655,7 +2693,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -2677,7 +2715,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -2698,7 +2736,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -2879,7 +2917,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -2901,7 +2939,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -2922,7 +2960,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -3104,7 +3142,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -3126,7 +3164,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -3147,7 +3185,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
@@ -3328,7 +3366,7 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
@@ -3350,7 +3388,7 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
@@ -3371,7 +3409,7 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,

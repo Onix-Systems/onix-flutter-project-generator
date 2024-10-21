@@ -75,12 +75,15 @@ class LeftPart extends StatelessWidget {
               subLabel: S.of(context).dialogWillOpenInSeparateWindow,
               valueSetter: (value) {
                 bloc.add(
-                  const ProjectSettingsScreenEventGenerateSigningKeyChange(),
+                  ProjectSettingsScreenEventGenerateSigningKeyChange(
+                    generateSigningKey: value,
+                  ),
                 );
                 if (value) {
                   _showSigningVarsDialog(
                     context: context,
                     state: state,
+                    toggleGenerateSigningKey: true,
                   );
                 }
               },
@@ -124,6 +127,7 @@ class LeftPart extends StatelessWidget {
   void _showSigningVarsDialog({
     required BuildContext context,
     required ProjectSettingsScreenState state,
+    bool toggleGenerateSigningKey = false,
   }) {
     showCupertinoModalPopup<List<String>>(
       context: context,
@@ -139,9 +143,11 @@ class LeftPart extends StatelessWidget {
             signingVars: signingVars ?? state.config.signingVars,
           ),
         );
-        if (signingVars == null) {
+        if (toggleGenerateSigningKey) {
           bloc.add(
-            const ProjectSettingsScreenEventGenerateSigningKeyChange(),
+            ProjectSettingsScreenEventGenerateSigningKeyChange(
+              generateSigningKey: signingVars != null,
+            ),
           );
         }
       },
