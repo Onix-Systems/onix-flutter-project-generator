@@ -1,4 +1,4 @@
-import 'package:onix_flutter_core_models/onix_flutter_core.dart';
+import 'package:onix_flutter_core/onix_flutter_core.dart';
 
 //{response_imports}
 //{request_imports}
