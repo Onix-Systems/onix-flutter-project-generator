@@ -145,8 +145,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Import REST API requests"),
         "importStyles": MessageLookupByLibrary.simpleMessage("Import Styles"),
         "initial": MessageLookupByLibrary.simpleMessage("Initial screen?"),
-        "integrateDevicePreview":
-            MessageLookupByLibrary.simpleMessage("Integrate Device Preview?"),
         "integrateGraphQl":
             MessageLookupByLibrary.simpleMessage("Integrate GraphQL?"),
         "integrateSentry":
@@ -156,7 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "keystorePassword":
             MessageLookupByLibrary.simpleMessage(" Keystore password"),
         "list": MessageLookupByLibrary.simpleMessage("List"),
-        "localization": MessageLookupByLibrary.simpleMessage("Localization:"),
+        "localization": MessageLookupByLibrary.simpleMessage("Localization"),
         "localizationMethod":
             MessageLookupByLibrary.simpleMessage("Localization method"),
         "masonBrickSource":
@@ -212,7 +210,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "request": MessageLookupByLibrary.simpleMessage("Request"),
         "response": MessageLookupByLibrary.simpleMessage("Response"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
-        "router": MessageLookupByLibrary.simpleMessage("Router:"),
+        "router": MessageLookupByLibrary.simpleMessage("Router"),
         "screenAlreadyExistsContent": MessageLookupByLibrary.simpleMessage(
             "Screen with such name already exists"),
         "screenAlreadyExistsTitle":
