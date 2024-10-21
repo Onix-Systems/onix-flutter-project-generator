@@ -13,11 +13,9 @@ import 'package:onix_flutter_bricks/util/extra_space_formatter.dart';
 class LeftPart extends StatelessWidget {
   final ProjectSettingsScreenBloc bloc;
   final TextEditingController flavorsController;
-  final double height;
 
   const LeftPart({
     required this.bloc,
-    required this.height,
     required this.flavorsController,
     super.key,
   });
@@ -27,7 +25,6 @@ class LeftPart extends StatelessWidget {
     final state = bloc.state;
 
     return Container(
-      height: height,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         border: Border.all(
@@ -142,6 +139,11 @@ class LeftPart extends StatelessWidget {
             signingVars: signingVars ?? state.config.signingVars,
           ),
         );
+        if (signingVars == null) {
+          bloc.add(
+            const ProjectSettingsScreenEventGenerateSigningKeyChange(),
+          );
+        }
       },
     );
   }

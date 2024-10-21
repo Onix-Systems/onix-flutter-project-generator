@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
@@ -27,7 +28,7 @@ class ProjectSettingsScreen extends StatefulWidget {
 class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
     ProjectSettingsScreenBloc, ProjectSettingsScreenSR, ProjectSettingsScreen> {
   final TextEditingController _flavorsController = TextEditingController();
-  final double _height = 350;
+  //final double _height = 350;
 
   @override
   ProjectSettingsScreenBloc createBloc() =>
@@ -75,23 +76,23 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Spacer(),
+            const Gap(140),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: LeftPart(
                     bloc: blocOf(context),
                     flavorsController: _flavorsController,
-                    height: _height,
+                    //height: _height,
                   ),
                 ),
                 const Delimiter.width(20),
                 Expanded(
                   child: RightPart(
                     bloc: blocOf(context),
-                    height: _height,
+                    //height: _height,
                   ),
                 ),
               ],

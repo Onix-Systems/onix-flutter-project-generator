@@ -35,12 +35,16 @@ mixin RiverpodContentMixin on ScreenGenerationService {
         'class ${screenName.pascalCase}ScreenProvider extends StateNotifier<${screenName.pascalCase}ScreenState> {',
       )
       ..add(
-        '${screenName.pascalCase}ScreenProvider() : super(const ${screenName.pascalCase}ScreenState());',
+        '${screenName.pascalCase}ScreenProvider() : super(const ${screenName.pascalCase}ScreenState()) {init();}',
       )
       ..addNewLine()
-      ..add('void increment() {')
-      ..add('state = state.copyWith(count: state.count + 1);')
+      ..add('void init() {')
+      ..add('//state = state.copyWith(count: state.count + 1);')
       ..add('}')
+      ..addNewLine()
+      ..add('//void increment() {')
+      ..add('//state = state.copyWith(count: state.count + 1);')
+      ..add('//}')
       ..add('}');
 
     return codeLines.join('\n');

@@ -15,11 +15,9 @@ import 'package:recase/recase.dart';
 
 class RightPart extends StatelessWidget {
   final ProjectSettingsScreenBloc bloc;
-  final double height;
 
   const RightPart({
     required this.bloc,
-    required this.height,
     super.key,
   });
 
@@ -27,7 +25,6 @@ class RightPart extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = bloc.state;
     return Container(
-      height: height,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         border: Border.all(color: context.appColors.contrastColor),
