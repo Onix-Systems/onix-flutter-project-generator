@@ -19,9 +19,11 @@ import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_
 import 'package:onix_flutter_bricks/domain/usecase/process/get_signing_fingerprint_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/screen/clear_screens_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 
@@ -98,6 +100,16 @@ void registerUseCases(GetIt getIt) {
     ..registerFactory<GetSwaggerComponentsUseCase>(
       () => GetSwaggerComponentsUseCase(
         getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<ClearSwaggerComponentsUseCase>(
+      () => ClearSwaggerComponentsUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<ClearScreensUseCase>(
+      () => ClearScreensUseCase(
+        getIt.get<ScreenRepository>(),
       ),
     )
     ..registerFactory<GenerateGitCliffFilesUseCase>(
