@@ -17,8 +17,9 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
     required String flavors,
   }) = ProjectSettingsScreenEventFlavorsChange;
 
-  const factory ProjectSettingsScreenEvent.generateSigningKeyChange() =
-      ProjectSettingsScreenEventGenerateSigningKeyChange;
+  const factory ProjectSettingsScreenEvent.generateSigningKeyChange({
+    required bool generateSigningKey,
+  }) = ProjectSettingsScreenEventGenerateSigningKeyChange;
 
   const factory ProjectSettingsScreenEvent.signingVarsChange({
     required List<String> signingVars,
