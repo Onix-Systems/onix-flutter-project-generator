@@ -1,6 +1,8 @@
 import 'package:flutter/services.dart';
 
 class FirstCharacterNotDigitFormatter extends TextInputFormatter {
+  const FirstCharacterNotDigitFormatter();
+
   @override
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,

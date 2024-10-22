@@ -96,7 +96,7 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
                     onSubmitted: (_) => _onOk(context),
                     placeholder: S.of(context).screenName,
                     inputFormatters: [
-                      FirstCharacterNotDigitFormatter(),
+                      const FirstCharacterNotDigitFormatter(),
                       FilteringTextInputFormatter.allow(
                         AppConsts.digitsAndLatinLetters,
                       ),
