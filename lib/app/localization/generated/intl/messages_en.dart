@@ -215,6 +215,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Screen with such name already exists"),
         "screenAlreadyExistsTitle":
             MessageLookupByLibrary.simpleMessage("Already exists"),
+        "screenClassNameHelperText": MessageLookupByLibrary.simpleMessage(
+            "The first character in the class name must be a letter"),
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
         "screens": MessageLookupByLibrary.simpleMessage("Screens"),
         "selectProjectFolder":

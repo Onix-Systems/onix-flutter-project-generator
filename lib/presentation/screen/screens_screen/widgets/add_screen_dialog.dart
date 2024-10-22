@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/domain/entity/state_management/state_management_variant.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
+import 'package:onix_flutter_bricks/presentation/widget/tooltip_wrapper.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:recase/recase.dart';
 
@@ -77,20 +80,33 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CupertinoTextField(
-              controller: _screenNameController,
-              focusNode: _textFieldFocusNode,
-              style: context.appTextStyles.fs18,
-              onTap: () {
-                setState(() {
-                  _currentFocusNode = _textFieldFocusNode;
-                  _textFieldFocusNode.requestFocus();
-                });
-              },
-              onSubmitted: (_) => _onOk(context),
-              placeholder: S.of(context).screenName,
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]')),
+            Row(
+              children: [
+                Expanded(
+                  child: CupertinoTextField(
+                    controller: _screenNameController,
+                    focusNode: _textFieldFocusNode,
+                    style: context.appTextStyles.fs18,
+                    onTap: () {
+                      setState(() {
+                        _currentFocusNode = _textFieldFocusNode;
+                        _textFieldFocusNode.requestFocus();
+                      });
+                    },
+                    onSubmitted: (_) => _onOk(context),
+                    placeholder: S.of(context).screenName,
+                    inputFormatters: [
+                      FirstCharacterNotDigitFormatter(),
+                      FilteringTextInputFormatter.allow(
+                        AppConsts.digitsAndLatinLetters,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 12),
+                TooltipWrapper(
+                  message: S.of(context).screenClassNameHelperText,
+                ),
               ],
             ),
             const Gap(15),
@@ -133,7 +149,7 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
     );
   }
 
-  Future<void> _onOk(BuildContext context) async {
+  void _onOk(BuildContext context) {
     if (_screenNameController.text.isNotEmpty) {
       var screenName = _screenNameController.text.pascalCase;
 
@@ -141,10 +157,12 @@ class _AddScreenDialogState extends State<AddScreenDialog> {
         screenName = screenName.replaceLast('Screen', '');
       }
 
-      if (widget.screen != null) {
-        widget.screen!.name = screenName;
-        widget.screen!.stateVariant = _stateManagement;
-        Navigator.pop(context, widget.screen);
+      final screen = widget.screen;
+      if (screen != null) {
+        screen
+          ..name = screenName
+          ..stateVariant = _stateManagement;
+        Navigator.pop(context, screen);
       } else {
         Navigator.pop(
           context,

@@ -1539,6 +1539,16 @@ class S {
       args: [variant],
     );
   }
+
+  /// `The first character in the class name must be a letter`
+  String get screenClassNameHelperText {
+    return Intl.message(
+      'The first character in the class name must be a letter',
+      name: 'screenClassNameHelperText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -46,5 +46,7 @@ class AppConsts {
 
   static RegExp digitsAndLatinWithSpaceOnly = RegExp(r'[a-zA-Z\d ]');
 
+  static RegExp digitsAndLatinLetters = RegExp('[a-zA-Z0-9]');
+
   const AppConsts._();
 }
