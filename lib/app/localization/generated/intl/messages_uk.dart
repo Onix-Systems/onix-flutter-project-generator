@@ -221,6 +221,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Екран з такою назвою вже існує"),
         "screenAlreadyExistsTitle":
             MessageLookupByLibrary.simpleMessage("Вже є"),
+        "screenClassNameHelperText": MessageLookupByLibrary.simpleMessage(
+            "Перший символ у назві класу має бути літерою"),
         "screenName": MessageLookupByLibrary.simpleMessage("Назва екрану"),
         "screens": MessageLookupByLibrary.simpleMessage("Екрани"),
         "selectProjectFolder":
