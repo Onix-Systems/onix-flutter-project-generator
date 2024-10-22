@@ -114,6 +114,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "figmaGetStylesError": MessageLookupByLibrary.simpleMessage(
             "Помилка завантаження стилів: перевірте інтернет з\'єднання, id figma файлу та токен"),
         "figmaToken": MessageLookupByLibrary.simpleMessage("Токен Figma"),
+        "firebaseAuth": MessageLookupByLibrary.simpleMessage(
+            "Інтегрувати Firebase з FirebaseAuth?"),
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" Ім\'я та прізвище"),
         "flavorize":
@@ -157,7 +159,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "keystorePassword":
             MessageLookupByLibrary.simpleMessage(" Пароль до сховища ключів"),
         "list": MessageLookupByLibrary.simpleMessage("Список"),
-        "localization": MessageLookupByLibrary.simpleMessage("Локалізація:"),
+        "localization": MessageLookupByLibrary.simpleMessage("Локалізація"),
         "localizationMethod":
             MessageLookupByLibrary.simpleMessage("Метод локалізації"),
         "masonBrickSource":
@@ -214,7 +216,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "request": MessageLookupByLibrary.simpleMessage("Запит"),
         "response": MessageLookupByLibrary.simpleMessage("Відповідь"),
         "retry": MessageLookupByLibrary.simpleMessage("Повторити"),
-        "router": MessageLookupByLibrary.simpleMessage("Роутер:"),
+        "router": MessageLookupByLibrary.simpleMessage("Роутер"),
         "screenAlreadyExistsContent": MessageLookupByLibrary.simpleMessage(
             "Екран з такою назвою вже існує"),
         "screenAlreadyExistsTitle":
@@ -259,7 +261,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Файл Свагера містить компоненти, що конфліктують з тими що є. Замінити зпарсеними компоненами або ігнорувати конфліктуючі дані?"),
         "swaggerURL": MessageLookupByLibrary.simpleMessage("Swagger URL"),
         "textStyles": MessageLookupByLibrary.simpleMessage("Стилі тексту"),
-        "theming": MessageLookupByLibrary.simpleMessage("Theming"),
+        "theming": MessageLookupByLibrary.simpleMessage("Темізація"),
         "title": MessageLookupByLibrary.simpleMessage(
             "Onix Flutter Project Generator"),
         "tools": MessageLookupByLibrary.simpleMessage("Інструменти"),

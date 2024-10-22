@@ -490,16 +490,6 @@ class S {
     );
   }
 
-  /// `Integrate Device Preview?`
-  String get integrateDevicePreview {
-    return Intl.message(
-      'Integrate Device Preview?',
-      name: 'integrateDevicePreview',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Theming`
   String get theming {
     return Intl.message(
@@ -510,20 +500,20 @@ class S {
     );
   }
 
-  /// `Localization:`
+  /// `Localization`
   String get localization {
     return Intl.message(
-      'Localization:',
+      'Localization',
       name: 'localization',
       desc: '',
       args: [],
     );
   }
 
-  /// `Router:`
+  /// `Router`
   String get router {
     return Intl.message(
-      'Router:',
+      'Router',
       name: 'router',
       desc: '',
       args: [],
