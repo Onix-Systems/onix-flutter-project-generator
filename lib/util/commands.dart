@@ -32,11 +32,12 @@ class Commands {
   static String getMasonAddBrickCommand({
     required String projectPath,
     required String masonBrickBranch,
+    required String brickArch,
   }) {
     final branchFolder = masonBrickBranch.replaceAll('/', '-');
-    return "mason add -g flutter_clean_base --path '$projectPath/bricks/onix-flutter-project-generator-$branchFolder/bricks/flutter_clean_base'";
+    return "mason add -g flutter_${brickArch}_base --path '$projectPath/bricks/onix-flutter-project-generator-$branchFolder/bricks/flutter_${brickArch}_base'";
   }
 
-  static String getMasonMakeBrickCommand() =>
-      'mason make flutter_clean_base -c config.json --on-conflict overwrite';
+  static String getMasonMakeBrickCommand({required String brickArch}) =>
+      'mason make flutter_${brickArch}_base -c config.json --on-conflict overwrite';
 }
