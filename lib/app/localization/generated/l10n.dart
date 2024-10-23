@@ -1549,6 +1549,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Project architecture`
+  String get projectArch {
+    return Intl.message(
+      'Project architecture',
+      name: 'projectArch',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

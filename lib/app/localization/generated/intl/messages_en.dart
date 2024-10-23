@@ -196,6 +196,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "placeURLTitle": MessageLookupByLibrary.simpleMessage("Place URL here"),
         "platforms": MessageLookupByLibrary.simpleMessage("Platforms"),
         "preview": MessageLookupByLibrary.simpleMessage("Preview"),
+        "projectArch":
+            MessageLookupByLibrary.simpleMessage("Project architecture"),
         "projectExistsError": MessageLookupByLibrary.simpleMessage(
             "Project already exists, choose different name"),
         "projectName": MessageLookupByLibrary.simpleMessage("Project name"),
