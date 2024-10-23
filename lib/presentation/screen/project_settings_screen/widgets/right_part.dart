@@ -34,36 +34,14 @@ class RightPart extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  S.of(context).stateManager,
-                  style: context.appTextStyles.fs18?.copyWith(
-                    color: context.appColors.textColor,
-                  ),
-                ),
-                ArchSelector(
-                  bloc: bloc,
-                ),
-              ],
+            child: ArchSelector(
+              bloc: bloc,
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  S.of(context).stateManager,
-                  style: context.appTextStyles.fs18?.copyWith(
-                    color: context.appColors.textColor,
-                  ),
-                ),
-                StateSelector(
-                  bloc: bloc,
-                ),
-              ],
+            child: StateSelector(
+              bloc: bloc,
             ),
           ),
           const Gap(10),

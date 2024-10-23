@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
@@ -16,30 +17,41 @@ class ArchSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = bloc.state;
-    return Material(
-      color: Colors.transparent,
-      child: DropdownButton2<Arch>(
-        value: state.config.arch,
-        style: context.appTextStyles.fs18?.copyWith(
-          color: context.appColors.textColor,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          S.of(context).projectArch,
+          style: context.appTextStyles.fs18?.copyWith(
+            color: context.appColors.textColor,
+          ),
         ),
-        underline: const SizedBox(),
-        alignment: Alignment.centerRight,
-        items: Arch.values
-            .map(
-              (e) => DropdownMenuItem(
-                value: e,
-                alignment: Alignment.centerRight,
-                child: Text(e.name.titleCase),
-              ),
-            )
-            .toList(),
-        onChanged: (arch) {
-          if (arch != null) {
-            _onArchChange(arch: arch, bloc: bloc);
-          }
-        },
-      ),
+        Material(
+          color: Colors.transparent,
+          child: DropdownButton2<Arch>(
+            value: state.config.arch,
+            style: context.appTextStyles.fs18?.copyWith(
+              color: context.appColors.textColor,
+            ),
+            underline: const SizedBox(),
+            alignment: Alignment.centerRight,
+            items: Arch.values
+                .map(
+                  (e) => DropdownMenuItem(
+                    value: e,
+                    alignment: Alignment.centerRight,
+                    child: Text(e.name.titleCase),
+                  ),
+                )
+                .toList(),
+            onChanged: (arch) {
+              if (arch != null) {
+                _onArchChange(arch: arch, bloc: bloc);
+              }
+            },
+          ),
+        ),
+      ],
     );
   }
 
