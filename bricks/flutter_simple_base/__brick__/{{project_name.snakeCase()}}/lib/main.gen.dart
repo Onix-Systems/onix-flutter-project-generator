@@ -8,7 +8,7 @@ import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';{{/isBloc}}
 import 'package:{{project_name}}/app/banned_app.dart';
 import 'package:{{project_name}}/app/app.dart';
 import 'package:{{project_name}}/app/app_initialization.dart';
-import 'package:{{project_name}}/core/di/services.dart';
+import 'package:{{project_name}}/app/di/services.dart';
 import 'package:{{project_name}}/app/util/extension/orientation_extension.dart';
 import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 {{#sentry}}import 'package:sentry_flutter/sentry_flutter.dart';{{/sentry}}

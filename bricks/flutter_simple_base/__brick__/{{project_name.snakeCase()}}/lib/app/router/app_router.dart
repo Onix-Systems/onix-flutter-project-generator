@@ -2,7 +2,7 @@
 {{^isGoRouter}}import 'package:auto_route/auto_route.dart';{{/isGoRouter}}
 {{#isGoRouter}}import 'package:{{project_name}}/app/router/app_route.dart';{{/isGoRouter}}
 {{#isGoRouter}}import 'package:go_router/go_router.dart';{{/isGoRouter}}
-{{#isGoRouter}}import 'package:{{project_name}}/core/di/services.dart';{{/isGoRouter}}
+{{#isGoRouter}}import 'package:{{project_name}}/app/di/services.dart';{{/isGoRouter}}
 {{#isGoRouter}}{{#sentry}}import 'package:sentry_flutter/sentry_flutter.dart';{{/sentry}}{{/isGoRouter}}
 //{imports end}
 
