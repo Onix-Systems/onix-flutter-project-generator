@@ -1,6 +1,6 @@
 import 'package:onix_flutter_core/onix_flutter_core.dart';
-import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
-import 'package:{{project_name}}/domain/repository/refresh_token_repository.dart';
+import 'package:{{project_name}}/data/model/authentication/authentication.dart';
+import 'package:{{project_name}}/data/repository/refresh_token/refresh_token_repository.dart';
 
 class RefreshTokenRepositoryImpl implements RefreshTokenRepository {
   @override

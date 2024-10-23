@@ -1,5 +1,5 @@
 import 'package:onix_flutter_core/onix_flutter_core.dart';
-import 'package:{{project_name}}/domain/params/create_user/create_account_params.dart';
+import 'package:{{project_name}}/data/model/params/create_user/create_account_params.dart';
 
 //{entities_imports}
 

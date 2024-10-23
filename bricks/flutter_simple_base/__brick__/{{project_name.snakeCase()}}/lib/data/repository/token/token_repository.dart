@@ -1,4 +1,4 @@
-import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
+import 'package:{{project_name}}/data/model/authentication/authentication.dart';
 
 abstract class TokenRepository {
   String? accessToken;

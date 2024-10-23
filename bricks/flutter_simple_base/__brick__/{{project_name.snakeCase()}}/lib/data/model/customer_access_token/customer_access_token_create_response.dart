@@ -1,5 +1,5 @@
-import 'package:{{project_name}}/data/model/remote/customer_access_token/customer_access_token.dart';
-import 'package:{{project_name}}/data/model/remote/customer_access_token/customer_user_error_response.dart';
+import 'package:{{project_name}}/data/model/customer_access_token/customer_access_token.dart';
+import 'package:{{project_name}}/data/model/customer_access_token/customer_user_error_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'customer_access_token_create_response.g.dart';

@@ -2,7 +2,7 @@ import 'dart:async';
 
 {{#isGoRouter}}import 'package:flutter/foundation.dart';{{/isGoRouter}}
 import 'package:{{project_name}}/app/di/repository.dart';
-import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
+import 'package:{{project_name}}/data/model/authentication/authentication.dart';
 import 'package:{{project_name}}/app/service/session_service/session_status.dart';
 
 class SessionService {{#isGoRouter}}extends ChangeNotifier{{/isGoRouter}} {

@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:{{project_name}}/data/source/local/secure_storage/secure_storage_keys.dart';
 import 'package:{{project_name}}/data/source/local/secure_storage/secure_storage_source.dart';
-import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
-import 'package:{{project_name}}/domain/repository/token_repository.dart';
+import 'package:{{project_name}}/data/model/authentication/authentication.dart';
+import 'package:{{project_name}}/data/repository/token/token_repository.dart';
 
 class TokenRepositoryImpl implements TokenRepository {
   @override

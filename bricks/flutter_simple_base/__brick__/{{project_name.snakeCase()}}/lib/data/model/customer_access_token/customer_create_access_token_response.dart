@@ -1,4 +1,4 @@
-import 'package:{{project_name}}/data/model/remote/customer_access_token/customer_access_token_create_response.dart';
+import 'package:{{project_name}}/data/model/customer_access_token/customer_access_token_create_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'customer_create_access_token_response.g.dart';
