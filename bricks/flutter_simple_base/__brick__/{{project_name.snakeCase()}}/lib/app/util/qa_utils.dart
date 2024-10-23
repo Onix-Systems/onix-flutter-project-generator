@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
-import 'package:{{project_name}}/core/arch/widget/common/toast.dart';
+import 'package:{{project_name}}/app/logger/app_logger_impl.dart';
+import 'package:{{project_name}}/presentation/widget/common/toast.dart';
 
 class QaUtils {
   static Widget buildCharlesProxyBtn(_) {

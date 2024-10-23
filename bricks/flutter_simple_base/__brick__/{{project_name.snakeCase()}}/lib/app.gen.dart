@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 {{^web_only}}import 'package:loader_overlay/loader_overlay.dart';{{/web_only}}
 {{#screen_util}}import 'package:flutter_screenutil/flutter_screenutil.dart';{{/screen_util}}
 import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
-import 'package:{{project_name}}/core/arch/widget/common/theme_switcher.dart';
+import 'package:{{project_name}}/presentation/widget/common/theme_switcher.dart';
 {{#isGoRouter}}import 'package:{{project_name}}/app/router/app_router.dart';{{/isGoRouter}}
 {{^isGoRouter}}import 'package:{{project_name}}/core/di/app.dart';{{/isGoRouter}}
 {{^handLocalization}}import 'package:flutter_localizations/flutter_localizations.dart';{{/handLocalization}}
 {{#handLocalization}}import 'package:{{project_name}}/app/localization/common_app_localization_ext.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';{{/handLocalization}}
-{{#flavorizr}}import 'package:{{project_name}}/core/arch/widget/common/flavor_banner.dart';{{/flavorizr}}
+{{#flavorizr}}import 'package:{{project_name}}/presentation/widget/common/flavor_banner.dart';{{/flavorizr}}
 {{^handLocalization}}import 'package:{{project_name}}/app/localization/generated/l10n.dart';{{/handLocalization}}
 {{^isGoRouter}}{{#sentry}}import 'package:sentry_flutter/sentry_flutter.dart';{{/sentry}}{{/isGoRouter}}
 

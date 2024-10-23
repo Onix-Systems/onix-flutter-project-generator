@@ -10,7 +10,7 @@ import 'package:{{project_name}}/app/app.dart';
 import 'package:{{project_name}}/app/app_initialization.dart';
 import 'package:{{project_name}}/app/di/services.dart';
 import 'package:{{project_name}}/app/util/extension/orientation_extension.dart';
-import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
+import 'package:{{project_name}}/app/logger/app_logger_impl.dart';
 {{#sentry}}import 'package:sentry_flutter/sentry_flutter.dart';{{/sentry}}
 
 Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:{{project_name}}/core/arch/widget/common/theme_switcher.dart';
+import 'package:{{project_name}}/presentation/widget/common/theme_switcher.dart';
 
 extension ThemeBrightnessExtension on BuildContext {
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;

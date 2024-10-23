@@ -1,5 +1,5 @@
-import 'package:{{project_name}}/core/arch/logger/app_logger.dart';
-import 'package:{{project_name}}/core/arch/logger/crashlytics_util.dart';
+import 'package:{{project_name}}/app/logger/app_logger.dart';
+import 'package:{{project_name}}/app/logger/crashlytics_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 

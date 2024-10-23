@@ -1,6 +1,6 @@
 //@formatter:off
 import 'package:get_it/get_it.dart';
-import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
+import 'package:{{project_name}}/app/logger/app_logger_impl.dart';
 {{#firebase_auth}}import 'package:{{project_name}}/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';{{/firebase_auth}}
 import 'package:{{project_name}}/app/di/injection.dart';
