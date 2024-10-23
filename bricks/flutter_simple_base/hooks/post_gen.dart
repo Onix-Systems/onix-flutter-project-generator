@@ -612,19 +612,12 @@ Future<void> removeFirebase(HookContext context) async {
       workingDirectory: '$name/lib');
   await Process.run('rm', ['-r', 'app/service/firebase_session_service'],
       workingDirectory: '$name/lib');
-  await Process.run('rm', ['-r', 'domain/model/params'],
+  await Process.run('rm', ['-r', 'data/model/params'],
       workingDirectory: '$name/lib');
-  await Process.run(
-      'rm',
-      [
-        '-r',
-        'data/repository/firebase_auth/firebase_auth_repository_impl.dart'
-      ],
+  await Process.run('rm', ['-r', 'data/repository/firebase_auth'],
       workingDirectory: '$name/lib');
-  await Process.run('rm',
-      ['-r', 'data/repository/firebase_auth/firebase_auth_repository.dart'],
-      workingDirectory: '$name/lib');
-  await Process.run('rm', ['-r', 'data/model/failure/firebase_failure.dart'],
+
+  await Process.run('rm', ['-r', 'data/model/failure'],
       workingDirectory: '$name/lib');
 
   final firebaseArbStrings = ''',
