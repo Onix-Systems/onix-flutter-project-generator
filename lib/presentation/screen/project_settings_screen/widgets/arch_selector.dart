@@ -17,41 +17,44 @@ class ArchSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = bloc.state;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          S.of(context).projectArch,
-          style: context.appTextStyles.fs18?.copyWith(
-            color: context.appColors.textColor,
-          ),
-        ),
-        Material(
-          color: Colors.transparent,
-          child: DropdownButton2<Arch>(
-            value: state.config.arch,
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            S.of(context).projectArch,
             style: context.appTextStyles.fs18?.copyWith(
               color: context.appColors.textColor,
             ),
-            underline: const SizedBox(),
-            alignment: Alignment.centerRight,
-            items: Arch.values
-                .map(
-                  (e) => DropdownMenuItem(
-                    value: e,
-                    alignment: Alignment.centerRight,
-                    child: Text(e.name.titleCase),
-                  ),
-                )
-                .toList(),
-            onChanged: (arch) {
-              if (arch != null) {
-                _onArchChange(arch: arch, bloc: bloc);
-              }
-            },
           ),
-        ),
-      ],
+          Material(
+            color: Colors.transparent,
+            child: DropdownButton2<Arch>(
+              value: state.config.arch,
+              style: context.appTextStyles.fs18?.copyWith(
+                color: context.appColors.textColor,
+              ),
+              underline: const SizedBox(),
+              alignment: Alignment.centerRight,
+              items: Arch.values
+                  .map(
+                    (e) => DropdownMenuItem(
+                      value: e,
+                      alignment: Alignment.centerRight,
+                      child: Text(e.name.titleCase),
+                    ),
+                  )
+                  .toList(),
+              onChanged: (arch) {
+                if (arch != null) {
+                  _onArchChange(arch: arch, bloc: bloc);
+                }
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 

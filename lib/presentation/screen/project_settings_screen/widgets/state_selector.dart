@@ -18,60 +18,63 @@ class StateSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = bloc.state;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          S.of(context).stateManager,
-          style: context.appTextStyles.fs18?.copyWith(
-            color: context.appColors.textColor,
-          ),
-        ),
-        Material(
-          color: Colors.transparent,
-          child: DropdownButton2<ProjectStateManager>(
-            value: state.config.stateManager,
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            S.of(context).stateManager,
             style: context.appTextStyles.fs18?.copyWith(
               color: context.appColors.textColor,
             ),
-            underline: const SizedBox(),
-            alignment: Alignment.centerRight,
-            items: ProjectStateManager.values
-                .map(
-                  (e) => DropdownMenuItem(
-                    value: e,
-                    alignment: Alignment.centerRight,
-                    child: Text(e.name.titleCase),
-                  ),
-                )
-                .toList(),
-            onChanged: (manager) {
-              if (manager != null) {
-                if (manager != state.config.stateManager &&
-                    state.config.screens.isNotEmpty &&
-                    !bloc.screensMatchStrategy(manager)) {
-                  Dialogs.showOkCancelDialog(
-                    context: context,
-                    title: S.of(context).changeStateManagerError,
-                    content: Text(
-                      S.of(context).changeStateManagerErrorContent(
-                            manager.strategy.variants.first.name,
-                          ),
-                      style: context.appTextStyles.fs18,
-                    ),
-                    onOk: () => _onStateManagerChange(
-                      manager: manager,
-                      bloc: bloc,
-                    ),
-                  );
-                } else {
-                  _onStateManagerChange(manager: manager, bloc: bloc);
-                }
-              }
-            },
           ),
-        ),
-      ],
+          Material(
+            color: Colors.transparent,
+            child: DropdownButton2<ProjectStateManager>(
+              value: state.config.stateManager,
+              style: context.appTextStyles.fs18?.copyWith(
+                color: context.appColors.textColor,
+              ),
+              underline: const SizedBox(),
+              alignment: Alignment.centerRight,
+              items: ProjectStateManager.values
+                  .map(
+                    (e) => DropdownMenuItem(
+                      value: e,
+                      alignment: Alignment.centerRight,
+                      child: Text(e.name.titleCase),
+                    ),
+                  )
+                  .toList(),
+              onChanged: (manager) {
+                if (manager != null) {
+                  if (manager != state.config.stateManager &&
+                      state.config.screens.isNotEmpty &&
+                      !bloc.screensMatchStrategy(manager)) {
+                    Dialogs.showOkCancelDialog(
+                      context: context,
+                      title: S.of(context).changeStateManagerError,
+                      content: Text(
+                        S.of(context).changeStateManagerErrorContent(
+                              manager.strategy.variants.first.name,
+                            ),
+                        style: context.appTextStyles.fs18,
+                      ),
+                      onOk: () => _onStateManagerChange(
+                        manager: manager,
+                        bloc: bloc,
+                      ),
+                    );
+                  } else {
+                    _onStateManagerChange(manager: manager, bloc: bloc);
+                  }
+                }
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 

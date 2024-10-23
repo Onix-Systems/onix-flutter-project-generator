@@ -32,17 +32,11 @@ class RightPart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: ArchSelector(
-              bloc: bloc,
-            ),
+          ArchSelector(
+            bloc: bloc,
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: StateSelector(
-              bloc: bloc,
-            ),
+          StateSelector(
+            bloc: bloc,
           ),
           const Gap(10),
           LabeledSegmentedControl(
