@@ -17,7 +17,7 @@ class RiverpodStatelessScreenGenerator extends ScreenGenerationService
     final screenName = params.normalizedScreenName;
 
     final screenPath =
-        '${params.projectPath}/${params.projectName}/lib/presentation/screen/${screenName}_screen';
+        '${params.projectRootPath}/lib/presentation/screen/${screenName}_screen';
     await Directory(screenPath).create(recursive: true);
 
     ///Create screen files and Riverpod files for a screen
@@ -39,7 +39,7 @@ class RiverpodStatelessScreenGenerator extends ScreenGenerationService
     final screenName = params.normalizedScreenName;
     if (params.router == ProjectRouter.goRouter) {
       final routesFile = File(
-        '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart',
+        '${params.projectRootPath}/lib/app/router/app_route.dart',
       );
       final routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
@@ -52,7 +52,7 @@ class RiverpodStatelessScreenGenerator extends ScreenGenerationService
     }
 
     final routerFile = File(
-      '${params.projectPath}/${params.projectName}/lib/app/router/app_router.dart',
+      '${params.projectRootPath}/lib/app/router/app_router.dart',
     );
     final routerContent = routerFile.readAsStringSync();
 

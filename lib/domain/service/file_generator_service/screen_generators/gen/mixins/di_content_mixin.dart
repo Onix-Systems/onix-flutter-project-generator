@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:recase/recase.dart';
@@ -21,8 +22,11 @@ mixin DIContentMixin on ScreenGenerationService {
       stateManagement = 'bloc';
     }
 
+    final diFolderPath = params.arch.getDiPath(params.projectRootPath);
+
     final diFile = File(
-        '${params.projectPath}/${params.projectName}/lib/core/di/$stateManagement.dart');
+      '$diFolderPath/$stateManagement.dart',
+    );
     final screenName = params.normalizedScreenName;
     var output = await diFile.readAsString();
 

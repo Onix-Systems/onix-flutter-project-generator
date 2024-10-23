@@ -17,7 +17,7 @@ class BlocScreenGenerator extends ScreenGenerationService
     final screenName = params.normalizedScreenName;
 
     final screenPath =
-        '${params.projectPath}/${params.projectName}/lib/presentation/screen/${screenName}_screen';
+        '${params.projectRootPath}/lib/presentation/screen/${screenName}_screen';
     await Directory(screenPath).create(recursive: true);
 
     if (params.screen.stateVariant is! StatelessStateManagementVariant) {
@@ -41,8 +41,8 @@ class BlocScreenGenerator extends ScreenGenerationService
   Future<void> _createRoutes(ScreenGeneratorParams params) async {
     final screenName = params.normalizedScreenName;
     if (params.router == ProjectRouter.goRouter) {
-      final routesFile = File(
-          '${params.projectPath}/${params.projectName}/lib/app/router/app_route.dart');
+      final routesFile =
+          File('${params.projectRootPath}/lib/app/router/app_route.dart');
       final routesContent = routesFile.readAsStringSync();
       //Generate routes enum for GoRouter
       final appRoutesContent = _screenCodeContent.createScreenNavigationGoRoute(
@@ -53,8 +53,8 @@ class BlocScreenGenerator extends ScreenGenerationService
       await routesFile.writeAsString(appRoutesContent);
     }
 
-    final routerFile = File(
-        '${params.projectPath}/${params.projectName}/lib/app/router/app_router.dart');
+    final routerFile =
+        File('${params.projectRootPath}/lib/app/router/app_router.dart');
     final routerContent = routerFile.readAsStringSync();
 
     ///Create Navigator screen declarations

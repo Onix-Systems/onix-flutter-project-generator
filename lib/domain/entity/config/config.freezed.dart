@@ -21,6 +21,7 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Config {
   String get branch => throw _privateConstructorUsedError;
+  Arch get arch => throw _privateConstructorUsedError;
   String get localVersion => throw _privateConstructorUsedError;
   String get remoteVersion => throw _privateConstructorUsedError;
   String get projectPath => throw _privateConstructorUsedError;
@@ -59,6 +60,7 @@ abstract class $ConfigCopyWith<$Res> {
   @useResult
   $Res call(
       {String branch,
+      Arch arch,
       String localVersion,
       String remoteVersion,
       String projectPath,
@@ -101,6 +103,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   @override
   $Res call({
     Object? branch = null,
+    Object? arch = null,
     Object? localVersion = null,
     Object? remoteVersion = null,
     Object? projectPath = null,
@@ -130,6 +133,10 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.branch
           : branch // ignore: cast_nullable_to_non_nullable
               as String,
+      arch: null == arch
+          ? _value.arch
+          : arch // ignore: cast_nullable_to_non_nullable
+              as Arch,
       localVersion: null == localVersion
           ? _value.localVersion
           : localVersion // ignore: cast_nullable_to_non_nullable
@@ -243,6 +250,7 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   @useResult
   $Res call(
       {String branch,
+      Arch arch,
       String localVersion,
       String remoteVersion,
       String projectPath,
@@ -284,6 +292,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? branch = null,
+    Object? arch = null,
     Object? localVersion = null,
     Object? remoteVersion = null,
     Object? projectPath = null,
@@ -313,6 +322,10 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value.branch
           : branch // ignore: cast_nullable_to_non_nullable
               as String,
+      arch: null == arch
+          ? _value.arch
+          : arch // ignore: cast_nullable_to_non_nullable
+              as Arch,
       localVersion: null == localVersion
           ? _value.localVersion
           : localVersion // ignore: cast_nullable_to_non_nullable
@@ -414,6 +427,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
 class _$ConfigImpl extends _Config {
   const _$ConfigImpl(
       {this.branch = 'main',
+      this.arch = Arch.clean,
       this.localVersion = '',
       this.remoteVersion = '',
       this.projectPath = '',
@@ -449,6 +463,9 @@ class _$ConfigImpl extends _Config {
   @override
   @JsonKey()
   final String branch;
+  @override
+  @JsonKey()
+  final Arch arch;
   @override
   @JsonKey()
   final String localVersion;
@@ -541,7 +558,7 @@ class _$ConfigImpl extends _Config {
 
   @override
   String toString() {
-    return 'Config(branch: $branch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, stateManager: $stateManager, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, screenUtil: $screenUtil, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl, sentry: $sentry)';
+    return 'Config(branch: $branch, arch: $arch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, stateManager: $stateManager, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, screenUtil: $screenUtil, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl, sentry: $sentry)';
   }
 
   @override
@@ -550,6 +567,7 @@ class _$ConfigImpl extends _Config {
         (other.runtimeType == runtimeType &&
             other is _$ConfigImpl &&
             (identical(other.branch, branch) || other.branch == branch) &&
+            (identical(other.arch, arch) || other.arch == arch) &&
             (identical(other.localVersion, localVersion) ||
                 other.localVersion == localVersion) &&
             (identical(other.remoteVersion, remoteVersion) ||
@@ -596,6 +614,7 @@ class _$ConfigImpl extends _Config {
   int get hashCode => Object.hashAll([
         runtimeType,
         branch,
+        arch,
         localVersion,
         remoteVersion,
         projectPath,
@@ -638,6 +657,7 @@ class _$ConfigImpl extends _Config {
 abstract class _Config extends Config {
   const factory _Config(
       {final String branch,
+      final Arch arch,
       final String localVersion,
       final String remoteVersion,
       final String projectPath,
@@ -668,6 +688,8 @@ abstract class _Config extends Config {
 
   @override
   String get branch;
+  @override
+  Arch get arch;
   @override
   String get localVersion;
   @override
