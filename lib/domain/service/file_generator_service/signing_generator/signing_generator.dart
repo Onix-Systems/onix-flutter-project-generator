@@ -92,6 +92,11 @@ if (propFile.canRead()) {
     android.buildTypes.release.signingConfig = null
 }''';
 
+      final signingConfigString =
+          buildGradleContent.contains('signingConfig = signingConfigs.debug')
+              ? 'signingConfig = signingConfigs.debug'
+              : 'signingConfig signingConfigs.debug';
+
       ///Fix build types configuration
       await buildGradle.writeAsString(
         buildGradleContent.replaceAll(
@@ -99,7 +104,7 @@ if (propFile.canRead()) {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            $signingConfigString
         }
     }''',
           '''signingConfigs {
