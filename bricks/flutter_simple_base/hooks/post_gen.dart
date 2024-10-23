@@ -612,22 +612,19 @@ Future<void> removeFirebase(HookContext context) async {
       workingDirectory: '$name/lib');
   await Process.run('rm', ['-r', 'app/service/firebase_session_service'],
       workingDirectory: '$name/lib');
-  await Process.run('rm', ['-r', 'domain/params'],
+  await Process.run('rm', ['-r', 'domain/model/params'],
       workingDirectory: '$name/lib');
   await Process.run(
-      'rm', ['-r', 'data/repository/firebase_auth_repository_impl.dart'],
+      'rm',
+      [
+        '-r',
+        'data/repository/firebase_auth/firebase_auth_repository_impl.dart'
+      ],
       workingDirectory: '$name/lib');
-  await Process.run(
-      'rm', ['-r', 'domain/repository/firebase_auth_repository.dart'],
+  await Process.run('rm',
+      ['-r', 'data/repository/firebase_auth/firebase_auth_repository.dart'],
       workingDirectory: '$name/lib');
-  await Process.run('rm', ['-r', 'domain/usecase/create_account_use_case.dart'],
-      workingDirectory: '$name/lib');
-  await Process.run('rm', ['-r', 'domain/usecase/log_out_use_case.dart'],
-      workingDirectory: '$name/lib');
-  await Process.run('rm', ['-r', 'domain/usecase/login_use_case.dart'],
-      workingDirectory: '$name/lib');
-  await Process.run(
-      'rm', ['-r', 'core/arch/domain/entity/failure/firebase_failure.dart'],
+  await Process.run('rm', ['-r', 'data/model/failure/firebase_failure.dart'],
       workingDirectory: '$name/lib');
 
   final firebaseArbStrings = ''',
