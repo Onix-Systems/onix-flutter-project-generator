@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/util/enum/tool_type.dart';
 
 class ToolsPopupButton extends StatelessWidget {
@@ -15,7 +15,7 @@ class ToolsPopupButton extends StatelessWidget {
     return PopupMenuButton<ToolType>(
       onSelected: onSelected,
       tooltip: S.of(context).tools,
-      itemBuilder: (BuildContext context) => <PopupMenuEntry<ToolType>>[
+      itemBuilder: (context) => <PopupMenuEntry<ToolType>>[
         PopupMenuItem<ToolType>(
           value: ToolType.generateAndroidSigning,
           child: Text(S.of(context).generateAndroidSigning),

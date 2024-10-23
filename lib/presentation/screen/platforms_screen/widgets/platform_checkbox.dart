@@ -24,14 +24,13 @@ class PlatformCheckbox extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Material(
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(20),
           clipBehavior: Clip.antiAlias,
           child: InkWell(
-            onTap: () => onAction(),
+            onTap: onAction,
             child: Container(
               height: 100,
               width: 100,
@@ -56,7 +55,7 @@ class PlatformCheckbox extends StatelessWidget {
         LabeledCheckbox(
           label: label,
           initialValue: initialValue,
-          onAction: () => onAction(),
+          onAction: onAction,
         ),
       ],
     );

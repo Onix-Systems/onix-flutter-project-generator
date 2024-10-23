@@ -15,7 +15,7 @@ class SwaggerModelResponseV2 extends BaseSwaggerModelResponse {
     String rawModelName,
     Map<String, dynamic> json,
   ) {
-    var modelName = rawModelName.clearDataComponentsName();
+    final modelName = rawModelName.clearDataComponentsName();
 
     var variables =
         List<BaseSwaggerModelVariableResponse>.empty(growable: true);

@@ -2,16 +2,12 @@ import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/theme_text_style_generation_params.dart';
 
 class ThemeTextStylesFileContentTailor
-    implements BaseGenerationService<String> {
+    implements BaseGenerationService<String, ThemeTextStyleGenerationParams> {
   @override
-  Future<String> generate(BaseGenerationParams params) async {
-    if (params is! ThemeTextStyleGenerationParams) {
-      return '';
-    }
+  Future<String> generate(ThemeTextStyleGenerationParams params) async {
     return _generateInternal(
       textStyles: params.textStyles,
       colors: params.colors,

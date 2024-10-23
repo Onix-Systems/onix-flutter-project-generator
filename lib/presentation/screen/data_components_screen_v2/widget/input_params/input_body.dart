@@ -30,7 +30,8 @@ class InputBody extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          '${bodyNotNull.type.getTypeDeclaration(DataFileType.none)} ${bodyNotNull.name}',
+          '${bodyNotNull.type.getTypeDeclaration(DataFileType.none)} '
+          '${bodyNotNull.name}',
           style: TextStyle(
             color: context.appColors.textColor,
             fontSize: 14,

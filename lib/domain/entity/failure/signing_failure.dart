@@ -1,4 +1,4 @@
-import 'package:onix_flutter_bricks/core/arch/domain/entity/failure/failure.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 enum SigningFailureType { invalidParams, exception, signingAlreadyExist }
 

@@ -23,7 +23,6 @@ class Cell extends StatelessWidget {
                 border: Border(
                   right: BorderSide(
                     color: context.appColors.fadedColor,
-                    width: 1,
                   ),
                 ),
               )

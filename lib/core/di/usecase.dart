@@ -19,89 +19,100 @@ import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_
 import 'package:onix_flutter_bricks/domain/usecase/process/get_signing_fingerprint_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/screen/clear_screens_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 
 void registerUseCases(GetIt getIt) {
   getIt
-    ..registerLazySingleton<AddOutputMessageUseCase>(
+    ..registerFactory<AddOutputMessageUseCase>(
       () => AddOutputMessageUseCase(
         GetIt.I.get<OutputService>(),
       ),
     )
-    ..registerLazySingleton<GenerateDocumentationUseCase>(
+    ..registerFactory<GenerateDocumentationUseCase>(
       () => GenerateDocumentationUseCase(
         GetIt.I.get<OutputService>(),
         GetIt.I.get<DocsService>(),
       ),
     )
-    ..registerLazySingleton<GenerateScreensUseCase>(
+    ..registerFactory<GenerateScreensUseCase>(
       () => GenerateScreensUseCase(
         GetIt.I.get<OutputService>(),
-        GetIt.I.get<FileGeneratorService>(),
         GetIt.I.get<ScreenRepository>(),
       ),
     )
-    ..registerLazySingleton<RunProcessUseCase>(
+    ..registerFactory<RunProcessUseCase>(
       () => RunProcessUseCase(GetIt.I.get<OutputService>()),
     )
-    ..registerLazySingleton<RunOsaScriptProcessUseCase>(
+    ..registerFactory<RunOsaScriptProcessUseCase>(
       () => RunOsaScriptProcessUseCase(
         GetIt.I.get<AddOutputMessageUseCase>(),
       ),
     )
-    ..registerLazySingleton<GetBranchesProcessUseCase>(
+    ..registerFactory<GetBranchesProcessUseCase>(
       () => const GetBranchesProcessUseCase(),
     )
-    ..registerLazySingleton<GetFigmaStylesUseCase>(
+    ..registerFactory<GetFigmaStylesUseCase>(
       () => GetFigmaStylesUseCase(
         GetIt.I.get<FigmaService>(),
       ),
     )
-    ..registerLazySingleton<GenerateSigningConfigUseCase>(
+    ..registerFactory<GenerateSigningConfigUseCase>(
       () => GenerateSigningConfigUseCase(
         GetIt.I.get<FileGeneratorService>(),
       ),
     )
-    ..registerLazySingleton<GenerateStylesUseCase>(
+    ..registerFactory<GenerateStylesUseCase>(
       () => GenerateStylesUseCase(
         GetIt.I.get<FileGeneratorService>(),
       ),
     )
-    ..registerLazySingleton<GetGenerationOutputStream>(
+    ..registerFactory<GetGenerationOutputStream>(
       () => GetGenerationOutputStream(
         GetIt.I.get<OutputService>(),
       ),
     )
-    ..registerLazySingleton<GenerateFastlaneFilesUseCase>(
+    ..registerFactory<GenerateFastlaneFilesUseCase>(
       () => GenerateFastlaneFilesUseCase(
         outputService: getIt.get<OutputService>(),
         fastlaneService: getIt.get<FastlaneService>(),
       ),
     )
-    ..registerLazySingleton<GetSigningFingerprintUseCase>(
+    ..registerFactory<GetSigningFingerprintUseCase>(
       () => const GetSigningFingerprintUseCase(),
     )
-    ..registerLazySingleton<FetchSwaggerDataUseCase>(
+    ..registerFactory<FetchSwaggerDataUseCase>(
       () => FetchSwaggerDataUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     )
-    ..registerLazySingleton<CreateSwaggerComponentsUseCase>(
+    ..registerFactory<CreateSwaggerComponentsUseCase>(
       () => CreateSwaggerComponentsUseCase(
         getIt.get<SwaggerRepository>(),
         getIt.get<ComponentGeneratorService>(),
       ),
     )
-    ..registerLazySingleton<GetSwaggerComponentsUseCase>(
+    ..registerFactory<GetSwaggerComponentsUseCase>(
       () => GetSwaggerComponentsUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     )
-    ..registerLazySingleton<GenerateGitCliffFilesUseCase>(
+    ..registerFactory<ClearSwaggerComponentsUseCase>(
+      () => ClearSwaggerComponentsUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<ClearScreensUseCase>(
+      () => ClearScreensUseCase(
+        getIt.get<ScreenRepository>(),
+      ),
+    )
+    ..registerFactory<GenerateGitCliffFilesUseCase>(
       () => GenerateGitCliffFilesUseCase(
         outputService: getIt.get<OutputService>(),
         service: getIt.get<GitCliffService>(),

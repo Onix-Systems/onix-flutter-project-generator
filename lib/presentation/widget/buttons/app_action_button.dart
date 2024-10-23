@@ -6,11 +6,12 @@ class AppActionButton extends StatelessWidget {
   final String label;
   final bool active;
 
-  const AppActionButton(
-      {required this.onPressed,
-      required this.label,
-      this.active = true,
-      super.key});
+  const AppActionButton({
+    required this.onPressed,
+    required this.label,
+    this.active = true,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

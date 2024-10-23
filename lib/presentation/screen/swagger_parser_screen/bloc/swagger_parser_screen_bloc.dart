@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bloc/swagger_parser_screen_bloc_imports.dart';
@@ -18,25 +18,27 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     on<SwaggerParserScreenEventParse>(_onParse);
   }
 
-  FutureOr<void> _onInit(
+  void _onInit(
     SwaggerParserScreenEventInit event,
     Emitter<SwaggerParserScreenState> emit,
   ) {
     emit(state.copyWith(config: event.config));
   }
 
-  FutureOr<void> _onParse(
+  Future<void> _onParse(
     SwaggerParserScreenEventParse event,
     Emitter<SwaggerParserScreenState> emit,
   ) async {
     if (event.url.isEmpty) {
       addSr(const SwaggerParserScreenSR.onContinue());
     }
-    emit(state.copyWith(
-      config: state.config.copyWith(
-        swaggerUrl: event.url,
+    emit(
+      state.copyWith(
+        config: state.config.copyWith(
+          swaggerUrl: event.url,
+        ),
       ),
-    ));
+    );
 
     showProgress();
 

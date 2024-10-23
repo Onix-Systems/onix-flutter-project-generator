@@ -21,15 +21,18 @@ mixin _$ProjectSettingsScreenEvent {
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,15 +40,17 @@ mixin _$ProjectSettingsScreenEvent {
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,15 +58,17 @@ mixin _$ProjectSettingsScreenEvent {
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -81,6 +88,9 @@ mixin _$ProjectSettingsScreenEvent {
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -92,6 +102,8 @@ mixin _$ProjectSettingsScreenEvent {
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -109,6 +121,8 @@ mixin _$ProjectSettingsScreenEvent {
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -119,6 +133,8 @@ mixin _$ProjectSettingsScreenEvent {
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -136,6 +152,8 @@ mixin _$ProjectSettingsScreenEvent {
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -146,6 +164,8 @@ mixin _$ProjectSettingsScreenEvent {
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -254,15 +274,18 @@ class _$ProjectSettingsScreenEventInitImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return init(config);
   }
@@ -273,15 +296,17 @@ class _$ProjectSettingsScreenEventInitImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return init?.call(config);
   }
@@ -292,15 +317,17 @@ class _$ProjectSettingsScreenEventInitImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -326,6 +353,9 @@ class _$ProjectSettingsScreenEventInitImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -337,6 +367,8 @@ class _$ProjectSettingsScreenEventInitImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return init(this);
   }
@@ -357,6 +389,8 @@ class _$ProjectSettingsScreenEventInitImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -367,6 +401,8 @@ class _$ProjectSettingsScreenEventInitImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return init?.call(this);
   }
@@ -387,6 +423,8 @@ class _$ProjectSettingsScreenEventInitImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -397,6 +435,8 @@ class _$ProjectSettingsScreenEventInitImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -464,15 +504,18 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return flavorizeChange();
   }
@@ -483,15 +526,17 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return flavorizeChange?.call();
   }
@@ -502,15 +547,17 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (flavorizeChange != null) {
@@ -536,6 +583,9 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -547,6 +597,8 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return flavorizeChange(this);
   }
@@ -567,6 +619,8 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -577,6 +631,8 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return flavorizeChange?.call(this);
   }
@@ -597,6 +653,8 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -607,6 +665,8 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (flavorizeChange != null) {
@@ -696,15 +756,18 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return flavorsChange(flavors);
   }
@@ -715,15 +778,17 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return flavorsChange?.call(flavors);
   }
@@ -734,15 +799,17 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (flavorsChange != null) {
@@ -768,6 +835,9 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -779,6 +849,8 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return flavorsChange(this);
   }
@@ -799,6 +871,8 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -809,6 +883,8 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return flavorsChange?.call(this);
   }
@@ -829,6 +905,8 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -839,6 +917,8 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (flavorsChange != null) {
@@ -871,6 +951,8 @@ abstract class _$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWith
               then) =
       __$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWithImpl<
           $Res>;
+  @useResult
+  $Res call({bool generateSigningKey});
 }
 
 /// @nodoc
@@ -886,28 +968,57 @@ class __$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWithImpl<
       $Res Function(_$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl)
           _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? generateSigningKey = null,
+  }) {
+    return _then(_$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl(
+      generateSigningKey: null == generateSigningKey
+          ? _value.generateSigningKey
+          : generateSigningKey // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     implements ProjectSettingsScreenEventGenerateSigningKeyChange {
-  const _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl();
+  const _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl(
+      {required this.generateSigningKey});
+
+  @override
+  final bool generateSigningKey;
 
   @override
   String toString() {
-    return 'ProjectSettingsScreenEvent.generateSigningKeyChange()';
+    return 'ProjectSettingsScreenEvent.generateSigningKeyChange(generateSigningKey: $generateSigningKey)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl);
+            other is _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl &&
+            (identical(other.generateSigningKey, generateSigningKey) ||
+                other.generateSigningKey == generateSigningKey));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, generateSigningKey);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWith<
+          _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl>
+      get copyWith =>
+          __$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWithImpl<
+                  _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -915,17 +1026,20 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
-    return generateSigningKeyChange();
+    return generateSigningKeyChange(generateSigningKey);
   }
 
   @override
@@ -934,17 +1048,19 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
-    return generateSigningKeyChange?.call();
+    return generateSigningKeyChange?.call(generateSigningKey);
   }
 
   @override
@@ -953,19 +1069,21 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (generateSigningKeyChange != null) {
-      return generateSigningKeyChange();
+      return generateSigningKeyChange(generateSigningKey);
     }
     return orElse();
   }
@@ -987,6 +1105,9 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -998,6 +1119,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return generateSigningKeyChange(this);
   }
@@ -1018,6 +1141,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1028,6 +1153,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return generateSigningKeyChange?.call(this);
   }
@@ -1048,6 +1175,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1058,6 +1187,8 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (generateSigningKeyChange != null) {
@@ -1069,8 +1200,15 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
 
 abstract class ProjectSettingsScreenEventGenerateSigningKeyChange
     implements ProjectSettingsScreenEvent {
-  const factory ProjectSettingsScreenEventGenerateSigningKeyChange() =
+  const factory ProjectSettingsScreenEventGenerateSigningKeyChange(
+          {required final bool generateSigningKey}) =
       _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl;
+
+  bool get generateSigningKey;
+  @JsonKey(ignore: true)
+  _$$ProjectSettingsScreenEventGenerateSigningKeyChangeImplCopyWith<
+          _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1160,15 +1298,18 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return signingVarsChange(signingVars);
   }
@@ -1179,15 +1320,17 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return signingVarsChange?.call(signingVars);
   }
@@ -1198,15 +1341,17 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (signingVarsChange != null) {
@@ -1232,6 +1377,9 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1243,6 +1391,8 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return signingVarsChange(this);
   }
@@ -1263,6 +1413,8 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1273,6 +1425,8 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return signingVarsChange?.call(this);
   }
@@ -1293,6 +1447,8 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1303,6 +1459,8 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (signingVarsChange != null) {
@@ -1371,15 +1529,18 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return useSonarChange();
   }
@@ -1390,15 +1551,17 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return useSonarChange?.call();
   }
@@ -1409,15 +1572,17 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (useSonarChange != null) {
@@ -1443,6 +1608,9 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1454,6 +1622,8 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return useSonarChange(this);
   }
@@ -1474,6 +1644,8 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1484,6 +1656,8 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return useSonarChange?.call(this);
   }
@@ -1504,6 +1678,8 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1514,6 +1690,8 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (useSonarChange != null) {
@@ -1575,15 +1753,18 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return graphQLChange();
   }
@@ -1594,15 +1775,17 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return graphQLChange?.call();
   }
@@ -1613,15 +1796,17 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (graphQLChange != null) {
@@ -1647,6 +1832,9 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1658,6 +1846,8 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return graphQLChange(this);
   }
@@ -1678,6 +1868,8 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1688,6 +1880,8 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return graphQLChange?.call(this);
   }
@@ -1708,6 +1902,8 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1718,6 +1914,8 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (graphQLChange != null) {
@@ -1731,6 +1929,271 @@ abstract class ProjectSettingsScreenEventGraphQLChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventGraphQLChange() =
       _$ProjectSettingsScreenEventGraphQLChangeImpl;
+}
+
+/// @nodoc
+abstract class _$$ProjectSettingsScreenEventStateManagerChangeImplCopyWith<
+    $Res> {
+  factory _$$ProjectSettingsScreenEventStateManagerChangeImplCopyWith(
+          _$ProjectSettingsScreenEventStateManagerChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventStateManagerChangeImpl)
+              then) =
+      __$$ProjectSettingsScreenEventStateManagerChangeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ProjectStateManager stateManager});
+}
+
+/// @nodoc
+class __$$ProjectSettingsScreenEventStateManagerChangeImplCopyWithImpl<$Res>
+    extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
+        _$ProjectSettingsScreenEventStateManagerChangeImpl>
+    implements
+        _$$ProjectSettingsScreenEventStateManagerChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventStateManagerChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventStateManagerChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventStateManagerChangeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? stateManager = null,
+  }) {
+    return _then(_$ProjectSettingsScreenEventStateManagerChangeImpl(
+      stateManager: null == stateManager
+          ? _value.stateManager
+          : stateManager // ignore: cast_nullable_to_non_nullable
+              as ProjectStateManager,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProjectSettingsScreenEventStateManagerChangeImpl
+    implements ProjectSettingsScreenEventStateManagerChange {
+  const _$ProjectSettingsScreenEventStateManagerChangeImpl(
+      {required this.stateManager});
+
+  @override
+  final ProjectStateManager stateManager;
+
+  @override
+  String toString() {
+    return 'ProjectSettingsScreenEvent.stateManagerChange(stateManager: $stateManager)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectSettingsScreenEventStateManagerChangeImpl &&
+            (identical(other.stateManager, stateManager) ||
+                other.stateManager == stateManager));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, stateManager);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectSettingsScreenEventStateManagerChangeImplCopyWith<
+          _$ProjectSettingsScreenEventStateManagerChangeImpl>
+      get copyWith =>
+          __$$ProjectSettingsScreenEventStateManagerChangeImplCopyWithImpl<
+                  _$ProjectSettingsScreenEventStateManagerChangeImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function() flavorizeChange,
+    required TResult Function(String flavors) flavorsChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
+    required TResult Function(List<String> signingVars) signingVarsChange,
+    required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
+    required TResult Function() routerChange,
+    required TResult Function() localizationChange,
+    required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
+    required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
+  }) {
+    return stateManagerChange(stateManager);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function()? flavorizeChange,
+    TResult? Function(String flavors)? flavorsChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
+    TResult? Function(List<String> signingVars)? signingVarsChange,
+    TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
+    TResult? Function()? routerChange,
+    TResult? Function()? localizationChange,
+    TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
+    TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
+  }) {
+    return stateManagerChange?.call(stateManager);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function()? flavorizeChange,
+    TResult Function(String flavors)? flavorsChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
+    TResult Function(List<String> signingVars)? signingVarsChange,
+    TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
+    TResult Function()? routerChange,
+    TResult Function()? localizationChange,
+    TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
+    TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
+    required TResult orElse(),
+  }) {
+    if (stateManagerChange != null) {
+      return stateManagerChange(stateManager);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectSettingsScreenEventInit value) init,
+    required TResult Function(ProjectSettingsScreenEventFlavorizeChange value)
+        flavorizeChange,
+    required TResult Function(ProjectSettingsScreenEventFlavorsChange value)
+        flavorsChange,
+    required TResult Function(
+            ProjectSettingsScreenEventGenerateSigningKeyChange value)
+        generateSigningKeyChange,
+    required TResult Function(ProjectSettingsScreenEventSigningVarsChange value)
+        signingVarsChange,
+    required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
+        useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
+    required TResult Function(ProjectSettingsScreenEventRouterChange value)
+        routerChange,
+    required TResult Function(
+            ProjectSettingsScreenEventLocalizationChange value)
+        localizationChange,
+    required TResult Function(ProjectSettingsScreenEventThemingChange value)
+        themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
+    required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
+        screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
+  }) {
+    return stateManagerChange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectSettingsScreenEventInit value)? init,
+    TResult? Function(ProjectSettingsScreenEventFlavorizeChange value)?
+        flavorizeChange,
+    TResult? Function(ProjectSettingsScreenEventFlavorsChange value)?
+        flavorsChange,
+    TResult? Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+        generateSigningKeyChange,
+    TResult? Function(ProjectSettingsScreenEventSigningVarsChange value)?
+        signingVarsChange,
+    TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
+        useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
+    TResult? Function(ProjectSettingsScreenEventRouterChange value)?
+        routerChange,
+    TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
+        localizationChange,
+    TResult? Function(ProjectSettingsScreenEventThemingChange value)?
+        themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
+    TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
+        screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
+  }) {
+    return stateManagerChange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectSettingsScreenEventInit value)? init,
+    TResult Function(ProjectSettingsScreenEventFlavorizeChange value)?
+        flavorizeChange,
+    TResult Function(ProjectSettingsScreenEventFlavorsChange value)?
+        flavorsChange,
+    TResult Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+        generateSigningKeyChange,
+    TResult Function(ProjectSettingsScreenEventSigningVarsChange value)?
+        signingVarsChange,
+    TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
+        useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
+    TResult Function(ProjectSettingsScreenEventRouterChange value)?
+        routerChange,
+    TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
+        localizationChange,
+    TResult Function(ProjectSettingsScreenEventThemingChange value)?
+        themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
+    TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
+        screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
+    required TResult orElse(),
+  }) {
+    if (stateManagerChange != null) {
+      return stateManagerChange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProjectSettingsScreenEventStateManagerChange
+    implements ProjectSettingsScreenEvent {
+  const factory ProjectSettingsScreenEventStateManagerChange(
+          {required final ProjectStateManager stateManager}) =
+      _$ProjectSettingsScreenEventStateManagerChangeImpl;
+
+  ProjectStateManager get stateManager;
+  @JsonKey(ignore: true)
+  _$$ProjectSettingsScreenEventStateManagerChangeImplCopyWith<
+          _$ProjectSettingsScreenEventStateManagerChangeImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1779,15 +2242,18 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return routerChange();
   }
@@ -1798,15 +2264,17 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return routerChange?.call();
   }
@@ -1817,15 +2285,17 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (routerChange != null) {
@@ -1851,6 +2321,9 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -1862,6 +2335,8 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return routerChange(this);
   }
@@ -1882,6 +2357,8 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1892,6 +2369,8 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return routerChange?.call(this);
   }
@@ -1912,6 +2391,8 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -1922,6 +2403,8 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (routerChange != null) {
@@ -1986,15 +2469,18 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return localizationChange();
   }
@@ -2005,15 +2491,17 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return localizationChange?.call();
   }
@@ -2024,15 +2512,17 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (localizationChange != null) {
@@ -2058,6 +2548,9 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -2069,6 +2562,8 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return localizationChange(this);
   }
@@ -2089,6 +2584,8 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2099,6 +2596,8 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return localizationChange?.call(this);
   }
@@ -2119,6 +2618,8 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2129,6 +2630,8 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (localizationChange != null) {
@@ -2190,15 +2693,18 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return themingChange();
   }
@@ -2209,15 +2715,17 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return themingChange?.call();
   }
@@ -2228,15 +2736,17 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (themingChange != null) {
@@ -2262,6 +2772,9 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -2273,6 +2786,8 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return themingChange(this);
   }
@@ -2293,6 +2808,8 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2303,6 +2820,8 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return themingChange?.call(this);
   }
@@ -2323,6 +2842,8 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2333,6 +2854,8 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (themingChange != null) {
@@ -2394,15 +2917,18 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return firebaseChange();
   }
@@ -2413,15 +2939,17 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return firebaseChange?.call();
   }
@@ -2432,15 +2960,17 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (firebaseChange != null) {
@@ -2466,6 +2996,9 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -2477,6 +3010,8 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return firebaseChange(this);
   }
@@ -2497,6 +3032,8 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2507,6 +3044,8 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return firebaseChange?.call(this);
   }
@@ -2527,6 +3066,8 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2537,6 +3078,8 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (firebaseChange != null) {
@@ -2599,15 +3142,18 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     required TResult Function(Config config) init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
-    required TResult Function() generateSigningKeyChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
     required TResult Function(List<String> signingVars) signingVarsChange,
     required TResult Function() useSonarChange,
     required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
     required TResult Function() routerChange,
     required TResult Function() localizationChange,
     required TResult Function() themingChange,
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
   }) {
     return screenUtilChange();
   }
@@ -2618,15 +3164,17 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     TResult? Function(Config config)? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
-    TResult? Function()? generateSigningKeyChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult? Function(List<String> signingVars)? signingVarsChange,
     TResult? Function()? useSonarChange,
     TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult? Function()? routerChange,
     TResult? Function()? localizationChange,
     TResult? Function()? themingChange,
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
   }) {
     return screenUtilChange?.call();
   }
@@ -2637,15 +3185,17 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     TResult Function(Config config)? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
-    TResult Function()? generateSigningKeyChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
     TResult Function(List<String> signingVars)? signingVarsChange,
     TResult Function()? useSonarChange,
     TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
     TResult Function()? routerChange,
     TResult Function()? localizationChange,
     TResult Function()? themingChange,
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
     required TResult orElse(),
   }) {
     if (screenUtilChange != null) {
@@ -2671,6 +3221,9 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
         useSonarChange,
     required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
         graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
     required TResult Function(ProjectSettingsScreenEventRouterChange value)
         routerChange,
     required TResult Function(
@@ -2682,6 +3235,8 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
         firebaseChange,
     required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
         screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
   }) {
     return screenUtilChange(this);
   }
@@ -2702,6 +3257,8 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
         useSonarChange,
     TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult? Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2712,6 +3269,8 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
         firebaseChange,
     TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
   }) {
     return screenUtilChange?.call(this);
   }
@@ -2732,6 +3291,8 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
         useSonarChange,
     TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
         graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
     TResult Function(ProjectSettingsScreenEventRouterChange value)?
         routerChange,
     TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
@@ -2742,6 +3303,8 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
         firebaseChange,
     TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
         screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
     required TResult orElse(),
   }) {
     if (screenUtilChange != null) {
@@ -2755,6 +3318,230 @@ abstract class ProjectSettingsScreenEventScreenUtilChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventScreenUtilChange() =
       _$ProjectSettingsScreenEventScreenUtilChangeImpl;
+}
+
+/// @nodoc
+abstract class _$$ProjectSettingsScreenEventSentryChangeImplCopyWith<$Res> {
+  factory _$$ProjectSettingsScreenEventSentryChangeImplCopyWith(
+          _$ProjectSettingsScreenEventSentryChangeImpl value,
+          $Res Function(_$ProjectSettingsScreenEventSentryChangeImpl) then) =
+      __$$ProjectSettingsScreenEventSentryChangeImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ProjectSettingsScreenEventSentryChangeImplCopyWithImpl<$Res>
+    extends _$ProjectSettingsScreenEventCopyWithImpl<$Res,
+        _$ProjectSettingsScreenEventSentryChangeImpl>
+    implements _$$ProjectSettingsScreenEventSentryChangeImplCopyWith<$Res> {
+  __$$ProjectSettingsScreenEventSentryChangeImplCopyWithImpl(
+      _$ProjectSettingsScreenEventSentryChangeImpl _value,
+      $Res Function(_$ProjectSettingsScreenEventSentryChangeImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ProjectSettingsScreenEventSentryChangeImpl
+    implements ProjectSettingsScreenEventSentryChange {
+  const _$ProjectSettingsScreenEventSentryChangeImpl();
+
+  @override
+  String toString() {
+    return 'ProjectSettingsScreenEvent.sentryChange()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectSettingsScreenEventSentryChangeImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function() flavorizeChange,
+    required TResult Function(String flavors) flavorsChange,
+    required TResult Function(bool generateSigningKey) generateSigningKeyChange,
+    required TResult Function(List<String> signingVars) signingVarsChange,
+    required TResult Function() useSonarChange,
+    required TResult Function() graphQLChange,
+    required TResult Function(ProjectStateManager stateManager)
+        stateManagerChange,
+    required TResult Function() routerChange,
+    required TResult Function() localizationChange,
+    required TResult Function() themingChange,
+    required TResult Function() firebaseChange,
+    required TResult Function() screenUtilChange,
+    required TResult Function() sentryChange,
+  }) {
+    return sentryChange();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function()? flavorizeChange,
+    TResult? Function(String flavors)? flavorsChange,
+    TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
+    TResult? Function(List<String> signingVars)? signingVarsChange,
+    TResult? Function()? useSonarChange,
+    TResult? Function()? graphQLChange,
+    TResult? Function(ProjectStateManager stateManager)? stateManagerChange,
+    TResult? Function()? routerChange,
+    TResult? Function()? localizationChange,
+    TResult? Function()? themingChange,
+    TResult? Function()? firebaseChange,
+    TResult? Function()? screenUtilChange,
+    TResult? Function()? sentryChange,
+  }) {
+    return sentryChange?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function()? flavorizeChange,
+    TResult Function(String flavors)? flavorsChange,
+    TResult Function(bool generateSigningKey)? generateSigningKeyChange,
+    TResult Function(List<String> signingVars)? signingVarsChange,
+    TResult Function()? useSonarChange,
+    TResult Function()? graphQLChange,
+    TResult Function(ProjectStateManager stateManager)? stateManagerChange,
+    TResult Function()? routerChange,
+    TResult Function()? localizationChange,
+    TResult Function()? themingChange,
+    TResult Function()? firebaseChange,
+    TResult Function()? screenUtilChange,
+    TResult Function()? sentryChange,
+    required TResult orElse(),
+  }) {
+    if (sentryChange != null) {
+      return sentryChange();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectSettingsScreenEventInit value) init,
+    required TResult Function(ProjectSettingsScreenEventFlavorizeChange value)
+        flavorizeChange,
+    required TResult Function(ProjectSettingsScreenEventFlavorsChange value)
+        flavorsChange,
+    required TResult Function(
+            ProjectSettingsScreenEventGenerateSigningKeyChange value)
+        generateSigningKeyChange,
+    required TResult Function(ProjectSettingsScreenEventSigningVarsChange value)
+        signingVarsChange,
+    required TResult Function(ProjectSettingsScreenEventUseSonarChange value)
+        useSonarChange,
+    required TResult Function(ProjectSettingsScreenEventGraphQLChange value)
+        graphQLChange,
+    required TResult Function(
+            ProjectSettingsScreenEventStateManagerChange value)
+        stateManagerChange,
+    required TResult Function(ProjectSettingsScreenEventRouterChange value)
+        routerChange,
+    required TResult Function(
+            ProjectSettingsScreenEventLocalizationChange value)
+        localizationChange,
+    required TResult Function(ProjectSettingsScreenEventThemingChange value)
+        themingChange,
+    required TResult Function(ProjectSettingsScreenEventFirebaseChange value)
+        firebaseChange,
+    required TResult Function(ProjectSettingsScreenEventScreenUtilChange value)
+        screenUtilChange,
+    required TResult Function(ProjectSettingsScreenEventSentryChange value)
+        sentryChange,
+  }) {
+    return sentryChange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectSettingsScreenEventInit value)? init,
+    TResult? Function(ProjectSettingsScreenEventFlavorizeChange value)?
+        flavorizeChange,
+    TResult? Function(ProjectSettingsScreenEventFlavorsChange value)?
+        flavorsChange,
+    TResult? Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+        generateSigningKeyChange,
+    TResult? Function(ProjectSettingsScreenEventSigningVarsChange value)?
+        signingVarsChange,
+    TResult? Function(ProjectSettingsScreenEventUseSonarChange value)?
+        useSonarChange,
+    TResult? Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
+    TResult? Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
+    TResult? Function(ProjectSettingsScreenEventRouterChange value)?
+        routerChange,
+    TResult? Function(ProjectSettingsScreenEventLocalizationChange value)?
+        localizationChange,
+    TResult? Function(ProjectSettingsScreenEventThemingChange value)?
+        themingChange,
+    TResult? Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
+    TResult? Function(ProjectSettingsScreenEventScreenUtilChange value)?
+        screenUtilChange,
+    TResult? Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
+  }) {
+    return sentryChange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectSettingsScreenEventInit value)? init,
+    TResult Function(ProjectSettingsScreenEventFlavorizeChange value)?
+        flavorizeChange,
+    TResult Function(ProjectSettingsScreenEventFlavorsChange value)?
+        flavorsChange,
+    TResult Function(ProjectSettingsScreenEventGenerateSigningKeyChange value)?
+        generateSigningKeyChange,
+    TResult Function(ProjectSettingsScreenEventSigningVarsChange value)?
+        signingVarsChange,
+    TResult Function(ProjectSettingsScreenEventUseSonarChange value)?
+        useSonarChange,
+    TResult Function(ProjectSettingsScreenEventGraphQLChange value)?
+        graphQLChange,
+    TResult Function(ProjectSettingsScreenEventStateManagerChange value)?
+        stateManagerChange,
+    TResult Function(ProjectSettingsScreenEventRouterChange value)?
+        routerChange,
+    TResult Function(ProjectSettingsScreenEventLocalizationChange value)?
+        localizationChange,
+    TResult Function(ProjectSettingsScreenEventThemingChange value)?
+        themingChange,
+    TResult Function(ProjectSettingsScreenEventFirebaseChange value)?
+        firebaseChange,
+    TResult Function(ProjectSettingsScreenEventScreenUtilChange value)?
+        screenUtilChange,
+    TResult Function(ProjectSettingsScreenEventSentryChange value)?
+        sentryChange,
+    required TResult orElse(),
+  }) {
+    if (sentryChange != null) {
+      return sentryChange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProjectSettingsScreenEventSentryChange
+    implements ProjectSettingsScreenEvent {
+  const factory ProjectSettingsScreenEventSentryChange() =
+      _$ProjectSettingsScreenEventSentryChangeImpl;
 }
 
 /// @nodoc

@@ -3,12 +3,13 @@ import 'dart:io';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/router/app_router.dart';
+import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
@@ -22,6 +23,7 @@ import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 import 'package:onix_flutter_bricks/util/enum/tool_type.dart';
 import 'package:onix_flutter_bricks/util/extension/directory_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/failure_dialog_extension.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class ProcedureSelectionScreen extends StatefulWidget {
   final Config config;
@@ -42,10 +44,19 @@ class _ProcedureSelectionScreenState extends BaseState<
     ProcedureSelectionScreenSR,
     ProcedureSelectionScreen> {
   @override
+  ProcedureSelectionScreenBloc createBloc() =>
+      GetIt.I.get<ProcedureSelectionScreenBloc>();
+
+  @override
+  void onBlocCreated(BuildContext context, ProcedureSelectionScreenBloc bloc) {
+    bloc.add(ProcedureSelectionScreenEventInit(config: widget.config));
+    super.onBlocCreated(context, bloc);
+  }
+
+  @override
   Widget buildWidget(BuildContext context) {
-    return srObserver(
-      context: context,
-      child: blocBuilder(builder: (context, state) {
+    return blocBuilder(
+      builder: (context, state) {
         return CupertinoPageScaffold(
           navigationBar: TitleBar(
             title: S.of(context).selectProjectFolder,
@@ -64,7 +75,8 @@ class _ProcedureSelectionScreenState extends BaseState<
                     onValueChanged: (value) {
                       blocOf(context).add(
                         ProcedureSelectionScreenEventOnLocaleChange(
-                            language: value),
+                          language: value,
+                        ),
                       );
                     },
                   ),
@@ -76,30 +88,22 @@ class _ProcedureSelectionScreenState extends BaseState<
                   switch (value) {
                     case ToolType.generateAndroidSigning:
                       _onGenerateSigningSelected(context);
-                      break;
                   }
                 },
-              )
+              ),
             ],
           ),
           child: SizedBox.expand(child: _buildMainContainer(context, state)),
         );
-      }),
-      onSR: _onSingleResult,
+      },
     );
   }
 
   @override
-  void onBlocCreated(BuildContext context, ProcedureSelectionScreenBloc bloc) {
-    bloc.failureStream.listen(
-      (failure) {
-        if (failure is SigningFailure) {
-          context.onSigningFailure(failure);
-        }
-      },
-    );
-    bloc.add(ProcedureSelectionScreenEventInit(config: widget.config));
-    super.onBlocCreated(context, bloc);
+  void onFailure(BuildContext context, Failure failure) {
+    if (failure is SigningFailure) {
+      context.onSigningFailure(failure);
+    }
   }
 
   Widget _buildMainContainer(
@@ -121,11 +125,13 @@ class _ProcedureSelectionScreenState extends BaseState<
                   onPressed: () {
                     getDirectoryPath().then(
                       (value) {
+                        if (!context.mounted) return;
                         if (value != null) {
-                          blocOf(context)
-                              .add(ProcedureSelectionScreenEventOnNewProject(
-                            projectPath: value,
-                          ));
+                          blocOf(context).add(
+                            ProcedureSelectionScreenEventOnNewProject(
+                              projectPath: value,
+                            ),
+                          );
                         } else {
                           Dialogs.showOkDialog(
                             context: context,
@@ -155,7 +161,8 @@ class _ProcedureSelectionScreenState extends BaseState<
           child: Text(
             (state.config.localVersion.isNotEmpty &&
                     state.config.remoteVersion.isNotEmpty)
-                ? 'v${state.config.localVersion} (Remote: v${state.config.remoteVersion})'
+                ? 'v${state.config.localVersion} '
+                    '(Remote: v${state.config.remoteVersion})'
                 : '',
             style: context.appTextStyles.fs18?.copyWith(
               decoration: TextDecoration.none,
@@ -167,11 +174,12 @@ class _ProcedureSelectionScreenState extends BaseState<
     );
   }
 
-  void _onSingleResult(
-      BuildContext context, ProcedureSelectionScreenSR singleResult) {
-    singleResult.when(
-      //TODO Resolve
-      loadFinished: () {},
+  @override
+  void onSR(
+    BuildContext context,
+    ProcedureSelectionScreenSR singleResult,
+  ) {
+    singleResult.whenOrNull(
       emptyConfig: () => Dialogs.showOkDialog(
         context: context,
         isError: true,
@@ -202,19 +210,21 @@ class _ProcedureSelectionScreenState extends BaseState<
   }
 
   Map<String, Widget> _mapValues(BuildContext context) {
-    Map<String, Widget> result = {};
-    for (String value
+    final result = <String, Widget>{};
+    for (final value
         in S.delegate.supportedLocales.map((e) => e.languageCode)) {
-      result.addAll({
-        value: Text(
-          value.toUpperCase(),
-          style: context.appTextStyles.fs18?.copyWith(
-            color: blocOf(context).state.language == value
-                ? context.appColors.darkColor
-                : context.appColors.fadedColor,
+      result.addAll(
+        {
+          value: Text(
+            value.toUpperCase(),
+            style: context.appTextStyles.fs18?.copyWith(
+              color: blocOf(context).state.language == value
+                  ? context.appColors.darkColor
+                  : context.appColors.fadedColor,
+            ),
           ),
-        )
-      });
+        },
+      );
     }
     return result;
   }

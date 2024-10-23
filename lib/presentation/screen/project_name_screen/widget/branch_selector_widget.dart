@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class BranchSelectorWidget extends StatelessWidget {
@@ -20,9 +20,8 @@ class BranchSelectorWidget extends StatelessWidget {
     return Material(
       color: context.appColors.darkColor,
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               S.of(context).masonBrickSource,
@@ -34,13 +33,15 @@ class BranchSelectorWidget extends StatelessWidget {
             DropdownButton(
               value: selectedBranch,
               icon: const Icon(Icons.keyboard_arrow_down),
-              items: branches.map((String items) {
-                return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
+              items: branches.map(
+                (items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                },
+              ).toList(),
+              onChanged: (newValue) {
                 if (newValue != null) {
                   onSelected(newValue);
                 }

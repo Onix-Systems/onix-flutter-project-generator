@@ -14,9 +14,9 @@ sealed class RequestParamComponent {
   });
 
   String getParamBodyDeclaration(
-    DataFileType fileType,
-    bool isRequiredRequestBody,
-  ) {
+    DataFileType fileType, {
+    required bool isRequiredRequestBody,
+  }) {
     var requiredCopy = isRequired;
     if (isRequiredRequestBody) {
       requiredCopy = isRequiredRequestBody;

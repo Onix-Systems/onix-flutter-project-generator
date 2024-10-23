@@ -3,9 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 {{^web_only}}import 'package:loader_overlay/loader_overlay.dart';{{/web_only}}
 {{#screen_util}}import 'package:flutter_screenutil/flutter_screenutil.dart';{{/screen_util}}
-import 'package:{{project_name}}/core/arch/bloc/base_bloc_state.dart';
-import 'package:{{project_name}}/app/bloc/app_bloc_imports.dart';
 import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
+import 'package:{{project_name}}/core/arch/widget/common/theme_switcher.dart';
 {{#isGoRouter}}import 'package:{{project_name}}/app/router/app_router.dart';{{/isGoRouter}}
 {{^isGoRouter}}import 'package:{{project_name}}/core/di/app.dart';{{/isGoRouter}}
 {{^handLocalization}}import 'package:flutter_localizations/flutter_localizations.dart';{{/handLocalization}}
@@ -13,6 +12,7 @@ import 'package:{{project_name}}/presentation/style/theme/theme_imports.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';{{/handLocalization}}
 {{#flavorizr}}import 'package:{{project_name}}/core/arch/widget/common/flavor_banner.dart';{{/flavorizr}}
 {{^handLocalization}}import 'package:{{project_name}}/app/localization/generated/l10n.dart';{{/handLocalization}}
+{{^isGoRouter}}{{#sentry}}import 'package:sentry_flutter/sentry_flutter.dart';{{/sentry}}{{/isGoRouter}}
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -21,12 +21,11 @@ class App extends StatefulWidget {
   State<App> createState() => _AppState();
 }
 
-class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
+class _AppState extends State<App> {
   Locale? locale;
 
-
   @override
-  Widget buildWidget(BuildContext context) {
+  Widget build(BuildContext context) {
     {{#isGoRouter}}AppRouter.init();{{/isGoRouter}}
     return {{^web_only}}GlobalLoaderOverlay(
       overlayColor: Colors.black.withOpacity(0.5),
@@ -35,8 +34,9 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
         designSize: const Size(375, 812),
         minTextAdapt: true,
         builder: (context, child) {
-        return{{/screen_util}} blocBuilder(
-          builder: (context, state) {
+        return{{/screen_util}}
+          ThemeModeSwitcher(
+              builder: (context, themeMode, _) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             builder: (context, widget) {
@@ -55,12 +55,17 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
             scrollBehavior: const CupertinoScrollBehavior(),
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
-            themeMode: state.themeMode,
-            {{#isGoRouter}}routeInformationProvider: AppRouter.router.routeInformationProvider,{{/isGoRouter}}
-            routeInformationParser: {{#isGoRouter}}AppRouter.router.routeInformationParser,{{/isGoRouter}}
-            {{^isGoRouter}}appRouter().defaultRouteParser(),{{/isGoRouter}}
-            routerDelegate: {{#isGoRouter}}AppRouter.router.routerDelegate,{{/isGoRouter}}
-            {{^isGoRouter}}appRouter().delegate(),{{/isGoRouter}}
+            themeMode: themeMode,
+            {{^isGoRouter}}
+            {{^sentry}}routerConfig: appRouter().config(),{{/sentry}}
+            {{#sentry}}routerConfig: appRouter().config(
+              navigatorObservers: () => [
+                 SentryNavigatorObserver(),
+              ],
+            ),
+            {{/sentry}}
+            {{/isGoRouter}}
+            {{#isGoRouter}}routerConfig: AppRouter.router,{{/isGoRouter}}
             locale: locale,
             {{^handLocalization}}
             localizationsDelegates: const [

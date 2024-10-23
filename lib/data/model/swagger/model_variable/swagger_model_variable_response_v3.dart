@@ -25,6 +25,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       requiredVariables,
       json,
     );
+
     if (rootType != null) {
       return SwaggerModelVariableResponseV3(
         name: name,
@@ -122,6 +123,15 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       return SwaggerReference(
         typeValue,
         from: from,
+      );
+    } else if (json.containsKey('anyOf')) {
+      final anyOf = json.asObjectList('anyOf');
+      if (anyOf.isEmpty) return null;
+      return BaseSwaggerModelVariableResponse.parseSimpleType(
+        name,
+        from,
+        requiredVariables,
+        anyOf.first,
       );
     }
     return null;

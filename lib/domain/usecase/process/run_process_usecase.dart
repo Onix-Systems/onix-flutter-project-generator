@@ -13,7 +13,7 @@ class RunProcessUseCase {
     final processRunner = ProcessRunner(_outputService);
     await processRunner.newProcess(workingDirectory: workDir);
 
-    for (var command in commands) {
+    for (final command in commands) {
       processRunner.execCommand(command);
     }
     final exitCode = await processRunner.waitForExit();

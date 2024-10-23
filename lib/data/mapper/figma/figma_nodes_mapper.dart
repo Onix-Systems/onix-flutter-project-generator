@@ -1,4 +1,3 @@
-import 'package:onix_flutter_bricks/core/arch/domain/common/converter/mapper.dart';
 import 'package:onix_flutter_bricks/data/mapper/figma/properties_mapper.dart';
 import 'package:onix_flutter_bricks/data/model/figma/nodes/connector/connector_node_data_model.dart';
 import 'package:onix_flutter_bricks/data/model/figma/nodes/document/document_node_data_model.dart';
@@ -24,10 +23,11 @@ import 'package:onix_flutter_bricks/domain/entity/figma/nodes/table_cell_node/ta
 import 'package:onix_flutter_bricks/domain/entity/figma/nodes/text_node/text_node_entity.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/nodes/vector_node/vector_node_entity.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/properties/paint_property/paint_property.dart';
+import 'package:onix_flutter_core/onix_flutter_core.dart';
 
 class FigmaNodesMapper {
   List<BaseNode> mapNodesDataModelToEntity(List<NodeDataModel> from) =>
-      _MapNodeDataModelToEntity().mapIterable(from).toList();
+      _MapNodeDataModelToEntity().mapList(from).toList();
 }
 
 class _MapNodeDataModelToEntity

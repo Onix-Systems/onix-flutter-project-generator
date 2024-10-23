@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_color_style.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_text_style.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
@@ -16,7 +16,7 @@ class FigmaStylesDialogBloc extends BaseBloc<FigmaStylesDialogEvent,
     on<FigmaStylesEventInit>(_onInit);
   }
 
-  FutureOr<void> _onInit(
+  Future<void> _onInit(
     FigmaStylesEventInit event,
     Emitter<FigmaStylesDialogState> emit,
   ) async {
@@ -39,7 +39,6 @@ class FigmaStylesDialogBloc extends BaseBloc<FigmaStylesDialogEvent,
     }
     emit(
       FigmaStylesDialogState.data(
-        isLoading: false,
         colorStyles: colorStyles,
         textStyles: textStyles,
       ),

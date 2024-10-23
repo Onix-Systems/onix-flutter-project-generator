@@ -17,18 +17,18 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
     Map<String, dynamic> json,
     Map<String, dynamic> allObjects,
   ) {
-    List<BaseSwaggerModelResponse> crossReferences = [];
+    var crossReferences = <BaseSwaggerModelResponse>[];
     if (json.containsKey('allOf')) {
-      final allOff = (json).asObjectList('allOf');
+      final allOff = json.asObjectList('allOf');
       crossReferences = _getCrossReferences(
         allOff,
         allObjects,
       );
     }
 
-    var modelName = rawModelName.clearDataComponentsName();
+    final modelName = rawModelName.clearDataComponentsName();
 
-    var variables =
+    final variables =
         List<BaseSwaggerModelVariableResponse>.empty(growable: true);
     final type = json['type'];
     final requiredVariables = (json.containsKey('required'))

@@ -53,7 +53,9 @@ class TextFieldWithLabel extends StatelessWidget {
                   subLabel ?? '',
                   textAlign: TextAlign.left,
                   style: context.appTextStyles.fs18?.copyWith(
-                      color: context.appColors.textColor, fontSize: 13),
+                    color: context.appColors.textColor,
+                    fontSize: 13,
+                  ),
                 ),
             ],
           )
@@ -72,7 +74,9 @@ class TextFieldWithLabel extends StatelessWidget {
                   Text(
                     subLabel ?? '',
                     style: context.appTextStyles.fs18?.copyWith(
-                        color: context.appColors.textColor, fontSize: 13),
+                      color: context.appColors.textColor,
+                      fontSize: 13,
+                    ),
                   ),
               ],
             ),

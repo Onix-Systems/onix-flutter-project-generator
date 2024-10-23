@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
@@ -8,6 +9,7 @@ class LabeledCheckbox extends StatelessWidget {
   final VoidCallback onAction;
   final bool disabled;
   final bool focused;
+  final MainAxisAlignment mainAxisAlignment;
 
   const LabeledCheckbox({
     required this.label,
@@ -15,6 +17,7 @@ class LabeledCheckbox extends StatelessWidget {
     this.initialValue = false,
     this.disabled = false,
     this.focused = false,
+    this.mainAxisAlignment = MainAxisAlignment.center,
     super.key,
   });
 
@@ -25,13 +28,11 @@ class LabeledCheckbox extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color: focused ? context.appColors.controlColor : Colors.transparent,
-          width: 1,
-          strokeAlign: BorderSide.strokeAlignInside,
         ),
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: mainAxisAlignment,
         children: [
           MSHCheckbox(
             value: initialValue,
@@ -47,7 +48,7 @@ class LabeledCheckbox extends StatelessWidget {
             },
             size: 20,
           ),
-          const SizedBox(width: 10),
+          const Gap(10),
           Text(
             label,
             style: context.appTextStyles.fs18,

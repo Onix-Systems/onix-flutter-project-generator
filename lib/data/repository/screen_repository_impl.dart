@@ -6,7 +6,7 @@ class ScreenRepositoryImpl implements ScreenRepository {
   final Set<Screen> _screens = {};
 
   @override
-  Set<Screen> get screens => _screens.map((e) => Screen.copyOf(e)).toSet();
+  Set<Screen> get screens => _screens.map(Screen.copyOf).toSet();
 
   @override
   bool exists({required String screenName}) =>
@@ -29,15 +29,16 @@ class ScreenRepositoryImpl implements ScreenRepository {
 
   @override
   void modifyScreen(Screen screen, String oldName) {
-    var modifiedScreen =
+    final modifiedScreen =
         _screens.firstWhere((element) => element.name == oldName);
 
     if (modifiedScreen.exists) {
       return;
     }
 
-    _screens.remove(modifiedScreen);
-    _screens.add(screen);
+    _screens
+      ..remove(modifiedScreen)
+      ..add(screen);
   }
 
   @override

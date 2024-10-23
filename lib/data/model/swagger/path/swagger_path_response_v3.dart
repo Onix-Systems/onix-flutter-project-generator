@@ -31,13 +31,14 @@ class SwaggerPathResponseV3 extends BaseSwaggerPathResponse {
     var description = '';
     var operationId = '';
 
-    //get primary tag
+    // get primary tag
     if (json.containsKey('tags')) {
       final tags = json.asStringList('tags');
-      tag =
-          (tags.isNotEmpty) ? tags.first.clearDataComponentsName() : 'unnamed';
+      tag = (tags.isNotEmpty)
+          ? tags.first.clearDataComponentsName()
+          : 'unnamed';
     }
-    //get summary - description
+    // get summary - description
     if (json.containsKey('description')) {
       final descriptionRaw = json['description'] as String;
       description = descriptionRaw.split('\n').join('///\n');

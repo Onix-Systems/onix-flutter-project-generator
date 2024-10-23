@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:{{project_name}}/core/arch/domain/entity/common/data_response.dart';
-import 'package:{{project_name}}/core/arch/domain/entity/common/operation_status.dart';
+import 'package:onix_flutter_core/onix_flutter_core.dart';
 import 'package:{{project_name}}/data/source/remote/firebase/auth/firebase_auth_source.dart';
 
 //{response_imports}
@@ -70,7 +68,7 @@ class FirebaseAuthSourceImpl extends FirebaseAuthSource {
         return const DataResponse.unauthorized();
       }
     } on FirebaseAuthException catch (e) {
-      return DataResponse.firebaseError(e.code);
+      return DataResponse.undefinedError(e);
     } catch (e) {
       return DataResponse.undefinedError(e);
     }

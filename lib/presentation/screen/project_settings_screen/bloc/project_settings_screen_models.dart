@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
 
 part 'project_settings_screen_models.freezed.dart';
 
@@ -16,8 +17,9 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
     required String flavors,
   }) = ProjectSettingsScreenEventFlavorsChange;
 
-  const factory ProjectSettingsScreenEvent.generateSigningKeyChange() =
-      ProjectSettingsScreenEventGenerateSigningKeyChange;
+  const factory ProjectSettingsScreenEvent.generateSigningKeyChange({
+    required bool generateSigningKey,
+  }) = ProjectSettingsScreenEventGenerateSigningKeyChange;
 
   const factory ProjectSettingsScreenEvent.signingVarsChange({
     required List<String> signingVars,
@@ -28,6 +30,10 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
 
   const factory ProjectSettingsScreenEvent.graphQLChange() =
       ProjectSettingsScreenEventGraphQLChange;
+
+  const factory ProjectSettingsScreenEvent.stateManagerChange({
+    required ProjectStateManager stateManager,
+  }) = ProjectSettingsScreenEventStateManagerChange;
 
   const factory ProjectSettingsScreenEvent.routerChange() =
       ProjectSettingsScreenEventRouterChange;
@@ -43,6 +49,9 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
 
   const factory ProjectSettingsScreenEvent.screenUtilChange() =
       ProjectSettingsScreenEventScreenUtilChange;
+
+  const factory ProjectSettingsScreenEvent.sentryChange() =
+      ProjectSettingsScreenEventSentryChange;
 }
 
 @freezed

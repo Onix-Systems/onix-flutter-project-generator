@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_item.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/section_header.dart';
@@ -45,34 +45,3 @@ class _DataComponentsContentState extends State<DataComponentsContent> {
     );
   }
 }
-
-//  ListView(
-//       padding: EdgeInsets.zero,
-//       children: [
-//         const SectionHeader(
-//           title: 'Sources',
-//         ),
-//         Column(
-//           children: components.sources
-//               .map(
-//                 (e) => SourceItem(
-//                   source: e,
-//                 ),
-//               )
-//               .toList(),
-//         ),
-//         const SizedBox(height: 32),
-//         const SectionHeader(
-//           title: 'Objects',
-//         ),
-//         Column(
-//           children: components.dataObjects
-//               .map(
-//                 (e) => ObjectItem(
-//                   object: e,
-//                 ),
-//               )
-//               .toList(),
-//         ),
-//       ],
-//     );

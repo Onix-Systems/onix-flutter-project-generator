@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:{{project_name}}/core/arch/logger/app_logger_impl.dart';
 import 'package:{{project_name}}/core/arch/widget/common/toast.dart';
 
-final class QaUtils {
+class QaUtils {
   static Widget buildCharlesProxyBtn(_) {
     return const SizedBox();
     //TODO SHOW set proxy ONLY FOR QA BUILDS
