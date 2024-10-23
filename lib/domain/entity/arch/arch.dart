@@ -1,15 +1,14 @@
 enum Arch {
   clean,
-  base;
+  simple;
 }
 
 extension Path on Arch {
   String getDiPath(String projectRootPath) {
-    switch (name) {
-      case 'base':
+    switch (this) {
+      case Arch.simple:
         return '$projectRootPath/lib/app/di';
-      case 'clean':
-      default:
+      case Arch.clean:
         return '$projectRootPath/lib/core/di';
     }
   }

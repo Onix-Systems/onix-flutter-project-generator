@@ -28,7 +28,6 @@ class ProjectSettingsScreen extends StatefulWidget {
 class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
     ProjectSettingsScreenBloc, ProjectSettingsScreenSR, ProjectSettingsScreen> {
   final TextEditingController _flavorsController = TextEditingController();
-  //final double _height = 350;
 
   @override
   ProjectSettingsScreenBloc createBloc() =>

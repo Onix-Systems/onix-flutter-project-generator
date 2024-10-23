@@ -33,6 +33,7 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     on<ProjectSettingsScreenEventFirebaseChange>(_onFirebaseChange);
     on<ProjectSettingsScreenEventScreenUtilChange>(_onScreenUtilChange);
     on<ProjectSettingsScreenEventSentryChange>(_onSentryChange);
+    on<ProjectSettingsScreenEventArchChange>(_onArchChange);
   }
 
   void _onInit(
@@ -234,6 +235,19 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
       state.copyWith(
         config: state.config.copyWith(
           sentry: !state.config.sentry,
+        ),
+      ),
+    );
+  }
+
+  void _onArchChange(
+    ProjectSettingsScreenEventArchChange event,
+    Emitter<ProjectSettingsScreenState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        config: state.config.copyWith(
+          arch: event.arch,
         ),
       ),
     );

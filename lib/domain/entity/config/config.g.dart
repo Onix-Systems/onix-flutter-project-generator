@@ -78,7 +78,7 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
 
 const _$ArchEnumMap = {
   Arch.clean: 'clean',
-  Arch.base: 'base',
+  Arch.simple: 'simple',
 };
 
 const _$ProjectStateManagerEnumMap = {
