@@ -25,7 +25,7 @@ extension Path on Arch {
   String getEntityPath(String namePath) {
     switch (this) {
       case Arch.clean:
-        return 'app/domain/entity/$namePath';
+        return 'domain/entity/$namePath';
       case Arch.simple:
         return 'data/model/$namePath';
     }
