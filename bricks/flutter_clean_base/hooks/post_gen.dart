@@ -522,6 +522,8 @@ flutter_additional_ios_build_settings(target)
 	</dict>
 </plist>''');
 
+    mainInfoPlistFile.writeAsStringSync(mainInfoPlistFileContent);
+
     File xcodeWorkspaceFile =
         File('$name/ios/Runner.xcodeproj/project.pbxproj');
     List<String> xcodeWorkspaceFileContent =
