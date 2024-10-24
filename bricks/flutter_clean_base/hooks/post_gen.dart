@@ -509,10 +509,8 @@ flutter_additional_ios_build_settings(target)
     File mainInfoPlistFile = File('$name/ios/Runner/Info.plist');
     String mainInfoPlistFileContent = mainInfoPlistFile.readAsStringSync();
 
-    mainInfoPlistFileContent = mainInfoPlistFileContent.replaceAll('''<false/>
-	</dict>
-</plist>''', '''<false/>
-		<key>LSApplicationQueriesSchemes</key>
+    mainInfoPlistFileContent = mainInfoPlistFileContent.replaceAll('''</dict>
+</plist>''', '''<key>LSApplicationQueriesSchemes</key>
         <array>
             <string>undecimus</string>
             <string>sileo</string>
