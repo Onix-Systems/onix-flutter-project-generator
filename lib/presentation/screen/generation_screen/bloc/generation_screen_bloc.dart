@@ -157,14 +157,14 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       if (!state.config.graphql) {
         await Directory(
-          '${state.config.projectRootPath}/lib/core/arch/data/remote/graph_ql',
+          '${state.config.projectRootPath}/lib/app/arch/remote/graph_ql',
         ).delete(recursive: true);
         await Directory(
           '${state.config.projectRootPath}/lib/data/source/remote/auth',
         ).delete(recursive: true);
       }
 
-      ///generate Anroid signing key if configured
+      ///generate Android signing key if configured
       if (state.config.generateSigningKey) {
         await _generateSigningConfigUseCase(
           params: SingingGeneratorParams(
