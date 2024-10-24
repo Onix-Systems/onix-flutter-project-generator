@@ -24,6 +24,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     try {
       final swaggerResponse = await _swaggerSource.getSwaggerComponents(
         url: url,
+        arch: arch,
       );
 
       final sources = _swaggerMapper.mapSources(swaggerResponse, arch);

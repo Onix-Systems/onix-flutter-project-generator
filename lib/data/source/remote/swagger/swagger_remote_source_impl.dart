@@ -12,6 +12,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/path/swagger_path_respons
 import 'package:onix_flutter_bricks/data/model/swagger/swagger_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/tag/swagger_tag_response.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
 
 class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
   const SwaggerRemoteSourceImpl();
@@ -19,6 +20,7 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
   @override
   Future<SwaggerResponse> getSwaggerComponents({
     required String url,
+    required Arch arch,
   }) async {
     final response = await http.get(Uri.parse(url));
     final json = jsonDecode(response.body) as Map<String, dynamic>;
@@ -83,6 +85,7 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
                 swaggerVersion,
                 path,
                 type,
+                arch,
                 value as Map<String, dynamic>,
               );
               if (pathResponse is! SwaggerPathResponseUnsupported) {
@@ -142,6 +145,7 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
         final swaggerModel = BaseSwaggerModelResponse.fromJson(
           swaggerVersion,
           name,
+          arch,
           value as Map<String, dynamic>,
           objectsMap,
         );

@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/swagger_reference_extens
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_sort_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/class_builder.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/freezed_class_builder.dart';
@@ -25,11 +26,11 @@ class DataObjectComponent with _$DataObjectComponent {
     required List<DataVariableComponent> variables,
   }) = _DataObjectComponent;
 
-  String getFilePath(DataFileType type) =>
-      fileReference.getFileImportName(type) ?? '';
+  String getFilePath(DataFileType type, Arch arch) =>
+      fileReference.getFileImportName(type, arch) ?? '';
 
-  String getFileFolder(DataFileType type) =>
-      fileReference.getFileFolder(type) ?? '';
+  String getFileFolder(DataFileType type, Arch arch) =>
+      fileReference.getFileFolder(type, arch) ?? '';
 
   String getFileName(DataFileType type) =>
       fileReference.getFileName(type) ?? '';
@@ -46,8 +47,9 @@ class DataObjectComponent with _$DataObjectComponent {
   String getObjectBody(
     String projectName,
     DataFileType type,
+    Arch arch,
   ) {
-    final imports = Set.of(_getImports(projectName, type));
+    final imports = Set.of(_getImports(projectName, type, arch));
     late ClassBuilder classBuilder;
     switch (type) {
       case DataFileType.request:
@@ -92,6 +94,7 @@ class DataObjectComponent with _$DataObjectComponent {
 
   String getMapperBody({
     required String projectName,
+    required Arch arch,
     required bool createEntityToRequestMapper,
     required bool createResponseToEntityMapper,
   }) {
@@ -105,6 +108,7 @@ class DataObjectComponent with _$DataObjectComponent {
         _getImports(
           projectName,
           DataFileType.response,
+          arch,
           createResponseToEntityMapper: createResponseToEntityMapper,
           createEntityToRequestMapper: createEntityToRequestMapper,
         ),
@@ -113,6 +117,7 @@ class DataObjectComponent with _$DataObjectComponent {
         _getImports(
           projectName,
           DataFileType.entity,
+          arch,
           createResponseToEntityMapper: createResponseToEntityMapper,
           createEntityToRequestMapper: createEntityToRequestMapper,
         ),
@@ -124,17 +129,17 @@ class DataObjectComponent with _$DataObjectComponent {
     ///Add common imports
     if (createResponseToEntityMapper) {
       codeLines.add(
-        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.response)}';",
+        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.response, arch)}';",
       );
     }
     if (createEntityToRequestMapper) {
       codeLines.add(
-        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.request)}';",
+        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.request, arch)}';",
       );
     }
     codeLines
       ..add(
-        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.entity)}';",
+        "import 'package:$projectName/${fileReference.getFileImportName(DataFileType.entity, arch)}';",
       )
       ..addAll(imports);
 
@@ -323,13 +328,14 @@ class DataObjectComponent with _$DataObjectComponent {
 
   List<String> _getImports(
     String projectName,
-    DataFileType type, {
+    DataFileType type,
+    Arch arch, {
     bool? createEntityToRequestMapper,
     bool? createResponseToEntityMapper,
   }) {
     final imports = List<SwaggerType>.empty(growable: true);
     final notNullImports =
-        variables.where((e) => e.type.getFileImportName(type) != null);
+        variables.where((e) => e.type.getFileImportName(type, arch) != null);
     for (final e in notNullImports) {
       if (createEntityToRequestMapper != null &&
           createResponseToEntityMapper != null) {
@@ -349,7 +355,7 @@ class DataObjectComponent with _$DataObjectComponent {
       }
     }
     return imports
-        .map((e) => e.getFullFileImport(projectName, type) ?? '')
+        .map((e) => e.getFullFileImport(projectName, type, arch) ?? '')
         .toList();
   }
 

@@ -3,6 +3,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
 
 class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
   SwaggerModelVariableResponseV3({
@@ -14,6 +15,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
   factory SwaggerModelVariableResponseV3.fromJson(
     String name,
     List<String> requiredVariables,
+    Arch arch,
     Map<String, dynamic> json,
     String from,
   ) {
@@ -22,6 +24,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
     final rootType = _parseType(
       name,
       from,
+      arch,
       requiredVariables,
       json,
     );
@@ -39,6 +42,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       final schemaType = _parseType(
         name,
         from,
+        arch,
         requiredVariables,
         schema,
       );
@@ -65,6 +69,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
           final contentSchemaType = _parseType(
             name,
             from,
+            arch,
             requiredVariables,
             schema,
           );
@@ -89,6 +94,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
   static SwaggerType? _parseType(
     String name,
     String from,
+    Arch arch,
     List<String> requiredVariables,
     Map<String, dynamic> json,
   ) {
@@ -104,6 +110,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       return BaseSwaggerModelVariableResponse.parseSimpleType(
         name,
         from,
+        arch,
         requiredVariables,
         json,
       );
@@ -130,6 +137,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       return BaseSwaggerModelVariableResponse.parseSimpleType(
         name,
         from,
+        arch,
         requiredVariables,
         anyOf.first,
       );

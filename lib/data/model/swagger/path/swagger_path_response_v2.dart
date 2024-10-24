@@ -6,6 +6,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_mo
 import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_request_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_response_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
 
 class SwaggerPathResponseV2 extends BaseSwaggerPathResponse {
   SwaggerPathResponseV2({
@@ -21,6 +22,7 @@ class SwaggerPathResponseV2 extends BaseSwaggerPathResponse {
   factory SwaggerPathResponseV2.fromJson(
     String path,
     String type,
+    Arch arch,
     Map<String, dynamic> json,
   ) {
     final inputParameters = List<SwaggerRequestType>.empty(growable: true);
@@ -55,6 +57,7 @@ class SwaggerPathResponseV2 extends BaseSwaggerPathResponse {
         final paramVariable = SwaggerModelVariableResponseV2.fromJson(
           name,
           isRequired ? [name] : [],
+          arch,
           param,
           tag,
         );
@@ -111,6 +114,7 @@ class SwaggerPathResponseV2 extends BaseSwaggerPathResponse {
           final responseVariable = SwaggerModelVariableResponseV2.fromJson(
             code,
             [code],
+            arch,
             value,
             tag,
           );

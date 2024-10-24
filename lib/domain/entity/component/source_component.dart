@@ -230,7 +230,7 @@ class SourceComponent with _$SourceComponent {
       ///build response imports
       ///Add response body import
       final responseFileImport = request.response.type
-          .getFullFileImport(projectName, DataFileType.response);
+          .getFullFileImport(projectName, DataFileType.response, arch);
       if (responseFileImport != null && !imports.contains(responseFileImport)) {
         imports.add(responseFileImport);
       }
@@ -238,7 +238,7 @@ class SourceComponent with _$SourceComponent {
       ///Add request body import
       if (request.requestBody != null) {
         final bodyImport = request.requestBody?.type
-            .getFullFileImport(projectName, DataFileType.request);
+            .getFullFileImport(projectName, DataFileType.request, arch);
         if (bodyImport != null && !imports.contains(bodyImport)) {
           imports.add(bodyImport);
         }
@@ -248,7 +248,7 @@ class SourceComponent with _$SourceComponent {
       if (request.pathParams.isNotEmpty) {
         for (final e in request.pathParams) {
           final import =
-              e.type.getFullFileImport(projectName, DataFileType.request);
+              e.type.getFullFileImport(projectName, DataFileType.request, arch);
           if (import != null && !imports.contains(import)) {
             imports.add(import);
           }
@@ -259,7 +259,7 @@ class SourceComponent with _$SourceComponent {
       if (request.queryParams.isNotEmpty) {
         for (final e in request.queryParams) {
           final import =
-              e.type.getFullFileImport(projectName, DataFileType.request);
+              e.type.getFullFileImport(projectName, DataFileType.request, arch);
           if (import != null && !imports.contains(import)) {
             imports.add(import);
           }
@@ -270,7 +270,7 @@ class SourceComponent with _$SourceComponent {
       if (request.multipartBody.isNotEmpty) {
         for (final e in request.multipartBody) {
           final import =
-              e.type.getFullFileImport(projectName, DataFileType.request);
+              e.type.getFullFileImport(projectName, DataFileType.request, arch);
           if (import != null && !imports.contains(import)) {
             imports.add(import);
           }
@@ -291,7 +291,7 @@ class SourceComponent with _$SourceComponent {
       ///build response imports
       ///Add response body import
       final responseFileImport = request.response.type
-          .getFullFileImport(projectName, DataFileType.entity);
+          .getFullFileImport(projectName, DataFileType.entity, arch);
       if (responseFileImport != null && !imports.contains(responseFileImport)) {
         imports.add(responseFileImport);
       }
@@ -299,7 +299,7 @@ class SourceComponent with _$SourceComponent {
       ///Add request body import
       if (request.requestBody != null) {
         final bodyImport = request.requestBody?.type
-            .getFullFileImport(projectName, DataFileType.entity);
+            .getFullFileImport(projectName, DataFileType.entity, arch);
         if (bodyImport != null && !imports.contains(bodyImport)) {
           imports.add(bodyImport);
         }
@@ -309,7 +309,7 @@ class SourceComponent with _$SourceComponent {
       if (request.pathParams.isNotEmpty) {
         for (final e in request.pathParams) {
           final import =
-              e.type.getFullFileImport(projectName, DataFileType.entity);
+              e.type.getFullFileImport(projectName, DataFileType.entity, arch);
           if (import != null && !imports.contains(import)) {
             imports.add(import);
           }
@@ -320,7 +320,7 @@ class SourceComponent with _$SourceComponent {
       if (request.queryParams.isNotEmpty) {
         for (final e in request.queryParams) {
           final import =
-              e.type.getFullFileImport(projectName, DataFileType.entity);
+              e.type.getFullFileImport(projectName, DataFileType.entity, arch);
           if (import != null && !imports.contains(import)) {
             imports.add(import);
           }
@@ -331,7 +331,7 @@ class SourceComponent with _$SourceComponent {
       if (request.multipartBody.isNotEmpty) {
         for (final e in request.multipartBody) {
           final import =
-              e.type.getFullFileImport(projectName, DataFileType.entity);
+              e.type.getFullFileImport(projectName, DataFileType.entity, arch);
           if (import != null && !imports.contains(import)) {
             imports.add(import);
           }

@@ -49,6 +49,7 @@ class ComponentGeneratorService
           params.projectName,
           sourceObjects,
           params.components.dataObjects,
+          params.arch,
         );
         addedDataComponents.addAll(createdComponents);
 
@@ -66,6 +67,7 @@ class ComponentGeneratorService
         projectLibFolder,
         params.projectName,
         addedComponentsDistinct,
+        params.arch,
       );
 
       return '';
@@ -200,6 +202,7 @@ class ComponentGeneratorService
     String projectName,
     List<DataObjectReference> references,
     List<DataObjectComponent> components,
+    Arch arch,
   ) async {
     ///List of components was created
     final addedDataComponents = List<DataObjectComponent>.empty(growable: true);
@@ -214,8 +217,8 @@ class ComponentGeneratorService
       }
 
       ///Create File
-      final fileRawFolder = dataObject.getFileFolder(e.type);
-      final fileRawPath = dataObject.getFilePath(e.type);
+      final fileRawFolder = dataObject.getFileFolder(e.type, arch);
+      final fileRawPath = dataObject.getFilePath(e.type, arch);
       if (fileRawPath.isEmpty || fileRawFolder.isEmpty) {
         continue;
       }
@@ -226,6 +229,7 @@ class ComponentGeneratorService
       final body = dataObject.getObjectBody(
         projectName,
         e.type,
+        arch,
       );
       final objectAdded = await _createFile(
         filePath: filePath,
@@ -249,6 +253,7 @@ class ComponentGeneratorService
           projectName,
           innerReferences,
           components,
+          arch,
         );
         addedDataComponents.addAll(createdInnerObjects);
       }
@@ -260,12 +265,13 @@ class ComponentGeneratorService
     String projectLibFolder,
     String projectName,
     List<DataObjectComponent> addedDataComponents,
+    Arch arch,
   ) async {
     for (final e in addedDataComponents) {
       ///Create Entities
 
-      final entityRawFolder = e.getFileFolder(DataFileType.entity);
-      final entityRawPath = e.getFilePath(DataFileType.entity);
+      final entityRawFolder = e.getFileFolder(DataFileType.entity, arch);
+      final entityRawPath = e.getFilePath(DataFileType.entity, arch);
       if (entityRawFolder.isEmpty || entityRawPath.isEmpty) {
         continue;
       }
@@ -276,6 +282,7 @@ class ComponentGeneratorService
       final entityBody = e.getObjectBody(
         projectName,
         DataFileType.entity,
+        arch,
       );
 
       await _createFile(filePath: entityPath, fileBody: entityBody);
@@ -288,9 +295,9 @@ class ComponentGeneratorService
       final mapperPath = '$projectLibFolder/$mapperRawPath';
       await _createFolders(mapperFolder, '_createMappersEntities');
       final requestRawFilePath =
-          e.fileReference.getFileImportName(DataFileType.request);
+          e.fileReference.getFileImportName(DataFileType.request, arch);
       final responseRawFilePath =
-          e.fileReference.getFileImportName(DataFileType.response);
+          e.fileReference.getFileImportName(DataFileType.response, arch);
       final requestFilePath = '$projectLibFolder/$requestRawFilePath';
       final responseFilePath = '$projectLibFolder/$responseRawFilePath';
       final isRequestFileExist = File(requestFilePath).existsSync();
@@ -300,6 +307,7 @@ class ComponentGeneratorService
           projectName: projectName,
           createEntityToRequestMapper: isRequestFileExist,
           createResponseToEntityMapper: isResponseFileExist,
+          arch: arch,
         );
 
         await _createFile(filePath: mapperPath, fileBody: mapperBody);
