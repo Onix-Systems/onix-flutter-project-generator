@@ -112,18 +112,13 @@ class SwaggerReference extends SwaggerType {
     final namePath = getTypeDeclaration(fileType).snakeCase;
     final clearName = reference.snakeCase;
     if (fileType == DataFileType.entity) {
-      if (arch == Arch.clean) {
-        return 'domain/entity/$namePath';
-      } else {
-        return 'data/model/$namePath';
-      }
+      return arch.getEntityPath(namePath);
     }
 
-    if (arch == Arch.clean) {
-      return 'data/model/remote/${fileType.name}/$namePath';
-    } else {
-      return 'data/model/$clearName/dto/$namePath';
-    }
+    return arch.getModelPath(
+      arch == Arch.clean ? fileType.name : clearName,
+      namePath,
+    );
   }
 
   @override
