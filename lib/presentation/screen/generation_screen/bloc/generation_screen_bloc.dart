@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastlane_generation_params.dart';
@@ -157,8 +158,9 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       if (!state.config.graphql) {
         await Directory(
-          '${state.config.projectRootPath}/lib/app/arch',
+          state.config.arch.getGraphQlPath(state.config.projectRootPath),
         ).delete(recursive: true);
+
         await Directory(
           '${state.config.projectRootPath}/lib/data/source/remote/auth',
         ).delete(recursive: true);

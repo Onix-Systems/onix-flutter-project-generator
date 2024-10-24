@@ -39,4 +39,13 @@ extension Path on Arch {
         return 'data/model/$folderName/dto/$namePath';
     }
   }
+
+  String getGraphQlPath(String projectRootPath) {
+    switch (this) {
+      case Arch.clean:
+        return '$projectRootPath/lib/core/arch/data/remote/graph_ql';
+      case Arch.simple:
+        return '$projectRootPath/lib/app/arch';
+    }
+  }
 }
