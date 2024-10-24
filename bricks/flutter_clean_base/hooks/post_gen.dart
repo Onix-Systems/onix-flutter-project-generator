@@ -506,6 +506,24 @@ flutter_additional_ios_build_settings(target)
   <string>11.0</string>''', '''  <key>MinimumOSVersion</key>
   <string>12.0</string>'''));
 
+    File mainInfoPlistFile = File('$name/ios/Runner/Info.plist');
+    String mainInfoPlistFileContent = mainInfoPlistFile.readAsStringSync();
+
+    mainInfoPlistFileContent = mainInfoPlistFileContent.replaceAll('''<false/>
+	</dict>
+</plist>''', '''<false/>
+		<key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>undecimus</string>
+            <string>sileo</string>
+            <string>zbra</string>
+            <string>filza</string>
+            <string>activator</string>
+            <string>cydia</string>
+        </array>
+	</dict>
+</plist>''');
+
     File xcodeWorkspaceFile =
         File('$name/ios/Runner.xcodeproj/project.pbxproj');
     List<String> xcodeWorkspaceFileContent =
