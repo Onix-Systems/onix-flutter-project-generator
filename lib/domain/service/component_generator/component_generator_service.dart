@@ -7,6 +7,7 @@ import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/data_components_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_reference.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
@@ -23,8 +24,7 @@ class ComponentGeneratorService
   @override
   Future<String> generate(ComponentGeneratorParams params) async {
     try {
-      final projectLibFolder =
-          '${params.projectPath}/${params.projectName}/lib';
+      final projectLibFolder = '${params.projectRootPath}/lib';
 
       await _createEnums(
         projectLibFolder,
@@ -53,9 +53,10 @@ class ComponentGeneratorService
         addedDataComponents.addAll(createdComponents);
 
         await _createSource(
-          projectLibFolder,
+          params.projectRootPath,
           params.projectName,
           source,
+          params.arch,
         );
       }
 
@@ -75,10 +76,12 @@ class ComponentGeneratorService
   }
 
   Future<void> _createSource(
-    String projectLibFolder,
+    String projectRootPath,
     String projectName,
     SourceComponent sourceComponent,
+    Arch arch,
   ) async {
+    final projectLibFolder = '$projectRootPath/lib';
     final rawFolder = sourceComponent.getFolderPath(projectLibFolder);
     await _createFolders(rawFolder, '_createSource');
 
@@ -86,7 +89,8 @@ class ComponentGeneratorService
     final declarationFilePath =
         sourceComponent.getDeclarationFilePath(projectLibFolder);
 
-    final declarationBody = sourceComponent.getSourceDeclarationBody(projectName);
+    final declarationBody =
+        sourceComponent.getSourceDeclarationBody(projectName);
     await _createFile(filePath: declarationFilePath, fileBody: declarationBody);
 
     ///Create Implementation
@@ -101,7 +105,7 @@ class ComponentGeneratorService
     );
 
     ///Create SL declarations
-    final sourceSLPath = '$projectLibFolder/core/di/source.dart';
+    final sourceSLPath = '$projectRootPath/${arch.getDiPath()}/source.dart';
     final sourceSlFile = File(sourceSLPath);
     final slContent = await sourceSlFile.readAsString();
 
@@ -158,11 +162,12 @@ class ComponentGeneratorService
     final repoImplFilePath =
         sourceComponent.getRepoImplementationFilePath(projectLibFolder);
 
-    final repoImplBody = sourceComponent.getRepoImplementationBody(projectName);
+    final repoImplBody =
+        sourceComponent.getRepoImplementationBody(projectName, arch);
     await _createFile(filePath: repoImplFilePath, fileBody: repoImplBody);
 
     ///Create repos SL declarations
-    final repoSLPath = '$projectLibFolder/core/di/repository.dart';
+    final repoSLPath = '$projectRootPath/${arch.getDiPath()}/repository.dart';
     final repoSlFile = File(repoSLPath);
     final repoSlContent = await repoSlFile.readAsString();
 

@@ -1,3 +1,4 @@
+import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/component_generator/params/component_generator_params.dart';
@@ -14,7 +15,8 @@ class CreateSwaggerComponentsUseCase {
 
   Future<String> call({
     required String projectName,
-    required String projectPath,
+    required String projectRootPath,
+    required Arch arch,
   }) async {
     final components = _swaggerRepository.components;
     if (components == null) {
@@ -23,7 +25,8 @@ class CreateSwaggerComponentsUseCase {
     await _componentGenerator.generate(
       ComponentGeneratorParams(
         projectName: projectName,
-        projectPath: projectPath,
+        projectRootPath: projectRootPath,
+        arch: arch,
         components: components,
       ),
     );

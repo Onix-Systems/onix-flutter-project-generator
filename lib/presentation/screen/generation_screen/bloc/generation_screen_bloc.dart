@@ -201,7 +201,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     await _createSwaggerComponentsUseCase(
       projectName: state.config.projectName,
-      projectPath: state.config.projectPath,
+      projectRootPath: state.config.projectRootPath,
+      arch: state.config.arch,
     );
 
     ///build project

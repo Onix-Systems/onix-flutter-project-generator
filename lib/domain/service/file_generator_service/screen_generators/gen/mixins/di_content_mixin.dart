@@ -22,10 +22,10 @@ mixin DIContentMixin on ScreenGenerationService {
       stateManagement = 'bloc';
     }
 
-    final diFolderPath = params.arch.getDiPath(params.projectRootPath);
+    final diFolderPath = params.arch.getDiPath();
 
     final diFile = File(
-      '$diFolderPath/$stateManagement.dart',
+      '${params.projectRootPath}$diFolderPath/$stateManagement.dart',
     );
     final screenName = params.normalizedScreenName;
     var output = await diFile.readAsString();

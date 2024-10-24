@@ -4,12 +4,21 @@ enum Arch {
 }
 
 extension Path on Arch {
-  String getDiPath(String projectRootPath) {
+  String getDiPath() {
     switch (this) {
       case Arch.simple:
-        return '$projectRootPath/lib/app/di';
+        return 'lib/app/di';
       case Arch.clean:
-        return '$projectRootPath/lib/core/di';
+        return 'lib/core/di';
+    }
+  }
+
+  String getLoggerPath() {
+    switch (this) {
+      case Arch.simple:
+        return 'app/logger/app_logger_impl.dart';
+      case Arch.clean:
+        return 'core/arch/logger/app_logger_impl.dart';
     }
   }
 }
