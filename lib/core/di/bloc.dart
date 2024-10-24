@@ -52,6 +52,7 @@ void registerBloc(GetIt getIt) {
     ..registerFactory<SwaggerParserScreenBloc>(
       () => SwaggerParserScreenBloc(
         GetIt.I.get<FetchSwaggerDataUseCase>(),
+        GetIt.I.get<ClearSwaggerComponentsUseCase>(),
       ),
     )
     ..registerFactory<ScreensScreenBloc>(ScreensScreenBloc.new)
