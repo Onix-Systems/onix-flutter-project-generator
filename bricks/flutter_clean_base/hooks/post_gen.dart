@@ -144,7 +144,7 @@ Future<void> getDependencies(HookContext context) async {
     'fluttertoast',
     'collection',
     'flutter_dotenv',
-    'flutter_jailbreak_detection',
+    'jailbreak_root_detection',
     'gap',
     'onix_flutter_core',
   ];
@@ -505,6 +505,24 @@ flutter_additional_ios_build_settings(target)
         plistFileContent.replaceAll('''  <key>MinimumOSVersion</key>
   <string>11.0</string>''', '''  <key>MinimumOSVersion</key>
   <string>12.0</string>'''));
+
+    File mainInfoPlistFile = File('$name/ios/Runner/Info.plist');
+    String mainInfoPlistFileContent = mainInfoPlistFile.readAsStringSync();
+
+    mainInfoPlistFileContent = mainInfoPlistFileContent.replaceAll('''</dict>
+</plist>''', '''<key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>undecimus</string>
+            <string>sileo</string>
+            <string>zbra</string>
+            <string>filza</string>
+            <string>activator</string>
+            <string>cydia</string>
+        </array>
+	</dict>
+</plist>''');
+
+    mainInfoPlistFile.writeAsStringSync(mainInfoPlistFileContent);
 
     File xcodeWorkspaceFile =
         File('$name/ios/Runner.xcodeproj/project.pbxproj');
