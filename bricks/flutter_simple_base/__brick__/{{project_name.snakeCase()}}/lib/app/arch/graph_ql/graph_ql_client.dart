@@ -1,6 +1,6 @@
 import 'package:graphql/client.dart';
 import 'package:onix_flutter_core/onix_flutter_core.dart';
-import 'package:{{project_name}}/core/arch/data/remote/graph_ql/graph_ql_const.dart';
+import 'package:{{project_name}}/app/arch/graph_ql/graph_ql_const.dart';
 
 class GraphQlClient implements BaseApiClient<GraphQLClient> {
   @override

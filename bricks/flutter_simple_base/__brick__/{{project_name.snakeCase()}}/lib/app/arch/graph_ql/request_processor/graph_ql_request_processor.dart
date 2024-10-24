@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:onix_flutter_core/onix_flutter_core.dart';
-import 'package:{{project_name}}/core/arch/data/remote/graph_ql/graph_ql_client.dart';
+import 'package:{{project_name}}/app/arch/graph_ql/graph_ql_client.dart';
 
 ///Custom function to provide request Future
 typedef OnRequest<T> = Future<T> Function();
