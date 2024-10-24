@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_jailbreak_detection/flutter_jailbreak_detection.dart';
+import 'package:jailbreak_root_detection/jailbreak_root_detection.dart';
 /*
 * Example of .env file
 *
@@ -20,7 +20,7 @@ class AppService {
 
   Future<bool> initialize() async {
     if (_secureFromJailbreak && !kIsWeb && !kDebugMode) {
-      final isJailBroken = await FlutterJailbreakDetection.jailbroken;
+      final isJailBroken = await JailbreakRootDetection.instance.isJailBroken;
       if (isJailBroken) {
         return false;
       }

@@ -24,6 +24,6 @@ class SwaggerParserScreenSR with _$SwaggerParserScreenSR {
 @freezed
 class SwaggerParserScreenState with _$SwaggerParserScreenState {
   const factory SwaggerParserScreenState.data({
-    required Config config,
+    @Default(Config()) Config config,
   }) = SwaggerParserScreenStateData;
 }
