@@ -1,7 +1,7 @@
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
 import 'package:recase/recase.dart';
 
 sealed class SwaggerType {
@@ -20,16 +20,16 @@ sealed class SwaggerType {
 
   String? getFileName(DataFileType fileType);
 
-  String? getFileFolder(DataFileType fileType, Arch arch);
+  String? getFileFolder(DataFileType fileType, ArchType arch);
 
-  String? getFileImportName(DataFileType fileType, Arch arch);
+  String? getFileImportName(DataFileType fileType, ArchType arch);
 
   String? getDefaultReturnType(DataFileType fileType);
 
   String? getFullFileImport(
     String projectName,
     DataFileType fileType,
-    Arch arch,
+    ArchType arch,
   ) {
     final importName = getFileImportName(fileType, arch);
     if (importName == null) return null;
@@ -53,13 +53,13 @@ class SwaggerVariable extends SwaggerType {
       'return ${type.getDefaultPrimitiveTypeClosure()};';
 
   @override
-  String? getFileImportName(DataFileType fileType, Arch arch) => null;
+  String? getFileImportName(DataFileType fileType, ArchType arch) => null;
 
   @override
   String? getFileName(DataFileType fileType) => null;
 
   @override
-  String? getFileFolder(DataFileType fileType, Arch arch) => null;
+  String? getFileFolder(DataFileType fileType, ArchType arch) => null;
 
   @override
   String? getDefaultReturnType(DataFileType fileType) =>
@@ -91,7 +91,7 @@ class SwaggerReference extends SwaggerType {
       'return ${getTypeDeclaration(fileType)}.fromJson(response.data,);';
 
   @override
-  String? getFileImportName(DataFileType fileType, Arch arch) {
+  String? getFileImportName(DataFileType fileType, ArchType arch) {
     return '${getFileFolder(fileType, arch)}/${getFileName(fileType)}';
   }
 
@@ -108,7 +108,7 @@ class SwaggerReference extends SwaggerType {
   }
 
   @override
-  String? getFileFolder(DataFileType fileType, Arch arch) {
+  String? getFileFolder(DataFileType fileType, ArchType arch) {
     final namePath = getTypeDeclaration(fileType).snakeCase;
     final clearName = reference.snakeCase;
     if (fileType == DataFileType.entity) {
@@ -116,7 +116,7 @@ class SwaggerReference extends SwaggerType {
     }
 
     return arch.getModelPath(
-      arch == Arch.clean ? fileType.name : clearName,
+      arch == ArchType.clean ? fileType.name : clearName,
       namePath,
     );
   }
@@ -154,7 +154,7 @@ class SwaggerArray extends SwaggerType {
   }
 
   @override
-  String? getFileImportName(DataFileType fileType, Arch arch) =>
+  String? getFileImportName(DataFileType fileType, ArchType arch) =>
       itemType.type.getFileImportName(fileType, arch);
 
   @override
@@ -162,7 +162,7 @@ class SwaggerArray extends SwaggerType {
       itemType.type.getFileName(fileType);
 
   @override
-  String? getFileFolder(DataFileType fileType, Arch arch) =>
+  String? getFileFolder(DataFileType fileType, ArchType arch) =>
       itemType.type.getFileFolder(fileType, arch);
 
   @override
@@ -189,7 +189,7 @@ class SwaggerEnum extends SwaggerType {
       'return ${getTypeDeclaration(fileType)}.${enumValues.first.camelCase}';
 
   @override
-  String? getFileImportName(DataFileType fileType, Arch arch) {
+  String? getFileImportName(DataFileType fileType, ArchType arch) {
     return '${getFileFolder(fileType, arch)}/${getFileName(fileType)}';
   }
 
@@ -199,7 +199,8 @@ class SwaggerEnum extends SwaggerType {
   }
 
   @override
-  String? getFileFolder(DataFileType fileType, Arch arch) => 'app/util/enums';
+  String? getFileFolder(DataFileType fileType, ArchType arch) =>
+      'app/util/enums';
 
   @override
   String? getDefaultReturnType(DataFileType fileType) =>
@@ -217,14 +218,14 @@ class SwaggerOperationDefault extends SwaggerType {
       'return OperationStatus.success;';
 
   @override
-  String? getFileImportName(DataFileType fileType, Arch arch) =>
+  String? getFileImportName(DataFileType fileType, ArchType arch) =>
       '${getFileFolder(fileType, arch)}/${getFileName(fileType)}';
 
   @override
   String? getFileName(DataFileType fileType) => 'onix_flutter_core.dart';
 
   @override
-  String? getFileFolder(DataFileType fileType, Arch arch) =>
+  String? getFileFolder(DataFileType fileType, ArchType arch) =>
       'onix_flutter_core';
 
   @override
@@ -233,7 +234,7 @@ class SwaggerOperationDefault extends SwaggerType {
 
   @override
   String? getFullFileImport(
-      String projectName, DataFileType fileType, Arch arch) {
+      String projectName, DataFileType fileType, ArchType arch) {
     final importName = getFileImportName(fileType, arch);
     if (importName == null) return null;
     return "import 'package:$importName';";
@@ -254,13 +255,13 @@ class SwaggerFile extends SwaggerType {
   String getDefaultParserClosure(DataFileType fileType) => 'return ' ';';
 
   @override
-  String? getFileImportName(DataFileType fileType, Arch arch) => null;
+  String? getFileImportName(DataFileType fileType, ArchType arch) => null;
 
   @override
   String? getFileName(DataFileType fileType) => null;
 
   @override
-  String? getFileFolder(DataFileType fileType, Arch arch) => null;
+  String? getFileFolder(DataFileType fileType, ArchType arch) => null;
 
   @override
   String? getDefaultReturnType(DataFileType fileType) => null;

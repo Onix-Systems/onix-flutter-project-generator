@@ -2,7 +2,7 @@ import 'package:onix_flutter_bricks/app/extension/logger_extension.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/mapper/swagger/swagger_mapper.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
@@ -19,7 +19,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   @override
   Future<Result<Components>> fetchSwaggerData({
     required String url,
-    required Arch arch,
+    required ArchType arch,
   }) async {
     try {
       final swaggerResponse = await _swaggerSource.getSwaggerComponents(

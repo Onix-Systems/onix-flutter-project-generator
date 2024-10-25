@@ -3,7 +3,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.
 import 'package:onix_flutter_bricks/data/model/swagger/model/base_swagger_model_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v2.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
 
 class SwaggerModelResponseV2 extends BaseSwaggerModelResponse {
   SwaggerModelResponseV2({
@@ -14,7 +14,7 @@ class SwaggerModelResponseV2 extends BaseSwaggerModelResponse {
 
   factory SwaggerModelResponseV2.fromJson(
     String rawModelName,
-    Arch arch,
+    ArchType arch,
     Map<String, dynamic> json,
   ) {
     final modelName = rawModelName.clearDataComponentsName();
@@ -46,7 +46,7 @@ class SwaggerModelResponseV2 extends BaseSwaggerModelResponse {
   static List<BaseSwaggerModelVariableResponse> _parseProperties(
     String modelName,
     List<String> requiredVariables,
-    Arch arch,
+    ArchType arch,
     Map<String, dynamic> properties,
   ) {
     final variables =

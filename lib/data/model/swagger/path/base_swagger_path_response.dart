@@ -8,7 +8,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/path/swagger_path_respons
 import 'package:onix_flutter_bricks/data/model/swagger/path/swagger_path_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_request_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_response_type.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
 
 abstract class BaseSwaggerPathResponse {
   final String path;
@@ -33,7 +33,7 @@ abstract class BaseSwaggerPathResponse {
     SwaggerVersionType swaggerVersion,
     String path,
     String type,
-    Arch arch,
+    ArchType arch,
     Map<String, dynamic> json,
   ) {
     switch (swaggerVersion) {

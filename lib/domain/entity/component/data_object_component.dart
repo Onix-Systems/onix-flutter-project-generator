@@ -5,7 +5,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/swagger_reference_extens
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_sort_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/class_builder.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/freezed_class_builder.dart';
@@ -26,10 +26,10 @@ class DataObjectComponent with _$DataObjectComponent {
     required List<DataVariableComponent> variables,
   }) = _DataObjectComponent;
 
-  String getFilePath(DataFileType type, Arch arch) =>
+  String getFilePath(DataFileType type, ArchType arch) =>
       fileReference.getFileImportName(type, arch) ?? '';
 
-  String getFileFolder(DataFileType type, Arch arch) =>
+  String getFileFolder(DataFileType type, ArchType arch) =>
       fileReference.getFileFolder(type, arch) ?? '';
 
   String getFileName(DataFileType type) =>
@@ -38,16 +38,16 @@ class DataObjectComponent with _$DataObjectComponent {
   String getClassName(DataFileType type) =>
       fileReference.getTypeDeclaration(type);
 
-  String getObjectMapperFolder(Arch arch) =>
+  String getObjectMapperFolder(ArchType arch) =>
       '${arch.getMapperPath()}/${fileReference.getTypeDeclaration(DataFileType.none).snakeCase}';
 
-  String getObjectMapperFilePath(Arch arch) =>
+  String getObjectMapperFilePath(ArchType arch) =>
       '${getObjectMapperFolder(arch)}/${fileReference.getTypeDeclaration(DataFileType.none).snakeCase}_mapper.dart';
 
   String getObjectBody(
     String projectName,
     DataFileType type,
-    Arch arch,
+    ArchType arch,
   ) {
     final imports = Set.of(_getImports(projectName, type, arch));
     late ClassBuilder classBuilder;
@@ -94,7 +94,7 @@ class DataObjectComponent with _$DataObjectComponent {
 
   String getMapperBody({
     required String projectName,
-    required Arch arch,
+    required ArchType arch,
     required bool createEntityToRequestMapper,
     required bool createResponseToEntityMapper,
   }) {
@@ -329,7 +329,7 @@ class DataObjectComponent with _$DataObjectComponent {
   List<String> _getImports(
     String projectName,
     DataFileType type,
-    Arch arch, {
+    ArchType arch, {
     bool? createEntityToRequestMapper,
     bool? createResponseToEntityMapper,
   }) {

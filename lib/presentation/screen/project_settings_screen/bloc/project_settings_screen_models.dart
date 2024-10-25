@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
 
@@ -54,8 +54,8 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEvent.sentryChange() =
       ProjectSettingsScreenEventSentryChange;
 
-  const factory ProjectSettingsScreenEvent.archChange({required Arch arch}) =
-      ProjectSettingsScreenEventArchChange;
+  const factory ProjectSettingsScreenEvent.archChange(
+      {required ArchType arch}) = ProjectSettingsScreenEventArchChange;
 }
 
 @freezed

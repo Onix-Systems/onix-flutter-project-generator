@@ -1,7 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -30,14 +30,14 @@ class ArchSelector extends StatelessWidget {
           ),
           Material(
             color: Colors.transparent,
-            child: DropdownButton2<Arch>(
+            child: DropdownButton2<ArchType>(
               value: state.config.arch,
               style: context.appTextStyles.fs18?.copyWith(
                 color: context.appColors.textColor,
               ),
               underline: const SizedBox(),
               alignment: Alignment.centerRight,
-              items: Arch.values
+              items: ArchType.values
                   .map(
                     (e) => DropdownMenuItem(
                       value: e,
@@ -59,7 +59,7 @@ class ArchSelector extends StatelessWidget {
   }
 
   void _onArchChange({
-    required Arch arch,
+    required ArchType arch,
     required ProjectSettingsScreenBloc bloc,
   }) {
     bloc.add(

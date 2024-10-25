@@ -1,59 +1,59 @@
-enum Arch {
+enum ArchType {
   clean,
   simple;
 }
 
-extension Path on Arch {
+extension Path on ArchType {
   String getDiPath() {
     switch (this) {
-      case Arch.clean:
+      case ArchType.clean:
         return 'lib/core/di';
-      case Arch.simple:
+      case ArchType.simple:
         return 'lib/app/di';
     }
   }
 
   String getLoggerPath() {
     switch (this) {
-      case Arch.clean:
+      case ArchType.clean:
         return 'core/arch/logger/app_logger_impl.dart';
-      case Arch.simple:
+      case ArchType.simple:
         return 'app/logger/app_logger_impl.dart';
     }
   }
 
   String getEntityPath(String namePath) {
     switch (this) {
-      case Arch.clean:
+      case ArchType.clean:
         return 'domain/entity/$namePath';
-      case Arch.simple:
+      case ArchType.simple:
         return 'data/model/$namePath';
     }
   }
 
   String getModelPath(String folderName, String namePath) {
     switch (this) {
-      case Arch.clean:
+      case ArchType.clean:
         return 'data/model/remote/$folderName/$namePath';
-      case Arch.simple:
+      case ArchType.simple:
         return 'data/model/$folderName/dto/$namePath';
     }
   }
 
   String getGraphQlPath() {
     switch (this) {
-      case Arch.clean:
+      case ArchType.clean:
         return 'lib/core/arch/data/remote/graph_ql';
-      case Arch.simple:
+      case ArchType.simple:
         return 'lib/app/arch';
     }
   }
 
   String getMapperPath() {
     switch (this) {
-      case Arch.clean:
+      case ArchType.clean:
         return 'data/mapper';
-      case Arch.simple:
+      case ArchType.simple:
         return 'data/model';
     }
   }

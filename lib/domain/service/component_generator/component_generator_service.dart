@@ -7,7 +7,7 @@ import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/data_components_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_reference.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
@@ -81,7 +81,7 @@ class ComponentGeneratorService
     String projectRootPath,
     String projectName,
     SourceComponent sourceComponent,
-    Arch arch,
+    ArchType arch,
   ) async {
     final projectLibFolder = '$projectRootPath/lib';
     final rawFolder = sourceComponent.getFolderPath(projectLibFolder);
@@ -202,7 +202,7 @@ class ComponentGeneratorService
     String projectName,
     List<DataObjectReference> references,
     List<DataObjectComponent> components,
-    Arch arch,
+    ArchType arch,
   ) async {
     ///List of components was created
     final addedDataComponents = List<DataObjectComponent>.empty(growable: true);
@@ -265,7 +265,7 @@ class ComponentGeneratorService
     String projectLibFolder,
     String projectName,
     List<DataObjectComponent> addedDataComponents,
-    Arch arch,
+    ArchType arch,
   ) async {
     for (final e in addedDataComponents) {
       ///Create Entities
