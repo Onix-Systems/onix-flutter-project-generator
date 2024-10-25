@@ -5,7 +5,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/swagger_reference_extens
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_sort_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/class_builder.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/freezed_class_builder.dart';

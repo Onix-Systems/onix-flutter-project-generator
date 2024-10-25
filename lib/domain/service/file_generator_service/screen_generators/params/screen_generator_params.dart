@@ -1,4 +1,4 @@
-import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';

@@ -12,7 +12,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/path/swagger_path_respons
 import 'package:onix_flutter_bricks/data/model/swagger/swagger_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/tag/swagger_tag_response.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 
 class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
   const SwaggerRemoteSourceImpl();

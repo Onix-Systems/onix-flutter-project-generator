@@ -3,7 +3,7 @@ import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';

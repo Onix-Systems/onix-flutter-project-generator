@@ -3,7 +3,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.
 import 'package:onix_flutter_bricks/data/model/swagger/model/base_swagger_model_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v2.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 
 class SwaggerModelResponseV2 extends BaseSwaggerModelResponse {
   SwaggerModelResponseV2({

@@ -4,7 +4,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_re
 import 'package:onix_flutter_bricks/data/model/swagger/swagger_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_request_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';

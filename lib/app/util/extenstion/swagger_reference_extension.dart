@@ -1,6 +1,6 @@
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:recase/recase.dart';
 
 extension SwaggerReferenceExtenson on SwaggerReference {

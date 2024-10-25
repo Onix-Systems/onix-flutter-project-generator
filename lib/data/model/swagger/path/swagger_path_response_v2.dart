@@ -6,7 +6,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_mo
 import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_request_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_response_type.dart';
-import 'package:onix_flutter_bricks/domain/entity/arch/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 
 class SwaggerPathResponseV2 extends BaseSwaggerPathResponse {
   SwaggerPathResponseV2({
