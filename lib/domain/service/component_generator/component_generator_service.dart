@@ -289,8 +289,8 @@ class ComponentGeneratorService
     }
     for (final e in addedDataComponents) {
       ///Create mappers
-      final mapperRawFolder = e.getObjectMapperFolder();
-      final mapperRawPath = e.getObjectMapperFilePath();
+      final mapperRawFolder = e.getObjectMapperFolder(arch);
+      final mapperRawPath = e.getObjectMapperFilePath(arch);
       final mapperFolder = '$projectLibFolder/$mapperRawFolder';
       final mapperPath = '$projectLibFolder/$mapperRawPath';
       await _createFolders(mapperFolder, '_createMappersEntities');

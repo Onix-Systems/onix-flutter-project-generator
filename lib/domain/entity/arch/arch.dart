@@ -40,12 +40,21 @@ extension Path on Arch {
     }
   }
 
-  String getGraphQlPath(String projectRootPath) {
+  String getGraphQlPath() {
     switch (this) {
       case Arch.clean:
-        return '$projectRootPath/lib/core/arch/data/remote/graph_ql';
+        return 'lib/core/arch/data/remote/graph_ql';
       case Arch.simple:
-        return '$projectRootPath/lib/app/arch';
+        return 'lib/app/arch';
+    }
+  }
+
+  String getMapperPath() {
+    switch (this) {
+      case Arch.clean:
+        return 'data/mapper';
+      case Arch.simple:
+        return 'data/model';
     }
   }
 }

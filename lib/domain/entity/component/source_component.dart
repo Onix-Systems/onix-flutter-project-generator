@@ -156,7 +156,7 @@ class SourceComponent with _$SourceComponent {
         final requestReference = requestBody.type.getSwaggerObjectReference();
         if (requestReference != null) {
           final importLine =
-              requestReference.getReferenceMapperImport(projectName);
+              requestReference.getReferenceMapperImport(projectName, arch);
           if (!mapperImports.contains(importLine)) {
             mapperImports.add(importLine);
           }
@@ -167,7 +167,7 @@ class SourceComponent with _$SourceComponent {
       final responseReference = e.response.type.getSwaggerObjectReference();
       if (responseReference != null) {
         final importLine =
-            responseReference.getReferenceMapperImport(projectName);
+            responseReference.getReferenceMapperImport(projectName, arch);
         if (!mapperImports.contains(importLine)) {
           mapperImports.add(importLine);
         }

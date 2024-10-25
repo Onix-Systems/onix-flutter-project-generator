@@ -158,7 +158,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       if (!state.config.graphql) {
         await Directory(
-          state.config.arch.getGraphQlPath(state.config.projectRootPath),
+          '${state.config.projectRootPath}/${state.config.arch.getGraphQlPath()}',
         ).delete(recursive: true);
 
         await Directory(

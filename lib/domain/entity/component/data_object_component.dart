@@ -38,11 +38,11 @@ class DataObjectComponent with _$DataObjectComponent {
   String getClassName(DataFileType type) =>
       fileReference.getTypeDeclaration(type);
 
-  String getObjectMapperFolder() =>
-      'data/mapper/${fileReference.getTypeDeclaration(DataFileType.none).snakeCase}';
+  String getObjectMapperFolder(Arch arch) =>
+      '${arch.getMapperPath()}/${fileReference.getTypeDeclaration(DataFileType.none).snakeCase}';
 
-  String getObjectMapperFilePath() =>
-      '${getObjectMapperFolder()}/${fileReference.getTypeDeclaration(DataFileType.none).snakeCase}_mapper.dart';
+  String getObjectMapperFilePath(Arch arch) =>
+      '${getObjectMapperFolder(arch)}/${fileReference.getTypeDeclaration(DataFileType.none).snakeCase}_mapper.dart';
 
   String getObjectBody(
     String projectName,
@@ -150,7 +150,7 @@ class DataObjectComponent with _$DataObjectComponent {
         final variableImportName =
             ref.getTypeDeclaration(DataFileType.none).snakeCase;
         codeLines.add(
-          "import 'package:$projectName/data/mapper/$variableImportName/${variableImportName}_mapper.dart';",
+          "import 'package:$projectName/${arch.getMapperPath()}/$variableImportName/${variableImportName}_mapper.dart';",
         );
       }
     }
