@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SourceComponent {
   String get name => throw _privateConstructorUsedError;
   List<RequestComponent> get requests => throw _privateConstructorUsedError;
-  Arch get arch => throw _privateConstructorUsedError;
+  ArchType get arch => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SourceComponentCopyWith<SourceComponent> get copyWith =>
@@ -31,7 +31,7 @@ abstract class $SourceComponentCopyWith<$Res> {
           SourceComponent value, $Res Function(SourceComponent) then) =
       _$SourceComponentCopyWithImpl<$Res, SourceComponent>;
   @useResult
-  $Res call({String name, List<RequestComponent> requests, Arch arch});
+  $Res call({String name, List<RequestComponent> requests, ArchType arch});
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$SourceComponentCopyWithImpl<$Res, $Val extends SourceComponent>
       arch: null == arch
           ? _value.arch
           : arch // ignore: cast_nullable_to_non_nullable
-              as Arch,
+              as ArchType,
     ) as $Val);
   }
 }
@@ -76,7 +76,7 @@ abstract class _$$SourceComponentImplCopyWith<$Res>
       __$$SourceComponentImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, List<RequestComponent> requests, Arch arch});
+  $Res call({String name, List<RequestComponent> requests, ArchType arch});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class __$$SourceComponentImplCopyWithImpl<$Res>
       arch: null == arch
           ? _value.arch
           : arch // ignore: cast_nullable_to_non_nullable
-              as Arch,
+              as ArchType,
     ));
   }
 }
@@ -132,7 +132,7 @@ class _$SourceComponentImpl extends _SourceComponent {
   }
 
   @override
-  final Arch arch;
+  final ArchType arch;
 
   @override
   String toString() {
@@ -165,7 +165,7 @@ abstract class _SourceComponent extends SourceComponent {
   const factory _SourceComponent(
       {required final String name,
       required final List<RequestComponent> requests,
-      required final Arch arch}) = _$SourceComponentImpl;
+      required final ArchType arch}) = _$SourceComponentImpl;
   const _SourceComponent._() : super._();
 
   @override
@@ -173,7 +173,7 @@ abstract class _SourceComponent extends SourceComponent {
   @override
   List<RequestComponent> get requests;
   @override
-  Arch get arch;
+  ArchType get arch;
   @override
   @JsonKey(ignore: true)
   _$$SourceComponentImplCopyWith<_$SourceComponentImpl> get copyWith =>
