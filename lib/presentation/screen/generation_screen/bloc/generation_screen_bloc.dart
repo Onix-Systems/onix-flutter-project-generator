@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastlane_generation_params.dart';

@@ -8,7 +8,8 @@ part of 'config.dart';
 
 _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
       branch: json['branch'] as String? ?? 'main',
-      arch: $enumDecodeNullable(_$ArchEnumMap, json['arch']) ?? Arch.clean,
+      arch: $enumDecodeNullable(_$ArchTypeEnumMap, json['arch']) ??
+          ArchType.clean,
       localVersion: json['localVersion'] as String? ?? '',
       remoteVersion: json['remoteVersion'] as String? ?? '',
       projectPath: json['projectPath'] as String? ?? '',
@@ -51,7 +52,7 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
 Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
     <String, dynamic>{
       'branch': instance.branch,
-      'arch': _$ArchEnumMap[instance.arch]!,
+      'arch': _$ArchTypeEnumMap[instance.arch]!,
       'localVersion': instance.localVersion,
       'remoteVersion': instance.remoteVersion,
       'projectPath': instance.projectPath,
@@ -76,9 +77,9 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'sentry': instance.sentry,
     };
 
-const _$ArchEnumMap = {
-  Arch.clean: 'clean',
-  Arch.simple: 'simple',
+const _$ArchTypeEnumMap = {
+  ArchType.clean: 'clean',
+  ArchType.simple: 'simple',
 };
 
 const _$ProjectStateManagerEnumMap = {

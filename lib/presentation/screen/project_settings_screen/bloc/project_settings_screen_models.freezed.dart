@@ -33,7 +33,7 @@ mixin _$ProjectSettingsScreenEvent {
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,7 +52,7 @@ mixin _$ProjectSettingsScreenEvent {
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,7 +71,7 @@ mixin _$ProjectSettingsScreenEvent {
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -293,7 +293,7 @@ class _$ProjectSettingsScreenEventInitImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return init(config);
   }
@@ -315,7 +315,7 @@ class _$ProjectSettingsScreenEventInitImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return init?.call(config);
   }
@@ -337,7 +337,7 @@ class _$ProjectSettingsScreenEventInitImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -530,7 +530,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return flavorizeChange();
   }
@@ -552,7 +552,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return flavorizeChange?.call();
   }
@@ -574,7 +574,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (flavorizeChange != null) {
@@ -789,7 +789,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return flavorsChange(flavors);
   }
@@ -811,7 +811,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return flavorsChange?.call(flavors);
   }
@@ -833,7 +833,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (flavorsChange != null) {
@@ -1066,7 +1066,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return generateSigningKeyChange(generateSigningKey);
   }
@@ -1088,7 +1088,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return generateSigningKeyChange?.call(generateSigningKey);
   }
@@ -1110,7 +1110,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (generateSigningKeyChange != null) {
@@ -1345,7 +1345,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return signingVarsChange(signingVars);
   }
@@ -1367,7 +1367,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return signingVarsChange?.call(signingVars);
   }
@@ -1389,7 +1389,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (signingVarsChange != null) {
@@ -1583,7 +1583,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return useSonarChange();
   }
@@ -1605,7 +1605,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return useSonarChange?.call();
   }
@@ -1627,7 +1627,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (useSonarChange != null) {
@@ -1814,7 +1814,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return graphQLChange();
   }
@@ -1836,7 +1836,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return graphQLChange?.call();
   }
@@ -1858,7 +1858,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (graphQLChange != null) {
@@ -2079,7 +2079,7 @@ class _$ProjectSettingsScreenEventStateManagerChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return stateManagerChange(stateManager);
   }
@@ -2101,7 +2101,7 @@ class _$ProjectSettingsScreenEventStateManagerChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return stateManagerChange?.call(stateManager);
   }
@@ -2123,7 +2123,7 @@ class _$ProjectSettingsScreenEventStateManagerChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (stateManagerChange != null) {
@@ -2317,7 +2317,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return routerChange();
   }
@@ -2339,7 +2339,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return routerChange?.call();
   }
@@ -2361,7 +2361,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (routerChange != null) {
@@ -2551,7 +2551,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return localizationChange();
   }
@@ -2573,7 +2573,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return localizationChange?.call();
   }
@@ -2595,7 +2595,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (localizationChange != null) {
@@ -2782,7 +2782,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return themingChange();
   }
@@ -2804,7 +2804,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return themingChange?.call();
   }
@@ -2826,7 +2826,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (themingChange != null) {
@@ -3013,7 +3013,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return firebaseChange();
   }
@@ -3035,7 +3035,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return firebaseChange?.call();
   }
@@ -3057,7 +3057,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (firebaseChange != null) {
@@ -3245,7 +3245,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return screenUtilChange();
   }
@@ -3267,7 +3267,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return screenUtilChange?.call();
   }
@@ -3289,7 +3289,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (screenUtilChange != null) {
@@ -3476,7 +3476,7 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return sentryChange();
   }
@@ -3498,7 +3498,7 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return sentryChange?.call();
   }
@@ -3520,7 +3520,7 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (sentryChange != null) {
@@ -3656,7 +3656,7 @@ abstract class _$$ProjectSettingsScreenEventArchChangeImplCopyWith<$Res> {
           $Res Function(_$ProjectSettingsScreenEventArchChangeImpl) then) =
       __$$ProjectSettingsScreenEventArchChangeImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Arch arch});
+  $Res call({ArchType arch});
 }
 
 /// @nodoc
@@ -3678,7 +3678,7 @@ class __$$ProjectSettingsScreenEventArchChangeImplCopyWithImpl<$Res>
       arch: null == arch
           ? _value.arch
           : arch // ignore: cast_nullable_to_non_nullable
-              as Arch,
+              as ArchType,
     ));
   }
 }
@@ -3690,7 +3690,7 @@ class _$ProjectSettingsScreenEventArchChangeImpl
   const _$ProjectSettingsScreenEventArchChangeImpl({required this.arch});
 
   @override
-  final Arch arch;
+  final ArchType arch;
 
   @override
   String toString() {
@@ -3734,7 +3734,7 @@ class _$ProjectSettingsScreenEventArchChangeImpl
     required TResult Function() firebaseChange,
     required TResult Function() screenUtilChange,
     required TResult Function() sentryChange,
-    required TResult Function(Arch arch) archChange,
+    required TResult Function(ArchType arch) archChange,
   }) {
     return archChange(arch);
   }
@@ -3756,7 +3756,7 @@ class _$ProjectSettingsScreenEventArchChangeImpl
     TResult? Function()? firebaseChange,
     TResult? Function()? screenUtilChange,
     TResult? Function()? sentryChange,
-    TResult? Function(Arch arch)? archChange,
+    TResult? Function(ArchType arch)? archChange,
   }) {
     return archChange?.call(arch);
   }
@@ -3778,7 +3778,7 @@ class _$ProjectSettingsScreenEventArchChangeImpl
     TResult Function()? firebaseChange,
     TResult Function()? screenUtilChange,
     TResult Function()? sentryChange,
-    TResult Function(Arch arch)? archChange,
+    TResult Function(ArchType arch)? archChange,
     required TResult orElse(),
   }) {
     if (archChange != null) {
@@ -3904,9 +3904,10 @@ class _$ProjectSettingsScreenEventArchChangeImpl
 abstract class ProjectSettingsScreenEventArchChange
     implements ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEventArchChange(
-      {required final Arch arch}) = _$ProjectSettingsScreenEventArchChangeImpl;
+          {required final ArchType arch}) =
+      _$ProjectSettingsScreenEventArchChangeImpl;
 
-  Arch get arch;
+  ArchType get arch;
   @JsonKey(ignore: true)
   _$$ProjectSettingsScreenEventArchChangeImplCopyWith<
           _$ProjectSettingsScreenEventArchChangeImpl>

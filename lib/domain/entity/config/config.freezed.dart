@@ -21,7 +21,7 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Config {
   String get branch => throw _privateConstructorUsedError;
-  Arch get arch => throw _privateConstructorUsedError;
+  ArchType get arch => throw _privateConstructorUsedError;
   String get localVersion => throw _privateConstructorUsedError;
   String get remoteVersion => throw _privateConstructorUsedError;
   String get projectPath => throw _privateConstructorUsedError;
@@ -60,7 +60,7 @@ abstract class $ConfigCopyWith<$Res> {
   @useResult
   $Res call(
       {String branch,
-      Arch arch,
+      ArchType arch,
       String localVersion,
       String remoteVersion,
       String projectPath,
@@ -136,7 +136,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
       arch: null == arch
           ? _value.arch
           : arch // ignore: cast_nullable_to_non_nullable
-              as Arch,
+              as ArchType,
       localVersion: null == localVersion
           ? _value.localVersion
           : localVersion // ignore: cast_nullable_to_non_nullable
@@ -250,7 +250,7 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   @useResult
   $Res call(
       {String branch,
-      Arch arch,
+      ArchType arch,
       String localVersion,
       String remoteVersion,
       String projectPath,
@@ -325,7 +325,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
       arch: null == arch
           ? _value.arch
           : arch // ignore: cast_nullable_to_non_nullable
-              as Arch,
+              as ArchType,
       localVersion: null == localVersion
           ? _value.localVersion
           : localVersion // ignore: cast_nullable_to_non_nullable
@@ -427,7 +427,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
 class _$ConfigImpl extends _Config {
   const _$ConfigImpl(
       {this.branch = 'main',
-      this.arch = Arch.clean,
+      this.arch = ArchType.clean,
       this.localVersion = '',
       this.remoteVersion = '',
       this.projectPath = '',
@@ -465,7 +465,7 @@ class _$ConfigImpl extends _Config {
   final String branch;
   @override
   @JsonKey()
-  final Arch arch;
+  final ArchType arch;
   @override
   @JsonKey()
   final String localVersion;
@@ -657,7 +657,7 @@ class _$ConfigImpl extends _Config {
 abstract class _Config extends Config {
   const factory _Config(
       {final String branch,
-      final Arch arch,
+      final ArchType arch,
       final String localVersion,
       final String remoteVersion,
       final String projectPath,
@@ -689,7 +689,7 @@ abstract class _Config extends Config {
   @override
   String get branch;
   @override
-  Arch get arch;
+  ArchType get arch;
   @override
   String get localVersion;
   @override
