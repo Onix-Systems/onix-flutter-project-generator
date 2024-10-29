@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_flavors_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/git_cliff/generate_git_cliff_files_use_case.dart';
@@ -81,6 +82,7 @@ void registerBloc(GetIt getIt) {
     ..registerFactory<ProcedureSelectionScreenBloc>(
       () => ProcedureSelectionScreenBloc(
         GetIt.I.get<GenerateSigningConfigUseCase>(),
+        GetIt.I.get<GenerateFlavorsUseCase>(),
         GetIt.I.get<GetSigningFingerprintUseCase>(),
         GetIt.I.get<ClearSwaggerComponentsUseCase>(),
         GetIt.I.get<ClearScreensUseCase>(),

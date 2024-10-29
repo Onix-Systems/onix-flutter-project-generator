@@ -10,6 +10,7 @@ import 'package:onix_flutter_bricks/domain/service/git_cliff_service/git_cliff_s
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_flavors_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/git_cliff/generate_git_cliff_files_use_case.dart';
@@ -64,6 +65,11 @@ void registerUseCases(GetIt getIt) {
     )
     ..registerFactory<GenerateSigningConfigUseCase>(
       () => GenerateSigningConfigUseCase(
+        GetIt.I.get<FileGeneratorService>(),
+      ),
+    )
+    ..registerFactory<GenerateFlavorsUseCase>(
+      () => GenerateFlavorsUseCase(
         GetIt.I.get<FileGeneratorService>(),
       ),
     )

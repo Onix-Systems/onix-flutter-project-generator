@@ -9,7 +9,9 @@ import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
+import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_flavors_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_signing_fingerprint_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/screen/clear_screens_use_case.dart';
@@ -22,12 +24,14 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     ProcedureSelectionScreenState,
     ProcedureSelectionScreenSR> {
   final GenerateSigningConfigUseCase _generateSigningConfigUseCase;
+  final GenerateFlavorsUseCase _generateFlavorsUseCase;
   final GetSigningFingerprintUseCase _getSigningFingerprintUseCase;
   final ClearSwaggerComponentsUseCase _clearSwaggerComponentsUseCase;
   final ClearScreensUseCase _clearScreensUseCase;
 
   ProcedureSelectionScreenBloc(
       this._generateSigningConfigUseCase,
+      this._generateFlavorsUseCase,
       this._getSigningFingerprintUseCase,
       this._clearSwaggerComponentsUseCase,
       this._clearScreensUseCase)
@@ -159,7 +163,19 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     Emitter<ProcedureSelectionScreenState> emit,
   ) async {
     showProgress();
-    logger.f('Generating flavors: ${event.flavors}');
+    final result = await _generateFlavorsUseCase(
+      params: FlavorGeneratorParams(
+        projectFolder: event.directory.path,
+        flavors: event.flavors.toList(),
+        separateFromBrick: true,
+      ),
+    );
     await hideProgress();
+    if (result.success) {
+      logger.f('Flavors generated');
+    } else {
+      onFailure(result.error.failure);
+      return;
+    }
   }
 }
