@@ -165,6 +165,9 @@ class _FlavorsDialogState extends State<FlavorsDialog> {
   }
 
   void _onOk(BuildContext context) {
+    if (!_flavorsValid) {
+      return;
+    }
     context.pop(
       _flavors,
     );
