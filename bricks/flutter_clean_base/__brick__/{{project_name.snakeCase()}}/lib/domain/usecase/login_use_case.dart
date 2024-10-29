@@ -1,6 +1,5 @@
+import 'package:onix_flutter_core/onix_flutter_core.dart';
 import 'package:{{project_name}}/app/service/firebase_session_service/firebase_session_service.dart';
-import 'package:{{project_name}}/core/arch/domain/entity/common/result.dart';
-
 import 'package:{{project_name}}/domain/repository/firebase_auth_repository.dart';
 
 class LoginUseCase {

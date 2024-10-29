@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_imports.dart';
 
 class App extends StatefulWidget {
@@ -33,13 +33,10 @@ class _AppState extends State<App> {
           );
         },
         scrollBehavior: const CupertinoScrollBehavior(),
-        title: '',
         theme: createLightTheme(),
         darkTheme: createDarkTheme(),
         themeMode: ThemeMode.dark,
-        routeInformationProvider: AppRouter.router.routeInformationProvider,
-        routeInformationParser: AppRouter.router.routeInformationParser,
-        routerDelegate: AppRouter.router.routerDelegate,
+        routerConfig: AppRouter.router,
         locale: locale,
         localizationsDelegates: const [
           S.delegate,

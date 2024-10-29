@@ -8,7 +8,7 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 class ConfigSourceImpl implements ConfigSource {
   @override
   Future<Config> getConfig({required String configPath}) async {
-    var file = File(configPath);
+    final file = File(configPath);
 
     if (!file.existsSync()) {
       logger.d('file not exists: $configPath');
@@ -19,9 +19,11 @@ class ConfigSourceImpl implements ConfigSource {
   }
 
   @override
-  Future<void> saveConfig(
-      {required Config config, required String configPath}) async {
-    var file = await File(configPath).create();
+  Future<void> saveConfig({
+    required Config config,
+    required String configPath,
+  }) async {
+    final file = await File(configPath).create();
     await file.writeAsString(jsonEncode(config.toJson()));
   }
 }

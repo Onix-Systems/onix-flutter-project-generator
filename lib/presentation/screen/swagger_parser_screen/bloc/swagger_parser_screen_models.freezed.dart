@@ -762,9 +762,10 @@ class __$$SwaggerParserScreenStateDataImplCopyWithImpl<$Res>
 
 class _$SwaggerParserScreenStateDataImpl
     implements SwaggerParserScreenStateData {
-  const _$SwaggerParserScreenStateDataImpl({required this.config});
+  const _$SwaggerParserScreenStateDataImpl({this.config = const Config()});
 
   @override
+  @JsonKey()
   final Config config;
 
   @override
@@ -850,7 +851,7 @@ class _$SwaggerParserScreenStateDataImpl
 
 abstract class SwaggerParserScreenStateData
     implements SwaggerParserScreenState {
-  const factory SwaggerParserScreenStateData({required final Config config}) =
+  const factory SwaggerParserScreenStateData({final Config config}) =
       _$SwaggerParserScreenStateDataImpl;
 
   @override

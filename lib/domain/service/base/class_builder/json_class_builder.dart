@@ -3,6 +3,7 @@ import 'package:onix_flutter_bricks/domain/service/base/class_builder/class_buil
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
+// ignore_for_file: avoid_setters_without_getters
 class JsonClassBuilder extends ClassBuilder {
   final String _className;
   final String _classNameSuffix;
@@ -37,53 +38,62 @@ class JsonClassBuilder extends ClassBuilder {
     final classPartImport = '${_className.snakeCase}$importSuffix';
     final classFullName =
         '${_className.pascalCase}${_classNameSuffix.pascalCase}';
-    lines.add('import \'package:json_annotation/json_annotation.dart\';');
-    lines.addAll(_imports);
-    lines.addNewLine();
-    lines.add('part \'$classPartImport.g.dart\';');
-    lines.addNewLine();
-    lines.add('@JsonSerializable()');
-    lines.add('class $classFullName {');
-    lines.addNewLine();
-    lines.addAll(_variableDeclarations);
-    lines.addNewLine();
-    if(_variableDeclarations.isEmpty) {
+    lines
+      ..add("import 'package:json_annotation/json_annotation.dart';")
+      ..addAll(_imports)
+      ..addNewLine()
+      ..add("part '$classPartImport.g.dart';")
+      ..addNewLine()
+      ..add('@JsonSerializable()')
+      ..add('class $classFullName {')
+      ..addNewLine()
+      ..addAll(_variableDeclarations)
+      ..addNewLine();
+    if (_variableDeclarations.isEmpty) {
       lines.add('const $classFullName();');
     } else {
-      lines.add('const $classFullName({');
-      lines.addAll(_baseConstructorProperties);
-      lines.add('});');
+      lines
+        ..add('const $classFullName({')
+        ..addAll(_baseConstructorProperties)
+        ..add('});');
     }
-    lines.addNewLine();
-    lines.add(
-        'factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);');
+    lines
+      ..addNewLine()
+      ..add(
+        'factory $classFullName.fromJson(Map<String, dynamic> json,) '
+        '=> _\$${classFullName}FromJson(json);',
+      );
 
     if (_withToJson) {
-      lines.addNewLine();
-      lines.add(
-          'Map<String, dynamic> toJson() => _\$${classFullName}ToJson(this);');
+      lines
+        ..addNewLine()
+        ..add(
+          'Map<String, dynamic> toJson() => _\$${classFullName}ToJson(this);',
+        );
     }
-    lines.add('}');
-    lines.addNewLine();
+    lines
+      ..add('}')
+      ..addNewLine();
     return super.build();
   }
 
   static Iterable<String> variablesFromJsonVariable(
-      Iterable<JsonClassVariable> input) {
+    Iterable<JsonClassVariable> input,
+  ) {
     return input.map(
       (e) {
-        final variableDeclaration = List<String>.empty(growable: true);
-        variableDeclaration.add('@JsonKey(includeIfNull: false)');
-        variableDeclaration.addNewLine();
-        variableDeclaration
-            .add('final ${e.dartType}${e.nullable ? '?' : ''} ${e.name};');
+        final variableDeclaration = List<String>.empty(growable: true)
+          ..add('@JsonKey(includeIfNull: false)')
+          ..addNewLine()
+          ..add('final ${e.dartType}${e.nullable ? '?' : ''} ${e.name};');
         return variableDeclaration.join('\n');
       },
     );
   }
 
   static Iterable<String> constructorPropertiesFromJsonVariable(
-      Iterable<JsonClassVariable> input) {
+    Iterable<JsonClassVariable> input,
+  ) {
     return input.map(
       (e) {
         final prefix = e.nullable ? '' : 'required';

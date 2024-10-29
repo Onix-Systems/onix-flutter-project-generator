@@ -19,7 +19,7 @@ class RemoveButton extends StatelessWidget {
         color: context.appColors.controlColor,
         splashRadius: 20,
         style: IconButton.styleFrom(
-          padding: const EdgeInsets.all(0),
+          padding: EdgeInsets.zero,
           shape: const CircleBorder(),
         ),
         onPressed: onPressed,

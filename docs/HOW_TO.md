@@ -46,7 +46,7 @@ Here you can find all the base classes which that are included in the API client
 Base API url and API client name are located in:
 
 ```
-lib/core/arch/data/remote/clients/dio/dio_const.dart
+lib/core/arch/data/remote/dio/dio_const.dart
 ```
 
 You free to add as much URls you need and declare a new API clients to use with different urls.

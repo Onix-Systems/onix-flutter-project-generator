@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_management_variant.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/add_screen_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/screen_table_cell.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -9,12 +10,14 @@ import 'package:recase/recase.dart';
 
 class ScreenTable extends StatelessWidget {
   final Set<Screen> screens;
-  final Function(Screen, String) onModifyScreen;
-  final Function(Screen) onDeleteScreen;
-  final Function(Screen) onChangeInitial;
+  final List<StateManagementVariant> stateManagers;
+  final void Function(Screen, String) onModifyScreen;
+  final void Function(Screen) onDeleteScreen;
+  final void Function(Screen) onChangeInitial;
 
   const ScreenTable({
     required this.screens,
+    required this.stateManagers,
     required this.onModifyScreen,
     required this.onDeleteScreen,
     required this.onChangeInitial,
@@ -33,9 +36,8 @@ class ScreenTable extends StatelessWidget {
               color: context.appColors.fadedColor,
               strokeAlign: BorderSide.strokeAlignOutside,
             ),
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(10),
             ),
           ),
           child: Row(
@@ -97,7 +99,6 @@ class ScreenTable extends StatelessWidget {
                     border: Border(
                       bottom: BorderSide(
                         color: context.appColors.fadedColor,
-                        width: 1,
                       ),
                     ),
                   ),
@@ -125,19 +126,21 @@ class ScreenTable extends StatelessWidget {
                         value: Text(
                           '${screen.name.pascalCase}Screen',
                           style: context.appTextStyles.fs18?.copyWith(
-                              color: screen.exists
-                                  ? context.appColors.fadedColor
-                                  : context.appColors.textColor),
+                            color: screen.exists
+                                ? context.appColors.fadedColor
+                                : context.appColors.textColor,
+                          ),
                         ),
                         decorated: true,
                       ),
                       Cell(
                         value: Text(
-                          screen.stateManager.name.pascalCase,
+                          screen.stateVariant.name,
                           style: context.appTextStyles.fs18?.copyWith(
-                              color: screen.exists
-                                  ? context.appColors.fadedColor
-                                  : context.appColors.textColor),
+                            color: screen.exists
+                                ? context.appColors.fadedColor
+                                : context.appColors.textColor,
+                          ),
                         ),
                         decorated: true,
                       ),
@@ -145,7 +148,7 @@ class ScreenTable extends StatelessWidget {
                         value: SizedBox(
                           height: 45,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            padding: const EdgeInsets.symmetric(vertical: 8),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -154,26 +157,34 @@ class ScreenTable extends StatelessWidget {
                                       ? context.appColors.fadedColor
                                       : context.appColors.textColor,
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
+                                    horizontal: 10,
+                                  ),
                                   onPressed: () {
                                     if (!screen.exists) {
                                       showCupertinoModalPopup<Screen>(
                                         context: context,
                                         barrierDismissible: false,
                                         builder: (context) => AddScreenDialog(
-                                            screen: Screen.copyOf(screen)),
-                                      ).then((modifiedScreen) {
-                                        if (modifiedScreen != null) {
-                                          onModifyScreen(
-                                              modifiedScreen, screen.name);
-                                        }
-                                      });
+                                          screen: Screen.copyOf(screen),
+                                          stateManagers: stateManagers,
+                                        ),
+                                      ).then(
+                                        (modifiedScreen) {
+                                          if (modifiedScreen != null) {
+                                            onModifyScreen(
+                                              modifiedScreen,
+                                              screen.name,
+                                            );
+                                          }
+                                        },
+                                      );
                                     }
                                   },
                                   child: Text(
                                     S.of(context).modify,
                                     style: context.appTextStyles.fs18?.copyWith(
-                                        color: context.appColors.darkColor),
+                                      color: context.appColors.darkColor,
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(width: 10),
@@ -182,7 +193,8 @@ class ScreenTable extends StatelessWidget {
                                       ? context.appColors.fadedColor
                                       : context.appColors.textColor,
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
+                                    horizontal: 10,
+                                  ),
                                   onPressed: () {
                                     if (!screen.exists) {
                                       onDeleteScreen(screen);

@@ -6,9 +6,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/app.dart';
-import 'package:onix_flutter_bricks/core/app/app_initialization.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/app_bloc_observer.dart';
+import 'package:onix_flutter_bricks/app/app_initialization.dart';
 import 'package:window_manager/window_manager.dart';
 
 Future<void> main() async {
@@ -20,7 +20,7 @@ Future<void> main() async {
 
       await windowManager.ensureInitialized();
 
-      WindowOptions windowOptions = const WindowOptions(
+      const windowOptions = WindowOptions(
         minimumSize: Size(1100, 750),
         size: Size(1100, 750),
         center: true,
@@ -38,18 +38,16 @@ Future<void> main() async {
 
       runApp(const App());
     },
-    (error, stackTrace) {
-      if (kDebugMode) {
-        print('runZonedGuarded: Caught error in root zone.\n$error');
-        print(stackTrace);
-      }
-      //there we can add FirebaseCrashlytics recordError method
-    },
-  )?.catchError((e, trace) {
-    if (kDebugMode) {
-      print('ERROR: $e');
-      print(trace);
-    }
+    _onError,
+  )?.catchError((error, stackTrace) {
+    _onError(error, stackTrace);
     exit(-1);
   });
+}
+
+void _onError(dynamic error, dynamic stackTrace) {
+  if (kDebugMode) {
+    print('ERROR: $error');
+    print(stackTrace);
+  }
 }

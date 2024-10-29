@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_screens_usecase.dart';
@@ -10,9 +11,11 @@ import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_
 import 'package:onix_flutter_bricks/domain/usecase/process/get_signing_fingerprint_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/screen/clear_screens_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/bloc/data_components_screen_v2_bloc_imports.dart';
@@ -49,6 +52,7 @@ void registerBloc(GetIt getIt) {
     ..registerFactory<SwaggerParserScreenBloc>(
       () => SwaggerParserScreenBloc(
         GetIt.I.get<FetchSwaggerDataUseCase>(),
+        GetIt.I.get<ClearSwaggerComponentsUseCase>(),
       ),
     )
     ..registerFactory<ScreensScreenBloc>(ScreensScreenBloc.new)
@@ -62,7 +66,11 @@ void registerBloc(GetIt getIt) {
         GetIt.I.get<GetFigmaStylesUseCase>(),
       ),
     )
-    ..registerFactory<ProjectSettingsScreenBloc>(ProjectSettingsScreenBloc.new)
+    ..registerFactory<ProjectSettingsScreenBloc>(
+      () => ProjectSettingsScreenBloc(
+        screenRepository: GetIt.I.get<ScreenRepository>(),
+      ),
+    )
     ..registerFactory<PlatformsScreenBloc>(PlatformsScreenBloc.new)
     ..registerFactory<ProjectNameScreenBloc>(
       () => ProjectNameScreenBloc(
@@ -74,6 +82,8 @@ void registerBloc(GetIt getIt) {
       () => ProcedureSelectionScreenBloc(
         GetIt.I.get<GenerateSigningConfigUseCase>(),
         GetIt.I.get<GetSigningFingerprintUseCase>(),
+        GetIt.I.get<ClearSwaggerComponentsUseCase>(),
+        GetIt.I.get<ClearScreensUseCase>(),
       ),
     )
     ..registerFactory<DataComponentsScreenV2Bloc>(

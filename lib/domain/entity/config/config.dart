@@ -1,9 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/util/enum/project_localization.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
@@ -23,6 +24,7 @@ class Config with _$Config {
     @Default(false) bool projectExists,
     @Default('') String organization,
     @Default(PlatformsList()) PlatformsList platformsList,
+    @Default(ProjectStateManager.bloc) ProjectStateManager stateManager,
     @Default(false) bool flavorize,
     @Default('') String flavors,
     @Default(false) bool generateSigningKey,
@@ -40,6 +42,7 @@ class Config with _$Config {
     @Default([])
     List<AppStyle> styles,
     @Default('') String swaggerUrl,
+    @Default(false) bool sentry,
   }) = _Config;
 
   const Config._();

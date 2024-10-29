@@ -3,14 +3,16 @@ import 'dart:ui';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_signing_fingerprint_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/screen/clear_screens_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
 
@@ -20,11 +22,15 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     ProcedureSelectionScreenSR> {
   final GenerateSigningConfigUseCase _generateSigningConfigUseCase;
   final GetSigningFingerprintUseCase _getSigningFingerprintUseCase;
+  final ClearSwaggerComponentsUseCase _clearSwaggerComponentsUseCase;
+  final ClearScreensUseCase _clearScreensUseCase;
 
   ProcedureSelectionScreenBloc(
-    this._generateSigningConfigUseCase,
-    this._getSigningFingerprintUseCase,
-  ) : super(const ProcedureSelectionScreenStateData(config: Config())) {
+      this._generateSigningConfigUseCase,
+      this._getSigningFingerprintUseCase,
+      this._clearSwaggerComponentsUseCase,
+      this._clearScreensUseCase)
+      : super(const ProcedureSelectionScreenStateData(config: Config())) {
     on<ProcedureSelectionScreenEventInit>(_onInit);
     on<ProcedureSelectionScreenEventOnProjectOpen>(_onProjectOpen);
     on<ProcedureSelectionScreenEventOnNewProject>(_onNewProject);
@@ -32,39 +38,45 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     on<ProcedureSelectionScreenEventOnAndroidSigning>(_onnAndroidSigning);
   }
 
-  FutureOr<void> _onInit(
+  void _onInit(
     ProcedureSelectionScreenEventInit event,
     Emitter<ProcedureSelectionScreenState> emit,
   ) {
-    emit(state.copyWith(
-      config: event.config,
-      language: Intl.getCurrentLocale(),
-    ));
+    emit(
+      state.copyWith(
+        config: event.config,
+        language: Intl.getCurrentLocale(),
+      ),
+    );
   }
 
-  FutureOr<void> _onNewProject(
+  Future<void> _onNewProject(
     ProcedureSelectionScreenEventOnNewProject event,
     Emitter<ProcedureSelectionScreenState> emit,
   ) async {
-    screenRepository.empty();
+    _clearScreensUseCase();
+    _clearSwaggerComponentsUseCase();
 
-    emit(state.copyWith(
-      config: Config(
-        projectPath: event.projectPath,
-        localVersion: state.config.localVersion,
-        remoteVersion: state.config.remoteVersion,
+    emit(
+      state.copyWith(
+        config: Config(
+          projectPath: event.projectPath,
+          localVersion: state.config.localVersion,
+          remoteVersion: state.config.remoteVersion,
+        ),
       ),
-    ));
+    );
 
     addSr(const ProcedureSelectionScreenSR.onNewProject());
   }
 
-  FutureOr<void> _onProjectOpen(
+  Future<void> _onProjectOpen(
     ProcedureSelectionScreenEventOnProjectOpen event,
     Emitter<ProcedureSelectionScreenState> emit,
   ) async {
     final config = await configSource.getConfig(
-        configPath: '${event.projectURI}/.gen_config.json');
+      configPath: '${event.projectURI}/.gen_config.json',
+    );
 
     if (config == Config.empty()) {
       addSr(const ProcedureSelectionScreenSR.emptyConfig());
@@ -74,31 +86,36 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     final projectName = event.projectURI.split('/').last;
     final projectPath = event.projectURI.replaceAll('/$projectName', '');
 
-    screenRepository.empty();
-    screenRepository.addAll(screens: config.screens);
+    screenRepository
+      ..empty()
+      ..addAll(screens: config.screens);
 
-    emit(state.copyWith(
-      config: config.copyWith(
-        projectName: projectName,
-        projectPath: projectPath,
-        projectExists: true,
-        localVersion: state.config.localVersion,
-        remoteVersion: state.config.remoteVersion,
+    emit(
+      state.copyWith(
+        config: config.copyWith(
+          projectName: projectName,
+          projectPath: projectPath,
+          projectExists: true,
+          localVersion: state.config.localVersion,
+          remoteVersion: state.config.remoteVersion,
+        ),
       ),
-    ));
+    );
 
     addSr(const ProcedureSelectionScreenSR.loadFinished());
   }
 
-  FutureOr<void> _onLocaleChange(
+  Future<void> _onLocaleChange(
     ProcedureSelectionScreenEventOnLocaleChange event,
     Emitter<ProcedureSelectionScreenState> emit,
   ) async {
-    S.load(Locale(event.language));
+    await S.load(Locale(event.language));
 
-    emit(state.copyWith(
-      language: event.language,
-    ));
+    emit(
+      state.copyWith(
+        language: event.language,
+      ),
+    );
   }
 
   FutureOr<void> _onnAndroidSigning(
@@ -106,7 +123,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     Emitter<ProcedureSelectionScreenState> emit,
   ) async {
     showProgress();
-    String signingPassword = state.config.getSigningPassword(
+    final signingPassword = state.config.getSigningPassword(
       ignoreSetting: true,
     );
 
@@ -118,7 +135,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
         separateFromBrick: true,
       ),
     );
-    hideProgress();
+    await hideProgress();
     if (result.success) {
       final fingerprints = await _getSigningFingerprintUseCase(
         projectFolder: event.directory.path,

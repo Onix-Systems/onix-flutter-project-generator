@@ -18,11 +18,16 @@
 <br/>
 
 <div align="center"><strong>How does it work?  Watch the video!</strong></div>
+<br/>
 
+https://github.com/user-attachments/assets/5fd10595-2964-4006-8926-4715e1032cba
+
+<br/>
 <div align="center">
 <a href="https://www.youtube.com/watch?v=E8kBX7HoqMU">
     <img alt="refine logo" src="images/watch_yt_normal.png">
 </a>
+
 </div>
 
 <br/>
@@ -77,7 +82,7 @@ Also there an option to select **optional packages to include** to the project:
 * **Localization** - [Intl](https://pub.dev/packages/intl_utils)
 * **Theming** - [ThemeTailor](https://pub.dev/packages/theme_tailor)
 * **UI** - [ScreenUtil](https://pub.dev/packages/flutter_screenutil)
-
+* **Monitor and capture errors** - [Sentry](https://pub.dev/packages/sentry_flutter)
 
 ## Key Features
 
@@ -108,4 +113,4 @@ If you have any doubts related to the project or want to discuss something, then
 
 ## License
 
-Licensed under the MIT License, Copyright (c) 2023-present Onix-Systems
+Licensed under the MIT License, Copyright (c) 2024-present Onix-Systems

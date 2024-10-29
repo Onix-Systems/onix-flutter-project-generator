@@ -1,6 +1,6 @@
-import 'package:{{project_name}}/core/arch/domain/common/converter/mapper.dart';
 import 'package:{{project_name}}/data/model/remote/authentication/authentication_response.dart';
 import 'package:{{project_name}}/domain/entity/authentication/authentication.dart';
+import 'package:onix_flutter_core/onix_flutter_core.dart';
 
 class _ResponseToEntity
     implements Mapper<AuthenticationResponse, Authentication> {

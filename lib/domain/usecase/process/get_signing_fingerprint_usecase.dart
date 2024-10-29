@@ -4,15 +4,15 @@ import 'dart:io';
 import 'package:onix_flutter_bricks/domain/entity/config/fingerprint.dart';
 import 'package:onix_flutter_bricks/util/enum/fingerprint_type.dart';
 
-class GetSigningFingerprintUseCase {
-  final _fingerprintsKey = 'Certificate fingerprints:';
-  final _sha1Key = 'SHA1:';
-  final _sha256Key = 'SHA256:';
+const _fingerprintsKey = 'Certificate fingerprints:';
+const _sha1Key = 'SHA1:';
+const _sha256Key = 'SHA256:';
 
+class GetSigningFingerprintUseCase {
   const GetSigningFingerprintUseCase();
 
   Future<List<Fingerprint>> call({
-    required projectFolder,
+    required String projectFolder,
     required String password,
   }) async {
     final workDirectory = '$projectFolder/android/app/signing';
@@ -40,7 +40,7 @@ class GetSigningFingerprintUseCase {
               event.indexOf(_fingerprintsKey) + _fingerprintsKey.length;
           final fingerPrints = event.substring(startFingerprints);
           final lines = fingerPrints.split('\n');
-          for (var line in lines) {
+          for (final line in lines) {
             if (line.contains(_sha1Key)) {
               final fingerprint = _clearFingerprint(
                 _sha1Key,

@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/router/app_router.dart';
+import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bloc/swagger_parser_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -29,41 +30,44 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
   final TextEditingController _urlController = TextEditingController();
 
   @override
+  SwaggerParserScreenBloc createBloc() =>
+      GetIt.I.get<SwaggerParserScreenBloc>();
+
+  @override
   void onBlocCreated(BuildContext context, SwaggerParserScreenBloc bloc) {
-    bloc.add(SwaggerParserScreenEventInit(config: widget.config));
+    bloc.add(SwaggerParserScreenEvent.init(config: widget.config));
     _urlController.text = widget.config.swaggerUrl;
     super.onBlocCreated(context, bloc);
   }
 
   @override
   Widget buildWidget(BuildContext context) {
-    return srObserver(
-      context: context,
-      child: CupertinoPageScaffold(
-        navigationBar: TitleBar(
-          title: S.of(context).importApi,
-        ),
-        child: SizedBox.expand(
-          child: blocConsumer(
-            stateListener: (state) => _buildMainContainer(context, state),
-          ),
+    return CupertinoPageScaffold(
+      navigationBar: TitleBar(
+        title: S.of(context).importApi,
+      ),
+      child: SizedBox.expand(
+        child: blocBuilder(
+          builder: _buildMainContainer,
         ),
       ),
-      onSR: _onSingleResult,
     );
   }
 
-  void _onSingleResult(
-      BuildContext context, SwaggerParserScreenSR singleResult) {
-    singleResult.when(
+  @override
+  void onSR(BuildContext context, SwaggerParserScreenSR sr) {
+    super.onSR(context, sr);
+    sr.when(
       onParseError: () => Dialogs.showOkDialog(
         context: context,
         isError: true,
         title: S.of(context).error,
-        content: Text(S.of(context).parseErrorMessage,
-            style: context.appTextStyles.fs18?.copyWith(
-              fontSize: 16,
-            )),
+        content: Text(
+          S.of(context).parseErrorMessage,
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
+          ),
+        ),
       ),
       onContinue: () {
         _urlController.clear();
@@ -96,7 +100,7 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
                 textController: _urlController,
                 onChanged: () {},
                 autofocus: true,
-                onEditingComplete: () => _onContinue(context, state),
+                onEditingComplete: () => _processSwaggerParser(context),
                 expanded: true,
               ),
             ),
@@ -104,12 +108,8 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
             NavigationButtonBar(
               nextText: S.of(context).continueLabel,
               prevText: S.of(context).goBack,
-              onNextPressed: () {
-                _onContinue(context, state);
-              },
-              onPrevPressed: () {
-                _onBack(context, state);
-              },
+              onNextPressed: () => _processSwaggerParser(context),
+              onPrevPressed: () => _onBack(context, state),
             ),
           ],
         ),
@@ -117,27 +117,25 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
     );
   }
 
-  _onContinue(BuildContext context, SwaggerParserScreenState state) {
-    if (_urlController.text.isNotEmpty) {
-      blocOf(context)
-          .add(SwaggerParserScreenEventParse(url: _urlController.text));
-    } else {
-      state.config.projectExists
-          ? context.pop(
-              widget.config.copyWith(
-                swaggerUrl: state.config.swaggerUrl,
-              ),
-            )
-          : context.go(
-              AppRouter.dataComponentsScreen,
-              extra: widget.config.copyWith(
-                swaggerUrl: state.config.swaggerUrl,
-              ),
-            );
-    }
+  void _processSwaggerParser(BuildContext context) {
+    blocOf(context)
+        .add(SwaggerParserScreenEvent.parse(url: _urlController.text));
   }
 
-  _onBack(BuildContext context, SwaggerParserScreenState state) =>
+  void _onContinue(BuildContext context, SwaggerParserScreenState state) {
+    state.config.projectExists
+        ? context.pop(
+            widget.config.copyWith(
+              swaggerUrl: state.config.swaggerUrl,
+            ),
+          )
+        : context.go(
+            AppRouter.dataComponentsScreen,
+            extra: state.config,
+          );
+  }
+
+  void _onBack(BuildContext context, SwaggerParserScreenState state) =>
       state.config.projectExists
           ? context.pop(
               widget.config.copyWith(
@@ -146,8 +144,6 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
             )
           : context.go(
               AppRouter.stylesScreen,
-              extra: widget.config.copyWith(
-                swaggerUrl: state.config.swaggerUrl,
-              ),
+              extra: state.config,
             );
 }

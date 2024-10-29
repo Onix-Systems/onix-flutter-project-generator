@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_block_state.dart';
-import 'package:onix_flutter_bricks/core/arch/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/router/app_router.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/router/app_router.dart';
+import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc/figma_styles_screen_bloc_imports.dart';
@@ -20,9 +21,9 @@ class FigmaStylesScreen extends StatefulWidget {
   final Config config;
 
   const FigmaStylesScreen({
+    required this.config,
     this.onContinue,
     this.onBack,
-    required this.config,
     super.key,
   });
 
@@ -36,14 +37,17 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
   final TextEditingController _figmaTokenController = TextEditingController();
 
   @override
+  FigmaStylesScreenBloc createBloc() => GetIt.I.get<FigmaStylesScreenBloc>();
+
+  @override
   Widget buildWidget(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: TitleBar(
         title: S.of(context).importStyles,
       ),
       child: SizedBox.expand(
-        child: blocConsumer(
-          stateListener: (state) => _buildMainContainer(context, state),
+        child: blocBuilder(
+          builder: (_, state) => _buildMainContainer(context, state),
         ),
       ),
     );
@@ -118,7 +122,6 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
                         child: AppFilledButton(
                           label: S.of(context).clear,
                           icon: Icons.delete_rounded,
-                          active: true,
                           color: context.appColors.alarmColor,
                           onPressed: () => blocOf(context)
                               .add(const FigmaStylesScreenEventOnClear()),

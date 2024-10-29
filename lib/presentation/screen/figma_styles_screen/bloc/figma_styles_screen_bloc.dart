@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/arch/bloc/base_bloc.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc/figma_styles_screen_bloc_imports.dart';
@@ -18,28 +18,32 @@ class FigmaStylesScreenBloc extends BaseBloc<FigmaStylesScreenEvent,
     on<FigmaStylesScreenEventOnClear>(_onClear);
   }
 
-  FutureOr<void> _onInit(
+  void _onInit(
     FigmaStylesScreenEventInit event,
     Emitter<FigmaStylesScreenState> emit,
   ) {
-    emit(state.copyWith(
-      config: event.config,
-    ));
+    emit(
+      state.copyWith(
+        config: event.config,
+      ),
+    );
   }
 
-  FutureOr<void> _onGetStyles(
+  Future<void> _onGetStyles(
     FigmaStylesScreenEventOnGetStyles event,
     Emitter<FigmaStylesScreenState> emit,
   ) async {
     if (event.figmaId.isEmpty) {
-      addSr(FigmaStylesScreenSR.error(
-          error: S.current.figmaGetStylesEmptyFileId));
+      addSr(
+        FigmaStylesScreenSR.error(error: S.current.figmaGetStylesEmptyFileId),
+      );
       return;
     }
 
     if (event.token.isEmpty) {
       addSr(
-          FigmaStylesScreenSR.error(error: S.current.figmaGetStylesEmptyToken));
+        FigmaStylesScreenSR.error(error: S.current.figmaGetStylesEmptyToken),
+      );
       return;
     }
 
@@ -61,11 +65,13 @@ class FigmaStylesScreenBloc extends BaseBloc<FigmaStylesScreenEvent,
         return;
       }
 
-      emit(state.copyWith(
-        config: state.config.copyWith(
-          styles: styles,
+      emit(
+        state.copyWith(
+          config: state.config.copyWith(
+            styles: styles,
+          ),
         ),
-      ));
+      );
     } catch (e) {
       addSr(FigmaStylesScreenSR.error(error: e.toString()));
     } finally {
@@ -73,14 +79,16 @@ class FigmaStylesScreenBloc extends BaseBloc<FigmaStylesScreenEvent,
     }
   }
 
-  FutureOr<void> _onClear(
+  void _onClear(
     FigmaStylesScreenEventOnClear event,
     Emitter<FigmaStylesScreenState> emit,
   ) {
-    emit(state.copyWith(
-      config: state.config.copyWith(
-        styles: [],
+    emit(
+      state.copyWith(
+        config: state.config.copyWith(
+          styles: [],
+        ),
       ),
-    ));
+    );
   }
 }

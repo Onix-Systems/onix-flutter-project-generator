@@ -28,6 +28,7 @@ mixin _$Config {
   bool get projectExists => throw _privateConstructorUsedError;
   String get organization => throw _privateConstructorUsedError;
   PlatformsList get platformsList => throw _privateConstructorUsedError;
+  ProjectStateManager get stateManager => throw _privateConstructorUsedError;
   bool get flavorize => throw _privateConstructorUsedError;
   String get flavors => throw _privateConstructorUsedError;
   bool get generateSigningKey => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ mixin _$Config {
   @JsonKey(includeFromJson: false, includeToJson: false)
   List<AppStyle> get styles => throw _privateConstructorUsedError;
   String get swaggerUrl => throw _privateConstructorUsedError;
+  bool get sentry => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,6 +66,7 @@ abstract class $ConfigCopyWith<$Res> {
       bool projectExists,
       String organization,
       PlatformsList platformsList,
+      ProjectStateManager stateManager,
       bool flavorize,
       String flavors,
       bool generateSigningKey,
@@ -78,7 +81,8 @@ abstract class $ConfigCopyWith<$Res> {
       Set<Screen> screens,
       @JsonKey(includeFromJson: false, includeToJson: false)
       List<AppStyle> styles,
-      String swaggerUrl});
+      String swaggerUrl,
+      bool sentry});
 
   $PlatformsListCopyWith<$Res> get platformsList;
 }
@@ -104,6 +108,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? projectExists = null,
     Object? organization = null,
     Object? platformsList = null,
+    Object? stateManager = null,
     Object? flavorize = null,
     Object? flavors = null,
     Object? generateSigningKey = null,
@@ -118,6 +123,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? screens = null,
     Object? styles = null,
     Object? swaggerUrl = null,
+    Object? sentry = null,
   }) {
     return _then(_value.copyWith(
       branch: null == branch
@@ -152,6 +158,10 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.platformsList
           : platformsList // ignore: cast_nullable_to_non_nullable
               as PlatformsList,
+      stateManager: null == stateManager
+          ? _value.stateManager
+          : stateManager // ignore: cast_nullable_to_non_nullable
+              as ProjectStateManager,
       flavorize: null == flavorize
           ? _value.flavorize
           : flavorize // ignore: cast_nullable_to_non_nullable
@@ -208,6 +218,10 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.swaggerUrl
           : swaggerUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      sentry: null == sentry
+          ? _value.sentry
+          : sentry // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -236,6 +250,7 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       bool projectExists,
       String organization,
       PlatformsList platformsList,
+      ProjectStateManager stateManager,
       bool flavorize,
       String flavors,
       bool generateSigningKey,
@@ -250,7 +265,8 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       Set<Screen> screens,
       @JsonKey(includeFromJson: false, includeToJson: false)
       List<AppStyle> styles,
-      String swaggerUrl});
+      String swaggerUrl,
+      bool sentry});
 
   @override
   $PlatformsListCopyWith<$Res> get platformsList;
@@ -275,6 +291,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
     Object? projectExists = null,
     Object? organization = null,
     Object? platformsList = null,
+    Object? stateManager = null,
     Object? flavorize = null,
     Object? flavors = null,
     Object? generateSigningKey = null,
@@ -289,6 +306,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
     Object? screens = null,
     Object? styles = null,
     Object? swaggerUrl = null,
+    Object? sentry = null,
   }) {
     return _then(_$ConfigImpl(
       branch: null == branch
@@ -323,6 +341,10 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value.platformsList
           : platformsList // ignore: cast_nullable_to_non_nullable
               as PlatformsList,
+      stateManager: null == stateManager
+          ? _value.stateManager
+          : stateManager // ignore: cast_nullable_to_non_nullable
+              as ProjectStateManager,
       flavorize: null == flavorize
           ? _value.flavorize
           : flavorize // ignore: cast_nullable_to_non_nullable
@@ -379,6 +401,10 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value.swaggerUrl
           : swaggerUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      sentry: null == sentry
+          ? _value.sentry
+          : sentry // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -395,6 +421,7 @@ class _$ConfigImpl extends _Config {
       this.projectExists = false,
       this.organization = '',
       this.platformsList = const PlatformsList(),
+      this.stateManager = ProjectStateManager.bloc,
       this.flavorize = false,
       this.flavors = '',
       this.generateSigningKey = false,
@@ -409,7 +436,8 @@ class _$ConfigImpl extends _Config {
       final Set<Screen> screens = const {},
       @JsonKey(includeFromJson: false, includeToJson: false)
       final List<AppStyle> styles = const [],
-      this.swaggerUrl = ''})
+      this.swaggerUrl = '',
+      this.sentry = false})
       : _signingVars = signingVars,
         _screens = screens,
         _styles = styles,
@@ -442,6 +470,9 @@ class _$ConfigImpl extends _Config {
   @override
   @JsonKey()
   final PlatformsList platformsList;
+  @override
+  @JsonKey()
+  final ProjectStateManager stateManager;
   @override
   @JsonKey()
   final bool flavorize;
@@ -504,10 +535,13 @@ class _$ConfigImpl extends _Config {
   @override
   @JsonKey()
   final String swaggerUrl;
+  @override
+  @JsonKey()
+  final bool sentry;
 
   @override
   String toString() {
-    return 'Config(branch: $branch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, screenUtil: $screenUtil, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl)';
+    return 'Config(branch: $branch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, stateManager: $stateManager, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, screenUtil: $screenUtil, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl, sentry: $sentry)';
   }
 
   @override
@@ -530,6 +564,8 @@ class _$ConfigImpl extends _Config {
                 other.organization == organization) &&
             (identical(other.platformsList, platformsList) ||
                 other.platformsList == platformsList) &&
+            (identical(other.stateManager, stateManager) ||
+                other.stateManager == stateManager) &&
             (identical(other.flavorize, flavorize) ||
                 other.flavorize == flavorize) &&
             (identical(other.flavors, flavors) || other.flavors == flavors) &&
@@ -551,7 +587,8 @@ class _$ConfigImpl extends _Config {
             const DeepCollectionEquality().equals(other._screens, _screens) &&
             const DeepCollectionEquality().equals(other._styles, _styles) &&
             (identical(other.swaggerUrl, swaggerUrl) ||
-                other.swaggerUrl == swaggerUrl));
+                other.swaggerUrl == swaggerUrl) &&
+            (identical(other.sentry, sentry) || other.sentry == sentry));
   }
 
   @JsonKey(ignore: true)
@@ -566,6 +603,7 @@ class _$ConfigImpl extends _Config {
         projectExists,
         organization,
         platformsList,
+        stateManager,
         flavorize,
         flavors,
         generateSigningKey,
@@ -579,7 +617,8 @@ class _$ConfigImpl extends _Config {
         const DeepCollectionEquality().hash(_signingVars),
         const DeepCollectionEquality().hash(_screens),
         const DeepCollectionEquality().hash(_styles),
-        swaggerUrl
+        swaggerUrl,
+        sentry
       ]);
 
   @JsonKey(ignore: true)
@@ -606,6 +645,7 @@ abstract class _Config extends Config {
       final bool projectExists,
       final String organization,
       final PlatformsList platformsList,
+      final ProjectStateManager stateManager,
       final bool flavorize,
       final String flavors,
       final bool generateSigningKey,
@@ -620,7 +660,8 @@ abstract class _Config extends Config {
       final Set<Screen> screens,
       @JsonKey(includeFromJson: false, includeToJson: false)
       final List<AppStyle> styles,
-      final String swaggerUrl}) = _$ConfigImpl;
+      final String swaggerUrl,
+      final bool sentry}) = _$ConfigImpl;
   const _Config._() : super._();
 
   factory _Config.fromJson(Map<String, dynamic> json) = _$ConfigImpl.fromJson;
@@ -641,6 +682,8 @@ abstract class _Config extends Config {
   String get organization;
   @override
   PlatformsList get platformsList;
+  @override
+  ProjectStateManager get stateManager;
   @override
   bool get flavorize;
   @override
@@ -670,6 +713,8 @@ abstract class _Config extends Config {
   List<AppStyle> get styles;
   @override
   String get swaggerUrl;
+  @override
+  bool get sentry;
   @override
   @JsonKey(ignore: true)
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>

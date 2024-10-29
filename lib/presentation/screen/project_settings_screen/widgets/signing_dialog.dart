@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:onix_flutter_bricks/core/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class SigningDialog extends StatefulWidget {
@@ -17,17 +18,11 @@ class SigningDialog extends StatefulWidget {
 
 class _SigningDialogState extends State<SigningDialog> {
   final _nameController = TextEditingController();
-
   final _orgUnitController = TextEditingController();
-
   final _orgController = TextEditingController();
-
   final _cityController = TextEditingController();
-
   final _stateController = TextEditingController();
-
   final _countryController = TextEditingController();
-
   final _passwordController = TextEditingController();
 
   bool _varsValid = true;
@@ -81,7 +76,7 @@ class _SigningDialogState extends State<SigningDialog> {
               onChanged: (_) => _validate(),
               autofocus: true,
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9 ]')),
+                FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9 ]')),
               ],
             ),
             const SizedBox(height: 15),
@@ -100,7 +95,7 @@ class _SigningDialogState extends State<SigningDialog> {
               style: context.appTextStyles.fs18,
               onChanged: (_) => _validate(),
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9 ]')),
+                FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9 ]')),
               ],
             ),
             const SizedBox(height: 15),
@@ -119,7 +114,7 @@ class _SigningDialogState extends State<SigningDialog> {
               style: context.appTextStyles.fs18,
               onChanged: (_) => _validate(),
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[-a-zA-Z0-9 ]')),
+                FilteringTextInputFormatter.allow(RegExp('[-a-zA-Z0-9 ]')),
               ],
             ),
             const SizedBox(height: 15),
@@ -138,7 +133,7 @@ class _SigningDialogState extends State<SigningDialog> {
               style: context.appTextStyles.fs18,
               onChanged: (_) => _validate(),
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]')),
+                FilteringTextInputFormatter.allow(RegExp('[a-zA-Z ]')),
               ],
             ),
             const SizedBox(height: 15),
@@ -157,7 +152,7 @@ class _SigningDialogState extends State<SigningDialog> {
               style: context.appTextStyles.fs18,
               onChanged: (_) => _validate(),
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]')),
+                FilteringTextInputFormatter.allow(RegExp('[a-zA-Z ]')),
               ],
             ),
             const SizedBox(height: 15),
@@ -177,7 +172,7 @@ class _SigningDialogState extends State<SigningDialog> {
               onChanged: (_) => _validate(),
               inputFormatters: [
                 LengthLimitingTextInputFormatter(2),
-                FilteringTextInputFormatter.allow(RegExp(r'[A-Z ]')),
+                FilteringTextInputFormatter.allow(RegExp('[A-Z ]')),
               ],
             ),
             const SizedBox(height: 15),
@@ -197,7 +192,9 @@ class _SigningDialogState extends State<SigningDialog> {
               style: context.appTextStyles.fs18,
               onChanged: (_) => _validate(),
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\d ]')),
+                FilteringTextInputFormatter.allow(
+                  AppConsts.digitsAndLatinWithSpaceOnly,
+                ),
               ],
             ),
           ],
@@ -269,29 +266,39 @@ class _SigningDialogState extends State<SigningDialog> {
     });
   }
 
-  Future<void> _onOk(BuildContext context) async {
-    Navigator.pop(context, [
-      _nameController.text.isNotEmpty
-          ? _nameController.text
-          : widget.signingVars[0],
-      _orgUnitController.text.isNotEmpty
-          ? _orgUnitController.text
-          : widget.signingVars[1],
-      _orgController.text.isNotEmpty
-          ? _orgController.text
-          : widget.signingVars[2],
-      _cityController.text.isNotEmpty
-          ? _cityController.text
-          : widget.signingVars[3],
-      _stateController.text.isNotEmpty
-          ? _stateController.text
-          : widget.signingVars[4],
-      _countryController.text.isNotEmpty
-          ? _countryController.text
-          : widget.signingVars[5],
-      _passwordController.text.isNotEmpty
-          ? _passwordController.text
-          : widget.signingVars[6],
-    ]);
+  void _onOk(BuildContext context) {
+    Navigator.pop(
+      context,
+      [
+        if (_nameController.text.isNotEmpty)
+          _nameController.text
+        else
+          widget.signingVars[0],
+        if (_orgUnitController.text.isNotEmpty)
+          _orgUnitController.text
+        else
+          widget.signingVars[1],
+        if (_orgController.text.isNotEmpty)
+          _orgController.text
+        else
+          widget.signingVars[2],
+        if (_cityController.text.isNotEmpty)
+          _cityController.text
+        else
+          widget.signingVars[3],
+        if (_stateController.text.isNotEmpty)
+          _stateController.text
+        else
+          widget.signingVars[4],
+        if (_countryController.text.isNotEmpty)
+          _countryController.text
+        else
+          widget.signingVars[5],
+        if (_passwordController.text.isNotEmpty)
+          _passwordController.text
+        else
+          widget.signingVars[6],
+      ],
+    );
   }
 }

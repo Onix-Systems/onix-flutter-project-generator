@@ -16,7 +16,7 @@ class TextStyleItem extends StatelessWidget {
         color: context.appColors.fadedColor,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

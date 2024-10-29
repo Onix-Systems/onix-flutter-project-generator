@@ -1,29 +1,25 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:onix_flutter_bricks/core/arch/domain/entity/result/result.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
-import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 import 'package:onix_flutter_bricks/util/process_runner.dart';
+import 'package:onix_flutter_core/onix_flutter_core.dart';
 
-///This class Generates Android keystore with given credentials and fix Gradle signing configuration
-class SigningGenerator implements BaseGenerationService<Result<dynamic>> {
+///This class Generates Android keystore with given credentials
+///and fix Gradle signing configuration
+class SigningGenerator
+    implements BaseGenerationService<Result<int>, SingingGeneratorParams> {
   final OutputService _outputService;
 
   SigningGenerator(this._outputService);
 
   @override
-  Future<Result<dynamic>> generate(BaseGenerationParams params) async {
-    if (params is! SingingGeneratorParams) {
-      return Result.error(
-        failure: SigningFailure(SigningFailureType.invalidParams),
-      );
-    }
+  Future<Result<int>> generate(SingingGeneratorParams params) async {
     try {
       _outputService
           .add('Keystore password: ${params.signingPassword}'.toInfoMessage());
@@ -36,7 +32,7 @@ class SigningGenerator implements BaseGenerationService<Result<dynamic>> {
         await directory.create();
       }
       final certificateFile = File('$workDirectory/upload-keystore.jks');
-      final certificateExist = await certificateFile.exists();
+      final certificateExist = certificateFile.existsSync();
       if (certificateExist) {
         return Result.error(
           failure: SigningFailure(SigningFailureType.signingAlreadyExist),
@@ -96,6 +92,11 @@ if (propFile.canRead()) {
     android.buildTypes.release.signingConfig = null
 }''';
 
+      final signingConfigString =
+          buildGradleContent.contains('signingConfig = signingConfigs.debug')
+              ? 'signingConfig = signingConfigs.debug'
+              : 'signingConfig signingConfigs.debug';
+
       ///Fix build types configuration
       await buildGradle.writeAsString(
         buildGradleContent.replaceAll(
@@ -103,7 +104,7 @@ if (propFile.canRead()) {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            $signingConfigString
         }
     }''',
           '''signingConfigs {

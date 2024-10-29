@@ -1,4 +1,4 @@
-import 'package:onix_flutter_bricks/core/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
 
 abstract final class ProjectNameValidator {
   static bool isValidName(String value) {
@@ -32,6 +32,6 @@ abstract final class ProjectNameValidator {
     'test',
     'utf',
     'watcher',
-    'yaml'
+    'yaml',
   };
 }

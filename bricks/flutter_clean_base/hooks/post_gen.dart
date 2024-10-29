@@ -133,30 +133,53 @@ Future<void> getDependencies(HookContext context) async {
   List<String> dependencies = [
     'cupertino_icons',
     'dio',
-    'pretty_dio_logger',
-    'dio_cache_interceptor',
-    'dio_cache_interceptor_hive_store',
     'hive_flutter',
     'freezed_annotation',
     'json_annotation',
     'get_it',
-    'flutter_bloc',
     'flutter_secure_storage:^9.0.0',
     'shared_preferences',
-    'internet_connection_checker',
-    'retry',
-    'encrypt',
     'path_provider',
     'logger',
     'fluttertoast',
     'collection',
     'flutter_dotenv',
-    'flutter_jailbreak_detection',
+    'jailbreak_root_detection',
     'gap',
-    // (Ivan Modlo): Connectivity Service has been blocked due to
-    // unit tests that differ from the major version are lower than 6
-    'connectivity_plus: ^6.0.3',
+    'onix_flutter_core',
   ];
+
+  List<String> devDependencies = [
+    'flutter_lints',
+    'build_runner',
+    'freezed',
+    'json_serializable',
+    'import_sorter',
+    'mockito',
+    'test',
+  ];
+
+  if (context.vars['isBloc']) {
+    dependencies.addAll(['flutter_bloc', 'onix_flutter_bloc']);
+    devDependencies.add('bloc_test');
+    await removeStateManagers(managers: ['provider', 'riverpod']);
+  }
+
+  if (context.vars['isProvider']) {
+    dependencies.addAll(['provider', 'onix_flutter_provider']);
+    await removeStateManagers(managers: ['bloc', 'riverpod']);
+  }
+
+  if (context.vars['isRiverpod']) {
+    dependencies.add('flutter_riverpod');
+    await removeStateManagers(managers: ['bloc', 'provider']);
+  }
+
+  if (context.vars['isBase']) {
+    await removeStateManagers(managers: ['provider', 'bloc', 'riverpod']);
+  } else {
+    dependencies.add('onix_flutter_core_models');
+  }
 
   if (!context.vars['web_only']) {
     if (context.vars['screen_util']) {
@@ -167,16 +190,9 @@ Future<void> getDependencies(HookContext context) async {
     dependencies.add('flutter_overlay_loader');
   }
 
-  List<String> devDependencies = [
-    'flutter_lints',
-    'build_runner',
-    'freezed',
-    'json_serializable',
-    'import_sorter',
-    'mockito',
-    'bloc_test',
-    'test',
-  ];
+  if (context.vars['sentry']) {
+    dependencies.add('sentry_flutter');
+  }
 
   if (context.vars['theme_generate']) {
     dependencies.add('theme_tailor_annotation:3.0.1');
@@ -264,6 +280,13 @@ Future<void> getDependencies(HookContext context) async {
   } else {
     'Failed to install flutter_native_splash... Exit code: $exitCode'.error();
     //exitBrick();
+  }
+}
+
+Future<void> removeStateManagers({required List<String> managers}) async {
+  for (var manager in managers) {
+    await Process.run('rm', ['$manager.dart'],
+        workingDirectory: '$name/lib/core/di');
   }
 }
 
@@ -482,6 +505,24 @@ flutter_additional_ios_build_settings(target)
         plistFileContent.replaceAll('''  <key>MinimumOSVersion</key>
   <string>11.0</string>''', '''  <key>MinimumOSVersion</key>
   <string>12.0</string>'''));
+
+    File mainInfoPlistFile = File('$name/ios/Runner/Info.plist');
+    String mainInfoPlistFileContent = mainInfoPlistFile.readAsStringSync();
+
+    mainInfoPlistFileContent = mainInfoPlistFileContent.replaceAll('''</dict>
+</plist>''', '''<key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>undecimus</string>
+            <string>sileo</string>
+            <string>zbra</string>
+            <string>filza</string>
+            <string>activator</string>
+            <string>cydia</string>
+        </array>
+	</dict>
+</plist>''');
+
+    mainInfoPlistFile.writeAsStringSync(mainInfoPlistFileContent);
 
     File xcodeWorkspaceFile =
         File('$name/ios/Runner.xcodeproj/project.pbxproj');

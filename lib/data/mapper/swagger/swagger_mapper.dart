@@ -15,7 +15,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/source_component.dar
 class SwaggerMapper {
   List<DataObjectComponent> mapDataObjects(SwaggerResponse input) {
     final dataObjects = List<DataObjectComponent>.empty(growable: true);
-    for (var e in input.swaggerModels) {
+    for (final e in input.swaggerModels) {
       final variables = e.variables
           .map(
             (variable) => DataVariableComponent(
@@ -38,8 +38,8 @@ class SwaggerMapper {
 
   List<EnumParamComponent> mapEnums(SwaggerResponse input) {
     final enumList = List<EnumParamComponent>.empty(growable: true);
-    for (var model in input.swaggerModels) {
-      for (var e in model.variables) {
+    for (final model in input.swaggerModels) {
+      for (final e in model.variables) {
         final enumClass = e.type.getSwaggerEnumReference();
         if (enumClass != null) {
           enumList.add(
@@ -56,12 +56,9 @@ class SwaggerMapper {
 
   List<SourceComponent> mapSources(SwaggerResponse input) {
     final sources = List<SourceComponent>.empty(growable: true);
-    for (var tag in input.swaggerTags) {
-      final sourceRequests = input.swaggerPaths
-          .where(
-            (e) => e.primaryTag == tag.name,
-          )
-          .toList();
+    for (final tag in input.swaggerTags) {
+      final sourceRequests =
+          input.swaggerPaths.where((e) => e.primaryTag == tag.name).toList();
       final requests = _mapRequests(sourceRequests);
       sources.add(
         SourceComponent(
@@ -75,7 +72,7 @@ class SwaggerMapper {
 
   List<RequestComponent> _mapRequests(List<BaseSwaggerPathResponse> input) {
     final requests = List<RequestComponent>.empty(growable: true);
-    for (var path in input) {
+    for (final path in input) {
       final requestResponseParam = _mapResponseParams(path);
       final requestBody = _mapRequestBodyParams(path);
       final multipartParams = _mapRequestMultipartParams(path);
@@ -94,6 +91,7 @@ class SwaggerMapper {
       );
       requests.add(request);
     }
+
     return requests;
   }
 
@@ -124,12 +122,13 @@ class SwaggerMapper {
     final multipartParams = input.input.whereType<RequestMultipart>();
     final paramComponents =
         List<RequestMultipartComponent>.empty(growable: true);
-    for (var e in multipartParams) {
+    for (final e in multipartParams) {
       paramComponents.add(
         RequestMultipartComponent(
-            name: e.variable.name,
-            type: e.variable.type,
-            isRequired: e.variable.isRequired),
+          name: e.variable.name,
+          type: e.variable.type,
+          isRequired: e.variable.isRequired,
+        ),
       );
     }
     return paramComponents;
@@ -140,12 +139,13 @@ class SwaggerMapper {
   ) {
     final queryParams = input.input.whereType<RequestQuery>();
     final paramComponents = List<RequestQueryComponent>.empty(growable: true);
-    for (var e in queryParams) {
+    for (final e in queryParams) {
       paramComponents.add(
         RequestQueryComponent(
-            name: e.variable.name,
-            type: e.variable.type,
-            isRequired: e.variable.isRequired),
+          name: e.variable.name,
+          type: e.variable.type,
+          isRequired: e.variable.isRequired,
+        ),
       );
     }
     return paramComponents;
@@ -156,12 +156,13 @@ class SwaggerMapper {
   ) {
     final pathParams = input.input.whereType<RequestPath>();
     final paramComponents = List<RequestPathComponent>.empty(growable: true);
-    for (var e in pathParams) {
+    for (final e in pathParams) {
       paramComponents.add(
         RequestPathComponent(
-            name: e.variable.name,
-            type: e.variable.type,
-            isRequired: e.variable.isRequired),
+          name: e.variable.name,
+          type: e.variable.type,
+          isRequired: e.variable.isRequired,
+        ),
       );
     }
     return paramComponents;

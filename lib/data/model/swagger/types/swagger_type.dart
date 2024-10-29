@@ -24,6 +24,12 @@ sealed class SwaggerType {
   String? getFileImportName(DataFileType fileType);
 
   String? getDefaultReturnType(DataFileType fileType);
+
+  String? getFullFileImport(String projectName, DataFileType fileType) {
+    final importName = getFileImportName(fileType);
+    if (importName == null) return null;
+    return "import 'package:$projectName/$importName';";
+  }
 }
 
 class SwaggerVariable extends SwaggerType {
@@ -65,7 +71,7 @@ class SwaggerReference extends SwaggerType {
 
   @override
   String getTypeDeclaration(DataFileType fileType) {
-    var clearName = reference;
+    final clearName = reference;
     if (fileType == DataFileType.none) {
       return clearName.pascalCase;
     }
@@ -77,7 +83,7 @@ class SwaggerReference extends SwaggerType {
 
   @override
   String getDefaultParserClosure(DataFileType fileType) =>
-      'return ${getTypeDeclaration(fileType)}.fromJson(response.data);';
+      'return ${getTypeDeclaration(fileType)}.fromJson(response.data,);';
 
   @override
   String? getFileImportName(DataFileType fileType) {
@@ -86,7 +92,7 @@ class SwaggerReference extends SwaggerType {
 
   @override
   String? getFileName(DataFileType fileType) {
-    var clearName = reference;
+    final clearName = reference;
     if (fileType == DataFileType.none) {
       return '${clearName.snakeCase}.dart';
     }
@@ -126,11 +132,12 @@ class SwaggerArray extends SwaggerType {
   @override
   String getDefaultParserClosure(DataFileType fileType) {
     if (itemType.type is SwaggerReference) {
-      final codeLines = List<String>.empty(growable: true);
-      codeLines.add('final jsonItems = response.data as List<dynamic>;');
-      codeLines.add(
-          'final items = jsonItems.map((e) => ${itemType.type.getTypeDeclaration(fileType)}.fromJson(e  as Map<String,dynamic>),).toList();');
-      codeLines.add('return items;');
+      final codeLines = List<String>.empty(growable: true)
+        ..add('final jsonItems = response.data as List<dynamic>;')
+        ..add(
+          'final items = jsonItems.map((e) => ${itemType.type.getTypeDeclaration(fileType)}.fromJson(e  as Map<String,dynamic>),).toList();',
+        )
+        ..add('return items;');
       return codeLines.join('\n');
     } else {
       return 'return response.data as List<${itemType.type.getTypeDeclaration(fileType)}>;';
@@ -150,7 +157,7 @@ class SwaggerArray extends SwaggerType {
       itemType.type.getFileFolder(fileType);
 
   @override
-  String? getDefaultReturnType(fileType) => '[]';
+  String? getDefaultReturnType(DataFileType fileType) => '[]';
 }
 
 class SwaggerEnum extends SwaggerType {
@@ -202,16 +209,24 @@ class SwaggerOperationDefault extends SwaggerType {
 
   @override
   String? getFileImportName(DataFileType fileType) =>
-      'core/arch/domain/entity/common/operation_status.dart';
+      '${getFileFolder(fileType)}/${getFileName(fileType)}';
 
   @override
-  String? getFileName(DataFileType fileType) => null;
+  String? getFileName(DataFileType fileType) => 'onix_flutter_core.dart';
 
   @override
-  String? getFileFolder(DataFileType fileType) => null;
+  String? getFileFolder(DataFileType fileType) => 'onix_flutter_core';
 
   @override
-  String? getDefaultReturnType(fileType) => 'OperationStatus.success';
+  String? getDefaultReturnType(DataFileType fileType) =>
+      'OperationStatus.success';
+
+  @override
+  String? getFullFileImport(String projectName, DataFileType fileType) {
+    final importName = getFileImportName(fileType);
+    if (importName == null) return null;
+    return "import 'package:$importName';";
+  }
 }
 
 class SwaggerFile extends SwaggerType {

@@ -1,5 +1,4 @@
-import 'package:{{project_name}}/core/arch/domain/entity/common/data_response.dart';
-import 'package:{{project_name}}/core/arch/domain/entity/common/operation_status.dart';
+import 'package:onix_flutter_core/onix_flutter_core.dart';
 
 //{response_imports}
 //{request_imports}
