@@ -15,7 +15,8 @@ import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/fingerprint_dialog_body.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/tools_popup_button.dart';
-import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/widgets/signing_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/flavors_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/signing_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
@@ -88,6 +89,8 @@ class _ProcedureSelectionScreenState extends BaseState<
                   switch (value) {
                     case ToolType.generateAndroidSigning:
                       _onGenerateSigningSelected(context);
+                    case ToolType.generateFlavors:
+                      _onGenerateFlavorsSelected(context);
                   }
                 },
               ),
@@ -279,6 +282,62 @@ class _ProcedureSelectionScreenState extends BaseState<
         ProcedureSelectionScreenEvent.onGenerateAndroidSigning(
           directory: directory,
           signingVars: signingVars,
+        ),
+      );
+    }
+  }
+
+  Future<void> _onGenerateFlavorsSelected(BuildContext context) async {
+    final directoryPath = await getDirectoryPath();
+    if (!context.mounted) {
+      return;
+    }
+    if (directoryPath == null) {
+      Dialogs.showOkDialog(
+        context: context,
+        isError: true,
+        title: S.of(context).pathNotSelectedTitle,
+        content: Text(
+          S.of(context).pathNotSelectedContent,
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
+          ),
+        ),
+      );
+      return;
+    }
+    final directory = Directory(directoryPath);
+    final isFlutterProject = directory.isFlutterProjectDirectory();
+    if (!isFlutterProject) {
+      Dialogs.showOkDialog(
+        context: context,
+        isError: true,
+        title: S.of(context).projectSelectErrorTitle,
+        content: Text(
+          S.of(context).projectSelectErrorMessage,
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
+          ),
+        ),
+      );
+      return;
+    }
+
+    final flavors = await showCupertinoModalPopup<Set<String>>(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => const FlavorsDialog(),
+    );
+
+    if (!context.mounted) {
+      return;
+    }
+
+    if (flavors != null) {
+      blocOf(context).add(
+        ProcedureSelectionScreenEvent.onGenerateFlavors(
+          directory: directory,
+          flavors: flavors.toSet(),
         ),
       );
     }

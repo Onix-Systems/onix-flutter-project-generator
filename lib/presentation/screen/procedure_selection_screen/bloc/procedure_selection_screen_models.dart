@@ -28,6 +28,11 @@ class ProcedureSelectionScreenEvent with _$ProcedureSelectionScreenEvent {
     required Directory directory,
     required List<String> signingVars,
   }) = ProcedureSelectionScreenEventOnAndroidSigning;
+
+  const factory ProcedureSelectionScreenEvent.onGenerateFlavors({
+    required Directory directory,
+    required Set<String> flavors,
+  }) = ProcedureSelectionScreenEventOnGenerateFlavors;
 }
 
 @freezed
@@ -41,6 +46,9 @@ class ProcedureSelectionScreenSR with _$ProcedureSelectionScreenSR {
   const factory ProcedureSelectionScreenSR.onAndroidSigningCreated({
     required List<Fingerprint> fingerprints,
   }) = _onAndroidSigningCreated;
+
+  const factory ProcedureSelectionScreenSR.onFlavorsCreated() =
+      _onFlavorsCreated;
 }
 
 @freezed

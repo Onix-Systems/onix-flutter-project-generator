@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
@@ -36,6 +37,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     on<ProcedureSelectionScreenEventOnNewProject>(_onNewProject);
     on<ProcedureSelectionScreenEventOnLocaleChange>(_onLocaleChange);
     on<ProcedureSelectionScreenEventOnAndroidSigning>(_onnAndroidSigning);
+    on<ProcedureSelectionScreenEventOnGenerateFlavors>(_onGenerateFlavors);
   }
 
   void _onInit(
@@ -150,5 +152,14 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
       onFailure(result.error.failure);
       return;
     }
+  }
+
+  Future<void> _onGenerateFlavors(
+    ProcedureSelectionScreenEventOnGenerateFlavors event,
+    Emitter<ProcedureSelectionScreenState> emit,
+  ) async {
+    showProgress();
+    logger.f('Generating flavors: ${event.flavors}');
+    await hideProgress();
   }
 }

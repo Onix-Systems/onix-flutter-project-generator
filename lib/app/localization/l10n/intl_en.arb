@@ -128,6 +128,8 @@
   "signingToolTitle": "Android signing configuration",
   "signingToolSuccessText": "Keystore and signing configuration created.",
   "generateAndroidSigning": "Generate Android signing config",
+  "generateFlavors": "Generate flavors",
+  "flavorName": "Flavor name",
   "signingErrorParams": "Failed to create signing config. Internal error happened, please contact a developer.",
   "signingErrorException": "Failed to create signing config. Is Android platform enabled and android folder exist?",
   "signingErrorExist": "Failed to create signing config. Certificate of configuration already exist.",

@@ -115,11 +115,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Integrate Firebase with FirebaseAuth?"),
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" First & last name"),
+        "flavorName": MessageLookupByLibrary.simpleMessage("Flavor name"),
         "flavorize": MessageLookupByLibrary.simpleMessage("Flavorize?"),
         "flavors": MessageLookupByLibrary.simpleMessage("Flavors"),
         "generate": MessageLookupByLibrary.simpleMessage("Generate"),
         "generateAndroidSigning": MessageLookupByLibrary.simpleMessage(
             "Generate Android signing config"),
+        "generateFlavors":
+            MessageLookupByLibrary.simpleMessage("Generate flavors"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Generate new project"),
         "generateProject":

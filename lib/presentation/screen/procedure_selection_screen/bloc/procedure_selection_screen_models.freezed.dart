@@ -24,6 +24,8 @@ mixin _$ProcedureSelectionScreenEvent {
     required TResult Function(String language) onLocaleChange,
     required TResult Function(Directory directory, List<String> signingVars)
         onGenerateAndroidSigning,
+    required TResult Function(Directory directory, Set<String> flavors)
+        onGenerateFlavors,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +36,8 @@ mixin _$ProcedureSelectionScreenEvent {
     TResult? Function(String language)? onLocaleChange,
     TResult? Function(Directory directory, List<String> signingVars)?
         onGenerateAndroidSigning,
+    TResult? Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +48,8 @@ mixin _$ProcedureSelectionScreenEvent {
     TResult Function(String language)? onLocaleChange,
     TResult Function(Directory directory, List<String> signingVars)?
         onGenerateAndroidSigning,
+    TResult Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +65,9 @@ mixin _$ProcedureSelectionScreenEvent {
     required TResult Function(
             ProcedureSelectionScreenEventOnAndroidSigning value)
         onGenerateAndroidSigning,
+    required TResult Function(
+            ProcedureSelectionScreenEventOnGenerateFlavors value)
+        onGenerateFlavors,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,6 +81,8 @@ mixin _$ProcedureSelectionScreenEvent {
         onLocaleChange,
     TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
+    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,6 +96,8 @@ mixin _$ProcedureSelectionScreenEvent {
         onLocaleChange,
     TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
+    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -197,6 +210,8 @@ class _$ProcedureSelectionScreenEventInitImpl
     required TResult Function(String language) onLocaleChange,
     required TResult Function(Directory directory, List<String> signingVars)
         onGenerateAndroidSigning,
+    required TResult Function(Directory directory, Set<String> flavors)
+        onGenerateFlavors,
   }) {
     return init(config);
   }
@@ -210,6 +225,8 @@ class _$ProcedureSelectionScreenEventInitImpl
     TResult? Function(String language)? onLocaleChange,
     TResult? Function(Directory directory, List<String> signingVars)?
         onGenerateAndroidSigning,
+    TResult? Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
   }) {
     return init?.call(config);
   }
@@ -223,6 +240,8 @@ class _$ProcedureSelectionScreenEventInitImpl
     TResult Function(String language)? onLocaleChange,
     TResult Function(Directory directory, List<String> signingVars)?
         onGenerateAndroidSigning,
+    TResult Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -244,6 +263,9 @@ class _$ProcedureSelectionScreenEventInitImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnAndroidSigning value)
         onGenerateAndroidSigning,
+    required TResult Function(
+            ProcedureSelectionScreenEventOnGenerateFlavors value)
+        onGenerateFlavors,
   }) {
     return init(this);
   }
@@ -260,6 +282,8 @@ class _$ProcedureSelectionScreenEventInitImpl
         onLocaleChange,
     TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
+    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
   }) {
     return init?.call(this);
   }
@@ -276,6 +300,8 @@ class _$ProcedureSelectionScreenEventInitImpl
         onLocaleChange,
     TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
+    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -377,6 +403,8 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
     required TResult Function(String language) onLocaleChange,
     required TResult Function(Directory directory, List<String> signingVars)
         onGenerateAndroidSigning,
+    required TResult Function(Directory directory, Set<String> flavors)
+        onGenerateFlavors,
   }) {
     return onNewProject(projectPath);
   }
@@ -390,6 +418,8 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
     TResult? Function(String language)? onLocaleChange,
     TResult? Function(Directory directory, List<String> signingVars)?
         onGenerateAndroidSigning,
+    TResult? Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
   }) {
     return onNewProject?.call(projectPath);
   }
@@ -403,6 +433,8 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
     TResult Function(String language)? onLocaleChange,
     TResult Function(Directory directory, List<String> signingVars)?
         onGenerateAndroidSigning,
+    TResult Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
     required TResult orElse(),
   }) {
     if (onNewProject != null) {
@@ -424,6 +456,9 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnAndroidSigning value)
         onGenerateAndroidSigning,
+    required TResult Function(
+            ProcedureSelectionScreenEventOnGenerateFlavors value)
+        onGenerateFlavors,
   }) {
     return onNewProject(this);
   }
@@ -440,6 +475,8 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
         onLocaleChange,
     TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
+    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
   }) {
     return onNewProject?.call(this);
   }
@@ -456,6 +493,8 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
         onLocaleChange,
     TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
+    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
     required TResult orElse(),
   }) {
     if (onNewProject != null) {
@@ -559,6 +598,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
     required TResult Function(String language) onLocaleChange,
     required TResult Function(Directory directory, List<String> signingVars)
         onGenerateAndroidSigning,
+    required TResult Function(Directory directory, Set<String> flavors)
+        onGenerateFlavors,
   }) {
     return onProjectOpen(projectURI);
   }
@@ -572,6 +613,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
     TResult? Function(String language)? onLocaleChange,
     TResult? Function(Directory directory, List<String> signingVars)?
         onGenerateAndroidSigning,
+    TResult? Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
   }) {
     return onProjectOpen?.call(projectURI);
   }
@@ -585,6 +628,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
     TResult Function(String language)? onLocaleChange,
     TResult Function(Directory directory, List<String> signingVars)?
         onGenerateAndroidSigning,
+    TResult Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
     required TResult orElse(),
   }) {
     if (onProjectOpen != null) {
@@ -606,6 +651,9 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnAndroidSigning value)
         onGenerateAndroidSigning,
+    required TResult Function(
+            ProcedureSelectionScreenEventOnGenerateFlavors value)
+        onGenerateFlavors,
   }) {
     return onProjectOpen(this);
   }
@@ -622,6 +670,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
         onLocaleChange,
     TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
+    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
   }) {
     return onProjectOpen?.call(this);
   }
@@ -638,6 +688,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
         onLocaleChange,
     TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
+    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
     required TResult orElse(),
   }) {
     if (onProjectOpen != null) {
@@ -743,6 +795,8 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
     required TResult Function(String language) onLocaleChange,
     required TResult Function(Directory directory, List<String> signingVars)
         onGenerateAndroidSigning,
+    required TResult Function(Directory directory, Set<String> flavors)
+        onGenerateFlavors,
   }) {
     return onLocaleChange(language);
   }
@@ -756,6 +810,8 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
     TResult? Function(String language)? onLocaleChange,
     TResult? Function(Directory directory, List<String> signingVars)?
         onGenerateAndroidSigning,
+    TResult? Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
   }) {
     return onLocaleChange?.call(language);
   }
@@ -769,6 +825,8 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
     TResult Function(String language)? onLocaleChange,
     TResult Function(Directory directory, List<String> signingVars)?
         onGenerateAndroidSigning,
+    TResult Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
     required TResult orElse(),
   }) {
     if (onLocaleChange != null) {
@@ -790,6 +848,9 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnAndroidSigning value)
         onGenerateAndroidSigning,
+    required TResult Function(
+            ProcedureSelectionScreenEventOnGenerateFlavors value)
+        onGenerateFlavors,
   }) {
     return onLocaleChange(this);
   }
@@ -806,6 +867,8 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
         onLocaleChange,
     TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
+    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
   }) {
     return onLocaleChange?.call(this);
   }
@@ -822,6 +885,8 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
         onLocaleChange,
     TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
+    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
     required TResult orElse(),
   }) {
     if (onLocaleChange != null) {
@@ -943,6 +1008,8 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
     required TResult Function(String language) onLocaleChange,
     required TResult Function(Directory directory, List<String> signingVars)
         onGenerateAndroidSigning,
+    required TResult Function(Directory directory, Set<String> flavors)
+        onGenerateFlavors,
   }) {
     return onGenerateAndroidSigning(directory, signingVars);
   }
@@ -956,6 +1023,8 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
     TResult? Function(String language)? onLocaleChange,
     TResult? Function(Directory directory, List<String> signingVars)?
         onGenerateAndroidSigning,
+    TResult? Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
   }) {
     return onGenerateAndroidSigning?.call(directory, signingVars);
   }
@@ -969,6 +1038,8 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
     TResult Function(String language)? onLocaleChange,
     TResult Function(Directory directory, List<String> signingVars)?
         onGenerateAndroidSigning,
+    TResult Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
     required TResult orElse(),
   }) {
     if (onGenerateAndroidSigning != null) {
@@ -990,6 +1061,9 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnAndroidSigning value)
         onGenerateAndroidSigning,
+    required TResult Function(
+            ProcedureSelectionScreenEventOnGenerateFlavors value)
+        onGenerateFlavors,
   }) {
     return onGenerateAndroidSigning(this);
   }
@@ -1006,6 +1080,8 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
         onLocaleChange,
     TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
+    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
   }) {
     return onGenerateAndroidSigning?.call(this);
   }
@@ -1022,6 +1098,8 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
         onLocaleChange,
     TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
+    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
     required TResult orElse(),
   }) {
     if (onGenerateAndroidSigning != null) {
@@ -1047,6 +1125,220 @@ abstract class ProcedureSelectionScreenEventOnAndroidSigning
 }
 
 /// @nodoc
+abstract class _$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWith<
+    $Res> {
+  factory _$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWith(
+          _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl value,
+          $Res Function(_$ProcedureSelectionScreenEventOnGenerateFlavorsImpl)
+              then) =
+      __$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Directory directory, Set<String> flavors});
+}
+
+/// @nodoc
+class __$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWithImpl<$Res>
+    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
+        _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl>
+    implements
+        _$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWith<$Res> {
+  __$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWithImpl(
+      _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl _value,
+      $Res Function(_$ProcedureSelectionScreenEventOnGenerateFlavorsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? directory = null,
+    Object? flavors = null,
+  }) {
+    return _then(_$ProcedureSelectionScreenEventOnGenerateFlavorsImpl(
+      directory: null == directory
+          ? _value.directory
+          : directory // ignore: cast_nullable_to_non_nullable
+              as Directory,
+      flavors: null == flavors
+          ? _value._flavors
+          : flavors // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
+    implements ProcedureSelectionScreenEventOnGenerateFlavors {
+  const _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl(
+      {required this.directory, required final Set<String> flavors})
+      : _flavors = flavors;
+
+  @override
+  final Directory directory;
+  final Set<String> _flavors;
+  @override
+  Set<String> get flavors {
+    if (_flavors is EqualUnmodifiableSetView) return _flavors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_flavors);
+  }
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenEvent.onGenerateFlavors(directory: $directory, flavors: $flavors)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl &&
+            (identical(other.directory, directory) ||
+                other.directory == directory) &&
+            const DeepCollectionEquality().equals(other._flavors, _flavors));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, directory, const DeepCollectionEquality().hash(_flavors));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWith<
+          _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl>
+      get copyWith =>
+          __$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWithImpl<
+                  _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function(String projectPath) onNewProject,
+    required TResult Function(String projectURI) onProjectOpen,
+    required TResult Function(String language) onLocaleChange,
+    required TResult Function(Directory directory, List<String> signingVars)
+        onGenerateAndroidSigning,
+    required TResult Function(Directory directory, Set<String> flavors)
+        onGenerateFlavors,
+  }) {
+    return onGenerateFlavors(directory, flavors);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function(String projectPath)? onNewProject,
+    TResult? Function(String projectURI)? onProjectOpen,
+    TResult? Function(String language)? onLocaleChange,
+    TResult? Function(Directory directory, List<String> signingVars)?
+        onGenerateAndroidSigning,
+    TResult? Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
+  }) {
+    return onGenerateFlavors?.call(directory, flavors);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function(String projectPath)? onNewProject,
+    TResult Function(String projectURI)? onProjectOpen,
+    TResult Function(String language)? onLocaleChange,
+    TResult Function(Directory directory, List<String> signingVars)?
+        onGenerateAndroidSigning,
+    TResult Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
+    required TResult orElse(),
+  }) {
+    if (onGenerateFlavors != null) {
+      return onGenerateFlavors(directory, flavors);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProcedureSelectionScreenEventInit value) init,
+    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
+        onNewProject,
+    required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
+        onProjectOpen,
+    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
+        onLocaleChange,
+    required TResult Function(
+            ProcedureSelectionScreenEventOnAndroidSigning value)
+        onGenerateAndroidSigning,
+    required TResult Function(
+            ProcedureSelectionScreenEventOnGenerateFlavors value)
+        onGenerateFlavors,
+  }) {
+    return onGenerateFlavors(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
+    TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
+        onProjectOpen,
+    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
+    TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
+        onGenerateAndroidSigning,
+    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
+  }) {
+    return onGenerateFlavors?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
+    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
+        onProjectOpen,
+    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
+    TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
+        onGenerateAndroidSigning,
+    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
+    required TResult orElse(),
+  }) {
+    if (onGenerateFlavors != null) {
+      return onGenerateFlavors(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProcedureSelectionScreenEventOnGenerateFlavors
+    implements ProcedureSelectionScreenEvent {
+  const factory ProcedureSelectionScreenEventOnGenerateFlavors(
+          {required final Directory directory,
+          required final Set<String> flavors}) =
+      _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl;
+
+  Directory get directory;
+  Set<String> get flavors;
+  @JsonKey(ignore: true)
+  _$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWith<
+          _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ProcedureSelectionScreenSR {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -1055,6 +1347,7 @@ mixin _$ProcedureSelectionScreenSR {
     required TResult Function() onNewProject,
     required TResult Function(List<Fingerprint> fingerprints)
         onAndroidSigningCreated,
+    required TResult Function() onFlavorsCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1063,6 +1356,7 @@ mixin _$ProcedureSelectionScreenSR {
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
     TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    TResult? Function()? onFlavorsCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1071,6 +1365,7 @@ mixin _$ProcedureSelectionScreenSR {
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
     TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    TResult Function()? onFlavorsCreated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1081,6 +1376,7 @@ mixin _$ProcedureSelectionScreenSR {
     required TResult Function(_onNewProject value) onNewProject,
     required TResult Function(_onAndroidSigningCreated value)
         onAndroidSigningCreated,
+    required TResult Function(_onFlavorsCreated value) onFlavorsCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1089,6 +1385,7 @@ mixin _$ProcedureSelectionScreenSR {
     TResult? Function(_EmptyConfig value)? emptyConfig,
     TResult? Function(_onNewProject value)? onNewProject,
     TResult? Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    TResult? Function(_onFlavorsCreated value)? onFlavorsCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1097,6 +1394,7 @@ mixin _$ProcedureSelectionScreenSR {
     TResult Function(_EmptyConfig value)? emptyConfig,
     TResult Function(_onNewProject value)? onNewProject,
     TResult Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    TResult Function(_onFlavorsCreated value)? onFlavorsCreated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1165,6 +1463,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
     required TResult Function() onNewProject,
     required TResult Function(List<Fingerprint> fingerprints)
         onAndroidSigningCreated,
+    required TResult Function() onFlavorsCreated,
   }) {
     return loadFinished();
   }
@@ -1176,6 +1475,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
     TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    TResult? Function()? onFlavorsCreated,
   }) {
     return loadFinished?.call();
   }
@@ -1187,6 +1487,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
     TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    TResult Function()? onFlavorsCreated,
     required TResult orElse(),
   }) {
     if (loadFinished != null) {
@@ -1203,6 +1504,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
     required TResult Function(_onNewProject value) onNewProject,
     required TResult Function(_onAndroidSigningCreated value)
         onAndroidSigningCreated,
+    required TResult Function(_onFlavorsCreated value) onFlavorsCreated,
   }) {
     return loadFinished(this);
   }
@@ -1214,6 +1516,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
     TResult? Function(_EmptyConfig value)? emptyConfig,
     TResult? Function(_onNewProject value)? onNewProject,
     TResult? Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    TResult? Function(_onFlavorsCreated value)? onFlavorsCreated,
   }) {
     return loadFinished?.call(this);
   }
@@ -1225,6 +1528,7 @@ class _$LoadFinishedImpl implements _LoadFinished {
     TResult Function(_EmptyConfig value)? emptyConfig,
     TResult Function(_onNewProject value)? onNewProject,
     TResult Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    TResult Function(_onFlavorsCreated value)? onFlavorsCreated,
     required TResult orElse(),
   }) {
     if (loadFinished != null) {
@@ -1281,6 +1585,7 @@ class _$EmptyConfigImpl implements _EmptyConfig {
     required TResult Function() onNewProject,
     required TResult Function(List<Fingerprint> fingerprints)
         onAndroidSigningCreated,
+    required TResult Function() onFlavorsCreated,
   }) {
     return emptyConfig();
   }
@@ -1292,6 +1597,7 @@ class _$EmptyConfigImpl implements _EmptyConfig {
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
     TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    TResult? Function()? onFlavorsCreated,
   }) {
     return emptyConfig?.call();
   }
@@ -1303,6 +1609,7 @@ class _$EmptyConfigImpl implements _EmptyConfig {
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
     TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    TResult Function()? onFlavorsCreated,
     required TResult orElse(),
   }) {
     if (emptyConfig != null) {
@@ -1319,6 +1626,7 @@ class _$EmptyConfigImpl implements _EmptyConfig {
     required TResult Function(_onNewProject value) onNewProject,
     required TResult Function(_onAndroidSigningCreated value)
         onAndroidSigningCreated,
+    required TResult Function(_onFlavorsCreated value) onFlavorsCreated,
   }) {
     return emptyConfig(this);
   }
@@ -1330,6 +1638,7 @@ class _$EmptyConfigImpl implements _EmptyConfig {
     TResult? Function(_EmptyConfig value)? emptyConfig,
     TResult? Function(_onNewProject value)? onNewProject,
     TResult? Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    TResult? Function(_onFlavorsCreated value)? onFlavorsCreated,
   }) {
     return emptyConfig?.call(this);
   }
@@ -1341,6 +1650,7 @@ class _$EmptyConfigImpl implements _EmptyConfig {
     TResult Function(_EmptyConfig value)? emptyConfig,
     TResult Function(_onNewProject value)? onNewProject,
     TResult Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    TResult Function(_onFlavorsCreated value)? onFlavorsCreated,
     required TResult orElse(),
   }) {
     if (emptyConfig != null) {
@@ -1397,6 +1707,7 @@ class _$onNewProjectImpl implements _onNewProject {
     required TResult Function() onNewProject,
     required TResult Function(List<Fingerprint> fingerprints)
         onAndroidSigningCreated,
+    required TResult Function() onFlavorsCreated,
   }) {
     return onNewProject();
   }
@@ -1408,6 +1719,7 @@ class _$onNewProjectImpl implements _onNewProject {
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
     TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    TResult? Function()? onFlavorsCreated,
   }) {
     return onNewProject?.call();
   }
@@ -1419,6 +1731,7 @@ class _$onNewProjectImpl implements _onNewProject {
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
     TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    TResult Function()? onFlavorsCreated,
     required TResult orElse(),
   }) {
     if (onNewProject != null) {
@@ -1435,6 +1748,7 @@ class _$onNewProjectImpl implements _onNewProject {
     required TResult Function(_onNewProject value) onNewProject,
     required TResult Function(_onAndroidSigningCreated value)
         onAndroidSigningCreated,
+    required TResult Function(_onFlavorsCreated value) onFlavorsCreated,
   }) {
     return onNewProject(this);
   }
@@ -1446,6 +1760,7 @@ class _$onNewProjectImpl implements _onNewProject {
     TResult? Function(_EmptyConfig value)? emptyConfig,
     TResult? Function(_onNewProject value)? onNewProject,
     TResult? Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    TResult? Function(_onFlavorsCreated value)? onFlavorsCreated,
   }) {
     return onNewProject?.call(this);
   }
@@ -1457,6 +1772,7 @@ class _$onNewProjectImpl implements _onNewProject {
     TResult Function(_EmptyConfig value)? emptyConfig,
     TResult Function(_onNewProject value)? onNewProject,
     TResult Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    TResult Function(_onFlavorsCreated value)? onFlavorsCreated,
     required TResult orElse(),
   }) {
     if (onNewProject != null) {
@@ -1552,6 +1868,7 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
     required TResult Function() onNewProject,
     required TResult Function(List<Fingerprint> fingerprints)
         onAndroidSigningCreated,
+    required TResult Function() onFlavorsCreated,
   }) {
     return onAndroidSigningCreated(fingerprints);
   }
@@ -1563,6 +1880,7 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
     TResult? Function()? emptyConfig,
     TResult? Function()? onNewProject,
     TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    TResult? Function()? onFlavorsCreated,
   }) {
     return onAndroidSigningCreated?.call(fingerprints);
   }
@@ -1574,6 +1892,7 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
     TResult Function()? emptyConfig,
     TResult Function()? onNewProject,
     TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    TResult Function()? onFlavorsCreated,
     required TResult orElse(),
   }) {
     if (onAndroidSigningCreated != null) {
@@ -1590,6 +1909,7 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
     required TResult Function(_onNewProject value) onNewProject,
     required TResult Function(_onAndroidSigningCreated value)
         onAndroidSigningCreated,
+    required TResult Function(_onFlavorsCreated value) onFlavorsCreated,
   }) {
     return onAndroidSigningCreated(this);
   }
@@ -1601,6 +1921,7 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
     TResult? Function(_EmptyConfig value)? emptyConfig,
     TResult? Function(_onNewProject value)? onNewProject,
     TResult? Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    TResult? Function(_onFlavorsCreated value)? onFlavorsCreated,
   }) {
     return onAndroidSigningCreated?.call(this);
   }
@@ -1612,6 +1933,7 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
     TResult Function(_EmptyConfig value)? emptyConfig,
     TResult Function(_onNewProject value)? onNewProject,
     TResult Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    TResult Function(_onFlavorsCreated value)? onFlavorsCreated,
     required TResult orElse(),
   }) {
     if (onAndroidSigningCreated != null) {
@@ -1630,6 +1952,129 @@ abstract class _onAndroidSigningCreated implements ProcedureSelectionScreenSR {
   @JsonKey(ignore: true)
   _$$onAndroidSigningCreatedImplCopyWith<_$onAndroidSigningCreatedImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$onFlavorsCreatedImplCopyWith<$Res> {
+  factory _$$onFlavorsCreatedImplCopyWith(_$onFlavorsCreatedImpl value,
+          $Res Function(_$onFlavorsCreatedImpl) then) =
+      __$$onFlavorsCreatedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$onFlavorsCreatedImplCopyWithImpl<$Res>
+    extends _$ProcedureSelectionScreenSRCopyWithImpl<$Res,
+        _$onFlavorsCreatedImpl>
+    implements _$$onFlavorsCreatedImplCopyWith<$Res> {
+  __$$onFlavorsCreatedImplCopyWithImpl(_$onFlavorsCreatedImpl _value,
+      $Res Function(_$onFlavorsCreatedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$onFlavorsCreatedImpl implements _onFlavorsCreated {
+  const _$onFlavorsCreatedImpl();
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenSR.onFlavorsCreated()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$onFlavorsCreatedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadFinished,
+    required TResult Function() emptyConfig,
+    required TResult Function() onNewProject,
+    required TResult Function(List<Fingerprint> fingerprints)
+        onAndroidSigningCreated,
+    required TResult Function() onFlavorsCreated,
+  }) {
+    return onFlavorsCreated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadFinished,
+    TResult? Function()? emptyConfig,
+    TResult? Function()? onNewProject,
+    TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    TResult? Function()? onFlavorsCreated,
+  }) {
+    return onFlavorsCreated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadFinished,
+    TResult Function()? emptyConfig,
+    TResult Function()? onNewProject,
+    TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    TResult Function()? onFlavorsCreated,
+    required TResult orElse(),
+  }) {
+    if (onFlavorsCreated != null) {
+      return onFlavorsCreated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadFinished value) loadFinished,
+    required TResult Function(_EmptyConfig value) emptyConfig,
+    required TResult Function(_onNewProject value) onNewProject,
+    required TResult Function(_onAndroidSigningCreated value)
+        onAndroidSigningCreated,
+    required TResult Function(_onFlavorsCreated value) onFlavorsCreated,
+  }) {
+    return onFlavorsCreated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadFinished value)? loadFinished,
+    TResult? Function(_EmptyConfig value)? emptyConfig,
+    TResult? Function(_onNewProject value)? onNewProject,
+    TResult? Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    TResult? Function(_onFlavorsCreated value)? onFlavorsCreated,
+  }) {
+    return onFlavorsCreated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadFinished value)? loadFinished,
+    TResult Function(_EmptyConfig value)? emptyConfig,
+    TResult Function(_onNewProject value)? onNewProject,
+    TResult Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    TResult Function(_onFlavorsCreated value)? onFlavorsCreated,
+    required TResult orElse(),
+  }) {
+    if (onFlavorsCreated != null) {
+      return onFlavorsCreated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _onFlavorsCreated implements ProcedureSelectionScreenSR {
+  const factory _onFlavorsCreated() = _$onFlavorsCreatedImpl;
 }
 
 /// @nodoc
