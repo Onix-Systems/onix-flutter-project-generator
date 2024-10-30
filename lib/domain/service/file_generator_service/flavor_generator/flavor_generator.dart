@@ -62,7 +62,8 @@ class FlavorGenerator
               var srcFile =
                   File('$name/assets/launcher_icons/ic_launcher_$flavor.png');
               await srcFile.copy(
-                  '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
+                '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
+              );
 
               await srcFile.delete();
 
@@ -75,7 +76,8 @@ class FlavorGenerator
             default:
               var srcFile = File('$name/assets/launcher_icons/ic_launcher.png');
               await srcFile.copy(
-                  '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
+                '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
+              );
               if (flavor == params.flavors.last) {
                 await srcFile.delete();
               }
@@ -129,8 +131,8 @@ class FlavorGenerator
       if (exitCode == 0) {
         for (final flavor in params.flavors) {
           final makeFlavorFile = await File(
-                  '$name/.idea/runConfigurations/${isGenerated ? 'make-' : ''}$flavor.xml')
-              .create();
+            '$name/.idea/runConfigurations/${isGenerated ? 'make-' : ''}$flavor.xml',
+          ).create();
 
           var makeContent = '';
 
@@ -191,7 +193,9 @@ $flavor:
             mainFileContent =
                 ["import 'app.dart';", mainFileContent].join('\n');
             mainFileContent = mainFileContent.replaceAll(
-                'runApp(const MyApp());', 'runApp(const App());');
+              'runApp(const MyApp());',
+              'runApp(const App());',
+            );
 
             var appContent = await File('$name/lib/app.dart').readAsString();
 
@@ -201,7 +205,9 @@ $flavor:
                   'const MyApp()',
                 )
                 .replaceAll(
-                    "import 'pages/my_home_page.dart';", "import 'main.dart';");
+                  "import 'pages/my_home_page.dart';",
+                  "import 'main.dart';",
+                );
             await File('$name/lib/app.dart').writeAsString(appContent);
           }
 
@@ -216,8 +222,8 @@ $flavor:
           );
 
           var mainFlavorFileContent = File(
-                  '$name/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart')
-              .readAsStringSync();
+            '$name/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
+          ).readAsStringSync();
 
           mainFlavorFileContent = mainFlavorFileContent
               .replaceAll(
@@ -234,8 +240,8 @@ $flavor:
               );
 
           await File(
-                  '$name/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart')
-              .writeAsString(mainFlavorFileContent);
+            '$name/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
+          ).writeAsString(mainFlavorFileContent);
 
           if (isIOsEnabled) {
             for (final run in ['Debug', 'Profile', 'Release']) {
