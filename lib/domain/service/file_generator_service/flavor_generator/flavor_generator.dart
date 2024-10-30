@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/flavorizing_failure.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
@@ -46,46 +47,51 @@ class FlavorGenerator
         isMacOsEnabled,
       );
 
-      await Directory('$name/flavor_assets').create(recursive: true);
+      final isGenerated = _isGenerated(name);
 
-      for (final flavor in params.flavors) {
-        await Directory('$name/flavor_assets/$flavor/launcher_icons')
-            .create(recursive: true);
-        switch (flavor) {
-          case 'dev':
-          case 'prod':
-            var srcFile =
-                File('$name/assets/launcher_icons/ic_launcher_$flavor.png');
-            await srcFile.copy(
-                '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
+      ///Manipulations with icons
+      if (isGenerated) {
+        await Directory('$name/flavor_assets').create(recursive: true);
 
-            await srcFile.delete();
+        for (final flavor in params.flavors) {
+          await Directory('$name/flavor_assets/$flavor/launcher_icons')
+              .create(recursive: true);
+          switch (flavor) {
+            case 'dev':
+            case 'prod':
+              var srcFile =
+                  File('$name/assets/launcher_icons/ic_launcher_$flavor.png');
+              await srcFile.copy(
+                  '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
 
-            srcFile = File('$name/assets/android12splash_$flavor.png');
-            await srcFile
-                .copy('$name/flavor_assets/$flavor/android12splash.png');
-
-            await srcFile.delete();
-
-          default:
-            var srcFile = File('$name/assets/launcher_icons/ic_launcher.png');
-            await srcFile.copy(
-                '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
-            if (flavor == params.flavors.last) {
               await srcFile.delete();
-            }
 
-            srcFile = File('$name/assets/android12splash.png');
-            await srcFile
-                .copy('$name/flavor_assets/$flavor/android12splash.png');
+              srcFile = File('$name/assets/android12splash_$flavor.png');
+              await srcFile
+                  .copy('$name/flavor_assets/$flavor/android12splash.png');
 
-            if (flavor == params.flavors.last) {
               await srcFile.delete();
-            }
+
+            default:
+              var srcFile = File('$name/assets/launcher_icons/ic_launcher.png');
+              await srcFile.copy(
+                  '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png');
+              if (flavor == params.flavors.last) {
+                await srcFile.delete();
+              }
+
+              srcFile = File('$name/assets/android12splash.png');
+              await srcFile
+                  .copy('$name/flavor_assets/$flavor/android12splash.png');
+
+              if (flavor == params.flavors.last) {
+                await srcFile.delete();
+              }
+          }
         }
       }
 
-      //Save main.dart content
+      ///Save main.dart content
       var mainFileContent = File('$name/lib/main.dart').readAsStringSync();
 
       final addFlavorizrProc = await Process.start(
@@ -121,14 +127,15 @@ class FlavorGenerator
       exitCode = await flavorizrProc.exitCode;
 
       if (exitCode == 0) {
-        //'Flavorized successfully'.log();
-
         for (final flavor in params.flavors) {
-          final makeFlavorFile =
-              await File('$name/.idea/runConfigurations/make-${flavor}.xml')
-                  .create();
+          final makeFlavorFile = await File(
+                  '$name/.idea/runConfigurations/${isGenerated ? 'make-' : ''}$flavor.xml')
+              .create();
 
-          final makeContent = '''
+          var makeContent = '';
+
+          if (isGenerated) {
+            makeContent = '''
 <component name="ProjectRunConfigurationManager">
     <configuration default="false" name="make-$flavor" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
         <makefile filename="\$PROJECT_DIR\$/Makefile" target="$flavor" workingDirectory="" arguments="">
@@ -138,14 +145,25 @@ class FlavorGenerator
     </configuration>
 </component>
       ''';
+          } else {
+            makeContent = '''
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="$flavor" type="FlutterRunConfigurationType" factoryName="Flutter">
+    <option name="buildFlavor" value="$flavor" />
+    <option name="filePath" value="\$PROJECT_DIR\$/lib/flavors/main_$flavor.dart" />
+  </configuration>
+</component>
+''';
+          }
 
           await makeFlavorFile.writeAsString(makeContent);
 
-          final makeFile = File('$name/Makefile');
+          if (isGenerated) {
+            final makeFile = File('$name/Makefile');
 
-          final makeFileContent = await makeFile.readAsString();
+            final makeFileContent = await makeFile.readAsString();
 
-          await makeFile.writeAsString('''
+            await makeFile.writeAsString('''
 $makeFileContent
 
 $flavor:
@@ -154,14 +172,38 @@ $flavor:
 \t@cp -r \$(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
 \tdart run flutter_native_splash:create
 ''');
+          }
 
-          await Directory('$name/lib/app/flavors').create(recursive: true);
+          await Directory('$name/lib/${isGenerated ? 'app/' : ''}flavors')
+              .create(recursive: true);
 
-          // await Process.run(
-          //     'mv', ['main_$flavor.gen.dart', 'main_$flavor.dart'],
-          //     workingDirectory: '$name/lib/app/flavors');
+          mainFileContent = mainFileContent.replaceAll(
+            'void main()',
+            'Future<void> mainApp() async',
+          );
 
-          mainFileContent = mainFileContent.replaceAll('main()', 'mainApp()');
+          mainFileContent = mainFileContent.replaceAll(
+            'Future<void> main()',
+            'Future<void> mainApp()',
+          );
+
+          if (!isGenerated) {
+            mainFileContent =
+                ["import 'app.dart';", mainFileContent].join('\n');
+            mainFileContent = mainFileContent.replaceAll(
+                'runApp(const MyApp());', 'runApp(const App());');
+
+            var appContent = await File('$name/lib/app.dart').readAsString();
+
+            appContent = appContent
+                .replaceAll(
+                  'MyHomePage()',
+                  'const MyApp()',
+                )
+                .replaceAll(
+                    "import 'pages/my_home_page.dart';", "import 'main.dart';");
+            await File('$name/lib/app.dart').writeAsString(appContent);
+          }
 
           await File('$name/lib/main.dart').writeAsString(mainFileContent);
 
@@ -169,13 +211,13 @@ $flavor:
             'mv',
             [
               '$name/lib/main_$flavor.dart',
-              '$name/lib/app/flavors/main_$flavor.dart',
+              '$name/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
             ],
           );
 
-          var mainFlavorFileContent =
-              File('$name/lib/app/flavors/main_$flavor.dart')
-                  .readAsStringSync();
+          var mainFlavorFileContent = File(
+                  '$name/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart')
+              .readAsStringSync();
 
           mainFlavorFileContent = mainFlavorFileContent
               .replaceAll(
@@ -184,14 +226,15 @@ $flavor:
               )
               .replaceAll(
                 "import 'main.dart' as runner;",
-                "import 'package:flavors_test/main.dart' as runner;",
+                "import 'package:$projectName/main.dart' as runner;",
               )
               .replaceAll(
                 'runner.main()',
                 'runner.mainApp()',
               );
 
-          await File('$name/lib/app/flavors/main_$flavor.dart')
+          await File(
+                  '$name/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart')
               .writeAsString(mainFlavorFileContent);
 
           if (isIOsEnabled) {
@@ -202,7 +245,7 @@ $flavor:
                 ..write(
                   content.replaceAll(
                     'lib/main_$flavor.dart',
-                    'lib/app/flavors/main_$flavor.dart',
+                    'lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
                   ),
                 );
               await writer.flush();
@@ -218,19 +261,21 @@ $flavor:
         );
         await Process.run(
           'rm',
-          ['ic_launcher.png'],
-          workingDirectory: '$name/assets/launcher_icons',
-        );
-        await Process.run(
-          'rm',
           ['main_dart.xml'],
           workingDirectory: '$name/.idea/runConfigurations',
         );
-        await Process.run(
-          'rm',
-          ['app.dart'],
-          workingDirectory: '$name/lib',
-        );
+        if (isGenerated) {
+          await Process.run(
+            'rm',
+            ['ic_launcher.png'],
+            workingDirectory: '$name/assets/launcher_icons',
+          );
+          await Process.run(
+            'rm',
+            ['app.dart'],
+            workingDirectory: '$name/lib',
+          );
+        }
       } else {
         logger.e(
           'Flavorizing failed with exit code $exitCode',
@@ -255,6 +300,8 @@ $flavor:
   ) async {
     ///START:Flavorizer config injection
     final isFlavorized = params.flavors.isNotEmpty;
+
+    final isGenerated = _isGenerated(params.projectFolder);
 
     final name = params.projectFolder;
 
@@ -287,7 +334,10 @@ $flavor:
             ..add('      android:')
             ..add('        applicationId: "$org.$projectName$packageSuffix"')
             ..add(
-                '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"')
+              isGenerated
+                  ? '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"'
+                  : '',
+            )
             ..add('');
         }
         if (isIOsEnabled) {
@@ -295,7 +345,10 @@ $flavor:
             ..add('      ios:')
             ..add('        bundleId: "$org.$projectName$packageSuffix"')
             ..add(
-                '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"')
+              isGenerated
+                  ? '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"'
+                  : '',
+            )
             ..add('');
         }
         if (isMacOsEnabled) {
@@ -303,17 +356,27 @@ $flavor:
             ..add('      macos:')
             ..add('        bundleId: "$org.$projectName$packageSuffix"')
             ..add(
-                '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"')
+              isGenerated
+                  ? '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"'
+                  : '',
+            )
             ..add('');
         }
 
         lines.add('');
       }
       final flavorLines = lines.join('\n');
-      final flavorContent = pubspecFileContent.replaceAll(
-        flavorizrInjectKey,
-        flavorLines,
-      );
+
+      var flavorContent = '';
+
+      if (isGenerated) {
+        flavorContent = pubspecFileContent.replaceAll(
+          flavorizrInjectKey,
+          flavorLines,
+        );
+      } else {
+        flavorContent = [pubspecFileContent, flavorLines].join('\n');
+      }
       pubspecFile.writeAsStringSync(flavorContent);
     } else {
       flavorizrInjectKey.replaceAll(flavorizrInjectKey, '');
@@ -336,15 +399,17 @@ $flavor:
       final appBuildGradleContentLines = appBuildGradleContent.split('\n');
 
       final applicationIdLine = appBuildGradleContentLines
-          .firstWhere((element) => element.contains('applicationId = '));
+          .firstWhereOrNull((element) => element.contains('applicationId = '));
 
-      final lines = applicationIdLine
-          .split('applicationId = ')
-          .last
-          .replaceAll('"', '')
-          .split('.');
+      if (applicationIdLine != null) {
+        final lines = applicationIdLine
+            .split('applicationId = ')
+            .last
+            .replaceAll('"', '')
+            .split('.');
 
-      return lines.sublist(0, lines.length - 1).join('.');
+        return lines.sublist(0, lines.length - 1).join('.');
+      }
     }
 
     if (pbxProjFile.existsSync()) {
@@ -356,6 +421,8 @@ $flavor:
           .map((e) => e.split('PRODUCT_BUNDLE_IDENTIFIER = ').last.split('.'))
           .toSet();
 
+      if (applicationIdLines.isEmpty) return '';
+
       var orgSegments = applicationIdLines.first.toSet();
 
       for (final org in applicationIdLines) {
@@ -366,5 +433,12 @@ $flavor:
     }
 
     return '';
+  }
+
+  bool _isGenerated(String projectFolder) {
+    final pubspecFile = File('$projectFolder/pubspec.yaml');
+
+    return pubspecFile.existsSync() &&
+        pubspecFile.readAsStringSync().contains('#generated with mason');
   }
 }
