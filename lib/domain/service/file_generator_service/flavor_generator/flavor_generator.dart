@@ -6,6 +6,7 @@ import 'package:onix_flutter_bricks/domain/entity/failure/flavorizing_failure.da
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
+import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:onix_flutter_core/onix_flutter_core.dart';
 import 'package:process_run/process_run.dart';
 import 'package:recase/recase.dart';
@@ -29,15 +30,17 @@ class FlavorGenerator
         );
       }
 
-      final name = params.projectFolder;
+      logger.f('Org: $org');
 
-      final projectName = name.split('/').last;
+      final projectPath = params.projectFolder;
 
-      final isIOsEnabled = Directory('$name/ios').existsSync();
+      final projectName = projectPath.split('/').last;
 
-      final isAndroidEnabled = Directory('$name/android').existsSync();
+      final isIOsEnabled = Directory('$projectPath/ios').existsSync();
 
-      final isMacOsEnabled = Directory('$name/macos').existsSync();
+      final isAndroidEnabled = Directory('$projectPath/android').existsSync();
+
+      final isMacOsEnabled = Directory('$projectPath/macos').existsSync();
 
       await _injectFlavors(
         params,
@@ -47,44 +50,45 @@ class FlavorGenerator
         isMacOsEnabled,
       );
 
-      final isGenerated = _isGenerated(name);
+      final isGenerated = _isGenerated(projectPath);
 
       ///Manipulations with icons
       if (isGenerated) {
-        await Directory('$name/flavor_assets').create(recursive: true);
+        await Directory('$projectPath/flavor_assets').create(recursive: true);
 
         for (final flavor in params.flavors) {
-          await Directory('$name/flavor_assets/$flavor/launcher_icons')
+          await Directory('$projectPath/flavor_assets/$flavor/launcher_icons')
               .create(recursive: true);
           switch (flavor) {
             case 'dev':
             case 'prod':
-              var srcFile =
-                  File('$name/assets/launcher_icons/ic_launcher_$flavor.png');
+              var srcFile = File(
+                  '$projectPath/assets/launcher_icons/ic_launcher_$flavor.png');
               await srcFile.copy(
-                '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
+                '$projectPath/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
               );
 
               await srcFile.delete();
 
-              srcFile = File('$name/assets/android12splash_$flavor.png');
-              await srcFile
-                  .copy('$name/flavor_assets/$flavor/android12splash.png');
+              srcFile = File('$projectPath/assets/android12splash_$flavor.png');
+              await srcFile.copy(
+                  '$projectPath/flavor_assets/$flavor/android12splash.png');
 
               await srcFile.delete();
 
             default:
-              var srcFile = File('$name/assets/launcher_icons/ic_launcher.png');
+              var srcFile =
+                  File('$projectPath/assets/launcher_icons/ic_launcher.png');
               await srcFile.copy(
-                '$name/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
+                '$projectPath/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
               );
               if (flavor == params.flavors.last) {
                 await srcFile.delete();
               }
 
-              srcFile = File('$name/assets/android12splash.png');
-              await srcFile
-                  .copy('$name/flavor_assets/$flavor/android12splash.png');
+              srcFile = File('$projectPath/assets/android12splash.png');
+              await srcFile.copy(
+                  '$projectPath/flavor_assets/$flavor/android12splash.png');
 
               if (flavor == params.flavors.last) {
                 await srcFile.delete();
@@ -94,12 +98,13 @@ class FlavorGenerator
       }
 
       ///Save main.dart content
-      var mainFileContent = File('$name/lib/main.dart').readAsStringSync();
+      var mainFileContent =
+          File('$projectPath/lib/main.dart').readAsStringSync();
 
       final addFlavorizrProc = await Process.start(
         'flutter',
         ['pub', 'add', '-d', 'flutter_flavorizr'],
-        workingDirectory: name,
+        workingDirectory: projectPath,
       );
 
       await addFlavorizrProc.outLines.forEach((element) {
@@ -113,7 +118,7 @@ class FlavorGenerator
       final flavorizrProc = await Process.start(
         'flutter',
         ['pub', 'run', 'flutter_flavorizr'],
-        workingDirectory: name,
+        workingDirectory: projectPath,
       );
 
       await flavorizrProc.outLines.forEach((element) {
@@ -130,53 +135,14 @@ class FlavorGenerator
 
       if (exitCode == 0) {
         for (final flavor in params.flavors) {
-          final makeFlavorFile = await File(
-            '$name/.idea/runConfigurations/${isGenerated ? 'make-' : ''}$flavor.xml',
-          ).create();
+          await _generateConfigs(
+            projectPath: projectPath,
+            flavor: flavor,
+            isGenerated: isGenerated,
+          );
 
-          var makeContent = '';
-
-          if (isGenerated) {
-            makeContent = '''
-<component name="ProjectRunConfigurationManager">
-    <configuration default="false" name="make-$flavor" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
-        <makefile filename="\$PROJECT_DIR\$/Makefile" target="$flavor" workingDirectory="" arguments="">
-            <envs />
-        </makefile>
-        <method v="2" />
-    </configuration>
-</component>
-      ''';
-          } else {
-            makeContent = '''
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="$flavor" type="FlutterRunConfigurationType" factoryName="Flutter">
-    <option name="buildFlavor" value="$flavor" />
-    <option name="filePath" value="\$PROJECT_DIR\$/lib/flavors/main_$flavor.dart" />
-  </configuration>
-</component>
-''';
-          }
-
-          await makeFlavorFile.writeAsString(makeContent);
-
-          if (isGenerated) {
-            final makeFile = File('$name/Makefile');
-
-            final makeFileContent = await makeFile.readAsString();
-
-            await makeFile.writeAsString('''
-$makeFileContent
-
-$flavor:
-\t@echo "Building for $flavor"
-\t@echo "Copying ${flavor}_assets to \$(ASSETS_DIR)"
-\t@cp -r \$(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
-\tdart run flutter_native_splash:create
-''');
-          }
-
-          await Directory('$name/lib/${isGenerated ? 'app/' : ''}flavors')
+          await Directory(
+                  '$projectPath/lib/${isGenerated ? 'app/' : ''}flavors')
               .create(recursive: true);
 
           mainFileContent = mainFileContent.replaceAll(
@@ -197,7 +163,8 @@ $flavor:
               'runApp(const App());',
             );
 
-            var appContent = await File('$name/lib/app.dart').readAsString();
+            var appContent =
+                await File('$projectPath/lib/app.dart').readAsString();
 
             appContent = appContent
                 .replaceAll(
@@ -208,21 +175,22 @@ $flavor:
                   "import 'pages/my_home_page.dart';",
                   "import 'main.dart';",
                 );
-            await File('$name/lib/app.dart').writeAsString(appContent);
+            await File('$projectPath/lib/app.dart').writeAsString(appContent);
           }
 
-          await File('$name/lib/main.dart').writeAsString(mainFileContent);
+          await File('$projectPath/lib/main.dart')
+              .writeAsString(mainFileContent);
 
           await Process.run(
             'mv',
             [
-              '$name/lib/main_$flavor.dart',
-              '$name/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
+              '$projectPath/lib/main_$flavor.dart',
+              '$projectPath/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
             ],
           );
 
           var mainFlavorFileContent = File(
-            '$name/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
+            '$projectPath/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
           ).readAsStringSync();
 
           mainFlavorFileContent = mainFlavorFileContent
@@ -240,12 +208,31 @@ $flavor:
               );
 
           await File(
-            '$name/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
+            '$projectPath/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
           ).writeAsString(mainFlavorFileContent);
 
           if (isIOsEnabled) {
             for (final run in ['Debug', 'Profile', 'Release']) {
-              final file = File('$name/ios/Flutter/$flavor$run.xcconfig');
+              final file =
+                  File('$projectPath/ios/Flutter/$flavor$run.xcconfig');
+              final content = await file.readAsString();
+              final writer = file.openWrite()
+                ..write(
+                  content.replaceAll(
+                    'lib/main_$flavor.dart',
+                    'lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
+                  ),
+                );
+              await writer.flush();
+              await writer.close();
+            }
+          }
+
+          //TODO: Add support for macos
+          if (isMacOsEnabled) {
+            for (final run in ['Debug', 'Profile', 'Release']) {
+              final file =
+                  File('$projectPath/macos/Flutter/$flavor$run.xcconfig');
               final content = await file.readAsString();
               final writer = file.openWrite()
                 ..write(
@@ -263,23 +250,23 @@ $flavor:
         await Process.run(
           'rm',
           ['-r', 'pages'],
-          workingDirectory: '$name/lib',
+          workingDirectory: '$projectPath/lib',
         );
         await Process.run(
           'rm',
           ['main_dart.xml'],
-          workingDirectory: '$name/.idea/runConfigurations',
+          workingDirectory: '$projectPath/.idea/runConfigurations',
         );
         if (isGenerated) {
           await Process.run(
             'rm',
             ['ic_launcher.png'],
-            workingDirectory: '$name/assets/launcher_icons',
+            workingDirectory: '$projectPath/assets/launcher_icons',
           );
           await Process.run(
             'rm',
             ['app.dart'],
-            workingDirectory: '$name/lib',
+            workingDirectory: '$projectPath/lib',
           );
         }
       } else {
@@ -424,7 +411,14 @@ $flavor:
 
       final applicationIdLines = pbxProjContentLines
           .where((element) => element.contains('PRODUCT_BUNDLE_IDENTIFIER = '))
-          .map((e) => e.split('PRODUCT_BUNDLE_IDENTIFIER = ').last.split('.'))
+          .map(
+            (e) => e
+                .replaceFirst('.RunnerTests', '')
+                .replaceLast(';', '')
+                .split('PRODUCT_BUNDLE_IDENTIFIER = ')
+                .last
+                .split('.'),
+          )
           .toSet();
 
       if (applicationIdLines.isEmpty) return '';
@@ -435,7 +429,7 @@ $flavor:
         orgSegments = orgSegments.intersection(org.toSet());
       }
 
-      return orgSegments.join('.');
+      return orgSegments.toList().getRange(0, orgSegments.length - 1).join('.');
     }
 
     return '';
@@ -446,5 +440,70 @@ $flavor:
 
     return pubspecFile.existsSync() &&
         pubspecFile.readAsStringSync().contains('#generated with mason');
+  }
+
+  Future<void> _generateConfigs({
+    required String projectPath,
+    required String flavor,
+    required bool isGenerated,
+  }) async {
+    final flavorConfigFile = await File(
+      '$projectPath/.idea/runConfigurations/$flavor.xml',
+    ).create();
+
+    final flavorConfigFileContent = '''
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="$flavor" type="FlutterRunConfigurationType" factoryName="Flutter">
+    <option name="buildFlavor" value="$flavor" />
+    <option name="filePath" value="\$PROJECT_DIR\$/lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart" />
+    ${isGenerated ? '''
+    <method v="2">
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="make-$flavor" run_configuration_type="MAKEFILE_TARGET_RUN_CONFIGURATION" />
+    </method>''' : ''}
+  </configuration>
+</component>
+''';
+
+    await flavorConfigFile.writeAsString(flavorConfigFileContent);
+
+    if (isGenerated) {
+      final makeFlavorConfigFile = await File(
+        '$projectPath/.idea/runConfigurations/make-$flavor.xml',
+      ).create();
+
+      final makeFlavorConfigFileContent = '''
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="make-$flavor" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
+        <makefile filename="\$PROJECT_DIR\$/Makefile" target="$flavor" workingDirectory="" arguments="">
+            <envs />
+        </makefile>
+        <method v="2" />
+    </configuration>
+</component>
+      ''';
+
+      await makeFlavorConfigFile.writeAsString(makeFlavorConfigFileContent);
+
+      final makeFile = File('$projectPath/Makefile');
+
+      final makeFileContent = await makeFile.readAsString();
+
+      await makeFile.writeAsString('''
+${makeFileContent.startsWith(r'''
+ROOT_DIR = $(shell pwd)
+ASSETS_DIR = assets
+''') ? '' : r'''
+ROOT_DIR = $(shell pwd)
+ASSETS_DIR = assets
+'''}\n
+$makeFileContent
+
+$flavor:
+\t@echo "Building for $flavor"
+\t@echo "Copying ${flavor}_assets to \$(ASSETS_DIR)"
+\t@cp -r \$(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
+\tdart run flutter_native_splash:create
+''');
+    }
   }
 }
