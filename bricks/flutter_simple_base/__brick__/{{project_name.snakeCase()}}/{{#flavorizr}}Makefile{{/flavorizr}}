@@ -1,0 +1,2 @@
+ROOT_DIR = $(shell pwd)
+ASSETS_DIR = assets

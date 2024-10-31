@@ -3,9 +3,10 @@ import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.dart';
-import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
 import 'package:onix_flutter_bricks/util/enum/project_localization.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
@@ -17,6 +18,7 @@ part 'config.g.dart';
 class Config with _$Config {
   const factory Config({
     @Default('main') String branch,
+    @Default(ArchType.clean) ArchType arch,
     @Default('') String localVersion,
     @Default('') String remoteVersion,
     @Default('') String projectPath,
@@ -49,20 +51,21 @@ class Config with _$Config {
 
   factory Config.fromJson(Map<String, dynamic> json) => _$ConfigFromJson(json);
 
-  factory Config.empty() => const Config(
-        screens: {},
-      );
+  factory Config.empty() => const Config();
 
   bool get useScreenUtil => screenUtil && !platformsList.webOnly;
 
   Future<void> saveConfig({required String projectPath}) async {
     await configSource.saveConfig(
-        config: copyWith(
-          screens: screenRepository.screens.map((screen) {
-            screen.exists = true;
-            return screen;
-          }).toSet(),
-        ),
-        configPath: '$projectPath/.gen_config.json');
+      config: copyWith(
+        screens: screenRepository.screens.map((screen) {
+          screen.exists = true;
+          return screen;
+        }).toSet(),
+      ),
+      configPath: '$projectPath/.gen_config.json',
+    );
   }
+
+  String get projectRootPath => '$projectPath/$projectName';
 }

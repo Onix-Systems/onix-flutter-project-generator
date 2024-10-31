@@ -7,6 +7,7 @@ import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/data_components_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_reference.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
@@ -23,8 +24,7 @@ class ComponentGeneratorService
   @override
   Future<String> generate(ComponentGeneratorParams params) async {
     try {
-      final projectLibFolder =
-          '${params.projectPath}/${params.projectName}/lib';
+      final projectLibFolder = '${params.projectRootPath}/lib';
 
       await _createEnums(
         projectLibFolder,
@@ -49,13 +49,15 @@ class ComponentGeneratorService
           params.projectName,
           sourceObjects,
           params.components.dataObjects,
+          params.arch,
         );
         addedDataComponents.addAll(createdComponents);
 
         await _createSource(
-          projectLibFolder,
+          params.projectRootPath,
           params.projectName,
           source,
+          params.arch,
         );
       }
 
@@ -65,6 +67,7 @@ class ComponentGeneratorService
         projectLibFolder,
         params.projectName,
         addedComponentsDistinct,
+        params.arch,
       );
 
       return '';
@@ -75,10 +78,12 @@ class ComponentGeneratorService
   }
 
   Future<void> _createSource(
-    String projectLibFolder,
+    String projectRootPath,
     String projectName,
     SourceComponent sourceComponent,
+    ArchType arch,
   ) async {
+    final projectLibFolder = '$projectRootPath/lib';
     final rawFolder = sourceComponent.getFolderPath(projectLibFolder);
     await _createFolders(rawFolder, '_createSource');
 
@@ -86,7 +91,8 @@ class ComponentGeneratorService
     final declarationFilePath =
         sourceComponent.getDeclarationFilePath(projectLibFolder);
 
-    final declarationBody = sourceComponent.getSourceDeclarationBody(projectName);
+    final declarationBody =
+        sourceComponent.getSourceDeclarationBody(projectName);
     await _createFile(filePath: declarationFilePath, fileBody: declarationBody);
 
     ///Create Implementation
@@ -101,7 +107,7 @@ class ComponentGeneratorService
     );
 
     ///Create SL declarations
-    final sourceSLPath = '$projectLibFolder/core/di/source.dart';
+    final sourceSLPath = '$projectRootPath/${arch.getDiPath()}/source.dart';
     final sourceSlFile = File(sourceSLPath);
     final slContent = await sourceSlFile.readAsString();
 
@@ -158,11 +164,12 @@ class ComponentGeneratorService
     final repoImplFilePath =
         sourceComponent.getRepoImplementationFilePath(projectLibFolder);
 
-    final repoImplBody = sourceComponent.getRepoImplementationBody(projectName);
+    final repoImplBody =
+        sourceComponent.getRepoImplementationBody(projectName, arch);
     await _createFile(filePath: repoImplFilePath, fileBody: repoImplBody);
 
     ///Create repos SL declarations
-    final repoSLPath = '$projectLibFolder/core/di/repository.dart';
+    final repoSLPath = '$projectRootPath/${arch.getDiPath()}/repository.dart';
     final repoSlFile = File(repoSLPath);
     final repoSlContent = await repoSlFile.readAsString();
 
@@ -195,6 +202,7 @@ class ComponentGeneratorService
     String projectName,
     List<DataObjectReference> references,
     List<DataObjectComponent> components,
+    ArchType arch,
   ) async {
     ///List of components was created
     final addedDataComponents = List<DataObjectComponent>.empty(growable: true);
@@ -209,8 +217,8 @@ class ComponentGeneratorService
       }
 
       ///Create File
-      final fileRawFolder = dataObject.getFileFolder(e.type);
-      final fileRawPath = dataObject.getFilePath(e.type);
+      final fileRawFolder = dataObject.getFileFolder(e.type, arch);
+      final fileRawPath = dataObject.getFilePath(e.type, arch);
       if (fileRawPath.isEmpty || fileRawFolder.isEmpty) {
         continue;
       }
@@ -221,6 +229,7 @@ class ComponentGeneratorService
       final body = dataObject.getObjectBody(
         projectName,
         e.type,
+        arch,
       );
       final objectAdded = await _createFile(
         filePath: filePath,
@@ -244,6 +253,7 @@ class ComponentGeneratorService
           projectName,
           innerReferences,
           components,
+          arch,
         );
         addedDataComponents.addAll(createdInnerObjects);
       }
@@ -255,12 +265,13 @@ class ComponentGeneratorService
     String projectLibFolder,
     String projectName,
     List<DataObjectComponent> addedDataComponents,
+    ArchType arch,
   ) async {
     for (final e in addedDataComponents) {
       ///Create Entities
 
-      final entityRawFolder = e.getFileFolder(DataFileType.entity);
-      final entityRawPath = e.getFilePath(DataFileType.entity);
+      final entityRawFolder = e.getFileFolder(DataFileType.entity, arch);
+      final entityRawPath = e.getFilePath(DataFileType.entity, arch);
       if (entityRawFolder.isEmpty || entityRawPath.isEmpty) {
         continue;
       }
@@ -271,21 +282,22 @@ class ComponentGeneratorService
       final entityBody = e.getObjectBody(
         projectName,
         DataFileType.entity,
+        arch,
       );
 
       await _createFile(filePath: entityPath, fileBody: entityBody);
     }
     for (final e in addedDataComponents) {
       ///Create mappers
-      final mapperRawFolder = e.getObjectMapperFolder();
-      final mapperRawPath = e.getObjectMapperFilePath();
+      final mapperRawFolder = e.getObjectMapperFolder(arch);
+      final mapperRawPath = e.getObjectMapperFilePath(arch);
       final mapperFolder = '$projectLibFolder/$mapperRawFolder';
       final mapperPath = '$projectLibFolder/$mapperRawPath';
       await _createFolders(mapperFolder, '_createMappersEntities');
       final requestRawFilePath =
-          e.fileReference.getFileImportName(DataFileType.request);
+          e.fileReference.getFileImportName(DataFileType.request, arch);
       final responseRawFilePath =
-          e.fileReference.getFileImportName(DataFileType.response);
+          e.fileReference.getFileImportName(DataFileType.response, arch);
       final requestFilePath = '$projectLibFolder/$requestRawFilePath';
       final responseFilePath = '$projectLibFolder/$responseRawFilePath';
       final isRequestFileExist = File(requestFilePath).existsSync();
@@ -295,6 +307,7 @@ class ComponentGeneratorService
           projectName: projectName,
           createEntityToRequestMapper: isRequestFileExist,
           createResponseToEntityMapper: isResponseFileExist,
+          arch: arch,
         );
 
         await _createFile(filePath: mapperPath, fileBody: mapperBody);

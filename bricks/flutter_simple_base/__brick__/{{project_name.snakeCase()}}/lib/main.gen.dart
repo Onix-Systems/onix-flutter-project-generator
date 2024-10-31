@@ -1,0 +1,55 @@
+//@formatter:off
+import 'dart:async';
+import 'dart:io';
+import 'package:flutter/material.dart';
+{{#isBloc}}import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';{{/isBloc}}
+{{#isRiverpod}}import 'package:flutter_riverpod/flutter_riverpod.dart';{{/isRiverpod}}
+import 'package:{{project_name}}/app/banned_app.dart';
+import 'package:{{project_name}}/app/app.dart';
+import 'package:{{project_name}}/app/app_initialization.dart';
+import 'package:{{project_name}}/app/di/services.dart';
+import 'package:{{project_name}}/app/util/extension/orientation_extension.dart';
+import 'package:{{project_name}}/app/logger/app_logger_impl.dart';
+{{#sentry}}import 'package:sentry_flutter/sentry_flutter.dart';{{/sentry}}
+
+Future<void> main{{#flavorizr}}App{{/flavorizr}}() async {
+  unawaited(
+    runZonedGuarded(
+      () async {
+        WidgetsFlutterBinding.ensureInitialized();
+        await Initialization.I.initApp();
+        {{#sentry}}await SentryFlutter.init(
+          (options) {
+              options.dsn = 'SENTRY_DSN';
+          },
+        );{{/sentry}}
+        await OrientationExtension.lockVertical();
+
+        {{#isBloc}}Bloc.observer = AppBlocObserver();{{/isBloc}}
+        final isAllowedToUseApp = await environmentService().initialize();
+        if (isAllowedToUseApp) {
+          {{#isRiverpod}}
+          runApp(const ProviderScope(child: App()));
+          {{/isRiverpod}}
+          {{^isRiverpod}}
+          runApp(const App());
+          {{/isRiverpod}}
+        } else {
+          runApp(const BannedApp());
+        }
+        },
+        _onError,
+        )?.catchError((error, stackTrace) {
+          _onError(error, stackTrace);
+          exit(-1);
+      },
+    ),
+  );
+}
+
+
+Future<void> _onError(dynamic error, dynamic stackTrace) async {
+  logger.crash(error: error, stackTrace: stackTrace, reason: 'main');
+  {{#sentry}}await Sentry.captureException(error, stackTrace: stackTrace);{{/sentry}}
+}

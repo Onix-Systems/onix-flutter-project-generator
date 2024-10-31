@@ -1,0 +1,17 @@
+import 'package:{{project_name}}/app/router/app_router.dart';
+import 'package:{{project_name}}/app/router/guard/init_guard.dart';
+import 'package:{{project_name}}/app/router/router_logging_observer.dart';
+
+abstract class RouterModule {
+  AppRouter appRouter() {
+    return AppRouter(globalGuards: [InitGuard()]);
+  }
+
+  RouterLoggingObserver routerLoggingObserver(
+    AppRouter appRouter,
+  ) {
+    return RouterLoggingObserver(
+      appRouter: appRouter,
+    );
+  }
+}

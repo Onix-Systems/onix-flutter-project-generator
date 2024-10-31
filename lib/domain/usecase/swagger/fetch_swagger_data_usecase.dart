@@ -1,3 +1,4 @@
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
 import 'package:onix_flutter_core/onix_flutter_core.dart';
@@ -9,7 +10,8 @@ class FetchSwaggerDataUseCase {
 
   Future<Result<Components?>> call({
     required String url,
+    required ArchType arch,
   }) async {
-    return _swaggerRepository.fetchSwaggerData(url: url);
+    return _swaggerRepository.fetchSwaggerData(url: url, arch: arch);
   }
 }

@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.
 import 'package:onix_flutter_bricks/data/model/swagger/model/base_swagger_model_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 
 class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
   SwaggerModelResponseV3({
@@ -14,6 +15,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
 
   factory SwaggerModelResponseV3.fromJson(
     String rawModelName,
+    ArchType arch,
     Map<String, dynamic> json,
     Map<String, dynamic> allObjects,
   ) {
@@ -21,6 +23,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
     if (json.containsKey('allOf')) {
       final allOff = json.asObjectList('allOf');
       crossReferences = _getCrossReferences(
+        arch,
         allOff,
         allObjects,
       );
@@ -40,6 +43,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
       final crossReferenceVariables = _parseCrossReferences(
         modelName,
         requiredVariables,
+        arch,
         crossReferences,
         allOff,
       );
@@ -50,6 +54,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
       final parsedVariables = _parseProperties(
         modelName,
         requiredVariables,
+        arch,
         properties,
       );
       variables.addAll(parsedVariables);
@@ -65,6 +70,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
   static List<BaseSwaggerModelVariableResponse> _parseProperties(
     String modelName,
     List<String> requiredVariables,
+    ArchType arch,
     Map<String, dynamic> properties,
   ) {
     final variables =
@@ -75,6 +81,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
         final swaggerVariable = SwaggerModelVariableResponseV3.fromJson(
           name,
           requiredVariables,
+          arch,
           contentJson,
           modelName,
         );
@@ -87,6 +94,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
   static List<BaseSwaggerModelVariableResponse> _parseCrossReferences(
     String modelName,
     List<String> requiredVariables,
+    ArchType arch,
     List<BaseSwaggerModelResponse> crossReferences,
     List<Map<String, dynamic>> allOff,
   ) {
@@ -107,6 +115,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
         final parsedVariables = _parseProperties(
           modelName,
           requiredVariables,
+          arch,
           properties,
         );
         variables.addAll(parsedVariables);
@@ -116,6 +125,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
   }
 
   static List<BaseSwaggerModelResponse> _getCrossReferences(
+    ArchType arch,
     List<Map<String, dynamic>> allOff,
     Map<String, dynamic> definitions,
   ) {
@@ -129,6 +139,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
       if (definitions.containsKey(typeValue)) {
         final crossReference = SwaggerModelResponseV3.fromJson(
           typeValue,
+          arch,
           definitions[typeValue] as Map<String, dynamic>,
           {},
         );

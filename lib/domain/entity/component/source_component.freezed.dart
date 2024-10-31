@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SourceComponent {
   String get name => throw _privateConstructorUsedError;
   List<RequestComponent> get requests => throw _privateConstructorUsedError;
+  ArchType get arch => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SourceComponentCopyWith<SourceComponent> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $SourceComponentCopyWith<$Res> {
           SourceComponent value, $Res Function(SourceComponent) then) =
       _$SourceComponentCopyWithImpl<$Res, SourceComponent>;
   @useResult
-  $Res call({String name, List<RequestComponent> requests});
+  $Res call({String name, List<RequestComponent> requests, ArchType arch});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$SourceComponentCopyWithImpl<$Res, $Val extends SourceComponent>
   $Res call({
     Object? name = null,
     Object? requests = null,
+    Object? arch = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -58,6 +60,10 @@ class _$SourceComponentCopyWithImpl<$Res, $Val extends SourceComponent>
           ? _value.requests
           : requests // ignore: cast_nullable_to_non_nullable
               as List<RequestComponent>,
+      arch: null == arch
+          ? _value.arch
+          : arch // ignore: cast_nullable_to_non_nullable
+              as ArchType,
     ) as $Val);
   }
 }
@@ -70,7 +76,7 @@ abstract class _$$SourceComponentImplCopyWith<$Res>
       __$$SourceComponentImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, List<RequestComponent> requests});
+  $Res call({String name, List<RequestComponent> requests, ArchType arch});
 }
 
 /// @nodoc
@@ -86,6 +92,7 @@ class __$$SourceComponentImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? requests = null,
+    Object? arch = null,
   }) {
     return _then(_$SourceComponentImpl(
       name: null == name
@@ -96,6 +103,10 @@ class __$$SourceComponentImplCopyWithImpl<$Res>
           ? _value._requests
           : requests // ignore: cast_nullable_to_non_nullable
               as List<RequestComponent>,
+      arch: null == arch
+          ? _value.arch
+          : arch // ignore: cast_nullable_to_non_nullable
+              as ArchType,
     ));
   }
 }
@@ -104,7 +115,9 @@ class __$$SourceComponentImplCopyWithImpl<$Res>
 
 class _$SourceComponentImpl extends _SourceComponent {
   const _$SourceComponentImpl(
-      {required this.name, required final List<RequestComponent> requests})
+      {required this.name,
+      required final List<RequestComponent> requests,
+      required this.arch})
       : _requests = requests,
         super._();
 
@@ -119,8 +132,11 @@ class _$SourceComponentImpl extends _SourceComponent {
   }
 
   @override
+  final ArchType arch;
+
+  @override
   String toString() {
-    return 'SourceComponent(name: $name, requests: $requests)';
+    return 'SourceComponent(name: $name, requests: $requests, arch: $arch)';
   }
 
   @override
@@ -129,12 +145,13 @@ class _$SourceComponentImpl extends _SourceComponent {
         (other.runtimeType == runtimeType &&
             other is _$SourceComponentImpl &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._requests, _requests));
+            const DeepCollectionEquality().equals(other._requests, _requests) &&
+            (identical(other.arch, arch) || other.arch == arch));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(_requests));
+      runtimeType, name, const DeepCollectionEquality().hash(_requests), arch);
 
   @JsonKey(ignore: true)
   @override
@@ -147,13 +164,16 @@ class _$SourceComponentImpl extends _SourceComponent {
 abstract class _SourceComponent extends SourceComponent {
   const factory _SourceComponent(
       {required final String name,
-      required final List<RequestComponent> requests}) = _$SourceComponentImpl;
+      required final List<RequestComponent> requests,
+      required final ArchType arch}) = _$SourceComponentImpl;
   const _SourceComponent._() : super._();
 
   @override
   String get name;
   @override
   List<RequestComponent> get requests;
+  @override
+  ArchType get arch;
   @override
   @JsonKey(ignore: true)
   _$$SourceComponentImplCopyWith<_$SourceComponentImpl> get copyWith =>

@@ -54,8 +54,9 @@ class BlocStateManagerStrategy implements StateManagerStrategy {
           await screen.stateVariant.screenGenerator.generate(
             ScreenGeneratorParams(
               screen: screen,
-              projectPath: config.projectPath,
+              projectRootPath: config.projectRootPath,
               projectName: config.projectName,
+              arch: config.arch,
               router: config.router,
               lastScreenItem: i == (screensNotExist.length - 1),
             ),

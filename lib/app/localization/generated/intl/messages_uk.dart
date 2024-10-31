@@ -205,6 +205,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Вставте URL сюди"),
         "platforms": MessageLookupByLibrary.simpleMessage("Платформи"),
         "preview": MessageLookupByLibrary.simpleMessage("Перегляд"),
+        "projectArch":
+            MessageLookupByLibrary.simpleMessage("Архітектура проекту"),
         "projectExistsError": MessageLookupByLibrary.simpleMessage(
             "Проект з такою назвою вже існує"),
         "projectName": MessageLookupByLibrary.simpleMessage("Назва проекту"),

@@ -2,6 +2,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 
 class SwaggerModelVariableResponseV2 extends BaseSwaggerModelVariableResponse {
   SwaggerModelVariableResponseV2({
@@ -13,6 +14,7 @@ class SwaggerModelVariableResponseV2 extends BaseSwaggerModelVariableResponse {
   factory SwaggerModelVariableResponseV2.fromJson(
     String name,
     List<String> requiredVariables,
+    ArchType arch,
     Map<String, dynamic> json,
     String from,
   ) {
@@ -30,6 +32,7 @@ class SwaggerModelVariableResponseV2 extends BaseSwaggerModelVariableResponse {
       type = BaseSwaggerModelVariableResponse.parseSimpleType(
         name,
         from,
+        arch,
         requiredVariables,
         json,
       );
@@ -45,6 +48,7 @@ class SwaggerModelVariableResponseV2 extends BaseSwaggerModelVariableResponse {
         type = BaseSwaggerModelVariableResponse.parseSimpleType(
           name,
           from,
+          arch,
           requiredVariables,
           json['schema'],
         );
