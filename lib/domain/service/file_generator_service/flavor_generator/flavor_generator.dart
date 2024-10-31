@@ -22,6 +22,21 @@ class FlavorGenerator
   @override
   Future<Result<int>> generate(FlavorGeneratorParams params) async {
     try {
+      final projectPath = params.projectFolder;
+
+      final projectName = projectPath.split('/').last;
+
+      final pubspecFile = File('$projectPath/pubspec.yaml');
+
+      ///Check if project is already flavorized
+      if (pubspecFile.readAsStringSync().contains('flavorizr:')) {
+        _outputService.add('{#info}Already flavorized');
+        await Future.delayed(const Duration(seconds: 1));
+        return Result.error(
+          failure: FlavorizingFailure(FlavorizingFailureType.alreadyFlavorized),
+        );
+      }
+
       final org = await _getOrg(params.projectFolder);
 
       if (org.isEmpty) {
@@ -31,10 +46,6 @@ class FlavorGenerator
       }
 
       _outputService.add('{#info}Org: $org');
-
-      final projectPath = params.projectFolder;
-
-      final projectName = projectPath.split('/').last;
 
       final isIOsEnabled = Directory('$projectPath/ios').existsSync();
 
@@ -205,6 +216,12 @@ class FlavorGenerator
         }
 
         _outputService.add('{#info}Flavorizing finished');
+
+        await _createFlavorBannerWidget(
+          projectPath: projectPath,
+          projectName: projectName,
+          isGenerated: isGenerated,
+        );
       } else {
         _outputService.add(
           '{#error}Flavorizing failed with exit code $exitCode',
@@ -528,5 +545,65 @@ $flavor:
 \tdart run flutter_native_splash:create
 ''');
     }
+  }
+
+  Future<void> _createFlavorBannerWidget({
+    required String projectPath,
+    required String projectName,
+    required bool isGenerated,
+  }) async {
+    final flavorBannerWidgetContent = '''
+import 'package:flutter/material.dart';
+import 'package:$projectName/flavors.dart';
+
+class FlavorBanner extends StatelessWidget {
+  const FlavorBanner({
+    required this.child,
+    super.key,
+  });
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    if (F.name == 'prod') return child;
+     return Banner(
+            message: F.name,
+            location: BannerLocation.topEnd,
+            child: child,
+        );
+  }
+}
+''';
+
+    String flavorBannerFilePath;
+
+    if (isGenerated) {
+      flavorBannerFilePath =
+          '$projectPath/lib/core/arch/widget/common/flavor_banner.dart';
+
+      final appFile = File('$projectPath/lib/app/app.dart');
+
+      var appFileContent = await appFile.readAsString();
+
+      appFileContent = appFileContent
+          .replaceAll(
+            'child: widget ?? const SizedBox(),',
+            'child: FlavorBanner(child: widget ?? const SizedBox(),),',
+          )
+          .replaceAll(
+            'class App extends StatefulWidget {',
+            "import 'package:$projectName/core/arch/widget/common/flavor_banner.dart';\n\nclass App extends StatefulWidget {",
+          );
+
+      await appFile.writeAsString(appFileContent);
+    } else {
+      flavorBannerFilePath = '$projectPath/lib/flavor_banner.dart';
+    }
+
+    final flavorBannerFile = await File(flavorBannerFilePath).create(
+      recursive: true,
+    );
+    await flavorBannerFile.writeAsString(flavorBannerWidgetContent);
   }
 }
