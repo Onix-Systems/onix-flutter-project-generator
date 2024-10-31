@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastlane_generation_params.dart';
@@ -143,8 +144,11 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           Commands.getMasonAddBrickCommand(
             projectPath: state.config.projectPath,
             masonBrickBranch: state.config.branch,
+            brickArch: state.config.arch.name,
           ),
-          Commands.getMasonMakeBrickCommand(),
+          Commands.getMasonMakeBrickCommand(
+            brickArch: state.config.arch.name,
+          ),
         ],
       );
 
@@ -154,19 +158,19 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       if (!state.config.graphql) {
         await Directory(
-          '${state.config.projectPath}/${state.config.projectName}/lib/core/arch/data/remote/graph_ql',
+          '${state.config.projectRootPath}/${state.config.arch.getGraphQlPath()}',
         ).delete(recursive: true);
+
         await Directory(
-          '${state.config.projectPath}/${state.config.projectName}/lib/data/source/remote/auth',
+          '${state.config.projectRootPath}/lib/data/source/remote/auth',
         ).delete(recursive: true);
       }
 
-      ///generate Anroid signing key if configured
+      ///generate Android signing key if configured
       if (state.config.generateSigningKey) {
         await _generateSigningConfigUseCase(
           params: SingingGeneratorParams(
-            projectFolder:
-                '${state.config.projectPath}/${state.config.projectName}',
+            projectFolder: state.config.projectRootPath,
             signingVars: state.config.signingVars,
             signingPassword: signingPassword,
           ),
@@ -199,12 +203,13 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     await _createSwaggerComponentsUseCase(
       projectName: state.config.projectName,
-      projectPath: state.config.projectPath,
+      projectRootPath: state.config.projectRootPath,
+      arch: state.config.arch,
     );
 
     ///build project
     await _runProcessUseCase(
-      workDir: '${state.config.projectPath}/${state.config.projectName}',
+      workDir: state.config.projectRootPath,
       commands: [
         Commands.getBuildRunnerBuildCommand(),
         Commands.getDartImportSortCommand(),
@@ -227,13 +232,13 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     ///save project configuration
     await state.config.saveConfig(
-      projectPath: '${state.config.projectPath}/${state.config.projectName}',
+      projectPath: state.config.projectRootPath,
     );
 
     /// run osascript
     if (!state.config.projectExists && state.config.firebaseAuth) {
       await _osaScriptProcessUseCase(
-        workDir: '${state.config.projectPath}/${state.config.projectName}',
+        workDir: state.config.projectRootPath,
       );
     }
 
@@ -268,7 +273,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     Emitter<GenerationScreenState> emit,
   ) async {
     await _runProcessUseCase(
-      workDir: '${state.config.projectPath}/${state.config.projectName}',
+      workDir: state.config.projectRootPath,
       commands: [Commands.getOpenAndroidStudioCommand()],
     );
   }

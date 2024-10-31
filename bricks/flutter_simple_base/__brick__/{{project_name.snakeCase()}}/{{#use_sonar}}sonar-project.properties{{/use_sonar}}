@@ -1,0 +1,17 @@
+sonar.projectKey=ENTER_YOUR_SONAR_PROJECT_ID
+sonar.qualitygate.wait=true
+sonar.exclusions=/android/**, /ios/**, /web/**, /build/**, **/*.freezed.dart, **/*.g.dart
+# Source code location.
+# Path is relative to the sonar-project.properties file. Defaults to .
+# Use commas to specify more than one folder.
+sonar.sources=lib
+sonar.tests=test
+# Encoding of the source code. Default is default system encoding.
+sonar.sourceEncoding=UTF-8
+
+# Analyzer mode
+# Can be:
+# - flutter (flutter analyze) - default
+# - dart (dart analyze)
+# - legacy (dartanalyzer)
+sonar.flutter.analyzer.mode=flutter

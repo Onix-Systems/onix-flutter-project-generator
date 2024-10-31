@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_reference_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_reference.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
@@ -16,13 +17,16 @@ class SourceComponent with _$SourceComponent {
   const factory SourceComponent({
     required String name,
     required List<RequestComponent> requests,
+    required ArchType arch,
   }) = _SourceComponent;
 
   String getFolderPath(String projectRoot) =>
       '$projectRoot/data/source/remote/${name.snakeCase}';
 
   String getRepositoryDeclarationFolderPath(String projectRoot) =>
-      '$projectRoot/domain/repository/${name.snakeCase}';
+      arch == ArchType.clean
+          ? '$projectRoot/domain/repository/${name.snakeCase}'
+          : '$projectRoot/data/repository/${name.snakeCase}';
 
   String getRepositoryImplFolderPath(String projectRoot) =>
       '$projectRoot/data/repository/${name.snakeCase}';
@@ -45,8 +49,9 @@ class SourceComponent with _$SourceComponent {
   String getImplementationImport(String projectName) =>
       "import 'package:$projectName/data/source/remote/${name.snakeCase}/${name.snakeCase}_source_impl.dart';";
 
-  String getRepoDeclarationImport(String projectName) =>
-      "import 'package:$projectName/domain/repository/${name.snakeCase}/${name.snakeCase}_repository.dart';";
+  String getRepoDeclarationImport(String projectName) => arch == ArchType.clean
+      ? "import 'package:$projectName/domain/repository/${name.snakeCase}/${name.snakeCase}_repository.dart';"
+      : "import 'package:$projectName/data/repository/${name.snakeCase}/${name.snakeCase}_repository.dart';";
 
   String getRepoImplementationImport(String projectName) =>
       "import 'package:$projectName/data/repository/${name.snakeCase}/${name.snakeCase}_repository_impl.dart';";
@@ -130,12 +135,12 @@ class SourceComponent with _$SourceComponent {
     return codeLines.join('\n');
   }
 
-  String getRepoImplementationBody(String projectName) {
+  String getRepoImplementationBody(String projectName, ArchType arch) {
     final codeLines = <String>{};
     final modelImports = _buildRepositoryImports(projectName);
     codeLines
       ..add(
-        "import 'package:$projectName/core/arch/logger/app_logger_impl.dart';",
+        "import 'package:$projectName/${arch.getLoggerPath()}';",
       )
       ..add(modelImports)
       ..add(getRepoDeclarationImport(projectName))
@@ -151,7 +156,7 @@ class SourceComponent with _$SourceComponent {
         final requestReference = requestBody.type.getSwaggerObjectReference();
         if (requestReference != null) {
           final importLine =
-              requestReference.getReferenceMapperImport(projectName);
+              requestReference.getReferenceMapperImport(projectName, arch);
           if (!mapperImports.contains(importLine)) {
             mapperImports.add(importLine);
           }
@@ -162,7 +167,7 @@ class SourceComponent with _$SourceComponent {
       final responseReference = e.response.type.getSwaggerObjectReference();
       if (responseReference != null) {
         final importLine =
-            responseReference.getReferenceMapperImport(projectName);
+            responseReference.getReferenceMapperImport(projectName, arch);
         if (!mapperImports.contains(importLine)) {
           mapperImports.add(importLine);
         }
@@ -225,7 +230,7 @@ class SourceComponent with _$SourceComponent {
       ///build response imports
       ///Add response body import
       final responseFileImport = request.response.type
-          .getFullFileImport(projectName, DataFileType.response);
+          .getFullFileImport(projectName, DataFileType.response, arch);
       if (responseFileImport != null && !imports.contains(responseFileImport)) {
         imports.add(responseFileImport);
       }
@@ -233,7 +238,7 @@ class SourceComponent with _$SourceComponent {
       ///Add request body import
       if (request.requestBody != null) {
         final bodyImport = request.requestBody?.type
-            .getFullFileImport(projectName, DataFileType.request);
+            .getFullFileImport(projectName, DataFileType.request, arch);
         if (bodyImport != null && !imports.contains(bodyImport)) {
           imports.add(bodyImport);
         }
@@ -243,7 +248,7 @@ class SourceComponent with _$SourceComponent {
       if (request.pathParams.isNotEmpty) {
         for (final e in request.pathParams) {
           final import =
-              e.type.getFullFileImport(projectName, DataFileType.request);
+              e.type.getFullFileImport(projectName, DataFileType.request, arch);
           if (import != null && !imports.contains(import)) {
             imports.add(import);
           }
@@ -254,7 +259,7 @@ class SourceComponent with _$SourceComponent {
       if (request.queryParams.isNotEmpty) {
         for (final e in request.queryParams) {
           final import =
-              e.type.getFullFileImport(projectName, DataFileType.request);
+              e.type.getFullFileImport(projectName, DataFileType.request, arch);
           if (import != null && !imports.contains(import)) {
             imports.add(import);
           }
@@ -265,7 +270,7 @@ class SourceComponent with _$SourceComponent {
       if (request.multipartBody.isNotEmpty) {
         for (final e in request.multipartBody) {
           final import =
-              e.type.getFullFileImport(projectName, DataFileType.request);
+              e.type.getFullFileImport(projectName, DataFileType.request, arch);
           if (import != null && !imports.contains(import)) {
             imports.add(import);
           }
@@ -286,7 +291,7 @@ class SourceComponent with _$SourceComponent {
       ///build response imports
       ///Add response body import
       final responseFileImport = request.response.type
-          .getFullFileImport(projectName, DataFileType.entity);
+          .getFullFileImport(projectName, DataFileType.entity, arch);
       if (responseFileImport != null && !imports.contains(responseFileImport)) {
         imports.add(responseFileImport);
       }
@@ -294,7 +299,7 @@ class SourceComponent with _$SourceComponent {
       ///Add request body import
       if (request.requestBody != null) {
         final bodyImport = request.requestBody?.type
-            .getFullFileImport(projectName, DataFileType.entity);
+            .getFullFileImport(projectName, DataFileType.entity, arch);
         if (bodyImport != null && !imports.contains(bodyImport)) {
           imports.add(bodyImport);
         }
@@ -304,7 +309,7 @@ class SourceComponent with _$SourceComponent {
       if (request.pathParams.isNotEmpty) {
         for (final e in request.pathParams) {
           final import =
-              e.type.getFullFileImport(projectName, DataFileType.entity);
+              e.type.getFullFileImport(projectName, DataFileType.entity, arch);
           if (import != null && !imports.contains(import)) {
             imports.add(import);
           }
@@ -315,7 +320,7 @@ class SourceComponent with _$SourceComponent {
       if (request.queryParams.isNotEmpty) {
         for (final e in request.queryParams) {
           final import =
-              e.type.getFullFileImport(projectName, DataFileType.entity);
+              e.type.getFullFileImport(projectName, DataFileType.entity, arch);
           if (import != null && !imports.contains(import)) {
             imports.add(import);
           }
@@ -326,7 +331,7 @@ class SourceComponent with _$SourceComponent {
       if (request.multipartBody.isNotEmpty) {
         for (final e in request.multipartBody) {
           final import =
-              e.type.getFullFileImport(projectName, DataFileType.entity);
+              e.type.getFullFileImport(projectName, DataFileType.entity, arch);
           if (import != null && !imports.contains(import)) {
             imports.add(import);
           }

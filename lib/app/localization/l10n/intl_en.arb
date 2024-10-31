@@ -149,5 +149,6 @@
   "organizationNameHelperText": "A digit cannot be the first character in a package segment. The package must have at least one '.’ separator. Multiple '.' characters are not allowed in a row.",
   "changeStateManagerError": "Change state manager warning",
   "changeStateManagerErrorContent": "Changing state manager will change ... to {variant}. Are you sure you want to continue?",
-  "screenClassNameHelperText": "The first character in the class name must be a letter"
+  "screenClassNameHelperText": "The first character in the class name must be a letter",
+  "projectArch": "Project architecture"
 }

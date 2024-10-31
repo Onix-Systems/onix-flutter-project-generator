@@ -1,0 +1,10 @@
+name: flutter_clean_base_hooks
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  mason: ^0.1.0-dev.40
+  process_run: ^0.12.3+2
+  tint: ^2.0.0
+  recase: ^4.1.0

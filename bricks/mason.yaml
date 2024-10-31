@@ -5,10 +5,9 @@ bricks:
   # Run `mason make hello` to try it out.
   flutter_clean_base:
     path: flutter_clean_base
-  flutter_clean_entity:
-    path: flutter_clean_entity
-  flutter_clean_screen:
-    path: flutter_clean_screen
+  flutter_simple_base:
+    path: flutter_simple_base
+
   # Bricks can also be imported via git url.
   # Uncomment the following lines to import
   # a brick from a remote git url.

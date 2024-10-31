@@ -39,7 +39,7 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
     showProgress();
 
     final swaggerComponentsResult =
-        await _fetchSwaggerDataUseCase(url: event.url);
+        await _fetchSwaggerDataUseCase(url: event.url, arch: state.config.arch);
 
     await hideProgress();
     if (swaggerComponentsResult.success) {
