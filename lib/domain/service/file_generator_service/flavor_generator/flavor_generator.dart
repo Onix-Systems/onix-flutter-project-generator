@@ -212,38 +212,21 @@ class FlavorGenerator
           ).writeAsString(mainFlavorFileContent);
 
           if (isIOsEnabled) {
-            for (final run in ['Debug', 'Profile', 'Release']) {
-              final file =
-                  File('$projectPath/ios/Flutter/$flavor$run.xcconfig');
-              final content = await file.readAsString();
-              final writer = file.openWrite()
-                ..write(
-                  content.replaceAll(
-                    'lib/main_$flavor.dart',
-                    'lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
-                  ),
-                );
-              await writer.flush();
-              await writer.close();
-            }
+            await _correctApple(
+              projectPath: projectPath,
+              flavor: flavor,
+              isGenerated: isGenerated,
+              platform: 'ios',
+            );
           }
 
-          //TODO: Add support for macos
           if (isMacOsEnabled) {
-            for (final run in ['Debug', 'Profile', 'Release']) {
-              final file =
-                  File('$projectPath/macos/Flutter/$flavor$run.xcconfig');
-              final content = await file.readAsString();
-              final writer = file.openWrite()
-                ..write(
-                  content.replaceAll(
-                    'lib/main_$flavor.dart',
-                    'lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
-                  ),
-                );
-              await writer.flush();
-              await writer.close();
-            }
+            await _correctApple(
+              projectPath: projectPath,
+              flavor: flavor,
+              isGenerated: isGenerated,
+              platform: 'macos',
+            );
           }
         }
 
@@ -281,6 +264,27 @@ class FlavorGenerator
       return Result.error(
         failure: FlavorizingFailure(FlavorizingFailureType.exception),
       );
+    }
+  }
+
+  Future<void> _correctApple({
+    required String projectPath,
+    required String flavor,
+    required bool isGenerated,
+    required String platform,
+  }) async {
+    for (final run in ['Debug', 'Profile', 'Release']) {
+      final file = File('$projectPath/$platform/Flutter/$flavor$run.xcconfig');
+      final content = await file.readAsString();
+      final writer = file.openWrite()
+        ..write(
+          content.replaceAll(
+            'lib/main_$flavor.dart',
+            'lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
+          ),
+        );
+      await writer.flush();
+      await writer.close();
     }
   }
 
