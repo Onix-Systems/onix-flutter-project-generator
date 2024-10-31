@@ -15,6 +15,7 @@ import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_scre
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/git_cliff/generate_git_cliff_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/add_output_message_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/output/get_generation_output_stream_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_signing_fingerprint_usecase.dart';
@@ -80,6 +81,11 @@ void registerUseCases(GetIt getIt) {
     )
     ..registerFactory<GetGenerationOutputStream>(
       () => GetGenerationOutputStream(
+        GetIt.I.get<OutputService>(),
+      ),
+    )
+    ..registerFactory<ClearOutputUseCase>(
+      () => ClearOutputUseCase(
         GetIt.I.get<OutputService>(),
       ),
     )

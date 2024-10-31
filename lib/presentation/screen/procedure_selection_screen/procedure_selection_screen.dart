@@ -14,12 +14,13 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/fingerprint_dialog_body.dart';
+import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/flavorizr_output.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/tools_popup_button.dart';
-import 'package:onix_flutter_bricks/presentation/widget/dialogs/flavors_dialog.dart';
-import 'package:onix_flutter_bricks/presentation/widget/dialogs/signing_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/flavors_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/signing_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 import 'package:onix_flutter_bricks/util/enum/tool_type.dart';
 import 'package:onix_flutter_bricks/util/extension/directory_extension.dart';
@@ -58,45 +59,68 @@ class _ProcedureSelectionScreenState extends BaseState<
   Widget buildWidget(BuildContext context) {
     return blocBuilder(
       builder: (context, state) {
-        return CupertinoPageScaffold(
-          navigationBar: TitleBar(
-            title: S.of(context).selectProjectFolder,
-            actions: [
-              Material(
-                color: Colors.transparent,
-                child: SizedBox(
-                  width: 100,
-                  child: CupertinoSegmentedControl<String>(
-                    padding: EdgeInsets.zero,
-                    groupValue: state.language,
-                    selectedColor: context.appColors.controlColor,
-                    unselectedColor: context.appColors.darkColor,
-                    borderColor: context.appColors.controlColor,
-                    children: _mapValues(context),
-                    onValueChanged: (value) {
-                      blocOf(context).add(
-                        ProcedureSelectionScreenEventOnLocaleChange(
-                          language: value,
-                        ),
-                      );
+        return Stack(
+          children: [
+            CupertinoPageScaffold(
+              navigationBar: TitleBar(
+                title: S.of(context).selectProjectFolder,
+                actions: [
+                  Material(
+                    color: Colors.transparent,
+                    child: SizedBox(
+                      width: 100,
+                      child: CupertinoSegmentedControl<String>(
+                        padding: EdgeInsets.zero,
+                        groupValue: state.language,
+                        selectedColor: context.appColors.controlColor,
+                        unselectedColor: context.appColors.darkColor,
+                        borderColor: context.appColors.controlColor,
+                        children: _mapValues(context),
+                        onValueChanged: (value) {
+                          blocOf(context).add(
+                            ProcedureSelectionScreenEventOnLocaleChange(
+                              language: value,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  const Delimiter.width(20),
+                  ToolsPopupButton(
+                    onSelected: (value) {
+                      switch (value) {
+                        case ToolType.generateAndroidSigning:
+                          _onGenerateSigningSelected(context);
+                        case ToolType.generateFlavors:
+                          _onGenerateFlavorsSelected(context);
+                      }
                     },
                   ),
+                ],
+              ),
+              child:
+                  SizedBox.expand(child: _buildMainContainer(context, state)),
+            ),
+            if (state.flavorizrOutputVisible)
+              Positioned.fill(
+                child: FlavorizrOutput(
+                  isGenerating: state.isGenerating,
+                  config: state.config,
+                  onOpenAndroidStudio: () {
+                    blocOf(context).add(
+                      const ProcedureSelectionScreenEventOpenProjectInStudio(),
+                    );
+                  },
+                  onClose: () {
+                    blocOf(context).add(
+                      const ProcedureSelectionScreenEventOnFlavorizrOutputClose(),
+                    );
+                  },
+                  outputStream: state.outputStream,
                 ),
               ),
-              const Delimiter.width(20),
-              ToolsPopupButton(
-                onSelected: (value) {
-                  switch (value) {
-                    case ToolType.generateAndroidSigning:
-                      _onGenerateSigningSelected(context);
-                    case ToolType.generateFlavors:
-                      _onGenerateFlavorsSelected(context);
-                  }
-                },
-              ),
-            ],
-          ),
-          child: SizedBox.expand(child: _buildMainContainer(context, state)),
+          ],
         );
       },
     );

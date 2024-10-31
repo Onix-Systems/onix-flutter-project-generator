@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
@@ -13,10 +12,14 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_flavors_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_signing_config_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/clear_output_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/output/get_generation_output_stream_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_signing_fingerprint_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/screen/clear_screens_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/util/commands.dart';
 import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
 
 class ProcedureSelectionScreenBloc extends BaseBloc<
@@ -28,26 +31,36 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
   final GetSigningFingerprintUseCase _getSigningFingerprintUseCase;
   final ClearSwaggerComponentsUseCase _clearSwaggerComponentsUseCase;
   final ClearScreensUseCase _clearScreensUseCase;
+  final GetGenerationOutputStream _getGenerationOutputStream;
+  final ClearOutputUseCase _clearOutputUseCase;
+  final RunProcessUseCase _runProcessUseCase;
 
   ProcedureSelectionScreenBloc(
-      this._generateSigningConfigUseCase,
-      this._generateFlavorsUseCase,
-      this._getSigningFingerprintUseCase,
-      this._clearSwaggerComponentsUseCase,
-      this._clearScreensUseCase)
-      : super(const ProcedureSelectionScreenStateData(config: Config())) {
+    this._generateSigningConfigUseCase,
+    this._generateFlavorsUseCase,
+    this._getSigningFingerprintUseCase,
+    this._clearSwaggerComponentsUseCase,
+    this._clearScreensUseCase,
+    this._getGenerationOutputStream,
+    this._clearOutputUseCase,
+    this._runProcessUseCase,
+  ) : super(const ProcedureSelectionScreenStateData(config: Config())) {
     on<ProcedureSelectionScreenEventInit>(_onInit);
     on<ProcedureSelectionScreenEventOnProjectOpen>(_onProjectOpen);
     on<ProcedureSelectionScreenEventOnNewProject>(_onNewProject);
     on<ProcedureSelectionScreenEventOnLocaleChange>(_onLocaleChange);
     on<ProcedureSelectionScreenEventOnAndroidSigning>(_onnAndroidSigning);
     on<ProcedureSelectionScreenEventOnGenerateFlavors>(_onGenerateFlavors);
+    on<ProcedureSelectionScreenEventOpenProjectInStudio>(_openProjectInStudio);
+    on<ProcedureSelectionScreenEventOnFlavorizrOutputClose>(
+      _onFlavorizrOutputClosed,
+    );
   }
 
-  void _onInit(
+  Future<void> _onInit(
     ProcedureSelectionScreenEventInit event,
     Emitter<ProcedureSelectionScreenState> emit,
-  ) {
+  ) async {
     emit(
       state.copyWith(
         config: event.config,
@@ -162,7 +175,17 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     ProcedureSelectionScreenEventOnGenerateFlavors event,
     Emitter<ProcedureSelectionScreenState> emit,
   ) async {
-    showProgress();
+    final outputStream = await _getGenerationOutputStream();
+
+    emit(
+      state.copyWith(
+        flavorizingDirectory: event.directory,
+        flavorizrOutputVisible: true,
+        isGenerating: true,
+        outputStream: outputStream,
+      ),
+    );
+
     final result = await _generateFlavorsUseCase(
       params: FlavorGeneratorParams(
         projectFolder: event.directory.path,
@@ -170,12 +193,51 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
         separateFromBrick: true,
       ),
     );
-    await hideProgress();
-    if (result.success) {
-      logger.f('Flavors generated');
-    } else {
+
+    if (result.isError) {
       onFailure(result.error.failure);
+    }
+
+    emit(
+      state.copyWith(
+        isGenerating: false,
+      ),
+    );
+  }
+
+  Future<void> _openProjectInStudio(
+    ProcedureSelectionScreenEventOpenProjectInStudio event,
+    Emitter<ProcedureSelectionScreenState> emit,
+  ) async {
+    final flavorizingDirectory = state.flavorizingDirectory;
+
+    if (flavorizingDirectory == null) {
       return;
     }
+
+    unawaited(
+      _runProcessUseCase(
+        workDir: flavorizingDirectory.path,
+        commands: [Commands.getOpenAndroidStudioCommand()],
+      ),
+    );
+
+    add(const ProcedureSelectionScreenEventOnFlavorizrOutputClose());
+  }
+
+  Future<void> _onFlavorizrOutputClosed(
+    ProcedureSelectionScreenEventOnFlavorizrOutputClose event,
+    Emitter<ProcedureSelectionScreenState> emit,
+  ) async {
+    _clearOutputUseCase();
+
+    emit(
+      state.copyWith(
+        flavorizrOutputVisible: false,
+        flavorizingDirectory: null,
+        isGenerating: false,
+        outputStream: null,
+      ),
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/app/extension/process_extension.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/flavorizing_failure.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
@@ -8,7 +9,6 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:onix_flutter_bricks/util/extension/swagger_extensions.dart';
 import 'package:onix_flutter_core/onix_flutter_core.dart';
-import 'package:process_run/process_run.dart';
 import 'package:recase/recase.dart';
 
 ///This class generates flavors for the project
@@ -30,7 +30,7 @@ class FlavorGenerator
         );
       }
 
-      logger.f('Org: $org');
+      _outputService.add('{#info}Org: $org');
 
       final projectPath = params.projectFolder;
 
@@ -61,7 +61,7 @@ class FlavorGenerator
         }
       }
 
-      ///Save main.dart content
+      ///Save main.dart content before flavorizr breaks it
       var mainFileContent =
           File('$projectPath/lib/main.dart').readAsStringSync();
 
@@ -71,13 +71,7 @@ class FlavorGenerator
         workingDirectory: projectPath,
       );
 
-      await addFlavorizrProc.outLines.forEach((element) {
-        logger.f('Flavorizing: $element');
-      });
-
-      await addFlavorizrProc.errLines.forEach((element) {
-        logger.e('Flavorizing: $element');
-      });
+      await addFlavorizrProc.toOutputService(_outputService);
 
       final flavorizrProc = await Process.start(
         'flutter',
@@ -85,20 +79,13 @@ class FlavorGenerator
         workingDirectory: projectPath,
       );
 
-      await flavorizrProc.outLines.forEach((element) {
-        _outputService.add(element);
-        logger.f('Flavorizing: $element');
-      });
-
-      await flavorizrProc.errLines.forEach((element) {
-        _outputService.add(element);
-        logger.e('Flavorizing: $element');
-      });
+      await flavorizrProc.toOutputService(_outputService);
 
       exitCode = await flavorizrProc.exitCode;
 
       if (exitCode == 0) {
         for (final flavor in params.flavors) {
+          ///Generate AndroidStudio configs
           await _generateConfigs(
             projectPath: projectPath,
             flavor: flavor,
@@ -106,8 +93,8 @@ class FlavorGenerator
           );
 
           await Directory(
-                  '$projectPath/lib/${isGenerated ? 'app/' : ''}flavors')
-              .create(recursive: true);
+            '$projectPath/lib/${isGenerated ? 'app/' : ''}flavors',
+          ).create(recursive: true);
 
           mainFileContent = mainFileContent.replaceAll(
             'void main()',
@@ -216,73 +203,78 @@ class FlavorGenerator
             workingDirectory: '$projectPath/lib',
           );
         }
+
+        _outputService.add('{#info}Flavorizing finished');
       } else {
-        logger.e(
-          'Flavorizing failed with exit code $exitCode',
+        _outputService.add(
+          '{#error}Flavorizing failed with exit code $exitCode',
         );
       }
 
       return const Result.success(0);
     } catch (e, trace) {
       logger.e(e, stackTrace: trace);
+      _outputService.add('{#error}$e');
       return Result.error(
         failure: FlavorizingFailure(FlavorizingFailureType.exception),
       );
     }
   }
 
-  Future<void> _copyIcons(
-    String projectPath,
-    String flavor,
-    FlavorGeneratorParams params,
-  ) async {
-    await Directory('$projectPath/flavor_assets/$flavor/launcher_icons')
-        .create(recursive: true);
-    switch (flavor) {
-      case 'dev':
-      case 'prod':
-        await _iconCopy(
-          src: '$projectPath/assets/launcher_icons/ic_launcher_$flavor.png',
-          altSrc: '$projectPath/assets/launcher_icons/ic_launcher.png',
-          dst:
-              '$projectPath/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
-        );
+  Future<String> _getOrg(String name) async {
+    final appBuildGradleFile = File('$name/android/app/build.gradle');
+    var pbxProjFile = File('$name/ios/Runner.xcodeproj/project.pbxproj');
 
-        await _iconCopy(
-          src: '$projectPath/assets/android12splash_$flavor.png',
-          altSrc: '$projectPath/assets/android12splash.png',
-          dst: '$projectPath/flavor_assets/$flavor/android12splash.png',
-        );
-
-      default:
-        await _iconCopy(
-          src: '$projectPath/assets/launcher_icons/ic_launcher.png',
-          dst:
-              '$projectPath/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
-          removeSrc: flavor == params.flavors.last,
-        );
+    if (!pbxProjFile.existsSync()) {
+      pbxProjFile = File('$name/macos/Runner.xcodeproj/project.pbxproj');
     }
-  }
 
-  Future<void> _correctApple({
-    required String projectPath,
-    required String flavor,
-    required bool isGenerated,
-    required String platform,
-  }) async {
-    for (final run in ['Debug', 'Profile', 'Release']) {
-      final file = File('$projectPath/$platform/Flutter/$flavor$run.xcconfig');
-      final content = await file.readAsString();
-      final writer = file.openWrite()
-        ..write(
-          content.replaceAll(
-            'lib/main_$flavor.dart',
-            'lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
-          ),
-        );
-      await writer.flush();
-      await writer.close();
+    if (appBuildGradleFile.existsSync()) {
+      final appBuildGradleContent = await appBuildGradleFile.readAsString();
+      final appBuildGradleContentLines = appBuildGradleContent.split('\n');
+
+      final applicationIdLine = appBuildGradleContentLines
+          .firstWhereOrNull((element) => element.contains('applicationId = '));
+
+      if (applicationIdLine != null) {
+        final lines = applicationIdLine
+            .split('applicationId = ')
+            .last
+            .replaceAll('"', '')
+            .split('.');
+
+        return lines.sublist(0, lines.length - 1).join('.');
+      }
     }
+
+    if (pbxProjFile.existsSync()) {
+      final pbxProjContent = await pbxProjFile.readAsString();
+      final pbxProjContentLines = pbxProjContent.split('\n');
+
+      final applicationIdLines = pbxProjContentLines
+          .where((element) => element.contains('PRODUCT_BUNDLE_IDENTIFIER = '))
+          .map(
+            (e) => e
+                .replaceFirst('.RunnerTests', '')
+                .replaceLast(';', '')
+                .split('PRODUCT_BUNDLE_IDENTIFIER = ')
+                .last
+                .split('.'),
+          )
+          .toSet();
+
+      if (applicationIdLines.isEmpty) return '';
+
+      var orgSegments = applicationIdLines.first.toSet();
+
+      for (final org in applicationIdLines) {
+        orgSegments = orgSegments.intersection(org.toSet());
+      }
+
+      return orgSegments.toList().getRange(0, orgSegments.length - 1).join('.');
+    }
+
+    return '';
   }
 
   Future<void> _injectFlavors(
@@ -380,60 +372,90 @@ class FlavorGenerator
     ///END:Flavorizer config injection
   }
 
-  Future<String> _getOrg(String name) async {
-    final appBuildGradleFile = File('$name/android/app/build.gradle');
-    var pbxProjFile = File('$name/ios/Runner.xcodeproj/project.pbxproj');
+  Future<void> _copyIcons(
+    String projectPath,
+    String flavor,
+    FlavorGeneratorParams params,
+  ) async {
+    await Directory('$projectPath/flavor_assets/$flavor/launcher_icons')
+        .create(recursive: true);
+    switch (flavor) {
+      case 'dev':
+      case 'prod':
+        await _iconCopy(
+          src: '$projectPath/assets/launcher_icons/ic_launcher_$flavor.png',
+          altSrc: '$projectPath/assets/launcher_icons/ic_launcher.png',
+          dst:
+              '$projectPath/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
+        );
 
-    if (!pbxProjFile.existsSync()) {
-      pbxProjFile = File('$name/macos/Runner.xcodeproj/project.pbxproj');
+        await _iconCopy(
+          src: '$projectPath/assets/android12splash_$flavor.png',
+          altSrc: '$projectPath/assets/android12splash.png',
+          dst: '$projectPath/flavor_assets/$flavor/android12splash.png',
+        );
+
+      default:
+        await _iconCopy(
+          src: '$projectPath/assets/launcher_icons/ic_launcher.png',
+          dst:
+              '$projectPath/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
+          removeSrc: flavor == params.flavors.last,
+        );
     }
+  }
 
-    if (appBuildGradleFile.existsSync()) {
-      final appBuildGradleContent = await appBuildGradleFile.readAsString();
-      final appBuildGradleContentLines = appBuildGradleContent.split('\n');
+  Future<void> _iconCopy({
+    required String src,
+    required String dst,
+    String? altSrc,
+    bool removeSrc = true,
+  }) async {
+    var srcFile = File(src);
 
-      final applicationIdLine = appBuildGradleContentLines
-          .firstWhereOrNull((element) => element.contains('applicationId = '));
+    final srcFileExists = srcFile.existsSync();
 
-      if (applicationIdLine != null) {
-        final lines = applicationIdLine
-            .split('applicationId = ')
-            .last
-            .replaceAll('"', '')
-            .split('.');
+    ///Case when default flavor icons were removed
+    if (!srcFileExists) {
+      if (altSrc == null) {
+        return;
+      }
 
-        return lines.sublist(0, lines.length - 1).join('.');
+      srcFile = File(altSrc);
+
+      ///Case when default icon was removed
+      if (!srcFile.existsSync()) {
+        return;
       }
     }
 
-    if (pbxProjFile.existsSync()) {
-      final pbxProjContent = await pbxProjFile.readAsString();
-      final pbxProjContentLines = pbxProjContent.split('\n');
+    await srcFile.copy(dst);
 
-      final applicationIdLines = pbxProjContentLines
-          .where((element) => element.contains('PRODUCT_BUNDLE_IDENTIFIER = '))
-          .map(
-            (e) => e
-                .replaceFirst('.RunnerTests', '')
-                .replaceLast(';', '')
-                .split('PRODUCT_BUNDLE_IDENTIFIER = ')
-                .last
-                .split('.'),
-          )
-          .toSet();
-
-      if (applicationIdLines.isEmpty) return '';
-
-      var orgSegments = applicationIdLines.first.toSet();
-
-      for (final org in applicationIdLines) {
-        orgSegments = orgSegments.intersection(org.toSet());
-      }
-
-      return orgSegments.toList().getRange(0, orgSegments.length - 1).join('.');
+    if (srcFileExists && removeSrc) {
+      ///Remove default flavor icon
+      await srcFile.delete();
     }
+  }
 
-    return '';
+  Future<void> _correctApple({
+    required String projectPath,
+    required String flavor,
+    required bool isGenerated,
+    required String platform,
+  }) async {
+    for (final run in ['Debug', 'Profile', 'Release']) {
+      final file = File('$projectPath/$platform/Flutter/$flavor$run.xcconfig');
+      final content = await file.readAsString();
+      final writer = file.openWrite()
+        ..write(
+          content.replaceAll(
+            'lib/main_$flavor.dart',
+            'lib/${isGenerated ? 'app/' : ''}flavors/main_$flavor.dart',
+          ),
+        );
+      await writer.flush();
+      await writer.close();
+    }
   }
 
   bool _isGenerated(String projectFolder) {
@@ -505,38 +527,6 @@ $flavor:
 \t@cp -r \$(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
 \tdart run flutter_native_splash:create
 ''');
-    }
-  }
-
-  Future<void> _iconCopy({
-    required String src,
-    required String dst,
-    String? altSrc,
-    bool removeSrc = true,
-  }) async {
-    var srcFile = File(src);
-
-    final srcFileExists = srcFile.existsSync();
-
-    ///Case when default flavor icons were removed
-    if (!srcFileExists) {
-      if (altSrc == null) {
-        return;
-      }
-
-      srcFile = File(altSrc);
-
-      ///Case when default icon was removed
-      if (!srcFile.existsSync()) {
-        return;
-      }
-    }
-
-    await srcFile.copy(dst);
-
-    if (srcFileExists && removeSrc) {
-      ///Remove default flavor icon
-      await srcFile.delete();
     }
   }
 }

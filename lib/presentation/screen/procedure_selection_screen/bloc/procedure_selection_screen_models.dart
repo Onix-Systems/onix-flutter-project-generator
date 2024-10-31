@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/fingerprint.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/output_line.dart';
 
 part 'procedure_selection_screen_models.freezed.dart';
 
@@ -33,6 +34,12 @@ class ProcedureSelectionScreenEvent with _$ProcedureSelectionScreenEvent {
     required Directory directory,
     required Set<String> flavors,
   }) = ProcedureSelectionScreenEventOnGenerateFlavors;
+
+  const factory ProcedureSelectionScreenEvent.onOpenInStudio() =
+      ProcedureSelectionScreenEventOpenProjectInStudio;
+
+  const factory ProcedureSelectionScreenEvent.onFlavorizrOutputClose() =
+      ProcedureSelectionScreenEventOnFlavorizrOutputClose;
 }
 
 @freezed
@@ -46,9 +53,6 @@ class ProcedureSelectionScreenSR with _$ProcedureSelectionScreenSR {
   const factory ProcedureSelectionScreenSR.onAndroidSigningCreated({
     required List<Fingerprint> fingerprints,
   }) = _onAndroidSigningCreated;
-
-  const factory ProcedureSelectionScreenSR.onFlavorsCreated() =
-      _onFlavorsCreated;
 }
 
 @freezed
@@ -56,5 +60,9 @@ class ProcedureSelectionScreenState with _$ProcedureSelectionScreenState {
   const factory ProcedureSelectionScreenState.data({
     required Config config,
     @Default('en') language,
+    Directory? flavorizingDirectory,
+    Stream<List<OutputLine>>? outputStream,
+    @Default(false) bool flavorizrOutputVisible,
+    @Default(false) bool isGenerating,
   }) = ProcedureSelectionScreenStateData;
 }
