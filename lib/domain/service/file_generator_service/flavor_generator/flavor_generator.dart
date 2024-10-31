@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/extension/process_extension.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/flavorizing_failure.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
@@ -37,6 +39,24 @@ class FlavorGenerator
         );
       }
 
+      final configFile = File('$projectPath/.gen_config.json');
+
+      final isGenerated = configFile.existsSync();
+
+      ArchType? archType;
+
+      if (isGenerated) {
+        final configString = configFile.readAsStringSync();
+        final configMap = jsonDecode(configString) as Map<String, dynamic>;
+        archType = configMap['arch'] != null
+            ? ArchType.values.firstWhereOrNull(
+                (element) => element.name == configMap['arch'],
+              )
+            : null;
+      }
+
+      _outputService.add('{#info}Arch type: ${archType?.name ?? 'unknown'}');
+
       final org = await _getOrg(params.projectFolder);
 
       if (org.isEmpty) {
@@ -46,6 +66,8 @@ class FlavorGenerator
       }
 
       _outputService.add('{#info}Org: $org');
+
+      // return const Result.success(0);
 
       final isIOsEnabled = Directory('$projectPath/ios').existsSync();
 
@@ -60,8 +82,6 @@ class FlavorGenerator
         isAndroidEnabled,
         isMacOsEnabled,
       );
-
-      final isGenerated = _isGenerated(projectPath);
 
       ///Manipulations with icons
       if (isGenerated) {
@@ -221,6 +241,7 @@ class FlavorGenerator
           projectPath: projectPath,
           projectName: projectName,
           isGenerated: isGenerated,
+          archType: archType,
         );
       } else {
         _outputService.add(
@@ -551,6 +572,7 @@ $flavor:
     required String projectPath,
     required String projectName,
     required bool isGenerated,
+    required ArchType? archType,
   }) async {
     final flavorBannerWidgetContent = '''
 import 'package:flutter/material.dart';
@@ -582,6 +604,11 @@ class FlavorBanner extends StatelessWidget {
       flavorBannerFilePath =
           '$projectPath/lib/core/arch/widget/common/flavor_banner.dart';
 
+      if (archType == ArchType.simple) {
+        flavorBannerFilePath =
+            '$projectPath/lib/presentation/widget/common/flavor_banner.dart';
+      }
+
       final appFile = File('$projectPath/lib/app/app.dart');
 
       var appFileContent = await appFile.readAsString();
@@ -593,7 +620,7 @@ class FlavorBanner extends StatelessWidget {
           )
           .replaceAll(
             'class App extends StatefulWidget {',
-            "import 'package:$projectName/core/arch/widget/common/flavor_banner.dart';\n\nclass App extends StatefulWidget {",
+            "import 'package:${flavorBannerFilePath.replaceAll('$projectPath/lib', projectName)}';\n\nclass App extends StatefulWidget {",
           );
 
       await appFile.writeAsString(appFileContent);
