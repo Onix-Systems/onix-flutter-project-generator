@@ -57,43 +57,7 @@ class FlavorGenerator
         await Directory('$projectPath/flavor_assets').create(recursive: true);
 
         for (final flavor in params.flavors) {
-          await Directory('$projectPath/flavor_assets/$flavor/launcher_icons')
-              .create(recursive: true);
-          switch (flavor) {
-            case 'dev':
-            case 'prod':
-              var srcFile = File(
-                  '$projectPath/assets/launcher_icons/ic_launcher_$flavor.png');
-              await srcFile.copy(
-                '$projectPath/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
-              );
-
-              await srcFile.delete();
-
-              srcFile = File('$projectPath/assets/android12splash_$flavor.png');
-              await srcFile.copy(
-                  '$projectPath/flavor_assets/$flavor/android12splash.png');
-
-              await srcFile.delete();
-
-            default:
-              var srcFile =
-                  File('$projectPath/assets/launcher_icons/ic_launcher.png');
-              await srcFile.copy(
-                '$projectPath/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
-              );
-              if (flavor == params.flavors.last) {
-                await srcFile.delete();
-              }
-
-              srcFile = File('$projectPath/assets/android12splash.png');
-              await srcFile.copy(
-                  '$projectPath/flavor_assets/$flavor/android12splash.png');
-
-              if (flavor == params.flavors.last) {
-                await srcFile.delete();
-              }
-          }
+          await _copyIcons(projectPath, flavor, params);
         }
       }
 
@@ -264,6 +228,39 @@ class FlavorGenerator
       return Result.error(
         failure: FlavorizingFailure(FlavorizingFailureType.exception),
       );
+    }
+  }
+
+  Future<void> _copyIcons(
+    String projectPath,
+    String flavor,
+    FlavorGeneratorParams params,
+  ) async {
+    await Directory('$projectPath/flavor_assets/$flavor/launcher_icons')
+        .create(recursive: true);
+    switch (flavor) {
+      case 'dev':
+      case 'prod':
+        await _iconCopy(
+          src: '$projectPath/assets/launcher_icons/ic_launcher_$flavor.png',
+          altSrc: '$projectPath/assets/launcher_icons/ic_launcher.png',
+          dst:
+              '$projectPath/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
+        );
+
+        await _iconCopy(
+          src: '$projectPath/assets/android12splash_$flavor.png',
+          altSrc: '$projectPath/assets/android12splash.png',
+          dst: '$projectPath/flavor_assets/$flavor/android12splash.png',
+        );
+
+      default:
+        await _iconCopy(
+          src: '$projectPath/assets/launcher_icons/ic_launcher.png',
+          dst:
+              '$projectPath/flavor_assets/$flavor/launcher_icons/ic_launcher.png',
+          removeSrc: flavor == params.flavors.last,
+        );
     }
   }
 
@@ -508,6 +505,38 @@ $flavor:
 \t@cp -r \$(ROOT_DIR)/flavor_assets/$flavor/* \$(ASSETS_DIR)
 \tdart run flutter_native_splash:create
 ''');
+    }
+  }
+
+  Future<void> _iconCopy({
+    required String src,
+    required String dst,
+    String? altSrc,
+    bool removeSrc = true,
+  }) async {
+    var srcFile = File(src);
+
+    final srcFileExists = srcFile.existsSync();
+
+    ///Case when default flavor icons were removed
+    if (!srcFileExists) {
+      if (altSrc == null) {
+        return;
+      }
+
+      srcFile = File(altSrc);
+
+      ///Case when default icon was removed
+      if (!srcFile.existsSync()) {
+        return;
+      }
+    }
+
+    await srcFile.copy(dst);
+
+    if (srcFileExists && removeSrc) {
+      ///Remove default flavor icon
+      await srcFile.delete();
     }
   }
 }
