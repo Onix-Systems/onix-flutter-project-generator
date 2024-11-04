@@ -143,7 +143,7 @@ Future<void> getDependencies(HookContext context) async {
     'logger',
     'fluttertoast',
     'collection',
-    'flutter_jailbreak_detection',
+    'jailbreak_root_detection',
     'gap',
     'onix_flutter_core',
     'envied',
