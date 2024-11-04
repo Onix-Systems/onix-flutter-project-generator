@@ -143,10 +143,10 @@ Future<void> getDependencies(HookContext context) async {
     'logger',
     'fluttertoast',
     'collection',
-    'flutter_dotenv',
-    'flutter_jailbreak_detection',
+    'jailbreak_root_detection',
     'gap',
     'onix_flutter_core',
+    'envied',
   ];
 
   List<String> devDependencies = [
@@ -157,6 +157,7 @@ Future<void> getDependencies(HookContext context) async {
     'import_sorter',
     'mockito',
     'test',
+    'envied_generator',
   ];
 
   if (context.vars['isBloc']) {
@@ -536,6 +537,7 @@ Future<void> secure(HookContext context) async {
 # Secure
 *.jks
 .env
+app/service/env/env.g.dart
 ios/firebase_app_id_file.json
 android/app/google-services.json
 lib/firebase_options.dart

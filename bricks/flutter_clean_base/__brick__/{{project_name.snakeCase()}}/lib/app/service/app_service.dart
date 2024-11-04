@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:{{project_name}}/app/service/env/env.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:jailbreak_root_detection/jailbreak_root_detection.dart';
 /*
 * Example of .env file
@@ -12,8 +12,8 @@ import 'package:jailbreak_root_detection/jailbreak_root_detection.dart';
 */
 
 class AppService {
-  static const String apiKey1 = 'APIKEY1';
-  static const String apiKey2 = 'APIKEY2';
+  static final String apiKey1 = Env.apiKey1;
+  static final String apiKey2 = Env.apiKey2;
 
   //Change if not need to check for root or jail brake
   final _secureFromJailbreak = true;
@@ -26,9 +26,6 @@ class AppService {
       }
     }
 
-    await dotenv.load();
     return true;
   }
-
-  String getEnvironmentVariable(String key) => dotenv.env[key] ?? '';
 }
