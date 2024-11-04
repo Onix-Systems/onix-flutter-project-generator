@@ -4,8 +4,8 @@ part 'env.g.dart';
 
 @envied
 abstract class Env {
-  @EnviedField(obfuscate: true, varName: 'APIKEY1')
-  static const apiKey1;
-  @EnviedField(obfuscate: true, varName: 'APIKEY2')
-  static const apiKey2;
+  @EnviedField(varName: 'APIKEY1')
+  static const String apiKey1 = _Env.apiKey1;
+  @EnviedField(varName: 'APIKEY2')
+  static const String apiKey2 = _Env.apiKey2;
 }
