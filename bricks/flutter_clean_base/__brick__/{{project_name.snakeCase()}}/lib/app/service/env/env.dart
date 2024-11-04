@@ -2,10 +2,10 @@ import 'package:envied/envied.dart';
 
 part 'env.g.dart';
 
-@envied
+@Envied(path: '.env', obfuscate: true)
 abstract class Env {
   @EnviedField(varName: 'APIKEY1')
-  static const String apiKey1 = _Env.apiKey1;
+  static final String apiKey1 = _Env.apiKey1;
   @EnviedField(varName: 'APIKEY2')
-  static const String apiKey2 = _Env.apiKey2;
+  static final String apiKey2 = _Env.apiKey2;
 }
