@@ -1,22 +1,21 @@
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/screen_code_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
 class CubitScreenCodeContent extends ScreenCodeContent {
   @override
   String createScreen({
-    required bool isGoRouter,
-    required String screenName,
-    required String projectName,
+    required ScreenGeneratorParams params,
   }) {
-    final screenClassName = screenName.pascalCase;
-    final screenClassImport = screenName.snakeCase;
+    final screenClassName = params.normalizedScreenName.pascalCase;
+    final screenClassImport = screenClassName.snakeCase;
     final codeLines = List<String>.empty(growable: true);
     final cubitClassType = '${screenClassName}ScreenCubit';
 
     /// Add imports
     codeLines.add("import 'package:flutter/material.dart';");
-    if (!isGoRouter) {
+    if (!params.isGoRouter) {
       codeLines.add("import 'package:auto_route/annotations.dart';");
     }
 
@@ -24,12 +23,12 @@ class CubitScreenCodeContent extends ScreenCodeContent {
       ..add("import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';")
       ..add("import 'package:get_it/get_it.dart';")
       ..add(
-        "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart';",
+        "import 'package:${params.projectName}/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart';",
       )
       ..addNewLine();
 
     /// Add annotation in AutoRoute navigation used
-    if (!isGoRouter) {
+    if (!params.isGoRouter) {
       codeLines.add('@RoutePage()');
     }
 

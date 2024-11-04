@@ -7,7 +7,7 @@ import 'package:recase/recase.dart';
 class ScreenGeneratorParams implements BaseGenerationParams {
   final String projectRootPath;
   final String projectName;
-  final ArchType arch;
+  final ArchType archType;
   final Screen screen;
   final ProjectRouter router;
   final bool build;
@@ -16,16 +16,16 @@ class ScreenGeneratorParams implements BaseGenerationParams {
   ScreenGeneratorParams({
     required this.projectRootPath,
     required this.projectName,
-    required this.arch,
+    required this.archType,
     required this.screen,
     required this.router,
     required this.lastScreenItem,
     this.build = false,
   });
-}
 
-extension ScreenNameNormalizer on ScreenGeneratorParams {
   String get normalizedScreenName => screen.name.snakeCase.endsWith('_screen')
       ? screen.name.snakeCase.substring(0, screen.name.length - 7)
       : screen.name.snakeCase;
+
+  bool get isGoRouter => router == ProjectRouter.goRouter;
 }

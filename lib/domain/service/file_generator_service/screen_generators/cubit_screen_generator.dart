@@ -80,9 +80,7 @@ class CubitScreenGenerator extends ScreenGenerationService
 
     ///Write screen file
     final screenContent = _screenCodeContent.createScreen(
-      isGoRouter: params.router == ProjectRouter.goRouter,
-      screenName: screenName,
-      projectName: params.projectName,
+      params: params,
     );
     await screenFile.writeAsString(screenContent);
 

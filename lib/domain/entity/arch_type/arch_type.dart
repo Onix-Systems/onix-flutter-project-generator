@@ -13,6 +13,15 @@ extension Path on ArchType {
     }
   }
 
+  String getDiImportPrefix(String projectName) {
+    switch (this) {
+      case ArchType.clean:
+        return "import 'package:$projectName/core/di";
+      case ArchType.simple:
+        return "import 'package:$projectName/app/di";
+    }
+  }
+
   String getLoggerPath() {
     switch (this) {
       case ArchType.clean:
