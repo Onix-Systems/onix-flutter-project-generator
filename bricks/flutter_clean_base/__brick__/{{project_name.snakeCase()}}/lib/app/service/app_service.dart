@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:jailbreak_root_detection/jailbreak_root_detection.dart';
 /*
 * Example of .env file
@@ -26,9 +25,6 @@ class AppService {
       }
     }
 
-    await dotenv.load();
     return true;
   }
-
-  String getEnvironmentVariable(String key) => dotenv.env[key] ?? '';
 }
