@@ -25,7 +25,6 @@ flutter:
 
     # To add assets to your application, add an assets section, like this:
   assets:
-    - .env
     - assets/launcher_icons/
     #   - images/a_dot_ham.jpeg
 
