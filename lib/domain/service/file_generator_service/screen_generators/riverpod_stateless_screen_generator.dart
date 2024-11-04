@@ -78,9 +78,7 @@ class RiverpodStatelessScreenGenerator extends ScreenGenerationService
         await File('$screenPath/${screenName}_screen.dart').create();
 
     final screenContent = _screenCodeContent.createScreen(
-      isGoRouter: params.router == ProjectRouter.goRouter,
-      screenName: screenName,
-      projectName: params.projectName,
+      params: params,
     );
 
     if (screenContent.isEmpty) {

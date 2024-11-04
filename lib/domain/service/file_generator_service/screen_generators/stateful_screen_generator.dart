@@ -68,9 +68,7 @@ class StatefulScreenGenerator extends ScreenGenerationService {
     var screenContent = '';
 
     screenContent = _screenCodeContent.createScreen(
-      isGoRouter: params.router == ProjectRouter.goRouter,
-      screenName: screenName,
-      projectName: params.projectName,
+      params: params,
     );
 
     if (screenContent.isEmpty) {

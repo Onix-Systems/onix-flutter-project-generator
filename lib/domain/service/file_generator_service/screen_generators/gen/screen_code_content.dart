@@ -1,3 +1,4 @@
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:recase/recase.dart';
 
@@ -87,8 +88,6 @@ abstract class ScreenCodeContent {
   }
 
   String createScreen({
-    required bool isGoRouter,
-    required String screenName,
-    required String projectName,
+    required ScreenGeneratorParams params,
   });
 }

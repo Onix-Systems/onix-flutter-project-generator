@@ -77,9 +77,7 @@ class ProviderScreenGenerator extends ScreenGenerationService
     var screenContent = '';
 
     screenContent = _screenCodeContent.createScreen(
-      isGoRouter: params.router == ProjectRouter.goRouter,
-      projectName: params.projectName,
-      screenName: screenName,
+      params: params,
     );
 
     await screenFile.writeAsString(screenContent);
