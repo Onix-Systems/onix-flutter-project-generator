@@ -54,7 +54,7 @@ class BaseStrategy implements StateManagerStrategy {
               screen: screen,
               projectRootPath: config.projectRootPath,
               projectName: config.projectName,
-              arch: config.arch,
+              archType: config.arch,
               router: config.router,
               lastScreenItem: i == (screensNotExist.length - 1),
             ),

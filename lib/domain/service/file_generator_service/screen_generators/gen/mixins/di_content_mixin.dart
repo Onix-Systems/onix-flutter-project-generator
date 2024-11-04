@@ -22,7 +22,7 @@ mixin DIContentMixin on ScreenGenerationService {
       stateManagement = 'bloc';
     }
 
-    final diFolderPath = params.arch.getDiPath();
+    final diFolderPath = params.archType.getDiPath();
 
     final diFile = File(
       '${params.projectRootPath}/$diFolderPath/$stateManagement.dart',

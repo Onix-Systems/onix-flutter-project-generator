@@ -1,19 +1,18 @@
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/screen_code_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
 class StatefulScreenCodeContent extends ScreenCodeContent {
   @override
   String createScreen({
-    required bool isGoRouter,
-    required String screenName,
-    required String projectName,
+    required ScreenGeneratorParams params,
   }) {
-    final screenClassName = screenName.pascalCase;
+    final screenClassName = params.normalizedScreenName.pascalCase;
     final codeLines = List<String>.empty(growable: true);
 
     ///Add imports
-    if (!isGoRouter) {
+    if (!params.isGoRouter) {
       codeLines.add("import 'package:auto_route/annotations.dart';");
     }
     codeLines
@@ -21,7 +20,7 @@ class StatefulScreenCodeContent extends ScreenCodeContent {
       ..addNewLine();
 
     ///Add annotation in AutoRoute navigation used
-    if (!isGoRouter) {
+    if (!params.isGoRouter) {
       codeLines.add('@RoutePage()');
     }
 
