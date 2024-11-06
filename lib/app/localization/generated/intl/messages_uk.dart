@@ -118,12 +118,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Інтегрувати Firebase з FirebaseAuth?"),
         "firstLastName":
             MessageLookupByLibrary.simpleMessage(" Ім\'я та прізвище"),
+        "flavorName": MessageLookupByLibrary.simpleMessage("Назва флавора"),
         "flavorize":
             MessageLookupByLibrary.simpleMessage("Генерувати флавори?"),
         "flavors": MessageLookupByLibrary.simpleMessage("Флавори"),
         "generate": MessageLookupByLibrary.simpleMessage("Генерувати"),
         "generateAndroidSigning": MessageLookupByLibrary.simpleMessage(
             "Сконфігурувати підпис Android"),
+        "generateFlavors":
+            MessageLookupByLibrary.simpleMessage("Генерувати флавори"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Створити новий проект"),
         "generateProject":

@@ -1330,6 +1330,26 @@ class S {
     );
   }
 
+  /// `Generate flavors`
+  String get generateFlavors {
+    return Intl.message(
+      'Generate flavors',
+      name: 'generateFlavors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Flavor name`
+  String get flavorName {
+    return Intl.message(
+      'Flavor name',
+      name: 'flavorName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Failed to create signing config. Internal error happened, please contact a developer.`
   String get signingErrorParams {
     return Intl.message(

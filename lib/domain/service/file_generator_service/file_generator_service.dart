@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/flavor_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/default_screen_route_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/default_screen_route_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
@@ -21,10 +23,14 @@ class FileGeneratorService {
   late final BaseGenerationService<Result<int>, SingingGeneratorParams>
       _signingGenerator;
 
+  late final BaseGenerationService<Result<int>, FlavorGeneratorParams>
+      _flavorGenerator;
+
   FileGeneratorService(
     this._outputService,
   ) {
     _signingGenerator = SigningGenerator(_outputService);
+    _flavorGenerator = FlavorGenerator(_outputService);
   }
 
   Future<bool> generateDefaultScreenRoute(
@@ -53,4 +59,7 @@ class FileGeneratorService {
 
   Future<Result<int>> generateSigning(SingingGeneratorParams params) =>
       _signingGenerator.generate(params);
+
+  Future<Result<int>> generateFlavors(FlavorGeneratorParams params) =>
+      _flavorGenerator.generate(params);
 }

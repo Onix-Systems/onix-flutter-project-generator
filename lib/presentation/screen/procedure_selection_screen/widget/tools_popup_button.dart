@@ -20,6 +20,10 @@ class ToolsPopupButton extends StatelessWidget {
           value: ToolType.generateAndroidSigning,
           child: Text(S.of(context).generateAndroidSigning),
         ),
+        PopupMenuItem<ToolType>(
+          value: ToolType.generateFlavors,
+          child: Text(S.of(context).generateFlavors),
+        ),
       ],
     );
   }

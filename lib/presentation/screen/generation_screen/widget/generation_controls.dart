@@ -8,11 +8,13 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 
 class GenerationControls extends StatelessWidget {
   final VoidCallback onOpenAndroidStudio;
+  final VoidCallback? onClose;
   final Config config;
 
   const GenerationControls({
     required this.onOpenAndroidStudio,
     required this.config,
+    this.onClose,
     super.key,
   });
 
@@ -44,7 +46,7 @@ class GenerationControls extends StatelessWidget {
             size: 20,
           ),
           onPressed: () {
-            _onCloseGeneration(context);
+            onClose != null ? onClose?.call() : _onCloseGeneration(context);
           },
         ),
       ],

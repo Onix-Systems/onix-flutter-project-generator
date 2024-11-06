@@ -1,3 +1,4 @@
 enum ToolType {
   generateAndroidSigning,
+  generateFlavors,
 }
