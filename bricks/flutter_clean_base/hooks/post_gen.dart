@@ -162,8 +162,6 @@ Future<void> getDependencies(HookContext context) async {
 
   final stateManager = context.vars['state_management'];
 
-  stateManager.log();
-
   switch (stateManager) {
     case 'bloc':
       dependencies.addAll(['flutter_bloc', 'onix_flutter_bloc']);
