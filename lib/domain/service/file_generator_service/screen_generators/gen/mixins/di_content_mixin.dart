@@ -12,7 +12,7 @@ mixin DIContentMixin on ScreenGenerationService {
     required ScreenGeneratorParams params,
   }) async {
     var stateManagement = params.screen.stateVariant.name.toLowerCase();
-    final stateVariant = params.screen.stateVariant.name;
+    var stateVariant = params.screen.stateVariant.name;
 
     if (stateManagement.startsWith('riverpod')) {
       stateManagement = 'riverpod';
@@ -22,15 +22,37 @@ mixin DIContentMixin on ScreenGenerationService {
       stateManagement = 'bloc';
     }
 
+    if (stateManagement.startsWith('signals')) {
+      stateManagement = 'signals';
+      stateVariant = 'Signals';
+    }
+
     final diFolderPath = params.archType.getDiPath();
 
     final diFile = File(
       '${params.projectRootPath}/$diFolderPath/$stateManagement.dart',
     );
-    final screenName = params.normalizedScreenName;
-    var output = await diFile.readAsString();
+
+    var output = '';
 
     final diSuffix = '//{$stateManagement end}';
+
+    if (!diFile.existsSync()) {
+      await diFile.create(recursive: true);
+      output = '''
+//@formatter:off
+${stateManagement == 'riverpod' ? "import 'package:flutter_riverpod/flutter_riverpod.dart';" : ''}
+import 'package:get_it/get_it.dart';
+//{imports end}
+
+void register${stateManagement.titleCase}(GetIt getIt) {
+  $diSuffix
+}''';
+    } else {
+      output = await diFile.readAsString();
+    }
+
+    final screenName = params.normalizedScreenName;
 
     final projectName = params.projectName;
 
@@ -55,5 +77,29 @@ $output
               'getIt.registerFactory<${screenName.pascalCase}Screen${stateVariant.pascalCase}>(${screenName.pascalCase}Screen${stateVariant.pascalCase}.new);\n$diSuffix');
     }
     await diFile.writeAsString(output);
+
+    final diInjectionFile = File(
+      '${params.projectRootPath}/$diFolderPath/injection.dart',
+    );
+
+    var injectionOutput = await diInjectionFile.readAsString();
+
+    if (injectionOutput
+        .contains('register${stateManagement.titleCase}(getIt);')) {
+      return;
+    }
+
+    injectionOutput = injectionOutput
+        .replaceFirst(
+      '}',
+      '  register${stateManagement.titleCase}(getIt);\n}',
+    )
+        .replaceFirst('void initializeDi(GetIt getIt) {', '''
+${params.archType.getDiImportPrefix(projectName)}/$stateManagement.dart';
+
+void initializeDi(GetIt getIt) {
+''');
+
+    await diInjectionFile.writeAsString(injectionOutput);
   }
 }

@@ -4,6 +4,8 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/provider_screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/riverpod_stateful_screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/riverpod_stateless_screen_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/signals_passive_screen_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/signals_reactive_screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/stateful_screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/stateless_screen_generator.dart';
 
@@ -95,4 +97,28 @@ final class RiverpodStatefulStateManagementVariant
       RiverpodStatefulScreenGenerator();
 
   const RiverpodStatefulStateManagementVariant();
+}
+
+final class SignalsPassiveStateManagementVariant
+    extends StateManagementVariant {
+  @override
+  String get name => 'SignalsPassive';
+
+  @override
+  ScreenGenerationService get screenGenerator =>
+      SignalsPassiveScreenGenerator();
+
+  const SignalsPassiveStateManagementVariant();
+}
+
+final class SignalsReactiveStateManagementVariant
+    extends StateManagementVariant {
+  @override
+  String get name => 'SignalsReactive';
+
+  @override
+  ScreenGenerationService get screenGenerator =>
+      SignalsReactiveScreenGenerator();
+
+  const SignalsReactiveStateManagementVariant();
 }

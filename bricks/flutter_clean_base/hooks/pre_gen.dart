@@ -52,17 +52,6 @@ void run(HookContext context) async {
 }
 
 Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
-  final isGoRouter = context.vars['navigation'] == 'goRouter' ? true : false;
-  final localizationByHand =
-      context.vars['localization'] == 'flutter_gen' ? true : false;
-
-  final isBase = context.vars['state_management'] == 'base' ? true : false;
-  final isBloc = context.vars['state_management'] == 'bloc' ? true : false;
-  final isProvider =
-      context.vars['state_management'] == 'provider' ? true : false;
-  final isRiverpod =
-      context.vars['state_management'] == 'riverpod' ? true : false;
-
   var flavors = [];
 
   if (context.vars['flavorizr'] == true) {
@@ -83,17 +72,15 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
 
   return {
     ...context.vars,
-    'isGoRouter': isGoRouter,
-    'handLocalization': localizationByHand,
+    'isGoRouter': context.vars['navigation'] == 'goRouter',
+    'handLocalization': context.vars['localization'] == 'flutter_gen',
     'flavors': flavors,
     'project_name': context.vars['project_name_dirt'].toString().toSnakeCase,
     'web_only': context.vars['platforms'] == 'web',
     'screen_util': context.vars['screen_util'],
-    'isBase': isBase,
-    'isBloc': isBloc,
-    'isProvider': isProvider,
-    'isRiverpod': isRiverpod,
     'sentry': context.vars['sentry'],
+    'isBloc': context.vars['state_management'] == 'bloc',
+    'isRiverpod': context.vars['state_management'] == 'riverpod',
   };
 }
 
