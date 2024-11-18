@@ -166,19 +166,19 @@ Future<void> getDependencies(HookContext context) async {
     case 'bloc':
       dependencies.addAll(['flutter_bloc', 'onix_flutter_bloc']);
       devDependencies.add('bloc_test');
-      await removeStateManagers(managers: ['provider', 'riverpod', 'signals']);
+    //await removeStateManagers(managers: ['provider', 'riverpod', 'signals']);
     case 'provider':
       dependencies.addAll(['provider', 'onix_flutter_provider']);
-      await removeStateManagers(managers: ['bloc', 'riverpod', 'signals']);
+    //await removeStateManagers(managers: ['bloc', 'riverpod', 'signals']);
     case 'riverpod':
       dependencies.addAll(['flutter_riverpod', 'onix_flutter_riverpod']);
-      await removeStateManagers(managers: ['bloc', 'provider', 'signals']);
+    //await removeStateManagers(managers: ['bloc', 'provider', 'signals']);
     case 'signals':
       dependencies.addAll(['onix_flutter_signals', 'signals']);
-      await removeStateManagers(managers: ['bloc', 'provider', 'riverpod']);
+    //await removeStateManagers(managers: ['bloc', 'provider', 'riverpod']);
     case 'base':
-      await removeStateManagers(
-          managers: ['bloc', 'provider', 'riverpod', 'signals']);
+    // await removeStateManagers(
+    //     managers: ['bloc', 'provider', 'riverpod', 'signals']);
   }
 
   if (stateManager != 'base') {
@@ -287,12 +287,12 @@ Future<void> getDependencies(HookContext context) async {
   }
 }
 
-Future<void> removeStateManagers({required List<String> managers}) async {
-  for (var manager in managers) {
-    await Process.run('rm', ['$manager.dart'],
-        workingDirectory: '$name/lib/core/di');
-  }
-}
+// Future<void> removeStateManagers({required List<String> managers}) async {
+//   for (var manager in managers) {
+//     await Process.run('rm', ['$manager.dart'],
+//         workingDirectory: '$name/lib/core/di');
+//   }
+// }
 
 Future<void> flavorize(HookContext context) async {
   'Flavorizing...'.log();

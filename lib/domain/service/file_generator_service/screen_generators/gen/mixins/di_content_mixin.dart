@@ -30,12 +30,21 @@ mixin DIContentMixin on ScreenGenerationService {
 
     final diFile = await File(
       '${params.projectRootPath}/$diFolderPath/$stateManagement.dart',
-    );
+    ).create(recursive: true);
 
     final screenName = params.normalizedScreenName;
-    var output = await diFile.readAsString();
 
     final diSuffix = '//{$stateManagement end}';
+
+    var output = '''
+//@formatter:off
+${stateManagement == 'riverpod' ? "import 'package:flutter_riverpod/flutter_riverpod.dart';" : ''}
+import 'package:get_it/get_it.dart';
+//{imports end}
+
+void register${stateManagement.titleCase}(GetIt getIt) {
+  $diSuffix
+}''';
 
     final projectName = params.projectName;
 
