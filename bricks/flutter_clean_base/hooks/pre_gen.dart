@@ -56,13 +56,6 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
   final localizationByHand =
       context.vars['localization'] == 'flutter_gen' ? true : false;
 
-  final isBase = context.vars['state_management'] == 'base' ? true : false;
-  final isBloc = context.vars['state_management'] == 'bloc' ? true : false;
-  final isProvider =
-      context.vars['state_management'] == 'provider' ? true : false;
-  final isRiverpod =
-      context.vars['state_management'] == 'riverpod' ? true : false;
-
   var flavors = [];
 
   if (context.vars['flavorizr'] == true) {

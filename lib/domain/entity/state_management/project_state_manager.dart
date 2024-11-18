@@ -4,11 +4,13 @@ import 'package:onix_flutter_bricks/domain/service/strategy/strategies/base_stra
 import 'package:onix_flutter_bricks/domain/service/strategy/strategies/bloc_strategy.dart';
 import 'package:onix_flutter_bricks/domain/service/strategy/strategies/provider_strategy.dart';
 import 'package:onix_flutter_bricks/domain/service/strategy/strategies/riverpod_strategy.dart';
+import 'package:onix_flutter_bricks/domain/service/strategy/strategies/signals_strategy.dart';
 
 enum ProjectStateManager {
   bloc,
   provider,
   riverpod,
+  signals,
   base;
 
   StateManagerStrategy get strategy {
@@ -27,6 +29,10 @@ enum ProjectStateManager {
         );
       case ProjectStateManager.riverpod:
         return RiverpodStrategy(
+          defaultScreenRouteGenerator: DefaultScreenRouteGenerator(),
+        );
+      case ProjectStateManager.signals:
+        return SignalsStateManagerStrategy(
           defaultScreenRouteGenerator: DefaultScreenRouteGenerator(),
         );
     }

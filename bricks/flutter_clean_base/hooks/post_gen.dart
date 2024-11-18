@@ -160,25 +160,28 @@ Future<void> getDependencies(HookContext context) async {
     'envied_generator',
   ];
 
-  if (context.vars['isBloc']) {
-    dependencies.addAll(['flutter_bloc', 'onix_flutter_bloc']);
-    devDependencies.add('bloc_test');
-    await removeStateManagers(managers: ['provider', 'riverpod']);
+  final stateManager = context.vars['state_management'];
+
+  switch (stateManager) {
+    case 'bloc':
+      dependencies.addAll(['flutter_bloc', 'onix_flutter_bloc']);
+      devDependencies.add('bloc_test');
+      await removeStateManagers(managers: ['provider', 'riverpod', 'signals']);
+    case 'provider':
+      dependencies.addAll(['provider', 'onix_flutter_provider']);
+      await removeStateManagers(managers: ['bloc', 'riverpod', 'signals']);
+    case 'riverpod':
+      dependencies.addAll(['flutter_riverpod', 'onix_flutter_riverpod']);
+      await removeStateManagers(managers: ['bloc', 'provider', 'signals']);
+    case 'signals':
+      dependencies.addAll(['onix_flutter_signals', 'signals']);
+      await removeStateManagers(managers: ['bloc', 'provider', 'riverpod']);
+    case 'base':
+      await removeStateManagers(
+          managers: ['bloc', 'provider', 'riverpod', 'signals']);
   }
 
-  if (context.vars['isProvider']) {
-    dependencies.addAll(['provider', 'onix_flutter_provider']);
-    await removeStateManagers(managers: ['bloc', 'riverpod']);
-  }
-
-  if (context.vars['isRiverpod']) {
-    dependencies.add('flutter_riverpod');
-    await removeStateManagers(managers: ['bloc', 'provider']);
-  }
-
-  if (context.vars['isBase']) {
-    await removeStateManagers(managers: ['provider', 'bloc', 'riverpod']);
-  } else {
+  if (stateManager != 'base') {
     dependencies.add('onix_flutter_core_models');
   }
 
