@@ -18,10 +18,11 @@ class SignalsPassiveScreenCodeContent extends ScreenCodeContent {
     }
     codeLines
       ..add("import 'package:flutter/material.dart';")
+      ..add("import 'package:get_it/get_it.dart';")
       ..add("import 'package:onix_flutter_signals/onix_flutter_signals.dart';")
       ..add("import 'package:signals/signals_flutter.dart';")
       ..add(
-        "import 'package:${params.projectName}/presentation/screen/${screenClassImport}_screen/signals/${screenClassImport}_screen_model.dart';",
+        "import 'package:${params.projectName}/presentation/screen/${screenClassImport}_screen/signals/${screenClassImport}_screen_signals.dart';",
       )
       ..addNewLine();
 
@@ -42,11 +43,11 @@ class SignalsPassiveScreenCodeContent extends ScreenCodeContent {
       ..add('}')
       ..addNewLine()
       ..add(
-        'class _${screenClassName}State extends PassiveSignalState<${screenClassName}ScreenModel, ${screenClassName}Screen> {',
+        'class _${screenClassName}State extends PassiveSignalState<${screenClassName}ScreenSignals, ${screenClassName}Screen> {',
       )
       ..add('@override')
       ..add(
-          '${screenClassName}ScreenModel createModel() => ${screenClassName}ScreenModel();')
+          '${screenClassName}ScreenSignals createModel() => GetIt.I.get<${screenClassName}ScreenSignals>();')
       ..addNewLine()
       ..add('@override')
       ..add('Widget buildWidget(BuildContext context) {')

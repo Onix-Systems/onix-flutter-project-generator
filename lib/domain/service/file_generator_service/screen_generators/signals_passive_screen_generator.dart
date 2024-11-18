@@ -84,7 +84,7 @@ class SignalsPassiveScreenGenerator extends ScreenGenerationService
 
     ///Write Provider file
     final providerFile = await File(
-      '$screenPath/signals/${screenName}_screen_model.dart',
+      '$screenPath/signals/${screenName}_screen_signals.dart',
     ).create(recursive: true);
     final providerFileContent = createSignalsModel(
       projectName: params.projectName,

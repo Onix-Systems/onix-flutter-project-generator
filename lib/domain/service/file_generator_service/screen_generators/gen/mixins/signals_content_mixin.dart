@@ -12,11 +12,11 @@ mixin SignalsContentMixin on ScreenGenerationService {
       ..add("import 'package:signals/signals_flutter.dart';")
       ..addNewLine()
       ..add(
-        'class ${screenName.pascalCase}ScreenModel extends SignalModel {',
+        'class ${screenName.pascalCase}ScreenSignals extends SignalModel {',
       )
       ..add('final Signal<int> counter = signal(0);')
       ..addNewLine()
-      ..add('${screenName.pascalCase}ScreenModel() {')
+      ..add('${screenName.pascalCase}ScreenSignals() {')
       ..add('computedValue = computed(() => counter.value);')
       ..add('init();')
       ..add('}')

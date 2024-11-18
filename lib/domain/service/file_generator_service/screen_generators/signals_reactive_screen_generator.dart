@@ -4,13 +4,13 @@ import 'package:onix_flutter_bricks/domain/entity/state_management/state_managem
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/di_content_mixin.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/mixins/signals_content_mixin.dart';
-import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/signals_passive_screen_code_content.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/gen/signals_reactive_screen_code_content.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/params/screen_generator_params.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 
 class SignalsReactiveScreenGenerator extends ScreenGenerationService
     with DIContentMixin, SignalsContentMixin {
-  final _screenCodeContent = SignalsPassiveScreenCodeContent();
+  final _screenCodeContent = SignalsReactiveScreenCodeContent();
 
   @override
   Future<bool> generate(ScreenGeneratorParams params) async {
@@ -84,7 +84,7 @@ class SignalsReactiveScreenGenerator extends ScreenGenerationService
 
     ///Write Provider file
     final providerFile = await File(
-      '$screenPath/signals/${screenName}_screen_model.dart',
+      '$screenPath/signals/${screenName}_screen_signals.dart',
     ).create(recursive: true);
     final providerFileContent = createSignalsModel(
       projectName: params.projectName,
