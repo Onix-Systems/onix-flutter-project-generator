@@ -30,7 +30,7 @@ mixin DIContentMixin on ScreenGenerationService {
 
     final diFile = await File(
       '${params.projectRootPath}/$diFolderPath/$stateManagement.dart',
-    ).create(recursive: true);
+    );
 
     final screenName = params.normalizedScreenName;
     var output = await diFile.readAsString();
