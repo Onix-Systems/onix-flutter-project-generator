@@ -172,6 +172,8 @@ Future<void> getDependencies(HookContext context) async {
       dependencies.addAll(['flutter_riverpod', 'onix_flutter_riverpod']);
     case 'signals':
       dependencies.addAll(['onix_flutter_signals', 'signals']);
+    case 'viewModel':
+      dependencies.addAll(['onix_flutter_mvvm']);
     case 'base':
   }
 

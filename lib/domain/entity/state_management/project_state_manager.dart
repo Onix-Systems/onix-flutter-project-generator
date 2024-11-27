@@ -2,6 +2,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen
 import 'package:onix_flutter_bricks/domain/service/strategy/state_manager_strategy.dart';
 import 'package:onix_flutter_bricks/domain/service/strategy/strategies/base_strategy.dart';
 import 'package:onix_flutter_bricks/domain/service/strategy/strategies/bloc_strategy.dart';
+import 'package:onix_flutter_bricks/domain/service/strategy/strategies/mvvvm_strategy.dart';
 import 'package:onix_flutter_bricks/domain/service/strategy/strategies/provider_strategy.dart';
 import 'package:onix_flutter_bricks/domain/service/strategy/strategies/riverpod_strategy.dart';
 import 'package:onix_flutter_bricks/domain/service/strategy/strategies/signals_strategy.dart';
@@ -11,6 +12,7 @@ enum ProjectStateManager {
   provider,
   riverpod,
   signals,
+  viewModel,
   base;
 
   StateManagerStrategy get strategy {
@@ -33,6 +35,10 @@ enum ProjectStateManager {
         );
       case ProjectStateManager.signals:
         return SignalsStateManagerStrategy(
+          defaultScreenRouteGenerator: DefaultScreenRouteGenerator(),
+        );
+      case ProjectStateManager.viewModel:
+        return MvvmStrategy(
           defaultScreenRouteGenerator: DefaultScreenRouteGenerator(),
         );
     }

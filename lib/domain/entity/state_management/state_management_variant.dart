@@ -1,6 +1,7 @@
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/bloc_screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/cubit_screen_generator.dart';
+import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/mvvm_screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/provider_screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/riverpod_stateful_screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/riverpod_stateless_screen_generator.dart';
@@ -121,4 +122,16 @@ final class SignalsReactiveStateManagementVariant
       SignalsReactiveScreenGenerator();
 
   const SignalsReactiveStateManagementVariant();
+}
+
+final class MvvmStateManagementVariant
+    extends StateManagementVariant {
+  @override
+  String get name => 'ViewModel';
+
+  @override
+  ScreenGenerationService get screenGenerator =>
+      MvvmScreenGenerator();
+
+  const MvvmStateManagementVariant();
 }
