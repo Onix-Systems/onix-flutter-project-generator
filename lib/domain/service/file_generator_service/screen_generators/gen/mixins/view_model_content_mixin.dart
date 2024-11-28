@@ -42,4 +42,19 @@ mixin ViewModelContentMixin on ScreenGenerationService {
 
     return codeLines.join('\n');
   }
+
+  String createViewModelModelContent({
+    required String screenName,
+  }) {
+    final codeLines = List<String>.empty(growable: true)
+      ..addNewLine()
+      ..add('class ${screenName.pascalCase}Model {')
+      ..addNewLine()
+      ..add('${screenName.pascalCase}Model();')
+      ..addNewLine()
+      ..add('}')
+      ..addNewLine();
+
+    return codeLines.join('\n');
+  }
 }

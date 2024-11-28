@@ -89,5 +89,14 @@ class MvvmScreenGenerator extends ScreenGenerationService
       stateManagement: params.screen.stateVariant,
     );
     await viewModelFile.writeAsString(viewModelFileContent);
+
+    ///Write ViewModel model file
+    final viewModelModelFile = await File(
+      '$screenPath/view_model/${screenName}_model.dart',
+    ).create(recursive: true);
+    final viewModelModelFileContent = createViewModelModelContent(
+      screenName: screenName,
+    );
+    await viewModelModelFile.writeAsString(viewModelModelFileContent);
   }
 }

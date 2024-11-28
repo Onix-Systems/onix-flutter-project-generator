@@ -87,6 +87,7 @@ const _$ProjectStateManagerEnumMap = {
   ProjectStateManager.provider: 'provider',
   ProjectStateManager.riverpod: 'riverpod',
   ProjectStateManager.signals: 'signals',
+  ProjectStateManager.viewModel: 'viewModel',
   ProjectStateManager.base: 'base',
 };
 
