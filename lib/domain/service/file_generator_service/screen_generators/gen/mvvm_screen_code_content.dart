@@ -9,6 +9,7 @@ class MvvmScreenCodeContent extends ScreenCodeContent {
     required ScreenGeneratorParams params,
   }) {
     final screenClassName = params.normalizedScreenName.pascalCase;
+    final screenClassImport = params.normalizedScreenName.snakeCase;
     final codeLines = List<String>.empty(growable: true);
 
     ///Add imports
@@ -18,6 +19,9 @@ class MvvmScreenCodeContent extends ScreenCodeContent {
     codeLines
       ..add("import 'package:flutter/material.dart';")
       ..add("import 'package:onix_flutter_mvvm/onix_flutter_mvvm.dart';")
+      ..add(
+        "import 'package:${params.projectName}/presentation/screen/${screenClassImport}_screen/view_model/${screenClassImport}_view_model.dart';",
+      )
       ..addNewLine();
 
     ///Add annotation in AutoRoute navigation used
@@ -51,7 +55,7 @@ class MvvmScreenCodeContent extends ScreenCodeContent {
       ..add('}')
       ..addNewLine()
       ..add('@override')
-      ..add('void onError(failure) {')
+      ..add('void onError(Exception error) {')
       ..add('// TODO: process error')
       ..add('}')
       ..addNewLine()
