@@ -6,7 +6,7 @@ bricks:
   flutter_clean_base:
     path: flutter_clean_base
   flutter_simple_base:
-    path: flutter_simple_base
+    path: flutter_basic_base
 
   # Bricks can also be imported via git url.
   # Uncomment the following lines to import
