@@ -111,12 +111,16 @@ class SwaggerReference extends SwaggerType {
   String? getFileFolder(DataFileType fileType, ArchType arch) {
     final namePath = getTypeDeclaration(fileType).snakeCase;
     final clearName = reference.snakeCase;
+    final folderName = arch == ArchType.clean ? fileType.name : clearName;
     if (fileType == DataFileType.entity) {
-      return arch.getEntityPath(namePath);
+      return arch.getEntityPath(
+        folderName,
+        namePath,
+      );
     }
 
     return arch.getModelPath(
-      arch == ArchType.clean ? fileType.name : clearName,
+      folderName,
       namePath,
     );
   }

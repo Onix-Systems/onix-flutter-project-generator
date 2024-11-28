@@ -187,7 +187,7 @@ class FlavorBanner extends StatelessWidget {
       flavorBannerFilePath =
           '$projectPath/lib/core/arch/widget/common/flavor_banner.dart';
 
-      if (archType == ArchType.simple) {
+      if (archType == ArchType.basic) {
         flavorBannerFilePath =
             '$projectPath/lib/presentation/widget/common/flavor_banner.dart';
       }
@@ -217,8 +217,10 @@ class FlavorBanner extends StatelessWidget {
     await flavorBannerFile.writeAsString(flavorBannerWidgetContent);
   }
 
-  Future<void> clean(
-      {required String projectPath, required bool isGenerated}) async {
+  Future<void> clean({
+    required String projectPath,
+    required bool isGenerated,
+  }) async {
     await Process.run(
       'rm',
       ['-r', 'pages'],
