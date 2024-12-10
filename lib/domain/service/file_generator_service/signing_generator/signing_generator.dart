@@ -21,22 +21,37 @@ class SigningGenerator
   @override
   Future<Result<int>> generate(SingingGeneratorParams params) async {
     try {
-      _outputService
-          .add('Keystore password: ${params.signingPassword}'.toInfoMessage());
+      // final isSigningExists = await checkIsSigningExists(
+      //   params.projectFolder,
+      // );
+      //
+      // if (isSigningExists && !params.overwrite) {
+      //   return Result.error(
+      //     failure: SigningFailure(SigningFailureType.signingAlreadyExist),
+      //   );
+      // }
 
       final workDirectory = '${params.projectFolder}/android/app/signing';
+
+      if (params.overwrite) {
+        await Process.run('mv', [
+          workDirectory,
+          '${workDirectory}_backup(${DateTime.now()})',
+        ]);
+      }
+
+      ///Open gradle file
+      final buildGradleFile =
+          File('${params.projectFolder}/android/app/build.gradle');
+      var buildGradleContent = await buildGradleFile.readAsString();
+
+      _outputService
+          .add('Keystore password: ${params.signingPassword}'.toInfoMessage());
 
       ///
       if (params.separateFromBrick) {
         final directory = Directory(workDirectory);
         await directory.create();
-      }
-      final certificateFile = File('$workDirectory/upload-keystore.jks');
-      final certificateExist = certificateFile.existsSync();
-      if (certificateExist) {
-        return Result.error(
-          failure: SigningFailure(SigningFailureType.signingAlreadyExist),
-        );
       }
 
       ///Run generate Keystore process
@@ -66,13 +81,9 @@ class SigningGenerator
         ),
       );
 
-      ///Open gradle file
-      File buildGradle =
-          File('${params.projectFolder}/android/app/build.gradle');
-      String buildGradleContent = await buildGradle.readAsString();
-
       ///Add script to read own signing config file
-      buildGradleContent += '''
+      if (!params.overwrite) {
+        buildGradleContent += '''
 
 Properties props = new Properties()
 def propFile = file('./signing/signing.properties')
@@ -91,6 +102,7 @@ if (propFile.canRead()) {
 } else {
     android.buildTypes.release.signingConfig = null
 }''';
+      }
 
       final signingConfigString =
           buildGradleContent.contains('signingConfig = signingConfigs.debug')
@@ -98,16 +110,18 @@ if (propFile.canRead()) {
               : 'signingConfig signingConfigs.debug';
 
       ///Fix build types configuration
-      await buildGradle.writeAsString(
+      await buildGradleFile.writeAsString(
         buildGradleContent.replaceAll(
-          '''buildTypes {
+          '''
+buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             $signingConfigString
         }
     }''',
-          '''signingConfigs {
+          '''
+signingConfigs {
         signed
     }
 

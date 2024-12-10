@@ -11,22 +11,11 @@ extension FailureDialogExtension on BuildContext {
       isError: true,
       title: S.of(this).signingToolTitle,
       content: Text(
-        _getSigningFailureMessage(failure),
+        failure.getSigningFailureMessage(this),
         style: appTextStyles.fs18?.copyWith(
           fontSize: 16,
         ),
       ),
     );
-  }
-
-  String _getSigningFailureMessage(SigningFailure failure) {
-    switch (failure.type) {
-      case SigningFailureType.invalidParams:
-        return S.of(this).signingErrorParams;
-      case SigningFailureType.exception:
-        return S.of(this).signingErrorException;
-      case SigningFailureType.signingAlreadyExist:
-        return S.of(this).signingErrorExist;
-    }
   }
 }
