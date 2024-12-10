@@ -28,6 +28,7 @@ class ProcedureSelectionScreenEvent with _$ProcedureSelectionScreenEvent {
   const factory ProcedureSelectionScreenEvent.onGenerateAndroidSigning({
     required Directory directory,
     required List<String> signingVars,
+    required bool overwrite,
   }) = ProcedureSelectionScreenEventOnAndroidSigning;
 
   const factory ProcedureSelectionScreenEvent.onGenerateFlavors({

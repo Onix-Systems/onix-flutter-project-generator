@@ -21,17 +21,24 @@ class SigningGenerator
   @override
   Future<Result<int>> generate(SingingGeneratorParams params) async {
     try {
-      final isSigningExists = await checkIsSigningExists(
-        params.projectFolder,
-      );
-
-      if (isSigningExists && !params.overwrite) {
-        return Result.error(
-          failure: SigningFailure(SigningFailureType.signingAlreadyExist),
-        );
-      }
+      // final isSigningExists = await checkIsSigningExists(
+      //   params.projectFolder,
+      // );
+      //
+      // if (isSigningExists && !params.overwrite) {
+      //   return Result.error(
+      //     failure: SigningFailure(SigningFailureType.signingAlreadyExist),
+      //   );
+      // }
 
       final workDirectory = '${params.projectFolder}/android/app/signing';
+
+      if (params.overwrite) {
+        await Process.run('mv', [
+          workDirectory,
+          '${workDirectory}_backup(${DateTime.now()})',
+        ]);
+      }
 
       ///Open gradle file
       final buildGradleFile =
@@ -75,7 +82,8 @@ class SigningGenerator
       );
 
       ///Add script to read own signing config file
-      buildGradleContent += '''
+      if (!params.overwrite) {
+        buildGradleContent += '''
 
 Properties props = new Properties()
 def propFile = file('./signing/signing.properties')
@@ -94,6 +102,7 @@ if (propFile.canRead()) {
 } else {
     android.buildTypes.release.signingConfig = null
 }''';
+      }
 
       final signingConfigString =
           buildGradleContent.contains('signingConfig = signingConfigs.debug')
@@ -133,30 +142,5 @@ signingConfigs {
         failure: SigningFailure(SigningFailureType.exception),
       );
     }
-  }
-
-  static Future<bool> checkIsSigningExists(String projectFolder) async {
-    final workDirectory = '$projectFolder/android/app/signing';
-
-    final certificateFile = File('$workDirectory/upload-keystore.jks');
-    final certificateExist = certificateFile.existsSync();
-
-    if (certificateExist) {
-      return true;
-    }
-
-    final buildGradle = File('$projectFolder/android/app/build.gradle');
-    final buildGradleContent = await buildGradle.readAsString();
-
-    final signingConfigExists = buildGradleContent.contains('''
-signingConfigs {
-        signed
-      }''');
-
-    if (signingConfigExists) {
-      return true;
-    }
-
-    return false;
   }
 }

@@ -130,8 +130,7 @@ class _ProcedureSelectionScreenState extends BaseState<
   @override
   Future<void> onFailure(BuildContext context, Failure failure) async {
     if (failure is SigningFailure) {
-      final result = await context.onSigningFailure(failure);
-      logger.f('overwrite onFailure: $result');
+      context.onSigningFailure(failure);
     }
   }
 
@@ -278,9 +277,6 @@ class _ProcedureSelectionScreenState extends BaseState<
       return;
     }
 
-    final isSigningExists = await blocOf(context)
-        .checkIsSigningExists(projectFolder: directoryPath);
-
     final directory = Directory(directoryPath);
     final isFlutterProject = directory.isFlutterProjectDirectory();
     if (!isFlutterProject) {
@@ -297,6 +293,33 @@ class _ProcedureSelectionScreenState extends BaseState<
       );
       return;
     }
+
+    final isSigningExists = await blocOf(context)
+        .checkIsSigningExists(projectFolder: directoryPath);
+
+    var overwrite = false;
+
+    if (isSigningExists) {
+      final failure = SigningFailure(SigningFailureType.signingAlreadyExist);
+      overwrite = await Dialogs.showOverwriteCancelDialog(
+        context: context,
+        isError: true,
+        title: S.of(context).signingToolTitle,
+        content: Text(
+          failure.getSigningFailureMessage(context),
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
+          ),
+        ),
+      );
+
+      if (overwrite == true) {
+        logger.f('Overwrite signing');
+      } else {
+        return;
+      }
+    }
+
     final signingVars = await showCupertinoModalPopup<List<String>>(
       context: context,
       barrierDismissible: false,
@@ -312,6 +335,7 @@ class _ProcedureSelectionScreenState extends BaseState<
         ProcedureSelectionScreenEvent.onGenerateAndroidSigning(
           directory: directory,
           signingVars: signingVars,
+          overwrite: overwrite,
         ),
       );
     }

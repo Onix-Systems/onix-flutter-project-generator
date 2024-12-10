@@ -179,6 +179,7 @@ signingConfigs {
         signingVars: event.signingVars,
         signingPassword: signingPassword,
         separateFromBrick: true,
+        overwrite: event.overwrite,
       ),
     );
     await hideProgress();
