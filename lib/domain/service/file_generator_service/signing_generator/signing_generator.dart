@@ -26,17 +26,29 @@ class SigningGenerator
 
       final workDirectory = '${params.projectFolder}/android/app/signing';
 
+      final certificateFile = File('$workDirectory/upload-keystore.jks');
+      final certificateExist = certificateFile.existsSync();
+
+      ///Open gradle file
+      final buildGradle =
+          File('${params.projectFolder}/android/app/build.gradle');
+      var buildGradleContent = await buildGradle.readAsString();
+
+      final signingConfigExists = buildGradleContent.contains('''
+signingConfigs {
+        signed
+      }''');
+
+      if ((certificateExist || signingConfigExists) && !params.overwrite) {
+        return Result.error(
+          failure: SigningFailure(SigningFailureType.signingAlreadyExist),
+        );
+      }
+
       ///
       if (params.separateFromBrick) {
         final directory = Directory(workDirectory);
         await directory.create();
-      }
-      final certificateFile = File('$workDirectory/upload-keystore.jks');
-      final certificateExist = certificateFile.existsSync();
-      if (certificateExist) {
-        return Result.error(
-          failure: SigningFailure(SigningFailureType.signingAlreadyExist),
-        );
       }
 
       ///Run generate Keystore process
@@ -65,11 +77,6 @@ class SigningGenerator
           params.signingPassword,
         ),
       );
-
-      ///Open gradle file
-      File buildGradle =
-          File('${params.projectFolder}/android/app/build.gradle');
-      String buildGradleContent = await buildGradle.readAsString();
 
       ///Add script to read own signing config file
       buildGradleContent += '''
@@ -100,14 +107,16 @@ if (propFile.canRead()) {
       ///Fix build types configuration
       await buildGradle.writeAsString(
         buildGradleContent.replaceAll(
-          '''buildTypes {
+          '''
+buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             $signingConfigString
         }
     }''',
-          '''signingConfigs {
+          '''
+signingConfigs {
         signed
     }
 
