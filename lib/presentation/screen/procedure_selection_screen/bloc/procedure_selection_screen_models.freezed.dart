@@ -28,6 +28,7 @@ mixin _$ProcedureSelectionScreenEvent {
         onGenerateFlavors,
     required TResult Function() onOpenInStudio,
     required TResult Function() onFlavorizrOutputClose,
+    required TResult Function(String projectFolder) onCheckSigning,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +43,7 @@ mixin _$ProcedureSelectionScreenEvent {
         onGenerateFlavors,
     TResult? Function()? onOpenInStudio,
     TResult? Function()? onFlavorizrOutputClose,
+    TResult? Function(String projectFolder)? onCheckSigning,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +58,7 @@ mixin _$ProcedureSelectionScreenEvent {
         onGenerateFlavors,
     TResult Function()? onOpenInStudio,
     TResult Function()? onFlavorizrOutputClose,
+    TResult Function(String projectFolder)? onCheckSigning,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -80,6 +83,8 @@ mixin _$ProcedureSelectionScreenEvent {
     required TResult Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
         onFlavorizrOutputClose,
+    required TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)
+        onCheckSigning,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -100,6 +105,8 @@ mixin _$ProcedureSelectionScreenEvent {
     TResult? Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult? Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -119,6 +126,8 @@ mixin _$ProcedureSelectionScreenEvent {
         onOpenInStudio,
     TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -235,6 +244,7 @@ class _$ProcedureSelectionScreenEventInitImpl
         onGenerateFlavors,
     required TResult Function() onOpenInStudio,
     required TResult Function() onFlavorizrOutputClose,
+    required TResult Function(String projectFolder) onCheckSigning,
   }) {
     return init(config);
   }
@@ -252,6 +262,7 @@ class _$ProcedureSelectionScreenEventInitImpl
         onGenerateFlavors,
     TResult? Function()? onOpenInStudio,
     TResult? Function()? onFlavorizrOutputClose,
+    TResult? Function(String projectFolder)? onCheckSigning,
   }) {
     return init?.call(config);
   }
@@ -269,6 +280,7 @@ class _$ProcedureSelectionScreenEventInitImpl
         onGenerateFlavors,
     TResult Function()? onOpenInStudio,
     TResult Function()? onFlavorizrOutputClose,
+    TResult Function(String projectFolder)? onCheckSigning,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -299,6 +311,8 @@ class _$ProcedureSelectionScreenEventInitImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
         onFlavorizrOutputClose,
+    required TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)
+        onCheckSigning,
   }) {
     return init(this);
   }
@@ -322,6 +336,8 @@ class _$ProcedureSelectionScreenEventInitImpl
     TResult? Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult? Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
   }) {
     return init?.call(this);
   }
@@ -344,6 +360,8 @@ class _$ProcedureSelectionScreenEventInitImpl
         onOpenInStudio,
     TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -449,6 +467,7 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
         onGenerateFlavors,
     required TResult Function() onOpenInStudio,
     required TResult Function() onFlavorizrOutputClose,
+    required TResult Function(String projectFolder) onCheckSigning,
   }) {
     return onNewProject(projectPath);
   }
@@ -466,6 +485,7 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
         onGenerateFlavors,
     TResult? Function()? onOpenInStudio,
     TResult? Function()? onFlavorizrOutputClose,
+    TResult? Function(String projectFolder)? onCheckSigning,
   }) {
     return onNewProject?.call(projectPath);
   }
@@ -483,6 +503,7 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
         onGenerateFlavors,
     TResult Function()? onOpenInStudio,
     TResult Function()? onFlavorizrOutputClose,
+    TResult Function(String projectFolder)? onCheckSigning,
     required TResult orElse(),
   }) {
     if (onNewProject != null) {
@@ -513,6 +534,8 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
         onFlavorizrOutputClose,
+    required TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)
+        onCheckSigning,
   }) {
     return onNewProject(this);
   }
@@ -536,6 +559,8 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
     TResult? Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult? Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
   }) {
     return onNewProject?.call(this);
   }
@@ -558,6 +583,8 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
         onOpenInStudio,
     TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
     required TResult orElse(),
   }) {
     if (onNewProject != null) {
@@ -665,6 +692,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
         onGenerateFlavors,
     required TResult Function() onOpenInStudio,
     required TResult Function() onFlavorizrOutputClose,
+    required TResult Function(String projectFolder) onCheckSigning,
   }) {
     return onProjectOpen(projectURI);
   }
@@ -682,6 +710,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
         onGenerateFlavors,
     TResult? Function()? onOpenInStudio,
     TResult? Function()? onFlavorizrOutputClose,
+    TResult? Function(String projectFolder)? onCheckSigning,
   }) {
     return onProjectOpen?.call(projectURI);
   }
@@ -699,6 +728,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
         onGenerateFlavors,
     TResult Function()? onOpenInStudio,
     TResult Function()? onFlavorizrOutputClose,
+    TResult Function(String projectFolder)? onCheckSigning,
     required TResult orElse(),
   }) {
     if (onProjectOpen != null) {
@@ -729,6 +759,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
         onFlavorizrOutputClose,
+    required TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)
+        onCheckSigning,
   }) {
     return onProjectOpen(this);
   }
@@ -752,6 +784,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
     TResult? Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult? Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
   }) {
     return onProjectOpen?.call(this);
   }
@@ -774,6 +808,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
         onOpenInStudio,
     TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
     required TResult orElse(),
   }) {
     if (onProjectOpen != null) {
@@ -883,6 +919,7 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
         onGenerateFlavors,
     required TResult Function() onOpenInStudio,
     required TResult Function() onFlavorizrOutputClose,
+    required TResult Function(String projectFolder) onCheckSigning,
   }) {
     return onLocaleChange(language);
   }
@@ -900,6 +937,7 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
         onGenerateFlavors,
     TResult? Function()? onOpenInStudio,
     TResult? Function()? onFlavorizrOutputClose,
+    TResult? Function(String projectFolder)? onCheckSigning,
   }) {
     return onLocaleChange?.call(language);
   }
@@ -917,6 +955,7 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
         onGenerateFlavors,
     TResult Function()? onOpenInStudio,
     TResult Function()? onFlavorizrOutputClose,
+    TResult Function(String projectFolder)? onCheckSigning,
     required TResult orElse(),
   }) {
     if (onLocaleChange != null) {
@@ -947,6 +986,8 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
         onFlavorizrOutputClose,
+    required TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)
+        onCheckSigning,
   }) {
     return onLocaleChange(this);
   }
@@ -970,6 +1011,8 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
     TResult? Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult? Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
   }) {
     return onLocaleChange?.call(this);
   }
@@ -992,6 +1035,8 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
         onOpenInStudio,
     TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
     required TResult orElse(),
   }) {
     if (onLocaleChange != null) {
@@ -1117,6 +1162,7 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
         onGenerateFlavors,
     required TResult Function() onOpenInStudio,
     required TResult Function() onFlavorizrOutputClose,
+    required TResult Function(String projectFolder) onCheckSigning,
   }) {
     return onGenerateAndroidSigning(directory, signingVars);
   }
@@ -1134,6 +1180,7 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
         onGenerateFlavors,
     TResult? Function()? onOpenInStudio,
     TResult? Function()? onFlavorizrOutputClose,
+    TResult? Function(String projectFolder)? onCheckSigning,
   }) {
     return onGenerateAndroidSigning?.call(directory, signingVars);
   }
@@ -1151,6 +1198,7 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
         onGenerateFlavors,
     TResult Function()? onOpenInStudio,
     TResult Function()? onFlavorizrOutputClose,
+    TResult Function(String projectFolder)? onCheckSigning,
     required TResult orElse(),
   }) {
     if (onGenerateAndroidSigning != null) {
@@ -1181,6 +1229,8 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
         onFlavorizrOutputClose,
+    required TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)
+        onCheckSigning,
   }) {
     return onGenerateAndroidSigning(this);
   }
@@ -1204,6 +1254,8 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
     TResult? Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult? Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
   }) {
     return onGenerateAndroidSigning?.call(this);
   }
@@ -1226,6 +1278,8 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
         onOpenInStudio,
     TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
     required TResult orElse(),
   }) {
     if (onGenerateAndroidSigning != null) {
@@ -1352,6 +1406,7 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
         onGenerateFlavors,
     required TResult Function() onOpenInStudio,
     required TResult Function() onFlavorizrOutputClose,
+    required TResult Function(String projectFolder) onCheckSigning,
   }) {
     return onGenerateFlavors(directory, flavors);
   }
@@ -1369,6 +1424,7 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
         onGenerateFlavors,
     TResult? Function()? onOpenInStudio,
     TResult? Function()? onFlavorizrOutputClose,
+    TResult? Function(String projectFolder)? onCheckSigning,
   }) {
     return onGenerateFlavors?.call(directory, flavors);
   }
@@ -1386,6 +1442,7 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
         onGenerateFlavors,
     TResult Function()? onOpenInStudio,
     TResult Function()? onFlavorizrOutputClose,
+    TResult Function(String projectFolder)? onCheckSigning,
     required TResult orElse(),
   }) {
     if (onGenerateFlavors != null) {
@@ -1416,6 +1473,8 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
         onFlavorizrOutputClose,
+    required TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)
+        onCheckSigning,
   }) {
     return onGenerateFlavors(this);
   }
@@ -1439,6 +1498,8 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
     TResult? Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult? Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
   }) {
     return onGenerateFlavors?.call(this);
   }
@@ -1461,6 +1522,8 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
         onOpenInStudio,
     TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
     required TResult orElse(),
   }) {
     if (onGenerateFlavors != null) {
@@ -1543,6 +1606,7 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
         onGenerateFlavors,
     required TResult Function() onOpenInStudio,
     required TResult Function() onFlavorizrOutputClose,
+    required TResult Function(String projectFolder) onCheckSigning,
   }) {
     return onOpenInStudio();
   }
@@ -1560,6 +1624,7 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
         onGenerateFlavors,
     TResult? Function()? onOpenInStudio,
     TResult? Function()? onFlavorizrOutputClose,
+    TResult? Function(String projectFolder)? onCheckSigning,
   }) {
     return onOpenInStudio?.call();
   }
@@ -1577,6 +1642,7 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
         onGenerateFlavors,
     TResult Function()? onOpenInStudio,
     TResult Function()? onFlavorizrOutputClose,
+    TResult Function(String projectFolder)? onCheckSigning,
     required TResult orElse(),
   }) {
     if (onOpenInStudio != null) {
@@ -1607,6 +1673,8 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
         onFlavorizrOutputClose,
+    required TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)
+        onCheckSigning,
   }) {
     return onOpenInStudio(this);
   }
@@ -1630,6 +1698,8 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
     TResult? Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult? Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
   }) {
     return onOpenInStudio?.call(this);
   }
@@ -1652,6 +1722,8 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
         onOpenInStudio,
     TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
     required TResult orElse(),
   }) {
     if (onOpenInStudio != null) {
@@ -1728,6 +1800,7 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
         onGenerateFlavors,
     required TResult Function() onOpenInStudio,
     required TResult Function() onFlavorizrOutputClose,
+    required TResult Function(String projectFolder) onCheckSigning,
   }) {
     return onFlavorizrOutputClose();
   }
@@ -1745,6 +1818,7 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
         onGenerateFlavors,
     TResult? Function()? onOpenInStudio,
     TResult? Function()? onFlavorizrOutputClose,
+    TResult? Function(String projectFolder)? onCheckSigning,
   }) {
     return onFlavorizrOutputClose?.call();
   }
@@ -1762,6 +1836,7 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
         onGenerateFlavors,
     TResult Function()? onOpenInStudio,
     TResult Function()? onFlavorizrOutputClose,
+    TResult Function(String projectFolder)? onCheckSigning,
     required TResult orElse(),
   }) {
     if (onFlavorizrOutputClose != null) {
@@ -1792,6 +1867,8 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
     required TResult Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
         onFlavorizrOutputClose,
+    required TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)
+        onCheckSigning,
   }) {
     return onFlavorizrOutputClose(this);
   }
@@ -1815,6 +1892,8 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
     TResult? Function(
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult? Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
   }) {
     return onFlavorizrOutputClose?.call(this);
   }
@@ -1837,6 +1916,8 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
         onOpenInStudio,
     TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
+    TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
     required TResult orElse(),
   }) {
     if (onFlavorizrOutputClose != null) {
@@ -1850,6 +1931,233 @@ abstract class ProcedureSelectionScreenEventOnFlavorizrOutputClose
     implements ProcedureSelectionScreenEvent {
   const factory ProcedureSelectionScreenEventOnFlavorizrOutputClose() =
       _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl;
+}
+
+/// @nodoc
+abstract class _$$ProcedureSelectionScreenEventOnCheckSigningImplCopyWith<
+    $Res> {
+  factory _$$ProcedureSelectionScreenEventOnCheckSigningImplCopyWith(
+          _$ProcedureSelectionScreenEventOnCheckSigningImpl value,
+          $Res Function(_$ProcedureSelectionScreenEventOnCheckSigningImpl)
+              then) =
+      __$$ProcedureSelectionScreenEventOnCheckSigningImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String projectFolder});
+}
+
+/// @nodoc
+class __$$ProcedureSelectionScreenEventOnCheckSigningImplCopyWithImpl<$Res>
+    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
+        _$ProcedureSelectionScreenEventOnCheckSigningImpl>
+    implements
+        _$$ProcedureSelectionScreenEventOnCheckSigningImplCopyWith<$Res> {
+  __$$ProcedureSelectionScreenEventOnCheckSigningImplCopyWithImpl(
+      _$ProcedureSelectionScreenEventOnCheckSigningImpl _value,
+      $Res Function(_$ProcedureSelectionScreenEventOnCheckSigningImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projectFolder = null,
+  }) {
+    return _then(_$ProcedureSelectionScreenEventOnCheckSigningImpl(
+      projectFolder: null == projectFolder
+          ? _value.projectFolder
+          : projectFolder // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProcedureSelectionScreenEventOnCheckSigningImpl
+    implements ProcedureSelectionScreenEventOnCheckSigning {
+  const _$ProcedureSelectionScreenEventOnCheckSigningImpl(
+      {required this.projectFolder});
+
+  @override
+  final String projectFolder;
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenEvent.onCheckSigning(projectFolder: $projectFolder)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProcedureSelectionScreenEventOnCheckSigningImpl &&
+            (identical(other.projectFolder, projectFolder) ||
+                other.projectFolder == projectFolder));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, projectFolder);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProcedureSelectionScreenEventOnCheckSigningImplCopyWith<
+          _$ProcedureSelectionScreenEventOnCheckSigningImpl>
+      get copyWith =>
+          __$$ProcedureSelectionScreenEventOnCheckSigningImplCopyWithImpl<
+                  _$ProcedureSelectionScreenEventOnCheckSigningImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function(String projectPath) onNewProject,
+    required TResult Function(String projectURI) onProjectOpen,
+    required TResult Function(String language) onLocaleChange,
+    required TResult Function(Directory directory, List<String> signingVars)
+        onGenerateAndroidSigning,
+    required TResult Function(Directory directory, Set<String> flavors)
+        onGenerateFlavors,
+    required TResult Function() onOpenInStudio,
+    required TResult Function() onFlavorizrOutputClose,
+    required TResult Function(String projectFolder) onCheckSigning,
+  }) {
+    return onCheckSigning(projectFolder);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function(String projectPath)? onNewProject,
+    TResult? Function(String projectURI)? onProjectOpen,
+    TResult? Function(String language)? onLocaleChange,
+    TResult? Function(Directory directory, List<String> signingVars)?
+        onGenerateAndroidSigning,
+    TResult? Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
+    TResult? Function()? onOpenInStudio,
+    TResult? Function()? onFlavorizrOutputClose,
+    TResult? Function(String projectFolder)? onCheckSigning,
+  }) {
+    return onCheckSigning?.call(projectFolder);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function(String projectPath)? onNewProject,
+    TResult Function(String projectURI)? onProjectOpen,
+    TResult Function(String language)? onLocaleChange,
+    TResult Function(Directory directory, List<String> signingVars)?
+        onGenerateAndroidSigning,
+    TResult Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
+    TResult Function()? onOpenInStudio,
+    TResult Function()? onFlavorizrOutputClose,
+    TResult Function(String projectFolder)? onCheckSigning,
+    required TResult orElse(),
+  }) {
+    if (onCheckSigning != null) {
+      return onCheckSigning(projectFolder);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProcedureSelectionScreenEventInit value) init,
+    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
+        onNewProject,
+    required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
+        onProjectOpen,
+    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
+        onLocaleChange,
+    required TResult Function(
+            ProcedureSelectionScreenEventOnAndroidSigning value)
+        onGenerateAndroidSigning,
+    required TResult Function(
+            ProcedureSelectionScreenEventOnGenerateFlavors value)
+        onGenerateFlavors,
+    required TResult Function(
+            ProcedureSelectionScreenEventOpenProjectInStudio value)
+        onOpenInStudio,
+    required TResult Function(
+            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
+        onFlavorizrOutputClose,
+    required TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)
+        onCheckSigning,
+  }) {
+    return onCheckSigning(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
+    TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
+        onProjectOpen,
+    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
+    TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
+        onGenerateAndroidSigning,
+    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
+    TResult? Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
+        onOpenInStudio,
+    TResult? Function(
+            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
+        onFlavorizrOutputClose,
+    TResult? Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
+  }) {
+    return onCheckSigning?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
+    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
+        onProjectOpen,
+    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
+    TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
+        onGenerateAndroidSigning,
+    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+        onGenerateFlavors,
+    TResult Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
+        onOpenInStudio,
+    TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
+        onFlavorizrOutputClose,
+    TResult Function(ProcedureSelectionScreenEventOnCheckSigning value)?
+        onCheckSigning,
+    required TResult orElse(),
+  }) {
+    if (onCheckSigning != null) {
+      return onCheckSigning(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProcedureSelectionScreenEventOnCheckSigning
+    implements ProcedureSelectionScreenEvent {
+  const factory ProcedureSelectionScreenEventOnCheckSigning(
+          {required final String projectFolder}) =
+      _$ProcedureSelectionScreenEventOnCheckSigningImpl;
+
+  String get projectFolder;
+  @JsonKey(ignore: true)
+  _$$ProcedureSelectionScreenEventOnCheckSigningImplCopyWith<
+          _$ProcedureSelectionScreenEventOnCheckSigningImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

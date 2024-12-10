@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,7 +50,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     on<ProcedureSelectionScreenEventOnProjectOpen>(_onProjectOpen);
     on<ProcedureSelectionScreenEventOnNewProject>(_onNewProject);
     on<ProcedureSelectionScreenEventOnLocaleChange>(_onLocaleChange);
-    on<ProcedureSelectionScreenEventOnAndroidSigning>(_onnAndroidSigning);
+    on<ProcedureSelectionScreenEventOnAndroidSigning>(_onAndroidSigning);
     on<ProcedureSelectionScreenEventOnGenerateFlavors>(_onGenerateFlavors);
     on<ProcedureSelectionScreenEventOpenProjectInStudio>(_openProjectInStudio);
     on<ProcedureSelectionScreenEventOnFlavorizrOutputClose>(
@@ -137,11 +138,37 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     );
   }
 
-  FutureOr<void> _onnAndroidSigning(
+  Future<bool> checkIsSigningExists({required String projectFolder}) async {
+    final workDirectory = '$projectFolder/android/app/signing';
+
+    final certificateFile = File('$workDirectory/upload-keystore.jks');
+    final certificateExist = certificateFile.existsSync();
+
+    if (certificateExist) {
+      return true;
+    }
+
+    final buildGradle = File('$projectFolder/android/app/build.gradle');
+    final buildGradleContent = await buildGradle.readAsString();
+
+    final signingConfigExists = buildGradleContent.contains('''
+signingConfigs {
+        signed
+      }''');
+
+    if (signingConfigExists) {
+      return true;
+    }
+
+    return false;
+  }
+
+  FutureOr<void> _onAndroidSigning(
     ProcedureSelectionScreenEventOnAndroidSigning event,
     Emitter<ProcedureSelectionScreenState> emit,
   ) async {
     showProgress();
+
     final signingPassword = state.config.getSigningPassword(
       ignoreSetting: true,
     );

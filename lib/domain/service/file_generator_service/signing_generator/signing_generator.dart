@@ -21,29 +21,25 @@ class SigningGenerator
   @override
   Future<Result<int>> generate(SingingGeneratorParams params) async {
     try {
-      _outputService
-          .add('Keystore password: ${params.signingPassword}'.toInfoMessage());
+      final isSigningExists = await checkIsSigningExists(
+        params.projectFolder,
+      );
 
-      final workDirectory = '${params.projectFolder}/android/app/signing';
-
-      final certificateFile = File('$workDirectory/upload-keystore.jks');
-      final certificateExist = certificateFile.existsSync();
-
-      ///Open gradle file
-      final buildGradle =
-          File('${params.projectFolder}/android/app/build.gradle');
-      var buildGradleContent = await buildGradle.readAsString();
-
-      final signingConfigExists = buildGradleContent.contains('''
-signingConfigs {
-        signed
-      }''');
-
-      if ((certificateExist || signingConfigExists) && !params.overwrite) {
+      if (isSigningExists && !params.overwrite) {
         return Result.error(
           failure: SigningFailure(SigningFailureType.signingAlreadyExist),
         );
       }
+
+      final workDirectory = '${params.projectFolder}/android/app/signing';
+
+      ///Open gradle file
+      final buildGradleFile =
+          File('${params.projectFolder}/android/app/build.gradle');
+      var buildGradleContent = await buildGradleFile.readAsString();
+
+      _outputService
+          .add('Keystore password: ${params.signingPassword}'.toInfoMessage());
 
       ///
       if (params.separateFromBrick) {
@@ -105,7 +101,7 @@ if (propFile.canRead()) {
               : 'signingConfig signingConfigs.debug';
 
       ///Fix build types configuration
-      await buildGradle.writeAsString(
+      await buildGradleFile.writeAsString(
         buildGradleContent.replaceAll(
           '''
 buildTypes {
@@ -137,5 +133,30 @@ signingConfigs {
         failure: SigningFailure(SigningFailureType.exception),
       );
     }
+  }
+
+  static Future<bool> checkIsSigningExists(String projectFolder) async {
+    final workDirectory = '$projectFolder/android/app/signing';
+
+    final certificateFile = File('$workDirectory/upload-keystore.jks');
+    final certificateExist = certificateFile.existsSync();
+
+    if (certificateExist) {
+      return true;
+    }
+
+    final buildGradle = File('$projectFolder/android/app/build.gradle');
+    final buildGradleContent = await buildGradle.readAsString();
+
+    final signingConfigExists = buildGradleContent.contains('''
+signingConfigs {
+        signed
+      }''');
+
+    if (signingConfigExists) {
+      return true;
+    }
+
+    return false;
   }
 }

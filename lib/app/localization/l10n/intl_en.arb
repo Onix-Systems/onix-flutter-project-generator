@@ -152,5 +152,8 @@
   "changeStateManagerError": "Change state manager warning",
   "changeStateManagerErrorContent": "Changing state manager will change ... to {variant}. Are you sure you want to continue?",
   "screenClassNameHelperText": "The first character in the class name must be a letter",
-  "projectArch": "Project architecture"
+  "projectArch": "Project architecture",
+  "overwrite": "Overwrite"
+
+
 }

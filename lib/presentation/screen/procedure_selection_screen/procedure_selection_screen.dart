@@ -10,6 +10,7 @@ import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
@@ -127,9 +128,10 @@ class _ProcedureSelectionScreenState extends BaseState<
   }
 
   @override
-  void onFailure(BuildContext context, Failure failure) {
+  Future<void> onFailure(BuildContext context, Failure failure) async {
     if (failure is SigningFailure) {
-      context.onSigningFailure(failure);
+      final result = await context.onSigningFailure(failure);
+      logger.f('overwrite onFailure: $result');
     }
   }
 
@@ -275,6 +277,10 @@ class _ProcedureSelectionScreenState extends BaseState<
       );
       return;
     }
+
+    final isSigningExists = await blocOf(context)
+        .checkIsSigningExists(projectFolder: directoryPath);
+
     final directory = Directory(directoryPath);
     final isFlutterProject = directory.isFlutterProjectDirectory();
     if (!isFlutterProject) {

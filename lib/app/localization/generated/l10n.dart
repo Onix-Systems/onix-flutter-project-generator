@@ -1579,6 +1579,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Overwrite`
+  String get overwrite {
+    return Intl.message(
+      'Overwrite',
+      name: 'overwrite',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
