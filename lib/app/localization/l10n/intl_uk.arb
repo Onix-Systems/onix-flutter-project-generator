@@ -152,5 +152,6 @@
   "changeStateManagerError": "Попередження зміни стейт менеджера",
   "changeStateManagerErrorContent": "Зміна стейт мененджера змінить ... на {variant}. Дійсно бажаєте продовжити?",
   "screenClassNameHelperText": "Перший символ у назві класу має бути літерою",
-  "projectArch": "Архітектура проекту"
+  "projectArch": "Архітектура проекту",
+  "overwrite": "Перезаписати"
 }

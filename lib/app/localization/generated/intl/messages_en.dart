@@ -190,6 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "A digit cannot be the first character in a package segment. The package must have at least one \'.’ separator. Multiple \'.\' characters are not allowed in a row."),
         "organizationalUnit":
             MessageLookupByLibrary.simpleMessage(" Organizational unit"),
+        "overwrite": MessageLookupByLibrary.simpleMessage("Overwrite"),
         "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Failed to Parse Swagger Components. Please try again or contact support if issue not resolved."),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(

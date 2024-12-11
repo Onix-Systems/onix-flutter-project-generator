@@ -10,6 +10,7 @@ import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
@@ -127,7 +128,7 @@ class _ProcedureSelectionScreenState extends BaseState<
   }
 
   @override
-  void onFailure(BuildContext context, Failure failure) {
+  Future<void> onFailure(BuildContext context, Failure failure) async {
     if (failure is SigningFailure) {
       context.onSigningFailure(failure);
     }
@@ -275,6 +276,7 @@ class _ProcedureSelectionScreenState extends BaseState<
       );
       return;
     }
+
     final directory = Directory(directoryPath);
     final isFlutterProject = directory.isFlutterProjectDirectory();
     if (!isFlutterProject) {
@@ -291,6 +293,33 @@ class _ProcedureSelectionScreenState extends BaseState<
       );
       return;
     }
+
+    final isSigningExists = await blocOf(context)
+        .checkIsSigningExists(projectFolder: directoryPath);
+
+    var overwrite = false;
+
+    if (isSigningExists) {
+      final failure = SigningFailure(SigningFailureType.signingAlreadyExist);
+      overwrite = await Dialogs.showOverwriteCancelDialog(
+        context: context,
+        isError: true,
+        title: S.of(context).signingToolTitle,
+        content: Text(
+          failure.getSigningFailureMessage(context),
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
+          ),
+        ),
+      );
+
+      if (overwrite == true) {
+        logger.f('Overwrite signing');
+      } else {
+        return;
+      }
+    }
+
     final signingVars = await showCupertinoModalPopup<List<String>>(
       context: context,
       barrierDismissible: false,
@@ -306,6 +335,7 @@ class _ProcedureSelectionScreenState extends BaseState<
         ProcedureSelectionScreenEvent.onGenerateAndroidSigning(
           directory: directory,
           signingVars: signingVars,
+          overwrite: overwrite,
         ),
       );
     }

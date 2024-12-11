@@ -162,4 +162,47 @@ class Dialogs {
       ),
     );
   }
+
+  static Future<bool> showOverwriteCancelDialog({
+    required BuildContext context,
+    required Widget content,
+    bool isError = false,
+    String title = '',
+    VoidCallback? onOk,
+  }) async {
+    final overwrite = await showCupertinoDialog(
+      context: context,
+      builder: (ctx) => CupertinoAlertDialog(
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Text(
+            title,
+            style: context.appTextStyles.fs18?.copyWith(
+              color: isError ? context.appColors.alarmColor : null,
+            ),
+          ),
+        ),
+        content: content,
+        actions: [
+          CupertinoDialogAction(
+            child: Text(S.of(context).cancel),
+            onPressed: () {
+              onOk?.call();
+              Navigator.of(ctx).pop();
+            },
+          ),
+          CupertinoDialogAction(
+            isDestructiveAction: true,
+            onPressed: () {
+              onOk?.call();
+              Navigator.of(ctx).pop(true);
+            },
+            child: Text(S.of(context).overwrite),
+          ),
+        ],
+      ),
+    );
+
+    return overwrite ?? false;
+  }
 }

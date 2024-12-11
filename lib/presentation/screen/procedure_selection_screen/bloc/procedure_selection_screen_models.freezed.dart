@@ -22,7 +22,8 @@ mixin _$ProcedureSelectionScreenEvent {
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
-    required TResult Function(Directory directory, List<String> signingVars)
+    required TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)
         onGenerateAndroidSigning,
     required TResult Function(Directory directory, Set<String> flavors)
         onGenerateFlavors,
@@ -36,7 +37,8 @@ mixin _$ProcedureSelectionScreenEvent {
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
-    TResult? Function(Directory directory, List<String> signingVars)?
+    TResult? Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult? Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -50,7 +52,8 @@ mixin _$ProcedureSelectionScreenEvent {
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
-    TResult Function(Directory directory, List<String> signingVars)?
+    TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -229,7 +232,8 @@ class _$ProcedureSelectionScreenEventInitImpl
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
-    required TResult Function(Directory directory, List<String> signingVars)
+    required TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)
         onGenerateAndroidSigning,
     required TResult Function(Directory directory, Set<String> flavors)
         onGenerateFlavors,
@@ -246,7 +250,8 @@ class _$ProcedureSelectionScreenEventInitImpl
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
-    TResult? Function(Directory directory, List<String> signingVars)?
+    TResult? Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult? Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -263,7 +268,8 @@ class _$ProcedureSelectionScreenEventInitImpl
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
-    TResult Function(Directory directory, List<String> signingVars)?
+    TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -443,7 +449,8 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
-    required TResult Function(Directory directory, List<String> signingVars)
+    required TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)
         onGenerateAndroidSigning,
     required TResult Function(Directory directory, Set<String> flavors)
         onGenerateFlavors,
@@ -460,7 +467,8 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
-    TResult? Function(Directory directory, List<String> signingVars)?
+    TResult? Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult? Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -477,7 +485,8 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
-    TResult Function(Directory directory, List<String> signingVars)?
+    TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -659,7 +668,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
-    required TResult Function(Directory directory, List<String> signingVars)
+    required TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)
         onGenerateAndroidSigning,
     required TResult Function(Directory directory, Set<String> flavors)
         onGenerateFlavors,
@@ -676,7 +686,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
-    TResult? Function(Directory directory, List<String> signingVars)?
+    TResult? Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult? Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -693,7 +704,8 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
-    TResult Function(Directory directory, List<String> signingVars)?
+    TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -877,7 +889,8 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
-    required TResult Function(Directory directory, List<String> signingVars)
+    required TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)
         onGenerateAndroidSigning,
     required TResult Function(Directory directory, Set<String> flavors)
         onGenerateFlavors,
@@ -894,7 +907,8 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
-    TResult? Function(Directory directory, List<String> signingVars)?
+    TResult? Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult? Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -911,7 +925,8 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
-    TResult Function(Directory directory, List<String> signingVars)?
+    TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -1023,7 +1038,7 @@ abstract class _$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWith<
               then) =
       __$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Directory directory, List<String> signingVars});
+  $Res call({Directory directory, List<String> signingVars, bool overwrite});
 }
 
 /// @nodoc
@@ -1042,6 +1057,7 @@ class __$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWithImpl<$Res>
   $Res call({
     Object? directory = null,
     Object? signingVars = null,
+    Object? overwrite = null,
   }) {
     return _then(_$ProcedureSelectionScreenEventOnAndroidSigningImpl(
       directory: null == directory
@@ -1052,6 +1068,10 @@ class __$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWithImpl<$Res>
           ? _value._signingVars
           : signingVars // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      overwrite: null == overwrite
+          ? _value.overwrite
+          : overwrite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1061,7 +1081,9 @@ class __$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWithImpl<$Res>
 class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
     implements ProcedureSelectionScreenEventOnAndroidSigning {
   const _$ProcedureSelectionScreenEventOnAndroidSigningImpl(
-      {required this.directory, required final List<String> signingVars})
+      {required this.directory,
+      required final List<String> signingVars,
+      required this.overwrite})
       : _signingVars = signingVars;
 
   @override
@@ -1075,8 +1097,11 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
   }
 
   @override
+  final bool overwrite;
+
+  @override
   String toString() {
-    return 'ProcedureSelectionScreenEvent.onGenerateAndroidSigning(directory: $directory, signingVars: $signingVars)';
+    return 'ProcedureSelectionScreenEvent.onGenerateAndroidSigning(directory: $directory, signingVars: $signingVars, overwrite: $overwrite)';
   }
 
   @override
@@ -1087,12 +1112,14 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
             (identical(other.directory, directory) ||
                 other.directory == directory) &&
             const DeepCollectionEquality()
-                .equals(other._signingVars, _signingVars));
+                .equals(other._signingVars, _signingVars) &&
+            (identical(other.overwrite, overwrite) ||
+                other.overwrite == overwrite));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, directory,
-      const DeepCollectionEquality().hash(_signingVars));
+      const DeepCollectionEquality().hash(_signingVars), overwrite);
 
   @JsonKey(ignore: true)
   @override
@@ -1111,14 +1138,15 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
-    required TResult Function(Directory directory, List<String> signingVars)
+    required TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)
         onGenerateAndroidSigning,
     required TResult Function(Directory directory, Set<String> flavors)
         onGenerateFlavors,
     required TResult Function() onOpenInStudio,
     required TResult Function() onFlavorizrOutputClose,
   }) {
-    return onGenerateAndroidSigning(directory, signingVars);
+    return onGenerateAndroidSigning(directory, signingVars, overwrite);
   }
 
   @override
@@ -1128,14 +1156,15 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
-    TResult? Function(Directory directory, List<String> signingVars)?
+    TResult? Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult? Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
     TResult? Function()? onOpenInStudio,
     TResult? Function()? onFlavorizrOutputClose,
   }) {
-    return onGenerateAndroidSigning?.call(directory, signingVars);
+    return onGenerateAndroidSigning?.call(directory, signingVars, overwrite);
   }
 
   @override
@@ -1145,7 +1174,8 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
-    TResult Function(Directory directory, List<String> signingVars)?
+    TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -1154,7 +1184,7 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
     required TResult orElse(),
   }) {
     if (onGenerateAndroidSigning != null) {
-      return onGenerateAndroidSigning(directory, signingVars);
+      return onGenerateAndroidSigning(directory, signingVars, overwrite);
     }
     return orElse();
   }
@@ -1239,11 +1269,13 @@ abstract class ProcedureSelectionScreenEventOnAndroidSigning
     implements ProcedureSelectionScreenEvent {
   const factory ProcedureSelectionScreenEventOnAndroidSigning(
           {required final Directory directory,
-          required final List<String> signingVars}) =
+          required final List<String> signingVars,
+          required final bool overwrite}) =
       _$ProcedureSelectionScreenEventOnAndroidSigningImpl;
 
   Directory get directory;
   List<String> get signingVars;
+  bool get overwrite;
   @JsonKey(ignore: true)
   _$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWith<
           _$ProcedureSelectionScreenEventOnAndroidSigningImpl>
@@ -1346,7 +1378,8 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
-    required TResult Function(Directory directory, List<String> signingVars)
+    required TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)
         onGenerateAndroidSigning,
     required TResult Function(Directory directory, Set<String> flavors)
         onGenerateFlavors,
@@ -1363,7 +1396,8 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
-    TResult? Function(Directory directory, List<String> signingVars)?
+    TResult? Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult? Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -1380,7 +1414,8 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
-    TResult Function(Directory directory, List<String> signingVars)?
+    TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -1537,7 +1572,8 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
-    required TResult Function(Directory directory, List<String> signingVars)
+    required TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)
         onGenerateAndroidSigning,
     required TResult Function(Directory directory, Set<String> flavors)
         onGenerateFlavors,
@@ -1554,7 +1590,8 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
-    TResult? Function(Directory directory, List<String> signingVars)?
+    TResult? Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult? Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -1571,7 +1608,8 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
-    TResult Function(Directory directory, List<String> signingVars)?
+    TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -1722,7 +1760,8 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
-    required TResult Function(Directory directory, List<String> signingVars)
+    required TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)
         onGenerateAndroidSigning,
     required TResult Function(Directory directory, Set<String> flavors)
         onGenerateFlavors,
@@ -1739,7 +1778,8 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
-    TResult? Function(Directory directory, List<String> signingVars)?
+    TResult? Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult? Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
@@ -1756,7 +1796,8 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
-    TResult Function(Directory directory, List<String> signingVars)?
+    TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
     TResult Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,

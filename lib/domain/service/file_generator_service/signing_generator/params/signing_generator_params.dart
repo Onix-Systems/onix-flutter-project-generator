@@ -9,11 +9,13 @@ class SingingGeneratorParams implements BaseGenerationParams {
   final String signingPassword;
   final List<String> signingVars;
   final bool separateFromBrick;
+  final bool overwrite;
 
   SingingGeneratorParams({
     required this.projectFolder,
     required this.signingPassword,
     required this.signingVars,
     this.separateFromBrick = false,
+    this.overwrite = false,
   });
 }

@@ -195,6 +195,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Цифра не може бути першим символом у сегменті пакету. У пакеті повинен бути хоча б один роздільник \'.\'. Кілька символів \'.\' підряд не допускаються."),
         "organizationalUnit":
             MessageLookupByLibrary.simpleMessage(" Організаційний підрозділ"),
+        "overwrite": MessageLookupByLibrary.simpleMessage("Перезаписати"),
         "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Не вдалося отримати компоненти Swagger. Спробуйте знову або зв\'яжіться з підтримкою, якщо не вдається оторимати компоненти."),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
