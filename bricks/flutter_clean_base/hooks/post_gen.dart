@@ -9,6 +9,12 @@ import 'package:tint/tint.dart';
 late String name;
 const flavorizrInjectKey = '#{flavorizer_injection_config}';
 
+const onix_flutter_core = 'onix_flutter_core: 0.0.5';
+const onix_flutter_core_models = 'onix_flutter_core_models: 0.0.2';
+const onix_flutter_bloc = 'onix_flutter_bloc: 0.0.4';
+const onix_flutter_provider = 'onix_flutter_provider: 0.0.2';
+const onix_flutter_signals = 'onix_flutter_signals: 0.0.1';
+
 void run(HookContext context) async {
   name = context.vars['project_name'].toString().toSnakeCase;
 
@@ -145,7 +151,7 @@ Future<void> getDependencies(HookContext context) async {
     'collection',
     'jailbreak_root_detection',
     'gap',
-    'onix_flutter_core',
+    onix_flutter_core,
     'envied',
   ];
 
@@ -164,19 +170,19 @@ Future<void> getDependencies(HookContext context) async {
 
   switch (stateManager) {
     case 'bloc':
-      dependencies.addAll(['flutter_bloc', 'onix_flutter_bloc']);
+      dependencies.addAll(['flutter_bloc', onix_flutter_bloc]);
       devDependencies.add('bloc_test');
     case 'provider':
-      dependencies.addAll(['provider', 'onix_flutter_provider']);
+      dependencies.addAll(['provider', onix_flutter_provider]);
     case 'riverpod':
-      dependencies.addAll(['flutter_riverpod', 'onix_flutter_riverpod']);
+      dependencies.add('flutter_riverpod');
     case 'signals':
-      dependencies.addAll(['onix_flutter_signals', 'signals']);
+      dependencies.addAll(['signals', onix_flutter_signals]);
     case 'base':
   }
 
   if (stateManager != 'base') {
-    dependencies.add('onix_flutter_core_models');
+    dependencies.add(onix_flutter_core_models);
   }
 
   if (!context.vars['web_only']) {
