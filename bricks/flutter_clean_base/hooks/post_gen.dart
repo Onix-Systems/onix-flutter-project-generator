@@ -9,6 +9,11 @@ import 'package:tint/tint.dart';
 late String name;
 const flavorizrInjectKey = '#{flavorizer_injection_config}';
 
+const onix_flutter_core = 'onix_flutter_core: 0.0.5';
+const onix_flutter_core_models = 'onix_flutter_core_models: 0.0.2';
+const onix_flutter_bloc = 'onix_flutter_bloc: 0.0.4';
+const onix_flutter_provider = 'onix_flutter_provider: 0.0.2';
+
 void run(HookContext context) async {
   name = context.vars['project_name'].toString().toSnakeCase;
 
@@ -146,7 +151,7 @@ Future<void> getDependencies(HookContext context) async {
     'flutter_dotenv',
     'jailbreak_root_detection',
     'gap',
-    'onix_flutter_core',
+    onix_flutter_core,
   ];
 
   List<String> devDependencies = [
@@ -160,13 +165,13 @@ Future<void> getDependencies(HookContext context) async {
   ];
 
   if (context.vars['isBloc']) {
-    dependencies.addAll(['flutter_bloc', 'onix_flutter_bloc']);
+    dependencies.addAll(['flutter_bloc', onix_flutter_bloc]);
     devDependencies.add('bloc_test');
     await removeStateManagers(managers: ['provider', 'riverpod']);
   }
 
   if (context.vars['isProvider']) {
-    dependencies.addAll(['provider', 'onix_flutter_provider']);
+    dependencies.addAll(['provider', onix_flutter_provider]);
     await removeStateManagers(managers: ['bloc', 'riverpod']);
   }
 
@@ -178,7 +183,7 @@ Future<void> getDependencies(HookContext context) async {
   if (context.vars['isBase']) {
     await removeStateManagers(managers: ['provider', 'bloc', 'riverpod']);
   } else {
-    dependencies.add('onix_flutter_core_models');
+    dependencies.add(onix_flutter_core_models);
   }
 
   if (!context.vars['web_only']) {
