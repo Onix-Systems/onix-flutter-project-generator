@@ -3,7 +3,7 @@ import 'package:{{project_name}}/data/source/local/preferences_source/preference
 import 'package:{{project_name}}/data/source/local/preferences_source/preferences_source.dart';
 
 class PreferencesSourceImpl implements PreferencesSource {
-  final BasePreferences _preferences;
+  final SharedPreferencesStorage _preferences;
 
   PreferencesSourceImpl(this._preferences);
 
