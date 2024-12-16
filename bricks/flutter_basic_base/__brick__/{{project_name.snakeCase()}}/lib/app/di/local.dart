@@ -11,10 +11,10 @@ void registerLocal(GetIt getIt) {
       SecureStorageSourceImpl.new,
     )
     ..registerLazySingleton(
-      BasePreferences.new,
+      SharedPreferencesStorage.new,
     )
     ..registerLazySingleton<PreferencesSource>(
-      () => PreferencesSourceImpl(getIt.get<BasePreferences>()),
+      () => PreferencesSourceImpl(getIt.get<SharedPreferencesStorage>()),
     );
 }
 
