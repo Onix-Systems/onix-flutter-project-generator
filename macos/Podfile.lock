@@ -57,7 +57,7 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/window_manager/macos
 
 SPEC CHECKSUMS:
-  connectivity_plus: 4c41c08fc6d7c91f63bc7aec70ffe3730b04f563
+  connectivity_plus: ddd7f30999e1faaef5967c23d5b6d503d10434db
   file_selector_macos: cc3858c981fe6889f364731200d6232dac1d812d
   flutter_secure_storage_macos: 59459653abe1adb92abbc8ea747d79f8d19866c9
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
@@ -70,4 +70,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 33dc0a74a37eaaaa9a4d991374cc1fb2ce00b9ca
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2
