@@ -10,8 +10,8 @@ void registerRemote(GetIt getIt) {
   final dioClientModule = _DioClientModule();
 
   getIt
-    ..registerLazySingleton<DioRequestProcessor>(
-      dioClientModule.makeDioRequestProcessor,
+    ..registerLazySingleton<RequestProcessor>(
+      dioClientModule.createInternalDioRequestProcessor,
     )..registerLazySingleton<ApiClient>(
      () => dioClientModule.makeApiClient(
        ApiClientParams(
