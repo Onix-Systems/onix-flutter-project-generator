@@ -21,7 +21,9 @@ mixin _$ColorProperty {
   double get b => throw _privateConstructorUsedError;
   double get a => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ColorProperty
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ColorPropertyCopyWith<ColorProperty> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$ColorPropertyCopyWithImpl<$Res, $Val extends ColorProperty>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ColorProperty
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$ColorPropertyImplCopyWithImpl<$Res>
       _$ColorPropertyImpl _value, $Res Function(_$ColorPropertyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ColorProperty
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -156,7 +162,9 @@ class _$ColorPropertyImpl implements _ColorProperty {
   @override
   int get hashCode => Object.hash(runtimeType, r, g, b, a);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ColorProperty
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ColorPropertyImplCopyWith<_$ColorPropertyImpl> get copyWith =>
@@ -178,8 +186,11 @@ abstract class _ColorProperty implements ColorProperty {
   double get b;
   @override
   double get a;
+
+  /// Create a copy of ColorProperty
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ColorPropertyImplCopyWith<_$ColorPropertyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

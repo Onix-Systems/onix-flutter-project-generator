@@ -21,7 +21,9 @@ mixin _$DataObjectComponent {
   List<DataVariableComponent> get variables =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DataObjectComponent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DataObjectComponentCopyWith<DataObjectComponent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +50,8 @@ class _$DataObjectComponentCopyWithImpl<$Res, $Val extends DataObjectComponent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DataObjectComponent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -94,6 +98,8 @@ class __$$DataObjectComponentImplCopyWithImpl<$Res>
       $Res Function(_$DataObjectComponentImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DataObjectComponent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -161,7 +167,9 @@ class _$DataObjectComponentImpl extends _DataObjectComponent {
   int get hashCode => Object.hash(runtimeType, name, fileReference,
       const DeepCollectionEquality().hash(_variables));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DataObjectComponent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DataObjectComponentImplCopyWith<_$DataObjectComponentImpl> get copyWith =>
@@ -183,8 +191,11 @@ abstract class _DataObjectComponent extends DataObjectComponent {
   SwaggerReference get fileReference;
   @override
   List<DataVariableComponent> get variables;
+
+  /// Create a copy of DataObjectComponent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DataObjectComponentImplCopyWith<_$DataObjectComponentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

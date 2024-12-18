@@ -19,7 +19,9 @@ mixin _$DataObjectReference {
   DataFileType get type => throw _privateConstructorUsedError;
   SwaggerReference get fileReference => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DataObjectReference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DataObjectReferenceCopyWith<DataObjectReference> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -43,6 +45,8 @@ class _$DataObjectReferenceCopyWithImpl<$Res, $Val extends DataObjectReference>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DataObjectReference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +85,8 @@ class __$$DataObjectReferenceImplCopyWithImpl<$Res>
       $Res Function(_$DataObjectReferenceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DataObjectReference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,7 +136,9 @@ class _$DataObjectReferenceImpl extends _DataObjectReference {
   @override
   int get hashCode => Object.hash(runtimeType, type, fileReference);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DataObjectReference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DataObjectReferenceImplCopyWith<_$DataObjectReferenceImpl> get copyWith =>
@@ -149,8 +157,11 @@ abstract class _DataObjectReference extends DataObjectReference {
   DataFileType get type;
   @override
   SwaggerReference get fileReference;
+
+  /// Create a copy of DataObjectReference
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DataObjectReferenceImplCopyWith<_$DataObjectReferenceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

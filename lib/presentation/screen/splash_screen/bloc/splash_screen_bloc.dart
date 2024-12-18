@@ -54,20 +54,22 @@ class SplashScreenBloc
         .toString()
         .replaceFirst('release-', '');
 
+    final latestReleaseUrl = latestReleaseResponse['html_url'];
+
     logger.f('remoteVersion: $remoteVersion');
 
     try {
       final localVersionNumber = localVersion.asIntVersion();
       final remoteVersionNumber = remoteVersion.asIntVersion();
       if (localVersionNumber < remoteVersionNumber) {
-        addSr(const SplashScreenSR.onNeedUpdate());
+        addSr(SplashScreenSR.onNeedUpdate(latestReleaseUrl: latestReleaseUrl));
       } else {
         addSr(const SplashScreenSR.onContinue());
       }
     } catch (e) {
       logger.e(e);
       if (localVersion != remoteVersion) {
-        addSr(const SplashScreenSR.onNeedUpdate());
+        addSr(SplashScreenSR.onNeedUpdate(latestReleaseUrl: latestReleaseUrl));
       } else {
         addSr(const SplashScreenSR.onContinue());
       }
