@@ -132,7 +132,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
         Positioned(
           bottom: 0,
           left: 0,
-          child: (state.branches.isNotEmpty && kDebugMode)
+          child: (state.branches.isNotEmpty /* && kDebugMode*/)
               ? BranchSelectorWidget(
                   branches: state.branches,
                   selectedBranch: state.config.branch,
