@@ -14,6 +14,7 @@ const onix_flutter_core_models = 'onix_flutter_core_models: 0.0.3-beta.1';
 const onix_flutter_bloc = 'onix_flutter_bloc: 0.0.5-beta.1';
 const onix_flutter_provider = 'onix_flutter_provider: 0.0.3-beta.1';
 const onix_flutter_signals = 'onix_flutter_signals: 0.0.1';
+const onix_flutter_mvvm = 'onix_flutter_mvvm: 0.0.5';
 
 void run(HookContext context) async {
   name = context.vars['project_name'].toString().toSnakeCase;
@@ -178,6 +179,8 @@ Future<void> getDependencies(HookContext context) async {
       dependencies.add('flutter_riverpod');
     case 'signals':
       dependencies.addAll(['signals', onix_flutter_signals]);
+    case 'viewModel':
+      dependencies.add(onix_flutter_mvvm);
     case 'base':
   }
 

@@ -79,7 +79,7 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
 
 const _$ArchTypeEnumMap = {
   ArchType.clean: 'clean',
-  ArchType.simple: 'simple',
+  ArchType.basic: 'basic',
 };
 
 const _$ProjectStateManagerEnumMap = {
@@ -87,6 +87,7 @@ const _$ProjectStateManagerEnumMap = {
   ProjectStateManager.provider: 'provider',
   ProjectStateManager.riverpod: 'riverpod',
   ProjectStateManager.signals: 'signals',
+  ProjectStateManager.viewModel: 'viewModel',
   ProjectStateManager.base: 'base',
 };
 
