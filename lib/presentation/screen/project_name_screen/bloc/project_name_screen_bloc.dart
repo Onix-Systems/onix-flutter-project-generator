@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/app_consts.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/usecase/process/get_branches_process_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc_imports.dart';
@@ -27,6 +28,7 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     ProjectNameScreenEventInit event,
     Emitter<ProjectNameScreenState> emit,
   ) async {
+    logger.f('event.config.branch: ${event.config.branch}');
     emit(
       ProjectNameScreenState.data(
         config: event.config,

@@ -52,6 +52,7 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
         extra: Config(
           localVersion: blocOf(context).state.localVersion,
           remoteVersion: blocOf(context).state.remoteVersion,
+          branch: 'release-${blocOf(context).state.localVersion}',
         ),
       ),
     );
