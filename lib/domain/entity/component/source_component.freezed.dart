@@ -20,7 +20,9 @@ mixin _$SourceComponent {
   List<RequestComponent> get requests => throw _privateConstructorUsedError;
   ArchType get arch => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SourceComponent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SourceComponentCopyWith<SourceComponent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$SourceComponentCopyWithImpl<$Res, $Val extends SourceComponent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SourceComponent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$SourceComponentImplCopyWithImpl<$Res>
       _$SourceComponentImpl _value, $Res Function(_$SourceComponentImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SourceComponent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -153,7 +159,9 @@ class _$SourceComponentImpl extends _SourceComponent {
   int get hashCode => Object.hash(
       runtimeType, name, const DeepCollectionEquality().hash(_requests), arch);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SourceComponent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SourceComponentImplCopyWith<_$SourceComponentImpl> get copyWith =>
@@ -174,8 +182,11 @@ abstract class _SourceComponent extends SourceComponent {
   List<RequestComponent> get requests;
   @override
   ArchType get arch;
+
+  /// Create a copy of SourceComponent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SourceComponentImplCopyWith<_$SourceComponentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

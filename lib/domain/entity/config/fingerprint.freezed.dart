@@ -19,7 +19,9 @@ mixin _$Fingerprint {
   FingerprintType get type => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Fingerprint
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FingerprintCopyWith<Fingerprint> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -43,6 +45,8 @@ class _$FingerprintCopyWithImpl<$Res, $Val extends Fingerprint>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Fingerprint
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +85,8 @@ class __$$FingerprintImplCopyWithImpl<$Res>
       _$FingerprintImpl _value, $Res Function(_$FingerprintImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Fingerprint
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -127,7 +133,9 @@ class _$FingerprintImpl implements _Fingerprint {
   @override
   int get hashCode => Object.hash(runtimeType, type, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Fingerprint
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FingerprintImplCopyWith<_$FingerprintImpl> get copyWith =>
@@ -143,8 +151,11 @@ abstract class _Fingerprint implements Fingerprint {
   FingerprintType get type;
   @override
   String get value;
+
+  /// Create a copy of Fingerprint
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FingerprintImplCopyWith<_$FingerprintImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -83,6 +83,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
           projectPath: event.projectPath,
           localVersion: state.config.localVersion,
           remoteVersion: state.config.remoteVersion,
+          branch: state.config.branch,
         ),
       ),
     );

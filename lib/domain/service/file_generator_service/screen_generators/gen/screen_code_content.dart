@@ -12,8 +12,10 @@ abstract class ScreenCodeContent {
     required String screenName,
     required bool isLastDeclaration,
   }) {
-    final output = input;
+    final output = input.replaceFirst(
+        ';\n$routesDeclarationSuffix', ',\n$routesDeclarationSuffix');
     final coda = isLastDeclaration ? ';' : ',';
+
     return output.replaceAll(
       routesDeclarationSuffix,
       "${screenName.camelCase}('/${screenName.snakeCase}')$coda\n$routesDeclarationSuffix",
@@ -31,13 +33,22 @@ abstract class ScreenCodeContent {
     final screenClassImport = screenName.snakeCase;
 
     ///Declare initial route
-    if (isInitialScreen) {
-      output = output.replaceAll(
-        "static const _initialLocation = '/'",
-        "static const _initialLocation = '/${screenName.snakeCase}'",
-      );
-    }
     if (router == ProjectRouter.goRouter) {
+      if (isInitialScreen) {
+        final outputLines = output.split('\n');
+
+        final initialLocationIndex = outputLines.indexWhere(
+          (element) => element.contains('static const _initialLocation'),
+        );
+
+        if (initialLocationIndex >= 0) {
+          outputLines[initialLocationIndex] =
+              "static const _initialLocation = '/${screenName.snakeCase}';";
+
+          output = outputLines.join('\n');
+        }
+      }
+
       final goRouteContent = _buildGoRouteContent(screenName);
       output = output
           .replaceAll(
@@ -47,6 +58,15 @@ abstract class ScreenCodeContent {
             "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart';\n$navigatorImportsSuffix",
           );
     } else {
+      if (isInitialScreen) {
+        final outputLines = output.split('\n')
+          ..removeWhere(
+            (element) => element.contains('initial: true,'),
+          );
+
+        output = outputLines.join('\n');
+      }
+
       final autoRouteContent = _buildAutoRouteContent(
         isInitialScreen,
         screenName,

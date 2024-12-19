@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
@@ -147,37 +148,75 @@ class _ProcedureSelectionScreenState extends BaseState<
               height: 125,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: AppFilledButton(
-                  label: S.of(context).generateNewProject,
-                  big: true,
-                  onPressed: () {
-                    getDirectoryPath().then(
-                      (value) {
-                        if (!context.mounted) return;
-                        if (value != null) {
-                          blocOf(context).add(
-                            ProcedureSelectionScreenEventOnNewProject(
-                              projectPath: value,
-                            ),
-                          );
-                        } else {
-                          Dialogs.showOkDialog(
-                            context: context,
-                            isError: true,
-                            title: S.of(context).pathNotSelectedTitle,
-                            content: Text(
-                              S.of(context).pathNotSelectedContent,
-                              style: context.appTextStyles.fs18?.copyWith(
-                                fontSize: 16,
-                              ),
-                            ),
-                            onOk: () {},
-                          );
-                        }
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AppFilledButton(
+                      label: S.of(context).generateNewProject,
+                      big: true,
+                      onPressed: () {
+                        getDirectoryPath().then(
+                          (value) {
+                            if (!context.mounted) return;
+                            if (value != null) {
+                              blocOf(context).add(
+                                ProcedureSelectionScreenEventOnNewProject(
+                                  projectPath: value,
+                                ),
+                              );
+                            } else {
+                              Dialogs.showOkDialog(
+                                context: context,
+                                isError: true,
+                                title: S.of(context).pathNotSelectedTitle,
+                                content: Text(
+                                  S.of(context).pathNotSelectedContent,
+                                  style: context.appTextStyles.fs18?.copyWith(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                onOk: () {},
+                              );
+                            }
+                          },
+                        );
                       },
-                    );
-                  },
-                  icon: Icons.create_new_folder_outlined,
+                      icon: Icons.create_new_folder_outlined,
+                    ),
+                    const Gap(40),
+                    AppFilledButton(
+                      label: S.of(context).openExistingProject,
+                      big: true,
+                      onPressed: () {
+                        getDirectoryPath().then(
+                          (value) {
+                            if (!context.mounted) return;
+                            if (value != null) {
+                              blocOf(context).add(
+                                ProcedureSelectionScreenEventOnProjectOpen(
+                                  projectURI: value,
+                                ),
+                              );
+                            } else {
+                              Dialogs.showOkDialog(
+                                context: context,
+                                isError: true,
+                                title: S.of(context).pathNotSelectedTitle,
+                                content: Text(
+                                  S.of(context).pathNotSelectedContent,
+                                  style: context.appTextStyles.fs18?.copyWith(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                onOk: () {},
+                              );
+                            }
+                          },
+                        );
+                      },
+                      icon: Icons.folder_open,
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -232,6 +271,12 @@ class _ProcedureSelectionScreenState extends BaseState<
           builder: (ctx) => FingerprintDialogBody(
             fingerprints: fingerprints,
           ),
+        );
+      },
+      loadFinished: () {
+        context.go(
+          AppRouter.screensScreen,
+          extra: blocOf(context).state.config,
         );
       },
     );

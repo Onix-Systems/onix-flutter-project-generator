@@ -12,7 +12,9 @@ class SplashScreenEvent with _$SplashScreenEvent {
 
 @freezed
 class SplashScreenSR with _$SplashScreenSR {
-  const factory SplashScreenSR.onNeedUpdate() = _onNeedUpdate;
+  const factory SplashScreenSR.onNeedUpdate({
+    required String latestReleaseUrl,
+  }) = _onNeedUpdate;
 
   const factory SplashScreenSR.onContinue() = _onContinue;
 }

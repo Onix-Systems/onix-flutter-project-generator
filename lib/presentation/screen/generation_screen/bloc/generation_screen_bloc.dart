@@ -24,10 +24,12 @@ import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecas
 import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
+import 'package:onix_flutter_bricks/util/enum/project_router.dart';
 import 'package:onix_flutter_bricks/util/extension/config_file_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
 import 'package:onix_flutter_bricks/util/flavors_util.dart';
+import 'package:recase/recase.dart';
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenState, GenerationScreenSR> {
@@ -193,10 +195,54 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       );
     }
 
+    final newScreensExists =
+        state.config.screens.where((screen) => !screen.exists).isNotEmpty;
+
     ///generating screens
-    await _generateScreensUseCase(
-      config: state.config,
-    );
+    if (newScreensExists) {
+      await _generateScreensUseCase(
+        config: state.config,
+      );
+    } else {
+      final routerFile = File(
+          '${state.config.projectRootPath}/lib/app/router/app_router.dart');
+      var routerContent = routerFile.readAsStringSync();
+
+      if (state.config.router == ProjectRouter.goRouter) {
+        final routerLines = routerContent.split('\n');
+
+        final initialLocationIndex = routerLines.indexWhere(
+          (element) => element.contains('static const _initialLocation'),
+        );
+
+        final initialScreenName =
+            state.config.screens.firstWhere((element) => element.initial).name;
+
+        routerLines[initialLocationIndex] =
+            "static const _initialLocation = '/${initialScreenName.snakeCase}';";
+
+        routerContent = routerLines.join('\n');
+      } else {
+        final routerLines = routerContent.split('\n')
+          ..removeWhere(
+            (element) => element.contains('initial: true,'),
+          );
+
+        routerContent = routerLines.join('\n');
+
+        final initialScreenName = state.config.screens
+            .firstWhere((element) => element.initial)
+            .name
+            .snakeCase;
+
+        routerContent = routerContent.replaceFirst(
+          "path: '/${initialScreenName}Screen',",
+          "path: '/${initialScreenName}Screen',\ninitial: true,",
+        );
+      }
+
+      await routerFile.writeAsString(routerContent);
+    }
 
     ///generating data components//TODO
     //await _generateDataComponentsUseCase(config: state.config);

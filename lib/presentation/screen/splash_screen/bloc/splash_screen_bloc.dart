@@ -32,38 +32,44 @@ class SplashScreenBloc
 
     final localVersion = packageInfo.version;
 
-    final mainProcess = await Process.start('zsh', []);
+    final gitProcess = await Process.start('zsh', []);
 
-    var remoteVersion = '';
+    var latestReleaseResponse = {};
 
-    mainProcess.stdout.transform(utf8.decoder).listen((event) {
-      if (event.contains('version: ')) {
-        remoteVersion = event.replaceAll('version: ', '').split('+').first;
-        mainProcess.kill();
-      }
+    gitProcess.stdout.transform(utf8.decoder).listen((event) {
+      latestReleaseResponse = jsonDecode(event);
+      gitProcess.kill();
     });
 
-    mainProcess.stdin.writeln(r'source $HOME/.zshrc');
-    mainProcess.stdin.writeln(r'source $HOME/.bash_profile');
+    gitProcess.stdin.writeln(r'source $HOME/.zshrc');
+    gitProcess.stdin.writeln(r'source $HOME/.bash_profile');
 
-    mainProcess.stdin.writeln(
-      'curl https://raw.githubusercontent.com/Onix-Systems/onix-flutter-project-generator/main/pubspec.yaml | grep version && exit',
+    gitProcess.stdin.writeln(
+      'curl https://api.github.com/repos/Onix-Systems/onix-flutter-project-generator/releases/latest',
     );
 
-    await mainProcess.exitCode;
+    await gitProcess.exitCode;
+
+    final remoteVersion = latestReleaseResponse['tag_name']
+        .toString()
+        .replaceFirst('release-', '');
+
+    final latestReleaseUrl = latestReleaseResponse['html_url'];
+
+    logger.f('remoteVersion: $remoteVersion');
 
     try {
       final localVersionNumber = localVersion.asIntVersion();
       final remoteVersionNumber = remoteVersion.asIntVersion();
       if (localVersionNumber < remoteVersionNumber) {
-        addSr(const SplashScreenSR.onNeedUpdate());
+        addSr(SplashScreenSR.onNeedUpdate(latestReleaseUrl: latestReleaseUrl));
       } else {
         addSr(const SplashScreenSR.onContinue());
       }
     } catch (e) {
       logger.e(e);
       if (localVersion != remoteVersion) {
-        addSr(const SplashScreenSR.onNeedUpdate());
+        addSr(SplashScreenSR.onNeedUpdate(latestReleaseUrl: latestReleaseUrl));
       } else {
         addSr(const SplashScreenSR.onContinue());
       }

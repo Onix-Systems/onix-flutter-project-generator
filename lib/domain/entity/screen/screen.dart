@@ -1,12 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/state_management/state_management_variant.dart';
 
-part 'screen.g.dart';
-
-@JsonSerializable()
 class Screen {
   String name;
-  @JsonKey(includeFromJson: false, includeToJson: false)
   StateManagementVariant stateVariant;
   bool exists;
   bool initial;
@@ -44,7 +39,17 @@ class Screen {
     return 'ScreenEntity{name: $name, stateManager: ${stateVariant.name}, exists: $exists, initial: $initial}';
   }
 
-  Map<String, dynamic> toJson() => _$ScreenToJson(this);
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'state_variant': stateVariant.name,
+        'exists': exists,
+        'initial': initial,
+      };
 
-  factory Screen.fromJson(Map<String, dynamic> json) => _$ScreenFromJson(json);
+  factory Screen.fromJson(Map<String, dynamic> json) => Screen(
+        name: json['name'],
+        stateVariant: StateManagementVariant.fromJson(json),
+        exists: json['exists'],
+        initial: json['initial'],
+      );
 }

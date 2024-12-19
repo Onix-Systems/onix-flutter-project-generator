@@ -6,7 +6,7 @@ class ScreenRepositoryImpl implements ScreenRepository {
   final Set<Screen> _screens = {};
 
   @override
-  Set<Screen> get screens => _screens.map(Screen.copyOf).toSet();
+  Set<Screen> get screens => _screens.toSet();
 
   @override
   bool exists({required String screenName}) =>

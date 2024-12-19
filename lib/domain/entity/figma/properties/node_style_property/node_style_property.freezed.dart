@@ -21,7 +21,9 @@ mixin _$NodeStyleProperty {
   String get description => throw _privateConstructorUsedError;
   NodeStyleType get style => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NodeStyleProperty
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $NodeStylePropertyCopyWith<NodeStyleProperty> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$NodeStylePropertyCopyWithImpl<$Res, $Val extends NodeStyleProperty>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of NodeStyleProperty
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$NodeStylePropertyImplCopyWithImpl<$Res>
       $Res Function(_$NodeStylePropertyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NodeStyleProperty
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,7 +166,9 @@ class _$NodeStylePropertyImpl implements _NodeStyleProperty {
   @override
   int get hashCode => Object.hash(runtimeType, key, name, description, style);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NodeStyleProperty
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NodeStylePropertyImplCopyWith<_$NodeStylePropertyImpl> get copyWith =>
@@ -183,8 +191,11 @@ abstract class _NodeStyleProperty implements NodeStyleProperty {
   String get description;
   @override
   NodeStyleType get style;
+
+  /// Create a copy of NodeStyleProperty
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NodeStylePropertyImplCopyWith<_$NodeStylePropertyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

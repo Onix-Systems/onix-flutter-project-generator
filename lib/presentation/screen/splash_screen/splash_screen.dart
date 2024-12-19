@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
-import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
@@ -46,12 +45,14 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
 
   void _onSingleResult(BuildContext context, SplashScreenSR singleResult) {
     singleResult.when(
-      onNeedUpdate: () => _onNeedUpdate(context),
+      onNeedUpdate: (latestReleaseUrl) =>
+          _onNeedUpdate(context, latestReleaseUrl),
       onContinue: () => context.go(
         AppRouter.procedureSelectionScreen,
         extra: Config(
           localVersion: blocOf(context).state.localVersion,
           remoteVersion: blocOf(context).state.remoteVersion,
+          branch: 'release-${blocOf(context).state.localVersion}',
         ),
       ),
     );
@@ -112,7 +113,7 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
     }
   }
 
-  void _onNeedUpdate(BuildContext context) {
+  void _onNeedUpdate(BuildContext context, String latestReleaseUrl) {
     Dialogs.showOkCancelDialog(
       context: context,
       title: S.of(context).newVersionAvailableTitle,
@@ -123,7 +124,7 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
         ),
       ),
       onOk: () => _launchUrl(
-        url: AppConsts.releaseUri,
+        url: latestReleaseUrl,
       ),
       onCancel: () {
         blocOf(context).addSr(const SplashScreenSR.onContinue());

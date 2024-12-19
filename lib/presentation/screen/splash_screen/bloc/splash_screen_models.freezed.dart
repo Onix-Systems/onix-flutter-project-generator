@@ -75,6 +75,9 @@ class _$SplashScreenEventCopyWithImpl<$Res, $Val extends SplashScreenEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SplashScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -92,6 +95,9 @@ class __$$SplashScreenEventInitImplCopyWithImpl<$Res>
   __$$SplashScreenEventInitImplCopyWithImpl(_$SplashScreenEventInitImpl _value,
       $Res Function(_$SplashScreenEventInitImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SplashScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -201,6 +207,9 @@ class __$$SplashScreenEventOnAnimationFinishedImplCopyWithImpl<$Res>
       _$SplashScreenEventOnAnimationFinishedImpl _value,
       $Res Function(_$SplashScreenEventOnAnimationFinishedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SplashScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -300,19 +309,19 @@ abstract class SplashScreenEventOnAnimationFinished
 mixin _$SplashScreenSR {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onNeedUpdate,
+    required TResult Function(String latestReleaseUrl) onNeedUpdate,
     required TResult Function() onContinue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onNeedUpdate,
+    TResult? Function(String latestReleaseUrl)? onNeedUpdate,
     TResult? Function()? onContinue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onNeedUpdate,
+    TResult Function(String latestReleaseUrl)? onNeedUpdate,
     TResult Function()? onContinue,
     required TResult orElse(),
   }) =>
@@ -354,6 +363,9 @@ class _$SplashScreenSRCopyWithImpl<$Res, $Val extends SplashScreenSR>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SplashScreenSR
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -361,6 +373,8 @@ abstract class _$$onNeedUpdateImplCopyWith<$Res> {
   factory _$$onNeedUpdateImplCopyWith(
           _$onNeedUpdateImpl value, $Res Function(_$onNeedUpdateImpl) then) =
       __$$onNeedUpdateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String latestReleaseUrl});
 }
 
 /// @nodoc
@@ -370,54 +384,83 @@ class __$$onNeedUpdateImplCopyWithImpl<$Res>
   __$$onNeedUpdateImplCopyWithImpl(
       _$onNeedUpdateImpl _value, $Res Function(_$onNeedUpdateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SplashScreenSR
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? latestReleaseUrl = null,
+  }) {
+    return _then(_$onNeedUpdateImpl(
+      latestReleaseUrl: null == latestReleaseUrl
+          ? _value.latestReleaseUrl
+          : latestReleaseUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$onNeedUpdateImpl implements _onNeedUpdate {
-  const _$onNeedUpdateImpl();
+  const _$onNeedUpdateImpl({required this.latestReleaseUrl});
+
+  @override
+  final String latestReleaseUrl;
 
   @override
   String toString() {
-    return 'SplashScreenSR.onNeedUpdate()';
+    return 'SplashScreenSR.onNeedUpdate(latestReleaseUrl: $latestReleaseUrl)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$onNeedUpdateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$onNeedUpdateImpl &&
+            (identical(other.latestReleaseUrl, latestReleaseUrl) ||
+                other.latestReleaseUrl == latestReleaseUrl));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, latestReleaseUrl);
+
+  /// Create a copy of SplashScreenSR
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$onNeedUpdateImplCopyWith<_$onNeedUpdateImpl> get copyWith =>
+      __$$onNeedUpdateImplCopyWithImpl<_$onNeedUpdateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onNeedUpdate,
+    required TResult Function(String latestReleaseUrl) onNeedUpdate,
     required TResult Function() onContinue,
   }) {
-    return onNeedUpdate();
+    return onNeedUpdate(latestReleaseUrl);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onNeedUpdate,
+    TResult? Function(String latestReleaseUrl)? onNeedUpdate,
     TResult? Function()? onContinue,
   }) {
-    return onNeedUpdate?.call();
+    return onNeedUpdate?.call(latestReleaseUrl);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onNeedUpdate,
+    TResult Function(String latestReleaseUrl)? onNeedUpdate,
     TResult Function()? onContinue,
     required TResult orElse(),
   }) {
     if (onNeedUpdate != null) {
-      return onNeedUpdate();
+      return onNeedUpdate(latestReleaseUrl);
     }
     return orElse();
   }
@@ -455,7 +498,16 @@ class _$onNeedUpdateImpl implements _onNeedUpdate {
 }
 
 abstract class _onNeedUpdate implements SplashScreenSR {
-  const factory _onNeedUpdate() = _$onNeedUpdateImpl;
+  const factory _onNeedUpdate({required final String latestReleaseUrl}) =
+      _$onNeedUpdateImpl;
+
+  String get latestReleaseUrl;
+
+  /// Create a copy of SplashScreenSR
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$onNeedUpdateImplCopyWith<_$onNeedUpdateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -472,6 +524,9 @@ class __$$onContinueImplCopyWithImpl<$Res>
   __$$onContinueImplCopyWithImpl(
       _$onContinueImpl _value, $Res Function(_$onContinueImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SplashScreenSR
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -496,7 +551,7 @@ class _$onContinueImpl implements _onContinue {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onNeedUpdate,
+    required TResult Function(String latestReleaseUrl) onNeedUpdate,
     required TResult Function() onContinue,
   }) {
     return onContinue();
@@ -505,7 +560,7 @@ class _$onContinueImpl implements _onContinue {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onNeedUpdate,
+    TResult? Function(String latestReleaseUrl)? onNeedUpdate,
     TResult? Function()? onContinue,
   }) {
     return onContinue?.call();
@@ -514,7 +569,7 @@ class _$onContinueImpl implements _onContinue {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onNeedUpdate,
+    TResult Function(String latestReleaseUrl)? onNeedUpdate,
     TResult Function()? onContinue,
     required TResult orElse(),
   }) {
@@ -604,7 +659,9 @@ mixin _$SplashScreenState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SplashScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SplashScreenStateCopyWith<SplashScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -628,6 +685,8 @@ class _$SplashScreenStateCopyWithImpl<$Res, $Val extends SplashScreenState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SplashScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -670,6 +729,8 @@ class __$$DataImplCopyWithImpl<$Res>
   __$$DataImplCopyWithImpl(_$DataImpl _value, $Res Function(_$DataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SplashScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -734,7 +795,9 @@ class _$DataImpl implements Data {
   int get hashCode =>
       Object.hash(runtimeType, remoteVersion, localVersion, logoVisible);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SplashScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DataImplCopyWith<_$DataImpl> get copyWith =>
@@ -815,8 +878,11 @@ abstract class Data implements SplashScreenState {
   String get localVersion;
   @override
   bool get logoVisible;
+
+  /// Create a copy of SplashScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DataImplCopyWith<_$DataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
