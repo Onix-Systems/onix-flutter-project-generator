@@ -34,10 +34,21 @@ abstract class ScreenCodeContent {
 
     ///Declare initial route
     if (isInitialScreen) {
-      output = output.replaceAll(
-        "static const _initialLocation = '/'",
-        "static const _initialLocation = '/${screenName.snakeCase}'",
+      final outputLines = output.split('\n');
+
+      final initialLocationIndex = outputLines.indexWhere(
+        (element) => element.contains('static const _initialLocation'),
       );
+
+      outputLines[initialLocationIndex] =
+          "static const _initialLocation = '/${screenName.snakeCase}';";
+
+      // output = output.replaceAll(
+      //   "static const _initialLocation = '/'",
+      //   "static const _initialLocation = '/${screenName.snakeCase}'",
+      // );
+
+      output = outputLines.join('\n');
     }
     if (router == ProjectRouter.goRouter) {
       final goRouteContent = _buildGoRouteContent(screenName);
