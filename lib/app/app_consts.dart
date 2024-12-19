@@ -1,7 +1,4 @@
 class AppConsts {
-  static const String releaseUri =
-      'https://github.com/Onix-Systems/onix-flutter-project-generator/releases';
-
   static const String repoUrl =
       'https://github.com/Onix-Systems/onix-flutter-project-generator';
 
