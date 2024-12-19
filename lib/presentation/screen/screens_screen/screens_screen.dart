@@ -186,7 +186,7 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
 
   void _onContinue(BuildContext context, ScreensScreenState state) {
     widget.config.projectExists
-        ? widget.onContinue?.call()
+        ? context.go(AppRouter.summaryScreen, extra: state.config)
         : context.go(
             AppRouter.stylesScreen,
             extra: state.config,

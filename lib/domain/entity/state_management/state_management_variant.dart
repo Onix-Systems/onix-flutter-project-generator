@@ -10,12 +10,41 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/stateful_screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/stateless_screen_generator.dart';
 
-abstract class StateManagementVariant {
+sealed class StateManagementVariant {
   String get name;
 
   ScreenGenerationService get screenGenerator;
 
   const StateManagementVariant();
+
+  Map<String, dynamic> toJson() => {
+        'state_variant': name,
+      };
+
+  static StateManagementVariant fromJson(Map<String, dynamic> json) {
+    switch (json['state_variant']) {
+      case 'Stateful':
+        return const StatefulStateManagementVariant();
+      case 'Bloc':
+        return const BlocStateManagementVariant();
+      case 'Cubit':
+        return const CubitStateManagementVariant();
+      case 'Provider':
+        return const ProviderStateManagementVariant();
+      case 'RiverpodStateless':
+        return const RiverpodStatelessStateManagementVariant();
+      case 'RiverpodStateful':
+        return const RiverpodStatefulStateManagementVariant();
+      case 'SignalsPassive':
+        return const SignalsPassiveStateManagementVariant();
+      case 'SignalsReactive':
+        return const SignalsReactiveStateManagementVariant();
+      case 'ViewModel':
+        return const MvvmStateManagementVariant();
+      default:
+        return const StatelessStateManagementVariant();
+    }
+  }
 
   @override
   bool operator ==(Object other) {
@@ -124,14 +153,12 @@ final class SignalsReactiveStateManagementVariant
   const SignalsReactiveStateManagementVariant();
 }
 
-final class MvvmStateManagementVariant
-    extends StateManagementVariant {
+final class MvvmStateManagementVariant extends StateManagementVariant {
   @override
   String get name => 'ViewModel';
 
   @override
-  ScreenGenerationService get screenGenerator =>
-      MvvmScreenGenerator();
+  ScreenGenerationService get screenGenerator => MvvmScreenGenerator();
 
   const MvvmStateManagementVariant();
 }

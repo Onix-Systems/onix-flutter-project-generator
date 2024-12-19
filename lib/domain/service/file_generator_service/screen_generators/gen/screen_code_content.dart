@@ -12,8 +12,10 @@ abstract class ScreenCodeContent {
     required String screenName,
     required bool isLastDeclaration,
   }) {
-    final output = input;
+    final output = input.replaceFirst(
+        ';\n$routesDeclarationSuffix', ',\n$routesDeclarationSuffix');
     final coda = isLastDeclaration ? ';' : ',';
+
     return output.replaceAll(
       routesDeclarationSuffix,
       "${screenName.camelCase}('/${screenName.snakeCase}')$coda\n$routesDeclarationSuffix",

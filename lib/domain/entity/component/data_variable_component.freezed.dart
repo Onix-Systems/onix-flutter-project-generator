@@ -20,7 +20,9 @@ mixin _$DataVariableComponent {
   SwaggerType get type => throw _privateConstructorUsedError;
   bool get isRequired => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DataVariableComponent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DataVariableComponentCopyWith<DataVariableComponent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$DataVariableComponentCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DataVariableComponent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -90,6 +94,8 @@ class __$$DataVariableComponentImplCopyWithImpl<$Res>
       $Res Function(_$DataVariableComponentImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DataVariableComponent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -147,7 +153,9 @@ class _$DataVariableComponentImpl extends _DataVariableComponent {
   @override
   int get hashCode => Object.hash(runtimeType, name, type, isRequired);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DataVariableComponent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DataVariableComponentImplCopyWith<_$DataVariableComponentImpl>
@@ -168,8 +176,11 @@ abstract class _DataVariableComponent extends DataVariableComponent {
   SwaggerType get type;
   @override
   bool get isRequired;
+
+  /// Create a copy of DataVariableComponent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DataVariableComponentImplCopyWith<_$DataVariableComponentImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
