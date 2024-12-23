@@ -126,7 +126,7 @@ class ComponentGeneratorService
       ..add(
         'getIt.get<ApiClient>(instanceName: DioConst.defaultApiClientName),',
       )
-      ..add('getIt.get<DioRequestProcessor>(),')
+      ..add('getIt.get<InternalDioRequestProcessor>(),')
       ..add('),);')
       ..add(SwaggerConst.swaggerSourceSLDeclarationKey);
 

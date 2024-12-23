@@ -195,7 +195,7 @@ class RequestComponent with _$RequestComponent {
       ///Call dio request processor
       ..add('return _dioRequestProcessor.processRequest(')
       ..add('onRequest: () => request,')
-      ..add('onResponse: (response) {')
+      ..add('onParse: (response) {')
       ..add(responseClosure)
       ..add('},);}');
 
@@ -276,7 +276,7 @@ class RequestComponent with _$RequestComponent {
         ..add(
           'final ${responseName}Object = _${responseName}Mappers.mapResponseToEntity(result.data);',
         )
-        ..add('return Result.success(${responseName}Object);');
+        ..add('return Result.ok(${responseName}Object);');
     } else if (response.type is SwaggerArray) {
       final array = response.type as SwaggerArray;
       if (array.itemType.type is SwaggerReference) {
@@ -287,17 +287,17 @@ class RequestComponent with _$RequestComponent {
           ..add(
             'final ${responseName}Objects = result.data.map(_${responseName}Mappers.mapResponseToEntity,).toList();',
           )
-          ..add('return Result.success(${responseName}Objects);');
+          ..add('return Result.ok(${responseName}Objects);');
       } else {
-        codeLines.add('return Result.success(result.data);');
+        codeLines.add('return Result.ok(result.data);');
       }
     } else {
-      codeLines.add('return Result.success(result.data);');
+      codeLines.add('return Result.ok(result.data);');
     }
     codeLines
       ..add('} else {')
       ..add(
-        'return Result.error(failure: MapCommonServerError.getServerFailureDetails(result),);',
+        'return Result.error(error: MapCommonServerError.getServerFailureDetails(result),);',
       )
       ..add('}')
       ..add('} catch (e, trace) {')
@@ -305,7 +305,7 @@ class RequestComponent with _$RequestComponent {
         "logger.crash(reason: '${operationId.camelCase}', error: e, stackTrace: trace,);",
       )
       ..add('return Result.error(')
-      ..add('failure: ApiFailure(')
+      ..add('error: ApiFailure(')
       ..add('ServerFailure.exception,')
       ..add('message: e.toString(),')
       ..add('),);}')
