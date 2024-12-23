@@ -98,7 +98,7 @@ class SourceComponent with _$SourceComponent {
     codeLines
       ..addNewLine()
       ..add('final ApiClient _apiClient;')
-      ..add('final DioRequestProcessor _dioRequestProcessor;')
+      ..add('final InternalDioRequestProcessor _dioRequestProcessor;')
       ..addNewLine()
       ..add(
         'const ${name.pascalCase}SourceImpl(this._apiClient, this._dioRequestProcessor,);',
@@ -116,9 +116,9 @@ class SourceComponent with _$SourceComponent {
     return codeLines.join('\n');
   }
 
-  String getRepoDeclarationBody(String projectName) {
+  String getRepoDeclarationBody(String projectName, ArchType arch) {
     final codeLines = List<String>.empty(growable: true);
-    final modelImports = _buildRepositoryImports(projectName);
+    final modelImports = _buildRepositoryImports(projectName, arch);
     codeLines
       ..add(modelImports)
       ..add('abstract interface class ${name.pascalCase}Repository {')
@@ -137,7 +137,7 @@ class SourceComponent with _$SourceComponent {
 
   String getRepoImplementationBody(String projectName, ArchType arch) {
     final codeLines = <String>{};
-    final modelImports = _buildRepositoryImports(projectName);
+    final modelImports = _buildRepositoryImports(projectName, arch);
     codeLines
       ..add(
         "import 'package:$projectName/${arch.getLoggerPath()}';",
@@ -179,7 +179,8 @@ class SourceComponent with _$SourceComponent {
       ..add(
         'class ${name.pascalCase}RepositoryImpl implements ${name.pascalCase}Repository {',
       )
-      ..add('final ${name.pascalCase}Source _${name.camelCase}Source;');
+      ..add('final ${name.pascalCase}Source _${name.camelCase}Source;')
+      ..add('final _dioServerErrorMapper = DioServerErrorMapper();');
 
     ///Declare mappers for request objects
     final mapperVariables = List<String>.empty(growable: true);
@@ -280,11 +281,15 @@ class SourceComponent with _$SourceComponent {
     return imports.map((e) => e).join('\n');
   }
 
-  String _buildRepositoryImports(String projectName) {
+  String _buildRepositoryImports(String projectName, ArchType arch) {
     final imports = <String>{}
       ..add("import 'package:onix_flutter_core/onix_flutter_core.dart';")
       ..add(
-        "import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';",
+          "import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';")
+      ..add(
+        arch == ArchType.clean
+            ? "import 'package:$projectName/core/arch/data/remote/dio/dio_server_error_mapper.dart';"
+            : "import 'package:$projectName/data/dio_server_error_mapper.dart';",
       );
 
     for (final request in requests) {

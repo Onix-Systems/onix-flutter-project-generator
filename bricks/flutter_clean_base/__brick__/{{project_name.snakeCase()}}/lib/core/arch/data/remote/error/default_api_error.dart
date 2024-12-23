@@ -1,16 +1,15 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class DefaultApiError {
+  final String? message;
+  final String? code;
 
-part 'default_api_error.freezed.dart';
-part 'default_api_error.g.dart';
-
-//TODO Modify this class to make it like Your Api error
-@freezed
-class DefaultApiError with _$DefaultApiError {
-  const factory DefaultApiError({
-    required String name,
-    required String code,
-  }) = _DefaultApiError;
+  DefaultApiError({
+    required this.message,
+    required this.code,
+  });
 
   factory DefaultApiError.fromJson(Map<String, dynamic> json) =>
-      _$DefaultApiErrorFromJson(json);
+      DefaultApiError(
+        message: json["message"] as String?,
+        code: json["code"] as String?,
+      );
 }

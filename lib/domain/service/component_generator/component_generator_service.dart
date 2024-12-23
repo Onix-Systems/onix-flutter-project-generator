@@ -126,7 +126,7 @@ class ComponentGeneratorService
       ..add(
         'getIt.get<ApiClient>(instanceName: DioConst.defaultApiClientName),',
       )
-      ..add('getIt.get<DioRequestProcessor>(),')
+      ..add('getIt.get<InternalDioRequestProcessor>(),')
       ..add('),);')
       ..add(SwaggerConst.swaggerSourceSLDeclarationKey);
 
@@ -149,7 +149,7 @@ class ComponentGeneratorService
         sourceComponent.getRepoDeclarationFilePath(projectLibFolder);
 
     final repoDeclarationBody =
-        sourceComponent.getRepoDeclarationBody(projectName);
+        sourceComponent.getRepoDeclarationBody(projectName, arch);
     await _createFile(
       filePath: repoDeclarationFilePath,
       fileBody: repoDeclarationBody,

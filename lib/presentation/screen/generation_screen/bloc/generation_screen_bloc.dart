@@ -199,7 +199,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         state.config.screens.where((screen) => !screen.exists).isNotEmpty;
 
     ///generating screens
-    if (newScreensExists) {
+    if (newScreensExists || !state.config.projectExists) {
       await _generateScreensUseCase(
         config: state.config,
       );
