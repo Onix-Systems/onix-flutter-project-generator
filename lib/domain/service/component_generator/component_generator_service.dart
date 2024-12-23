@@ -149,7 +149,7 @@ class ComponentGeneratorService
         sourceComponent.getRepoDeclarationFilePath(projectLibFolder);
 
     final repoDeclarationBody =
-        sourceComponent.getRepoDeclarationBody(projectName);
+        sourceComponent.getRepoDeclarationBody(projectName, arch);
     await _createFile(
       filePath: repoDeclarationFilePath,
       fileBody: repoDeclarationBody,

@@ -297,7 +297,7 @@ class RequestComponent with _$RequestComponent {
     codeLines
       ..add('} else {')
       ..add(
-        'return Result.error(error: MapCommonServerError.getServerFailureDetails(result),);',
+        'return Result.error(error: _dioServerErrorMapper.mapToFailure(result),);',
       )
       ..add('}')
       ..add('} catch (e, trace) {')
