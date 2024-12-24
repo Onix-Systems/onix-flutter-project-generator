@@ -18,6 +18,7 @@ class ObjectDialog extends StatelessWidget {
         child: Text(
           object.getString(),
           textAlign: TextAlign.left,
+          softWrap: false,
           style: TextStyle(
             color: context.appColors.textColor,
             fontSize: 16,
