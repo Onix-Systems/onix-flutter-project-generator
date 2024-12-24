@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/form_data.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/input_body.dart';
@@ -10,9 +11,13 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 
 class RequestItem extends StatelessWidget {
   final RequestComponent request;
+  final DataObjectComponent? requestObject;
+  final DataObjectComponent? responseObject;
 
   const RequestItem({
     required this.request,
+    required this.requestObject,
+    required this.responseObject,
     super.key,
   });
 
@@ -62,7 +67,10 @@ class RequestItem extends StatelessWidget {
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                InputBody(body: request.requestBody),
+                                InputBody(
+                                  body: request.requestBody,
+                                  object: requestObject,
+                                ),
                                 const SizedBox(height: 2),
                                 FormData(
                                   formData: request.multipartBody,
@@ -82,6 +90,7 @@ class RequestItem extends StatelessWidget {
                     Expanded(
                       child: ResponseBody(
                         response: request.response,
+                        object: responseObject,
                       ),
                     ),
                   ],

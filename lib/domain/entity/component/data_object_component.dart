@@ -405,4 +405,13 @@ class DataObjectComponent with _$DataObjectComponent {
       return "@JsonKey(name: '${e.name}')\nfinal ${e.type.getTypeDeclaration(type)}$requiredSuffix $name;";
     }).toList();
   }
+
+  String getString() {
+    final variablesString =
+        variables.map((e) => '    ${e.getString()}').join('\n');
+    return '''
+class $name {
+$variablesString
+}''';
+  }
 }

@@ -12,4 +12,8 @@ class DataVariableComponent with _$DataVariableComponent {
     required SwaggerType type,
     required bool isRequired,
   }) = _DataVariableComponent;
+
+  String getString() {
+    return '${isRequired ? 'required' : ''}$type $name;';
+  }
 }

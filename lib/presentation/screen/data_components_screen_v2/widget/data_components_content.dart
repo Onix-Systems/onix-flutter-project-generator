@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_item.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/section_header.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/sources/source_item_section.dart';
@@ -30,6 +32,7 @@ class _DataComponentsContentState extends State<DataComponentsContent> {
           itemBuilder: (context, index) {
             return SourceItem(
               source: components.sources[index],
+              objects: _getSourceObjects(components.sources[index]),
             );
           },
         ),
@@ -43,5 +46,26 @@ class _DataComponentsContentState extends State<DataComponentsContent> {
         ),
       ],
     );
+  }
+
+  List<DataObjectComponent> _getSourceObjects(SourceComponent source) {
+    final sourceComponentNames = <String>{}
+      ..addAll(
+        source.requests
+            .where((element) => element.requestBody != null)
+            .map((e) => e.requestBody!.type.toString())
+            .toList(),
+      )
+      ..addAll(
+        source.requests
+            .where((element) => element.response.type.from.isNotEmpty)
+            .map((e) => e.response.type.toString()),
+      );
+
+    final result = widget.components.dataObjects
+        .where((element) => sourceComponentNames.contains(element.name))
+        .toList();
+
+    return result;
   }
 }
