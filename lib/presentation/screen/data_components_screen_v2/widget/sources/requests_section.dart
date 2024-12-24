@@ -8,10 +8,12 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 class RequestsSection extends StatelessWidget {
   final List<RequestComponent> requests;
   final List<DataObjectComponent> objects;
+  final ValueChanged<DataObjectComponent?> onHover;
 
   const RequestsSection({
     required this.requests,
     required this.objects,
+    required this.onHover,
     super.key,
   });
 
@@ -32,6 +34,7 @@ class RequestsSection extends StatelessWidget {
                 responseObject: objects.firstWhereOrNull(
                   (element) => element.name == e.response.type.toString(),
                 ),
+                onHover: onHover,
               ),
             )
             .toList(),

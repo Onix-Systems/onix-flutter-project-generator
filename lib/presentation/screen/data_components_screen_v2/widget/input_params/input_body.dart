@@ -64,7 +64,7 @@ class InputBody extends StatelessWidget {
   void onTap(BuildContext context) {
     if (object == null) return;
 
-    showCupertinoModalPopup(
+    showDialog(
       context: context,
       builder: (context) {
         return ObjectDialog(object: object!);

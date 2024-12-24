@@ -1,18 +1,19 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
-import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
-import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class ResponseBody extends StatelessWidget {
   final ResponseParamComponent response;
   final DataObjectComponent? object;
+  final ValueChanged<DataObjectComponent?> onHover;
 
   const ResponseBody({
     required this.response,
     required this.object,
+    required this.onHover,
     super.key,
   });
 
@@ -29,13 +30,13 @@ class ResponseBody extends StatelessWidget {
                 fontSize: 16,
               ),
             )
-          : ClickableWidget(
-              onTap: () => onTap(context),
-              splashColor: context.appColors.contrastColor.withOpacity(0.5),
-              borderRadiusInk: BorderRadius.circular(8),
+          : MouseRegion(
+              onEnter: (_) => onHover(object),
+              onExit: (_) => onHover(null),
               child: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
+                  color: context.appColors.contrastColor,
                   border: Border.all(
                     color: context.appColors.contrastColor,
                   ),
@@ -52,17 +53,6 @@ class ResponseBody extends StatelessWidget {
                 ),
               ),
             ),
-    );
-  }
-
-  void onTap(BuildContext context) {
-    if (object == null) return;
-
-    showCupertinoModalPopup(
-      context: context,
-      builder: (context) {
-        return ObjectDialog(object: object!);
-      },
     );
   }
 }

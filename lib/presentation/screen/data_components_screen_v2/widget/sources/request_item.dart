@@ -13,11 +13,13 @@ class RequestItem extends StatelessWidget {
   final RequestComponent request;
   final DataObjectComponent? requestObject;
   final DataObjectComponent? responseObject;
+  final ValueChanged<DataObjectComponent?> onHover;
 
   const RequestItem({
     required this.request,
     required this.requestObject,
     required this.responseObject,
+    required this.onHover,
     super.key,
   });
 
@@ -91,6 +93,7 @@ class RequestItem extends StatelessWidget {
                       child: ResponseBody(
                         response: request.response,
                         object: responseObject,
+                        onHover: onHover,
                       ),
                     ),
                   ],

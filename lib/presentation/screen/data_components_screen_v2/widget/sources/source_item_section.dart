@@ -8,10 +8,12 @@ import 'package:recase/recase.dart';
 class SourceItem extends StatelessWidget {
   final SourceComponent source;
   final List<DataObjectComponent> objects;
+  final ValueChanged<DataObjectComponent?> onHover;
 
   const SourceItem({
     required this.source,
     required this.objects,
+    required this.onHover,
     super.key,
   });
 
@@ -34,7 +36,11 @@ class SourceItem extends StatelessWidget {
             ),
           ),
         ),
-        RequestsSection(requests: source.requests, objects: objects),
+        RequestsSection(
+          requests: source.requests,
+          objects: objects,
+          onHover: onHover,
+        ),
       ],
     );
   }
