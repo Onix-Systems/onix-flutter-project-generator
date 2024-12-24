@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class AppThemeColors {
-  static const Color contrastColor = Color.fromRGBO(23, 33, 48, 1);
+  static const Color contrastColor = Color.fromRGBO(25, 53, 90, 1.0);
   static const Color darkColor = Color.fromRGBO(23, 23, 23, 1);
   static const Color darkContrastColor = Color.fromRGBO(12, 12, 12, 1);
   static const Color controlColor = Color.fromRGBO(252, 251, 255, 1);

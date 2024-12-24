@@ -180,10 +180,16 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                 );
               },
               onPrevPressed: () {
-                context.go(
-                  AppRouter.dataComponentsScreen,
-                  extra: state.config,
-                );
+                //While data components edit is not implemented
+                state.config.projectExists
+                    ? context.go(
+                        AppRouter.screensScreen,
+                        extra: state.config,
+                      )
+                    : context.go(
+                        AppRouter.dataComponentsScreen,
+                        extra: state.config,
+                      );
               },
             ),
           ],
