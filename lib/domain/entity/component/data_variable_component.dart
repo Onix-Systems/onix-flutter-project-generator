@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 
 part 'data_variable_component.freezed.dart';
@@ -15,6 +14,6 @@ class DataVariableComponent with _$DataVariableComponent {
   }) = _DataVariableComponent;
 
   String getString() {
-    return '${isRequired ? 'required' : ''}$type $name;${type.isObjectReference() ? ' (${type.getSwaggerObjectReference()})' : ''}';
+    return '${isRequired ? 'required' : ''}$type $name;';
   }
 }

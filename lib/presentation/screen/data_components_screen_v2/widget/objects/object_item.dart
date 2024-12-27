@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:recase/recase.dart';
@@ -44,8 +45,11 @@ class ObjectItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: object.variables
                   .map(
-                    (e) =>
-                        Text('${e.type.getTypeDeclaration(DataFileType.none)} '
+                    (e) => e.type is SwaggerEnum
+                        ? Text(
+                            'enum: {${(e.type as SwaggerEnum).enumValues.join(', ')}}')
+                        : Text(
+                            '${e.type.getTypeDeclaration(DataFileType.none)} '
                             '${e.name.camelCase}'),
                   )
                   .toList(),

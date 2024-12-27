@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/form_data.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/input_body.dart';
@@ -7,19 +6,18 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/query_params.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/request_params_header.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/response_body.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_view.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class RequestItem extends StatelessWidget {
   final RequestComponent request;
-  final DataObjectComponent? requestObject;
-  final DataObjectComponent? responseObject;
-  final ValueChanged<DataObjectComponent?> onHover;
+  final ObjectView? requestObject;
+  final ObjectView? responseObject;
 
   const RequestItem({
     required this.request,
     required this.requestObject,
     required this.responseObject,
-    required this.onHover,
     super.key,
   });
 
@@ -93,7 +91,6 @@ class RequestItem extends StatelessWidget {
                       child: ResponseBody(
                         response: request.response,
                         object: responseObject,
-                        onHover: onHover,
                       ),
                     ),
                   ],

@@ -406,12 +406,10 @@ class DataObjectComponent with _$DataObjectComponent {
     }).toList();
   }
 
-  String getString() {
+  String getString({int level = 1}) {
     final variablesString =
-        variables.map((e) => '    ${e.getString()}').join('\n');
-    return '''
-class $name {
-$variablesString
-}''';
+        variables.map((e) => '${'  ' * level}${e.getString()}').join('\n');
+
+    return variablesString;
   }
 }

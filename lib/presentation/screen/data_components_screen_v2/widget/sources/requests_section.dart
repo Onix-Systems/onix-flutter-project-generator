@@ -1,19 +1,18 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_view.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/sources/request_item.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class RequestsSection extends StatelessWidget {
   final List<RequestComponent> requests;
-  final List<DataObjectComponent> objects;
-  final ValueChanged<DataObjectComponent?> onHover;
+  final List<ObjectView> objects;
 
   const RequestsSection({
     required this.requests,
     required this.objects,
-    required this.onHover,
     super.key,
   });
 
@@ -28,17 +27,28 @@ class RequestsSection extends StatelessWidget {
             .map(
               (e) => RequestItem(
                 request: e,
-                requestObject: objects.firstWhereOrNull(
-                  (element) => element.name == e.requestBody?.type.toString(),
-                ),
-                responseObject: objects.firstWhereOrNull(
-                  (element) => element.name == e.response.type.toString(),
-                ),
-                onHover: onHover,
+                requestObject: findObject(e.requestBody?.type),
+                responseObject: findObject(e.response.type),
               ),
             )
             .toList(),
       ),
     );
+  }
+
+  ObjectView? findObject(SwaggerType? type) {
+    if (type is SwaggerArray) {
+      final object = objects.firstWhereOrNull(
+        (element) => element.name == type.from,
+      );
+
+      return object;
+    }
+
+    final object = objects.firstWhereOrNull(
+      (element) => element.name == type.toString(),
+    );
+
+    return object;
   }
 }

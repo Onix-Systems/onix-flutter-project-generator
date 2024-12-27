@@ -208,7 +208,8 @@ class SwaggerEnum extends SwaggerType {
 
   @override
   String? getDefaultReturnType(DataFileType fileType) =>
-      '${getTypeDeclaration(fileType)}.${enumValues.first.camelCase}';
+      //'${getTypeDeclaration(fileType)}.${enumValues.first.camelCase}';
+      '${getTypeDeclaration(fileType)}.${enumValues.first}';
 }
 
 class SwaggerOperationDefault extends SwaggerType {

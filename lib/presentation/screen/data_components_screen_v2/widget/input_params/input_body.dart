@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_view.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class InputBody extends StatelessWidget {
   final RequestBodyComponent? body;
-  final DataObjectComponent? object;
+  final ObjectView? object;
 
   const InputBody({
     required this.body,
@@ -31,9 +31,7 @@ class InputBody extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          border: Border.all(
-            color: context.appColors.contrastColor,
-          ),
+          color: context.appColors.contrastColor,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(

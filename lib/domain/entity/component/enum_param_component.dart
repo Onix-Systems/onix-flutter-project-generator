@@ -2,7 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
-import 'package:recase/recase.dart';
 
 part 'enum_param_component.freezed.dart';
 
@@ -23,9 +22,11 @@ class EnumParamComponent with _$EnumParamComponent {
   String getEnumFileBody() {
     final codeLines = List<String>.empty(growable: true)
       ..addNewLine()
+      ..add('//ignore_for_file: constant_identifier_names')
       ..add('enum ${type.getTypeDeclaration(DataFileType.none)} {');
     for (final e in type.enumValues) {
-      codeLines.add('${e.camelCase},');
+      //codeLines.add('${e.camelCase},');
+      codeLines.add('$e,');
     }
     codeLines.add('}');
     return codeLines.join('\n');

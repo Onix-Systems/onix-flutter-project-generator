@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.
 import 'package:onix_flutter_bricks/data/model/swagger/model/base_swagger_model_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 
 class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
@@ -33,7 +34,12 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
 
     final variables =
         List<BaseSwaggerModelVariableResponse>.empty(growable: true);
-    final type = json['type'];
+    var type = json['type'];
+
+    if (type == 'string' && json.containsKey('enum')) {
+      type = 'enum';
+    }
+
     final requiredVariables = (json.containsKey('required'))
         ? json.asStringList('required')
         : <String>[];
@@ -58,6 +64,21 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
         properties,
       );
       variables.addAll(parsedVariables);
+    }
+    if (type == 'enum') {
+      final response = SwaggerModelResponseV3(
+        name: modelName,
+        type: type,
+        variables: [
+          SwaggerModelVariableResponseV3(
+            name: modelName,
+            type: SwaggerEnum(modelName, json.asStringList('enum')),
+            isRequired: true,
+          ),
+        ],
+      );
+
+      return response;
     }
 
     return SwaggerModelResponseV3(

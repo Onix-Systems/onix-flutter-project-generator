@@ -23,7 +23,10 @@ sealed class RequestParamComponent {
     }
     final requiredPrefix = requiredCopy ? 'required' : '';
     final requiredSuffix = requiredCopy ? '' : '?';
-    return '$requiredPrefix ${type.getTypeDeclaration(fileType)}$requiredSuffix ${getNameDeclaration()},';
+    final body =
+        '$requiredPrefix ${type.getTypeDeclaration(fileType)}$requiredSuffix ${getNameDeclaration()},';
+
+    return body;
   }
 
   String getNameDeclaration() => name.camelCase;
