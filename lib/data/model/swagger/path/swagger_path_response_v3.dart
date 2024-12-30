@@ -87,8 +87,7 @@ class SwaggerPathResponseV3 extends BaseSwaggerPathResponse {
       final parameters = json.asObjectList('parameters');
       for (var param in parameters) {
         final type = param['in'];
-        final name =
-            (param['name'] as String).replaceAll('[', '').replaceAll(']', '');
+        final name = param['name'];
         final isRequired =
             param.containsKey('required') ? param['required'] : false;
         final paramVariable = SwaggerModelVariableResponseV3.fromJson(

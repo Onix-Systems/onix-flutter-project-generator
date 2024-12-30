@@ -223,8 +223,8 @@ class SwaggerOperationDefault extends SwaggerType {
       'return OperationStatus.success;';
 
   @override
-  String? getFileImportName(DataFileType fileType, ArchType arch) =>
-      '${getFileFolder(fileType, arch)}/${getFileName(fileType)}';
+  String? getFileImportName(DataFileType fileType, ArchType arch) => null;
+  // '${getFileFolder(fileType, arch)}/${getFileName(fileType)}';
 
   @override
   String? getFileName(DataFileType fileType) => 'onix_flutter_core.dart';

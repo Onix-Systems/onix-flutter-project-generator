@@ -400,10 +400,10 @@ class DataObjectComponent with _$DataObjectComponent {
     final sorted = variables.sortByRequired();
     return sorted.map((e) {
       final requiredSuffix = e.isRequired ? '' : '?';
-      final name =
-          //ReservedWordProcessor.checkAndReplaceReservedWord(e.name).camelCase; //Why?
-          ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
-      return "@JsonKey(name: '${e.name}')\nfinal ${e.type.getTypeDeclaration(type)}$requiredSuffix $name;";
+
+      ///final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name).camelCase;
+      final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
+      return "@JsonKey(name: '${e.name}')\nfinal ${e.type.getTypeDeclaration(type)}$requiredSuffix ${name.camelCase};";
     }).toList();
   }
 
