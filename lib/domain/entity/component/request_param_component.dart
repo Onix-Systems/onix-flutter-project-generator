@@ -29,7 +29,8 @@ sealed class RequestParamComponent {
     return body;
   }
 
-  String getNameDeclaration() => name.camelCase;
+  String getNameDeclaration() =>
+      name.replaceAll(RegExp(r'[^\s\w]'), '').camelCase;
 }
 
 class RequestBodyComponent extends RequestParamComponent {
