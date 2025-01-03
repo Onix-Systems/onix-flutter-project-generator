@@ -17,6 +17,9 @@ class SwaggerMapper {
   List<DataObjectComponent> mapDataObjects(SwaggerResponse input) {
     final dataObjects = List<DataObjectComponent>.empty(growable: true);
     for (final e in input.swaggerModels) {
+      if (e.variables.length == 1 && e.variables.first.type is SwaggerEnum) {
+        continue;
+      }
       final variables = e.variables
           .map(
             (variable) => DataVariableComponent(

@@ -25,7 +25,6 @@ class EnumParamComponent with _$EnumParamComponent {
       ..add('//ignore_for_file: constant_identifier_names')
       ..add('enum ${type.getTypeDeclaration(DataFileType.none)} {');
     for (final e in type.enumValues) {
-      //codeLines.add('${e.camelCase},');
       codeLines.add('$e,');
     }
     codeLines.add('}');

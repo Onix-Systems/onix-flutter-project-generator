@@ -40,6 +40,22 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
       type = 'enum';
     }
 
+    if (type == 'enum') {
+      final response = SwaggerModelResponseV3(
+        name: modelName,
+        type: type,
+        variables: [
+          SwaggerModelVariableResponseV3(
+            name: modelName,
+            type: SwaggerEnum(modelName, json.asStringList('enum')),
+            isRequired: true,
+          ),
+        ],
+      );
+
+      return response;
+    }
+
     final requiredVariables = (json.containsKey('required'))
         ? json.asStringList('required')
         : <String>[];
@@ -64,21 +80,6 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
         properties,
       );
       variables.addAll(parsedVariables);
-    }
-    if (type == 'enum') {
-      final response = SwaggerModelResponseV3(
-        name: modelName,
-        type: type,
-        variables: [
-          SwaggerModelVariableResponseV3(
-            name: modelName,
-            type: SwaggerEnum(modelName, json.asStringList('enum')),
-            isRequired: true,
-          ),
-        ],
-      );
-
-      return response;
     }
 
     return SwaggerModelResponseV3(

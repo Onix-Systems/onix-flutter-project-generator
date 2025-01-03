@@ -14,6 +14,8 @@ import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/reversed_word_processor.dart';
 import 'package:recase/recase.dart';
 
+import 'package:onix_flutter_bricks/core/di/app.dart';
+
 part 'data_object_component.freezed.dart';
 
 @freezed
@@ -401,8 +403,12 @@ class DataObjectComponent with _$DataObjectComponent {
     return sorted.map((e) {
       final requiredSuffix = e.isRequired ? '' : '?';
 
-      ///final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name).camelCase;
       final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
+
+      if (e.type is SwaggerReference && name == 'discType') {
+        logger.f('DiscType: ${e.type.getTypeDeclaration(type)}');
+      }
+
       return "@JsonKey(name: '${e.name}')\nfinal ${e.type.getTypeDeclaration(type)}$requiredSuffix ${name.camelCase};";
     }).toList();
   }

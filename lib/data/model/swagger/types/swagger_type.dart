@@ -186,7 +186,8 @@ class SwaggerEnum extends SwaggerType {
 
   @override
   String getTypeDeclaration(DataFileType fileType) =>
-      '${from.pascalCase}${name.pascalCase}Type';
+      //'${from.pascalCase}${name.pascalCase}Type';
+      '${from.pascalCase}${name.pascalCase}';
 
   @override
   String getDefaultParserClosure(DataFileType fileType) =>
@@ -199,7 +200,7 @@ class SwaggerEnum extends SwaggerType {
 
   @override
   String? getFileName(DataFileType fileType) {
-    return '${from.snakeCase}_${name.snakeCase}_type.dart';
+    return '${from.isNotEmpty ? '${from.snakeCase}_' : ''}${name.snakeCase}.dart';
   }
 
   @override
