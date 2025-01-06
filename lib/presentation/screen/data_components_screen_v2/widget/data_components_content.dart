@@ -1,6 +1,9 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_item.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_view.dart';
@@ -19,6 +22,23 @@ class DataComponentsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dataComponents = [
+      ...components.enums,
+      ...components.dataObjects,
+    ];
+
+    final dataComponentNames = dataComponents
+        .map((e) {
+          if (e is DataObjectComponent) {
+            return e.name;
+          }
+          if (e is EnumParamComponent) {
+            return e.name;
+          }
+          return '';
+        })
+        .sorted((a, b) => a.compareTo(b))
+        .toList();
     return CustomScrollView(
       slivers: [
         const SliverToBoxAdapter(child: Delimiter.height(100)),
@@ -35,9 +55,19 @@ class DataComponentsContent extends StatelessWidget {
         const SliverToBoxAdapter(child: SizedBox(height: 32)),
         const SliverToBoxAdapter(child: SectionHeader(title: 'Objects')),
         SliverList.builder(
-          itemCount: components.dataObjects.length,
+          itemCount: dataComponents.length,
           itemBuilder: (context, index) {
-            return ObjectItem(object: components.dataObjects[index]);
+            return ObjectItem(
+              object: dataComponents.firstWhere((e) {
+                if (e is DataObjectComponent) {
+                  return e.name == dataComponentNames[index];
+                }
+                if (e is EnumParamComponent) {
+                  return e.name == dataComponentNames[index];
+                }
+                return false;
+              }),
+            );
           },
         ),
       ],
