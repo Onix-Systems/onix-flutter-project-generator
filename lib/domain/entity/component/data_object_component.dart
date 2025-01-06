@@ -339,7 +339,9 @@ class DataObjectComponent with _$DataObjectComponent {
     final notNullImports =
         variables.where((e) => e.type.getFileImportName(type, arch) != null);
     for (final e in notNullImports) {
-      if (createEntityToRequestMapper != null &&
+      if (e.isEnum) {
+        imports.add(SwaggerEnum(e.type.toString(), []));
+      } else if (createEntityToRequestMapper != null &&
           createResponseToEntityMapper != null) {
         if (type == DataFileType.request) {
           if (createEntityToRequestMapper) {
@@ -356,9 +358,10 @@ class DataObjectComponent with _$DataObjectComponent {
         imports.add(e.type);
       }
     }
-    return imports
-        .map((e) => e.getFullFileImport(projectName, type, arch) ?? '')
-        .toList();
+    return imports.map((e) {
+      logger.f('Getting import for ${e.getTypeDeclaration(type)}');
+      return e.getFullFileImport(projectName, type, arch) ?? '';
+    }).toList();
   }
 
   List<String> _getFreezedConstructorProperties(
@@ -380,6 +383,9 @@ class DataObjectComponent with _$DataObjectComponent {
     return sorted.map((e) {
       final name =
           ReservedWordProcessor.checkAndReplaceReservedWord(e.name).camelCase;
+      if (e.isEnum) {
+        return '$name: ${e.type.getTypeDeclaration(DataFileType.none)}.values.first,';
+      }
       return '$name: ${e.type.getDefaultReturnType(type)} ,';
     }).toList();
   }
@@ -405,11 +411,7 @@ class DataObjectComponent with _$DataObjectComponent {
 
       final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
 
-      if (e.type is SwaggerReference && name == 'discType') {
-        logger.f('DiscType: ${e.type.getTypeDeclaration(type)}');
-      }
-
-      return "@JsonKey(name: '${e.name}')\nfinal ${e.type.getTypeDeclaration(type)}$requiredSuffix ${name.camelCase};";
+      return "@JsonKey(name: '${e.name}')\nfinal ${e.type.getTypeDeclaration(e.isEnum ? DataFileType.none : type)}$requiredSuffix ${name.camelCase};";
     }).toList();
   }
 
