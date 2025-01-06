@@ -11,6 +11,7 @@ class DataVariableComponent with _$DataVariableComponent {
     required String name,
     required SwaggerType type,
     required bool isRequired,
+    @Default(false) bool isEnum,
   }) = _DataVariableComponent;
 
   String getString() {

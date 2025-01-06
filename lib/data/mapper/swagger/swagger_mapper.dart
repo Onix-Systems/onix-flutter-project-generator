@@ -12,23 +12,34 @@ import 'package:onix_flutter_bricks/domain/entity/component/request_component.da
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
+import 'package:recase/recase.dart';
 
 class SwaggerMapper {
-  List<DataObjectComponent> mapDataObjects(SwaggerResponse input) {
+  List<DataObjectComponent> mapDataObjects(
+    SwaggerResponse input,
+    List<EnumParamComponent> enums,
+  ) {
     final dataObjects = List<DataObjectComponent>.empty(growable: true);
     for (final e in input.swaggerModels) {
       if (e.variables.length == 1 && e.variables.first.type is SwaggerEnum) {
         continue;
       }
-      final variables = e.variables
-          .map(
-            (variable) => DataVariableComponent(
-              name: variable.name,
-              type: variable.type,
-              isRequired: variable.isRequired,
-            ),
-          )
-          .toList();
+      final variables = e.variables.map(
+        (variable) {
+          final type = variable.type;
+          final isEnum = enums.any(
+            (element) =>
+                type is SwaggerReference &&
+                element.name.pascalCase == type.reference,
+          );
+          return DataVariableComponent(
+            name: variable.name,
+            type: type,
+            isRequired: variable.isRequired,
+            isEnum: isEnum,
+          );
+        },
+      ).toList();
       dataObjects.add(
         DataObjectComponent(
           name: e.name,
