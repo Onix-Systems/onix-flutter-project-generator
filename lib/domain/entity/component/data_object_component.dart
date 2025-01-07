@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/app/util/enum/mapper_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_reference_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_sort_extension.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
@@ -13,8 +14,6 @@ import 'package:onix_flutter_bricks/domain/service/base/class_builder/json_class
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/reversed_word_processor.dart';
 import 'package:recase/recase.dart';
-
-import 'package:onix_flutter_bricks/core/di/app.dart';
 
 part 'data_object_component.freezed.dart';
 
@@ -151,6 +150,7 @@ class DataObjectComponent with _$DataObjectComponent {
       if (ref != null) {
         final variableImportName =
             ref.getTypeDeclaration(DataFileType.none).snakeCase;
+
         codeLines.add(
           "import 'package:$projectName/${arch.getMapperPath()}/$variableImportName/${variableImportName}_mapper.dart';",
         );

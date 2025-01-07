@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_reference_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_reference.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
@@ -55,6 +56,9 @@ class SourceComponent with _$SourceComponent {
 
   String getRepoImplementationImport(String projectName) =>
       "import 'package:$projectName/data/repository/${name.snakeCase}/${name.snakeCase}_repository_impl.dart';";
+
+  String getEnumImport(String projectName, SwaggerType type) =>
+      "import 'package:$projectName/${arch.getEnumPath()}/${type.toString().snakeCase}.dart';";
 
   String getSourceDeclarationBody(String projectName) {
     final codeLines = List<String>.empty(growable: true);
@@ -230,10 +234,21 @@ class SourceComponent with _$SourceComponent {
     for (final request in requests) {
       ///build response imports
       ///Add response body import
-      final responseFileImport = request.response.type
-          .getFullFileImport(projectName, DataFileType.response, arch);
-      if (responseFileImport != null && !imports.contains(responseFileImport)) {
-        imports.add(responseFileImport);
+
+      if (request.response.isEnum) {
+        final import = getEnumImport(projectName, request.response.type);
+
+        if (!imports.contains(import)) {
+          imports.add(import);
+        }
+      } else {
+        final responseFileImport = request.response.type
+            .getFullFileImport(projectName, DataFileType.response, arch);
+
+        if (responseFileImport != null &&
+            !imports.contains(responseFileImport)) {
+          imports.add(responseFileImport);
+        }
       }
 
       ///Add request body import
@@ -248,10 +263,17 @@ class SourceComponent with _$SourceComponent {
       ///Add path params imports
       if (request.pathParams.isNotEmpty) {
         for (final e in request.pathParams) {
-          final import =
-              e.type.getFullFileImport(projectName, DataFileType.request, arch);
-          if (import != null && !imports.contains(import)) {
-            imports.add(import);
+          if (e.isEnum) {
+            final import = getEnumImport(projectName, e.type);
+            if (!imports.contains(import)) {
+              imports.add(import);
+            }
+          } else {
+            final import = e.type
+                .getFullFileImport(projectName, DataFileType.request, arch);
+            if (import != null && !imports.contains(import)) {
+              imports.add(import);
+            }
           }
         }
       }
@@ -259,10 +281,17 @@ class SourceComponent with _$SourceComponent {
       ///Add query params imports
       if (request.queryParams.isNotEmpty) {
         for (final e in request.queryParams) {
-          final import =
-              e.type.getFullFileImport(projectName, DataFileType.request, arch);
-          if (import != null && !imports.contains(import)) {
-            imports.add(import);
+          if (e.isEnum) {
+            final import = getEnumImport(projectName, e.type);
+            if (!imports.contains(import)) {
+              imports.add(import);
+            }
+          } else {
+            final import = e.type
+                .getFullFileImport(projectName, DataFileType.request, arch);
+            if (import != null && !imports.contains(import)) {
+              imports.add(import);
+            }
           }
         }
       }

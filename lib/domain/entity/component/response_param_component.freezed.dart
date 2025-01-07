@@ -19,6 +19,7 @@ mixin _$ResponseParamComponent {
   String get name => throw _privateConstructorUsedError;
   SwaggerType get type => throw _privateConstructorUsedError;
   bool get isRequired => throw _privateConstructorUsedError;
+  bool get isEnum => throw _privateConstructorUsedError;
 
   /// Create a copy of ResponseParamComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,7 @@ abstract class $ResponseParamComponentCopyWith<$Res> {
           $Res Function(ResponseParamComponent) then) =
       _$ResponseParamComponentCopyWithImpl<$Res, ResponseParamComponent>;
   @useResult
-  $Res call({String name, SwaggerType type, bool isRequired});
+  $Res call({String name, SwaggerType type, bool isRequired, bool isEnum});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$ResponseParamComponentCopyWithImpl<$Res,
     Object? name = null,
     Object? type = null,
     Object? isRequired = null,
+    Object? isEnum = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -69,6 +71,10 @@ class _$ResponseParamComponentCopyWithImpl<$Res,
           ? _value.isRequired
           : isRequired // ignore: cast_nullable_to_non_nullable
               as bool,
+      isEnum: null == isEnum
+          ? _value.isEnum
+          : isEnum // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -82,7 +88,7 @@ abstract class _$$ResponseParamComponentImplCopyWith<$Res>
       __$$ResponseParamComponentImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, SwaggerType type, bool isRequired});
+  $Res call({String name, SwaggerType type, bool isRequired, bool isEnum});
 }
 
 /// @nodoc
@@ -103,6 +109,7 @@ class __$$ResponseParamComponentImplCopyWithImpl<$Res>
     Object? name = null,
     Object? type = null,
     Object? isRequired = null,
+    Object? isEnum = null,
   }) {
     return _then(_$ResponseParamComponentImpl(
       name: null == name
@@ -117,6 +124,10 @@ class __$$ResponseParamComponentImplCopyWithImpl<$Res>
           ? _value.isRequired
           : isRequired // ignore: cast_nullable_to_non_nullable
               as bool,
+      isEnum: null == isEnum
+          ? _value.isEnum
+          : isEnum // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -125,7 +136,10 @@ class __$$ResponseParamComponentImplCopyWithImpl<$Res>
 
 class _$ResponseParamComponentImpl extends _ResponseParamComponent {
   const _$ResponseParamComponentImpl(
-      {required this.name, required this.type, required this.isRequired})
+      {required this.name,
+      required this.type,
+      required this.isRequired,
+      this.isEnum = false})
       : super._();
 
   @override
@@ -134,10 +148,13 @@ class _$ResponseParamComponentImpl extends _ResponseParamComponent {
   final SwaggerType type;
   @override
   final bool isRequired;
+  @override
+  @JsonKey()
+  final bool isEnum;
 
   @override
   String toString() {
-    return 'ResponseParamComponent(name: $name, type: $type, isRequired: $isRequired)';
+    return 'ResponseParamComponent(name: $name, type: $type, isRequired: $isRequired, isEnum: $isEnum)';
   }
 
   @override
@@ -148,11 +165,12 @@ class _$ResponseParamComponentImpl extends _ResponseParamComponent {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.isRequired, isRequired) ||
-                other.isRequired == isRequired));
+                other.isRequired == isRequired) &&
+            (identical(other.isEnum, isEnum) || other.isEnum == isEnum));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, type, isRequired);
+  int get hashCode => Object.hash(runtimeType, name, type, isRequired, isEnum);
 
   /// Create a copy of ResponseParamComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -168,7 +186,8 @@ abstract class _ResponseParamComponent extends ResponseParamComponent {
   const factory _ResponseParamComponent(
       {required final String name,
       required final SwaggerType type,
-      required final bool isRequired}) = _$ResponseParamComponentImpl;
+      required final bool isRequired,
+      final bool isEnum}) = _$ResponseParamComponentImpl;
   const _ResponseParamComponent._() : super._();
 
   @override
@@ -177,6 +196,8 @@ abstract class _ResponseParamComponent extends ResponseParamComponent {
   SwaggerType get type;
   @override
   bool get isRequired;
+  @override
+  bool get isEnum;
 
   /// Create a copy of ResponseParamComponent
   /// with the given fields replaced by the non-null parameter values.

@@ -34,10 +34,13 @@ sealed class RequestParamComponent {
 }
 
 class RequestBodyComponent extends RequestParamComponent {
+  final bool isEnum;
+
   RequestBodyComponent({
     required super.name,
     required super.type,
     required super.isRequired,
+    this.isEnum = false,
   });
 }
 
@@ -50,17 +53,22 @@ class RequestMultipartComponent extends RequestParamComponent {
 }
 
 class RequestQueryComponent extends RequestParamComponent {
+  final bool isEnum;
+
   RequestQueryComponent({
     required super.name,
     required super.type,
     required super.isRequired,
+    this.isEnum = false,
   });
 }
 
 class RequestPathComponent extends RequestParamComponent {
+  final bool isEnum;
   RequestPathComponent({
     required super.name,
     required super.type,
     required super.isRequired,
+    this.isEnum = false,
   });
 }

@@ -39,20 +39,26 @@ class RequestComponent with _$RequestComponent {
     /// pass params into the path
     if (pathParams.isNotEmpty) {
       final codeLines = List<String>.empty(growable: true);
-      final paramsDeclaration = pathParams
-          .map(
-            (e) => e.getParamBodyDeclaration(
-              DataFileType.request,
-              isRequiredRequestBody: true,
-            ),
-          )
-          .join('\n');
+      final paramsDeclaration = pathParams.map(
+        (e) {
+          return e.getParamBodyDeclaration(
+            e.isEnum ? DataFileType.none : DataFileType.request,
+            isRequiredRequestBody: true,
+          );
+        },
+      ).join('\n');
       codeLines
           .add('String _${operationId.camelCase}({$paramsDeclaration}) =>');
-      final names = pathParams.map((e) => e.name);
+
       var pathWithParams = path;
-      for (final e in names) {
-        pathWithParams = pathWithParams.replaceAll('{$e}', '\$${e.camelCase}');
+      for (final e in pathParams) {
+        var name = e.name;
+
+        if (e.isEnum) {
+          name = '{$name.name}';
+        }
+
+        pathWithParams = pathWithParams.replaceAll('{${e.name}}', '\$$name');
       }
       codeLines.add("'$pathWithParams';");
       return codeLines.join('\n');
@@ -65,8 +71,9 @@ class RequestComponent with _$RequestComponent {
   ///Create declaration for request in source interface
   String getRequestDeclaration() {
     final codeLines = List<String>.empty(growable: true);
-    final responseType =
-        response.type.getTypeDeclaration(DataFileType.response);
+    final responseType = response.type.getTypeDeclaration(
+      response.isEnum ? DataFileType.none : DataFileType.response,
+    );
 
     codeLines
         .add('Future<DataResponse<$responseType>> ${operationId.camelCase}(');
@@ -87,10 +94,12 @@ class RequestComponent with _$RequestComponent {
   ///Create request function for source implementation
   String getRequestBody() {
     final codeLines = List<String>.empty(growable: true);
-    final responseType =
-        response.type.getTypeDeclaration(DataFileType.response);
-    final responseClosure =
-        response.type.getDefaultParserClosure(DataFileType.response);
+    final responseType = response.type.getTypeDeclaration(
+      response.isEnum ? DataFileType.none : DataFileType.response,
+    );
+    final responseClosure = response.isEnum
+        ? 'return ${response.type}.values.firstWhere((e) => e.name == response.data);'
+        : response.type.getDefaultParserClosure(DataFileType.response);
     codeLines
       ..addAll(_descriptionArray())
 
@@ -339,7 +348,7 @@ class RequestComponent with _$RequestComponent {
       for (final e in queryParams) {
         codeLines.add(
           e.getParamBodyDeclaration(
-            fileType,
+            e.isEnum ? DataFileType.none : fileType,
             isRequiredRequestBody: false,
           ),
         );
@@ -349,7 +358,7 @@ class RequestComponent with _$RequestComponent {
       for (final e in pathParams) {
         codeLines.add(
           e.getParamBodyDeclaration(
-            fileType,
+            e.isEnum ? DataFileType.none : fileType,
             isRequiredRequestBody: false,
           ),
         );
