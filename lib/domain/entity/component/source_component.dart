@@ -187,12 +187,14 @@ class SourceComponent with _$SourceComponent {
       }
 
       ///Add response mapper import
-      final responseReference = e.response.type.getSwaggerObjectReference();
-      if (responseReference != null) {
-        final importLine =
-            responseReference.getReferenceMapperImport(projectName, arch);
-        if (!mapperImports.contains(importLine)) {
-          mapperImports.add(importLine);
+      if (!e.response.isEnum) {
+        final responseReference = e.response.type.getSwaggerObjectReference();
+        if (responseReference != null) {
+          final importLine =
+              responseReference.getReferenceMapperImport(projectName, arch);
+          if (!mapperImports.contains(importLine)) {
+            mapperImports.add(importLine);
+          }
         }
       }
     }
@@ -240,12 +242,14 @@ class SourceComponent with _$SourceComponent {
       }
 
       ///Add response variable declaration
-      final responseReference = e.response.type.getSwaggerObjectReference();
-      if (responseReference != null) {
-        final mapperVariable =
-            responseReference.getReferenceMapperDeclaration();
-        if (!mapperVariables.contains(mapperVariable)) {
-          mapperVariables.add(mapperVariable);
+      if (!e.response.isEnum) {
+        final responseReference = e.response.type.getSwaggerObjectReference();
+        if (responseReference != null) {
+          final mapperVariable =
+              responseReference.getReferenceMapperDeclaration();
+          if (!mapperVariables.contains(mapperVariable)) {
+            mapperVariables.add(mapperVariable);
+          }
         }
       }
     }

@@ -282,11 +282,16 @@ class RequestComponent with _$RequestComponent {
     if (response.type is SwaggerReference) {
       final ref = response.type as SwaggerReference;
       final responseName = ref.getTypeDeclaration(DataFileType.none).camelCase;
-      codeLines
-        ..add(
+      if (response.isEnum) {
+        codeLines.add(
+          'final ${responseName}Object = result.data;',
+        );
+      } else {
+        codeLines.add(
           'final ${responseName}Object = _${responseName}Mappers.mapResponseToEntity(result.data);',
-        )
-        ..add('return Result.ok(${responseName}Object);');
+        );
+      }
+      codeLines.add('return Result.ok(${responseName}Object);');
     } else if (response.type is SwaggerArray) {
       final array = response.type as SwaggerArray;
       if (array.itemType.type is SwaggerReference) {
@@ -400,7 +405,7 @@ class RequestComponent with _$RequestComponent {
         if (e.type is SwaggerArray &&
             (e.type as SwaggerArray).itemType.type is SwaggerReference) {
           codeLines.add(
-              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.map(_${(e.type as SwaggerArray).itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList() ?? [],');
+              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.map(_${(e.type as SwaggerArray).itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList(),');
         } else {
           codeLines
               .add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
