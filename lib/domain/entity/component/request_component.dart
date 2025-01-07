@@ -397,7 +397,14 @@ class RequestComponent with _$RequestComponent {
     }
     if (queryParams.isNotEmpty) {
       for (final e in queryParams) {
-        codeLines.add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
+        if (e.type is SwaggerArray &&
+            (e.type as SwaggerArray).itemType.type is SwaggerReference) {
+          codeLines.add(
+              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.map(_${(e.type as SwaggerArray).itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList() ?? [],');
+        } else {
+          codeLines
+              .add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
+        }
       }
     }
     if (pathParams.isNotEmpty) {

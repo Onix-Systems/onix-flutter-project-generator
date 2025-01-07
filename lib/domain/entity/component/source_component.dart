@@ -167,6 +167,25 @@ class SourceComponent with _$SourceComponent {
         }
       }
 
+      if (e.queryParams.isNotEmpty) {
+        for (final queryParam in e.queryParams) {
+          if (queryParam.type is SwaggerArray &&
+              (queryParam.type as SwaggerArray).itemType.type
+                  is SwaggerReference) {
+            final type = (queryParam.type as SwaggerArray)
+                .itemType
+                .type
+                .toString()
+                .snakeCase;
+            final importLine =
+                "import 'package:$projectName/data/mapper/$type/${type}_mapper.dart';";
+            if (!mapperImports.contains(importLine)) {
+              mapperImports.add(importLine);
+            }
+          }
+        }
+      }
+
       ///Add response mapper import
       final responseReference = e.response.type.getSwaggerObjectReference();
       if (responseReference != null) {
@@ -197,6 +216,25 @@ class SourceComponent with _$SourceComponent {
               requestReference.getReferenceMapperDeclaration();
           if (!mapperVariables.contains(mapperVariable)) {
             mapperVariables.add(mapperVariable);
+          }
+        }
+      }
+
+      if (e.queryParams.isNotEmpty) {
+        for (final queryParam in e.queryParams) {
+          if (queryParam.type is SwaggerArray &&
+              (queryParam.type as SwaggerArray).itemType.type
+                  is SwaggerReference) {
+            final reference = (queryParam.type as SwaggerArray)
+                .itemType
+                .type
+                .getSwaggerObjectReference();
+            if (reference != null) {
+              final mapperVariable = reference.getReferenceMapperDeclaration();
+              if (!mapperVariables.contains(mapperVariable)) {
+                mapperVariables.add(mapperVariable);
+              }
+            }
           }
         }
       }
