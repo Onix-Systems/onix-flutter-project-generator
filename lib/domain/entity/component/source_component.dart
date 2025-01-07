@@ -324,10 +324,18 @@ class SourceComponent with _$SourceComponent {
     for (final request in requests) {
       ///build response imports
       ///Add response body import
-      final responseFileImport = request.response.type
-          .getFullFileImport(projectName, DataFileType.entity, arch);
-      if (responseFileImport != null && !imports.contains(responseFileImport)) {
-        imports.add(responseFileImport);
+      if (request.response.isEnum) {
+        final import = getEnumImport(projectName, request.response.type);
+        if (!imports.contains(import)) {
+          imports.add(import);
+        }
+      } else {
+        final responseFileImport = request.response.type
+            .getFullFileImport(projectName, DataFileType.entity, arch);
+        if (responseFileImport != null &&
+            !imports.contains(responseFileImport)) {
+          imports.add(responseFileImport);
+        }
       }
 
       ///Add request body import
@@ -342,10 +350,17 @@ class SourceComponent with _$SourceComponent {
       ///Add path params imports
       if (request.pathParams.isNotEmpty) {
         for (final e in request.pathParams) {
-          final import =
-              e.type.getFullFileImport(projectName, DataFileType.entity, arch);
-          if (import != null && !imports.contains(import)) {
-            imports.add(import);
+          if (e.isEnum) {
+            final import = getEnumImport(projectName, e.type);
+            if (!imports.contains(import)) {
+              imports.add(import);
+            }
+          } else {
+            final import = e.type
+                .getFullFileImport(projectName, DataFileType.entity, arch);
+            if (import != null && !imports.contains(import)) {
+              imports.add(import);
+            }
           }
         }
       }
@@ -353,10 +368,17 @@ class SourceComponent with _$SourceComponent {
       ///Add query params imports
       if (request.queryParams.isNotEmpty) {
         for (final e in request.queryParams) {
-          final import =
-              e.type.getFullFileImport(projectName, DataFileType.entity, arch);
-          if (import != null && !imports.contains(import)) {
-            imports.add(import);
+          if (e.isEnum) {
+            final import = getEnumImport(projectName, e.type);
+            if (!imports.contains(import)) {
+              imports.add(import);
+            }
+          } else {
+            final import = e.type
+                .getFullFileImport(projectName, DataFileType.entity, arch);
+            if (import != null && !imports.contains(import)) {
+              imports.add(import);
+            }
           }
         }
       }

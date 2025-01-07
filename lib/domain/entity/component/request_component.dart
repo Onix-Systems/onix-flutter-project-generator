@@ -150,10 +150,11 @@ class RequestComponent with _$RequestComponent {
     if (queryParams.isNotEmpty) {
       codeLines.add('final queryParams = {');
       for (final e in queryParams) {
-        codeLines.add("'${e.name}': ${e.getNameDeclaration()},");
+        codeLines.add(
+            "'${e.name}': ${e.getNameDeclaration()}${e.isEnum ? '?.name' : ''},");
       }
       codeLines
-        ..add('};')
+        ..add('}..removeWhere((key, value) => value == null);')
         ..addNewLine();
     }
 
