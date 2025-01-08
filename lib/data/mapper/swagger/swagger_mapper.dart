@@ -70,7 +70,10 @@ class SwaggerMapper {
   }
 
   List<SourceComponent> mapSources(
-      SwaggerResponse input, ArchType arch, List<EnumParamComponent> enums) {
+    SwaggerResponse input,
+    ArchType arch,
+    List<EnumParamComponent> enums,
+  ) {
     final sources = List<SourceComponent>.empty(growable: true);
     if (input.swaggerTags.isEmpty) {
       final requests = _mapRequests(input.swaggerPaths, enums);

@@ -205,7 +205,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       );
     } else {
       final routerFile = File(
-          '${state.config.projectRootPath}/lib/app/router/app_router.dart');
+        '${state.config.projectRootPath}/lib/app/router/app_router.dart',
+      );
       var routerContent = routerFile.readAsStringSync();
 
       if (state.config.router == ProjectRouter.goRouter) {

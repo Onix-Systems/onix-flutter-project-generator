@@ -58,10 +58,14 @@ void register${stateManagement.titleCase}(GetIt getIt) {
 
     if (stateManagement == 'riverpod') {
       output = output
-          .replaceFirst(_importsSuffix,
-              "import 'package:$projectName/presentation/screen/${screenName}_screen/riverpod/${screenName}_screen_imports.dart';\n$_importsSuffix")
-          .replaceFirst(diSuffix,
-              'getIt.registerSingleton<StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>>(StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>((ref) => ${screenName.pascalCase}ScreenProvider(),),);\n$diSuffix');
+          .replaceFirst(
+            _importsSuffix,
+            "import 'package:$projectName/presentation/screen/${screenName}_screen/riverpod/${screenName}_screen_imports.dart';\n$_importsSuffix",
+          )
+          .replaceFirst(
+            diSuffix,
+            'getIt.registerSingleton<StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>>(StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>((ref) => ${screenName.pascalCase}ScreenProvider(),),);\n$diSuffix',
+          );
 
       output = '''
 $output
@@ -71,10 +75,14 @@ $output
       ''';
     } else {
       output = output
-          .replaceFirst(_importsSuffix,
-              "import 'package:$projectName/presentation/screen/${screenName}_screen/$stateManagement/${screenName}_screen_${stateVariant.toLowerCase()}.dart';\n$_importsSuffix")
-          .replaceFirst(diSuffix,
-              'getIt.registerFactory<${screenName.pascalCase}Screen${stateVariant.pascalCase}>(${screenName.pascalCase}Screen${stateVariant.pascalCase}.new);\n$diSuffix');
+          .replaceFirst(
+            _importsSuffix,
+            "import 'package:$projectName/presentation/screen/${screenName}_screen/$stateManagement/${screenName}_screen_${stateVariant.toLowerCase()}.dart';\n$_importsSuffix",
+          )
+          .replaceFirst(
+            diSuffix,
+            'getIt.registerFactory<${screenName.pascalCase}Screen${stateVariant.pascalCase}>(${screenName.pascalCase}Screen${stateVariant.pascalCase}.new);\n$diSuffix',
+          );
     }
     await diFile.writeAsString(output);
 

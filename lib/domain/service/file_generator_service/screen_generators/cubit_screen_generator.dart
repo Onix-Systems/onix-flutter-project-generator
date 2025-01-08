@@ -106,8 +106,8 @@ class CubitScreenGenerator extends ScreenGenerationService
 
     ///Write BLoC file
     final blocFile = await File(
-            '$screenPath/bloc/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart')
-        .create();
+      '$screenPath/bloc/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart',
+    ).create();
     final blocFileContent = createBlocContent(
       projectName: params.projectName,
       screenName: screenName,

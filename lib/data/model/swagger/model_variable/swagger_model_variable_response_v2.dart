@@ -36,9 +36,9 @@ class SwaggerModelVariableResponseV2 extends BaseSwaggerModelVariableResponse {
         requiredVariables,
         json,
       );
-    } else if (json.containsKey('\$ref')) {
+    } else if (json.containsKey(r'$ref')) {
       final typeValue =
-          (json['\$ref'] as String).split('/').last.clearDataComponentsName();
+          (json[r'$ref'] as String).split('/').last.clearDataComponentsName();
       type = SwaggerReference(
         typeValue,
         from: from,
@@ -53,7 +53,7 @@ class SwaggerModelVariableResponseV2 extends BaseSwaggerModelVariableResponse {
           json['schema'],
         );
       } else {
-        final typeValue = (json['schema']['\$ref'] as String)
+        final typeValue = (json['schema'][r'$ref'] as String)
             .split('/')
             .last
             .clearDataComponentsName();

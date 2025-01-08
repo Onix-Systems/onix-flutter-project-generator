@@ -93,7 +93,8 @@ class SourceComponent with _$SourceComponent {
     codeLines
       ..add(modelImports)
       ..add(
-        'class ${name.pascalCase}SourceImpl implements ${name.pascalCase}Source {',
+        'class ${name.pascalCase}SourceImpl '
+        'implements ${name.pascalCase}Source {',
       )
       ..addNewLine();
     for (final e in requests) {
@@ -105,7 +106,8 @@ class SourceComponent with _$SourceComponent {
       ..add('final InternalDioRequestProcessor _dioRequestProcessor;')
       ..addNewLine()
       ..add(
-        'const ${name.pascalCase}SourceImpl(this._apiClient, this._dioRequestProcessor,);',
+        'const ${name.pascalCase}SourceImpl(this._apiClient, '
+        'this._dioRequestProcessor,);',
       )
       ..addNewLine();
     for (final e in requests) {
@@ -356,7 +358,8 @@ class SourceComponent with _$SourceComponent {
     final imports = <String>{}
       ..add("import 'package:onix_flutter_core/onix_flutter_core.dart';")
       ..add(
-          "import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';")
+        "import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';",
+      )
       ..add(
         arch == ArchType.clean
             ? "import 'package:$projectName/core/arch/data/remote/dio/dio_server_error_mapper.dart';"

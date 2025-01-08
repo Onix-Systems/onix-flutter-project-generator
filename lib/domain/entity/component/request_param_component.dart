@@ -24,7 +24,8 @@ sealed class RequestParamComponent {
     final requiredPrefix = requiredCopy ? 'required' : '';
     final requiredSuffix = requiredCopy ? '' : '?';
     final body =
-        '$requiredPrefix ${type.getTypeDeclaration(fileType)}$requiredSuffix ${getNameDeclaration()},';
+        '$requiredPrefix ${type.getTypeDeclaration(fileType)}$requiredSuffix '
+        '${getNameDeclaration()},';
 
     return body;
   }

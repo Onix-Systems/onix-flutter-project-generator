@@ -16,20 +16,15 @@ class OutputLine with _$OutputLine {
     final tagRaw = input.substring(0, input.indexOf('}') + 1);
     final line = input.replaceFirst(tagRaw, '');
     final tag = OutputType.fromTag(tagRaw);
-    Color color = CupertinoColors.white;
+    var color = CupertinoColors.white;
     switch (tag) {
       case OutputType.info:
         color = CupertinoColors.activeGreen;
-        break;
       case OutputType.error:
         color = CupertinoColors.destructiveRed;
-        break;
       case OutputType.progress:
         color = CupertinoColors.systemYellow;
-        break;
-      default:
-        color = CupertinoColors.white;
-        break;
+      case OutputType.message:
     }
     return OutputLine(
       line: line,

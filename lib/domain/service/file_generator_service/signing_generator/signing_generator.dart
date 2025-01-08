@@ -58,7 +58,8 @@ class SigningGenerator
       final processRunner = ProcessRunner(_outputService);
       await processRunner.newProcess(workingDirectory: workDirectory);
       processRunner.execCommand(
-          'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass ${params.signingPassword} -storepass ${params.signingPassword} -dname "CN=${params.signingVars[0]}, OU=${params.signingVars[1]}, O=${params.signingVars[2]}, L=${params.signingVars[3]}, S=${params.signingVars[4]}, C=${params.signingVars[5]}"');
+        'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass ${params.signingPassword} -storepass ${params.signingPassword} -dname "CN=${params.signingVars[0]}, OU=${params.signingVars[1]}, O=${params.signingVars[2]}, L=${params.signingVars[3]}, S=${params.signingVars[4]}, C=${params.signingVars[5]}"',
+      );
       await processRunner.waitForExit();
       processRunner.dispose();
       late File signingFile;

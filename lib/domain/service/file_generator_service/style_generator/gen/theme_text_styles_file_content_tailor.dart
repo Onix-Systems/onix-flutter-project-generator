@@ -25,70 +25,76 @@ class ThemeTextStylesFileContentTailor
     textStyles.sort((a, b) => a.name.compareTo(b.name));
     final styles = textStyles.where((element) => element.validate()).toList();
 
-    final lines = List<String>.empty(growable: true);
+    final lines = List<String>.empty(growable: true)
 
-    ///build file footer
-    lines.addAll(_imports(projectName, useScreenUtil));
-    lines.addAll(_classPrefix());
+      ///build file footer
+      ..addAll(_imports(projectName, useScreenUtil))
+      ..addAll(_classPrefix());
 
     ///build fields declaration
-    for (var style in styles) {
+    for (final style in styles) {
       lines.addAll(_declareField(style.name));
     }
 
     ///build constructor
     lines.add('ThemeTextStyles({');
-    for (var style in styles) {
+    for (final style in styles) {
       lines.add('required this.${style.name},');
     }
-    lines.add('});');
+    lines
+      ..add('});')
 
-    ///build light theme factory constructor
-    lines.add(' factory ThemeTextStyles.light() => ThemeTextStyles(');
-    for (var style in styles) {
+      ///build light theme factory constructor
+      ..add(' factory ThemeTextStyles.light() => ThemeTextStyles(');
+    for (final style in styles) {
       lines.add('${style.name}: TextStyle(');
       if (style.fontFamily.isNotEmpty) {
-        lines.add('fontFamily: \'${style.fontFamily}\',');
+        lines.add("fontFamily: '${style.fontFamily}',");
       }
-      lines.add('fontSize: ${style.fontSize}${useScreenUtil ? '.sp' : ''},');
-      lines.add('fontWeight: FontWeight.w${style.fontWeight},');
-      lines.add(' ${_getColor(colors, '${style.name}Light')},');
-      lines.add('),');
+      lines
+        ..add('fontSize: ${style.fontSize}${useScreenUtil ? '.sp' : ''},')
+        ..add('fontWeight: FontWeight.w${style.fontWeight},')
+        ..add(' ${_getColor(colors, '${style.name}Light')},')
+        ..add('),');
     }
-    lines.add(');');
+    lines
+      ..add(');')
 
-    ///build dark theme factory constructor
-    lines.add(' factory ThemeTextStyles.dark() => ThemeTextStyles(');
-    for (var style in styles) {
+      ///build dark theme factory constructor
+      ..add(' factory ThemeTextStyles.dark() => ThemeTextStyles(');
+    for (final style in styles) {
       lines.add('${style.name}: TextStyle(');
       if (style.fontFamily.isNotEmpty) {
-        lines.add('fontFamily: \'${style.fontFamily}\',');
+        lines.add("fontFamily: '${style.fontFamily}',");
       }
-      lines.add('fontSize: ${style.fontSize}${useScreenUtil ? '.sp' : ''},');
-      lines.add('fontWeight: FontWeight.w${style.fontWeight},');
-      lines.add(' ${_getColor(colors, '${style.name}Dark')},');
-      lines.add('),');
+      lines
+        ..add('fontSize: ${style.fontSize}${useScreenUtil ? '.sp' : ''},')
+        ..add('fontWeight: FontWeight.w${style.fontWeight},')
+        ..add(' ${_getColor(colors, '${style.name}Dark')},')
+        ..add('),');
     }
-    lines.add(');');
+    lines
+      ..add(');')
 
-    ///end file
-    lines.add('}');
+      ///end file
+      ..add('}');
     return lines.join('\n');
   }
 
   List<String> _imports(String projectName, bool useScreenUtil) => [
-        'import \'package:$projectName/presentation/style/app_colors.dart\';',
-        'import \'package:flutter/material.dart\';',
-        'import \'package:theme_tailor_annotation/theme_tailor_annotation.dart\';',
-        useScreenUtil
-            ? 'import \'package:flutter_screenutil/flutter_screenutil.dart\';'
-            : '',
-        'part \'theme_text_styles.tailor.dart\';',
+        "import 'package:$projectName/presentation/style/app_colors.dart';",
+        "import 'package:flutter/material.dart';",
+        "import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';",
+        if (useScreenUtil)
+          "import 'package:flutter_screenutil/flutter_screenutil.dart';"
+        else
+          '',
+        "part 'theme_text_styles.tailor.dart';",
       ];
 
   List<String> _classPrefix() => [
         '@TailorMixin(themeGetter: ThemeGetter.onBuildContext)',
-        'class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> with _\$ThemeTextStylesTailorMixin {',
+        r'class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> with _$ThemeTextStylesTailorMixin {',
       ];
 
   List<String> _declareField(String name) => [

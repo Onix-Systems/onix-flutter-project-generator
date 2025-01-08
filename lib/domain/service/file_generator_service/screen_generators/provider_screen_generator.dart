@@ -84,8 +84,8 @@ class ProviderScreenGenerator extends ScreenGenerationService
 
     ///Write Provider file
     final providerFile = await File(
-            '$screenPath/provider/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart')
-        .create(recursive: true);
+      '$screenPath/provider/${screenName}_screen_${params.screen.stateVariant.name.toLowerCase()}.dart',
+    ).create(recursive: true);
     final providerFileContent = createProviderContent(
       projectName: params.projectName,
       screenName: screenName,

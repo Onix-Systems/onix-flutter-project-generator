@@ -19,55 +19,60 @@ class ThemeColorsFileContentTailor
     required String projectName,
   }) {
     final tailorColors = _getTailorColors(colors);
-    final lines = List<String>.empty(growable: true);
+    final lines = List<String>.empty(growable: true)
 
-    ///build file footer
-    lines.addAll(_imports(projectName));
-    lines.addAll(_classPrefix());
+      ///build file footer
+      ..addAll(_imports(projectName))
+      ..addAll(_classPrefix());
 
     ///build fields declaration
-    for (var color in tailorColors) {
+    for (final color in tailorColors) {
       lines.addAll(_declareField(color.name));
     }
 
     ///build constructor
     lines.add('ThemeColors({');
-    for (var color in tailorColors) {
+    for (final color in tailorColors) {
       lines.add('required this.${color.name}Color,');
     }
-    lines.add('});');
+    lines
+      ..add('});')
 
-    ///build light theme factory constructor
-    lines.add(' factory ThemeColors.light() => ThemeColors(');
-    for (var color in tailorColors) {
+      ///build light theme factory constructor
+      ..add(' factory ThemeColors.light() => ThemeColors(');
+    for (final color in tailorColors) {
       lines.add(
-          '${color.name}Color: ${(color.colorNames.isNotEmpty) ? 'AppColors.${color.colorNames[0]}' : 'Color(0xFFFFFFFF)'},');
+        '${color.name}Color: ${(color.colorNames.isNotEmpty) ? 'AppColors.${color.colorNames[0]}' : 'Color(0xFFFFFFFF)'},',
+      );
     }
-    lines.add(');');
+    lines
+      ..add(');')
 
-    ///build dark theme factory constructor
-    lines.add(' factory ThemeColors.dark() => ThemeColors(');
-    for (var color in tailorColors) {
+      ///build dark theme factory constructor
+      ..add(' factory ThemeColors.dark() => ThemeColors(');
+    for (final color in tailorColors) {
       lines.add(
-          '${color.name}Color: ${(color.colorNames.length > 1) ? 'AppColors.${color.colorNames[1]}' : 'Color(0xFFFFFFFF)'},');
+        '${color.name}Color: ${(color.colorNames.length > 1) ? 'AppColors.${color.colorNames[1]}' : 'Color(0xFFFFFFFF)'},',
+      );
     }
-    lines.add(');');
+    lines
+      ..add(');')
 
-    ///end file
-    lines.add('}');
+      ///end file
+      ..add('}');
     return lines.join('\n');
   }
 
   List<String> _imports(String projectName) => [
-        'import \'package:$projectName/presentation/style/app_colors.dart\';',
-        'import \'package:flutter/material.dart\';',
-        'import \'package:theme_tailor_annotation/theme_tailor_annotation.dart\';',
-        'part \'theme_colors.tailor.dart\';',
+        "import 'package:$projectName/presentation/style/app_colors.dart';",
+        "import 'package:flutter/material.dart';",
+        "import 'package:theme_tailor_annotation/theme_tailor_annotation.dart';",
+        "part 'theme_colors.tailor.dart';",
       ];
 
   List<String> _classPrefix() => [
         '@TailorMixin(themeGetter: ThemeGetter.onBuildContext)',
-        'class ThemeColors extends ThemeExtension<ThemeColors> with _\$ThemeColorsTailorMixin {',
+        r'class ThemeColors extends ThemeExtension<ThemeColors> with _$ThemeColorsTailorMixin {',
       ];
 
   List<String> _declareField(String name) => [
@@ -78,10 +83,11 @@ class ThemeColorsFileContentTailor
   List<_TailorColor> _getTailorColors(List<AppColorStyle> colors) {
     final names = <String>[];
 
-    for (final name in colors.where((element) => element.validate()).map((e) =>
-        e.name
-            .replaceLast(StyleGeneratorConst.darkColorSuffix, '')
-            .replaceLast(StyleGeneratorConst.lightColorSuffix, ''))) {
+    for (final name in colors.where((element) => element.validate()).map(
+          (e) => e.name
+              .replaceLast(StyleGeneratorConst.darkColorSuffix, '')
+              .replaceLast(StyleGeneratorConst.lightColorSuffix, ''),
+        )) {
       if (names.contains(name)) {
         continue;
       }
@@ -95,17 +101,21 @@ class ThemeColorsFileContentTailor
     for (final name in names) {
       final colorNames = <String>[];
 
-      for (final color in colors.where((element) =>
-          element.name == '$name${StyleGeneratorConst.lightColorSuffix}' ||
-          element.name == '$name${StyleGeneratorConst.darkColorSuffix}' ||
-          element.name == name)) {
+      for (final color in colors.where(
+        (element) =>
+            element.name == '$name${StyleGeneratorConst.lightColorSuffix}' ||
+            element.name == '$name${StyleGeneratorConst.darkColorSuffix}' ||
+            element.name == name,
+      )) {
         colorNames.add(color.name);
       }
 
-      tailorColors.add(_TailorColor(
-        name: name,
-        colorNames: colorNames,
-      ));
+      tailorColors.add(
+        _TailorColor(
+          name: name,
+          colorNames: colorNames,
+        ),
+      );
     }
 
     return tailorColors;

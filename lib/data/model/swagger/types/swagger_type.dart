@@ -148,12 +148,15 @@ class SwaggerArray extends SwaggerType {
       final codeLines = List<String>.empty(growable: true)
         ..add('final jsonItems = response.data as List<dynamic>;')
         ..add(
-          'final items = jsonItems.map((e) => ${itemType.type.getTypeDeclaration(fileType)}.fromJson(e  as Map<String,dynamic>),).toList();',
+          'final items = jsonItems.map((e) => '
+          '${itemType.type.getTypeDeclaration(fileType)}.fromJson(e '
+          'as Map<String,dynamic>),).toList();',
         )
         ..add('return items;');
       return codeLines.join('\n');
     } else {
-      return 'return response.data as List<${itemType.type.getTypeDeclaration(fileType)}>;';
+      return 'return response.data as '
+          'List<${itemType.type.getTypeDeclaration(fileType)}>;';
     }
   }
 
@@ -240,7 +243,10 @@ class SwaggerOperationDefault extends SwaggerType {
 
   @override
   String? getFullFileImport(
-      String projectName, DataFileType fileType, ArchType arch) {
+    String projectName,
+    DataFileType fileType,
+    ArchType arch,
+  ) {
     final importName = getFileImportName(fileType, arch);
     if (importName == null) return null;
     return "import 'package:$importName';";

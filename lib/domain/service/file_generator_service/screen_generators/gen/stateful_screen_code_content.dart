@@ -31,7 +31,8 @@ class StatefulScreenCodeContent extends ScreenCodeContent {
       ..addNewLine()
       ..add('@override')
       ..add(
-        'State<${screenClassName}Screen> createState() => _${screenClassName}State();',
+        'State<${screenClassName}Screen> createState() => '
+        '_${screenClassName}State();',
       )
       ..add('}')
       ..add(

@@ -54,8 +54,9 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEvent.sentryChange() =
       ProjectSettingsScreenEventSentryChange;
 
-  const factory ProjectSettingsScreenEvent.archChange(
-      {required ArchType arch}) = ProjectSettingsScreenEventArchChange;
+  const factory ProjectSettingsScreenEvent.archChange({
+    required ArchType arch,
+  }) = ProjectSettingsScreenEventArchChange;
 }
 
 @freezed

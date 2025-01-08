@@ -13,9 +13,9 @@ class ColorsGenerator
 
   @override
   Future<bool> generate(ColorsGeneratorParams params) async {
-    var themeColorsFile = await File(
-            '${params.projectPath}/${params.projectName}/lib/presentation/style/app_colors.dart')
-        .create(recursive: true);
+    final themeColorsFile = await File(
+      '${params.projectPath}/${params.projectName}/lib/presentation/style/app_colors.dart',
+    ).create(recursive: true);
 
     final parsedColors = _colorParser
         .parseFromFile(

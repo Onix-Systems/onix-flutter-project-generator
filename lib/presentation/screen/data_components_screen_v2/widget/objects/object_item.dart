@@ -73,7 +73,8 @@ class ObjectItem extends StatelessWidget {
                         .map(
                           (e) => e.type is SwaggerEnum
                               ? Text(
-                                  'enum: {${(e.type as SwaggerEnum).enumValues.join(', ')}}')
+                                  'enum: {${(e.type as SwaggerEnum).enumValues.join(', ')}}',
+                                )
                               : Text(
                                   '${e.type.getTypeDeclaration(DataFileType.none)} '
                                   '${e.name.camelCase}'),

@@ -122,10 +122,10 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
   ) {
     final variables =
         List<BaseSwaggerModelVariableResponse>.empty(growable: true);
-    for (var e in allOff) {
-      if (e.containsKey('\$ref')) {
+    for (final e in allOff) {
+      if (e.containsKey(r'$ref')) {
         final typeValue =
-            (e['\$ref'] as String).split('/').last.clearDataComponentsName();
+            (e[r'$ref'] as String).split('/').last.clearDataComponentsName();
         final crossRef = crossReferences.singleWhereOrNull(
           (e) => e.name == typeValue,
         );
@@ -153,11 +153,11 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
   ) {
     final crossReferences =
         List<BaseSwaggerModelResponse>.empty(growable: true);
-    for (var e in allOff) {
-      if (!e.containsKey('\$ref')) {
+    for (final e in allOff) {
+      if (!e.containsKey(r'$ref')) {
         continue;
       }
-      final typeValue = (e['\$ref'] as String).split('/').last;
+      final typeValue = (e[r'$ref'] as String).split('/').last;
       if (definitions.containsKey(typeValue)) {
         final crossReference = SwaggerModelResponseV3.fromJson(
           typeValue,

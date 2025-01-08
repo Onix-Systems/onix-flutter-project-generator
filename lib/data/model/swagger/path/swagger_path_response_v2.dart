@@ -50,7 +50,7 @@ class SwaggerPathResponseV2 extends BaseSwaggerPathResponse {
     ///get input parameters
     if (json.containsKey('parameters')) {
       final params = json.asObjectList('parameters');
-      for (var param in params) {
+      for (final param in params) {
         final inType = SwaggerPathInputType.fromString(param['in']);
         final name = param['name'] as String;
         final isRequired = param['required'] as bool;
@@ -107,9 +107,7 @@ class SwaggerPathResponseV2 extends BaseSwaggerPathResponse {
 
     ///Get output parameters
     if (json.containsKey('responses')) {
-      final responses = json['responses'] as Map<String, dynamic>;
-
-      responses.forEach(
+      (json['responses'] as Map<String, dynamic>).forEach(
         (code, value) {
           final responseVariable = SwaggerModelVariableResponseV2.fromJson(
             code,

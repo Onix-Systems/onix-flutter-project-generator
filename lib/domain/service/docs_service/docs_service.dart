@@ -33,7 +33,7 @@ class DocsService
       //create required doc folders
       await _createFolders(params);
       //iterate all docs files
-      for (var doc in DocumentType.values) {
+      for (final doc in DocumentType.values) {
         //copy each file to project with including project specifications
         await _copyToProject(
           projectPath,
@@ -50,8 +50,8 @@ class DocsService
 
   Future<Directory> _createFolders(DocsGenerationParams params) async {
     return Directory(
-            '${params.projectPath}/${params.projectName}/docs/dev_solutions/')
-        .create(recursive: true);
+      '${params.projectPath}/${params.projectName}/docs/dev_solutions/',
+    ).create(recursive: true);
   }
 
   Future<void> _copyToProject(
@@ -77,21 +77,28 @@ class DocsService
   ) async {
     final projectNamePrettified = params.projectName.titleCase;
     if (doc == DocumentType.techDescription) {
-      String output = input;
+      var output = input;
       if (params.flavorize) {
-        final lines = List<String>.empty(growable: true);
-        lines.add('## Flavorizr');
-        lines.addNewLine();
-        lines.add(
-            'Project uses [Flavorizr](https://pub.dev/packages/flutter_flavorizr) package to create flavors configuration in native mobile projects.');
-        lines.add(
-            'Flavorizr configuration declared in `pubspec.yaml` file in `flavorizr` section.');
-        lines.add(
-            'When you changing something in `flavorizr` configuration make sure to regenerate configurations to apply changes using command:');
-        lines.add('```');
-        lines.add('flutter pub run flutter_flavorizr');
-        lines.add('```');
-        lines.addNewLine();
+        final lines = List<String>.empty(growable: true)
+          ..add('## Flavorizr')
+          ..addNewLine()
+          ..add(
+            'Project uses [Flavorizr](https://pub.dev/packages/flutter_flavorizr)'
+            ' package to create flavors configuration in native mobile '
+            'projects.',
+          )
+          ..add(
+            'Flavorizr configuration declared in `pubspec.yaml` file '
+            'in `flavorizr` section.',
+          )
+          ..add(
+            'When you changing something in `flavorizr` configuration make sure'
+            ' to regenerate configurations to apply changes using command:',
+          )
+          ..add('```')
+          ..add('flutter pub run flutter_flavorizr')
+          ..add('```')
+          ..addNewLine();
         final content = lines.join('\n');
         output = input.replaceAll(_flavorizrInstructions, content);
       } else {
@@ -100,7 +107,7 @@ class DocsService
       return output;
     } else if (doc == DocumentType.readme) {
       final packages = List<String>.empty(growable: true);
-      for (var platform in params.platforms) {
+      for (final platform in params.platforms) {
         if (platform.isFlavorCompatiblePlatform()) {
           final prefix = '* **${platform.toUpperCase()}**\n\n';
           final package = _getPackageIdDeclarations(
@@ -118,20 +125,19 @@ class DocsService
     } else if (doc == DocumentType.installInstructions) {
       final flavorsLines = List<String>.empty(growable: true);
       if (params.flavorize) {
-        flavorsLines.add(flavorsTitle);
-        flavorsLines.addNewLine();
-        flavorsLines.add('```');
-        flavorsLines.add(params.flavors.join('\n'));
-        flavorsLines.add('```');
-        flavorsLines.addNewLine();
+        flavorsLines
+          ..add(flavorsTitle)
+          ..addNewLine()
+          ..add('```')
+          ..add(params.flavors.join('\n'))
+          ..add('```')
+          ..addNewLine();
       }
       final flavors = flavorsLines.join('\n');
       final platforms = params.platforms.map((e) => '* $e').join('\n');
       final commands = params.commands.join('\n');
-      final mainFiles =
-          params.flavors.map((e) => _getMainFileForFlavor(e)).join('\n');
-      final envFiles =
-          params.flavors.map((e) => _getEnvFileForFlavor(e)).join('\n');
+      final mainFiles = params.flavors.map(_getMainFileForFlavor).join('\n');
+      final envFiles = params.flavors.map(_getEnvFileForFlavor).join('\n');
       final envExplanation = _getExplanationText(params.flavors);
       final mainCountDescription = _getMainCountText(params.flavors);
       final output = input
@@ -139,8 +145,10 @@ class DocsService
           .replaceAll(_flavorsPattern, flavors)
           .replaceAll(_platformsPattern, platforms)
           .replaceAll(_outputTypesPattern, commands)
-          .replaceAll(_mainFilesPattern,
-              flavors.isNotEmpty ? mainFiles : '/lib/main.dart')
+          .replaceAll(
+            _mainFilesPattern,
+            flavors.isNotEmpty ? mainFiles : '/lib/main.dart',
+          )
           .replaceAll(_envFilesPattern, flavors.isNotEmpty ? envFiles : '.env')
           .replaceAll(_envExplanationPattern, envExplanation)
           .replaceAll(_mainCountDescription, mainCountDescription);
@@ -158,17 +166,19 @@ class DocsService
   String _getEnvFileForFlavor(String flavor) => '.env_$flavor';
 
   String _getExplanationText(Set<String> flavors) {
-    String envExplanation =
-        'This file should contain all project required public API and services keys and other sensitive information. ';
+    var envExplanation =
+        'This file should contain all project required public API and services '
+        'keys and other sensitive information. ';
     if (flavors.isEmpty) {
-      envExplanation +=
-          '`.env` file contains environment variables for a application configuration. ';
-      return envExplanation;
+      return envExplanation +=
+          '`.env` file contains environment variables for a application '
+              'configuration. ';
     }
 
-    for (var flavor in flavors) {
+    for (final flavor in flavors) {
       final flavorExplanation =
-          '`.env_$flavor` file contains environment variables for a `$flavor` configuration (flavor). ';
+          '`.env_$flavor` file contains environment variables for a `$flavor` '
+          'configuration (flavor). ';
       envExplanation += flavorExplanation;
     }
     return envExplanation;
@@ -176,9 +186,11 @@ class DocsService
 
   String _getMainCountText(Set<String> flavors) {
     if (flavors.isEmpty) {
-      return 'This applications don\'t have any flavors, so there only one entry point `main.dart` file';
+      return "This applications don't have any flavors, so there only one "
+          'entry point `main.dart` file';
     }
-    return 'This applications have ${flavors.length} flavors, so it have ${flavors.length} different entry points and `main.dart` files';
+    return 'This applications have ${flavors.length} flavors, so it have '
+        '${flavors.length} different entry points and `main.dart` files';
   }
 
   String _getPackageIdDeclarations(
@@ -189,8 +201,8 @@ class DocsService
     if (flavors.isEmpty) {
       return '`$org.$name`';
     }
-    String output = '';
-    for (var e in flavors) {
+    var output = '';
+    for (final e in flavors) {
       final packageNamePrefix = '* ${e.titleCase} `';
       final packageNameSuffix = e == 'prod' ? '' : '.$e';
       output += packageNamePrefix;

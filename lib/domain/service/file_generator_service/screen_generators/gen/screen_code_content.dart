@@ -13,7 +13,9 @@ abstract class ScreenCodeContent {
     required bool isLastDeclaration,
   }) {
     final output = input.replaceFirst(
-        ';\n$routesDeclarationSuffix', ',\n$routesDeclarationSuffix');
+      ';\n$routesDeclarationSuffix',
+      ',\n$routesDeclarationSuffix',
+    );
     final coda = isLastDeclaration ? ';' : ',';
 
     return output.replaceAll(
@@ -52,7 +54,9 @@ abstract class ScreenCodeContent {
       final goRouteContent = _buildGoRouteContent(screenName);
       output = output
           .replaceAll(
-              navigatorRoutesSuffix, '$goRouteContent$navigatorRoutesSuffix')
+            navigatorRoutesSuffix,
+            '$goRouteContent$navigatorRoutesSuffix',
+          )
           .replaceAll(
             navigatorImportsSuffix,
             "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart';\n$navigatorImportsSuffix",
@@ -72,8 +76,10 @@ abstract class ScreenCodeContent {
         screenName,
       );
       output = output
-          .replaceAll(navigatorRoutesSuffix,
-              '$autoRouteContent\n$navigatorRoutesSuffix')
+          .replaceAll(
+            navigatorRoutesSuffix,
+            '$autoRouteContent\n$navigatorRoutesSuffix',
+          )
           .replaceAll(
             navigatorImportsSuffix,
             "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/${screenClassImport}_screen.dart';$navigatorImportsSuffix",

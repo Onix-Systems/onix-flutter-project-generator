@@ -20,7 +20,8 @@ class RiverpodStatelessScreenCodeContent extends ScreenCodeContent {
       ..add("import 'package:flutter/material.dart';")
       ..add("import 'package:flutter_riverpod/flutter_riverpod.dart';")
       ..add(
-          "${params.archType.getDiImportPrefix(params.projectName)}/riverpod.dart';")
+        "${params.archType.getDiImportPrefix(params.projectName)}/riverpod.dart';",
+      )
       ..addNewLine();
 
     ///Add annotation in AutoRoute navigation used

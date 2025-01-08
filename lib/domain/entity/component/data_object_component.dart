@@ -175,7 +175,8 @@ class DataObjectComponent with _$DataObjectComponent {
 
       codeLines
         ..add(
-          'class _Map${classNamePrefix}ResponseToEntity implements Mapper<$responseName, $entityName> {',
+          'class _Map${classNamePrefix}ResponseToEntity implements '
+          'Mapper<$responseName, $entityName> {',
         )
         ..addNewLine()
         ..add('const _Map${classNamePrefix}ResponseToEntity();')

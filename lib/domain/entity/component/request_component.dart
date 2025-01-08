@@ -129,7 +129,8 @@ class RequestComponent with _$RequestComponent {
       );
       for (final e in multipartFiles) {
         codeLines.add(
-            'final ${e.getNameDeclaration()}MultipartFile = await MultipartFile.fromFile(${e.getNameDeclaration()});');
+          'final ${e.getNameDeclaration()}MultipartFile = await MultipartFile.fromFile(${e.getNameDeclaration()});',
+        );
       }
 
       ///create form data
@@ -151,7 +152,8 @@ class RequestComponent with _$RequestComponent {
       codeLines.add('final queryParams = {');
       for (final e in queryParams) {
         codeLines.add(
-            "'${e.name}': ${e.getNameDeclaration()}${e.isEnum ? '?.name' : ''},");
+          "'${e.name}': ${e.getNameDeclaration()}${e.isEnum ? '?.name' : ''},",
+        );
       }
       codeLines
         ..add('}..removeWhere((key, value) => value == null);')
@@ -179,7 +181,8 @@ class RequestComponent with _$RequestComponent {
         final requestBodyType = requestBody!.type;
         if (requestBodyType is SwaggerArray) {
           codeLines.add(
-              'data: ${requestBody!.name.camelCase}.map((e)=> e.toJson()),');
+            'data: ${requestBody!.name.camelCase}.map((e)=> e.toJson()),',
+          );
         } else {
           codeLines.add('data: ${requestBody!.name.camelCase}.toJson(),');
         }
@@ -272,7 +275,8 @@ class RequestComponent with _$RequestComponent {
       }
     }
     codeLines.add(
-        'final result = await _${repoName}Source.${operationId.camelCase}(');
+      'final result = await _${repoName}Source.${operationId.camelCase}(',
+    );
     final sourceCallParams = _buildSourceCallParams(DataFileType.none);
     codeLines
       ..add(sourceCallParams)
@@ -405,7 +409,8 @@ class RequestComponent with _$RequestComponent {
         if (e.type is SwaggerArray &&
             (e.type as SwaggerArray).itemType.type is SwaggerReference) {
           codeLines.add(
-              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.map(_${(e.type as SwaggerArray).itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList(),');
+            '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.map(_${(e.type as SwaggerArray).itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList(),',
+          );
         } else {
           codeLines
               .add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');

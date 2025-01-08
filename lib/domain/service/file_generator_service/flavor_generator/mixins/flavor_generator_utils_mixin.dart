@@ -203,7 +203,10 @@ class FlavorBanner extends StatelessWidget {
           )
           .replaceAll(
             'class App extends StatefulWidget {',
-            "import 'package:${flavorBannerFilePath.replaceAll('$projectPath/lib', projectName)}';\n\nclass App extends StatefulWidget {",
+            "import 'package:${flavorBannerFilePath.replaceAll(
+              '$projectPath/lib',
+              projectName,
+            )}';\n\nclass App extends StatefulWidget {",
           );
 
       await appFile.writeAsString(appFileContent);

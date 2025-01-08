@@ -55,37 +55,37 @@ class SwaggerPathResponseV3 extends BaseSwaggerPathResponse {
     final hasRequestBody = json.containsKey('requestBody');
     if (hasRequestBody) {
       final requestBodyContent =
-          json['requestBody']['content'] as Map<String, dynamic>;
-      requestBodyContent.forEach(
-        (key, value) {
-          final paramVariable = SwaggerModelVariableResponseV3.fromJson(
-            'requestBody',
-            ['requestBody'],
-            arch,
-            value,
-            tag,
-          );
-          if (key.contains('multipart/form-data')) {
-            inputParameters.add(
-              RequestMultipart(
-                SwaggerModelVariableResponseV3(
-                  name: paramVariable.name,
-                  type: paramVariable.type,
-                  isRequired: true,
-                ),
-              ),
+          json['requestBody']['content'] as Map<String, dynamic>
+            ..forEach(
+              (key, value) {
+                final paramVariable = SwaggerModelVariableResponseV3.fromJson(
+                  'requestBody',
+                  ['requestBody'],
+                  arch,
+                  value,
+                  tag,
+                );
+                if (key.contains('multipart/form-data')) {
+                  inputParameters.add(
+                    RequestMultipart(
+                      SwaggerModelVariableResponseV3(
+                        name: paramVariable.name,
+                        type: paramVariable.type,
+                        isRequired: true,
+                      ),
+                    ),
+                  );
+                } else if (key.contains('application/json')) {
+                  inputParameters.add(
+                    RequestBody(paramVariable),
+                  );
+                }
+              },
             );
-          } else if (key.contains('application/json')) {
-            inputParameters.add(
-              RequestBody(paramVariable),
-            );
-          }
-        },
-      );
     }
     if (hasParams) {
       final parameters = json.asObjectList('parameters');
-      for (var param in parameters) {
+      for (final param in parameters) {
         final type = param['in'];
         final name = param['name'];
         final isRequired =
@@ -111,8 +111,7 @@ class SwaggerPathResponseV3 extends BaseSwaggerPathResponse {
     }
 
     if (json.containsKey('responses')) {
-      final responses = json['responses'] as Map<String, dynamic>;
-      responses.forEach(
+      (json['responses'] as Map<String, dynamic>).forEach(
         (code, value) {
           final responseVariable = SwaggerModelVariableResponseV3.fromJson(
             code,
