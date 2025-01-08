@@ -208,7 +208,7 @@ class SwaggerEnum extends SwaggerType {
 
   @override
   String? getFileFolder(DataFileType fileType, ArchType arch) =>
-      'app/util/enums';
+      arch.getEnumPath();
 
   @override
   String? getDefaultReturnType(DataFileType fileType) =>
