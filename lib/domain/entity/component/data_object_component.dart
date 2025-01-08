@@ -8,6 +8,7 @@ import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/class_builder.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/freezed_class_builder.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/json_class_builder.dart';
@@ -98,6 +99,7 @@ class DataObjectComponent with _$DataObjectComponent {
     required ArchType arch,
     required bool createEntityToRequestMapper,
     required bool createResponseToEntityMapper,
+    required List<EnumParamComponent> enums,
   }) {
     final responseName =
         fileReference.getTypeDeclaration(DataFileType.response);
@@ -146,6 +148,9 @@ class DataObjectComponent with _$DataObjectComponent {
 
     ///Add imports to different variables and their mappers
     for (final variable in variables) {
+      if (variable.isEnum) {
+        continue;
+      }
       final ref = variable.type.getSwaggerObjectReference();
       if (ref != null) {
         final variableImportName =
@@ -162,8 +167,10 @@ class DataObjectComponent with _$DataObjectComponent {
     ///Inner mapper class declaration
     ///Response to Entity
     if (createResponseToEntityMapper) {
-      final objects =
-          _getMapperObjectVariablesContent(MapperType.mapResponseToEntity);
+      final objects = _getMapperObjectVariablesContent(
+        MapperType.mapResponseToEntity,
+        enums,
+      );
       final classModifier = objects.isEmpty ? 'const ' : '';
 
       codeLines
@@ -193,8 +200,10 @@ class DataObjectComponent with _$DataObjectComponent {
 
     ///Entity to Request
     if (createEntityToRequestMapper) {
-      final objects =
-          _getMapperObjectVariablesContent(MapperType.mapEntityToRequest);
+      final objects = _getMapperObjectVariablesContent(
+        MapperType.mapEntityToRequest,
+        enums,
+      );
       final classModifier = objects.isEmpty ? 'const ' : '';
 
       codeLines
@@ -256,6 +265,9 @@ class DataObjectComponent with _$DataObjectComponent {
   List<String> _getInnerMapperVariables() {
     final codeLines = <String>{};
     for (final variable in variables) {
+      if (variable.isEnum) {
+        continue;
+      }
       if (variable.type is SwaggerReference) {
         final reference = variable.type as SwaggerReference;
         codeLines.add(reference.getReferenceMapperDeclaration(private: false));
@@ -271,7 +283,10 @@ class DataObjectComponent with _$DataObjectComponent {
     return codeLines.toList();
   }
 
-  List<String> _getMapperObjectVariablesContent(MapperType type) {
+  List<String> _getMapperObjectVariablesContent(
+    MapperType type,
+    List<EnumParamComponent> enums,
+  ) {
     final codeLines = List<String>.empty(growable: true);
     for (final variable in variables) {
       final variableName =
@@ -281,8 +296,15 @@ class DataObjectComponent with _$DataObjectComponent {
       if (variable.type is SwaggerReference) {
         final name = (variable.type as SwaggerReference)
             .getTypeDeclaration(DataFileType.none);
-
-        if (variable.isRequired || type == MapperType.mapEntityToRequest) {
+        if (variable.isEnum) {
+          final enumRef = enums.firstWhere(
+            (e) => e.name == variable.type.toString(),
+          );
+          codeLines.add(
+            '$variableName: from.$variableName ?? ${enumRef.type.getDefaultReturnType(DataFileType.none)},',
+          );
+        } else if (variable.isRequired ||
+            type == MapperType.mapEntityToRequest) {
           codeLines.add(
             '$variableName: ${name.camelCase}Mappers.${type.name}(from.$variableName),',
           );

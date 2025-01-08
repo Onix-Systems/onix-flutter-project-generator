@@ -68,6 +68,7 @@ class ComponentGeneratorService
         params.projectName,
         addedComponentsDistinct,
         params.arch,
+        params.components.enums,
       );
 
       return '';
@@ -266,6 +267,7 @@ class ComponentGeneratorService
     String projectName,
     List<DataObjectComponent> addedDataComponents,
     ArchType arch,
+    List<EnumParamComponent> enums,
   ) async {
     for (final e in addedDataComponents) {
       ///Create Entities
@@ -308,6 +310,7 @@ class ComponentGeneratorService
           createEntityToRequestMapper: isRequestFileExist,
           createResponseToEntityMapper: isResponseFileExist,
           arch: arch,
+          enums: enums,
         );
 
         await _createFile(filePath: mapperPath, fileBody: mapperBody);

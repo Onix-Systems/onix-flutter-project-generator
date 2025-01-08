@@ -72,6 +72,17 @@ class SwaggerMapper {
   List<SourceComponent> mapSources(
       SwaggerResponse input, ArchType arch, List<EnumParamComponent> enums) {
     final sources = List<SourceComponent>.empty(growable: true);
+    if (input.swaggerTags.isEmpty) {
+      final requests = _mapRequests(input.swaggerPaths, enums);
+      sources.add(
+        SourceComponent(
+          name: 'Default',
+          requests: requests,
+          arch: arch,
+        ),
+      );
+      return sources;
+    }
     for (final tag in input.swaggerTags) {
       final sourceRequests =
           input.swaggerPaths.where((e) => e.primaryTag == tag.name).toList();
