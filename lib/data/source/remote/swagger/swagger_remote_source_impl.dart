@@ -50,21 +50,19 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
     } else {
       ///if there no tags key collect keys from requests
       if (json.containsKey('paths')) {
-        final paths = json['paths'] as Map<String, dynamic>
-          ..forEach(
-            (path, value) {
-              final pathRequestVariations = value as Map<String, dynamic>;
-              final requestTags = pathRequestVariations.getTagsFromRequests();
-              for (final tag in requestTags) {
-                final thisTag =
-                    swaggerTags.singleWhereOrNull((e) => e.name == tag);
-                if (thisTag == null) {
-                  swaggerTags
-                      .add(SwaggerTagResponse(name: tag, description: ''));
-                }
+        (json['paths'] as Map<String, dynamic>).forEach(
+          (path, value) {
+            final pathRequestVariations = value as Map<String, dynamic>;
+            final requestTags = pathRequestVariations.getTagsFromRequests();
+            for (final tag in requestTags) {
+              final thisTag =
+                  swaggerTags.singleWhereOrNull((e) => e.name == tag);
+              if (thisTag == null) {
+                swaggerTags.add(SwaggerTagResponse(name: tag, description: ''));
               }
-            },
-          );
+            }
+          },
+        );
       } else {
         return SwaggerResponse(
           swaggerModels: [],
@@ -76,11 +74,9 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
 
     ///Requests paths are similar for all versions
     if (json.containsKey('paths')) {
-      final paths = json['paths'] as Map<String, dynamic>;
-      paths.forEach(
+      (json['paths'] as Map<String, dynamic>).forEach(
         (path, value) {
-          final pathRequestVariations = value as Map<String, dynamic>;
-          pathRequestVariations.forEach(
+          (value as Map<String, dynamic>).forEach(
             (type, value) {
               final pathResponse = BaseSwaggerPathResponse.fromJson(
                 swaggerVersion,

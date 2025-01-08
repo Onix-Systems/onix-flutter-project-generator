@@ -55,7 +55,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       }
     } else if (json.containsKey('content')) {
       final content = json['content'] as Map<String, dynamic>;
-      Map<String, dynamic> validContent = {};
+      var validContent = <String, dynamic>{};
       content.forEach(
         (key, value) {
           if (key.isValidResponseContentKey()) {

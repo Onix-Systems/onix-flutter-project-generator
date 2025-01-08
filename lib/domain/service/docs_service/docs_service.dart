@@ -83,17 +83,13 @@ class DocsService
           ..add('## Flavorizr')
           ..addNewLine()
           ..add(
-            'Project uses [Flavorizr](https://pub.dev/packages/flutter_flavorizr)'
-            ' package to create flavors configuration in native mobile '
-            'projects.',
+            'Project uses [Flavorizr](https://pub.dev/packages/flutter_flavorizr) package to create flavors configuration in native mobile projects.',
           )
           ..add(
-            'Flavorizr configuration declared in `pubspec.yaml` file '
-            'in `flavorizr` section.',
+            'Flavorizr configuration declared in `pubspec.yaml` file in `flavorizr` section.',
           )
           ..add(
-            'When you changing something in `flavorizr` configuration make sure'
-            ' to regenerate configurations to apply changes using command:',
+            'When you changing something in `flavorizr` configuration make sure to regenerate configurations to apply changes using command:',
           )
           ..add('```')
           ..add('flutter pub run flutter_flavorizr')
@@ -167,18 +163,16 @@ class DocsService
 
   String _getExplanationText(Set<String> flavors) {
     var envExplanation =
-        'This file should contain all project required public API and services '
-        'keys and other sensitive information. ';
+        'This file should contain all project required public API and services keys and other sensitive information. ';
     if (flavors.isEmpty) {
-      return envExplanation +=
-          '`.env` file contains environment variables for a application '
-              'configuration. ';
+      envExplanation +=
+          '`.env` file contains environment variables for a application configuration. ';
+      return envExplanation;
     }
 
     for (final flavor in flavors) {
       final flavorExplanation =
-          '`.env_$flavor` file contains environment variables for a `$flavor` '
-          'configuration (flavor). ';
+          '`.env_$flavor` file contains environment variables for a `$flavor` configuration (flavor). ';
       envExplanation += flavorExplanation;
     }
     return envExplanation;
@@ -186,11 +180,9 @@ class DocsService
 
   String _getMainCountText(Set<String> flavors) {
     if (flavors.isEmpty) {
-      return "This applications don't have any flavors, so there only one "
-          'entry point `main.dart` file';
+      return "This applications don't have any flavors, so there only one entry point `main.dart` file";
     }
-    return 'This applications have ${flavors.length} flavors, so it have '
-        '${flavors.length} different entry points and `main.dart` files';
+    return 'This applications have ${flavors.length} flavors, so it have ${flavors.length} different entry points and `main.dart` files';
   }
 
   String _getPackageIdDeclarations(

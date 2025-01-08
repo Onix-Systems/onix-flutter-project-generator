@@ -223,7 +223,7 @@ class FastlaneService
               shouldBeCommented: true,
               key: 'provisioning_profile',
               comment:
-                  'If manual_codesign: true, be sure to specify the bundle_id and the name of the profile\'s provisions',
+                  "If manual_codesign: true, be sure to specify the bundle_id and the name of the profile's provisions",
               payload: {
                 'bundle_id': shouldAttachFlavor
                     ? '${params.organization}.${params.projectName}.$flavor'

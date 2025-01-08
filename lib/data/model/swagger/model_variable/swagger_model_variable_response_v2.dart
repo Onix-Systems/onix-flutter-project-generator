@@ -67,7 +67,7 @@ class SwaggerModelVariableResponseV2 extends BaseSwaggerModelVariableResponse {
     return SwaggerModelVariableResponseV2(
       name: name,
       type: type ?? SwaggerOperationDefault(),
-      isRequired: (type == null) ? true : isRequired,
+      isRequired: type == null || isRequired,
     );
   }
 }
