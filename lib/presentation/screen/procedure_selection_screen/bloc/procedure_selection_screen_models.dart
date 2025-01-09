@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/fingerprint.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/output_line.dart';
@@ -10,7 +11,7 @@ part 'procedure_selection_screen_models.freezed.dart';
 @freezed
 class ProcedureSelectionScreenEvent with _$ProcedureSelectionScreenEvent {
   const factory ProcedureSelectionScreenEvent.init({
-    required Config config,
+    required BranchConfig branchConfig,
   }) = ProcedureSelectionScreenEventInit;
 
   const factory ProcedureSelectionScreenEvent.onNewProject({

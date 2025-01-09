@@ -103,6 +103,19 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
           ),
         );
       },
+      wrongNameError: () {
+        Dialogs.showOkDialog(
+          context: context,
+          isError: true,
+          title: S.of(context).wrongScreenNameTitle,
+          content: Text(
+            S.of(context).wrongScreenNameContent,
+            style: context.appTextStyles.fs18?.copyWith(
+              fontSize: 16,
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -172,11 +185,7 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
     widget.config.projectExists
         ? context.go(
             AppRouter.procedureSelectionScreen,
-            extra: Config(
-              projectPath: widget.config.projectPath,
-              localVersion: widget.config.localVersion,
-              remoteVersion: widget.config.remoteVersion,
-            ),
+            extra: widget.config.branchConfig,
           )
         : context.go(
             AppRouter.projectSettingsScreen,

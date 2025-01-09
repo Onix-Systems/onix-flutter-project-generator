@@ -31,6 +31,7 @@ class ScreensScreenEvent with _$ScreensScreenEvent {
 @freezed
 class ScreensScreenSR with _$ScreensScreenSR {
   const factory ScreensScreenSR.existsError() = _ExistsError;
+  const factory ScreensScreenSR.wrongNameError() = _WrongNameError;
 }
 
 @freezed

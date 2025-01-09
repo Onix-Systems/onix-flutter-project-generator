@@ -7,11 +7,11 @@ part of 'config.dart';
 // **************************************************************************
 
 _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
-      branch: json['branch'] as String? ?? 'main',
+      branchConfig: json['branchConfig'] == null
+          ? const BranchConfig()
+          : BranchConfig.fromJson(json['branchConfig'] as Map<String, dynamic>),
       arch: $enumDecodeNullable(_$ArchTypeEnumMap, json['arch']) ??
           ArchType.clean,
-      localVersion: json['localVersion'] as String? ?? '',
-      remoteVersion: json['remoteVersion'] as String? ?? '',
       projectPath: json['projectPath'] as String? ?? '',
       projectName: json['projectName'] as String? ?? '',
       projectExists: json['projectExists'] as bool? ?? false,
@@ -51,10 +51,8 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
 
 Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
     <String, dynamic>{
-      'branch': instance.branch,
+      'branchConfig': instance.branchConfig,
       'arch': _$ArchTypeEnumMap[instance.arch]!,
-      'localVersion': instance.localVersion,
-      'remoteVersion': instance.remoteVersion,
       'projectPath': instance.projectPath,
       'projectName': instance.projectName,
       'projectExists': instance.projectExists,
