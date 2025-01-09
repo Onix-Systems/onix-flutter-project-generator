@@ -103,7 +103,7 @@ class SourceComponent with _$SourceComponent {
     codeLines
       ..addNewLine()
       ..add('final ApiClient _apiClient;')
-      ..add('final InternalDioRequestProcessor _dioRequestProcessor;')
+      ..add('final RequestProcessor _dioRequestProcessor;')
       ..addNewLine()
       ..add(
         'const ${name.pascalCase}SourceImpl(this._apiClient, '
