@@ -64,7 +64,9 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
   ) async {
     emit(
       state.copyWith(
-        config: event.config,
+        config: Config.empty().copyWith(
+          branchConfig: event.branchConfig,
+        ),
         language: Intl.getCurrentLocale(),
       ),
     );
@@ -81,9 +83,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
       state.copyWith(
         config: Config(
           projectPath: event.projectPath,
-          localVersion: state.config.localVersion,
-          remoteVersion: state.config.remoteVersion,
-          branch: state.config.branch,
+          branchConfig: state.config.branchConfig,
         ),
       ),
     );
@@ -117,8 +117,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
           projectName: projectName,
           projectPath: projectPath,
           projectExists: true,
-          localVersion: state.config.localVersion,
-          remoteVersion: state.config.remoteVersion,
+          branchConfig: state.config.branchConfig,
         ),
       ),
     );

@@ -8,7 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
@@ -49,7 +49,7 @@ class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
           _onNeedUpdate(context, latestReleaseUrl),
       onContinue: () => context.go(
         AppRouter.procedureSelectionScreen,
-        extra: Config(
+        extra: BranchConfig(
           localVersion: blocOf(context).state.localVersion,
           remoteVersion: blocOf(context).state.remoteVersion,
           branch: 'release-${blocOf(context).state.localVersion}',

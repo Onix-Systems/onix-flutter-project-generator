@@ -135,7 +135,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
           child: (state.branches.isNotEmpty && kDebugMode)
               ? BranchSelectorWidget(
                   branches: state.branches,
-                  selectedBranch: state.config.branch,
+                  selectedBranch: state.config.branchConfig.branch,
                   onSelected: (newBranch) {
                     blocOf(context).add(
                       ProjectNameScreenEvent.branchChanged(
@@ -164,10 +164,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
               onPrevPressed: () {
                 context.go(
                   AppRouter.procedureSelectionScreen,
-                  extra: widget.config.copyWith(
-                    projectName: projectNameController.text,
-                    organization: organizationController.text,
-                  ),
+                  extra: widget.config.branchConfig,
                 );
               },
             ),

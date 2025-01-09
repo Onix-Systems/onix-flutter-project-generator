@@ -56,9 +56,7 @@ class GenerationControls extends StatelessWidget {
   void _onCloseGeneration(BuildContext context) {
     context.go(
       AppRouter.procedureSelectionScreen,
-      extra: config.copyWith(
-        projectExists: true,
-      ),
+      extra: config.branchConfig,
     );
   }
 }

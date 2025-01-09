@@ -20,10 +20,8 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Config {
-  String get branch => throw _privateConstructorUsedError;
+  BranchConfig get branchConfig => throw _privateConstructorUsedError;
   ArchType get arch => throw _privateConstructorUsedError;
-  String get localVersion => throw _privateConstructorUsedError;
-  String get remoteVersion => throw _privateConstructorUsedError;
   String get projectPath => throw _privateConstructorUsedError;
   String get projectName => throw _privateConstructorUsedError;
   bool get projectExists => throw _privateConstructorUsedError;
@@ -63,10 +61,8 @@ abstract class $ConfigCopyWith<$Res> {
       _$ConfigCopyWithImpl<$Res, Config>;
   @useResult
   $Res call(
-      {String branch,
+      {BranchConfig branchConfig,
       ArchType arch,
-      String localVersion,
-      String remoteVersion,
       String projectPath,
       String projectName,
       bool projectExists,
@@ -90,6 +86,7 @@ abstract class $ConfigCopyWith<$Res> {
       String swaggerUrl,
       bool sentry});
 
+  $BranchConfigCopyWith<$Res> get branchConfig;
   $PlatformsListCopyWith<$Res> get platformsList;
 }
 
@@ -108,10 +105,8 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? branch = null,
+    Object? branchConfig = null,
     Object? arch = null,
-    Object? localVersion = null,
-    Object? remoteVersion = null,
     Object? projectPath = null,
     Object? projectName = null,
     Object? projectExists = null,
@@ -135,22 +130,14 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? sentry = null,
   }) {
     return _then(_value.copyWith(
-      branch: null == branch
-          ? _value.branch
-          : branch // ignore: cast_nullable_to_non_nullable
-              as String,
+      branchConfig: null == branchConfig
+          ? _value.branchConfig
+          : branchConfig // ignore: cast_nullable_to_non_nullable
+              as BranchConfig,
       arch: null == arch
           ? _value.arch
           : arch // ignore: cast_nullable_to_non_nullable
               as ArchType,
-      localVersion: null == localVersion
-          ? _value.localVersion
-          : localVersion // ignore: cast_nullable_to_non_nullable
-              as String,
-      remoteVersion: null == remoteVersion
-          ? _value.remoteVersion
-          : remoteVersion // ignore: cast_nullable_to_non_nullable
-              as String,
       projectPath: null == projectPath
           ? _value.projectPath
           : projectPath // ignore: cast_nullable_to_non_nullable
@@ -242,6 +229,16 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
+  $BranchConfigCopyWith<$Res> get branchConfig {
+    return $BranchConfigCopyWith<$Res>(_value.branchConfig, (value) {
+      return _then(_value.copyWith(branchConfig: value) as $Val);
+    });
+  }
+
+  /// Create a copy of Config
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
   $PlatformsListCopyWith<$Res> get platformsList {
     return $PlatformsListCopyWith<$Res>(_value.platformsList, (value) {
       return _then(_value.copyWith(platformsList: value) as $Val);
@@ -257,10 +254,8 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String branch,
+      {BranchConfig branchConfig,
       ArchType arch,
-      String localVersion,
-      String remoteVersion,
       String projectPath,
       String projectName,
       bool projectExists,
@@ -285,6 +280,8 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       bool sentry});
 
   @override
+  $BranchConfigCopyWith<$Res> get branchConfig;
+  @override
   $PlatformsListCopyWith<$Res> get platformsList;
 }
 
@@ -301,10 +298,8 @@ class __$$ConfigImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? branch = null,
+    Object? branchConfig = null,
     Object? arch = null,
-    Object? localVersion = null,
-    Object? remoteVersion = null,
     Object? projectPath = null,
     Object? projectName = null,
     Object? projectExists = null,
@@ -328,22 +323,14 @@ class __$$ConfigImplCopyWithImpl<$Res>
     Object? sentry = null,
   }) {
     return _then(_$ConfigImpl(
-      branch: null == branch
-          ? _value.branch
-          : branch // ignore: cast_nullable_to_non_nullable
-              as String,
+      branchConfig: null == branchConfig
+          ? _value.branchConfig
+          : branchConfig // ignore: cast_nullable_to_non_nullable
+              as BranchConfig,
       arch: null == arch
           ? _value.arch
           : arch // ignore: cast_nullable_to_non_nullable
               as ArchType,
-      localVersion: null == localVersion
-          ? _value.localVersion
-          : localVersion // ignore: cast_nullable_to_non_nullable
-              as String,
-      remoteVersion: null == remoteVersion
-          ? _value.remoteVersion
-          : remoteVersion // ignore: cast_nullable_to_non_nullable
-              as String,
       projectPath: null == projectPath
           ? _value.projectPath
           : projectPath // ignore: cast_nullable_to_non_nullable
@@ -436,10 +423,8 @@ class __$$ConfigImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ConfigImpl extends _Config {
   const _$ConfigImpl(
-      {this.branch = 'main',
+      {this.branchConfig = const BranchConfig(),
       this.arch = ArchType.clean,
-      this.localVersion = '',
-      this.remoteVersion = '',
       this.projectPath = '',
       this.projectName = '',
       this.projectExists = false,
@@ -472,16 +457,10 @@ class _$ConfigImpl extends _Config {
 
   @override
   @JsonKey()
-  final String branch;
+  final BranchConfig branchConfig;
   @override
   @JsonKey()
   final ArchType arch;
-  @override
-  @JsonKey()
-  final String localVersion;
-  @override
-  @JsonKey()
-  final String remoteVersion;
   @override
   @JsonKey()
   final String projectPath;
@@ -568,7 +547,7 @@ class _$ConfigImpl extends _Config {
 
   @override
   String toString() {
-    return 'Config(branch: $branch, arch: $arch, localVersion: $localVersion, remoteVersion: $remoteVersion, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, stateManager: $stateManager, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, screenUtil: $screenUtil, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl, sentry: $sentry)';
+    return 'Config(branchConfig: $branchConfig, arch: $arch, projectPath: $projectPath, projectName: $projectName, projectExists: $projectExists, organization: $organization, platformsList: $platformsList, stateManager: $stateManager, flavorize: $flavorize, flavors: $flavors, generateSigningKey: $generateSigningKey, firebaseAuth: $firebaseAuth, useSonar: $useSonar, graphql: $graphql, screenUtil: $screenUtil, router: $router, localization: $localization, theming: $theming, signingVars: $signingVars, screens: $screens, styles: $styles, swaggerUrl: $swaggerUrl, sentry: $sentry)';
   }
 
   @override
@@ -576,12 +555,9 @@ class _$ConfigImpl extends _Config {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ConfigImpl &&
-            (identical(other.branch, branch) || other.branch == branch) &&
+            (identical(other.branchConfig, branchConfig) ||
+                other.branchConfig == branchConfig) &&
             (identical(other.arch, arch) || other.arch == arch) &&
-            (identical(other.localVersion, localVersion) ||
-                other.localVersion == localVersion) &&
-            (identical(other.remoteVersion, remoteVersion) ||
-                other.remoteVersion == remoteVersion) &&
             (identical(other.projectPath, projectPath) ||
                 other.projectPath == projectPath) &&
             (identical(other.projectName, projectName) ||
@@ -623,10 +599,8 @@ class _$ConfigImpl extends _Config {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        branch,
+        branchConfig,
         arch,
-        localVersion,
-        remoteVersion,
         projectPath,
         projectName,
         projectExists,
@@ -668,10 +642,8 @@ class _$ConfigImpl extends _Config {
 
 abstract class _Config extends Config {
   const factory _Config(
-      {final String branch,
+      {final BranchConfig branchConfig,
       final ArchType arch,
-      final String localVersion,
-      final String remoteVersion,
       final String projectPath,
       final String projectName,
       final bool projectExists,
@@ -699,13 +671,9 @@ abstract class _Config extends Config {
   factory _Config.fromJson(Map<String, dynamic> json) = _$ConfigImpl.fromJson;
 
   @override
-  String get branch;
+  BranchConfig get branchConfig;
   @override
   ArchType get arch;
-  @override
-  String get localVersion;
-  @override
-  String get remoteVersion;
   @override
   String get projectPath;
   @override

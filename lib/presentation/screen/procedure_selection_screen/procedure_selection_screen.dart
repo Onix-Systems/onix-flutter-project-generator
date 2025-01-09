@@ -12,7 +12,7 @@ import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/fingerprint_dialog_body.dart';
@@ -30,10 +30,10 @@ import 'package:onix_flutter_bricks/util/extension/failure_dialog_extension.dart
 import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class ProcedureSelectionScreen extends StatefulWidget {
-  final Config config;
+  final BranchConfig branchConfig;
 
   const ProcedureSelectionScreen({
-    required this.config,
+    required this.branchConfig,
     super.key,
   });
 
@@ -53,7 +53,8 @@ class _ProcedureSelectionScreenState extends BaseState<
 
   @override
   void onBlocCreated(BuildContext context, ProcedureSelectionScreenBloc bloc) {
-    bloc.add(ProcedureSelectionScreenEventInit(config: widget.config));
+    bloc.add(
+        ProcedureSelectionScreenEventInit(branchConfig: widget.branchConfig));
     super.onBlocCreated(context, bloc);
   }
 
@@ -226,10 +227,10 @@ class _ProcedureSelectionScreenState extends BaseState<
           right: 10,
           bottom: 10,
           child: Text(
-            (state.config.localVersion.isNotEmpty &&
-                    state.config.remoteVersion.isNotEmpty)
-                ? 'v${state.config.localVersion} '
-                    '(Remote: v${state.config.remoteVersion})'
+            (state.config.branchConfig.localVersion.isNotEmpty &&
+                    state.config.branchConfig.remoteVersion.isNotEmpty)
+                ? 'v${state.config.branchConfig.localVersion} '
+                    '(Remote: v${state.config.branchConfig.remoteVersion})'
                 : '',
             style: context.appTextStyles.fs18?.copyWith(
               decoration: TextDecoration.none,
