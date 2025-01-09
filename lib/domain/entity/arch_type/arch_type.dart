@@ -34,7 +34,7 @@ extension Path on ArchType {
   String getEntityPath(String folderName, String namePath) {
     switch (this) {
       case ArchType.clean:
-        return 'domain/entity/$folderName/$namePath';
+        return 'domain/$folderName/$namePath';
       case ArchType.basic:
         return 'data/model/domain/$folderName/$namePath';
     }
