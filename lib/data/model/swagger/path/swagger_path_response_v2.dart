@@ -7,6 +7,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_re
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_request_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_response_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
+import 'package:recase/recase.dart';
 
 class SwaggerPathResponseV2 extends BaseSwaggerPathResponse {
   SwaggerPathResponseV2({
@@ -45,6 +46,8 @@ class SwaggerPathResponseV2 extends BaseSwaggerPathResponse {
 
     if (json.containsKey('operationId')) {
       operationId = json['operationId'];
+    } else {
+      operationId = '${type}_${path.clearPathToName()}'.camelCase;
     }
 
     ///get input parameters
@@ -53,7 +56,8 @@ class SwaggerPathResponseV2 extends BaseSwaggerPathResponse {
       for (final param in params) {
         final inType = SwaggerPathInputType.fromString(param['in']);
         final name = param['name'] as String;
-        final isRequired = param['required'] as bool;
+        final isRequired = (param['required'] as bool?) ?? false;
+
         final paramVariable = SwaggerModelVariableResponseV2.fromJson(
           name,
           isRequired ? [name] : [],
