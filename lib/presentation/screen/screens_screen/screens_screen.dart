@@ -103,6 +103,19 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
           ),
         );
       },
+      wrongNameError: () {
+        Dialogs.showOkDialog(
+          context: context,
+          isError: true,
+          title: S.of(context).wrongScreenNameTitle,
+          content: Text(
+            S.of(context).wrongScreenNameContent,
+            style: context.appTextStyles.fs18?.copyWith(
+              fontSize: 16,
+            ),
+          ),
+        );
+      },
     );
   }
 

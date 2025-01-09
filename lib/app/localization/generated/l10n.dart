@@ -1589,6 +1589,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Wrong screen name`
+  String get wrongScreenNameTitle {
+    return Intl.message(
+      'Wrong screen name',
+      name: 'wrongScreenNameTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Screen name must not start with numbers and must not be equal 'Screen' or 'screen'.`
+  String get wrongScreenNameContent {
+    return Intl.message(
+      'Screen name must not start with numbers and must not be equal \'Screen\' or \'screen\'.',
+      name: 'wrongScreenNameContent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
