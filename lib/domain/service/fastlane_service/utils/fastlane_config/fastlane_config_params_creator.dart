@@ -6,7 +6,7 @@ class FastlaneFlavorParams {
     required String platform,
     required List<FastlaneConfigParam> params,
   }) {
-    margin(int length) => ' '.padLeft(length);
+    String margin(int length) => ' '.padLeft(length);
 
     final list = <String>[
       '${margin(4)}- name: $flavor',

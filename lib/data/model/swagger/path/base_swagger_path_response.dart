@@ -68,6 +68,8 @@ abstract class BaseSwaggerPathResponse {
   String toString() {
     final inputString = input.map((e) => e.toString()).join('\n');
     final responseString = output.map((e) => e.toString()).join('\n');
-    return '----Swagger Request----\npath: $path\n${type.name}\n$primaryTag\n$description\n --Input Parameters--\n $inputString\n --Response Parameters--\n $responseString ';
+    return '----Swagger Request----\npath: $path\n${type.name}\n$primaryTag\n'
+        '$description\n --Input Parameters--\n $inputString\n --Response '
+        'Parameters--\n $responseString ';
   }
 }

@@ -23,17 +23,25 @@ sealed class RequestParamComponent {
     }
     final requiredPrefix = requiredCopy ? 'required' : '';
     final requiredSuffix = requiredCopy ? '' : '?';
-    return '$requiredPrefix ${type.getTypeDeclaration(fileType)}$requiredSuffix ${getNameDeclaration()},';
+    final body =
+        '$requiredPrefix ${type.getTypeDeclaration(fileType)}$requiredSuffix '
+        '${getNameDeclaration()},';
+
+    return body;
   }
 
-  String getNameDeclaration() => name.camelCase;
+  String getNameDeclaration() =>
+      name.replaceAll(RegExp(r'[^\s\w]'), '').camelCase;
 }
 
 class RequestBodyComponent extends RequestParamComponent {
+  final bool isEnum;
+
   RequestBodyComponent({
     required super.name,
     required super.type,
     required super.isRequired,
+    this.isEnum = false,
   });
 }
 
@@ -46,17 +54,22 @@ class RequestMultipartComponent extends RequestParamComponent {
 }
 
 class RequestQueryComponent extends RequestParamComponent {
+  final bool isEnum;
+
   RequestQueryComponent({
     required super.name,
     required super.type,
     required super.isRequired,
+    this.isEnum = false,
   });
 }
 
 class RequestPathComponent extends RequestParamComponent {
+  final bool isEnum;
   RequestPathComponent({
     required super.name,
     required super.type,
     required super.isRequired,
+    this.isEnum = false,
   });
 }

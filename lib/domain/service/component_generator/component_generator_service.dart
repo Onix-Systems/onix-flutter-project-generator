@@ -31,6 +31,7 @@ class ComponentGeneratorService
         params.projectName,
         params.components.enums,
         params.components.dataObjects,
+        params.arch,
       );
 
       final addedDataComponents =
@@ -41,6 +42,7 @@ class ComponentGeneratorService
           projectLibFolder,
           params.projectName,
           source.requests,
+          params.arch,
         );
 
         final sourceObjects = source.getSourceObjects();
@@ -68,6 +70,7 @@ class ComponentGeneratorService
         params.projectName,
         addedComponentsDistinct,
         params.arch,
+        params.components.enums,
       );
 
       return '';
@@ -266,6 +269,7 @@ class ComponentGeneratorService
     String projectName,
     List<DataObjectComponent> addedDataComponents,
     ArchType arch,
+    List<EnumParamComponent> enums,
   ) async {
     for (final e in addedDataComponents) {
       ///Create Entities
@@ -308,6 +312,7 @@ class ComponentGeneratorService
           createEntityToRequestMapper: isRequestFileExist,
           createResponseToEntityMapper: isResponseFileExist,
           arch: arch,
+          enums: enums,
         );
 
         await _createFile(filePath: mapperPath, fileBody: mapperBody);
@@ -320,6 +325,7 @@ class ComponentGeneratorService
     String projectName,
     List<EnumParamComponent> enums,
     List<DataObjectComponent> components,
+    ArchType arch,
   ) async {
     final enumsCopy = List.of(enums);
     for (final component in components) {
@@ -337,9 +343,9 @@ class ComponentGeneratorService
     }
 
     for (final e in enumsCopy) {
-      final folderPath = e.getFolderPath(projectLibFolder);
+      final folderPath = e.getFolderPath(projectLibFolder, arch);
       await _createFolders(folderPath, '_createEnums');
-      final filePath = e.getFilePath(projectLibFolder);
+      final filePath = e.getFilePath(projectLibFolder, arch);
 
       final body = e.getEnumFileBody();
       await _createFile(filePath: filePath, fileBody: body);
@@ -350,6 +356,7 @@ class ComponentGeneratorService
     String projectLibFolder,
     String projectName,
     List<RequestComponent> requests,
+    ArchType arch,
   ) async {
     final enumsCopy = List<EnumParamComponent>.empty(growable: true);
     for (final e in requests) {
@@ -405,9 +412,9 @@ class ComponentGeneratorService
     }
 
     for (final e in enumsCopy) {
-      final folderPath = e.getFolderPath(projectLibFolder);
+      final folderPath = e.getFolderPath(projectLibFolder, arch);
       await _createFolders(folderPath, '_createRequestEnums');
-      final filePath = e.getFilePath(projectLibFolder);
+      final filePath = e.getFilePath(projectLibFolder, arch);
 
       final body = e.getEnumFileBody();
       await _createFile(filePath: filePath, fileBody: body);

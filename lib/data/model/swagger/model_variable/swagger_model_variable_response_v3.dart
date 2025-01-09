@@ -55,7 +55,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       }
     } else if (json.containsKey('content')) {
       final content = json['content'] as Map<String, dynamic>;
-      Map<String, dynamic> validContent = {};
+      var validContent = <String, dynamic>{};
       content.forEach(
         (key, value) {
           if (key.isValidResponseContentKey()) {
@@ -114,16 +114,16 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
         requiredVariables,
         json,
       );
-    } else if (json.containsKey('\$ref')) {
+    } else if (json.containsKey(r'$ref')) {
       final typeValue =
-          (json['\$ref'] as String).split('/').last.clearDataComponentsName();
+          (json[r'$ref'] as String).split('/').last.clearDataComponentsName();
       return SwaggerReference(
         typeValue,
         from: from,
       );
     } else if (json.containsKey('oneOf')) {
       final oneOf = json.asObjectList('oneOf');
-      final typeValue = (oneOf.first['\$ref'] as String)
+      final typeValue = (oneOf.first[r'$ref'] as String)
           .split('/')
           .last
           .clearDataComponentsName();

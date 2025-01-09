@@ -47,7 +47,8 @@ class SignalsPassiveScreenCodeContent extends ScreenCodeContent {
       )
       ..add('@override')
       ..add(
-          '${screenClassName}ScreenSignals createModel() => GetIt.I.get<${screenClassName}ScreenSignals>();')
+        '${screenClassName}ScreenSignals createModel() => GetIt.I.get<${screenClassName}ScreenSignals>();',
+      )
       ..addNewLine()
       ..add('@override')
       ..add('Widget buildWidget(BuildContext context) {')

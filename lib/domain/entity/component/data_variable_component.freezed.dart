@@ -19,6 +19,7 @@ mixin _$DataVariableComponent {
   String get name => throw _privateConstructorUsedError;
   SwaggerType get type => throw _privateConstructorUsedError;
   bool get isRequired => throw _privateConstructorUsedError;
+  bool get isEnum => throw _privateConstructorUsedError;
 
   /// Create a copy of DataVariableComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,7 @@ abstract class $DataVariableComponentCopyWith<$Res> {
           $Res Function(DataVariableComponent) then) =
       _$DataVariableComponentCopyWithImpl<$Res, DataVariableComponent>;
   @useResult
-  $Res call({String name, SwaggerType type, bool isRequired});
+  $Res call({String name, SwaggerType type, bool isRequired, bool isEnum});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$DataVariableComponentCopyWithImpl<$Res,
     Object? name = null,
     Object? type = null,
     Object? isRequired = null,
+    Object? isEnum = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -69,6 +71,10 @@ class _$DataVariableComponentCopyWithImpl<$Res,
           ? _value.isRequired
           : isRequired // ignore: cast_nullable_to_non_nullable
               as bool,
+      isEnum: null == isEnum
+          ? _value.isEnum
+          : isEnum // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -82,7 +88,7 @@ abstract class _$$DataVariableComponentImplCopyWith<$Res>
       __$$DataVariableComponentImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, SwaggerType type, bool isRequired});
+  $Res call({String name, SwaggerType type, bool isRequired, bool isEnum});
 }
 
 /// @nodoc
@@ -102,6 +108,7 @@ class __$$DataVariableComponentImplCopyWithImpl<$Res>
     Object? name = null,
     Object? type = null,
     Object? isRequired = null,
+    Object? isEnum = null,
   }) {
     return _then(_$DataVariableComponentImpl(
       name: null == name
@@ -116,6 +123,10 @@ class __$$DataVariableComponentImplCopyWithImpl<$Res>
           ? _value.isRequired
           : isRequired // ignore: cast_nullable_to_non_nullable
               as bool,
+      isEnum: null == isEnum
+          ? _value.isEnum
+          : isEnum // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -124,7 +135,10 @@ class __$$DataVariableComponentImplCopyWithImpl<$Res>
 
 class _$DataVariableComponentImpl extends _DataVariableComponent {
   const _$DataVariableComponentImpl(
-      {required this.name, required this.type, required this.isRequired})
+      {required this.name,
+      required this.type,
+      required this.isRequired,
+      this.isEnum = false})
       : super._();
 
   @override
@@ -133,10 +147,13 @@ class _$DataVariableComponentImpl extends _DataVariableComponent {
   final SwaggerType type;
   @override
   final bool isRequired;
+  @override
+  @JsonKey()
+  final bool isEnum;
 
   @override
   String toString() {
-    return 'DataVariableComponent(name: $name, type: $type, isRequired: $isRequired)';
+    return 'DataVariableComponent(name: $name, type: $type, isRequired: $isRequired, isEnum: $isEnum)';
   }
 
   @override
@@ -147,11 +164,12 @@ class _$DataVariableComponentImpl extends _DataVariableComponent {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.isRequired, isRequired) ||
-                other.isRequired == isRequired));
+                other.isRequired == isRequired) &&
+            (identical(other.isEnum, isEnum) || other.isEnum == isEnum));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, type, isRequired);
+  int get hashCode => Object.hash(runtimeType, name, type, isRequired, isEnum);
 
   /// Create a copy of DataVariableComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -167,7 +185,8 @@ abstract class _DataVariableComponent extends DataVariableComponent {
   const factory _DataVariableComponent(
       {required final String name,
       required final SwaggerType type,
-      required final bool isRequired}) = _$DataVariableComponentImpl;
+      required final bool isRequired,
+      final bool isEnum}) = _$DataVariableComponentImpl;
   const _DataVariableComponent._() : super._();
 
   @override
@@ -176,6 +195,8 @@ abstract class _DataVariableComponent extends DataVariableComponent {
   SwaggerType get type;
   @override
   bool get isRequired;
+  @override
+  bool get isEnum;
 
   /// Create a copy of DataVariableComponent
   /// with the given fields replaced by the non-null parameter values.

@@ -50,8 +50,7 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
     } else {
       ///if there no tags key collect keys from requests
       if (json.containsKey('paths')) {
-        final paths = json['paths'] as Map<String, dynamic>;
-        paths.forEach(
+        (json['paths'] as Map<String, dynamic>).forEach(
           (path, value) {
             final pathRequestVariations = value as Map<String, dynamic>;
             final requestTags = pathRequestVariations.getTagsFromRequests();
@@ -75,11 +74,9 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
 
     ///Requests paths are similar for all versions
     if (json.containsKey('paths')) {
-      final paths = json['paths'] as Map<String, dynamic>;
-      paths.forEach(
+      (json['paths'] as Map<String, dynamic>).forEach(
         (path, value) {
-          final pathRequestVariations = value as Map<String, dynamic>;
-          pathRequestVariations.forEach(
+          (value as Map<String, dynamic>).forEach(
             (type, value) {
               final pathResponse = BaseSwaggerPathResponse.fromJson(
                 swaggerVersion,

@@ -27,9 +27,9 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
         arch: arch,
       );
 
-      final sources = _swaggerMapper.mapSources(swaggerResponse, arch);
       final enums = _swaggerMapper.mapEnums(swaggerResponse);
-      final dataObjects = _swaggerMapper.mapDataObjects(swaggerResponse);
+      final sources = _swaggerMapper.mapSources(swaggerResponse, arch, enums);
+      final dataObjects = _swaggerMapper.mapDataObjects(swaggerResponse, enums);
 
       final parsedComponents = Components(
         sources: sources,

@@ -47,14 +47,14 @@ class FileGeneratorService {
     required String sourceName,
   }) async {
     await Directory(
-            '$projectPath/$projectName/lib/domain/entity/${sourceName.snakeCase}')
-        .create(recursive: true);
+      '$projectPath/$projectName/lib/domain/entity/${sourceName.snakeCase}',
+    ).create(recursive: true);
     await Directory(
-            '$projectPath/$projectName/lib/data/model/remote/${sourceName.snakeCase}')
-        .create(recursive: true);
+      '$projectPath/$projectName/lib/data/model/remote/${sourceName.snakeCase}',
+    ).create(recursive: true);
     await Directory(
-            '$projectPath/$projectName/lib/data/mapper/${sourceName.snakeCase}')
-        .create(recursive: true);
+      '$projectPath/$projectName/lib/data/mapper/${sourceName.snakeCase}',
+    ).create(recursive: true);
   }
 
   Future<Result<int>> generateSigning(SingingGeneratorParams params) =>

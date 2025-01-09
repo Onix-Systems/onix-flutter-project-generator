@@ -13,29 +13,30 @@ class AppColorsFileContent
 
   String _generateInternal(List<AppColorStyle> colors) {
     final sortedColors = _sortColors(colors);
-    final codeLines = List<String>.empty(growable: true);
-    codeLines.add('import \'package:flutter/material.dart\';');
-    codeLines.addNewLine();
-    codeLines.add('class AppColors {');
-    codeLines.add('//Light theme colors');
+    final codeLines = List<String>.empty(growable: true)
+      ..add("import 'package:flutter/material.dart';")
+      ..addNewLine()
+      ..add('class AppColors {')
+      ..add('//Light theme colors');
     final lightColors = sortedColors[StyleGeneratorConst.lightColorsKey]
             ?.map(
-              (e) =>
-                  'static const Color ${e.name} = Color(0x${e.color.value.toRadixString(16)});',
+              (e) => 'static const Color ${e.name} = '
+                  'Color(0x${e.color.value.toRadixString(16)});',
             )
             .toList() ??
         List.empty();
     final darkColors = sortedColors[StyleGeneratorConst.darkColorsKey]
             ?.map(
-              (e) =>
-                  'static const Color ${e.name} = Color(0x${e.color.value.toRadixString(16)});',
+              (e) => 'static const Color ${e.name} = '
+                  'Color(0x${e.color.value.toRadixString(16)});',
             )
             .toList() ??
         List.empty();
-    codeLines.addAll(lightColors);
-    codeLines.add('//Dark theme colors');
-    codeLines.addAll(darkColors);
-    codeLines.add('}');
+    codeLines
+      ..addAll(lightColors)
+      ..add('//Dark theme colors')
+      ..addAll(darkColors)
+      ..add('}');
     return codeLines.join('\n');
   }
 
@@ -45,7 +46,7 @@ class AppColorsFileContent
     final validColors = colors.where(
       (element) => element.validate(),
     );
-    for (var element in validColors) {
+    for (final element in validColors) {
       if (element.name.endsWith(StyleGeneratorConst.darkColorSuffix)) {
         darkColors.add(element);
       } else if (element.name.endsWith(StyleGeneratorConst.lightColorSuffix)) {

@@ -12,20 +12,34 @@ import 'package:onix_flutter_bricks/domain/entity/component/request_component.da
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
+import 'package:recase/recase.dart';
 
 class SwaggerMapper {
-  List<DataObjectComponent> mapDataObjects(SwaggerResponse input) {
+  List<DataObjectComponent> mapDataObjects(
+    SwaggerResponse input,
+    List<EnumParamComponent> enums,
+  ) {
     final dataObjects = List<DataObjectComponent>.empty(growable: true);
     for (final e in input.swaggerModels) {
-      final variables = e.variables
-          .map(
-            (variable) => DataVariableComponent(
-              name: variable.name,
-              type: variable.type,
-              isRequired: variable.isRequired,
-            ),
-          )
-          .toList();
+      if (e.variables.length == 1 && e.variables.first.type is SwaggerEnum) {
+        continue;
+      }
+      final variables = e.variables.map(
+        (variable) {
+          final type = variable.type;
+          final isEnum = enums.any(
+            (element) =>
+                type is SwaggerReference &&
+                element.name.pascalCase == type.reference,
+          );
+          return DataVariableComponent(
+            name: variable.name,
+            type: type,
+            isRequired: variable.isRequired,
+            isEnum: isEnum,
+          );
+        },
+      ).toList();
       dataObjects.add(
         DataObjectComponent(
           name: e.name,
@@ -55,12 +69,27 @@ class SwaggerMapper {
     return enumList;
   }
 
-  List<SourceComponent> mapSources(SwaggerResponse input, ArchType arch) {
+  List<SourceComponent> mapSources(
+    SwaggerResponse input,
+    ArchType arch,
+    List<EnumParamComponent> enums,
+  ) {
     final sources = List<SourceComponent>.empty(growable: true);
+    if (input.swaggerTags.isEmpty) {
+      final requests = _mapRequests(input.swaggerPaths, enums);
+      sources.add(
+        SourceComponent(
+          name: 'Default',
+          requests: requests,
+          arch: arch,
+        ),
+      );
+      return sources;
+    }
     for (final tag in input.swaggerTags) {
       final sourceRequests =
           input.swaggerPaths.where((e) => e.primaryTag == tag.name).toList();
-      final requests = _mapRequests(sourceRequests);
+      final requests = _mapRequests(sourceRequests, enums);
       sources.add(
         SourceComponent(
           name: tag.name,
@@ -72,14 +101,17 @@ class SwaggerMapper {
     return sources;
   }
 
-  List<RequestComponent> _mapRequests(List<BaseSwaggerPathResponse> input) {
+  List<RequestComponent> _mapRequests(
+    List<BaseSwaggerPathResponse> input,
+    List<EnumParamComponent> enums,
+  ) {
     final requests = List<RequestComponent>.empty(growable: true);
     for (final path in input) {
-      final requestResponseParam = _mapResponseParams(path);
+      final requestResponseParam = _mapResponseParams(path, enums);
       final requestBody = _mapRequestBodyParams(path);
       final multipartParams = _mapRequestMultipartParams(path);
-      final queryParams = _mapRequestQueryParams(path);
-      final pathParams = _mapRequestPathParams(path);
+      final queryParams = _mapRequestQueryParams(path, enums);
+      final pathParams = _mapRequestPathParams(path, enums);
       final request = RequestComponent(
         path: path.path,
         type: path.type,
@@ -97,12 +129,17 @@ class SwaggerMapper {
     return requests;
   }
 
-  ResponseParamComponent _mapResponseParams(BaseSwaggerPathResponse input) {
+  ResponseParamComponent _mapResponseParams(
+    BaseSwaggerPathResponse input,
+    List<EnumParamComponent> enums,
+  ) {
     final successResponse = input.getSuccessResponse();
+    final isEnum = _isEnum(successResponse.variable.type, enums);
     return ResponseParamComponent(
       name: successResponse.variable.name,
       type: successResponse.variable.type,
       isRequired: successResponse.variable.isRequired,
+      isEnum: isEnum,
     );
   }
 
@@ -138,15 +175,18 @@ class SwaggerMapper {
 
   List<RequestQueryComponent> _mapRequestQueryParams(
     BaseSwaggerPathResponse input,
+    List<EnumParamComponent> enums,
   ) {
     final queryParams = input.input.whereType<RequestQuery>();
     final paramComponents = List<RequestQueryComponent>.empty(growable: true);
     for (final e in queryParams) {
+      final isEnum = _isEnum(e.variable.type, enums);
       paramComponents.add(
         RequestQueryComponent(
           name: e.variable.name,
           type: e.variable.type,
           isRequired: e.variable.isRequired,
+          isEnum: isEnum,
         ),
       );
     }
@@ -155,18 +195,27 @@ class SwaggerMapper {
 
   List<RequestPathComponent> _mapRequestPathParams(
     BaseSwaggerPathResponse input,
+    List<EnumParamComponent> enums,
   ) {
     final pathParams = input.input.whereType<RequestPath>();
     final paramComponents = List<RequestPathComponent>.empty(growable: true);
     for (final e in pathParams) {
+      final isEnum = _isEnum(e.variable.type, enums);
       paramComponents.add(
         RequestPathComponent(
           name: e.variable.name,
           type: e.variable.type,
           isRequired: e.variable.isRequired,
+          isEnum: isEnum,
         ),
       );
     }
     return paramComponents;
   }
+
+  bool _isEnum(SwaggerType type, List<EnumParamComponent> enums) => enums.any(
+        (element) =>
+            type is SwaggerReference &&
+            element.name.pascalCase == type.reference,
+      );
 }

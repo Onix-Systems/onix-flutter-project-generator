@@ -4,8 +4,8 @@ import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/widget/generation_controls.dart';
-import 'package:onix_flutter_bricks/presentation/widget/output_console.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widget/output_console.dart';
 import 'package:onix_flutter_bricks/util/stream_util.dart';
 
 class GenerationScreen extends StatefulWidget {

@@ -3,7 +3,8 @@ import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_p
 ///[projectFolder] project root folder in
 ///[signingPassword] password for signing certificate
 ///[signingVars] certificate parameters
-///[separateFromBrick] = true means that generation process run not as a part of a project generation
+///[separateFromBrick] = true means that generation process run not as a part
+///of a project generation
 class SingingGeneratorParams implements BaseGenerationParams {
   final String projectFolder;
   final String signingPassword;

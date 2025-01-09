@@ -13,18 +13,19 @@ import 'package:recase/recase.dart';
 
 class FigmaService {
   final FigmaRepository _figmaRepository;
-  final _colorLightSuffix = 'Light';
-  final _colorDarkSuffix = 'Dark';
+  static const _colorLightSuffix = 'Light';
+  static const _colorDarkSuffix = 'Dark';
 
   const FigmaService({
     required FigmaRepository figmaRepository,
   }) : _figmaRepository = figmaRepository;
 
   Future<List<AppStyle>> getStylesFromFigma(
-      FigmaGenerationParams params) async {
-    final Set<AppStyle> figmaStyles = {};
-    final Set<AppTextStyle> figmaTextStyles = {};
-    final Set<AppColorStyle> figmaColorStyles = {};
+    FigmaGenerationParams params,
+  ) async {
+    final figmaStyles = <AppStyle>{};
+    final figmaTextStyles = <AppTextStyle>{};
+    final figmaColorStyles = <AppColorStyle>{};
 
     try {
       final figmaResult = await _figmaRepository.getFigmaFiles(
@@ -67,19 +68,27 @@ class FigmaService {
             if (colorNames.contains(colorStyle.name) ||
                 colorNames.contains('${colorStyle.name}$_colorDarkSuffix') ||
                 colorNames.contains('${colorStyle.name}$_colorLightSuffix')) {
-              final nameParts = colorStyle.name.sentenceCase.split(' ');
-              nameParts.insert(1, '${colorStyle.id.hashCode}');
+              final nameParts = colorStyle.name.sentenceCase.split(' ')
+                ..insert(1, '${colorStyle.id.hashCode}');
               colorStyle.name = nameParts.join(' ').camelCase;
             }
             if (!colorStyle.name.endsWith(_colorDarkSuffix) &&
                 !colorStyle.name.endsWith(_colorLightSuffix)) {
-              figmaColorStyles.add(colorStyle.copyWithName(
-                  name: '${colorStyle.name}$_colorDarkSuffix'.camelCase));
-              figmaColorStyles.add(colorStyle.copyWithName(
-                  name: '${colorStyle.name}$_colorLightSuffix'.camelCase));
+              figmaColorStyles
+                ..add(
+                  colorStyle.copyWithName(
+                    name: '${colorStyle.name}$_colorDarkSuffix'.camelCase,
+                  ),
+                )
+                ..add(
+                  colorStyle.copyWithName(
+                    name: '${colorStyle.name}$_colorLightSuffix'.camelCase,
+                  ),
+                );
             } else {
               figmaColorStyles.add(
-                  colorStyle.copyWithName(name: colorStyle.name.camelCase));
+                colorStyle.copyWithName(name: colorStyle.name.camelCase),
+              );
             }
           }
         }
@@ -92,33 +101,43 @@ class FigmaService {
         if (color.name.endsWith(_colorDarkSuffix)) {
           final colorName = color.name.replaceLast(_colorDarkSuffix, '');
           if (!figmaColorNames.contains('$colorName$_colorLightSuffix')) {
-            figmaColorStyles.add(color.copyWithName(
-                name: '$colorName$_colorLightSuffix'.camelCase));
+            figmaColorStyles.add(
+              color.copyWithName(
+                name: '$colorName$_colorLightSuffix'.camelCase,
+              ),
+            );
           }
         }
         if (color.name.endsWith(_colorLightSuffix)) {
           final colorName = color.name.replaceLast(_colorLightSuffix, '');
           if (!figmaColorNames.contains('$colorName$_colorDarkSuffix')) {
-            figmaColorStyles.add(color.copyWithName(
-                name: '$colorName$_colorDarkSuffix'.camelCase));
+            figmaColorStyles.add(
+              color.copyWithName(
+                name: '$colorName$_colorDarkSuffix'.camelCase,
+              ),
+            );
           }
         }
       }
 
-      figmaStyles.addAll(figmaTextStyles);
-      figmaStyles.addAll(figmaColorStyles);
+      figmaStyles
+        ..addAll(figmaTextStyles)
+        ..addAll(figmaColorStyles);
 
       return figmaStyles.toList();
     } catch (e) {
       logger.f(e);
-      figmaStyles.add(AppTextStyle(
+      figmaStyles.add(
+        AppTextStyle(
           color: '',
           fontFamily: 'Error',
           fontSize: 25,
           fontWeight: 400,
           letterSpacing: 0,
           id: '1',
-          name: 'Error'));
+          name: 'Error',
+        ),
+      );
       return figmaStyles.toList();
     }
   }

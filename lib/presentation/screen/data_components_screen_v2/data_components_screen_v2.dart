@@ -80,6 +80,8 @@ class _DataComponentsScreenState extends BaseState<
                         color: Colors.transparent,
                         child: DataComponentsContent(
                           components: components,
+                          objectViews: (source) =>
+                              blocOf(context).getSourceObjects(source),
                         ),
                       ),
                     ),
