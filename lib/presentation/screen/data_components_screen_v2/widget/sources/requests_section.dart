@@ -20,9 +20,10 @@ class RequestsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: context.appColors.darkContrastColor,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       margin: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
+        spacing: 16,
         children: requests
             .map(
               (e) => RequestItem(

@@ -79,9 +79,10 @@ abstract class BaseSwaggerModelVariableResponse {
         name,
         requiredVariables,
         arch,
-        json['items'],
+        json.containsKey('items') ? json['items'] : {'type': 'string'},
         from,
       );
+
       return SwaggerArray(
         arrayVariable,
         from: from,

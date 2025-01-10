@@ -41,7 +41,7 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
 
     ///Tags are similar for all versions
     //get tags
-    if (json.containsKey('tags')) {
+    if (json.containsKey('tags') && json.asObjectList('tags').isNotEmpty) {
       final tags = json.asObjectList('tags');
       for (final tag in tags) {
         final tagModel = SwaggerTagResponse.fromJson(tag);
