@@ -89,6 +89,12 @@ abstract class BaseSwaggerModelVariableResponse {
       );
     } else {
       if (!SwaggerConst.swaggerPrimitives.contains(typeValue)) {
+        if (typeValue == 'object') {
+          return SwaggerVariable(
+            'string',
+            from: from,
+          );
+        }
         return SwaggerOperationDefault();
       }
       return SwaggerVariable(

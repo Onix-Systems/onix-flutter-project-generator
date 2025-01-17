@@ -1,6 +1,7 @@
 import 'package:onix_flutter_bricks/app/util/extenstion/content_key_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
@@ -39,6 +40,15 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
 
     if (json.containsKey('schema')) {
       final schema = json['schema'] as Map<String, dynamic>;
+
+      if (schema.containsKey('allOf')) {
+        final values = schema.asObjectList('allOf');
+
+        for (final values in values) {
+          logger.f('allOf: $values');
+        }
+      }
+
       final schemaType = _parseType(
         name,
         from,
@@ -66,6 +76,11 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       if (validContent.isNotEmpty) {
         if (validContent.containsKey('schema')) {
           final schema = validContent['schema'] as Map<String, dynamic>;
+
+          if (schema.containsKey('allOf')) {
+            logger.f('allOf: $schema');
+          }
+
           final contentSchemaType = _parseType(
             name,
             from,
@@ -82,6 +97,8 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
           }
         }
       }
+    } else if (json.containsKey('allOf')) {
+      logger.f('allOf: $json');
     }
 
     return SwaggerModelVariableResponseV3(
@@ -121,6 +138,50 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
         typeValue,
         from: from,
       );
+    } else if (json.containsKey('allOf')) {
+      final allOf = json.asObjectList('allOf');
+
+      final components = <SwaggerType>[];
+
+      for (final type in allOf) {
+        if (type.containsKey(r'$ref')) {
+          final typeValue = (type[r'$ref'] as String)
+              .split('/')
+              .last
+              .clearDataComponentsName();
+
+          components.add(
+            SwaggerReference(
+              typeValue,
+              from: from,
+            ),
+          );
+        }
+        if (type.containsKey('properties')) {
+          final properties = type['properties'] as Map<String, dynamic>;
+          final parsedVariables = _parseProperties(
+            name,
+            requiredVariables,
+            arch,
+            properties,
+          );
+
+          final types = parsedVariables.map((e) => e.type).toList();
+
+          components.addAll(types);
+        }
+
+        //return something
+      }
+
+      final typeValue = (allOf.first[r'$ref'] as String)
+          .split('/')
+          .last
+          .clearDataComponentsName();
+      return SwaggerReference(
+        typeValue,
+        from: from,
+      );
     } else if (json.containsKey('oneOf')) {
       final oneOf = json.asObjectList('oneOf');
       final typeValue = (oneOf.first[r'$ref'] as String)
@@ -143,5 +204,29 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       );
     }
     return null;
+  }
+
+  static List<BaseSwaggerModelVariableResponse> _parseProperties(
+    String modelName,
+    List<String> requiredVariables,
+    ArchType arch,
+    Map<String, dynamic> properties,
+  ) {
+    final variables =
+        List<BaseSwaggerModelVariableResponse>.empty(growable: true);
+    properties.forEach(
+      (name, value) {
+        final contentJson = value as Map<String, dynamic>;
+        final swaggerVariable = SwaggerModelVariableResponseV3.fromJson(
+          name,
+          requiredVariables,
+          arch,
+          contentJson,
+          modelName,
+        );
+        variables.add(swaggerVariable);
+      },
+    );
+    return variables;
   }
 }
