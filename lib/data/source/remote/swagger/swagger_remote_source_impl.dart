@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:http/http.dart' as http;
+import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/enum/swagger_version_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_version_extension.dart';
@@ -103,19 +104,23 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
                 final allOf = response.variable.type as SwaggerAllOf;
                 final allOfVariables = allOf.parameters;
 
+                //TODO: Get all properties from allOfVariables
+
                 final model = SwaggerModelResponseV3(
                   name: allOf.name,
                   type: allOf.name,
                   variables: allOfVariables
                       .map(
                         (e) => SwaggerModelVariableResponseV3(
-                          name: allOf.name,
+                          name: e.getTypeDeclaration(DataFileType.entity),
                           type: e,
                           isRequired: true,
                         ),
                       )
                       .toList(),
                 );
+
+                swaggerModels.add(model);
 
                 logger.f('allOf model: $model');
 
