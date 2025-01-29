@@ -137,17 +137,34 @@ class SwaggerPathResponseV3 extends BaseSwaggerPathResponse {
                             ? 'properties'
                             : 'unnamed';
 
-                    final responseVariable =
-                        BaseSwaggerModelVariableResponse.fromJson(
-                      SwaggerVersionType.swagger3,
-                      name,
-                      arch,
-                      [],
-                      isRef ? itemSchema : {'schema': itemSchema},
-                      tag,
-                    );
+                    if (name == 'properties') {
+                      (item['properties'] as Map<String, dynamic>).forEach(
+                        (key, value) {
+                          final contentJson = value as Map<String, dynamic>;
+                          final swaggerVariable =
+                              SwaggerModelVariableResponseV3.fromJson(
+                            key,
+                            [],
+                            arch,
+                            contentJson,
+                            tag,
+                          );
+                          allOfParams.add(swaggerVariable);
+                        },
+                      );
+                    } else {
+                      final responseVariable =
+                          BaseSwaggerModelVariableResponse.fromJson(
+                        SwaggerVersionType.swagger3,
+                        name,
+                        arch,
+                        [],
+                        isRef ? itemSchema : {'schema': itemSchema},
+                        tag,
+                      );
 
-                    allOfParams.add(responseVariable);
+                      allOfParams.add(responseVariable);
+                    }
                   }
                   responseParams.add(
                     SwaggerResponseType(

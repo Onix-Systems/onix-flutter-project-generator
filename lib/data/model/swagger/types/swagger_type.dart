@@ -14,6 +14,8 @@ sealed class SwaggerType {
     return getTypeDeclaration(DataFileType.none);
   }
 
+  String getName();
+
   String getTypeDeclaration(DataFileType fileType);
 
   String getDefaultParserClosure(DataFileType fileType);
@@ -46,6 +48,9 @@ class SwaggerVariable extends SwaggerType {
   });
 
   @override
+  String getName() => type;
+
+  @override
   String getTypeDeclaration(DataFileType fileType) => type.toSwaggerDartType();
 
   @override
@@ -73,6 +78,9 @@ class SwaggerReference extends SwaggerType {
     this.reference, {
     super.from,
   });
+
+  @override
+  String getName() => reference;
 
   @override
   String getTypeDeclaration(DataFileType fileType) {
@@ -139,6 +147,9 @@ class SwaggerArray extends SwaggerType {
   });
 
   @override
+  String getName() => itemType.name;
+
+  @override
   String getTypeDeclaration(DataFileType fileType) =>
       'List<${itemType.type.getTypeDeclaration(fileType)}>';
 
@@ -188,6 +199,9 @@ class SwaggerEnum extends SwaggerType {
   });
 
   @override
+  String getName() => name;
+
+  @override
   String getTypeDeclaration(DataFileType fileType) =>
       //'${from.pascalCase}${name.pascalCase}Type';
       '${from.pascalCase}${name.pascalCase}';
@@ -218,6 +232,9 @@ class SwaggerEnum extends SwaggerType {
 
 class SwaggerOperationDefault extends SwaggerType {
   final type = 'OperationStatus';
+
+  @override
+  String getName() => type;
 
   @override
   String getTypeDeclaration(DataFileType fileType) => type;
@@ -261,6 +278,9 @@ class SwaggerFile extends SwaggerType {
   });
 
   @override
+  String getName() => type;
+
+  @override
   String getTypeDeclaration(DataFileType fileType) => type;
 
   @override
@@ -288,6 +308,9 @@ class SwaggerAllOf extends SwaggerType {
     required this.parameters,
     super.from,
   });
+
+  @override
+  String getName() => name;
 
   @override
   String getDefaultParserClosure(DataFileType fileType) =>
