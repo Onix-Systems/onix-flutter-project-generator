@@ -278,3 +278,37 @@ class SwaggerFile extends SwaggerType {
   @override
   String? getDefaultReturnType(DataFileType fileType) => null;
 }
+
+class SwaggerAllOf extends SwaggerType {
+  final String name;
+  final List<SwaggerType> parameters;
+
+  SwaggerAllOf({
+    required this.name,
+    required this.parameters,
+    super.from,
+  });
+
+  @override
+  String getDefaultParserClosure(DataFileType fileType) =>
+      parameters.first.getDefaultParserClosure(fileType);
+
+  @override
+  String? getDefaultReturnType(DataFileType fileType) =>
+      parameters.first.getDefaultReturnType(fileType);
+
+  @override
+  String? getFileFolder(DataFileType fileType, ArchType arch) =>
+      parameters.first.getFileFolder(fileType, arch);
+
+  @override
+  String? getFileImportName(DataFileType fileType, ArchType arch) =>
+      parameters.first.getFileImportName(fileType, arch);
+
+  @override
+  String? getFileName(DataFileType fileType) =>
+      parameters.first.getFileName(fileType);
+
+  @override
+  String getTypeDeclaration(DataFileType fileType) => name.pascalCase;
+}

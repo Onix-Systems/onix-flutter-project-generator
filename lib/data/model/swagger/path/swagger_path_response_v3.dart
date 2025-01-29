@@ -1,10 +1,13 @@
 import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart';
+import 'package:onix_flutter_bricks/app/util/enum/swagger_version_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_request_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_response_type.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:recase/recase.dart';
 
@@ -111,17 +114,70 @@ class SwaggerPathResponseV3 extends BaseSwaggerPathResponse {
     if (json.containsKey('responses')) {
       (json['responses'] as Map<String, dynamic>).forEach(
         (code, value) {
-          final responseVariable = SwaggerModelVariableResponseV3.fromJson(
-            code,
-            [code],
-            arch,
-            value,
-            tag,
-          );
+          if ((value as Map<String, dynamic>)['content'] != null) {
+            final content = value['content'] as Map<String, dynamic>;
 
-          responseParams.add(
-            SwaggerResponseType(responseVariable),
-          );
+            if (content.containsKey('application/json')) {
+              final contentValue =
+                  content['application/json'] as Map<String, dynamic>;
+              if (contentValue.containsKey('schema')) {
+                final schema = contentValue['schema'] as Map<String, dynamic>;
+
+                if (schema.containsKey('allOf')) {
+                  final allOfParams = <BaseSwaggerModelVariableResponse>[];
+                  for (final item in schema['allOf']) {
+                    final itemSchema = item as Map<String, dynamic>;
+                    final isRef = item.containsKey(r'$ref');
+                    final name = isRef
+                        ? (item[r'$ref'] as String)
+                            .split('/')
+                            .last
+                            .clearDataComponentsName()
+                        : item['properties'] != null
+                            ? 'properties'
+                            : 'unnamed';
+
+                    final responseVariable =
+                        BaseSwaggerModelVariableResponse.fromJson(
+                      SwaggerVersionType.swagger3,
+                      name,
+                      arch,
+                      [],
+                      isRef ? itemSchema : {'schema': itemSchema},
+                      tag,
+                    );
+
+                    allOfParams.add(responseVariable);
+                  }
+                  responseParams.add(
+                    SwaggerResponseType(
+                      SwaggerModelVariableResponseV3(
+                        name: code,
+                        type: SwaggerAllOf(
+                          name: operationId,
+                          parameters: allOfParams.map((e) => e.type).toList(),
+                        ),
+                        isRequired: true,
+                      ),
+                    ),
+                  );
+                } else {
+                  final responseVariable =
+                      SwaggerModelVariableResponseV3.fromJson(
+                    code,
+                    [code],
+                    arch,
+                    schema,
+                    tag,
+                  );
+
+                  responseParams.add(
+                    SwaggerResponseType(responseVariable),
+                  );
+                }
+              }
+            }
+          }
         },
       );
     }

@@ -5,12 +5,17 @@ import 'package:http/http.dart' as http;
 import 'package:onix_flutter_bricks/app/util/enum/swagger_version_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_version_extension.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model/base_swagger_model_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model/swagger_model_response_unsupported.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model/swagger_model_response_v3.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/path/swagger_path_response_unsupported.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/swagger_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/tag/swagger_tag_response.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_response_type.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 
@@ -85,6 +90,46 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
                 arch,
                 value as Map<String, dynamic>,
               );
+
+              final allOfResponses = pathResponse.output
+                  .where((element) => element.variable.type is SwaggerAllOf)
+                  .toList();
+
+              pathResponse.output.removeWhere(
+                (element) => element.variable.type is SwaggerAllOf,
+              );
+
+              for (final response in allOfResponses) {
+                final allOf = response.variable.type as SwaggerAllOf;
+                final allOfVariables = allOf.parameters;
+
+                final model = SwaggerModelResponseV3(
+                  name: allOf.name,
+                  type: allOf.name,
+                  variables: allOfVariables
+                      .map(
+                        (e) => SwaggerModelVariableResponseV3(
+                          name: allOf.name,
+                          type: e,
+                          isRequired: true,
+                        ),
+                      )
+                      .toList(),
+                );
+
+                logger.f('allOf model: $model');
+
+                pathResponse.output.add(
+                  SwaggerResponseType(
+                    SwaggerModelVariableResponseV3(
+                      name: response.variable.name,
+                      type: SwaggerReference(model.name),
+                      isRequired: true,
+                    ),
+                  ),
+                );
+              }
+
               if (pathResponse is! SwaggerPathResponseUnsupported) {
                 swaggerPaths.add(pathResponse);
               }

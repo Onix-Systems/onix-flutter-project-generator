@@ -4,7 +4,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
@@ -53,8 +52,6 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
             .where((element) => element.response.type.from.isNotEmpty)
             .map((e) => e.response.type.toString()),
       );
-
-    logger.f('sourceComponents: ${state.components?.sources}');
 
     final sourceComponentObjects = components.dataObjects
         .where((element) => sourceComponents.contains(element.name))

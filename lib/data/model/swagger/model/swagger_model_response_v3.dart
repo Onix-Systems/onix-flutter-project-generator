@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model/base_swagger_model_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
@@ -68,16 +69,23 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
         arch,
         crossReferences,
         allOff,
+        allObjects,
       );
       variables.addAll(crossReferenceVariables);
     }
     if (json.containsKey('properties')) {
       final properties = json['properties'] as Map<String, dynamic>;
+
+      if (properties.containsKey('allOf')) {
+        logger.f('allOf: $properties');
+      }
+
       final parsedVariables = _parseProperties(
         modelName,
         requiredVariables,
         arch,
         properties,
+        allObjects,
       );
       variables.addAll(parsedVariables);
     }
@@ -94,12 +102,14 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
     List<String> requiredVariables,
     ArchType arch,
     Map<String, dynamic> properties,
+    Map<String, dynamic> allObjects,
   ) {
     final variables =
         List<BaseSwaggerModelVariableResponse>.empty(growable: true);
     properties.forEach(
       (name, value) {
         final contentJson = value as Map<String, dynamic>;
+
         final swaggerVariable = SwaggerModelVariableResponseV3.fromJson(
           name,
           requiredVariables,
@@ -119,6 +129,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
     ArchType arch,
     List<BaseSwaggerModelResponse> crossReferences,
     List<Map<String, dynamic>> allOff,
+    Map<String, dynamic> allObjects,
   ) {
     final variables =
         List<BaseSwaggerModelVariableResponse>.empty(growable: true);
@@ -139,6 +150,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
           requiredVariables,
           arch,
           properties,
+          allObjects,
         );
         variables.addAll(parsedVariables);
       }

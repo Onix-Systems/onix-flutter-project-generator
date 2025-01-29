@@ -20,7 +20,9 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
     Map<String, dynamic> json,
     String from,
   ) {
-    final required = json.containsKey('required') ? json['required'] : false;
+    final required = json['required'] is bool
+        ? json['required'] as bool
+        : json.containsKey('required') && requiredVariables.contains(name);
 
     final rootType = _parseType(
       name,
@@ -40,14 +42,6 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
 
     if (json.containsKey('schema')) {
       final schema = json['schema'] as Map<String, dynamic>;
-
-      if (schema.containsKey('allOf')) {
-        final values = schema.asObjectList('allOf');
-
-        for (final values in values) {
-          logger.f('allOf: $values');
-        }
-      }
 
       final schemaType = _parseType(
         name,
@@ -78,7 +72,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
           final schema = validContent['schema'] as Map<String, dynamic>;
 
           if (schema.containsKey('allOf')) {
-            logger.f('allOf: $schema');
+            logger.f('allOf: ${schema['allOf']}');
           }
 
           final contentSchemaType = _parseType(
@@ -97,8 +91,6 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
           }
         }
       }
-    } else if (json.containsKey('allOf')) {
-      logger.f('allOf: $json');
     }
 
     return SwaggerModelVariableResponseV3(
@@ -138,48 +130,22 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
         typeValue,
         from: from,
       );
-    } else if (json.containsKey('allOf')) {
-      final allOf = json.asObjectList('allOf');
+    } else if (json.containsKey('properties')) {
+      final properties = json['properties'] as Map<String, dynamic>;
+      final parsedVariables = _parseProperties(
+        name,
+        requiredVariables,
+        arch,
+        properties,
+      );
 
-      final components = <SwaggerType>[];
-
-      for (final type in allOf) {
-        if (type.containsKey(r'$ref')) {
-          final typeValue = (type[r'$ref'] as String)
-              .split('/')
-              .last
-              .clearDataComponentsName();
-
-          components.add(
-            SwaggerReference(
-              typeValue,
-              from: from,
-            ),
-          );
-        }
-        if (type.containsKey('properties')) {
-          final properties = type['properties'] as Map<String, dynamic>;
-          final parsedVariables = _parseProperties(
-            name,
-            requiredVariables,
-            arch,
-            properties,
-          );
-
-          final types = parsedVariables.map((e) => e.type).toList();
-
-          components.addAll(types);
-        }
-
-        //return something
-      }
-
-      final typeValue = (allOf.first[r'$ref'] as String)
-          .split('/')
-          .last
-          .clearDataComponentsName();
-      return SwaggerReference(
-        typeValue,
+      return SwaggerAllOf(
+        name: name,
+        parameters: parsedVariables
+            .map(
+              (e) => e.type,
+            )
+            .toList(),
         from: from,
       );
     } else if (json.containsKey('oneOf')) {
@@ -201,6 +167,27 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
         arch,
         requiredVariables,
         anyOf.first,
+      );
+    } else if (json.containsKey('allOf')) {
+      final parsedVariables = <SwaggerType>[];
+
+      for (final item in json.asObjectList('allOf')) {
+        final parsedType =
+            _parseType(name, from, arch, requiredVariables, item);
+
+        if (parsedType != null) {
+          parsedVariables.add(parsedType);
+        }
+      }
+
+      if (parsedVariables.length == 1) {
+        return parsedVariables.first;
+      }
+
+      return SwaggerAllOf(
+        name: name,
+        parameters: parsedVariables,
+        from: from,
       );
     }
     return null;
