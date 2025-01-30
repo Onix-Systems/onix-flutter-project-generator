@@ -33,8 +33,8 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
 
     final modelName = rawModelName.clearDataComponentsName();
 
-    if (modelName == 'YogiOutputDTO') {
-      logger.f('YogiOutputDTO');
+    if (modelName.contains('PredictionResLogs')) {
+      logger.f('PredictionResLogs');
     }
 
     final variables =

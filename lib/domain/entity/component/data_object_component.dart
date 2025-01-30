@@ -294,12 +294,16 @@ class DataObjectComponent with _$DataObjectComponent {
           ReservedWordProcessor.checkAndReplaceReservedWord(variable.name)
               .camelCase;
 
-      if (variable.type is SwaggerReference) {
-        final name = (variable.type as SwaggerReference)
-            .getTypeDeclaration(DataFileType.none);
-        if (variable.isEnum) {
+      if (variableName == 'familyRelations') {
+        logger.f('familyRelations');
+      }
+
+      if (variable.type is SwaggerReference || variable.type is SwaggerEnum) {
+        final isEnum = _isEnum(variable.type, enums);
+
+        if (isEnum) {
           final enumRef = enums.firstWhere(
-            (e) => e.name == variable.type.toString(),
+            (e) => e.name.pascalCase == variable.type.getName().pascalCase,
           );
           switch (type) {
             case MapperType.mapResponseToEntity:
@@ -315,18 +319,17 @@ class DataObjectComponent with _$DataObjectComponent {
         } else if (variable.isRequired ||
             type == MapperType.mapEntityToRequest) {
           codeLines.add(
-            '$variableName: ${name.camelCase}Mappers.${type.name}(from.$variableName),',
+            '$variableName: ${variableName.camelCase}Mappers.${type.name}(from.$variableName),',
           );
         } else {
+          final name = (variable.type as SwaggerReference)
+              .getTypeDeclaration(DataFileType.none);
+
           codeLines.add(
             '$variableName: (from.$variableName != null) ? ${name.camelCase}Mappers.${type.name}(from.$variableName!) : ${variable.type.getDefaultReturnType(DataFileType.entity)},',
           );
         }
       } else if (variable.type is SwaggerArray) {
-        if (variableName == 'planets') {
-          logger.f('planets');
-        }
-
         final array = variable.type as SwaggerArray;
         if (array.itemType.type is SwaggerReference ||
             array.itemType.type is SwaggerEnum) {
