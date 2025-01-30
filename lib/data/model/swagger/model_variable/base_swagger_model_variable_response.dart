@@ -75,7 +75,7 @@ abstract class BaseSwaggerModelVariableResponse {
     if (typeValue == 'file') {
       return SwaggerFile();
     } else if (typeValue == 'array') {
-      final arrayVariable = SwaggerModelVariableResponseV2.fromJson(
+      final arrayVariable = SwaggerModelVariableResponseV3.fromJson(
         name,
         requiredVariables,
         arch,

@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model/base_swagger_model_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
@@ -31,6 +32,10 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
     }
 
     final modelName = rawModelName.clearDataComponentsName();
+
+    if (modelName == 'YogiOutputDTO') {
+      logger.f('YogiOutputDTO');
+    }
 
     final variables =
         List<BaseSwaggerModelVariableResponse>.empty(growable: true);
