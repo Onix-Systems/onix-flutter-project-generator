@@ -301,9 +301,17 @@ class DataObjectComponent with _$DataObjectComponent {
           final enumRef = enums.firstWhere(
             (e) => e.name == variable.type.toString(),
           );
-          codeLines.add(
-            '$variableName: from.$variableName ?? ${enumRef.type.getDefaultReturnType(DataFileType.none)},',
-          );
+          switch (type) {
+            case MapperType.mapResponseToEntity:
+              codeLines.add(
+                '$variableName: (from.$variableName != null) ? ${enumRef.type.getTypeDeclaration(DataFileType.none)}.values.firstWhere((value) => value.name == from.$variableName) : ${enumRef.type.getDefaultReturnType(DataFileType.none)},',
+              );
+
+            case MapperType.mapEntityToRequest:
+              codeLines.add(
+                '$variableName: from.$variableName.name,',
+              );
+          }
         } else if (variable.isRequired ||
             type == MapperType.mapEntityToRequest) {
           codeLines.add(
@@ -315,18 +323,43 @@ class DataObjectComponent with _$DataObjectComponent {
           );
         }
       } else if (variable.type is SwaggerArray) {
+        if (variableName == 'planets') {
+          logger.f('planets');
+        }
+
         final array = variable.type as SwaggerArray;
-        if (array.itemType.type is SwaggerReference) {
-          final reference = array.itemType.type as SwaggerReference;
-          final className = reference.getTypeDeclaration(DataFileType.none);
-          if (variable.isRequired || type == MapperType.mapEntityToRequest) {
-            codeLines.add(
-              '$variableName: from.$variableName.map(${className.camelCase}Mappers.${type.name},).toList(),',
+        if (array.itemType.type is SwaggerReference ||
+            array.itemType.type is SwaggerEnum) {
+          final itemIsEnum = _isEnum(array.itemType.type, enums);
+
+          if (itemIsEnum) {
+            final enumRef = enums.firstWhere(
+              (e) =>
+                  e.name.pascalCase == array.itemType.type.getName().pascalCase,
             );
+            switch (type) {
+              case MapperType.mapResponseToEntity:
+                codeLines.add(
+                  '$variableName: from.$variableName != null ? from.$variableName!.map((e) => ${enumRef.type.getTypeDeclaration(DataFileType.none)}.values.firstWhere((value) => value.name == e),).toList() : [],',
+                );
+
+              case MapperType.mapEntityToRequest:
+                codeLines.add(
+                  '$variableName: from.$variableName.map((e) => e.name).toList(),',
+                );
+            }
           } else {
-            codeLines.add(
-              '$variableName: (from.$variableName != null) ? from.$variableName!.map(${className.camelCase}Mappers.${type.name},).toList() : [],',
-            );
+            final reference = array.itemType.type as SwaggerReference;
+            final className = reference.getTypeDeclaration(DataFileType.none);
+            if (variable.isRequired || type == MapperType.mapEntityToRequest) {
+              codeLines.add(
+                '$variableName: from.$variableName.map(${className.camelCase}Mappers.${type.name},).toList(),',
+              );
+            } else {
+              codeLines.add(
+                '$variableName: (from.$variableName != null) ? from.$variableName!.map(${className.camelCase}Mappers.${type.name},).toList() : [],',
+              );
+            }
           }
         } else {
           if (variable.isRequired || type == MapperType.mapEntityToRequest) {
@@ -429,12 +462,17 @@ class DataObjectComponent with _$DataObjectComponent {
     DataFileType type,
   ) {
     final sorted = variables.sortByRequired();
+
     return sorted.map((e) {
       final requiredSuffix = e.isRequired ? '' : '?';
 
       final name = ReservedWordProcessor.checkAndReplaceReservedWord(e.name);
+      final typeDeclaration = e.isEnum &&
+              (type == DataFileType.request || type == DataFileType.response)
+          ? 'String'
+          : e.type.getTypeDeclaration(type);
 
-      return "@JsonKey(name: '${e.name}')\nfinal ${e.type.getTypeDeclaration(e.isEnum ? DataFileType.none : type)}$requiredSuffix ${name.camelCase};";
+      return "@JsonKey(name: '${e.name}')\nfinal $typeDeclaration$requiredSuffix ${name.camelCase};";
     }).toList();
   }
 
@@ -444,4 +482,11 @@ class DataObjectComponent with _$DataObjectComponent {
 
     return variablesString;
   }
+
+  bool _isEnum(SwaggerType type, List<EnumParamComponent> enums) => enums.any(
+        (element) =>
+            type is SwaggerEnum ||
+            (type is SwaggerReference &&
+                element.name.pascalCase == type.reference),
+      );
 }

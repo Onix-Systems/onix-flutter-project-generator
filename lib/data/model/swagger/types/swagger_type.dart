@@ -202,9 +202,12 @@ class SwaggerEnum extends SwaggerType {
   String getName() => name;
 
   @override
-  String getTypeDeclaration(DataFileType fileType) =>
-      //'${from.pascalCase}${name.pascalCase}Type';
-      '${from.pascalCase}${name.pascalCase}';
+  String getTypeDeclaration(DataFileType fileType) {
+    if (fileType == DataFileType.response || fileType == DataFileType.request) {
+      return 'String';
+    }
+    return '${from.pascalCase}${name.pascalCase}';
+  }
 
   @override
   String getDefaultParserClosure(DataFileType fileType) =>
@@ -226,8 +229,7 @@ class SwaggerEnum extends SwaggerType {
 
   @override
   String? getDefaultReturnType(DataFileType fileType) =>
-      //'${getTypeDeclaration(fileType)}.${enumValues.first.camelCase}';
-      '${getTypeDeclaration(fileType)}.${enumValues.first}';
+      '${getTypeDeclaration(fileType)}.${enumValues.first.camelCase}';
 }
 
 class SwaggerOperationDefault extends SwaggerType {
