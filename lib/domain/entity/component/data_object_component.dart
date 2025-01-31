@@ -308,7 +308,7 @@ class DataObjectComponent with _$DataObjectComponent {
           switch (type) {
             case MapperType.mapResponseToEntity:
               codeLines.add(
-                '$variableName: (from.$variableName != null) ? ${enumRef.type.getName()}.values.firstWhere((value) => value.name == from.$variableName) : ${enumRef.type.getDefaultReturnType(DataFileType.none)},',
+                '$variableName: (from.$variableName != null) ? ${enumRef.type.getName()}.values.firstWhere((value) => value.name == from.$variableName) : ${enumRef.type.getName()},',
               );
 
             case MapperType.mapEntityToRequest:
