@@ -169,6 +169,21 @@ class SourceComponent with _$SourceComponent {
         }
       }
 
+      final miltipartBody = e.multipartBody;
+
+      if (miltipartBody.isNotEmpty) {
+        for (final multipart in miltipartBody) {
+          final requestReference = multipart.type.getSwaggerObjectReference();
+          if (requestReference != null) {
+            final importLine =
+                requestReference.getReferenceMapperImport(projectName, arch);
+            if (!mapperImports.contains(importLine)) {
+              mapperImports.add(importLine);
+            }
+          }
+        }
+      }
+
       if (e.queryParams.isNotEmpty) {
         for (final queryParam in e.queryParams) {
           if (queryParam.type is SwaggerArray &&
@@ -220,6 +235,21 @@ class SourceComponent with _$SourceComponent {
               requestReference.getReferenceMapperDeclaration();
           if (!mapperVariables.contains(mapperVariable)) {
             mapperVariables.add(mapperVariable);
+          }
+        }
+      }
+
+      final multipartBody = e.multipartBody;
+
+      if (multipartBody.isNotEmpty) {
+        for (final multipart in multipartBody) {
+          final requestReference = multipart.type.getSwaggerObjectReference();
+          if (requestReference != null) {
+            final mapperVariable =
+                requestReference.getReferenceMapperDeclaration();
+            if (!mapperVariables.contains(mapperVariable)) {
+              mapperVariables.add(mapperVariable);
+            }
           }
         }
       }
