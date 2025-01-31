@@ -159,7 +159,7 @@ Future<void> getDependencies(HookContext context) async {
   List<String> devDependencies = [
     'flutter_lints',
     'build_runner',
-    'freezed: 2.5.7',
+    'freezed:2.5.7',
     'json_serializable',
     'import_sorter',
     'mockito',
