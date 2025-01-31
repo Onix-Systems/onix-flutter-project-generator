@@ -211,7 +211,7 @@ class SwaggerEnum extends SwaggerType {
 
   @override
   String getDefaultParserClosure(DataFileType fileType) =>
-      'return ${getTypeDeclaration(fileType)}.${enumValues.first.camelCase}';
+      'return ${getTypeDeclaration(fileType)}.values.first';
 
   @override
   String? getFileImportName(DataFileType fileType, ArchType arch) {

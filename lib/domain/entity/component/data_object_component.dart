@@ -308,7 +308,7 @@ class DataObjectComponent with _$DataObjectComponent {
           switch (type) {
             case MapperType.mapResponseToEntity:
               codeLines.add(
-                '$variableName: (from.$variableName != null) ? ${enumRef.type.getTypeDeclaration(DataFileType.none)}.values.firstWhere((value) => value.name == from.$variableName) : ${enumRef.type.getDefaultReturnType(DataFileType.none)},',
+                '$variableName: (from.$variableName != null) ? ${enumRef.type.getName()}.values.firstWhere((value) => value.name == from.$variableName) : ${enumRef.type.getDefaultReturnType(DataFileType.none)},',
               );
 
             case MapperType.mapEntityToRequest:
@@ -343,7 +343,7 @@ class DataObjectComponent with _$DataObjectComponent {
             switch (type) {
               case MapperType.mapResponseToEntity:
                 codeLines.add(
-                  '$variableName: from.$variableName != null ? from.$variableName!.map((e) => ${enumRef.type.getTypeDeclaration(DataFileType.none)}.values.firstWhere((value) => value.name == e),).toList() : [],',
+                  '$variableName: from.$variableName != null ? from.$variableName!.map((e) => ${enumRef.type.getName()}.values.firstWhere((value) => value.name == e),).toList() : [],',
                 );
 
               case MapperType.mapEntityToRequest:
