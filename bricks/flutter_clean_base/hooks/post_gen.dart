@@ -226,7 +226,7 @@ Future<void> getDependencies(HookContext context) async {
   if (context.vars['handLocalization']) {
     await Process.run('dart', ['pub', 'global', 'activate', 'flutter_gen']);
   } else {
-    dependencies.addAll(['intl', 'intl_utils']);
+    dependencies.addAll(['intl', 'intl_utils:2.8.8']);
   }
 
   if (context.vars['graphql']) {
