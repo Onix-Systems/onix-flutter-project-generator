@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/swagger_response.dart';
@@ -43,8 +42,6 @@ class SwaggerMapper {
                   )
                   .type
                   .enumValues;
-
-              logger.f('enumValues: $enumValues');
 
               return DataVariableComponent(
                 name: variable.name,

@@ -401,7 +401,8 @@ class RequestComponent with _$RequestComponent {
     }
     if (multipartBody.isNotEmpty) {
       for (final e in multipartBody) {
-        codeLines.add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
+        codeLines.add(
+            '${e.getNameDeclaration()}: _${e.type.getName().camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}),');
       }
     }
     if (queryParams.isNotEmpty) {
@@ -410,6 +411,10 @@ class RequestComponent with _$RequestComponent {
             (e.type as SwaggerArray).itemType.type is SwaggerReference) {
           codeLines.add(
             '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.map(_${(e.type as SwaggerArray).itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList(),',
+          );
+        } else if (e.type is SwaggerEnum) {
+          codeLines.add(
+            '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.name,',
           );
         } else {
           codeLines

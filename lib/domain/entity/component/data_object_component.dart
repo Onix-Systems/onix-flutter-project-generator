@@ -294,8 +294,8 @@ class DataObjectComponent with _$DataObjectComponent {
           ReservedWordProcessor.checkAndReplaceReservedWord(variable.name)
               .camelCase;
 
-      if (variableName == 'familyRelations') {
-        logger.f('familyRelations');
+      if (variableName == 'planets') {
+        logger.f('planets');
       }
 
       if (variable.type is SwaggerReference || variable.type is SwaggerEnum) {
@@ -308,7 +308,7 @@ class DataObjectComponent with _$DataObjectComponent {
           switch (type) {
             case MapperType.mapResponseToEntity:
               codeLines.add(
-                '$variableName: (from.$variableName != null) ? ${enumRef.type.getName()}.values.firstWhere((value) => value.name == from.$variableName) : ${enumRef.type.getName()},',
+                '$variableName: (from.$variableName != null) ? ${enumRef.type.getName()}.values.firstWhere((value) => value.name == from.$variableName) : ${enumRef.type.getName()}.values.first,',
               );
 
             case MapperType.mapEntityToRequest:
@@ -318,8 +318,11 @@ class DataObjectComponent with _$DataObjectComponent {
           }
         } else if (variable.isRequired ||
             type == MapperType.mapEntityToRequest) {
+          final name = (variable.type as SwaggerReference)
+              .getTypeDeclaration(DataFileType.none);
+
           codeLines.add(
-            '$variableName: ${variableName.camelCase}Mappers.${type.name}(from.$variableName),',
+            '$variableName: ${name.camelCase}Mappers.${type.name}(from.$variableName),',
           );
         } else {
           final name = (variable.type as SwaggerReference)

@@ -255,6 +255,7 @@ class SourceComponent with _$SourceComponent {
         }
       }
     }
+
     codeLines
       ..addAll(mapperVariables)
       ..add('${name.pascalCase}RepositoryImpl(this._${name.camelCase}Source,);')

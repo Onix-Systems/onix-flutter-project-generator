@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:onix_flutter_bricks/app/swagger_const.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/enum/swagger_version_type.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_default.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_unsupported.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v2.dart';
@@ -28,6 +29,10 @@ abstract class BaseSwaggerModelVariableResponse {
     Map<String, dynamic> json,
     String from,
   ) {
+    if (name.contains('lanet')) {
+      logger.f('name: $name');
+    }
+
     switch (swaggerVersion) {
       case SwaggerVersionType.swagger2:
         return SwaggerModelVariableResponseV2.fromJson(
