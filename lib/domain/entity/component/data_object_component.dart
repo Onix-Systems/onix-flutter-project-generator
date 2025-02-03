@@ -294,21 +294,22 @@ class DataObjectComponent with _$DataObjectComponent {
           ReservedWordProcessor.checkAndReplaceReservedWord(variable.name)
               .camelCase;
 
-      if (variableName == 'planets') {
-        logger.f('planets');
-      }
-
       if (variable.type is SwaggerReference || variable.type is SwaggerEnum) {
         final isEnum = _isEnum(variable.type, enums);
 
         if (isEnum) {
           final enumRef = enums.firstWhere(
-            (e) => e.name.pascalCase == variable.type.getName().pascalCase,
+            (e) =>
+                e.name.pascalCase == variable.type.getName().pascalCase ||
+                e.name.pascalCase ==
+                    variable.type
+                        .getTypeDeclaration(DataFileType.entity)
+                        .pascalCase,
           );
           switch (type) {
             case MapperType.mapResponseToEntity:
               codeLines.add(
-                '$variableName: (from.$variableName != null) ? ${enumRef.type.getName()}.values.firstWhere((value) => value.name == from.$variableName) : ${enumRef.type.getName()}.values.first,',
+                '$variableName: (from.$variableName != null) ? ${enumRef.name}.values.firstWhere((value) => value.name == from.$variableName) : ${enumRef.name}.values.first,',
               );
 
             case MapperType.mapEntityToRequest:

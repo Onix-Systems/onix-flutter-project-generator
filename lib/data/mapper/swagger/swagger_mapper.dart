@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_response.dart';
@@ -88,7 +89,7 @@ class SwaggerMapper {
         if (enumClass != null) {
           enumList.add(
             EnumParamComponent(
-              name: e.name,
+              name: e.getTypeDeclaration(DataFileType.entity),
               type: enumClass,
             ),
           );

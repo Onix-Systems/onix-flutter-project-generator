@@ -401,8 +401,20 @@ class RequestComponent with _$RequestComponent {
     }
     if (multipartBody.isNotEmpty) {
       for (final e in multipartBody) {
-        codeLines.add(
-            '${e.getNameDeclaration()}: _${e.type.getName().camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}),');
+        final isObjectReference = e.type.isObjectReference();
+
+        ///TODO: Add support for array of enum values
+
+        if (isObjectReference) {
+          final ref = e.type.getSwaggerObjectReference();
+          if (ref != null) {
+            codeLines.add(
+                '${e.getNameDeclaration()}: _${e.type.getTypeDeclaration(DataFileType.request).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}),');
+          }
+        } else {
+          codeLines
+              .add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
+        }
       }
     }
     if (queryParams.isNotEmpty) {

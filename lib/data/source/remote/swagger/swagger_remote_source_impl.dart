@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:onix_flutter_bricks/app/util/enum/swagger_version_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
@@ -9,6 +10,7 @@ import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model/base_swagger_model_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model/swagger_model_response_unsupported.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model/swagger_model_response_v3.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/path/swagger_path_response_unsupported.dart';
@@ -220,43 +222,155 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
     final objectModels =
         swaggerModels.where((element) => element.type == 'object').toList();
 
+    if (enumModels.isEmpty) {
+      return;
+    }
+
     for (final model in objectModels) {
-      if (model.variables.any((variable) => variable.type is SwaggerEnum)) {
+      if (model.variables.any(
+        (variable) => _variableIsEnum(variable) || _variableMayBeEnum(variable),
+      )) {
         final enumVariables = model.variables
-            .where((element) => element.type is SwaggerEnum)
+            .where(
+              (element) =>
+                  _variableIsEnum(element) || _variableMayBeEnum(element),
+            )
             .toList();
 
-        logger.f('model: ${model.variables}');
+        logger.f('model: $model');
 
         for (final enumVariable in enumVariables) {
-          final variable = enumVariable.type as SwaggerEnum;
+          if (enumVariable.type is SwaggerEnum) {
+            final variable = enumVariable.type as SwaggerEnum;
 
-          final sourceEnumModel = enumModels.firstWhereOrNull(
-            (model) => model.name == variable.name.pascalCase,
-          );
+            var sourceEnumModel = enumModels.firstWhereOrNull(
+              (model) => model.name == variable.name.pascalCase,
+            );
 
-          if (sourceEnumModel != null) {
-            logger.f(
-                '${enumVariable.name} sourceEnumModel: ${sourceEnumModel.name}');
+            if (sourceEnumModel != null) {
+              model.variables
+                ..remove(enumVariable)
+                ..add(
+                  SwaggerModelVariableResponseV3(
+                    name: enumVariable.name,
+                    type: SwaggerReference(sourceEnumModel.name),
+                    isRequired: true,
+                  ),
+                );
+            } else {
+              final variableValues = variable.enumValues;
 
-            model.variables
-              ..remove(enumVariable)
-              ..add(
-                SwaggerModelVariableResponseV3(
-                  name: enumVariable.name,
-                  type: SwaggerReference(sourceEnumModel.name),
-                  isRequired: true,
-                ),
+              sourceEnumModel = enumModels.firstWhereOrNull(
+                (model) =>
+                    (model.variables.first.type as SwaggerEnum).enumValues ==
+                    variableValues,
               );
-          } else {
-            final variableValues = variable.enumValues;
 
-            logger.f('variableValues: $variableValues');
+              if (sourceEnumModel != null) {
+                logger.f('sourceEnumModel: ${sourceEnumModel.name}');
+              }
+            }
+          } else if (enumVariable.type is SwaggerArray &&
+              (enumVariable.type as SwaggerArray).itemType.type
+                  is SwaggerEnum) {
+            final variable = (enumVariable.type as SwaggerArray).itemType.type
+                as SwaggerEnum;
+
+            var sourceEnumModel = enumModels.firstWhereOrNull(
+              (model) => model.name == variable.name.pascalCase,
+            );
+
+            if (sourceEnumModel != null) {
+              model.variables
+                ..remove(enumVariable)
+                ..add(
+                  SwaggerModelVariableResponseV3(
+                    name: enumVariable.name,
+                    type: SwaggerArray(
+                      SwaggerModelVariableResponseV3(
+                        name: sourceEnumModel.name,
+                        type: SwaggerReference(sourceEnumModel.name),
+                        isRequired: enumVariable.isRequired,
+                      ),
+                    ),
+                    isRequired: true,
+                  ),
+                );
+            } else {
+              final variableValues = variable.enumValues;
+
+              sourceEnumModel = enumModels.firstWhereOrNull(
+                (model) {
+                  return setEquals(
+                    (model.variables.first.type as SwaggerEnum)
+                        .enumValues
+                        .toSet(),
+                    variableValues.toSet(),
+                  );
+                },
+              );
+
+              if (sourceEnumModel != null) {
+                model.variables
+                  ..remove(enumVariable)
+                  ..add(
+                    SwaggerModelVariableResponseV3(
+                      name: enumVariable.name,
+                      type: SwaggerArray(
+                        SwaggerModelVariableResponseV3(
+                          name: sourceEnumModel.name,
+                          type: SwaggerReference(sourceEnumModel.name),
+                          isRequired: enumVariable.isRequired,
+                        ),
+                      ),
+                      isRequired: true,
+                    ),
+                  );
+              }
+            }
+          } else if (_variableMayBeEnum(enumVariable)) {
+            logger.f('enumVariable: $enumVariable');
+
+            final variable = (enumVariable.type as SwaggerArray).itemType.type
+                as SwaggerReference;
+
+            final sourceEnumModel = enumModels.firstWhereOrNull(
+              (model) => model.name == variable.reference.pascalCase,
+            );
+
+            if (sourceEnumModel != null) {
+              model.variables
+                ..remove(enumVariable)
+                ..add(
+                  SwaggerModelVariableResponseV3(
+                    name: enumVariable.name,
+                    type: SwaggerArray(
+                      SwaggerModelVariableResponseV3(
+                        name: sourceEnumModel.name,
+                        type: SwaggerReference(sourceEnumModel.name),
+                        isRequired: enumVariable.isRequired,
+                      ),
+                    ),
+                    isRequired: true,
+                  ),
+                );
+            }
           }
         }
 
-        logger.f('model: ${model.variables}');
+        logger.f('model: $model');
       }
     }
+  }
+
+  bool _variableIsEnum(BaseSwaggerModelVariableResponse variable) {
+    return variable.type is SwaggerEnum ||
+        (variable.type is SwaggerArray &&
+            (variable.type as SwaggerArray).itemType.type is SwaggerEnum);
+  }
+
+  bool _variableMayBeEnum(BaseSwaggerModelVariableResponse variable) {
+    return variable.type is SwaggerArray &&
+        (variable.type as SwaggerArray).itemType.type is SwaggerReference;
   }
 }

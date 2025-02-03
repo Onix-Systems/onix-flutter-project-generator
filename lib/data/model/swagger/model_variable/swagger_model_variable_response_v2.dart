@@ -24,7 +24,9 @@ class SwaggerModelVariableResponseV2 extends BaseSwaggerModelVariableResponse {
     if (json.containsKey('enum')) {
       final enumTypes = json.asStringList('enum');
       type = SwaggerEnum(
-        name.clearEnumComponentName(),
+        name.clearEnumComponentName().isEmpty
+            ? name
+            : name.clearEnumComponentName(),
         enumTypes,
         from: from,
       );
