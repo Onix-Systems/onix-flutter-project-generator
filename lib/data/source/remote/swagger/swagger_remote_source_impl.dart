@@ -18,6 +18,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_response_ty
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
+import 'package:recase/recase.dart';
 
 class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
   const SwaggerRemoteSourceImpl();
@@ -32,7 +33,8 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
 
     ///Get Swagger version
     final swaggerVersion = json.getSwaggerVersion();
-    if (swaggerVersion == SwaggerVersionType.unsupported) {
+    if (swaggerVersion == SwaggerVersionType.unsupported ||
+        !json.containsKey('paths')) {
       return SwaggerResponse(
         swaggerModels: [],
         swaggerPaths: [],
@@ -44,6 +46,109 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
     final swaggerPaths = List<BaseSwaggerPathResponse>.empty(growable: true);
     final swaggerTags = List<SwaggerTagResponse>.empty(growable: true);
 
+    _parseModels(swaggerVersion, arch, swaggerModels, json);
+
+    _parseTags(json, swaggerTags);
+
+    _parsePaths(json, swaggerVersion, arch, swaggerModels, swaggerPaths);
+
+    return SwaggerResponse(
+      swaggerModels: swaggerModels,
+      swaggerPaths: swaggerPaths,
+      swaggerTags: swaggerTags,
+    );
+  }
+
+  void _parsePaths(
+    Map<String, dynamic> json,
+    SwaggerVersionType swaggerVersion,
+    ArchType arch,
+    List<BaseSwaggerModelResponse> swaggerModels,
+    List<BaseSwaggerPathResponse> swaggerPaths,
+  ) {
+    ///Requests paths are similar for all versions
+    (json['paths'] as Map<String, dynamic>).forEach(
+      (path, value) {
+        (value as Map<String, dynamic>).forEach(
+          (type, value) {
+            final pathResponse = BaseSwaggerPathResponse.fromJson(
+              swaggerVersion,
+              path,
+              type,
+              arch,
+              value as Map<String, dynamic>,
+            );
+
+            final allOfResponses = pathResponse.output
+                .where((element) => element.variable.type is SwaggerAllOf)
+                .toList();
+
+            pathResponse.output.removeWhere(
+              (element) => element.variable.type is SwaggerAllOf,
+            );
+
+            for (final response in allOfResponses) {
+              final allOf = response.variable.type as SwaggerAllOf;
+              final allOfVariables = allOf.parameters;
+
+              final parameters = <SwaggerType>[];
+
+              for (final variable in allOfVariables) {
+                if (variable is SwaggerAllOf) {
+                  parameters.addAll(
+                    variable.parameters,
+                  );
+
+                  logger.f('allOf variable: $variable');
+                }
+              }
+
+              allOfVariables
+                ..removeWhere(
+                  (element) => element is SwaggerAllOf,
+                )
+                ..addAll(parameters);
+
+              final model = SwaggerModelResponseV3(
+                name: allOf.name,
+                type: allOf.name,
+                variables: allOfVariables
+                    .map(
+                      (e) => SwaggerModelVariableResponseV3(
+                        name: e.getName(),
+                        type: e,
+                        isRequired: true,
+                      ),
+                    )
+                    .toList(),
+              );
+
+              swaggerModels.add(model);
+
+              pathResponse.output.add(
+                SwaggerResponseType(
+                  SwaggerModelVariableResponseV3(
+                    name: response.variable.name,
+                    type: SwaggerReference(model.name),
+                    isRequired: true,
+                  ),
+                ),
+              );
+            }
+
+            if (pathResponse is! SwaggerPathResponseUnsupported) {
+              swaggerPaths.add(pathResponse);
+            }
+          },
+        );
+      },
+    );
+  }
+
+  void _parseTags(
+    Map<String, dynamic> json,
+    List<SwaggerTagResponse> swaggerTags,
+  ) {
     ///Tags are similar for all versions
     //get tags
     if (json.containsKey('tags') && json.asObjectList('tags').isNotEmpty) {
@@ -54,120 +159,23 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
       }
     } else {
       ///if there no tags key collect keys from requests
-      if (json.containsKey('paths')) {
-        (json['paths'] as Map<String, dynamic>).forEach(
-          (path, value) {
-            final pathRequestVariations = value as Map<String, dynamic>;
-            final requestTags = pathRequestVariations.getTagsFromRequests();
-            for (final tag in requestTags) {
-              final thisTag =
-                  swaggerTags.singleWhereOrNull((e) => e.name == tag);
-              if (thisTag == null) {
-                swaggerTags.add(SwaggerTagResponse(name: tag, description: ''));
-              }
-            }
-          },
-        );
-      } else {
-        return SwaggerResponse(
-          swaggerModels: [],
-          swaggerPaths: [],
-          swaggerTags: [],
-        );
-      }
-    }
-
-    ///Requests paths are similar for all versions
-    if (json.containsKey('paths')) {
       (json['paths'] as Map<String, dynamic>).forEach(
         (path, value) {
-          (value as Map<String, dynamic>).forEach(
-            (type, value) {
-              final pathResponse = BaseSwaggerPathResponse.fromJson(
-                swaggerVersion,
-                path,
-                type,
-                arch,
-                value as Map<String, dynamic>,
-              );
-
-              final allOfResponses = pathResponse.output
-                  .where((element) => element.variable.type is SwaggerAllOf)
-                  .toList();
-
-              pathResponse.output.removeWhere(
-                (element) => element.variable.type is SwaggerAllOf,
-              );
-
-              for (final response in allOfResponses) {
-                final allOf = response.variable.type as SwaggerAllOf;
-                final allOfVariables = allOf.parameters;
-
-                final parameters = <SwaggerType>[];
-
-                for (final variable in allOfVariables) {
-                  if (variable is SwaggerAllOf) {
-                    parameters.addAll(
-                      variable.parameters,
-                    );
-
-                    logger.f('allOf variable: $variable');
-                  }
-                }
-
-                allOfVariables
-                  ..removeWhere(
-                    (element) => element is SwaggerAllOf,
-                  )
-                  ..addAll(parameters);
-
-                //TODO: Get all properties from allOfVariables
-
-                final model = SwaggerModelResponseV3(
-                  name: allOf.name,
-                  type: allOf.name,
-                  variables: allOfVariables
-                      .map(
-                        (e) => SwaggerModelVariableResponseV3(
-                          name: e.getName(),
-                          type: e,
-                          isRequired: true,
-                        ),
-                      )
-                      .toList(),
-                );
-
-                swaggerModels.add(model);
-
-                logger.f('allOf model: $model');
-
-                pathResponse.output.add(
-                  SwaggerResponseType(
-                    SwaggerModelVariableResponseV3(
-                      name: response.variable.name,
-                      type: SwaggerReference(model.name),
-                      isRequired: true,
-                    ),
-                  ),
-                );
-              }
-
-              if (pathResponse is! SwaggerPathResponseUnsupported) {
-                swaggerPaths.add(pathResponse);
-              }
-            },
-          );
+          final pathRequestVariations = value as Map<String, dynamic>;
+          final requestTags = pathRequestVariations.getTagsFromRequests();
+          for (final tag in requestTags) {
+            final thisTag = swaggerTags.singleWhereOrNull((e) => e.name == tag);
+            if (thisTag == null) {
+              swaggerTags.add(SwaggerTagResponse(name: tag, description: ''));
+            }
+          }
         },
       );
-    } else {
-      return SwaggerResponse(
-        swaggerModels: [],
-        swaggerPaths: [],
-        swaggerTags: [],
-      );
     }
+  }
 
-    ///Check swagger version
+  void _parseModels(SwaggerVersionType swaggerVersion, ArchType arch,
+      List<BaseSwaggerModelResponse> swaggerModels, Map<String, dynamic> json) {
     var objectsMap = <String, dynamic>{};
     switch (swaggerVersion) {
       case SwaggerVersionType.swagger2:
@@ -176,11 +184,7 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
             objectsMap = json['definitions'] as Map<String, dynamic>;
             break;
           } else {
-            return SwaggerResponse(
-              swaggerModels: [],
-              swaggerPaths: [],
-              swaggerTags: [],
-            );
+            return;
           }
         }
       case SwaggerVersionType.swagger3:
@@ -188,41 +192,71 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
           if (json.containsKey('components')) {
             objectsMap = json['components']['schemas'] as Map<String, dynamic>;
           } else {
-            return SwaggerResponse(
-              swaggerModels: [],
-              swaggerPaths: [],
-              swaggerTags: [],
-            );
+            return;
           }
         }
 
       case SwaggerVersionType.unsupported:
-        return SwaggerResponse(
-          swaggerModels: [],
-          swaggerPaths: [],
-          swaggerTags: [],
-        );
+        return;
     }
 
-    objectsMap.forEach(
-      (name, value) {
-        final swaggerModel = BaseSwaggerModelResponse.fromJson(
-          swaggerVersion,
-          name,
-          arch,
-          value as Map<String, dynamic>,
-          objectsMap,
-        );
-        if (swaggerModel is! SwaggerModelResponseUnsupported) {
-          swaggerModels.add(swaggerModel);
-        }
-      },
-    );
+    objectsMap.forEach((key, value) {
+      final swaggerModel = BaseSwaggerModelResponse.fromJson(
+        swaggerVersion,
+        key,
+        arch,
+        value as Map<String, dynamic>,
+        objectsMap,
+      );
+      if (swaggerModel is! SwaggerModelResponseUnsupported) {
+        swaggerModels.add(swaggerModel);
+      }
+    });
 
-    return SwaggerResponse(
-      swaggerModels: swaggerModels,
-      swaggerPaths: swaggerPaths,
-      swaggerTags: swaggerTags,
-    );
+    ///Fix map generated enum params to models
+    final enumModels =
+        swaggerModels.where((element) => element.type == 'enum').toList();
+
+    final objectModels =
+        swaggerModels.where((element) => element.type == 'object').toList();
+
+    for (final model in objectModels) {
+      if (model.variables.any((variable) => variable.type is SwaggerEnum)) {
+        final enumVariables = model.variables
+            .where((element) => element.type is SwaggerEnum)
+            .toList();
+
+        logger.f('model: ${model.variables}');
+
+        for (final enumVariable in enumVariables) {
+          final variable = enumVariable.type as SwaggerEnum;
+
+          final sourceEnumModel = enumModels.firstWhereOrNull(
+            (model) => model.name == variable.name.pascalCase,
+          );
+
+          if (sourceEnumModel != null) {
+            logger.f(
+                '${enumVariable.name} sourceEnumModel: ${sourceEnumModel.name}');
+
+            model.variables
+              ..remove(enumVariable)
+              ..add(
+                SwaggerModelVariableResponseV3(
+                  name: enumVariable.name,
+                  type: SwaggerReference(sourceEnumModel.name),
+                  isRequired: true,
+                ),
+              );
+          } else {
+            final variableValues = variable.enumValues;
+
+            logger.f('variableValues: $variableValues');
+          }
+        }
+
+        logger.f('model: ${model.variables}');
+      }
+    }
   }
 }

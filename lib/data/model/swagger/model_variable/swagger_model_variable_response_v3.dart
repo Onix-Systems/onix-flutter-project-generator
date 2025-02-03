@@ -24,10 +24,6 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
         ? json['required'] as bool
         : json.containsKey('required') && requiredVariables.contains(name);
 
-    if (name.contains('lanet')) {
-      logger.f('name: $name');
-    }
-
     final rootType = _parseType(
       name,
       from,
