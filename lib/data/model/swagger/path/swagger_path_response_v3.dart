@@ -117,9 +117,11 @@ class SwaggerPathResponseV3 extends BaseSwaggerPathResponse {
           if ((value as Map<String, dynamic>)['content'] != null) {
             final content = value['content'] as Map<String, dynamic>;
 
-            if (content.containsKey('application/json')) {
-              final contentValue =
-                  content['application/json'] as Map<String, dynamic>;
+            if (content.keys.any((key) => key.contains('application/json'))) {
+              final key = content.keys.firstWhere(
+                (key) => key.contains('application/json'),
+              );
+              final contentValue = content[key] as Map<String, dynamic>;
               if (contentValue.containsKey('schema')) {
                 final schema = contentValue['schema'] as Map<String, dynamic>;
 
