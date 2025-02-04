@@ -44,6 +44,7 @@ class RequestComponent with _$RequestComponent {
           return e.getParamBodyDeclaration(
             e.isEnum ? DataFileType.none : DataFileType.request,
             isRequiredRequestBody: true,
+            forSource: true,
           );
         },
       ).join('\n');
@@ -52,11 +53,7 @@ class RequestComponent with _$RequestComponent {
 
       var pathWithParams = path;
       for (final e in pathParams) {
-        var name = e.name;
-
-        if (e.isEnum) {
-          name = '{$name.name}';
-        }
+        final name = e.name;
 
         pathWithParams = pathWithParams.replaceAll('{${e.name}}', '\$$name');
       }
@@ -79,7 +76,7 @@ class RequestComponent with _$RequestComponent {
         .add('Future<DataResponse<$responseType>> ${operationId.camelCase}(');
 
     ///Create function input params
-    final functionParams = _buildFunctionParams(DataFileType.request);
+    final functionParams = _buildFunctionParams(DataFileType.request, true);
     if (functionParams.isNotEmpty) {
       codeLines.add('{');
     }
@@ -112,7 +109,7 @@ class RequestComponent with _$RequestComponent {
       );
 
     ///Create function input params
-    final functionParams = _buildFunctionParams(DataFileType.request);
+    final functionParams = _buildFunctionParams(DataFileType.request, true);
     if (functionParams.isNotEmpty) {
       codeLines.add('{');
     }
@@ -152,7 +149,7 @@ class RequestComponent with _$RequestComponent {
       codeLines.add('final queryParams = {');
       for (final e in queryParams) {
         codeLines.add(
-          "'${e.name}': ${e.getNameDeclaration()}${e.isEnum ? '?.name' : ''},",
+          "'${e.name}': ${e.getNameDeclaration()},",
         );
       }
       codeLines
@@ -223,7 +220,7 @@ class RequestComponent with _$RequestComponent {
       ..add('Future<Result<$returnType>> ${operationId.camelCase}(');
 
     ///Create function input params
-    final functionParams = _buildFunctionParams(DataFileType.entity);
+    final functionParams = _buildFunctionParams(DataFileType.entity, false);
     if (functionParams.isNotEmpty) {
       codeLines.add('{');
     }
@@ -245,7 +242,7 @@ class RequestComponent with _$RequestComponent {
       ..add('Future<Result<$returnType>> ${operationId.camelCase}(');
 
     ///Create function input params
-    final functionParams = _buildFunctionParams(DataFileType.entity);
+    final functionParams = _buildFunctionParams(DataFileType.entity, false);
     if (functionParams.isNotEmpty) {
       codeLines.add('{');
     }
@@ -335,13 +332,14 @@ class RequestComponent with _$RequestComponent {
   }
 
   ///Build function input parameters
-  String _buildFunctionParams(DataFileType fileType) {
+  String _buildFunctionParams(DataFileType fileType, bool forSource) {
     final codeLines = List<String>.empty(growable: true);
     if (requestBody != null) {
       codeLines.add(
         requestBody?.getParamBodyDeclaration(
               fileType,
               isRequiredRequestBody: true,
+              forSource: forSource,
             ) ??
             '',
       );
@@ -352,6 +350,7 @@ class RequestComponent with _$RequestComponent {
           e.getParamBodyDeclaration(
             fileType,
             isRequiredRequestBody: true,
+            forSource: forSource,
           ),
         );
       }
@@ -360,8 +359,9 @@ class RequestComponent with _$RequestComponent {
       for (final e in queryParams) {
         codeLines.add(
           e.getParamBodyDeclaration(
-            e.isEnum ? DataFileType.none : fileType,
+            fileType,
             isRequiredRequestBody: false,
+            forSource: forSource,
           ),
         );
       }
@@ -370,8 +370,9 @@ class RequestComponent with _$RequestComponent {
       for (final e in pathParams) {
         codeLines.add(
           e.getParamBodyDeclaration(
-            e.isEnum ? DataFileType.none : fileType,
+            fileType,
             isRequiredRequestBody: false,
+            forSource: forSource,
           ),
         );
       }
