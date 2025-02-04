@@ -3,6 +3,7 @@ import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
@@ -235,7 +236,10 @@ class RequestComponent with _$RequestComponent {
     return codeLines.join('\n');
   }
 
-  String getRepoImplementationBody(String repoName) {
+  String getRepoImplementationBody(
+    String repoName,
+    List<EnumParamComponent> enums,
+  ) {
     final returnType = response.type.getTypeDeclaration(DataFileType.entity);
     final codeLines = List<String>.empty(growable: true)
       ..add('@override')
@@ -277,7 +281,7 @@ class RequestComponent with _$RequestComponent {
     codeLines.add(
       'final result = await _${repoName}Source.${operationId.camelCase}(',
     );
-    final sourceCallParams = _buildSourceCallParams(DataFileType.none);
+    final sourceCallParams = _buildSourceCallParams(DataFileType.none, enums);
     codeLines
       ..add(sourceCallParams)
       ..add(');')
@@ -379,7 +383,10 @@ class RequestComponent with _$RequestComponent {
     return codeLines.join('\n');
   }
 
-  String _buildSourceCallParams(DataFileType fileType) {
+  String _buildSourceCallParams(
+    DataFileType fileType,
+    List<EnumParamComponent> enums,
+  ) {
     final codeLines = List<String>.empty(growable: true);
     if (requestBody != null) {
       final body = requestBody!;
@@ -402,15 +409,18 @@ class RequestComponent with _$RequestComponent {
     if (multipartBody.isNotEmpty) {
       for (final e in multipartBody) {
         final isObjectReference = e.type.isObjectReference();
-
-        ///TODO: Add support for array of enum values
+        final isEnum = e.type is SwaggerEnum;
 
         if (isObjectReference) {
           final ref = e.type.getSwaggerObjectReference();
           if (ref != null) {
             codeLines.add(
-                '${e.getNameDeclaration()}: _${e.type.getTypeDeclaration(DataFileType.request).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}),');
+                '${e.getNameDeclaration()}: _${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}),');
           }
+        } else if (isEnum) {
+          codeLines.add(
+            '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.name,',
+          );
         } else {
           codeLines
               .add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
@@ -419,18 +429,29 @@ class RequestComponent with _$RequestComponent {
     }
     if (queryParams.isNotEmpty) {
       for (final e in queryParams) {
-        if (e.type is SwaggerArray &&
-            (e.type as SwaggerArray).itemType.type is SwaggerReference) {
-          codeLines.add(
-            '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.map(_${(e.type as SwaggerArray).itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList(),',
-          );
+        final nullable = e.isRequired ? '' : '?';
+        if (e.type is SwaggerArray) {
+          final array = e.type as SwaggerArray;
+          if (array.itemType.type is SwaggerReference) {
+            codeLines.add(
+              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}$nullable.map(_${array.itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList(),',
+            );
+          } else if (array.itemType.type is SwaggerEnum) {
+            codeLines.add(
+              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}$nullable.map((e) => e.name).toList(),',
+            );
+          } else {
+            codeLines.add(
+              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}$nullable,',
+            );
+          }
         } else if (e.type is SwaggerEnum) {
           codeLines.add(
-            '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.name,',
+            '${e.getNameDeclaration()}: ${e.getNameDeclaration()}$nullable.name,',
           );
         } else {
-          codeLines
-              .add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
+          codeLines.add(
+              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}$nullable,');
         }
       }
     }

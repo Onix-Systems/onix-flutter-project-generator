@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.d
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_reference.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
@@ -141,7 +142,11 @@ class SourceComponent with _$SourceComponent {
     return codeLines.join('\n');
   }
 
-  String getRepoImplementationBody(String projectName, ArchType arch) {
+  String getRepoImplementationBody(
+    String projectName,
+    ArchType arch,
+    List<EnumParamComponent> enums,
+  ) {
     final codeLines = <String>{};
     final modelImports = _buildRepositoryImports(projectName, arch);
     codeLines
@@ -292,7 +297,7 @@ class SourceComponent with _$SourceComponent {
       ..addNewLine();
     for (final e in requests) {
       codeLines
-        ..add(e.getRepoImplementationBody(name.camelCase))
+        ..add(e.getRepoImplementationBody(name.camelCase, enums))
         ..addNewLine();
     }
 
