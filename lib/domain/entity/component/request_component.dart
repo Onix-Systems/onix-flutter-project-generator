@@ -3,7 +3,6 @@ import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
-import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
@@ -238,7 +237,6 @@ class RequestComponent with _$RequestComponent {
 
   String getRepoImplementationBody(
     String repoName,
-    List<EnumParamComponent> enums,
   ) {
     final returnType = response.type.getTypeDeclaration(DataFileType.entity);
     final codeLines = List<String>.empty(growable: true)
@@ -281,7 +279,7 @@ class RequestComponent with _$RequestComponent {
     codeLines.add(
       'final result = await _${repoName}Source.${operationId.camelCase}(',
     );
-    final sourceCallParams = _buildSourceCallParams(DataFileType.none, enums);
+    final sourceCallParams = _buildSourceCallParams(DataFileType.none);
     codeLines
       ..add(sourceCallParams)
       ..add(');')
@@ -385,7 +383,6 @@ class RequestComponent with _$RequestComponent {
 
   String _buildSourceCallParams(
     DataFileType fileType,
-    List<EnumParamComponent> enums,
   ) {
     final codeLines = List<String>.empty(growable: true);
     if (requestBody != null) {

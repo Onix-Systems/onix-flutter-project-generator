@@ -60,7 +60,6 @@ class ComponentGeneratorService
           params.projectName,
           source,
           params.arch,
-          params.components.enums,
         );
       }
 
@@ -86,7 +85,6 @@ class ComponentGeneratorService
     String projectName,
     SourceComponent sourceComponent,
     ArchType arch,
-    List<EnumParamComponent> enums,
   ) async {
     final projectLibFolder = '$projectRootPath/lib';
     final rawFolder = sourceComponent.getFolderPath(projectLibFolder);
@@ -172,7 +170,6 @@ class ComponentGeneratorService
     final repoImplBody = sourceComponent.getRepoImplementationBody(
       projectName,
       arch,
-      enums,
     );
     await _createFile(filePath: repoImplFilePath, fileBody: repoImplBody);
 
