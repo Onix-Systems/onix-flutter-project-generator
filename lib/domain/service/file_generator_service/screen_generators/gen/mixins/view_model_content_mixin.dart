@@ -11,7 +11,6 @@ mixin ViewModelContentMixin on ScreenGenerationService {
   }) {
     ///Declare Provider classes names
 
-    final screenClassImport = screenName.snakeCase;
     final screenModelName = screenName.pascalCase;
     final className = '$screenModelName${stateManagement.name}';
 
@@ -21,14 +20,11 @@ mixin ViewModelContentMixin on ScreenGenerationService {
       ..add("import 'dart:async';")
       ..addNewLine()
       ..add("import 'package:onix_flutter_mvvm/onix_flutter_mvvm.dart';")
-      ..add(
-        "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/view_model/${screenClassImport}_model.dart';",
-      )
       ..addNewLine()
       ..add(
-        'class $className extends ViewModel<${screenName.pascalCase}Model> {',
+        'class $className extends ViewModel {',
       )
-      ..add('$className() : super(${screenName.pascalCase}Model()) {')
+      ..add('$className() : super() {')
       ..addNewLine()
       ..add('init();')
       ..add('}')
@@ -37,21 +33,6 @@ mixin ViewModelContentMixin on ScreenGenerationService {
       ..add('// Add your initialization code here')
       ..add('notifyListeners();')
       ..add('}')
-      ..add('}')
-      ..addNewLine();
-
-    return codeLines.join('\n');
-  }
-
-  String createViewModelModelContent({
-    required String screenName,
-  }) {
-    final codeLines = List<String>.empty(growable: true)
-      ..addNewLine()
-      ..add('class ${screenName.pascalCase}Model {')
-      ..addNewLine()
-      ..add('${screenName.pascalCase}Model();')
-      ..addNewLine()
       ..add('}')
       ..addNewLine();
 
