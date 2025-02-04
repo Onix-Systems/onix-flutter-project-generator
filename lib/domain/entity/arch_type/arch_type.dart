@@ -31,10 +31,10 @@ extension Path on ArchType {
     }
   }
 
-  String getEntityPath(String folderName,String namePath) {
+  String getEntityPath(String folderName, String namePath) {
     switch (this) {
       case ArchType.clean:
-        return 'domain/entity/$folderName/$namePath';
+        return 'domain/$folderName/$namePath';
       case ArchType.basic:
         return 'data/model/domain/$folderName/$namePath';
     }
@@ -64,6 +64,15 @@ extension Path on ArchType {
         return 'data/mapper';
       case ArchType.basic:
         return 'data/mapper';
+    }
+  }
+
+  String getEnumPath() {
+    switch (this) {
+      case ArchType.clean:
+        return 'app/util/enums';
+      case ArchType.basic:
+        return 'data/model/remote/enum';
     }
   }
 }

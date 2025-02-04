@@ -285,6 +285,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "DEV та PROD флавори будуть додані автоматично"),
         "withComponents":
             MessageLookupByLibrary.simpleMessage("З компонентами"),
+        "wrongScreenNameContent": MessageLookupByLibrary.simpleMessage(
+            "Назва екрану не має починатися з цифри та бути \'Screen\' або \'screen\'."),
+        "wrongScreenNameTitle":
+            MessageLookupByLibrary.simpleMessage("Невірна назва екрану"),
         "yes": MessageLookupByLibrary.simpleMessage("Так")
       };
 }

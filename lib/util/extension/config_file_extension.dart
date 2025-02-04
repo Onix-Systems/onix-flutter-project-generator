@@ -25,7 +25,7 @@ extension ConfigFileExtension on File {
         'firebase_auth': config.firebaseAuth,
         'platforms': config.platformsList.toString().replaceAll(' ', ''),
         'theme_generate': config.theming.name == 'themeTailor',
-        'branch': config.branch,
+        'branch': config.branchConfig.branch,
         'screen_util': config.useScreenUtil,
         'state_management': config.stateManager.name,
         'sentry': config.sentry,

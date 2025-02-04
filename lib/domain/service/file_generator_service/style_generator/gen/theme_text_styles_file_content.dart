@@ -26,43 +26,57 @@ class ThemeTextStylesFileContent
   }) {
     textStyles.sort((a, b) => a.name.compareTo(b.name));
     final styles = textStyles.where((element) => element.validate()).toList();
-    final codeLines = List<String>.empty(growable: true);
-    codeLines.add(
-        'import \'package:$projectName/presentation/style/app_colors.dart\';');
-    codeLines.add('import \'package:flutter/material.dart\';');
+    final codeLines = List<String>.empty(growable: true)
+      ..add(
+        "import 'package:$projectName/presentation/style/app_colors.dart';",
+      )
+      ..add("import 'package:flutter/material.dart';");
     if (useScreenUtil) {
       codeLines.add(
-          'import \'package:flutter_screenutil/flutter_screenutil.dart\';');
+        "import 'package:flutter_screenutil/flutter_screenutil.dart';",
+      );
     }
-    codeLines.addNewLine();
     codeLines
-        .add('class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {');
+      ..addNewLine()
+      ..add('class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {')
 
-    ///Light constructor
-    codeLines.add(
-        'factory ThemeTextStyles.light() => ${useScreenUtil ? '' : 'const'} ThemeTextStyles(');
+      ///Light constructor
+      ..add(
+        'factory ThemeTextStyles.light() => ${useScreenUtil ? '' : 'const'} ThemeTextStyles(',
+      );
     final lightColorsDeclarations = styles.map(
       (e) {
         return _getTextStyleDeclarations(
-            StyleGeneratorConst.lightColorSuffix, e, useScreenUtil, colors);
+          StyleGeneratorConst.lightColorSuffix,
+          e,
+          useScreenUtil,
+          colors,
+        );
       },
     ).toList();
-    codeLines.addAll(lightColorsDeclarations);
-    codeLines.add(');');
-    codeLines.addNewLine();
+    codeLines
+      ..addAll(lightColorsDeclarations)
+      ..add(');')
+      ..addNewLine()
 
-    ///Dark constructor
-    codeLines.add(
-        ' factory ThemeTextStyles.dark() => ${useScreenUtil ? '' : 'const'} ThemeTextStyles(');
+      ///Dark constructor
+      ..add(
+        ' factory ThemeTextStyles.dark() => ${useScreenUtil ? '' : 'const'} ThemeTextStyles(',
+      );
     final darkColorsDeclarations = styles.map(
       (e) {
         return _getTextStyleDeclarations(
-            StyleGeneratorConst.darkColorSuffix, e, useScreenUtil, colors);
+          StyleGeneratorConst.darkColorSuffix,
+          e,
+          useScreenUtil,
+          colors,
+        );
       },
     ).toList();
-    codeLines.addAll(darkColorsDeclarations);
-    codeLines.add(');');
-    codeLines.addNewLine();
+    codeLines
+      ..addAll(darkColorsDeclarations)
+      ..add(');')
+      ..addNewLine();
 
     ///Variables declaration
     final variables = styles
@@ -70,56 +84,62 @@ class ThemeTextStylesFileContent
           (e) => 'final TextStyle? ${e.name};',
         )
         .toList();
-    codeLines.addAll(variables);
-    codeLines.addNewLine();
+    codeLines
+      ..addAll(variables)
+      ..addNewLine()
 
-    ///Default constructor
-    codeLines.add(' const ThemeTextStyles({');
-    final constructorVaribles = styles
+      ///Default constructor
+      ..add(' const ThemeTextStyles({');
+    final constructorVariables = styles
         .map(
           (e) => 'this.${e.name},',
         )
         .toList();
-    codeLines.addAll(constructorVaribles);
-    codeLines.add('});');
-    codeLines.addNewLine();
+    codeLines
+      ..addAll(constructorVariables)
+      ..add('});')
+      ..addNewLine()
 
-    ///Copy with function
-    codeLines.add('@override');
-    codeLines.add('ThemeExtension<ThemeTextStyles> copyWith({');
+      ///Copy with function
+      ..add('@override')
+      ..add('ThemeExtension<ThemeTextStyles> copyWith({');
     final copyWithConstructor = styles
         .map(
           (e) => 'TextStyle? ${e.name},',
         )
         .toList();
-    codeLines.addAll(copyWithConstructor);
-    codeLines.add('}) {');
-    codeLines.add('return ThemeTextStyles(');
+    codeLines
+      ..addAll(copyWithConstructor)
+      ..add('}) {')
+      ..add('return ThemeTextStyles(');
     final copyWithVariables = styles
         .map(
           (e) => '${e.name}: ${e.name} ?? this.${e.name},',
         )
         .toList();
-    codeLines.addAll(copyWithVariables);
-    codeLines.add(');}');
-    codeLines.addNewLine();
+    codeLines
+      ..addAll(copyWithVariables)
+      ..add(');}')
+      ..addNewLine()
 
-    ///Lerp function
-    codeLines.add('@override');
-    codeLines.add(
-        'ThemeExtension<ThemeTextStyles> lerp(ThemeExtension<ThemeTextStyles>? other,double t,) {');
-    codeLines.add('if (other is! ThemeTextStyles) {');
-    codeLines.add('return this;');
-    codeLines.add('}');
-    codeLines.add('return ThemeTextStyles(');
+      ///Lerp function
+      ..add('@override')
+      ..add(
+        'ThemeExtension<ThemeTextStyles> lerp(ThemeExtension<ThemeTextStyles>? other,double t,) {',
+      )
+      ..add('if (other is! ThemeTextStyles) {')
+      ..add('return this;')
+      ..add('}')
+      ..add('return ThemeTextStyles(');
     final lerpVariables = styles
         .map(
           (e) => '${e.name}: TextStyle.lerp(${e.name}, other.${e.name}, t),',
         )
         .toList();
-    codeLines.addAll(lerpVariables);
-    codeLines.add(');}}');
-    codeLines.addNewLine();
+    codeLines
+      ..addAll(lerpVariables)
+      ..add(');}}')
+      ..addNewLine();
 
     return codeLines.join('\n');
   }
@@ -130,15 +150,15 @@ class ThemeTextStylesFileContent
     bool useScreenUtil,
     List<AppColorStyle> colors,
   ) {
-    final codeLines = List<String>.empty(growable: true);
-    codeLines.add('${style.name}: TextStyle(');
-    codeLines.add(style.fontFamily.isNotEmpty
-        ? 'fontFamily: \'${style.fontFamily}\','
-        : '');
-    codeLines.add('fontSize: ${style.fontSize}${useScreenUtil ? '.sp' : ''},');
-    codeLines.add('fontWeight: FontWeight.w${style.fontWeight},');
-    codeLines.add('${_getColor(colors, '${style.name}$colorType')},');
-    codeLines.add('),');
+    final codeLines = List<String>.empty(growable: true)
+      ..add('${style.name}: TextStyle(')
+      ..add(
+        style.fontFamily.isNotEmpty ? "fontFamily: '${style.fontFamily}'," : '',
+      )
+      ..add('fontSize: ${style.fontSize}${useScreenUtil ? '.sp' : ''},')
+      ..add('fontWeight: FontWeight.w${style.fontWeight},')
+      ..add('${_getColor(colors, '${style.name}$colorType')},')
+      ..add('),');
     return codeLines.join('\n');
   }
 

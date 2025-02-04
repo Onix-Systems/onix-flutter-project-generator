@@ -279,6 +279,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "DEV & PROD flavors will be added automatically"),
         "withComponents":
             MessageLookupByLibrary.simpleMessage("With components"),
+        "wrongScreenNameContent": MessageLookupByLibrary.simpleMessage(
+            "Screen name must not start with numbers and must not be equal \'Screen\' or \'screen\'."),
+        "wrongScreenNameTitle":
+            MessageLookupByLibrary.simpleMessage("Wrong screen name"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

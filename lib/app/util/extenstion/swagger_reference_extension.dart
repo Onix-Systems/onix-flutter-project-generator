@@ -12,6 +12,7 @@ extension SwaggerReferenceExtenson on SwaggerReference {
   String getReferenceMapperDeclaration({bool private = true}) {
     final name = getTypeDeclaration(DataFileType.none);
     final visibilitySymbol = private ? '_' : '';
-    return 'final $visibilitySymbol${name.camelCase}Mappers = ${name}Mappers();';
+    return 'final $visibilitySymbol${name.camelCase}'
+        'Mappers = ${name}Mappers();';
   }
 }

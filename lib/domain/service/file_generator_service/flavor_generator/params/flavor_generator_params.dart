@@ -16,6 +16,7 @@ class FlavorGeneratorParams implements BaseGenerationParams {
 
   @override
   String toString() {
-    return 'projectFolder: $projectFolder,\nflavors: $flavors,\nseparateFromBrick: $separateFromBrick';
+    return 'projectFolder: $projectFolder,\nflavors: $flavors,'
+        '\nseparateFromBrick: $separateFromBrick';
   }
 }

@@ -14,6 +14,8 @@ sealed class SwaggerType {
     return getTypeDeclaration(DataFileType.none);
   }
 
+  String getName();
+
   String getTypeDeclaration(DataFileType fileType);
 
   String getDefaultParserClosure(DataFileType fileType);
@@ -46,6 +48,9 @@ class SwaggerVariable extends SwaggerType {
   });
 
   @override
+  String getName() => type;
+
+  @override
   String getTypeDeclaration(DataFileType fileType) => type.toSwaggerDartType();
 
   @override
@@ -73,6 +78,9 @@ class SwaggerReference extends SwaggerType {
     this.reference, {
     super.from,
   });
+
+  @override
+  String getName() => reference;
 
   @override
   String getTypeDeclaration(DataFileType fileType) {
@@ -139,6 +147,9 @@ class SwaggerArray extends SwaggerType {
   });
 
   @override
+  String getName() => itemType.name;
+
+  @override
   String getTypeDeclaration(DataFileType fileType) =>
       'List<${itemType.type.getTypeDeclaration(fileType)}>';
 
@@ -148,12 +159,15 @@ class SwaggerArray extends SwaggerType {
       final codeLines = List<String>.empty(growable: true)
         ..add('final jsonItems = response.data as List<dynamic>;')
         ..add(
-          'final items = jsonItems.map((e) => ${itemType.type.getTypeDeclaration(fileType)}.fromJson(e  as Map<String,dynamic>),).toList();',
+          'final items = jsonItems.map((e) => '
+          '${itemType.type.getTypeDeclaration(fileType)}.fromJson(e '
+          'as Map<String,dynamic>),).toList();',
         )
         ..add('return items;');
       return codeLines.join('\n');
     } else {
-      return 'return response.data as List<${itemType.type.getTypeDeclaration(fileType)}>;';
+      return 'return response.data as '
+          'List<${itemType.type.getTypeDeclaration(fileType)}>;';
     }
   }
 
@@ -185,12 +199,19 @@ class SwaggerEnum extends SwaggerType {
   });
 
   @override
-  String getTypeDeclaration(DataFileType fileType) =>
-      '${from.pascalCase}${name.pascalCase}Type';
+  String getName() => name;
+
+  @override
+  String getTypeDeclaration(DataFileType fileType) {
+    if (fileType == DataFileType.response || fileType == DataFileType.request) {
+      return 'String';
+    }
+    return '${from.pascalCase}${name.pascalCase}';
+  }
 
   @override
   String getDefaultParserClosure(DataFileType fileType) =>
-      'return ${getTypeDeclaration(fileType)}.${enumValues.first.camelCase}';
+      'return ${getTypeDeclaration(fileType)}.values.first';
 
   @override
   String? getFileImportName(DataFileType fileType, ArchType arch) {
@@ -199,12 +220,12 @@ class SwaggerEnum extends SwaggerType {
 
   @override
   String? getFileName(DataFileType fileType) {
-    return '${from.snakeCase}_${name.snakeCase}_type.dart';
+    return '${from.isNotEmpty ? '${from.snakeCase}_' : ''}${name.snakeCase}.dart';
   }
 
   @override
   String? getFileFolder(DataFileType fileType, ArchType arch) =>
-      'app/util/enums';
+      arch.getEnumPath();
 
   @override
   String? getDefaultReturnType(DataFileType fileType) =>
@@ -215,6 +236,9 @@ class SwaggerOperationDefault extends SwaggerType {
   final type = 'OperationStatus';
 
   @override
+  String getName() => type;
+
+  @override
   String getTypeDeclaration(DataFileType fileType) => type;
 
   @override
@@ -222,8 +246,8 @@ class SwaggerOperationDefault extends SwaggerType {
       'return OperationStatus.success;';
 
   @override
-  String? getFileImportName(DataFileType fileType, ArchType arch) =>
-      '${getFileFolder(fileType, arch)}/${getFileName(fileType)}';
+  String? getFileImportName(DataFileType fileType, ArchType arch) => null;
+  // '${getFileFolder(fileType, arch)}/${getFileName(fileType)}';
 
   @override
   String? getFileName(DataFileType fileType) => 'onix_flutter_core.dart';
@@ -238,7 +262,10 @@ class SwaggerOperationDefault extends SwaggerType {
 
   @override
   String? getFullFileImport(
-      String projectName, DataFileType fileType, ArchType arch) {
+    String projectName,
+    DataFileType fileType,
+    ArchType arch,
+  ) {
     final importName = getFileImportName(fileType, arch);
     if (importName == null) return null;
     return "import 'package:$importName';";
@@ -251,6 +278,9 @@ class SwaggerFile extends SwaggerType {
   SwaggerFile({
     super.from,
   });
+
+  @override
+  String getName() => type;
 
   @override
   String getTypeDeclaration(DataFileType fileType) => type;
@@ -269,4 +299,41 @@ class SwaggerFile extends SwaggerType {
 
   @override
   String? getDefaultReturnType(DataFileType fileType) => null;
+}
+
+class SwaggerAllOf extends SwaggerType {
+  final String name;
+  final List<SwaggerType> parameters;
+
+  SwaggerAllOf({
+    required this.name,
+    required this.parameters,
+    super.from,
+  });
+
+  @override
+  String getName() => name;
+
+  @override
+  String getDefaultParserClosure(DataFileType fileType) =>
+      parameters.first.getDefaultParserClosure(fileType);
+
+  @override
+  String? getDefaultReturnType(DataFileType fileType) =>
+      parameters.first.getDefaultReturnType(fileType);
+
+  @override
+  String? getFileFolder(DataFileType fileType, ArchType arch) =>
+      parameters.first.getFileFolder(fileType, arch);
+
+  @override
+  String? getFileImportName(DataFileType fileType, ArchType arch) =>
+      parameters.first.getFileImportName(fileType, arch);
+
+  @override
+  String? getFileName(DataFileType fileType) =>
+      parameters.first.getFileName(fileType);
+
+  @override
+  String getTypeDeclaration(DataFileType fileType) => name.pascalCase;
 }

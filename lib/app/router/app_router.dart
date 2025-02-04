@@ -1,5 +1,6 @@
 //@formatter:off
 import 'package:go_router/go_router.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/data_components_screen_v2.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/figma_styles_screen.dart';
@@ -75,7 +76,7 @@ class AppRouter {
           path: _procedureSelectionScreen,
           name: 'ProcedureSelectionScreen',
           builder: (context, state) => ProcedureSelectionScreen(
-            config: state.extra as Config,
+            branchConfig: state.extra as BranchConfig,
           ),
         ),
         GoRoute(

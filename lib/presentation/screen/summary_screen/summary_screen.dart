@@ -83,7 +83,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
                   ),
                   SummaryCell(
                     variable: S.of(context).masonBrickSource,
-                    value: state.config.branch,
+                    value: state.config.branchConfig.branch,
                   ),
                   SummaryCell(
                     variable: S.of(context).platforms,

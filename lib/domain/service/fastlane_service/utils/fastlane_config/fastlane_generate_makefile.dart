@@ -47,7 +47,8 @@ abstract final class FastlaneGenerateMakefile {
               MakefileLine(
                 name: 'build_android${lineName}with_distribution',
                 dependencies:
-                    'build_android${lineName}firebase_only build_android${lineName}store_only',
+                    'build_android${lineName}firebase_only build_android'
+                    '${lineName}store_only',
                 commands: [],
               ),
               MakefileLine(
@@ -179,7 +180,8 @@ abstract final class FastlaneGenerateMakefile {
             flavors.isNotEmpty ? '_${platform}_${flavor}_' : '_${platform}_';
 
         commandLines.add(
-          '@make build${platformWithFlavor}with_distribution -f Makefile_$platform.mk',
+          '@make build${platformWithFlavor}with_distribution -f '
+          'Makefile_$platform.mk',
         );
       }
 

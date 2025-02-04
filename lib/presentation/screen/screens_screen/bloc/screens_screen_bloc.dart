@@ -36,6 +36,11 @@ class ScreensScreenBloc
     if (screenRepository.exists(screenName: event.screen.name)) {
       addSr(const ScreensScreenSR.existsError());
     } else {
+      if (event.screen.name.isEmpty) {
+        addSr(const ScreensScreenSR.wrongNameError());
+        return;
+      }
+
       screenRepository.addScreen(screen: event.screen);
 
       emit(

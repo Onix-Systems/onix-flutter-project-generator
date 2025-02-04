@@ -45,7 +45,8 @@ class MvvmScreenCodeContent extends ScreenCodeContent {
       ..addNewLine()
       ..add('@override')
       ..add(
-          '${screenClassName}ViewModel createVm() => ${screenClassName}ViewModel();')
+        '${screenClassName}ViewModel createVm() => ${screenClassName}ViewModel();',
+      )
       ..addNewLine()
       ..add('@override')
       ..add('Widget build(BuildContext context) {')

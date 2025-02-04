@@ -3,6 +3,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.
 import 'package:onix_flutter_bricks/data/model/swagger/model/base_swagger_model_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v2.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 
 class SwaggerModelResponseV2 extends BaseSwaggerModelResponse {
@@ -21,7 +22,28 @@ class SwaggerModelResponseV2 extends BaseSwaggerModelResponse {
 
     var variables =
         List<BaseSwaggerModelVariableResponse>.empty(growable: true);
-    final type = json['type'];
+    var type = json['type'];
+
+    if (type == 'string' && json.containsKey('enum')) {
+      type = 'enum';
+    }
+
+    if (type == 'enum') {
+      final response = SwaggerModelResponseV2(
+        name: modelName,
+        type: type,
+        variables: [
+          SwaggerModelVariableResponseV2(
+            name: modelName,
+            type: SwaggerEnum(modelName, json.asStringList('enum')),
+            isRequired: true,
+          ),
+        ],
+      );
+
+      return response;
+    }
+
     final requiredVariables = (json.containsKey('required'))
         ? json.asStringList('required')
         : <String>[];

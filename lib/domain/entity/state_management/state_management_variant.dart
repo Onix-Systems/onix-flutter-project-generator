@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/bloc_screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/cubit_screen_generator.dart';
@@ -10,6 +11,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/stateful_screen_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/screen_generators/stateless_screen_generator.dart';
 
+@immutable
 sealed class StateManagementVariant {
   String get name;
 

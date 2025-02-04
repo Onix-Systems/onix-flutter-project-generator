@@ -87,7 +87,7 @@ class FastlaneService
     required PlatformEnvCreator creator,
     required bool isAndroid,
   }) async {
-    var bundleId = '${params.organization}.${params.projectName}';
+    final bundleId = '${params.organization}.${params.projectName}';
     final path = isAndroid
         ? '${_getProjectFullPath(params)}$_androidFastlane'
         : '${_getProjectFullPath(params)}$_iosFastlane';
@@ -223,12 +223,12 @@ class FastlaneService
               shouldBeCommented: true,
               key: 'provisioning_profile',
               comment:
-                  'If manual_codesign: true, be sure to specify the bundle_id and the name of the profile\'s provisions',
+                  "If manual_codesign: true, be sure to specify the bundle_id and the name of the profile's provisions",
               payload: {
                 'bundle_id': shouldAttachFlavor
                     ? '${params.organization}.${params.projectName}.$flavor'
                     : '${params.organization}.${params.projectName}',
-                'name': 'PROVISIONING_PROFILE_NAME'
+                'name': 'PROVISIONING_PROFILE_NAME',
               },
             ),
           ],
@@ -297,15 +297,13 @@ class FastlaneService
   }
 
   List<String> _generateSlackParams() {
-    final params = <String>[];
-    params
-      ..add(
-          'slack: # Don\'t forget to specify a SLACK_URL in the .env for each '
-          'flavor in the fastlane directory for each platform')
-      ..add('  username: Fastlane')
-      ..add('  send_when_error: false')
-      ..add('#   pretext: STRING')
-      ..add('#   icon_url: STRING_URL');
+    final params = <String>[
+      "slack: # Don't forget to specify a SLACK_URL in the .env for each flavor in the fastlane directory for each platform",
+      '  username: Fastlane',
+      '  send_when_error: false',
+      '#   pretext: STRING',
+      '#   icon_url: STRING_URL',
+    ];
     return params;
   }
 

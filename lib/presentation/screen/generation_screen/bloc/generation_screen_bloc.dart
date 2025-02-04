@@ -132,7 +132,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         workDir: state.config.projectPath,
         commands: [
           Commands.getDownloadBrickCodeCommand(
-            masonBrickBranch: state.config.branch,
+            masonBrickBranch: state.config.branchConfig.branch,
           ),
           Commands.getCompletedWithCode0Command(),
         ],
@@ -145,7 +145,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
           Commands.getMasonActivateCommand(),
           Commands.getMasonAddBrickCommand(
             projectPath: state.config.projectPath,
-            masonBrickBranch: state.config.branch,
+            masonBrickBranch: state.config.branchConfig.branch,
             brickArch: state.config.arch.name,
           ),
           Commands.getMasonMakeBrickCommand(
@@ -205,7 +205,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       );
     } else {
       final routerFile = File(
-          '${state.config.projectRootPath}/lib/app/router/app_router.dart');
+        '${state.config.projectRootPath}/lib/app/router/app_router.dart',
+      );
       var routerContent = routerFile.readAsStringSync();
 
       if (state.config.router == ProjectRouter.goRouter) {

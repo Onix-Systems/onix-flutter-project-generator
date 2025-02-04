@@ -15,7 +15,8 @@ class RunOsaScriptProcessUseCase {
       'osascript',
       [
         '-e',
-        '''tell application "Terminal"
+        '''
+tell application "Terminal"
   set T to do script "cd '$workDir' && flutterfire config"
 	set targetWindow to window 1
 	activate targetWindow

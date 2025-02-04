@@ -51,14 +51,16 @@ mixin BlocContentMixin on ScreenGenerationService {
       )
       ..addNewLine()
       ..add(
-          'class $className extends Base$stateManagementSuffix<$eventName$stateName, $srName> {');
+        'class $className extends Base$stateManagementSuffix<$eventName$stateName, $srName> {',
+      );
 
     final defaultStatePrefix =
         stateManagement == const BlocStateManagementVariant() ? '' : 'const ';
     final constructorSuffix =
         stateManagement == const BlocStateManagementVariant() ? ' {' : ';';
     codeLines.add(
-        '$className() : super($defaultStatePrefix$stateName())$constructorSuffix');
+      '$className() : super($defaultStatePrefix$stateName())$constructorSuffix',
+    );
     if (stateManagement == const BlocStateManagementVariant()) {
       codeLines
         ..add('on<${screenName.pascalCase}ScreenEventInit>(_onInit);')

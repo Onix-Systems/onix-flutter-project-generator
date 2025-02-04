@@ -3,7 +3,8 @@ import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.
 extension DynamicExtension on Map<String, dynamic> {
   List<String> asStringList(String key) {
     if (this[key] == null) return [];
-    return (this[key] as List<dynamic>).map((e) => e as String).toList();
+    //return (this[key] as List<dynamic>).map((e) => e as String).toList();
+    return (this[key] as List<dynamic>).map((e) => e.toString()).toList();
   }
 
   List<Map<String, dynamic>> asObjectList(String key) {

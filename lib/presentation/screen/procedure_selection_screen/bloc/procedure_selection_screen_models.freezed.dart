@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProcedureSelectionScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(BranchConfig branchConfig) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -33,7 +33,7 @@ mixin _$ProcedureSelectionScreenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(BranchConfig branchConfig)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -48,7 +48,7 @@ mixin _$ProcedureSelectionScreenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(BranchConfig branchConfig)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -158,9 +158,9 @@ abstract class _$$ProcedureSelectionScreenEventInitImplCopyWith<$Res> {
           $Res Function(_$ProcedureSelectionScreenEventInitImpl) then) =
       __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Config config});
+  $Res call({BranchConfig branchConfig});
 
-  $ConfigCopyWith<$Res> get config;
+  $BranchConfigCopyWith<$Res> get branchConfig;
 }
 
 /// @nodoc
@@ -178,13 +178,13 @@ class __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? config = null,
+    Object? branchConfig = null,
   }) {
     return _then(_$ProcedureSelectionScreenEventInitImpl(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
+      branchConfig: null == branchConfig
+          ? _value.branchConfig
+          : branchConfig // ignore: cast_nullable_to_non_nullable
+              as BranchConfig,
     ));
   }
 
@@ -192,9 +192,9 @@ class __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ConfigCopyWith<$Res> get config {
-    return $ConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value));
+  $BranchConfigCopyWith<$Res> get branchConfig {
+    return $BranchConfigCopyWith<$Res>(_value.branchConfig, (value) {
+      return _then(_value.copyWith(branchConfig: value));
     });
   }
 }
@@ -203,14 +203,14 @@ class __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<$Res>
 
 class _$ProcedureSelectionScreenEventInitImpl
     implements ProcedureSelectionScreenEventInit {
-  const _$ProcedureSelectionScreenEventInitImpl({required this.config});
+  const _$ProcedureSelectionScreenEventInitImpl({required this.branchConfig});
 
   @override
-  final Config config;
+  final BranchConfig branchConfig;
 
   @override
   String toString() {
-    return 'ProcedureSelectionScreenEvent.init(config: $config)';
+    return 'ProcedureSelectionScreenEvent.init(branchConfig: $branchConfig)';
   }
 
   @override
@@ -218,11 +218,12 @@ class _$ProcedureSelectionScreenEventInitImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProcedureSelectionScreenEventInitImpl &&
-            (identical(other.config, config) || other.config == config));
+            (identical(other.branchConfig, branchConfig) ||
+                other.branchConfig == branchConfig));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config);
+  int get hashCode => Object.hash(runtimeType, branchConfig);
 
   /// Create a copy of ProcedureSelectionScreenEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -237,7 +238,7 @@ class _$ProcedureSelectionScreenEventInitImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(BranchConfig branchConfig) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -249,13 +250,13 @@ class _$ProcedureSelectionScreenEventInitImpl
     required TResult Function() onOpenInStudio,
     required TResult Function() onFlavorizrOutputClose,
   }) {
-    return init(config);
+    return init(branchConfig);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(BranchConfig branchConfig)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -267,13 +268,13 @@ class _$ProcedureSelectionScreenEventInitImpl
     TResult? Function()? onOpenInStudio,
     TResult? Function()? onFlavorizrOutputClose,
   }) {
-    return init?.call(config);
+    return init?.call(branchConfig);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(BranchConfig branchConfig)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -287,7 +288,7 @@ class _$ProcedureSelectionScreenEventInitImpl
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(config);
+      return init(branchConfig);
     }
     return orElse();
   }
@@ -371,9 +372,10 @@ class _$ProcedureSelectionScreenEventInitImpl
 abstract class ProcedureSelectionScreenEventInit
     implements ProcedureSelectionScreenEvent {
   const factory ProcedureSelectionScreenEventInit(
-      {required final Config config}) = _$ProcedureSelectionScreenEventInitImpl;
+          {required final BranchConfig branchConfig}) =
+      _$ProcedureSelectionScreenEventInitImpl;
 
-  Config get config;
+  BranchConfig get branchConfig;
 
   /// Create a copy of ProcedureSelectionScreenEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -461,7 +463,7 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(BranchConfig branchConfig) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -479,7 +481,7 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(BranchConfig branchConfig)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -497,7 +499,7 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(BranchConfig branchConfig)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -687,7 +689,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(BranchConfig branchConfig) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -705,7 +707,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(BranchConfig branchConfig)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -723,7 +725,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(BranchConfig branchConfig)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -915,7 +917,7 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(BranchConfig branchConfig) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -933,7 +935,7 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(BranchConfig branchConfig)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -951,7 +953,7 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(BranchConfig branchConfig)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -1171,7 +1173,7 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(BranchConfig branchConfig) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -1189,7 +1191,7 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(BranchConfig branchConfig)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -1207,7 +1209,7 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(BranchConfig branchConfig)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -1418,7 +1420,7 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(BranchConfig branchConfig) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -1436,7 +1438,7 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(BranchConfig branchConfig)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -1454,7 +1456,7 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(BranchConfig branchConfig)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -1618,7 +1620,7 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(BranchConfig branchConfig) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -1636,7 +1638,7 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(BranchConfig branchConfig)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -1654,7 +1656,7 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(BranchConfig branchConfig)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -1809,7 +1811,7 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(BranchConfig branchConfig) init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -1827,7 +1829,7 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(BranchConfig branchConfig)? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -1845,7 +1847,7 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(BranchConfig branchConfig)? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,

@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_reference_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_reference.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
@@ -56,6 +57,9 @@ class SourceComponent with _$SourceComponent {
   String getRepoImplementationImport(String projectName) =>
       "import 'package:$projectName/data/repository/${name.snakeCase}/${name.snakeCase}_repository_impl.dart';";
 
+  String getEnumImport(String projectName, SwaggerType type) =>
+      "import 'package:$projectName/${arch.getEnumPath()}/${type.toString().snakeCase}.dart';";
+
   String getSourceDeclarationBody(String projectName) {
     final codeLines = List<String>.empty(growable: true);
 
@@ -89,7 +93,8 @@ class SourceComponent with _$SourceComponent {
     codeLines
       ..add(modelImports)
       ..add(
-        'class ${name.pascalCase}SourceImpl implements ${name.pascalCase}Source {',
+        'class ${name.pascalCase}SourceImpl '
+        'implements ${name.pascalCase}Source {',
       )
       ..addNewLine();
     for (final e in requests) {
@@ -98,10 +103,11 @@ class SourceComponent with _$SourceComponent {
     codeLines
       ..addNewLine()
       ..add('final ApiClient _apiClient;')
-      ..add('final InternalDioRequestProcessor _dioRequestProcessor;')
+      ..add('final RequestProcessor _dioRequestProcessor;')
       ..addNewLine()
       ..add(
-        'const ${name.pascalCase}SourceImpl(this._apiClient, this._dioRequestProcessor,);',
+        'const ${name.pascalCase}SourceImpl(this._apiClient, '
+        'this._dioRequestProcessor,);',
       )
       ..addNewLine();
     for (final e in requests) {
@@ -135,7 +141,10 @@ class SourceComponent with _$SourceComponent {
     return codeLines.join('\n');
   }
 
-  String getRepoImplementationBody(String projectName, ArchType arch) {
+  String getRepoImplementationBody(
+    String projectName,
+    ArchType arch,
+  ) {
     final codeLines = <String>{};
     final modelImports = _buildRepositoryImports(projectName, arch);
     codeLines
@@ -163,13 +172,49 @@ class SourceComponent with _$SourceComponent {
         }
       }
 
+      final miltipartBody = e.multipartBody;
+
+      if (miltipartBody.isNotEmpty) {
+        for (final multipart in miltipartBody) {
+          final requestReference = multipart.type.getSwaggerObjectReference();
+          if (requestReference != null) {
+            final importLine =
+                requestReference.getReferenceMapperImport(projectName, arch);
+            if (!mapperImports.contains(importLine)) {
+              mapperImports.add(importLine);
+            }
+          }
+        }
+      }
+
+      if (e.queryParams.isNotEmpty) {
+        for (final queryParam in e.queryParams) {
+          if (queryParam.type is SwaggerArray &&
+              (queryParam.type as SwaggerArray).itemType.type
+                  is SwaggerReference) {
+            final type = (queryParam.type as SwaggerArray)
+                .itemType
+                .type
+                .toString()
+                .snakeCase;
+            final importLine =
+                "import 'package:$projectName/data/mapper/$type/${type}_mapper.dart';";
+            if (!mapperImports.contains(importLine)) {
+              mapperImports.add(importLine);
+            }
+          }
+        }
+      }
+
       ///Add response mapper import
-      final responseReference = e.response.type.getSwaggerObjectReference();
-      if (responseReference != null) {
-        final importLine =
-            responseReference.getReferenceMapperImport(projectName, arch);
-        if (!mapperImports.contains(importLine)) {
-          mapperImports.add(importLine);
+      if (!e.response.isEnum) {
+        final responseReference = e.response.type.getSwaggerObjectReference();
+        if (responseReference != null) {
+          final importLine =
+              responseReference.getReferenceMapperImport(projectName, arch);
+          if (!mapperImports.contains(importLine)) {
+            mapperImports.add(importLine);
+          }
         }
       }
     }
@@ -197,16 +242,53 @@ class SourceComponent with _$SourceComponent {
         }
       }
 
+      final multipartBody = e.multipartBody;
+
+      if (multipartBody.isNotEmpty) {
+        for (final multipart in multipartBody) {
+          final requestReference = multipart.type.getSwaggerObjectReference();
+          if (requestReference != null) {
+            final mapperVariable =
+                requestReference.getReferenceMapperDeclaration();
+            if (!mapperVariables.contains(mapperVariable)) {
+              mapperVariables.add(mapperVariable);
+            }
+          }
+        }
+      }
+
+      if (e.queryParams.isNotEmpty) {
+        for (final queryParam in e.queryParams) {
+          if (queryParam.type is SwaggerArray &&
+              (queryParam.type as SwaggerArray).itemType.type
+                  is SwaggerReference) {
+            final reference = (queryParam.type as SwaggerArray)
+                .itemType
+                .type
+                .getSwaggerObjectReference();
+            if (reference != null) {
+              final mapperVariable = reference.getReferenceMapperDeclaration();
+              if (!mapperVariables.contains(mapperVariable)) {
+                mapperVariables.add(mapperVariable);
+              }
+            }
+          }
+        }
+      }
+
       ///Add response variable declaration
-      final responseReference = e.response.type.getSwaggerObjectReference();
-      if (responseReference != null) {
-        final mapperVariable =
-            responseReference.getReferenceMapperDeclaration();
-        if (!mapperVariables.contains(mapperVariable)) {
-          mapperVariables.add(mapperVariable);
+      if (!e.response.isEnum) {
+        final responseReference = e.response.type.getSwaggerObjectReference();
+        if (responseReference != null) {
+          final mapperVariable =
+              responseReference.getReferenceMapperDeclaration();
+          if (!mapperVariables.contains(mapperVariable)) {
+            mapperVariables.add(mapperVariable);
+          }
         }
       }
     }
+
     codeLines
       ..addAll(mapperVariables)
       ..add('${name.pascalCase}RepositoryImpl(this._${name.camelCase}Source,);')
@@ -230,10 +312,21 @@ class SourceComponent with _$SourceComponent {
     for (final request in requests) {
       ///build response imports
       ///Add response body import
-      final responseFileImport = request.response.type
-          .getFullFileImport(projectName, DataFileType.response, arch);
-      if (responseFileImport != null && !imports.contains(responseFileImport)) {
-        imports.add(responseFileImport);
+
+      if (request.response.isEnum) {
+        final import = getEnumImport(projectName, request.response.type);
+
+        if (!imports.contains(import)) {
+          imports.add(import);
+        }
+      } else {
+        final responseFileImport = request.response.type
+            .getFullFileImport(projectName, DataFileType.response, arch);
+
+        if (responseFileImport != null &&
+            !imports.contains(responseFileImport)) {
+          imports.add(responseFileImport);
+        }
       }
 
       ///Add request body import
@@ -248,10 +341,17 @@ class SourceComponent with _$SourceComponent {
       ///Add path params imports
       if (request.pathParams.isNotEmpty) {
         for (final e in request.pathParams) {
-          final import =
-              e.type.getFullFileImport(projectName, DataFileType.request, arch);
-          if (import != null && !imports.contains(import)) {
-            imports.add(import);
+          if (e.isEnum) {
+            final import = getEnumImport(projectName, e.type);
+            if (!imports.contains(import)) {
+              imports.add(import);
+            }
+          } else {
+            final import = e.type
+                .getFullFileImport(projectName, DataFileType.request, arch);
+            if (import != null && !imports.contains(import)) {
+              imports.add(import);
+            }
           }
         }
       }
@@ -259,10 +359,17 @@ class SourceComponent with _$SourceComponent {
       ///Add query params imports
       if (request.queryParams.isNotEmpty) {
         for (final e in request.queryParams) {
-          final import =
-              e.type.getFullFileImport(projectName, DataFileType.request, arch);
-          if (import != null && !imports.contains(import)) {
-            imports.add(import);
+          if (e.isEnum) {
+            final import = getEnumImport(projectName, e.type);
+            if (!imports.contains(import)) {
+              imports.add(import);
+            }
+          } else {
+            final import = e.type
+                .getFullFileImport(projectName, DataFileType.request, arch);
+            if (import != null && !imports.contains(import)) {
+              imports.add(import);
+            }
           }
         }
       }
@@ -285,7 +392,8 @@ class SourceComponent with _$SourceComponent {
     final imports = <String>{}
       ..add("import 'package:onix_flutter_core/onix_flutter_core.dart';")
       ..add(
-          "import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';")
+        "import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';",
+      )
       ..add(
         arch == ArchType.clean
             ? "import 'package:$projectName/core/arch/data/remote/dio/dio_server_error_mapper.dart';"
@@ -295,10 +403,18 @@ class SourceComponent with _$SourceComponent {
     for (final request in requests) {
       ///build response imports
       ///Add response body import
-      final responseFileImport = request.response.type
-          .getFullFileImport(projectName, DataFileType.entity, arch);
-      if (responseFileImport != null && !imports.contains(responseFileImport)) {
-        imports.add(responseFileImport);
+      if (request.response.isEnum) {
+        final import = getEnumImport(projectName, request.response.type);
+        if (!imports.contains(import)) {
+          imports.add(import);
+        }
+      } else {
+        final responseFileImport = request.response.type
+            .getFullFileImport(projectName, DataFileType.entity, arch);
+        if (responseFileImport != null &&
+            !imports.contains(responseFileImport)) {
+          imports.add(responseFileImport);
+        }
       }
 
       ///Add request body import
@@ -313,10 +429,17 @@ class SourceComponent with _$SourceComponent {
       ///Add path params imports
       if (request.pathParams.isNotEmpty) {
         for (final e in request.pathParams) {
-          final import =
-              e.type.getFullFileImport(projectName, DataFileType.entity, arch);
-          if (import != null && !imports.contains(import)) {
-            imports.add(import);
+          if (e.isEnum) {
+            final import = getEnumImport(projectName, e.type);
+            if (!imports.contains(import)) {
+              imports.add(import);
+            }
+          } else {
+            final import = e.type
+                .getFullFileImport(projectName, DataFileType.entity, arch);
+            if (import != null && !imports.contains(import)) {
+              imports.add(import);
+            }
           }
         }
       }
@@ -324,10 +447,17 @@ class SourceComponent with _$SourceComponent {
       ///Add query params imports
       if (request.queryParams.isNotEmpty) {
         for (final e in request.queryParams) {
-          final import =
-              e.type.getFullFileImport(projectName, DataFileType.entity, arch);
-          if (import != null && !imports.contains(import)) {
-            imports.add(import);
+          if (e.isEnum) {
+            final import = getEnumImport(projectName, e.type);
+            if (!imports.contains(import)) {
+              imports.add(import);
+            }
+          } else {
+            final import = e.type
+                .getFullFileImport(projectName, DataFileType.entity, arch);
+            if (import != null && !imports.contains(import)) {
+              imports.add(import);
+            }
           }
         }
       }

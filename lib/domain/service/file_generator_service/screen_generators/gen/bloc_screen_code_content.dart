@@ -41,7 +41,8 @@ class BlocScreenCodeContent extends ScreenCodeContent {
       ..addNewLine()
       ..add('@override')
       ..add(
-        'State<${screenClassName}Screen> createState() => _${screenClassName}ScreenState();',
+        'State<${screenClassName}Screen> createState() '
+        '=> _${screenClassName}ScreenState();',
       )
       ..add('}')
       ..addNewLine()

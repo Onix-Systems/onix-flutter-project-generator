@@ -1,6 +1,7 @@
 import 'package:onix_flutter_bricks/app/util/extenstion/content_key_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/dynamic_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
@@ -19,7 +20,9 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
     Map<String, dynamic> json,
     String from,
   ) {
-    final required = json.containsKey('required') ? json['required'] : false;
+    final required = json['required'] is bool
+        ? json['required'] as bool
+        : json.containsKey('required') && requiredVariables.contains(name);
 
     final rootType = _parseType(
       name,
@@ -39,6 +42,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
 
     if (json.containsKey('schema')) {
       final schema = json['schema'] as Map<String, dynamic>;
+
       final schemaType = _parseType(
         name,
         from,
@@ -55,7 +59,7 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       }
     } else if (json.containsKey('content')) {
       final content = json['content'] as Map<String, dynamic>;
-      Map<String, dynamic> validContent = {};
+      var validContent = <String, dynamic>{};
       content.forEach(
         (key, value) {
           if (key.isValidResponseContentKey()) {
@@ -66,6 +70,11 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
       if (validContent.isNotEmpty) {
         if (validContent.containsKey('schema')) {
           final schema = validContent['schema'] as Map<String, dynamic>;
+
+          if (schema.containsKey('allOf')) {
+            logger.f('allOf: ${schema['allOf']}');
+          }
+
           final contentSchemaType = _parseType(
             name,
             from,
@@ -102,7 +111,9 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
     if (json.containsKey('enum')) {
       final enumTypes = json.asStringList('enum');
       return SwaggerEnum(
-        name.clearEnumComponentName(),
+        name.clearEnumComponentName().isEmpty
+            ? name
+            : name.clearEnumComponentName(),
         enumTypes,
         from: from,
       );
@@ -114,16 +125,34 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
         requiredVariables,
         json,
       );
-    } else if (json.containsKey('\$ref')) {
+    } else if (json.containsKey(r'$ref')) {
       final typeValue =
-          (json['\$ref'] as String).split('/').last.clearDataComponentsName();
+          (json[r'$ref'] as String).split('/').last.clearDataComponentsName();
       return SwaggerReference(
         typeValue,
         from: from,
       );
+    } else if (json.containsKey('properties')) {
+      final properties = json['properties'] as Map<String, dynamic>;
+      final parsedVariables = _parseProperties(
+        name,
+        requiredVariables,
+        arch,
+        properties,
+      );
+
+      return SwaggerAllOf(
+        name: name,
+        parameters: parsedVariables
+            .map(
+              (e) => e.type,
+            )
+            .toList(),
+        from: from,
+      );
     } else if (json.containsKey('oneOf')) {
       final oneOf = json.asObjectList('oneOf');
-      final typeValue = (oneOf.first['\$ref'] as String)
+      final typeValue = (oneOf.first[r'$ref'] as String)
           .split('/')
           .last
           .clearDataComponentsName();
@@ -141,7 +170,52 @@ class SwaggerModelVariableResponseV3 extends BaseSwaggerModelVariableResponse {
         requiredVariables,
         anyOf.first,
       );
+    } else if (json.containsKey('allOf')) {
+      final parsedVariables = <SwaggerType>[];
+
+      for (final item in json.asObjectList('allOf')) {
+        final parsedType =
+            _parseType(name, from, arch, requiredVariables, item);
+
+        if (parsedType != null) {
+          parsedVariables.add(parsedType);
+        }
+      }
+
+      if (parsedVariables.length == 1) {
+        return parsedVariables.first;
+      }
+
+      return SwaggerAllOf(
+        name: name,
+        parameters: parsedVariables,
+        from: from,
+      );
     }
     return null;
+  }
+
+  static List<BaseSwaggerModelVariableResponse> _parseProperties(
+    String modelName,
+    List<String> requiredVariables,
+    ArchType arch,
+    Map<String, dynamic> properties,
+  ) {
+    final variables =
+        List<BaseSwaggerModelVariableResponse>.empty(growable: true);
+    properties.forEach(
+      (name, value) {
+        final contentJson = value as Map<String, dynamic>;
+        final swaggerVariable = SwaggerModelVariableResponseV3.fromJson(
+          name,
+          requiredVariables,
+          arch,
+          contentJson,
+          modelName,
+        );
+        variables.add(swaggerVariable);
+      },
+    );
+    return variables;
   }
 }

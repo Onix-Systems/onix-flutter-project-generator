@@ -984,32 +984,38 @@ mixin _$ScreensScreenSR {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() existsError,
+    required TResult Function() wrongNameError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? existsError,
+    TResult? Function()? wrongNameError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? existsError,
+    TResult Function()? wrongNameError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ExistsError value) existsError,
+    required TResult Function(_WrongNameError value) wrongNameError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ExistsError value)? existsError,
+    TResult? Function(_WrongNameError value)? wrongNameError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ExistsError value)? existsError,
+    TResult Function(_WrongNameError value)? wrongNameError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1078,6 +1084,7 @@ class _$ExistsErrorImpl implements _ExistsError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() existsError,
+    required TResult Function() wrongNameError,
   }) {
     return existsError();
   }
@@ -1086,6 +1093,7 @@ class _$ExistsErrorImpl implements _ExistsError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? existsError,
+    TResult? Function()? wrongNameError,
   }) {
     return existsError?.call();
   }
@@ -1094,6 +1102,7 @@ class _$ExistsErrorImpl implements _ExistsError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? existsError,
+    TResult Function()? wrongNameError,
     required TResult orElse(),
   }) {
     if (existsError != null) {
@@ -1106,6 +1115,7 @@ class _$ExistsErrorImpl implements _ExistsError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ExistsError value) existsError,
+    required TResult Function(_WrongNameError value) wrongNameError,
   }) {
     return existsError(this);
   }
@@ -1114,6 +1124,7 @@ class _$ExistsErrorImpl implements _ExistsError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ExistsError value)? existsError,
+    TResult? Function(_WrongNameError value)? wrongNameError,
   }) {
     return existsError?.call(this);
   }
@@ -1122,6 +1133,7 @@ class _$ExistsErrorImpl implements _ExistsError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ExistsError value)? existsError,
+    TResult Function(_WrongNameError value)? wrongNameError,
     required TResult orElse(),
   }) {
     if (existsError != null) {
@@ -1133,6 +1145,111 @@ class _$ExistsErrorImpl implements _ExistsError {
 
 abstract class _ExistsError implements ScreensScreenSR {
   const factory _ExistsError() = _$ExistsErrorImpl;
+}
+
+/// @nodoc
+abstract class _$$WrongNameErrorImplCopyWith<$Res> {
+  factory _$$WrongNameErrorImplCopyWith(_$WrongNameErrorImpl value,
+          $Res Function(_$WrongNameErrorImpl) then) =
+      __$$WrongNameErrorImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$WrongNameErrorImplCopyWithImpl<$Res>
+    extends _$ScreensScreenSRCopyWithImpl<$Res, _$WrongNameErrorImpl>
+    implements _$$WrongNameErrorImplCopyWith<$Res> {
+  __$$WrongNameErrorImplCopyWithImpl(
+      _$WrongNameErrorImpl _value, $Res Function(_$WrongNameErrorImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ScreensScreenSR
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$WrongNameErrorImpl implements _WrongNameError {
+  const _$WrongNameErrorImpl();
+
+  @override
+  String toString() {
+    return 'ScreensScreenSR.wrongNameError()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$WrongNameErrorImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() existsError,
+    required TResult Function() wrongNameError,
+  }) {
+    return wrongNameError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? existsError,
+    TResult? Function()? wrongNameError,
+  }) {
+    return wrongNameError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? existsError,
+    TResult Function()? wrongNameError,
+    required TResult orElse(),
+  }) {
+    if (wrongNameError != null) {
+      return wrongNameError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ExistsError value) existsError,
+    required TResult Function(_WrongNameError value) wrongNameError,
+  }) {
+    return wrongNameError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ExistsError value)? existsError,
+    TResult? Function(_WrongNameError value)? wrongNameError,
+  }) {
+    return wrongNameError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ExistsError value)? existsError,
+    TResult Function(_WrongNameError value)? wrongNameError,
+    required TResult orElse(),
+  }) {
+    if (wrongNameError != null) {
+      return wrongNameError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _WrongNameError implements ScreensScreenSR {
+  const factory _WrongNameError() = _$WrongNameErrorImpl;
 }
 
 /// @nodoc

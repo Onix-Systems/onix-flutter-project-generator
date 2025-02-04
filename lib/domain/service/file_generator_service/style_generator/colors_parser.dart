@@ -51,11 +51,13 @@ class ColorsParser {
             ),
           ]);
         } else {
-          existingColors.add(AppColorStyle(
-            id: '',
-            name: name,
-            color: parsedColor,
-          ));
+          existingColors.add(
+            AppColorStyle(
+              id: '',
+              name: name,
+              color: parsedColor,
+            ),
+          );
         }
       }
     }
@@ -74,7 +76,11 @@ class ColorsParser {
     logger.f('parts: $parts');
 
     return Color.fromRGBO(
-        parts[0].toInt(), parts[1].toInt(), parts[2].toInt(), parts[3]);
+      parts[0].toInt(),
+      parts[1].toInt(),
+      parts[2].toInt(),
+      parts[3],
+    );
   }
 
   static Color _parseARGB(String color) {

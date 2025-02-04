@@ -50,7 +50,8 @@ mixin FlavorInjectorMixin
           lines
             ..add('      $platform:')
             ..add(
-                '        ${platform == 'android' ? 'applicationId' : 'bundleId'}: "$org.$projectName$packageSuffix"')
+              '        ${platform == 'android' ? 'applicationId' : 'bundleId'}: "$org.$projectName$packageSuffix"',
+            )
             ..add(
               isGenerated
                   ? '        icon: "flavor_assets/$flavor/launcher_icons/ic_launcher.png"'

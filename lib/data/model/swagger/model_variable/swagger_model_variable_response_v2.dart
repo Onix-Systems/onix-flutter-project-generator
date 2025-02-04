@@ -24,7 +24,9 @@ class SwaggerModelVariableResponseV2 extends BaseSwaggerModelVariableResponse {
     if (json.containsKey('enum')) {
       final enumTypes = json.asStringList('enum');
       type = SwaggerEnum(
-        name.clearEnumComponentName(),
+        name.clearEnumComponentName().isEmpty
+            ? name
+            : name.clearEnumComponentName(),
         enumTypes,
         from: from,
       );
@@ -36,9 +38,9 @@ class SwaggerModelVariableResponseV2 extends BaseSwaggerModelVariableResponse {
         requiredVariables,
         json,
       );
-    } else if (json.containsKey('\$ref')) {
+    } else if (json.containsKey(r'$ref')) {
       final typeValue =
-          (json['\$ref'] as String).split('/').last.clearDataComponentsName();
+          (json[r'$ref'] as String).split('/').last.clearDataComponentsName();
       type = SwaggerReference(
         typeValue,
         from: from,
@@ -53,7 +55,7 @@ class SwaggerModelVariableResponseV2 extends BaseSwaggerModelVariableResponse {
           json['schema'],
         );
       } else {
-        final typeValue = (json['schema']['\$ref'] as String)
+        final typeValue = (json['schema'][r'$ref'] as String)
             .split('/')
             .last
             .clearDataComponentsName();
@@ -67,7 +69,7 @@ class SwaggerModelVariableResponseV2 extends BaseSwaggerModelVariableResponse {
     return SwaggerModelVariableResponseV2(
       name: name,
       type: type ?? SwaggerOperationDefault(),
-      isRequired: (type == null) ? true : isRequired,
+      isRequired: type == null || isRequired,
     );
   }
 }

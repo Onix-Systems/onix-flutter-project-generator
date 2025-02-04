@@ -28,14 +28,18 @@ mixin RiverpodContentMixin on ScreenGenerationService {
     final codeLines = List<String>.empty(growable: true)
       ..add("import 'package:flutter_riverpod/flutter_riverpod.dart';")
       ..add(
-        "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/riverpod/$screenClassImport\_screen_state.dart';",
+        "import 'package:$projectName/presentation/screen/"
+        '${screenClassImport}_screen/riverpod/$screenClassImport'
+        "_screen_state.dart';",
       )
       ..addNewLine()
       ..add(
-        'class ${screenName.pascalCase}ScreenProvider extends StateNotifier<${screenName.pascalCase}ScreenState> {',
+        'class ${screenName.pascalCase}ScreenProvider extends '
+        'StateNotifier<${screenName.pascalCase}ScreenState> {',
       )
       ..add(
-        '${screenName.pascalCase}ScreenProvider() : super(const ${screenName.pascalCase}ScreenState()) {init();}',
+        '${screenName.pascalCase}ScreenProvider() : '
+        'super(const ${screenName.pascalCase}ScreenState()) {init();}',
       )
       ..addNewLine()
       ..add('void init() {')
@@ -63,7 +67,8 @@ mixin RiverpodContentMixin on ScreenGenerationService {
       ..addNewLine()
       ..add('@freezed')
       ..add(
-        'class ${screenModelName}ScreenState with _\$${screenModelName}ScreenState {',
+        'class ${screenModelName}ScreenState with '
+        '_\$${screenModelName}ScreenState {',
       )
       ..add('const factory ${screenModelName}ScreenState({')
       ..add('@Default(0) int count,')

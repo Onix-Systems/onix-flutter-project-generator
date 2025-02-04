@@ -28,7 +28,11 @@ abstract class BaseSwaggerModelResponse {
         return SwaggerModelResponseV2.fromJson(rawModelName, arch, json);
       case SwaggerVersionType.swagger3:
         return SwaggerModelResponseV3.fromJson(
-            rawModelName, arch, json, allObjects);
+          rawModelName,
+          arch,
+          json,
+          allObjects,
+        );
 
       case SwaggerVersionType.unsupported:
         return SwaggerModelResponseUnsupported.unsupported();
