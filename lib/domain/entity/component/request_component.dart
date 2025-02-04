@@ -429,35 +429,48 @@ class RequestComponent with _$RequestComponent {
     }
     if (queryParams.isNotEmpty) {
       for (final e in queryParams) {
+        final declaredName = e.getNameDeclaration();
+
         final nullable = e.isRequired ? '' : '?';
         if (e.type is SwaggerArray) {
           final array = e.type as SwaggerArray;
           if (array.itemType.type is SwaggerReference) {
             codeLines.add(
-              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}$nullable.map(_${array.itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList(),',
+              '$declaredName: $declaredName$nullable.map(_${array.itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList(),',
             );
           } else if (array.itemType.type is SwaggerEnum) {
             codeLines.add(
-              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}$nullable.map((e) => e.name).toList(),',
+              '$declaredName: $declaredName$nullable.map((e) => e.name).toList(),',
             );
           } else {
             codeLines.add(
-              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}$nullable,',
+              '$declaredName: $declaredName,',
             );
           }
-        } else if (e.type is SwaggerEnum) {
+        } else if (e.type is SwaggerEnum || e.isEnum) {
           codeLines.add(
-            '${e.getNameDeclaration()}: ${e.getNameDeclaration()}$nullable.name,',
+            '$declaredName: $declaredName$nullable.name,',
           );
         } else {
           codeLines.add(
-              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}$nullable,');
+            '$declaredName: $declaredName,',
+          );
         }
       }
     }
     if (pathParams.isNotEmpty) {
       for (final e in pathParams) {
-        codeLines.add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
+        final declaredName = e.getNameDeclaration();
+
+        if (e.type is SwaggerEnum || e.isEnum) {
+          codeLines.add(
+            '$declaredName: $declaredName.name,',
+          );
+        } else {
+          codeLines.add(
+            '$declaredName: $declaredName,',
+          );
+        }
       }
     }
     return codeLines.join('\n');
