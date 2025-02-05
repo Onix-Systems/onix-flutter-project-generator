@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
@@ -38,7 +39,8 @@ class StateSelector extends StatelessWidget {
               ),
               underline: const SizedBox(),
               alignment: Alignment.centerRight,
-              items: ProjectStateManager.values
+              items: state.config.arch
+                  .getSupportedStateManagers()
                   .map(
                     (e) => DropdownMenuItem(
                       value: e,
