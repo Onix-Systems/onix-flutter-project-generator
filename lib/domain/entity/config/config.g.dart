@@ -11,7 +11,7 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
           ? const BranchConfig()
           : BranchConfig.fromJson(json['branchConfig'] as Map<String, dynamic>),
       arch: $enumDecodeNullable(_$ArchTypeEnumMap, json['arch']) ??
-          ArchType.clean,
+          ArchType.basic,
       projectPath: json['projectPath'] as String? ?? '',
       projectName: json['projectName'] as String? ?? '',
       projectExists: json['projectExists'] as bool? ?? false,
