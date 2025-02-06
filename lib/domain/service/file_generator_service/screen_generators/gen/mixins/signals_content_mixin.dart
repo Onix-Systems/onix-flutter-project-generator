@@ -22,11 +22,11 @@ mixin SignalsContentMixin on ScreenGenerationService {
       ..add('}')
       ..addNewLine()
       ..add('void init() {')
-      ..add('//state = state.copyWith(count: state.count + 1);')
+      ..add('//counter = counter + 1;')
       ..add('}')
       ..addNewLine()
       ..add('//void increment() {')
-      ..add('//state = state.copyWith(count: state.count + 1);')
+      ..add('//counter = counter + 1;')
       ..add('//}')
       ..add('}');
 
