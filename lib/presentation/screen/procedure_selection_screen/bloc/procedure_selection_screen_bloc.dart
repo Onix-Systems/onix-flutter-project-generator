@@ -111,6 +111,8 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
       ..empty()
       ..addAll(screens: config.screens);
 
+    _clearSwaggerComponentsUseCase();
+
     emit(
       state.copyWith(
         config: config.copyWith(
