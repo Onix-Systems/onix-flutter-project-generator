@@ -48,6 +48,8 @@
 
 - **Added Backup for Standalone Signing Generator**: Included a backup mechanism for the standalone signing generator to ensure configuration changes can be reverted if necessary.
 
+- **Environment Security Enhanced**: flutter_dotenv package replaced with [envied](https://pub.dev/packages/envied) to provide more security to environment variables.
+
 - **Adding screens to existing project**: Adding screens to existing project functional is back. This allows you to add new screens during development with preffered state variant in less time.
 
 <p align="center">Open project. You will see previously generated screens</p>
