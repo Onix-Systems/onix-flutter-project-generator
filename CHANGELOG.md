@@ -3,7 +3,11 @@
 ## Changes since v1.3.0
 
 ### New Features
-- **Simplified Architecture**: A new, streamlined architecture has been added to improve the overall structure and maintainability of the project.
+- **Simplified Architecture**: A new, Basic architecture has been added to simplify project structure.
+This structure is a simplified layered architecture that follows the principles of feature separation but lacks explicit domain separation.
+	•	app/: Contains core application setup such as DI (dependency injection), localization, routing, services, and utilities.
+	•	data/: Includes the model, repository, and data source for API handling (Dio for networking).
+	•	presentation/: Contains UI-related components such as screens, styles, and common widgets.
 
 - **MVVM and Signals State Managers**: The MVVM (Model-View-ViewModel) pattern along with a state management system using Signals have been integrated to enhance data handling and UI responsiveness.
 
