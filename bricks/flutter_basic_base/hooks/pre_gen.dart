@@ -84,6 +84,9 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
     'genWeb': context.vars['platforms'].contains('web'),
     'genWindows': context.vars['platforms'].contains('windows'),
     'genMacos': context.vars['platforms'].contains('macos'),
+    'genLinux': context.vars['platforms'].contains('linux'),
+    'genMobile': context.vars['platforms'].contains('ios') ||
+        context.vars['platforms'].contains('android'),
   };
 }
 
