@@ -57,18 +57,18 @@ flutter_launcher_icons:
   android: {{genMobile}}
   ios: {{genMobile}}
   {{#genMobile}}remove_alpha_ios: true{{/genMobile}}
-    {{#genWeb}}web:
-      generate: true
-        image_path: "assets/launcher_icons/ic_launcher.png"{{/genWeb}}
-    {{#genWindows}}windows:
-      generate: true
-        image_path: "assets/launcher_icons/ic_launcher.png"{{/genWindows}}
-    {{#genMacos}}macos:
-      generate: true
-        image_path: "assets/launcher_icons/ic_launcher.png"{{/genMacos}}
-    {{#genLinux}}linux:
-      generate: true
-        image_path: "assets/launcher_icons/ic_launcher.png"{{/genLinux}}
+  {{#genWeb}}web:
+    generate: true
+      image_path: "assets/launcher_icons/ic_launcher.png"{{/genWeb}}
+  {{#genWindows}}windows:
+    generate: true
+      image_path: "assets/launcher_icons/ic_launcher.png"{{/genWindows}}
+  {{#genMacos}}macos:
+    generate: true
+      image_path: "assets/launcher_icons/ic_launcher.png"{{/genMacos}}
+  {{#genLinux}}linux:
+    generate: true
+      image_path: "assets/launcher_icons/ic_launcher.png"{{/genLinux}}
 {{/flavorizr}}
 
 {{^handLocalization}}flutter_intl:
