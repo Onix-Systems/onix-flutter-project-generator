@@ -54,19 +54,21 @@ flutter:
 {{^flavorizr}}
 flutter_launcher_icons:
   image_path: "assets/launcher_icons/ic_launcher.png"
-  android: true
-  ios: true
-  remove_alpha_ios: true
-  web:
+  android: {{genMobile}}
+  ios: {{genMobile}}
+  {{#genMobile}}remove_alpha_ios: true{{/genMobile}}
+  {{#genWeb}}web:
     generate: true
-    image_path: "assets/launcher_icons/ic_launcher.png"
-  windows:
+    image_path: "assets/launcher_icons/ic_launcher.png"{{/genWeb}}
+  {{#genWindows}}windows:
     generate: true
-    image_path: "assets/launcher_icons/ic_launcher.png"
-  macos:
+    image_path: "assets/launcher_icons/ic_launcher.png"{{/genWindows}}
+  {{#genMacos}}macos:
     generate: true
-    image_path: "assets/launcher_icons/ic_launcher.png"
-
+    image_path: "assets/launcher_icons/ic_launcher.png"{{/genMacos}}
+  {{#genLinux}}linux:
+    generate: true
+    image_path: "assets/launcher_icons/ic_launcher.png"{{/genLinux}}
 {{/flavorizr}}
 
 {{^handLocalization}}flutter_intl:

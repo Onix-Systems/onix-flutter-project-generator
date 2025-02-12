@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
+import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
+import 'package:onix_flutter_bricks/domain/entity/state_management/state_management_variant.dart';
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/enum/project_localization.dart';
@@ -128,7 +130,10 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
         ..f(event.stateManager.strategy.variants);
 
       final screens = state.config.screens.map((e) {
-        e.stateVariant = event.stateManager.strategy.variants.first;
+        if (e.stateVariant is! StatefulStateManagementVariant &&
+            e.stateVariant is! StatelessStateManagementVariant) {
+          e.stateVariant = event.stateManager.strategy.variants.first;
+        }
         return e;
       }).toSet();
 
@@ -244,10 +249,25 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventArchChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    final supportedStateManagers = event.arch.getSupportedStateManagers();
+    final stateManager =
+        supportedStateManagers.contains(state.config.stateManager)
+            ? state.config.stateManager
+            : supportedStateManagers.first;
+
+    if (stateManager != state.config.stateManager) {
+      add(
+        ProjectSettingsScreenEventStateManagerChange(
+          stateManager: stateManager,
+        ),
+      );
+    }
+
     emit(
       state.copyWith(
         config: state.config.copyWith(
           arch: event.arch,
+          stateManager: stateManager,
         ),
       ),
     );
@@ -265,5 +285,11 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     }
 
     return screensMatch;
+  }
+
+  bool screensMatchArch(ArchType arch) {
+    final supportedStateManagers = arch.getSupportedStateManagers();
+
+    return supportedStateManagers.contains(state.config.stateManager);
   }
 }

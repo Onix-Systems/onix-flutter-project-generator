@@ -1,5 +1,7 @@
 import 'package:collection/collection.dart';
+import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/path/base_swagger_path_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/swagger_response.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_request_type.dart';
@@ -27,11 +29,39 @@ class SwaggerMapper {
       final variables = e.variables.map(
         (variable) {
           final type = variable.type;
-          final isEnum = enums.any(
-            (element) =>
-                type is SwaggerReference &&
-                element.name.pascalCase == type.reference,
-          );
+          final isEnum = _isEnum(type, enums);
+
+          if (type is SwaggerArray) {
+            final arrayTypeIsEnum = _isEnum(type.itemType.type, enums);
+
+            if (arrayTypeIsEnum) {
+              final enumValues = enums
+                  .firstWhere(
+                    (element) =>
+                        element.name.pascalCase ==
+                        type.itemType.type.getName().pascalCase,
+                  )
+                  .type
+                  .enumValues;
+
+              return DataVariableComponent(
+                name: variable.name,
+                type: SwaggerArray(
+                  SwaggerModelVariableResponseV3(
+                    name: type.itemType.name,
+                    type: SwaggerEnum(
+                      type.itemType.name,
+                      enumValues,
+                    ),
+                    isRequired: type.itemType.isRequired,
+                  ),
+                ),
+                isRequired: variable.isRequired,
+                isEnum: isEnum,
+              );
+            }
+          }
+
           return DataVariableComponent(
             name: variable.name,
             type: type,
@@ -59,7 +89,7 @@ class SwaggerMapper {
         if (enumClass != null) {
           enumList.add(
             EnumParamComponent(
-              name: e.name,
+              name: e.getTypeDeclaration(DataFileType.entity),
               type: enumClass,
             ),
           );

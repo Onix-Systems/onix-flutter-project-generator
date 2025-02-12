@@ -68,17 +68,21 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
         arch,
         crossReferences,
         allOff,
+        allObjects,
       );
       variables.addAll(crossReferenceVariables);
     }
     if (json.containsKey('properties')) {
       final properties = json['properties'] as Map<String, dynamic>;
+
       final parsedVariables = _parseProperties(
         modelName,
         requiredVariables,
         arch,
         properties,
+        allObjects,
       );
+
       variables.addAll(parsedVariables);
     }
 
@@ -94,12 +98,14 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
     List<String> requiredVariables,
     ArchType arch,
     Map<String, dynamic> properties,
+    Map<String, dynamic> allObjects,
   ) {
     final variables =
         List<BaseSwaggerModelVariableResponse>.empty(growable: true);
     properties.forEach(
       (name, value) {
         final contentJson = value as Map<String, dynamic>;
+
         final swaggerVariable = SwaggerModelVariableResponseV3.fromJson(
           name,
           requiredVariables,
@@ -107,6 +113,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
           contentJson,
           modelName,
         );
+
         variables.add(swaggerVariable);
       },
     );
@@ -119,6 +126,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
     ArchType arch,
     List<BaseSwaggerModelResponse> crossReferences,
     List<Map<String, dynamic>> allOff,
+    Map<String, dynamic> allObjects,
   ) {
     final variables =
         List<BaseSwaggerModelVariableResponse>.empty(growable: true);
@@ -139,6 +147,7 @@ class SwaggerModelResponseV3 extends BaseSwaggerModelResponse {
           requiredVariables,
           arch,
           properties,
+          allObjects,
         );
         variables.addAll(parsedVariables);
       }

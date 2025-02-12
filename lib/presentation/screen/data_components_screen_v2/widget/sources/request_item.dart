@@ -95,7 +95,6 @@ class RequestItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
               ],
             ),
           ),

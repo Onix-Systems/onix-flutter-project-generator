@@ -1,9 +1,11 @@
+import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
+
 enum ArchType {
   clean,
   basic;
 }
 
-extension Path on ArchType {
+extension ArchTypeX on ArchType {
   String getDiPath() {
     switch (this) {
       case ArchType.clean:
@@ -73,6 +75,28 @@ extension Path on ArchType {
         return 'app/util/enums';
       case ArchType.basic:
         return 'data/model/remote/enum';
+    }
+  }
+
+  List<ProjectStateManager> getSupportedStateManagers() {
+    switch (this) {
+      case ArchType.clean:
+        return [
+          ProjectStateManager.bloc,
+          ProjectStateManager.provider,
+          ProjectStateManager.riverpod,
+          ProjectStateManager.signals,
+          ProjectStateManager.base,
+        ];
+      case ArchType.basic:
+        return [
+          ProjectStateManager.bloc,
+          ProjectStateManager.provider,
+          ProjectStateManager.riverpod,
+          ProjectStateManager.signals,
+          ProjectStateManager.viewModel,
+          ProjectStateManager.base,
+        ];
     }
   }
 }

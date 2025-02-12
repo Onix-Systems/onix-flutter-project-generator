@@ -81,6 +81,12 @@ Future<Map<String, dynamic>> _initCustomVars(HookContext context) async {
     'sentry': context.vars['sentry'],
     'isBloc': context.vars['state_management'] == 'bloc',
     'isRiverpod': context.vars['state_management'] == 'riverpod',
+    'genWeb': context.vars['platforms'].contains('web'),
+    'genWindows': context.vars['platforms'].contains('windows'),
+    'genMacos': context.vars['platforms'].contains('macos'),
+    'genLinux': context.vars['platforms'].contains('linux'),
+    'genMobile': context.vars['platforms'].contains('ios') ||
+        context.vars['platforms'].contains('android'),
   };
 }
 

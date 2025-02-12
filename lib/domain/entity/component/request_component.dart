@@ -44,6 +44,7 @@ class RequestComponent with _$RequestComponent {
           return e.getParamBodyDeclaration(
             e.isEnum ? DataFileType.none : DataFileType.request,
             isRequiredRequestBody: true,
+            forSource: true,
           );
         },
       ).join('\n');
@@ -52,11 +53,7 @@ class RequestComponent with _$RequestComponent {
 
       var pathWithParams = path;
       for (final e in pathParams) {
-        var name = e.name;
-
-        if (e.isEnum) {
-          name = '{$name.name}';
-        }
+        final name = e.name;
 
         pathWithParams = pathWithParams.replaceAll('{${e.name}}', '\$$name');
       }
@@ -79,7 +76,7 @@ class RequestComponent with _$RequestComponent {
         .add('Future<DataResponse<$responseType>> ${operationId.camelCase}(');
 
     ///Create function input params
-    final functionParams = _buildFunctionParams(DataFileType.request);
+    final functionParams = _buildFunctionParams(DataFileType.request, true);
     if (functionParams.isNotEmpty) {
       codeLines.add('{');
     }
@@ -112,7 +109,7 @@ class RequestComponent with _$RequestComponent {
       );
 
     ///Create function input params
-    final functionParams = _buildFunctionParams(DataFileType.request);
+    final functionParams = _buildFunctionParams(DataFileType.request, true);
     if (functionParams.isNotEmpty) {
       codeLines.add('{');
     }
@@ -152,7 +149,7 @@ class RequestComponent with _$RequestComponent {
       codeLines.add('final queryParams = {');
       for (final e in queryParams) {
         codeLines.add(
-          "'${e.name}': ${e.getNameDeclaration()}${e.isEnum ? '?.name' : ''},",
+          "'${e.name}': ${e.getNameDeclaration()},",
         );
       }
       codeLines
@@ -223,7 +220,7 @@ class RequestComponent with _$RequestComponent {
       ..add('Future<Result<$returnType>> ${operationId.camelCase}(');
 
     ///Create function input params
-    final functionParams = _buildFunctionParams(DataFileType.entity);
+    final functionParams = _buildFunctionParams(DataFileType.entity, false);
     if (functionParams.isNotEmpty) {
       codeLines.add('{');
     }
@@ -235,7 +232,9 @@ class RequestComponent with _$RequestComponent {
     return codeLines.join('\n');
   }
 
-  String getRepoImplementationBody(String repoName) {
+  String getRepoImplementationBody(
+    String repoName,
+  ) {
     final returnType = response.type.getTypeDeclaration(DataFileType.entity);
     final codeLines = List<String>.empty(growable: true)
       ..add('@override')
@@ -243,7 +242,7 @@ class RequestComponent with _$RequestComponent {
       ..add('Future<Result<$returnType>> ${operationId.camelCase}(');
 
     ///Create function input params
-    final functionParams = _buildFunctionParams(DataFileType.entity);
+    final functionParams = _buildFunctionParams(DataFileType.entity, false);
     if (functionParams.isNotEmpty) {
       codeLines.add('{');
     }
@@ -333,13 +332,14 @@ class RequestComponent with _$RequestComponent {
   }
 
   ///Build function input parameters
-  String _buildFunctionParams(DataFileType fileType) {
+  String _buildFunctionParams(DataFileType fileType, bool forSource) {
     final codeLines = List<String>.empty(growable: true);
     if (requestBody != null) {
       codeLines.add(
         requestBody?.getParamBodyDeclaration(
               fileType,
               isRequiredRequestBody: true,
+              forSource: forSource,
             ) ??
             '',
       );
@@ -350,6 +350,7 @@ class RequestComponent with _$RequestComponent {
           e.getParamBodyDeclaration(
             fileType,
             isRequiredRequestBody: true,
+            forSource: forSource,
           ),
         );
       }
@@ -358,8 +359,9 @@ class RequestComponent with _$RequestComponent {
       for (final e in queryParams) {
         codeLines.add(
           e.getParamBodyDeclaration(
-            e.isEnum ? DataFileType.none : fileType,
+            fileType,
             isRequiredRequestBody: false,
+            forSource: forSource,
           ),
         );
       }
@@ -368,8 +370,9 @@ class RequestComponent with _$RequestComponent {
       for (final e in pathParams) {
         codeLines.add(
           e.getParamBodyDeclaration(
-            e.isEnum ? DataFileType.none : fileType,
+            fileType,
             isRequiredRequestBody: false,
+            forSource: forSource,
           ),
         );
       }
@@ -379,7 +382,9 @@ class RequestComponent with _$RequestComponent {
     return codeLines.join('\n');
   }
 
-  String _buildSourceCallParams(DataFileType fileType) {
+  String _buildSourceCallParams(
+    DataFileType fileType,
+  ) {
     final codeLines = List<String>.empty(growable: true);
     if (requestBody != null) {
       final body = requestBody!;
@@ -401,15 +406,18 @@ class RequestComponent with _$RequestComponent {
     }
     if (multipartBody.isNotEmpty) {
       for (final e in multipartBody) {
-        codeLines.add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
-      }
-    }
-    if (queryParams.isNotEmpty) {
-      for (final e in queryParams) {
-        if (e.type is SwaggerArray &&
-            (e.type as SwaggerArray).itemType.type is SwaggerReference) {
+        final isObjectReference = e.type.isObjectReference();
+        final isEnum = e.type is SwaggerEnum;
+
+        if (isObjectReference) {
+          final ref = e.type.getSwaggerObjectReference();
+          if (ref != null) {
+            codeLines.add(
+                '${e.getNameDeclaration()}: _${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}),');
+          }
+        } else if (isEnum) {
           codeLines.add(
-            '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.map(_${(e.type as SwaggerArray).itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList(),',
+            '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.name,',
           );
         } else {
           codeLines
@@ -417,9 +425,50 @@ class RequestComponent with _$RequestComponent {
         }
       }
     }
+    if (queryParams.isNotEmpty) {
+      for (final e in queryParams) {
+        final declaredName = e.getNameDeclaration();
+
+        final nullable = e.isRequired ? '' : '?';
+        if (e.type is SwaggerArray) {
+          final array = e.type as SwaggerArray;
+          if (array.itemType.type is SwaggerReference) {
+            codeLines.add(
+              '$declaredName: $declaredName$nullable.map(_${array.itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList(),',
+            );
+          } else if (array.itemType.type is SwaggerEnum) {
+            codeLines.add(
+              '$declaredName: $declaredName$nullable.map((e) => e.name).toList(),',
+            );
+          } else {
+            codeLines.add(
+              '$declaredName: $declaredName,',
+            );
+          }
+        } else if (e.type is SwaggerEnum || e.isEnum) {
+          codeLines.add(
+            '$declaredName: $declaredName$nullable.name,',
+          );
+        } else {
+          codeLines.add(
+            '$declaredName: $declaredName,',
+          );
+        }
+      }
+    }
     if (pathParams.isNotEmpty) {
       for (final e in pathParams) {
-        codeLines.add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
+        final declaredName = e.getNameDeclaration();
+
+        if (e.type is SwaggerEnum || e.isEnum) {
+          codeLines.add(
+            '$declaredName: $declaredName.name,',
+          );
+        } else {
+          codeLines.add(
+            '$declaredName: $declaredName,',
+          );
+        }
       }
     }
     return codeLines.join('\n');

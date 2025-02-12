@@ -19,7 +19,7 @@ part 'config.g.dart';
 class Config with _$Config {
   const factory Config({
     @Default(BranchConfig()) BranchConfig branchConfig,
-    @Default(ArchType.clean) ArchType arch,
+    @Default(ArchType.basic) ArchType arch,
     @Default('') String projectPath,
     @Default('') String projectName,
     @Default(false) bool projectExists,

@@ -45,4 +45,10 @@ extension VariableNameExtension on String {
         replaceAll('/', ' ').replaceAll(RegExp(r'[^\s\w]'), '').snakeCase;
     return cleanFromSpaces;
   }
+
+  String clearOperationId() {
+    final cleanFromSpaces = pascalCase.replaceAll(RegExp(r'[^\s\w]'), '_');
+
+    return cleanFromSpaces;
+  }
 }

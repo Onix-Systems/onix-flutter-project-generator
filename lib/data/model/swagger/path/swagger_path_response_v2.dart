@@ -45,7 +45,7 @@ class SwaggerPathResponseV2 extends BaseSwaggerPathResponse {
     }
 
     if (json.containsKey('operationId')) {
-      operationId = json['operationId'];
+      operationId = json['operationId'].toString().clearOperationId();
     } else {
       operationId = '${type}_${path.clearPathToName()}'.camelCase;
     }

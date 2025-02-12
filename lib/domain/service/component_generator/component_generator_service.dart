@@ -167,8 +167,10 @@ class ComponentGeneratorService
     final repoImplFilePath =
         sourceComponent.getRepoImplementationFilePath(projectLibFolder);
 
-    final repoImplBody =
-        sourceComponent.getRepoImplementationBody(projectName, arch);
+    final repoImplBody = sourceComponent.getRepoImplementationBody(
+      projectName,
+      arch,
+    );
     await _createFile(filePath: repoImplFilePath, fileBody: repoImplBody);
 
     ///Create repos SL declarations

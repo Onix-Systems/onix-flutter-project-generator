@@ -14,6 +14,8 @@ sealed class SwaggerType {
     return getTypeDeclaration(DataFileType.none);
   }
 
+  String getName();
+
   String getTypeDeclaration(DataFileType fileType);
 
   String getDefaultParserClosure(DataFileType fileType);
@@ -46,6 +48,9 @@ class SwaggerVariable extends SwaggerType {
   });
 
   @override
+  String getName() => type;
+
+  @override
   String getTypeDeclaration(DataFileType fileType) => type.toSwaggerDartType();
 
   @override
@@ -73,6 +78,9 @@ class SwaggerReference extends SwaggerType {
     this.reference, {
     super.from,
   });
+
+  @override
+  String getName() => reference;
 
   @override
   String getTypeDeclaration(DataFileType fileType) {
@@ -139,6 +147,9 @@ class SwaggerArray extends SwaggerType {
   });
 
   @override
+  String getName() => itemType.name;
+
+  @override
   String getTypeDeclaration(DataFileType fileType) =>
       'List<${itemType.type.getTypeDeclaration(fileType)}>';
 
@@ -188,13 +199,19 @@ class SwaggerEnum extends SwaggerType {
   });
 
   @override
-  String getTypeDeclaration(DataFileType fileType) =>
-      //'${from.pascalCase}${name.pascalCase}Type';
-      '${from.pascalCase}${name.pascalCase}';
+  String getName() => name;
+
+  @override
+  String getTypeDeclaration(DataFileType fileType) {
+    if (fileType == DataFileType.response || fileType == DataFileType.request) {
+      return 'String';
+    }
+    return '${from.pascalCase}${name.pascalCase}';
+  }
 
   @override
   String getDefaultParserClosure(DataFileType fileType) =>
-      'return ${getTypeDeclaration(fileType)}.${enumValues.first.camelCase}';
+      'return ${getTypeDeclaration(fileType)}.values.first';
 
   @override
   String? getFileImportName(DataFileType fileType, ArchType arch) {
@@ -212,12 +229,14 @@ class SwaggerEnum extends SwaggerType {
 
   @override
   String? getDefaultReturnType(DataFileType fileType) =>
-      //'${getTypeDeclaration(fileType)}.${enumValues.first.camelCase}';
-      '${getTypeDeclaration(fileType)}.${enumValues.first}';
+      '${getTypeDeclaration(fileType)}.${enumValues.first.camelCase}';
 }
 
 class SwaggerOperationDefault extends SwaggerType {
   final type = 'OperationStatus';
+
+  @override
+  String getName() => type;
 
   @override
   String getTypeDeclaration(DataFileType fileType) => type;
@@ -261,6 +280,9 @@ class SwaggerFile extends SwaggerType {
   });
 
   @override
+  String getName() => type;
+
+  @override
   String getTypeDeclaration(DataFileType fileType) => type;
 
   @override
@@ -277,4 +299,41 @@ class SwaggerFile extends SwaggerType {
 
   @override
   String? getDefaultReturnType(DataFileType fileType) => null;
+}
+
+class SwaggerAllOf extends SwaggerType {
+  final String name;
+  final List<SwaggerType> parameters;
+
+  SwaggerAllOf({
+    required this.name,
+    required this.parameters,
+    super.from,
+  });
+
+  @override
+  String getName() => name;
+
+  @override
+  String getDefaultParserClosure(DataFileType fileType) =>
+      parameters.first.getDefaultParserClosure(fileType);
+
+  @override
+  String? getDefaultReturnType(DataFileType fileType) =>
+      parameters.first.getDefaultReturnType(fileType);
+
+  @override
+  String? getFileFolder(DataFileType fileType, ArchType arch) =>
+      parameters.first.getFileFolder(fileType, arch);
+
+  @override
+  String? getFileImportName(DataFileType fileType, ArchType arch) =>
+      parameters.first.getFileImportName(fileType, arch);
+
+  @override
+  String? getFileName(DataFileType fileType) =>
+      parameters.first.getFileName(fileType);
+
+  @override
+  String getTypeDeclaration(DataFileType fileType) => name.pascalCase;
 }

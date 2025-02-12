@@ -141,7 +141,10 @@ class SourceComponent with _$SourceComponent {
     return codeLines.join('\n');
   }
 
-  String getRepoImplementationBody(String projectName, ArchType arch) {
+  String getRepoImplementationBody(
+    String projectName,
+    ArchType arch,
+  ) {
     final codeLines = <String>{};
     final modelImports = _buildRepositoryImports(projectName, arch);
     codeLines
@@ -165,6 +168,21 @@ class SourceComponent with _$SourceComponent {
               requestReference.getReferenceMapperImport(projectName, arch);
           if (!mapperImports.contains(importLine)) {
             mapperImports.add(importLine);
+          }
+        }
+      }
+
+      final miltipartBody = e.multipartBody;
+
+      if (miltipartBody.isNotEmpty) {
+        for (final multipart in miltipartBody) {
+          final requestReference = multipart.type.getSwaggerObjectReference();
+          if (requestReference != null) {
+            final importLine =
+                requestReference.getReferenceMapperImport(projectName, arch);
+            if (!mapperImports.contains(importLine)) {
+              mapperImports.add(importLine);
+            }
           }
         }
       }
@@ -224,6 +242,21 @@ class SourceComponent with _$SourceComponent {
         }
       }
 
+      final multipartBody = e.multipartBody;
+
+      if (multipartBody.isNotEmpty) {
+        for (final multipart in multipartBody) {
+          final requestReference = multipart.type.getSwaggerObjectReference();
+          if (requestReference != null) {
+            final mapperVariable =
+                requestReference.getReferenceMapperDeclaration();
+            if (!mapperVariables.contains(mapperVariable)) {
+              mapperVariables.add(mapperVariable);
+            }
+          }
+        }
+      }
+
       if (e.queryParams.isNotEmpty) {
         for (final queryParam in e.queryParams) {
           if (queryParam.type is SwaggerArray &&
@@ -255,6 +288,7 @@ class SourceComponent with _$SourceComponent {
         }
       }
     }
+
     codeLines
       ..addAll(mapperVariables)
       ..add('${name.pascalCase}RepositoryImpl(this._${name.camelCase}Source,);')

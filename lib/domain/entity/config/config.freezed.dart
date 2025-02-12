@@ -424,7 +424,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
 class _$ConfigImpl extends _Config {
   const _$ConfigImpl(
       {this.branchConfig = const BranchConfig(),
-      this.arch = ArchType.clean,
+      this.arch = ArchType.basic,
       this.projectPath = '',
       this.projectName = '',
       this.projectExists = false,

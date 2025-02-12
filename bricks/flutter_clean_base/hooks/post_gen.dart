@@ -9,12 +9,12 @@ import 'package:tint/tint.dart';
 late String name;
 const flavorizrInjectKey = '#{flavorizer_injection_config}';
 
-const onix_flutter_core = 'onix_flutter_core: 0.0.6-beta.2';
+const onix_flutter_core = 'onix_flutter_core: 0.0.6-beta.4';
 const onix_flutter_core_models = 'onix_flutter_core_models: 0.0.3-beta.1';
 const onix_flutter_bloc = 'onix_flutter_bloc: 0.0.5-beta.1';
 const onix_flutter_provider = 'onix_flutter_provider: 0.0.3-beta.1';
 const onix_flutter_signals = 'onix_flutter_signals: 0.0.1';
-const onix_flutter_mvvm = 'onix_flutter_mvvm: 0.0.5';
+const onix_flutter_mvvm = 'onix_flutter_mvvm: 0.1.2';
 
 void run(HookContext context) async {
   name = context.vars['project_name'].toString().toSnakeCase;
@@ -159,7 +159,7 @@ Future<void> getDependencies(HookContext context) async {
   List<String> devDependencies = [
     'flutter_lints',
     'build_runner',
-    'freezed',
+    'freezed:2.5.7',
     'json_serializable',
     'import_sorter',
     'mockito',
@@ -226,7 +226,7 @@ Future<void> getDependencies(HookContext context) async {
   if (context.vars['handLocalization']) {
     await Process.run('dart', ['pub', 'global', 'activate', 'flutter_gen']);
   } else {
-    dependencies.addAll(['intl', 'intl_utils']);
+    dependencies.addAll(['intl', 'intl_utils:2.8.8']);
   }
 
   if (context.vars['graphql']) {

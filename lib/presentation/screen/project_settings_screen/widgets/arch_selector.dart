@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_models.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:recase/recase.dart';
 
 class ArchSelector extends StatelessWidget {
@@ -48,7 +49,24 @@ class ArchSelector extends StatelessWidget {
                   .toList(),
               onChanged: (arch) {
                 if (arch != null) {
-                  _onArchChange(arch: arch, bloc: bloc);
+                  if (arch != state.config.arch &&
+                      state.config.screens.isNotEmpty &&
+                      !bloc.screensMatchArch(arch)) {
+                    Dialogs.showOkCancelDialog(
+                      context: context,
+                      title: S.of(context).changeStateManagerError,
+                      content: Text(
+                        S.of(context).changeStateManagerErrorContent(
+                              state.config.stateManager.strategy.variants.first
+                                  .name,
+                            ),
+                        style: context.appTextStyles.fs18,
+                      ),
+                      onOk: () => _onArchChange(arch: arch, bloc: bloc),
+                    );
+                  } else {
+                    _onArchChange(arch: arch, bloc: bloc);
+                  }
                 }
               },
             ),
