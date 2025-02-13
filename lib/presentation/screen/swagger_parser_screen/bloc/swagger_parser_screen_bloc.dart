@@ -32,7 +32,8 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
   ) async {
     if (event.url.isEmpty) {
       emit(state.copyWith(config: state.config.copyWith(swaggerUrl: '')));
-      _clearSwaggerComponentsUseCase();
+      //TODO: implement existing components logic
+      //_clearSwaggerComponentsUseCase();
       addSr(const SwaggerParserScreenSR.onContinue());
       return;
     }

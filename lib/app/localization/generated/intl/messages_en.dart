@@ -179,6 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noDataComponents":
             MessageLookupByLibrary.simpleMessage("No data components"),
+        "noRequests": MessageLookupByLibrary.simpleMessage("No requests"),
         "nullable": MessageLookupByLibrary.simpleMessage("Nullable"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
@@ -248,6 +249,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sourceExistsError": m7,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),
+        "sourceNotFound":
+            MessageLookupByLibrary.simpleMessage("Source not found"),
         "sources": MessageLookupByLibrary.simpleMessage("Sources"),
         "spaceSeparated":
             MessageLookupByLibrary.simpleMessage("(space separated)"),

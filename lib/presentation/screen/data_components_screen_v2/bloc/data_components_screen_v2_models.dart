@@ -9,6 +9,19 @@ class DataComponentsScreenV2Event with _$DataComponentsScreenV2Event {
   const factory DataComponentsScreenV2Event.init({
     required Config config,
   }) = DataComponentsScreenV2IInit;
+
+  const factory DataComponentsScreenV2Event.addSource({
+    required String sourceName,
+  }) = DataComponentsScreenV2AddSource;
+
+  const factory DataComponentsScreenV2Event.editSourceName({
+    required String sourceName,
+    required String newName,
+  }) = DataComponentsScreenV2EditSourceName;
+
+  const factory DataComponentsScreenV2Event.deleteSource({
+    required String sourceName,
+  }) = DataComponentsScreenV2DeleteSource;
 }
 
 @freezed
@@ -22,6 +35,6 @@ class DataComponentsScreenV2SR with _$DataComponentsScreenV2SR {
 class DataComponentsScreenV2State with _$DataComponentsScreenV2State {
   const factory DataComponentsScreenV2State.data({
     required Config config,
-    Components? components,
+    required Components components,
   }) = DataComponentsScreenV2StateData;
 }

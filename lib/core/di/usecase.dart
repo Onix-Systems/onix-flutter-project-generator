@@ -24,7 +24,10 @@ import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.d
 import 'package:onix_flutter_bricks/domain/usecase/screen/clear_screens_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_source_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
@@ -111,6 +114,21 @@ void registerUseCases(GetIt getIt) {
     )
     ..registerFactory<GetSwaggerComponentsUseCase>(
       () => GetSwaggerComponentsUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<AddSourceUseCase>(
+      () => AddSourceUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<DeleteSourceUseCase>(
+      () => DeleteSourceUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<EditSourceNameUseCase>(
+      () => EditSourceNameUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     )

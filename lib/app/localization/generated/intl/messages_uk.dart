@@ -100,7 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Помилка читання файлу конфіга!"),
         "enterProjectName":
             MessageLookupByLibrary.simpleMessage("Введіть Ім\'я Проекту"),
-        "error": MessageLookupByLibrary.simpleMessage("Помілка"),
+        "error": MessageLookupByLibrary.simpleMessage("Помилка"),
         "exitLabel": MessageLookupByLibrary.simpleMessage("Вийти"),
         "fields": MessageLookupByLibrary.simpleMessage("Поля"),
         "figmaFileKey":
@@ -184,6 +184,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("Ні"),
         "noDataComponents":
             MessageLookupByLibrary.simpleMessage("Компоненти не знайдено"),
+        "noRequests": MessageLookupByLibrary.simpleMessage("Немає запитів"),
         "nullable": MessageLookupByLibrary.simpleMessage("Опціональне"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
@@ -197,7 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" Організаційний підрозділ"),
         "overwrite": MessageLookupByLibrary.simpleMessage("Перезаписати"),
         "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
-            "Не вдалося отримати компоненти Swagger. Спробуйте знову або зв\'яжіться з підтримкою, якщо не вдається оторимати компоненти."),
+            "Не вдалося отримати компоненти Swagger. Спробуйте знову або зв\'яжіться з підтримкою, якщо не вдається отримати компоненти."),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
             "Будь ласка, виберіть шлях до проекту"),
         "pathNotSelectedTitle":
@@ -254,6 +255,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sourceExistsError": m7,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Назва джерела"),
+        "sourceNotFound":
+            MessageLookupByLibrary.simpleMessage("Джерело не знайдено"),
         "sources": MessageLookupByLibrary.simpleMessage("Джерела"),
         "spaceSeparated":
             MessageLookupByLibrary.simpleMessage("(розділяти пробілами)"),

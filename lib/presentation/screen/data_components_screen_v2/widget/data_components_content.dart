@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
@@ -9,14 +10,19 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_view.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/section_header.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/sources/source_item_section.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class DataComponentsContent extends StatelessWidget {
   final Components components;
   final List<ObjectView> Function(SourceComponent) objectViews;
+  final ValueChanged<String> onEdit;
+  final ValueChanged<String> onDelete;
 
   const DataComponentsContent({
     required this.components,
     required this.objectViews,
+    required this.onEdit,
+    required this.onDelete,
     super.key,
   });
 
@@ -49,27 +55,39 @@ class DataComponentsContent extends StatelessWidget {
             return SourceItem(
               source: components.sources[index],
               objects: objectViews(components.sources[index]),
+              onEdit: () => onEdit(components.sources[index].name),
+              onDelete: () => onDelete(components.sources[index].name),
             );
           },
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 32)),
         const SliverToBoxAdapter(child: SectionHeader(title: 'Objects')),
-        SliverList.builder(
-          itemCount: dataComponents.length,
-          itemBuilder: (context, index) {
-            return ObjectItem(
-              object: dataComponents.firstWhere((e) {
-                if (e is DataObjectComponent) {
-                  return e.name == dataComponentNames[index];
-                }
-                if (e is EnumParamComponent) {
-                  return e.name == dataComponentNames[index];
-                }
-                return false;
-              }),
-            );
-          },
-        ),
+        if (dataComponents.isNotEmpty)
+          SliverList.builder(
+            itemCount: dataComponents.length,
+            itemBuilder: (context, index) {
+              return ObjectItem(
+                object: dataComponents.firstWhere((e) {
+                  if (e is DataObjectComponent) {
+                    return e.name == dataComponentNames[index];
+                  }
+                  if (e is EnumParamComponent) {
+                    return e.name == dataComponentNames[index];
+                  }
+                  return false;
+                }),
+              );
+            },
+          )
+        else
+          SliverToBoxAdapter(
+            child: Center(
+              child: Text(
+                S.of(context).noDataComponents,
+                style: context.appTextStyles.fs22,
+              ),
+            ),
+          ),
       ],
     );
   }

@@ -155,5 +155,7 @@
   "projectArch": "Project architecture",
   "overwrite": "Overwrite",
   "wrongScreenNameTitle": "Wrong screen name",
-  "wrongScreenNameContent": "Screen name must not start with numbers and must not be equal 'Screen' or 'screen'."
+  "wrongScreenNameContent": "Screen name must not start with numbers and must not be equal 'Screen' or 'screen'.",
+  "noRequests": "No requests",
+  "sourceNotFound": "Source not found"
 }

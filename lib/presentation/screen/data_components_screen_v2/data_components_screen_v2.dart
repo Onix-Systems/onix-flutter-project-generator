@@ -1,18 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/bloc/data_components_screen_v2_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/data_components_content.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class DataComponentsScreenV2 extends StatefulWidget {
   final Config config;
@@ -46,9 +51,27 @@ class _DataComponentsScreenState extends BaseState<
   }
 
   @override
+  void onFailure(BuildContext context, Failure failure) {
+    if (failure is SwaggerParserFailure) {
+      final message = failure.getTranslatedMessage(context);
+      onSR(context, DataComponentsScreenV2SR.error(message: message));
+    }
+    super.onFailure(context, failure);
+  }
+
+  @override
   Widget buildWidget(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: TitleBar(title: S.of(context).dataComponents),
+      navigationBar: TitleBar(
+        title: S.of(context).dataComponents,
+        actions: [
+          AppFilledButton(
+            label: S.of(context).addSource,
+            icon: Icons.add,
+            onPressed: () => _showAddEditSourceDialog(context),
+          ),
+        ],
+      ),
       child: blocBuilder(
         builder: (context, state) {
           final components = state.components;
@@ -57,13 +80,17 @@ class _DataComponentsScreenState extends BaseState<
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if (components == null) ...[
-                  const Delimiter.height(100),
-                  Material(
-                    color: Colors.transparent,
-                    child: Text(
-                      S.of(context).noDataComponents,
-                      style: const TextStyle(fontSize: 22),
+                if (components == Components.empty()) ...[
+                  const Gap(100),
+                  Expanded(
+                    child: Material(
+                      color: Colors.transparent,
+                      child: Center(
+                        child: Text(
+                          S.of(context).noDataComponents,
+                          style: const TextStyle(fontSize: 22),
+                        ),
+                      ),
                     ),
                   ),
                 ] else
@@ -82,6 +109,18 @@ class _DataComponentsScreenState extends BaseState<
                           components: components,
                           objectViews: (source) =>
                               blocOf(context).getSourceObjects(source),
+                          onEdit: (sourceName) {
+                            _showAddEditSourceDialog(
+                              context,
+                              sourceName: sourceName,
+                            );
+                          },
+                          onDelete: (sourceName) {
+                            _showDeleteSourceDialog(
+                              context,
+                              sourceName: sourceName,
+                            );
+                          },
                         ),
                       ),
                     ),
@@ -138,5 +177,60 @@ class _DataComponentsScreenState extends BaseState<
     state.config.projectExists
         ? widget.onGenerate?.call()
         : context.go(AppRouter.summaryScreen, extra: widget.config);
+  }
+
+  void _showAddEditSourceDialog(
+    BuildContext context, {
+    String sourceName = '',
+  }) {
+    final controller = TextEditingController();
+    if (sourceName.isNotEmpty) {
+      controller.text = sourceName;
+    }
+    Dialogs.showOkCancelDialog(
+      context: context,
+      title: S.of(context).addSource,
+      content: CupertinoTextField(
+        controller: controller,
+        style: context.appTextStyles.fs18,
+      ),
+      onOk: () {
+        if (controller.text.isEmpty) {
+          return;
+        }
+        if (sourceName.isNotEmpty) {
+          blocOf(context).add(
+            DataComponentsScreenV2Event.editSourceName(
+              sourceName: sourceName,
+              newName: controller.text,
+            ),
+          );
+        } else {
+          blocOf(context).add(
+            DataComponentsScreenV2Event.addSource(
+              sourceName: controller.text,
+            ),
+          );
+        }
+      },
+    );
+  }
+
+  void _showDeleteSourceDialog(
+    BuildContext context, {
+    required String sourceName,
+  }) {
+    Dialogs.showOkCancelDialog(
+      context: context,
+      title: S.of(context).sourceDeletingDialogTitle(sourceName),
+      content: const SizedBox(),
+      onOk: () {
+        blocOf(context).add(
+          DataComponentsScreenV2Event.deleteSource(
+            sourceName: sourceName,
+          ),
+        );
+      },
+    );
   }
 }
