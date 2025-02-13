@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
+import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
@@ -179,20 +182,26 @@ class _DataComponentsScreenState extends BaseState<
         : context.go(AppRouter.summaryScreen, extra: widget.config);
   }
 
-  void _showAddEditSourceDialog(
+  Future<void> _showAddEditSourceDialog(
     BuildContext context, {
     String sourceName = '',
-  }) {
+  }) async {
     final controller = TextEditingController();
     if (sourceName.isNotEmpty) {
       controller.text = sourceName;
     }
-    Dialogs.showOkCancelDialog(
+    await Dialogs.showOkCancelDialog(
       context: context,
       title: S.of(context).addSource,
       content: CupertinoTextField(
         controller: controller,
         style: context.appTextStyles.fs18,
+        inputFormatters: [
+          const FirstCharacterNotDigitFormatter(),
+          FilteringTextInputFormatter.allow(
+            AppConsts.digitsAndLatinLetters,
+          ),
+        ],
       ),
       onOk: () {
         if (controller.text.isEmpty) {
@@ -214,6 +223,7 @@ class _DataComponentsScreenState extends BaseState<
         }
       },
     );
+    controller.dispose();
   }
 
   void _showDeleteSourceDialog(

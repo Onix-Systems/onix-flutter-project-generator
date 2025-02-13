@@ -14,6 +14,7 @@ class EnumParamComponent with _$EnumParamComponent {
   const factory EnumParamComponent({
     required String name,
     required SwaggerEnum type,
+    @Default(true) bool fromSwagger,
   }) = _EnumParamComponent;
 
   String getFolderPath(String projectRoot, ArchType arch) =>

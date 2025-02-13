@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EnumParamComponent {
   String get name => throw _privateConstructorUsedError;
   SwaggerEnum get type => throw _privateConstructorUsedError;
+  bool get fromSwagger => throw _privateConstructorUsedError;
 
   /// Create a copy of EnumParamComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +33,7 @@ abstract class $EnumParamComponentCopyWith<$Res> {
           EnumParamComponent value, $Res Function(EnumParamComponent) then) =
       _$EnumParamComponentCopyWithImpl<$Res, EnumParamComponent>;
   @useResult
-  $Res call({String name, SwaggerEnum type});
+  $Res call({String name, SwaggerEnum type, bool fromSwagger});
 }
 
 /// @nodoc
@@ -52,6 +53,7 @@ class _$EnumParamComponentCopyWithImpl<$Res, $Val extends EnumParamComponent>
   $Res call({
     Object? name = null,
     Object? type = null,
+    Object? fromSwagger = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -62,6 +64,10 @@ class _$EnumParamComponentCopyWithImpl<$Res, $Val extends EnumParamComponent>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as SwaggerEnum,
+      fromSwagger: null == fromSwagger
+          ? _value.fromSwagger
+          : fromSwagger // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -74,7 +80,7 @@ abstract class _$$EnumParamComponentImplCopyWith<$Res>
       __$$EnumParamComponentImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, SwaggerEnum type});
+  $Res call({String name, SwaggerEnum type, bool fromSwagger});
 }
 
 /// @nodoc
@@ -92,6 +98,7 @@ class __$$EnumParamComponentImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? type = null,
+    Object? fromSwagger = null,
   }) {
     return _then(_$EnumParamComponentImpl(
       name: null == name
@@ -102,6 +109,10 @@ class __$$EnumParamComponentImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as SwaggerEnum,
+      fromSwagger: null == fromSwagger
+          ? _value.fromSwagger
+          : fromSwagger // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -109,17 +120,21 @@ class __$$EnumParamComponentImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$EnumParamComponentImpl extends _EnumParamComponent {
-  const _$EnumParamComponentImpl({required this.name, required this.type})
+  const _$EnumParamComponentImpl(
+      {required this.name, required this.type, this.fromSwagger = true})
       : super._();
 
   @override
   final String name;
   @override
   final SwaggerEnum type;
+  @override
+  @JsonKey()
+  final bool fromSwagger;
 
   @override
   String toString() {
-    return 'EnumParamComponent(name: $name, type: $type)';
+    return 'EnumParamComponent(name: $name, type: $type, fromSwagger: $fromSwagger)';
   }
 
   @override
@@ -128,11 +143,13 @@ class _$EnumParamComponentImpl extends _EnumParamComponent {
         (other.runtimeType == runtimeType &&
             other is _$EnumParamComponentImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.fromSwagger, fromSwagger) ||
+                other.fromSwagger == fromSwagger));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, type);
+  int get hashCode => Object.hash(runtimeType, name, type, fromSwagger);
 
   /// Create a copy of EnumParamComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -147,13 +164,16 @@ class _$EnumParamComponentImpl extends _EnumParamComponent {
 abstract class _EnumParamComponent extends EnumParamComponent {
   const factory _EnumParamComponent(
       {required final String name,
-      required final SwaggerEnum type}) = _$EnumParamComponentImpl;
+      required final SwaggerEnum type,
+      final bool fromSwagger}) = _$EnumParamComponentImpl;
   const _EnumParamComponent._() : super._();
 
   @override
   String get name;
   @override
   SwaggerEnum get type;
+  @override
+  bool get fromSwagger;
 
   /// Create a copy of EnumParamComponent
   /// with the given fields replaced by the non-null parameter values.

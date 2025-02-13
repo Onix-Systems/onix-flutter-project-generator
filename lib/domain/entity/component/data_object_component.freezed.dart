@@ -20,6 +20,7 @@ mixin _$DataObjectComponent {
   SwaggerReference get fileReference => throw _privateConstructorUsedError;
   List<DataVariableComponent> get variables =>
       throw _privateConstructorUsedError;
+  bool get fromSwagger => throw _privateConstructorUsedError;
 
   /// Create a copy of DataObjectComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -37,7 +38,8 @@ abstract class $DataObjectComponentCopyWith<$Res> {
   $Res call(
       {String name,
       SwaggerReference fileReference,
-      List<DataVariableComponent> variables});
+      List<DataVariableComponent> variables,
+      bool fromSwagger});
 }
 
 /// @nodoc
@@ -58,6 +60,7 @@ class _$DataObjectComponentCopyWithImpl<$Res, $Val extends DataObjectComponent>
     Object? name = null,
     Object? fileReference = null,
     Object? variables = null,
+    Object? fromSwagger = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -72,6 +75,10 @@ class _$DataObjectComponentCopyWithImpl<$Res, $Val extends DataObjectComponent>
           ? _value.variables
           : variables // ignore: cast_nullable_to_non_nullable
               as List<DataVariableComponent>,
+      fromSwagger: null == fromSwagger
+          ? _value.fromSwagger
+          : fromSwagger // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -87,7 +94,8 @@ abstract class _$$DataObjectComponentImplCopyWith<$Res>
   $Res call(
       {String name,
       SwaggerReference fileReference,
-      List<DataVariableComponent> variables});
+      List<DataVariableComponent> variables,
+      bool fromSwagger});
 }
 
 /// @nodoc
@@ -106,6 +114,7 @@ class __$$DataObjectComponentImplCopyWithImpl<$Res>
     Object? name = null,
     Object? fileReference = null,
     Object? variables = null,
+    Object? fromSwagger = null,
   }) {
     return _then(_$DataObjectComponentImpl(
       name: null == name
@@ -120,6 +129,10 @@ class __$$DataObjectComponentImplCopyWithImpl<$Res>
           ? _value._variables
           : variables // ignore: cast_nullable_to_non_nullable
               as List<DataVariableComponent>,
+      fromSwagger: null == fromSwagger
+          ? _value.fromSwagger
+          : fromSwagger // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -130,7 +143,8 @@ class _$DataObjectComponentImpl extends _DataObjectComponent {
   const _$DataObjectComponentImpl(
       {required this.name,
       required this.fileReference,
-      required final List<DataVariableComponent> variables})
+      required final List<DataVariableComponent> variables,
+      this.fromSwagger = true})
       : _variables = variables,
         super._();
 
@@ -147,8 +161,12 @@ class _$DataObjectComponentImpl extends _DataObjectComponent {
   }
 
   @override
+  @JsonKey()
+  final bool fromSwagger;
+
+  @override
   String toString() {
-    return 'DataObjectComponent(name: $name, fileReference: $fileReference, variables: $variables)';
+    return 'DataObjectComponent(name: $name, fileReference: $fileReference, variables: $variables, fromSwagger: $fromSwagger)';
   }
 
   @override
@@ -160,12 +178,14 @@ class _$DataObjectComponentImpl extends _DataObjectComponent {
             (identical(other.fileReference, fileReference) ||
                 other.fileReference == fileReference) &&
             const DeepCollectionEquality()
-                .equals(other._variables, _variables));
+                .equals(other._variables, _variables) &&
+            (identical(other.fromSwagger, fromSwagger) ||
+                other.fromSwagger == fromSwagger));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, name, fileReference,
-      const DeepCollectionEquality().hash(_variables));
+      const DeepCollectionEquality().hash(_variables), fromSwagger);
 
   /// Create a copy of DataObjectComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -179,10 +199,10 @@ class _$DataObjectComponentImpl extends _DataObjectComponent {
 
 abstract class _DataObjectComponent extends DataObjectComponent {
   const factory _DataObjectComponent(
-          {required final String name,
-          required final SwaggerReference fileReference,
-          required final List<DataVariableComponent> variables}) =
-      _$DataObjectComponentImpl;
+      {required final String name,
+      required final SwaggerReference fileReference,
+      required final List<DataVariableComponent> variables,
+      final bool fromSwagger}) = _$DataObjectComponentImpl;
   const _DataObjectComponent._() : super._();
 
   @override
@@ -191,6 +211,8 @@ abstract class _DataObjectComponent extends DataObjectComponent {
   SwaggerReference get fileReference;
   @override
   List<DataVariableComponent> get variables;
+  @override
+  bool get fromSwagger;
 
   /// Create a copy of DataObjectComponent
   /// with the given fields replaced by the non-null parameter values.

@@ -26,6 +26,7 @@ class DataObjectComponent with _$DataObjectComponent {
     required String name,
     required SwaggerReference fileReference,
     required List<DataVariableComponent> variables,
+    @Default(true) bool fromSwagger,
   }) = _DataObjectComponent;
 
   String getFilePath(DataFileType type, ArchType arch) =>

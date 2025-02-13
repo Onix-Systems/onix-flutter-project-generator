@@ -37,7 +37,7 @@ class Dialogs {
     );
   }
 
-  static void showOkCancelDialog({
+  static Future<void> showOkCancelDialog({
     required BuildContext context,
     required Widget content,
     bool isError = false,
@@ -46,8 +46,8 @@ class Dialogs {
     String? cancelLabel,
     VoidCallback? onOk,
     VoidCallback? onCancel,
-  }) {
-    showCupertinoDialog(
+  }) async {
+    await showCupertinoDialog(
       context: context,
       builder: (ctx) => Focus(
         autofocus: true,
