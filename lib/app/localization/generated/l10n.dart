@@ -1629,6 +1629,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Component name`
+  String get componentName {
+    return Intl.message(
+      'Component name',
+      name: 'componentName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/data/mapper/swagger/swagger_mapper.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
@@ -140,5 +141,32 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   @override
   bool isSourceExists(String sourceName) {
     return _components.sources.any((element) => element.name == sourceName);
+  }
+
+  @override
+  Result<OperationStatus> addDataObjectComponent(
+    DataObjectComponent dataObject,
+  ) {
+    if (isDataObjectExists(dataObject.name)) {
+      return Result.error(
+        failure: SwaggerParserFailureAlreadyExists(
+          dataObject.name,
+        ),
+      );
+    }
+
+    _components = _components.copyWith(
+      dataObjects: [
+        ..._components.dataObjects,
+        dataObject,
+      ],
+    );
+
+    return const Result.success(OperationStatus.success);
+  }
+
+  bool isDataObjectExists(String dataObjectName) {
+    return _components.dataObjects
+        .any((element) => element.name == dataObjectName);
   }
 }

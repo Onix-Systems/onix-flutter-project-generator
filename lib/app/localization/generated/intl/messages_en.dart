@@ -75,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" City or Locality"),
         "clear": MessageLookupByLibrary.simpleMessage("Clear"),
         "colorStyles": MessageLookupByLibrary.simpleMessage("Color Styles"),
+        "componentName": MessageLookupByLibrary.simpleMessage("Component name"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Component name"),
         "componentPreview": m1,

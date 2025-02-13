@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +12,7 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/bloc/data_components_screen_v2_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/data_components_content.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
@@ -73,6 +73,16 @@ class _DataComponentsScreenState extends BaseState<
             onPressed: () => showCupertinoDialog(
               context: context,
               builder: (ctx) => AddEditSourceDialog(
+                bloc: blocOf(context),
+              ),
+            ),
+          ),
+          AppFilledButton(
+            label: S.of(context).addComponent,
+            icon: Icons.add,
+            onPressed: () => showCupertinoModalPopup(
+              context: context,
+              builder: (ctx) => AddEditComponentDialog(
                 bloc: blocOf(context),
               ),
             ),
