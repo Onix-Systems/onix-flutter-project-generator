@@ -5,16 +5,15 @@ import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
-import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
-import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/bloc/data_components_screen_v2_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/data_components_content.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
@@ -71,7 +70,12 @@ class _DataComponentsScreenState extends BaseState<
           AppFilledButton(
             label: S.of(context).addSource,
             icon: Icons.add,
-            onPressed: () => _showAddEditSourceDialog(context),
+            onPressed: () => showCupertinoDialog(
+              context: context,
+              builder: (ctx) => AddEditSourceDialog(
+                bloc: blocOf(context),
+              ),
+            ),
           ),
         ],
       ),
@@ -113,9 +117,12 @@ class _DataComponentsScreenState extends BaseState<
                           objectViews: (source) =>
                               blocOf(context).getSourceObjects(source),
                           onEdit: (sourceName) {
-                            _showAddEditSourceDialog(
-                              context,
-                              sourceName: sourceName,
+                            showCupertinoDialog(
+                              context: context,
+                              builder: (ctx) => AddEditSourceDialog(
+                                sourceName: sourceName,
+                                bloc: blocOf(context),
+                              ),
                             );
                           },
                           onDelete: (sourceName) {
@@ -180,50 +187,6 @@ class _DataComponentsScreenState extends BaseState<
     state.config.projectExists
         ? widget.onGenerate?.call()
         : context.go(AppRouter.summaryScreen, extra: widget.config);
-  }
-
-  Future<void> _showAddEditSourceDialog(
-    BuildContext context, {
-    String sourceName = '',
-  }) async {
-    final controller = TextEditingController();
-    if (sourceName.isNotEmpty) {
-      controller.text = sourceName;
-    }
-    await Dialogs.showOkCancelDialog(
-      context: context,
-      title: S.of(context).addSource,
-      content: CupertinoTextField(
-        controller: controller,
-        style: context.appTextStyles.fs18,
-        inputFormatters: [
-          const FirstCharacterNotDigitFormatter(),
-          FilteringTextInputFormatter.allow(
-            AppConsts.digitsAndLatinLetters,
-          ),
-        ],
-      ),
-      onOk: () {
-        if (controller.text.isEmpty) {
-          return;
-        }
-        if (sourceName.isNotEmpty) {
-          blocOf(context).add(
-            DataComponentsScreenV2Event.editSourceName(
-              sourceName: sourceName,
-              newName: controller.text,
-            ),
-          );
-        } else {
-          blocOf(context).add(
-            DataComponentsScreenV2Event.addSource(
-              sourceName: controller.text,
-            ),
-          );
-        }
-      },
-    );
-    controller.dispose();
   }
 
   void _showDeleteSourceDialog(
