@@ -158,5 +158,7 @@
   "wrongScreenNameContent": "Screen name must not start with numbers and must not be equal 'Screen' or 'screen'.",
   "noRequests": "No requests",
   "sourceNotFound": "Source not found",
-  "componentName": "Component name"
+  "componentName": "Component name",
+  "addVariable": "Add variable",
+  "variableName": "Variable name"
 }

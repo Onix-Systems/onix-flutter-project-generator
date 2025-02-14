@@ -1,0 +1,14 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
+
+part 'component_dialog_models.freezed.dart';
+
+class ComponentDialogSR {}
+
+@freezed
+class ComponentDialogState with _$ComponentDialogState {
+  const factory ComponentDialogState({
+    @Default([]) List<String> components,
+    @Default([]) List<DataVariableComponent> variables,
+  }) = _ComponentDialogState;
+}

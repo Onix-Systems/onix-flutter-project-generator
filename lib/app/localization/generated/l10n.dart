@@ -1639,6 +1639,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Add variable`
+  String get addVariable {
+    return Intl.message(
+      'Add variable',
+      name: 'addVariable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Variable name`
+  String get variableName {
+    return Intl.message(
+      'Variable name',
+      name: 'variableName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -50,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addFlavors": MessageLookupByLibrary.simpleMessage("Add flavors:"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),
         "addSource": MessageLookupByLibrary.simpleMessage("Add source"),
+        "addVariable": MessageLookupByLibrary.simpleMessage("Add variable"),
         "alsoReadThis": MessageLookupByLibrary.simpleMessage("Also read this"),
         "apiFailureNoNetwork": MessageLookupByLibrary.simpleMessage(
             "Sorry, we\'re having trouble connecting. Please check your internet connection and try again.\n\nReach out to support if you continue to experience issues."),
@@ -279,6 +280,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "useSonar": MessageLookupByLibrary.simpleMessage("Will you use Sonar?"),
         "usingBloc": MessageLookupByLibrary.simpleMessage("Using BLoC"),
         "usingCubit": MessageLookupByLibrary.simpleMessage("Using Cubit"),
+        "variableName": MessageLookupByLibrary.simpleMessage("Variable name"),
         "willBeAddedAutomatically": MessageLookupByLibrary.simpleMessage(
             "DEV & PROD flavors will be added automatically"),
         "withComponents":

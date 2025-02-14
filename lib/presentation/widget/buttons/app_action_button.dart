@@ -21,6 +21,7 @@ class AppActionButton extends StatelessWidget {
         onPressed: active ? onPressed : null,
         style: TextButton.styleFrom(
           foregroundColor: context.appColors.contrastColor,
+          shape: const ContinuousRectangleBorder(),
         ),
         child: Text(
           label,

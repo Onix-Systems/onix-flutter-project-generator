@@ -50,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addFlavors": MessageLookupByLibrary.simpleMessage("Додати флавори:"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Додати екран"),
         "addSource": MessageLookupByLibrary.simpleMessage("Додати джерело"),
+        "addVariable": MessageLookupByLibrary.simpleMessage("Додати змінну"),
         "alsoReadThis":
             MessageLookupByLibrary.simpleMessage("Також прочитайте це"),
         "apiFailureNoNetwork": MessageLookupByLibrary.simpleMessage(
@@ -286,6 +287,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "useSonar": MessageLookupByLibrary.simpleMessage("Підключити Sonar?"),
         "usingBloc": MessageLookupByLibrary.simpleMessage("Використати BLoC"),
         "usingCubit": MessageLookupByLibrary.simpleMessage("Використати Cubit"),
+        "variableName": MessageLookupByLibrary.simpleMessage("Назва змінної"),
         "willBeAddedAutomatically": MessageLookupByLibrary.simpleMessage(
             "DEV та PROD флавори будуть додані автоматично"),
         "withComponents":

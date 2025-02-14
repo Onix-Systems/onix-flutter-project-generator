@@ -6,11 +6,13 @@ class SwitchWithLabel extends StatelessWidget {
   final String? subLabel;
   final bool initialValue;
   final ValueSetter<bool> valueSetter;
+  final bool expanded;
 
   const SwitchWithLabel({
     required this.label,
     required this.valueSetter,
     required this.initialValue,
+    this.expanded = true,
     this.subLabel,
     super.key,
   });
@@ -18,13 +20,13 @@ class SwitchWithLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-            width: 350,
-            child: Column(
+      padding: EdgeInsets.only(right: expanded ? 0 : 8),
+      child: SizedBox(
+        width: expanded ? double.maxFinite : 350,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -44,13 +46,13 @@ class SwitchWithLabel extends StatelessWidget {
                   ),
               ],
             ),
-          ),
-          CupertinoSwitch(
-            value: initialValue,
-            activeTrackColor: context.appColors.contrastColor,
-            onChanged: valueSetter.call,
-          ),
-        ],
+            CupertinoSwitch(
+              value: initialValue,
+              activeTrackColor: context.appColors.contrastColor,
+              onChanged: valueSetter.call,
+            ),
+          ],
+        ),
       ),
     );
   }

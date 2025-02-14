@@ -158,5 +158,7 @@
   "wrongScreenNameContent": "Назва екрану не має починатися з цифри та бути 'Screen' або 'screen'.",
   "noRequests": "Немає запитів",
   "sourceNotFound": "Джерело не знайдено",
-  "componentName": "Назва компонента"
+  "componentName": "Назва компонента",
+  "addVariable": "Додати змінну",
+  "variableName": "Назва змінної"
 }
