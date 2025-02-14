@@ -8,9 +8,11 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_butto
 
 class AddVariableDialog extends StatefulWidget {
   final List<String> types;
+  final Function(String, String) onAdd;
 
   const AddVariableDialog({
     required this.types,
+    required this.onAdd,
     super.key,
   });
 
@@ -19,6 +21,7 @@ class AddVariableDialog extends StatefulWidget {
 }
 
 class _AddVariableDialogState extends State<AddVariableDialog> {
+  final TextEditingController _controller = TextEditingController();
   var _selectedType = '';
 
   @override
@@ -80,6 +83,10 @@ class _AddVariableDialogState extends State<AddVariableDialog> {
                     ),
                     Expanded(
                       child: TextField(
+                        controller: _controller,
+                        onChanged: (_) {
+                          setState(() {});
+                        },
                         decoration: InputDecoration(
                           hintText: S.of(context).variableName,
                           hintStyle: context.appTextStyles.fs18?.copyWith(
@@ -115,9 +122,10 @@ class _AddVariableDialogState extends State<AddVariableDialog> {
                     child: AppActionButton(
                       label: S.of(context).ok,
                       onPressed: () {
-                        //TODO: call add variable
+                        widget.onAdd(_selectedType, _controller.text);
                         Navigator.of(context).pop();
                       },
+                      active: _controller.text.isNotEmpty,
                     ),
                   ),
                   Container(
@@ -134,11 +142,17 @@ class _AddVariableDialogState extends State<AddVariableDialog> {
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

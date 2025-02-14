@@ -112,6 +112,12 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                               context: context,
                               builder: (ctx) => AddVariableDialog(
                                 types: cubitOf(context).state.components,
+                                onAdd: (type, name) {
+                                  cubitOf(context).addVariable(
+                                    name: name,
+                                    type: type,
+                                  );
+                                },
                               ),
                             );
                           },
@@ -120,10 +126,14 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                     ),
                   ),
                   Expanded(
-                    child: ClassPreview(
-                      className: _controller.text,
-                      isEnum: isEnum,
-                      variables: [],
+                    child: blocBuilder(
+                      builder: (context, state) {
+                        return ClassPreview(
+                          className: _controller.text,
+                          isEnum: isEnum,
+                          variables: state.variables,
+                        );
+                      },
                     ),
                   ),
                 ],
