@@ -49,4 +49,32 @@ class ComponentDialogCubit
       ),
     );
   }
+
+  void editVariable({
+    required String name,
+    required String type,
+    required int index,
+    bool isRequired = false,
+    bool isEnum = false,
+  }) {
+    final variableType = DartTypes.types.contains(type)
+        ? SwaggerVariable(DartTypes.toSwaggerType(type))
+        : SwaggerReference(type);
+
+    final variable = DataVariableComponent(
+      name: name,
+      type: variableType,
+      isRequired: isRequired,
+      isEnum: isEnum,
+    );
+
+    final variables = state.variables.toList();
+    variables[index] = variable;
+
+    emit(
+      state.copyWith(
+        variables: variables,
+      ),
+    );
+  }
 }

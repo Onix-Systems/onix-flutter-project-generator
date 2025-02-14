@@ -3,31 +3,39 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
 
-class AddVariableDialog extends StatefulWidget {
+class AddEditVariableDialog extends StatefulWidget {
+  final DataVariableComponent? variable;
   final List<String> types;
-  final Function(String, String) onAdd;
+  final Function(String, String) process;
 
-  const AddVariableDialog({
+  const AddEditVariableDialog({
     required this.types,
-    required this.onAdd,
+    required this.process,
+    this.variable,
     super.key,
   });
 
   @override
-  State<AddVariableDialog> createState() => _AddVariableDialogState();
+  State<AddEditVariableDialog> createState() => _AddEditVariableDialogState();
 }
 
-class _AddVariableDialogState extends State<AddVariableDialog> {
+class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
   final TextEditingController _controller = TextEditingController();
   var _selectedType = '';
 
   @override
   void initState() {
     super.initState();
-    _selectedType = widget.types.first;
+    if (widget.variable != null) {
+      _controller.text = widget.variable!.name;
+      _selectedType = widget.variable!.type.toString();
+    } else {
+      _selectedType = widget.types.first;
+    }
   }
 
   @override
@@ -122,7 +130,7 @@ class _AddVariableDialogState extends State<AddVariableDialog> {
                     child: AppActionButton(
                       label: S.of(context).ok,
                       onPressed: () {
-                        widget.onAdd(_selectedType, _controller.text);
+                        widget.process(_selectedType, _controller.text);
                         Navigator.of(context).pop();
                       },
                       active: _controller.text.isNotEmpty,

@@ -10,7 +10,7 @@ import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_d
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_models.dart';
-import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/add_variable_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/add_edit_variable_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/class_preview.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
@@ -110,9 +110,9 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                           onPressed: () {
                             showCupertinoModalPopup(
                               context: context,
-                              builder: (ctx) => AddVariableDialog(
+                              builder: (ctx) => AddEditVariableDialog(
                                 types: cubitOf(context).state.components,
-                                onAdd: (type, name) {
+                                process: (type, name) {
                                   cubitOf(context).addVariable(
                                     name: name,
                                     type: type,
@@ -132,6 +132,22 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                           className: _controller.text,
                           isEnum: isEnum,
                           variables: state.variables,
+                          onEdit: (variable) {
+                            showCupertinoModalPopup(
+                              context: context,
+                              builder: (ctx) => AddEditVariableDialog(
+                                variable: variable,
+                                types: cubitOf(context).state.components,
+                                process: (type, name) {
+                                  cubitOf(context).editVariable(
+                                    name: name,
+                                    type: type,
+                                    index: state.variables.indexOf(variable),
+                                  );
+                                },
+                              ),
+                            );
+                          },
                         );
                       },
                     ),

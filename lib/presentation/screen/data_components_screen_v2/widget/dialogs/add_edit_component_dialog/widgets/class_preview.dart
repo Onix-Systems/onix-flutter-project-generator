@@ -9,11 +9,13 @@ class ClassPreview extends StatelessWidget {
   final String className;
   final bool isEnum;
   final List<DataVariableComponent> variables;
+  final ValueChanged<DataVariableComponent> onEdit;
 
   const ClassPreview({
     required this.className,
     required this.isEnum,
     required this.variables,
+    required this.onEdit,
     super.key,
   });
 
@@ -39,12 +41,11 @@ class ClassPreview extends StatelessWidget {
                   ),
                   const Spacer(),
                   IconButton(
-                    onPressed: () {},
-                    padding: EdgeInsets.all(5),
-                    constraints: BoxConstraints(
-                      minWidth: 0,
-                      minHeight: 0,
-                    ),
+                    onPressed: () {
+                      onEdit(variable);
+                    },
+                    padding: const EdgeInsets.all(5),
+                    constraints: const BoxConstraints(),
                     icon: const Icon(
                       CupertinoIcons.pencil,
                       color: Colors.white,
@@ -53,11 +54,8 @@ class ClassPreview extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {},
-                    padding: EdgeInsets.all(5),
-                    constraints: BoxConstraints(
-                      minWidth: 0,
-                      minHeight: 0,
-                    ),
+                    padding: const EdgeInsets.all(5),
+                    constraints: const BoxConstraints(),
                     icon: Icon(
                       CupertinoIcons.delete,
                       color: context.appColors.alarmColor,
