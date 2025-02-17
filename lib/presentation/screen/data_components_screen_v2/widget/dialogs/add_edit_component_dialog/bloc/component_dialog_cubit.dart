@@ -131,6 +131,8 @@ class ComponentDialogCubit
   }) async {
     Component? dataObject;
 
+    name = name.pascalCase;
+
     if (isEnum) {
       dataObject = EnumParamComponent(
         name: name,

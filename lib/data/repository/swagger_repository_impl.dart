@@ -124,16 +124,18 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       );
     }
 
-    final sourceIndex =
-        _components.sources.indexWhere((element) => element.name == sourceName);
-    final source = _components.sources[sourceIndex];
-    final updatedSource = source.copyWith(name: newName);
+    final sourceIndex = _components.sources.indexWhere(
+      (element) => element.name == sourceName,
+    );
+
+    final updatedSource = _components.sources[sourceIndex].copyWith(
+      name: newName,
+    );
 
     _components = _components.copyWith(
       sources: [
-        ..._components.sources.sublist(0, sourceIndex),
+        ..._components.sources.where((element) => element.name != sourceName),
         updatedSource,
-        ..._components.sources.sublist(sourceIndex + 1),
       ],
     );
 
@@ -199,25 +201,21 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     }
 
     if (component is DataObjectComponent) {
-      final dataObjectIndex = _components.dataObjects
-          .indexWhere((element) => element.name == oldName);
-
       _components = _components.copyWith(
         dataObjects: [
-          ..._components.dataObjects.sublist(0, dataObjectIndex),
+          ..._components.dataObjects.where(
+            (element) => element.name != oldName,
+          ),
           component,
-          ..._components.dataObjects.sublist(dataObjectIndex + 1),
         ],
       );
     } else if (component is EnumParamComponent) {
-      final enumIndex =
-          _components.enums.indexWhere((element) => element.name == oldName);
-
       _components = _components.copyWith(
         enums: [
-          ..._components.enums.sublist(0, enumIndex),
+          ..._components.enums.where(
+            (element) => element.name != oldName,
+          ),
           component,
-          ..._components.enums.sublist(enumIndex + 1),
         ],
       );
     }
@@ -248,6 +246,23 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
         enums: _components.enums
             .where((element) => element.name != component.name)
             .toList(),
+      );
+    }
+
+    for (final dataObject in _components.dataObjects) {
+      final variables = dataObject.variables.toList()
+        ..removeWhere(
+          (element) => element.type.getName() == component.name,
+        );
+
+      editComponent(
+        oldName: dataObject.name,
+        component: DataObjectComponent(
+          name: dataObject.name,
+          fileReference: dataObject.fileReference,
+          variables: variables,
+          fromSwagger: false,
+        ),
       );
     }
 
