@@ -12,12 +12,14 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_butto
 
 class AddEditVariableDialog extends StatefulWidget {
   final DataVariableComponent? variable;
+  final bool parentIsEnum;
   final List<String> types;
   final Function(String, String) process;
 
   const AddEditVariableDialog({
     required this.types,
     required this.process,
+    required this.parentIsEnum,
     this.variable,
     super.key,
   });
@@ -77,11 +79,13 @@ class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
                               ),
                             )
                             .toList(),
-                        onChanged: (type) {
-                          setState(() {
-                            _selectedType = type!;
-                          });
-                        },
+                        onChanged: widget.parentIsEnum
+                            ? null
+                            : (type) {
+                                setState(() {
+                                  _selectedType = type!;
+                                });
+                              },
                         isExpanded: true,
                         underline: const SizedBox(),
                         buttonStyleData: ButtonStyleData(

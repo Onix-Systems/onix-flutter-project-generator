@@ -1,21 +1,18 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
-part 'enum_param_component.freezed.dart';
+class EnumParamComponent extends Component {
+  final SwaggerEnum type;
 
-@freezed
-class EnumParamComponent with _$EnumParamComponent {
-  const EnumParamComponent._();
-
-  const factory EnumParamComponent({
-    required String name,
-    required SwaggerEnum type,
-    @Default(true) bool fromSwagger,
-  }) = _EnumParamComponent;
+  EnumParamComponent({
+    required super.name,
+    required this.type,
+    super.fromSwagger = true,
+  });
 
   String getFolderPath(String projectRoot, ArchType arch) =>
       '$projectRoot/${arch.getEnumPath()}';

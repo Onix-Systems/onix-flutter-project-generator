@@ -105,16 +105,13 @@ void registerBloc(GetIt getIt) {
         addSourceUseCase: GetIt.I.get<AddSourceUseCase>(),
         deleteSourceUseCase: GetIt.I.get<DeleteSourceUseCase>(),
         editSourceNameUseCase: GetIt.I.get<EditSourceNameUseCase>(),
-        deleteDataObjectComponentUseCase:
-            GetIt.I.get<DeleteDataObjectComponentUseCase>(),
+        deleteDataObjectComponentUseCase: GetIt.I.get<DeleteComponentUseCase>(),
       ),
     )
     ..registerFactory<ComponentDialogCubit>(
       () => ComponentDialogCubit(
-        addDataObjectComponentUseCase:
-            GetIt.I.get<AddDataObjectComponentUseCase>(),
-        editDataObjectComponentUseCase:
-            GetIt.I.get<EditDataObjectComponentUseCase>(),
+        addDataObjectComponentUseCase: GetIt.I.get<AddComponentUseCase>(),
+        editDataObjectComponentUseCase: GetIt.I.get<EditComponentUseCase>(),
       ),
     );
 }

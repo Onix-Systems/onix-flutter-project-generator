@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/enum/mapper_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_reference_extension.dart';
@@ -7,6 +6,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/variable_sort_extension.
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/class_builder.dart';
@@ -16,18 +16,16 @@ import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/reversed_word_processor.dart';
 import 'package:recase/recase.dart';
 
-part 'data_object_component.freezed.dart';
+class DataObjectComponent extends Component {
+  final SwaggerReference fileReference;
+  final List<DataVariableComponent> variables;
 
-@freezed
-class DataObjectComponent with _$DataObjectComponent {
-  const DataObjectComponent._();
-
-  const factory DataObjectComponent({
-    required String name,
-    required SwaggerReference fileReference,
-    required List<DataVariableComponent> variables,
-    @Default(true) bool fromSwagger,
-  }) = _DataObjectComponent;
+  DataObjectComponent({
+    required super.name,
+    required this.fileReference,
+    required this.variables,
+    super.fromSwagger = true,
+  });
 
   String getFilePath(DataFileType type, ArchType arch) =>
       fileReference.getFileImportName(type, arch) ?? '';

@@ -1,18 +1,18 @@
-import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
 import 'package:onix_flutter_core/onix_flutter_core.dart';
 
-class EditDataObjectComponentUseCase {
+class EditComponentUseCase {
   final SwaggerRepository _swaggerRepository;
 
-  EditDataObjectComponentUseCase(this._swaggerRepository);
+  EditComponentUseCase(this._swaggerRepository);
 
   Result<OperationStatus> call({
     required String oldName,
-    required DataObjectComponent component,
+    required Component component,
   }) =>
-      _swaggerRepository.editDataObjectComponent(
+      _swaggerRepository.editComponent(
         oldName: oldName,
-        dataObject: component,
+        component: component,
       );
 }

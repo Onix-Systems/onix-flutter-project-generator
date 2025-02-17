@@ -1,6 +1,6 @@
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
-import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_core/onix_flutter_core.dart';
 
 abstract interface class SwaggerRepository {
@@ -25,17 +25,17 @@ abstract interface class SwaggerRepository {
     required String newName,
   });
 
-  Result<OperationStatus> addDataObjectComponent(
-    DataObjectComponent dataObject,
+  Result<OperationStatus> addComponent(
+    Component dataObject,
   );
 
-  Result<OperationStatus> editDataObjectComponent({
+  Result<OperationStatus> editComponent({
     required String oldName,
-    required DataObjectComponent dataObject,
+    required Component component,
   });
 
-  Result<OperationStatus> deleteDataObjectComponent(
-    String componentName,
+  Result<OperationStatus> deleteComponent(
+    Component component,
   );
 
   void isSourceExists(String sourceName);

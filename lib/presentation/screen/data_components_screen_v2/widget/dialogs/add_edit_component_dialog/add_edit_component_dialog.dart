@@ -7,7 +7,9 @@ import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_models.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/add_edit_variable_dialog.dart';
@@ -18,12 +20,12 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_butto
 import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label.dart';
 
 class AddEditComponentDialog extends StatefulWidget {
-  final String? componentName;
+  final Component? component;
   final Components components;
 
   const AddEditComponentDialog({
     required this.components,
-    this.componentName,
+    this.component,
     super.key,
   });
 
@@ -43,7 +45,7 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
   void onCubitCreated(BuildContext context, ComponentDialogCubit cubit) {
     cubit.init(
       components: widget.components,
-      componentName: widget.componentName,
+      component: widget.component,
     );
     super.onCubitCreated(context, cubit);
   }
@@ -51,8 +53,9 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
   @override
   void initState() {
     super.initState();
-    if (widget.componentName != null) {
-      _controller.text = widget.componentName!;
+    if (widget.component != null) {
+      _controller.text = widget.component!.name;
+      isEnum = widget.component! is EnumParamComponent;
     }
   }
 
@@ -101,11 +104,13 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                         SwitchWithLabel(
                           label: 'Enum',
                           initialValue: isEnum,
-                          valueSetter: (value) {
-                            setState(() {
-                              isEnum = value;
-                            });
-                          },
+                          valueSetter: widget.component != null
+                              ? null
+                              : (value) {
+                                  setState(() {
+                                    isEnum = value;
+                                  });
+                                },
                         ),
                         AppFilledButton(
                           label: S.of(context).addVariable,
@@ -114,11 +119,15 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                             showCupertinoModalPopup(
                               context: context,
                               builder: (ctx) => AddEditVariableDialog(
-                                types: cubitOf(context).state.components,
+                                types: isEnum
+                                    ? ['String']
+                                    : cubitOf(context).state.components,
+                                parentIsEnum: isEnum,
                                 process: (type, name) {
                                   cubitOf(context).addVariable(
                                     name: name,
                                     type: type,
+                                    isEnum: isEnum,
                                   );
                                 },
                               ),
@@ -140,12 +149,16 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                               context: context,
                               builder: (ctx) => AddEditVariableDialog(
                                 variable: variable,
-                                types: cubitOf(context).state.components,
+                                types: isEnum
+                                    ? ['String']
+                                    : cubitOf(context).state.components,
+                                parentIsEnum: isEnum,
                                 process: (type, name) {
                                   cubitOf(context).editVariable(
                                     name: name,
                                     type: type,
                                     index: state.variables.indexOf(variable),
+                                    isEnum: isEnum,
                                   );
                                 },
                               ),
@@ -174,12 +187,13 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                     child: AppActionButton(
                       label: S.of(context).ok,
                       onPressed: () {
-                        if (widget.componentName != null) {
+                        if (widget.component != null) {
                           cubitOf(context)
                               .editDataObject(name: _controller.text);
                         } else {
                           cubitOf(context).addDataObject(
                             name: _controller.text,
+                            isEnum: isEnum,
                           );
                         }
                         Navigator.of(context).pop();
@@ -208,26 +222,6 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
         ),
       ),
     );
-  }
-
-  void onOk() {
-    // if (_controller.text.isEmpty) {
-    //   return;
-    // }
-    // if (widget.componentName != null) {
-    //   widget.bloc.add(
-    //     DataComponentsScreenV2Event.editSourceName(
-    //       sourceName: widget.componentName!,
-    //       newName: _controller.text,
-    //     ),
-    //   );
-    // } else {
-    //   widget.bloc.add(
-    //     DataComponentsScreenV2Event.addSource(
-    //       sourceName: _controller.text,
-    //     ),
-    //   );
-    // }
   }
 
   @override

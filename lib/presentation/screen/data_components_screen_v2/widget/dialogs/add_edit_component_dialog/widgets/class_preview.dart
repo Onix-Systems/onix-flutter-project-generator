@@ -37,9 +37,12 @@ class ClassPreview extends StatelessWidget {
               color: Colors.transparent,
               child: Row(
                 children: [
-                  Text(
-                    '  ${variable.type} ${variable.name};',
-                    style: context.appTextStyles.fs18,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Text(
+                      '${isEnum ? '' : '${variable.type} '}${variable.name}${isEnum ? ',' : ';'}',
+                      style: context.appTextStyles.fs18,
+                    ),
                   ),
                   const Spacer(),
                   IconButton(

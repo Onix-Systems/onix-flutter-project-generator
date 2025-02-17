@@ -151,18 +151,18 @@ void registerUseCases(GetIt getIt) {
         service: getIt.get<GitCliffService>(),
       ),
     )
-    ..registerFactory<AddDataObjectComponentUseCase>(
-      () => AddDataObjectComponentUseCase(
+    ..registerFactory<AddComponentUseCase>(
+      () => AddComponentUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     )
-    ..registerFactory<EditDataObjectComponentUseCase>(
-      () => EditDataObjectComponentUseCase(
+    ..registerFactory<EditComponentUseCase>(
+      () => EditComponentUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     )
-    ..registerFactory<DeleteDataObjectComponentUseCase>(
-      () => DeleteDataObjectComponentUseCase(
+    ..registerFactory<DeleteComponentUseCase>(
+      () => DeleteComponentUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     );

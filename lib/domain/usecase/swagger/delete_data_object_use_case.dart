@@ -1,13 +1,14 @@
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
 import 'package:onix_flutter_core/onix_flutter_core.dart';
 
-class DeleteDataObjectComponentUseCase {
+class DeleteComponentUseCase {
   final SwaggerRepository _swaggerRepository;
 
-  DeleteDataObjectComponentUseCase(this._swaggerRepository);
+  DeleteComponentUseCase(this._swaggerRepository);
 
   Result<OperationStatus> call({
-    required String componentName,
+    required Component component,
   }) =>
-      _swaggerRepository.deleteDataObjectComponent(componentName);
+      _swaggerRepository.deleteComponent(component);
 }

@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
@@ -17,8 +18,8 @@ class DataComponentsContent extends StatelessWidget {
   final List<ObjectView> Function(SourceComponent) objectViews;
   final ValueChanged<String> onSourceEdit;
   final ValueChanged<String> onSourceDelete;
-  final ValueChanged<String> onComponentEdit;
-  final ValueChanged<String> onComponentDelete;
+  final ValueChanged<Component> onComponentEdit;
+  final ValueChanged<Component> onComponentDelete;
 
   const DataComponentsContent({
     required this.components,
@@ -71,17 +72,10 @@ class DataComponentsContent extends StatelessWidget {
             itemCount: dataComponents.length,
             itemBuilder: (context, index) {
               return ObjectItem(
-                object: dataComponents.firstWhere((e) {
-                  if (e is DataObjectComponent) {
-                    return e.name == dataComponentNames[index];
-                  }
-                  if (e is EnumParamComponent) {
-                    return e.name == dataComponentNames[index];
-                  }
-                  return false;
-                }),
-                onEdit: () => onComponentEdit(dataComponentNames[index]),
-                onDelete: () => onComponentDelete(dataComponentNames[index]),
+                component: dataComponents
+                    .firstWhere((e) => e.name == dataComponentNames[index]),
+                onEdit: onComponentEdit,
+                onDelete: onComponentDelete,
               );
             },
           )

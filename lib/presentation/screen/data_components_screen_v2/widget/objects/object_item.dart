@@ -4,18 +4,19 @@ import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:recase/recase.dart';
 
 class ObjectItem extends StatelessWidget {
-  final dynamic object;
-  final VoidCallback onEdit;
-  final VoidCallback onDelete;
+  final Component component;
+  final ValueChanged<Component> onEdit;
+  final ValueChanged<Component> onDelete;
 
   const ObjectItem({
-    required this.object,
+    required this.component,
     required this.onEdit,
     required this.onDelete,
     super.key,
@@ -23,18 +24,6 @@ class ObjectItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late final String name;
-    var isEnum = false;
-
-    if (object is DataObjectComponent) {
-      name = (object as DataObjectComponent).name;
-    } else if (object is EnumParamComponent) {
-      name = (object as EnumParamComponent).name;
-      isEnum = true;
-    } else {
-      return const SizedBox();
-    }
-
     return ColoredBox(
       color: context.appColors.contrastColor,
       child: Column(
@@ -46,16 +35,16 @@ class ObjectItem extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  name.titleCase,
+                  component.name.titleCase,
                   style: TextStyle(
                     color: context.appColors.textColor,
                     fontSize: 16,
                   ),
                 ),
-                if (_canBeEdited()) ...[
+                if (!component.fromSwagger) ...[
                   const Spacer(),
                   IconButton(
-                    onPressed: onEdit,
+                    onPressed: () => onEdit(component),
                     constraints: const BoxConstraints(),
                     icon: const Icon(
                       CupertinoIcons.pencil,
@@ -63,7 +52,7 @@ class ObjectItem extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: onDelete,
+                    onPressed: () => onDelete(component),
                     constraints: const BoxConstraints(),
                     icon: Icon(
                       CupertinoIcons.delete,
@@ -83,9 +72,9 @@ class ObjectItem extends StatelessWidget {
               horizontal: 16,
               vertical: 8,
             ),
-            child: isEnum
+            child: component is EnumParamComponent
                 ? Text(
-                    (object as EnumParamComponent)
+                    (component as EnumParamComponent)
                         .type
                         .enumValues
                         .toSet()
@@ -97,7 +86,7 @@ class ObjectItem extends StatelessWidget {
                   )
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: (object as DataObjectComponent)
+                    children: (component as DataObjectComponent)
                         .variables
                         .map(
                           (e) => e.type is SwaggerEnum
@@ -114,12 +103,5 @@ class ObjectItem extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  bool _canBeEdited() {
-    return (object is DataObjectComponent &&
-            !(object as DataObjectComponent).fromSwagger) ||
-        (object is EnumParamComponent &&
-            !(object as EnumParamComponent).fromSwagger);
   }
 }

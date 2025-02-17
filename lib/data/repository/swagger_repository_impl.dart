@@ -3,8 +3,10 @@ import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/mapper/swagger/swagger_mapper.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
@@ -144,33 +146,42 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }
 
   @override
-  Result<OperationStatus> addDataObjectComponent(
-    DataObjectComponent dataObject,
+  Result<OperationStatus> addComponent(
+    Component component,
   ) {
-    if (isDataObjectExists(dataObject.name)) {
+    if (isComponentExists(component.name)) {
       return Result.error(
         failure: SwaggerParserFailureAlreadyExists(
-          dataObject.name,
+          component.name,
         ),
       );
     }
 
-    _components = _components.copyWith(
-      dataObjects: [
-        ..._components.dataObjects,
-        dataObject,
-      ],
-    );
+    if (component is DataObjectComponent) {
+      _components = _components.copyWith(
+        dataObjects: [
+          ..._components.dataObjects,
+          component,
+        ],
+      );
+    } else if (component is EnumParamComponent) {
+      _components = _components.copyWith(
+        enums: [
+          ..._components.enums,
+          component,
+        ],
+      );
+    }
 
     return const Result.success(OperationStatus.success);
   }
 
   @override
-  Result<OperationStatus> editDataObjectComponent({
+  Result<OperationStatus> editComponent({
     required String oldName,
-    required DataObjectComponent dataObject,
+    required Component component,
   }) {
-    if (!isDataObjectExists(oldName)) {
+    if (!isComponentExists(oldName)) {
       return Result.error(
         failure: SwaggerParserFailureNotFound(
           oldName,
@@ -178,53 +189,79 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       );
     }
 
-    if (oldName.toUpperCase() != dataObject.name.toUpperCase() &&
-        isDataObjectExists(dataObject.name)) {
+    if (oldName.toUpperCase() != component.name.toUpperCase() &&
+        isComponentExists(component.name)) {
       return Result.error(
         failure: SwaggerParserFailureAlreadyExists(
-          dataObject.name,
+          component.name,
         ),
       );
     }
 
-    final dataObjectIndex = _components.dataObjects
-        .indexWhere((element) => element.name == oldName);
+    if (component is DataObjectComponent) {
+      final dataObjectIndex = _components.dataObjects
+          .indexWhere((element) => element.name == oldName);
 
-    _components = _components.copyWith(
-      dataObjects: [
-        ..._components.dataObjects.sublist(0, dataObjectIndex),
-        dataObject,
-        ..._components.dataObjects.sublist(dataObjectIndex + 1),
-      ],
-    );
+      _components = _components.copyWith(
+        dataObjects: [
+          ..._components.dataObjects.sublist(0, dataObjectIndex),
+          component,
+          ..._components.dataObjects.sublist(dataObjectIndex + 1),
+        ],
+      );
+    } else if (component is EnumParamComponent) {
+      final enumIndex =
+          _components.enums.indexWhere((element) => element.name == oldName);
+
+      _components = _components.copyWith(
+        enums: [
+          ..._components.enums.sublist(0, enumIndex),
+          component,
+          ..._components.enums.sublist(enumIndex + 1),
+        ],
+      );
+    }
 
     return const Result.success(OperationStatus.success);
   }
 
   @override
-  Result<OperationStatus> deleteDataObjectComponent(
-    String componentName,
+  Result<OperationStatus> deleteComponent(
+    Component component,
   ) {
-    if (!isDataObjectExists(componentName)) {
+    if (!isComponentExists(component.name)) {
       return Result.error(
         failure: SwaggerParserFailureNotFound(
-          componentName,
+          component.name,
         ),
       );
     }
 
-    _components = _components.copyWith(
-      dataObjects: _components.dataObjects
-          .where((element) => element.name != componentName)
-          .toList(),
-    );
+    if (component is DataObjectComponent) {
+      _components = _components.copyWith(
+        dataObjects: _components.dataObjects
+            .where((element) => element.name != component.name)
+            .toList(),
+      );
+    } else if (component is EnumParamComponent) {
+      _components = _components.copyWith(
+        enums: _components.enums
+            .where((element) => element.name != component.name)
+            .toList(),
+      );
+    }
 
     return const Result.success(OperationStatus.success);
   }
 
-  bool isDataObjectExists(String dataObjectName) {
+  bool isComponentExists(String dataObjectName) {
     return _components.dataObjects.any(
-      (element) => element.name.toUpperCase() == dataObjectName.toUpperCase(),
-    );
+          (element) =>
+              element.name.toUpperCase() == dataObjectName.toUpperCase(),
+        ) ||
+        _components.enums.any(
+          (element) =>
+              element.name.toUpperCase() == dataObjectName.toUpperCase(),
+        );
   }
 }

@@ -5,13 +5,13 @@ class SwitchWithLabel extends StatelessWidget {
   final String label;
   final String? subLabel;
   final bool initialValue;
-  final ValueSetter<bool> valueSetter;
+  final ValueSetter<bool>? valueSetter;
   final bool expanded;
 
   const SwitchWithLabel({
     required this.label,
-    required this.valueSetter,
     required this.initialValue,
+    this.valueSetter,
     this.expanded = true,
     this.subLabel,
     super.key,
@@ -49,7 +49,7 @@ class SwitchWithLabel extends StatelessWidget {
             CupertinoSwitch(
               value: initialValue,
               activeTrackColor: context.appColors.contrastColor,
-              onChanged: valueSetter.call,
+              onChanged: valueSetter?.call,
             ),
           ],
         ),

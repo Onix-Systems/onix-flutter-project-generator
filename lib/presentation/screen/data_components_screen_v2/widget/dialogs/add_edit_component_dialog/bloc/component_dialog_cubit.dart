@@ -2,9 +2,11 @@ import 'package:collection/collection.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/util/enum/dart_types.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_models.dart';
@@ -12,19 +14,19 @@ import 'package:recase/recase.dart';
 
 class ComponentDialogCubit
     extends BaseCubit<ComponentDialogState, ComponentDialogSR> {
-  final AddDataObjectComponentUseCase _addDataObjectComponentUseCase;
-  final EditDataObjectComponentUseCase _editDataObjectComponentUseCase;
+  final AddComponentUseCase _addDataObjectComponentUseCase;
+  final EditComponentUseCase _editDataObjectComponentUseCase;
 
   ComponentDialogCubit({
-    required AddDataObjectComponentUseCase addDataObjectComponentUseCase,
-    required EditDataObjectComponentUseCase editDataObjectComponentUseCase,
+    required AddComponentUseCase addDataObjectComponentUseCase,
+    required EditComponentUseCase editDataObjectComponentUseCase,
   })  : _addDataObjectComponentUseCase = addDataObjectComponentUseCase,
         _editDataObjectComponentUseCase = editDataObjectComponentUseCase,
         super(const ComponentDialogState());
 
   void init({
     required Components components,
-    String? componentName,
+    Component? component,
   }) {
     final enums = components.enums.map((e) => e.name).toList();
     final dataObjects =
@@ -34,19 +36,31 @@ class ComponentDialogCubit
       (a, b) => a.compareTo(b),
     )..insertAll(0, DartTypes.types);
 
-    if (componentName != null) {
-      componentNames.remove(componentName);
+    if (component != null) {
+      componentNames.remove(component.name);
     }
+
+    final variables = component != null
+        ? (component is DataObjectComponent)
+            ? component.variables
+            : (component as EnumParamComponent)
+                .type
+                .enumValues
+                .map(
+                  (e) => DataVariableComponent(
+                    name: e,
+                    type: SwaggerVariable('string'),
+                    isRequired: true,
+                  ),
+                )
+                .toList()
+        : <DataVariableComponent>[];
 
     emit(
       state.copyWith(
-        componentName: componentName,
+        component: component,
         components: componentNames,
-        variables: componentName != null
-            ? components.dataObjects
-                .firstWhere((e) => e.name == componentName)
-                .variables
-            : [],
+        variables: variables,
       ),
     );
   }
@@ -111,13 +125,29 @@ class ComponentDialogCubit
     );
   }
 
-  Future<void> addDataObject({required String name}) async {
-    final dataObject = DataObjectComponent(
-      name: name,
-      fileReference: SwaggerReference(name),
-      variables: state.variables,
-      fromSwagger: false,
-    );
+  Future<void> addDataObject({
+    required String name,
+    bool isEnum = false,
+  }) async {
+    Component? dataObject;
+
+    if (isEnum) {
+      dataObject = EnumParamComponent(
+        name: name,
+        type: SwaggerEnum(
+          name,
+          state.variables.map((e) => e.name).toList(),
+        ),
+        fromSwagger: false,
+      );
+    } else {
+      dataObject = DataObjectComponent(
+        name: name,
+        fileReference: SwaggerReference(name),
+        variables: state.variables,
+        fromSwagger: false,
+      );
+    }
 
     _addDataObjectComponentUseCase(component: dataObject).when(
       success: (value) {
@@ -128,18 +158,33 @@ class ComponentDialogCubit
   }
 
   Future<void> editDataObject({required String name}) async {
-    final componentName = state.componentName;
-    if (componentName == null) return;
+    final component = state.component;
+    if (component == null) return;
 
-    final dataObject = DataObjectComponent(
-      name: name,
-      fileReference: SwaggerReference(name),
-      variables: state.variables,
-      fromSwagger: false,
-    );
+    Component? dataObject;
+
+    if (component is DataObjectComponent) {
+      dataObject = DataObjectComponent(
+        name: name,
+        fileReference: SwaggerReference(name),
+        variables: state.variables,
+        fromSwagger: false,
+      );
+    } else if (component is EnumParamComponent) {
+      dataObject = EnumParamComponent(
+        name: name,
+        type: SwaggerEnum(
+          name,
+          state.variables.map((e) => e.name).toList(),
+        ),
+        fromSwagger: false,
+      );
+    }
+
+    if (dataObject == null) return;
 
     _editDataObjectComponentUseCase(
-      oldName: componentName,
+      oldName: component.name,
       component: dataObject,
     ).when(
       success: (value) {

@@ -22,19 +22,19 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
   final AddSourceUseCase _addSourceUseCase;
   final DeleteSourceUseCase _deleteSourceUseCase;
   final EditSourceNameUseCase _editSourceNameUseCase;
-  final DeleteDataObjectComponentUseCase _deleteDataObjectComponentUseCase;
+  final DeleteComponentUseCase _deleteComponentUseCase;
 
   DataComponentsScreenV2Bloc({
     required GetSwaggerComponentsUseCase getSwaggerComponentsUseCase,
     required AddSourceUseCase addSourceUseCase,
     required DeleteSourceUseCase deleteSourceUseCase,
     required EditSourceNameUseCase editSourceNameUseCase,
-    required DeleteDataObjectComponentUseCase deleteDataObjectComponentUseCase,
+    required DeleteComponentUseCase deleteDataObjectComponentUseCase,
   })  : _getSwaggerComponentsUseCase = getSwaggerComponentsUseCase,
         _addSourceUseCase = addSourceUseCase,
         _deleteSourceUseCase = deleteSourceUseCase,
         _editSourceNameUseCase = editSourceNameUseCase,
-        _deleteDataObjectComponentUseCase = deleteDataObjectComponentUseCase,
+        _deleteComponentUseCase = deleteDataObjectComponentUseCase,
         super(
           DataComponentsScreenV2StateData(
             config: const Config(),
@@ -177,8 +177,8 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     DataComponentsScreenV2DeleteComponent event,
     Emitter<DataComponentsScreenV2State> emit,
   ) async {
-    final result = _deleteDataObjectComponentUseCase(
-      componentName: event.componentName,
+    final result = _deleteComponentUseCase(
+      component: event.component,
     );
 
     if (result.isError) {

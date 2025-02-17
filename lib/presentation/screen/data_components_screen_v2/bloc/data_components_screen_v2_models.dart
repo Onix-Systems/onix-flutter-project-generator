@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 
@@ -24,7 +25,7 @@ class DataComponentsScreenV2Event with _$DataComponentsScreenV2Event {
   }) = DataComponentsScreenV2DeleteSource;
 
   const factory DataComponentsScreenV2Event.deleteComponent({
-    required String componentName,
+    required Component component,
   }) = DataComponentsScreenV2DeleteComponent;
 }
 

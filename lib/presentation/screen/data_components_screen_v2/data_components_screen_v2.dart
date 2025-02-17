@@ -151,12 +151,12 @@ class _DataComponentsScreenState extends BaseState<
                               sourceName: sourceName,
                             );
                           },
-                          onComponentEdit: (componentName) {
+                          onComponentEdit: (component) {
                             showCupertinoModalPopup(
                               context: context,
                               builder: (ctx) => AddEditComponentDialog(
                                 components: blocOf(context).state.components,
-                                componentName: componentName,
+                                component: component,
                               ),
                             ).then(
                               (_) {
@@ -170,10 +170,10 @@ class _DataComponentsScreenState extends BaseState<
                               },
                             );
                           },
-                          onComponentDelete: (componentName) {
+                          onComponentDelete: (component) {
                             blocOf(context).add(
                               DataComponentsScreenV2Event.deleteComponent(
-                                componentName: componentName,
+                                component: component,
                               ),
                             );
                           },
