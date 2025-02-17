@@ -9,6 +9,7 @@ import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_d
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 
 class AddEditVariableDialog extends StatefulWidget {
   final DataVariableComponent? variable;
@@ -31,6 +32,8 @@ class AddEditVariableDialog extends StatefulWidget {
 class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
   final TextEditingController _controller = TextEditingController();
   var _selectedType = '';
+  bool isList = false;
+  bool nullable = false;
 
   @override
   void initState() {
@@ -68,6 +71,16 @@ class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
                 child: Row(
                   spacing: 10,
                   children: [
+                    if (!widget.parentIsEnum)
+                      LabeledCheckbox(
+                        label: 'List',
+                        initialValue: isList,
+                        onAction: () {
+                          setState(() {
+                            isList = !isList;
+                          });
+                        },
+                      ),
                     Expanded(
                       child: DropdownButton2<String>(
                         value: _selectedType,
@@ -96,6 +109,16 @@ class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
                         ),
                       ),
                     ),
+                    if (!widget.parentIsEnum)
+                      LabeledCheckbox(
+                        label: 'Nullable',
+                        initialValue: nullable,
+                        onAction: () {
+                          setState(() {
+                            nullable = !nullable;
+                          });
+                        },
+                      ),
                     Expanded(
                       child: TextField(
                         controller: _controller,
