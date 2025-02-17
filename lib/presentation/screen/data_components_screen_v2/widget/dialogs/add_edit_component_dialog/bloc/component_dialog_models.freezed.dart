@@ -15,6 +15,166 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
+mixin _$ComponentDialogSR {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? success,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ComponentDialogSRSuccess value) success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ComponentDialogSRSuccess value)? success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ComponentDialogSRSuccess value)? success,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ComponentDialogSRCopyWith<$Res> {
+  factory $ComponentDialogSRCopyWith(
+          ComponentDialogSR value, $Res Function(ComponentDialogSR) then) =
+      _$ComponentDialogSRCopyWithImpl<$Res, ComponentDialogSR>;
+}
+
+/// @nodoc
+class _$ComponentDialogSRCopyWithImpl<$Res, $Val extends ComponentDialogSR>
+    implements $ComponentDialogSRCopyWith<$Res> {
+  _$ComponentDialogSRCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ComponentDialogSR
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$ComponentDialogSRSuccessImplCopyWith<$Res> {
+  factory _$$ComponentDialogSRSuccessImplCopyWith(
+          _$ComponentDialogSRSuccessImpl value,
+          $Res Function(_$ComponentDialogSRSuccessImpl) then) =
+      __$$ComponentDialogSRSuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ComponentDialogSRSuccessImplCopyWithImpl<$Res>
+    extends _$ComponentDialogSRCopyWithImpl<$Res,
+        _$ComponentDialogSRSuccessImpl>
+    implements _$$ComponentDialogSRSuccessImplCopyWith<$Res> {
+  __$$ComponentDialogSRSuccessImplCopyWithImpl(
+      _$ComponentDialogSRSuccessImpl _value,
+      $Res Function(_$ComponentDialogSRSuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ComponentDialogSR
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ComponentDialogSRSuccessImpl implements _ComponentDialogSRSuccess {
+  const _$ComponentDialogSRSuccessImpl();
+
+  @override
+  String toString() {
+    return 'ComponentDialogSR.success()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ComponentDialogSRSuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() success,
+  }) {
+    return success();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? success,
+  }) {
+    return success?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ComponentDialogSRSuccess value) success,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ComponentDialogSRSuccess value)? success,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ComponentDialogSRSuccess value)? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ComponentDialogSRSuccess implements ComponentDialogSR {
+  const factory _ComponentDialogSRSuccess() = _$ComponentDialogSRSuccessImpl;
+}
+
+/// @nodoc
 mixin _$ComponentDialogState {
   List<String> get components => throw _privateConstructorUsedError;
   List<DataVariableComponent> get variables =>

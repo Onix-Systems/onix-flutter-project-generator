@@ -1140,13 +1140,13 @@ class S {
     );
   }
 
-  /// `{sourceName}Source already exists`
-  String sourceExistsError(Object sourceName) {
+  /// `{componentName} already exists`
+  String alreadyExistsError(Object componentName) {
     return Intl.message(
-      '${sourceName}Source already exists',
-      name: 'sourceExistsError',
+      '$componentName already exists',
+      name: 'alreadyExistsError',
       desc: '',
-      args: [sourceName],
+      args: [componentName],
     );
   }
 

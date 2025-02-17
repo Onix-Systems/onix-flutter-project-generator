@@ -3,7 +3,10 @@ import 'package:onix_flutter_bricks/domain/entity/component/data_variable_compon
 
 part 'component_dialog_models.freezed.dart';
 
-class ComponentDialogSR {}
+@freezed
+class ComponentDialogSR with _$ComponentDialogSR {
+  const factory ComponentDialogSR.success() = _ComponentDialogSRSuccess;
+}
 
 @freezed
 class ComponentDialogState with _$ComponentDialogState {

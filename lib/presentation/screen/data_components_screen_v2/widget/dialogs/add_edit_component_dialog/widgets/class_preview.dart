@@ -10,12 +10,14 @@ class ClassPreview extends StatelessWidget {
   final bool isEnum;
   final List<DataVariableComponent> variables;
   final ValueChanged<DataVariableComponent> onEdit;
+  final ValueChanged<DataVariableComponent> onDelete;
 
   const ClassPreview({
     required this.className,
     required this.isEnum,
     required this.variables,
     required this.onEdit,
+    required this.onDelete,
     super.key,
   });
 
@@ -53,7 +55,9 @@ class ClassPreview extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      onDelete(variable);
+                    },
                     padding: const EdgeInsets.all(5),
                     constraints: const BoxConstraints(),
                     icon: Icon(

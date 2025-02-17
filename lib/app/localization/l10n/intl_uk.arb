@@ -109,7 +109,7 @@
   "sourceDeletingDialogTitle": "Дійсно хочете видалити джерело {sourceName}?",
   "withComponents": "З компонентами",
   "deleteComponentConfirmation": "Дійсно хочете видалити компонент {componentName}?",
-  "sourceExistsError": "{sourceName}Source вже існує",
+  "alreadyExistsError": "{componentName} вже існує",
   "dataComponentExistsError": "Компонент {componentName} вже існує",
   "dataComponentExistsInSource": " в джерелі {sourceName}",
   "getStylesFromFigma": "Отримати стилі з Figma",

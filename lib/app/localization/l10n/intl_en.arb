@@ -109,7 +109,7 @@
   "sourceDeletingDialogTitle": "Do you really want to delete source {sourceName}?",
   "withComponents": "With components",
   "deleteComponentConfirmation": "Do you really want to delete component {componentName}?",
-  "sourceExistsError": "{sourceName}Source already exists",
+  "alreadyExistsError": "{componentName} already exists",
   "dataComponentExistsError": "Data component {componentName} already exists",
   "dataComponentExistsInSource": " in {sourceName} source",
   "getStylesFromFigma": "Get styles from Figma",

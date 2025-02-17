@@ -1,8 +1,11 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
@@ -95,6 +98,12 @@ class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
                         onChanged: (_) {
                           setState(() {});
                         },
+                        inputFormatters: [
+                          const FirstCharacterNotDigitFormatter(),
+                          FilteringTextInputFormatter.allow(
+                            AppConsts.digitsAndLatinLetters,
+                          ),
+                        ],
                         decoration: InputDecoration(
                           hintText: S.of(context).variableName,
                           hintStyle: context.appTextStyles.fs18?.copyWith(

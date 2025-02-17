@@ -85,6 +85,16 @@ class _DataComponentsScreenState extends BaseState<
               builder: (ctx) => AddEditComponentDialog(
                 components: blocOf(context).state.components,
               ),
+            ).then(
+              (_) {
+                if (context.mounted) {
+                  blocOf(context).add(
+                    DataComponentsScreenV2Event.init(
+                      config: blocOf(context).state.config,
+                    ),
+                  );
+                }
+              },
             ),
           ),
         ],

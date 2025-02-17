@@ -20,25 +20,25 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(variant) =>
+  static String m0(componentName) => "${componentName} already exists";
+
+  static String m1(variant) =>
       "Changing state manager will change ... to ${variant}. Are you sure you want to continue?";
 
-  static String m1(componentName) => "${componentName} component preview";
+  static String m2(componentName) => "${componentName} component preview";
 
-  static String m2(componentName) =>
+  static String m3(componentName) =>
       "Data component ${componentName} already exists";
 
-  static String m3(sourceName) => " in ${sourceName} source";
+  static String m4(sourceName) => " in ${sourceName} source";
 
-  static String m4(componentName) =>
+  static String m5(componentName) =>
       "Do you really want to delete component ${componentName}?";
 
-  static String m5(projectName) => "Modify ${projectName}";
+  static String m6(projectName) => "Modify ${projectName}";
 
-  static String m6(sourceName) =>
+  static String m7(sourceName) =>
       "Do you really want to delete source ${sourceName}?";
-
-  static String m7(sourceName) => "${sourceName}Source already exists";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),
         "addSource": MessageLookupByLibrary.simpleMessage("Add source"),
         "addVariable": MessageLookupByLibrary.simpleMessage("Add variable"),
+        "alreadyExistsError": m0,
         "alsoReadThis": MessageLookupByLibrary.simpleMessage("Also read this"),
         "apiFailureNoNetwork": MessageLookupByLibrary.simpleMessage(
             "Sorry, we\'re having trouble connecting. Please check your internet connection and try again.\n\nReach out to support if you continue to experience issues."),
@@ -63,7 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "changeStateManagerError": MessageLookupByLibrary.simpleMessage(
             "Change state manager warning"),
-        "changeStateManagerErrorContent": m0,
+        "changeStateManagerErrorContent": m1,
         "checkNamesContentFirstPart":
             MessageLookupByLibrary.simpleMessage("Is project name\n"),
         "checkNamesContentLastPart":
@@ -79,19 +80,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "componentName": MessageLookupByLibrary.simpleMessage("Component name"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Component name"),
-        "componentPreview": m1,
+        "componentPreview": m2,
         "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
         "createRequestCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Create request?"),
         "createResponseCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Create response?"),
         "dataComponent": MessageLookupByLibrary.simpleMessage("Data component"),
-        "dataComponentExistsError": m2,
-        "dataComponentExistsInSource": m3,
+        "dataComponentExistsError": m3,
+        "dataComponentExistsInSource": m4,
         "dataComponents":
             MessageLookupByLibrary.simpleMessage("Data components"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
-        "deleteComponentConfirmation": m4,
+        "deleteComponentConfirmation": m5,
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
@@ -167,7 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Modify"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Modify component"),
-        "modifyGeneratedProject": m5,
+        "modifyGeneratedProject": m6,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Modify signing vars..."),
@@ -247,8 +248,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signingToolTitle": MessageLookupByLibrary.simpleMessage(
             "Android signing configuration"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
-        "sourceDeletingDialogTitle": m6,
-        "sourceExistsError": m7,
+        "sourceDeletingDialogTitle": m7,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),
         "sourceNotFound":

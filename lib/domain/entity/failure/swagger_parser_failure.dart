@@ -25,7 +25,7 @@ extension SwaggerParserFailureX on SwaggerParserFailure {
   String getTranslatedMessage(BuildContext context) {
     switch (runtimeType) {
       case SwaggerParserFailureAlreadyExists:
-        return S.of(context).sourceExistsError(componentName ?? '');
+        return S.of(context).alreadyExistsError(componentName ?? '');
       case SwaggerParserFailureNotFound:
         return S.of(context).sourceNotFound;
       case SwaggerParserFailureFailedToParse:

@@ -148,6 +148,9 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                               ),
                             );
                           },
+                          onDelete: (variable) {
+                            cubitOf(context).deleteVariable(variable);
+                          },
                         );
                       },
                     ),
@@ -163,14 +166,17 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
             ),
             Row(
               children: [
-                Expanded(
-                  child: AppActionButton(
-                    label: S.of(context).ok,
-                    onPressed: () {
-                      onOk();
-                      Navigator.of(context).pop();
-                    },
-                    active: _controller.text.isNotEmpty,
+                blocBuilder(
+                  builder: (context, state) => Expanded(
+                    child: AppActionButton(
+                      label: S.of(context).ok,
+                      onPressed: () {
+                        cubitOf(context).addDataObject(name: _controller.text);
+                        Navigator.of(context).pop();
+                      },
+                      active: _controller.text.isNotEmpty &&
+                          state.variables.isNotEmpty,
+                    ),
                   ),
                 ),
                 Container(
