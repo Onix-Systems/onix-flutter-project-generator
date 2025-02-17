@@ -1130,10 +1130,20 @@ class S {
     );
   }
 
-  /// `Do you really want to delete component {componentName}?`
+  /// `Delete component?`
+  String get deleteComponent {
+    return Intl.message(
+      'Delete component?',
+      name: 'deleteComponent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete component {componentName}? This will also delete referenced variables in all data objects.`
   String deleteComponentConfirmation(Object componentName) {
     return Intl.message(
-      'Do you really want to delete component $componentName?',
+      'Do you really want to delete component $componentName? This will also delete referenced variables in all data objects.',
       name: 'deleteComponentConfirmation',
       desc: '',
       args: [componentName],

@@ -171,10 +171,22 @@ class _DataComponentsScreenState extends BaseState<
                             );
                           },
                           onComponentDelete: (component) {
-                            blocOf(context).add(
-                              DataComponentsScreenV2Event.deleteComponent(
-                                component: component,
+                            Dialogs.showOkCancelDialog(
+                              context: context,
+                              title: S.of(context).delete,
+                              content: Text(
+                                S.of(context).deleteComponentConfirmation(
+                                      component.name,
+                                    ),
                               ),
+                              onOk: () {
+                                blocOf(context).add(
+                                  DataComponentsScreenV2Event.deleteComponent(
+                                    component: component,
+                                  ),
+                                );
+                              },
+                              isError: true,
                             );
                           },
                         ),

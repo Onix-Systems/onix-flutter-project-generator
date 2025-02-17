@@ -33,7 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m4(sourceName) => " in ${sourceName} source";
 
   static String m5(componentName) =>
-      "Do you really want to delete component ${componentName}?";
+      "Do you really want to delete component ${componentName}? This will also delete referenced variables in all data objects.";
 
   static String m6(projectName) => "Modify ${projectName}";
 
@@ -92,6 +92,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dataComponents":
             MessageLookupByLibrary.simpleMessage("Data components"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "deleteComponent":
+            MessageLookupByLibrary.simpleMessage("Delete component?"),
         "deleteComponentConfirmation": m5,
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),

@@ -32,7 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m4(sourceName) => " в джерелі ${sourceName}";
 
   static String m5(componentName) =>
-      "Дійсно хочете видалити компонент ${componentName}?";
+      "Дійсно хочете видалити компонент ${componentName}? Це також видалить всі референсні змінні в усіх об\'єктах даних.";
 
   static String m6(projectName) => "Змінити ${projectName}";
 
@@ -95,6 +95,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dataComponents":
             MessageLookupByLibrary.simpleMessage("Компоненти даних"),
         "delete": MessageLookupByLibrary.simpleMessage("Видалити"),
+        "deleteComponent":
+            MessageLookupByLibrary.simpleMessage("Видалити компонент?"),
         "deleteComponentConfirmation": m5,
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Діалог видкріється в окремому вікні)"),
