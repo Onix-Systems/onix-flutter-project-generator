@@ -165,8 +165,66 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     return const Result.success(OperationStatus.success);
   }
 
+  @override
+  Result<OperationStatus> editDataObjectComponent({
+    required String oldName,
+    required DataObjectComponent dataObject,
+  }) {
+    if (!isDataObjectExists(oldName)) {
+      return Result.error(
+        failure: SwaggerParserFailureNotFound(
+          oldName,
+        ),
+      );
+    }
+
+    if (oldName.toUpperCase() != dataObject.name.toUpperCase() &&
+        isDataObjectExists(dataObject.name)) {
+      return Result.error(
+        failure: SwaggerParserFailureAlreadyExists(
+          dataObject.name,
+        ),
+      );
+    }
+
+    final dataObjectIndex = _components.dataObjects
+        .indexWhere((element) => element.name == oldName);
+
+    _components = _components.copyWith(
+      dataObjects: [
+        ..._components.dataObjects.sublist(0, dataObjectIndex),
+        dataObject,
+        ..._components.dataObjects.sublist(dataObjectIndex + 1),
+      ],
+    );
+
+    return const Result.success(OperationStatus.success);
+  }
+
+  @override
+  Result<OperationStatus> deleteDataObjectComponent(
+    String componentName,
+  ) {
+    if (!isDataObjectExists(componentName)) {
+      return Result.error(
+        failure: SwaggerParserFailureNotFound(
+          componentName,
+        ),
+      );
+    }
+
+    _components = _components.copyWith(
+      dataObjects: _components.dataObjects
+          .where((element) => element.name != componentName)
+          .toList(),
+    );
+
+    return const Result.success(OperationStatus.success);
+  }
+
   bool isDataObjectExists(String dataObjectName) {
-    return _components.dataObjects
-        .any((element) => element.name == dataObjectName);
+    return _components.dataObjects.any(
+      (element) => element.name.toUpperCase() == dataObjectName.toUpperCase(),
+    );
   }
 }

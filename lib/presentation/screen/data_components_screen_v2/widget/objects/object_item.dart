@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
@@ -10,9 +11,13 @@ import 'package:recase/recase.dart';
 
 class ObjectItem extends StatelessWidget {
   final dynamic object;
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
 
   const ObjectItem({
     required this.object,
+    required this.onEdit,
+    required this.onDelete,
     super.key,
   });
 
@@ -35,18 +40,42 @@ class ObjectItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 8),
+          const Gap(8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              name.titleCase,
-              style: TextStyle(
-                color: context.appColors.textColor,
-                fontSize: 16,
-              ),
+            child: Row(
+              children: [
+                Text(
+                  name.titleCase,
+                  style: TextStyle(
+                    color: context.appColors.textColor,
+                    fontSize: 16,
+                  ),
+                ),
+                if (_canBeEdited()) ...[
+                  const Spacer(),
+                  IconButton(
+                    onPressed: onEdit,
+                    constraints: const BoxConstraints(),
+                    icon: const Icon(
+                      CupertinoIcons.pencil,
+                      size: 18,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: onDelete,
+                    constraints: const BoxConstraints(),
+                    icon: Icon(
+                      CupertinoIcons.delete,
+                      size: 18,
+                      color: context.appColors.alarmColor,
+                    ),
+                  ),
+                ],
+              ],
             ),
           ),
-          const SizedBox(height: 8),
+          const Gap(8),
           Container(
             color: context.appColors.darkContrastColor,
             width: double.infinity,
@@ -85,5 +114,12 @@ class ObjectItem extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  bool _canBeEdited() {
+    return (object is DataObjectComponent &&
+            !(object as DataObjectComponent).fromSwagger) ||
+        (object is EnumParamComponent &&
+            !(object as EnumParamComponent).fromSwagger);
   }
 }

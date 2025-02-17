@@ -11,6 +11,7 @@ class ComponentDialogSR with _$ComponentDialogSR {
 @freezed
 class ComponentDialogState with _$ComponentDialogState {
   const factory ComponentDialogState({
+    String? componentName,
     @Default([]) List<String> components,
     @Default([]) List<DataVariableComponent> variables,
   }) = _ComponentDialogState;

@@ -6,19 +6,26 @@ import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_models.dart';
 import 'package:recase/recase.dart';
 
 class ComponentDialogCubit
     extends BaseCubit<ComponentDialogState, ComponentDialogSR> {
   final AddDataObjectComponentUseCase _addDataObjectComponentUseCase;
+  final EditDataObjectComponentUseCase _editDataObjectComponentUseCase;
 
   ComponentDialogCubit({
     required AddDataObjectComponentUseCase addDataObjectComponentUseCase,
+    required EditDataObjectComponentUseCase editDataObjectComponentUseCase,
   })  : _addDataObjectComponentUseCase = addDataObjectComponentUseCase,
+        _editDataObjectComponentUseCase = editDataObjectComponentUseCase,
         super(const ComponentDialogState());
 
-  void init(Components components) {
+  void init({
+    required Components components,
+    String? componentName,
+  }) {
     final enums = components.enums.map((e) => e.name).toList();
     final dataObjects =
         components.dataObjects.map((e) => e.fileReference.reference).toList();
@@ -27,9 +34,19 @@ class ComponentDialogCubit
       (a, b) => a.compareTo(b),
     )..insertAll(0, DartTypes.types);
 
+    if (componentName != null) {
+      componentNames.remove(componentName);
+    }
+
     emit(
       state.copyWith(
+        componentName: componentName,
         components: componentNames,
+        variables: componentName != null
+            ? components.dataObjects
+                .firstWhere((e) => e.name == componentName)
+                .variables
+            : [],
       ),
     );
   }
@@ -99,9 +116,32 @@ class ComponentDialogCubit
       name: name,
       fileReference: SwaggerReference(name),
       variables: state.variables,
+      fromSwagger: false,
     );
 
     _addDataObjectComponentUseCase(component: dataObject).when(
+      success: (value) {
+        addSr(const ComponentDialogSR.success());
+      },
+      error: onFailure,
+    );
+  }
+
+  Future<void> editDataObject({required String name}) async {
+    final componentName = state.componentName;
+    if (componentName == null) return;
+
+    final dataObject = DataObjectComponent(
+      name: name,
+      fileReference: SwaggerReference(name),
+      variables: state.variables,
+      fromSwagger: false,
+    );
+
+    _editDataObjectComponentUseCase(
+      oldName: componentName,
+      component: dataObject,
+    ).when(
       success: (value) {
         addSr(const ComponentDialogSR.success());
       },

@@ -41,7 +41,10 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
 
   @override
   void onCubitCreated(BuildContext context, ComponentDialogCubit cubit) {
-    cubit.init(widget.components);
+    cubit.init(
+      components: widget.components,
+      componentName: widget.componentName,
+    );
     super.onCubitCreated(context, cubit);
   }
 
@@ -171,7 +174,14 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                     child: AppActionButton(
                       label: S.of(context).ok,
                       onPressed: () {
-                        cubitOf(context).addDataObject(name: _controller.text);
+                        if (widget.componentName != null) {
+                          cubitOf(context)
+                              .editDataObject(name: _controller.text);
+                        } else {
+                          cubitOf(context).addDataObject(
+                            name: _controller.text,
+                          );
+                        }
                         Navigator.of(context).pop();
                       },
                       active: _controller.text.isNotEmpty &&

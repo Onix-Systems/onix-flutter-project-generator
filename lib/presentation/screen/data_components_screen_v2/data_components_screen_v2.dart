@@ -136,7 +136,7 @@ class _DataComponentsScreenState extends BaseState<
                           components: components,
                           objectViews: (source) =>
                               blocOf(context).getSourceObjects(source),
-                          onEdit: (sourceName) {
+                          onSourceEdit: (sourceName) {
                             showCupertinoDialog(
                               context: context,
                               builder: (ctx) => AddEditSourceDialog(
@@ -145,10 +145,36 @@ class _DataComponentsScreenState extends BaseState<
                               ),
                             );
                           },
-                          onDelete: (sourceName) {
+                          onSourceDelete: (sourceName) {
                             _showDeleteSourceDialog(
                               context,
                               sourceName: sourceName,
+                            );
+                          },
+                          onComponentEdit: (componentName) {
+                            showCupertinoModalPopup(
+                              context: context,
+                              builder: (ctx) => AddEditComponentDialog(
+                                components: blocOf(context).state.components,
+                                componentName: componentName,
+                              ),
+                            ).then(
+                              (_) {
+                                if (context.mounted) {
+                                  blocOf(context).add(
+                                    DataComponentsScreenV2Event.init(
+                                      config: blocOf(context).state.config,
+                                    ),
+                                  );
+                                }
+                              },
+                            );
+                          },
+                          onComponentDelete: (componentName) {
+                            blocOf(context).add(
+                              DataComponentsScreenV2Event.deleteComponent(
+                                componentName: componentName,
+                              ),
                             );
                           },
                         ),

@@ -29,5 +29,14 @@ abstract interface class SwaggerRepository {
     DataObjectComponent dataObject,
   );
 
+  Result<OperationStatus> editDataObjectComponent({
+    required String oldName,
+    required DataObjectComponent dataObject,
+  });
+
+  Result<OperationStatus> deleteDataObjectComponent(
+    String componentName,
+  );
+
   void isSourceExists(String sourceName);
 }

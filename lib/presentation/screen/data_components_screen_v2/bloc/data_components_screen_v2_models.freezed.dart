@@ -22,6 +22,7 @@ mixin _$DataComponentsScreenV2Event {
     required TResult Function(String sourceName) addSource,
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
+    required TResult Function(String componentName) deleteComponent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$DataComponentsScreenV2Event {
     TResult? Function(String sourceName)? addSource,
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
+    TResult? Function(String componentName)? deleteComponent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$DataComponentsScreenV2Event {
     TResult Function(String sourceName)? addSource,
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
+    TResult Function(String componentName)? deleteComponent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +52,8 @@ mixin _$DataComponentsScreenV2Event {
         editSourceName,
     required TResult Function(DataComponentsScreenV2DeleteSource value)
         deleteSource,
+    required TResult Function(DataComponentsScreenV2DeleteComponent value)
+        deleteComponent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,6 +63,8 @@ mixin _$DataComponentsScreenV2Event {
     TResult? Function(DataComponentsScreenV2EditSourceName value)?
         editSourceName,
     TResult? Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult? Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,6 +74,8 @@ mixin _$DataComponentsScreenV2Event {
     TResult Function(DataComponentsScreenV2EditSourceName value)?
         editSourceName,
     TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -184,6 +193,7 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
     required TResult Function(String sourceName) addSource,
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
+    required TResult Function(String componentName) deleteComponent,
   }) {
     return init(config);
   }
@@ -195,6 +205,7 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
     TResult? Function(String sourceName)? addSource,
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
+    TResult? Function(String componentName)? deleteComponent,
   }) {
     return init?.call(config);
   }
@@ -206,6 +217,7 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
     TResult Function(String sourceName)? addSource,
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
+    TResult Function(String componentName)? deleteComponent,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -223,6 +235,8 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
         editSourceName,
     required TResult Function(DataComponentsScreenV2DeleteSource value)
         deleteSource,
+    required TResult Function(DataComponentsScreenV2DeleteComponent value)
+        deleteComponent,
   }) {
     return init(this);
   }
@@ -235,6 +249,8 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
     TResult? Function(DataComponentsScreenV2EditSourceName value)?
         editSourceName,
     TResult? Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult? Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
   }) {
     return init?.call(this);
   }
@@ -247,6 +263,8 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
     TResult Function(DataComponentsScreenV2EditSourceName value)?
         editSourceName,
     TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -349,6 +367,7 @@ class _$DataComponentsScreenV2AddSourceImpl
     required TResult Function(String sourceName) addSource,
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
+    required TResult Function(String componentName) deleteComponent,
   }) {
     return addSource(sourceName);
   }
@@ -360,6 +379,7 @@ class _$DataComponentsScreenV2AddSourceImpl
     TResult? Function(String sourceName)? addSource,
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
+    TResult? Function(String componentName)? deleteComponent,
   }) {
     return addSource?.call(sourceName);
   }
@@ -371,6 +391,7 @@ class _$DataComponentsScreenV2AddSourceImpl
     TResult Function(String sourceName)? addSource,
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
+    TResult Function(String componentName)? deleteComponent,
     required TResult orElse(),
   }) {
     if (addSource != null) {
@@ -388,6 +409,8 @@ class _$DataComponentsScreenV2AddSourceImpl
         editSourceName,
     required TResult Function(DataComponentsScreenV2DeleteSource value)
         deleteSource,
+    required TResult Function(DataComponentsScreenV2DeleteComponent value)
+        deleteComponent,
   }) {
     return addSource(this);
   }
@@ -400,6 +423,8 @@ class _$DataComponentsScreenV2AddSourceImpl
     TResult? Function(DataComponentsScreenV2EditSourceName value)?
         editSourceName,
     TResult? Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult? Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
   }) {
     return addSource?.call(this);
   }
@@ -412,6 +437,8 @@ class _$DataComponentsScreenV2AddSourceImpl
     TResult Function(DataComponentsScreenV2EditSourceName value)?
         editSourceName,
     TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
     required TResult orElse(),
   }) {
     if (addSource != null) {
@@ -525,6 +552,7 @@ class _$DataComponentsScreenV2EditSourceNameImpl
     required TResult Function(String sourceName) addSource,
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
+    required TResult Function(String componentName) deleteComponent,
   }) {
     return editSourceName(sourceName, newName);
   }
@@ -536,6 +564,7 @@ class _$DataComponentsScreenV2EditSourceNameImpl
     TResult? Function(String sourceName)? addSource,
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
+    TResult? Function(String componentName)? deleteComponent,
   }) {
     return editSourceName?.call(sourceName, newName);
   }
@@ -547,6 +576,7 @@ class _$DataComponentsScreenV2EditSourceNameImpl
     TResult Function(String sourceName)? addSource,
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
+    TResult Function(String componentName)? deleteComponent,
     required TResult orElse(),
   }) {
     if (editSourceName != null) {
@@ -564,6 +594,8 @@ class _$DataComponentsScreenV2EditSourceNameImpl
         editSourceName,
     required TResult Function(DataComponentsScreenV2DeleteSource value)
         deleteSource,
+    required TResult Function(DataComponentsScreenV2DeleteComponent value)
+        deleteComponent,
   }) {
     return editSourceName(this);
   }
@@ -576,6 +608,8 @@ class _$DataComponentsScreenV2EditSourceNameImpl
     TResult? Function(DataComponentsScreenV2EditSourceName value)?
         editSourceName,
     TResult? Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult? Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
   }) {
     return editSourceName?.call(this);
   }
@@ -588,6 +622,8 @@ class _$DataComponentsScreenV2EditSourceNameImpl
     TResult Function(DataComponentsScreenV2EditSourceName value)?
         editSourceName,
     TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
     required TResult orElse(),
   }) {
     if (editSourceName != null) {
@@ -693,6 +729,7 @@ class _$DataComponentsScreenV2DeleteSourceImpl
     required TResult Function(String sourceName) addSource,
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
+    required TResult Function(String componentName) deleteComponent,
   }) {
     return deleteSource(sourceName);
   }
@@ -704,6 +741,7 @@ class _$DataComponentsScreenV2DeleteSourceImpl
     TResult? Function(String sourceName)? addSource,
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
+    TResult? Function(String componentName)? deleteComponent,
   }) {
     return deleteSource?.call(sourceName);
   }
@@ -715,6 +753,7 @@ class _$DataComponentsScreenV2DeleteSourceImpl
     TResult Function(String sourceName)? addSource,
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
+    TResult Function(String componentName)? deleteComponent,
     required TResult orElse(),
   }) {
     if (deleteSource != null) {
@@ -732,6 +771,8 @@ class _$DataComponentsScreenV2DeleteSourceImpl
         editSourceName,
     required TResult Function(DataComponentsScreenV2DeleteSource value)
         deleteSource,
+    required TResult Function(DataComponentsScreenV2DeleteComponent value)
+        deleteComponent,
   }) {
     return deleteSource(this);
   }
@@ -744,6 +785,8 @@ class _$DataComponentsScreenV2DeleteSourceImpl
     TResult? Function(DataComponentsScreenV2EditSourceName value)?
         editSourceName,
     TResult? Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult? Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
   }) {
     return deleteSource?.call(this);
   }
@@ -756,6 +799,8 @@ class _$DataComponentsScreenV2DeleteSourceImpl
     TResult Function(DataComponentsScreenV2EditSourceName value)?
         editSourceName,
     TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
     required TResult orElse(),
   }) {
     if (deleteSource != null) {
@@ -778,6 +823,183 @@ abstract class DataComponentsScreenV2DeleteSource
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DataComponentsScreenV2DeleteSourceImplCopyWith<
           _$DataComponentsScreenV2DeleteSourceImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DataComponentsScreenV2DeleteComponentImplCopyWith<$Res> {
+  factory _$$DataComponentsScreenV2DeleteComponentImplCopyWith(
+          _$DataComponentsScreenV2DeleteComponentImpl value,
+          $Res Function(_$DataComponentsScreenV2DeleteComponentImpl) then) =
+      __$$DataComponentsScreenV2DeleteComponentImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String componentName});
+}
+
+/// @nodoc
+class __$$DataComponentsScreenV2DeleteComponentImplCopyWithImpl<$Res>
+    extends _$DataComponentsScreenV2EventCopyWithImpl<$Res,
+        _$DataComponentsScreenV2DeleteComponentImpl>
+    implements _$$DataComponentsScreenV2DeleteComponentImplCopyWith<$Res> {
+  __$$DataComponentsScreenV2DeleteComponentImplCopyWithImpl(
+      _$DataComponentsScreenV2DeleteComponentImpl _value,
+      $Res Function(_$DataComponentsScreenV2DeleteComponentImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DataComponentsScreenV2Event
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? componentName = null,
+  }) {
+    return _then(_$DataComponentsScreenV2DeleteComponentImpl(
+      componentName: null == componentName
+          ? _value.componentName
+          : componentName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DataComponentsScreenV2DeleteComponentImpl
+    implements DataComponentsScreenV2DeleteComponent {
+  const _$DataComponentsScreenV2DeleteComponentImpl(
+      {required this.componentName});
+
+  @override
+  final String componentName;
+
+  @override
+  String toString() {
+    return 'DataComponentsScreenV2Event.deleteComponent(componentName: $componentName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DataComponentsScreenV2DeleteComponentImpl &&
+            (identical(other.componentName, componentName) ||
+                other.componentName == componentName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, componentName);
+
+  /// Create a copy of DataComponentsScreenV2Event
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DataComponentsScreenV2DeleteComponentImplCopyWith<
+          _$DataComponentsScreenV2DeleteComponentImpl>
+      get copyWith => __$$DataComponentsScreenV2DeleteComponentImplCopyWithImpl<
+          _$DataComponentsScreenV2DeleteComponentImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) init,
+    required TResult Function(String sourceName) addSource,
+    required TResult Function(String sourceName, String newName) editSourceName,
+    required TResult Function(String sourceName) deleteSource,
+    required TResult Function(String componentName) deleteComponent,
+  }) {
+    return deleteComponent(componentName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? init,
+    TResult? Function(String sourceName)? addSource,
+    TResult? Function(String sourceName, String newName)? editSourceName,
+    TResult? Function(String sourceName)? deleteSource,
+    TResult? Function(String componentName)? deleteComponent,
+  }) {
+    return deleteComponent?.call(componentName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? init,
+    TResult Function(String sourceName)? addSource,
+    TResult Function(String sourceName, String newName)? editSourceName,
+    TResult Function(String sourceName)? deleteSource,
+    TResult Function(String componentName)? deleteComponent,
+    required TResult orElse(),
+  }) {
+    if (deleteComponent != null) {
+      return deleteComponent(componentName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DataComponentsScreenV2IInit value) init,
+    required TResult Function(DataComponentsScreenV2AddSource value) addSource,
+    required TResult Function(DataComponentsScreenV2EditSourceName value)
+        editSourceName,
+    required TResult Function(DataComponentsScreenV2DeleteSource value)
+        deleteSource,
+    required TResult Function(DataComponentsScreenV2DeleteComponent value)
+        deleteComponent,
+  }) {
+    return deleteComponent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DataComponentsScreenV2IInit value)? init,
+    TResult? Function(DataComponentsScreenV2AddSource value)? addSource,
+    TResult? Function(DataComponentsScreenV2EditSourceName value)?
+        editSourceName,
+    TResult? Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult? Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
+  }) {
+    return deleteComponent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataComponentsScreenV2IInit value)? init,
+    TResult Function(DataComponentsScreenV2AddSource value)? addSource,
+    TResult Function(DataComponentsScreenV2EditSourceName value)?
+        editSourceName,
+    TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
+    required TResult orElse(),
+  }) {
+    if (deleteComponent != null) {
+      return deleteComponent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DataComponentsScreenV2DeleteComponent
+    implements DataComponentsScreenV2Event {
+  const factory DataComponentsScreenV2DeleteComponent(
+          {required final String componentName}) =
+      _$DataComponentsScreenV2DeleteComponentImpl;
+
+  String get componentName;
+
+  /// Create a copy of DataComponentsScreenV2Event
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DataComponentsScreenV2DeleteComponentImplCopyWith<
+          _$DataComponentsScreenV2DeleteComponentImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 

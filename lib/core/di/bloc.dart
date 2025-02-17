@@ -19,7 +19,9 @@ import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_useca
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_source_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
@@ -103,12 +105,16 @@ void registerBloc(GetIt getIt) {
         addSourceUseCase: GetIt.I.get<AddSourceUseCase>(),
         deleteSourceUseCase: GetIt.I.get<DeleteSourceUseCase>(),
         editSourceNameUseCase: GetIt.I.get<EditSourceNameUseCase>(),
+        deleteDataObjectComponentUseCase:
+            GetIt.I.get<DeleteDataObjectComponentUseCase>(),
       ),
     )
     ..registerFactory<ComponentDialogCubit>(
       () => ComponentDialogCubit(
         addDataObjectComponentUseCase:
             GetIt.I.get<AddDataObjectComponentUseCase>(),
+        editDataObjectComponentUseCase:
+            GetIt.I.get<EditDataObjectComponentUseCase>(),
       ),
     );
 }

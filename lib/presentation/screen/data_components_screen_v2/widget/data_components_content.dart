@@ -15,14 +15,18 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 class DataComponentsContent extends StatelessWidget {
   final Components components;
   final List<ObjectView> Function(SourceComponent) objectViews;
-  final ValueChanged<String> onEdit;
-  final ValueChanged<String> onDelete;
+  final ValueChanged<String> onSourceEdit;
+  final ValueChanged<String> onSourceDelete;
+  final ValueChanged<String> onComponentEdit;
+  final ValueChanged<String> onComponentDelete;
 
   const DataComponentsContent({
     required this.components,
     required this.objectViews,
-    required this.onEdit,
-    required this.onDelete,
+    required this.onSourceEdit,
+    required this.onSourceDelete,
+    required this.onComponentEdit,
+    required this.onComponentDelete,
     super.key,
   });
 
@@ -55,8 +59,8 @@ class DataComponentsContent extends StatelessWidget {
             return SourceItem(
               source: components.sources[index],
               objects: objectViews(components.sources[index]),
-              onEdit: () => onEdit(components.sources[index].name),
-              onDelete: () => onDelete(components.sources[index].name),
+              onEdit: () => onSourceEdit(components.sources[index].name),
+              onDelete: () => onSourceDelete(components.sources[index].name),
             );
           },
         ),
@@ -76,6 +80,8 @@ class DataComponentsContent extends StatelessWidget {
                   }
                   return false;
                 }),
+                onEdit: () => onComponentEdit(dataComponentNames[index]),
+                onDelete: () => onComponentDelete(dataComponentNames[index]),
               );
             },
           )
