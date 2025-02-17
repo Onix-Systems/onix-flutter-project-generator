@@ -1,11 +1,13 @@
 import 'package:onix_flutter_bricks/app/extension/logger_extension.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/mapper/swagger/swagger_mapper.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
@@ -218,6 +220,34 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
           component,
         ],
       );
+    }
+
+    for (final dataObject in _components.dataObjects) {
+      if (dataObject.variables.map((e) => e.type.getName()).contains(oldName)) {
+        final variables = dataObject.variables.toList()
+          ..removeWhere(
+            (element) => element.type.getName() == oldName,
+          )
+          ..add(
+            DataVariableComponent(
+              name: dataObject.name,
+              type: SwaggerReference(
+                component.name,
+              ),
+              isRequired: false,
+            ),
+          );
+
+        editComponent(
+          oldName: dataObject.name,
+          component: DataObjectComponent(
+            name: dataObject.name,
+            fileReference: dataObject.fileReference,
+            variables: variables,
+            fromSwagger: false,
+          ),
+        );
+      }
     }
 
     return const Result.success(OperationStatus.success);
