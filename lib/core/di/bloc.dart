@@ -113,6 +113,7 @@ void registerBloc(GetIt getIt) {
       () => ComponentDialogCubit(
         addDataObjectComponentUseCase: GetIt.I.get<AddComponentUseCase>(),
         editDataObjectComponentUseCase: GetIt.I.get<EditComponentUseCase>(),
+        getSwaggerComponentsUseCase: GetIt.I.get<GetSwaggerComponentsUseCase>(),
       ),
     )
     ..registerFactory<AddRequestDialogCubit>(

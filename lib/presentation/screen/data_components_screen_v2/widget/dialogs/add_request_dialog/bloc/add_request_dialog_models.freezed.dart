@@ -176,7 +176,7 @@ abstract class _AddRequestDialogSRSuccess implements AddRequestDialogSR {
 
 /// @nodoc
 mixin _$AddRequestDialogState {
-  RequestComponent? get request => throw _privateConstructorUsedError;
+  RequestComponent get request => throw _privateConstructorUsedError;
   List<String> get components => throw _privateConstructorUsedError;
 
   /// Create a copy of AddRequestDialogState
@@ -192,9 +192,9 @@ abstract class $AddRequestDialogStateCopyWith<$Res> {
           $Res Function(AddRequestDialogState) then) =
       _$AddRequestDialogStateCopyWithImpl<$Res, AddRequestDialogState>;
   @useResult
-  $Res call({RequestComponent? request, List<String> components});
+  $Res call({RequestComponent request, List<String> components});
 
-  $RequestComponentCopyWith<$Res>? get request;
+  $RequestComponentCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -213,14 +213,14 @@ class _$AddRequestDialogStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? request = freezed,
+    Object? request = null,
     Object? components = null,
   }) {
     return _then(_value.copyWith(
-      request: freezed == request
+      request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestComponent?,
+              as RequestComponent,
       components: null == components
           ? _value.components
           : components // ignore: cast_nullable_to_non_nullable
@@ -232,12 +232,8 @@ class _$AddRequestDialogStateCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $RequestComponentCopyWith<$Res>? get request {
-    if (_value.request == null) {
-      return null;
-    }
-
-    return $RequestComponentCopyWith<$Res>(_value.request!, (value) {
+  $RequestComponentCopyWith<$Res> get request {
+    return $RequestComponentCopyWith<$Res>(_value.request, (value) {
       return _then(_value.copyWith(request: value) as $Val);
     });
   }
@@ -252,10 +248,10 @@ abstract class _$$AddRequestDialogStateImplCopyWith<$Res>
       __$$AddRequestDialogStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestComponent? request, List<String> components});
+  $Res call({RequestComponent request, List<String> components});
 
   @override
-  $RequestComponentCopyWith<$Res>? get request;
+  $RequestComponentCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -272,14 +268,14 @@ class __$$AddRequestDialogStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? request = freezed,
+    Object? request = null,
     Object? components = null,
   }) {
     return _then(_$AddRequestDialogStateImpl(
-      request: freezed == request
+      request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestComponent?,
+              as RequestComponent,
       components: null == components
           ? _value._components
           : components // ignore: cast_nullable_to_non_nullable
@@ -292,11 +288,11 @@ class __$$AddRequestDialogStateImplCopyWithImpl<$Res>
 
 class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
   const _$AddRequestDialogStateImpl(
-      {this.request, final List<String> components = const []})
+      {required this.request, final List<String> components = const []})
       : _components = components;
 
   @override
-  final RequestComponent? request;
+  final RequestComponent request;
   final List<String> _components;
   @override
   @JsonKey()
@@ -337,11 +333,11 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
 
 abstract class _AddRequestDialogState implements AddRequestDialogState {
   const factory _AddRequestDialogState(
-      {final RequestComponent? request,
+      {required final RequestComponent request,
       final List<String> components}) = _$AddRequestDialogStateImpl;
 
   @override
-  RequestComponent? get request;
+  RequestComponent get request;
   @override
   List<String> get components;
 

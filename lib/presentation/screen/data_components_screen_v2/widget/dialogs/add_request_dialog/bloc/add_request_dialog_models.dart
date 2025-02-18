@@ -11,7 +11,7 @@ class AddRequestDialogSR with _$AddRequestDialogSR {
 @freezed
 class AddRequestDialogState with _$AddRequestDialogState {
   const factory AddRequestDialogState({
-    RequestComponent? request,
+    required RequestComponent request,
     @Default([]) List<String> components,
   }) = _AddRequestDialogState;
 }

@@ -6,9 +6,13 @@ import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart';
+import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
-import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/add_edit_variable_dialog.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/add_edit_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_models.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -31,6 +35,7 @@ class AddEditRequestDialog extends StatefulWidget {
 class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
     AddRequestDialogCubit, AddRequestDialogSR, AddEditRequestDialog> {
   final TextEditingController _pathController = TextEditingController();
+  final TextEditingController _idController = TextEditingController();
 
   var _requestType = SwaggerPathRequestType.get;
 
@@ -132,6 +137,35 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                               style: context.appTextStyles.fs18,
                             ),
                           ),
+                          Expanded(
+                            child: TextField(
+                              controller: _idController,
+                              onChanged: (_) {
+                                setState(() {});
+                              },
+                              inputFormatters: const [
+                                FirstCharacterNotDigitFormatter(),
+                              ],
+                              decoration: InputDecoration(
+                                hintText: 'OperationId',
+                                hintStyle: context.appTextStyles.fs18?.copyWith(
+                                  color: context.appColors.controlColor
+                                      .withAlpha(100),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                ),
+                                fillColor: context.appColors.darkContrastColor,
+                                hoverColor: context.appColors.darkContrastColor,
+                                filled: true,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              style: context.appTextStyles.fs18,
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -149,23 +183,44 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                     AppFilledButton(
                       label: 'Add body',
                       onPressed: () => showCupertinoModalPopup(
-                          context: context,
-                          builder: (ctx) => AddEditVariableDialog(
-                                types: state.components,
-                                process: (_, __, ___) {},
-                                parentIsEnum: false,
-                              )),
+                        context: context,
+                        builder: (ctx) {
+                          final name =
+                              '${_idController.text.isNotEmpty ? _idController.text : '${_requestType.name}_${_pathController.text.clearPathToName()}'.camelCase}RequestBody';
+                          return AddEditComponentDialog(
+                            component: DataObjectComponent(
+                              name: name,
+                              fileReference: SwaggerReference('reference'),
+                              variables: [],
+                            ),
+                            requestBodyComponent: true,
+                          );
+                        },
+                      ),
                     ),
-                    AppFilledButton(label: 'Add multipart body'),
-                    AppFilledButton(label: 'Add query params'),
-                    AppFilledButton(label: 'Add path params'),
                   ],
                 ),
                 const Gap(20),
                 DialogActionButtons(
                   leftButtonLabel: S.of(context).ok,
                   leftButtonOnPressed: () {
-                    Navigator.of(context).pop(state.request);
+                    Navigator.of(context).pop(
+                      state.request.copyWith(
+                        operationId: _idController.text,
+                        path: _pathController.text,
+                        type: _requestType,
+                        description: '',
+                        requestBody: null,
+                        multipartBody: [],
+                        queryParams: [],
+                        pathParams: [],
+                        response: ResponseParamComponent(
+                          name: 'response',
+                          type: SwaggerReference('reference'),
+                          isRequired: true,
+                        ),
+                      ),
+                    );
                   },
                   isLeftButtonActive: _pathController.text.isNotEmpty,
                   rightButtonLabel: S.of(context).cancel,

@@ -8,7 +8,6 @@ import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
-import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_models.dart';
@@ -21,11 +20,11 @@ import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label
 
 class AddEditComponentDialog extends StatefulWidget {
   final Component? component;
-  final Components components;
+  final bool requestBodyComponent;
 
   const AddEditComponentDialog({
-    required this.components,
     this.component,
+    this.requestBodyComponent = false,
     super.key,
   });
 
@@ -44,7 +43,6 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
   @override
   void onCubitCreated(BuildContext context, ComponentDialogCubit cubit) {
     cubit.init(
-      components: widget.components,
       component: widget.component,
     );
     super.onCubitCreated(context, cubit);
@@ -101,17 +99,18 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                             ),
                           ],
                         ),
-                        SwitchWithLabel(
-                          label: 'Enum',
-                          initialValue: isEnum,
-                          valueSetter: widget.component != null
-                              ? null
-                              : (value) {
-                                  setState(() {
-                                    isEnum = value;
-                                  });
-                                },
-                        ),
+                        if (!widget.requestBodyComponent)
+                          SwitchWithLabel(
+                            label: 'Enum',
+                            initialValue: isEnum,
+                            valueSetter: widget.component != null
+                                ? null
+                                : (value) {
+                                    setState(() {
+                                      isEnum = value;
+                                    });
+                                  },
+                          ),
                         AppFilledButton(
                           label: S.of(context).addVariable,
                           icon: Icons.add,

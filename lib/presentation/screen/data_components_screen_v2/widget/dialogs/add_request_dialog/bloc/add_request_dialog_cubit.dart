@@ -1,7 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/util/enum/dart_types.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_models.dart';
 
@@ -12,7 +14,7 @@ class AddRequestDialogCubit
   AddRequestDialogCubit({
     required GetSwaggerComponentsUseCase getSwaggerComponentsUseCase,
   })  : _getSwaggerComponentsUseCase = getSwaggerComponentsUseCase,
-        super(const AddRequestDialogState());
+        super(AddRequestDialogState(request: RequestComponent.empty()));
 
   Future<void> init({
     required RequestComponent? request,
@@ -30,7 +32,21 @@ class AddRequestDialogCubit
     emit(
       state.copyWith(
         components: componentNames,
-        request: request,
+        request: request ?? state.request,
+      ),
+    );
+  }
+
+  void addBody({
+    required RequestBodyComponent body,
+    required List<SwaggerVariable> variables,
+    bool isRequired = false,
+  }) {
+    emit(
+      state.copyWith(
+        request: state.request.copyWith(
+          requestBody: body,
+        ),
       ),
     );
   }

@@ -82,9 +82,7 @@ class _DataComponentsScreenState extends BaseState<
             icon: Icons.add,
             onPressed: () => showCupertinoModalPopup(
               context: context,
-              builder: (ctx) => AddEditComponentDialog(
-                components: blocOf(context).state.components,
-              ),
+              builder: (ctx) => const AddEditComponentDialog(),
             ).then(
               (_) {
                 if (context.mounted) {
@@ -155,7 +153,6 @@ class _DataComponentsScreenState extends BaseState<
                             showCupertinoModalPopup(
                               context: context,
                               builder: (ctx) => AddEditComponentDialog(
-                                components: blocOf(context).state.components,
                                 component: component,
                               ),
                             ).then(

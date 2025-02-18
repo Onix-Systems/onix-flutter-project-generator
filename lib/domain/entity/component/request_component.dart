@@ -26,6 +26,22 @@ class RequestComponent with _$RequestComponent {
     required ResponseParamComponent response,
   }) = _RequestComponent;
 
+  factory RequestComponent.empty() => RequestComponent(
+        operationId: '',
+        path: '',
+        type: SwaggerPathRequestType.get,
+        description: '',
+        requestBody: null,
+        multipartBody: [],
+        queryParams: [],
+        pathParams: [],
+        response: ResponseParamComponent(
+          name: '',
+          type: SwaggerOperationDefault(),
+          isRequired: false,
+        ),
+      );
+
   bool hasInputParameters() {
     return requestBody != null ||
         multipartBody.isNotEmpty ||
