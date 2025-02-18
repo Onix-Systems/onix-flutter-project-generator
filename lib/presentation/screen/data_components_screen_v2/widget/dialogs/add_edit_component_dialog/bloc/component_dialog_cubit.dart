@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/util/enum/dart_types.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
@@ -70,17 +71,33 @@ class ComponentDialogCubit
     required String type,
     bool isRequired = false,
     bool isEnum = false,
+    bool isList = false,
   }) {
     final variableType = DartTypes.types.contains(type)
         ? SwaggerVariable(DartTypes.toSwaggerType(type))
         : SwaggerReference(type);
 
-    final variable = DataVariableComponent(
+    final component = DataVariableComponent(
       name: name.camelCase,
       type: variableType,
       isRequired: isRequired,
       isEnum: isEnum,
     );
+
+    final variable = isList
+        ? DataVariableComponent(
+            name: name.camelCase,
+            type: SwaggerArray(
+              SwaggerModelVariableResponseV3(
+                name: name.camelCase,
+                type: variableType,
+                isRequired: isRequired,
+              ),
+            ),
+            isRequired: isRequired,
+            isEnum: isEnum,
+          )
+        : component;
 
     emit(
       state.copyWith(
@@ -95,17 +112,33 @@ class ComponentDialogCubit
     required int index,
     bool isRequired = false,
     bool isEnum = false,
+    bool isList = false,
   }) {
     final variableType = DartTypes.types.contains(type)
         ? SwaggerVariable(DartTypes.toSwaggerType(type))
         : SwaggerReference(type);
 
-    final variable = DataVariableComponent(
+    final component = DataVariableComponent(
       name: name.camelCase,
       type: variableType,
       isRequired: isRequired,
       isEnum: isEnum,
     );
+
+    final variable = isList
+        ? DataVariableComponent(
+            name: name.camelCase,
+            type: SwaggerArray(
+              SwaggerModelVariableResponseV3(
+                name: name.camelCase,
+                type: variableType,
+                isRequired: isRequired,
+              ),
+            ),
+            isRequired: isRequired,
+            isEnum: isEnum,
+          )
+        : component;
 
     final variables = state.variables.toList();
     variables[index] = variable;

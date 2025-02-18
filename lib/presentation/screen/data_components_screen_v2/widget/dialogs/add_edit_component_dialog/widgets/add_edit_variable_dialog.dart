@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
@@ -15,7 +17,11 @@ class AddEditVariableDialog extends StatefulWidget {
   final DataVariableComponent? variable;
   final bool parentIsEnum;
   final List<String> types;
-  final Function(String, String) process;
+  final Function(
+    String type,
+    String name,
+    bool isList,
+  ) process;
 
   const AddEditVariableDialog({
     required this.types,
@@ -40,7 +46,16 @@ class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
     super.initState();
     if (widget.variable != null) {
       _controller.text = widget.variable!.name;
-      _selectedType = widget.variable!.type.toString();
+      if (widget.variable!.type is SwaggerArray) {
+        isList = true;
+        _selectedType = (widget.variable!.type as SwaggerArray)
+            .itemType
+            .type
+            .getTypeDeclaration(DataFileType.entity);
+      } else {
+        _selectedType =
+            widget.variable!.type.getTypeDeclaration(DataFileType.entity);
+      }
     } else {
       _selectedType = widget.types.first;
     }
@@ -109,16 +124,6 @@ class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
                         ),
                       ),
                     ),
-                    if (!widget.parentIsEnum)
-                      LabeledCheckbox(
-                        label: 'Nullable',
-                        initialValue: nullable,
-                        onAction: () {
-                          setState(() {
-                            nullable = !nullable;
-                          });
-                        },
-                      ),
                     Expanded(
                       child: TextField(
                         controller: _controller,
@@ -166,7 +171,11 @@ class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
                     child: AppActionButton(
                       label: S.of(context).ok,
                       onPressed: () {
-                        widget.process(_selectedType, _controller.text);
+                        widget.process(
+                          _selectedType,
+                          _controller.text,
+                          isList,
+                        );
                         Navigator.of(context).pop();
                       },
                       active: _controller.text.isNotEmpty,

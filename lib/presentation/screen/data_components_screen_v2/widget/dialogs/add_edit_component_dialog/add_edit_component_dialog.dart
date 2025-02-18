@@ -123,11 +123,12 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                                     ? ['String']
                                     : cubitOf(context).state.components,
                                 parentIsEnum: isEnum,
-                                process: (type, name) {
+                                process: (type, name, isList) {
                                   cubitOf(context).addVariable(
                                     name: name,
                                     type: type,
                                     isEnum: isEnum,
+                                    isList: isList,
                                   );
                                 },
                               ),
@@ -153,12 +154,13 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                                     ? ['String']
                                     : cubitOf(context).state.components,
                                 parentIsEnum: isEnum,
-                                process: (type, name) {
+                                process: (type, name, isList) {
                                   cubitOf(context).editVariable(
                                     name: name,
                                     type: type,
                                     index: state.variables.indexOf(variable),
                                     isEnum: isEnum,
+                                    isList: isList,
                                   );
                                 },
                               ),
