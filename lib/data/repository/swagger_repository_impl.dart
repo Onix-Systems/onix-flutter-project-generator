@@ -283,6 +283,12 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       final variables = dataObject.variables.toList()
         ..removeWhere(
           (element) => element.type.getName() == component.name,
+        )
+        ..removeWhere(
+          (element) =>
+              element.type is SwaggerArray &&
+              (element.type as SwaggerArray).itemType.type.getName() ==
+                  component.name,
         );
 
       editComponent(
