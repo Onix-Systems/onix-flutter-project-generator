@@ -161,5 +161,7 @@
   "sourceNotFound": "Source not found",
   "componentName": "Component name",
   "addVariable": "Add variable",
-  "variableName": "Variable name"
+  "variableName": "Variable name",
+  "path": "Path",
+  "addRequest": "Add request"
 }

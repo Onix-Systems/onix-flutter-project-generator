@@ -19,7 +19,7 @@ mixin _$SourceComponent {
   String get name => throw _privateConstructorUsedError;
   List<RequestComponent> get requests => throw _privateConstructorUsedError;
   ArchType get arch => throw _privateConstructorUsedError;
-  dynamic get fromSwagger => throw _privateConstructorUsedError;
+  bool get fromSwagger => throw _privateConstructorUsedError;
 
   /// Create a copy of SourceComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -38,7 +38,7 @@ abstract class $SourceComponentCopyWith<$Res> {
       {String name,
       List<RequestComponent> requests,
       ArchType arch,
-      dynamic fromSwagger});
+      bool fromSwagger});
 }
 
 /// @nodoc
@@ -59,7 +59,7 @@ class _$SourceComponentCopyWithImpl<$Res, $Val extends SourceComponent>
     Object? name = null,
     Object? requests = null,
     Object? arch = null,
-    Object? fromSwagger = freezed,
+    Object? fromSwagger = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -74,10 +74,10 @@ class _$SourceComponentCopyWithImpl<$Res, $Val extends SourceComponent>
           ? _value.arch
           : arch // ignore: cast_nullable_to_non_nullable
               as ArchType,
-      fromSwagger: freezed == fromSwagger
+      fromSwagger: null == fromSwagger
           ? _value.fromSwagger
           : fromSwagger // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as bool,
     ) as $Val);
   }
 }
@@ -94,7 +94,7 @@ abstract class _$$SourceComponentImplCopyWith<$Res>
       {String name,
       List<RequestComponent> requests,
       ArchType arch,
-      dynamic fromSwagger});
+      bool fromSwagger});
 }
 
 /// @nodoc
@@ -113,7 +113,7 @@ class __$$SourceComponentImplCopyWithImpl<$Res>
     Object? name = null,
     Object? requests = null,
     Object? arch = null,
-    Object? fromSwagger = freezed,
+    Object? fromSwagger = null,
   }) {
     return _then(_$SourceComponentImpl(
       name: null == name
@@ -128,7 +128,10 @@ class __$$SourceComponentImplCopyWithImpl<$Res>
           ? _value.arch
           : arch // ignore: cast_nullable_to_non_nullable
               as ArchType,
-      fromSwagger: freezed == fromSwagger ? _value.fromSwagger! : fromSwagger,
+      fromSwagger: null == fromSwagger
+          ? _value.fromSwagger
+          : fromSwagger // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -158,7 +161,7 @@ class _$SourceComponentImpl extends _SourceComponent {
   final ArchType arch;
   @override
   @JsonKey()
-  final dynamic fromSwagger;
+  final bool fromSwagger;
 
   @override
   String toString() {
@@ -173,17 +176,13 @@ class _$SourceComponentImpl extends _SourceComponent {
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._requests, _requests) &&
             (identical(other.arch, arch) || other.arch == arch) &&
-            const DeepCollectionEquality()
-                .equals(other.fromSwagger, fromSwagger));
+            (identical(other.fromSwagger, fromSwagger) ||
+                other.fromSwagger == fromSwagger));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      const DeepCollectionEquality().hash(_requests),
-      arch,
-      const DeepCollectionEquality().hash(fromSwagger));
+  int get hashCode => Object.hash(runtimeType, name,
+      const DeepCollectionEquality().hash(_requests), arch, fromSwagger);
 
   /// Create a copy of SourceComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -200,7 +199,7 @@ abstract class _SourceComponent extends SourceComponent {
       {required final String name,
       required final List<RequestComponent> requests,
       required final ArchType arch,
-      final dynamic fromSwagger}) = _$SourceComponentImpl;
+      final bool fromSwagger}) = _$SourceComponentImpl;
   const _SourceComponent._() : super._();
 
   @override
@@ -210,7 +209,7 @@ abstract class _SourceComponent extends SourceComponent {
   @override
   ArchType get arch;
   @override
-  dynamic get fromSwagger;
+  bool get fromSwagger;
 
   /// Create a copy of SourceComponent
   /// with the given fields replaced by the non-null parameter values.

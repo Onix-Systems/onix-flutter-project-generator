@@ -161,5 +161,7 @@
   "sourceNotFound": "Джерело не знайдено",
   "componentName": "Назва компонента",
   "addVariable": "Додати змінну",
-  "variableName": "Назва змінної"
+  "variableName": "Назва змінної",
+  "path": "Шлях",
+  "addRequest": "Додати запит"
 }

@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Data Components"),
         "addField": MessageLookupByLibrary.simpleMessage("Add field"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Add flavors:"),
+        "addRequest": MessageLookupByLibrary.simpleMessage("Add request"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),
         "addSource": MessageLookupByLibrary.simpleMessage("Add source"),
         "addVariable": MessageLookupByLibrary.simpleMessage("Add variable"),
@@ -199,6 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "overwrite": MessageLookupByLibrary.simpleMessage("Overwrite"),
         "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Failed to Parse Swagger Components. Please try again or contact support if issue not resolved."),
+        "path": MessageLookupByLibrary.simpleMessage("Path"),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
             "You must select path to projects folder"),
         "pathNotSelectedTitle":

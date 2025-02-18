@@ -15,8 +15,8 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/add_edit_variable_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/class_preview.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label.dart';
 
 class AddEditComponentDialog extends StatefulWidget {
@@ -182,43 +182,27 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
               height: 0,
               thickness: 0.2,
             ),
-            Row(
-              children: [
-                blocBuilder(
-                  builder: (context, state) => Expanded(
-                    child: AppActionButton(
-                      label: S.of(context).ok,
-                      onPressed: () {
-                        if (widget.component != null) {
-                          cubitOf(context)
-                              .editDataObject(name: _controller.text);
-                        } else {
-                          cubitOf(context).addDataObject(
-                            name: _controller.text,
-                            isEnum: isEnum,
-                          );
-                        }
-                        Navigator.of(context).pop();
-                      },
-                      active: _controller.text.isNotEmpty &&
-                          state.variables.isNotEmpty,
-                    ),
-                  ),
-                ),
-                Container(
-                  color: context.appColors.controlColor,
-                  height: 50,
-                  width: 0.2,
-                ),
-                Expanded(
-                  child: AppActionButton(
-                    label: S.of(context).cancel,
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ),
-              ],
+            blocBuilder(
+              builder: (context, state) => DialogActionButtons(
+                leftButtonLabel: S.of(context).ok,
+                rightButtonLabel: S.of(context).cancel,
+                leftButtonOnPressed: () {
+                  if (widget.component != null) {
+                    cubitOf(context).editDataObject(name: _controller.text);
+                  } else {
+                    cubitOf(context).addDataObject(
+                      name: _controller.text,
+                      isEnum: isEnum,
+                    );
+                  }
+                  Navigator.of(context).pop();
+                },
+                rightButtonOnPressed: () {
+                  Navigator.of(context).pop();
+                },
+                isLeftButtonActive:
+                    _controller.text.isNotEmpty && state.variables.isNotEmpty,
+              ),
             ),
           ],
         ),

@@ -10,7 +10,7 @@ import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_d
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/widget/buttons/app_action_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 
 class AddEditVariableDialog extends StatefulWidget {
@@ -165,36 +165,21 @@ class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
                 height: 0,
                 thickness: 0.2,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: AppActionButton(
-                      label: S.of(context).ok,
-                      onPressed: () {
-                        widget.process(
-                          _selectedType,
-                          _controller.text,
-                          isList,
-                        );
-                        Navigator.of(context).pop();
-                      },
-                      active: _controller.text.isNotEmpty,
-                    ),
-                  ),
-                  Container(
-                    color: context.appColors.controlColor,
-                    height: 50,
-                    width: 0.2,
-                  ),
-                  Expanded(
-                    child: AppActionButton(
-                      label: S.of(context).cancel,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ),
-                ],
+              DialogActionButtons(
+                leftButtonLabel: S.of(context).ok,
+                rightButtonLabel: S.of(context).cancel,
+                leftButtonOnPressed: () {
+                  widget.process(
+                    _selectedType,
+                    _controller.text,
+                    isList,
+                  );
+                  Navigator.of(context).pop();
+                },
+                isLeftButtonActive: _controller.text.isNotEmpty,
+                rightButtonOnPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
             ],
           ),
