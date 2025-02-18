@@ -19,6 +19,7 @@ class SourceComponent with _$SourceComponent {
     required String name,
     required List<RequestComponent> requests,
     required ArchType arch,
+    @Default(true) fromSwagger,
   }) = _SourceComponent;
 
   String getFolderPath(String projectRoot) =>

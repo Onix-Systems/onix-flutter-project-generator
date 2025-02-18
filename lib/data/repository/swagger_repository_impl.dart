@@ -79,6 +79,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
           name: sourceName,
           requests: [],
           arch: arch,
+          fromSwagger: false,
         ),
       ],
     );
@@ -126,13 +127,13 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       );
     }
 
-    final sourceIndex = _components.sources.indexWhere(
-      (element) => element.name == sourceName,
-    );
-
-    final updatedSource = _components.sources[sourceIndex].copyWith(
-      name: newName,
-    );
+    final updatedSource = _components.sources
+        .firstWhere(
+          (element) => element.name == sourceName,
+        )
+        .copyWith(
+          name: newName,
+        );
 
     _components = _components.copyWith(
       sources: [

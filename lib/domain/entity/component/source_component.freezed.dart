@@ -19,6 +19,7 @@ mixin _$SourceComponent {
   String get name => throw _privateConstructorUsedError;
   List<RequestComponent> get requests => throw _privateConstructorUsedError;
   ArchType get arch => throw _privateConstructorUsedError;
+  dynamic get fromSwagger => throw _privateConstructorUsedError;
 
   /// Create a copy of SourceComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,11 @@ abstract class $SourceComponentCopyWith<$Res> {
           SourceComponent value, $Res Function(SourceComponent) then) =
       _$SourceComponentCopyWithImpl<$Res, SourceComponent>;
   @useResult
-  $Res call({String name, List<RequestComponent> requests, ArchType arch});
+  $Res call(
+      {String name,
+      List<RequestComponent> requests,
+      ArchType arch,
+      dynamic fromSwagger});
 }
 
 /// @nodoc
@@ -54,6 +59,7 @@ class _$SourceComponentCopyWithImpl<$Res, $Val extends SourceComponent>
     Object? name = null,
     Object? requests = null,
     Object? arch = null,
+    Object? fromSwagger = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -68,6 +74,10 @@ class _$SourceComponentCopyWithImpl<$Res, $Val extends SourceComponent>
           ? _value.arch
           : arch // ignore: cast_nullable_to_non_nullable
               as ArchType,
+      fromSwagger: freezed == fromSwagger
+          ? _value.fromSwagger
+          : fromSwagger // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -80,7 +90,11 @@ abstract class _$$SourceComponentImplCopyWith<$Res>
       __$$SourceComponentImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, List<RequestComponent> requests, ArchType arch});
+  $Res call(
+      {String name,
+      List<RequestComponent> requests,
+      ArchType arch,
+      dynamic fromSwagger});
 }
 
 /// @nodoc
@@ -99,6 +113,7 @@ class __$$SourceComponentImplCopyWithImpl<$Res>
     Object? name = null,
     Object? requests = null,
     Object? arch = null,
+    Object? fromSwagger = freezed,
   }) {
     return _then(_$SourceComponentImpl(
       name: null == name
@@ -113,6 +128,7 @@ class __$$SourceComponentImplCopyWithImpl<$Res>
           ? _value.arch
           : arch // ignore: cast_nullable_to_non_nullable
               as ArchType,
+      fromSwagger: freezed == fromSwagger ? _value.fromSwagger! : fromSwagger,
     ));
   }
 }
@@ -123,7 +139,8 @@ class _$SourceComponentImpl extends _SourceComponent {
   const _$SourceComponentImpl(
       {required this.name,
       required final List<RequestComponent> requests,
-      required this.arch})
+      required this.arch,
+      this.fromSwagger = true})
       : _requests = requests,
         super._();
 
@@ -139,10 +156,13 @@ class _$SourceComponentImpl extends _SourceComponent {
 
   @override
   final ArchType arch;
+  @override
+  @JsonKey()
+  final dynamic fromSwagger;
 
   @override
   String toString() {
-    return 'SourceComponent(name: $name, requests: $requests, arch: $arch)';
+    return 'SourceComponent(name: $name, requests: $requests, arch: $arch, fromSwagger: $fromSwagger)';
   }
 
   @override
@@ -152,12 +172,18 @@ class _$SourceComponentImpl extends _SourceComponent {
             other is _$SourceComponentImpl &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._requests, _requests) &&
-            (identical(other.arch, arch) || other.arch == arch));
+            (identical(other.arch, arch) || other.arch == arch) &&
+            const DeepCollectionEquality()
+                .equals(other.fromSwagger, fromSwagger));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(_requests), arch);
+      runtimeType,
+      name,
+      const DeepCollectionEquality().hash(_requests),
+      arch,
+      const DeepCollectionEquality().hash(fromSwagger));
 
   /// Create a copy of SourceComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -173,7 +199,8 @@ abstract class _SourceComponent extends SourceComponent {
   const factory _SourceComponent(
       {required final String name,
       required final List<RequestComponent> requests,
-      required final ArchType arch}) = _$SourceComponentImpl;
+      required final ArchType arch,
+      final dynamic fromSwagger}) = _$SourceComponentImpl;
   const _SourceComponent._() : super._();
 
   @override
@@ -182,6 +209,8 @@ abstract class _SourceComponent extends SourceComponent {
   List<RequestComponent> get requests;
   @override
   ArchType get arch;
+  @override
+  dynamic get fromSwagger;
 
   /// Create a copy of SourceComponent
   /// with the given fields replaced by the non-null parameter values.
