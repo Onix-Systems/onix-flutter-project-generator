@@ -389,7 +389,8 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       for (final request in source.requests) {
         final requestBody = request.requestBody;
         if (requestBody != null &&
-            requestBody.type.getName() == component.name) {
+            requestBody.type.getName().toUpperCase() ==
+                component.name.toUpperCase()) {
           final updatedRequest = request.copyWith(
             requestBody: null,
           );
