@@ -187,6 +187,47 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }
 
   @override
+  Result<OperationStatus> deleteSourceRequest({
+    required String sourceName,
+    required RequestComponent requestComponent,
+  }) {
+    if (!isSourceExists(sourceName)) {
+      return Result.error(
+        failure: SwaggerParserFailureNotFound(
+          sourceName,
+        ),
+      );
+    }
+
+    final source = _components.sources.firstWhere(
+      (element) => element.name == sourceName,
+    );
+
+    if (!source.requests.contains(requestComponent)) {
+      return const Result.error(
+        failure: SwaggerParserFailureNotFound(
+          'request Component',
+        ),
+      );
+    }
+
+    _components = _components.copyWith(
+      sources: [
+        ..._components.sources.where((element) => element.name != sourceName),
+        source.copyWith(
+          requests: [
+            ...source.requests.where(
+              (element) => !element.equals(requestComponent),
+            ),
+          ],
+        ),
+      ],
+    );
+
+    return const Result.success(OperationStatus.success);
+  }
+
+  @override
   bool isSourceExists(String sourceName) {
     return _components.sources.any((element) => element.name == sourceName);
   }
@@ -342,6 +383,28 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
           fromSwagger: false,
         ),
       );
+    }
+
+    for (final source in _components.sources) {
+      for (final request in source.requests) {
+        final requestBody = request.requestBody;
+        if (requestBody != null &&
+            requestBody.type.getName() == component.name) {
+          final updatedRequest = request.copyWith(
+            requestBody: null,
+          );
+
+          deleteSourceRequest(
+            sourceName: source.name,
+            requestComponent: request,
+          );
+
+          addSourceRequest(
+            sourceName: source.name,
+            requestComponent: updatedRequest,
+          );
+        }
+      }
     }
 
     return const Result.success(OperationStatus.success);

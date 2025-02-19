@@ -10,6 +10,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/source_component.dar
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_data_object_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_source_request_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_source_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
@@ -23,6 +24,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
   final DeleteSourceUseCase _deleteSourceUseCase;
   final EditSourceNameUseCase _editSourceNameUseCase;
   final DeleteComponentUseCase _deleteComponentUseCase;
+  final DeleteSourceRequestUseCase _deleteSourceRequestUseCase;
 
   DataComponentsScreenV2Bloc({
     required GetSwaggerComponentsUseCase getSwaggerComponentsUseCase,
@@ -30,11 +32,13 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     required DeleteSourceUseCase deleteSourceUseCase,
     required EditSourceNameUseCase editSourceNameUseCase,
     required DeleteComponentUseCase deleteDataObjectComponentUseCase,
+    required DeleteSourceRequestUseCase deleteSourceRequestUseCase,
   })  : _getSwaggerComponentsUseCase = getSwaggerComponentsUseCase,
         _addSourceUseCase = addSourceUseCase,
         _deleteSourceUseCase = deleteSourceUseCase,
         _editSourceNameUseCase = editSourceNameUseCase,
         _deleteComponentUseCase = deleteDataObjectComponentUseCase,
+        _deleteSourceRequestUseCase = deleteSourceRequestUseCase,
         super(
           DataComponentsScreenV2StateData(
             config: const Config(),
@@ -46,6 +50,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     on<DataComponentsScreenV2EditSourceName>(_onEditSourceName);
     on<DataComponentsScreenV2DeleteSource>(_onDeleteSource);
     on<DataComponentsScreenV2DeleteComponent>(_onDeleteComponent);
+    on<DataComponentsScreenV2DeleteRequest>(_onDeleteRequest);
   }
 
   void _onInit(
@@ -179,6 +184,23 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
   ) async {
     final result = _deleteComponentUseCase(
       component: event.component,
+    );
+
+    if (result.isError) {
+      onFailure(result.error.failure);
+      return;
+    }
+
+    add(DataComponentsScreenV2IInit(config: state.config));
+  }
+
+  Future<void> _onDeleteRequest(
+    DataComponentsScreenV2DeleteRequest event,
+    Emitter<DataComponentsScreenV2State> emit,
+  ) async {
+    final result = _deleteSourceRequestUseCase(
+      sourceName: event.sourceName,
+      requestComponent: event.request,
     );
 
     if (result.isError) {

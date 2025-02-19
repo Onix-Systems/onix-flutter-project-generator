@@ -21,6 +21,7 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_request_us
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_data_object_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_source_request_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_source_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_name_use_case.dart';
@@ -108,6 +109,7 @@ void registerBloc(GetIt getIt) {
         deleteSourceUseCase: GetIt.I.get<DeleteSourceUseCase>(),
         editSourceNameUseCase: GetIt.I.get<EditSourceNameUseCase>(),
         deleteDataObjectComponentUseCase: GetIt.I.get<DeleteComponentUseCase>(),
+        deleteSourceRequestUseCase: GetIt.I.get<DeleteSourceRequestUseCase>(),
       ),
     )
     ..registerFactory<ComponentDialogCubit>(

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/form_data.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/input_body.dart';
@@ -13,11 +15,13 @@ class RequestItem extends StatelessWidget {
   final RequestComponent request;
   final ObjectView? requestObject;
   final ObjectView? responseObject;
+  final VoidCallback? onDelete;
 
   const RequestItem({
     required this.request,
     required this.requestObject,
     required this.responseObject,
+    this.onDelete,
     super.key,
   });
 
@@ -39,13 +43,28 @@ class RequestItem extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
-                const SizedBox(width: 16),
+                const Gap(16),
                 Text(
                   '(${request.path})',
                   style: TextStyle(
                     color: context.appColors.textColor,
                     fontSize: 14,
                   ),
+                ),
+                const Spacer(),
+                IconButton(
+                  icon: Icon(
+                    CupertinoIcons.pencil,
+                    color: context.appColors.textColor,
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(
+                    CupertinoIcons.trash,
+                    color: context.appColors.alarmColor,
+                  ),
+                  onPressed: onDelete,
                 ),
               ],
             ),

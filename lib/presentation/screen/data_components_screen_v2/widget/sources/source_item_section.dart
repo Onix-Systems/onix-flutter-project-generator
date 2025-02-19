@@ -14,16 +14,18 @@ import 'package:recase/recase.dart';
 class SourceItem extends StatelessWidget {
   final SourceComponent source;
   final List<ObjectView> objects;
-  final VoidCallback onEdit;
-  final VoidCallback onDelete;
+  final VoidCallback onNameEdit;
+  final VoidCallback onSourceDelete;
+  final ValueChanged<RequestComponent>? onRequestDelete;
   final VoidCallback refresh;
 
   const SourceItem({
     required this.source,
     required this.objects,
-    required this.onEdit,
-    required this.onDelete,
+    required this.onNameEdit,
+    required this.onSourceDelete,
     required this.refresh,
+    this.onRequestDelete,
     super.key,
   });
 
@@ -43,13 +45,13 @@ class SourceItem extends StatelessWidget {
               ),
               const Spacer(),
               IconButton(
-                onPressed: onEdit,
+                onPressed: onNameEdit,
                 icon: const Icon(
                   CupertinoIcons.pencil,
                 ),
               ),
               IconButton(
-                onPressed: onDelete,
+                onPressed: onSourceDelete,
                 icon: Icon(
                   CupertinoIcons.delete,
                   color: context.appColors.alarmColor,
@@ -77,6 +79,7 @@ class SourceItem extends StatelessWidget {
         RequestsSection(
           requests: source.requests,
           objects: objects,
+          onDelete: (request) => onRequestDelete?.call(request),
         ),
       ],
     );

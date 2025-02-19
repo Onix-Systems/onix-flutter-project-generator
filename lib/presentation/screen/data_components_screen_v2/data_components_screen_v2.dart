@@ -184,6 +184,24 @@ class _DataComponentsScreenState extends BaseState<
                               isError: true,
                             );
                           },
+                          onRequestDelete: (sourceName, request) {
+                            Dialogs.showOkCancelDialog(
+                              context: context,
+                              title: S.of(context).delete,
+                              content: Text(
+                                'S.of(context).deleteRequestConfirmation(request.operationId,)',
+                              ),
+                              onOk: () {
+                                blocOf(context).add(
+                                  DataComponentsScreenV2Event.deleteRequest(
+                                    sourceName: sourceName,
+                                    request: request,
+                                  ),
+                                );
+                              },
+                              isError: true,
+                            );
+                          },
                           refresh: () => _refresh(context),
                         ),
                       ),

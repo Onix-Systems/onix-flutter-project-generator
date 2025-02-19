@@ -28,6 +28,11 @@ class DataComponentsScreenV2Event with _$DataComponentsScreenV2Event {
   const factory DataComponentsScreenV2Event.deleteComponent({
     required Component component,
   }) = DataComponentsScreenV2DeleteComponent;
+
+  const factory DataComponentsScreenV2Event.deleteRequest({
+    required String sourceName,
+    required RequestComponent request,
+  }) = DataComponentsScreenV2DeleteRequest;
 }
 
 @freezed

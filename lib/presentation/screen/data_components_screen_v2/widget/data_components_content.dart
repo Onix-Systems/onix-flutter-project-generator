@@ -6,6 +6,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_item.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_view.dart';
@@ -20,6 +21,7 @@ class DataComponentsContent extends StatelessWidget {
   final ValueChanged<String> onSourceDelete;
   final ValueChanged<Component> onComponentEdit;
   final ValueChanged<Component> onComponentDelete;
+  final Function(String, RequestComponent) onRequestDelete;
   final VoidCallback refresh;
 
   const DataComponentsContent({
@@ -29,6 +31,7 @@ class DataComponentsContent extends StatelessWidget {
     required this.onSourceDelete,
     required this.onComponentEdit,
     required this.onComponentDelete,
+    required this.onRequestDelete,
     required this.refresh,
     super.key,
   });
@@ -63,8 +66,11 @@ class DataComponentsContent extends StatelessWidget {
             return SourceItem(
               source: source,
               objects: objectViews(source),
-              onEdit: () => onSourceEdit(source.name),
-              onDelete: () => onSourceDelete(source.name),
+              onNameEdit: () => onSourceEdit(source.name),
+              onSourceDelete: () => onSourceDelete(source.name),
+              onRequestDelete: source.fromSwagger
+                  ? null
+                  : (request) => onRequestDelete(source.name, request),
               refresh: refresh,
             );
           },

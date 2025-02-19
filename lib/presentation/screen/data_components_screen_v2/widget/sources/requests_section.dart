@@ -10,10 +10,12 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 class RequestsSection extends StatelessWidget {
   final List<RequestComponent> requests;
   final List<ObjectView> objects;
+  final ValueChanged<RequestComponent>? onDelete;
 
   const RequestsSection({
     required this.requests,
     required this.objects,
+    this.onDelete,
     super.key,
   });
 
@@ -32,6 +34,7 @@ class RequestsSection extends StatelessWidget {
                       request: e,
                       requestObject: findObject(e.requestBody?.type),
                       responseObject: findObject(e.response.type),
+                      onDelete: () => onDelete?.call(e),
                     ),
                   )
                   .toList(),

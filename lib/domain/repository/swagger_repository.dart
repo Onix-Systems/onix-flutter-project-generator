@@ -31,6 +31,11 @@ abstract interface class SwaggerRepository {
     required RequestComponent requestComponent,
   });
 
+  Result<OperationStatus> deleteSourceRequest({
+    required String sourceName,
+    required RequestComponent requestComponent,
+  });
+
   Result<OperationStatus> addComponent(
     Component dataObject,
   );
