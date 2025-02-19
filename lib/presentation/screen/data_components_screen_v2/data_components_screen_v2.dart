@@ -86,11 +86,7 @@ class _DataComponentsScreenState extends BaseState<
             ).then(
               (_) {
                 if (context.mounted) {
-                  blocOf(context).add(
-                    DataComponentsScreenV2Event.init(
-                      config: blocOf(context).state.config,
-                    ),
-                  );
+                  _refresh(context);
                 }
               },
             ),
@@ -141,6 +137,12 @@ class _DataComponentsScreenState extends BaseState<
                                 sourceName: sourceName,
                                 bloc: blocOf(context),
                               ),
+                            ).then(
+                              (_) {
+                                if (context.mounted) {
+                                  _refresh(context);
+                                }
+                              },
                             );
                           },
                           onSourceDelete: (sourceName) {
@@ -158,11 +160,7 @@ class _DataComponentsScreenState extends BaseState<
                             ).then(
                               (_) {
                                 if (context.mounted) {
-                                  blocOf(context).add(
-                                    DataComponentsScreenV2Event.init(
-                                      config: blocOf(context).state.config,
-                                    ),
-                                  );
+                                  _refresh(context);
                                 }
                               },
                             );
@@ -186,6 +184,7 @@ class _DataComponentsScreenState extends BaseState<
                               isError: true,
                             );
                           },
+                          refresh: () => _refresh(context),
                         ),
                       ),
                     ),
@@ -243,6 +242,12 @@ class _DataComponentsScreenState extends BaseState<
         ? widget.onGenerate?.call()
         : context.go(AppRouter.summaryScreen, extra: widget.config);
   }
+
+  void _refresh(BuildContext context) => blocOf(context).add(
+        DataComponentsScreenV2Event.init(
+          config: blocOf(context).state.config,
+        ),
+      );
 
   void _showDeleteSourceDialog(
     BuildContext context, {

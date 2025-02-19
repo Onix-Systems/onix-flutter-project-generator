@@ -12,6 +12,7 @@ class AddRequestDialogSR with _$AddRequestDialogSR {
 class AddRequestDialogState with _$AddRequestDialogState {
   const factory AddRequestDialogState({
     required RequestComponent request,
+    @Default('') String sourceName,
     @Default([]) List<String> components,
   }) = _AddRequestDialogState;
 }

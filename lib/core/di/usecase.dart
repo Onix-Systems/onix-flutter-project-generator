@@ -25,6 +25,7 @@ import 'package:onix_flutter_bricks/domain/usecase/screen/clear_screens_use_case
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_request_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_data_object_use_case.dart';
@@ -163,6 +164,11 @@ void registerUseCases(GetIt getIt) {
     )
     ..registerFactory<DeleteComponentUseCase>(
       () => DeleteComponentUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<AddSourceRequestUseCase>(
+      () => AddSourceRequestUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     );

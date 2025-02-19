@@ -9,7 +9,6 @@ import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
-import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/add_edit_component_dialog.dart';
@@ -21,9 +20,11 @@ import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_bu
 import 'package:recase/recase.dart';
 
 class AddEditRequestDialog extends StatefulWidget {
+  final String sourceName;
   final RequestComponent? request;
 
   const AddEditRequestDialog({
+    required this.sourceName,
     this.request,
     super.key,
   });
@@ -44,7 +45,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
 
   @override
   void onCubitCreated(BuildContext context, AddRequestDialogCubit cubit) {
-    cubit.init(request: widget.request);
+    cubit.init(request: widget.request, sourceName: widget.sourceName);
     super.onCubitCreated(context, cubit);
   }
 
@@ -182,21 +183,23 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                   children: [
                     AppFilledButton(
                       label: 'Add body',
-                      onPressed: () => showCupertinoModalPopup(
+                      onPressed: () => showCupertinoModalPopup<String>(
                         context: context,
                         builder: (ctx) {
                           final name =
                               '${_idController.text.isNotEmpty ? _idController.text : '${_requestType.name}_${_pathController.text.clearPathToName()}'.camelCase}RequestBody';
                           return AddEditComponentDialog(
-                            component: DataObjectComponent(
-                              name: name,
-                              fileReference: SwaggerReference('reference'),
-                              variables: [],
-                            ),
+                            name: name,
                             requestBodyComponent: true,
                           );
                         },
-                      ),
+                      ).then((value) {
+                        if (value != null) {
+                          if (context.mounted) {
+                            cubitOf(context).addBody(name: value);
+                          }
+                        }
+                      }),
                     ),
                   ],
                 ),

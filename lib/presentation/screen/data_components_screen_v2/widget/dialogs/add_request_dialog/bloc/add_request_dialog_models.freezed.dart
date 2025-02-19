@@ -177,6 +177,7 @@ abstract class _AddRequestDialogSRSuccess implements AddRequestDialogSR {
 /// @nodoc
 mixin _$AddRequestDialogState {
   RequestComponent get request => throw _privateConstructorUsedError;
+  String get sourceName => throw _privateConstructorUsedError;
   List<String> get components => throw _privateConstructorUsedError;
 
   /// Create a copy of AddRequestDialogState
@@ -192,7 +193,8 @@ abstract class $AddRequestDialogStateCopyWith<$Res> {
           $Res Function(AddRequestDialogState) then) =
       _$AddRequestDialogStateCopyWithImpl<$Res, AddRequestDialogState>;
   @useResult
-  $Res call({RequestComponent request, List<String> components});
+  $Res call(
+      {RequestComponent request, String sourceName, List<String> components});
 
   $RequestComponentCopyWith<$Res> get request;
 }
@@ -214,6 +216,7 @@ class _$AddRequestDialogStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? request = null,
+    Object? sourceName = null,
     Object? components = null,
   }) {
     return _then(_value.copyWith(
@@ -221,6 +224,10 @@ class _$AddRequestDialogStateCopyWithImpl<$Res,
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
               as RequestComponent,
+      sourceName: null == sourceName
+          ? _value.sourceName
+          : sourceName // ignore: cast_nullable_to_non_nullable
+              as String,
       components: null == components
           ? _value.components
           : components // ignore: cast_nullable_to_non_nullable
@@ -248,7 +255,8 @@ abstract class _$$AddRequestDialogStateImplCopyWith<$Res>
       __$$AddRequestDialogStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestComponent request, List<String> components});
+  $Res call(
+      {RequestComponent request, String sourceName, List<String> components});
 
   @override
   $RequestComponentCopyWith<$Res> get request;
@@ -269,6 +277,7 @@ class __$$AddRequestDialogStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? request = null,
+    Object? sourceName = null,
     Object? components = null,
   }) {
     return _then(_$AddRequestDialogStateImpl(
@@ -276,6 +285,10 @@ class __$$AddRequestDialogStateImplCopyWithImpl<$Res>
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
               as RequestComponent,
+      sourceName: null == sourceName
+          ? _value.sourceName
+          : sourceName // ignore: cast_nullable_to_non_nullable
+              as String,
       components: null == components
           ? _value._components
           : components // ignore: cast_nullable_to_non_nullable
@@ -288,11 +301,16 @@ class __$$AddRequestDialogStateImplCopyWithImpl<$Res>
 
 class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
   const _$AddRequestDialogStateImpl(
-      {required this.request, final List<String> components = const []})
+      {required this.request,
+      this.sourceName = '',
+      final List<String> components = const []})
       : _components = components;
 
   @override
   final RequestComponent request;
+  @override
+  @JsonKey()
+  final String sourceName;
   final List<String> _components;
   @override
   @JsonKey()
@@ -304,7 +322,7 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
 
   @override
   String toString() {
-    return 'AddRequestDialogState(request: $request, components: $components)';
+    return 'AddRequestDialogState(request: $request, sourceName: $sourceName, components: $components)';
   }
 
   @override
@@ -313,13 +331,15 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
         (other.runtimeType == runtimeType &&
             other is _$AddRequestDialogStateImpl &&
             (identical(other.request, request) || other.request == request) &&
+            (identical(other.sourceName, sourceName) ||
+                other.sourceName == sourceName) &&
             const DeepCollectionEquality()
                 .equals(other._components, _components));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, request, const DeepCollectionEquality().hash(_components));
+  int get hashCode => Object.hash(runtimeType, request, sourceName,
+      const DeepCollectionEquality().hash(_components));
 
   /// Create a copy of AddRequestDialogState
   /// with the given fields replaced by the non-null parameter values.
@@ -334,10 +354,13 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
 abstract class _AddRequestDialogState implements AddRequestDialogState {
   const factory _AddRequestDialogState(
       {required final RequestComponent request,
+      final String sourceName,
       final List<String> components}) = _$AddRequestDialogStateImpl;
 
   @override
   RequestComponent get request;
+  @override
+  String get sourceName;
   @override
   List<String> get components;
 

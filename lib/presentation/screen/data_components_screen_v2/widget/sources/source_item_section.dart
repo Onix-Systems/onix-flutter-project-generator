@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/add_request_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_view.dart';
@@ -16,12 +15,14 @@ class SourceItem extends StatelessWidget {
   final List<ObjectView> objects;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
+  final VoidCallback refresh;
 
   const SourceItem({
     required this.source,
     required this.objects,
     required this.onEdit,
     required this.onDelete,
+    required this.refresh,
     super.key,
   });
 
@@ -62,9 +63,11 @@ class SourceItem extends StatelessWidget {
             onPressed: () {
               showCupertinoModalPopup(
                 context: context,
-                builder: (ctx) => const AddEditRequestDialog(),
-              ).then((request) {
-                logger.f('Request: $request');
+                builder: (ctx) => AddEditRequestDialog(
+                  sourceName: source.name,
+                ),
+              ).then((_) {
+                refresh();
               });
             },
           ),

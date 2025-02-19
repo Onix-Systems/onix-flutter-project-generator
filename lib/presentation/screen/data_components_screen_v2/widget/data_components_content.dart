@@ -20,6 +20,7 @@ class DataComponentsContent extends StatelessWidget {
   final ValueChanged<String> onSourceDelete;
   final ValueChanged<Component> onComponentEdit;
   final ValueChanged<Component> onComponentDelete;
+  final VoidCallback refresh;
 
   const DataComponentsContent({
     required this.components,
@@ -28,6 +29,7 @@ class DataComponentsContent extends StatelessWidget {
     required this.onSourceDelete,
     required this.onComponentEdit,
     required this.onComponentDelete,
+    required this.refresh,
     super.key,
   });
 
@@ -62,6 +64,7 @@ class DataComponentsContent extends StatelessWidget {
               objects: objectViews(components.sources[index]),
               onEdit: () => onSourceEdit(components.sources[index].name),
               onDelete: () => onSourceDelete(components.sources[index].name),
+              refresh: refresh,
             );
           },
         ),

@@ -9,6 +9,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
@@ -139,6 +140,46 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       sources: [
         ..._components.sources.where((element) => element.name != sourceName),
         updatedSource,
+      ],
+    );
+
+    return const Result.success(OperationStatus.success);
+  }
+
+  @override
+  Result<OperationStatus> addSourceRequest({
+    required String sourceName,
+    required RequestComponent requestComponent,
+  }) {
+    if (!isSourceExists(sourceName)) {
+      return Result.error(
+        failure: SwaggerParserFailureNotFound(
+          sourceName,
+        ),
+      );
+    }
+
+    final source = _components.sources.firstWhere(
+      (element) => element.name == sourceName,
+    );
+
+    if (source.requests.contains(requestComponent)) {
+      return const Result.error(
+        failure: SwaggerParserFailureAlreadyExists(
+          'request component',
+        ),
+      );
+    }
+
+    _components = _components.copyWith(
+      sources: [
+        ..._components.sources.where((element) => element.name != sourceName),
+        source.copyWith(
+          requests: [
+            ...source.requests,
+            requestComponent,
+          ],
+        ),
       ],
     );
 

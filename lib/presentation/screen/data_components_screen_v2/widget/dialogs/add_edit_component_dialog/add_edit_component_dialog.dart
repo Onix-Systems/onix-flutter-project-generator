@@ -20,10 +20,12 @@ import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label
 
 class AddEditComponentDialog extends StatefulWidget {
   final Component? component;
+  final String? name;
   final bool requestBodyComponent;
 
   const AddEditComponentDialog({
     this.component,
+    this.name,
     this.requestBodyComponent = false,
     super.key,
   });
@@ -54,6 +56,8 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
     if (widget.component != null) {
       _controller.text = widget.component!.name;
       isEnum = widget.component! is EnumParamComponent;
+    } else if (widget.name != null) {
+      _controller.text = widget.name!;
     }
   }
 
@@ -186,7 +190,8 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                 leftButtonLabel: S.of(context).ok,
                 rightButtonLabel: S.of(context).cancel,
                 leftButtonOnPressed: () {
-                  if (widget.component != null) {
+                  if (widget.component != null &&
+                      !widget.requestBodyComponent) {
                     cubitOf(context).editDataObject(name: _controller.text);
                   } else {
                     cubitOf(context).addDataObject(
@@ -194,7 +199,7 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                       isEnum: isEnum,
                     );
                   }
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pop(_controller.text);
                 },
                 rightButtonOnPressed: () {
                   Navigator.of(context).pop();
