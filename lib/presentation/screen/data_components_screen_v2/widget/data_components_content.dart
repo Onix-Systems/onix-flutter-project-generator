@@ -59,11 +59,12 @@ class DataComponentsContent extends StatelessWidget {
         SliverList.builder(
           itemCount: components.sources.length,
           itemBuilder: (context, index) {
+            final source = components.sources[index];
             return SourceItem(
-              source: components.sources[index],
-              objects: objectViews(components.sources[index]),
-              onEdit: () => onSourceEdit(components.sources[index].name),
-              onDelete: () => onSourceDelete(components.sources[index].name),
+              source: source,
+              objects: objectViews(source),
+              onEdit: () => onSourceEdit(source.name),
+              onDelete: () => onSourceDelete(source.name),
               refresh: refresh,
             );
           },

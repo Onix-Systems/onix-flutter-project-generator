@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/add_request_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/objects/object_view.dart';
@@ -61,12 +62,12 @@ class SourceItem extends StatelessWidget {
           AppFilledButton(
             label: S.of(context).addRequest,
             onPressed: () {
-              showCupertinoModalPopup(
+              showCupertinoModalPopup<RequestComponent>(
                 context: context,
                 builder: (ctx) => AddEditRequestDialog(
                   sourceName: source.name,
                 ),
-              ).then((_) {
+              ).then((request) {
                 refresh();
               });
             },

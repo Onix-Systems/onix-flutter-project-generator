@@ -39,6 +39,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
   final TextEditingController _idController = TextEditingController();
 
   var _requestType = SwaggerPathRequestType.get;
+  var _bodyRef = '';
 
   @override
   AddRequestDialogCubit createCubit() => GetIt.I.get<AddRequestDialogCubit>();
@@ -46,6 +47,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
   @override
   void onCubitCreated(BuildContext context, AddRequestDialogCubit cubit) {
     cubit.init(request: widget.request, sourceName: widget.sourceName);
+    _bodyRef = cubit.state.components.first;
     super.onCubitCreated(context, cubit);
   }
 
@@ -169,51 +171,86 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                           ),
                         ],
                       ),
+                      const Gap(20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        spacing: 10,
+                        children: [
+                          Expanded(
+                            child: DropdownButton2<String>(
+                              items: state.components
+                                  .map(
+                                    (e) => DropdownMenuItem<String>(
+                                      value: e,
+                                      child: Text(
+                                        e == state.components.first
+                                            ? e
+                                            : e.pascalCase,
+                                        style: context.appTextStyles.fs18,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                              value: _bodyRef,
+                              onChanged: (value) {
+                                if (value != null &&
+                                    value != _requestType.name) {
+                                  _bodyRef = value;
+                                  cubitOf(context).addBody(name: value);
+                                }
+                              },
+                              isExpanded: true,
+                              underline: const SizedBox(),
+                              buttonStyleData: ButtonStyleData(
+                                decoration: BoxDecoration(
+                                  color: context.appColors.darkContrastColor,
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'or',
+                            style: context.appTextStyles.fs18,
+                          ),
+                          AppFilledButton(
+                            label: 'Add body',
+                            onPressed: () => showCupertinoModalPopup<String>(
+                              context: context,
+                              builder: (ctx) {
+                                final name =
+                                    '${_idController.text.isNotEmpty ? _idController.text : '${_requestType.name}_${_pathController.text.clearPathToName()}'.camelCase}RequestBody';
+                                return AddEditComponentDialog(
+                                  name: name,
+                                  requestBodyComponent: true,
+                                );
+                              },
+                            ).then((value) {
+                              if (value != null) {
+                                if (context.mounted) {
+                                  cubitOf(context).addBody(name: value);
+                                }
+                              }
+                            }),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                ),
-                const Gap(20),
-                // RequestItem(
-                //   request: state.request,
-                // ),
-                const Gap(20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 10,
-                  children: [
-                    AppFilledButton(
-                      label: 'Add body',
-                      onPressed: () => showCupertinoModalPopup<String>(
-                        context: context,
-                        builder: (ctx) {
-                          final name =
-                              '${_idController.text.isNotEmpty ? _idController.text : '${_requestType.name}_${_pathController.text.clearPathToName()}'.camelCase}RequestBody';
-                          return AddEditComponentDialog(
-                            name: name,
-                            requestBodyComponent: true,
-                          );
-                        },
-                      ).then((value) {
-                        if (value != null) {
-                          if (context.mounted) {
-                            cubitOf(context).addBody(name: value);
-                          }
-                        }
-                      }),
-                    ),
-                  ],
                 ),
                 const Gap(20),
                 DialogActionButtons(
                   leftButtonLabel: S.of(context).ok,
                   leftButtonOnPressed: () {
-                    Navigator.of(context).pop(
+                    cubitOf(context).addRequest(
                       state.request.copyWith(
-                        operationId: _idController.text,
+                        operationId: _idController.text.isNotEmpty
+                            ? _idController.text
+                            : '${_requestType.name}_${_pathController.text.clearPathToName()}'
+                                .camelCase,
                         path: _pathController.text,
                         type: _requestType,
                         description: '',
-                        requestBody: null,
                         multipartBody: [],
                         queryParams: [],
                         pathParams: [],
@@ -224,8 +261,9 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                         ),
                       ),
                     );
+                    Navigator.of(context).pop();
                   },
-                  isLeftButtonActive: _pathController.text.isNotEmpty,
+                  isLeftButtonActive: _valid(),
                   rightButtonLabel: S.of(context).cancel,
                   rightButtonOnPressed: () {
                     Navigator.of(context).pop();
@@ -237,5 +275,9 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
         ),
       ),
     );
+  }
+
+  bool _valid() {
+    return _pathController.text.isNotEmpty;
   }
 }

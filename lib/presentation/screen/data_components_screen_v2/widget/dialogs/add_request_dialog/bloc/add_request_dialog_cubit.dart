@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
-import 'package:onix_flutter_bricks/app/util/enum/dart_types.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
@@ -32,7 +31,7 @@ class AddRequestDialogCubit
 
     final componentNames = [...enums, ...dataObjects].sorted(
       (a, b) => a.compareTo(b),
-    )..insertAll(0, DartTypes.types);
+    )..insert(0, 'Select body component');
 
     emit(
       state.copyWith(
@@ -43,20 +42,7 @@ class AddRequestDialogCubit
     );
   }
 
-  void addBody({
-    required String name,
-    bool isRequired = false,
-  }) {
-    final body = RequestBodyComponent(
-      name: name,
-      type: SwaggerReference(name),
-      isRequired: isRequired,
-    );
-
-    final request = state.request.copyWith(
-      requestBody: body,
-    );
-
+  void addRequest(RequestComponent request) {
     final addResult = _addSourceRequestUseCase(
       sourceName: state.sourceName,
       requestComponent: request,
@@ -66,6 +52,21 @@ class AddRequestDialogCubit
       onFailure(addResult.error.failure);
       return;
     }
+  }
+
+  void addBody({
+    required String name,
+    bool isRequired = false,
+  }) {
+    final body = RequestBodyComponent(
+      name: 'requestBody',
+      type: SwaggerReference(name),
+      isRequired: isRequired,
+    );
+
+    final request = state.request.copyWith(
+      requestBody: body,
+    );
 
     emit(
       state.copyWith(

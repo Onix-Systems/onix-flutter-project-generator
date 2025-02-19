@@ -48,11 +48,11 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     on<DataComponentsScreenV2DeleteComponent>(_onDeleteComponent);
   }
 
-  Future<void> _onInit(
+  void _onInit(
     DataComponentsScreenV2IInit event,
     Emitter<DataComponentsScreenV2State> emit,
-  ) async {
-    final components = await _getSwaggerComponentsUseCase();
+  ) {
+    final components = _getSwaggerComponentsUseCase();
     emit(
       state.copyWith(
         config: event.config,
