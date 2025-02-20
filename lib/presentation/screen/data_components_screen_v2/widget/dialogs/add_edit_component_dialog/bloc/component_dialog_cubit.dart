@@ -64,7 +64,8 @@ class ComponentDialogCubit
     emit(
       state.copyWith(
         component: component,
-        components: componentNames,
+        components: components,
+        componentNames: componentNames,
         variables: variables,
       ),
     );
@@ -74,12 +75,13 @@ class ComponentDialogCubit
     required String name,
     required String type,
     bool isRequired = false,
-    bool isEnum = false,
     bool isList = false,
   }) {
     final variableType = DartTypes.types.contains(type)
         ? SwaggerVariable(DartTypes.toSwaggerType(type))
         : SwaggerReference(type);
+
+    final isEnum = _isEnum(variableType);
 
     final component = DataVariableComponent(
       name: name.camelCase,
@@ -115,12 +117,13 @@ class ComponentDialogCubit
     required String type,
     required int index,
     bool isRequired = false,
-    bool isEnum = false,
     bool isList = false,
   }) {
     final variableType = DartTypes.types.contains(type)
         ? SwaggerVariable(DartTypes.toSwaggerType(type))
         : SwaggerReference(type);
+
+    final isEnum = _isEnum(variableType);
 
     final component = DataVariableComponent(
       name: name.camelCase,
@@ -232,4 +235,8 @@ class ComponentDialogCubit
       error: onFailure,
     );
   }
+
+  bool _isEnum(SwaggerType variableType) =>
+      variableType is SwaggerReference &&
+      state.components!.enums.any((e) => e.name == variableType.getName());
 }

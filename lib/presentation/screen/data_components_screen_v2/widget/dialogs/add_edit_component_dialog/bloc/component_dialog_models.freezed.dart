@@ -177,7 +177,8 @@ abstract class _ComponentDialogSRSuccess implements ComponentDialogSR {
 /// @nodoc
 mixin _$ComponentDialogState {
   Component? get component => throw _privateConstructorUsedError;
-  List<String> get components => throw _privateConstructorUsedError;
+  Components? get components => throw _privateConstructorUsedError;
+  List<String> get componentNames => throw _privateConstructorUsedError;
   List<DataVariableComponent> get variables =>
       throw _privateConstructorUsedError;
 
@@ -196,8 +197,11 @@ abstract class $ComponentDialogStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Component? component,
-      List<String> components,
+      Components? components,
+      List<String> componentNames,
       List<DataVariableComponent> variables});
+
+  $ComponentsCopyWith<$Res>? get components;
 }
 
 /// @nodoc
@@ -217,7 +221,8 @@ class _$ComponentDialogStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? component = freezed,
-    Object? components = null,
+    Object? components = freezed,
+    Object? componentNames = null,
     Object? variables = null,
   }) {
     return _then(_value.copyWith(
@@ -225,15 +230,33 @@ class _$ComponentDialogStateCopyWithImpl<$Res,
           ? _value.component
           : component // ignore: cast_nullable_to_non_nullable
               as Component?,
-      components: null == components
+      components: freezed == components
           ? _value.components
           : components // ignore: cast_nullable_to_non_nullable
+              as Components?,
+      componentNames: null == componentNames
+          ? _value.componentNames
+          : componentNames // ignore: cast_nullable_to_non_nullable
               as List<String>,
       variables: null == variables
           ? _value.variables
           : variables // ignore: cast_nullable_to_non_nullable
               as List<DataVariableComponent>,
     ) as $Val);
+  }
+
+  /// Create a copy of ComponentDialogState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ComponentsCopyWith<$Res>? get components {
+    if (_value.components == null) {
+      return null;
+    }
+
+    return $ComponentsCopyWith<$Res>(_value.components!, (value) {
+      return _then(_value.copyWith(components: value) as $Val);
+    });
   }
 }
 
@@ -247,8 +270,12 @@ abstract class _$$ComponentDialogStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Component? component,
-      List<String> components,
+      Components? components,
+      List<String> componentNames,
       List<DataVariableComponent> variables});
+
+  @override
+  $ComponentsCopyWith<$Res>? get components;
 }
 
 /// @nodoc
@@ -265,7 +292,8 @@ class __$$ComponentDialogStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? component = freezed,
-    Object? components = null,
+    Object? components = freezed,
+    Object? componentNames = null,
     Object? variables = null,
   }) {
     return _then(_$ComponentDialogStateImpl(
@@ -273,9 +301,13 @@ class __$$ComponentDialogStateImplCopyWithImpl<$Res>
           ? _value.component
           : component // ignore: cast_nullable_to_non_nullable
               as Component?,
-      components: null == components
-          ? _value._components
+      components: freezed == components
+          ? _value.components
           : components // ignore: cast_nullable_to_non_nullable
+              as Components?,
+      componentNames: null == componentNames
+          ? _value._componentNames
+          : componentNames // ignore: cast_nullable_to_non_nullable
               as List<String>,
       variables: null == variables
           ? _value._variables
@@ -290,20 +322,23 @@ class __$$ComponentDialogStateImplCopyWithImpl<$Res>
 class _$ComponentDialogStateImpl implements _ComponentDialogState {
   const _$ComponentDialogStateImpl(
       {this.component,
-      final List<String> components = const [],
+      this.components,
+      final List<String> componentNames = const [],
       final List<DataVariableComponent> variables = const []})
-      : _components = components,
+      : _componentNames = componentNames,
         _variables = variables;
 
   @override
   final Component? component;
-  final List<String> _components;
+  @override
+  final Components? components;
+  final List<String> _componentNames;
   @override
   @JsonKey()
-  List<String> get components {
-    if (_components is EqualUnmodifiableListView) return _components;
+  List<String> get componentNames {
+    if (_componentNames is EqualUnmodifiableListView) return _componentNames;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_components);
+    return EqualUnmodifiableListView(_componentNames);
   }
 
   final List<DataVariableComponent> _variables;
@@ -317,7 +352,7 @@ class _$ComponentDialogStateImpl implements _ComponentDialogState {
 
   @override
   String toString() {
-    return 'ComponentDialogState(component: $component, components: $components, variables: $variables)';
+    return 'ComponentDialogState(component: $component, components: $components, componentNames: $componentNames, variables: $variables)';
   }
 
   @override
@@ -327,8 +362,10 @@ class _$ComponentDialogStateImpl implements _ComponentDialogState {
             other is _$ComponentDialogStateImpl &&
             (identical(other.component, component) ||
                 other.component == component) &&
+            (identical(other.components, components) ||
+                other.components == components) &&
             const DeepCollectionEquality()
-                .equals(other._components, _components) &&
+                .equals(other._componentNames, _componentNames) &&
             const DeepCollectionEquality()
                 .equals(other._variables, _variables));
   }
@@ -337,7 +374,8 @@ class _$ComponentDialogStateImpl implements _ComponentDialogState {
   int get hashCode => Object.hash(
       runtimeType,
       component,
-      const DeepCollectionEquality().hash(_components),
+      components,
+      const DeepCollectionEquality().hash(_componentNames),
       const DeepCollectionEquality().hash(_variables));
 
   /// Create a copy of ComponentDialogState
@@ -354,14 +392,17 @@ class _$ComponentDialogStateImpl implements _ComponentDialogState {
 abstract class _ComponentDialogState implements ComponentDialogState {
   const factory _ComponentDialogState(
           {final Component? component,
-          final List<String> components,
+          final Components? components,
+          final List<String> componentNames,
           final List<DataVariableComponent> variables}) =
       _$ComponentDialogStateImpl;
 
   @override
   Component? get component;
   @override
-  List<String> get components;
+  Components? get components;
+  @override
+  List<String> get componentNames;
   @override
   List<DataVariableComponent> get variables;
 

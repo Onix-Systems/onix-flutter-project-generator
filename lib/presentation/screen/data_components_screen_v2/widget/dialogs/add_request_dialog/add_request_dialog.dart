@@ -256,7 +256,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                         pathParams: [],
                         response: ResponseParamComponent(
                           name: 'response',
-                          type: SwaggerReference('reference'),
+                          type: SwaggerOperationDefault(),
                           isRequired: true,
                         ),
                       ),
