@@ -482,6 +482,7 @@ class DataObjectComponent extends Component {
     }).toList();
   }
 
+  @override
   String getString({int level = 1}) {
     final variablesString =
         variables.map((e) => '${'  ' * level}${e.getString()}').join('\n');

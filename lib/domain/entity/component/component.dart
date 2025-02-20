@@ -6,4 +6,6 @@ abstract class Component {
     required this.name,
     required this.fromSwagger,
   });
+
+  String getString({int level = 1});
 }

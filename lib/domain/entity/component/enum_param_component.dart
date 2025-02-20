@@ -31,4 +31,12 @@ class EnumParamComponent extends Component {
     codeLines.add('}');
     return codeLines.join('\n');
   }
+
+  @override
+  String getString({int level = 1}) {
+    final variablesString =
+        '${'  ' * level}{${type.enumValues.map((e) => e).join(', ')}}';
+
+    return variablesString;
+  }
 }
