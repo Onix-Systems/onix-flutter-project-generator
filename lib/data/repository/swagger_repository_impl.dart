@@ -10,6 +10,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/data_object_componen
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
@@ -330,6 +331,34 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
             fromSwagger: false,
           ),
         );
+      }
+    }
+
+    for (final source in _components.sources) {
+      for (final request in source.requests) {
+        final requestBody = request.requestBody;
+        if (requestBody != null &&
+            requestBody.type.getName().toUpperCase() == oldName.toUpperCase()) {
+          final updatedRequest = request.copyWith(
+            requestBody: RequestBodyComponent(
+              name: requestBody.name,
+              type: SwaggerReference(
+                component.name,
+              ),
+              isRequired: requestBody.isRequired,
+            ),
+          );
+
+          deleteSourceRequest(
+            sourceName: source.name,
+            requestComponent: request,
+          );
+
+          addSourceRequest(
+            sourceName: source.name,
+            requestComponent: updatedRequest,
+          );
+        }
       }
     }
 
