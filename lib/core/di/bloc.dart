@@ -123,6 +123,7 @@ void registerBloc(GetIt getIt) {
       () => AddRequestDialogCubit(
         getSwaggerComponentsUseCase: GetIt.I.get<GetSwaggerComponentsUseCase>(),
         addSourceRequestUseCase: GetIt.I.get<AddSourceRequestUseCase>(),
+        addComponentUseCase: GetIt.I.get<AddComponentUseCase>(),
       ),
     );
 }

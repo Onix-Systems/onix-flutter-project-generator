@@ -9,6 +9,7 @@ import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/add_edit_component_dialog.dart';
@@ -178,24 +179,23 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                         children: [
                           Expanded(
                             child: DropdownButton2<String>(
-                              items: state.components
-                                  .map(
-                                    (e) => DropdownMenuItem<String>(
-                                      value: e,
-                                      child: Text(
-                                        e == state.components.first
-                                            ? e
-                                            : e.pascalCase,
-                                        style: context.appTextStyles.fs18,
-                                      ),
+                              items: state.components.map(
+                                (e) {
+                                  return DropdownMenuItem<String>(
+                                    value: e,
+                                    child: Text(
+                                      e == 'Select body component'
+                                          ? e
+                                          : e.pascalCase,
+                                      style: context.appTextStyles.fs18,
                                     ),
-                                  )
-                                  .toList(),
+                                  );
+                                },
+                              ).toList(),
                               value: _bodyRef,
                               onChanged: (value) {
-                                if (value != null &&
-                                    value != _requestType.name) {
-                                  _bodyRef = value;
+                                if (value != null && value != _bodyRef) {
+                                  _bodyRef = value.pascalCase;
                                   cubitOf(context).addBody(name: value);
                                 }
                               },
@@ -215,7 +215,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                           ),
                           AppFilledButton(
                             label: 'Add body',
-                            onPressed: () => showCupertinoModalPopup<String>(
+                            onPressed: () => showCupertinoModalPopup<Component>(
                               context: context,
                               builder: (ctx) {
                                 final name =
@@ -228,7 +228,11 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                             ).then((value) {
                               if (value != null) {
                                 if (context.mounted) {
-                                  cubitOf(context).addBody(name: value);
+                                  _bodyRef = value.name;
+                                  cubitOf(context).addBody(
+                                    name: value.name,
+                                    bodyComponent: value,
+                                  );
                                 }
                               }
                             }),

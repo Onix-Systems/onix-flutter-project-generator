@@ -165,9 +165,10 @@ class ComponentDialogCubit
     );
   }
 
-  Future<void> addDataObject({
+  Future<Component> addDataObject({
     required String name,
     bool isEnum = false,
+    bool addToRepository = true,
   }) async {
     Component? dataObject;
 
@@ -191,12 +192,16 @@ class ComponentDialogCubit
       );
     }
 
-    _addDataObjectComponentUseCase(component: dataObject).when(
-      success: (value) {
-        addSr(const ComponentDialogSR.success());
-      },
-      error: onFailure,
-    );
+    if (addToRepository) {
+      _addDataObjectComponentUseCase(component: dataObject).when(
+        success: (value) {
+          addSr(const ComponentDialogSR.success());
+        },
+        error: onFailure,
+      );
+    }
+
+    return dataObject;
   }
 
   Future<void> editDataObject({required String name}) async {

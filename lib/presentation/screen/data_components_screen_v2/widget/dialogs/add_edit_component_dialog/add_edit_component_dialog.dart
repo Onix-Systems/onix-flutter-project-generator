@@ -187,17 +187,27 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
               builder: (context, state) => DialogActionButtons(
                 leftButtonLabel: S.of(context).ok,
                 rightButtonLabel: S.of(context).cancel,
-                leftButtonOnPressed: () {
+                leftButtonOnPressed: () async {
                   if (widget.component != null &&
                       !widget.requestBodyComponent) {
-                    cubitOf(context).editDataObject(name: _controller.text);
+                    await cubitOf(context)
+                        .editDataObject(name: _controller.text);
                   } else {
-                    cubitOf(context).addDataObject(
+                    final component = await cubitOf(context).addDataObject(
                       name: _controller.text,
                       isEnum: isEnum,
+                      addToRepository: !widget.requestBodyComponent,
                     );
+                    if (widget.requestBodyComponent) {
+                      if (context.mounted) {
+                        Navigator.of(context).pop(component);
+                      }
+                      return;
+                    }
                   }
-                  Navigator.of(context).pop(_controller.text);
+                  if (context.mounted) {
+                    Navigator.of(context).pop(_controller.text);
+                  }
                 },
                 rightButtonOnPressed: () {
                   Navigator.of(context).pop();
