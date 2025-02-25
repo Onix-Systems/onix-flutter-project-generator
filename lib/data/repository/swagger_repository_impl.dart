@@ -416,7 +416,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
           name: dataObject.name,
           fileReference: dataObject.fileReference,
           variables: variables,
-          fromSwagger: false,
+          fromSwagger: dataObject.fromSwagger,
         ),
       );
     }
@@ -452,7 +452,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
           (element) => element.name == dataObjectName,
         ) ||
         _components.enums.any(
-          (element) => element.name == dataObjectName.toUpperCase(),
+          (element) => element.name == dataObjectName,
         );
   }
 }
