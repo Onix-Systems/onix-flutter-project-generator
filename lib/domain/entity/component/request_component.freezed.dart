@@ -28,6 +28,7 @@ mixin _$RequestComponent {
   List<RequestPathComponent> get pathParams =>
       throw _privateConstructorUsedError;
   ResponseParamComponent get response => throw _privateConstructorUsedError;
+  bool get fromSwagger => throw _privateConstructorUsedError;
 
   /// Create a copy of RequestComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -51,7 +52,8 @@ abstract class $RequestComponentCopyWith<$Res> {
       List<RequestMultipartComponent> multipartBody,
       List<RequestQueryComponent> queryParams,
       List<RequestPathComponent> pathParams,
-      ResponseParamComponent response});
+      ResponseParamComponent response,
+      bool fromSwagger});
 
   $ResponseParamComponentCopyWith<$Res> get response;
 }
@@ -80,6 +82,7 @@ class _$RequestComponentCopyWithImpl<$Res, $Val extends RequestComponent>
     Object? queryParams = null,
     Object? pathParams = null,
     Object? response = null,
+    Object? fromSwagger = null,
   }) {
     return _then(_value.copyWith(
       operationId: null == operationId
@@ -118,6 +121,10 @@ class _$RequestComponentCopyWithImpl<$Res, $Val extends RequestComponent>
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
               as ResponseParamComponent,
+      fromSwagger: null == fromSwagger
+          ? _value.fromSwagger
+          : fromSwagger // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -149,7 +156,8 @@ abstract class _$$RequestComponentImplCopyWith<$Res>
       List<RequestMultipartComponent> multipartBody,
       List<RequestQueryComponent> queryParams,
       List<RequestPathComponent> pathParams,
-      ResponseParamComponent response});
+      ResponseParamComponent response,
+      bool fromSwagger});
 
   @override
   $ResponseParamComponentCopyWith<$Res> get response;
@@ -177,6 +185,7 @@ class __$$RequestComponentImplCopyWithImpl<$Res>
     Object? queryParams = null,
     Object? pathParams = null,
     Object? response = null,
+    Object? fromSwagger = null,
   }) {
     return _then(_$RequestComponentImpl(
       operationId: null == operationId
@@ -215,6 +224,10 @@ class __$$RequestComponentImplCopyWithImpl<$Res>
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
               as ResponseParamComponent,
+      fromSwagger: null == fromSwagger
+          ? _value.fromSwagger
+          : fromSwagger // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -231,7 +244,8 @@ class _$RequestComponentImpl extends _RequestComponent {
       required final List<RequestMultipartComponent> multipartBody,
       required final List<RequestQueryComponent> queryParams,
       required final List<RequestPathComponent> pathParams,
-      required this.response})
+      required this.response,
+      this.fromSwagger = true})
       : _multipartBody = multipartBody,
         _queryParams = queryParams,
         _pathParams = pathParams,
@@ -273,10 +287,13 @@ class _$RequestComponentImpl extends _RequestComponent {
 
   @override
   final ResponseParamComponent response;
+  @override
+  @JsonKey()
+  final bool fromSwagger;
 
   @override
   String toString() {
-    return 'RequestComponent(operationId: $operationId, path: $path, type: $type, description: $description, requestBody: $requestBody, multipartBody: $multipartBody, queryParams: $queryParams, pathParams: $pathParams, response: $response)';
+    return 'RequestComponent(operationId: $operationId, path: $path, type: $type, description: $description, requestBody: $requestBody, multipartBody: $multipartBody, queryParams: $queryParams, pathParams: $pathParams, response: $response, fromSwagger: $fromSwagger)';
   }
 
   @override
@@ -299,7 +316,9 @@ class _$RequestComponentImpl extends _RequestComponent {
             const DeepCollectionEquality()
                 .equals(other._pathParams, _pathParams) &&
             (identical(other.response, response) ||
-                other.response == response));
+                other.response == response) &&
+            (identical(other.fromSwagger, fromSwagger) ||
+                other.fromSwagger == fromSwagger));
   }
 
   @override
@@ -313,7 +332,8 @@ class _$RequestComponentImpl extends _RequestComponent {
       const DeepCollectionEquality().hash(_multipartBody),
       const DeepCollectionEquality().hash(_queryParams),
       const DeepCollectionEquality().hash(_pathParams),
-      response);
+      response,
+      fromSwagger);
 
   /// Create a copy of RequestComponent
   /// with the given fields replaced by the non-null parameter values.
@@ -335,7 +355,8 @@ abstract class _RequestComponent extends RequestComponent {
       required final List<RequestMultipartComponent> multipartBody,
       required final List<RequestQueryComponent> queryParams,
       required final List<RequestPathComponent> pathParams,
-      required final ResponseParamComponent response}) = _$RequestComponentImpl;
+      required final ResponseParamComponent response,
+      final bool fromSwagger}) = _$RequestComponentImpl;
   const _RequestComponent._() : super._();
 
   @override
@@ -356,6 +377,8 @@ abstract class _RequestComponent extends RequestComponent {
   List<RequestPathComponent> get pathParams;
   @override
   ResponseParamComponent get response;
+  @override
+  bool get fromSwagger;
 
   /// Create a copy of RequestComponent
   /// with the given fields replaced by the non-null parameter values.

@@ -60,27 +60,26 @@ class SourceItem extends StatelessWidget {
             ],
           ),
         ),
-        if (!source.fromSwagger) ...[
-          AppFilledButton(
-            label: S.of(context).addRequest,
-            onPressed: () {
-              showCupertinoModalPopup<RequestComponent>(
-                context: context,
-                builder: (ctx) => AddEditRequestDialog(
-                  sourceName: source.name,
-                ),
-              ).then((request) {
-                refresh();
-              });
-            },
-          ),
-          const Gap(16),
-        ],
         RequestsSection(
           requests: source.requests,
           objects: objects,
           onDelete: (request) => onRequestDelete?.call(request),
         ),
+        const Gap(16),
+        AppFilledButton(
+          label: S.of(context).addRequest,
+          onPressed: () {
+            showCupertinoModalPopup<RequestComponent>(
+              context: context,
+              builder: (ctx) => AddEditRequestDialog(
+                sourceName: source.name,
+              ),
+            ).then((request) {
+              refresh();
+            });
+          },
+        ),
+        const Gap(16),
       ],
     );
   }

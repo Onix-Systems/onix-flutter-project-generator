@@ -160,27 +160,30 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       );
     }
 
-    final source = _components.sources.firstWhere(
+    final sourceIndex = _components.sources.indexWhere(
       (element) => element.name == sourceName,
     );
 
+    final source = _components.sources[sourceIndex];
+
     if (source.requests.contains(requestComponent)) {
-      return const Result.error(
+      return Result.error(
         failure: SwaggerParserFailureAlreadyExists(
-          'request component',
+          requestComponent.operationId,
         ),
       );
     }
 
     _components = _components.copyWith(
       sources: [
-        ..._components.sources.where((element) => element.name != sourceName),
+        ..._components.sources.sublist(0, sourceIndex),
         source.copyWith(
           requests: [
             ...source.requests,
             requestComponent,
           ],
         ),
+        ..._components.sources.sublist(sourceIndex + 1),
       ],
     );
 
@@ -230,7 +233,9 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
   @override
   bool isSourceExists(String sourceName) {
-    return _components.sources.any((element) => element.name == sourceName);
+    return _components.sources.any(
+      (element) => element.name == sourceName,
+    );
   }
 
   @override
@@ -337,8 +342,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     for (final source in _components.sources) {
       for (final request in source.requests) {
         final requestBody = request.requestBody;
-        if (requestBody != null &&
-            requestBody.type.getName().toUpperCase() == oldName.toUpperCase()) {
+        if (requestBody != null && requestBody.type.getName() == oldName) {
           final updatedRequest = request.copyWith(
             requestBody: RequestBodyComponent(
               name: requestBody.name,
@@ -442,12 +446,10 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
   bool isComponentExists(String dataObjectName) {
     return _components.dataObjects.any(
-          (element) =>
-              element.name.toUpperCase() == dataObjectName.toUpperCase(),
+          (element) => element.name == dataObjectName,
         ) ||
         _components.enums.any(
-          (element) =>
-              element.name.toUpperCase() == dataObjectName.toUpperCase(),
+          (element) => element.name == dataObjectName.toUpperCase(),
         );
   }
 }

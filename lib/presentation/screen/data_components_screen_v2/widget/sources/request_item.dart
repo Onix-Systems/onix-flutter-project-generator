@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/form_data.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/input_body.dart';
@@ -36,36 +35,43 @@ class RequestItem extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
-                Text(
-                  request.operationId,
-                  style: TextStyle(
-                    color: context.appColors.textColor,
-                    fontSize: 16,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        request.operationId,
+                        style: TextStyle(
+                          color: context.appColors.textColor,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        '(${request.path})',
+                        style: TextStyle(
+                          color: context.appColors.textColor,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const Gap(16),
-                Text(
-                  '(${request.path})',
-                  style: TextStyle(
-                    color: context.appColors.textColor,
-                    fontSize: 14,
+                if (!request.fromSwagger) ...[
+                  IconButton(
+                    icon: Icon(
+                      CupertinoIcons.pencil,
+                      color: context.appColors.textColor,
+                    ),
+                    onPressed: () {},
                   ),
-                ),
-                const Spacer(),
-                IconButton(
-                  icon: Icon(
-                    CupertinoIcons.pencil,
-                    color: context.appColors.textColor,
+                  IconButton(
+                    icon: Icon(
+                      CupertinoIcons.trash,
+                      color: context.appColors.alarmColor,
+                    ),
+                    onPressed: onDelete,
                   ),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: Icon(
-                    CupertinoIcons.trash,
-                    color: context.appColors.alarmColor,
-                  ),
-                  onPressed: onDelete,
-                ),
+                ],
               ],
             ),
           ),

@@ -13,6 +13,6 @@ class AddSourceRequestUseCase {
   }) =>
       _swaggerRepository.addSourceRequest(
         sourceName: sourceName,
-        requestComponent: requestComponent,
+        requestComponent: requestComponent.copyWith(fromSwagger: false),
       );
 }

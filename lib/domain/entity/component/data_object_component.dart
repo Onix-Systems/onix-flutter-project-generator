@@ -21,11 +21,11 @@ class DataObjectComponent extends Component {
   final List<DataVariableComponent> variables;
 
   DataObjectComponent({
-    required super.name,
+    required String name,
     required this.fileReference,
     required this.variables,
     super.fromSwagger = true,
-  });
+  }) : super(name: name.pascalCase);
 
   String getFilePath(DataFileType type, ArchType arch) =>
       fileReference.getFileImportName(type, arch) ?? '';

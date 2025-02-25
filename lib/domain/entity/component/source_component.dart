@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_reference_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
@@ -9,18 +8,32 @@ import 'package:onix_flutter_bricks/domain/entity/component/request_component.da
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
-part 'source_component.freezed.dart';
+class SourceComponent {
+  final String name;
+  final List<RequestComponent> requests;
+  final ArchType arch;
+  final bool fromSwagger;
 
-@freezed
-class SourceComponent with _$SourceComponent {
-  const SourceComponent._();
-
-  const factory SourceComponent({
+  SourceComponent({
     required String name,
-    required List<RequestComponent> requests,
-    required ArchType arch,
-    @Default(true) bool fromSwagger,
-  }) = _SourceComponent;
+    required this.requests,
+    required this.arch,
+    this.fromSwagger = true,
+  }) : name = name.pascalCase;
+
+  SourceComponent copyWith({
+    String? name,
+    List<RequestComponent>? requests,
+    ArchType? arch,
+    bool? fromSwagger,
+  }) {
+    return SourceComponent(
+      name: name ?? this.name,
+      requests: requests ?? this.requests,
+      arch: arch ?? this.arch,
+      fromSwagger: fromSwagger ?? this.fromSwagger,
+    );
+  }
 
   String getFolderPath(String projectRoot) =>
       '$projectRoot/data/source/remote/${name.snakeCase}';

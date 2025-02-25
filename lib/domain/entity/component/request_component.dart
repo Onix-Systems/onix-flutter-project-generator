@@ -25,6 +25,7 @@ class RequestComponent with _$RequestComponent {
     required List<RequestQueryComponent> queryParams,
     required List<RequestPathComponent> pathParams,
     required ResponseParamComponent response,
+    @Default(true) bool fromSwagger,
   }) = _RequestComponent;
 
   factory RequestComponent.empty() => RequestComponent(

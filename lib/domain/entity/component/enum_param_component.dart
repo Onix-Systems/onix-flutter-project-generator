@@ -9,10 +9,10 @@ class EnumParamComponent extends Component {
   final SwaggerEnum type;
 
   EnumParamComponent({
-    required super.name,
+    required String name,
     required this.type,
     super.fromSwagger = true,
-  });
+  }) : super(name: name.pascalCase);
 
   String getFolderPath(String projectRoot, ArchType arch) =>
       '$projectRoot/${arch.getEnumPath()}';

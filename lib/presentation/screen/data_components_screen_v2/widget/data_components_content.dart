@@ -68,9 +68,8 @@ class DataComponentsContent extends StatelessWidget {
               objects: objectViews(source),
               onNameEdit: () => onSourceEdit(source.name),
               onSourceDelete: () => onSourceDelete(source.name),
-              onRequestDelete: source.fromSwagger
-                  ? null
-                  : (request) => onRequestDelete(source.name, request),
+              onRequestDelete: (request) =>
+                  onRequestDelete(source.name, request),
               refresh: refresh,
             );
           },
