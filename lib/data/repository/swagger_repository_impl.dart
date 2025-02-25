@@ -203,9 +203,11 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       );
     }
 
-    final source = _components.sources.firstWhere(
+    final sourceIndex = _components.sources.indexWhere(
       (element) => element.name == sourceName,
     );
+
+    final source = _components.sources[sourceIndex];
 
     if (!source.requests.contains(requestComponent)) {
       return const Result.error(
@@ -217,7 +219,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     _components = _components.copyWith(
       sources: [
-        ..._components.sources.where((element) => element.name != sourceName),
+        ..._components.sources.sublist(0, sourceIndex),
         source.copyWith(
           requests: [
             ...source.requests.where(
@@ -225,6 +227,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
             ),
           ],
         ),
+        ..._components.sources.sublist(sourceIndex + 1),
       ],
     );
 
