@@ -48,6 +48,4 @@ abstract interface class SwaggerRepository {
   Result<OperationStatus> deleteComponent(
     Component component,
   );
-
-  void isSourceExists(String sourceName);
 }

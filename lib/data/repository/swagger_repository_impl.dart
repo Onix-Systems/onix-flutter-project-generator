@@ -66,7 +66,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     required String sourceName,
     required ArchType arch,
   }) {
-    if (isSourceExists(sourceName)) {
+    if (_isSourceExists(sourceName)) {
       return Result.error(
         failure: SwaggerParserFailureAlreadyExists(
           sourceName,
@@ -91,7 +91,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
   @override
   Result<OperationStatus> removeSource(String sourceName) {
-    if (!isSourceExists(sourceName)) {
+    if (!_isSourceExists(sourceName)) {
       return Result.error(
         failure: SwaggerParserFailureNotFound(
           sourceName,
@@ -113,7 +113,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     required String sourceName,
     required String newName,
   }) {
-    if (!isSourceExists(sourceName)) {
+    if (!_isSourceExists(sourceName)) {
       return Result.error(
         failure: SwaggerParserFailureNotFound(
           sourceName,
@@ -121,7 +121,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       );
     }
 
-    if (isSourceExists(newName)) {
+    if (_isSourceExists(newName)) {
       return Result.error(
         failure: SwaggerParserFailureAlreadyExists(
           newName,
@@ -152,7 +152,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     required String sourceName,
     required RequestComponent requestComponent,
   }) {
-    if (!isSourceExists(sourceName)) {
+    if (!_isSourceExists(sourceName)) {
       return Result.error(
         failure: SwaggerParserFailureNotFound(
           sourceName,
@@ -195,7 +195,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     required String sourceName,
     required RequestComponent requestComponent,
   }) {
-    if (!isSourceExists(sourceName)) {
+    if (!_isSourceExists(sourceName)) {
       return Result.error(
         failure: SwaggerParserFailureNotFound(
           sourceName,
@@ -212,7 +212,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     if (!source.requests.contains(requestComponent)) {
       return const Result.error(
         failure: SwaggerParserFailureNotFound(
-          'request Component',
+          'Request Component',
         ),
       );
     }
@@ -235,17 +235,10 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }
 
   @override
-  bool isSourceExists(String sourceName) {
-    return _components.sources.any(
-      (element) => element.name == sourceName,
-    );
-  }
-
-  @override
   Result<OperationStatus> addComponent(
     Component component,
   ) {
-    if (isComponentExists(component.name)) {
+    if (_isComponentExists(component.name)) {
       return Result.error(
         failure: SwaggerParserFailureAlreadyExists(
           component.name,
@@ -277,7 +270,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     required String oldName,
     required Component component,
   }) {
-    if (!isComponentExists(oldName)) {
+    if (!_isComponentExists(oldName)) {
       return Result.error(
         failure: SwaggerParserFailureNotFound(
           oldName,
@@ -286,7 +279,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     }
 
     if (oldName.toUpperCase() != component.name.toUpperCase() &&
-        isComponentExists(component.name)) {
+        _isComponentExists(component.name)) {
       return Result.error(
         failure: SwaggerParserFailureAlreadyExists(
           component.name,
@@ -294,25 +287,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       );
     }
 
-    if (component is DataObjectComponent) {
-      _components = _components.copyWith(
-        dataObjects: [
-          ..._components.dataObjects.where(
-            (element) => element.name != oldName,
-          ),
-          component,
-        ],
-      );
-    } else if (component is EnumParamComponent) {
-      _components = _components.copyWith(
-        enums: [
-          ..._components.enums.where(
-            (element) => element.name != oldName,
-          ),
-          component,
-        ],
-      );
-    }
+    _editComponentObject(component, oldName);
 
     for (final dataObject in _components.dataObjects) {
       if (dataObject.variables.map((e) => e.type.getName()).contains(oldName)) {
@@ -336,38 +311,13 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
             name: dataObject.name,
             fileReference: dataObject.fileReference,
             variables: variables,
-            fromSwagger: false,
+            fromSwagger: dataObject.fromSwagger,
           ),
         );
       }
     }
 
-    for (final source in _components.sources) {
-      for (final request in source.requests) {
-        final requestBody = request.requestBody;
-        if (requestBody != null && requestBody.type.getName() == oldName) {
-          final updatedRequest = request.copyWith(
-            requestBody: RequestBodyComponent(
-              name: requestBody.name,
-              type: SwaggerReference(
-                component.name,
-              ),
-              isRequired: requestBody.isRequired,
-            ),
-          );
-
-          deleteSourceRequest(
-            sourceName: source.name,
-            requestComponent: request,
-          );
-
-          addSourceRequest(
-            sourceName: source.name,
-            requestComponent: updatedRequest,
-          );
-        }
-      }
-    }
+    _updateRequests(oldName, component);
 
     return const Result.success(OperationStatus.success);
   }
@@ -376,25 +326,11 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   Result<OperationStatus> deleteComponent(
     Component component,
   ) {
-    if (!isComponentExists(component.name)) {
+    if (!_isComponentExists(component.name)) {
       return Result.error(
         failure: SwaggerParserFailureNotFound(
           component.name,
         ),
-      );
-    }
-
-    if (component is DataObjectComponent) {
-      _components = _components.copyWith(
-        dataObjects: _components.dataObjects
-            .where((element) => element.name != component.name)
-            .toList(),
-      );
-    } else if (component is EnumParamComponent) {
-      _components = _components.copyWith(
-        enums: _components.enums
-            .where((element) => element.name != component.name)
-            .toList(),
       );
     }
 
@@ -421,19 +357,71 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       );
     }
 
+    _deleteComponentObject(component);
+
+    _updateRequests(component.name, component);
+
+    return const Result.success(OperationStatus.success);
+  }
+
+  void _editComponentObject(Component component, String oldName) {
+    if (component is DataObjectComponent) {
+      _components = _components.copyWith(
+        dataObjects: [
+          ..._components.dataObjects.where(
+            (element) => element.name != oldName,
+          ),
+          component,
+        ],
+      );
+    } else if (component is EnumParamComponent) {
+      _components = _components.copyWith(
+        enums: [
+          ..._components.enums.where(
+            (element) => element.name != oldName,
+          ),
+          component,
+        ],
+      );
+    }
+  }
+
+  void _deleteComponentObject(Component component) {
+    if (component is DataObjectComponent) {
+      _components = _components.copyWith(
+        dataObjects: _components.dataObjects
+            .where((element) => element.name != component.name)
+            .toList(),
+      );
+    } else if (component is EnumParamComponent) {
+      _components = _components.copyWith(
+        enums: _components.enums
+            .where((element) => element.name != component.name)
+            .toList(),
+      );
+    }
+  }
+
+  void _updateRequests(String oldName, Component component) {
     for (final source in _components.sources) {
       for (final request in source.requests) {
         final requestBody = request.requestBody;
-        if (requestBody != null &&
-            requestBody.type.getName().toUpperCase() ==
-                component.name.toUpperCase()) {
-          final updatedRequest = request.copyWith(
-            requestBody: null,
-          );
-
+        if (requestBody != null && requestBody.type.getName() == oldName) {
           deleteSourceRequest(
             sourceName: source.name,
             requestComponent: request,
+          );
+
+          final updatedRequest = request.copyWith(
+            requestBody: _isComponentExists(component.name)
+                ? RequestBodyComponent(
+                    name: requestBody.name,
+                    type: SwaggerReference(
+                      component.name,
+                    ),
+                    isRequired: requestBody.isRequired,
+                  )
+                : null,
           );
 
           addSourceRequest(
@@ -443,16 +431,20 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
         }
       }
     }
-
-    return const Result.success(OperationStatus.success);
   }
 
-  bool isComponentExists(String dataObjectName) {
+  bool _isComponentExists(String dataObjectName) {
     return _components.dataObjects.any(
           (element) => element.name == dataObjectName,
         ) ||
         _components.enums.any(
           (element) => element.name == dataObjectName,
         );
+  }
+
+  bool _isSourceExists(String sourceName) {
+    return _components.sources.any(
+      (element) => element.name == sourceName,
+    );
   }
 }

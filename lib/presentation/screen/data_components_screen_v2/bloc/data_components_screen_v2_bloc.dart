@@ -198,6 +198,8 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     DataComponentsScreenV2DeleteRequest event,
     Emitter<DataComponentsScreenV2State> emit,
   ) async {
+    final components = _getSwaggerComponentsUseCase();
+
     final result = _deleteSourceRequestUseCase(
       sourceName: event.sourceName,
       requestComponent: event.request,
@@ -206,6 +208,22 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     if (result.isError) {
       onFailure(result.error.failure);
       return;
+    }
+
+    final request = event.request.requestBody?.type.getSwaggerObjectReference();
+
+    final bodyComponent = components.dataObjects
+        .firstWhereOrNull((element) => element.name == request?.reference);
+
+    if (bodyComponent != null) {
+      final result = _deleteComponentUseCase(
+        component: bodyComponent,
+      );
+
+      if (result.isError) {
+        onFailure(result.error.failure);
+        return;
+      }
     }
 
     add(DataComponentsScreenV2IInit(config: state.config));
