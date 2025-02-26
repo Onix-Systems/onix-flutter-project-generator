@@ -32,6 +32,7 @@ class DataComponentsScreenV2Event with _$DataComponentsScreenV2Event {
   const factory DataComponentsScreenV2Event.deleteRequest({
     required String sourceName,
     required RequestComponent request,
+    @Default(false) bool deleteRequestBodyComponent,
   }) = DataComponentsScreenV2DeleteRequest;
 }
 

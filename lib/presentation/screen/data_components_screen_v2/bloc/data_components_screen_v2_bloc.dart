@@ -215,15 +215,8 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     final bodyComponent = components.dataObjects
         .firstWhereOrNull((element) => element.name == request?.reference);
 
-    if (bodyComponent != null) {
-      final result = _deleteComponentUseCase(
-        component: bodyComponent,
-      );
-
-      if (result.isError) {
-        onFailure(result.error.failure);
-        return;
-      }
+    if (bodyComponent != null && event.deleteRequestBodyComponent) {
+      add(DataComponentsScreenV2DeleteComponent(component: bodyComponent));
     }
 
     add(DataComponentsScreenV2IInit(config: state.config));

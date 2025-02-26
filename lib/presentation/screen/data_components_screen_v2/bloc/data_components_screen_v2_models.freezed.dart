@@ -23,7 +23,8 @@ mixin _$DataComponentsScreenV2Event {
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
     required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request)
+    required TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)
         deleteRequest,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,7 +35,8 @@ mixin _$DataComponentsScreenV2Event {
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
     TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request)?
+    TResult? Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
   }) =>
       throw _privateConstructorUsedError;
@@ -45,7 +47,8 @@ mixin _$DataComponentsScreenV2Event {
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
     TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request)?
+    TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
     required TResult orElse(),
   }) =>
@@ -204,7 +207,8 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
     required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request)
+    required TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)
         deleteRequest,
   }) {
     return init(config);
@@ -218,7 +222,8 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
     TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request)?
+    TResult? Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
   }) {
     return init?.call(config);
@@ -232,7 +237,8 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
     TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request)?
+    TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
     required TResult orElse(),
   }) {
@@ -388,7 +394,8 @@ class _$DataComponentsScreenV2AddSourceImpl
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
     required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request)
+    required TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)
         deleteRequest,
   }) {
     return addSource(sourceName);
@@ -402,7 +409,8 @@ class _$DataComponentsScreenV2AddSourceImpl
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
     TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request)?
+    TResult? Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
   }) {
     return addSource?.call(sourceName);
@@ -416,7 +424,8 @@ class _$DataComponentsScreenV2AddSourceImpl
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
     TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request)?
+    TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
     required TResult orElse(),
   }) {
@@ -583,7 +592,8 @@ class _$DataComponentsScreenV2EditSourceNameImpl
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
     required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request)
+    required TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)
         deleteRequest,
   }) {
     return editSourceName(sourceName, newName);
@@ -597,7 +607,8 @@ class _$DataComponentsScreenV2EditSourceNameImpl
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
     TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request)?
+    TResult? Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
   }) {
     return editSourceName?.call(sourceName, newName);
@@ -611,7 +622,8 @@ class _$DataComponentsScreenV2EditSourceNameImpl
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
     TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request)?
+    TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
     required TResult orElse(),
   }) {
@@ -770,7 +782,8 @@ class _$DataComponentsScreenV2DeleteSourceImpl
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
     required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request)
+    required TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)
         deleteRequest,
   }) {
     return deleteSource(sourceName);
@@ -784,7 +797,8 @@ class _$DataComponentsScreenV2DeleteSourceImpl
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
     TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request)?
+    TResult? Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
   }) {
     return deleteSource?.call(sourceName);
@@ -798,7 +812,8 @@ class _$DataComponentsScreenV2DeleteSourceImpl
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
     TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request)?
+    TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
     required TResult orElse(),
   }) {
@@ -956,7 +971,8 @@ class _$DataComponentsScreenV2DeleteComponentImpl
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
     required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request)
+    required TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)
         deleteRequest,
   }) {
     return deleteComponent(component);
@@ -970,7 +986,8 @@ class _$DataComponentsScreenV2DeleteComponentImpl
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
     TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request)?
+    TResult? Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
   }) {
     return deleteComponent?.call(component);
@@ -984,7 +1001,8 @@ class _$DataComponentsScreenV2DeleteComponentImpl
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
     TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request)?
+    TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
     required TResult orElse(),
   }) {
@@ -1069,7 +1087,10 @@ abstract class _$$DataComponentsScreenV2DeleteRequestImplCopyWith<$Res> {
           $Res Function(_$DataComponentsScreenV2DeleteRequestImpl) then) =
       __$$DataComponentsScreenV2DeleteRequestImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String sourceName, RequestComponent request});
+  $Res call(
+      {String sourceName,
+      RequestComponent request,
+      bool deleteRequestBodyComponent});
 
   $RequestComponentCopyWith<$Res> get request;
 }
@@ -1091,6 +1112,7 @@ class __$$DataComponentsScreenV2DeleteRequestImplCopyWithImpl<$Res>
   $Res call({
     Object? sourceName = null,
     Object? request = null,
+    Object? deleteRequestBodyComponent = null,
   }) {
     return _then(_$DataComponentsScreenV2DeleteRequestImpl(
       sourceName: null == sourceName
@@ -1101,6 +1123,10 @@ class __$$DataComponentsScreenV2DeleteRequestImplCopyWithImpl<$Res>
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
               as RequestComponent,
+      deleteRequestBodyComponent: null == deleteRequestBodyComponent
+          ? _value.deleteRequestBodyComponent
+          : deleteRequestBodyComponent // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -1120,16 +1146,21 @@ class __$$DataComponentsScreenV2DeleteRequestImplCopyWithImpl<$Res>
 class _$DataComponentsScreenV2DeleteRequestImpl
     implements DataComponentsScreenV2DeleteRequest {
   const _$DataComponentsScreenV2DeleteRequestImpl(
-      {required this.sourceName, required this.request});
+      {required this.sourceName,
+      required this.request,
+      this.deleteRequestBodyComponent = false});
 
   @override
   final String sourceName;
   @override
   final RequestComponent request;
+  @override
+  @JsonKey()
+  final bool deleteRequestBodyComponent;
 
   @override
   String toString() {
-    return 'DataComponentsScreenV2Event.deleteRequest(sourceName: $sourceName, request: $request)';
+    return 'DataComponentsScreenV2Event.deleteRequest(sourceName: $sourceName, request: $request, deleteRequestBodyComponent: $deleteRequestBodyComponent)';
   }
 
   @override
@@ -1139,11 +1170,16 @@ class _$DataComponentsScreenV2DeleteRequestImpl
             other is _$DataComponentsScreenV2DeleteRequestImpl &&
             (identical(other.sourceName, sourceName) ||
                 other.sourceName == sourceName) &&
-            (identical(other.request, request) || other.request == request));
+            (identical(other.request, request) || other.request == request) &&
+            (identical(other.deleteRequestBodyComponent,
+                    deleteRequestBodyComponent) ||
+                other.deleteRequestBodyComponent ==
+                    deleteRequestBodyComponent));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, sourceName, request);
+  int get hashCode =>
+      Object.hash(runtimeType, sourceName, request, deleteRequestBodyComponent);
 
   /// Create a copy of DataComponentsScreenV2Event
   /// with the given fields replaced by the non-null parameter values.
@@ -1163,10 +1199,11 @@ class _$DataComponentsScreenV2DeleteRequestImpl
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
     required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request)
+    required TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)
         deleteRequest,
   }) {
-    return deleteRequest(sourceName, request);
+    return deleteRequest(sourceName, request, deleteRequestBodyComponent);
   }
 
   @override
@@ -1177,10 +1214,11 @@ class _$DataComponentsScreenV2DeleteRequestImpl
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
     TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request)?
+    TResult? Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
   }) {
-    return deleteRequest?.call(sourceName, request);
+    return deleteRequest?.call(sourceName, request, deleteRequestBodyComponent);
   }
 
   @override
@@ -1191,12 +1229,13 @@ class _$DataComponentsScreenV2DeleteRequestImpl
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
     TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request)?
+    TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent)?
         deleteRequest,
     required TResult orElse(),
   }) {
     if (deleteRequest != null) {
-      return deleteRequest(sourceName, request);
+      return deleteRequest(sourceName, request, deleteRequestBodyComponent);
     }
     return orElse();
   }
@@ -1257,11 +1296,13 @@ abstract class DataComponentsScreenV2DeleteRequest
     implements DataComponentsScreenV2Event {
   const factory DataComponentsScreenV2DeleteRequest(
           {required final String sourceName,
-          required final RequestComponent request}) =
+          required final RequestComponent request,
+          final bool deleteRequestBodyComponent}) =
       _$DataComponentsScreenV2DeleteRequestImpl;
 
   String get sourceName;
   RequestComponent get request;
+  bool get deleteRequestBodyComponent;
 
   /// Create a copy of DataComponentsScreenV2Event
   /// with the given fields replaced by the non-null parameter values.

@@ -14,6 +14,7 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/data_components_content.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/add_edit_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_source_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/delete_request_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
@@ -185,22 +186,23 @@ class _DataComponentsScreenState extends BaseState<
                             );
                           },
                           onRequestDelete: (sourceName, request) {
-                            Dialogs.showOkCancelDialog(
+                            showCupertinoModalPopup<bool>(
                               context: context,
-                              title: S.of(context).delete,
-                              content: Text(
-                                'S.of(context).deleteRequestConfirmation(request.operationId,)',
+                              builder: (ctx) => DeleteRequestDialog(
+                                requestBodyComponentName:
+                                    request.requestBody?.type.toString(),
                               ),
-                              onOk: () {
+                            ).then((value) {
+                              if (value != null && context.mounted) {
                                 blocOf(context).add(
                                   DataComponentsScreenV2Event.deleteRequest(
                                     sourceName: sourceName,
                                     request: request,
+                                    deleteRequestBodyComponent: value,
                                   ),
                                 );
-                              },
-                              isError: true,
-                            );
+                              }
+                            });
                           },
                           refresh: () => _refresh(context),
                         ),
