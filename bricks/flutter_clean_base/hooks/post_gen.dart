@@ -141,7 +141,7 @@ Future<void> getDependencies(HookContext context) async {
     'cupertino_icons',
     'dio',
     'hive_flutter',
-    'freezed_annotation',
+    'freezed_annotation:2.4.4',
     'json_annotation',
     'get_it',
     'flutter_secure_storage:^9.0.0',
