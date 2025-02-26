@@ -33,6 +33,7 @@ class DataComponentsScreenV2Event with _$DataComponentsScreenV2Event {
     required String sourceName,
     required RequestComponent request,
     @Default(false) bool deleteRequestBodyComponent,
+    @Default(false) bool deleteResponseComponent,
   }) = DataComponentsScreenV2DeleteRequest;
 }
 

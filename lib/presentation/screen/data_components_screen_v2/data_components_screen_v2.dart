@@ -191,18 +191,19 @@ class _DataComponentsScreenState extends BaseState<
                               builder: (ctx) => DeleteRequestDialog(
                                 requestBodyComponentName:
                                     request.requestBody?.type.toString(),
-                              ),
-                            ).then((value) {
-                              if (value != null && context.mounted) {
-                                blocOf(context).add(
+                                responseComponentName:
+                                    request.response.type.getName(),
+                                onDelete: (deleteBody, deleteResponse) =>
+                                    blocOf(context).add(
                                   DataComponentsScreenV2Event.deleteRequest(
                                     sourceName: sourceName,
                                     request: request,
-                                    deleteRequestBodyComponent: value,
+                                    deleteRequestBodyComponent: deleteBody,
+                                    deleteResponseComponent: deleteResponse,
                                   ),
-                                );
-                              }
-                            });
+                                ),
+                              ),
+                            );
                           },
                           refresh: () => _refresh(context),
                         ),

@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
@@ -210,13 +211,27 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       return;
     }
 
+    final responseType = event.request.response.type;
+
+    if (responseType is! SwaggerOperationDefault &&
+        event.deleteResponseComponent) {
+      final responseRef = responseType.getSwaggerObjectReference();
+      final responseComponent = components.dataObjects.firstWhereOrNull(
+        (element) => element.name == responseRef?.reference,
+      );
+
+      if (responseComponent != null) {
+        _deleteComponentUseCase(component: responseComponent);
+      }
+    }
+
     final request = event.request.requestBody?.type.getSwaggerObjectReference();
 
     final bodyComponent = components.dataObjects
         .firstWhereOrNull((element) => element.name == request?.reference);
 
     if (bodyComponent != null && event.deleteRequestBodyComponent) {
-      add(DataComponentsScreenV2DeleteComponent(component: bodyComponent));
+      _deleteComponentUseCase(component: bodyComponent);
     }
 
     add(DataComponentsScreenV2IInit(config: state.config));

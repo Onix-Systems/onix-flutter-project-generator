@@ -9,9 +9,13 @@ import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.
 
 class DeleteRequestDialog extends StatefulWidget {
   final String? requestBodyComponentName;
+  final String? responseComponentName;
+  final void Function(bool deleteBody, bool deleteResponse) onDelete;
 
   const DeleteRequestDialog({
+    required this.onDelete,
     this.requestBodyComponentName,
+    this.responseComponentName,
     super.key,
   });
 
@@ -21,6 +25,7 @@ class DeleteRequestDialog extends StatefulWidget {
 
 class _DeleteRequestDialogState extends State<DeleteRequestDialog> {
   bool _deleteRequestBodyComponent = false;
+  bool _deleteResponseComponent = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +59,27 @@ class _DeleteRequestDialogState extends State<DeleteRequestDialog> {
                   });
                 },
               ),
+              LabeledCheckbox(
+                label: 'Delete ${widget.responseComponentName} component',
+                initialValue: _deleteResponseComponent,
+                onAction: () {
+                  setState(() {
+                    _deleteResponseComponent = !_deleteResponseComponent;
+                  });
+                },
+              ),
             ],
             const Gap(10),
             DialogActionButtons(
               leftButtonLabel: S.of(context).delete,
               rightButtonLabel: S.of(context).cancel,
-              leftButtonOnPressed: () =>
-                  Navigator.of(context).pop(_deleteRequestBodyComponent),
+              leftButtonOnPressed: () {
+                widget.onDelete(
+                  _deleteRequestBodyComponent,
+                  _deleteResponseComponent,
+                );
+                Navigator.of(context).pop();
+              },
               rightButtonOnPressed: () => Navigator.of(context).pop(),
             ),
           ],
