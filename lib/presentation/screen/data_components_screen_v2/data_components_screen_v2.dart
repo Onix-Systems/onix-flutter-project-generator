@@ -190,7 +190,7 @@ class _DataComponentsScreenState extends BaseState<
                               context: context,
                               builder: (ctx) => DeleteRequestDialog(
                                 requestBodyComponentName:
-                                    request.requestBody?.type.toString(),
+                                    request.requestBody?.type.getName(),
                                 responseComponentName:
                                     request.response.type.getName(),
                                 onDelete: (deleteBody, deleteResponse) =>
