@@ -16,5 +16,6 @@ class AddRequestDialogState with _$AddRequestDialogState {
     @Default('') String sourceName,
     @Default([]) List<String> components,
     Component? bodyComponent,
+    Component? responseComponent,
   }) = _AddRequestDialogState;
 }

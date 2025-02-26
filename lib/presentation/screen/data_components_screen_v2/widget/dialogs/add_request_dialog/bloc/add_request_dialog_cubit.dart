@@ -4,6 +4,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_request_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
@@ -29,8 +30,7 @@ class AddRequestDialogCubit
     required String sourceName,
     required RequestComponent? request,
   }) async {
-    final componentNames = _getComponentNames()
-      ..insert(0, 'Select body component');
+    final componentNames = _getComponentNames();
 
     emit(
       state.copyWith(
@@ -49,6 +49,17 @@ class AddRequestDialogCubit
 
       if (addBodyComponentResult.isError) {
         onFailure(addBodyComponentResult.error.failure);
+        return;
+      }
+    }
+
+    if (state.responseComponent != null) {
+      final addResponseComponentResult = _addComponentUseCase(
+        component: state.responseComponent!,
+      );
+
+      if (addResponseComponentResult.isError) {
+        onFailure(addResponseComponentResult.error.failure);
         return;
       }
     }
@@ -96,6 +107,38 @@ class AddRequestDialogCubit
     );
   }
 
+  void addResponse({
+    required String name,
+    Component? responseComponent,
+    bool isRequired = false,
+  }) {
+    final response = ResponseParamComponent(
+      name: 'response',
+      type: SwaggerReference(name),
+      isRequired: isRequired,
+    );
+
+    final request = state.request.copyWith(
+      response: response,
+    );
+
+    final components = _getComponentNames();
+
+    if (responseComponent == null) {
+      components.remove(name.pascalCase);
+    }
+
+    components.insert(0, name.pascalCase);
+
+    emit(
+      state.copyWith(
+        request: request,
+        components: components,
+        responseComponent: responseComponent,
+      ),
+    );
+  }
+
   List<String> _getComponentNames() {
     final components = _getSwaggerComponentsUseCase();
 
@@ -103,8 +146,18 @@ class AddRequestDialogCubit
     final dataObjects =
         components.dataObjects.map((e) => e.fileReference.reference).toList();
 
-    return [...enums, ...dataObjects].sorted(
+    final sortedComponents = [...enums, ...dataObjects].sorted(
       (a, b) => a.compareTo(b),
     );
+
+    if (state.responseComponent != null) {
+      sortedComponents.add(state.responseComponent!.name.pascalCase);
+    }
+
+    if (state.bodyComponent != null) {
+      sortedComponents.add(state.bodyComponent!.name.pascalCase);
+    }
+
+    return sortedComponents;
   }
 }
