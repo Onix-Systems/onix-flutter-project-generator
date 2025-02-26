@@ -171,8 +171,12 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                         body: true,
                         componentName: _getComponentName('RequestBody'),
                         selectedComponentName: state.bodyComponent?.name,
+
+                        ///TODO: Check why it is not working
                         onComponentSelected: (value) =>
                             cubitOf(context).addBody(name: value),
+
+                        ///
                         onComponentCreated: (value) => cubitOf(context).addBody(
                           name: value.name,
                           bodyComponent: value,
@@ -184,8 +188,12 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                         body: false,
                         componentName: _getComponentName('Response'),
                         selectedComponentName: state.responseComponent?.name,
+
+                        ///TODO: Check why it is not working
                         onComponentSelected: (value) =>
                             cubitOf(context).addResponse(name: value),
+
+                        ///
                         onComponentCreated: (value) =>
                             cubitOf(context).addResponse(
                           name: value.name,
