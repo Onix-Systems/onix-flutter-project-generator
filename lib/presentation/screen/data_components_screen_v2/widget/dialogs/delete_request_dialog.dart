@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/app/extension/ui_utils_extension.dart';
@@ -59,15 +58,16 @@ class _DeleteRequestDialogState extends State<DeleteRequestDialog> {
                   });
                 },
               ),
-              LabeledCheckbox(
-                label: 'Delete ${widget.responseComponentName} component',
-                initialValue: _deleteResponseComponent,
-                onAction: () {
-                  setState(() {
-                    _deleteResponseComponent = !_deleteResponseComponent;
-                  });
-                },
-              ),
+              if (widget.responseComponentName != 'OperationStatus')
+                LabeledCheckbox(
+                  label: 'Delete ${widget.responseComponentName} component',
+                  initialValue: _deleteResponseComponent,
+                  onAction: () {
+                    setState(() {
+                      _deleteResponseComponent = !_deleteResponseComponent;
+                    });
+                  },
+                ),
             ],
             const Gap(10),
             DialogActionButtons(

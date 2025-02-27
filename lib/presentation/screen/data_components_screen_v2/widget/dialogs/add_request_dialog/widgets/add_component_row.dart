@@ -12,6 +12,7 @@ class AddComponentRow extends StatelessWidget {
   final AddRequestDialogState state;
   final String? selectedComponentName;
   final String componentName;
+  final Component? editComponent;
   final ValueChanged<String> onComponentSelected;
   final ValueChanged<Component> onComponentCreated;
   final bool body;
@@ -23,27 +24,23 @@ class AddComponentRow extends StatelessWidget {
     required this.onComponentCreated,
     required this.body,
     this.selectedComponentName,
+    this.editComponent,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final components = state.components.toSet().toList();
+    final components = state.components.toSet().toList()..insert(0, 'Empty');
 
-    if (selectedComponentName == null) {
-      if (body) {
-        components.insert(0, 'Select body component');
-      } else {
-        components.insert(0, 'Select response component');
-      }
-    } else {
+    if (selectedComponentName != null) {
       components
         ..remove(selectedComponentName)
         ..insert(0, selectedComponentName!);
     }
 
-    final componentRef = selectedComponentName ??
-        (body ? 'Select body component' : 'Select response component');
+    final componentRef = components.first;
+
+    final buttonPrefix = editComponent != null ? 'Edit' : 'Add';
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +53,7 @@ class AddComponentRow extends StatelessWidget {
                 return DropdownMenuItem<String>(
                   value: e,
                   child: Text(
-                    e.startsWith('Select') ? e : e.pascalCase,
+                    e.pascalCase,
                     style: context.appTextStyles.fs18,
                   ),
                 );
@@ -85,13 +82,14 @@ class AddComponentRow extends StatelessWidget {
         SizedBox(
           width: 200,
           child: AppFilledButton(
-            label: body ? 'Add body' : 'Add response',
+            label: body ? '$buttonPrefix body' : '$buttonPrefix response',
             onPressed: () => showCupertinoModalPopup<Component>(
               context: context,
               builder: (ctx) {
                 return AddEditComponentDialog(
                   name: componentName,
                   requestBodyComponent: true,
+                  component: editComponent,
                 );
               },
             ).then((value) {

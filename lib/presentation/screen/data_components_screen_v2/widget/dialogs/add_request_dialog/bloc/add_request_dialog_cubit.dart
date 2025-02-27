@@ -100,6 +100,19 @@ class AddRequestDialogCubit
     Component? bodyComponent,
     bool isRequired = false,
   }) {
+    final components = _getComponentNames();
+
+    if (name == 'Empty') {
+      emit(
+        state.copyWith(
+          components: components,
+          bodyComponent: null,
+          request: state.request.copyWith(requestBody: null),
+        ),
+      );
+      return;
+    }
+
     final body = RequestBodyComponent(
       name: 'requestBody',
       type: SwaggerReference(name),
@@ -109,8 +122,6 @@ class AddRequestDialogCubit
     final request = state.request.copyWith(
       requestBody: body,
     );
-
-    final components = _getComponentNames();
 
     Component? component;
 
@@ -133,6 +144,21 @@ class AddRequestDialogCubit
     Component? responseComponent,
     bool isRequired = false,
   }) {
+    final components = _getComponentNames();
+
+    if (name == 'Empty') {
+      emit(
+        state.copyWith(
+          responseComponent: null,
+          components: components,
+          request: state.request.copyWith(
+            response: ResponseParamComponent.operationDefault(),
+          ),
+        ),
+      );
+      return;
+    }
+
     final response = ResponseParamComponent(
       name: 'response',
       type: SwaggerReference(name),
@@ -142,8 +168,6 @@ class AddRequestDialogCubit
     final request = state.request.copyWith(
       response: response,
     );
-
-    final components = _getComponentNames();
 
     Component? component;
 

@@ -169,6 +169,11 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                       AddComponentRow(
                         state: state,
                         body: true,
+                        editComponent: state.bodyComponent != null &&
+                                state.bodyComponent?.name ==
+                                    state.tempBodyComponent?.name
+                            ? state.bodyComponent
+                            : null,
                         componentName: _getComponentName('RequestBody'),
                         selectedComponentName: state.bodyComponent?.name,
                         onComponentSelected: (value) =>
@@ -182,6 +187,11 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                       AddComponentRow(
                         state: state,
                         body: false,
+                        editComponent: state.responseComponent != null &&
+                                state.responseComponent?.name ==
+                                    state.tempResponseComponent?.name
+                            ? state.responseComponent
+                            : null,
                         componentName: _getComponentName('Response'),
                         selectedComponentName: state.responseComponent?.name,
                         onComponentSelected: (value) =>

@@ -13,4 +13,10 @@ class ResponseParamComponent with _$ResponseParamComponent {
     required bool isRequired,
     @Default(false) bool isEnum,
   }) = _ResponseParamComponent;
+
+  factory ResponseParamComponent.operationDefault() => ResponseParamComponent(
+        name: '',
+        type: SwaggerOperationDefault(),
+        isRequired: false,
+      );
 }
