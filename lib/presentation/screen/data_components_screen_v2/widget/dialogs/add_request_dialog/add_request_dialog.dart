@@ -46,6 +46,13 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
   }
 
   @override
+  void initState() {
+    super.initState();
+    _pathController.text = widget.request?.path ?? '';
+    _idController.text = widget.request?.operationId ?? '';
+  }
+
+  @override
   Widget buildWidget(BuildContext context) {
     return Center(
       child: Container(
@@ -170,8 +177,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                         state: state,
                         body: true,
                         editComponent: state.bodyComponent != null &&
-                                state.bodyComponent?.name ==
-                                    state.tempBodyComponent?.name
+                                !state.bodyComponent!.fromSwagger
                             ? state.bodyComponent
                             : null,
                         componentName: _getComponentName('RequestBody'),
@@ -188,8 +194,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                         state: state,
                         body: false,
                         editComponent: state.responseComponent != null &&
-                                state.responseComponent?.name ==
-                                    state.tempResponseComponent?.name
+                                !state.responseComponent!.fromSwagger
                             ? state.responseComponent
                             : null,
                         componentName: _getComponentName('Response'),
@@ -210,7 +215,8 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                   leftButtonLabel: S.of(context).ok,
                   leftButtonOnPressed: () {
                     cubitOf(context).addRequest(
-                      state.request.copyWith(
+                      edit: widget.request != null,
+                      request: state.request.copyWith(
                         operationId: _idController.text.isNotEmpty
                             ? _idController.text
                             : '${_requestType.name}_${_pathController.text.clearPathToName()}'

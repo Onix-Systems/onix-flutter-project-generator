@@ -7,15 +7,18 @@ import 'package:onix_flutter_bricks/domain/entity/component/request_param_compon
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_request_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_request_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_models.dart';
+import 'package:onix_flutter_core/onix_flutter_core.dart';
 
 class AddRequestDialogCubit
     extends BaseCubit<AddRequestDialogState, AddRequestDialogSR> {
   final GetSwaggerComponentsUseCase _getSwaggerComponentsUseCase;
   final AddSourceRequestUseCase _addSourceRequestUseCase;
+  final EditSourceRequestUseCase _editSourceRequestUseCase;
   final AddComponentUseCase _addComponentUseCase;
   final GetComponentByNameUseCase _getComponentByNameUseCase;
   final IsComponentExistsUseCase _isComponentExistsUseCase;
@@ -23,11 +26,13 @@ class AddRequestDialogCubit
   AddRequestDialogCubit({
     required GetSwaggerComponentsUseCase getSwaggerComponentsUseCase,
     required AddSourceRequestUseCase addSourceRequestUseCase,
+    required EditSourceRequestUseCase editSourceRequestUseCase,
     required AddComponentUseCase addComponentUseCase,
     required GetComponentByNameUseCase getComponentByNameUseCase,
     required IsComponentExistsUseCase isComponentExistsUseCase,
   })  : _getSwaggerComponentsUseCase = getSwaggerComponentsUseCase,
         _addSourceRequestUseCase = addSourceRequestUseCase,
+        _editSourceRequestUseCase = editSourceRequestUseCase,
         _addComponentUseCase = addComponentUseCase,
         _getComponentByNameUseCase = getComponentByNameUseCase,
         _isComponentExistsUseCase = isComponentExistsUseCase,
@@ -39,16 +44,27 @@ class AddRequestDialogCubit
   }) async {
     final componentNames = _getComponentNames();
 
+    final body = request != null && request.requestBody != null
+        ? _getComponentByName(request.requestBody!.type.getName())
+        : null;
+
+    final response = request != null &&
+            request.response != ResponseParamComponent.operationDefault()
+        ? _getComponentByName(request.response.type.getName())
+        : null;
+
     emit(
       state.copyWith(
         sourceName: sourceName,
         components: componentNames,
         request: request ?? state.request,
+        bodyComponent: body,
+        responseComponent: response,
       ),
     );
   }
 
-  void addRequest(RequestComponent request) {
+  void addRequest({required RequestComponent request, bool edit = false}) {
     if (state.bodyComponent != null) {
       final componentExists = _isComponentExistsUseCase(
         state.bodyComponent!.name,
@@ -84,14 +100,23 @@ class AddRequestDialogCubit
       }
     }
 
-    final addResult = _addSourceRequestUseCase(
-      sourceName: state.sourceName,
-      requestComponent: request,
-    );
+    Result result;
 
-    if (addResult.isError) {
-      onFailure(addResult.error.failure);
-      return;
+    if (edit) {
+      result = _editSourceRequestUseCase(
+        sourceName: state.sourceName,
+        oldComponent: state.request,
+        requestComponent: request,
+      );
+    } else {
+      result = _addSourceRequestUseCase(
+        sourceName: state.sourceName,
+        requestComponent: request,
+      );
+    }
+
+    if (result.isError) {
+      onFailure(result.error.failure);
     }
   }
 

@@ -192,6 +192,52 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }
 
   @override
+  Result<OperationStatus> editSourceRequest({
+    required String sourceName,
+    required RequestComponent oldComponent,
+    required RequestComponent requestComponent,
+  }) {
+    if (!_isSourceExists(sourceName)) {
+      return Result.error(
+        failure: SwaggerParserFailureNotFound(
+          sourceName,
+        ),
+      );
+    }
+
+    final sourceIndex = _components.sources.indexWhere(
+      (element) => element.name == sourceName,
+    );
+
+    final source = _components.sources[sourceIndex];
+
+    if (source.requests.where((e) => e.equals(oldComponent)).isEmpty) {
+      return const Result.error(
+        failure: SwaggerParserFailureNotFound(
+          'Request Component',
+        ),
+      );
+    }
+
+    _components = _components.copyWith(
+      sources: [
+        ..._components.sources.sublist(0, sourceIndex),
+        source.copyWith(
+          requests: [
+            ...source.requests.where(
+              (element) => !element.equals(oldComponent),
+            ),
+            requestComponent,
+          ],
+        ),
+        ..._components.sources.sublist(sourceIndex + 1),
+      ],
+    );
+
+    return const Result.success(OperationStatus.success);
+  }
+
+  @override
   Result<OperationStatus> deleteSourceRequest({
     required String sourceName,
     required RequestComponent requestComponent,

@@ -21,12 +21,12 @@ import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label
 class AddEditComponentDialog extends StatefulWidget {
   final Component? component;
   final String? name;
-  final bool requestBodyComponent;
+  final bool requestComponent;
 
   const AddEditComponentDialog({
     this.component,
     this.name,
-    this.requestBodyComponent = false,
+    this.requestComponent = false,
     super.key,
   });
 
@@ -103,7 +103,7 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                             ),
                           ],
                         ),
-                        if (!widget.requestBodyComponent)
+                        if (!widget.requestComponent)
                           SwitchWithLabel(
                             label: 'Enum',
                             initialValue: isEnum,
@@ -188,25 +188,20 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                 leftButtonLabel: S.of(context).ok,
                 rightButtonLabel: S.of(context).cancel,
                 leftButtonOnPressed: () async {
-                  if (widget.component != null &&
-                      !widget.requestBodyComponent) {
-                    await cubitOf(context)
+                  Component? component;
+
+                  if (widget.component != null) {
+                    component = await cubitOf(context)
                         .editDataObject(name: _controller.text);
                   } else {
-                    final component = await cubitOf(context).addDataObject(
+                    component = await cubitOf(context).addDataObject(
                       name: _controller.text,
                       isEnum: isEnum,
-                      addToRepository: !widget.requestBodyComponent,
+                      addToRepository: !widget.requestComponent,
                     );
-                    if (widget.requestBodyComponent) {
-                      if (context.mounted) {
-                        Navigator.of(context).pop(component);
-                      }
-                      return;
-                    }
                   }
                   if (context.mounted) {
-                    Navigator.of(context).pop(_controller.text);
+                    Navigator.of(context).pop(component);
                   }
                 },
                 rightButtonOnPressed: () {

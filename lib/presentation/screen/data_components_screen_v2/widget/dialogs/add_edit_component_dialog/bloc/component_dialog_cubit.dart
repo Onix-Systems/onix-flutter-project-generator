@@ -204,9 +204,9 @@ class ComponentDialogCubit
     return dataObject;
   }
 
-  Future<void> editDataObject({required String name}) async {
+  Future<Component?> editDataObject({required String name}) async {
     final component = state.component;
-    if (component == null) return;
+    if (component == null) return null;
 
     Component? dataObject;
 
@@ -228,7 +228,7 @@ class ComponentDialogCubit
       );
     }
 
-    if (dataObject == null) return;
+    if (dataObject == null) return null;
 
     _editDataObjectComponentUseCase(
       oldName: component.name,
@@ -239,6 +239,8 @@ class ComponentDialogCubit
       },
       error: onFailure,
     );
+
+    return dataObject;
   }
 
   bool _isEnum(SwaggerType variableType) =>

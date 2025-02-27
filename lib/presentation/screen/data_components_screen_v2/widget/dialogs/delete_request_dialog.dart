@@ -43,12 +43,14 @@ class _DeleteRequestDialogState extends State<DeleteRequestDialog> {
               'Delete request?',
               style: context.appTextStyles.fs22,
             ),
-            if (widget.requestBodyComponentName != null) ...[
+            if (widget.requestBodyComponentName != null ||
+                widget.responseComponentName != 'OperationStatus')
               Divider(
                 color: context.appColors.controlColor,
                 height: 20,
                 thickness: 0.2,
               ),
+            if (widget.requestBodyComponentName != null)
               LabeledCheckbox(
                 label: 'Delete ${widget.requestBodyComponentName} component',
                 initialValue: _deleteRequestBodyComponent,
@@ -58,17 +60,16 @@ class _DeleteRequestDialogState extends State<DeleteRequestDialog> {
                   });
                 },
               ),
-              if (widget.responseComponentName != 'OperationStatus')
-                LabeledCheckbox(
-                  label: 'Delete ${widget.responseComponentName} component',
-                  initialValue: _deleteResponseComponent,
-                  onAction: () {
-                    setState(() {
-                      _deleteResponseComponent = !_deleteResponseComponent;
-                    });
-                  },
-                ),
-            ],
+            if (widget.responseComponentName != 'OperationStatus')
+              LabeledCheckbox(
+                label: 'Delete ${widget.responseComponentName} component',
+                initialValue: _deleteResponseComponent,
+                onAction: () {
+                  setState(() {
+                    _deleteResponseComponent = !_deleteResponseComponent;
+                  });
+                },
+              ),
             const Gap(10),
             DialogActionButtons(
               leftButtonLabel: S.of(context).delete,

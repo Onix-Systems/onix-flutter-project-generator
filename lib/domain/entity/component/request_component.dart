@@ -37,11 +37,7 @@ class RequestComponent with _$RequestComponent {
         multipartBody: [],
         queryParams: [],
         pathParams: [],
-        response: ResponseParamComponent(
-          name: '',
-          type: SwaggerOperationDefault(),
-          isRequired: false,
-        ),
+        response: ResponseParamComponent.operationDefault(),
       );
 
   bool equals(RequestComponent other) {

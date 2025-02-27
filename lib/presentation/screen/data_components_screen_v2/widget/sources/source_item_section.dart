@@ -64,6 +64,17 @@ class SourceItem extends StatelessWidget {
           requests: source.requests,
           objects: objects,
           onDelete: (request) => onRequestDelete?.call(request),
+          onEdit: (request) {
+            showCupertinoModalPopup<RequestComponent>(
+              context: context,
+              builder: (ctx) => AddEditRequestDialog(
+                sourceName: source.name,
+                request: request,
+              ),
+            ).then((request) {
+              refresh();
+            });
+          },
         ),
         const Gap(16),
         AppFilledButton(

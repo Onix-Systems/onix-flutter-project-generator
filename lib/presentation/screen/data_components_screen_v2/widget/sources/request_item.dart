@@ -15,12 +15,14 @@ class RequestItem extends StatelessWidget {
   final ObjectView? requestObject;
   final ObjectView? responseObject;
   final VoidCallback? onDelete;
+  final VoidCallback? onEdit;
 
   const RequestItem({
     required this.request,
     required this.requestObject,
     required this.responseObject,
     this.onDelete,
+    this.onEdit,
     super.key,
   });
 
@@ -62,7 +64,7 @@ class RequestItem extends StatelessWidget {
                       CupertinoIcons.pencil,
                       color: context.appColors.textColor,
                     ),
-                    onPressed: () {},
+                    onPressed: onEdit,
                   ),
                   IconButton(
                     icon: Icon(

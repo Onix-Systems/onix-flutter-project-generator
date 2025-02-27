@@ -88,7 +88,7 @@ class AddComponentRow extends StatelessWidget {
               builder: (ctx) {
                 return AddEditComponentDialog(
                   name: componentName,
-                  requestBodyComponent: true,
+                  requestComponent: true,
                   component: editComponent,
                 );
               },

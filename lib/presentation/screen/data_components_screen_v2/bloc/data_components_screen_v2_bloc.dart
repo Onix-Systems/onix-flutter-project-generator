@@ -59,6 +59,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     Emitter<DataComponentsScreenV2State> emit,
   ) {
     final components = _getSwaggerComponentsUseCase();
+
     emit(
       state.copyWith(
         config: event.config,
@@ -199,7 +200,12 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     DataComponentsScreenV2DeleteRequest event,
     Emitter<DataComponentsScreenV2State> emit,
   ) async {
-    final components = _getSwaggerComponentsUseCase();
+    final swaggerComponents = state.components;
+
+    final components = [
+      ...swaggerComponents.dataObjects,
+      ...swaggerComponents.enums,
+    ];
 
     final result = _deleteSourceRequestUseCase(
       sourceName: event.sourceName,
@@ -216,7 +222,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     if (responseType is! SwaggerOperationDefault &&
         event.deleteResponseComponent) {
       final responseRef = responseType.getSwaggerObjectReference();
-      final responseComponent = components.dataObjects.firstWhereOrNull(
+      final responseComponent = components.firstWhereOrNull(
         (element) => element.name == responseRef?.reference,
       );
 
@@ -227,7 +233,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
 
     final request = event.request.requestBody?.type.getSwaggerObjectReference();
 
-    final bodyComponent = components.dataObjects
+    final bodyComponent = components
         .firstWhereOrNull((element) => element.name == request?.reference);
 
     if (bodyComponent != null && event.deleteRequestBodyComponent) {

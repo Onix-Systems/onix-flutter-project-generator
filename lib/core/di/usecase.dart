@@ -33,6 +33,7 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_source_request
 import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_source_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_name_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_request_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
@@ -182,6 +183,11 @@ void registerUseCases(GetIt getIt) {
     )
     ..registerFactory<AddSourceRequestUseCase>(
       () => AddSourceRequestUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<EditSourceRequestUseCase>(
+      () => EditSourceRequestUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     )
