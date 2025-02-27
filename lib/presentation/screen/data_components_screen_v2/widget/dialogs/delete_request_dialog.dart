@@ -60,7 +60,8 @@ class _DeleteRequestDialogState extends State<DeleteRequestDialog> {
                   });
                 },
               ),
-            if (widget.responseComponentName != 'OperationStatus')
+            if (widget.responseComponentName != null &&
+                widget.responseComponentName != 'OperationStatus')
               LabeledCheckbox(
                 label: 'Delete ${widget.responseComponentName} component',
                 initialValue: _deleteResponseComponent,

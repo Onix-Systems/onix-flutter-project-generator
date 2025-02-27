@@ -36,7 +36,11 @@ class AddRequestDialogCubit
         _addComponentUseCase = addComponentUseCase,
         _getComponentByNameUseCase = getComponentByNameUseCase,
         _isComponentExistsUseCase = isComponentExistsUseCase,
-        super(AddRequestDialogState(request: RequestComponent.empty()));
+        super(
+          AddRequestDialogState(
+            request: RequestComponent.empty(),
+          ),
+        );
 
   Future<void> init({
     required String sourceName,
@@ -138,21 +142,22 @@ class AddRequestDialogCubit
       return;
     }
 
-    final body = RequestBodyComponent(
-      name: 'requestBody',
-      type: SwaggerReference(name),
-      isRequired: isRequired,
-    );
-
-    final request = state.request.copyWith(
-      requestBody: body,
-    );
-
     Component? component;
 
     if (bodyComponent == null) {
       component = _getComponentByName(name);
     }
+
+    final body = RequestBodyComponent(
+      name: 'requestBody',
+      type: SwaggerReference(name),
+      isRequired: isRequired,
+      fromSwagger: component?.fromSwagger ?? false,
+    );
+
+    final request = state.request.copyWith(
+      requestBody: body,
+    );
 
     emit(
       state.copyWith(
@@ -184,21 +189,22 @@ class AddRequestDialogCubit
       return;
     }
 
-    final response = ResponseParamComponent(
-      name: 'response',
-      type: SwaggerReference(name),
-      isRequired: isRequired,
-    );
-
-    final request = state.request.copyWith(
-      response: response,
-    );
-
     Component? component;
 
     if (responseComponent == null) {
       component = _getComponentByName(name);
     }
+
+    final response = ResponseParamComponent(
+      name: 'response',
+      type: SwaggerReference(name),
+      isRequired: isRequired,
+      fromSwagger: component?.fromSwagger ?? false,
+    );
+
+    final request = state.request.copyWith(
+      response: response,
+    );
 
     emit(
       state.copyWith(

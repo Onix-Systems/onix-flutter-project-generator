@@ -6,11 +6,13 @@ sealed class RequestParamComponent {
   final String name;
   final SwaggerType type;
   final bool isRequired;
+  final bool fromSwagger;
 
   RequestParamComponent({
     required this.name,
     required this.type,
     required this.isRequired,
+    this.fromSwagger = true,
   });
 
   String getParamBodyDeclaration(
@@ -55,6 +57,7 @@ class RequestBodyComponent extends RequestParamComponent {
     required super.type,
     required super.isRequired,
     this.isEnum = false,
+    super.fromSwagger,
   });
 }
 
@@ -63,6 +66,7 @@ class RequestMultipartComponent extends RequestParamComponent {
     required super.name,
     required super.type,
     required super.isRequired,
+    super.fromSwagger,
   });
 }
 
@@ -74,6 +78,7 @@ class RequestQueryComponent extends RequestParamComponent {
     required super.type,
     required super.isRequired,
     this.isEnum = false,
+    super.fromSwagger,
   });
 }
 
@@ -84,5 +89,6 @@ class RequestPathComponent extends RequestParamComponent {
     required super.type,
     required super.isRequired,
     this.isEnum = false,
+    super.fromSwagger,
   });
 }
