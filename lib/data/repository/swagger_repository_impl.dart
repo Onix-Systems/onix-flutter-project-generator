@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/extension/logger_extension.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/mapper/swagger/swagger_mapper.dart';
@@ -238,7 +239,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   Result<OperationStatus> addComponent(
     Component component,
   ) {
-    if (_isComponentExists(component.name)) {
+    if (isComponentExists(component.name)) {
       return Result.error(
         failure: SwaggerParserFailureAlreadyExists(
           component.name,
@@ -270,7 +271,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     required String oldName,
     required Component component,
   }) {
-    if (!_isComponentExists(oldName)) {
+    if (!isComponentExists(oldName)) {
       return Result.error(
         failure: SwaggerParserFailureNotFound(
           oldName,
@@ -279,7 +280,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     }
 
     if (oldName.toUpperCase() != component.name.toUpperCase() &&
-        _isComponentExists(component.name)) {
+        isComponentExists(component.name)) {
       return Result.error(
         failure: SwaggerParserFailureAlreadyExists(
           component.name,
@@ -326,7 +327,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   Result<OperationStatus> deleteComponent(
     Component component,
   ) {
-    if (!_isComponentExists(component.name)) {
+    if (!isComponentExists(component.name)) {
       return Result.error(
         failure: SwaggerParserFailureNotFound(
           component.name,
@@ -413,7 +414,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
           );
 
           final updatedRequest = request.copyWith(
-            requestBody: _isComponentExists(component.name)
+            requestBody: isComponentExists(component.name)
                 ? RequestBodyComponent(
                     name: requestBody.name,
                     type: SwaggerReference(
@@ -433,7 +434,8 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     }
   }
 
-  bool _isComponentExists(String dataObjectName) {
+  @override
+  bool isComponentExists(String dataObjectName) {
     return _components.dataObjects.any(
           (element) => element.name == dataObjectName,
         ) ||
@@ -446,5 +448,25 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     return _components.sources.any(
       (element) => element.name == sourceName,
     );
+  }
+
+  @override
+  Result<Component> getComponentByName({required String componentName}) {
+    final component = _components.dataObjects.firstWhereOrNull(
+          (element) => element.name == componentName,
+        ) ??
+        _components.enums.firstWhereOrNull(
+          (element) => element.name == componentName,
+        );
+
+    if (component == null) {
+      return Result.error(
+        failure: SwaggerParserFailureNotFound(
+          componentName,
+        ),
+      );
+    }
+
+    return Result.success(component);
   }
 }

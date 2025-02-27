@@ -28,14 +28,18 @@ class AddComponentRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final components = state.components.toList();
+    final components = state.components.toSet().toList();
 
     if (selectedComponentName == null) {
       if (body) {
-        components.add('Select body component');
+        components.insert(0, 'Select body component');
       } else {
-        components.add('Select response component');
+        components.insert(0, 'Select response component');
       }
+    } else {
+      components
+        ..remove(selectedComponentName)
+        ..insert(0, selectedComponentName!);
     }
 
     final componentRef = selectedComponentName ??

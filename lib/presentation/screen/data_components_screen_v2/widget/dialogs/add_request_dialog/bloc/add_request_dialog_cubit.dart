@@ -7,23 +7,30 @@ import 'package:onix_flutter_bricks/domain/entity/component/request_param_compon
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_request_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_models.dart';
-import 'package:recase/recase.dart';
 
 class AddRequestDialogCubit
     extends BaseCubit<AddRequestDialogState, AddRequestDialogSR> {
   final GetSwaggerComponentsUseCase _getSwaggerComponentsUseCase;
   final AddSourceRequestUseCase _addSourceRequestUseCase;
   final AddComponentUseCase _addComponentUseCase;
+  final GetComponentByNameUseCase _getComponentByNameUseCase;
+  final IsComponentExistsUseCase _isComponentExistsUseCase;
 
   AddRequestDialogCubit({
     required GetSwaggerComponentsUseCase getSwaggerComponentsUseCase,
     required AddSourceRequestUseCase addSourceRequestUseCase,
     required AddComponentUseCase addComponentUseCase,
+    required GetComponentByNameUseCase getComponentByNameUseCase,
+    required IsComponentExistsUseCase isComponentExistsUseCase,
   })  : _getSwaggerComponentsUseCase = getSwaggerComponentsUseCase,
         _addSourceRequestUseCase = addSourceRequestUseCase,
         _addComponentUseCase = addComponentUseCase,
+        _getComponentByNameUseCase = getComponentByNameUseCase,
+        _isComponentExistsUseCase = isComponentExistsUseCase,
         super(AddRequestDialogState(request: RequestComponent.empty()));
 
   Future<void> init({
@@ -43,24 +50,37 @@ class AddRequestDialogCubit
 
   void addRequest(RequestComponent request) {
     if (state.bodyComponent != null) {
-      final addBodyComponentResult = _addComponentUseCase(
-        component: state.bodyComponent!,
+      final componentExists = _isComponentExistsUseCase(
+        state.bodyComponent!.name,
       );
 
-      if (addBodyComponentResult.isError) {
-        onFailure(addBodyComponentResult.error.failure);
-        return;
+      if (!componentExists) {
+        final addBodyComponentResult = _addComponentUseCase(
+          component: state.bodyComponent!,
+        );
+
+        if (addBodyComponentResult.isError) {
+          onFailure(addBodyComponentResult.error.failure);
+          return;
+        }
       }
     }
 
-    if (state.responseComponent != null) {
-      final addResponseComponentResult = _addComponentUseCase(
-        component: state.responseComponent!,
+    if (state.responseComponent != null &&
+        state.responseComponent != state.bodyComponent) {
+      final componentExists = _isComponentExistsUseCase(
+        state.responseComponent!.name,
       );
 
-      if (addResponseComponentResult.isError) {
-        onFailure(addResponseComponentResult.error.failure);
-        return;
+      if (!componentExists) {
+        final addResponseComponentResult = _addComponentUseCase(
+          component: state.responseComponent!,
+        );
+
+        if (addResponseComponentResult.isError) {
+          onFailure(addResponseComponentResult.error.failure);
+          return;
+        }
       }
     }
 
@@ -92,17 +112,18 @@ class AddRequestDialogCubit
 
     final components = _getComponentNames();
 
-    if (bodyComponent == null) {
-      components.remove(name.pascalCase);
-    }
+    Component? component;
 
-    components.insert(0, name.pascalCase);
+    if (bodyComponent == null) {
+      component = _getComponentByName(name);
+    }
 
     emit(
       state.copyWith(
         request: request,
         components: components,
-        bodyComponent: bodyComponent,
+        bodyComponent: bodyComponent ?? component,
+        tempBodyComponent: bodyComponent ?? state.tempBodyComponent,
       ),
     );
   }
@@ -124,17 +145,18 @@ class AddRequestDialogCubit
 
     final components = _getComponentNames();
 
-    if (responseComponent == null) {
-      components.remove(name.pascalCase);
-    }
+    Component? component;
 
-    components.insert(0, name.pascalCase);
+    if (responseComponent == null) {
+      component = _getComponentByName(name);
+    }
 
     emit(
       state.copyWith(
         request: request,
         components: components,
-        responseComponent: responseComponent,
+        responseComponent: responseComponent ?? component,
+        tempResponseComponent: responseComponent ?? state.tempResponseComponent,
       ),
     );
   }
@@ -150,14 +172,35 @@ class AddRequestDialogCubit
       (a, b) => a.compareTo(b),
     );
 
-    if (state.responseComponent != null) {
-      sortedComponents.add(state.responseComponent!.name.pascalCase);
+    if (state.tempResponseComponent != null) {
+      sortedComponents.insert(0, state.tempResponseComponent!.name);
     }
 
-    if (state.bodyComponent != null) {
-      sortedComponents.add(state.bodyComponent!.name.pascalCase);
+    if (state.tempBodyComponent != null) {
+      sortedComponents.insert(0, state.tempBodyComponent!.name);
     }
 
     return sortedComponents;
+  }
+
+  Component? _getComponentByName(String name) {
+    Component? component;
+
+    if (name == state.tempBodyComponent?.name) {
+      component = state.tempBodyComponent;
+    } else if (name == state.tempResponseComponent?.name) {
+      component = state.tempResponseComponent;
+    } else {
+      final componentResult = _getComponentByNameUseCase(name);
+
+      if (componentResult.isError) {
+        onFailure(componentResult.error.failure);
+        return null;
+      }
+
+      component = componentResult.data;
+    }
+
+    return component;
   }
 }

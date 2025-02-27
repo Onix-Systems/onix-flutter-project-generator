@@ -180,7 +180,9 @@ mixin _$AddRequestDialogState {
   String get sourceName => throw _privateConstructorUsedError;
   List<String> get components => throw _privateConstructorUsedError;
   Component? get bodyComponent => throw _privateConstructorUsedError;
+  Component? get tempBodyComponent => throw _privateConstructorUsedError;
   Component? get responseComponent => throw _privateConstructorUsedError;
+  Component? get tempResponseComponent => throw _privateConstructorUsedError;
 
   /// Create a copy of AddRequestDialogState
   /// with the given fields replaced by the non-null parameter values.
@@ -200,7 +202,9 @@ abstract class $AddRequestDialogStateCopyWith<$Res> {
       String sourceName,
       List<String> components,
       Component? bodyComponent,
-      Component? responseComponent});
+      Component? tempBodyComponent,
+      Component? responseComponent,
+      Component? tempResponseComponent});
 
   $RequestComponentCopyWith<$Res> get request;
 }
@@ -225,7 +229,9 @@ class _$AddRequestDialogStateCopyWithImpl<$Res,
     Object? sourceName = null,
     Object? components = null,
     Object? bodyComponent = freezed,
+    Object? tempBodyComponent = freezed,
     Object? responseComponent = freezed,
+    Object? tempResponseComponent = freezed,
   }) {
     return _then(_value.copyWith(
       request: null == request
@@ -244,9 +250,17 @@ class _$AddRequestDialogStateCopyWithImpl<$Res,
           ? _value.bodyComponent
           : bodyComponent // ignore: cast_nullable_to_non_nullable
               as Component?,
+      tempBodyComponent: freezed == tempBodyComponent
+          ? _value.tempBodyComponent
+          : tempBodyComponent // ignore: cast_nullable_to_non_nullable
+              as Component?,
       responseComponent: freezed == responseComponent
           ? _value.responseComponent
           : responseComponent // ignore: cast_nullable_to_non_nullable
+              as Component?,
+      tempResponseComponent: freezed == tempResponseComponent
+          ? _value.tempResponseComponent
+          : tempResponseComponent // ignore: cast_nullable_to_non_nullable
               as Component?,
     ) as $Val);
   }
@@ -276,7 +290,9 @@ abstract class _$$AddRequestDialogStateImplCopyWith<$Res>
       String sourceName,
       List<String> components,
       Component? bodyComponent,
-      Component? responseComponent});
+      Component? tempBodyComponent,
+      Component? responseComponent,
+      Component? tempResponseComponent});
 
   @override
   $RequestComponentCopyWith<$Res> get request;
@@ -300,7 +316,9 @@ class __$$AddRequestDialogStateImplCopyWithImpl<$Res>
     Object? sourceName = null,
     Object? components = null,
     Object? bodyComponent = freezed,
+    Object? tempBodyComponent = freezed,
     Object? responseComponent = freezed,
+    Object? tempResponseComponent = freezed,
   }) {
     return _then(_$AddRequestDialogStateImpl(
       request: null == request
@@ -319,9 +337,17 @@ class __$$AddRequestDialogStateImplCopyWithImpl<$Res>
           ? _value.bodyComponent
           : bodyComponent // ignore: cast_nullable_to_non_nullable
               as Component?,
+      tempBodyComponent: freezed == tempBodyComponent
+          ? _value.tempBodyComponent
+          : tempBodyComponent // ignore: cast_nullable_to_non_nullable
+              as Component?,
       responseComponent: freezed == responseComponent
           ? _value.responseComponent
           : responseComponent // ignore: cast_nullable_to_non_nullable
+              as Component?,
+      tempResponseComponent: freezed == tempResponseComponent
+          ? _value.tempResponseComponent
+          : tempResponseComponent // ignore: cast_nullable_to_non_nullable
               as Component?,
     ));
   }
@@ -335,7 +361,9 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
       this.sourceName = '',
       final List<String> components = const [],
       this.bodyComponent,
-      this.responseComponent})
+      this.tempBodyComponent,
+      this.responseComponent,
+      this.tempResponseComponent})
       : _components = components;
 
   @override
@@ -355,11 +383,15 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
   @override
   final Component? bodyComponent;
   @override
+  final Component? tempBodyComponent;
+  @override
   final Component? responseComponent;
+  @override
+  final Component? tempResponseComponent;
 
   @override
   String toString() {
-    return 'AddRequestDialogState(request: $request, sourceName: $sourceName, components: $components, bodyComponent: $bodyComponent, responseComponent: $responseComponent)';
+    return 'AddRequestDialogState(request: $request, sourceName: $sourceName, components: $components, bodyComponent: $bodyComponent, tempBodyComponent: $tempBodyComponent, responseComponent: $responseComponent, tempResponseComponent: $tempResponseComponent)';
   }
 
   @override
@@ -374,8 +406,12 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
                 .equals(other._components, _components) &&
             (identical(other.bodyComponent, bodyComponent) ||
                 other.bodyComponent == bodyComponent) &&
+            (identical(other.tempBodyComponent, tempBodyComponent) ||
+                other.tempBodyComponent == tempBodyComponent) &&
             (identical(other.responseComponent, responseComponent) ||
-                other.responseComponent == responseComponent));
+                other.responseComponent == responseComponent) &&
+            (identical(other.tempResponseComponent, tempResponseComponent) ||
+                other.tempResponseComponent == tempResponseComponent));
   }
 
   @override
@@ -385,7 +421,9 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
       sourceName,
       const DeepCollectionEquality().hash(_components),
       bodyComponent,
-      responseComponent);
+      tempBodyComponent,
+      responseComponent,
+      tempResponseComponent);
 
   /// Create a copy of AddRequestDialogState
   /// with the given fields replaced by the non-null parameter values.
@@ -403,7 +441,9 @@ abstract class _AddRequestDialogState implements AddRequestDialogState {
       final String sourceName,
       final List<String> components,
       final Component? bodyComponent,
-      final Component? responseComponent}) = _$AddRequestDialogStateImpl;
+      final Component? tempBodyComponent,
+      final Component? responseComponent,
+      final Component? tempResponseComponent}) = _$AddRequestDialogStateImpl;
 
   @override
   RequestComponent get request;
@@ -414,7 +454,11 @@ abstract class _AddRequestDialogState implements AddRequestDialogState {
   @override
   Component? get bodyComponent;
   @override
+  Component? get tempBodyComponent;
+  @override
   Component? get responseComponent;
+  @override
+  Component? get tempResponseComponent;
 
   /// Create a copy of AddRequestDialogState
   /// with the given fields replaced by the non-null parameter values.

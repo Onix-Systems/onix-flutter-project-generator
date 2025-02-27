@@ -35,7 +35,9 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
 
 void registerUseCases(GetIt getIt) {
   getIt
@@ -153,6 +155,11 @@ void registerUseCases(GetIt getIt) {
         service: getIt.get<GitCliffService>(),
       ),
     )
+    ..registerFactory<IsComponentExistsUseCase>(
+      () => IsComponentExistsUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
     ..registerFactory<AddComponentUseCase>(
       () => AddComponentUseCase(
         getIt.get<SwaggerRepository>(),
@@ -165,6 +172,11 @@ void registerUseCases(GetIt getIt) {
     )
     ..registerFactory<DeleteComponentUseCase>(
       () => DeleteComponentUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<GetComponentByNameUseCase>(
+      () => GetComponentByNameUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     )

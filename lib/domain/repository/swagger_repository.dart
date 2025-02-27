@@ -36,9 +36,15 @@ abstract interface class SwaggerRepository {
     required RequestComponent requestComponent,
   });
 
+  bool isComponentExists(String dataObjectName);
+
   Result<OperationStatus> addComponent(
     Component dataObject,
   );
+
+  Result<Component> getComponentByName({
+    required String componentName,
+  });
 
   Result<OperationStatus> editComponent({
     required String oldName,

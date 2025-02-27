@@ -27,7 +27,9 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/bloc/data_components_screen_v2_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_cubit.dart';
@@ -124,6 +126,8 @@ void registerBloc(GetIt getIt) {
         getSwaggerComponentsUseCase: GetIt.I.get<GetSwaggerComponentsUseCase>(),
         addSourceRequestUseCase: GetIt.I.get<AddSourceRequestUseCase>(),
         addComponentUseCase: GetIt.I.get<AddComponentUseCase>(),
+        getComponentByNameUseCase: GetIt.I.get<GetComponentByNameUseCase>(),
+        isComponentExistsUseCase: GetIt.I.get<IsComponentExistsUseCase>(),
       ),
     );
 }
