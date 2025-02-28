@@ -33,6 +33,7 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_component
 import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/bloc/data_components_screen_v2_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_cubit.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_path_query_dialog/bloc/add_path_query_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc/figma_styles_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc.dart';
@@ -130,6 +131,11 @@ void registerBloc(GetIt getIt) {
         addComponentUseCase: GetIt.I.get<AddComponentUseCase>(),
         getComponentByNameUseCase: GetIt.I.get<GetComponentByNameUseCase>(),
         isComponentExistsUseCase: GetIt.I.get<IsComponentExistsUseCase>(),
+      ),
+    )
+    ..registerFactory<AddPathQueryDialogCubit>(
+      () => AddPathQueryDialogCubit(
+        getComponentByNameUseCase: GetIt.I.get<GetComponentByNameUseCase>(),
       ),
     );
 }

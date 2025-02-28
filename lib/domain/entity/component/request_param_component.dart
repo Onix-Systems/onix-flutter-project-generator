@@ -7,12 +7,14 @@ sealed class RequestParamComponent {
   final SwaggerType type;
   final bool isRequired;
   final bool fromSwagger;
+  final bool isEnum;
 
   RequestParamComponent({
     required this.name,
     required this.type,
     required this.isRequired,
     this.fromSwagger = true,
+    this.isEnum = false,
   });
 
   String getParamBodyDeclaration(
@@ -27,11 +29,11 @@ sealed class RequestParamComponent {
     final requiredPrefix = requiredCopy ? 'required' : '';
     final requiredSuffix = requiredCopy ? '' : '?';
 
-    final isEnum = type is SwaggerEnum ||
-        this is RequestBodyComponent && (this as RequestBodyComponent).isEnum ||
-        this is RequestQueryComponent &&
-            (this as RequestQueryComponent).isEnum ||
-        this is RequestPathComponent && (this as RequestPathComponent).isEnum;
+    // final isEnum = type is SwaggerEnum ||
+    //     this is RequestBodyComponent && (this as RequestBodyComponent).isEnum ||
+    //     this is RequestQueryComponent &&
+    //         (this as RequestQueryComponent).isEnum ||
+    //     this is RequestPathComponent && (this as RequestPathComponent).isEnum;
 
     if (isEnum && forSource) {
       return '$requiredPrefix String$requiredSuffix '
@@ -47,16 +49,57 @@ sealed class RequestParamComponent {
 
   String getNameDeclaration() =>
       name.replaceAll(RegExp(r'[^\s\w]'), '').camelCase;
+
+  RequestParamComponent copyWith({
+    String? name,
+    SwaggerType? type,
+    bool? isRequired,
+    bool? fromSwagger,
+    bool? isEnum,
+  }) {
+    if (this is RequestBodyComponent) {
+      return RequestBodyComponent(
+        name: name ?? this.name,
+        type: type ?? this.type,
+        isRequired: isRequired ?? this.isRequired,
+        fromSwagger: fromSwagger ?? this.fromSwagger,
+        isEnum: isEnum ?? this.isEnum,
+      );
+    } else if (this is RequestMultipartComponent) {
+      return RequestMultipartComponent(
+        name: name ?? this.name,
+        type: type ?? this.type,
+        isRequired: isRequired ?? this.isRequired,
+        fromSwagger: fromSwagger ?? this.fromSwagger,
+        isEnum: isEnum ?? this.isEnum,
+      );
+    } else if (this is RequestQueryComponent) {
+      return RequestQueryComponent(
+        name: name ?? this.name,
+        type: type ?? this.type,
+        isRequired: isRequired ?? this.isRequired,
+        fromSwagger: fromSwagger ?? this.fromSwagger,
+        isEnum: isEnum ?? this.isEnum,
+      );
+    } else if (this is RequestPathComponent) {
+      return RequestPathComponent(
+        name: name ?? this.name,
+        type: type ?? this.type,
+        isRequired: isRequired ?? this.isRequired,
+        fromSwagger: fromSwagger ?? this.fromSwagger,
+        isEnum: isEnum ?? this.isEnum,
+      );
+    }
+    return this;
+  }
 }
 
 class RequestBodyComponent extends RequestParamComponent {
-  final bool isEnum;
-
   RequestBodyComponent({
     required super.name,
     required super.type,
     required super.isRequired,
-    this.isEnum = false,
+    super.isEnum = false,
     super.fromSwagger,
   });
 }
@@ -66,29 +109,27 @@ class RequestMultipartComponent extends RequestParamComponent {
     required super.name,
     required super.type,
     required super.isRequired,
+    super.isEnum = false,
     super.fromSwagger,
   });
 }
 
 class RequestQueryComponent extends RequestParamComponent {
-  final bool isEnum;
-
   RequestQueryComponent({
     required super.name,
     required super.type,
     required super.isRequired,
-    this.isEnum = false,
+    super.isEnum = false,
     super.fromSwagger,
   });
 }
 
 class RequestPathComponent extends RequestParamComponent {
-  final bool isEnum;
   RequestPathComponent({
     required super.name,
     required super.type,
     required super.isRequired,
-    this.isEnum = false,
+    super.isEnum = false,
     super.fromSwagger,
   });
 }

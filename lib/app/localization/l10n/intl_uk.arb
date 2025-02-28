@@ -163,5 +163,7 @@
   "addVariable": "Додати змінну",
   "variableName": "Назва змінної",
   "path": "Шлях",
-  "addRequest": "Додати запит"
+  "addRequest": "Додати запит",
+  "addParams": "Додати {type} параметри",
+  "addParam": "Додати параметр"
 }

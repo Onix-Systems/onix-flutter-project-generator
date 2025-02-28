@@ -1689,6 +1689,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Add {type} params`
+  String addParams(Object type) {
+    return Intl.message(
+      'Add $type params',
+      name: 'addParams',
+      desc: '',
+      args: [type],
+    );
+  }
+
+  /// `Add param`
+  String get addParam {
+    return Intl.message(
+      'Add param',
+      name: 'addParam',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

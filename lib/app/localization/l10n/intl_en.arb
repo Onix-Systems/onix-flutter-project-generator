@@ -163,5 +163,7 @@
   "addVariable": "Add variable",
   "variableName": "Variable name",
   "path": "Path",
-  "addRequest": "Add request"
+  "addRequest": "Add request",
+  "addParams": "Add {type} params",
+  "addParam": "Add param"
 }

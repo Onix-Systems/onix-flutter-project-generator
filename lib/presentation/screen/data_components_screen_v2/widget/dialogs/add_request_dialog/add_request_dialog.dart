@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
@@ -8,10 +9,13 @@ import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_path_query_dialog/add_path_query_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_models.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/widgets/add_component_row.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
 import 'package:recase/recase.dart';
 
@@ -206,7 +210,34 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                           name: value.name,
                           responseComponent: value,
                         ),
-                      )
+                      ),
+                      const Gap(20),
+                      Row(spacing: 10, children: [
+                        Expanded(
+                          child: AppFilledButton(
+                            label: 'Add multipart params',
+                            onPressed: () {},
+                          ),
+                        ),
+                        Expanded(
+                          child: AppFilledButton(
+                            label: 'Add path params',
+                            onPressed: () => showCupertinoModalPopup(
+                              context: context,
+                              builder: (ctx) =>
+                                  AddPathQueryDialog<RequestPathComponent>(
+                                params: widget.request?.pathParams ?? [],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: AppFilledButton(
+                            label: 'Add query params',
+                            onPressed: () {},
+                          ),
+                        ),
+                      ])
                     ],
                   ),
                 ),
