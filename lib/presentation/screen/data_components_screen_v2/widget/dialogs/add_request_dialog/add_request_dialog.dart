@@ -8,12 +8,13 @@ import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
-import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_path_query_dialog/add_path_query_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_models.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/widgets/add_component_row.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_params_dialog/add_request_params_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
@@ -212,32 +213,62 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                         ),
                       ),
                       const Gap(20),
-                      Row(spacing: 10, children: [
-                        Expanded(
-                          child: AppFilledButton(
-                            label: 'Add multipart params',
-                            onPressed: () {},
-                          ),
-                        ),
-                        Expanded(
-                          child: AppFilledButton(
-                            label: 'Add path params',
-                            onPressed: () => showCupertinoModalPopup(
-                              context: context,
-                              builder: (ctx) =>
-                                  AddPathQueryDialog<RequestPathComponent>(
-                                params: widget.request?.pathParams ?? [],
-                              ),
+                      Row(
+                        spacing: 10,
+                        children: [
+                          Expanded(
+                            child: AppFilledButton(
+                              label: S.of(context).addParams('multipart'),
+                              onPressed: () => showCupertinoModalPopup<
+                                  List<RequestMultipartComponent>>(
+                                context: context,
+                                builder: (ctx) => AddRequestParamsDialog<
+                                    RequestMultipartComponent>(
+                                  params: widget.request?.multipartBody ?? [],
+                                ),
+                              ).then((value) {
+                                if (context.mounted && value != null) {
+                                  cubitOf(context).addMultipartBody(value);
+                                }
+                              }),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: AppFilledButton(
-                            label: 'Add query params',
-                            onPressed: () {},
+                          Expanded(
+                            child: AppFilledButton(
+                              label: S.of(context).addParams('path'),
+                              onPressed: () => showCupertinoModalPopup<
+                                  List<RequestPathComponent>>(
+                                context: context,
+                                builder: (ctx) => AddRequestParamsDialog<
+                                    RequestPathComponent>(
+                                  params: widget.request?.pathParams ?? [],
+                                ),
+                              ).then((value) {
+                                if (context.mounted && value != null) {
+                                  cubitOf(context).addPathParams(value);
+                                }
+                              }),
+                            ),
                           ),
-                        ),
-                      ])
+                          Expanded(
+                            child: AppFilledButton(
+                              label: S.of(context).addParams('query'),
+                              onPressed: () => showCupertinoModalPopup<
+                                  List<RequestQueryComponent>>(
+                                context: context,
+                                builder: (ctx) => AddRequestParamsDialog<
+                                    RequestQueryComponent>(
+                                  params: widget.request?.queryParams ?? [],
+                                ),
+                              ).then((value) {
+                                if (context.mounted && value != null) {
+                                  cubitOf(context).addQueryParams(value);
+                                }
+                              }),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -255,11 +286,10 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                         path: _pathController.text,
                         type: _requestType,
                         description: '',
-                        multipartBody: [],
-                        queryParams: [],
-                        pathParams: [],
                       ),
                     );
+
+                    logger.f('request: ${state.request}');
                     Navigator.of(context).pop();
                   },
                   isLeftButtonActive: _valid(),

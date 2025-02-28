@@ -11,6 +11,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
+import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 
 class AddParamDialog<T extends RequestParamComponent> extends StatefulWidget {
   final T? param;
@@ -87,6 +88,16 @@ class _AddParamDialogState<T extends RequestParamComponent>
                 child: Row(
                   spacing: 10,
                   children: [
+                    if (T != RequestPathComponent)
+                      LabeledCheckbox(
+                        label: 'List',
+                        initialValue: isList,
+                        onAction: () {
+                          setState(() {
+                            isList = !isList;
+                          });
+                        },
+                      ),
                     Expanded(
                       child: DropdownButton2<String>(
                         value: _selectedType,

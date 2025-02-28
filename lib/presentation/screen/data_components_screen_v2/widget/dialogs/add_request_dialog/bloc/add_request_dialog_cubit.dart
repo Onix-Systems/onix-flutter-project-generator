@@ -216,6 +216,42 @@ class AddRequestDialogCubit
     );
   }
 
+  void addMultipartBody(List<RequestMultipartComponent> body) {
+    final request = state.request.copyWith(
+      multipartBody: body,
+    );
+
+    emit(
+      state.copyWith(
+        request: request,
+      ),
+    );
+  }
+
+  void addPathParams(List<RequestPathComponent> pathParams) {
+    final request = state.request.copyWith(
+      pathParams: pathParams,
+    );
+
+    emit(
+      state.copyWith(
+        request: request,
+      ),
+    );
+  }
+
+  void addQueryParams(List<RequestQueryComponent> queryParams) {
+    final request = state.request.copyWith(
+      queryParams: queryParams,
+    );
+
+    emit(
+      state.copyWith(
+        request: request,
+      ),
+    );
+  }
+
   List<String> _getComponentNames() {
     final components = _getSwaggerComponentsUseCase();
 
