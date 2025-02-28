@@ -36,6 +36,8 @@ class AddParamDialog<T extends RequestParamComponent> extends StatefulWidget {
 class _AddParamDialogState<T extends RequestParamComponent>
     extends State<AddParamDialog<T>> {
   final TextEditingController _controller = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
+
   final _types = <String>[];
   var _selectedType = '';
   bool isList = false;
@@ -122,6 +124,50 @@ class _AddParamDialogState<T extends RequestParamComponent>
                             borderRadius: BorderRadius.circular(5),
                           ),
                         ),
+                        dropdownSearchData: T == RequestPathComponent
+                            ? null
+                            : DropdownSearchData(
+                                searchController: _searchController,
+                                searchInnerWidgetHeight: 50,
+                                searchInnerWidget: Container(
+                                  height: 50,
+                                  padding: const EdgeInsets.only(
+                                    top: 8,
+                                    bottom: 4,
+                                    right: 8,
+                                    left: 8,
+                                  ),
+                                  child: TextFormField(
+                                    expands: true,
+                                    maxLines: null,
+                                    controller: _searchController,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                        vertical: 8,
+                                      ),
+                                      hintText: 'Search for an item...',
+                                      hintStyle: const TextStyle(fontSize: 12),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                searchMatchFn: (item, searchValue) {
+                                  return item.value
+                                      .toString()
+                                      .toUpperCase()
+                                      .contains(searchValue.toUpperCase());
+                                },
+                              ),
+                        onMenuStateChange: (isOpen) {
+                          if (!isOpen) {
+                            _searchController.clear();
+                          }
+                        },
                       ),
                     ),
                     Expanded(

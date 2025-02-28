@@ -37,6 +37,7 @@ class AddEditVariableDialog extends StatefulWidget {
 
 class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
   final TextEditingController _controller = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
   var _selectedType = '';
   bool isList = false;
   bool nullable = false;
@@ -122,6 +123,47 @@ class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
                             borderRadius: BorderRadius.circular(5),
                           ),
                         ),
+                        dropdownSearchData: DropdownSearchData(
+                          searchController: _searchController,
+                          searchInnerWidgetHeight: 50,
+                          searchInnerWidget: Container(
+                            height: 50,
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              bottom: 4,
+                              right: 8,
+                              left: 8,
+                            ),
+                            child: TextFormField(
+                              expands: true,
+                              maxLines: null,
+                              controller: _searchController,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 8,
+                                ),
+                                hintText: 'Search for an item...',
+                                hintStyle: const TextStyle(fontSize: 12),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                            ),
+                          ),
+                          searchMatchFn: (item, searchValue) {
+                            return item.value
+                                .toString()
+                                .toUpperCase()
+                                .contains(searchValue.toUpperCase());
+                          },
+                        ),
+                        onMenuStateChange: (isOpen) {
+                          if (!isOpen) {
+                            _searchController.clear();
+                          }
+                        },
                       ),
                     ),
                     Expanded(
@@ -191,6 +233,7 @@ class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
   @override
   void dispose() {
     _controller.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 }

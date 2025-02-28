@@ -8,7 +8,7 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:recase/recase.dart';
 
-class AddComponentRow extends StatelessWidget {
+class AddComponentRow extends StatefulWidget {
   final AddRequestDialogState state;
   final String? selectedComponentName;
   final String componentName;
@@ -29,18 +29,26 @@ class AddComponentRow extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final components = state.components.toSet().toList()..insert(0, 'Empty');
+  State<AddComponentRow> createState() => _AddComponentRowState();
+}
 
-    if (selectedComponentName != null) {
+class _AddComponentRowState extends State<AddComponentRow> {
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    final components = widget.state.components.toSet().toList()
+      ..insert(0, 'Empty');
+
+    if (widget.selectedComponentName != null) {
       components
-        ..remove(selectedComponentName)
-        ..insert(0, selectedComponentName!);
+        ..remove(widget.selectedComponentName)
+        ..insert(0, widget.selectedComponentName!);
     }
 
     final componentRef = components.first;
 
-    final buttonPrefix = editComponent != null ? 'Edit' : 'Add';
+    final buttonPrefix = widget.editComponent != null ? 'Edit' : 'Add';
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +70,7 @@ class AddComponentRow extends StatelessWidget {
             value: componentRef,
             onChanged: (value) {
               if (value != null && value != componentRef) {
-                onComponentSelected(value);
+                widget.onComponentSelected(value);
               }
             },
             isExpanded: true,
@@ -73,6 +81,47 @@ class AddComponentRow extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
               ),
             ),
+            dropdownSearchData: DropdownSearchData(
+              searchController: _searchController,
+              searchInnerWidgetHeight: 50,
+              searchInnerWidget: Container(
+                height: 50,
+                padding: const EdgeInsets.only(
+                  top: 8,
+                  bottom: 4,
+                  right: 8,
+                  left: 8,
+                ),
+                child: TextFormField(
+                  expands: true,
+                  maxLines: null,
+                  controller: _searchController,
+                  decoration: InputDecoration(
+                    isDense: true,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 8,
+                    ),
+                    hintText: 'Search for an item...',
+                    hintStyle: const TextStyle(fontSize: 12),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              searchMatchFn: (item, searchValue) {
+                return item.value
+                    .toString()
+                    .toUpperCase()
+                    .contains(searchValue.toUpperCase());
+              },
+            ),
+            onMenuStateChange: (isOpen) {
+              if (!isOpen) {
+                _searchController.clear();
+              }
+            },
           ),
         ),
         Text(
@@ -82,20 +131,21 @@ class AddComponentRow extends StatelessWidget {
         SizedBox(
           width: 200,
           child: AppFilledButton(
-            label: body ? '$buttonPrefix body' : '$buttonPrefix response',
+            label:
+                widget.body ? '$buttonPrefix body' : '$buttonPrefix response',
             onPressed: () => showCupertinoModalPopup<Component>(
               context: context,
               builder: (ctx) {
                 return AddEditComponentDialog(
-                  name: componentName,
+                  name: widget.componentName,
                   requestComponent: true,
-                  component: editComponent,
+                  component: widget.editComponent,
                 );
               },
             ).then((value) {
               if (value != null) {
                 if (context.mounted) {
-                  onComponentCreated(value);
+                  widget.onComponentCreated(value);
                 }
               }
             }),
