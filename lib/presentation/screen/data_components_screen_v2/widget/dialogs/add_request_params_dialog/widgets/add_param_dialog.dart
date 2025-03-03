@@ -47,17 +47,21 @@ class _AddParamDialogState<T extends RequestParamComponent>
     super.initState();
     if (widget.param != null) {
       _controller.text = widget.param!.name;
-      if (widget.param!.type is SwaggerArray) {
+      final paramType = widget.param!.type;
+      if (paramType is SwaggerArray) {
         isList = true;
-        _selectedType = (widget.param!.type as SwaggerArray)
-            .itemType
-            .type
-            .getTypeDeclaration(DataFileType.entity);
-      } else {
         _selectedType =
-            widget.param!.type.getTypeDeclaration(DataFileType.entity);
+            paramType.itemType.type.getTypeDeclaration(DataFileType.entity);
+      } else {
+        _selectedType = paramType.getTypeDeclaration(DataFileType.entity);
       }
-      _types.addAll(widget.types.where((element) => element != _selectedType));
+
+      if (paramType is SwaggerVariable) {
+        _types.addAll(widget.types);
+      } else {
+        _types
+            .addAll(widget.types.where((element) => element != _selectedType));
+      }
     } else {
       _selectedType = widget.types.first;
       _types.addAll(widget.types);
@@ -111,9 +115,11 @@ class _AddParamDialogState<T extends RequestParamComponent>
                             )
                             .toList(),
                         onChanged: (type) {
-                          setState(() {
-                            _selectedType = type!;
-                          });
+                          if (type != null) {
+                            setState(() {
+                              _selectedType = type;
+                            });
+                          }
                         },
                         isExpanded: true,
                         underline: const SizedBox(),

@@ -103,7 +103,7 @@ class _AddRequestParamsDialogState<T extends RequestParamComponent>
                               param: param,
                               types: state.types,
                               process: (type, name, isList) {
-                                cubitOf(context).editParam(
+                                cubitOf(context).editParam<T>(
                                   name: name,
                                   type: type,
                                   index: state.params.indexOf(param),
@@ -113,8 +113,9 @@ class _AddRequestParamsDialogState<T extends RequestParamComponent>
                             ),
                           );
                         },
-                        onDelete: (variable) {
-                          // cubitOf(context).deleteVariable(variable);
+                        onDelete: (param) {
+                          cubitOf(context)
+                              .deleteParam(state.params.indexOf(param));
                         },
                       ),
                     ),

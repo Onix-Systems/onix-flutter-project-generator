@@ -1,6 +1,5 @@
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/util/enum/dart_types.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
@@ -51,6 +50,50 @@ class AddRequestParamsDialogCubit
     required String name,
     required bool isList,
   }) {
+    final paramComponent = _getNewParam<T>(type, isList, name);
+
+    if (paramComponent != null) {
+      emit(state.copyWith(params: [...state.params, paramComponent]));
+    }
+  }
+
+  void editParam<T>({
+    required String name,
+    required String type,
+    required int index,
+    required bool isList,
+  }) {
+    final paramComponent = _getNewParam<T>(type, isList, name);
+
+    if (paramComponent != null) {
+      emit(
+        state.copyWith(
+          params: [
+            ...state.params.sublist(0, index),
+            paramComponent,
+            ...state.params.sublist(index + 1),
+          ],
+        ),
+      );
+    }
+  }
+
+  void deleteParam(int index) {
+    emit(
+      state.copyWith(
+        params: [
+          ...state.params.sublist(0, index),
+          ...state.params.sublist(index + 1),
+        ],
+      ),
+    );
+  }
+
+  RequestParamComponent? _getNewParam<T>(
+    String type,
+    bool isList,
+    String name,
+  ) {
     var paramType = DartTypes.types.contains(type)
         ? SwaggerVariable(DartTypes.toSwaggerType(type))
         : SwaggerReference(type);
@@ -111,19 +154,6 @@ class AddRequestParamsDialogCubit
         fromSwagger: false,
       );
     }
-
-    if (paramComponent != null) {
-      emit(state.copyWith(params: [...state.params, paramComponent]));
-    }
-  }
-
-  void editParam({
-    required String name,
-    required String type,
-    required int index,
-    required bool isList,
-  }) {
-    logger.f('editParam: $name, $type, $index, $isList');
-    //emit(state.copyWith(params: newParams));
+    return paramComponent;
   }
 }
