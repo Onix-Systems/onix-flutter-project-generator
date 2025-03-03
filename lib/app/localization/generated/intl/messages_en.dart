@@ -58,6 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),
         "addSource": MessageLookupByLibrary.simpleMessage("Add source"),
         "addVariable": MessageLookupByLibrary.simpleMessage("Add variable"),
+        "addVariableFailureTitle":
+            MessageLookupByLibrary.simpleMessage("Failed to add variable"),
         "alreadyExistsError": m1,
         "alsoReadThis": MessageLookupByLibrary.simpleMessage("Also read this"),
         "apiFailureNoNetwork": MessageLookupByLibrary.simpleMessage(

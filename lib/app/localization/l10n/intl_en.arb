@@ -166,5 +166,6 @@
   "addRequest": "Add request",
   "addParams": "Add {type} params",
   "addParam": "Add param",
-  "addParamFailureTitle": "Failed to add param"
+  "addParamFailureTitle": "Failed to add param",
+  "addVariableFailureTitle": "Failed to add variable"
 }

@@ -58,6 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addScreen": MessageLookupByLibrary.simpleMessage("Додати екран"),
         "addSource": MessageLookupByLibrary.simpleMessage("Додати джерело"),
         "addVariable": MessageLookupByLibrary.simpleMessage("Додати змінну"),
+        "addVariableFailureTitle":
+            MessageLookupByLibrary.simpleMessage("Не вдалося додати змінну"),
         "alreadyExistsError": m1,
         "alsoReadThis":
             MessageLookupByLibrary.simpleMessage("Також прочитайте це"),

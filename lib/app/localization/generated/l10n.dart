@@ -1719,6 +1719,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Failed to add variable`
+  String get addVariableFailureTitle {
+    return Intl.message(
+      'Failed to add variable',
+      name: 'addVariableFailureTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

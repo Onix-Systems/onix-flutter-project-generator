@@ -7,6 +7,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
@@ -77,6 +78,10 @@ class ComponentDialogCubit
     bool isRequired = false,
     bool isList = false,
   }) {
+    if (_hasDuplicates(name)) {
+      return;
+    }
+
     final variableType = DartTypes.types.contains(type)
         ? SwaggerVariable(DartTypes.toSwaggerType(type))
         : SwaggerReference(type);
@@ -119,6 +124,10 @@ class ComponentDialogCubit
     bool isRequired = false,
     bool isList = false,
   }) {
+    if (_hasDuplicates(name)) {
+      return;
+    }
+
     final variableType = DartTypes.types.contains(type)
         ? SwaggerVariable(DartTypes.toSwaggerType(type))
         : SwaggerReference(type);
@@ -246,4 +255,18 @@ class ComponentDialogCubit
   bool _isEnum(SwaggerType variableType) =>
       variableType is SwaggerReference &&
       state.components!.enums.any((e) => e.name == variableType.getName());
+
+  bool _hasDuplicates(String name) {
+    if (state.variables
+        .any((element) => element.name.toUpperCase() == name.toUpperCase())) {
+      final existingName = state.variables
+          .firstWhere(
+            (element) => element.name.toUpperCase() == name.toUpperCase(),
+          )
+          .name;
+      onFailure(SwaggerParserFailureAlreadyExists(existingName));
+      return true;
+    }
+    return false;
+  }
 }

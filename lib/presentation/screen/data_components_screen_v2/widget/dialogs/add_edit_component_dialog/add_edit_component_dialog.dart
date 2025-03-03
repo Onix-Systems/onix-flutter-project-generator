@@ -9,14 +9,17 @@ import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_models.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/add_edit_variable_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/class_preview.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class AddEditComponentDialog extends StatefulWidget {
   final Component? component;
@@ -48,6 +51,24 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
       component: widget.component,
     );
     super.onCubitCreated(context, cubit);
+  }
+
+  @override
+  void onFailure(BuildContext context, Failure failure) {
+    super.onFailure(context, failure);
+    if (failure is SwaggerParserFailure) {
+      Dialogs.showOkDialog(
+        context: context,
+        isError: true,
+        title: S.of(context).addVariableFailureTitle,
+        content: Text(
+          failure.getTranslatedMessage(context),
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
+          ),
+        ),
+      );
+    }
   }
 
   @override
