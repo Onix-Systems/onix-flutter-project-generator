@@ -165,5 +165,6 @@
   "path": "Path",
   "addRequest": "Add request",
   "addParams": "Add {type} params",
-  "addParam": "Add param"
+  "addParam": "Add param",
+  "addParamFailureTitle": "Failed to add param"
 }

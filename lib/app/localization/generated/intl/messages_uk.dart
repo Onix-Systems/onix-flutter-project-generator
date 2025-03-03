@@ -51,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addField": MessageLookupByLibrary.simpleMessage("Додати поле"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Додати флавори:"),
         "addParam": MessageLookupByLibrary.simpleMessage("Додати параметр"),
+        "addParamFailureTitle":
+            MessageLookupByLibrary.simpleMessage("Не вдалося додати параметр"),
         "addParams": m0,
         "addRequest": MessageLookupByLibrary.simpleMessage("Додати запит"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Додати екран"),

@@ -5,12 +5,15 @@ import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_params_dialog/bloc/add_request_params_dialog_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_params_dialog/widgets/add_param_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_params_dialog/widgets/params_preview.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class AddRequestParamsDialog<T extends RequestParamComponent>
     extends StatefulWidget {
@@ -40,6 +43,24 @@ class _AddRequestParamsDialogState<T extends RequestParamComponent>
   void onCubitCreated(BuildContext context, AddRequestParamsDialogCubit cubit) {
     super.onCubitCreated(context, cubit);
     cubit.init<T>(params: widget.params);
+  }
+
+  @override
+  void onFailure(BuildContext context, Failure failure) {
+    super.onFailure(context, failure);
+    if (failure is SwaggerParserFailure) {
+      Dialogs.showOkDialog(
+        context: context,
+        isError: true,
+        title: S.of(context).addParamFailureTitle,
+        content: Text(
+          failure.getTranslatedMessage(context),
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
+          ),
+        ),
+      );
+    }
   }
 
   @override

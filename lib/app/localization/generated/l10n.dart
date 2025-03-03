@@ -1709,6 +1709,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Failed to add param`
+  String get addParamFailureTitle {
+    return Intl.message(
+      'Failed to add param',
+      name: 'addParamFailureTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

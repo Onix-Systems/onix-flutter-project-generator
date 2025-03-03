@@ -51,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addField": MessageLookupByLibrary.simpleMessage("Add field"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Add flavors:"),
         "addParam": MessageLookupByLibrary.simpleMessage("Add param"),
+        "addParamFailureTitle":
+            MessageLookupByLibrary.simpleMessage("Failed to add param"),
         "addParams": m0,
         "addRequest": MessageLookupByLibrary.simpleMessage("Add request"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),

@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_params_dialog/bloc/add_request_params_dialog_models.dart';
@@ -94,6 +95,18 @@ class AddRequestParamsDialogCubit
     bool isList,
     String name,
   ) {
+    final paramNames = state.params.map((e) => e.name.toUpperCase()).toList();
+
+    if (paramNames.contains(name.toUpperCase())) {
+      final existingName = state.params
+          .firstWhere(
+            (element) => element.name.toUpperCase() == name.toUpperCase(),
+          )
+          .name;
+      onFailure(SwaggerParserFailureAlreadyExists(existingName));
+      return null;
+    }
+
     var paramType = DartTypes.types.contains(type)
         ? SwaggerVariable(DartTypes.toSwaggerType(type))
         : SwaggerReference(type);

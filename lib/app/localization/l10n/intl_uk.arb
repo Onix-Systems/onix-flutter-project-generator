@@ -165,5 +165,6 @@
   "path": "Шлях",
   "addRequest": "Додати запит",
   "addParams": "Додати {type} параметри",
-  "addParam": "Додати параметр"
+  "addParam": "Додати параметр",
+  "addParamFailureTitle": "Не вдалося додати параметр"
 }
