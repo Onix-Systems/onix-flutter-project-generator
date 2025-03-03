@@ -218,13 +218,15 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                         children: [
                           Expanded(
                             child: AppFilledButton(
-                              label: S.of(context).addParams('multipart'),
+                              label: state.request.multipartBody.isNotEmpty
+                                  ? S.of(context).editParams('multipart')
+                                  : S.of(context).addParams('multipart'),
                               onPressed: () => showCupertinoModalPopup<
                                   List<RequestMultipartComponent>>(
                                 context: context,
                                 builder: (ctx) => AddRequestParamsDialog<
                                     RequestMultipartComponent>(
-                                  params: widget.request?.multipartBody ?? [],
+                                  params: state.request.multipartBody,
                                 ),
                               ).then((value) {
                                 if (context.mounted && value != null) {
@@ -235,13 +237,15 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                           ),
                           Expanded(
                             child: AppFilledButton(
-                              label: S.of(context).addParams('path'),
+                              label: state.request.pathParams.isNotEmpty
+                                  ? S.of(context).editParams('path')
+                                  : S.of(context).addParams('path'),
                               onPressed: () => showCupertinoModalPopup<
                                   List<RequestPathComponent>>(
                                 context: context,
                                 builder: (ctx) => AddRequestParamsDialog<
                                     RequestPathComponent>(
-                                  params: widget.request?.pathParams ?? [],
+                                  params: state.request.pathParams,
                                 ),
                               ).then((value) {
                                 if (context.mounted && value != null) {
@@ -252,13 +256,15 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                           ),
                           Expanded(
                             child: AppFilledButton(
-                              label: S.of(context).addParams('query'),
+                              label: state.request.pathParams.isNotEmpty
+                                  ? S.of(context).editParams('query')
+                                  : S.of(context).addParams('query'),
                               onPressed: () => showCupertinoModalPopup<
                                   List<RequestQueryComponent>>(
                                 context: context,
                                 builder: (ctx) => AddRequestParamsDialog<
                                     RequestQueryComponent>(
-                                  params: widget.request?.queryParams ?? [],
+                                  params: state.request.queryParams,
                                 ),
                               ).then((value) {
                                 if (context.mounted && value != null) {

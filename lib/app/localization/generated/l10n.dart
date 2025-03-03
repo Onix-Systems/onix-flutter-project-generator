@@ -1700,6 +1700,16 @@ class S {
     );
   }
 
+  /// `Edit {type} params`
+  String editParams(Object type) {
+    return Intl.message(
+      'Edit $type params',
+      name: 'editParams',
+      desc: '',
+      args: [type],
+    );
+  }
+
   /// `Add param`
   String get addParam {
     return Intl.message(
