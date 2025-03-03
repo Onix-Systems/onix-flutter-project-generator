@@ -30,7 +30,13 @@ sealed class RequestParamComponent {
     final requiredSuffix = requiredCopy ? '' : '?';
 
     if (isEnum && forSource) {
-      return '$requiredPrefix String$requiredSuffix '
+      var paramType = 'String';
+
+      if (type is SwaggerArray) {
+        paramType = 'List<String>';
+      }
+
+      return '$requiredPrefix $paramType$requiredSuffix '
           '${getNameDeclaration()},';
     }
 

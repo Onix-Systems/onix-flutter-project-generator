@@ -71,8 +71,14 @@ class SourceComponent {
   String getRepoImplementationImport(String projectName) =>
       "import 'package:$projectName/data/repository/${name.snakeCase}/${name.snakeCase}_repository_impl.dart';";
 
-  String getEnumImport(String projectName, SwaggerType type) =>
-      "import 'package:$projectName/${arch.getEnumPath()}/${type.toString().snakeCase}.dart';";
+  String getEnumImport(String projectName, SwaggerType type) {
+    if (type is SwaggerArray) {
+      final import =
+          "import 'package:$projectName/${arch.getEnumPath()}/${type.itemType.type.getName().snakeCase}.dart';";
+      return import;
+    }
+    return "import 'package:$projectName/${arch.getEnumPath()}/${type.toString().snakeCase}.dart';";
+  }
 
   String getSourceDeclarationBody(String projectName) {
     final codeLines = List<String>.empty(growable: true);

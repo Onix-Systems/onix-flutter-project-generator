@@ -427,7 +427,7 @@ class RequestComponent with _$RequestComponent {
     if (multipartBody.isNotEmpty) {
       for (final e in multipartBody) {
         final isObjectReference = e.type.isObjectReference();
-        final isEnum = e.type is SwaggerEnum;
+        final isEnum = e.type is SwaggerEnum || e.isEnum;
 
         if (isObjectReference) {
           final ref = e.type.getSwaggerObjectReference();
@@ -436,9 +436,15 @@ class RequestComponent with _$RequestComponent {
                 '${e.getNameDeclaration()}: _${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}),');
           }
         } else if (isEnum) {
-          codeLines.add(
-            '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.name,',
-          );
+          if (e.type is SwaggerArray) {
+            codeLines.add(
+              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}.map((e) => e.name).toList(),',
+            );
+          } else {
+            codeLines.add(
+              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}.name,',
+            );
+          }
         } else {
           codeLines
               .add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
