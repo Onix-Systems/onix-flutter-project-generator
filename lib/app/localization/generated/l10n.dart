@@ -1739,6 +1739,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Duplicates found: {duplicates}`
+  String duplicatesFoundError(Object duplicates) {
+    return Intl.message(
+      'Duplicates found: $duplicates',
+      name: 'duplicatesFoundError',
+      desc: '',
+      args: [duplicates],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -37,11 +37,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(componentName) =>
       "Do you really want to delete component ${componentName}? This will also delete referenced variables in all data objects.";
 
-  static String m7(type) => "Edit ${type} params";
+  static String m7(duplicates) => "Duplicates found: ${duplicates}";
 
-  static String m8(projectName) => "Modify ${projectName}";
+  static String m8(type) => "Edit ${type} params";
 
-  static String m9(sourceName) =>
+  static String m9(projectName) => "Modify ${projectName}";
+
+  static String m10(sourceName) =>
       "Do you really want to delete source ${sourceName}?";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -108,7 +110,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteComponentConfirmation": m6,
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
-        "editParams": m7,
+        "duplicatesFoundError": m7,
+        "editParams": m8,
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
             "Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator"),
         "emptyConfigTitle":
@@ -182,7 +185,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Modify"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Modify component"),
-        "modifyGeneratedProject": m8,
+        "modifyGeneratedProject": m9,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Modify signing vars..."),
@@ -263,7 +266,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signingToolTitle": MessageLookupByLibrary.simpleMessage(
             "Android signing configuration"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
-        "sourceDeletingDialogTitle": m9,
+        "sourceDeletingDialogTitle": m10,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),
         "sourceNotFound":

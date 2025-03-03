@@ -8,16 +8,18 @@ import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_models.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/widgets/add_component_row.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_params_dialog/add_request_params_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 import 'package:recase/recase.dart';
 
 class AddEditRequestDialog extends StatefulWidget {
@@ -51,6 +53,24 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
   }
 
   @override
+  void onFailure(BuildContext context, Failure failure) {
+    super.onFailure(context, failure);
+    if (failure is SwaggerParserFailure) {
+      Dialogs.showOkDialog(
+        context: context,
+        isError: true,
+        title: S.of(context).addVariableFailureTitle,
+        content: Text(
+          failure.getTranslatedMessage(context),
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
+          ),
+        ),
+      );
+    }
+  }
+
+  @override
   void initState() {
     super.initState();
     _pathController.text = widget.request?.path ?? '';
@@ -59,256 +79,271 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
 
   @override
   Widget buildWidget(BuildContext context) {
-    return Center(
-      child: Container(
-        width: MediaQuery.sizeOf(context).width * 0.8,
-        decoration: BoxDecoration(
-          color: context.appColors.darkColor,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: blocBuilder(
-            builder: (context, state) => Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        S.of(context).addRequest,
-                        style: context.appTextStyles.fs18,
-                      ),
-                      const Gap(20),
-                      Row(
-                        spacing: 10,
-                        children: [
-                          Expanded(
-                            child: DropdownButton2<String>(
-                              items: SwaggerPathRequestType.values
-                                  .map(
-                                    (e) => DropdownMenuItem<String>(
-                                      value: e.name,
-                                      child: Text(e.name.pascalCase),
-                                    ),
-                                  )
-                                  .toList(),
-                              value: _requestType.name,
-                              onChanged: (value) {
-                                if (value != null &&
-                                    value != _requestType.name) {
-                                  setState(() {
-                                    _requestType =
-                                        SwaggerPathRequestType.fromString(
-                                      value,
-                                    );
-                                  });
-                                }
-                              },
-                              isExpanded: true,
-                              underline: const SizedBox(),
-                              buttonStyleData: ButtonStyleData(
-                                decoration: BoxDecoration(
-                                  color: context.appColors.darkContrastColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: TextField(
-                              controller: _pathController,
-                              onChanged: (_) {
-                                setState(() {});
-                              },
-                              inputFormatters: const [
-                                FirstCharacterNotDigitFormatter(),
-                              ],
-                              decoration: InputDecoration(
-                                hintText: S.of(context).path,
-                                hintStyle: context.appTextStyles.fs18?.copyWith(
-                                  color: context.appColors.controlColor
-                                      .withAlpha(100),
-                                ),
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                ),
-                                fillColor: context.appColors.darkContrastColor,
-                                hoverColor: context.appColors.darkContrastColor,
-                                filled: true,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
-                              style: context.appTextStyles.fs18,
-                            ),
-                          ),
-                          Expanded(
-                            child: TextField(
-                              controller: _idController,
-                              onChanged: (_) {
-                                setState(() {});
-                              },
-                              inputFormatters: const [
-                                FirstCharacterNotDigitFormatter(),
-                              ],
-                              decoration: InputDecoration(
-                                hintText: 'OperationId',
-                                hintStyle: context.appTextStyles.fs18?.copyWith(
-                                  color: context.appColors.controlColor
-                                      .withAlpha(100),
-                                ),
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                ),
-                                fillColor: context.appColors.darkContrastColor,
-                                hoverColor: context.appColors.darkContrastColor,
-                                filled: true,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
-                              style: context.appTextStyles.fs18,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Gap(20),
-                      AddComponentRow(
-                        state: state,
-                        body: true,
-                        editComponent: state.bodyComponent != null &&
-                                !state.bodyComponent!.fromSwagger
-                            ? state.bodyComponent
-                            : null,
-                        componentName: _getComponentName('RequestBody'),
-                        selectedComponentName: state.bodyComponent?.name,
-                        onComponentSelected: (value) =>
-                            cubitOf(context).addBody(name: value),
-                        onComponentCreated: (value) => cubitOf(context).addBody(
-                          name: value.name,
-                          bodyComponent: value,
+    return srObserver(
+      context: context,
+      onSR: _onSR,
+      child: Center(
+        child: Container(
+          width: MediaQuery.sizeOf(context).width * 0.8,
+          decoration: BoxDecoration(
+            color: context.appColors.darkColor,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: blocBuilder(
+              builder: (context, state) => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 16, left: 16, right: 16),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          S.of(context).addRequest,
+                          style: context.appTextStyles.fs18,
                         ),
-                      ),
-                      const Gap(10),
-                      AddComponentRow(
-                        state: state,
-                        body: false,
-                        editComponent: state.responseComponent != null &&
-                                !state.responseComponent!.fromSwagger
-                            ? state.responseComponent
-                            : null,
-                        componentName: _getComponentName('Response'),
-                        selectedComponentName: state.responseComponent?.name,
-                        onComponentSelected: (value) =>
-                            cubitOf(context).addResponse(name: value),
-                        onComponentCreated: (value) =>
-                            cubitOf(context).addResponse(
-                          name: value.name,
-                          responseComponent: value,
+                        const Gap(20),
+                        Row(
+                          spacing: 10,
+                          children: [
+                            Expanded(
+                              child: DropdownButton2<String>(
+                                items: SwaggerPathRequestType.values
+                                    .map(
+                                      (e) => DropdownMenuItem<String>(
+                                        value: e.name,
+                                        child: Text(e.name.pascalCase),
+                                      ),
+                                    )
+                                    .toList(),
+                                value: _requestType.name,
+                                onChanged: (value) {
+                                  if (value != null &&
+                                      value != _requestType.name) {
+                                    setState(() {
+                                      _requestType =
+                                          SwaggerPathRequestType.fromString(
+                                        value,
+                                      );
+                                    });
+                                  }
+                                },
+                                isExpanded: true,
+                                underline: const SizedBox(),
+                                buttonStyleData: ButtonStyleData(
+                                  decoration: BoxDecoration(
+                                    color: context.appColors.darkContrastColor,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: TextField(
+                                controller: _pathController,
+                                onChanged: (_) {
+                                  setState(() {});
+                                },
+                                inputFormatters: const [
+                                  FirstCharacterNotDigitFormatter(),
+                                ],
+                                decoration: InputDecoration(
+                                  hintText: S.of(context).path,
+                                  hintStyle:
+                                      context.appTextStyles.fs18?.copyWith(
+                                    color: context.appColors.controlColor
+                                        .withAlpha(100),
+                                  ),
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                  ),
+                                  fillColor:
+                                      context.appColors.darkContrastColor,
+                                  hoverColor:
+                                      context.appColors.darkContrastColor,
+                                  filled: true,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(5),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                ),
+                                style: context.appTextStyles.fs18,
+                              ),
+                            ),
+                            Expanded(
+                              child: TextField(
+                                controller: _idController,
+                                onChanged: (_) {
+                                  setState(() {});
+                                },
+                                inputFormatters: const [
+                                  FirstCharacterNotDigitFormatter(),
+                                ],
+                                decoration: InputDecoration(
+                                  hintText: 'OperationId',
+                                  hintStyle:
+                                      context.appTextStyles.fs18?.copyWith(
+                                    color: context.appColors.controlColor
+                                        .withAlpha(100),
+                                  ),
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                  ),
+                                  fillColor:
+                                      context.appColors.darkContrastColor,
+                                  hoverColor:
+                                      context.appColors.darkContrastColor,
+                                  filled: true,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(5),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                ),
+                                style: context.appTextStyles.fs18,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      const Gap(20),
-                      Row(
-                        spacing: 10,
-                        children: [
-                          Expanded(
-                            child: AppFilledButton(
-                              label: state.request.multipartBody.isNotEmpty
-                                  ? S.of(context).editParams('multipart')
-                                  : S.of(context).addParams('multipart'),
-                              onPressed: () => showCupertinoModalPopup<
-                                  List<RequestMultipartComponent>>(
-                                context: context,
-                                builder: (ctx) => AddRequestParamsDialog<
-                                    RequestMultipartComponent>(
-                                  params: state.request.multipartBody,
-                                ),
-                              ).then((value) {
-                                if (context.mounted && value != null) {
-                                  cubitOf(context).addMultipartBody(value);
-                                }
-                              }),
-                            ),
+                        const Gap(20),
+                        AddComponentRow(
+                          state: state,
+                          body: true,
+                          editComponent: state.bodyComponent != null &&
+                                  !state.bodyComponent!.fromSwagger
+                              ? state.bodyComponent
+                              : null,
+                          componentName: _getComponentName('RequestBody'),
+                          selectedComponentName: state.bodyComponent?.name,
+                          onComponentSelected: (value) =>
+                              cubitOf(context).addBody(name: value),
+                          onComponentCreated: (value) =>
+                              cubitOf(context).addBody(
+                            name: value.name,
+                            bodyComponent: value,
                           ),
-                          Expanded(
-                            child: AppFilledButton(
-                              label: state.request.pathParams.isNotEmpty
-                                  ? S.of(context).editParams('path')
-                                  : S.of(context).addParams('path'),
-                              onPressed: () => showCupertinoModalPopup<
-                                  List<RequestPathComponent>>(
-                                context: context,
-                                builder: (ctx) => AddRequestParamsDialog<
-                                    RequestPathComponent>(
-                                  params: state.request.pathParams,
-                                ),
-                              ).then((value) {
-                                if (context.mounted && value != null) {
-                                  cubitOf(context).addPathParams(value);
-                                }
-                              }),
-                            ),
+                        ),
+                        const Gap(10),
+                        AddComponentRow(
+                          state: state,
+                          body: false,
+                          editComponent: state.responseComponent != null &&
+                                  !state.responseComponent!.fromSwagger
+                              ? state.responseComponent
+                              : null,
+                          componentName: _getComponentName('Response'),
+                          selectedComponentName: state.responseComponent?.name,
+                          onComponentSelected: (value) =>
+                              cubitOf(context).addResponse(name: value),
+                          onComponentCreated: (value) =>
+                              cubitOf(context).addResponse(
+                            name: value.name,
+                            responseComponent: value,
                           ),
-                          Expanded(
-                            child: AppFilledButton(
-                              label: state.request.pathParams.isNotEmpty
-                                  ? S.of(context).editParams('query')
-                                  : S.of(context).addParams('query'),
-                              onPressed: () => showCupertinoModalPopup<
-                                  List<RequestQueryComponent>>(
-                                context: context,
-                                builder: (ctx) => AddRequestParamsDialog<
-                                    RequestQueryComponent>(
-                                  params: state.request.queryParams,
-                                ),
-                              ).then((value) {
-                                if (context.mounted && value != null) {
-                                  cubitOf(context).addQueryParams(value);
-                                }
-                              }),
+                        ),
+                        const Gap(20),
+                        Row(
+                          spacing: 10,
+                          children: [
+                            Expanded(
+                              child: AppFilledButton(
+                                label: state.request.multipartBody.isNotEmpty
+                                    ? S.of(context).editParams('multipart')
+                                    : S.of(context).addParams('multipart'),
+                                onPressed: () => showCupertinoModalPopup<
+                                    List<RequestMultipartComponent>>(
+                                  context: context,
+                                  builder: (ctx) => AddRequestParamsDialog<
+                                      RequestMultipartComponent>(
+                                    params: state.request.multipartBody,
+                                  ),
+                                ).then((value) {
+                                  if (context.mounted && value != null) {
+                                    cubitOf(context).addMultipartBody(value);
+                                  }
+                                }),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            Expanded(
+                              child: AppFilledButton(
+                                label: state.request.pathParams.isNotEmpty
+                                    ? S.of(context).editParams('path')
+                                    : S.of(context).addParams('path'),
+                                onPressed: () => showCupertinoModalPopup<
+                                    List<RequestPathComponent>>(
+                                  context: context,
+                                  builder: (ctx) => AddRequestParamsDialog<
+                                      RequestPathComponent>(
+                                    params: state.request.pathParams,
+                                  ),
+                                ).then((value) {
+                                  if (context.mounted && value != null) {
+                                    cubitOf(context).addPathParams(value);
+                                  }
+                                }),
+                              ),
+                            ),
+                            Expanded(
+                              child: AppFilledButton(
+                                label: state.request.pathParams.isNotEmpty
+                                    ? S.of(context).editParams('query')
+                                    : S.of(context).addParams('query'),
+                                onPressed: () => showCupertinoModalPopup<
+                                    List<RequestQueryComponent>>(
+                                  context: context,
+                                  builder: (ctx) => AddRequestParamsDialog<
+                                      RequestQueryComponent>(
+                                    params: state.request.queryParams,
+                                  ),
+                                ).then((value) {
+                                  if (context.mounted && value != null) {
+                                    cubitOf(context).addQueryParams(value);
+                                  }
+                                }),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const Gap(20),
-                DialogActionButtons(
-                  leftButtonLabel: S.of(context).ok,
-                  leftButtonOnPressed: () {
-                    cubitOf(context).addRequest(
-                      edit: widget.request != null,
-                      request: state.request.copyWith(
-                        operationId: _idController.text.isNotEmpty
-                            ? _idController.text
-                            : '${_requestType.name}_${_pathController.text.clearPathToName()}'
-                                .camelCase,
-                        path: _pathController.text,
-                        type: _requestType,
-                        description: '',
-                      ),
-                    );
-
-                    logger.f('request: ${state.request}');
-                    Navigator.of(context).pop();
-                  },
-                  isLeftButtonActive: _valid(),
-                  rightButtonLabel: S.of(context).cancel,
-                  rightButtonOnPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
+                  const Gap(20),
+                  DialogActionButtons(
+                    leftButtonLabel: S.of(context).ok,
+                    leftButtonOnPressed: () {
+                      cubitOf(context).addRequest(
+                        edit: widget.request != null,
+                        request: state.request.copyWith(
+                          operationId: _idController.text.isNotEmpty
+                              ? _idController.text
+                              : '${_requestType.name}_${_pathController.text.clearPathToName()}'
+                                  .camelCase,
+                          path: _pathController.text,
+                          type: _requestType,
+                          description: '',
+                        ),
+                      );
+                    },
+                    isLeftButtonActive: _valid(),
+                    rightButtonLabel: S.of(context).cancel,
+                    rightButtonOnPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  void _onSR(BuildContext context, AddRequestDialogSR sr) {
+    sr.when(
+      success: () => Navigator.of(context).pop(),
     );
   }
 

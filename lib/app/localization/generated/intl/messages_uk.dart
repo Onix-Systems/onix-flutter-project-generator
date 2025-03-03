@@ -36,11 +36,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(componentName) =>
       "Дійсно хочете видалити компонент ${componentName}? Це також видалить всі референсні змінні в усіх об\'єктах даних.";
 
-  static String m7(type) => "Редагувати ${type} параметри";
+  static String m7(duplicates) => "Знайдено дубликати: ${duplicates}";
 
-  static String m8(projectName) => "Змінити ${projectName}";
+  static String m8(type) => "Редагувати ${type} параметри";
 
-  static String m9(sourceName) =>
+  static String m9(projectName) => "Змінити ${projectName}";
+
+  static String m10(sourceName) =>
       "Дійсно хочете видалити джерело ${sourceName}?";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -111,7 +113,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteComponentConfirmation": m6,
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Діалог видкріється в окремому вікні)"),
-        "editParams": m7,
+        "duplicatesFoundError": m7,
+        "editParams": m8,
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
             "Файл конфіга вітсутній або невірний! Перевірте, чи був відкритий проект згенерований за допомогою Onix Flutter Project Generator"),
         "emptyConfigTitle": MessageLookupByLibrary.simpleMessage(
@@ -188,7 +191,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Змінити"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Змінити компонент"),
-        "modifyGeneratedProject": m8,
+        "modifyGeneratedProject": m9,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Змінити екран"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Змінити дані підпису..."),
@@ -270,7 +273,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signingToolTitle":
             MessageLookupByLibrary.simpleMessage("Сертифікат підпису Android"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Дані підпису"),
-        "sourceDeletingDialogTitle": m9,
+        "sourceDeletingDialogTitle": m10,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Назва джерела"),
         "sourceNotFound":

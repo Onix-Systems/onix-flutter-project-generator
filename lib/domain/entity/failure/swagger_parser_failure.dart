@@ -17,6 +17,10 @@ class SwaggerParserFailureAlreadyExists extends SwaggerParserFailure {
   const SwaggerParserFailureAlreadyExists(String super.componentName);
 }
 
+class SwaggerParserFailureDuplicatesFound extends SwaggerParserFailure {
+  const SwaggerParserFailureDuplicatesFound(String super.componentName);
+}
+
 class SwaggerParserFailureFailedToParse extends SwaggerParserFailure {
   const SwaggerParserFailureFailedToParse() : super(null);
 }
@@ -28,6 +32,8 @@ extension SwaggerParserFailureX on SwaggerParserFailure {
         return S.of(context).alreadyExistsError(componentName ?? '');
       case SwaggerParserFailureNotFound:
         return S.of(context).sourceNotFound;
+      case SwaggerParserFailureDuplicatesFound:
+        return S.of(context).duplicatesFoundError(componentName ?? '');
       case SwaggerParserFailureFailedToParse:
       default:
         return S.of(context).parseErrorMessage;

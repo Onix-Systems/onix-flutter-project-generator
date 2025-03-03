@@ -168,5 +168,6 @@
   "editParams": "Редагувати {type} параметри",
   "addParam": "Додати параметр",
   "addParamFailureTitle": "Не вдалося додати параметр",
-  "addVariableFailureTitle": "Не вдалося додати змінну"
+  "addVariableFailureTitle": "Не вдалося додати змінну",
+  "duplicatesFoundError": "Знайдено дубликати: {duplicates}"
 }

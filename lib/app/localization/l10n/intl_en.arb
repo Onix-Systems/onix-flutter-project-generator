@@ -168,5 +168,6 @@
   "editParams": "Edit {type} params",
   "addParam": "Add param",
   "addParamFailureTitle": "Failed to add param",
-  "addVariableFailureTitle": "Failed to add variable"
+  "addVariableFailureTitle": "Failed to add variable",
+  "duplicatesFoundError": "Duplicates found: {duplicates}"
 }

@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_request_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_request_use_case.dart';
@@ -69,6 +70,34 @@ class AddRequestDialogCubit
   }
 
   void addRequest({required RequestComponent request, bool edit = false}) {
+    final multipartParamNames =
+        request.multipartBody.map((e) => e.name).toList();
+    final pathParamNames = request.pathParams.map((e) => e.name).toList();
+    final queryParamNames = request.queryParams.map((e) => e.name).toList();
+
+    final allNames = [
+      ...multipartParamNames,
+      ...pathParamNames,
+      ...queryParamNames,
+    ];
+
+    final namesCount = <String, int>{};
+
+    for (final name in allNames) {
+      final count = namesCount[name] ?? 0;
+      namesCount[name] = count + 1;
+    }
+
+    final duplicates =
+        namesCount.entries.where((e) => e.value > 1).map((e) => e.key).toList();
+
+    if (duplicates.isNotEmpty) {
+      onFailure(
+        SwaggerParserFailureDuplicatesFound(duplicates.join(', ')),
+      );
+      return;
+    }
+
     if (state.bodyComponent != null) {
       final componentExists = _isComponentExistsUseCase(
         state.bodyComponent!.name,
@@ -121,7 +150,10 @@ class AddRequestDialogCubit
 
     if (result.isError) {
       onFailure(result.error.failure);
+      return;
     }
+
+    addSr(const AddRequestDialogSR.success());
   }
 
   void addBody({
