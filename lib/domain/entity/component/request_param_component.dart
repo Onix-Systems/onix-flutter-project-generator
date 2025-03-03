@@ -29,12 +29,6 @@ sealed class RequestParamComponent {
     final requiredPrefix = requiredCopy ? 'required' : '';
     final requiredSuffix = requiredCopy ? '' : '?';
 
-    // final isEnum = type is SwaggerEnum ||
-    //     this is RequestBodyComponent && (this as RequestBodyComponent).isEnum ||
-    //     this is RequestQueryComponent &&
-    //         (this as RequestQueryComponent).isEnum ||
-    //     this is RequestPathComponent && (this as RequestPathComponent).isEnum;
-
     if (isEnum && forSource) {
       return '$requiredPrefix String$requiredSuffix '
           '${getNameDeclaration()},';

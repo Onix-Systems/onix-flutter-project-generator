@@ -3,6 +3,7 @@ import 'package:onix_flutter_bricks/app/util/enum/dart_types.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
@@ -54,6 +55,21 @@ class AddRequestParamsDialogCubit
         ? SwaggerVariable(DartTypes.toSwaggerType(type))
         : SwaggerReference(type);
 
+    var isEnum = false;
+
+    Component? component;
+
+    if (paramType is SwaggerReference) {
+      final componentResult = _getComponentByNameUseCase(type);
+
+      component = componentResult.data;
+
+      if (component is EnumParamComponent) {
+        isEnum = true;
+        paramType = component.type;
+      }
+    }
+
     if (isList) {
       paramType = SwaggerArray(
         SwaggerModelVariableResponseV3(
@@ -62,16 +78,6 @@ class AddRequestParamsDialogCubit
           isRequired: false,
         ),
       );
-    }
-
-    var isEnum = false;
-
-    if (paramType is SwaggerReference) {
-      final component = _getComponentByNameUseCase(type);
-
-      if (component is EnumParamComponent) {
-        isEnum = true;
-      }
     }
 
     RequestParamComponent? paramComponent;
