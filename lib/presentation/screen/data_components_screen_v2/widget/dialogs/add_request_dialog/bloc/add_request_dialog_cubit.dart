@@ -234,13 +234,9 @@ class AddRequestDialogCubit
       fromSwagger: component?.fromSwagger ?? false,
     );
 
-    final request = state.request.copyWith(
-      response: response,
-    );
-
     emit(
       state.copyWith(
-        request: request,
+        request: state.request.copyWith(response: response),
         components: components,
         responseComponent: responseComponent ?? component,
         tempResponseComponent: responseComponent ?? state.tempResponseComponent,
@@ -249,37 +245,55 @@ class AddRequestDialogCubit
   }
 
   void addMultipartBody(List<RequestMultipartComponent> body) {
-    final request = state.request.copyWith(
-      multipartBody: body,
-    );
-
     emit(
       state.copyWith(
-        request: request,
+        request: state.request.copyWith(
+          multipartBody: body,
+        ),
+      ),
+    );
+  }
+
+  void removeMultipartBody() {
+    emit(
+      state.copyWith(
+        request: state.request.copyWith(multipartBody: []),
       ),
     );
   }
 
   void addPathParams(List<RequestPathComponent> pathParams) {
-    final request = state.request.copyWith(
-      pathParams: pathParams,
-    );
-
     emit(
       state.copyWith(
-        request: request,
+        request: state.request.copyWith(
+          pathParams: pathParams,
+        ),
+      ),
+    );
+  }
+
+  void removePathParams() {
+    emit(
+      state.copyWith(
+        request: state.request.copyWith(pathParams: []),
       ),
     );
   }
 
   void addQueryParams(List<RequestQueryComponent> queryParams) {
-    final request = state.request.copyWith(
-      queryParams: queryParams,
-    );
-
     emit(
       state.copyWith(
-        request: request,
+        request: state.request.copyWith(
+          queryParams: queryParams,
+        ),
+      ),
+    );
+  }
+
+  void removeQueryParams() {
+    emit(
+      state.copyWith(
+        request: state.request.copyWith(queryParams: []),
       ),
     );
   }

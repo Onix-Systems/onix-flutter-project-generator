@@ -7,16 +7,17 @@ import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
-import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_models.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/widgets/add_component_row.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/widgets/operation_id_field.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/widgets/param_button.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/widgets/path_field.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_params_dialog/add_request_params_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
-import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
 import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
@@ -142,67 +143,15 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                               ),
                             ),
                             Expanded(
-                              child: TextField(
-                                controller: _pathController,
-                                onChanged: (_) {
-                                  setState(() {});
-                                },
-                                inputFormatters: const [
-                                  FirstCharacterNotDigitFormatter(),
-                                ],
-                                decoration: InputDecoration(
-                                  hintText: S.of(context).path,
-                                  hintStyle:
-                                      context.appTextStyles.fs18?.copyWith(
-                                    color: context.appColors.controlColor
-                                        .withAlpha(100),
-                                  ),
-                                  contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                  ),
-                                  fillColor:
-                                      context.appColors.darkContrastColor,
-                                  hoverColor:
-                                      context.appColors.darkContrastColor,
-                                  filled: true,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                ),
-                                style: context.appTextStyles.fs18,
+                              child: PathField(
+                                pathController: _pathController,
+                                onChanged: () => setState(() {}),
                               ),
                             ),
                             Expanded(
-                              child: TextField(
-                                controller: _idController,
-                                onChanged: (_) {
-                                  setState(() {});
-                                },
-                                inputFormatters: const [
-                                  FirstCharacterNotDigitFormatter(),
-                                ],
-                                decoration: InputDecoration(
-                                  hintText: 'OperationId',
-                                  hintStyle:
-                                      context.appTextStyles.fs18?.copyWith(
-                                    color: context.appColors.controlColor
-                                        .withAlpha(100),
-                                  ),
-                                  contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                  ),
-                                  fillColor:
-                                      context.appColors.darkContrastColor,
-                                  hoverColor:
-                                      context.appColors.darkContrastColor,
-                                  filled: true,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                ),
-                                style: context.appTextStyles.fs18,
+                              child: OperationIdField(
+                                idController: _idController,
+                                onChanged: () => setState(() {}),
                               ),
                             ),
                           ],
@@ -248,10 +197,9 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                           spacing: 10,
                           children: [
                             Expanded(
-                              child: AppFilledButton(
-                                label: state.request.multipartBody.isNotEmpty
-                                    ? S.of(context).editParams('multipart')
-                                    : S.of(context).addParams('multipart'),
+                              child: ParamButton(
+                                paramType: 'multipart',
+                                edit: state.request.multipartBody.isNotEmpty,
                                 onPressed: () => showCupertinoModalPopup<
                                     List<RequestMultipartComponent>>(
                                   context: context,
@@ -264,13 +212,14 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                     cubitOf(context).addMultipartBody(value);
                                   }
                                 }),
+                                onDelete: () =>
+                                    cubitOf(context).removeMultipartBody(),
                               ),
                             ),
                             Expanded(
-                              child: AppFilledButton(
-                                label: state.request.pathParams.isNotEmpty
-                                    ? S.of(context).editParams('path')
-                                    : S.of(context).addParams('path'),
+                              child: ParamButton(
+                                paramType: 'path',
+                                edit: state.request.pathParams.isNotEmpty,
                                 onPressed: () => showCupertinoModalPopup<
                                     List<RequestPathComponent>>(
                                   context: context,
@@ -283,13 +232,14 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                     cubitOf(context).addPathParams(value);
                                   }
                                 }),
+                                onDelete: () =>
+                                    cubitOf(context).removePathParams(),
                               ),
                             ),
                             Expanded(
-                              child: AppFilledButton(
-                                label: state.request.pathParams.isNotEmpty
-                                    ? S.of(context).editParams('query')
-                                    : S.of(context).addParams('query'),
+                              child: ParamButton(
+                                paramType: 'query',
+                                edit: state.request.queryParams.isNotEmpty,
                                 onPressed: () => showCupertinoModalPopup<
                                     List<RequestQueryComponent>>(
                                   context: context,
@@ -302,6 +252,8 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                     cubitOf(context).addQueryParams(value);
                                   }
                                 }),
+                                onDelete: () =>
+                                    cubitOf(context).removeQueryParams(),
                               ),
                             ),
                           ],

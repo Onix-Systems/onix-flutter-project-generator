@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
+import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class AppFilledButton extends StatefulWidget {
@@ -68,7 +68,7 @@ class _AppFilledButtonState extends State<AppFilledButton> {
           borderRadius: BorderRadius.circular(5),
           side: focused
               ? BorderSide(
-                  color: _defaultColor.withOpacity(0.7),
+                  color: _defaultColor.withValues(alpha: 0.7),
                   width: 2,
                 )
               : BorderSide.none,
@@ -109,7 +109,7 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                     color:
                         hovered ? widget.color ?? _defaultColor : _textColor(),
                   ),
-                  const Delimiter.width(10),
+                  Gap(widget.label.isNotEmpty ? 10 : 0),
                 ],
                 Text(
                   widget.label,
@@ -119,7 +119,7 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                   ),
                 ),
                 if (widget.icon != null && !widget.iconLeft) ...[
-                  const Delimiter.width(10),
+                  Gap(widget.label.isNotEmpty ? 10 : 0),
                   Icon(
                     widget.icon,
                     size: 25,
