@@ -37,7 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(componentName) =>
       "Do you really want to delete component ${componentName}? This will also delete referenced variables in all data objects.";
 
-  static String m7(duplicates) => "Duplicates found: ${duplicates}";
+  static String m7(duplicates) => "Duplicates found:\n${duplicates}";
 
   static String m8(type) => "Edit ${type} params";
 

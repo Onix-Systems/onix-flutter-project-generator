@@ -11,13 +11,12 @@ class SwaggerParserScreenEvent with _$SwaggerParserScreenEvent {
 
   const factory SwaggerParserScreenEvent.parse({
     required String url,
+    bool? overwrite,
   }) = SwaggerParserScreenEventParse;
 }
 
 @freezed
 class SwaggerParserScreenSR with _$SwaggerParserScreenSR {
-  const factory SwaggerParserScreenSR.onParseError() = _OnError;
-
   const factory SwaggerParserScreenSR.onContinue() = _OnContinue;
 }
 

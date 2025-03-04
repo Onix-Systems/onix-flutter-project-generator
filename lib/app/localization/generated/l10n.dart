@@ -1740,10 +1740,10 @@ class S {
     );
   }
 
-  /// `Duplicates found: {duplicates}`
+  /// `Duplicates found:\n{duplicates}`
   String duplicatesFoundError(Object duplicates) {
     return Intl.message(
-      'Duplicates found: $duplicates',
+      'Duplicates found:\n$duplicates',
       name: 'duplicatesFoundError',
       desc: '',
       args: [duplicates],

@@ -169,5 +169,5 @@
   "addParam": "Додати параметр",
   "addParamFailureTitle": "Не вдалося додати параметр",
   "addVariableFailureTitle": "Не вдалося додати змінну",
-  "duplicatesFoundError": "Знайдено дубликати: {duplicates}"
+  "duplicatesFoundError": "Знайдено дубликати:\n{duplicates}"
 }

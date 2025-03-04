@@ -36,7 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(componentName) =>
       "Дійсно хочете видалити компонент ${componentName}? Це також видалить всі референсні змінні в усіх об\'єктах даних.";
 
-  static String m7(duplicates) => "Знайдено дубликати: ${duplicates}";
+  static String m7(duplicates) => "Знайдено дубликати:\n${duplicates}";
 
   static String m8(type) => "Редагувати ${type} параметри";
 

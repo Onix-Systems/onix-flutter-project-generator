@@ -31,8 +31,11 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   Future<Result<Components>> fetchSwaggerData({
     required String url,
     required ArchType arch,
+    bool? overwriteDuplicates,
   }) async {
     try {
+      clearComponents();
+
       final swaggerResponse = await _swaggerSource.getSwaggerComponents(
         url: url,
         arch: arch,
@@ -42,13 +45,38 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       final sources = _swaggerMapper.mapSources(swaggerResponse, arch, enums);
       final dataObjects = _swaggerMapper.mapDataObjects(swaggerResponse, enums);
 
-      final parsedComponents = Components(
-        sources: sources,
-        enums: enums,
-        dataObjects: dataObjects,
+      final duplicates = <String>[];
+
+      for (final component in [...dataObjects, ...enums]) {
+        final addResult = addComponent(component);
+
+        if (addResult.isError) {
+          if (overwriteDuplicates != null) {
+            if (overwriteDuplicates) {
+              editComponent(oldName: component.name, component: component);
+            }
+          } else {
+            duplicates.add(component.name);
+          }
+        }
+      }
+
+      if (duplicates.isNotEmpty) {
+        return Result.error(
+          failure: SwaggerParserFailureDuplicatesFound(
+            duplicates.map((e) => e).toList().join(', '),
+          ),
+        );
+      }
+
+      _components = _components.copyWith(
+        sources: [
+          ..._components.sources,
+          ...sources,
+        ],
       );
-      _components = parsedComponents;
-      return Result.success(parsedComponents);
+
+      return Result.success(components);
     } catch (e, s) {
       logger.crash(error: e, stackTrace: s, reason: 'fetchSwaggerData');
       return const Result.error(
@@ -59,7 +87,23 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
   @override
   void clearComponents() {
-    _components = Components.empty();
+    final swaggerComponents = [..._components.dataObjects, ..._components.enums]
+        .where(
+          (element) => element.fromSwagger,
+        )
+        .toList();
+
+    for (final component in swaggerComponents) {
+      deleteComponent(component);
+    }
+
+    _components = _components.copyWith(
+      sources: _components.sources
+          .where(
+            (element) => !element.fromSwagger,
+          )
+          .toList(),
+    );
   }
 
   @override

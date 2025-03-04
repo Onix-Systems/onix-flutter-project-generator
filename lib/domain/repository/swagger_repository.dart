@@ -10,6 +10,7 @@ abstract interface class SwaggerRepository {
   Future<Result<Components>> fetchSwaggerData({
     required String url,
     required ArchType arch,
+    bool? overwriteDuplicates,
   });
 
   void clearComponents();
