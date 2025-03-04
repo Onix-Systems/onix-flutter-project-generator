@@ -176,8 +176,12 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
     }
   }
 
-  void _parseModels(SwaggerVersionType swaggerVersion, ArchType arch,
-      List<BaseSwaggerModelResponse> swaggerModels, Map<String, dynamic> json) {
+  void _parseModels(
+    SwaggerVersionType swaggerVersion,
+    ArchType arch,
+    List<BaseSwaggerModelResponse> swaggerModels,
+    Map<String, dynamic> json,
+  ) {
     var objectsMap = <String, dynamic>{};
     switch (swaggerVersion) {
       case SwaggerVersionType.swagger2:

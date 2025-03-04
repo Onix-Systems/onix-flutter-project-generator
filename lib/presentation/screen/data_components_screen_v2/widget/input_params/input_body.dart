@@ -25,7 +25,7 @@ class InputBody extends StatelessWidget {
 
     return ClickableWidget(
       onTap: () => onTap(context),
-      splashColor: context.appColors.contrastColor.withOpacity(0.5),
+      splashColor: context.appColors.contrastColor.withValues(alpha: 0.5),
       borderRadiusInk: BorderRadius.circular(8),
       child: Container(
         padding: const EdgeInsets.all(8),

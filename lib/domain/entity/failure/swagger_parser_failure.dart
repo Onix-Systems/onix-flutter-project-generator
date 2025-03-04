@@ -27,14 +27,14 @@ class SwaggerParserFailureFailedToParse extends SwaggerParserFailure {
 
 extension SwaggerParserFailureX on SwaggerParserFailure {
   String getTranslatedMessage(BuildContext context) {
-    switch (runtimeType) {
-      case SwaggerParserFailureAlreadyExists:
+    switch (this) {
+      case SwaggerParserFailureAlreadyExists _:
         return S.of(context).alreadyExistsError(componentName ?? '');
-      case SwaggerParserFailureNotFound:
+      case SwaggerParserFailureNotFound _:
         return S.of(context).sourceNotFound;
-      case SwaggerParserFailureDuplicatesFound:
+      case SwaggerParserFailureDuplicatesFound _:
         return S.of(context).duplicatesFoundError(componentName ?? '');
-      case SwaggerParserFailureFailedToParse:
+      case SwaggerParserFailureFailedToParse _:
       default:
         return S.of(context).parseErrorMessage;
     }

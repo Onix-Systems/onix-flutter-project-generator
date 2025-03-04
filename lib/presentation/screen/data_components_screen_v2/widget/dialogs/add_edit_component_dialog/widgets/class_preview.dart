@@ -68,7 +68,7 @@ class ClassPreview extends StatelessWidget {
                       color: context.appColors.alarmColor,
                       size: 18,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

@@ -112,6 +112,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
 
   @override
   ThemeExtension<ThemeTextStyles> copyWith({
+    TextStyle? fs22,
     TextStyle? fs28,
     TextStyle? fs24,
     TextStyle? fs18,

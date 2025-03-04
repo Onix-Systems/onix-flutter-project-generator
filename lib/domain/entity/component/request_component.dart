@@ -441,7 +441,8 @@ class RequestComponent with _$RequestComponent {
           final ref = e.type.getSwaggerObjectReference();
           if (ref != null) {
             codeLines.add(
-                '${e.getNameDeclaration()}: _${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}),');
+              '${e.getNameDeclaration()}: _${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}),',
+            );
           }
         } else if (isEnum) {
           if (e.type is SwaggerArray) {
@@ -470,7 +471,8 @@ class RequestComponent with _$RequestComponent {
           );
         } else if (e.type is SwaggerReference) {
           codeLines.add(
-              '${e.getNameDeclaration()}: ${e.getNameDeclaration()} != null ?_${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}) : null,');
+            '${e.getNameDeclaration()}: ${e.getNameDeclaration()} != null ?_${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}) : null,',
+          );
         } else if (e.type is SwaggerArray) {
           final array = e.type as SwaggerArray;
           if (array.itemType.type is SwaggerReference) {

@@ -54,7 +54,8 @@ class _ProcedureSelectionScreenState extends BaseState<
   @override
   void onBlocCreated(BuildContext context, ProcedureSelectionScreenBloc bloc) {
     bloc.add(
-        ProcedureSelectionScreenEventInit(branchConfig: widget.branchConfig));
+      ProcedureSelectionScreenEventInit(branchConfig: widget.branchConfig),
+    );
     super.onBlocCreated(context, bloc);
   }
 
@@ -347,17 +348,19 @@ class _ProcedureSelectionScreenState extends BaseState<
 
     if (isSigningExists) {
       final failure = SigningFailure(SigningFailureType.signingAlreadyExist);
-      overwrite = await Dialogs.showOverwriteCancelDialog(
-        context: context,
-        isError: true,
-        title: S.of(context).signingToolTitle,
-        content: Text(
-          failure.getSigningFailureMessage(context),
-          style: context.appTextStyles.fs18?.copyWith(
-            fontSize: 16,
+      if (context.mounted) {
+        overwrite = await Dialogs.showOverwriteCancelDialog(
+          context: context,
+          isError: true,
+          title: S.of(context).signingToolTitle,
+          content: Text(
+            failure.getSigningFailureMessage(context),
+            style: context.appTextStyles.fs18?.copyWith(
+              fontSize: 16,
+            ),
           ),
-        ),
-      );
+        );
+      }
 
       if (overwrite == true) {
         logger.f('Overwrite signing');
@@ -366,24 +369,24 @@ class _ProcedureSelectionScreenState extends BaseState<
       }
     }
 
-    final signingVars = await showCupertinoModalPopup<List<String>>(
-      context: context,
-      barrierDismissible: false,
-      builder: (ctx) => const SigningDialog(
-        signingVars: AppConsts.defaultSigningVars,
-      ),
-    );
-    if (!context.mounted) {
-      return;
-    }
-    if (signingVars != null) {
-      blocOf(context).add(
-        ProcedureSelectionScreenEvent.onGenerateAndroidSigning(
-          directory: directory,
-          signingVars: signingVars,
-          overwrite: overwrite,
+    if (context.mounted) {
+      final signingVars = await showCupertinoModalPopup<List<String>>(
+        context: context,
+        barrierDismissible: false,
+        builder: (ctx) => const SigningDialog(
+          signingVars: AppConsts.defaultSigningVars,
         ),
       );
+
+      if (signingVars != null && context.mounted) {
+        blocOf(context).add(
+          ProcedureSelectionScreenEvent.onGenerateAndroidSigning(
+            directory: directory,
+            signingVars: signingVars,
+            overwrite: overwrite,
+          ),
+        );
+      }
     }
   }
 
