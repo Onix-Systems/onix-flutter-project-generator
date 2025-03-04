@@ -109,6 +109,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                         const Gap(20),
                         Row(
                           spacing: 10,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(
                               child: DropdownButton2<String>(
@@ -145,6 +146,9 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                             Expanded(
                               child: PathField(
                                 pathController: _pathController,
+                                pathParams: state.request.pathParams
+                                    .map((e) => e.name)
+                                    .toList(),
                                 onChanged: () => setState(() {}),
                               ),
                             ),
