@@ -169,15 +169,25 @@ class RequestComponent with _$RequestComponent {
     if (queryParams.isNotEmpty) {
       codeLines.add('final queryParams = {');
       for (final e in queryParams) {
-        final isPrimitive =
-            e.isEnum || e.type is SwaggerEnum || e.type is SwaggerVariable;
+        final isPrimitive = e.isEnum || !e.type.isObjectReference();
 
         if (isPrimitive) {
           codeLines.add(
             "'${e.name}': ${e.getNameDeclaration()},",
           );
         } else {
-          codeLines.add("'${e.name}': ${e.getNameDeclaration()}?.toJson(),");
+          if (e.type is SwaggerArray) {
+            final array = e.type as SwaggerArray;
+            if (array.itemType.type is SwaggerReference) {
+              codeLines.add(
+                "'${e.name}': ${e.getNameDeclaration()}?.map((e) => e.toJson()).toList(),",
+              );
+            } else {
+              codeLines.add(
+                "'${e.name}': ${e.getNameDeclaration()}?.toJson(),",
+              );
+            }
+          }
         }
       }
       codeLines
