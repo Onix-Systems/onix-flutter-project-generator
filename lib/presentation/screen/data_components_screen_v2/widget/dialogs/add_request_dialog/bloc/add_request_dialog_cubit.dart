@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
@@ -232,6 +233,7 @@ class AddRequestDialogCubit
       type: SwaggerReference(name),
       isRequired: isRequired,
       fromSwagger: component?.fromSwagger ?? false,
+      isEnum: component is EnumParamComponent,
     );
 
     emit(

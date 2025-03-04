@@ -155,6 +155,8 @@ class RequestComponent with _$RequestComponent {
       for (final e in multipartBody) {
         if (e.type is SwaggerFile) {
           codeLines.add("'${e.name}': ${e.getNameDeclaration()}MultipartFile,");
+        } else if (e.type is SwaggerReference) {
+          codeLines.add("'${e.name}': ${e.getNameDeclaration()}.toJson(),");
         } else {
           codeLines.add("'${e.name}': ${e.getNameDeclaration()},");
         }
@@ -168,9 +170,16 @@ class RequestComponent with _$RequestComponent {
     if (queryParams.isNotEmpty) {
       codeLines.add('final queryParams = {');
       for (final e in queryParams) {
-        codeLines.add(
-          "'${e.name}': ${e.getNameDeclaration()},",
-        );
+        final isPrimitive =
+            e.isEnum || e.type is SwaggerEnum || e.type is SwaggerVariable;
+
+        if (isPrimitive) {
+          codeLines.add(
+            "'${e.name}': ${e.getNameDeclaration()},",
+          );
+        } else {
+          codeLines.add("'${e.name}': ${e.getNameDeclaration()}?.toJson(),");
+        }
       }
       codeLines
         ..add('}..removeWhere((key, value) => value == null);')
@@ -456,7 +465,14 @@ class RequestComponent with _$RequestComponent {
         final declaredName = e.getNameDeclaration();
 
         final nullable = e.isRequired ? '' : '?';
-        if (e.type is SwaggerArray) {
+        if (e.type is SwaggerEnum || e.isEnum) {
+          codeLines.add(
+            '$declaredName: $declaredName$nullable.name,',
+          );
+        } else if (e.type is SwaggerReference) {
+          codeLines.add(
+              '${e.getNameDeclaration()}: ${e.getNameDeclaration()} != null ?_${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}) : null,');
+        } else if (e.type is SwaggerArray) {
           final array = e.type as SwaggerArray;
           if (array.itemType.type is SwaggerReference) {
             codeLines.add(
@@ -471,10 +487,6 @@ class RequestComponent with _$RequestComponent {
               '$declaredName: $declaredName,',
             );
           }
-        } else if (e.type is SwaggerEnum || e.isEnum) {
-          codeLines.add(
-            '$declaredName: $declaredName$nullable.name,',
-          );
         } else {
           codeLines.add(
             '$declaredName: $declaredName,',

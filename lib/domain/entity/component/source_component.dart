@@ -5,6 +5,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_reference.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
@@ -182,47 +183,18 @@ class SourceComponent {
 
       ///Add request body import
       if (requestBody != null) {
-        final requestReference = requestBody.type.getSwaggerObjectReference();
-        if (requestReference != null) {
-          final importLine =
-              requestReference.getReferenceMapperImport(projectName, arch);
-          if (!mapperImports.contains(importLine)) {
-            mapperImports.add(importLine);
-          }
-        }
+        _addMapperImports(requestBody, projectName, arch, mapperImports);
       }
 
-      final miltipartBody = e.multipartBody;
-
-      if (miltipartBody.isNotEmpty) {
-        for (final multipart in miltipartBody) {
-          final requestReference = multipart.type.getSwaggerObjectReference();
-          if (requestReference != null) {
-            final importLine =
-                requestReference.getReferenceMapperImport(projectName, arch);
-            if (!mapperImports.contains(importLine)) {
-              mapperImports.add(importLine);
-            }
-          }
+      if (e.multipartBody.isNotEmpty) {
+        for (final multipart in e.multipartBody) {
+          _addMapperImports(multipart, projectName, arch, mapperImports);
         }
       }
 
       if (e.queryParams.isNotEmpty) {
         for (final queryParam in e.queryParams) {
-          if (queryParam.type is SwaggerArray &&
-              (queryParam.type as SwaggerArray).itemType.type
-                  is SwaggerReference) {
-            final type = (queryParam.type as SwaggerArray)
-                .itemType
-                .type
-                .toString()
-                .snakeCase;
-            final importLine =
-                "import 'package:$projectName/data/mapper/$type/${type}_mapper.dart';";
-            if (!mapperImports.contains(importLine)) {
-              mapperImports.add(importLine);
-            }
-          }
+          _addMapperImports(queryParam, projectName, arch, mapperImports);
         }
       }
 
@@ -252,47 +224,20 @@ class SourceComponent {
     for (final e in requests) {
       final requestBody = e.requestBody;
       if (requestBody != null) {
-        final requestReference = requestBody.type.getSwaggerObjectReference();
-        if (requestReference != null) {
-          final mapperVariable =
-              requestReference.getReferenceMapperDeclaration();
-          if (!mapperVariables.contains(mapperVariable)) {
-            mapperVariables.add(mapperVariable);
-          }
-        }
+        _addMapperVariables(requestBody, mapperVariables);
       }
 
       final multipartBody = e.multipartBody;
 
       if (multipartBody.isNotEmpty) {
         for (final multipart in multipartBody) {
-          final requestReference = multipart.type.getSwaggerObjectReference();
-          if (requestReference != null) {
-            final mapperVariable =
-                requestReference.getReferenceMapperDeclaration();
-            if (!mapperVariables.contains(mapperVariable)) {
-              mapperVariables.add(mapperVariable);
-            }
-          }
+          _addMapperVariables(multipart, mapperVariables);
         }
       }
 
       if (e.queryParams.isNotEmpty) {
         for (final queryParam in e.queryParams) {
-          if (queryParam.type is SwaggerArray &&
-              (queryParam.type as SwaggerArray).itemType.type
-                  is SwaggerReference) {
-            final reference = (queryParam.type as SwaggerArray)
-                .itemType
-                .type
-                .getSwaggerObjectReference();
-            if (reference != null) {
-              final mapperVariable = reference.getReferenceMapperDeclaration();
-              if (!mapperVariables.contains(mapperVariable)) {
-                mapperVariables.add(mapperVariable);
-              }
-            }
-          }
+          _addMapperVariables(queryParam, mapperVariables);
         }
       }
 
@@ -323,6 +268,44 @@ class SourceComponent {
       ..add('}')
       ..addNewLine();
     return codeLines.join('\n');
+  }
+
+  void _addMapperVariables(
+    RequestParamComponent requestComponent,
+    List<String> mapperVariables,
+  ) {
+    if (requestComponent.isEnum || requestComponent.type is SwaggerEnum) {
+      return;
+    }
+    final requestReference = requestComponent.type.getSwaggerObjectReference();
+    if (requestReference != null) {
+      final mapperVariable = requestReference.getReferenceMapperDeclaration();
+      if (!mapperVariables.contains(mapperVariable)) {
+        mapperVariables.add(mapperVariable);
+      }
+    }
+  }
+
+  void _addMapperImports(
+    RequestParamComponent requestComponent,
+    String projectName,
+    ArchType arch,
+    List<String> mapperImports,
+  ) {
+    if (requestComponent.isEnum || requestComponent.type is SwaggerEnum) {
+      return;
+    }
+
+    final queryParamReference =
+        requestComponent.type.getSwaggerObjectReference();
+
+    if (queryParamReference != null) {
+      final importLine =
+          queryParamReference.getReferenceMapperImport(projectName, arch);
+      if (!mapperImports.contains(importLine)) {
+        mapperImports.add(importLine);
+      }
+    }
   }
 
   String _buildSourceImports(String projectName) {

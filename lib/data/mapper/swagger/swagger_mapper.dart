@@ -138,8 +138,8 @@ class SwaggerMapper {
     final requests = List<RequestComponent>.empty(growable: true);
     for (final path in input) {
       final requestResponseParam = _mapResponseParams(path, enums);
-      final requestBody = _mapRequestBodyParams(path);
-      final multipartParams = _mapRequestMultipartParams(path);
+      final requestBody = _mapRequestBodyParams(path, enums);
+      final multipartParams = _mapRequestMultipartParams(path, enums);
       final queryParams = _mapRequestQueryParams(path, enums);
       final pathParams = _mapRequestPathParams(path, enums);
       final request = RequestComponent(
@@ -173,13 +173,20 @@ class SwaggerMapper {
     );
   }
 
-  RequestBodyComponent? _mapRequestBodyParams(BaseSwaggerPathResponse input) {
+  RequestBodyComponent? _mapRequestBodyParams(
+    BaseSwaggerPathResponse input,
+    List<EnumParamComponent> enums,
+  ) {
     final bodyRequest = input.input.firstWhereOrNull((e) => e is RequestBody);
+
     if (bodyRequest != null) {
+      final isEnum = _isEnum(bodyRequest.variable.type, enums);
+
       return RequestBodyComponent(
         name: bodyRequest.variable.name,
         type: bodyRequest.variable.type,
         isRequired: bodyRequest.variable.isRequired,
+        isEnum: isEnum,
       );
     }
     return null;
@@ -187,16 +194,20 @@ class SwaggerMapper {
 
   List<RequestMultipartComponent> _mapRequestMultipartParams(
     BaseSwaggerPathResponse input,
+    List<EnumParamComponent> enums,
   ) {
     final multipartParams = input.input.whereType<RequestMultipart>();
     final paramComponents =
         List<RequestMultipartComponent>.empty(growable: true);
     for (final e in multipartParams) {
+      final isEnum = _isEnum(e.variable.type, enums);
+
       paramComponents.add(
         RequestMultipartComponent(
           name: e.variable.name,
           type: e.variable.type,
           isRequired: e.variable.isRequired,
+          isEnum: isEnum,
         ),
       );
     }
