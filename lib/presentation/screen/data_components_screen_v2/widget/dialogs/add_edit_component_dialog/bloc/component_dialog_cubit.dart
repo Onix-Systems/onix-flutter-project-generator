@@ -174,11 +174,11 @@ class ComponentDialogCubit
     );
   }
 
-  Future<Component> addDataObject({
+  Component? addDataObject({
     required String name,
     bool isEnum = false,
     bool addToRepository = true,
-  }) async {
+  }) {
     Component? dataObject;
 
     name = name.pascalCase;
@@ -202,18 +202,20 @@ class ComponentDialogCubit
     }
 
     if (addToRepository) {
-      _addDataObjectComponentUseCase(component: dataObject).when(
-        success: (value) {
-          addSr(const ComponentDialogSR.success());
-        },
-        error: onFailure,
-      );
+      final result = _addDataObjectComponentUseCase(component: dataObject);
+
+      if (result.isError) {
+        onFailure(result.error.failure);
+        return null;
+      }
+
+      addSr(const ComponentDialogSR.success());
     }
 
     return dataObject;
   }
 
-  Future<Component?> editDataObject({required String name}) async {
+  Component? editDataObject({required String name}) {
     final component = state.component;
     if (component == null) return null;
 
@@ -239,15 +241,17 @@ class ComponentDialogCubit
 
     if (dataObject == null) return null;
 
-    _editDataObjectComponentUseCase(
+    final result = _editDataObjectComponentUseCase(
       oldName: component.name,
       component: dataObject,
-    ).when(
-      success: (value) {
-        addSr(const ComponentDialogSR.success());
-      },
-      error: onFailure,
     );
+
+    if (result.isError) {
+      onFailure(result.error.failure);
+      return null;
+    }
+
+    addSr(const ComponentDialogSR.success());
 
     return dataObject;
   }

@@ -212,16 +212,16 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                   Component? component;
 
                   if (widget.component != null) {
-                    component = await cubitOf(context)
-                        .editDataObject(name: _controller.text);
+                    component =
+                        cubitOf(context).editDataObject(name: _controller.text);
                   } else {
-                    component = await cubitOf(context).addDataObject(
+                    component = cubitOf(context).addDataObject(
                       name: _controller.text,
                       isEnum: isEnum,
                       addToRepository: !widget.requestComponent,
                     );
                   }
-                  if (context.mounted) {
+                  if (component != null && context.mounted) {
                     Navigator.of(context).pop(component);
                   }
                 },
