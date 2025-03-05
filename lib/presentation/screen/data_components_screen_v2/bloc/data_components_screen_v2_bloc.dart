@@ -85,8 +85,10 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       )
       ..addAll(
         source.requests
-            .where((element) =>
-                element.response != ResponseParamComponent.operationDefault())
+            .where(
+              (element) =>
+                  element.response != ResponseParamComponent.operationDefault(),
+            )
             .map((e) => e.response.type.toString()),
       );
 
