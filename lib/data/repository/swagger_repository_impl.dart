@@ -55,7 +55,10 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
         if (addResult.isError) {
           if (overwriteDuplicates != null) {
             if (overwriteDuplicates) {
-              editComponent(oldName: component.name, component: component);
+              editComponent(
+                oldName: component.name,
+                component: component,
+              );
             }
           } else {
             duplicates.add(component.name);
@@ -381,7 +384,6 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     _editComponentObject(component, oldName);
 
-    //add enums
     for (final dataObject in _components.dataObjects) {
       final dataObjectVariables = dataObject.variables.toList();
 
@@ -439,7 +441,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
             name: dataObject.name,
             fileReference: dataObject.fileReference,
             variables: dataObjectVariables,
-            fromSwagger: dataObject.fromSwagger,
+            fromSwagger: component.fromSwagger,
           ),
         );
       }
