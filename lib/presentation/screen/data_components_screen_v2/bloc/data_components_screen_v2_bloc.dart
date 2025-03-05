@@ -7,6 +7,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.d
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_use_case.dart';
@@ -84,7 +85,8 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       )
       ..addAll(
         source.requests
-            .where((element) => element.response.type.from.isNotEmpty)
+            .where((element) =>
+                element.response != ResponseParamComponent.operationDefault())
             .map((e) => e.response.type.toString()),
       );
 
