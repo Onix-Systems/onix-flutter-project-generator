@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/extension/logger_extension.dart';
+import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/mapper/swagger/swagger_mapper.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
@@ -370,8 +371,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       );
     }
 
-    if (oldName.toUpperCase() != component.name.toUpperCase() &&
-        isComponentExists(component.name)) {
+    if (oldName != component.name && isComponentExists(component.name)) {
       return Result.error(
         failure: SwaggerParserFailureAlreadyExists(
           component.name,
@@ -381,33 +381,41 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     _editComponentObject(component, oldName);
 
+    //add enums
     for (final dataObject in _components.dataObjects) {
-      if (dataObject.variables.map((e) => e.type.getName()).contains(oldName)) {
-        final variables = dataObject.variables
+      final dataObjectVariables = dataObject.variables.toList();
+
+      if (dataObjectVariables
+          .map(
+            (e) => e.type.getTypeName(),
+          )
+          .contains(oldName)) {
+        final variables = dataObjectVariables
             .where(
-              (element) =>
-                  element.type.getName() == oldName ||
-                  element.type is SwaggerArray &&
-                      (element.type as SwaggerArray).itemType.type.getName() ==
-                          oldName,
+              (element) => element.type.getTypeName() == oldName,
             )
             .toList();
 
         for (final variable in variables) {
-          if (variable.type is SwaggerReference) {
-            final index = dataObject.variables.indexOf(variable);
+          if (variable is SwaggerEnum) {
+            final index = dataObjectVariables.indexOf(variable);
+            final updatedVariable = variable.copyWith(
+              name: component.name,
+            );
+
+            dataObjectVariables[index] = updatedVariable;
+          } else if (variable.type is SwaggerReference) {
+            final index = dataObjectVariables.indexOf(variable);
             final updatedVariable = variable.copyWith(
               type: SwaggerReference(
                 component.name,
               ),
             );
 
-            variables
-              ..remove(variable)
-              ..insert(index, updatedVariable);
+            dataObjectVariables[index] = updatedVariable;
           } else if (variable.type is SwaggerArray) {
             final array = variable.type as SwaggerArray;
-            final index = dataObject.variables.indexOf(variable);
+            final index = dataObjectVariables.indexOf(variable);
 
             final updatedVariable = variable.copyWith(
               type: SwaggerArray(
@@ -419,9 +427,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
               ),
             );
 
-            variables
-              ..remove(variable)
-              ..insert(index, updatedVariable);
+            dataObjectVariables[index] = updatedVariable;
           }
         }
 
@@ -430,7 +436,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
           component: DataObjectComponent(
             name: dataObject.name,
             fileReference: dataObject.fileReference,
-            variables: variables,
+            variables: dataObjectVariables,
             fromSwagger: dataObject.fromSwagger,
           ),
         );

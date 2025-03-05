@@ -124,7 +124,7 @@ class ComponentDialogCubit
     bool isRequired = false,
     bool isList = false,
   }) {
-    if (_hasDuplicates(name)) {
+    if (state.variables[index].name != name && _hasDuplicates(name)) {
       return;
     }
 
