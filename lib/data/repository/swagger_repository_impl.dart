@@ -421,7 +421,9 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
               type: SwaggerArray(
                 SwaggerModelVariableResponseV3(
                   name: array.itemType.type.getName(),
-                  type: array.itemType.type,
+                  type: (component is EnumParamComponent)
+                      ? component.type
+                      : (component as DataObjectComponent).fileReference,
                   isRequired: variable.isRequired,
                 ),
               ),
