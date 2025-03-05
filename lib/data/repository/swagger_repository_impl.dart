@@ -2,16 +2,17 @@ import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/extension/logger_extension.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/mapper/swagger/swagger_mapper.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
-import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
@@ -382,19 +383,47 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     for (final dataObject in _components.dataObjects) {
       if (dataObject.variables.map((e) => e.type.getName()).contains(oldName)) {
-        final variables = dataObject.variables.toList()
-          ..removeWhere(
-            (element) => element.type.getName() == oldName,
-          )
-          ..add(
-            DataVariableComponent(
-              name: dataObject.name,
+        final variables = dataObject.variables
+            .where(
+              (element) =>
+                  element.type.getName() == oldName ||
+                  element.type is SwaggerArray &&
+                      (element.type as SwaggerArray).itemType.type.getName() ==
+                          oldName,
+            )
+            .toList();
+
+        for (final variable in variables) {
+          if (variable.type is SwaggerReference) {
+            final index = dataObject.variables.indexOf(variable);
+            final updatedVariable = variable.copyWith(
               type: SwaggerReference(
                 component.name,
               ),
-              isRequired: false,
-            ),
-          );
+            );
+
+            variables
+              ..remove(variable)
+              ..insert(index, updatedVariable);
+          } else if (variable.type is SwaggerArray) {
+            final array = variable.type as SwaggerArray;
+            final index = dataObject.variables.indexOf(variable);
+
+            final updatedVariable = variable.copyWith(
+              type: SwaggerArray(
+                SwaggerModelVariableResponseV3(
+                  name: array.itemType.type.getName(),
+                  type: array.itemType.type,
+                  isRequired: variable.isRequired,
+                ),
+              ),
+            );
+
+            variables
+              ..remove(variable)
+              ..insert(index, updatedVariable);
+          }
+        }
 
         editComponent(
           oldName: dataObject.name,
@@ -494,32 +523,73 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }
 
   void _updateRequests(String oldName, Component component) {
+    final componentExists = isComponentExists(component.name);
+
     for (final source in _components.sources) {
       for (final request in source.requests) {
-        final requestBody = request.requestBody;
-        if (requestBody != null && requestBody.type.getName() == oldName) {
-          deleteSourceRequest(
-            sourceName: source.name,
-            requestComponent: request,
-          );
+        var requestBody = request.requestBody;
+        var response = request.response;
+        final multipart = request.multipartBody.toList();
+        final queryParams = request.queryParams.toList();
 
-          final updatedRequest = request.copyWith(
-            requestBody: isComponentExists(component.name)
-                ? RequestBodyComponent(
-                    name: requestBody.name,
-                    type: SwaggerReference(
-                      component.name,
-                    ),
-                    isRequired: requestBody.isRequired,
-                  )
-                : null,
-          );
-
-          addSourceRequest(
-            sourceName: source.name,
-            requestComponent: updatedRequest,
+        if (component is DataObjectComponent &&
+            requestBody != null &&
+            requestBody.type.getName() == oldName) {
+          requestBody = requestBody.updateComponentType(
+            componentExists ? component.fileReference : null,
           );
         }
+
+        if (component is DataObjectComponent &&
+            response != ResponseParamComponent.operationDefault() &&
+            response.type.getName() == oldName) {
+          response = response.changeComponentType(
+            componentExists ? component.fileReference : null,
+          );
+        }
+
+        if (multipart.isNotEmpty && multipart.containsName(oldName)) {
+          for (final part in multipart) {
+            if (part.getTypeName() == oldName) {
+              final index = multipart.indexOf(part);
+
+              multipart.remove(part);
+
+              if (componentExists) {
+                final updatedPart = part.updateComponentType(component);
+                multipart.insert(index, updatedPart);
+              }
+            }
+          }
+        }
+
+        if (queryParams.isNotEmpty && queryParams.containsName(oldName)) {
+          for (final param in queryParams) {
+            if (param.getTypeName() == oldName) {
+              final index = queryParams.indexOf(param);
+
+              queryParams.remove(param);
+
+              if (componentExists) {
+                final updatedParam = param.updateComponentType(component);
+                queryParams.insert(index, updatedParam);
+              }
+            }
+          }
+        }
+
+        final updatedRequest = request.copyWith(
+          requestBody: requestBody,
+          response: response,
+          multipartBody: multipart,
+          queryParams: queryParams,
+        );
+
+        editSourceRequest(
+          sourceName: source.name,
+          oldComponent: request,
+          requestComponent: updatedRequest,
+        );
       }
     }
   }

@@ -31,7 +31,7 @@ class ParamsPreview extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: Text(
-                      '${param.type.getName()} ${param.name}${param == params.last ? '' : ','}',
+                      '${param.type} ${param.name}${param == params.last ? '' : ','}',
                       style: context.appTextStyles.fs18,
                     ),
                   ),

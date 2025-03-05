@@ -55,17 +55,11 @@ class _AddParamDialogState<T extends RequestParamComponent>
       } else {
         _selectedType = paramType.getTypeDeclaration(DataFileType.entity);
       }
-
-      if (paramType is SwaggerVariable) {
-        _types.addAll(widget.types);
-      } else {
-        _types
-            .addAll(widget.types.where((element) => element != _selectedType));
-      }
-    } else {
-      _selectedType = widget.types.first;
-      _types.addAll(widget.types);
     }
+
+    _types
+      ..add(_selectedType)
+      ..addAll(widget.types.where((element) => element != _selectedType));
   }
 
   @override
