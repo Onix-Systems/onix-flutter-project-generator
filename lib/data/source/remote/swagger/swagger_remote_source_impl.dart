@@ -241,8 +241,6 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
             )
             .toList();
 
-        logger.f('model: $model');
-
         for (final enumVariable in enumVariables) {
           if (enumVariable.type is SwaggerEnum) {
             final variable = enumVariable.type as SwaggerEnum;
@@ -333,8 +331,6 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
               }
             }
           } else if (_variableMayBeEnum(enumVariable)) {
-            logger.f('enumVariable: $enumVariable');
-
             final variable = (enumVariable.type as SwaggerArray).itemType.type
                 as SwaggerReference;
 
@@ -361,8 +357,6 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
             }
           }
         }
-
-        logger.f('model: $model');
       }
     }
   }
