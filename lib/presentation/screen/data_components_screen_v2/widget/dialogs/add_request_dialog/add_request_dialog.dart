@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,8 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
     AddRequestDialogCubit, AddRequestDialogSR, AddEditRequestDialog> {
   final TextEditingController _pathController = TextEditingController();
   final TextEditingController _idController = TextEditingController();
+
+  final _autoSizeGroup = AutoSizeGroup();
 
   var _requestType = SwaggerPathRequestType.get;
 
@@ -204,6 +207,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                               child: ParamButton(
                                 paramType: 'multipart',
                                 edit: state.request.multipartBody.isNotEmpty,
+                                autoSizeGroup: _autoSizeGroup,
                                 onPressed: () => showCupertinoModalPopup<
                                     List<RequestMultipartComponent>>(
                                   context: context,
@@ -225,6 +229,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                               child: ParamButton(
                                 paramType: 'path',
                                 edit: state.request.pathParams.isNotEmpty,
+                                autoSizeGroup: _autoSizeGroup,
                                 onPressed: () => showCupertinoModalPopup<
                                     List<RequestPathComponent>>(
                                   context: context,
@@ -246,6 +251,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                               child: ParamButton(
                                 paramType: 'query',
                                 edit: state.request.queryParams.isNotEmpty,
+                                autoSizeGroup: _autoSizeGroup,
                                 onPressed: () => showCupertinoModalPopup<
                                     List<RequestQueryComponent>>(
                                   context: context,

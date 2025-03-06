@@ -44,6 +44,7 @@ dependencies:
   onix_flutter_core_models: ^0.0.2
   onix_flutter_core: ^0.0.5
   http: ^1.2.2
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

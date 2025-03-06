@@ -75,7 +75,11 @@ class DataComponentsContent extends StatelessWidget {
           },
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 32)),
-        SliverToBoxAdapter(child: SectionHeader(title: S.of(context).objects)),
+        SliverToBoxAdapter(
+          child: SectionHeader(
+            title: S.of(context).dataComponents,
+          ),
+        ),
         if (dataComponents.isNotEmpty)
           SliverList.builder(
             itemCount: dataComponents.length,

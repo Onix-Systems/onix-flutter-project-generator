@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -13,6 +14,7 @@ class AppFilledButton extends StatefulWidget {
   final EdgeInsets? padding;
   final Size? minimumSize;
   final bool active;
+  final AutoSizeGroup? autoSizeGroup;
 
   const AppFilledButton({
     required this.label,
@@ -25,6 +27,7 @@ class AppFilledButton extends StatefulWidget {
     this.big = false,
     this.padding,
     this.minimumSize,
+    this.autoSizeGroup,
     super.key,
   });
 
@@ -37,9 +40,12 @@ class _AppFilledButtonState extends State<AppFilledButton> {
   bool hovered = false;
   bool focused = false;
 
+  late final AutoSizeGroup? _autoSizeGroup;
+
   @override
   void initState() {
     super.initState();
+    _autoSizeGroup = widget.autoSizeGroup;
   }
 
   @override
@@ -111,11 +117,18 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                   ),
                   Gap(widget.label.isNotEmpty ? 10 : 0),
                 ],
-                Text(
-                  widget.label,
-                  style: context.appTextStyles.fs18?.copyWith(
-                    color:
-                        hovered ? widget.color ?? _defaultColor : _textColor(),
+                Flexible(
+                  child: AutoSizeText(
+                    widget.label,
+                    group: _autoSizeGroup,
+                    maxLines: 1,
+                    minFontSize: 14,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.appTextStyles.fs18?.copyWith(
+                      color: hovered
+                          ? widget.color ?? _defaultColor
+                          : _textColor(),
+                    ),
                   ),
                 ),
                 if (widget.icon != null && !widget.iconLeft) ...[

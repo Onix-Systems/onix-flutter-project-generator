@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -8,12 +9,14 @@ class ParamButton extends StatelessWidget {
   final bool edit;
   final VoidCallback onPressed;
   final VoidCallback onDelete;
+  final AutoSizeGroup autoSizeGroup;
 
   const ParamButton({
     required this.paramType,
     required this.edit,
     required this.onPressed,
     required this.onDelete,
+    required this.autoSizeGroup,
     super.key,
   });
 
@@ -27,6 +30,8 @@ class ParamButton extends StatelessWidget {
                 ? S.of(context).editParams(paramType)
                 : S.of(context).addParams(paramType),
             onPressed: onPressed,
+            autoSizeGroup: autoSizeGroup,
+            minimumSize: const Size(0, 58),
           ),
         ),
         if (edit)
