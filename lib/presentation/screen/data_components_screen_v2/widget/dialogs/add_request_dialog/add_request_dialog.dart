@@ -210,6 +210,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                   builder: (ctx) => AddRequestParamsDialog<
                                       RequestMultipartComponent>(
                                     params: state.request.multipartBody,
+                                    paramType: 'multipart',
                                   ),
                                 ).then((value) {
                                   if (context.mounted && value != null) {
@@ -230,6 +231,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                   builder: (ctx) => AddRequestParamsDialog<
                                       RequestPathComponent>(
                                     params: state.request.pathParams,
+                                    paramType: 'path',
                                   ),
                                 ).then((value) {
                                   if (context.mounted && value != null) {
@@ -250,6 +252,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                   builder: (ctx) => AddRequestParamsDialog<
                                       RequestQueryComponent>(
                                     params: state.request.queryParams,
+                                    paramType: 'query',
                                   ),
                                 ).then((value) {
                                   if (context.mounted && value != null) {

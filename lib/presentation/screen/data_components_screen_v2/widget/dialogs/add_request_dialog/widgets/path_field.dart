@@ -51,6 +51,7 @@ class PathField extends StatelessWidget {
           unusedParams.isNotEmpty ? 'Unused: $unusedParams' : '',
           style: context.appTextStyles.fs18?.copyWith(
             fontSize: 11,
+            color: context.appColors.alarmColor,
           ),
         ),
       ],

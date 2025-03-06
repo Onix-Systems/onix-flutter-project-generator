@@ -28,14 +28,17 @@ class ParamsPreview extends StatelessWidget {
               color: Colors.transparent,
               child: Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Text(
-                      '${param.type} ${param.name}${param == params.last ? '' : ','}',
-                      style: context.appTextStyles.fs18,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        '${param.type} ${param.name}${param == params.last ? '' : ','}',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: context.appTextStyles.fs18,
+                      ),
                     ),
                   ),
-                  const Spacer(),
                   IconButton(
                     onPressed: () {
                       onEdit(param);

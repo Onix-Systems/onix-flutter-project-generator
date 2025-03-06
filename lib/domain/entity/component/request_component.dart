@@ -187,6 +187,10 @@ class RequestComponent with _$RequestComponent {
                 "'${e.name}': ${e.getNameDeclaration()}?.toJson(),",
               );
             }
+          } else {
+            codeLines.add(
+              "'${e.name}': ${e.getNameDeclaration()}?.toJson(),",
+            );
           }
         }
       }

@@ -55,6 +55,8 @@ class _AddParamDialogState<T extends RequestParamComponent>
       } else {
         _selectedType = paramType.getTypeDeclaration(DataFileType.entity);
       }
+    } else {
+      _selectedType = widget.types.first;
     }
 
     _types

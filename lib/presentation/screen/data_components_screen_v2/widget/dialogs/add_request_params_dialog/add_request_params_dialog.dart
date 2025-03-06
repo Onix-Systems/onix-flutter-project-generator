@@ -18,9 +18,11 @@ import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 class AddRequestParamsDialog<T extends RequestParamComponent>
     extends StatefulWidget {
   final List<T> params;
+  final String paramType;
 
   const AddRequestParamsDialog({
     required this.params,
+    required this.paramType,
     super.key,
   });
 
@@ -67,7 +69,7 @@ class _AddRequestParamsDialogState<T extends RequestParamComponent>
   Widget buildWidget(BuildContext context) {
     return Center(
       child: Container(
-        width: 600,
+        width: MediaQuery.sizeOf(context).width * 0.7,
         decoration: BoxDecoration(
           color: context.appColors.darkColor,
           borderRadius: BorderRadius.circular(10),
@@ -77,7 +79,7 @@ class _AddRequestParamsDialogState<T extends RequestParamComponent>
           children: [
             const Gap(20),
             Text(
-              S.of(context).addParams('Path'),
+              S.of(context).addParams(widget.paramType),
               style: context.appTextStyles.fs18,
             ),
             const Gap(20),
@@ -88,31 +90,29 @@ class _AddRequestParamsDialogState<T extends RequestParamComponent>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 20,
                   children: [
-                    Expanded(
-                      child: Column(
-                        spacing: 20,
-                        children: [
-                          AppFilledButton(
-                            label: S.of(context).addParam,
-                            icon: Icons.add,
-                            onPressed: () {
-                              showCupertinoModalPopup(
-                                context: context,
-                                builder: (ctx) => AddParamDialog<T>(
-                                  types: state.types,
-                                  process: (type, name, isList) {
-                                    cubitOf(context).addParam<T>(
-                                      name: name,
-                                      type: type,
-                                      isList: isList,
-                                    );
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+                    Column(
+                      spacing: 20,
+                      children: [
+                        AppFilledButton(
+                          label: S.of(context).addParam,
+                          icon: Icons.add,
+                          onPressed: () {
+                            showCupertinoModalPopup(
+                              context: context,
+                              builder: (ctx) => AddParamDialog<T>(
+                                types: state.types,
+                                process: (type, name, isList) {
+                                  cubitOf(context).addParam<T>(
+                                    name: name,
+                                    type: type,
+                                    isList: isList,
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                     Expanded(
                       child: ParamsPreview(
