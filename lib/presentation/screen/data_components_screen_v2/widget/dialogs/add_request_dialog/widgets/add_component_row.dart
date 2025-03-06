@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/add_edit_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_models.dart';
@@ -38,7 +39,7 @@ class _AddComponentRowState extends State<AddComponentRow> {
   @override
   Widget build(BuildContext context) {
     final components = widget.state.components.toSet().toList()
-      ..insert(0, 'Empty');
+      ..insert(0, S.of(context).empty);
 
     if (widget.selectedComponentName != null) {
       components
@@ -48,7 +49,8 @@ class _AddComponentRowState extends State<AddComponentRow> {
 
     final componentRef = components.first;
 
-    final buttonPrefix = widget.editComponent != null ? 'Edit' : 'Add';
+    final buttonPrefix =
+        widget.editComponent != null ? S.of(context).edit : S.of(context).add;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +72,11 @@ class _AddComponentRowState extends State<AddComponentRow> {
             value: componentRef,
             onChanged: (value) {
               if (value != null && value != componentRef) {
-                widget.onComponentSelected(value);
+                if (value == S.of(context).empty) {
+                  widget.onComponentSelected('');
+                } else {
+                  widget.onComponentSelected(value);
+                }
               }
             },
             isExpanded: true,
@@ -102,7 +108,7 @@ class _AddComponentRowState extends State<AddComponentRow> {
                       horizontal: 10,
                       vertical: 8,
                     ),
-                    hintText: 'Search for an item...',
+                    hintText: S.of(context).searchPrompt,
                     hintStyle: const TextStyle(fontSize: 12),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -125,7 +131,7 @@ class _AddComponentRowState extends State<AddComponentRow> {
           ),
         ),
         Text(
-          'or',
+          S.of(context).or,
           style: context.appTextStyles.fs18,
         ),
         SizedBox(

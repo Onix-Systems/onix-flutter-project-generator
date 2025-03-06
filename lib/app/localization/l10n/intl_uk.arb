@@ -169,5 +169,17 @@
   "addParam": "Додати параметр",
   "addParamFailureTitle": "Не вдалося додати параметр",
   "addVariableFailureTitle": "Не вдалося додати змінну",
-  "duplicatesFoundError": "Знайдено дубликати:\n{duplicates}"
+  "duplicatesFoundError": "Знайдено дубликати:\n{duplicates}",
+  "deleteRequest": "Видалити запит",
+  "deleteConcreteComponent": "Видалити {name} компонент?",
+  "requestBodyMultipartConflict": "Ви додали одночасно body і multipart body. Multipart body буде згенеровано, але проігноровано у запиті.",
+  "warning": "Увага",
+  "searchPrompt": "Пошук...",
+  "add": "Додати",
+  "edit": "Редагувати",
+  "empty": "Пусто",
+  "or": "або",
+  "unUsed": "Не використано",
+  "noInputParameters": "Немає вхідних параметрів",
+  "objects": "Об'єкти"
 }

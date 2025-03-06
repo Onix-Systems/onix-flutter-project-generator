@@ -271,19 +271,21 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                   const Gap(20),
                   DialogActionButtons(
                     leftButtonLabel: S.of(context).ok,
-                    leftButtonOnPressed: () {
-                      cubitOf(context).addRequest(
-                        edit: widget.request != null,
-                        request: state.request.copyWith(
-                          operationId: _idController.text.isNotEmpty
-                              ? _idController.text
-                              : '${_requestType.name}_${_pathController.text.clearPathToName()}'
-                                  .camelCase,
-                          path: _pathController.text,
-                          type: _requestType,
-                          description: '',
-                        ),
-                      );
+                    leftButtonOnPressed: () async {
+                      if (state.request.requestBody != null &&
+                          state.request.multipartBody.isNotEmpty) {
+                        await Dialogs.showOkDialog(
+                          context: context,
+                          title: S.of(context).warning,
+                          content: Text(
+                            S.of(context).requestBodyMultipartConflict,
+                          ),
+                        );
+                      }
+
+                      if (context.mounted) {
+                        _onAddRequest(context, state);
+                      }
                     },
                     isLeftButtonActive: _valid(),
                     rightButtonLabel: S.of(context).cancel,
@@ -312,5 +314,20 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
 
   String _getComponentName(String suffix) {
     return '${_idController.text.isNotEmpty ? _idController.text : '${_requestType.name}_${_pathController.text.clearPathToName()}'.camelCase}$suffix';
+  }
+
+  void _onAddRequest(BuildContext context, AddRequestDialogState state) {
+    cubitOf(context).addRequest(
+      edit: widget.request != null,
+      request: state.request.copyWith(
+        operationId: _idController.text.isNotEmpty
+            ? _idController.text
+            : '${_requestType.name}_${_pathController.text.clearPathToName()}'
+                .camelCase,
+        path: _pathController.text,
+        type: _requestType,
+        description: '',
+      ),
+    );
   }
 }

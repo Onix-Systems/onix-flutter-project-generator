@@ -4,14 +4,14 @@ import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class Dialogs {
-  static void showOkDialog({
+  static Future<void> showOkDialog({
     required BuildContext context,
     required Widget content,
     bool isError = false,
     String title = '',
     VoidCallback? onOk,
-  }) {
-    showCupertinoDialog(
+  }) async {
+    await showCupertinoDialog(
       context: context,
       builder: (ctx) => CupertinoAlertDialog(
         title: Padding(

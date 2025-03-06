@@ -48,7 +48,9 @@ class PathField extends StatelessWidget {
         ),
         const Gap(3),
         Text(
-          unusedParams.isNotEmpty ? 'Unused: $unusedParams' : '',
+          unusedParams.isNotEmpty
+              ? '${S.of(context).unUsed}: $unusedParams'
+              : '',
           style: context.appTextStyles.fs18?.copyWith(
             fontSize: 11,
             color: context.appColors.alarmColor,

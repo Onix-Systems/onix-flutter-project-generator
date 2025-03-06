@@ -169,5 +169,17 @@
   "addParam": "Add param",
   "addParamFailureTitle": "Failed to add param",
   "addVariableFailureTitle": "Failed to add variable",
-  "duplicatesFoundError": "Duplicates found:\n{duplicates}"
+  "duplicatesFoundError": "Duplicates found:\n{duplicates}",
+  "deleteRequest": "Delete request",
+  "deleteConcreteComponent": "Delete {name} component?",
+  "requestBodyMultipartConflict": "You've added both body data and multipart body data. Multipart body data will be generated but ignored in request call.",
+  "warning": "Warning",
+  "searchPrompt": "Search for an item...",
+  "add": "Add",
+  "edit": "Edit",
+  "empty": "Empty",
+  "or": "or",
+  "unUsed": "Unused",
+  "noInputParameters": "No input parameters",
+  "objects": "Objects"
 }

@@ -36,18 +36,21 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(componentName) =>
       "Дійсно хочете видалити компонент ${componentName}? Це також видалить всі референсні змінні в усіх об\'єктах даних.";
 
-  static String m7(duplicates) => "Знайдено дубликати:\n${duplicates}";
+  static String m7(name) => "Видалити ${name} компонент?";
 
-  static String m8(type) => "Редагувати ${type} параметри";
+  static String m8(duplicates) => "Знайдено дубликати:\n${duplicates}";
 
-  static String m9(projectName) => "Змінити ${projectName}";
+  static String m9(type) => "Редагувати ${type} параметри";
 
-  static String m10(sourceName) =>
+  static String m10(projectName) => "Змінити ${projectName}";
+
+  static String m11(sourceName) =>
       "Дійсно хочете видалити джерело ${sourceName}?";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Дії"),
+        "add": MessageLookupByLibrary.simpleMessage("Додати"),
         "addComponent":
             MessageLookupByLibrary.simpleMessage("Додати компонент"),
         "addDataComponents":
@@ -111,10 +114,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteComponent":
             MessageLookupByLibrary.simpleMessage("Видалити компонент?"),
         "deleteComponentConfirmation": m6,
+        "deleteConcreteComponent": m7,
+        "deleteRequest": MessageLookupByLibrary.simpleMessage("Видалити запит"),
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Діалог видкріється в окремому вікні)"),
-        "duplicatesFoundError": m7,
-        "editParams": m8,
+        "duplicatesFoundError": m8,
+        "edit": MessageLookupByLibrary.simpleMessage("Редагувати"),
+        "editParams": m9,
+        "empty": MessageLookupByLibrary.simpleMessage("Пусто"),
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
             "Файл конфіга вітсутній або невірний! Перевірте, чи був відкритий проект згенерований за допомогою Onix Flutter Project Generator"),
         "emptyConfigTitle": MessageLookupByLibrary.simpleMessage(
@@ -191,7 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Змінити"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Змінити компонент"),
-        "modifyGeneratedProject": m9,
+        "modifyGeneratedProject": m10,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Змінити екран"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Змінити дані підпису..."),
@@ -205,13 +212,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("Ні"),
         "noDataComponents":
             MessageLookupByLibrary.simpleMessage("Компоненти не знайдено"),
+        "noInputParameters":
+            MessageLookupByLibrary.simpleMessage("Немає вхідних параметрів"),
         "noRequests": MessageLookupByLibrary.simpleMessage("Немає запитів"),
         "nullable": MessageLookupByLibrary.simpleMessage("Опціональне"),
+        "objects": MessageLookupByLibrary.simpleMessage("Об\'єкти"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
             MessageLookupByLibrary.simpleMessage("Відкрити існуючий проект"),
         "openInAndroidStudio":
             MessageLookupByLibrary.simpleMessage("Відкрити в Android Studio"),
+        "or": MessageLookupByLibrary.simpleMessage("або"),
         "organization": MessageLookupByLibrary.simpleMessage("Організація"),
         "organizationNameHelperText": MessageLookupByLibrary.simpleMessage(
             "Цифра не може бути першим символом у сегменті пакету. У пакеті повинен бути хоча б один роздільник \'.\'. Кілька символів \'.\' підряд не допускаються."),
@@ -243,6 +254,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Не папка з проектом Flutter"),
         "replace": MessageLookupByLibrary.simpleMessage("Замінити"),
         "request": MessageLookupByLibrary.simpleMessage("Запит"),
+        "requestBodyMultipartConflict": MessageLookupByLibrary.simpleMessage(
+            "Ви додали одночасно body і multipart body. Multipart body буде згенеровано, але проігноровано у запиті."),
         "response": MessageLookupByLibrary.simpleMessage("Відповідь"),
         "retry": MessageLookupByLibrary.simpleMessage("Повторити"),
         "router": MessageLookupByLibrary.simpleMessage("Роутер"),
@@ -254,6 +267,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Перший символ у назві класу має бути літерою"),
         "screenName": MessageLookupByLibrary.simpleMessage("Назва екрану"),
         "screens": MessageLookupByLibrary.simpleMessage("Екрани"),
+        "searchPrompt": MessageLookupByLibrary.simpleMessage("Пошук..."),
         "selectProjectFolder":
             MessageLookupByLibrary.simpleMessage("Onix Project Generator"),
         "selectProjectPlatforms":
@@ -273,7 +287,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signingToolTitle":
             MessageLookupByLibrary.simpleMessage("Сертифікат підпису Android"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Дані підпису"),
-        "sourceDeletingDialogTitle": m10,
+        "sourceDeletingDialogTitle": m11,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Назва джерела"),
         "sourceNotFound":
@@ -299,6 +313,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tools": MessageLookupByLibrary.simpleMessage("Інструменти"),
         "twoLetterCountryCode":
             MessageLookupByLibrary.simpleMessage(" Двохлітерний код країни"),
+        "unUsed": MessageLookupByLibrary.simpleMessage("Не використано"),
         "url": MessageLookupByLibrary.simpleMessage("URL"),
         "useScreenUtil": MessageLookupByLibrary.simpleMessage(
             "Використовувати Screen Util?"),
@@ -306,6 +321,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "usingBloc": MessageLookupByLibrary.simpleMessage("Використати BLoC"),
         "usingCubit": MessageLookupByLibrary.simpleMessage("Використати Cubit"),
         "variableName": MessageLookupByLibrary.simpleMessage("Назва змінної"),
+        "warning": MessageLookupByLibrary.simpleMessage("Увага"),
         "willBeAddedAutomatically": MessageLookupByLibrary.simpleMessage(
             "DEV та PROD флавори будуть додані автоматично"),
         "withComponents":

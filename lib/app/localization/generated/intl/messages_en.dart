@@ -37,18 +37,21 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m6(componentName) =>
       "Do you really want to delete component ${componentName}? This will also delete referenced variables in all data objects.";
 
-  static String m7(duplicates) => "Duplicates found:\n${duplicates}";
+  static String m7(name) => "Delete ${name} component?";
 
-  static String m8(type) => "Edit ${type} params";
+  static String m8(duplicates) => "Duplicates found:\n${duplicates}";
 
-  static String m9(projectName) => "Modify ${projectName}";
+  static String m9(type) => "Edit ${type} params";
 
-  static String m10(sourceName) =>
+  static String m10(projectName) => "Modify ${projectName}";
+
+  static String m11(sourceName) =>
       "Do you really want to delete source ${sourceName}?";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
+        "add": MessageLookupByLibrary.simpleMessage("Add"),
         "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
         "addDataComponents":
             MessageLookupByLibrary.simpleMessage("Data Components"),
@@ -108,10 +111,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteComponent":
             MessageLookupByLibrary.simpleMessage("Delete component?"),
         "deleteComponentConfirmation": m6,
+        "deleteConcreteComponent": m7,
+        "deleteRequest": MessageLookupByLibrary.simpleMessage("Delete request"),
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
-        "duplicatesFoundError": m7,
-        "editParams": m8,
+        "duplicatesFoundError": m8,
+        "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+        "editParams": m9,
+        "empty": MessageLookupByLibrary.simpleMessage("Empty"),
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
             "Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator"),
         "emptyConfigTitle":
@@ -185,7 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Modify"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Modify component"),
-        "modifyGeneratedProject": m9,
+        "modifyGeneratedProject": m10,
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Modify signing vars..."),
@@ -199,13 +206,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noDataComponents":
             MessageLookupByLibrary.simpleMessage("No data components"),
+        "noInputParameters":
+            MessageLookupByLibrary.simpleMessage("No input parameters"),
         "noRequests": MessageLookupByLibrary.simpleMessage("No requests"),
         "nullable": MessageLookupByLibrary.simpleMessage("Nullable"),
+        "objects": MessageLookupByLibrary.simpleMessage("Objects"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
             MessageLookupByLibrary.simpleMessage("Open existing project"),
         "openInAndroidStudio":
             MessageLookupByLibrary.simpleMessage("Open in Android Studio"),
+        "or": MessageLookupByLibrary.simpleMessage("or"),
         "organization": MessageLookupByLibrary.simpleMessage("Organization"),
         "organizationNameHelperText": MessageLookupByLibrary.simpleMessage(
             "A digit cannot be the first character in a package segment. The package must have at least one \'.’ separator. Multiple \'.\' characters are not allowed in a row."),
@@ -236,6 +247,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Not a Flutter Project"),
         "replace": MessageLookupByLibrary.simpleMessage("Replace"),
         "request": MessageLookupByLibrary.simpleMessage("Request"),
+        "requestBodyMultipartConflict": MessageLookupByLibrary.simpleMessage(
+            "You\'ve added both body data and multipart body data. Multipart body data will be generated but ignored in request call."),
         "response": MessageLookupByLibrary.simpleMessage("Response"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "router": MessageLookupByLibrary.simpleMessage("Router"),
@@ -247,6 +260,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The first character in the class name must be a letter"),
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
         "screens": MessageLookupByLibrary.simpleMessage("Screens"),
+        "searchPrompt":
+            MessageLookupByLibrary.simpleMessage("Search for an item..."),
         "selectProjectFolder":
             MessageLookupByLibrary.simpleMessage("Onix Project Generator"),
         "selectProjectPlatforms":
@@ -266,7 +281,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signingToolTitle": MessageLookupByLibrary.simpleMessage(
             "Android signing configuration"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
-        "sourceDeletingDialogTitle": m10,
+        "sourceDeletingDialogTitle": m11,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),
         "sourceNotFound":
@@ -292,6 +307,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tools": MessageLookupByLibrary.simpleMessage("Tools"),
         "twoLetterCountryCode":
             MessageLookupByLibrary.simpleMessage(" Two-letter country code"),
+        "unUsed": MessageLookupByLibrary.simpleMessage("Unused"),
         "url": MessageLookupByLibrary.simpleMessage("URL"),
         "useScreenUtil":
             MessageLookupByLibrary.simpleMessage("Use Screen Util?"),
@@ -299,6 +315,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "usingBloc": MessageLookupByLibrary.simpleMessage("Using BLoC"),
         "usingCubit": MessageLookupByLibrary.simpleMessage("Using Cubit"),
         "variableName": MessageLookupByLibrary.simpleMessage("Variable name"),
+        "warning": MessageLookupByLibrary.simpleMessage("Warning"),
         "willBeAddedAutomatically": MessageLookupByLibrary.simpleMessage(
             "DEV & PROD flavors will be added automatically"),
         "withComponents":

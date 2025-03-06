@@ -164,7 +164,7 @@ class AddRequestDialogCubit
   }) {
     final components = _getComponentNames();
 
-    if (name == 'Empty') {
+    if (name.isEmpty) {
       emit(
         state.copyWith(
           components: components,
@@ -209,7 +209,7 @@ class AddRequestDialogCubit
   }) {
     final components = _getComponentNames();
 
-    if (name == 'Empty') {
+    if (name.isEmpty) {
       emit(
         state.copyWith(
           responseComponent: null,

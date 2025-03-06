@@ -1749,6 +1749,126 @@ class S {
       args: [duplicates],
     );
   }
+
+  /// `Delete request`
+  String get deleteRequest {
+    return Intl.message(
+      'Delete request',
+      name: 'deleteRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete {name} component?`
+  String deleteConcreteComponent(Object name) {
+    return Intl.message(
+      'Delete $name component?',
+      name: 'deleteConcreteComponent',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `You've added both body data and multipart body data. Multipart body data will be generated but ignored in request call.`
+  String get requestBodyMultipartConflict {
+    return Intl.message(
+      'You\'ve added both body data and multipart body data. Multipart body data will be generated but ignored in request call.',
+      name: 'requestBodyMultipartConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Warning`
+  String get warning {
+    return Intl.message(
+      'Warning',
+      name: 'warning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search for an item...`
+  String get searchPrompt {
+    return Intl.message(
+      'Search for an item...',
+      name: 'searchPrompt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add`
+  String get add {
+    return Intl.message(
+      'Add',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message(
+      'Edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Empty`
+  String get empty {
+    return Intl.message(
+      'Empty',
+      name: 'empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or`
+  String get or {
+    return Intl.message(
+      'or',
+      name: 'or',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unused`
+  String get unUsed {
+    return Intl.message(
+      'Unused',
+      name: 'unUsed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No input parameters`
+  String get noInputParameters {
+    return Intl.message(
+      'No input parameters',
+      name: 'noInputParameters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Objects`
+  String get objects {
+    return Intl.message(
+      'Objects',
+      name: 'objects',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

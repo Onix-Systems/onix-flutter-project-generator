@@ -58,7 +58,7 @@ class DataComponentsContent extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         const SliverToBoxAdapter(child: Delimiter.height(100)),
-        const SliverToBoxAdapter(child: SectionHeader(title: 'Sources')),
+        SliverToBoxAdapter(child: SectionHeader(title: S.of(context).sources)),
         SliverList.builder(
           itemCount: components.sources.length,
           itemBuilder: (context, index) {
@@ -75,7 +75,7 @@ class DataComponentsContent extends StatelessWidget {
           },
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 32)),
-        const SliverToBoxAdapter(child: SectionHeader(title: 'Objects')),
+        SliverToBoxAdapter(child: SectionHeader(title: S.of(context).objects)),
         if (dataComponents.isNotEmpty)
           SliverList.builder(
             itemCount: dataComponents.length,

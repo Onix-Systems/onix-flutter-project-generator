@@ -149,7 +149,7 @@ class _AddParamDialogState<T extends RequestParamComponent>
                                         horizontal: 10,
                                         vertical: 8,
                                       ),
-                                      hintText: 'Search for an item...',
+                                      hintText: S.of(context).searchPrompt,
                                       hintStyle: const TextStyle(fontSize: 12),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
