@@ -9,11 +9,13 @@ import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/json_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_models.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/add_edit_variable_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/class_preview.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/paste_json_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
@@ -56,13 +58,20 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
   @override
   void onFailure(BuildContext context, Failure failure) {
     super.onFailure(context, failure);
-    if (failure is SwaggerParserFailure) {
+    if (failure is SwaggerParserFailure || failure is JsonParserFailure) {
+      final swaggerParserFailure = failure is SwaggerParserFailure;
+
+      final message = swaggerParserFailure
+          ? failure.getTranslatedMessage(context)
+          : (failure as JsonParserFailure).e.toString();
+
       Dialogs.showOkDialog(
         context: context,
         isError: true,
         title: S.of(context).addVariableFailureTitle,
         content: Text(
-          failure.getTranslatedMessage(context),
+          message,
+          textAlign: swaggerParserFailure ? TextAlign.center : TextAlign.start,
           style: context.appTextStyles.fs18?.copyWith(
             fontSize: 16,
           ),
@@ -86,7 +95,7 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
   Widget buildWidget(BuildContext context) {
     return Center(
       child: Container(
-        width: 600,
+        width: MediaQuery.sizeOf(context).width * 0.8,
         decoration: BoxDecoration(
           color: context.appColors.darkColor,
           borderRadius: BorderRadius.circular(10),
@@ -136,27 +145,51 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                                     });
                                   },
                           ),
-                        AppFilledButton(
-                          label: S.of(context).addVariable,
-                          icon: Icons.add,
-                          onPressed: () {
-                            showCupertinoModalPopup(
-                              context: context,
-                              builder: (ctx) => AddEditVariableDialog(
-                                types: isEnum
-                                    ? ['String']
-                                    : cubitOf(context).state.componentNames,
-                                parentIsEnum: isEnum,
-                                process: (type, name, isList) {
-                                  cubitOf(context).addVariable(
-                                    name: name,
-                                    type: type,
-                                    isList: isList,
-                                  );
+                        SizedBox(
+                          width: double.maxFinite,
+                          child: AppFilledButton(
+                            label: S.of(context).addVariable,
+                            icon: Icons.add,
+                            onPressed: () {
+                              showCupertinoModalPopup(
+                                context: context,
+                                builder: (ctx) => AddEditVariableDialog(
+                                  types: isEnum
+                                      ? ['String']
+                                      : cubitOf(context).state.componentNames,
+                                  parentIsEnum: isEnum,
+                                  process: (type, name, isList) {
+                                    cubitOf(context).addVariable(
+                                      name: name,
+                                      type: type,
+                                      isList: isList,
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          width: double.maxFinite,
+                          child: AppFilledButton(
+                            label: 'Add from json',
+                            icon: Icons.add,
+                            onPressed: () {
+                              showCupertinoModalPopup<String>(
+                                context: context,
+                                builder: (ctx) => const PasteJsonDialog(),
+                              ).then(
+                                (value) {
+                                  if (context.mounted &&
+                                      value != null &&
+                                      value.isNotEmpty) {
+                                    cubitOf(context).addFromJson(json: value);
+                                  }
                                 },
-                              ),
-                            );
-                          },
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ),
@@ -164,33 +197,38 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                   Expanded(
                     child: blocBuilder(
                       builder: (context, state) {
-                        return ClassPreview(
-                          className: _controller.text,
-                          isEnum: isEnum,
-                          variables: state.variables,
-                          onEdit: (variable) {
-                            showCupertinoModalPopup(
-                              context: context,
-                              builder: (ctx) => AddEditVariableDialog(
-                                variable: variable,
-                                types: isEnum
-                                    ? ['String']
-                                    : cubitOf(context).state.componentNames,
-                                parentIsEnum: isEnum,
-                                process: (type, name, isList) {
-                                  cubitOf(context).editVariable(
-                                    name: name,
-                                    type: type,
-                                    index: state.variables.indexOf(variable),
-                                    isList: isList,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                          onDelete: (variable) {
-                            cubitOf(context).deleteVariable(variable);
-                          },
+                        return ConstrainedBox(
+                          constraints: BoxConstraints(
+                            maxHeight: MediaQuery.sizeOf(context).width * 0.5,
+                          ),
+                          child: ClassPreview(
+                            className: _controller.text,
+                            isEnum: isEnum,
+                            variables: state.variables,
+                            onEdit: (variable) {
+                              showCupertinoModalPopup(
+                                context: context,
+                                builder: (ctx) => AddEditVariableDialog(
+                                  variable: variable,
+                                  types: isEnum
+                                      ? ['String']
+                                      : cubitOf(context).state.componentNames,
+                                  parentIsEnum: isEnum,
+                                  process: (type, name, isList) {
+                                    cubitOf(context).editVariable(
+                                      name: name,
+                                      type: type,
+                                      index: state.variables.indexOf(variable),
+                                      isList: isList,
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                            onDelete: (variable) {
+                              cubitOf(context).deleteVariable(variable);
+                            },
+                          ),
                         );
                       },
                     ),

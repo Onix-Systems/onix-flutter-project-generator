@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/util/enum/dart_types.dart';
@@ -7,6 +9,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/json_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_case.dart';
@@ -82,33 +85,7 @@ class ComponentDialogCubit
       return;
     }
 
-    final variableType = DartTypes.types.contains(type)
-        ? SwaggerVariable(DartTypes.toSwaggerType(type))
-        : SwaggerReference(type);
-
-    final isEnum = _isEnum(variableType);
-
-    final component = DataVariableComponent(
-      name: name.camelCase,
-      type: variableType,
-      isRequired: isRequired,
-      isEnum: isEnum,
-    );
-
-    final variable = isList
-        ? DataVariableComponent(
-            name: name.camelCase,
-            type: SwaggerArray(
-              SwaggerModelVariableResponseV3(
-                name: name.camelCase,
-                type: variableType,
-                isRequired: isRequired,
-              ),
-            ),
-            isRequired: isRequired,
-            isEnum: isEnum,
-          )
-        : component;
+    final variable = _createVariable(type, name, isRequired, isList);
 
     emit(
       state.copyWith(
@@ -128,33 +105,7 @@ class ComponentDialogCubit
       return;
     }
 
-    final variableType = DartTypes.types.contains(type)
-        ? SwaggerVariable(DartTypes.toSwaggerType(type))
-        : SwaggerReference(type);
-
-    final isEnum = _isEnum(variableType);
-
-    final component = DataVariableComponent(
-      name: name.camelCase,
-      type: variableType,
-      isRequired: isRequired,
-      isEnum: isEnum,
-    );
-
-    final variable = isList
-        ? DataVariableComponent(
-            name: name.camelCase,
-            type: SwaggerArray(
-              SwaggerModelVariableResponseV3(
-                name: name.camelCase,
-                type: variableType,
-                isRequired: isRequired,
-              ),
-            ),
-            isRequired: isRequired,
-            isEnum: isEnum,
-          )
-        : component;
+    final variable = _createVariable(type, name, isRequired, isList);
 
     final variables = state.variables.toList();
     variables[index] = variable;
@@ -254,6 +205,71 @@ class ComponentDialogCubit
     addSr(const ComponentDialogSR.success());
 
     return dataObject;
+  }
+
+  void addFromJson({required String json}) {
+    try {
+      final parsed = jsonDecode(json) as Map<String, dynamic>;
+
+      final fields = <DataVariableComponent>[];
+
+      for (final key in parsed.keys) {
+        if (_hasDuplicates(key)) {
+          return;
+        }
+
+        final value = parsed[key];
+
+        fields.add(
+          _createVariable(
+            value.runtimeType.toString(),
+            key,
+            true,
+            value is List,
+          ),
+        );
+      }
+
+      emit(
+        state.copyWith(
+          variables: [...state.variables, ...fields],
+        ),
+      );
+    } catch (e) {
+      onFailure(JsonParserFailure(e: e as Exception));
+    }
+  }
+
+  DataVariableComponent _createVariable(
+      String type, String name, bool isRequired, bool isList) {
+    final variableType = DartTypes.types.contains(type)
+        ? SwaggerVariable(DartTypes.toSwaggerType(type))
+        : SwaggerReference(type);
+
+    final isEnum = _isEnum(variableType);
+
+    final component = DataVariableComponent(
+      name: name.camelCase,
+      type: variableType,
+      isRequired: isRequired,
+      isEnum: isEnum,
+    );
+
+    final variable = isList
+        ? DataVariableComponent(
+            name: name.camelCase,
+            type: SwaggerArray(
+              SwaggerModelVariableResponseV3(
+                name: name.camelCase,
+                type: variableType,
+                isRequired: isRequired,
+              ),
+            ),
+            isRequired: isRequired,
+            isEnum: isEnum,
+          )
+        : component;
+    return variable;
   }
 
   bool _isEnum(SwaggerType variableType) =>
