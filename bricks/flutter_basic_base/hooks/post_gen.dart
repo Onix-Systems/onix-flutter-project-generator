@@ -644,7 +644,7 @@ Future<void> removeFirebase(HookContext context) async {
 File getGradleFile() {
   return File('$name/android/app/build.gradle').existsSync()
       ? File('$name/android/app/build.gradle')
-      : File('$name/android/app/build.gradle.kts'
+      : File('$name/android/app/build.gradle.kts');
 }
 
 void exitBrick() async {
