@@ -181,5 +181,7 @@
   "or": "or",
   "unUsed": "Unused",
   "noInputParameters": "No input parameters",
-  "objects": "Objects"
+  "objects": "Objects",
+  "addFromJson": "Add from JSON",
+  "pasteJsonHere": "Paste JSON here"
 }

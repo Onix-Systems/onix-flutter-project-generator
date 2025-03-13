@@ -1869,6 +1869,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Add from JSON`
+  String get addFromJson {
+    return Intl.message(
+      'Add from JSON',
+      name: 'addFromJson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paste JSON here`
+  String get pasteJsonHere {
+    return Intl.message(
+      'Paste JSON here',
+      name: 'pasteJsonHere',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

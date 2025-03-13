@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Компоненти Даних"),
         "addField": MessageLookupByLibrary.simpleMessage("Додати поле"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Додати флавори:"),
+        "addFromJson": MessageLookupByLibrary.simpleMessage("Додати з JSON"),
         "addParam": MessageLookupByLibrary.simpleMessage("Додати параметр"),
         "addParamFailureTitle":
             MessageLookupByLibrary.simpleMessage("Не вдалося додати параметр"),
@@ -231,6 +232,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "overwrite": MessageLookupByLibrary.simpleMessage("Перезаписати"),
         "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Не вдалося отримати компоненти Swagger. Спробуйте знову або зв\'яжіться з підтримкою, якщо не вдається отримати компоненти."),
+        "pasteJsonHere":
+            MessageLookupByLibrary.simpleMessage("Вставте JSON сюди"),
         "path": MessageLookupByLibrary.simpleMessage("Шлях"),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
             "Будь ласка, виберіть шлях до проекту"),

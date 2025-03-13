@@ -35,7 +35,7 @@ class _PasteJsonDialogState extends State<PasteJsonDialog> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Paste JSON here',
+                      S.of(context).pasteJsonHere,
                       style: context.appTextStyles.fs18,
                     ),
                     const Gap(20),

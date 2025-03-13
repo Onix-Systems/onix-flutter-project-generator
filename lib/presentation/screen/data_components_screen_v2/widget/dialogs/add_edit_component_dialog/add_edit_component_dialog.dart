@@ -173,7 +173,7 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                         SizedBox(
                           width: double.maxFinite,
                           child: AppFilledButton(
-                            label: 'Add from json',
+                            label: S.of(context).addFromJson,
                             icon: Icons.add,
                             onPressed: () {
                               showCupertinoModalPopup<String>(

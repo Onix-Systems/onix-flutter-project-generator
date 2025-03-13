@@ -181,5 +181,7 @@
   "or": "або",
   "unUsed": "Не використано",
   "noInputParameters": "Немає вхідних параметрів",
-  "objects": "Об'єкти"
+  "objects": "Об'єкти",
+  "addFromJson": "Додати з JSON",
+  "pasteJsonHere": "Вставте JSON сюди"
 }

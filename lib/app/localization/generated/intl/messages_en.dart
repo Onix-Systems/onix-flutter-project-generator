@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Data Components"),
         "addField": MessageLookupByLibrary.simpleMessage("Add field"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Add flavors:"),
+        "addFromJson": MessageLookupByLibrary.simpleMessage("Add from JSON"),
         "addParam": MessageLookupByLibrary.simpleMessage("Add param"),
         "addParamFailureTitle":
             MessageLookupByLibrary.simpleMessage("Failed to add param"),
@@ -225,6 +226,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "overwrite": MessageLookupByLibrary.simpleMessage("Overwrite"),
         "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Failed to Parse Swagger Components. Please try again or contact support if issue not resolved."),
+        "pasteJsonHere":
+            MessageLookupByLibrary.simpleMessage("Paste JSON here"),
         "path": MessageLookupByLibrary.simpleMessage("Path"),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
             "You must select path to projects folder"),
