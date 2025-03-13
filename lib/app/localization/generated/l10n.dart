@@ -1889,6 +1889,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Generate classes from JSON`
+  String get generateFromJson {
+    return Intl.message(
+      'Generate classes from JSON',
+      name: 'generateFromJson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copy to clipboard`
+  String get copyToClipboard {
+    return Intl.message(
+      'Copy to clipboard',
+      name: 'copyToClipboard',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

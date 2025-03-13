@@ -101,6 +101,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Назва компонента"),
         "componentPreview": m3,
         "continueLabel": MessageLookupByLibrary.simpleMessage("Продовжити"),
+        "copyToClipboard":
+            MessageLookupByLibrary.simpleMessage("Зкопіювати в буфер"),
         "createRequestCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Створити запит?"),
         "createResponseCheckboxLabel":
@@ -156,6 +158,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Сконфігурувати підпис Android"),
         "generateFlavors":
             MessageLookupByLibrary.simpleMessage("Генерувати флавори"),
+        "generateFromJson":
+            MessageLookupByLibrary.simpleMessage("Згенерувати класи з JSON"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Створити новий проект"),
         "generateProject":

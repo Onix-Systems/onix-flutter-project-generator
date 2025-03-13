@@ -24,6 +24,10 @@ class ToolsPopupButton extends StatelessWidget {
           value: ToolType.generateFlavors,
           child: Text(S.of(context).generateFlavors),
         ),
+        PopupMenuItem<ToolType>(
+          value: ToolType.generateClassesFromJson,
+          child: Text(S.of(context).generateFromJson),
+        ),
       ],
     );
   }

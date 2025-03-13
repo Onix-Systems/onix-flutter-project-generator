@@ -183,5 +183,7 @@
   "noInputParameters": "No input parameters",
   "objects": "Objects",
   "addFromJson": "Add from JSON",
-  "pasteJsonHere": "Paste JSON here"
+  "pasteJsonHere": "Paste JSON here",
+  "generateFromJson": "Generate classes from JSON",
+  "copyToClipboard": "Copy to clipboard"
 }

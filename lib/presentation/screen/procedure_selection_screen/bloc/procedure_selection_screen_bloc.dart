@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
@@ -6,9 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/util/enum/dart_types.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/json_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_flavors_usecase.dart';
@@ -22,6 +28,7 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_compone
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
 import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
+import 'package:recase/recase.dart';
 
 class ProcedureSelectionScreenBloc extends BaseBloc<
     ProcedureSelectionScreenEvent,
@@ -269,5 +276,94 @@ signingConfigs {
         outputStream: null,
       ),
     );
+  }
+
+  String generateClassesFromJson({required String json, String? name}) {
+    try {
+      final parsed = jsonDecode(json) as Map<String, dynamic>;
+
+      final fields = <DataVariableComponent>[];
+
+      final classes = <String>{};
+
+      for (final key in parsed.keys) {
+        final value = parsed[key];
+        var valueType = value.runtimeType.toString();
+
+        if (value is Map<String, dynamic>) {
+          valueType = key.pascalCase;
+          final newClass = generateClassesFromJson(
+            json: jsonEncode(value),
+            name: valueType,
+          );
+
+          classes.add(newClass);
+        } else if (value is List) {
+          valueType = key.pascalCase;
+          final newClass = generateClassesFromJson(
+            json: jsonEncode(value.first),
+            name: valueType,
+          );
+
+          classes.add(newClass);
+        }
+
+        fields.add(
+          _createVariable(
+            valueType,
+            key,
+            false,
+            value is List,
+          ),
+        );
+      }
+
+      final result = [
+        'class ${name ?? 'GeneratedClass'} {',
+        ...fields.map((e) => '\t\t\tfinal ${e.getString()}'),
+        '\n\t\t\t${'${name ?? 'GeneratedClass'} ({'}',
+        ...fields.map((e) => '\t\t\t\t\t\trequired this.${e.name},'),
+        '\t\t\t});',
+        '}\n',
+        ...classes,
+      ];
+
+      return result.join('\n');
+    } catch (e) {
+      onFailure(JsonParserFailure(e: e as Exception));
+      return '';
+    }
+  }
+
+  DataVariableComponent _createVariable(
+    String type,
+    String name,
+    bool isRequired,
+    bool isList,
+  ) {
+    final variableType = DartTypes.types.contains(type)
+        ? SwaggerVariable(DartTypes.toSwaggerType(type))
+        : SwaggerReference(type);
+
+    final component = DataVariableComponent(
+      name: name.camelCase,
+      type: variableType,
+      isRequired: isRequired,
+    );
+
+    final variable = isList
+        ? DataVariableComponent(
+            name: name.camelCase,
+            type: SwaggerArray(
+              SwaggerModelVariableResponseV3(
+                name: name.camelCase,
+                type: variableType,
+                isRequired: isRequired,
+              ),
+            ),
+            isRequired: isRequired,
+          )
+        : component;
+    return variable;
   }
 }

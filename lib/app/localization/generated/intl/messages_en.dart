@@ -99,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Component name"),
         "componentPreview": m3,
         "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
+        "copyToClipboard":
+            MessageLookupByLibrary.simpleMessage("Copy to clipboard"),
         "createRequestCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Create request?"),
         "createResponseCheckboxLabel":
@@ -151,6 +153,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Generate Android signing config"),
         "generateFlavors":
             MessageLookupByLibrary.simpleMessage("Generate flavors"),
+        "generateFromJson":
+            MessageLookupByLibrary.simpleMessage("Generate classes from JSON"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Generate new project"),
         "generateProject":

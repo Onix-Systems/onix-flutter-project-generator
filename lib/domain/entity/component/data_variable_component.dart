@@ -15,6 +15,6 @@ class DataVariableComponent with _$DataVariableComponent {
   }) = _DataVariableComponent;
 
   String getString() {
-    return '${isRequired ? 'required' : ''}$type $name;';
+    return '${isRequired ? 'required ' : ''}$type $name;';
   }
 }
