@@ -91,7 +91,14 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }
 
   @override
-  void clearComponents() {
+  void clearComponents({
+    bool empty = false,
+  }) {
+    if (empty) {
+      _components = Components.empty();
+      return;
+    }
+
     final swaggerComponents = [..._components.dataObjects, ..._components.enums]
         .where(
           (element) => element.fromSwagger,

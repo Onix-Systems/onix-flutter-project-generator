@@ -5,5 +5,8 @@ class ClearSwaggerComponentsUseCase {
 
   const ClearSwaggerComponentsUseCase(this._swaggerRepository);
 
-  void call() => _swaggerRepository.clearComponents();
+  void call({
+    bool empty = false,
+  }) =>
+      _swaggerRepository.clearComponents(empty: empty);
 }

@@ -13,7 +13,9 @@ abstract interface class SwaggerRepository {
     bool? overwriteDuplicates,
   });
 
-  void clearComponents();
+  void clearComponents({
+    bool empty,
+  });
 
   Result<OperationStatus> addSource({
     required String sourceName,

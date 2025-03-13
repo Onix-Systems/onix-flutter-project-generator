@@ -8,6 +8,7 @@ import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/enum/swagger_path_request_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/variable_name_extension.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
@@ -21,6 +22,7 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
+import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
 import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 import 'package:recase/recase.dart';
 
@@ -46,6 +48,8 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
   final _autoSizeGroup = AutoSizeGroup();
 
   var _requestType = SwaggerPathRequestType.get;
+
+  bool _responseIsList = false;
 
   @override
   AddRequestDialogCubit createCubit() => GetIt.I.get<AddRequestDialogCubit>();
@@ -79,6 +83,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
     super.initState();
     _pathController.text = widget.request?.path ?? '';
     _idController.text = widget.request?.operationId ?? '';
+    _responseIsList = widget.request?.response.type is SwaggerArray;
   }
 
   @override
@@ -182,22 +187,49 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                           ),
                         ),
                         const Gap(10),
-                        AddComponentRow(
-                          state: state,
-                          body: false,
-                          editComponent: state.responseComponent != null &&
-                                  !state.responseComponent!.fromSwagger
-                              ? state.responseComponent
-                              : null,
-                          componentName: _getComponentName('Response'),
-                          selectedComponentName: state.responseComponent?.name,
-                          onComponentSelected: (value) =>
-                              cubitOf(context).addResponse(name: value),
-                          onComponentCreated: (value) =>
-                              cubitOf(context).addResponse(
-                            name: value.name,
-                            responseComponent: value,
-                          ),
+                        Row(
+                          children: [
+                            LabeledCheckbox(
+                              label: 'List',
+                              initialValue: _responseIsList,
+                              onAction: () {
+                                setState(() {
+                                  _responseIsList = !_responseIsList;
+                                });
+                              },
+                              disabled: state.responseComponent != null &&
+                                  state.responseComponent ==
+                                      state.tempResponseComponent,
+                            ),
+                            Expanded(
+                              child: AddComponentRow(
+                                state: state,
+                                body: false,
+                                editComponent: state.responseComponent !=
+                                            null &&
+                                        !state.responseComponent!.fromSwagger
+                                    ? state.responseComponent
+                                    : null,
+                                componentName: _getComponentName('Response'),
+                                selectedComponentName:
+                                    state.responseComponent?.name,
+                                onComponentSelected: (value) =>
+                                    cubitOf(context).addResponse(
+                                  name: value,
+                                  isList: _responseIsList,
+                                ),
+                                onComponentCreated: (value) {
+                                  setState(() {
+                                    _responseIsList = false;
+                                  });
+                                  cubitOf(context).addResponse(
+                                    name: value.name,
+                                    responseComponent: value,
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                         const Gap(20),
                         Row(
@@ -323,9 +355,21 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
   }
 
   void _onAddRequest(BuildContext context, AddRequestDialogState state) {
+    final edit = widget.request != null;
+
+    var request = state.request;
+
+    if (edit) {
+      final switched = cubitOf(context)
+          .switchResponseIsList(responseIsList: _responseIsList);
+      if (switched != null) {
+        request = switched;
+      }
+    }
+
     cubitOf(context).addRequest(
-      edit: widget.request != null,
-      request: state.request.copyWith(
+      edit: edit,
+      request: request.copyWith(
         operationId: _idController.text.isNotEmpty
             ? _idController.text
             : '${_requestType.name}_${_pathController.text.clearPathToName()}'

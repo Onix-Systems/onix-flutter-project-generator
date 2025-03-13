@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
@@ -206,6 +207,7 @@ class AddRequestDialogCubit
     required String name,
     Component? responseComponent,
     bool isRequired = false,
+    bool isList = false,
   }) {
     final components = _getComponentNames();
 
@@ -230,7 +232,15 @@ class AddRequestDialogCubit
 
     final response = ResponseParamComponent(
       name: 'response',
-      type: SwaggerReference(name),
+      type: isList
+          ? SwaggerArray(
+              SwaggerModelVariableResponseV3(
+                name: name,
+                type: SwaggerReference(name),
+                isRequired: true,
+              ),
+            )
+          : SwaggerReference(name),
       isRequired: isRequired,
       fromSwagger: component?.fromSwagger ?? false,
       isEnum: component is EnumParamComponent,
@@ -341,5 +351,30 @@ class AddRequestDialogCubit
     }
 
     return component;
+  }
+
+  RequestComponent? switchResponseIsList({required bool responseIsList}) {
+    final stateResponse = state.responseComponent;
+
+    if ((stateResponse == null ||
+            state.request.response ==
+                ResponseParamComponent.operationDefault()) ||
+        (state.request.response.type is SwaggerArray) == responseIsList) {
+      return null;
+    }
+
+    final response = state.request.response.copyWith(
+      type: responseIsList
+          ? SwaggerArray(
+              SwaggerModelVariableResponseV3(
+                name: stateResponse.name,
+                type: SwaggerReference(stateResponse.name),
+                isRequired: true,
+              ),
+            )
+          : SwaggerReference(stateResponse.name),
+    );
+
+    return state.request.copyWith(response: response);
   }
 }
