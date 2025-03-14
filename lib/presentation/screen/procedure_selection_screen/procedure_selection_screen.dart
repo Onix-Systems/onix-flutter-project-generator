@@ -16,15 +16,14 @@ import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/json_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/classes_from_json_dialog/classes_from_json_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/fingerprint_dialog_body.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/flavorizr_output.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/tools_popup_button.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
-import 'package:onix_flutter_bricks/presentation/widget/dialogs/class_from_json_view.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/flavors_dialog.dart';
-import 'package:onix_flutter_bricks/presentation/widget/dialogs/paste_json_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/signing_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 import 'package:onix_flutter_bricks/util/enum/tool_type.dart';
@@ -466,22 +465,7 @@ class _ProcedureSelectionScreenState extends BaseState<
   void _onGenerateClassesFromJsonSelected(BuildContext context) {
     showCupertinoDialog<String>(
       context: context,
-      builder: (ctx) => const PasteJsonDialog(),
-    ).then(
-      (value) {
-        if (value != null && value.isNotEmpty && context.mounted) {
-          final result = blocOf(context).generateClassesFromJson(
-            json: value,
-          );
-
-          if (result.isNotEmpty) {
-            showCupertinoModalPopup(
-              context: context,
-              builder: (ctx) => ClassFromJsonView(result: result),
-            );
-          }
-        }
-      },
+      builder: (ctx) => const ClassesFromJsonDialog(),
     );
   }
 }
