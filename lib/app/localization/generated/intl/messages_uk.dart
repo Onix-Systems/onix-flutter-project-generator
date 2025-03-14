@@ -103,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "continueLabel": MessageLookupByLibrary.simpleMessage("Продовжити"),
         "copyToClipboard":
             MessageLookupByLibrary.simpleMessage("Зкопіювати в буфер"),
+        "copyToClipboardSuccess":
+            MessageLookupByLibrary.simpleMessage("Зкопійовано в буфер"),
         "createRequestCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Створити запит?"),
         "createResponseCheckboxLabel":

@@ -101,6 +101,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
         "copyToClipboard":
             MessageLookupByLibrary.simpleMessage("Copy to clipboard"),
+        "copyToClipboardSuccess":
+            MessageLookupByLibrary.simpleMessage("Copied to clipboard"),
         "createRequestCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Create request?"),
         "createResponseCheckboxLabel":

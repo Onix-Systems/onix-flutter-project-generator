@@ -1909,6 +1909,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Copied to clipboard`
+  String get copyToClipboardSuccess {
+    return Intl.message(
+      'Copied to clipboard',
+      name: 'copyToClipboardSuccess',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

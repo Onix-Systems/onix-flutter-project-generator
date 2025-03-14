@@ -185,5 +185,6 @@
   "addFromJson": "Add from JSON",
   "pasteJsonHere": "Paste JSON here",
   "generateFromJson": "Generate classes from JSON",
-  "copyToClipboard": "Copy to clipboard"
+  "copyToClipboard": "Copy to clipboard",
+  "copyToClipboardSuccess": "Copied to clipboard"
 }

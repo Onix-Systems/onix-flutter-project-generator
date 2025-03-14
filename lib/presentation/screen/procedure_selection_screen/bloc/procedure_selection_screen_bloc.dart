@@ -43,6 +43,8 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
   final ClearOutputUseCase _clearOutputUseCase;
   final RunProcessUseCase _runProcessUseCase;
 
+  String tabs([int count = 1]) => '  ' * count;
+
   ProcedureSelectionScreenBloc(
     this._generateSigningConfigUseCase,
     this._generateFlavorsUseCase,
@@ -299,13 +301,17 @@ signingConfigs {
 
           classes.add(newClass);
         } else if (value is List) {
-          valueType = key.pascalCase;
-          final newClass = generateClassesFromJson(
-            json: jsonEncode(value.first),
-            name: valueType,
-          );
+          if (value.first is Map<String, dynamic>) {
+            valueType = key.pascalCase;
+            final newClass = generateClassesFromJson(
+              json: jsonEncode(value.first),
+              name: valueType,
+            );
 
-          classes.add(newClass);
+            classes.add(newClass);
+          } else {
+            valueType = value.first.runtimeType.toString();
+          }
         }
 
         fields.add(
@@ -320,10 +326,12 @@ signingConfigs {
 
       final result = [
         'class ${name ?? 'GeneratedClass'} {',
-        ...fields.map((e) => '\t\t\tfinal ${e.getString()}'),
-        '\n\t\t\t${'${name ?? 'GeneratedClass'} ({'}',
-        ...fields.map((e) => '\t\t\t\t\t\trequired this.${e.name},'),
-        '\t\t\t});',
+        ...fields.map((e) => '${tabs()}${e.type}? ${e.name};'),
+        '\n${tabs()}${'${name ?? 'GeneratedClass'} ({'}',
+        ...fields.map((e) => '${tabs(2)}this.${e.name},'),
+        '${tabs()}});',
+        _generateToJson(fields),
+        _generateFromJson(fields, name ?? 'GeneratedClass'),
         '}\n',
         ...classes,
       ];
@@ -365,5 +373,72 @@ signingConfigs {
           )
         : component;
     return variable;
+  }
+
+  String _generateToJson(List<DataVariableComponent> variables) {
+    final result = <String>['\n${tabs()}Map<String, dynamic> toJson() => {'];
+
+    for (final variable in variables) {
+      if (variable.type is SwaggerVariable) {
+        result.add(
+          "${tabs(2)}'${variable.name}': ${variable.name},",
+        );
+      } else if (variable.type is SwaggerReference) {
+        result.add(
+          "${tabs(2)}'${variable.name}': ${variable.name}?.toJson(),",
+        );
+      } else if (variable.type is SwaggerArray) {
+        final itemType = (variable.type as SwaggerArray).itemType.type;
+
+        if (itemType is SwaggerVariable) {
+          result.add(
+            "${tabs(2)}'${variable.name}': ${variable.name},",
+          );
+        } else if (itemType is SwaggerReference) {
+          result.add(
+            "${tabs(2)}'${variable.name}': ${variable.name}?.map((e) => e.toJson()).toList(),",
+          );
+        }
+      }
+    }
+
+    result.add('${tabs()}};');
+
+    return result.join('\n');
+  }
+
+  String _generateFromJson(List<DataVariableComponent> variables, String name) {
+    final result = <String>[
+      '\n${tabs()}factory $name.fromJson(Map<String, dynamic> json) => $name(',
+    ];
+
+    for (final variable in variables) {
+      if (variable.type is SwaggerVariable) {
+        result.add(
+          "${tabs(2)}${variable.name}: json['${variable.name}'],",
+        );
+      } else if (variable.type is SwaggerReference) {
+        final reference = variable.type as SwaggerReference;
+        result.add(
+          "${tabs(2)}${variable.name}: $reference.fromJson(json['${variable.name}']),",
+        );
+      } else if (variable.type is SwaggerArray) {
+        final itemType = (variable.type as SwaggerArray).itemType.type;
+
+        if (itemType is SwaggerVariable) {
+          result.add(
+            "${tabs(2)}${variable.name}: json['${variable.name}'],",
+          );
+        } else if (itemType is SwaggerReference) {
+          result.add(
+            "${tabs(2)}${variable.name}: (json['${variable.name}'] as List<Map<String, dynamic>>).map($itemType.fromJson).toList(),",
+          );
+        }
+      }
+    }
+
+    result.add('${tabs()});');
+
+    return result.join('\n');
   }
 }

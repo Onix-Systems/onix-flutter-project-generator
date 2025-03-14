@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
@@ -21,7 +22,7 @@ class ClassFromJsonView extends StatelessWidget {
           constraints: BoxConstraints(
             maxHeight: MediaQuery.sizeOf(context).height * 0.8,
             minWidth: MediaQuery.sizeOf(context).width * 0.5,
-            maxWidth: MediaQuery.sizeOf(context).width * 0.5,
+            maxWidth: MediaQuery.sizeOf(context).width * 0.8,
           ),
           decoration: BoxDecoration(
             color: context.appColors.darkColor,
@@ -50,7 +51,10 @@ class ClassFromJsonView extends StatelessWidget {
                     ClipboardData(text: result),
                   );
                   if (context.mounted) {
-                    Navigator.of(context).pop();
+                    showToast(
+                      S.of(context).copyToClipboardSuccess,
+                      context: context,
+                    );
                   }
                 },
                 rightButtonOnPressed: Navigator.of(context).pop,
