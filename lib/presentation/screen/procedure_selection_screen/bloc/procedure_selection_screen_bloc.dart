@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/enum/dart_types.dart';
+import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
@@ -326,9 +327,9 @@ signingConfigs {
 
       final result = [
         'class ${name ?? 'GeneratedClass'} {',
-        ...fields.map((e) => '${tabs()}${e.type}? ${e.name};'),
+        ...fields.map((e) => '${tabs()}final ${e.type} ${e.name};'),
         '\n${tabs()}${'${name ?? 'GeneratedClass'} ({'}',
-        ...fields.map((e) => '${tabs(2)}this.${e.name},'),
+        ...fields.map((e) => '${tabs(2)}required this.${e.name},'),
         '${tabs()}});',
         _generateToJson(fields),
         _generateFromJson(fields, name ?? 'GeneratedClass'),
@@ -385,7 +386,7 @@ signingConfigs {
         );
       } else if (variable.type is SwaggerReference) {
         result.add(
-          "${tabs(2)}'${variable.name}': ${variable.name}?.toJson(),",
+          "${tabs(2)}'${variable.name}': ${variable.name}.toJson(),",
         );
       } else if (variable.type is SwaggerArray) {
         final itemType = (variable.type as SwaggerArray).itemType.type;
@@ -396,7 +397,7 @@ signingConfigs {
           );
         } else if (itemType is SwaggerReference) {
           result.add(
-            "${tabs(2)}'${variable.name}': ${variable.name}?.map((e) => e.toJson()).toList(),",
+            "${tabs(2)}'${variable.name}': ${variable.name}.map((e) => e.toJson()).toList(),",
           );
         }
       }
@@ -414,20 +415,22 @@ signingConfigs {
 
     for (final variable in variables) {
       if (variable.type is SwaggerVariable) {
+        final type = (variable.type as SwaggerVariable).type;
+
         result.add(
-          "${tabs(2)}${variable.name}: json['${variable.name}'],",
+          "${tabs(2)}${variable.name}: json['${variable.name}'] as ${type.toSwaggerDartType()},",
         );
       } else if (variable.type is SwaggerReference) {
         final reference = variable.type as SwaggerReference;
         result.add(
-          "${tabs(2)}${variable.name}: $reference.fromJson(json['${variable.name}']),",
+          "${tabs(2)}${variable.name}: $reference.fromJson(json['${variable.name}'] as Map<String, dynamic>),",
         );
       } else if (variable.type is SwaggerArray) {
         final itemType = (variable.type as SwaggerArray).itemType.type;
 
         if (itemType is SwaggerVariable) {
           result.add(
-            "${tabs(2)}${variable.name}: json['${variable.name}'],",
+            "${tabs(2)}${variable.name}: json['${variable.name}'] as List<${itemType.type.toSwaggerDartType()}>,",
           );
         } else if (itemType is SwaggerReference) {
           result.add(
