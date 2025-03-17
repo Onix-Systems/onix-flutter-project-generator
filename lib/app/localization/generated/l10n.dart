@@ -1690,6 +1690,16 @@ class S {
     );
   }
 
+  /// `Modify request`
+  String get modifyRequest {
+    return Intl.message(
+      'Modify request',
+      name: 'modifyRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add {type} params`
   String addParams(Object type) {
     return Intl.message(

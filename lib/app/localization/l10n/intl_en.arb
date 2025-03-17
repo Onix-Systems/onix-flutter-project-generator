@@ -164,6 +164,7 @@
   "variableName": "Variable name",
   "path": "Path",
   "addRequest": "Add request",
+  "modifyRequest": "Modify request",
   "addParams": "Add {type} params",
   "editParams": "Edit {type} params",
   "addParam": "Add param",

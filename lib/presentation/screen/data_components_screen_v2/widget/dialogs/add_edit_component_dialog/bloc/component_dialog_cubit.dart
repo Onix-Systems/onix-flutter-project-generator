@@ -219,10 +219,15 @@ class ComponentDialogCubit
         }
 
         final value = parsed[key];
+        var valueType = value.runtimeType.toString();
+
+        if (value is List) {
+          valueType = value.first.runtimeType.toString();
+        }
 
         fields.add(
           _createVariable(
-            value.runtimeType.toString(),
+            valueType,
             key,
             true,
             value is List,

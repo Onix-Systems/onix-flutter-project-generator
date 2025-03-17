@@ -84,6 +84,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
     _pathController.text = widget.request?.path ?? '';
     _idController.text = widget.request?.operationId ?? '';
     _responseIsList = widget.request?.response.type is SwaggerArray;
+    _requestType = widget.request?.type ?? SwaggerPathRequestType.get;
   }
 
   @override
@@ -111,7 +112,9 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          S.of(context).addRequest,
+                          widget.request != null
+                              ? S.of(context).modifyRequest
+                              : S.of(context).addRequest,
                           style: context.appTextStyles.fs18,
                         ),
                         const Gap(20),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
+import 'package:onix_flutter_bricks/app/util/formatters/path_formatter.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class PathField extends StatelessWidget {
@@ -27,6 +29,7 @@ class PathField extends StatelessWidget {
           onChanged: (_) => onChanged(),
           inputFormatters: const [
             FirstCharacterNotDigitFormatter(),
+            PathFormatter(),
           ],
           decoration: InputDecoration(
             hintText: S.of(context).path,

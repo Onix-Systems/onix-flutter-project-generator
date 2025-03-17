@@ -51,29 +51,38 @@ class _DeleteRequestDialogState extends State<DeleteRequestDialog> {
                 thickness: 0.2,
               ),
             if (widget.requestBodyComponentName != null)
-              LabeledCheckbox(
-                label: S.of(context).deleteConcreteComponent(
-                      widget.requestBodyComponentName!,
-                    ),
-                initialValue: _deleteRequestBodyComponent,
-                onAction: () {
-                  setState(() {
-                    _deleteRequestBodyComponent = !_deleteRequestBodyComponent;
-                  });
-                },
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: LabeledCheckbox(
+                  label: S.of(context).deleteConcreteComponent(
+                        widget.requestBodyComponentName!,
+                      ),
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  initialValue: _deleteRequestBodyComponent,
+                  onAction: () {
+                    setState(() {
+                      _deleteRequestBodyComponent =
+                          !_deleteRequestBodyComponent;
+                    });
+                  },
+                ),
               ),
             if (widget.responseComponentName != null &&
                 widget.responseComponentName != 'OperationStatus')
-              LabeledCheckbox(
-                label: S.of(context).deleteConcreteComponent(
-                      widget.requestBodyComponentName!,
-                    ),
-                initialValue: _deleteResponseComponent,
-                onAction: () {
-                  setState(() {
-                    _deleteResponseComponent = !_deleteResponseComponent;
-                  });
-                },
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: LabeledCheckbox(
+                  label: S.of(context).deleteConcreteComponent(
+                        widget.responseComponentName!,
+                      ),
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  initialValue: _deleteResponseComponent,
+                  onAction: () {
+                    setState(() {
+                      _deleteResponseComponent = !_deleteResponseComponent;
+                    });
+                  },
+                ),
               ),
             const Gap(10),
             DialogActionButtons(

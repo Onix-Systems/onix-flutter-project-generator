@@ -105,7 +105,9 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
           children: [
             const Gap(20),
             Text(
-              S.of(context).addComponent,
+              widget.component != null
+                  ? S.of(context).modifyComponent
+                  : S.of(context).addComponent,
               style: context.appTextStyles.fs18,
             ),
             const Gap(20),
@@ -133,7 +135,8 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                             ),
                           ],
                         ),
-                        if (!widget.requestComponent)
+                        if (!(widget.requestComponent ||
+                            widget.component != null))
                           SwitchWithLabel(
                             label: 'Enum',
                             initialValue: isEnum,

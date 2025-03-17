@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
+import 'package:onix_flutter_bricks/app/util/formatters/method_name_formatter.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class OperationIdField extends StatelessWidget {
@@ -19,6 +20,7 @@ class OperationIdField extends StatelessWidget {
       onChanged: (_) => onChanged(),
       inputFormatters: const [
         FirstCharacterNotDigitFormatter(),
+        MethodNameFormatter(),
       ],
       decoration: InputDecoration(
         hintText: 'OperationId',

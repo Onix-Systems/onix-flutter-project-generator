@@ -200,6 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Modify component"),
         "modifyGeneratedProject": m10,
+        "modifyRequest": MessageLookupByLibrary.simpleMessage("Modify request"),
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Modify signing vars..."),

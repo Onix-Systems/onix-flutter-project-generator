@@ -43,7 +43,7 @@ class RequestItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        request.operationId,
+                        '${request.type.name.toUpperCase()} ${request.operationId}',
                         style: TextStyle(
                           color: context.appColors.textColor,
                           fontSize: 16,
