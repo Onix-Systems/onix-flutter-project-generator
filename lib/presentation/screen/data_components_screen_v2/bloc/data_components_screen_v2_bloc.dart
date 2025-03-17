@@ -93,7 +93,11 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       );
 
     final sourceComponentObjects = components.dataObjects
-        .where((element) => sourceComponents.contains(element.name))
+        .where(
+          (element) =>
+              sourceComponents.contains(element.name) ||
+              sourceComponents.contains('List<${element.name}>'),
+        )
         .toList(growable: true);
 
     final result = <DataObjectComponent>[...sourceComponentObjects];

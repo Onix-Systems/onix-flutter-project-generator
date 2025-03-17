@@ -52,7 +52,7 @@ class RequestsSection extends StatelessWidget {
   ObjectView? findObject(SwaggerType? type) {
     if (type is SwaggerArray) {
       final object = objects.firstWhereOrNull(
-        (element) => element.name == type.from,
+        (element) => element.name == type.itemType.name,
       );
 
       return object;
