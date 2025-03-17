@@ -217,6 +217,12 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       );
     }
 
+    if (_isSourceRequestExists(sourceName, requestComponent)) {
+      return const Result.error(
+        failure: SwaggerParserFailureRequestAlreadyExists(''),
+      );
+    }
+
     final sourceIndex = _components.sources.indexWhere(
       (element) => element.name == sourceName,
     );
@@ -625,6 +631,20 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     return _components.sources.any(
       (element) => element.name == sourceName,
     );
+  }
+
+  bool _isSourceRequestExists(
+    String sourceName,
+    RequestComponent request,
+  ) {
+    return _components.sources
+        .firstWhere(
+          (source) => source.name == sourceName,
+        )
+        .requests
+        .any(
+          (element) => element.equals(request),
+        );
   }
 
   @override

@@ -257,6 +257,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Not a Flutter Project"),
         "replace": MessageLookupByLibrary.simpleMessage("Replace"),
         "request": MessageLookupByLibrary.simpleMessage("Request"),
+        "requestAlreadyExistsError":
+            MessageLookupByLibrary.simpleMessage("Such request already exists"),
         "requestBodyMultipartConflict": MessageLookupByLibrary.simpleMessage(
             "You\'ve added both body data and multipart body data. Multipart body data will be generated but ignored in request call."),
         "response": MessageLookupByLibrary.simpleMessage("Response"),

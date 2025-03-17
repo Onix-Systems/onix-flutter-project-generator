@@ -122,6 +122,7 @@ void registerBloc(GetIt getIt) {
         addDataObjectComponentUseCase: GetIt.I.get<AddComponentUseCase>(),
         editDataObjectComponentUseCase: GetIt.I.get<EditComponentUseCase>(),
         getSwaggerComponentsUseCase: GetIt.I.get<GetSwaggerComponentsUseCase>(),
+        isComponentExistsUseCase: GetIt.I.get<IsComponentExistsUseCase>(),
       ),
     )
     ..registerFactory<AddRequestDialogCubit>(

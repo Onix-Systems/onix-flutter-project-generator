@@ -1929,6 +1929,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Such request already exists`
+  String get requestAlreadyExistsError {
+    return Intl.message(
+      'Such request already exists',
+      name: 'requestAlreadyExistsError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

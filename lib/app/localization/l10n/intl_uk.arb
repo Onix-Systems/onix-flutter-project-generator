@@ -187,5 +187,6 @@
   "pasteJsonHere": "Вставте JSON сюди",
   "generateFromJson": "Згенерувати класи з JSON",
   "copyToClipboard": "Зкопіювати в буфер",
-  "copyToClipboardSuccess": "Зкопійовано в буфер"
+  "copyToClipboardSuccess": "Зкопійовано в буфер",
+  "requestAlreadyExistsError": "Такий запит вже існує"
 }

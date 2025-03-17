@@ -14,6 +14,7 @@ import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_models.dart';
 import 'package:recase/recase.dart';
 
@@ -22,14 +23,17 @@ class ComponentDialogCubit
   final AddComponentUseCase _addDataObjectComponentUseCase;
   final EditComponentUseCase _editDataObjectComponentUseCase;
   final GetSwaggerComponentsUseCase _getSwaggerComponentsUseCase;
+  final IsComponentExistsUseCase _isComponentExistsUseCase;
 
   ComponentDialogCubit({
     required AddComponentUseCase addDataObjectComponentUseCase,
     required EditComponentUseCase editDataObjectComponentUseCase,
     required GetSwaggerComponentsUseCase getSwaggerComponentsUseCase,
+    required IsComponentExistsUseCase isComponentExistsUseCase,
   })  : _addDataObjectComponentUseCase = addDataObjectComponentUseCase,
         _editDataObjectComponentUseCase = editDataObjectComponentUseCase,
         _getSwaggerComponentsUseCase = getSwaggerComponentsUseCase,
+        _isComponentExistsUseCase = isComponentExistsUseCase,
         super(const ComponentDialogState());
 
   void init({
@@ -191,6 +195,12 @@ class ComponentDialogCubit
     }
 
     if (dataObject == null) return null;
+
+    final componentExists = _isComponentExistsUseCase(name);
+
+    if (!componentExists) {
+      return dataObject;
+    }
 
     final result = _editDataObjectComponentUseCase(
       oldName: component.name,

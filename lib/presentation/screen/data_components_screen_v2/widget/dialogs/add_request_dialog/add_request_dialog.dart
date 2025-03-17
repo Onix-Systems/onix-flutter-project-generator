@@ -200,9 +200,6 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                   _responseIsList = !_responseIsList;
                                 });
                               },
-                              disabled: state.responseComponent != null &&
-                                  state.responseComponent ==
-                                      state.tempResponseComponent,
                             ),
                             Expanded(
                               child: AddComponentRow(
@@ -222,9 +219,6 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                   isList: _responseIsList,
                                 ),
                                 onComponentCreated: (value) {
-                                  setState(() {
-                                    _responseIsList = false;
-                                  });
                                   cubitOf(context).addResponse(
                                     name: value.name,
                                     responseComponent: value,

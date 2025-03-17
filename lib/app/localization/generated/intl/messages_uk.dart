@@ -264,6 +264,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Не папка з проектом Flutter"),
         "replace": MessageLookupByLibrary.simpleMessage("Замінити"),
         "request": MessageLookupByLibrary.simpleMessage("Запит"),
+        "requestAlreadyExistsError":
+            MessageLookupByLibrary.simpleMessage("Такий запит вже існує"),
         "requestBodyMultipartConflict": MessageLookupByLibrary.simpleMessage(
             "Ви додали одночасно body і multipart body. Multipart body буде згенеровано, але проігноровано у запиті."),
         "response": MessageLookupByLibrary.simpleMessage("Відповідь"),
