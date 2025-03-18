@@ -31,7 +31,6 @@ class ClassFromJsonDialogCubit
     }
 
     final parsed = parsedResult.data;
-
     final classes = parsed.sublist(1);
 
     final result = <String>[

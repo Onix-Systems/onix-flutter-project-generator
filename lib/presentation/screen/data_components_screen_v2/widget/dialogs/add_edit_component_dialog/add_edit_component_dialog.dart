@@ -6,6 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
@@ -252,18 +253,39 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                 leftButtonOnPressed: () async {
                   Component? component;
 
-                  if (widget.component != null) {
-                    component =
-                        cubitOf(context).editDataObject(name: _controller.text);
-                  } else {
-                    component = cubitOf(context).addDataObject(
-                      name: _controller.text,
-                      isEnum: isEnum,
-                      addToRepository: !widget.requestComponent,
+                  var addChildren = false;
+
+                  if (state.children.isNotEmpty) {
+                    await Dialogs.showOkCancelDialog(
+                      context: context,
+                      title: S.of(context).addChildren,
+                      content: Text(
+                        S.of(context).addChildrenContent(
+                              state.children.map(
+                                (e) => e.getClassName(DataFileType.entity),
+                              ),
+                            ),
+                      ),
+                      onOk: () => addChildren = true,
                     );
                   }
-                  if (component != null && context.mounted) {
-                    Navigator.of(context).pop(component);
+
+                  if (context.mounted) {
+                    if (widget.component != null) {
+                      component = cubitOf(context).editDataObject(
+                        name: _controller.text,
+                      );
+                    } else {
+                      component = cubitOf(context).addDataObject(
+                        name: _controller.text,
+                        isEnum: isEnum,
+                        addToRepository: !widget.requestComponent,
+                        addChildren: addChildren,
+                      );
+                    }
+                    if (component != null) {
+                      Navigator.of(context).pop(component);
+                    }
                   }
                 },
                 rightButtonOnPressed: () {

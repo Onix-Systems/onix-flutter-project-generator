@@ -188,5 +188,7 @@
   "generateFromJson": "Згенерувати класи з JSON",
   "copyToClipboard": "Зкопіювати в буфер",
   "copyToClipboardSuccess": "Зкопійовано в буфер",
-  "requestAlreadyExistsError": "Такий запит вже існує"
+  "requestAlreadyExistsError": "Такий запит вже існує",
+  "addChildren": "Додати залежності?",
+  "addChildrenContent": "Клас залежить від {children} котрих ще не існує.\nЗгенерувати їх?"
 }

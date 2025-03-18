@@ -20,38 +20,43 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(type) => "Add ${type} params";
+  static String m0(children) =>
+      "Class depends on ${children} that do not exist.\nGenerate them?";
 
-  static String m1(componentName) => "${componentName} already exists";
+  static String m1(type) => "Add ${type} params";
 
-  static String m2(variant) =>
+  static String m2(componentName) => "${componentName} already exists";
+
+  static String m3(variant) =>
       "Changing state manager will change ... to ${variant}. Are you sure you want to continue?";
 
-  static String m3(componentName) => "${componentName} component preview";
+  static String m4(componentName) => "${componentName} component preview";
 
-  static String m4(componentName) =>
+  static String m5(componentName) =>
       "Data component ${componentName} already exists";
 
-  static String m5(sourceName) => " in ${sourceName} source";
+  static String m6(sourceName) => " in ${sourceName} source";
 
-  static String m6(componentName) =>
+  static String m7(componentName) =>
       "Do you really want to delete component ${componentName}? This will also delete referenced variables in all data objects.";
 
-  static String m7(name) => "Delete ${name} component?";
+  static String m8(name) => "Delete ${name} component?";
 
-  static String m8(duplicates) => "Duplicates found:\n${duplicates}";
+  static String m9(duplicates) => "Duplicates found:\n${duplicates}";
 
-  static String m9(type) => "Edit ${type} params";
+  static String m10(type) => "Edit ${type} params";
 
-  static String m10(projectName) => "Modify ${projectName}";
+  static String m11(projectName) => "Modify ${projectName}";
 
-  static String m11(sourceName) =>
+  static String m12(sourceName) =>
       "Do you really want to delete source ${sourceName}?";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
+        "addChildren": MessageLookupByLibrary.simpleMessage("Add children?"),
+        "addChildrenContent": m0,
         "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
         "addDataComponents":
             MessageLookupByLibrary.simpleMessage("Data Components"),
@@ -61,14 +66,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "addParam": MessageLookupByLibrary.simpleMessage("Add param"),
         "addParamFailureTitle":
             MessageLookupByLibrary.simpleMessage("Failed to add param"),
-        "addParams": m0,
+        "addParams": m1,
         "addRequest": MessageLookupByLibrary.simpleMessage("Add request"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),
         "addSource": MessageLookupByLibrary.simpleMessage("Add source"),
         "addVariable": MessageLookupByLibrary.simpleMessage("Add variable"),
         "addVariableFailureTitle":
             MessageLookupByLibrary.simpleMessage("Failed to add variable"),
-        "alreadyExistsError": m1,
+        "alreadyExistsError": m2,
         "alsoReadThis": MessageLookupByLibrary.simpleMessage("Also read this"),
         "apiFailureNoNetwork": MessageLookupByLibrary.simpleMessage(
             "Sorry, we\'re having trouble connecting. Please check your internet connection and try again.\n\nReach out to support if you continue to experience issues."),
@@ -81,7 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "changeStateManagerError": MessageLookupByLibrary.simpleMessage(
             "Change state manager warning"),
-        "changeStateManagerErrorContent": m2,
+        "changeStateManagerErrorContent": m3,
         "checkNamesContentFirstPart":
             MessageLookupByLibrary.simpleMessage("Is project name\n"),
         "checkNamesContentLastPart":
@@ -97,7 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "componentName": MessageLookupByLibrary.simpleMessage("Component name"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Component name"),
-        "componentPreview": m3,
+        "componentPreview": m4,
         "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
         "copyToClipboard":
             MessageLookupByLibrary.simpleMessage("Copy to clipboard"),
@@ -108,21 +113,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "createResponseCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Create response?"),
         "dataComponent": MessageLookupByLibrary.simpleMessage("Data component"),
-        "dataComponentExistsError": m4,
-        "dataComponentExistsInSource": m5,
+        "dataComponentExistsError": m5,
+        "dataComponentExistsInSource": m6,
         "dataComponents":
             MessageLookupByLibrary.simpleMessage("Data components"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "deleteComponent":
             MessageLookupByLibrary.simpleMessage("Delete component?"),
-        "deleteComponentConfirmation": m6,
-        "deleteConcreteComponent": m7,
+        "deleteComponentConfirmation": m7,
+        "deleteConcreteComponent": m8,
         "deleteRequest": MessageLookupByLibrary.simpleMessage("Delete request"),
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
-        "duplicatesFoundError": m8,
+        "duplicatesFoundError": m9,
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
-        "editParams": m9,
+        "editParams": m10,
         "empty": MessageLookupByLibrary.simpleMessage("Empty"),
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
             "Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator"),
@@ -199,7 +204,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Modify"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Modify component"),
-        "modifyGeneratedProject": m10,
+        "modifyGeneratedProject": m11,
         "modifyRequest": MessageLookupByLibrary.simpleMessage("Modify request"),
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
@@ -293,7 +298,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signingToolTitle": MessageLookupByLibrary.simpleMessage(
             "Android signing configuration"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
-        "sourceDeletingDialogTitle": m11,
+        "sourceDeletingDialogTitle": m12,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),
         "sourceNotFound":

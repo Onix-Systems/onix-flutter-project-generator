@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/util/enum/dart_types.dart';
@@ -11,6 +9,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/data_variable_compon
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/json_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
+import 'package:onix_flutter_bricks/domain/service/json_parser/json_parser.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
@@ -85,7 +84,7 @@ class ComponentDialogCubit
     bool isRequired = false,
     bool isList = false,
   }) {
-    if (_hasDuplicates(name)) {
+    if (_hasDuplicates(name: name)) {
       return;
     }
 
@@ -105,7 +104,7 @@ class ComponentDialogCubit
     bool isRequired = false,
     bool isList = false,
   }) {
-    if (state.variables[index].name != name && _hasDuplicates(name)) {
+    if (state.variables[index].name != name && _hasDuplicates(name: name)) {
       return;
     }
 
@@ -133,6 +132,7 @@ class ComponentDialogCubit
     required String name,
     bool isEnum = false,
     bool addToRepository = true,
+    bool addChildren = false,
   }) {
     Component? dataObject;
 
@@ -157,14 +157,22 @@ class ComponentDialogCubit
     }
 
     if (addToRepository) {
-      final result = _addDataObjectComponentUseCase(component: dataObject);
+      final componentsToAdd = [
+        dataObject,
+      ];
 
-      if (result.isError) {
-        onFailure(result.error.failure);
-        return null;
+      if (addChildren) {
+        componentsToAdd.addAll(state.children);
       }
 
-      addSr(const ComponentDialogSR.success());
+      for (final component in componentsToAdd) {
+        final result = _addDataObjectComponentUseCase(component: component);
+
+        if (result.isError) {
+          onFailure(result.error.failure);
+          return null;
+        }
+      }
     }
 
     return dataObject;
@@ -212,42 +220,41 @@ class ComponentDialogCubit
       return null;
     }
 
-    addSr(const ComponentDialogSR.success());
-
     return dataObject;
   }
 
   void addFromJson({required String json}) {
     try {
-      final parsed = jsonDecode(json) as Map<String, dynamic>;
+      final parsedResult = JsonParser.parseJson(json, state.component?.name);
 
-      final fields = <DataVariableComponent>[];
-
-      for (final key in parsed.keys) {
-        if (_hasDuplicates(key)) {
-          return;
-        }
-
-        final value = parsed[key];
-        var valueType = value.runtimeType.toString();
-
-        if (value is List) {
-          valueType = value.first.runtimeType.toString();
-        }
-
-        fields.add(
-          _createVariable(
-            valueType,
-            key,
-            true,
-            value is List,
+      if (parsedResult.isError) {
+        onFailure(
+          JsonParserFailure(
+            e: (parsedResult.error.failure as JsonParserFailure).e,
           ),
         );
+        return;
+      }
+
+      final parsed = parsedResult.data;
+
+      final children = parsed.sublist(1);
+
+      if (children.isNotEmpty) {
+        for (final child in children) {
+          final exists = _hasDuplicates(name: child.name, showFailure: false) ||
+              _isComponentExistsUseCase(child.name);
+
+          if (exists) {
+            children.remove(child);
+          }
+        }
       }
 
       emit(
         state.copyWith(
-          variables: [...state.variables, ...fields],
+          variables: [...state.variables, ...parsed.first.variables],
+          children: children,
         ),
       );
     } catch (e) {
@@ -291,7 +298,7 @@ class ComponentDialogCubit
       variableType is SwaggerReference &&
       state.components!.enums.any((e) => e.name == variableType.getName());
 
-  bool _hasDuplicates(String name) {
+  bool _hasDuplicates({required String name, bool showFailure = true}) {
     if (state.variables
         .any((element) => element.name.toUpperCase() == name.toUpperCase())) {
       final existingName = state.variables
@@ -299,7 +306,9 @@ class ComponentDialogCubit
             (element) => element.name.toUpperCase() == name.toUpperCase(),
           )
           .name;
-      onFailure(SwaggerParserFailureAlreadyExists(existingName));
+      if (showFailure) {
+        onFailure(SwaggerParserFailureAlreadyExists(existingName));
+      }
       return true;
     }
     return false;

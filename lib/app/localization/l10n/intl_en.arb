@@ -188,5 +188,7 @@
   "generateFromJson": "Generate classes from JSON",
   "copyToClipboard": "Copy to clipboard",
   "copyToClipboardSuccess": "Copied to clipboard",
-  "requestAlreadyExistsError": "Such request already exists"
+  "requestAlreadyExistsError": "Such request already exists",
+  "addChildren": "Add children?",
+  "addChildrenContent": "Class depends on {children} that do not exist.\nGenerate them?"
 }

@@ -15,172 +15,13 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ComponentDialogSR {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ComponentDialogSRSuccess value) success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ComponentDialogSRSuccess value)? success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ComponentDialogSRSuccess value)? success,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ComponentDialogSRCopyWith<$Res> {
-  factory $ComponentDialogSRCopyWith(
-          ComponentDialogSR value, $Res Function(ComponentDialogSR) then) =
-      _$ComponentDialogSRCopyWithImpl<$Res, ComponentDialogSR>;
-}
-
-/// @nodoc
-class _$ComponentDialogSRCopyWithImpl<$Res, $Val extends ComponentDialogSR>
-    implements $ComponentDialogSRCopyWith<$Res> {
-  _$ComponentDialogSRCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ComponentDialogSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$ComponentDialogSRSuccessImplCopyWith<$Res> {
-  factory _$$ComponentDialogSRSuccessImplCopyWith(
-          _$ComponentDialogSRSuccessImpl value,
-          $Res Function(_$ComponentDialogSRSuccessImpl) then) =
-      __$$ComponentDialogSRSuccessImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ComponentDialogSRSuccessImplCopyWithImpl<$Res>
-    extends _$ComponentDialogSRCopyWithImpl<$Res,
-        _$ComponentDialogSRSuccessImpl>
-    implements _$$ComponentDialogSRSuccessImplCopyWith<$Res> {
-  __$$ComponentDialogSRSuccessImplCopyWithImpl(
-      _$ComponentDialogSRSuccessImpl _value,
-      $Res Function(_$ComponentDialogSRSuccessImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ComponentDialogSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ComponentDialogSRSuccessImpl implements _ComponentDialogSRSuccess {
-  const _$ComponentDialogSRSuccessImpl();
-
-  @override
-  String toString() {
-    return 'ComponentDialogSR.success()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ComponentDialogSRSuccessImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() success,
-  }) {
-    return success();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? success,
-  }) {
-    return success?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ComponentDialogSRSuccess value) success,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ComponentDialogSRSuccess value)? success,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ComponentDialogSRSuccess value)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ComponentDialogSRSuccess implements ComponentDialogSR {
-  const factory _ComponentDialogSRSuccess() = _$ComponentDialogSRSuccessImpl;
-}
-
-/// @nodoc
 mixin _$ComponentDialogState {
   Component? get component => throw _privateConstructorUsedError;
   Components? get components => throw _privateConstructorUsedError;
   List<String> get componentNames => throw _privateConstructorUsedError;
   List<DataVariableComponent> get variables =>
       throw _privateConstructorUsedError;
+  List<DataObjectComponent> get children => throw _privateConstructorUsedError;
 
   /// Create a copy of ComponentDialogState
   /// with the given fields replaced by the non-null parameter values.
@@ -199,7 +40,8 @@ abstract class $ComponentDialogStateCopyWith<$Res> {
       {Component? component,
       Components? components,
       List<String> componentNames,
-      List<DataVariableComponent> variables});
+      List<DataVariableComponent> variables,
+      List<DataObjectComponent> children});
 
   $ComponentsCopyWith<$Res>? get components;
 }
@@ -224,6 +66,7 @@ class _$ComponentDialogStateCopyWithImpl<$Res,
     Object? components = freezed,
     Object? componentNames = null,
     Object? variables = null,
+    Object? children = null,
   }) {
     return _then(_value.copyWith(
       component: freezed == component
@@ -242,6 +85,10 @@ class _$ComponentDialogStateCopyWithImpl<$Res,
           ? _value.variables
           : variables // ignore: cast_nullable_to_non_nullable
               as List<DataVariableComponent>,
+      children: null == children
+          ? _value.children
+          : children // ignore: cast_nullable_to_non_nullable
+              as List<DataObjectComponent>,
     ) as $Val);
   }
 
@@ -272,7 +119,8 @@ abstract class _$$ComponentDialogStateImplCopyWith<$Res>
       {Component? component,
       Components? components,
       List<String> componentNames,
-      List<DataVariableComponent> variables});
+      List<DataVariableComponent> variables,
+      List<DataObjectComponent> children});
 
   @override
   $ComponentsCopyWith<$Res>? get components;
@@ -295,6 +143,7 @@ class __$$ComponentDialogStateImplCopyWithImpl<$Res>
     Object? components = freezed,
     Object? componentNames = null,
     Object? variables = null,
+    Object? children = null,
   }) {
     return _then(_$ComponentDialogStateImpl(
       component: freezed == component
@@ -313,6 +162,10 @@ class __$$ComponentDialogStateImplCopyWithImpl<$Res>
           ? _value._variables
           : variables // ignore: cast_nullable_to_non_nullable
               as List<DataVariableComponent>,
+      children: null == children
+          ? _value._children
+          : children // ignore: cast_nullable_to_non_nullable
+              as List<DataObjectComponent>,
     ));
   }
 }
@@ -324,9 +177,11 @@ class _$ComponentDialogStateImpl implements _ComponentDialogState {
       {this.component,
       this.components,
       final List<String> componentNames = const [],
-      final List<DataVariableComponent> variables = const []})
+      final List<DataVariableComponent> variables = const [],
+      final List<DataObjectComponent> children = const []})
       : _componentNames = componentNames,
-        _variables = variables;
+        _variables = variables,
+        _children = children;
 
   @override
   final Component? component;
@@ -350,9 +205,18 @@ class _$ComponentDialogStateImpl implements _ComponentDialogState {
     return EqualUnmodifiableListView(_variables);
   }
 
+  final List<DataObjectComponent> _children;
+  @override
+  @JsonKey()
+  List<DataObjectComponent> get children {
+    if (_children is EqualUnmodifiableListView) return _children;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_children);
+  }
+
   @override
   String toString() {
-    return 'ComponentDialogState(component: $component, components: $components, componentNames: $componentNames, variables: $variables)';
+    return 'ComponentDialogState(component: $component, components: $components, componentNames: $componentNames, variables: $variables, children: $children)';
   }
 
   @override
@@ -367,7 +231,8 @@ class _$ComponentDialogStateImpl implements _ComponentDialogState {
             const DeepCollectionEquality()
                 .equals(other._componentNames, _componentNames) &&
             const DeepCollectionEquality()
-                .equals(other._variables, _variables));
+                .equals(other._variables, _variables) &&
+            const DeepCollectionEquality().equals(other._children, _children));
   }
 
   @override
@@ -376,7 +241,8 @@ class _$ComponentDialogStateImpl implements _ComponentDialogState {
       component,
       components,
       const DeepCollectionEquality().hash(_componentNames),
-      const DeepCollectionEquality().hash(_variables));
+      const DeepCollectionEquality().hash(_variables),
+      const DeepCollectionEquality().hash(_children));
 
   /// Create a copy of ComponentDialogState
   /// with the given fields replaced by the non-null parameter values.
@@ -391,11 +257,11 @@ class _$ComponentDialogStateImpl implements _ComponentDialogState {
 
 abstract class _ComponentDialogState implements ComponentDialogState {
   const factory _ComponentDialogState(
-          {final Component? component,
-          final Components? components,
-          final List<String> componentNames,
-          final List<DataVariableComponent> variables}) =
-      _$ComponentDialogStateImpl;
+      {final Component? component,
+      final Components? components,
+      final List<String> componentNames,
+      final List<DataVariableComponent> variables,
+      final List<DataObjectComponent> children}) = _$ComponentDialogStateImpl;
 
   @override
   Component? get component;
@@ -405,6 +271,8 @@ abstract class _ComponentDialogState implements ComponentDialogState {
   List<String> get componentNames;
   @override
   List<DataVariableComponent> get variables;
+  @override
+  List<DataObjectComponent> get children;
 
   /// Create a copy of ComponentDialogState
   /// with the given fields replaced by the non-null parameter values.

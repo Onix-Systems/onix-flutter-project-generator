@@ -1939,6 +1939,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Add children?`
+  String get addChildren {
+    return Intl.message(
+      'Add children?',
+      name: 'addChildren',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Class depends on {children} that do not exist.\nGenerate them?`
+  String addChildrenContent(Object children) {
+    return Intl.message(
+      'Class depends on $children that do not exist.\nGenerate them?',
+      name: 'addChildrenContent',
+      desc: '',
+      args: [children],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
