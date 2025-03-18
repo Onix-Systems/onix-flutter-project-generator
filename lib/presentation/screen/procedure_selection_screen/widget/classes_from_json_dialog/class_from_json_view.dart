@@ -3,20 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:gap/gap.dart';
-import 'package:get_it/get_it.dart';
-import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/pascal_case_formatter.dart';
-import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/classes_from_json_dialog/bloc/class_from_json_view_imports.dart';
+import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/classes_from_json_dialog/bloc/class_from_json_dialog_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
 
 class ClassFromJsonView extends StatefulWidget {
-  final String json;
+  final Stream<ClassFromJsonDialogSR> srStream;
+  final String generatedCode;
+  final ValueChanged<String> onClassNameChange;
 
   const ClassFromJsonView({
-    required this.json,
+    required this.srStream,
+    required this.generatedCode,
+    required this.onClassNameChange,
     super.key,
   });
 
@@ -24,28 +26,12 @@ class ClassFromJsonView extends StatefulWidget {
   State<ClassFromJsonView> createState() => _ClassFromJsonViewState();
 }
 
-class _ClassFromJsonViewState extends BaseCubitState<ClassFromJsonViewState,
-    ClassFromJsonViewCubit, ClassFromJsonViewSR, ClassFromJsonView> {
+class _ClassFromJsonViewState extends State<ClassFromJsonView> {
   final _classNameController = TextEditingController();
+  var _generatedCode = '';
 
   @override
-  ClassFromJsonViewCubit createCubit() => GetIt.I.get<ClassFromJsonViewCubit>();
-
-  @override
-  void onCubitCreated(BuildContext context, ClassFromJsonViewCubit cubit) {
-    super.onCubitCreated(context, cubit);
-
-    cubit.init(widget.json);
-
-    _classNameController.addListener(() {
-      if (_classNameController.text != cubit.state.className) {
-        cubit.onClassNameChange(_classNameController.text);
-      }
-    });
-  }
-
-  @override
-  Widget buildWidget(BuildContext context) {
+  Widget build(BuildContext context) {
     return Center(
       child: Material(
         color: Colors.transparent,
@@ -59,61 +45,65 @@ class _ClassFromJsonViewState extends BaseCubitState<ClassFromJsonViewState,
             color: context.appColors.darkColor,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: blocBuilder(
-            builder: (context, state) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: SizedBox.expand(
-                        child: Column(
-                          children: [
-                            CupertinoTextField(
-                              controller: _classNameController,
-                              style: context.appTextStyles.fs18,
-                              placeholder: 'GeneratedClass',
-                              inputFormatters: [
-                                const PascalCaseFormatter(),
-                                const FirstCharacterNotDigitFormatter(),
-                                FilteringTextInputFormatter.allow(
-                                  RegExp('[a-zA-Z0-9]'),
-                                ),
-                              ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: SizedBox.expand(
+                    child: Column(
+                      children: [
+                        CupertinoTextField(
+                          controller: _classNameController,
+                          style: context.appTextStyles.fs18,
+                          placeholder: 'GeneratedClass',
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                              RegExp('[a-zA-Z0-9]'),
                             ),
-                            const Gap(10),
-                            Expanded(
-                              child: SelectableText(
-                                state.generatedCode,
+                            const PascalCaseFormatter(),
+                            const FirstCharacterNotDigitFormatter(),
+                          ],
+                          onChanged: widget.onClassNameChange,
+                        ),
+                        const Gap(10),
+                        Expanded(
+                          child: StreamBuilder<ClassFromJsonDialogSR>(
+                            stream: widget.srStream,
+                            builder: (context, snapshot) {
+                              _generatedCode = snapshot.data?.generatedCode ??
+                                  widget.generatedCode;
+                              return SelectableText(
+                                _generatedCode,
                                 textAlign: TextAlign.start,
                                 style: context.appTextStyles.fs18,
-                              ),
-                            ),
-                          ],
+                              );
+                            },
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
-                  DialogActionButtons(
-                    leftButtonLabel: S.of(context).copyToClipboard,
-                    rightButtonLabel: S.of(context).cancel,
-                    leftButtonOnPressed: () async {
-                      await Clipboard.setData(
-                        ClipboardData(text: widget.json),
-                      );
-                      if (context.mounted) {
-                        showToast(
-                          S.of(context).copyToClipboardSuccess,
-                          context: context,
-                        );
-                      }
-                    },
-                    rightButtonOnPressed: Navigator.of(context).pop,
-                  ),
-                ],
-              );
-            },
+                ),
+              ),
+              DialogActionButtons(
+                leftButtonLabel: S.of(context).copyToClipboard,
+                rightButtonLabel: S.of(context).cancel,
+                leftButtonOnPressed: () async {
+                  await Clipboard.setData(
+                    ClipboardData(text: _generatedCode),
+                  );
+                  if (context.mounted) {
+                    showToast(
+                      S.of(context).copyToClipboardSuccess,
+                      context: context,
+                    );
+                  }
+                },
+                rightButtonOnPressed: Navigator.of(context).pop,
+              ),
+            ],
           ),
         ),
       ),

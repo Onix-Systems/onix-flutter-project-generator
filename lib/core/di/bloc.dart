@@ -39,7 +39,7 @@ import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/bloc/platforms_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc.dart';
-import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/classes_from_json_dialog/bloc/class_from_json_view_cubit.dart';
+import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/classes_from_json_dialog/bloc/class_from_json_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc.dart';
@@ -141,5 +141,5 @@ void registerBloc(GetIt getIt) {
         getSwaggerComponentsUseCase: GetIt.I.get<GetSwaggerComponentsUseCase>(),
       ),
     )
-    ..registerFactory<ClassFromJsonViewCubit>(ClassFromJsonViewCubit.new);
+    ..registerFactory<ClassFromJsonDialogCubit>(ClassFromJsonDialogCubit.new);
 }

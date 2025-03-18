@@ -58,7 +58,7 @@ class _PasteJsonDialogState extends State<PasteJsonDialog> {
                     Navigator.of(context).pop(_controller.text),
                 rightButtonOnPressed: () => Navigator.of(context).pop(),
                 isLeftButtonActive: _controller.text.isNotEmpty,
-              )
+              ),
             ],
           ),
         ),
