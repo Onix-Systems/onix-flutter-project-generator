@@ -94,7 +94,18 @@ class ObjectItem extends StatelessWidget {
                                 )
                               : Text(
                                   '${e.type.getTypeDeclaration(DataFileType.none)} '
-                                  '${e.name.camelCase}'),
+                                  '${e.name.camelCase}',
+                                  style: TextStyle(
+                                    color: e.type
+                                            .getTypeDeclaration(
+                                              DataFileType.none,
+                                            )
+                                            .contains('UndefinedValue')
+                                        ? context.appColors.alarmColor
+                                        : context.appColors.textColor,
+                                    fontSize: 14,
+                                  ),
+                                ),
                         )
                         .toList(),
                   ),

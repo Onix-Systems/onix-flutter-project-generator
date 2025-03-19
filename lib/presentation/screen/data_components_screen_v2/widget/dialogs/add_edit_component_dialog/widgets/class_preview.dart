@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:recase/recase.dart';
@@ -46,7 +47,15 @@ class ClassPreview extends StatelessWidget {
                               child: Text(
                                 '${isEnum ? '' : '${variable.type} '}${variable.name}${isEnum ? ',' : ';'}',
                                 maxLines: 2,
-                                style: context.appTextStyles.fs18,
+                                style: context.appTextStyles.fs18?.copyWith(
+                                  color: variable.type
+                                          .getTypeDeclaration(
+                                            DataFileType.none,
+                                          )
+                                          .contains('UndefinedValue')
+                                      ? context.appColors.alarmColor
+                                      : context.appColors.textColor,
+                                ),
                               ),
                             ),
                           ),
@@ -80,7 +89,7 @@ class ClassPreview extends StatelessWidget {
                     .toList(),
               ),
             ] else
-              SizedBox(),
+              const SizedBox(),
             if (variables.isNotEmpty)
               Text(
                 '}',

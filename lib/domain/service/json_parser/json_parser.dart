@@ -21,28 +21,15 @@ class JsonParser {
 
       final children = <DataObjectComponent>{};
 
-      if (parsed.isEmpty) {
-        final result = DataObjectComponent(
-          name: 'UndefinedValue',
-          fileReference: SwaggerReference('UndefinedValue'),
-          variables: [
-            DataVariableComponent(
-              name: 'value',
-              type: SwaggerVariable('integer'),
-              isRequired: false,
-            ),
-          ],
-          fromSwagger: false,
-        );
-
-        return Result.success([result]);
-      }
+      final resultName = name?.pascalCase ?? 'GeneratedClass';
 
       for (final key in parsed.keys) {
         final value = parsed[key];
         var valueType = value.runtimeType.toString();
 
-        if (value == null) {
+        if (value == null ||
+            (value is Map && value.isEmpty) ||
+            (value is List && value.isEmpty)) {
           valueType = 'UndefinedValue';
 
           children.add(
@@ -87,8 +74,6 @@ class JsonParser {
           ),
         );
       }
-
-      final resultName = name?.pascalCase ?? 'GeneratedClass';
 
       final component = DataObjectComponent(
         name: resultName,

@@ -105,40 +105,11 @@ class AddRequestDialogCubit
 
     if (state.bodyComponent != null) {
       componentsToCreate.add(state.bodyComponent!);
-      // final componentExists = _isComponentExistsUseCase(
-      //   state.bodyComponent!.name,
-      // );
-      //
-      // if (!componentExists) {
-      //   final addBodyComponentResult = _addComponentUseCase(
-      //     component: state.bodyComponent!,
-      //   );
-      //
-      //   if (addBodyComponentResult.isError) {
-      //     onFailure(addBodyComponentResult.error.failure);
-      //     return;
-      //   }
-      // }
     }
 
     if (state.responseComponent != null &&
         state.responseComponent != state.bodyComponent) {
       componentsToCreate.add(state.responseComponent!);
-
-      // final componentExists = _isComponentExistsUseCase(
-      //   state.responseComponent!.name,
-      // );
-      //
-      // if (!componentExists) {
-      //   final addResponseComponentResult = _addComponentUseCase(
-      //     component: state.responseComponent!,
-      //   );
-      //
-      //   if (addResponseComponentResult.isError) {
-      //     onFailure(addResponseComponentResult.error.failure);
-      //     return;
-      //   }
-      // }
     }
 
     for (final component in componentsToCreate) {
