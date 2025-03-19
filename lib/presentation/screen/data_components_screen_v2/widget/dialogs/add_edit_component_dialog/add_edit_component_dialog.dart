@@ -67,7 +67,7 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
 
       final message = swaggerParserFailure
           ? failure.getTranslatedMessage(context)
-          : (failure as JsonParserFailure).e.toString();
+          : (failure as JsonParserFailure).getMessage(context);
 
       Dialogs.showOkDialog(
         context: context,
@@ -122,6 +122,7 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                 spacing: 20,
                 children: [
                   Expanded(
+                    flex: 2,
                     child: Column(
                       spacing: 20,
                       children: [
@@ -202,6 +203,7 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                     ),
                   ),
                   Expanded(
+                    flex: 3,
                     child: blocBuilder(
                       builder: (context, state) {
                         return ConstrainedBox(

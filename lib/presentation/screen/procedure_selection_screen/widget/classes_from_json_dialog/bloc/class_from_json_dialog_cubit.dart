@@ -1,5 +1,5 @@
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
-import 'package:onix_flutter_bricks/domain/entity/failure/json_parser_failure.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/service/json_parser/json_parser.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/classes_from_json_dialog/bloc/class_from_json_dialog_models.dart';
 
@@ -23,9 +23,7 @@ class ClassFromJsonDialogCubit
 
     if (parsedResult.isError) {
       onFailure(
-        JsonParserFailure(
-          e: (parsedResult.error.failure as JsonParserFailure).e,
-        ),
+        parsedResult.error.failure,
       );
       return '';
     }
@@ -33,9 +31,17 @@ class ClassFromJsonDialogCubit
     final parsed = parsedResult.data;
     final classes = parsed.sublist(1);
 
+    final filteredClasses = <DataObjectComponent>{};
+
+    for (final clazz in classes) {
+      if (!filteredClasses.any((e) => e.name == clazz.name)) {
+        filteredClasses.add(clazz);
+      }
+    }
+
     final result = <String>[
       parsed.first.basicObjectBody,
-      ...classes.map((e) => e.basicObjectBody),
+      ...filteredClasses.map((e) => e.basicObjectBody),
     ];
 
     return result.join('\n');

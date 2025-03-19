@@ -162,7 +162,11 @@ class ComponentDialogCubit
       ];
 
       if (addChildren) {
-        componentsToAdd.addAll(state.children);
+        for (final child in state.children) {
+          if (!componentsToAdd.any((e) => e.name == child.name)) {
+            componentsToAdd.add(child);
+          }
+        }
       }
 
       for (final component in componentsToAdd) {
@@ -229,9 +233,7 @@ class ComponentDialogCubit
 
       if (parsedResult.isError) {
         onFailure(
-          JsonParserFailure(
-            e: (parsedResult.error.failure as JsonParserFailure).e,
-          ),
+          parsedResult.error.failure,
         );
         return;
       }
@@ -260,7 +262,7 @@ class ComponentDialogCubit
         ),
       );
     } catch (e) {
-      onFailure(JsonParserFailure(e: e as Exception));
+      onFailure(JsonParserFailure(failureText: e.toString()));
     }
   }
 

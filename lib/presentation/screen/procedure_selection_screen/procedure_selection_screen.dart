@@ -144,7 +144,7 @@ class _ProcedureSelectionScreenState extends BaseState<
         isError: true,
         title: S.of(context).error,
         content: Text(
-          failure.e.toString(),
+          failure.getMessage(context),
           style: context.appTextStyles.fs18?.copyWith(
             fontSize: 16,
           ),

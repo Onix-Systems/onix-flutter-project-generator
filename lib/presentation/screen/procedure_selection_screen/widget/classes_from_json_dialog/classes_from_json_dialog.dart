@@ -35,7 +35,7 @@ class _ClassesFromJsonDialogState extends BaseCubitState<
   void onFailure(BuildContext context, Failure failure) {
     super.onFailure(context, failure);
     if (failure is JsonParserFailure) {
-      final message = failure.e.toString();
+      final message = failure.getMessage(context);
 
       Dialogs.showOkDialog(
         context: context,

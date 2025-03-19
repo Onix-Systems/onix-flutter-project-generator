@@ -45,9 +45,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m10(type) => "Редагувати ${type} параметри";
 
-  static String m11(projectName) => "Змінити ${projectName}";
+  static String m11(name) =>
+      "Значення \'${name}\' порожнє. Видаліть \'${name}\' або додайте значення.";
 
-  static String m12(sourceName) =>
+  static String m12(projectName) => "Змінити ${projectName}";
+
+  static String m13(sourceName) =>
       "Дійсно хочете видалити джерело ${sourceName}?";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -198,6 +201,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Інтегрувати GraphQL?"),
         "integrateSentry":
             MessageLookupByLibrary.simpleMessage("Інтегрувати Sentry?"),
+        "jsonParserEmptyValueFailure": m11,
         "keyStorePasswordPlaceholder": MessageLookupByLibrary.simpleMessage(
             "Залиште пустим для автогенерації..."),
         "keystorePassword":
@@ -211,7 +215,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Змінити"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Змінити компонент"),
-        "modifyGeneratedProject": m11,
+        "modifyGeneratedProject": m12,
         "modifyRequest": MessageLookupByLibrary.simpleMessage("Змінити запит"),
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Змінити екран"),
         "modifySigningVars":
@@ -305,7 +309,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signingToolTitle":
             MessageLookupByLibrary.simpleMessage("Сертифікат підпису Android"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Дані підпису"),
-        "sourceDeletingDialogTitle": m12,
+        "sourceDeletingDialogTitle": m13,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Назва джерела"),
         "sourceNotFound":

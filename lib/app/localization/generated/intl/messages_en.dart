@@ -46,9 +46,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m10(type) => "Edit ${type} params";
 
-  static String m11(projectName) => "Modify ${projectName}";
+  static String m11(name) =>
+      "Value of \'${name}\' is empty. Either remove \'${name}\' or add value.";
 
-  static String m12(sourceName) =>
+  static String m12(projectName) => "Modify ${projectName}";
+
+  static String m13(sourceName) =>
       "Do you really want to delete source ${sourceName}?";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -191,6 +194,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Integrate GraphQL?"),
         "integrateSentry":
             MessageLookupByLibrary.simpleMessage("Integrate Sentry?"),
+        "jsonParserEmptyValueFailure": m11,
         "keyStorePasswordPlaceholder":
             MessageLookupByLibrary.simpleMessage("Leave blank to auto-gen..."),
         "keystorePassword":
@@ -204,7 +208,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Modify"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Modify component"),
-        "modifyGeneratedProject": m11,
+        "modifyGeneratedProject": m12,
         "modifyRequest": MessageLookupByLibrary.simpleMessage("Modify request"),
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
@@ -298,7 +302,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signingToolTitle": MessageLookupByLibrary.simpleMessage(
             "Android signing configuration"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
-        "sourceDeletingDialogTitle": m12,
+        "sourceDeletingDialogTitle": m13,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),
         "sourceNotFound":

@@ -1959,6 +1959,16 @@ class S {
       args: [children],
     );
   }
+
+  /// `Value of '{name}' is empty. Either remove '{name}' or add value.`
+  String jsonParserEmptyValueFailure(Object name) {
+    return Intl.message(
+      'Value of \'$name\' is empty. Either remove \'$name\' or add value.',
+      name: 'jsonParserEmptyValueFailure',
+      desc: '',
+      args: [name],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

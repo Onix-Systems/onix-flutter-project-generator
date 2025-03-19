@@ -40,14 +40,16 @@ class ClassPreview extends StatelessWidget {
                     .map(
                       (variable) => Row(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Text(
-                              '${isEnum ? '' : '${variable.type} '}${variable.name}${isEnum ? ',' : ';'}',
-                              style: context.appTextStyles.fs18,
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Text(
+                                '${isEnum ? '' : '${variable.type} '}${variable.name}${isEnum ? ',' : ';'}',
+                                maxLines: 2,
+                                style: context.appTextStyles.fs18,
+                              ),
                             ),
                           ),
-                          const Spacer(),
                           IconButton(
                             onPressed: () {
                               onEdit(variable);

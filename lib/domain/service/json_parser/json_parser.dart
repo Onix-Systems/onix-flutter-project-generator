@@ -22,20 +22,46 @@ class JsonParser {
       final children = <DataObjectComponent>{};
 
       if (parsed.isEmpty) {
-        return Result.error(
-          failure: JsonParserFailure(
-            e: Exception('Empty json'),
-          ),
+        final result = DataObjectComponent(
+          name: 'UndefinedValue',
+          fileReference: SwaggerReference('UndefinedValue'),
+          variables: [
+            DataVariableComponent(
+              name: 'value',
+              type: SwaggerVariable('integer'),
+              isRequired: false,
+            ),
+          ],
+          fromSwagger: false,
         );
+
+        return Result.success([result]);
       }
 
       for (final key in parsed.keys) {
         final value = parsed[key];
         var valueType = value.runtimeType.toString();
 
-        if (value is Map<String, dynamic> ||
+        if (value == null) {
+          valueType = 'UndefinedValue';
+
+          children.add(
+            DataObjectComponent(
+              name: valueType,
+              fileReference: SwaggerReference(valueType),
+              variables: [
+                DataVariableComponent(
+                  name: 'value',
+                  type: SwaggerVariable('integer'),
+                  isRequired: false,
+                ),
+              ],
+              fromSwagger: false,
+            ),
+          );
+        } else if (value is Map<String, dynamic> ||
             (value is List && value.first is Map<String, dynamic>)) {
-          valueType = key.pascalCase;
+          valueType = key;
           final newClassResult = parseJson(
             jsonEncode(value is List ? value.first : value),
             valueType,
@@ -62,7 +88,7 @@ class JsonParser {
         );
       }
 
-      final resultName = name ?? 'GeneratedClass';
+      final resultName = name?.pascalCase ?? 'GeneratedClass';
 
       final component = DataObjectComponent(
         name: resultName,
@@ -73,7 +99,11 @@ class JsonParser {
 
       return Result.success([component, ...children]);
     } catch (e) {
-      return Result.error(failure: JsonParserFailure(e: e as Exception));
+      return Result.error(
+        failure: JsonParserFailure(
+          failureText: e.toString(),
+        ),
+      );
     }
   }
 
