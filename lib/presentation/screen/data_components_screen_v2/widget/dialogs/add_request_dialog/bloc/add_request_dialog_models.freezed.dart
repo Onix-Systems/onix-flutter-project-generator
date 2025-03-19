@@ -179,6 +179,7 @@ mixin _$AddRequestDialogState {
   RequestComponent get request => throw _privateConstructorUsedError;
   String get sourceName => throw _privateConstructorUsedError;
   List<String> get components => throw _privateConstructorUsedError;
+  Set<DataObjectComponent> get children => throw _privateConstructorUsedError;
   Component? get bodyComponent => throw _privateConstructorUsedError;
   Component? get tempBodyComponent => throw _privateConstructorUsedError;
   Component? get responseComponent => throw _privateConstructorUsedError;
@@ -201,6 +202,7 @@ abstract class $AddRequestDialogStateCopyWith<$Res> {
       {RequestComponent request,
       String sourceName,
       List<String> components,
+      Set<DataObjectComponent> children,
       Component? bodyComponent,
       Component? tempBodyComponent,
       Component? responseComponent,
@@ -228,6 +230,7 @@ class _$AddRequestDialogStateCopyWithImpl<$Res,
     Object? request = null,
     Object? sourceName = null,
     Object? components = null,
+    Object? children = null,
     Object? bodyComponent = freezed,
     Object? tempBodyComponent = freezed,
     Object? responseComponent = freezed,
@@ -246,6 +249,10 @@ class _$AddRequestDialogStateCopyWithImpl<$Res,
           ? _value.components
           : components // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      children: null == children
+          ? _value.children
+          : children // ignore: cast_nullable_to_non_nullable
+              as Set<DataObjectComponent>,
       bodyComponent: freezed == bodyComponent
           ? _value.bodyComponent
           : bodyComponent // ignore: cast_nullable_to_non_nullable
@@ -289,6 +296,7 @@ abstract class _$$AddRequestDialogStateImplCopyWith<$Res>
       {RequestComponent request,
       String sourceName,
       List<String> components,
+      Set<DataObjectComponent> children,
       Component? bodyComponent,
       Component? tempBodyComponent,
       Component? responseComponent,
@@ -315,6 +323,7 @@ class __$$AddRequestDialogStateImplCopyWithImpl<$Res>
     Object? request = null,
     Object? sourceName = null,
     Object? components = null,
+    Object? children = null,
     Object? bodyComponent = freezed,
     Object? tempBodyComponent = freezed,
     Object? responseComponent = freezed,
@@ -333,6 +342,10 @@ class __$$AddRequestDialogStateImplCopyWithImpl<$Res>
           ? _value._components
           : components // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      children: null == children
+          ? _value._children
+          : children // ignore: cast_nullable_to_non_nullable
+              as Set<DataObjectComponent>,
       bodyComponent: freezed == bodyComponent
           ? _value.bodyComponent
           : bodyComponent // ignore: cast_nullable_to_non_nullable
@@ -360,11 +373,13 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
       {required this.request,
       this.sourceName = '',
       final List<String> components = const [],
+      final Set<DataObjectComponent> children = const {},
       this.bodyComponent,
       this.tempBodyComponent,
       this.responseComponent,
       this.tempResponseComponent})
-      : _components = components;
+      : _components = components,
+        _children = children;
 
   @override
   final RequestComponent request;
@@ -380,6 +395,15 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
     return EqualUnmodifiableListView(_components);
   }
 
+  final Set<DataObjectComponent> _children;
+  @override
+  @JsonKey()
+  Set<DataObjectComponent> get children {
+    if (_children is EqualUnmodifiableSetView) return _children;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_children);
+  }
+
   @override
   final Component? bodyComponent;
   @override
@@ -391,7 +415,7 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
 
   @override
   String toString() {
-    return 'AddRequestDialogState(request: $request, sourceName: $sourceName, components: $components, bodyComponent: $bodyComponent, tempBodyComponent: $tempBodyComponent, responseComponent: $responseComponent, tempResponseComponent: $tempResponseComponent)';
+    return 'AddRequestDialogState(request: $request, sourceName: $sourceName, components: $components, children: $children, bodyComponent: $bodyComponent, tempBodyComponent: $tempBodyComponent, responseComponent: $responseComponent, tempResponseComponent: $tempResponseComponent)';
   }
 
   @override
@@ -404,6 +428,7 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
                 other.sourceName == sourceName) &&
             const DeepCollectionEquality()
                 .equals(other._components, _components) &&
+            const DeepCollectionEquality().equals(other._children, _children) &&
             (identical(other.bodyComponent, bodyComponent) ||
                 other.bodyComponent == bodyComponent) &&
             (identical(other.tempBodyComponent, tempBodyComponent) ||
@@ -420,6 +445,7 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
       request,
       sourceName,
       const DeepCollectionEquality().hash(_components),
+      const DeepCollectionEquality().hash(_children),
       bodyComponent,
       tempBodyComponent,
       responseComponent,
@@ -440,6 +466,7 @@ abstract class _AddRequestDialogState implements AddRequestDialogState {
       {required final RequestComponent request,
       final String sourceName,
       final List<String> components,
+      final Set<DataObjectComponent> children,
       final Component? bodyComponent,
       final Component? tempBodyComponent,
       final Component? responseComponent,
@@ -451,6 +478,8 @@ abstract class _AddRequestDialogState implements AddRequestDialogState {
   String get sourceName;
   @override
   List<String> get components;
+  @override
+  Set<DataObjectComponent> get children;
   @override
   Component? get bodyComponent;
   @override

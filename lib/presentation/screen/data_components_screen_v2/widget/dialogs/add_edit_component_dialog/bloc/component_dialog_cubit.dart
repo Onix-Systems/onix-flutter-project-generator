@@ -238,15 +238,17 @@ class ComponentDialogCubit
 
       final parsed = parsedResult.data;
 
-      final children = parsed.sublist(1);
+      final parsedChildren = parsed.sublist(1);
 
-      if (children.isNotEmpty) {
-        for (final child in children) {
+      final children = <DataObjectComponent>{};
+
+      if (parsedChildren.isNotEmpty) {
+        for (final child in parsedChildren) {
           final exists = _hasDuplicates(name: child.name, showFailure: false) ||
               _isComponentExistsUseCase(child.name);
 
-          if (exists) {
-            children.remove(child);
+          if (!exists) {
+            children.add(child);
           }
         }
       }
@@ -254,7 +256,7 @@ class ComponentDialogCubit
       emit(
         state.copyWith(
           variables: [...state.variables, ...parsed.first.variables],
-          children: children,
+          children: children.toList(),
         ),
       );
     } catch (e) {

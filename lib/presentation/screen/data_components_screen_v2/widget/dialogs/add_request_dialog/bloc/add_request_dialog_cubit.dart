@@ -3,6 +3,7 @@ import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_param_component.dart';
@@ -100,36 +101,58 @@ class AddRequestDialogCubit
       return;
     }
 
+    final componentsToCreate = <Component>[...state.children];
+
     if (state.bodyComponent != null) {
-      final componentExists = _isComponentExistsUseCase(
-        state.bodyComponent!.name,
-      );
-
-      if (!componentExists) {
-        final addBodyComponentResult = _addComponentUseCase(
-          component: state.bodyComponent!,
-        );
-
-        if (addBodyComponentResult.isError) {
-          onFailure(addBodyComponentResult.error.failure);
-          return;
-        }
-      }
+      componentsToCreate.add(state.bodyComponent!);
+      // final componentExists = _isComponentExistsUseCase(
+      //   state.bodyComponent!.name,
+      // );
+      //
+      // if (!componentExists) {
+      //   final addBodyComponentResult = _addComponentUseCase(
+      //     component: state.bodyComponent!,
+      //   );
+      //
+      //   if (addBodyComponentResult.isError) {
+      //     onFailure(addBodyComponentResult.error.failure);
+      //     return;
+      //   }
+      // }
     }
 
     if (state.responseComponent != null &&
         state.responseComponent != state.bodyComponent) {
+      componentsToCreate.add(state.responseComponent!);
+
+      // final componentExists = _isComponentExistsUseCase(
+      //   state.responseComponent!.name,
+      // );
+      //
+      // if (!componentExists) {
+      //   final addResponseComponentResult = _addComponentUseCase(
+      //     component: state.responseComponent!,
+      //   );
+      //
+      //   if (addResponseComponentResult.isError) {
+      //     onFailure(addResponseComponentResult.error.failure);
+      //     return;
+      //   }
+      // }
+    }
+
+    for (final component in componentsToCreate) {
       final componentExists = _isComponentExistsUseCase(
-        state.responseComponent!.name,
+        component.name,
       );
 
       if (!componentExists) {
-        final addResponseComponentResult = _addComponentUseCase(
-          component: state.responseComponent!,
+        final addComponentResult = _addComponentUseCase(
+          component: component,
         );
 
-        if (addResponseComponentResult.isError) {
-          onFailure(addResponseComponentResult.error.failure);
+        if (addComponentResult.isError) {
+          onFailure(addComponentResult.error.failure);
           return;
         }
       }
@@ -306,6 +329,14 @@ class AddRequestDialogCubit
     emit(
       state.copyWith(
         request: state.request.copyWith(queryParams: []),
+      ),
+    );
+  }
+
+  void addChildren(List<DataObjectComponent> children) {
+    emit(
+      state.copyWith(
+        children: children.toSet(),
       ),
     );
   }

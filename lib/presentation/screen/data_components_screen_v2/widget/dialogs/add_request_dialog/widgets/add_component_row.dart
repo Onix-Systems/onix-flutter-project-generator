@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/add_edit_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_models.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -16,6 +17,7 @@ class AddComponentRow extends StatefulWidget {
   final Component? editComponent;
   final ValueChanged<String> onComponentSelected;
   final ValueChanged<Component> onComponentCreated;
+  final ValueChanged<List<DataObjectComponent>>? onChildrenPass;
   final bool body;
 
   const AddComponentRow({
@@ -26,6 +28,7 @@ class AddComponentRow extends StatefulWidget {
     required this.body,
     this.selectedComponentName,
     this.editComponent,
+    this.onChildrenPass,
     super.key,
   });
 
@@ -146,6 +149,7 @@ class _AddComponentRowState extends State<AddComponentRow> {
                   name: widget.componentName,
                   requestComponent: true,
                   component: widget.editComponent,
+                  onChildrenPass: widget.onChildrenPass,
                 );
               },
             ).then((value) {

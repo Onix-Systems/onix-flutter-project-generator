@@ -9,6 +9,7 @@ import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/json_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
@@ -28,11 +29,13 @@ class AddEditComponentDialog extends StatefulWidget {
   final Component? component;
   final String? name;
   final bool requestComponent;
+  final ValueChanged<List<DataObjectComponent>>? onChildrenPass;
 
   const AddEditComponentDialog({
     this.component,
     this.name,
     this.requestComponent = false,
+    this.onChildrenPass,
     super.key,
   });
 
@@ -268,6 +271,10 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                       ),
                       onOk: () => addChildren = true,
                     );
+                  }
+
+                  if (addChildren) {
+                    widget.onChildrenPass?.call(state.children);
                   }
 
                   if (context.mounted) {

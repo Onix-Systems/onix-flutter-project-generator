@@ -188,6 +188,8 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                             name: value.name,
                             bodyComponent: value,
                           ),
+                          onChildrenPass: (children) =>
+                              cubitOf(context).addChildren(children),
                         ),
                         const Gap(10),
                         Row(
