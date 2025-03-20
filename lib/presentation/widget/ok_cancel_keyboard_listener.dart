@@ -5,7 +5,7 @@ class OkCancelKeyboardListener extends StatelessWidget {
   final Widget child;
   final VoidCallback? onOk;
   final VoidCallback? onCancel;
-  final bool needToPop;
+  final bool mustPop;
   final dynamic okValue;
   final dynamic cancelValue;
   final FocusNode? focusNode;
@@ -14,7 +14,7 @@ class OkCancelKeyboardListener extends StatelessWidget {
     required this.child,
     this.onOk,
     this.onCancel,
-    this.needToPop = true,
+    this.mustPop = true,
     this.okValue,
     this.cancelValue,
     this.focusNode,
@@ -47,7 +47,7 @@ class OkCancelKeyboardListener extends StatelessWidget {
   }
 
   void pop(BuildContext context, dynamic value) {
-    if (context.mounted && needToPop) {
+    if (context.mounted && mustPop) {
       if (value != null) {
         Navigator.of(context).pop(value);
       } else {

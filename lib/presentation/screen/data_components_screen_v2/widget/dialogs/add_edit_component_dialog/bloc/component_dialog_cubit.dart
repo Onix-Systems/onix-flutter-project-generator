@@ -208,12 +208,6 @@ class ComponentDialogCubit
 
     if (dataObject == null) return null;
 
-    final componentExists = _isComponentExistsUseCase(name);
-
-    if (!componentExists) {
-      return dataObject;
-    }
-
     final result = _editDataObjectComponentUseCase(
       oldName: component.name,
       component: dataObject,

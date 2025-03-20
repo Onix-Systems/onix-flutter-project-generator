@@ -88,18 +88,26 @@ class _DeleteRequestDialogState extends State<DeleteRequestDialog> {
             DialogActionButtons(
               leftButtonLabel: S.of(context).delete,
               rightButtonLabel: S.of(context).cancel,
-              leftButtonOnPressed: () {
-                widget.onDelete(
-                  _deleteRequestBodyComponent,
-                  _deleteResponseComponent,
-                );
-                Navigator.of(context).pop();
-              },
-              rightButtonOnPressed: () => Navigator.of(context).pop(),
+              leftButtonOnPressed: () => _onOk(context),
+              rightButtonOnPressed: () => _pop(context),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _pop(BuildContext context) {
+    if (context.mounted) {
+      Navigator.of(context).pop();
+    }
+  }
+
+  void _onOk(BuildContext context) {
+    widget.onDelete(
+      _deleteRequestBodyComponent,
+      _deleteResponseComponent,
+    );
+    _pop(context);
   }
 }

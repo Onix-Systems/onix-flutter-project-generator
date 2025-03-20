@@ -44,6 +44,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
     AddRequestDialogCubit, AddRequestDialogSR, AddEditRequestDialog> {
   final TextEditingController _pathController = TextEditingController();
   final TextEditingController _idController = TextEditingController();
+  final FocusNode _mainFocusNode = FocusNode();
 
   final _autoSizeGroup = AutoSizeGroup();
 
@@ -85,6 +86,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
     _idController.text = widget.request?.operationId ?? '';
     _responseIsList = widget.request?.response.type is SwaggerArray;
     _requestType = widget.request?.type ?? SwaggerPathRequestType.get;
+    _mainFocusNode.requestFocus();
   }
 
   @override
@@ -309,28 +311,12 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                   ),
                   const Gap(20),
                   DialogActionButtons(
+                    focusNode: _mainFocusNode,
                     leftButtonLabel: S.of(context).ok,
-                    leftButtonOnPressed: () async {
-                      if (state.request.requestBody != null &&
-                          state.request.multipartBody.isNotEmpty) {
-                        await Dialogs.showOkDialog(
-                          context: context,
-                          title: S.of(context).warning,
-                          content: Text(
-                            S.of(context).requestBodyMultipartConflict,
-                          ),
-                        );
-                      }
-
-                      if (context.mounted) {
-                        _onAddRequest(context, state);
-                      }
-                    },
+                    leftButtonOnPressed: () => _onOk(context, state),
                     isLeftButtonActive: _valid(),
                     rightButtonLabel: S.of(context).cancel,
-                    rightButtonOnPressed: () {
-                      Navigator.of(context).pop();
-                    },
+                    rightButtonOnPressed: () => pop(context),
                   ),
                 ],
               ),
@@ -343,8 +329,18 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
 
   void _onSR(BuildContext context, AddRequestDialogSR sr) {
     sr.when(
-      success: () => Navigator.of(context).pop(),
+      success: () {
+        if (context.mounted) {
+          Navigator.of(context).pop();
+        }
+      },
     );
+  }
+
+  void pop(BuildContext context) {
+    if (context.mounted) {
+      Navigator.of(context).pop();
+    }
   }
 
   bool _valid() {
@@ -353,6 +349,23 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
 
   String _getComponentName(String suffix) {
     return '${_idController.text.isNotEmpty ? _idController.text : '${_requestType.name}_${_pathController.text.clearPathToName()}'.camelCase}$suffix';
+  }
+
+  Future<void> _onOk(BuildContext context, AddRequestDialogState state) async {
+    if (state.request.requestBody != null &&
+        state.request.multipartBody.isNotEmpty) {
+      await Dialogs.showOkDialog(
+        context: context,
+        title: S.of(context).warning,
+        content: Text(
+          S.of(context).requestBodyMultipartConflict,
+        ),
+      );
+    }
+
+    if (context.mounted) {
+      _onAddRequest(context, state);
+    }
   }
 
   void _onAddRequest(BuildContext context, AddRequestDialogState state) {
