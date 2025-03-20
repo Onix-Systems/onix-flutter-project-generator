@@ -23,6 +23,7 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_butto
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label.dart';
+import 'package:onix_flutter_bricks/presentation/widget/ok_cancel_keyboard_listener.dart';
 import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class AddEditComponentDialog extends StatefulWidget {
@@ -46,7 +47,10 @@ class AddEditComponentDialog extends StatefulWidget {
 class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
     ComponentDialogCubit, ComponentDialogSR, AddEditComponentDialog> {
   final TextEditingController _controller = TextEditingController();
+  final FocusNode _mainFocusNode = FocusNode();
   bool isEnum = false;
+
+  Component? component;
 
   @override
   ComponentDialogCubit createCubit() => GetIt.I.get<ComponentDialogCubit>();
@@ -175,6 +179,8 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                                   },
                                 ),
                               );
+
+                              _mainFocusNode.requestFocus();
                             },
                           ),
                         ),
@@ -252,62 +258,67 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
               thickness: 0.2,
             ),
             blocBuilder(
-              builder: (context, state) => DialogActionButtons(
-                leftButtonLabel: S.of(context).ok,
-                rightButtonLabel: S.of(context).cancel,
-                leftButtonOnPressed: () async {
-                  Component? component;
-
-                  var addChildren = false;
-
-                  if (state.children.isNotEmpty) {
-                    await Dialogs.showOkCancelDialog(
-                      context: context,
-                      title: S.of(context).addChildren,
-                      content: Text(
-                        S.of(context).addChildrenContent(
-                              state.children.map(
-                                (e) => e.getClassName(DataFileType.entity),
-                              ),
-                            ),
-                      ),
-                      onOk: () => addChildren = true,
-                    );
-                  }
-
-                  if (addChildren) {
-                    widget.onChildrenPass?.call(state.children);
-                  }
-
-                  if (context.mounted) {
-                    if (widget.component != null) {
-                      component = cubitOf(context).editDataObject(
-                        name: _controller.text,
-                      );
-                    } else {
-                      component = cubitOf(context).addDataObject(
-                        name: _controller.text,
-                        isEnum: isEnum,
-                        addToRepository: !widget.requestComponent,
-                        addChildren: addChildren,
-                      );
-                    }
-                    if (component != null) {
-                      Navigator.of(context).pop(component);
-                    }
-                  }
-                },
-                rightButtonOnPressed: () {
-                  Navigator.of(context).pop();
-                },
-                isLeftButtonActive:
-                    _controller.text.isNotEmpty && state.variables.isNotEmpty,
+              builder: (context, state) => OkCancelKeyboardListener(
+                focusNode: _mainFocusNode,
+                needToPop: false,
+                onOk: () => _onOk(context, state),
+                child: DialogActionButtons(
+                  leftButtonLabel: S.of(context).ok,
+                  rightButtonLabel: S.of(context).cancel,
+                  leftButtonOnPressed: () => _onOk(context, state),
+                  rightButtonOnPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  isLeftButtonActive:
+                      _controller.text.isNotEmpty && state.variables.isNotEmpty,
+                ),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _onOk(BuildContext context, ComponentDialogState state) async {
+    var addChildren = false;
+
+    if (state.children.isNotEmpty) {
+      await Dialogs.showOkCancelDialog(
+        context: context,
+        title: S.of(context).addChildren,
+        content: Text(
+          S.of(context).addChildrenContent(
+                state.children.map(
+                  (e) => e.getClassName(DataFileType.entity),
+                ),
+              ),
+        ),
+        onOk: () => addChildren = true,
+      );
+    }
+
+    if (addChildren) {
+      widget.onChildrenPass?.call(state.children);
+    }
+
+    if (context.mounted) {
+      if (widget.component != null) {
+        component = cubitOf(context).editDataObject(
+          name: _controller.text,
+        );
+      } else {
+        component = cubitOf(context).addDataObject(
+          name: _controller.text,
+          isEnum: isEnum,
+          addToRepository: !widget.requestComponent,
+          addChildren: addChildren,
+        );
+      }
+      if (component != null) {
+        Navigator.of(context).pop(component);
+      }
+    }
   }
 
   @override

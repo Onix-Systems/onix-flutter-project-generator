@@ -6,6 +6,7 @@ import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_d
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/bloc/data_components_screen_v2_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/bloc/data_components_screen_v2_models.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widget/ok_cancel_keyboard_listener.dart';
 
 class AddEditSourceDialog extends StatefulWidget {
   final String? sourceName;
@@ -34,21 +35,8 @@ class _AddEditSourceDialogState extends State<AddEditSourceDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Focus(
-      autofocus: true,
-      onKeyEvent: (node, event) {
-        if (HardwareKeyboard.instance
-            .isLogicalKeyPressed(LogicalKeyboardKey.enter)) {
-          onOk();
-          Navigator.of(context).pop();
-          return KeyEventResult.handled;
-        } else if (HardwareKeyboard.instance
-            .isLogicalKeyPressed(LogicalKeyboardKey.escape)) {
-          Navigator.of(context).pop();
-          return KeyEventResult.handled;
-        }
-        return KeyEventResult.ignored;
-      },
+    return OkCancelKeyboardListener(
+      onOk: onOk,
       child: CupertinoAlertDialog(
         title: Padding(
           padding: const EdgeInsets.only(bottom: 10),

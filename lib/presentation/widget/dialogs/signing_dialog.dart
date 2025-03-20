@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widget/ok_cancel_keyboard_listener.dart';
 
 class SigningDialog extends StatefulWidget {
   final List<String> signingVars;
@@ -41,19 +42,8 @@ class _SigningDialogState extends State<SigningDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Focus(
-      focusNode: FocusNode(),
-      onKeyEvent: (node, event) {
-        if (HardwareKeyboard.instance
-            .isLogicalKeyPressed(LogicalKeyboardKey.enter)) {
-          _onOk(context);
-        }
-        if (HardwareKeyboard.instance
-            .isLogicalKeyPressed(LogicalKeyboardKey.escape)) {
-          Navigator.pop(context);
-        }
-        return KeyEventResult.skipRemainingHandlers;
-      },
+    return OkCancelKeyboardListener(
+      okValue: _getVars(),
       child: CupertinoAlertDialog(
         title: Text(S.of(context).signingVars),
         content: Column(
@@ -202,7 +192,12 @@ class _SigningDialogState extends State<SigningDialog> {
         actions: <CupertinoDialogAction>[
           CupertinoDialogAction(
             isDefaultAction: true,
-            onPressed: () => _varsValid ? _onOk(context) : null,
+            onPressed: () {
+              if (_varsValid) {
+                Navigator.pop(context, _getVars());
+              }
+              return;
+            },
             textStyle: TextStyle(
               color: _varsValid
                   ? context.appColors.controlColor
@@ -266,10 +261,7 @@ class _SigningDialogState extends State<SigningDialog> {
     });
   }
 
-  void _onOk(BuildContext context) {
-    Navigator.pop(
-      context,
-      [
+  List<String> _getVars() => [
         if (_nameController.text.isNotEmpty)
           _nameController.text
         else
@@ -298,7 +290,5 @@ class _SigningDialogState extends State<SigningDialog> {
           _passwordController.text
         else
           widget.signingVars[6],
-      ],
-    );
-  }
+      ];
 }

@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
@@ -26,6 +29,8 @@ class _ClassesFromJsonDialogState extends BaseCubitState<
     ClassesFromJsonDialog> {
   final _inputController = TextEditingController();
   final _generatedCodeController = TextEditingController();
+  final StreamController<String> _inputStreamController =
+      StreamController<String>();
 
   @override
   ClassFromJsonDialogCubit createCubit() =>
@@ -83,40 +88,27 @@ class _ClassesFromJsonDialogState extends BaseCubitState<
                         controller: _inputController,
                         maxLines: 10,
                         style: context.appTextStyles.fs18,
-                        onChanged: (_) {
-                          setState(() {});
-                        },
+                        onChanged: _inputStreamController.add,
                       ),
                       const Gap(20),
                     ],
                   ),
                 ),
-                DialogActionButtons(
-                  leftButtonLabel: S.of(context).ok,
-                  rightButtonLabel: S.of(context).cancel,
-                  leftButtonOnPressed: () {
-                    if (_inputController.text.isNotEmpty && context.mounted) {
-                      final generatedCode = cubitOf(context)
-                          .generate(json: _inputController.text);
-
-                      if (generatedCode.isNotEmpty) {
-                        showCupertinoModalPopup(
-                          context: context,
-                          builder: (ctx) => ClassFromJsonView(
-                            srStream: cubitOf(context).singleResults,
-                            generatedCode: generatedCode,
-                            onClassNameChange: (name) =>
-                                cubitOf(context).generate(
-                              json: _inputController.text,
-                              className: name,
-                            ),
-                          ),
-                        );
-                      }
-                    }
+                StreamBuilder<String>(
+                  stream: _inputStreamController.stream,
+                  builder: (ctx, snapshot) {
+                    return DialogActionButtons(
+                      leftButtonLabel: S.of(context).ok,
+                      rightButtonLabel: S.of(context).cancel,
+                      leftButtonOnPressed: () => _onOk(context),
+                      rightButtonOnPressed: () {
+                        if (context.mounted) {
+                          Navigator.of(context).pop();
+                        }
+                      },
+                      isLeftButtonActive: _inputController.text.isNotEmpty,
+                    );
                   },
-                  rightButtonOnPressed: () => Navigator.of(context).pop(),
-                  isLeftButtonActive: _inputController.text.isNotEmpty,
                 ),
               ],
             ),
@@ -124,6 +116,27 @@ class _ClassesFromJsonDialogState extends BaseCubitState<
         ),
       ),
     );
+  }
+
+  void _onOk(BuildContext context) {
+    if (_inputController.text.isNotEmpty && context.mounted) {
+      final generatedCode =
+          cubitOf(context).generate(json: _inputController.text);
+
+      if (generatedCode.isNotEmpty) {
+        showCupertinoModalPopup(
+          context: context,
+          builder: (ctx) => ClassFromJsonView(
+            srStream: cubitOf(context).singleResults,
+            generatedCode: generatedCode,
+            onClassNameChange: (name) => cubitOf(context).generate(
+              json: _inputController.text,
+              className: name,
+            ),
+          ),
+        );
+      }
+    }
   }
 
   void _onSR(BuildContext context, ClassFromJsonDialogSR sr) {
@@ -135,6 +148,7 @@ class _ClassesFromJsonDialogState extends BaseCubitState<
   @override
   void dispose() {
     _inputController.dispose();
+    _inputStreamController.close();
     _generatedCodeController.dispose();
     super.dispose();
   }
