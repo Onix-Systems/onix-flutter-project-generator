@@ -29,6 +29,8 @@ class _ClassesFromJsonDialogState extends BaseCubitState<
     ClassesFromJsonDialog> {
   final _inputController = TextEditingController();
   final _generatedCodeController = TextEditingController();
+  final FocusNode _mainFocusNode = FocusNode();
+
   final StreamController<String> _inputStreamController =
       StreamController<String>();
 
@@ -37,12 +39,12 @@ class _ClassesFromJsonDialogState extends BaseCubitState<
       GetIt.I.get<ClassFromJsonDialogCubit>();
 
   @override
-  void onFailure(BuildContext context, Failure failure) {
+  Future<void> onFailure(BuildContext context, Failure failure) async {
     super.onFailure(context, failure);
     if (failure is JsonParserFailure) {
       final message = failure.getMessage(context);
 
-      Dialogs.showOkDialog(
+      await Dialogs.showOkDialog(
         context: context,
         isError: true,
         title: S.of(context).addVariableFailureTitle,
@@ -54,6 +56,8 @@ class _ClassesFromJsonDialogState extends BaseCubitState<
           ),
         ),
       );
+
+      _mainFocusNode.requestFocus();
     }
   }
 
@@ -63,54 +67,69 @@ class _ClassesFromJsonDialogState extends BaseCubitState<
       context: context,
       onSR: _onSR,
       child: Center(
-        child: Material(
-          color: Colors.transparent,
-          child: Container(
-            width: MediaQuery.sizeOf(context).width * 0.5,
-            decoration: BoxDecoration(
-              color: context.appColors.darkColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        S.of(context).pasteJsonHere,
-                        style: context.appTextStyles.fs18,
-                      ),
-                      const Gap(20),
-                      CupertinoTextField(
-                        controller: _inputController,
-                        maxLines: 10,
-                        style: context.appTextStyles.fs18,
-                        onChanged: _inputStreamController.add,
-                      ),
-                      const Gap(20),
-                    ],
+        child: Focus(
+          autofocus: true,
+          focusNode: _mainFocusNode,
+          onKeyEvent: (node, event) {
+            if (HardwareKeyboard.instance
+                .isLogicalKeyPressed(LogicalKeyboardKey.escape)) {
+              if (context.mounted) {
+                Navigator.of(context).pop();
+              }
+              return KeyEventResult.handled;
+            }
+            return KeyEventResult.ignored;
+          },
+          child: Material(
+            color: Colors.transparent,
+            child: Container(
+              width: MediaQuery.sizeOf(context).width * 0.5,
+              decoration: BoxDecoration(
+                color: context.appColors.darkColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 20, left: 20, right: 20),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          S.of(context).pasteJsonHere,
+                          style: context.appTextStyles.fs18,
+                        ),
+                        const Gap(20),
+                        CupertinoTextField(
+                          controller: _inputController,
+                          maxLines: 10,
+                          style: context.appTextStyles.fs18,
+                          onChanged: _inputStreamController.add,
+                        ),
+                        const Gap(20),
+                      ],
+                    ),
                   ),
-                ),
-                StreamBuilder<String>(
-                  stream: _inputStreamController.stream,
-                  builder: (ctx, snapshot) {
-                    return DialogActionButtons(
-                      leftButtonLabel: S.of(context).ok,
-                      rightButtonLabel: S.of(context).cancel,
-                      leftButtonOnPressed: () => _onOk(context),
-                      rightButtonOnPressed: () {
-                        if (context.mounted) {
-                          Navigator.of(context).pop();
-                        }
-                      },
-                      isLeftButtonActive: _inputController.text.isNotEmpty,
-                    );
-                  },
-                ),
-              ],
+                  StreamBuilder<String>(
+                    stream: _inputStreamController.stream,
+                    builder: (ctx, snapshot) {
+                      return DialogActionButtons(
+                        leftButtonLabel: S.of(context).ok,
+                        rightButtonLabel: S.of(context).cancel,
+                        leftButtonOnPressed: () => _onOk(context),
+                        rightButtonOnPressed: () {
+                          if (context.mounted) {
+                            Navigator.of(context).pop();
+                          }
+                        },
+                        isLeftButtonActive: _inputController.text.isNotEmpty,
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -118,13 +137,13 @@ class _ClassesFromJsonDialogState extends BaseCubitState<
     );
   }
 
-  void _onOk(BuildContext context) {
+  Future<void> _onOk(BuildContext context) async {
     if (_inputController.text.isNotEmpty && context.mounted) {
       final generatedCode =
           cubitOf(context).generate(json: _inputController.text);
 
       if (generatedCode.isNotEmpty) {
-        showCupertinoModalPopup(
+        await showCupertinoModalPopup(
           context: context,
           builder: (ctx) => ClassFromJsonView(
             srStream: cubitOf(context).singleResults,
@@ -135,6 +154,7 @@ class _ClassesFromJsonDialogState extends BaseCubitState<
             ),
           ),
         );
+        _mainFocusNode.requestFocus();
       }
     }
   }
