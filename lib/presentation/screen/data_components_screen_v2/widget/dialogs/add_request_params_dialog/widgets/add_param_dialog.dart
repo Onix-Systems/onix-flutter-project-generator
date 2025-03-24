@@ -36,6 +36,7 @@ class _AddParamDialogState<T extends RequestParamComponent>
     extends State<AddParamDialog<T>> {
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _searchController = TextEditingController();
+  final FocusNode _mainFocusNode = FocusNode();
 
   final _types = <String>[];
   var _selectedType = '';
@@ -95,6 +96,7 @@ class _AddParamDialogState<T extends RequestParamComponent>
                         initialValue: isList,
                         onAction: () {
                           setState(() {
+                            _mainFocusNode.requestFocus();
                             isList = !isList;
                           });
                         },
@@ -113,6 +115,7 @@ class _AddParamDialogState<T extends RequestParamComponent>
                         onChanged: (type) {
                           if (type != null) {
                             setState(() {
+                              _mainFocusNode.requestFocus();
                               _selectedType = type;
                             });
                           }
@@ -177,6 +180,7 @@ class _AddParamDialogState<T extends RequestParamComponent>
                         onChanged: (_) {
                           setState(() {});
                         },
+                        onSubmitted: (_) => _onOk(context),
                         inputFormatters: [
                           const FirstCharacterNotDigitFormatter(),
                           FilteringTextInputFormatter.allow(
@@ -213,26 +217,33 @@ class _AddParamDialogState<T extends RequestParamComponent>
                 thickness: 0.2,
               ),
               DialogActionButtons(
+                focusNode: _mainFocusNode,
                 leftButtonLabel: S.of(context).ok,
                 rightButtonLabel: S.of(context).cancel,
-                leftButtonOnPressed: () {
-                  widget.process(
-                    _selectedType,
-                    _controller.text,
-                    isList,
-                  );
-                  Navigator.of(context).pop();
-                },
+                leftButtonOnPressed: () => _onOk(context),
                 isLeftButtonActive: _controller.text.isNotEmpty,
-                rightButtonOnPressed: () {
-                  Navigator.of(context).pop();
-                },
+                rightButtonOnPressed: () => _pop(context),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _pop(BuildContext context) {
+    if (context.mounted) {
+      Navigator.of(context).pop();
+    }
+  }
+
+  void _onOk(BuildContext context) {
+    widget.process(
+      _selectedType,
+      _controller.text,
+      isList,
+    );
+    _pop(context);
   }
 
   @override

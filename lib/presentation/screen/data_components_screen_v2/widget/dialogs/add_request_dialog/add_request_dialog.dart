@@ -139,6 +139,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                   if (value != null &&
                                       value != _requestType.name) {
                                     setState(() {
+                                      _mainFocusNode.requestFocus();
                                       _requestType =
                                           SwaggerPathRequestType.fromString(
                                         value,
@@ -163,12 +164,14 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                     .map((e) => e.name)
                                     .toList(),
                                 onChanged: () => setState(() {}),
+                                onSubmitted: () => _onOk(context, state),
                               ),
                             ),
                             Expanded(
                               child: OperationIdField(
                                 idController: _idController,
                                 onChanged: () => setState(() {}),
+                                onSubmitted: () => _onOk(context, state),
                               ),
                             ),
                           ],
@@ -183,13 +186,17 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                               : null,
                           componentName: _getComponentName('RequestBody'),
                           selectedComponentName: state.bodyComponent?.name,
-                          onComponentSelected: (value) =>
-                              cubitOf(context).addBody(name: value),
-                          onComponentCreated: (value) =>
-                              cubitOf(context).addBody(
-                            name: value.name,
-                            bodyComponent: value,
-                          ),
+                          onComponentSelected: (value) {
+                            _mainFocusNode.requestFocus();
+                            cubitOf(context).addBody(name: value);
+                          },
+                          onComponentCreated: (value) {
+                            _mainFocusNode.requestFocus();
+                            cubitOf(context).addBody(
+                              name: value.name,
+                              bodyComponent: value,
+                            );
+                          },
                           onChildrenPass: (children) =>
                               cubitOf(context).addChildren(children),
                         ),
@@ -201,6 +208,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                               initialValue: _responseIsList,
                               onAction: () {
                                 setState(() {
+                                  _mainFocusNode.requestFocus();
                                   _responseIsList = !_responseIsList;
                                 });
                               },
@@ -217,12 +225,15 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                 componentName: _getComponentName('Response'),
                                 selectedComponentName:
                                     state.responseComponent?.name,
-                                onComponentSelected: (value) =>
-                                    cubitOf(context).addResponse(
-                                  name: value,
-                                  isList: _responseIsList,
-                                ),
+                                onComponentSelected: (value) {
+                                  _mainFocusNode.requestFocus();
+                                  cubitOf(context).addResponse(
+                                    name: value,
+                                    isList: _responseIsList,
+                                  );
+                                },
                                 onComponentCreated: (value) {
+                                  _mainFocusNode.requestFocus();
                                   cubitOf(context).addResponse(
                                     name: value.name,
                                     responseComponent: value,
@@ -253,11 +264,14 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                   ),
                                 ).then((value) {
                                   if (context.mounted && value != null) {
+                                    _mainFocusNode.requestFocus();
                                     cubitOf(context).addMultipartBody(value);
                                   }
                                 }),
-                                onDelete: () =>
-                                    cubitOf(context).removeMultipartBody(),
+                                onDelete: () {
+                                  _mainFocusNode.requestFocus();
+                                  cubitOf(context).removeMultipartBody();
+                                },
                               ),
                             ),
                             Expanded(
@@ -275,11 +289,14 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                   ),
                                 ).then((value) {
                                   if (context.mounted && value != null) {
+                                    _mainFocusNode.requestFocus();
                                     cubitOf(context).addPathParams(value);
                                   }
                                 }),
-                                onDelete: () =>
-                                    cubitOf(context).removePathParams(),
+                                onDelete: () {
+                                  _mainFocusNode.requestFocus();
+                                  cubitOf(context).removePathParams();
+                                },
                               ),
                             ),
                             Expanded(
@@ -297,11 +314,14 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
                                   ),
                                 ).then((value) {
                                   if (context.mounted && value != null) {
+                                    _mainFocusNode.requestFocus();
                                     cubitOf(context).addQueryParams(value);
                                   }
                                 }),
-                                onDelete: () =>
-                                    cubitOf(context).removeQueryParams(),
+                                onDelete: () {
+                                  _mainFocusNode.requestFocus();
+                                  cubitOf(context).removeQueryParams();
+                                },
                               ),
                             ),
                           ],

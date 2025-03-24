@@ -10,11 +10,13 @@ class PathField extends StatelessWidget {
   final TextEditingController pathController;
   final List<String> pathParams;
   final VoidCallback onChanged;
+  final VoidCallback onSubmitted;
 
   const PathField({
     required this.pathController,
     required this.pathParams,
     required this.onChanged,
+    required this.onSubmitted,
     super.key,
   });
 
@@ -27,6 +29,7 @@ class PathField extends StatelessWidget {
         TextField(
           controller: pathController,
           onChanged: (_) => onChanged(),
+          onSubmitted: (_) => onSubmitted(),
           inputFormatters: const [
             FirstCharacterNotDigitFormatter(),
             PathFormatter(),

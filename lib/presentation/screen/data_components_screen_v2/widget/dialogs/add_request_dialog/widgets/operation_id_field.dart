@@ -5,11 +5,13 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 
 class OperationIdField extends StatelessWidget {
   final VoidCallback onChanged;
+  final VoidCallback onSubmitted;
   final TextEditingController idController;
 
   const OperationIdField({
     required this.onChanged,
     required this.idController,
+    required this.onSubmitted,
     super.key,
   });
 
@@ -18,6 +20,7 @@ class OperationIdField extends StatelessWidget {
     return TextField(
       controller: idController,
       onChanged: (_) => onChanged(),
+      onSubmitted: (_) => onSubmitted(),
       inputFormatters: const [
         FirstCharacterNotDigitFormatter(),
         MethodNameFormatter(),

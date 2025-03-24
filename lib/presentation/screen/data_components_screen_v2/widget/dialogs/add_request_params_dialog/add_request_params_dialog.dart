@@ -79,7 +79,9 @@ class _AddRequestParamsDialogState<T extends RequestParamComponent>
           children: [
             const Gap(20),
             Text(
-              S.of(context).addParams(widget.paramType),
+              widget.params.isEmpty
+                  ? S.of(context).addParams(widget.paramType)
+                  : S.of(context).editParams(widget.paramType),
               style: context.appTextStyles.fs18,
             ),
             const Gap(20),
