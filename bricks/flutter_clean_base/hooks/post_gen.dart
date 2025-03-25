@@ -141,7 +141,7 @@ Future<void> getDependencies(HookContext context) async {
     'cupertino_icons',
     'dio',
     'hive_flutter',
-    'freezed_annotation:2.4.4',
+    'freezed_annotation',
     'json_annotation',
     'get_it',
     'flutter_secure_storage:^9.0.0',
@@ -159,7 +159,7 @@ Future<void> getDependencies(HookContext context) async {
   List<String> devDependencies = [
     'flutter_lints',
     'build_runner',
-    'freezed:2.5.7',
+    'freezed',
     'json_serializable',
     'import_sorter',
     'mockito',
