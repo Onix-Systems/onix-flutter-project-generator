@@ -67,7 +67,7 @@ mixin RiverpodContentMixin on ScreenGenerationService {
       ..addNewLine()
       ..add('@freezed')
       ..add(
-        'class ${screenModelName}ScreenState with '
+        'abstract class ${screenModelName}ScreenState with '
         '_\$${screenModelName}ScreenState {',
       )
       ..add('const factory ${screenModelName}ScreenState({')
