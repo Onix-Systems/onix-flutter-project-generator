@@ -6,7 +6,7 @@ class GetSwaggerComponentsUseCase {
 
   const GetSwaggerComponentsUseCase(this._swaggerRepository);
 
-  Future<Components?> call() async {
+  Components call() {
     return _swaggerRepository.components;
   }
 }

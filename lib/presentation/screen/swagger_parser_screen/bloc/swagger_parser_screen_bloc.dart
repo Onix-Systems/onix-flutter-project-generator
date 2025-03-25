@@ -32,27 +32,35 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
   ) async {
     if (event.url.isEmpty) {
       emit(state.copyWith(config: state.config.copyWith(swaggerUrl: '')));
+
       _clearSwaggerComponentsUseCase();
+
       addSr(const SwaggerParserScreenSR.onContinue());
+
       return;
     }
     showProgress();
 
-    final swaggerComponentsResult =
-        await _fetchSwaggerDataUseCase(url: event.url, arch: state.config.arch);
+    final swaggerComponentsResult = await _fetchSwaggerDataUseCase(
+      url: event.url,
+      arch: state.config.arch,
+      overwriteDuplicates: event.overwrite,
+    );
 
     await hideProgress();
-    if (swaggerComponentsResult.success) {
-      emit(
-        state.copyWith(
-          config: state.config.copyWith(
-            swaggerUrl: event.url,
+
+    swaggerComponentsResult.when(
+      success: (components) {
+        emit(
+          state.copyWith(
+            config: state.config.copyWith(
+              swaggerUrl: event.url,
+            ),
           ),
-        ),
-      );
-      addSr(const SwaggerParserScreenSR.onContinue());
-    } else {
-      addSr(const SwaggerParserScreenSR.onParseError());
-    }
+        );
+        addSr(const SwaggerParserScreenSR.onContinue());
+      },
+      error: onFailure,
+    );
   }
 }

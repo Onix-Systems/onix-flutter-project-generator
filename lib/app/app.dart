@@ -20,8 +20,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     AppRouter.init();
     return GlobalLoaderOverlay(
-      useDefaultLoading: true,
-      overlayColor: Colors.black.withOpacity(0.5),
+      overlayColor: Colors.black.withValues(alpha: 0.5),
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         builder: (context, widget) {

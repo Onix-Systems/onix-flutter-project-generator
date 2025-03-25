@@ -1130,23 +1130,33 @@ class S {
     );
   }
 
-  /// `Do you really want to delete component {componentName}?`
+  /// `Delete component?`
+  String get deleteComponent {
+    return Intl.message(
+      'Delete component?',
+      name: 'deleteComponent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete component {componentName}? This will also delete referenced variables in all data objects.`
   String deleteComponentConfirmation(Object componentName) {
     return Intl.message(
-      'Do you really want to delete component $componentName?',
+      'Do you really want to delete component $componentName? This will also delete referenced variables in all data objects.',
       name: 'deleteComponentConfirmation',
       desc: '',
       args: [componentName],
     );
   }
 
-  /// `{sourceName}Source already exists`
-  String sourceExistsError(Object sourceName) {
+  /// `{componentName} already exists`
+  String alreadyExistsError(Object componentName) {
     return Intl.message(
-      '${sourceName}Source already exists',
-      name: 'sourceExistsError',
+      '$componentName already exists',
+      name: 'alreadyExistsError',
       desc: '',
-      args: [sourceName],
+      args: [componentName],
     );
   }
 
@@ -1607,6 +1617,356 @@ class S {
       name: 'wrongScreenNameContent',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `No requests`
+  String get noRequests {
+    return Intl.message(
+      'No requests',
+      name: 'noRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Source not found`
+  String get sourceNotFound {
+    return Intl.message(
+      'Source not found',
+      name: 'sourceNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Component name`
+  String get componentName {
+    return Intl.message(
+      'Component name',
+      name: 'componentName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add variable`
+  String get addVariable {
+    return Intl.message(
+      'Add variable',
+      name: 'addVariable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Variable name`
+  String get variableName {
+    return Intl.message(
+      'Variable name',
+      name: 'variableName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Path`
+  String get path {
+    return Intl.message(
+      'Path',
+      name: 'path',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add request`
+  String get addRequest {
+    return Intl.message(
+      'Add request',
+      name: 'addRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modify request`
+  String get modifyRequest {
+    return Intl.message(
+      'Modify request',
+      name: 'modifyRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add {type} params`
+  String addParams(Object type) {
+    return Intl.message(
+      'Add $type params',
+      name: 'addParams',
+      desc: '',
+      args: [type],
+    );
+  }
+
+  /// `Edit {type} params`
+  String editParams(Object type) {
+    return Intl.message(
+      'Edit $type params',
+      name: 'editParams',
+      desc: '',
+      args: [type],
+    );
+  }
+
+  /// `Add param`
+  String get addParam {
+    return Intl.message(
+      'Add param',
+      name: 'addParam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to add param`
+  String get addParamFailureTitle {
+    return Intl.message(
+      'Failed to add param',
+      name: 'addParamFailureTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to add variable`
+  String get addVariableFailureTitle {
+    return Intl.message(
+      'Failed to add variable',
+      name: 'addVariableFailureTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Duplicates found:\n{duplicates}`
+  String duplicatesFoundError(Object duplicates) {
+    return Intl.message(
+      'Duplicates found:\n$duplicates',
+      name: 'duplicatesFoundError',
+      desc: '',
+      args: [duplicates],
+    );
+  }
+
+  /// `Delete request`
+  String get deleteRequest {
+    return Intl.message(
+      'Delete request',
+      name: 'deleteRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete {name} component?`
+  String deleteConcreteComponent(Object name) {
+    return Intl.message(
+      'Delete $name component?',
+      name: 'deleteConcreteComponent',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `You've added both body data and multipart body data. Multipart body data will be generated but ignored in request call.`
+  String get requestBodyMultipartConflict {
+    return Intl.message(
+      'You\'ve added both body data and multipart body data. Multipart body data will be generated but ignored in request call.',
+      name: 'requestBodyMultipartConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Warning`
+  String get warning {
+    return Intl.message(
+      'Warning',
+      name: 'warning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search for an item...`
+  String get searchPrompt {
+    return Intl.message(
+      'Search for an item...',
+      name: 'searchPrompt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add`
+  String get add {
+    return Intl.message(
+      'Add',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message(
+      'Edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Empty`
+  String get empty {
+    return Intl.message(
+      'Empty',
+      name: 'empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or`
+  String get or {
+    return Intl.message(
+      'or',
+      name: 'or',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unused`
+  String get unUsed {
+    return Intl.message(
+      'Unused',
+      name: 'unUsed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No input parameters`
+  String get noInputParameters {
+    return Intl.message(
+      'No input parameters',
+      name: 'noInputParameters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Objects`
+  String get objects {
+    return Intl.message(
+      'Objects',
+      name: 'objects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add from JSON`
+  String get addFromJson {
+    return Intl.message(
+      'Add from JSON',
+      name: 'addFromJson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paste JSON here`
+  String get pasteJsonHere {
+    return Intl.message(
+      'Paste JSON here',
+      name: 'pasteJsonHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate classes from JSON`
+  String get generateFromJson {
+    return Intl.message(
+      'Generate classes from JSON',
+      name: 'generateFromJson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copy to clipboard`
+  String get copyToClipboard {
+    return Intl.message(
+      'Copy to clipboard',
+      name: 'copyToClipboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copied to clipboard`
+  String get copyToClipboardSuccess {
+    return Intl.message(
+      'Copied to clipboard',
+      name: 'copyToClipboardSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Such request already exists`
+  String get requestAlreadyExistsError {
+    return Intl.message(
+      'Such request already exists',
+      name: 'requestAlreadyExistsError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add children?`
+  String get addChildren {
+    return Intl.message(
+      'Add children?',
+      name: 'addChildren',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Class depends on {children} that do not exist.\nGenerate them?`
+  String addChildrenContent(Object children) {
+    return Intl.message(
+      'Class depends on $children that do not exist.\nGenerate them?',
+      name: 'addChildrenContent',
+      desc: '',
+      args: [children],
+    );
+  }
+
+  /// `Value of '{name}' is empty. Either remove '{name}' or add value.`
+  String jsonParserEmptyValueFailure(Object name) {
+    return Intl.message(
+      'Value of \'$name\' is empty. Either remove \'$name\' or add value.',
+      name: 'jsonParserEmptyValueFailure',
+      desc: '',
+      args: [name],
     );
   }
 }

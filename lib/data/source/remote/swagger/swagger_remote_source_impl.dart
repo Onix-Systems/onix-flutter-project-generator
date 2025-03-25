@@ -176,8 +176,12 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
     }
   }
 
-  void _parseModels(SwaggerVersionType swaggerVersion, ArchType arch,
-      List<BaseSwaggerModelResponse> swaggerModels, Map<String, dynamic> json) {
+  void _parseModels(
+    SwaggerVersionType swaggerVersion,
+    ArchType arch,
+    List<BaseSwaggerModelResponse> swaggerModels,
+    Map<String, dynamic> json,
+  ) {
     var objectsMap = <String, dynamic>{};
     switch (swaggerVersion) {
       case SwaggerVersionType.swagger2:
@@ -236,8 +240,6 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
                   _variableIsEnum(element) || _variableMayBeEnum(element),
             )
             .toList();
-
-        logger.f('model: $model');
 
         for (final enumVariable in enumVariables) {
           if (enumVariable.type is SwaggerEnum) {
@@ -329,8 +331,6 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
               }
             }
           } else if (_variableMayBeEnum(enumVariable)) {
-            logger.f('enumVariable: $enumVariable');
-
             final variable = (enumVariable.type as SwaggerArray).itemType.type
                 as SwaggerReference;
 
@@ -357,8 +357,6 @@ class SwaggerRemoteSourceImpl implements SwaggerRemoteSource {
             }
           }
         }
-
-        logger.f('model: $model');
       }
     }
   }

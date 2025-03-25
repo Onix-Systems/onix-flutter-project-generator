@@ -165,9 +165,8 @@ class DocsService
     var envExplanation =
         'This file should contain all project required public API and services keys and other sensitive information. ';
     if (flavors.isEmpty) {
-      envExplanation +=
+      return envExplanation +=
           '`.env` file contains environment variables for a application configuration. ';
-      return envExplanation;
     }
 
     for (final flavor in flavors) {

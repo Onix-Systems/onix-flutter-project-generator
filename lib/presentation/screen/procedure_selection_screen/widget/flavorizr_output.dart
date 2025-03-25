@@ -29,7 +29,7 @@ class FlavorizrOutput extends StatelessWidget {
         margin: const EdgeInsets.all(20),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: context.appColors.darkColor.withOpacity(0.85),
+          color: context.appColors.darkColor.withValues(alpha: 0.85),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Stack(

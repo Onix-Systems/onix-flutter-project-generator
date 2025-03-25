@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/form_data.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/input_params/input_body.dart';
@@ -13,11 +15,15 @@ class RequestItem extends StatelessWidget {
   final RequestComponent request;
   final ObjectView? requestObject;
   final ObjectView? responseObject;
+  final VoidCallback? onDelete;
+  final VoidCallback? onEdit;
 
   const RequestItem({
     required this.request,
     required this.requestObject,
     required this.responseObject,
+    this.onDelete,
+    this.onEdit,
     super.key,
   });
 
@@ -32,21 +38,43 @@ class RequestItem extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
-                Text(
-                  request.operationId,
-                  style: TextStyle(
-                    color: context.appColors.textColor,
-                    fontSize: 16,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${request.type.name.toUpperCase()} ${request.operationId}',
+                        style: TextStyle(
+                          color: context.appColors.textColor,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        '(${request.path})',
+                        style: TextStyle(
+                          color: context.appColors.textColor,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(width: 16),
-                Text(
-                  '(${request.path})',
-                  style: TextStyle(
-                    color: context.appColors.textColor,
-                    fontSize: 14,
+                if (!request.fromSwagger) ...[
+                  IconButton(
+                    icon: Icon(
+                      CupertinoIcons.pencil,
+                      color: context.appColors.textColor,
+                    ),
+                    onPressed: onEdit,
                   ),
-                ),
+                  IconButton(
+                    icon: Icon(
+                      CupertinoIcons.trash,
+                      color: context.appColors.alarmColor,
+                    ),
+                    onPressed: onDelete,
+                  ),
+                ],
               ],
             ),
           ),
@@ -85,7 +113,7 @@ class RequestItem extends StatelessWidget {
                                 ),
                               ],
                             )
-                          : const Text('No Input Parameters'),
+                          : Text(S.of(context).noInputParameters),
                     ),
                     Expanded(
                       child: ResponseBody(

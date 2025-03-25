@@ -1,5 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
+import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class AppFilledButton extends StatefulWidget {
@@ -13,6 +14,7 @@ class AppFilledButton extends StatefulWidget {
   final EdgeInsets? padding;
   final Size? minimumSize;
   final bool active;
+  final AutoSizeGroup? autoSizeGroup;
 
   const AppFilledButton({
     required this.label,
@@ -25,6 +27,7 @@ class AppFilledButton extends StatefulWidget {
     this.big = false,
     this.padding,
     this.minimumSize,
+    this.autoSizeGroup,
     super.key,
   });
 
@@ -37,9 +40,12 @@ class _AppFilledButtonState extends State<AppFilledButton> {
   bool hovered = false;
   bool focused = false;
 
+  late final AutoSizeGroup? _autoSizeGroup;
+
   @override
   void initState() {
     super.initState();
+    _autoSizeGroup = widget.autoSizeGroup;
   }
 
   @override
@@ -68,7 +74,7 @@ class _AppFilledButtonState extends State<AppFilledButton> {
           borderRadius: BorderRadius.circular(5),
           side: focused
               ? BorderSide(
-                  color: _defaultColor.withOpacity(0.7),
+                  color: _defaultColor.withValues(alpha: 0.7),
                   width: 2,
                 )
               : BorderSide.none,
@@ -109,17 +115,24 @@ class _AppFilledButtonState extends State<AppFilledButton> {
                     color:
                         hovered ? widget.color ?? _defaultColor : _textColor(),
                   ),
-                  const Delimiter.width(10),
+                  Gap(widget.label.isNotEmpty ? 10 : 0),
                 ],
-                Text(
-                  widget.label,
-                  style: context.appTextStyles.fs18?.copyWith(
-                    color:
-                        hovered ? widget.color ?? _defaultColor : _textColor(),
+                Flexible(
+                  child: AutoSizeText(
+                    widget.label,
+                    group: _autoSizeGroup,
+                    maxLines: 1,
+                    minFontSize: 14,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.appTextStyles.fs18?.copyWith(
+                      color: hovered
+                          ? widget.color ?? _defaultColor
+                          : _textColor(),
+                    ),
                   ),
                 ),
                 if (widget.icon != null && !widget.iconLeft) ...[
-                  const Delimiter.width(10),
+                  Gap(widget.label.isNotEmpty ? 10 : 0),
                   Icon(
                     widget.icon,
                     size: 25,

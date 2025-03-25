@@ -12,5 +12,19 @@ class ResponseParamComponent with _$ResponseParamComponent {
     required SwaggerType type,
     required bool isRequired,
     @Default(false) bool isEnum,
+    @Default(true) bool fromSwagger,
   }) = _ResponseParamComponent;
+
+  factory ResponseParamComponent.operationDefault() => ResponseParamComponent(
+        name: '',
+        type: SwaggerOperationDefault(),
+        isRequired: false,
+      );
+
+  ResponseParamComponent changeComponentType(SwaggerType? type) {
+    return copyWith(
+      type: type ?? SwaggerOperationDefault(),
+      isEnum: type is SwaggerEnum,
+    );
+  }
 }

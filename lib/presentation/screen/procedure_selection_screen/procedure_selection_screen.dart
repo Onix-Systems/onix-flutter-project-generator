@@ -13,8 +13,10 @@ import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/json_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
+import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/classes_from_json_dialog/classes_from_json_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/fingerprint_dialog_body.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/flavorizr_output.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/widget/tools_popup_button.dart';
@@ -54,7 +56,8 @@ class _ProcedureSelectionScreenState extends BaseState<
   @override
   void onBlocCreated(BuildContext context, ProcedureSelectionScreenBloc bloc) {
     bloc.add(
-        ProcedureSelectionScreenEventInit(branchConfig: widget.branchConfig));
+      ProcedureSelectionScreenEventInit(branchConfig: widget.branchConfig),
+    );
     super.onBlocCreated(context, bloc);
   }
 
@@ -97,6 +100,8 @@ class _ProcedureSelectionScreenState extends BaseState<
                           _onGenerateSigningSelected(context);
                         case ToolType.generateFlavors:
                           _onGenerateFlavorsSelected(context);
+                        case ToolType.generateClassesFromJson:
+                          _onGenerateClassesFromJsonSelected(context);
                       }
                     },
                   ),
@@ -133,6 +138,18 @@ class _ProcedureSelectionScreenState extends BaseState<
   Future<void> onFailure(BuildContext context, Failure failure) async {
     if (failure is SigningFailure) {
       context.onSigningFailure(failure);
+    } else if (failure is JsonParserFailure) {
+      await Dialogs.showOkDialog(
+        context: context,
+        isError: true,
+        title: S.of(context).error,
+        content: Text(
+          failure.getMessage(context),
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
+          ),
+        ),
+      );
     }
   }
 
@@ -309,7 +326,7 @@ class _ProcedureSelectionScreenState extends BaseState<
       return;
     }
     if (directoryPath == null) {
-      Dialogs.showOkDialog(
+      await Dialogs.showOkDialog(
         context: context,
         isError: true,
         title: S.of(context).pathNotSelectedTitle,
@@ -326,7 +343,7 @@ class _ProcedureSelectionScreenState extends BaseState<
     final directory = Directory(directoryPath);
     final isFlutterProject = directory.isFlutterProjectDirectory();
     if (!isFlutterProject) {
-      Dialogs.showOkDialog(
+      await Dialogs.showOkDialog(
         context: context,
         isError: true,
         title: S.of(context).projectSelectErrorTitle,
@@ -347,17 +364,19 @@ class _ProcedureSelectionScreenState extends BaseState<
 
     if (isSigningExists) {
       final failure = SigningFailure(SigningFailureType.signingAlreadyExist);
-      overwrite = await Dialogs.showOverwriteCancelDialog(
-        context: context,
-        isError: true,
-        title: S.of(context).signingToolTitle,
-        content: Text(
-          failure.getSigningFailureMessage(context),
-          style: context.appTextStyles.fs18?.copyWith(
-            fontSize: 16,
+      if (context.mounted) {
+        overwrite = await Dialogs.showOverwriteCancelDialog(
+          context: context,
+          isError: true,
+          title: S.of(context).signingToolTitle,
+          content: Text(
+            failure.getSigningFailureMessage(context),
+            style: context.appTextStyles.fs18?.copyWith(
+              fontSize: 16,
+            ),
           ),
-        ),
-      );
+        );
+      }
 
       if (overwrite == true) {
         logger.f('Overwrite signing');
@@ -366,24 +385,24 @@ class _ProcedureSelectionScreenState extends BaseState<
       }
     }
 
-    final signingVars = await showCupertinoModalPopup<List<String>>(
-      context: context,
-      barrierDismissible: false,
-      builder: (ctx) => const SigningDialog(
-        signingVars: AppConsts.defaultSigningVars,
-      ),
-    );
-    if (!context.mounted) {
-      return;
-    }
-    if (signingVars != null) {
-      blocOf(context).add(
-        ProcedureSelectionScreenEvent.onGenerateAndroidSigning(
-          directory: directory,
-          signingVars: signingVars,
-          overwrite: overwrite,
+    if (context.mounted) {
+      final signingVars = await showCupertinoModalPopup<List<String>>(
+        context: context,
+        barrierDismissible: false,
+        builder: (ctx) => const SigningDialog(
+          signingVars: AppConsts.defaultSigningVars,
         ),
       );
+
+      if (signingVars != null && context.mounted) {
+        blocOf(context).add(
+          ProcedureSelectionScreenEvent.onGenerateAndroidSigning(
+            directory: directory,
+            signingVars: signingVars,
+            overwrite: overwrite,
+          ),
+        );
+      }
     }
   }
 
@@ -393,7 +412,7 @@ class _ProcedureSelectionScreenState extends BaseState<
       return;
     }
     if (directoryPath == null) {
-      Dialogs.showOkDialog(
+      await Dialogs.showOkDialog(
         context: context,
         isError: true,
         title: S.of(context).pathNotSelectedTitle,
@@ -409,7 +428,7 @@ class _ProcedureSelectionScreenState extends BaseState<
     final directory = Directory(directoryPath);
     final isFlutterProject = directory.isFlutterProjectDirectory();
     if (!isFlutterProject) {
-      Dialogs.showOkDialog(
+      await Dialogs.showOkDialog(
         context: context,
         isError: true,
         title: S.of(context).projectSelectErrorTitle,
@@ -441,5 +460,12 @@ class _ProcedureSelectionScreenState extends BaseState<
         ),
       );
     }
+  }
+
+  void _onGenerateClassesFromJsonSelected(BuildContext context) {
+    showCupertinoDialog<String>(
+      context: context,
+      builder: (ctx) => const ClassesFromJsonDialog(),
+    );
   }
 }

@@ -23,6 +23,7 @@ class TitleBar extends StatelessWidget
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Row(
+          spacing: 10,
           children: [
             Text(
               title,

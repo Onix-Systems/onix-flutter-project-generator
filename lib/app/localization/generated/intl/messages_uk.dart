@@ -20,36 +20,64 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'uk';
 
-  static String m0(variant) =>
+  static String m0(children) =>
+      "Клас залежить від ${children} котрих ще не існує.\nЗгенерувати їх?";
+
+  static String m1(type) => "Додати ${type} параметри";
+
+  static String m2(componentName) => "${componentName} вже існує";
+
+  static String m3(variant) =>
       "Зміна стейт мененджера змінить ... на ${variant}. Дійсно бажаєте продовжити?";
 
-  static String m1(componentName) => "Перегляд компонента ${componentName}";
+  static String m4(componentName) => "Перегляд компонента ${componentName}";
 
-  static String m2(componentName) => "Компонент ${componentName} вже існує";
+  static String m5(componentName) => "Компонент ${componentName} вже існує";
 
-  static String m3(sourceName) => " в джерелі ${sourceName}";
+  static String m6(sourceName) => " в джерелі ${sourceName}";
 
-  static String m4(componentName) =>
-      "Дійсно хочете видалити компонент ${componentName}?";
+  static String m7(componentName) =>
+      "Дійсно хочете видалити компонент ${componentName}? Це також видалить всі референсні змінні в усіх об\'єктах даних.";
 
-  static String m5(projectName) => "Змінити ${projectName}";
+  static String m8(name) => "Видалити ${name} компонент?";
 
-  static String m6(sourceName) =>
+  static String m9(duplicates) => "Знайдено дубликати:\n${duplicates}";
+
+  static String m10(type) => "Редагувати ${type} параметри";
+
+  static String m11(name) =>
+      "Значення \'${name}\' порожнє. Видаліть \'${name}\' або додайте значення.";
+
+  static String m12(projectName) => "Змінити ${projectName}";
+
+  static String m13(sourceName) =>
       "Дійсно хочете видалити джерело ${sourceName}?";
-
-  static String m7(sourceName) => "${sourceName}Source вже існує";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Дії"),
+        "add": MessageLookupByLibrary.simpleMessage("Додати"),
+        "addChildren":
+            MessageLookupByLibrary.simpleMessage("Додати залежності?"),
+        "addChildrenContent": m0,
         "addComponent":
             MessageLookupByLibrary.simpleMessage("Додати компонент"),
         "addDataComponents":
             MessageLookupByLibrary.simpleMessage("Компоненти Даних"),
         "addField": MessageLookupByLibrary.simpleMessage("Додати поле"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Додати флавори:"),
+        "addFromJson": MessageLookupByLibrary.simpleMessage("Додати з JSON"),
+        "addParam": MessageLookupByLibrary.simpleMessage("Додати параметр"),
+        "addParamFailureTitle":
+            MessageLookupByLibrary.simpleMessage("Не вдалося додати параметр"),
+        "addParams": m1,
+        "addRequest": MessageLookupByLibrary.simpleMessage("Додати запит"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Додати екран"),
         "addSource": MessageLookupByLibrary.simpleMessage("Додати джерело"),
+        "addVariable": MessageLookupByLibrary.simpleMessage("Додати змінну"),
+        "addVariableFailureTitle":
+            MessageLookupByLibrary.simpleMessage("Не вдалося додати змінну"),
+        "alreadyExistsError": m2,
         "alsoReadThis":
             MessageLookupByLibrary.simpleMessage("Також прочитайте це"),
         "apiFailureNoNetwork": MessageLookupByLibrary.simpleMessage(
@@ -63,7 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Відміна"),
         "changeStateManagerError": MessageLookupByLibrary.simpleMessage(
             "Попередження зміни стейт менеджера"),
-        "changeStateManagerErrorContent": m0,
+        "changeStateManagerErrorContent": m3,
         "checkNamesContentFirstPart":
             MessageLookupByLibrary.simpleMessage("Назва проекту\n"),
         "checkNamesContentLastPart":
@@ -76,31 +104,45 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" Місто або локація"),
         "clear": MessageLookupByLibrary.simpleMessage("Очистити"),
         "colorStyles": MessageLookupByLibrary.simpleMessage("Кольори"),
+        "componentName":
+            MessageLookupByLibrary.simpleMessage("Назва компонента"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Назва компонента"),
-        "componentPreview": m1,
+        "componentPreview": m4,
         "continueLabel": MessageLookupByLibrary.simpleMessage("Продовжити"),
+        "copyToClipboard":
+            MessageLookupByLibrary.simpleMessage("Зкопіювати в буфер"),
+        "copyToClipboardSuccess":
+            MessageLookupByLibrary.simpleMessage("Зкопійовано в буфер"),
         "createRequestCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Створити запит?"),
         "createResponseCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Створити відповідь?"),
         "dataComponent":
             MessageLookupByLibrary.simpleMessage("Компонент даних"),
-        "dataComponentExistsError": m2,
-        "dataComponentExistsInSource": m3,
+        "dataComponentExistsError": m5,
+        "dataComponentExistsInSource": m6,
         "dataComponents":
             MessageLookupByLibrary.simpleMessage("Компоненти даних"),
         "delete": MessageLookupByLibrary.simpleMessage("Видалити"),
-        "deleteComponentConfirmation": m4,
+        "deleteComponent":
+            MessageLookupByLibrary.simpleMessage("Видалити компонент?"),
+        "deleteComponentConfirmation": m7,
+        "deleteConcreteComponent": m8,
+        "deleteRequest": MessageLookupByLibrary.simpleMessage("Видалити запит"),
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Діалог видкріється в окремому вікні)"),
+        "duplicatesFoundError": m9,
+        "edit": MessageLookupByLibrary.simpleMessage("Редагувати"),
+        "editParams": m10,
+        "empty": MessageLookupByLibrary.simpleMessage("Пусто"),
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
             "Файл конфіга вітсутній або невірний! Перевірте, чи був відкритий проект згенерований за допомогою Onix Flutter Project Generator"),
         "emptyConfigTitle": MessageLookupByLibrary.simpleMessage(
             "Помилка читання файлу конфіга!"),
         "enterProjectName":
             MessageLookupByLibrary.simpleMessage("Введіть Ім\'я Проекту"),
-        "error": MessageLookupByLibrary.simpleMessage("Помілка"),
+        "error": MessageLookupByLibrary.simpleMessage("Помилка"),
         "exitLabel": MessageLookupByLibrary.simpleMessage("Вийти"),
         "fields": MessageLookupByLibrary.simpleMessage("Поля"),
         "figmaFileKey":
@@ -127,6 +169,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Сконфігурувати підпис Android"),
         "generateFlavors":
             MessageLookupByLibrary.simpleMessage("Генерувати флавори"),
+        "generateFromJson":
+            MessageLookupByLibrary.simpleMessage("Згенерувати класи з JSON"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Створити новий проект"),
         "generateProject":
@@ -157,6 +201,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Інтегрувати GraphQL?"),
         "integrateSentry":
             MessageLookupByLibrary.simpleMessage("Інтегрувати Sentry?"),
+        "jsonParserEmptyValueFailure": m11,
         "keyStorePasswordPlaceholder": MessageLookupByLibrary.simpleMessage(
             "Залиште пустим для автогенерації..."),
         "keystorePassword":
@@ -170,7 +215,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Змінити"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Змінити компонент"),
-        "modifyGeneratedProject": m5,
+        "modifyGeneratedProject": m12,
+        "modifyRequest": MessageLookupByLibrary.simpleMessage("Змінити запит"),
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Змінити екран"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Змінити дані підпису..."),
@@ -184,12 +230,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("Ні"),
         "noDataComponents":
             MessageLookupByLibrary.simpleMessage("Компоненти не знайдено"),
+        "noInputParameters":
+            MessageLookupByLibrary.simpleMessage("Немає вхідних параметрів"),
+        "noRequests": MessageLookupByLibrary.simpleMessage("Немає запитів"),
         "nullable": MessageLookupByLibrary.simpleMessage("Опціональне"),
+        "objects": MessageLookupByLibrary.simpleMessage("Об\'єкти"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
             MessageLookupByLibrary.simpleMessage("Відкрити існуючий проект"),
         "openInAndroidStudio":
             MessageLookupByLibrary.simpleMessage("Відкрити в Android Studio"),
+        "or": MessageLookupByLibrary.simpleMessage("або"),
         "organization": MessageLookupByLibrary.simpleMessage("Організація"),
         "organizationNameHelperText": MessageLookupByLibrary.simpleMessage(
             "Цифра не може бути першим символом у сегменті пакету. У пакеті повинен бути хоча б один роздільник \'.\'. Кілька символів \'.\' підряд не допускаються."),
@@ -197,7 +248,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" Організаційний підрозділ"),
         "overwrite": MessageLookupByLibrary.simpleMessage("Перезаписати"),
         "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
-            "Не вдалося отримати компоненти Swagger. Спробуйте знову або зв\'яжіться з підтримкою, якщо не вдається оторимати компоненти."),
+            "Не вдалося отримати компоненти Swagger. Спробуйте знову або зв\'яжіться з підтримкою, якщо не вдається отримати компоненти."),
+        "pasteJsonHere":
+            MessageLookupByLibrary.simpleMessage("Вставте JSON сюди"),
+        "path": MessageLookupByLibrary.simpleMessage("Шлях"),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
             "Будь ласка, виберіть шлях до проекту"),
         "pathNotSelectedTitle":
@@ -220,6 +274,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Не папка з проектом Flutter"),
         "replace": MessageLookupByLibrary.simpleMessage("Замінити"),
         "request": MessageLookupByLibrary.simpleMessage("Запит"),
+        "requestAlreadyExistsError":
+            MessageLookupByLibrary.simpleMessage("Такий запит вже існує"),
+        "requestBodyMultipartConflict": MessageLookupByLibrary.simpleMessage(
+            "Ви додали одночасно body і multipart body. Multipart body буде згенеровано, але проігноровано у запиті."),
         "response": MessageLookupByLibrary.simpleMessage("Відповідь"),
         "retry": MessageLookupByLibrary.simpleMessage("Повторити"),
         "router": MessageLookupByLibrary.simpleMessage("Роутер"),
@@ -231,6 +289,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Перший символ у назві класу має бути літерою"),
         "screenName": MessageLookupByLibrary.simpleMessage("Назва екрану"),
         "screens": MessageLookupByLibrary.simpleMessage("Екрани"),
+        "searchPrompt": MessageLookupByLibrary.simpleMessage("Пошук..."),
         "selectProjectFolder":
             MessageLookupByLibrary.simpleMessage("Onix Project Generator"),
         "selectProjectPlatforms":
@@ -250,10 +309,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "signingToolTitle":
             MessageLookupByLibrary.simpleMessage("Сертифікат підпису Android"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Дані підпису"),
-        "sourceDeletingDialogTitle": m6,
-        "sourceExistsError": m7,
+        "sourceDeletingDialogTitle": m13,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Назва джерела"),
+        "sourceNotFound":
+            MessageLookupByLibrary.simpleMessage("Джерело не знайдено"),
         "sources": MessageLookupByLibrary.simpleMessage("Джерела"),
         "spaceSeparated":
             MessageLookupByLibrary.simpleMessage("(розділяти пробілами)"),
@@ -275,12 +335,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "tools": MessageLookupByLibrary.simpleMessage("Інструменти"),
         "twoLetterCountryCode":
             MessageLookupByLibrary.simpleMessage(" Двохлітерний код країни"),
+        "unUsed": MessageLookupByLibrary.simpleMessage("Не використано"),
         "url": MessageLookupByLibrary.simpleMessage("URL"),
         "useScreenUtil": MessageLookupByLibrary.simpleMessage(
             "Використовувати Screen Util?"),
         "useSonar": MessageLookupByLibrary.simpleMessage("Підключити Sonar?"),
         "usingBloc": MessageLookupByLibrary.simpleMessage("Використати BLoC"),
         "usingCubit": MessageLookupByLibrary.simpleMessage("Використати Cubit"),
+        "variableName": MessageLookupByLibrary.simpleMessage("Назва змінної"),
+        "warning": MessageLookupByLibrary.simpleMessage("Увага"),
         "willBeAddedAutomatically": MessageLookupByLibrary.simpleMessage(
             "DEV та PROD флавори будуть додані автоматично"),
         "withComponents":

@@ -1,20 +1,18 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:recase/recase.dart';
 
-part 'enum_param_component.freezed.dart';
+class EnumParamComponent extends Component {
+  final SwaggerEnum type;
 
-@freezed
-class EnumParamComponent with _$EnumParamComponent {
-  const EnumParamComponent._();
-
-  const factory EnumParamComponent({
+  EnumParamComponent({
     required String name,
-    required SwaggerEnum type,
-  }) = _EnumParamComponent;
+    required this.type,
+    super.fromSwagger = true,
+  }) : super(name: name.pascalCase);
 
   String getFolderPath(String projectRoot, ArchType arch) =>
       '$projectRoot/${arch.getEnumPath()}';
@@ -32,5 +30,13 @@ class EnumParamComponent with _$EnumParamComponent {
     }
     codeLines.add('}');
     return codeLines.join('\n');
+  }
+
+  @override
+  String getString({int level = 1}) {
+    final variablesString =
+        '${'  ' * level}{${type.enumValues.map((e) => e).join(', ')}}';
+
+    return variablesString;
   }
 }

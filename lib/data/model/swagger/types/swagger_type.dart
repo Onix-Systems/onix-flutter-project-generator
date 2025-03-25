@@ -75,9 +75,9 @@ class SwaggerReference extends SwaggerType {
   final String reference;
 
   SwaggerReference(
-    this.reference, {
+    String reference, {
     super.from,
-  });
+  }) : reference = reference.pascalCase;
 
   @override
   String getName() => reference;
@@ -86,12 +86,12 @@ class SwaggerReference extends SwaggerType {
   String getTypeDeclaration(DataFileType fileType) {
     final clearName = reference;
     if (fileType == DataFileType.none) {
-      return clearName.pascalCase;
+      return clearName;
     }
     if (fileType == DataFileType.entity) {
-      return clearName.pascalCase;
+      return clearName;
     }
-    return '${clearName.pascalCase}${fileType.name.pascalCase}';
+    return '$clearName${fileType.name.pascalCase}';
   }
 
   @override
@@ -193,10 +193,10 @@ class SwaggerEnum extends SwaggerType {
   final List<String> enumValues;
 
   SwaggerEnum(
-    this.name,
+    String name,
     this.enumValues, {
     super.from,
-  });
+  }) : name = name.pascalCase;
 
   @override
   String getName() => name;
@@ -206,7 +206,7 @@ class SwaggerEnum extends SwaggerType {
     if (fileType == DataFileType.response || fileType == DataFileType.request) {
       return 'String';
     }
-    return '${from.pascalCase}${name.pascalCase}';
+    return '$from$name';
   }
 
   @override
@@ -306,10 +306,10 @@ class SwaggerAllOf extends SwaggerType {
   final List<SwaggerType> parameters;
 
   SwaggerAllOf({
-    required this.name,
+    required String name,
     required this.parameters,
     super.from,
-  });
+  }) : name = name.pascalCase;
 
   @override
   String getName() => name;
@@ -335,5 +335,5 @@ class SwaggerAllOf extends SwaggerType {
       parameters.first.getFileName(fileType);
 
   @override
-  String getTypeDeclaration(DataFileType fileType) => name.pascalCase;
+  String getTypeDeclaration(DataFileType fileType) => name;
 }

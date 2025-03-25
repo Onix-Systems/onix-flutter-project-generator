@@ -20,36 +20,63 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(variant) =>
+  static String m0(children) =>
+      "Class depends on ${children} that do not exist.\nGenerate them?";
+
+  static String m1(type) => "Add ${type} params";
+
+  static String m2(componentName) => "${componentName} already exists";
+
+  static String m3(variant) =>
       "Changing state manager will change ... to ${variant}. Are you sure you want to continue?";
 
-  static String m1(componentName) => "${componentName} component preview";
+  static String m4(componentName) => "${componentName} component preview";
 
-  static String m2(componentName) =>
+  static String m5(componentName) =>
       "Data component ${componentName} already exists";
 
-  static String m3(sourceName) => " in ${sourceName} source";
+  static String m6(sourceName) => " in ${sourceName} source";
 
-  static String m4(componentName) =>
-      "Do you really want to delete component ${componentName}?";
+  static String m7(componentName) =>
+      "Do you really want to delete component ${componentName}? This will also delete referenced variables in all data objects.";
 
-  static String m5(projectName) => "Modify ${projectName}";
+  static String m8(name) => "Delete ${name} component?";
 
-  static String m6(sourceName) =>
+  static String m9(duplicates) => "Duplicates found:\n${duplicates}";
+
+  static String m10(type) => "Edit ${type} params";
+
+  static String m11(name) =>
+      "Value of \'${name}\' is empty. Either remove \'${name}\' or add value.";
+
+  static String m12(projectName) => "Modify ${projectName}";
+
+  static String m13(sourceName) =>
       "Do you really want to delete source ${sourceName}?";
-
-  static String m7(sourceName) => "${sourceName}Source already exists";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions": MessageLookupByLibrary.simpleMessage("Actions"),
+        "add": MessageLookupByLibrary.simpleMessage("Add"),
+        "addChildren": MessageLookupByLibrary.simpleMessage("Add children?"),
+        "addChildrenContent": m0,
         "addComponent": MessageLookupByLibrary.simpleMessage("Add component"),
         "addDataComponents":
             MessageLookupByLibrary.simpleMessage("Data Components"),
         "addField": MessageLookupByLibrary.simpleMessage("Add field"),
         "addFlavors": MessageLookupByLibrary.simpleMessage("Add flavors:"),
+        "addFromJson": MessageLookupByLibrary.simpleMessage("Add from JSON"),
+        "addParam": MessageLookupByLibrary.simpleMessage("Add param"),
+        "addParamFailureTitle":
+            MessageLookupByLibrary.simpleMessage("Failed to add param"),
+        "addParams": m1,
+        "addRequest": MessageLookupByLibrary.simpleMessage("Add request"),
         "addScreen": MessageLookupByLibrary.simpleMessage("Add screen"),
         "addSource": MessageLookupByLibrary.simpleMessage("Add source"),
+        "addVariable": MessageLookupByLibrary.simpleMessage("Add variable"),
+        "addVariableFailureTitle":
+            MessageLookupByLibrary.simpleMessage("Failed to add variable"),
+        "alreadyExistsError": m2,
         "alsoReadThis": MessageLookupByLibrary.simpleMessage("Also read this"),
         "apiFailureNoNetwork": MessageLookupByLibrary.simpleMessage(
             "Sorry, we\'re having trouble connecting. Please check your internet connection and try again.\n\nReach out to support if you continue to experience issues."),
@@ -62,7 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "changeStateManagerError": MessageLookupByLibrary.simpleMessage(
             "Change state manager warning"),
-        "changeStateManagerErrorContent": m0,
+        "changeStateManagerErrorContent": m3,
         "checkNamesContentFirstPart":
             MessageLookupByLibrary.simpleMessage("Is project name\n"),
         "checkNamesContentLastPart":
@@ -75,23 +102,36 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" City or Locality"),
         "clear": MessageLookupByLibrary.simpleMessage("Clear"),
         "colorStyles": MessageLookupByLibrary.simpleMessage("Color Styles"),
+        "componentName": MessageLookupByLibrary.simpleMessage("Component name"),
         "componentNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Component name"),
-        "componentPreview": m1,
+        "componentPreview": m4,
         "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
+        "copyToClipboard":
+            MessageLookupByLibrary.simpleMessage("Copy to clipboard"),
+        "copyToClipboardSuccess":
+            MessageLookupByLibrary.simpleMessage("Copied to clipboard"),
         "createRequestCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Create request?"),
         "createResponseCheckboxLabel":
             MessageLookupByLibrary.simpleMessage("Create response?"),
         "dataComponent": MessageLookupByLibrary.simpleMessage("Data component"),
-        "dataComponentExistsError": m2,
-        "dataComponentExistsInSource": m3,
+        "dataComponentExistsError": m5,
+        "dataComponentExistsInSource": m6,
         "dataComponents":
             MessageLookupByLibrary.simpleMessage("Data components"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
-        "deleteComponentConfirmation": m4,
+        "deleteComponent":
+            MessageLookupByLibrary.simpleMessage("Delete component?"),
+        "deleteComponentConfirmation": m7,
+        "deleteConcreteComponent": m8,
+        "deleteRequest": MessageLookupByLibrary.simpleMessage("Delete request"),
         "dialogWillOpenInSeparateWindow": MessageLookupByLibrary.simpleMessage(
             "(Dialog will open in separate window)"),
+        "duplicatesFoundError": m9,
+        "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+        "editParams": m10,
+        "empty": MessageLookupByLibrary.simpleMessage("Empty"),
         "emptyConfigContent": MessageLookupByLibrary.simpleMessage(
             "Config file is not exists or not valid! Check is opened project was generated with Onix Flutter Project Generator"),
         "emptyConfigTitle":
@@ -123,6 +163,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Generate Android signing config"),
         "generateFlavors":
             MessageLookupByLibrary.simpleMessage("Generate flavors"),
+        "generateFromJson":
+            MessageLookupByLibrary.simpleMessage("Generate classes from JSON"),
         "generateNewProject":
             MessageLookupByLibrary.simpleMessage("Generate new project"),
         "generateProject":
@@ -152,6 +194,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Integrate GraphQL?"),
         "integrateSentry":
             MessageLookupByLibrary.simpleMessage("Integrate Sentry?"),
+        "jsonParserEmptyValueFailure": m11,
         "keyStorePasswordPlaceholder":
             MessageLookupByLibrary.simpleMessage("Leave blank to auto-gen..."),
         "keystorePassword":
@@ -165,7 +208,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify": MessageLookupByLibrary.simpleMessage("Modify"),
         "modifyComponent":
             MessageLookupByLibrary.simpleMessage("Modify component"),
-        "modifyGeneratedProject": m5,
+        "modifyGeneratedProject": m12,
+        "modifyRequest": MessageLookupByLibrary.simpleMessage("Modify request"),
         "modifyScreen": MessageLookupByLibrary.simpleMessage("Modify screen"),
         "modifySigningVars":
             MessageLookupByLibrary.simpleMessage("Modify signing vars..."),
@@ -179,12 +223,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noDataComponents":
             MessageLookupByLibrary.simpleMessage("No data components"),
+        "noInputParameters":
+            MessageLookupByLibrary.simpleMessage("No input parameters"),
+        "noRequests": MessageLookupByLibrary.simpleMessage("No requests"),
         "nullable": MessageLookupByLibrary.simpleMessage("Nullable"),
+        "objects": MessageLookupByLibrary.simpleMessage("Objects"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "openExistingProject":
             MessageLookupByLibrary.simpleMessage("Open existing project"),
         "openInAndroidStudio":
             MessageLookupByLibrary.simpleMessage("Open in Android Studio"),
+        "or": MessageLookupByLibrary.simpleMessage("or"),
         "organization": MessageLookupByLibrary.simpleMessage("Organization"),
         "organizationNameHelperText": MessageLookupByLibrary.simpleMessage(
             "A digit cannot be the first character in a package segment. The package must have at least one \'.’ separator. Multiple \'.\' characters are not allowed in a row."),
@@ -193,6 +242,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "overwrite": MessageLookupByLibrary.simpleMessage("Overwrite"),
         "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Failed to Parse Swagger Components. Please try again or contact support if issue not resolved."),
+        "pasteJsonHere":
+            MessageLookupByLibrary.simpleMessage("Paste JSON here"),
+        "path": MessageLookupByLibrary.simpleMessage("Path"),
         "pathNotSelectedContent": MessageLookupByLibrary.simpleMessage(
             "You must select path to projects folder"),
         "pathNotSelectedTitle":
@@ -214,6 +266,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Not a Flutter Project"),
         "replace": MessageLookupByLibrary.simpleMessage("Replace"),
         "request": MessageLookupByLibrary.simpleMessage("Request"),
+        "requestAlreadyExistsError":
+            MessageLookupByLibrary.simpleMessage("Such request already exists"),
+        "requestBodyMultipartConflict": MessageLookupByLibrary.simpleMessage(
+            "You\'ve added both body data and multipart body data. Multipart body data will be generated but ignored in request call."),
         "response": MessageLookupByLibrary.simpleMessage("Response"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "router": MessageLookupByLibrary.simpleMessage("Router"),
@@ -225,6 +281,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The first character in the class name must be a letter"),
         "screenName": MessageLookupByLibrary.simpleMessage("Screen name"),
         "screens": MessageLookupByLibrary.simpleMessage("Screens"),
+        "searchPrompt":
+            MessageLookupByLibrary.simpleMessage("Search for an item..."),
         "selectProjectFolder":
             MessageLookupByLibrary.simpleMessage("Onix Project Generator"),
         "selectProjectPlatforms":
@@ -244,10 +302,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "signingToolTitle": MessageLookupByLibrary.simpleMessage(
             "Android signing configuration"),
         "signingVars": MessageLookupByLibrary.simpleMessage("Signing vars"),
-        "sourceDeletingDialogTitle": m6,
-        "sourceExistsError": m7,
+        "sourceDeletingDialogTitle": m13,
         "sourceNamePlaceholder":
             MessageLookupByLibrary.simpleMessage("Source name"),
+        "sourceNotFound":
+            MessageLookupByLibrary.simpleMessage("Source not found"),
         "sources": MessageLookupByLibrary.simpleMessage("Sources"),
         "spaceSeparated":
             MessageLookupByLibrary.simpleMessage("(space separated)"),
@@ -269,12 +328,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "tools": MessageLookupByLibrary.simpleMessage("Tools"),
         "twoLetterCountryCode":
             MessageLookupByLibrary.simpleMessage(" Two-letter country code"),
+        "unUsed": MessageLookupByLibrary.simpleMessage("Unused"),
         "url": MessageLookupByLibrary.simpleMessage("URL"),
         "useScreenUtil":
             MessageLookupByLibrary.simpleMessage("Use Screen Util?"),
         "useSonar": MessageLookupByLibrary.simpleMessage("Will you use Sonar?"),
         "usingBloc": MessageLookupByLibrary.simpleMessage("Using BLoC"),
         "usingCubit": MessageLookupByLibrary.simpleMessage("Using Cubit"),
+        "variableName": MessageLookupByLibrary.simpleMessage("Variable name"),
+        "warning": MessageLookupByLibrary.simpleMessage("Warning"),
         "willBeAddedAutomatically": MessageLookupByLibrary.simpleMessage(
             "DEV & PROD flavors will be added automatically"),
         "withComponents":

@@ -77,7 +77,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     Emitter<ProcedureSelectionScreenState> emit,
   ) async {
     _clearScreensUseCase();
-    _clearSwaggerComponentsUseCase();
+    _clearSwaggerComponentsUseCase(empty: true);
 
     emit(
       state.copyWith(
@@ -111,7 +111,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
       ..empty()
       ..addAll(screens: config.screens);
 
-    _clearSwaggerComponentsUseCase();
+    _clearSwaggerComponentsUseCase(empty: true);
 
     emit(
       state.copyWith(

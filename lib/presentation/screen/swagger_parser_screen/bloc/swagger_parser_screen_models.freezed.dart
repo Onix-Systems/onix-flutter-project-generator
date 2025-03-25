@@ -19,19 +19,19 @@ mixin _$SwaggerParserScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
-    required TResult Function(String url) parse,
+    required TResult Function(String url, bool? overwrite) parse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
-    TResult? Function(String url)? parse,
+    TResult? Function(String url, bool? overwrite)? parse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
-    TResult Function(String url)? parse,
+    TResult Function(String url, bool? overwrite)? parse,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -165,7 +165,7 @@ class _$SwaggerParserScreenEventInitImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
-    required TResult Function(String url) parse,
+    required TResult Function(String url, bool? overwrite) parse,
   }) {
     return init(config);
   }
@@ -174,7 +174,7 @@ class _$SwaggerParserScreenEventInitImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
-    TResult? Function(String url)? parse,
+    TResult? Function(String url, bool? overwrite)? parse,
   }) {
     return init?.call(config);
   }
@@ -183,7 +183,7 @@ class _$SwaggerParserScreenEventInitImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
-    TResult Function(String url)? parse,
+    TResult Function(String url, bool? overwrite)? parse,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -246,7 +246,7 @@ abstract class _$$SwaggerParserScreenEventParseImplCopyWith<$Res> {
           $Res Function(_$SwaggerParserScreenEventParseImpl) then) =
       __$$SwaggerParserScreenEventParseImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String url});
+  $Res call({String url, bool? overwrite});
 }
 
 /// @nodoc
@@ -265,12 +265,17 @@ class __$$SwaggerParserScreenEventParseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? url = null,
+    Object? overwrite = freezed,
   }) {
     return _then(_$SwaggerParserScreenEventParseImpl(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
+      overwrite: freezed == overwrite
+          ? _value.overwrite
+          : overwrite // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -279,14 +284,17 @@ class __$$SwaggerParserScreenEventParseImplCopyWithImpl<$Res>
 
 class _$SwaggerParserScreenEventParseImpl
     implements SwaggerParserScreenEventParse {
-  const _$SwaggerParserScreenEventParseImpl({required this.url});
+  const _$SwaggerParserScreenEventParseImpl(
+      {required this.url, this.overwrite});
 
   @override
   final String url;
+  @override
+  final bool? overwrite;
 
   @override
   String toString() {
-    return 'SwaggerParserScreenEvent.parse(url: $url)';
+    return 'SwaggerParserScreenEvent.parse(url: $url, overwrite: $overwrite)';
   }
 
   @override
@@ -294,11 +302,13 @@ class _$SwaggerParserScreenEventParseImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwaggerParserScreenEventParseImpl &&
-            (identical(other.url, url) || other.url == url));
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.overwrite, overwrite) ||
+                other.overwrite == overwrite));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, url);
+  int get hashCode => Object.hash(runtimeType, url, overwrite);
 
   /// Create a copy of SwaggerParserScreenEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -314,29 +324,29 @@ class _$SwaggerParserScreenEventParseImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Config config) init,
-    required TResult Function(String url) parse,
+    required TResult Function(String url, bool? overwrite) parse,
   }) {
-    return parse(url);
+    return parse(url, overwrite);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Config config)? init,
-    TResult? Function(String url)? parse,
+    TResult? Function(String url, bool? overwrite)? parse,
   }) {
-    return parse?.call(url);
+    return parse?.call(url, overwrite);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Config config)? init,
-    TResult Function(String url)? parse,
+    TResult Function(String url, bool? overwrite)? parse,
     required TResult orElse(),
   }) {
     if (parse != null) {
-      return parse(url);
+      return parse(url, overwrite);
     }
     return orElse();
   }
@@ -375,10 +385,12 @@ class _$SwaggerParserScreenEventParseImpl
 
 abstract class SwaggerParserScreenEventParse
     implements SwaggerParserScreenEvent {
-  const factory SwaggerParserScreenEventParse({required final String url}) =
-      _$SwaggerParserScreenEventParseImpl;
+  const factory SwaggerParserScreenEventParse(
+      {required final String url,
+      final bool? overwrite}) = _$SwaggerParserScreenEventParseImpl;
 
   String get url;
+  bool? get overwrite;
 
   /// Create a copy of SwaggerParserScreenEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -392,38 +404,32 @@ abstract class SwaggerParserScreenEventParse
 mixin _$SwaggerParserScreenSR {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onParseError,
     required TResult Function() onContinue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onParseError,
     TResult? Function()? onContinue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onParseError,
     TResult Function()? onContinue,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_OnError value) onParseError,
     required TResult Function(_OnContinue value) onContinue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_OnError value)? onParseError,
     TResult? Function(_OnContinue value)? onContinue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_OnError value)? onParseError,
     TResult Function(_OnContinue value)? onContinue,
     required TResult orElse(),
   }) =>
@@ -450,111 +456,6 @@ class _$SwaggerParserScreenSRCopyWithImpl<$Res,
 
   /// Create a copy of SwaggerParserScreenSR
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$OnErrorImplCopyWith<$Res> {
-  factory _$$OnErrorImplCopyWith(
-          _$OnErrorImpl value, $Res Function(_$OnErrorImpl) then) =
-      __$$OnErrorImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$OnErrorImplCopyWithImpl<$Res>
-    extends _$SwaggerParserScreenSRCopyWithImpl<$Res, _$OnErrorImpl>
-    implements _$$OnErrorImplCopyWith<$Res> {
-  __$$OnErrorImplCopyWithImpl(
-      _$OnErrorImpl _value, $Res Function(_$OnErrorImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SwaggerParserScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$OnErrorImpl implements _OnError {
-  const _$OnErrorImpl();
-
-  @override
-  String toString() {
-    return 'SwaggerParserScreenSR.onParseError()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OnErrorImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() onParseError,
-    required TResult Function() onContinue,
-  }) {
-    return onParseError();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onParseError,
-    TResult? Function()? onContinue,
-  }) {
-    return onParseError?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onParseError,
-    TResult Function()? onContinue,
-    required TResult orElse(),
-  }) {
-    if (onParseError != null) {
-      return onParseError();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_OnError value) onParseError,
-    required TResult Function(_OnContinue value) onContinue,
-  }) {
-    return onParseError(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_OnError value)? onParseError,
-    TResult? Function(_OnContinue value)? onContinue,
-  }) {
-    return onParseError?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_OnError value)? onParseError,
-    TResult Function(_OnContinue value)? onContinue,
-    required TResult orElse(),
-  }) {
-    if (onParseError != null) {
-      return onParseError(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _OnError implements SwaggerParserScreenSR {
-  const factory _OnError() = _$OnErrorImpl;
 }
 
 /// @nodoc
@@ -598,7 +499,6 @@ class _$OnContinueImpl implements _OnContinue {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() onParseError,
     required TResult Function() onContinue,
   }) {
     return onContinue();
@@ -607,7 +507,6 @@ class _$OnContinueImpl implements _OnContinue {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onParseError,
     TResult? Function()? onContinue,
   }) {
     return onContinue?.call();
@@ -616,7 +515,6 @@ class _$OnContinueImpl implements _OnContinue {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onParseError,
     TResult Function()? onContinue,
     required TResult orElse(),
   }) {
@@ -629,7 +527,6 @@ class _$OnContinueImpl implements _OnContinue {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_OnError value) onParseError,
     required TResult Function(_OnContinue value) onContinue,
   }) {
     return onContinue(this);
@@ -638,7 +535,6 @@ class _$OnContinueImpl implements _OnContinue {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_OnError value)? onParseError,
     TResult? Function(_OnContinue value)? onContinue,
   }) {
     return onContinue?.call(this);
@@ -647,7 +543,6 @@ class _$OnContinueImpl implements _OnContinue {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_OnError value)? onParseError,
     TResult Function(_OnContinue value)? onContinue,
     required TResult orElse(),
   }) {

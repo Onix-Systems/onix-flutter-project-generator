@@ -11,7 +11,12 @@ class FetchSwaggerDataUseCase {
   Future<Result<Components?>> call({
     required String url,
     required ArchType arch,
+    bool? overwriteDuplicates,
   }) async {
-    return _swaggerRepository.fetchSwaggerData(url: url, arch: arch);
+    return _swaggerRepository.fetchSwaggerData(
+      url: url,
+      arch: arch,
+      overwriteDuplicates: overwriteDuplicates,
+    );
   }
 }

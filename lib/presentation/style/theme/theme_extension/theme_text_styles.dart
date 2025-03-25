@@ -15,6 +15,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       color: AppThemeColors.textColor,
       decoration: TextDecoration.none,
     ),
+    fs22: TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.w400,
+      color: AppThemeColors.textColor,
+      decoration: TextDecoration.none,
+    ),
     fs18: TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.w500,
@@ -54,6 +60,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       color: AppThemeColors.textColor,
       decoration: TextDecoration.none,
     ),
+    fs22: TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.w400,
+      color: AppThemeColors.textColor,
+      decoration: TextDecoration.none,
+    ),
     fs18: TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.w400,
@@ -82,6 +94,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
 
   final TextStyle? fs28;
   final TextStyle? fs24;
+  final TextStyle? fs22;
   final TextStyle? fs18;
   final TextStyle? button18;
   final TextStyle? bodyText16;
@@ -90,6 +103,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   const ThemeTextStyles({
     required this.fs28,
     required this.fs24,
+    required this.fs22,
     required this.fs18,
     required this.button18,
     required this.bodyText16,
@@ -98,6 +112,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
 
   @override
   ThemeExtension<ThemeTextStyles> copyWith({
+    TextStyle? fs22,
     TextStyle? fs28,
     TextStyle? fs24,
     TextStyle? fs18,
@@ -108,6 +123,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     return ThemeTextStyles(
       fs28: fs28 ?? this.fs28,
       fs24: fs24 ?? this.fs24,
+      fs22: fs22 ?? this.fs22,
       fs18: fs18 ?? this.fs18,
       button18: button18 ?? this.button18,
       bodyText16: bodyText16 ?? this.bodyText16,
@@ -126,6 +142,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     return ThemeTextStyles(
       fs28: TextStyle.lerp(fs28, other.fs28, t),
       fs24: TextStyle.lerp(fs24, other.fs24, t),
+      fs22: TextStyle.lerp(fs22, other.fs22, t),
       fs18: TextStyle.lerp(fs18, other.fs18, t),
       button18: TextStyle.lerp(button18, other.button18, t),
       bodyText16: TextStyle.lerp(bodyText16, other.bodyText16, t),

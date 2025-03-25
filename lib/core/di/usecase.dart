@@ -24,10 +24,21 @@ import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.d
 import 'package:onix_flutter_bricks/domain/usecase/screen/clear_screens_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/add_data_object_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_request_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_data_object_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_source_request_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_source_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_name_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_request_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
 
 void registerUseCases(GetIt getIt) {
   getIt
@@ -114,6 +125,21 @@ void registerUseCases(GetIt getIt) {
         getIt.get<SwaggerRepository>(),
       ),
     )
+    ..registerFactory<AddSourceUseCase>(
+      () => AddSourceUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<DeleteSourceUseCase>(
+      () => DeleteSourceUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<EditSourceNameUseCase>(
+      () => EditSourceNameUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
     ..registerFactory<ClearSwaggerComponentsUseCase>(
       () => ClearSwaggerComponentsUseCase(
         getIt.get<SwaggerRepository>(),
@@ -128,6 +154,46 @@ void registerUseCases(GetIt getIt) {
       () => GenerateGitCliffFilesUseCase(
         outputService: getIt.get<OutputService>(),
         service: getIt.get<GitCliffService>(),
+      ),
+    )
+    ..registerFactory<IsComponentExistsUseCase>(
+      () => IsComponentExistsUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<AddComponentUseCase>(
+      () => AddComponentUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<EditComponentUseCase>(
+      () => EditComponentUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<DeleteComponentUseCase>(
+      () => DeleteComponentUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<GetComponentByNameUseCase>(
+      () => GetComponentByNameUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<AddSourceRequestUseCase>(
+      () => AddSourceRequestUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<EditSourceRequestUseCase>(
+      () => EditSourceRequestUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<DeleteSourceRequestUseCase>(
+      () => DeleteSourceRequestUseCase(
+        getIt.get<SwaggerRepository>(),
       ),
     );
 }

@@ -24,7 +24,26 @@ class RequestComponent with _$RequestComponent {
     required List<RequestQueryComponent> queryParams,
     required List<RequestPathComponent> pathParams,
     required ResponseParamComponent response,
+    @Default(true) bool fromSwagger,
   }) = _RequestComponent;
+
+  factory RequestComponent.empty() => RequestComponent(
+        operationId: '',
+        path: '',
+        type: SwaggerPathRequestType.get,
+        description: '',
+        requestBody: null,
+        multipartBody: [],
+        queryParams: [],
+        pathParams: [],
+        response: ResponseParamComponent.operationDefault(),
+      );
+
+  bool equals(RequestComponent other) {
+    return operationId == other.operationId &&
+        path == other.path &&
+        type == other.type;
+  }
 
   bool hasInputParameters() {
     return requestBody != null ||
@@ -135,6 +154,8 @@ class RequestComponent with _$RequestComponent {
       for (final e in multipartBody) {
         if (e.type is SwaggerFile) {
           codeLines.add("'${e.name}': ${e.getNameDeclaration()}MultipartFile,");
+        } else if (e.type is SwaggerReference) {
+          codeLines.add("'${e.name}': ${e.getNameDeclaration()}.toJson(),");
         } else {
           codeLines.add("'${e.name}': ${e.getNameDeclaration()},");
         }
@@ -148,9 +169,30 @@ class RequestComponent with _$RequestComponent {
     if (queryParams.isNotEmpty) {
       codeLines.add('final queryParams = {');
       for (final e in queryParams) {
-        codeLines.add(
-          "'${e.name}': ${e.getNameDeclaration()},",
-        );
+        final isPrimitive = e.isEnum || !e.type.isObjectReference();
+
+        if (isPrimitive) {
+          codeLines.add(
+            "'${e.name}': ${e.getNameDeclaration()},",
+          );
+        } else {
+          if (e.type is SwaggerArray) {
+            final array = e.type as SwaggerArray;
+            if (array.itemType.type is SwaggerReference) {
+              codeLines.add(
+                "'${e.name}': ${e.getNameDeclaration()}?.map((e) => e.toJson()).toList(),",
+              );
+            } else {
+              codeLines.add(
+                "'${e.name}': ${e.getNameDeclaration()}?.toJson(),",
+              );
+            }
+          } else {
+            codeLines.add(
+              "'${e.name}': ${e.getNameDeclaration()}?.toJson(),",
+            );
+          }
+        }
       }
       codeLines
         ..add('}..removeWhere((key, value) => value == null);')
@@ -407,18 +449,25 @@ class RequestComponent with _$RequestComponent {
     if (multipartBody.isNotEmpty) {
       for (final e in multipartBody) {
         final isObjectReference = e.type.isObjectReference();
-        final isEnum = e.type is SwaggerEnum;
+        final isEnum = e.type is SwaggerEnum || e.isEnum;
 
         if (isObjectReference) {
           final ref = e.type.getSwaggerObjectReference();
           if (ref != null) {
             codeLines.add(
-                '${e.getNameDeclaration()}: _${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}),');
+              '${e.getNameDeclaration()}: _${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}),',
+            );
           }
         } else if (isEnum) {
-          codeLines.add(
-            '${e.getNameDeclaration()}: ${e.getNameDeclaration()}?.name,',
-          );
+          if (e.type is SwaggerArray) {
+            codeLines.add(
+              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}.map((e) => e.name).toList(),',
+            );
+          } else {
+            codeLines.add(
+              '${e.getNameDeclaration()}: ${e.getNameDeclaration()}.name,',
+            );
+          }
         } else {
           codeLines
               .add('${e.getNameDeclaration()}: ${e.getNameDeclaration()},');
@@ -430,7 +479,15 @@ class RequestComponent with _$RequestComponent {
         final declaredName = e.getNameDeclaration();
 
         final nullable = e.isRequired ? '' : '?';
-        if (e.type is SwaggerArray) {
+        if (e.type is SwaggerEnum || e.isEnum) {
+          codeLines.add(
+            '$declaredName: $declaredName$nullable.name,',
+          );
+        } else if (e.type is SwaggerReference) {
+          codeLines.add(
+            '${e.getNameDeclaration()}: ${e.getNameDeclaration()} != null ?_${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}) : null,',
+          );
+        } else if (e.type is SwaggerArray) {
           final array = e.type as SwaggerArray;
           if (array.itemType.type is SwaggerReference) {
             codeLines.add(
@@ -445,10 +502,6 @@ class RequestComponent with _$RequestComponent {
               '$declaredName: $declaredName,',
             );
           }
-        } else if (e.type is SwaggerEnum || e.isEnum) {
-          codeLines.add(
-            '$declaredName: $declaredName$nullable.name,',
-          );
         } else {
           codeLines.add(
             '$declaredName: $declaredName,',

@@ -1,0 +1,335 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:gap/gap.dart';
+import 'package:get_it/get_it.dart';
+import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/app/app_consts.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
+import 'package:onix_flutter_bricks/app/util/formatters/first_character_is_not_digit_formatter.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/json_parser_failure.dart';
+import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_cubit.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_models.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/add_edit_variable_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/class_preview.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/widgets/paste_json_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
+import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
+import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
+
+class AddEditComponentDialog extends StatefulWidget {
+  final Component? component;
+  final String? name;
+  final bool requestComponent;
+  final ValueChanged<List<DataObjectComponent>>? onChildrenPass;
+
+  const AddEditComponentDialog({
+    this.component,
+    this.name,
+    this.requestComponent = false,
+    this.onChildrenPass,
+    super.key,
+  });
+
+  @override
+  State<AddEditComponentDialog> createState() => _AddEditComponentDialogState();
+}
+
+class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
+    ComponentDialogCubit, ComponentDialogSR, AddEditComponentDialog> {
+  final TextEditingController _controller = TextEditingController();
+  final FocusNode _mainFocusNode = FocusNode();
+  bool isEnum = false;
+
+  Component? component;
+
+  @override
+  ComponentDialogCubit createCubit() => GetIt.I.get<ComponentDialogCubit>();
+
+  @override
+  void onCubitCreated(BuildContext context, ComponentDialogCubit cubit) {
+    cubit.init(
+      component: widget.component,
+    );
+    super.onCubitCreated(context, cubit);
+  }
+
+  @override
+  Future<void> onFailure(BuildContext context, Failure failure) async {
+    super.onFailure(context, failure);
+    if (failure is SwaggerParserFailure || failure is JsonParserFailure) {
+      final swaggerParserFailure = failure is SwaggerParserFailure;
+
+      final message = swaggerParserFailure
+          ? failure.getTranslatedMessage(context)
+          : (failure as JsonParserFailure).getMessage(context);
+
+      await Dialogs.showOkDialog(
+        context: context,
+        isError: true,
+        title: S.of(context).addVariableFailureTitle,
+        content: Text(
+          message,
+          textAlign: swaggerParserFailure ? TextAlign.center : TextAlign.start,
+          style: context.appTextStyles.fs18?.copyWith(
+            fontSize: 16,
+          ),
+        ),
+      );
+
+      _mainFocusNode.requestFocus();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.component != null) {
+      _controller.text = widget.component!.name;
+      isEnum = widget.component! is EnumParamComponent;
+    } else if (widget.name != null) {
+      _controller.text = widget.name!;
+    }
+  }
+
+  @override
+  Widget buildWidget(BuildContext context) {
+    return Center(
+      child: Container(
+        width: MediaQuery.sizeOf(context).width * 0.8,
+        decoration: BoxDecoration(
+          color: context.appColors.darkColor,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Gap(20),
+            Text(
+              widget.component != null
+                  ? S.of(context).modifyComponent
+                  : S.of(context).addComponent,
+              style: context.appTextStyles.fs18,
+            ),
+            const Gap(20),
+            blocBuilder(
+              builder: (context, state) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 20,
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        spacing: 20,
+                        children: [
+                          CupertinoTextField(
+                            controller: _controller,
+                            placeholder: S.of(context).componentName,
+                            style: context.appTextStyles.fs18,
+                            onChanged: (_) {
+                              setState(() {});
+                            },
+                            onSubmitted: (_) => _onOk(context, state),
+                            inputFormatters: [
+                              const FirstCharacterNotDigitFormatter(),
+                              FilteringTextInputFormatter.allow(
+                                AppConsts.digitsAndLatinLetters,
+                              ),
+                            ],
+                          ),
+                          if (!(widget.requestComponent ||
+                              widget.component != null))
+                            SwitchWithLabel(
+                              label: 'Enum',
+                              initialValue: isEnum,
+                              valueSetter: widget.component != null
+                                  ? null
+                                  : (value) {
+                                      setState(() {
+                                        isEnum = value;
+                                      });
+                                    },
+                            ),
+                          SizedBox(
+                            width: double.maxFinite,
+                            child: AppFilledButton(
+                              label: S.of(context).addVariable,
+                              icon: Icons.add,
+                              onPressed: () {
+                                showCupertinoModalPopup(
+                                  context: context,
+                                  builder: (ctx) => AddEditVariableDialog(
+                                    types: isEnum
+                                        ? ['String']
+                                        : cubitOf(context).state.componentNames,
+                                    parentIsEnum: isEnum,
+                                    process: (type, name, isList) {
+                                      cubitOf(context).addVariable(
+                                        name: name,
+                                        type: type,
+                                        isList: isList,
+                                      );
+                                    },
+                                  ),
+                                );
+
+                                _mainFocusNode.requestFocus();
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            width: double.maxFinite,
+                            child: AppFilledButton(
+                              label: S.of(context).addFromJson,
+                              icon: Icons.add,
+                              onPressed: () {
+                                showCupertinoModalPopup<String>(
+                                  context: context,
+                                  builder: (ctx) => const PasteJsonDialog(),
+                                ).then(
+                                  (value) {
+                                    if (context.mounted &&
+                                        value != null &&
+                                        value.isNotEmpty) {
+                                      cubitOf(context).addFromJson(json: value);
+                                    }
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxHeight: MediaQuery.sizeOf(context).width * 0.5,
+                        ),
+                        child: ClassPreview(
+                          className: _controller.text,
+                          isEnum: isEnum,
+                          variables: state.variables,
+                          onEdit: (variable) {
+                            showCupertinoModalPopup(
+                              context: context,
+                              builder: (ctx) => AddEditVariableDialog(
+                                variable: variable,
+                                types: isEnum
+                                    ? ['String']
+                                    : cubitOf(context).state.componentNames,
+                                parentIsEnum: isEnum,
+                                process: (type, name, isList) {
+                                  cubitOf(context).editVariable(
+                                    name: name,
+                                    type: type,
+                                    index: state.variables.indexOf(variable),
+                                    isList: isList,
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                          onDelete: (variable) {
+                            cubitOf(context).deleteVariable(variable);
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const Gap(20),
+            Divider(
+              color: context.appColors.controlColor,
+              height: 0,
+              thickness: 0.2,
+            ),
+            blocBuilder(
+              builder: (context, state) => DialogActionButtons(
+                focusNode: _mainFocusNode,
+                leftButtonLabel: S.of(context).ok,
+                rightButtonLabel: S.of(context).cancel,
+                leftButtonOnPressed: () => _onOk(context, state),
+                rightButtonOnPressed: () => _pop(context),
+                isLeftButtonActive: _valid(state),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  bool _valid(ComponentDialogState state) =>
+      _controller.text.isNotEmpty && state.variables.isNotEmpty;
+
+  Future<void> _onOk(BuildContext context, ComponentDialogState state) async {
+    if (!_valid(state)) {
+      return;
+    }
+
+    var addChildren = false;
+
+    if (state.children.isNotEmpty) {
+      await Dialogs.showOkCancelDialog(
+        context: context,
+        title: S.of(context).addChildren,
+        content: Text(
+          S.of(context).addChildrenContent(
+                state.children.map(
+                  (e) => e.getClassName(DataFileType.entity),
+                ),
+              ),
+        ),
+        onOk: () => addChildren = true,
+      );
+    }
+
+    if (addChildren) {
+      widget.onChildrenPass?.call(state.children);
+    }
+
+    if (context.mounted) {
+      if (widget.component != null) {
+        component = cubitOf(context).editDataObject(
+          name: _controller.text,
+        );
+      } else {
+        component = cubitOf(context).addDataObject(
+          name: _controller.text,
+          isEnum: isEnum,
+          addToRepository: !widget.requestComponent,
+          addChildren: addChildren,
+        );
+      }
+      if (component != null) {
+        Navigator.of(context).pop(component);
+      }
+    }
+  }
+
+  void _pop(BuildContext context) {
+    if (context.mounted) {
+      Navigator.of(context).pop();
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+}

@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 
@@ -17,8 +18,12 @@ class ObjectView {
     for (final variable in variables) {
       final ref = variable.type.getSwaggerObjectReference();
       if (ref != null) {
-        final object = components.dataObjects
+        Component? object = components.dataObjects
             .firstWhereOrNull((element) => element.name == ref.reference);
+
+        object ??= components.enums
+            .firstWhereOrNull((element) => element.name == ref.reference);
+
         if (object != null) {
           if (variable.type is SwaggerArray) {
             result

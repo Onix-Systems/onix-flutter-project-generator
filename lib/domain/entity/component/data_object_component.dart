@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/enum/mapper_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_reference_extension.dart';
@@ -7,6 +6,7 @@ import 'package:onix_flutter_bricks/app/util/extenstion/variable_sort_extension.
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
 import 'package:onix_flutter_bricks/domain/service/base/class_builder/class_builder.dart';
@@ -16,17 +16,16 @@ import 'package:onix_flutter_bricks/util/extension/codelines_extension.dart';
 import 'package:onix_flutter_bricks/util/reversed_word_processor.dart';
 import 'package:recase/recase.dart';
 
-part 'data_object_component.freezed.dart';
+class DataObjectComponent extends Component {
+  final SwaggerReference fileReference;
+  final List<DataVariableComponent> variables;
 
-@freezed
-class DataObjectComponent with _$DataObjectComponent {
-  const DataObjectComponent._();
-
-  const factory DataObjectComponent({
+  DataObjectComponent({
     required String name,
-    required SwaggerReference fileReference,
-    required List<DataVariableComponent> variables,
-  }) = _DataObjectComponent;
+    required this.fileReference,
+    required this.variables,
+    super.fromSwagger = true,
+  }) : super(name: name.pascalCase);
 
   String getFilePath(DataFileType type, ArchType arch) =>
       fileReference.getFileImportName(type, arch) ?? '';
@@ -483,6 +482,7 @@ class DataObjectComponent with _$DataObjectComponent {
     }).toList();
   }
 
+  @override
   String getString({int level = 1}) {
     final variablesString =
         variables.map((e) => '${'  ' * level}${e.getString()}').join('\n');
@@ -496,4 +496,90 @@ class DataObjectComponent with _$DataObjectComponent {
             (type is SwaggerReference &&
                 element.name.pascalCase == type.reference),
       );
+
+  String _tabs([int count = 1]) => '  ' * count;
+
+  String get basicObjectBody {
+    final result = <String>[
+      'class $name {',
+      ...variables.map((e) => '${_tabs()}final ${e.type} ${e.name};'),
+      '\n${_tabs()}${'$name ({'}',
+      ...variables.map((e) => '${_tabs(2)}required this.${e.name},'),
+      '${_tabs()}});',
+      _generateToJson(variables),
+      _generateFromJson(variables, name),
+      '}\n',
+    ];
+
+    return result.join('\n');
+  }
+
+  String _generateToJson(List<DataVariableComponent> variables) {
+    final result = <String>['\n${_tabs()}Map<String, dynamic> toJson() => {'];
+
+    for (final variable in variables) {
+      if (variable.type is SwaggerVariable) {
+        result.add(
+          "${_tabs(2)}'${variable.name}': ${variable.name},",
+        );
+      } else if (variable.type is SwaggerReference) {
+        result.add(
+          "${_tabs(2)}'${variable.name}': ${variable.name}.toJson(),",
+        );
+      } else if (variable.type is SwaggerArray) {
+        final itemType = (variable.type as SwaggerArray).itemType.type;
+
+        if (itemType is SwaggerVariable) {
+          result.add(
+            "${_tabs(2)}'${variable.name}': ${variable.name},",
+          );
+        } else if (itemType is SwaggerReference) {
+          result.add(
+            "${_tabs(2)}'${variable.name}': ${variable.name}.map((e) => e.toJson()).toList(),",
+          );
+        }
+      }
+    }
+
+    result.add('${_tabs()}};');
+
+    return result.join('\n');
+  }
+
+  String _generateFromJson(List<DataVariableComponent> variables, String name) {
+    final result = <String>[
+      '\n${_tabs()}factory $name.fromJson(Map<String, dynamic> json) => $name(',
+    ];
+
+    for (final variable in variables) {
+      if (variable.type is SwaggerVariable) {
+        final type = (variable.type as SwaggerVariable).type;
+
+        result.add(
+          "${_tabs(2)}${variable.name}: json['${variable.name}'] as ${type.toSwaggerDartType()},",
+        );
+      } else if (variable.type is SwaggerReference) {
+        final reference = variable.type as SwaggerReference;
+        result.add(
+          "${_tabs(2)}${variable.name}: $reference.fromJson(json['${variable.name}'] as Map<String, dynamic>),",
+        );
+      } else if (variable.type is SwaggerArray) {
+        final itemType = (variable.type as SwaggerArray).itemType.type;
+
+        if (itemType is SwaggerVariable) {
+          result.add(
+            "${_tabs(2)}${variable.name}: json['${variable.name}'] as List<${itemType.type.toSwaggerDartType()}>,",
+          );
+        } else if (itemType is SwaggerReference) {
+          result.add(
+            "${_tabs(2)}${variable.name}: (json['${variable.name}'] as List<Map<String, dynamic>>).map($itemType.fromJson).toList(),",
+          );
+        }
+      }
+    }
+
+    result.add('${_tabs()});');
+
+    return result.join('\n');
+  }
 }

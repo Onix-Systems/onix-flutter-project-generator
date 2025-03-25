@@ -66,4 +66,10 @@ extension SwaggerTypeRefExtension on SwaggerType {
     }
     return null;
   }
+
+  String getTypeName() {
+    return getSwaggerObjectReference()?.reference ??
+        getSwaggerEnumReference()?.name ??
+        getName();
+  }
 }

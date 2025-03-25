@@ -38,7 +38,7 @@ extension ArchTypeX on ArchType {
       case ArchType.clean:
         return 'domain/$folderName/$namePath';
       case ArchType.basic:
-        return 'data/model/domain/$folderName/$namePath';
+        return 'domain/model/$folderName';
     }
   }
 
