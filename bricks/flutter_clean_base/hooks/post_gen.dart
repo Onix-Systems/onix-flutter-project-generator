@@ -141,7 +141,7 @@ Future<void> getDependencies(HookContext context) async {
     'cupertino_icons',
     'dio',
     'hive_flutter',
-    'freezed_annotation',
+    'freezed_annotation:2.4.4',
     'json_annotation',
     'get_it',
     'flutter_secure_storage:^9.0.0',
@@ -475,7 +475,7 @@ Future<void> injectFlavors(HookContext context) async {
 
 Future<void> correct(HookContext context) async {
   if (context.vars['platforms'].contains('android')) {
-    File appBuildGradle = File('$name/android/app/build.gradle');
+    File appBuildGradle = getGradleFile();
     String appBuildGradleContent = appBuildGradle.readAsStringSync();
 
     appBuildGradle.writeAsStringSync(appBuildGradleContent
@@ -577,7 +577,7 @@ coverage/
 /fastlane/.env*
       ''');
 
-    File androidBuildGradleFile = File('$name/android/app/build.gradle');
+    File androidBuildGradleFile = getGradleFile();
 
     String androidBuildGradleContent =
         await androidBuildGradleFile.readAsString();
@@ -667,6 +667,12 @@ Future<void> removeFirebase(HookContext context) async {
   String arbContent = await arbFile.readAsString();
 
   arbFile.writeAsStringSync(arbContent.replaceFirst(firebaseArbStrings, ''));
+}
+
+File getGradleFile() {
+  return File('$name/android/app/build.gradle').existsSync()
+      ? File('$name/android/app/build.gradle')
+      : File('$name/android/app/build.gradle.kts');
 }
 
 void exitBrick() async {
