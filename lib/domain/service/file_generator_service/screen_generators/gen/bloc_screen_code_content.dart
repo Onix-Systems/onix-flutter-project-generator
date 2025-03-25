@@ -84,7 +84,7 @@ class BlocScreenCodeContent extends ScreenCodeContent {
       ..add('break;')
       ..add('}')
       ..addNewLine()
-      ..add('}')
+      ..add('}}')
       ..addNewLine();
     return codeLines.join('\n');
   }
