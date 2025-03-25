@@ -103,7 +103,7 @@ mixin BlocContentMixin on ScreenGenerationService {
       codeLines
         ..add('@freezed')
         ..add(
-          'class ${screenModelName}ScreenEvent with _\$${screenModelName}ScreenEvent {',
+          'sealed class ${screenModelName}ScreenEvent with _\$${screenModelName}ScreenEvent {',
         )
         ..add(
           'const factory ${screenModelName}ScreenEvent.init() = ${screenModelName}ScreenEventInit;',
@@ -116,10 +116,10 @@ mixin BlocContentMixin on ScreenGenerationService {
       ///Add SR events
       ..add('@freezed')
       ..add(
-        'class ${screenModelName}ScreenSR with _\$${screenModelName}ScreenSR {',
+        'sealed class ${screenModelName}ScreenSR with _\$${screenModelName}ScreenSR {',
       )
       ..add(
-        'const factory ${screenModelName}ScreenSR.loadFinished() = _LoadFinished;',
+        'const factory ${screenModelName}ScreenSR.loadFinished() = LoadFinished;',
       )
       ..add('}')
       ..addNewLine();
@@ -131,7 +131,7 @@ mixin BlocContentMixin on ScreenGenerationService {
       codeLines
         ..add('@freezed')
         ..add(
-          'class ${screenModelName}ScreenState with _\$${screenModelName}ScreenState{',
+          'sealed class ${screenModelName}ScreenState with _\$${screenModelName}ScreenState{',
         )
         ..add('const factory ${screenModelName}ScreenState({')
         ..add('@Default(true) bool isLoading,')

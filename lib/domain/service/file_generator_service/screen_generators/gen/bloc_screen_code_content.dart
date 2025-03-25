@@ -79,11 +79,12 @@ class BlocScreenCodeContent extends ScreenCodeContent {
       ..add(
         'void _onSingleResult(BuildContext context, ${screenClassName}ScreenSR singleResult) {',
       )
-      ..add('singleResult.when(')
-      ..add('loadFinished: () {')
-      ..add('},);}')
-      ..addNewLine()
+      ..add('switch (singleResult) {')
+      ..add('case LoadFinished():')
+      ..add('break;')
       ..add('}')
+      ..addNewLine()
+      ..add('}}')
       ..addNewLine();
     return codeLines.join('\n');
   }

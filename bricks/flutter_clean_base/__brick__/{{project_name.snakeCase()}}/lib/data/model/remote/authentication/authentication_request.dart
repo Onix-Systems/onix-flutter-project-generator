@@ -5,7 +5,7 @@ part 'authentication_request.freezed.dart';
 part 'authentication_request.g.dart';
 
 @Freezed(toJson: true)
-class AuthenticationRequest with _$AuthenticationRequest {
+abstract class AuthenticationRequest with _$AuthenticationRequest {
   const factory AuthenticationRequest({
     @JsonKey(name: 'input') required AuthenticationRequestData input,
   }) = _AuthenticationRequest;
@@ -15,7 +15,7 @@ class AuthenticationRequest with _$AuthenticationRequest {
 }
 
 @Freezed(toJson: true)
-class AuthenticationRequestData with _$AuthenticationRequestData {
+abstract class AuthenticationRequestData with _$AuthenticationRequestData {
   const factory AuthenticationRequestData({
     @JsonKey(name: 'email') required String email,
     @JsonKey(name: 'password') required String password,

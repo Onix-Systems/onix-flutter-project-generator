@@ -39,7 +39,7 @@ class FreezedClassBuilder extends ClassBuilder {
       ..add("part '$classPartImport.freezed.dart';")
       ..addNewLine()
       ..add('@freezed')
-      ..add('class $classFullName with _\$$classFullName {');
+      ..add('abstract class $classFullName with _\$$classFullName {');
     if (_baseConstructorProperties.isEmpty) {
       lines.add('const factory $classFullName() = _$classFullName;');
     } else {
