@@ -5,7 +5,7 @@ part 'authentication_response.freezed.dart';
 part 'authentication_response.g.dart';
 
 @freezed
-class AuthenticationResponse with _$AuthenticationResponse {
+abstract class AuthenticationResponse with _$AuthenticationResponse {
   const factory AuthenticationResponse(
     @JsonKey(name: 'access_token') String? accessToken,
     @JsonKey(name: 'refresh_token') String? refreshToken,
