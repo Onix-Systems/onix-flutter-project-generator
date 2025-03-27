@@ -9,9 +9,15 @@ class PascalCaseFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
+    final newText = newValue.text.pascalCase;
     return TextEditingValue(
-      text: newValue.text.pascalCase,
-      selection: newValue.selection,
+      text: newText,
+      selection: newValue.selection.copyWith(
+        baseOffset: newText.length -
+            (newValue.text.length - newValue.selection.baseOffset),
+        extentOffset: newText.length -
+            (newValue.text.length - newValue.selection.extentOffset),
+      ),
     );
   }
 }

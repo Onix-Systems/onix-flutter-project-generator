@@ -36,8 +36,11 @@ class PathFormatter extends TextInputFormatter {
 
     return TextEditingValue(
       text: text,
-      selection: TextSelection.collapsed(
-        offset: text.length,
+      selection: newValue.selection.copyWith(
+        baseOffset: text.length -
+            (newValue.text.length - newValue.selection.baseOffset),
+        extentOffset: text.length -
+            (newValue.text.length - newValue.selection.extentOffset),
       ),
     );
   }
