@@ -12,6 +12,8 @@ class FirstCharacterNotDigitFormatter extends TextInputFormatter {
         newValue.text[0].contains(RegExp('[0-9]'))) {
       return oldValue;
     }
-    return newValue;
+    return newValue.copyWith(
+      selection: newValue.selection,
+    );
   }
 }
