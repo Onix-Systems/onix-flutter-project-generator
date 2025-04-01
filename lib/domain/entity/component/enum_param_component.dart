@@ -56,7 +56,6 @@ class EnumParamComponent extends Component {
         (json['type']['enumValues'] as List<dynamic>)
             .map((e) => e as String)
             .toList(),
-        from: json['type']['from'] as String,
       ),
     );
   }

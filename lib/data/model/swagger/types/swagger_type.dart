@@ -143,7 +143,6 @@ class SwaggerVariable extends SwaggerType {
   Map<String, dynamic> getJson() {
     return {
       'type': type,
-      'from': from,
     };
   }
 }
@@ -217,7 +216,6 @@ class SwaggerReference extends SwaggerType {
   Map<String, dynamic> getJson() {
     return {
       'reference': reference,
-      'from': from,
     };
   }
 }
@@ -273,7 +271,6 @@ class SwaggerArray extends SwaggerType {
   Map<String, dynamic> getJson() {
     return {
       'itemType': itemType.toJson(),
-      'from': from,
     };
   }
 }
@@ -326,7 +323,6 @@ class SwaggerEnum extends SwaggerType {
     return {
       'name': name,
       'enumValues': enumValues,
-      'from': from,
     };
   }
 }
@@ -408,7 +404,6 @@ class SwaggerFile extends SwaggerType {
   Map<String, dynamic> getJson() {
     return {
       'type': 'string',
-      'from': from,
     };
   }
 }
@@ -453,7 +448,6 @@ class SwaggerAllOf extends SwaggerType {
     return {
       'name': name,
       'parameters': parameters.map((e) => e.toJson()).toList(),
-      'from': from,
     };
   }
 }
