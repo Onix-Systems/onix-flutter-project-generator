@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DataComponentsScreenV2Event {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(Config config, Components? components) init,
     required TResult Function(String sourceName) addSource,
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
@@ -30,7 +30,7 @@ mixin _$DataComponentsScreenV2Event {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(Config config, Components? components)? init,
     TResult? Function(String sourceName)? addSource,
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
@@ -42,7 +42,7 @@ mixin _$DataComponentsScreenV2Event {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(Config config, Components? components)? init,
     TResult Function(String sourceName)? addSource,
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
@@ -125,9 +125,10 @@ abstract class _$$DataComponentsScreenV2IInitImplCopyWith<$Res> {
           $Res Function(_$DataComponentsScreenV2IInitImpl) then) =
       __$$DataComponentsScreenV2IInitImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Config config});
+  $Res call({Config config, Components? components});
 
   $ConfigCopyWith<$Res> get config;
+  $ComponentsCopyWith<$Res>? get components;
 }
 
 /// @nodoc
@@ -146,12 +147,17 @@ class __$$DataComponentsScreenV2IInitImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? config = null,
+    Object? components = freezed,
   }) {
     return _then(_$DataComponentsScreenV2IInitImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
+      components: freezed == components
+          ? _value.components
+          : components // ignore: cast_nullable_to_non_nullable
+              as Components?,
     ));
   }
 
@@ -164,19 +170,37 @@ class __$$DataComponentsScreenV2IInitImplCopyWithImpl<$Res>
       return _then(_value.copyWith(config: value));
     });
   }
+
+  /// Create a copy of DataComponentsScreenV2Event
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ComponentsCopyWith<$Res>? get components {
+    if (_value.components == null) {
+      return null;
+    }
+
+    return $ComponentsCopyWith<$Res>(_value.components!, (value) {
+      return _then(_value.copyWith(components: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
-  const _$DataComponentsScreenV2IInitImpl({required this.config});
+  _$DataComponentsScreenV2IInitImpl({required this.config, this.components});
 
   @override
   final Config config;
 
+  ///For testing purposes
+  @override
+  final Components? components;
+
   @override
   String toString() {
-    return 'DataComponentsScreenV2Event.init(config: $config)';
+    return 'DataComponentsScreenV2Event.init(config: $config, components: $components)';
   }
 
   @override
@@ -184,11 +208,13 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataComponentsScreenV2IInitImpl &&
-            (identical(other.config, config) || other.config == config));
+            (identical(other.config, config) || other.config == config) &&
+            (identical(other.components, components) ||
+                other.components == components));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config);
+  int get hashCode => Object.hash(runtimeType, config, components);
 
   /// Create a copy of DataComponentsScreenV2Event
   /// with the given fields replaced by the non-null parameter values.
@@ -202,7 +228,7 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(Config config, Components? components) init,
     required TResult Function(String sourceName) addSource,
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
@@ -211,13 +237,13 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
             bool deleteRequestBodyComponent, bool deleteResponseComponent)
         deleteRequest,
   }) {
-    return init(config);
+    return init(config, components);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(Config config, Components? components)? init,
     TResult? Function(String sourceName)? addSource,
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
@@ -226,13 +252,13 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
             bool deleteRequestBodyComponent, bool deleteResponseComponent)?
         deleteRequest,
   }) {
-    return init?.call(config);
+    return init?.call(config, components);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(Config config, Components? components)? init,
     TResult Function(String sourceName)? addSource,
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
@@ -243,7 +269,7 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(config);
+      return init(config, components);
     }
     return orElse();
   }
@@ -302,10 +328,14 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
 
 abstract class DataComponentsScreenV2IInit
     implements DataComponentsScreenV2Event {
-  const factory DataComponentsScreenV2IInit({required final Config config}) =
-      _$DataComponentsScreenV2IInitImpl;
+  factory DataComponentsScreenV2IInit(
+      {required final Config config,
+      final Components? components}) = _$DataComponentsScreenV2IInitImpl;
 
   Config get config;
+
+  ///For testing purposes
+  Components? get components;
 
   /// Create a copy of DataComponentsScreenV2Event
   /// with the given fields replaced by the non-null parameter values.
@@ -389,7 +419,7 @@ class _$DataComponentsScreenV2AddSourceImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(Config config, Components? components) init,
     required TResult Function(String sourceName) addSource,
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
@@ -404,7 +434,7 @@ class _$DataComponentsScreenV2AddSourceImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(Config config, Components? components)? init,
     TResult? Function(String sourceName)? addSource,
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
@@ -419,7 +449,7 @@ class _$DataComponentsScreenV2AddSourceImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(Config config, Components? components)? init,
     TResult Function(String sourceName)? addSource,
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
@@ -587,7 +617,7 @@ class _$DataComponentsScreenV2EditSourceNameImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(Config config, Components? components) init,
     required TResult Function(String sourceName) addSource,
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
@@ -602,7 +632,7 @@ class _$DataComponentsScreenV2EditSourceNameImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(Config config, Components? components)? init,
     TResult? Function(String sourceName)? addSource,
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
@@ -617,7 +647,7 @@ class _$DataComponentsScreenV2EditSourceNameImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(Config config, Components? components)? init,
     TResult Function(String sourceName)? addSource,
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
@@ -777,7 +807,7 @@ class _$DataComponentsScreenV2DeleteSourceImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(Config config, Components? components) init,
     required TResult Function(String sourceName) addSource,
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
@@ -792,7 +822,7 @@ class _$DataComponentsScreenV2DeleteSourceImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(Config config, Components? components)? init,
     TResult? Function(String sourceName)? addSource,
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
@@ -807,7 +837,7 @@ class _$DataComponentsScreenV2DeleteSourceImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(Config config, Components? components)? init,
     TResult Function(String sourceName)? addSource,
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
@@ -966,7 +996,7 @@ class _$DataComponentsScreenV2DeleteComponentImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(Config config, Components? components) init,
     required TResult Function(String sourceName) addSource,
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
@@ -981,7 +1011,7 @@ class _$DataComponentsScreenV2DeleteComponentImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(Config config, Components? components)? init,
     TResult? Function(String sourceName)? addSource,
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
@@ -996,7 +1026,7 @@ class _$DataComponentsScreenV2DeleteComponentImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(Config config, Components? components)? init,
     TResult Function(String sourceName)? addSource,
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,
@@ -1207,7 +1237,7 @@ class _$DataComponentsScreenV2DeleteRequestImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function(Config config, Components? components) init,
     required TResult Function(String sourceName) addSource,
     required TResult Function(String sourceName, String newName) editSourceName,
     required TResult Function(String sourceName) deleteSource,
@@ -1223,7 +1253,7 @@ class _$DataComponentsScreenV2DeleteRequestImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function(Config config, Components? components)? init,
     TResult? Function(String sourceName)? addSource,
     TResult? Function(String sourceName, String newName)? editSourceName,
     TResult? Function(String sourceName)? deleteSource,
@@ -1239,7 +1269,7 @@ class _$DataComponentsScreenV2DeleteRequestImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function(Config config, Components? components)? init,
     TResult Function(String sourceName)? addSource,
     TResult Function(String sourceName, String newName)? editSourceName,
     TResult Function(String sourceName)? deleteSource,

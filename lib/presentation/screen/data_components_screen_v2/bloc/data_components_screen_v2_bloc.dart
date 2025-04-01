@@ -59,7 +59,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     DataComponentsScreenV2IInit event,
     Emitter<DataComponentsScreenV2State> emit,
   ) {
-    final components = _getSwaggerComponentsUseCase();
+    final components = event.components ?? _getSwaggerComponentsUseCase();
 
     emit(
       state.copyWith(

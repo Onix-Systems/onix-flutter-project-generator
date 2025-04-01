@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -10,7 +7,6 @@ import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
@@ -220,59 +216,15 @@ class _DataComponentsScreenState extends BaseState<
                     ),
                   ),
                 const Delimiter.height(10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    AppFilledButton(
-                      label: 'fromJson',
-                      onPressed: () {
-                        Clipboard.getData('text/plain').then(
-                          (value) {
-                            if (value != null && value.text != null) {
-                              final json = jsonDecode(value.text!);
-                              final components = Components.fromJson(json);
-                              for (final source in components.sources) {
-                                logger
-                                    .i('Source fromJson: ${source.toString()}');
-                              }
-                              for (final item in components.enums) {
-                                logger.i(
-                                    'EnumParam fromJson ${item.name}:\n${item.getString()}');
-                              }
-                              for (final item in components.dataObjects) {
-                                logger.i(
-                                    'DataObject fromJson ${item.name}:\n${item.getString()}');
-                              }
-                            }
-                          },
-                        );
-                      },
-                    ),
-                    const Gap(10),
-                    AppFilledButton(
-                      label: 'toJson',
-                      onPressed: () {
-                        final json = components.toJson();
-
-                        Clipboard.setData(
-                          ClipboardData(
-                            text: jsonEncode(json),
-                          ),
-                        );
-                      },
-                    ),
-                    const Gap(10),
-                    NavigationButtonBar(
-                      nextText: S.of(context).continueLabel,
-                      prevText: S.of(context).goBack,
-                      onNextPressed: () {
-                        _onContinue(context, state);
-                      },
-                      onPrevPressed: () {
-                        _onBack(context, state);
-                      },
-                    ),
-                  ],
+                NavigationButtonBar(
+                  nextText: S.of(context).continueLabel,
+                  prevText: S.of(context).goBack,
+                  onNextPressed: () {
+                    _onContinue(context, state);
+                  },
+                  onPrevPressed: () {
+                    _onBack(context, state);
+                  },
                 ),
               ],
             ),

@@ -8,8 +8,11 @@ part 'data_components_screen_v2_models.freezed.dart';
 
 @freezed
 class DataComponentsScreenV2Event with _$DataComponentsScreenV2Event {
-  const factory DataComponentsScreenV2Event.init({
+  factory DataComponentsScreenV2Event.init({
     required Config config,
+
+    ///For testing purposes
+    Components? components,
   }) = DataComponentsScreenV2IInit;
 
   const factory DataComponentsScreenV2Event.addSource({
