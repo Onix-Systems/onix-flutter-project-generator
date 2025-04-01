@@ -10,7 +10,7 @@ import 'package:recase/recase.dart';
 
 part 'request_component.freezed.dart';
 
-@freezed
+@Freezed(toJson: false, fromJson: false, toStringOverride: false)
 class RequestComponent with _$RequestComponent {
   const RequestComponent._();
 
@@ -557,5 +557,36 @@ class RequestComponent with _$RequestComponent {
       'response': response.toJson(),
       'fromSwagger': fromSwagger,
     };
+  }
+
+  factory RequestComponent.fromJson(Map<String, dynamic> json) {
+    return RequestComponent(
+      operationId: json['operationId'],
+      path: json['path'],
+      type: SwaggerPathRequestType.fromString(json['type'] as String),
+      description: json['description'],
+      requestBody: json['requestBody'] != null
+          ? RequestBodyComponent.fromJson(
+              json['requestBody'] as Map<String, dynamic>,
+            )
+          : null,
+      multipartBody: (json['multipartBody'] as List<dynamic>)
+          .map((e) => RequestMultipartComponent.fromJson(e))
+          .toList(),
+      queryParams: (json['queryParams'] as List<dynamic>)
+          .map((e) => RequestQueryComponent.fromJson(e))
+          .toList(),
+      pathParams: (json['pathParams'] as List<dynamic>)
+          .map((e) => RequestPathComponent.fromJson(e))
+          .toList(),
+      response: ResponseParamComponent.fromJson(
+        json['response'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  @override
+  String toString() {
+    return 'RequestComponent(operationId: $operationId, path: $path, type: $type, description: $description, requestBody: $requestBody, multipartBody: $multipartBody, queryParams: $queryParams, pathParams: $pathParams, response: $response, fromSwagger: $fromSwagger)';
   }
 }

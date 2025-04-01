@@ -36,4 +36,14 @@ class ResponseParamComponent with _$ResponseParamComponent {
       'isEnum': isEnum,
     };
   }
+
+  factory ResponseParamComponent.fromJson(Map<String, dynamic> json) {
+    return ResponseParamComponent(
+      name: json['name'] as String,
+      type: SwaggerType.fromJson(json['type'] as Map<String, dynamic>),
+      isRequired: json['isRequired'] as bool,
+      isEnum: json['isEnum'] as bool? ?? false,
+      fromSwagger: json['fromSwagger'] as bool? ?? true,
+    );
+  }
 }

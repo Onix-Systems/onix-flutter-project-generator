@@ -563,10 +563,9 @@ class SourceComponent {
   factory SourceComponent.fromJson(Map<String, dynamic> json) {
     return SourceComponent(
       name: json['name'] as String,
-      requests: [] /* (json['requests'] as List<dynamic>)
+      requests: (json['requests'] as List<dynamic>)
           .map((e) => RequestComponent.fromJson(e))
-          .toList()*/
-      ,
+          .toList(),
       arch: ArchType.clean,
       fromSwagger: json['fromSwagger'] as bool? ?? true,
     );

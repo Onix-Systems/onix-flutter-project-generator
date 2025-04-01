@@ -73,7 +73,6 @@ sealed class SwaggerType {
       case 'SwaggerReference':
         return SwaggerReference(
           json['reference'] as String,
-          from: json['from'] as String,
         );
       case 'SwaggerArray':
         return SwaggerArray(
@@ -84,7 +83,6 @@ sealed class SwaggerType {
             ),
             isRequired: json['itemType']['isRequired'] as bool,
           ),
-          from: json['from'] as String,
         );
       case 'SwaggerEnum':
         return SwaggerEnum(
@@ -92,7 +90,6 @@ sealed class SwaggerType {
           (json['enumValues'] as List<dynamic>)
               .map((e) => e as String)
               .toList(),
-          from: json['from'] as String,
         );
       case 'SwaggerFile':
         return SwaggerFile(from: json['from'] as String);
@@ -102,13 +99,11 @@ sealed class SwaggerType {
           parameters: (json['parameters'] as List<dynamic>)
               .map((e) => SwaggerType.fromJson(e))
               .toList(),
-          from: json['from'] as String,
         );
       case 'SwaggerVariable':
       default:
         return SwaggerVariable(
           json['type'] as String,
-          from: json['from'] as String,
         );
     }
   }
@@ -412,7 +407,7 @@ class SwaggerFile extends SwaggerType {
 
   Map<String, dynamic> getJson() {
     return {
-      'type': type,
+      'type': 'string',
       'from': from,
     };
   }

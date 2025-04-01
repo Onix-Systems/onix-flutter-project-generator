@@ -124,6 +124,21 @@ class RequestBodyComponent extends RequestParamComponent {
       'isEnum': isEnum,
     };
   }
+
+  factory RequestBodyComponent.fromJson(Map<String, dynamic> json) {
+    return RequestBodyComponent(
+      name: json['name'] as String,
+      type: SwaggerType.fromJson(json['type'] as Map<String, dynamic>),
+      isRequired: json['isRequired'] as bool,
+      fromSwagger: json['fromSwagger'] as bool? ?? true,
+      isEnum: json['isEnum'] as bool? ?? false,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'RequestBodyComponent(name: $name, type: $type, isRequired: $isRequired, fromSwagger: $fromSwagger, isEnum: $isEnum)';
+  }
 }
 
 class RequestMultipartComponent extends RequestParamComponent {
@@ -167,6 +182,21 @@ class RequestMultipartComponent extends RequestParamComponent {
       'fromSwagger': fromSwagger,
       'isEnum': isEnum,
     };
+  }
+
+  factory RequestMultipartComponent.fromJson(Map<String, dynamic> json) {
+    return RequestMultipartComponent(
+      name: json['name'] as String,
+      type: SwaggerType.fromJson(json['type'] as Map<String, dynamic>),
+      isRequired: json['isRequired'] as bool,
+      fromSwagger: json['fromSwagger'] as bool? ?? true,
+      isEnum: json['isEnum'] as bool? ?? false,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'RequestMultipartComponent(name: $name, type: $type, isRequired: $isRequired, fromSwagger: $fromSwagger, isEnum: $isEnum)';
   }
 }
 
@@ -212,6 +242,21 @@ class RequestQueryComponent extends RequestParamComponent {
       'isEnum': isEnum,
     };
   }
+
+  factory RequestQueryComponent.fromJson(Map<String, dynamic> json) {
+    return RequestQueryComponent(
+      name: json['name'] as String,
+      type: SwaggerType.fromJson(json['type'] as Map<String, dynamic>),
+      isRequired: json['isRequired'] as bool,
+      fromSwagger: json['fromSwagger'] as bool? ?? true,
+      isEnum: json['isEnum'] as bool? ?? false,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'RequestQueryComponent(name: $name, type: $type, isRequired: $isRequired, fromSwagger: $fromSwagger, isEnum: $isEnum)';
+  }
 }
 
 class RequestPathComponent extends RequestParamComponent {
@@ -230,6 +275,21 @@ class RequestPathComponent extends RequestParamComponent {
       'fromSwagger': fromSwagger,
       'isEnum': isEnum,
     };
+  }
+
+  factory RequestPathComponent.fromJson(Map<String, dynamic> json) {
+    return RequestPathComponent(
+      name: json['name'] as String,
+      type: SwaggerType.fromJson(json['type'] as Map<String, dynamic>),
+      isRequired: json['isRequired'] as bool? ?? true,
+      fromSwagger: json['fromSwagger'] as bool? ?? true,
+      isEnum: json['isEnum'] as bool? ?? false,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'RequestPathComponent(name: $name, type: $type, isRequired: $isRequired, fromSwagger: $fromSwagger, isEnum: $isEnum)';
   }
 }
 
