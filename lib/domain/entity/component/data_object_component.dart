@@ -590,4 +590,16 @@ class DataObjectComponent extends Component {
       'variables': variables.map((e) => e.toJson()).toList(),
     };
   }
+
+  factory DataObjectComponent.fromJson(Map<String, dynamic> json) {
+    return DataObjectComponent(
+      name: json['name'] as String,
+      fileReference: SwaggerReference(
+        json['fileReference']['reference'] as String,
+      ),
+      variables: (json['variables'] as List<dynamic>)
+          .map((e) => DataVariableComponent.fromJson(e))
+          .toList(),
+    );
+  }
 }

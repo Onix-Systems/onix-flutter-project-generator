@@ -34,13 +34,12 @@ class Components with _$Components {
       sources: (json['sources'] as List<dynamic>)
           .map((e) => SourceComponent.fromJson(e))
           .toList(),
-      enums: [],
-      /*(json['enums'] as List<dynamic>)
+      enums: (json['enums'] as List<dynamic>)
           .map((e) => EnumParamComponent.fromJson(e))
-          .toList(),*/
-      dataObjects: [], /*(json['dataObjects'] as List<dynamic>)
+          .toList(),
+      dataObjects: (json['dataObjects'] as List<dynamic>)
           .map((e) => DataObjectComponent.fromJson(e))
-          .toList(),*/
+          .toList(),
     );
   }
 }

@@ -47,4 +47,17 @@ class EnumParamComponent extends Component {
       'fromSwagger': true,
     };
   }
+
+  factory EnumParamComponent.fromJson(Map<String, dynamic> json) {
+    return EnumParamComponent(
+      name: json['name'] as String,
+      type: SwaggerEnum(
+        json['type']['name'] as String,
+        (json['type']['enumValues'] as List<dynamic>)
+            .map((e) => e as String)
+            .toList(),
+        from: json['type']['from'] as String,
+      ),
+    );
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:recase/recase.dart';
 
@@ -63,6 +64,53 @@ sealed class SwaggerType {
       'type': runtimeType.toString(),
       ...object,
     };
+  }
+
+  factory SwaggerType.fromJson(Map<String, dynamic> json) {
+    final type = json['type'] as String;
+
+    switch (type) {
+      case 'SwaggerReference':
+        return SwaggerReference(
+          json['reference'] as String,
+          from: json['from'] as String,
+        );
+      case 'SwaggerArray':
+        return SwaggerArray(
+          SwaggerModelVariableResponseV3(
+            name: json['itemType']['name'] as String,
+            type: SwaggerType.fromJson(
+              json['itemType']['type'] as Map<String, dynamic>,
+            ),
+            isRequired: json['itemType']['isRequired'] as bool,
+          ),
+          from: json['from'] as String,
+        );
+      case 'SwaggerEnum':
+        return SwaggerEnum(
+          json['name'] as String,
+          (json['enumValues'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          from: json['from'] as String,
+        );
+      case 'SwaggerFile':
+        return SwaggerFile(from: json['from'] as String);
+      case 'SwaggerAllOf':
+        return SwaggerAllOf(
+          name: json['name'] as String,
+          parameters: (json['parameters'] as List<dynamic>)
+              .map((e) => SwaggerType.fromJson(e))
+              .toList(),
+          from: json['from'] as String,
+        );
+      case 'SwaggerVariable':
+      default:
+        return SwaggerVariable(
+          json['type'] as String,
+          from: json['from'] as String,
+        );
+    }
   }
 }
 
