@@ -108,4 +108,12 @@ abstract class BaseSwaggerModelVariableResponse {
       );
     }
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type.toJson(),
+      'isRequired': isRequired,
+    };
+  }
 }

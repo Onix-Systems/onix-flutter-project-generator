@@ -5,7 +5,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/source_component.dar
 
 part 'components.freezed.dart';
 
-@freezed
+@Freezed(toJson: false, fromJson: false)
 class Components with _$Components {
   const Components._();
 
@@ -20,4 +20,27 @@ class Components with _$Components {
         enums: [],
         dataObjects: [],
       );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'sources': sources.map((e) => e.toJson()).toList(),
+      'enums': enums.map((e) => e.toJson()).toList(),
+      'dataObjects': dataObjects.map((e) => e.toJson()).toList(),
+    };
+  }
+
+  factory Components.fromJson(Map<String, dynamic> json) {
+    return Components(
+      sources: (json['sources'] as List<dynamic>)
+          .map((e) => SourceComponent.fromJson(e))
+          .toList(),
+      enums: [],
+      /*(json['enums'] as List<dynamic>)
+          .map((e) => EnumParamComponent.fromJson(e))
+          .toList(),*/
+      dataObjects: [], /*(json['dataObjects'] as List<dynamic>)
+          .map((e) => DataObjectComponent.fromJson(e))
+          .toList(),*/
+    );
+  }
 }

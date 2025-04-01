@@ -543,4 +543,19 @@ class RequestComponent with _$RequestComponent {
 
     return formattedArray;
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'operationId': operationId,
+      'path': path,
+      'type': type.name,
+      'description': description,
+      'requestBody': requestBody?.toJson(),
+      'multipartBody': multipartBody.map((e) => e.toJson()).toList(),
+      'queryParams': queryParams.map((e) => e.toJson()).toList(),
+      'pathParams': pathParams.map((e) => e.toJson()).toList(),
+      'response': response.toJson(),
+      'fromSwagger': fromSwagger,
+    };
+  }
 }

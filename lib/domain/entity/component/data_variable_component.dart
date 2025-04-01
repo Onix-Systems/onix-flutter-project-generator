@@ -3,7 +3,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 
 part 'data_variable_component.freezed.dart';
 
-@freezed
+@Freezed(toJson: false, fromJson: false)
 class DataVariableComponent with _$DataVariableComponent {
   const DataVariableComponent._();
 
@@ -16,5 +16,14 @@ class DataVariableComponent with _$DataVariableComponent {
 
   String getString() {
     return '${isRequired ? 'required ' : ''}$type $name;';
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type.toJson(),
+      'isRequired': isRequired,
+      'isEnum': isEnum,
+    };
   }
 }

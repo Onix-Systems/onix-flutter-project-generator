@@ -582,4 +582,12 @@ class DataObjectComponent extends Component {
 
     return result.join('\n');
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'fileReference': fileReference.toJson(),
+      'variables': variables.map((e) => e.toJson()).toList(),
+    };
+  }
 }

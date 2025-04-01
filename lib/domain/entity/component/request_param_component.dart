@@ -114,6 +114,16 @@ class RequestBodyComponent extends RequestParamComponent {
     }
     return null;
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type.toJson(),
+      'isRequired': isRequired,
+      'fromSwagger': fromSwagger,
+      'isEnum': isEnum,
+    };
+  }
 }
 
 class RequestMultipartComponent extends RequestParamComponent {
@@ -147,6 +157,16 @@ class RequestMultipartComponent extends RequestParamComponent {
           ? component.type
           : (component as DataObjectComponent).fileReference,
     ) as RequestMultipartComponent;
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type.toJson(),
+      'isRequired': isRequired,
+      'fromSwagger': fromSwagger,
+      'isEnum': isEnum,
+    };
   }
 }
 
@@ -182,6 +202,16 @@ class RequestQueryComponent extends RequestParamComponent {
           : (component as DataObjectComponent).fileReference,
     ) as RequestQueryComponent;
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type.toJson(),
+      'isRequired': isRequired,
+      'fromSwagger': fromSwagger,
+      'isEnum': isEnum,
+    };
+  }
 }
 
 class RequestPathComponent extends RequestParamComponent {
@@ -193,7 +223,14 @@ class RequestPathComponent extends RequestParamComponent {
     super.fromSwagger,
   });
 
-  //RequestPathComponent? updateComponentType(SwaggerType? type) {}
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type.toJson(),
+      'fromSwagger': fromSwagger,
+      'isEnum': isEnum,
+    };
+  }
 }
 
 extension RequestParamComponentExtension on RequestParamComponent {

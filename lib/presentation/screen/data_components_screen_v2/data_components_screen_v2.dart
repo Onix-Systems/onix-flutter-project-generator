@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -216,15 +219,33 @@ class _DataComponentsScreenState extends BaseState<
                     ),
                   ),
                 const Delimiter.height(10),
-                NavigationButtonBar(
-                  nextText: S.of(context).continueLabel,
-                  prevText: S.of(context).goBack,
-                  onNextPressed: () {
-                    _onContinue(context, state);
-                  },
-                  onPrevPressed: () {
-                    _onBack(context, state);
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    AppFilledButton(
+                      label: 'toJson',
+                      onPressed: () {
+                        final json = components.toJson();
+
+                        Clipboard.setData(
+                          ClipboardData(
+                            text: jsonEncode(json),
+                          ),
+                        );
+                      },
+                    ),
+                    const Gap(10),
+                    NavigationButtonBar(
+                      nextText: S.of(context).continueLabel,
+                      prevText: S.of(context).goBack,
+                      onNextPressed: () {
+                        _onContinue(context, state);
+                      },
+                      onPrevPressed: () {
+                        _onBack(context, state);
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
