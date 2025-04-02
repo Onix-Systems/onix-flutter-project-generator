@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/bloc/platforms_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/widgets/platform_checkbox.dart';
-import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 
 typedef OnPlatformChanged = void Function(AvailablePlatforms platforms);
 
@@ -52,33 +48,6 @@ class PlatformScreenBody extends StatelessWidget {
             },
           ),
           const Spacer(),
-          Align(
-            alignment: Alignment.centerRight,
-            child: NavigationButtonBar(
-              nextText: S.of(context).continueLabel,
-              prevText: S.of(context).goBack,
-              isActive: config.platformsList.selected,
-              onNextPressed: () {
-                context.go(
-                  AppRouter.projectSettingsScreen,
-                  extra: config.copyWith(
-                    platformsList: config.platformsList,
-                    flavorize:
-                        !config.platformsList.webOnly && config.flavorize,
-                    flavors: config.platformsList.webOnly ? '' : config.flavors,
-                    generateSigningKey: !config.platformsList.webOnly &&
-                        config.generateSigningKey,
-                  ),
-                );
-              },
-              onPrevPressed: () {
-                context.go(
-                  AppRouter.projectNameScreen,
-                  extra: config,
-                );
-              },
-            ),
-          ),
         ],
       ),
     );

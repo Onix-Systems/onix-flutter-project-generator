@@ -83,7 +83,6 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
                             blocOf(context)
                                 .add(const GenerationScreenEventOpenProject());
                           },
-                          config: state.config,
                         ),
                       ),
                   ],

@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/app/app_consts.dart';
-import 'package:onix_flutter_bricks/core/di/repository.dart';
-import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
@@ -53,18 +51,6 @@ class Config with _$Config {
   factory Config.empty() => const Config();
 
   bool get useScreenUtil => screenUtil && !platformsList.webOnly;
-
-  Future<void> saveConfig({required String projectPath}) async {
-    await configSource.saveConfig(
-      config: copyWith(
-        screens: screenRepository.screens.map((screen) {
-          screen.exists = true;
-          return screen;
-        }).toSet(),
-      ),
-      configPath: '$projectPath/.gen_config.json',
-    );
-  }
 
   String get projectRootPath => '$projectPath/$projectName';
 }

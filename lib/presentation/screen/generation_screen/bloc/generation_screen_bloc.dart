@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/service/config_service/config_service.dart';
 import 'package:onix_flutter_bricks/domain/service/docs_service/params/docs_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/fastlane_service/params/fastlane_generation_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
@@ -26,14 +27,15 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_component
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
-import 'package:onix_flutter_bricks/util/extension/config_file_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
-import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
 import 'package:onix_flutter_bricks/util/flavors_util.dart';
 import 'package:recase/recase.dart';
 
 class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     GenerationScreenState, GenerationScreenSR> {
+  final ConfigService _configService;
+  Config get config => _configService.config;
+
   ///generators
   final GenerateSigningConfigUseCase _generateSigningConfigUseCase;
   final GenerateDocumentationUseCase _generateDocumentationUseCase;
@@ -55,6 +57,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   final GetSwaggerComponentsUseCase _getComponentsUseCase;
 
   GenerationScreenBloc(
+    this._configService,
     this._generateDocumentationUseCase,
     this._generateScreensUseCase,
     this._addOutputMessageUseCase,
@@ -67,7 +70,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     this._createSwaggerComponentsUseCase,
     this._generateGitCliffFilesUseCase,
     this._getComponentsUseCase,
-  ) : super(const GenerationScreenStateData(config: Config())) {
+  ) : super(const GenerationScreenStateData()) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
     on<GenerationScreenEventOpenProject>(_openProject);
@@ -83,7 +86,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     emit(
       state.copyWith(
-        config: event.config,
         outputStream: outputStream,
         isModify: event.isModify,
         components: components,
@@ -98,22 +100,22 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   ) async {
     emit(state.copyWith(generatingState: GeneratingState.generating));
 
-    if (!state.config.projectExists) {
+    if (!config.projectExists) {
       ///get password for signing generation (Android)
-      final signingPassword = state.config.getSigningPassword();
+      final signingPassword = _configService.getSigningPassword();
 
       ///parse flavor string to Set<String>
-      final flavors = state.config.getFlavorsAsSet();
+      final flavors = _configService.getFlavorsAsSet();
 
       ///create config file, clear old possible copy
-      final configFile = File('${state.config.projectPath}/config.json');
+      final configFile = File('${config.projectPath}/config.json');
       if (configFile.existsSync()) {
         configFile.deleteSync();
       }
 
       ///create a new configuration file
       configFile.createSync();
-      await state.config.saveJsonConfig(
+      await _configService.saveJsonConfig(
         file: configFile,
         flavors: flavors.toList(),
         signingPassword: signingPassword,
@@ -124,23 +126,23 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       );
 
       ///create brick archive file
-      final brickZip = File('${state.config.projectPath}/brick.zip');
+      final brickZip = File('${config.projectPath}/brick.zip');
       if (brickZip.existsSync()) {
         brickZip.deleteSync();
       }
 
       ///get brick target folder
-      final brickFolder = Directory('${state.config.projectPath}/bricks');
+      final brickFolder = Directory('${config.projectPath}/bricks');
       if (brickFolder.existsSync()) {
         brickFolder.deleteSync(recursive: true);
       }
 
       ///get brick code from repo
       await _runProcessUseCase(
-        workDir: state.config.projectPath,
+        workDir: config.projectPath,
         commands: [
           Commands.getDownloadBrickCodeCommand(
-            masonBrickBranch: state.config.branchConfig.branch,
+            masonBrickBranch: config.branchConfig.branch,
           ),
           Commands.getCompletedWithCode0Command(),
         ],
@@ -148,16 +150,16 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       ///run Mason command to build a brick
       await _runProcessUseCase(
-        workDir: state.config.projectPath,
+        workDir: config.projectPath,
         commands: [
           Commands.getMasonActivateCommand(),
           Commands.getMasonAddBrickCommand(
-            projectPath: state.config.projectPath,
-            masonBrickBranch: state.config.branchConfig.branch,
-            brickArch: state.config.arch.name,
+            projectPath: config.projectPath,
+            masonBrickBranch: config.branchConfig.branch,
+            brickArch: config.arch.name,
           ),
           Commands.getMasonMakeBrickCommand(
-            brickArch: state.config.arch.name,
+            brickArch: config.arch.name,
           ),
         ],
       );
@@ -166,22 +168,22 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       await configFile.delete();
       brickFolder.deleteSync(recursive: true);
 
-      if (!state.config.graphql) {
+      if (!config.graphql) {
         await Directory(
-          '${state.config.projectRootPath}/${state.config.arch.getGraphQlPath()}',
+          '${config.projectRootPath}/${config.arch.getGraphQlPath()}',
         ).delete(recursive: true);
 
         await Directory(
-          '${state.config.projectRootPath}/lib/data/source/remote/auth',
+          '${config.projectRootPath}/lib/data/source/remote/auth',
         ).delete(recursive: true);
       }
 
       ///generate Android signing key if configured
-      if (state.config.generateSigningKey) {
+      if (config.generateSigningKey) {
         await _generateSigningConfigUseCase(
           params: SingingGeneratorParams(
-            projectFolder: state.config.projectRootPath,
-            signingVars: state.config.signingVars,
+            projectFolder: config.projectRootPath,
+            signingVars: config.signingVars,
             signingPassword: signingPassword,
           ),
         );
@@ -189,48 +191,51 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     }
 
     ///generate styles if added
-    if (!state.config.projectExists || state.config.styles.isNotEmpty) {
+    if (!config.projectExists || config.styles.isNotEmpty) {
       await _generateStylesUseCase(
         params: StylesGeneratorParams(
-          projectName: state.config.projectName,
-          projectPath: state.config.projectPath,
-          styles: state.config.styles,
-          theming: state.config.theming,
-          projectExists: state.config.projectExists,
-          useScreenUtil:
-              state.config.platformsList.mobile && state.config.useScreenUtil,
+          projectName: config.projectName,
+          projectPath: config.projectPath,
+          styles: config.styles,
+          theming: config.theming,
+          projectExists: config.projectExists,
+          useScreenUtil: config.platformsList.mobile && config.useScreenUtil,
         ),
       );
     }
 
     final newScreensExists =
-        state.config.screens.where((screen) => !screen.exists).isNotEmpty;
+        config.screens.where((screen) => !screen.exists).isNotEmpty;
 
     ///generating screens
-    if (newScreensExists || !state.config.projectExists) {
+    if (newScreensExists || !config.projectExists) {
       await _generateScreensUseCase(
-        config: state.config,
+        config: config,
       );
     } else {
       final routerFile = File(
-        '${state.config.projectRootPath}/lib/app/router/app_router.dart',
+        '${config.projectRootPath}/lib/app/router/app_router.dart',
       );
       var routerContent = routerFile.readAsStringSync();
 
-      if (state.config.router == ProjectRouter.goRouter) {
+      if (config.router == ProjectRouter.goRouter) {
         final routerLines = routerContent.split('\n');
 
         final initialLocationIndex = routerLines.indexWhere(
           (element) => element.contains('static const _initialLocation'),
         );
 
-        final initialScreenName =
-            state.config.screens.firstWhere((element) => element.initial).name;
+        final initialScreen =
+            config.screens.firstWhereOrNull((element) => element.initial);
 
-        routerLines[initialLocationIndex] =
-            "static const _initialLocation = '/${initialScreenName.snakeCase}';";
+        if (initialScreen != null) {
+          final initialScreenName = initialScreen.name.snakeCase;
 
-        routerContent = routerLines.join('\n');
+          routerLines[initialLocationIndex] =
+              "static const _initialLocation = '/$initialScreenName';";
+
+          routerContent = routerLines.join('\n');
+        }
       } else {
         final routerLines = routerContent.split('\n')
           ..removeWhere(
@@ -239,15 +244,17 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
         routerContent = routerLines.join('\n');
 
-        final initialScreenName = state.config.screens
-            .firstWhere((element) => element.initial)
-            .name
-            .snakeCase;
+        final initialScreen =
+            config.screens.firstWhereOrNull((element) => element.initial);
 
-        routerContent = routerContent.replaceFirst(
-          "path: '/${initialScreenName}Screen',",
-          "path: '/${initialScreenName}Screen',\ninitial: true,",
-        );
+        if (initialScreen != null) {
+          final initialScreenName = initialScreen.name.snakeCase;
+
+          routerContent = routerContent.replaceFirst(
+            "path: '/${initialScreenName}Screen',",
+            "path: '/${initialScreenName}Screen',\ninitial: true,",
+          );
+        }
       }
 
       await routerFile.writeAsString(routerContent);
@@ -257,14 +264,14 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     ///await _generateDataComponentsUseCase(config: state.config);
 
     await _createSwaggerComponentsUseCase(
-      projectName: state.config.projectName,
-      projectRootPath: state.config.projectRootPath,
-      arch: state.config.arch,
+      projectName: config.projectName,
+      projectRootPath: config.projectRootPath,
+      arch: config.arch,
     );
 
     ///build project
     await _runProcessUseCase(
-      workDir: state.config.projectRootPath,
+      workDir: config.projectRootPath,
       commands: [
         Commands.getBuildRunnerBuildCommand(),
         Commands.getDartImportSortCommand(),
@@ -280,20 +287,20 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
     await _generateGitCliffFilesUseCase(
       GitCliffParams(
-        projectName: state.config.projectName,
-        projectPath: state.config.projectPath,
+        projectName: config.projectName,
+        projectPath: config.projectPath,
       ),
     );
 
     ///save project configuration
-    await state.config.saveConfig(
-      projectPath: state.config.projectRootPath,
+    await _configService.saveConfig(
+      projectPath: config.projectRootPath,
     );
 
     /// run osascript
-    if (!state.config.projectExists && state.config.firebaseAuth) {
+    if (!config.projectExists && config.firebaseAuth) {
       await _osaScriptProcessUseCase(
-        workDir: state.config.projectRootPath,
+        workDir: config.projectRootPath,
       );
     }
 
@@ -315,9 +322,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     emit(
       state.copyWith(
         generatingState: GeneratingState.waiting,
-        config: state.config.copyWith(
-          screens: screenRepository.screens,
-        ),
       ),
     );
   }
@@ -328,7 +332,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     Emitter<GenerationScreenState> emit,
   ) async {
     await _runProcessUseCase(
-      workDir: state.config.projectRootPath,
+      workDir: config.projectRootPath,
       commands: [Commands.getOpenAndroidStudioCommand()],
     );
   }
@@ -336,16 +340,16 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   ///generating project base documentation files
   Future<void> _generateDocumentation() async {
     final params = DocsGenerationParams(
-      projectName: state.config.projectName,
-      projectPath: state.config.projectPath,
-      organization: state.config.organization,
-      flavorize: state.config.flavorize,
+      projectName: config.projectName,
+      projectPath: config.projectPath,
+      organization: config.organization,
+      flavorize: config.flavorize,
       flavors: FlavorsUtil.joinFlavors(
-        flavorize: state.config.flavorize,
-        selectedFlavors: state.config.flavors,
+        flavorize: config.flavorize,
+        selectedFlavors: config.flavors,
       ),
-      platforms: state.config.platformsList.asList(),
-      commands: state.config.platformsList.asPlatformCommandsList(),
+      platforms: config.platformsList.asList(),
+      commands: config.platformsList.asPlatformCommandsList(),
     );
 
     await _generateDocumentationUseCase(
@@ -357,14 +361,14 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   /// Generating project fastlane files
   Future<void> _generateFastlane() async {
     final params = FastlaneGenerationParams(
-      projectName: state.config.projectName,
-      projectPath: state.config.projectPath,
-      organization: state.config.organization,
+      projectName: config.projectName,
+      projectPath: config.projectPath,
+      organization: config.organization,
       flavors: FlavorsUtil.joinFlavors(
-        flavorize: state.config.flavorize,
-        selectedFlavors: state.config.flavors,
+        flavorize: config.flavorize,
+        selectedFlavors: config.flavors,
       ),
-      platforms: state.config.platformsList.asList(),
+      platforms: config.platformsList.asList(),
     );
 
     await _generateFastlaneFilesUseCase(params, isModify: state.isModify);

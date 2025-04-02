@@ -18,26 +18,29 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProjectNameScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
     required TResult Function(String newBranch) branchChanged,
+    required TResult Function() onNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
     TResult? Function(String newBranch)? branchChanged,
+    TResult? Function()? onNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     TResult Function(String newBranch)? branchChanged,
+    TResult Function()? onNext,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -50,6 +53,7 @@ mixin _$ProjectNameScreenEvent {
         organizationChanged,
     required TResult Function(ProjectNameScreenEventBranchChanged value)
         branchChanged,
+    required TResult Function(ProjectNameScreenEventOnNext value) onNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$ProjectNameScreenEvent {
     TResult? Function(ProjectNameScreenEventOrganizationChanged value)?
         organizationChanged,
     TResult? Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+    TResult? Function(ProjectNameScreenEventOnNext value)? onNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +75,7 @@ mixin _$ProjectNameScreenEvent {
     TResult Function(ProjectNameScreenEventOrganizationChanged value)?
         organizationChanged,
     TResult Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+    TResult Function(ProjectNameScreenEventOnNext value)? onNext,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -103,10 +109,6 @@ abstract class _$$ProjectNameScreenEventInitImplCopyWith<$Res> {
           _$ProjectNameScreenEventInitImpl value,
           $Res Function(_$ProjectNameScreenEventInitImpl) then) =
       __$$ProjectNameScreenEventInitImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Config config});
-
-  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -121,96 +123,64 @@ class __$$ProjectNameScreenEventInitImplCopyWithImpl<$Res>
 
   /// Create a copy of ProjectNameScreenEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? config = null,
-  }) {
-    return _then(_$ProjectNameScreenEventInitImpl(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
-    ));
-  }
-
-  /// Create a copy of ProjectNameScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ConfigCopyWith<$Res> get config {
-    return $ConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$ProjectNameScreenEventInitImpl implements ProjectNameScreenEventInit {
-  const _$ProjectNameScreenEventInitImpl({required this.config});
-
-  @override
-  final Config config;
+  const _$ProjectNameScreenEventInitImpl();
 
   @override
   String toString() {
-    return 'ProjectNameScreenEvent.init(config: $config)';
+    return 'ProjectNameScreenEvent.init()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenEventInitImpl &&
-            (identical(other.config, config) || other.config == config));
+            other is _$ProjectNameScreenEventInitImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config);
-
-  /// Create a copy of ProjectNameScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProjectNameScreenEventInitImplCopyWith<_$ProjectNameScreenEventInitImpl>
-      get copyWith => __$$ProjectNameScreenEventInitImplCopyWithImpl<
-          _$ProjectNameScreenEventInitImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
     required TResult Function(String newBranch) branchChanged,
+    required TResult Function() onNext,
   }) {
-    return init(config);
+    return init();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
     TResult? Function(String newBranch)? branchChanged,
+    TResult? Function()? onNext,
   }) {
-    return init?.call(config);
+    return init?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     TResult Function(String newBranch)? branchChanged,
+    TResult Function()? onNext,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(config);
+      return init();
     }
     return orElse();
   }
@@ -225,6 +195,7 @@ class _$ProjectNameScreenEventInitImpl implements ProjectNameScreenEventInit {
         organizationChanged,
     required TResult Function(ProjectNameScreenEventBranchChanged value)
         branchChanged,
+    required TResult Function(ProjectNameScreenEventOnNext value) onNext,
   }) {
     return init(this);
   }
@@ -238,6 +209,7 @@ class _$ProjectNameScreenEventInitImpl implements ProjectNameScreenEventInit {
     TResult? Function(ProjectNameScreenEventOrganizationChanged value)?
         organizationChanged,
     TResult? Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+    TResult? Function(ProjectNameScreenEventOnNext value)? onNext,
   }) {
     return init?.call(this);
   }
@@ -251,6 +223,7 @@ class _$ProjectNameScreenEventInitImpl implements ProjectNameScreenEventInit {
     TResult Function(ProjectNameScreenEventOrganizationChanged value)?
         organizationChanged,
     TResult Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+    TResult Function(ProjectNameScreenEventOnNext value)? onNext,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -261,16 +234,7 @@ class _$ProjectNameScreenEventInitImpl implements ProjectNameScreenEventInit {
 }
 
 abstract class ProjectNameScreenEventInit implements ProjectNameScreenEvent {
-  const factory ProjectNameScreenEventInit({required final Config config}) =
-      _$ProjectNameScreenEventInitImpl;
-
-  Config get config;
-
-  /// Create a copy of ProjectNameScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProjectNameScreenEventInitImplCopyWith<_$ProjectNameScreenEventInitImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  const factory ProjectNameScreenEventInit() = _$ProjectNameScreenEventInitImpl;
 }
 
 /// @nodoc
@@ -350,10 +314,11 @@ class _$ProjectNameScreenEventProjectNameChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
     required TResult Function(String newBranch) branchChanged,
+    required TResult Function() onNext,
   }) {
     return projectNameChanged(projectName);
   }
@@ -361,10 +326,11 @@ class _$ProjectNameScreenEventProjectNameChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
     TResult? Function(String newBranch)? branchChanged,
+    TResult? Function()? onNext,
   }) {
     return projectNameChanged?.call(projectName);
   }
@@ -372,10 +338,11 @@ class _$ProjectNameScreenEventProjectNameChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     TResult Function(String newBranch)? branchChanged,
+    TResult Function()? onNext,
     required TResult orElse(),
   }) {
     if (projectNameChanged != null) {
@@ -394,6 +361,7 @@ class _$ProjectNameScreenEventProjectNameChangedImpl
         organizationChanged,
     required TResult Function(ProjectNameScreenEventBranchChanged value)
         branchChanged,
+    required TResult Function(ProjectNameScreenEventOnNext value) onNext,
   }) {
     return projectNameChanged(this);
   }
@@ -407,6 +375,7 @@ class _$ProjectNameScreenEventProjectNameChangedImpl
     TResult? Function(ProjectNameScreenEventOrganizationChanged value)?
         organizationChanged,
     TResult? Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+    TResult? Function(ProjectNameScreenEventOnNext value)? onNext,
   }) {
     return projectNameChanged?.call(this);
   }
@@ -420,6 +389,7 @@ class _$ProjectNameScreenEventProjectNameChangedImpl
     TResult Function(ProjectNameScreenEventOrganizationChanged value)?
         organizationChanged,
     TResult Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+    TResult Function(ProjectNameScreenEventOnNext value)? onNext,
     required TResult orElse(),
   }) {
     if (projectNameChanged != null) {
@@ -523,10 +493,11 @@ class _$ProjectNameScreenEventOrganizationChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
     required TResult Function(String newBranch) branchChanged,
+    required TResult Function() onNext,
   }) {
     return organizationChanged(organization);
   }
@@ -534,10 +505,11 @@ class _$ProjectNameScreenEventOrganizationChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
     TResult? Function(String newBranch)? branchChanged,
+    TResult? Function()? onNext,
   }) {
     return organizationChanged?.call(organization);
   }
@@ -545,10 +517,11 @@ class _$ProjectNameScreenEventOrganizationChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     TResult Function(String newBranch)? branchChanged,
+    TResult Function()? onNext,
     required TResult orElse(),
   }) {
     if (organizationChanged != null) {
@@ -567,6 +540,7 @@ class _$ProjectNameScreenEventOrganizationChangedImpl
         organizationChanged,
     required TResult Function(ProjectNameScreenEventBranchChanged value)
         branchChanged,
+    required TResult Function(ProjectNameScreenEventOnNext value) onNext,
   }) {
     return organizationChanged(this);
   }
@@ -580,6 +554,7 @@ class _$ProjectNameScreenEventOrganizationChangedImpl
     TResult? Function(ProjectNameScreenEventOrganizationChanged value)?
         organizationChanged,
     TResult? Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+    TResult? Function(ProjectNameScreenEventOnNext value)? onNext,
   }) {
     return organizationChanged?.call(this);
   }
@@ -593,6 +568,7 @@ class _$ProjectNameScreenEventOrganizationChangedImpl
     TResult Function(ProjectNameScreenEventOrganizationChanged value)?
         organizationChanged,
     TResult Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+    TResult Function(ProjectNameScreenEventOnNext value)? onNext,
     required TResult orElse(),
   }) {
     if (organizationChanged != null) {
@@ -693,10 +669,11 @@ class _$ProjectNameScreenEventBranchChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function(String projectName) projectNameChanged,
     required TResult Function(String organization) organizationChanged,
     required TResult Function(String newBranch) branchChanged,
+    required TResult Function() onNext,
   }) {
     return branchChanged(newBranch);
   }
@@ -704,10 +681,11 @@ class _$ProjectNameScreenEventBranchChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function(String projectName)? projectNameChanged,
     TResult? Function(String organization)? organizationChanged,
     TResult? Function(String newBranch)? branchChanged,
+    TResult? Function()? onNext,
   }) {
     return branchChanged?.call(newBranch);
   }
@@ -715,10 +693,11 @@ class _$ProjectNameScreenEventBranchChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function(String projectName)? projectNameChanged,
     TResult Function(String organization)? organizationChanged,
     TResult Function(String newBranch)? branchChanged,
+    TResult Function()? onNext,
     required TResult orElse(),
   }) {
     if (branchChanged != null) {
@@ -737,6 +716,7 @@ class _$ProjectNameScreenEventBranchChangedImpl
         organizationChanged,
     required TResult Function(ProjectNameScreenEventBranchChanged value)
         branchChanged,
+    required TResult Function(ProjectNameScreenEventOnNext value) onNext,
   }) {
     return branchChanged(this);
   }
@@ -750,6 +730,7 @@ class _$ProjectNameScreenEventBranchChangedImpl
     TResult? Function(ProjectNameScreenEventOrganizationChanged value)?
         organizationChanged,
     TResult? Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+    TResult? Function(ProjectNameScreenEventOnNext value)? onNext,
   }) {
     return branchChanged?.call(this);
   }
@@ -763,6 +744,7 @@ class _$ProjectNameScreenEventBranchChangedImpl
     TResult Function(ProjectNameScreenEventOrganizationChanged value)?
         organizationChanged,
     TResult Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+    TResult Function(ProjectNameScreenEventOnNext value)? onNext,
     required TResult orElse(),
   }) {
     if (branchChanged != null) {
@@ -789,36 +771,178 @@ abstract class ProjectNameScreenEventBranchChanged
 }
 
 /// @nodoc
+abstract class _$$ProjectNameScreenEventOnNextImplCopyWith<$Res> {
+  factory _$$ProjectNameScreenEventOnNextImplCopyWith(
+          _$ProjectNameScreenEventOnNextImpl value,
+          $Res Function(_$ProjectNameScreenEventOnNextImpl) then) =
+      __$$ProjectNameScreenEventOnNextImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ProjectNameScreenEventOnNextImplCopyWithImpl<$Res>
+    extends _$ProjectNameScreenEventCopyWithImpl<$Res,
+        _$ProjectNameScreenEventOnNextImpl>
+    implements _$$ProjectNameScreenEventOnNextImplCopyWith<$Res> {
+  __$$ProjectNameScreenEventOnNextImplCopyWithImpl(
+      _$ProjectNameScreenEventOnNextImpl _value,
+      $Res Function(_$ProjectNameScreenEventOnNextImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ProjectNameScreenEventOnNextImpl
+    implements ProjectNameScreenEventOnNext {
+  const _$ProjectNameScreenEventOnNextImpl();
+
+  @override
+  String toString() {
+    return 'ProjectNameScreenEvent.onNext()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectNameScreenEventOnNextImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String projectName) projectNameChanged,
+    required TResult Function(String organization) organizationChanged,
+    required TResult Function(String newBranch) branchChanged,
+    required TResult Function() onNext,
+  }) {
+    return onNext();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String projectName)? projectNameChanged,
+    TResult? Function(String organization)? organizationChanged,
+    TResult? Function(String newBranch)? branchChanged,
+    TResult? Function()? onNext,
+  }) {
+    return onNext?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String projectName)? projectNameChanged,
+    TResult Function(String organization)? organizationChanged,
+    TResult Function(String newBranch)? branchChanged,
+    TResult Function()? onNext,
+    required TResult orElse(),
+  }) {
+    if (onNext != null) {
+      return onNext();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectNameScreenEventInit value) init,
+    required TResult Function(ProjectNameScreenEventProjectNameChanged value)
+        projectNameChanged,
+    required TResult Function(ProjectNameScreenEventOrganizationChanged value)
+        organizationChanged,
+    required TResult Function(ProjectNameScreenEventBranchChanged value)
+        branchChanged,
+    required TResult Function(ProjectNameScreenEventOnNext value) onNext,
+  }) {
+    return onNext(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectNameScreenEventInit value)? init,
+    TResult? Function(ProjectNameScreenEventProjectNameChanged value)?
+        projectNameChanged,
+    TResult? Function(ProjectNameScreenEventOrganizationChanged value)?
+        organizationChanged,
+    TResult? Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+    TResult? Function(ProjectNameScreenEventOnNext value)? onNext,
+  }) {
+    return onNext?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectNameScreenEventInit value)? init,
+    TResult Function(ProjectNameScreenEventProjectNameChanged value)?
+        projectNameChanged,
+    TResult Function(ProjectNameScreenEventOrganizationChanged value)?
+        organizationChanged,
+    TResult Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+    TResult Function(ProjectNameScreenEventOnNext value)? onNext,
+    required TResult orElse(),
+  }) {
+    if (onNext != null) {
+      return onNext(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProjectNameScreenEventOnNext implements ProjectNameScreenEvent {
+  const factory ProjectNameScreenEventOnNext() =
+      _$ProjectNameScreenEventOnNextImpl;
+}
+
+/// @nodoc
 mixin _$ProjectNameScreenSR {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() stub,
+    required TResult Function() init,
+    required TResult Function() onNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? stub,
+    TResult? Function()? init,
+    TResult? Function()? onNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? stub,
+    TResult Function()? init,
+    TResult Function()? onNext,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProjectNameScreenSRStub value) stub,
+    required TResult Function(ProjectNameScreenSRStub value) init,
+    required TResult Function(ProjectNameScreenSROnNext value) onNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectNameScreenSRStub value)? stub,
+    TResult? Function(ProjectNameScreenSRStub value)? init,
+    TResult? Function(ProjectNameScreenSROnNext value)? onNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProjectNameScreenSRStub value)? stub,
+    TResult Function(ProjectNameScreenSRStub value)? init,
+    TResult Function(ProjectNameScreenSROnNext value)? onNext,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -874,7 +998,7 @@ class _$ProjectNameScreenSRStubImpl implements ProjectNameScreenSRStub {
 
   @override
   String toString() {
-    return 'ProjectNameScreenSR.stub()';
+    return 'ProjectNameScreenSR.init()';
   }
 
   @override
@@ -890,27 +1014,30 @@ class _$ProjectNameScreenSRStubImpl implements ProjectNameScreenSRStub {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() stub,
+    required TResult Function() init,
+    required TResult Function() onNext,
   }) {
-    return stub();
+    return init();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? stub,
+    TResult? Function()? init,
+    TResult? Function()? onNext,
   }) {
-    return stub?.call();
+    return init?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? stub,
+    TResult Function()? init,
+    TResult Function()? onNext,
     required TResult orElse(),
   }) {
-    if (stub != null) {
-      return stub();
+    if (init != null) {
+      return init();
     }
     return orElse();
   }
@@ -918,27 +1045,30 @@ class _$ProjectNameScreenSRStubImpl implements ProjectNameScreenSRStub {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ProjectNameScreenSRStub value) stub,
+    required TResult Function(ProjectNameScreenSRStub value) init,
+    required TResult Function(ProjectNameScreenSROnNext value) onNext,
   }) {
-    return stub(this);
+    return init(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectNameScreenSRStub value)? stub,
+    TResult? Function(ProjectNameScreenSRStub value)? init,
+    TResult? Function(ProjectNameScreenSROnNext value)? onNext,
   }) {
-    return stub?.call(this);
+    return init?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProjectNameScreenSRStub value)? stub,
+    TResult Function(ProjectNameScreenSRStub value)? init,
+    TResult Function(ProjectNameScreenSROnNext value)? onNext,
     required TResult orElse(),
   }) {
-    if (stub != null) {
-      return stub(this);
+    if (init != null) {
+      return init(this);
     }
     return orElse();
   }
@@ -946,6 +1076,115 @@ class _$ProjectNameScreenSRStubImpl implements ProjectNameScreenSRStub {
 
 abstract class ProjectNameScreenSRStub implements ProjectNameScreenSR {
   const factory ProjectNameScreenSRStub() = _$ProjectNameScreenSRStubImpl;
+}
+
+/// @nodoc
+abstract class _$$ProjectNameScreenSROnNextImplCopyWith<$Res> {
+  factory _$$ProjectNameScreenSROnNextImplCopyWith(
+          _$ProjectNameScreenSROnNextImpl value,
+          $Res Function(_$ProjectNameScreenSROnNextImpl) then) =
+      __$$ProjectNameScreenSROnNextImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ProjectNameScreenSROnNextImplCopyWithImpl<$Res>
+    extends _$ProjectNameScreenSRCopyWithImpl<$Res,
+        _$ProjectNameScreenSROnNextImpl>
+    implements _$$ProjectNameScreenSROnNextImplCopyWith<$Res> {
+  __$$ProjectNameScreenSROnNextImplCopyWithImpl(
+      _$ProjectNameScreenSROnNextImpl _value,
+      $Res Function(_$ProjectNameScreenSROnNextImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProjectNameScreenSR
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ProjectNameScreenSROnNextImpl implements ProjectNameScreenSROnNext {
+  const _$ProjectNameScreenSROnNextImpl();
+
+  @override
+  String toString() {
+    return 'ProjectNameScreenSR.onNext()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectNameScreenSROnNextImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() onNext,
+  }) {
+    return onNext();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? onNext,
+  }) {
+    return onNext?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? onNext,
+    required TResult orElse(),
+  }) {
+    if (onNext != null) {
+      return onNext();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectNameScreenSRStub value) init,
+    required TResult Function(ProjectNameScreenSROnNext value) onNext,
+  }) {
+    return onNext(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectNameScreenSRStub value)? init,
+    TResult? Function(ProjectNameScreenSROnNext value)? onNext,
+  }) {
+    return onNext?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectNameScreenSRStub value)? init,
+    TResult Function(ProjectNameScreenSROnNext value)? onNext,
+    required TResult orElse(),
+  }) {
+    if (onNext != null) {
+      return onNext(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProjectNameScreenSROnNext implements ProjectNameScreenSR {
+  const factory ProjectNameScreenSROnNext() = _$ProjectNameScreenSROnNextImpl;
 }
 
 /// @nodoc

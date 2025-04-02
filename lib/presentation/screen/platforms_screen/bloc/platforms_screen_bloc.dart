@@ -1,11 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/service/config_service/config_service.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/bloc/platforms_screen_bloc_imports.dart';
 
 class PlatformsScreenBloc extends BaseBloc<PlatformsScreenEvent,
     PlatformsScreenState, PlatformsScreenSR> {
-  PlatformsScreenBloc() : super(const PlatformsScreenState(config: Config())) {
+  final ConfigService _configService;
+
+  PlatformsScreenBloc(this._configService)
+      : super(const PlatformsScreenStateData(config: Config())) {
     on<PlatformsScreenEventInit>(_onInit);
     on<PlatformsScreenEventOnPlatformsChange>(_onPlatformsChange);
   }
@@ -14,7 +18,7 @@ class PlatformsScreenBloc extends BaseBloc<PlatformsScreenEvent,
     PlatformsScreenEventInit event,
     Emitter<PlatformsScreenState> emit,
   ) {
-    emit(state.copyWith(config: event.config));
+    emit(state.copyWith(config: _configService.config));
   }
 
   void _onPlatformsChange(

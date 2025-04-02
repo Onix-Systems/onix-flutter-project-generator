@@ -1,6 +1,5 @@
 //@formatter:off
 import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/data_components_screen_v2.dart';
 import 'package:onix_flutter_bricks/presentation/screen/edit_project_screen/edit_project_screen.dart';
@@ -71,23 +70,17 @@ class AppRouter {
         GoRoute(
           path: _projectNameScreen,
           name: 'ProjectNameScreen',
-          builder: (context, state) => ProjectNameScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const ProjectNameScreen(),
         ),
         GoRoute(
           path: _procedureSelectionScreen,
           name: 'ProcedureSelectionScreen',
-          builder: (context, state) => ProcedureSelectionScreen(
-            branchConfig: state.extra as BranchConfig,
-          ),
+          builder: (context, state) => const ProcedureSelectionScreen(),
         ),
         GoRoute(
           path: _platformsScreen,
           name: 'PlatformsScreen',
-          builder: (context, state) => PlatformsScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const PlatformsScreen(),
         ),
         GoRoute(
           path: _projectSettingsScreen,

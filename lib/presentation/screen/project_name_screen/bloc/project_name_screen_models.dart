@@ -5,9 +5,7 @@ part 'project_name_screen_models.freezed.dart';
 
 @freezed
 class ProjectNameScreenEvent with _$ProjectNameScreenEvent {
-  const factory ProjectNameScreenEvent.init({
-    required Config config,
-  }) = ProjectNameScreenEventInit;
+  const factory ProjectNameScreenEvent.init() = ProjectNameScreenEventInit;
 
   const factory ProjectNameScreenEvent.projectNameChanged({
     required String projectName,
@@ -20,11 +18,15 @@ class ProjectNameScreenEvent with _$ProjectNameScreenEvent {
   const factory ProjectNameScreenEvent.branchChanged({
     required String newBranch,
   }) = ProjectNameScreenEventBranchChanged;
+
+  const factory ProjectNameScreenEvent.onNext() = ProjectNameScreenEventOnNext;
 }
 
 @freezed
 class ProjectNameScreenSR with _$ProjectNameScreenSR {
-  const factory ProjectNameScreenSR.stub() = ProjectNameScreenSRStub;
+  const factory ProjectNameScreenSR.init() = ProjectNameScreenSRStub;
+
+  const factory ProjectNameScreenSR.onNext() = ProjectNameScreenSROnNext;
 }
 
 @freezed

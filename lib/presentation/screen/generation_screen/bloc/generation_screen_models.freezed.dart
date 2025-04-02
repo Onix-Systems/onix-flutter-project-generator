@@ -665,7 +665,6 @@ abstract class _StubSR implements GenerationScreenSR {
 
 /// @nodoc
 mixin _$GenerationScreenState {
-  Config get config => throw _privateConstructorUsedError;
   Components? get components => throw _privateConstructorUsedError;
   bool get isModify => throw _privateConstructorUsedError;
   GeneratingState get generatingState => throw _privateConstructorUsedError;
@@ -674,7 +673,6 @@ mixin _$GenerationScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            Config config,
             Components? components,
             bool isModify,
             GeneratingState generatingState,
@@ -685,7 +683,6 @@ mixin _$GenerationScreenState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            Config config,
             Components? components,
             bool isModify,
             GeneratingState generatingState,
@@ -696,7 +693,6 @@ mixin _$GenerationScreenState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            Config config,
             Components? components,
             bool isModify,
             GeneratingState generatingState,
@@ -736,13 +732,11 @@ abstract class $GenerationScreenStateCopyWith<$Res> {
       _$GenerationScreenStateCopyWithImpl<$Res, GenerationScreenState>;
   @useResult
   $Res call(
-      {Config config,
-      Components? components,
+      {Components? components,
       bool isModify,
       GeneratingState generatingState,
       Stream<List<OutputLine>>? outputStream});
 
-  $ConfigCopyWith<$Res> get config;
   $ComponentsCopyWith<$Res>? get components;
 }
 
@@ -762,17 +756,12 @@ class _$GenerationScreenStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? config = null,
     Object? components = freezed,
     Object? isModify = null,
     Object? generatingState = null,
     Object? outputStream = freezed,
   }) {
     return _then(_value.copyWith(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
       components: freezed == components
           ? _value.components
           : components // ignore: cast_nullable_to_non_nullable
@@ -790,16 +779,6 @@ class _$GenerationScreenStateCopyWithImpl<$Res,
           : outputStream // ignore: cast_nullable_to_non_nullable
               as Stream<List<OutputLine>>?,
     ) as $Val);
-  }
-
-  /// Create a copy of GenerationScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ConfigCopyWith<$Res> get config {
-    return $ConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value) as $Val);
-    });
   }
 
   /// Create a copy of GenerationScreenState
@@ -827,14 +806,11 @@ abstract class _$$GenerationScreenStateDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Config config,
-      Components? components,
+      {Components? components,
       bool isModify,
       GeneratingState generatingState,
       Stream<List<OutputLine>>? outputStream});
 
-  @override
-  $ConfigCopyWith<$Res> get config;
   @override
   $ComponentsCopyWith<$Res>? get components;
 }
@@ -854,17 +830,12 @@ class __$$GenerationScreenStateDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? config = null,
     Object? components = freezed,
     Object? isModify = null,
     Object? generatingState = null,
     Object? outputStream = freezed,
   }) {
     return _then(_$GenerationScreenStateDataImpl(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
       components: freezed == components
           ? _value.components
           : components // ignore: cast_nullable_to_non_nullable
@@ -889,14 +860,11 @@ class __$$GenerationScreenStateDataImplCopyWithImpl<$Res>
 
 class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
   const _$GenerationScreenStateDataImpl(
-      {required this.config,
-      this.components,
+      {this.components,
       this.isModify = false,
       this.generatingState = GeneratingState.init,
       this.outputStream});
 
-  @override
-  final Config config;
   @override
   final Components? components;
   @override
@@ -910,7 +878,7 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
 
   @override
   String toString() {
-    return 'GenerationScreenState.data(config: $config, components: $components, isModify: $isModify, generatingState: $generatingState, outputStream: $outputStream)';
+    return 'GenerationScreenState.data(components: $components, isModify: $isModify, generatingState: $generatingState, outputStream: $outputStream)';
   }
 
   @override
@@ -918,7 +886,6 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenerationScreenStateDataImpl &&
-            (identical(other.config, config) || other.config == config) &&
             (identical(other.components, components) ||
                 other.components == components) &&
             (identical(other.isModify, isModify) ||
@@ -931,7 +898,7 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, config, components, isModify, generatingState, outputStream);
+      runtimeType, components, isModify, generatingState, outputStream);
 
   /// Create a copy of GenerationScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -946,36 +913,32 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            Config config,
             Components? components,
             bool isModify,
             GeneratingState generatingState,
             Stream<List<OutputLine>>? outputStream)
         data,
   }) {
-    return data(config, components, isModify, generatingState, outputStream);
+    return data(components, isModify, generatingState, outputStream);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            Config config,
             Components? components,
             bool isModify,
             GeneratingState generatingState,
             Stream<List<OutputLine>>? outputStream)?
         data,
   }) {
-    return data?.call(
-        config, components, isModify, generatingState, outputStream);
+    return data?.call(components, isModify, generatingState, outputStream);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            Config config,
             Components? components,
             bool isModify,
             GeneratingState generatingState,
@@ -984,7 +947,7 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(config, components, isModify, generatingState, outputStream);
+      return data(components, isModify, generatingState, outputStream);
     }
     return orElse();
   }
@@ -1020,15 +983,12 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
 
 abstract class GenerationScreenStateData implements GenerationScreenState {
   const factory GenerationScreenStateData(
-          {required final Config config,
-          final Components? components,
+          {final Components? components,
           final bool isModify,
           final GeneratingState generatingState,
           final Stream<List<OutputLine>>? outputStream}) =
       _$GenerationScreenStateDataImpl;
 
-  @override
-  Config get config;
   @override
   Components? get components;
   @override

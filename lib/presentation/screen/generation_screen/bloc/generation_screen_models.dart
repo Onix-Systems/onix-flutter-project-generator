@@ -26,7 +26,6 @@ class GenerationScreenSR with _$GenerationScreenSR {
 @freezed
 class GenerationScreenState with _$GenerationScreenState {
   const factory GenerationScreenState.data({
-    required Config config,
     Components? components,
     @Default(false) bool isModify,
     @Default(GeneratingState.init) GeneratingState generatingState,

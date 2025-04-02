@@ -5,9 +5,7 @@ part 'platforms_screen_models.freezed.dart';
 
 @freezed
 class PlatformsScreenEvent with _$PlatformsScreenEvent {
-  const factory PlatformsScreenEvent.init({
-    required Config config,
-  }) = PlatformsScreenEventInit;
+  const factory PlatformsScreenEvent.init() = PlatformsScreenEventInit;
 
   const factory PlatformsScreenEvent.onPlatformsChange({
     required AvailablePlatforms item,
@@ -18,9 +16,9 @@ class PlatformsScreenSR {}
 
 @freezed
 class PlatformsScreenState with _$PlatformsScreenState {
-  const factory PlatformsScreenState({
+  const factory PlatformsScreenState.data({
     required Config config,
-  }) = _PlatformsScreenStateData;
+  }) = PlatformsScreenStateData;
 }
 
 enum AvailablePlatforms {

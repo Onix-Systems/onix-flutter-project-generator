@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProcedureSelectionScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BranchConfig branchConfig) init,
+    required TResult Function() init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -33,7 +33,7 @@ mixin _$ProcedureSelectionScreenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BranchConfig branchConfig)? init,
+    TResult? Function()? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -48,7 +48,7 @@ mixin _$ProcedureSelectionScreenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BranchConfig branchConfig)? init,
+    TResult Function()? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -157,10 +157,6 @@ abstract class _$$ProcedureSelectionScreenEventInitImplCopyWith<$Res> {
           _$ProcedureSelectionScreenEventInitImpl value,
           $Res Function(_$ProcedureSelectionScreenEventInitImpl) then) =
       __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({BranchConfig branchConfig});
-
-  $BranchConfigCopyWith<$Res> get branchConfig;
 }
 
 /// @nodoc
@@ -175,70 +171,33 @@ class __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<$Res>
 
   /// Create a copy of ProcedureSelectionScreenEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? branchConfig = null,
-  }) {
-    return _then(_$ProcedureSelectionScreenEventInitImpl(
-      branchConfig: null == branchConfig
-          ? _value.branchConfig
-          : branchConfig // ignore: cast_nullable_to_non_nullable
-              as BranchConfig,
-    ));
-  }
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $BranchConfigCopyWith<$Res> get branchConfig {
-    return $BranchConfigCopyWith<$Res>(_value.branchConfig, (value) {
-      return _then(_value.copyWith(branchConfig: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$ProcedureSelectionScreenEventInitImpl
     implements ProcedureSelectionScreenEventInit {
-  const _$ProcedureSelectionScreenEventInitImpl({required this.branchConfig});
-
-  @override
-  final BranchConfig branchConfig;
+  const _$ProcedureSelectionScreenEventInitImpl();
 
   @override
   String toString() {
-    return 'ProcedureSelectionScreenEvent.init(branchConfig: $branchConfig)';
+    return 'ProcedureSelectionScreenEvent.init()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventInitImpl &&
-            (identical(other.branchConfig, branchConfig) ||
-                other.branchConfig == branchConfig));
+            other is _$ProcedureSelectionScreenEventInitImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, branchConfig);
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenEventInitImplCopyWith<
-          _$ProcedureSelectionScreenEventInitImpl>
-      get copyWith => __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<
-          _$ProcedureSelectionScreenEventInitImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BranchConfig branchConfig) init,
+    required TResult Function() init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -250,13 +209,13 @@ class _$ProcedureSelectionScreenEventInitImpl
     required TResult Function() onOpenInStudio,
     required TResult Function() onFlavorizrOutputClose,
   }) {
-    return init(branchConfig);
+    return init();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BranchConfig branchConfig)? init,
+    TResult? Function()? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -268,13 +227,13 @@ class _$ProcedureSelectionScreenEventInitImpl
     TResult? Function()? onOpenInStudio,
     TResult? Function()? onFlavorizrOutputClose,
   }) {
-    return init?.call(branchConfig);
+    return init?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BranchConfig branchConfig)? init,
+    TResult Function()? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -288,7 +247,7 @@ class _$ProcedureSelectionScreenEventInitImpl
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(branchConfig);
+      return init();
     }
     return orElse();
   }
@@ -371,18 +330,8 @@ class _$ProcedureSelectionScreenEventInitImpl
 
 abstract class ProcedureSelectionScreenEventInit
     implements ProcedureSelectionScreenEvent {
-  const factory ProcedureSelectionScreenEventInit(
-          {required final BranchConfig branchConfig}) =
+  const factory ProcedureSelectionScreenEventInit() =
       _$ProcedureSelectionScreenEventInitImpl;
-
-  BranchConfig get branchConfig;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProcedureSelectionScreenEventInitImplCopyWith<
-          _$ProcedureSelectionScreenEventInitImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -463,7 +412,7 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BranchConfig branchConfig) init,
+    required TResult Function() init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -481,7 +430,7 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BranchConfig branchConfig)? init,
+    TResult? Function()? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -499,7 +448,7 @@ class _$ProcedureSelectionScreenEventOnNewProjectImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BranchConfig branchConfig)? init,
+    TResult Function()? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -689,7 +638,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BranchConfig branchConfig) init,
+    required TResult Function() init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -707,7 +656,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BranchConfig branchConfig)? init,
+    TResult? Function()? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -725,7 +674,7 @@ class _$ProcedureSelectionScreenEventOnProjectOpenImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BranchConfig branchConfig)? init,
+    TResult Function()? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -917,7 +866,7 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BranchConfig branchConfig) init,
+    required TResult Function() init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -935,7 +884,7 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BranchConfig branchConfig)? init,
+    TResult? Function()? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -953,7 +902,7 @@ class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BranchConfig branchConfig)? init,
+    TResult Function()? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -1173,7 +1122,7 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BranchConfig branchConfig) init,
+    required TResult Function() init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -1191,7 +1140,7 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BranchConfig branchConfig)? init,
+    TResult? Function()? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -1209,7 +1158,7 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BranchConfig branchConfig)? init,
+    TResult Function()? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -1420,7 +1369,7 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BranchConfig branchConfig) init,
+    required TResult Function() init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -1438,7 +1387,7 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BranchConfig branchConfig)? init,
+    TResult? Function()? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -1456,7 +1405,7 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BranchConfig branchConfig)? init,
+    TResult Function()? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -1620,7 +1569,7 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BranchConfig branchConfig) init,
+    required TResult Function() init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -1638,7 +1587,7 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BranchConfig branchConfig)? init,
+    TResult? Function()? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -1656,7 +1605,7 @@ class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BranchConfig branchConfig)? init,
+    TResult Function()? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -1811,7 +1760,7 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(BranchConfig branchConfig) init,
+    required TResult Function() init,
     required TResult Function(String projectPath) onNewProject,
     required TResult Function(String projectURI) onProjectOpen,
     required TResult Function(String language) onLocaleChange,
@@ -1829,7 +1778,7 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(BranchConfig branchConfig)? init,
+    TResult? Function()? init,
     TResult? Function(String projectPath)? onNewProject,
     TResult? Function(String projectURI)? onProjectOpen,
     TResult? Function(String language)? onLocaleChange,
@@ -1847,7 +1796,7 @@ class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(BranchConfig branchConfig)? init,
+    TResult Function()? init,
     TResult Function(String projectPath)? onNewProject,
     TResult Function(String projectURI)? onProjectOpen,
     TResult Function(String language)? onLocaleChange,
@@ -2555,7 +2504,7 @@ abstract class _onAndroidSigningCreated implements ProcedureSelectionScreenSR {
 
 /// @nodoc
 mixin _$ProcedureSelectionScreenState {
-  Config get config => throw _privateConstructorUsedError;
+  BranchConfig get branchConfig => throw _privateConstructorUsedError;
   dynamic get language => throw _privateConstructorUsedError;
   Directory? get flavorizingDirectory => throw _privateConstructorUsedError;
   Stream<List<OutputLine>>? get outputStream =>
@@ -2565,7 +2514,7 @@ mixin _$ProcedureSelectionScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            Config config,
+            BranchConfig branchConfig,
             dynamic language,
             Directory? flavorizingDirectory,
             Stream<List<OutputLine>>? outputStream,
@@ -2577,7 +2526,7 @@ mixin _$ProcedureSelectionScreenState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            Config config,
+            BranchConfig branchConfig,
             dynamic language,
             Directory? flavorizingDirectory,
             Stream<List<OutputLine>>? outputStream,
@@ -2589,7 +2538,7 @@ mixin _$ProcedureSelectionScreenState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            Config config,
+            BranchConfig branchConfig,
             dynamic language,
             Directory? flavorizingDirectory,
             Stream<List<OutputLine>>? outputStream,
@@ -2632,14 +2581,14 @@ abstract class $ProcedureSelectionScreenStateCopyWith<$Res> {
           ProcedureSelectionScreenState>;
   @useResult
   $Res call(
-      {Config config,
+      {BranchConfig branchConfig,
       dynamic language,
       Directory? flavorizingDirectory,
       Stream<List<OutputLine>>? outputStream,
       bool flavorizrOutputVisible,
       bool isGenerating});
 
-  $ConfigCopyWith<$Res> get config;
+  $BranchConfigCopyWith<$Res> get branchConfig;
 }
 
 /// @nodoc
@@ -2658,7 +2607,7 @@ class _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? config = null,
+    Object? branchConfig = null,
     Object? language = freezed,
     Object? flavorizingDirectory = freezed,
     Object? outputStream = freezed,
@@ -2666,10 +2615,10 @@ class _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
     Object? isGenerating = null,
   }) {
     return _then(_value.copyWith(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
+      branchConfig: null == branchConfig
+          ? _value.branchConfig
+          : branchConfig // ignore: cast_nullable_to_non_nullable
+              as BranchConfig,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -2697,9 +2646,9 @@ class _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ConfigCopyWith<$Res> get config {
-    return $ConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value) as $Val);
+  $BranchConfigCopyWith<$Res> get branchConfig {
+    return $BranchConfigCopyWith<$Res>(_value.branchConfig, (value) {
+      return _then(_value.copyWith(branchConfig: value) as $Val);
     });
   }
 }
@@ -2714,7 +2663,7 @@ abstract class _$$ProcedureSelectionScreenStateDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Config config,
+      {BranchConfig branchConfig,
       dynamic language,
       Directory? flavorizingDirectory,
       Stream<List<OutputLine>>? outputStream,
@@ -2722,7 +2671,7 @@ abstract class _$$ProcedureSelectionScreenStateDataImplCopyWith<$Res>
       bool isGenerating});
 
   @override
-  $ConfigCopyWith<$Res> get config;
+  $BranchConfigCopyWith<$Res> get branchConfig;
 }
 
 /// @nodoc
@@ -2740,7 +2689,7 @@ class __$$ProcedureSelectionScreenStateDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? config = null,
+    Object? branchConfig = null,
     Object? language = freezed,
     Object? flavorizingDirectory = freezed,
     Object? outputStream = freezed,
@@ -2748,10 +2697,10 @@ class __$$ProcedureSelectionScreenStateDataImplCopyWithImpl<$Res>
     Object? isGenerating = null,
   }) {
     return _then(_$ProcedureSelectionScreenStateDataImpl(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
+      branchConfig: null == branchConfig
+          ? _value.branchConfig
+          : branchConfig // ignore: cast_nullable_to_non_nullable
+              as BranchConfig,
       language: freezed == language ? _value.language! : language,
       flavorizingDirectory: freezed == flavorizingDirectory
           ? _value.flavorizingDirectory
@@ -2778,7 +2727,7 @@ class __$$ProcedureSelectionScreenStateDataImplCopyWithImpl<$Res>
 class _$ProcedureSelectionScreenStateDataImpl
     implements ProcedureSelectionScreenStateData {
   const _$ProcedureSelectionScreenStateDataImpl(
-      {required this.config,
+      {required this.branchConfig,
       this.language = 'en',
       this.flavorizingDirectory,
       this.outputStream,
@@ -2786,7 +2735,7 @@ class _$ProcedureSelectionScreenStateDataImpl
       this.isGenerating = false});
 
   @override
-  final Config config;
+  final BranchConfig branchConfig;
   @override
   @JsonKey()
   final dynamic language;
@@ -2803,7 +2752,7 @@ class _$ProcedureSelectionScreenStateDataImpl
 
   @override
   String toString() {
-    return 'ProcedureSelectionScreenState.data(config: $config, language: $language, flavorizingDirectory: $flavorizingDirectory, outputStream: $outputStream, flavorizrOutputVisible: $flavorizrOutputVisible, isGenerating: $isGenerating)';
+    return 'ProcedureSelectionScreenState.data(branchConfig: $branchConfig, language: $language, flavorizingDirectory: $flavorizingDirectory, outputStream: $outputStream, flavorizrOutputVisible: $flavorizrOutputVisible, isGenerating: $isGenerating)';
   }
 
   @override
@@ -2811,7 +2760,8 @@ class _$ProcedureSelectionScreenStateDataImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProcedureSelectionScreenStateDataImpl &&
-            (identical(other.config, config) || other.config == config) &&
+            (identical(other.branchConfig, branchConfig) ||
+                other.branchConfig == branchConfig) &&
             const DeepCollectionEquality().equals(other.language, language) &&
             (identical(other.flavorizingDirectory, flavorizingDirectory) ||
                 other.flavorizingDirectory == flavorizingDirectory) &&
@@ -2826,7 +2776,7 @@ class _$ProcedureSelectionScreenStateDataImpl
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      config,
+      branchConfig,
       const DeepCollectionEquality().hash(language),
       flavorizingDirectory,
       outputStream,
@@ -2847,7 +2797,7 @@ class _$ProcedureSelectionScreenStateDataImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            Config config,
+            BranchConfig branchConfig,
             dynamic language,
             Directory? flavorizingDirectory,
             Stream<List<OutputLine>>? outputStream,
@@ -2855,7 +2805,7 @@ class _$ProcedureSelectionScreenStateDataImpl
             bool isGenerating)
         data,
   }) {
-    return data(config, language, flavorizingDirectory, outputStream,
+    return data(branchConfig, language, flavorizingDirectory, outputStream,
         flavorizrOutputVisible, isGenerating);
   }
 
@@ -2863,7 +2813,7 @@ class _$ProcedureSelectionScreenStateDataImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            Config config,
+            BranchConfig branchConfig,
             dynamic language,
             Directory? flavorizingDirectory,
             Stream<List<OutputLine>>? outputStream,
@@ -2871,15 +2821,15 @@ class _$ProcedureSelectionScreenStateDataImpl
             bool isGenerating)?
         data,
   }) {
-    return data?.call(config, language, flavorizingDirectory, outputStream,
-        flavorizrOutputVisible, isGenerating);
+    return data?.call(branchConfig, language, flavorizingDirectory,
+        outputStream, flavorizrOutputVisible, isGenerating);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            Config config,
+            BranchConfig branchConfig,
             dynamic language,
             Directory? flavorizingDirectory,
             Stream<List<OutputLine>>? outputStream,
@@ -2889,7 +2839,7 @@ class _$ProcedureSelectionScreenStateDataImpl
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(config, language, flavorizingDirectory, outputStream,
+      return data(branchConfig, language, flavorizingDirectory, outputStream,
           flavorizrOutputVisible, isGenerating);
     }
     return orElse();
@@ -2927,7 +2877,7 @@ class _$ProcedureSelectionScreenStateDataImpl
 abstract class ProcedureSelectionScreenStateData
     implements ProcedureSelectionScreenState {
   const factory ProcedureSelectionScreenStateData(
-      {required final Config config,
+      {required final BranchConfig branchConfig,
       final dynamic language,
       final Directory? flavorizingDirectory,
       final Stream<List<OutputLine>>? outputStream,
@@ -2935,7 +2885,7 @@ abstract class ProcedureSelectionScreenStateData
       final bool isGenerating}) = _$ProcedureSelectionScreenStateDataImpl;
 
   @override
-  Config get config;
+  BranchConfig get branchConfig;
   @override
   dynamic get language;
   @override

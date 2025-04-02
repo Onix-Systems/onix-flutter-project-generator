@@ -8,7 +8,9 @@ import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/service/config_service/config_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_flavors_usecase.dart';
@@ -21,12 +23,12 @@ import 'package:onix_flutter_bricks/domain/usecase/screen/clear_screens_use_case
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
-import 'package:onix_flutter_bricks/util/extension/project_config_extension.dart';
 
 class ProcedureSelectionScreenBloc extends BaseBloc<
     ProcedureSelectionScreenEvent,
     ProcedureSelectionScreenState,
     ProcedureSelectionScreenSR> {
+  final ConfigService _configService;
   final GenerateSigningConfigUseCase _generateSigningConfigUseCase;
   final GenerateFlavorsUseCase _generateFlavorsUseCase;
   final GetSigningFingerprintUseCase _getSigningFingerprintUseCase;
@@ -36,7 +38,10 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
   final ClearOutputUseCase _clearOutputUseCase;
   final RunProcessUseCase _runProcessUseCase;
 
+  Config get config => _configService.config;
+
   ProcedureSelectionScreenBloc(
+    this._configService,
     this._generateSigningConfigUseCase,
     this._generateFlavorsUseCase,
     this._getSigningFingerprintUseCase,
@@ -45,7 +50,11 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     this._getGenerationOutputStream,
     this._clearOutputUseCase,
     this._runProcessUseCase,
-  ) : super(const ProcedureSelectionScreenStateData(config: Config())) {
+  ) : super(
+          const ProcedureSelectionScreenStateData(
+            branchConfig: BranchConfig(),
+          ),
+        ) {
     on<ProcedureSelectionScreenEventInit>(_onInit);
     on<ProcedureSelectionScreenEventOnProjectOpen>(_onProjectOpen);
     on<ProcedureSelectionScreenEventOnNewProject>(_onNewProject);
@@ -62,11 +71,14 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     ProcedureSelectionScreenEventInit event,
     Emitter<ProcedureSelectionScreenState> emit,
   ) async {
+    _configService.resetConfig();
+
+    _clearScreensUseCase();
+    _clearSwaggerComponentsUseCase(empty: true);
+
     emit(
       state.copyWith(
-        config: Config.empty().copyWith(
-          branchConfig: event.branchConfig,
-        ),
+        branchConfig: _configService.config.branchConfig,
         language: Intl.getCurrentLocale(),
       ),
     );
@@ -76,16 +88,8 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     ProcedureSelectionScreenEventOnNewProject event,
     Emitter<ProcedureSelectionScreenState> emit,
   ) async {
-    _clearScreensUseCase();
-    _clearSwaggerComponentsUseCase(empty: true);
-
-    emit(
-      state.copyWith(
-        config: Config(
-          projectPath: event.projectPath,
-          branchConfig: state.config.branchConfig,
-        ),
-      ),
+    _configService.config = config.copyWith(
+      projectPath: event.projectPath,
     );
 
     addSr(const ProcedureSelectionScreenSR.onNewProject());
@@ -95,11 +99,11 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     ProcedureSelectionScreenEventOnProjectOpen event,
     Emitter<ProcedureSelectionScreenState> emit,
   ) async {
-    final config = await configSource.getConfig(
+    final loadedConfig = await configSource.getConfig(
       configPath: '${event.projectURI}/.gen_config.json',
     );
 
-    if (config == Config.empty()) {
+    if (loadedConfig == Config.empty()) {
       addSr(const ProcedureSelectionScreenSR.emptyConfig());
       return;
     }
@@ -107,21 +111,11 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     final projectName = event.projectURI.split('/').last;
     final projectPath = event.projectURI.replaceAll('/$projectName', '');
 
-    screenRepository
-      ..empty()
-      ..addAll(screens: config.screens);
+    screenRepository.addAll(screens: loadedConfig.screens);
 
-    _clearSwaggerComponentsUseCase(empty: true);
-
-    emit(
-      state.copyWith(
-        config: config.copyWith(
-          projectName: projectName,
-          projectPath: projectPath,
-          projectExists: true,
-          branchConfig: state.config.branchConfig,
-        ),
-      ),
+    _configService.config = loadedConfig.copyWith(
+      projectPath: projectPath,
+      branchConfig: config.branchConfig,
     );
 
     addSr(const ProcedureSelectionScreenSR.loadFinished());
@@ -171,7 +165,7 @@ signingConfigs {
   ) async {
     showProgress();
 
-    final signingPassword = state.config.getSigningPassword(
+    final signingPassword = _configService.getSigningPassword(
       ignoreSetting: true,
     );
 

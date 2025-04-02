@@ -5,13 +5,18 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
+import 'package:onix_flutter_bricks/domain/service/config_service/config_service.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/extension/version_extension.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class SplashScreenBloc
     extends BaseBloc<SplashScreenEvent, SplashScreenState, SplashScreenSR> {
-  SplashScreenBloc() : super(const SplashScreenState.data()) {
+  final ConfigService _configService;
+
+  SplashScreenBloc(this._configService)
+      : super(const SplashScreenState.data()) {
     on<SplashScreenEventInit>(_onInit);
     on<SplashScreenEventOnAnimationFinished>(_onAnimationFinished);
     add(const SplashScreenEvent.init());
@@ -74,6 +79,14 @@ class SplashScreenBloc
         addSr(const SplashScreenSR.onContinue());
       }
     }
+
+    _configService.config = _configService.config.copyWith(
+      branchConfig: BranchConfig(
+        branch: 'release-$localVersion',
+        localVersion: localVersion,
+        remoteVersion: remoteVersion,
+      ),
+    );
 
     emit(
       state.copyWith(
