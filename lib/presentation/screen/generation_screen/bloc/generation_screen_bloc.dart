@@ -22,6 +22,7 @@ import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
@@ -51,6 +52,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   final AddOutputMessageUseCase _addOutputMessageUseCase;
   final GetGenerationOutputStream _getGenerationOutputStream;
 
+  final GetSwaggerComponentsUseCase _getComponentsUseCase;
+
   GenerationScreenBloc(
     this._generateDocumentationUseCase,
     this._generateScreensUseCase,
@@ -63,6 +66,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     this._generateFastlaneFilesUseCase,
     this._createSwaggerComponentsUseCase,
     this._generateGitCliffFilesUseCase,
+    this._getComponentsUseCase,
   ) : super(const GenerationScreenStateData(config: Config())) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
@@ -74,11 +78,15 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     Emitter<GenerationScreenState> emit,
   ) async {
     final outputStream = await _getGenerationOutputStream();
+
+    final components = _getComponentsUseCase();
+
     emit(
       state.copyWith(
         config: event.config,
         outputStream: outputStream,
         isModify: event.isModify,
+        components: components,
       ),
     );
     add(const GenerationScreenEventGenerateProject());
@@ -105,8 +113,8 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
 
       ///create a new configuration file
       configFile.createSync();
-      await configFile.saveJsonConfig(
-        config: state.config,
+      await state.config.saveJsonConfig(
+        file: configFile,
         flavors: flavors.toList(),
         signingPassword: signingPassword,
       );
@@ -246,7 +254,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     }
 
     ///generating data components//TODO
-    //await _generateDataComponentsUseCase(config: state.config);
+    ///await _generateDataComponentsUseCase(config: state.config);
 
     await _createSwaggerComponentsUseCase(
       projectName: state.config.projectName,

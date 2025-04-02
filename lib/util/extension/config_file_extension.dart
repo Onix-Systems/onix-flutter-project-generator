@@ -4,33 +4,33 @@ import 'dart:io';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:recase/recase.dart';
 
-extension ConfigFileExtension on File {
+extension ConfigFileExtension on Config {
   Future<File> saveJsonConfig({
-    required Config config,
+    required File file,
     required List<String> flavors,
     required String signingPassword,
   }) {
     final configContent = jsonEncode(
       {
         'signing_password': signingPassword,
-        'project_name_dirt': config.projectName,
-        'project_org': config.organization,
-        'flavorizr': config.flavorize,
+        'project_name_dirt': projectName,
+        'project_org': organization,
+        'flavorizr': flavorize,
         'flavors': flavors.toList(),
-        'navigation': config.router.name,
-        'localization': config.localization.name.snakeCase,
-        'use_keytool': config.generateSigningKey,
-        'use_sonar': config.useSonar,
-        'graphql': config.graphql,
-        'firebase_auth': config.firebaseAuth,
-        'platforms': config.platformsList.toString().replaceAll(' ', ''),
-        'theme_generate': config.theming.name == 'themeTailor',
-        'branch': config.branchConfig.branch,
-        'screen_util': config.useScreenUtil,
-        'state_management': config.stateManager.name,
-        'sentry': config.sentry,
+        'navigation': router.name,
+        'localization': localization.name.snakeCase,
+        'use_keytool': generateSigningKey,
+        'use_sonar': useSonar,
+        'graphql': graphql,
+        'firebase_auth': firebaseAuth,
+        'platforms': platformsList.toString().replaceAll(' ', ''),
+        'theme_generate': theming.name == 'themeTailor',
+        'branch': branchConfig.branch,
+        'screen_util': useScreenUtil,
+        'state_management': stateManager.name,
+        'sentry': sentry,
       },
     );
-    return writeAsString(configContent);
+    return file.writeAsString(configContent);
   }
 }

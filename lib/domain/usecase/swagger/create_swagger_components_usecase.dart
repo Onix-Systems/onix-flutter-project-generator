@@ -31,6 +31,9 @@ class CreateSwaggerComponentsUseCase {
         components: components,
       ),
     );
+
+    await components.saveComponentsJson(projectRootPath: projectRootPath);
+
     return '';
   }
 }

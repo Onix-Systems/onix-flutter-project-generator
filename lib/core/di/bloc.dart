@@ -63,6 +63,7 @@ void registerBloc(GetIt getIt) {
         GetIt.I.get<GenerateFastlaneFilesUseCase>(),
         GetIt.I.get<CreateSwaggerComponentsUseCase>(),
         GetIt.I.get<GenerateGitCliffFilesUseCase>(),
+        GetIt.I.get<GetSwaggerComponentsUseCase>(),
       ),
     )
     ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)

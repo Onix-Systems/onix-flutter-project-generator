@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component.dart';
@@ -41,5 +44,23 @@ class Components with _$Components {
           .map((e) => DataObjectComponent.fromJson(e))
           .toList(),
     );
+  }
+
+  Future<File> saveComponentsJson({
+    required String projectRootPath,
+  }) async {
+    final componentsFile = File(
+      '$projectRootPath/data_components.json',
+    );
+
+    if (componentsFile.existsSync()) {
+      componentsFile.deleteSync();
+    }
+
+    componentsFile.createSync();
+
+    final json = jsonEncode(toJson());
+
+    return componentsFile.writeAsString(json);
   }
 }
