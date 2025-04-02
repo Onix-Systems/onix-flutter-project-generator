@@ -51,12 +51,12 @@ class _EditProjectScreenState extends State<EditProjectScreen>
             child: Row(
               children: [
                 AppFilledButton(
-                  label: 'Screens',
+                  label: S.of(context).screens,
                   onPressed: () => _tabController.animateTo(0),
                 ),
                 const Gap(10),
                 AppFilledButton(
-                  label: 'DataComponents',
+                  label: S.of(context).dataComponents,
                   onPressed: () => _tabController.animateTo(1),
                 ),
                 const Spacer(),
