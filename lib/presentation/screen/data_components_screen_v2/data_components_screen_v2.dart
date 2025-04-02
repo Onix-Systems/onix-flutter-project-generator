@@ -24,13 +24,9 @@ import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class DataComponentsScreenV2 extends StatefulWidget {
   final Config config;
-  final VoidCallback? onGenerate;
-  final VoidCallback? onBack;
 
   const DataComponentsScreenV2({
     required this.config,
-    this.onBack,
-    this.onGenerate,
     super.key,
   });
 
@@ -215,17 +211,22 @@ class _DataComponentsScreenState extends BaseState<
                       ),
                     ),
                   ),
-                const Delimiter.height(10),
-                NavigationButtonBar(
-                  nextText: S.of(context).continueLabel,
-                  prevText: S.of(context).goBack,
-                  onNextPressed: () {
-                    _onContinue(context, state);
-                  },
-                  onPrevPressed: () {
-                    _onBack(context, state);
-                  },
-                ),
+                if (!state.config.projectExists) ...[
+                  const Delimiter.height(10),
+                  NavigationButtonBar(
+                    nextText: S.of(context).continueLabel,
+                    prevText: S.of(context).goBack,
+                    onNextPressed: () {
+                      context.go(AppRouter.summaryScreen, extra: widget.config);
+                    },
+                    onPrevPressed: () {
+                      context.go(
+                        AppRouter.swaggerParserScreen,
+                        extra: widget.config,
+                      );
+                    },
+                  ),
+                ],
               ],
             ),
           );
@@ -252,21 +253,6 @@ class _DataComponentsScreenState extends BaseState<
         isError: true,
       ),
     );
-  }
-
-  void _onBack(BuildContext context, DataComponentsScreenV2State state) {
-    state.config.projectExists
-        ? widget.onBack?.call()
-        : context.go(
-            AppRouter.swaggerParserScreen,
-            extra: widget.config,
-          );
-  }
-
-  void _onContinue(BuildContext context, DataComponentsScreenV2State state) {
-    state.config.projectExists
-        ? widget.onGenerate?.call()
-        : context.go(AppRouter.summaryScreen, extra: widget.config);
   }
 
   void _refresh(BuildContext context) => blocOf(context).add(

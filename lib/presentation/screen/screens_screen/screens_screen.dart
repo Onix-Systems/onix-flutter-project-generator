@@ -20,11 +20,9 @@ import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 
 class ScreensScreen extends StatefulWidget {
   final Config config;
-  final VoidCallback? onContinue;
 
   const ScreensScreen({
     required this.config,
-    this.onContinue,
     super.key,
   });
 
@@ -164,41 +162,28 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                 ),
               ),
             ),
-            const Delimiter.height(10),
-            NavigationButtonBar(
-              nextText: S.of(context).continueLabel,
-              prevText: S.of(context).goBack,
-              onNextPressed: () {
-                _onContinue(context, state);
-              },
-              onPrevPressed: () {
-                _onBack(context, state);
-              },
-            ),
+            if (!state.config.projectExists) ...[
+              const Delimiter.height(10),
+              NavigationButtonBar(
+                nextText: S.of(context).continueLabel,
+                prevText: S.of(context).goBack,
+                onNextPressed: () {
+                  context.go(
+                    AppRouter.stylesScreen,
+                    extra: state.config,
+                  );
+                },
+                onPrevPressed: () {
+                  context.go(
+                    AppRouter.projectSettingsScreen,
+                    extra: state.config,
+                  );
+                },
+              ),
+            ],
           ],
         ),
       ),
     );
-  }
-
-  void _onBack(BuildContext context, ScreensScreenState state) {
-    widget.config.projectExists
-        ? context.go(
-            AppRouter.procedureSelectionScreen,
-            extra: widget.config.branchConfig,
-          )
-        : context.go(
-            AppRouter.projectSettingsScreen,
-            extra: state.config,
-          );
-  }
-
-  void _onContinue(BuildContext context, ScreensScreenState state) {
-    widget.config.projectExists
-        ? context.go(AppRouter.summaryScreen, extra: state.config)
-        : context.go(
-            AppRouter.stylesScreen,
-            extra: state.config,
-          );
   }
 }

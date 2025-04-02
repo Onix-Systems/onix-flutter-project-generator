@@ -293,7 +293,7 @@ class _ProcedureSelectionScreenState extends BaseState<
       },
       loadFinished: () {
         context.go(
-          AppRouter.screensScreen,
+          AppRouter.editProjectScreen,
           extra: blocOf(context).state.config,
         );
       },

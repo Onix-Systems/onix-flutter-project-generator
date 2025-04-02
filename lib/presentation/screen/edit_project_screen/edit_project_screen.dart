@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
+import 'package:onix_flutter_bricks/app/router/app_router.dart';
+import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/data_components_screen_v2.dart';
+import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_screen.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
+
+class EditProjectScreen extends StatefulWidget {
+  final Config config;
+
+  const EditProjectScreen({
+    required this.config,
+    super.key,
+  });
+
+  @override
+  State<EditProjectScreen> createState() => _EditProjectScreenState();
+}
+
+class _EditProjectScreenState extends State<EditProjectScreen>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Column(
+        children: [
+          TabBar(
+            controller: _tabController,
+            tabs: const [
+              Tab(text: 'Screens'),
+              Tab(text: 'Data Components'),
+            ],
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                ScreensScreen(config: widget.config),
+                DataComponentsScreenV2(config: widget.config),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 16, right: 16),
+            child: NavigationButtonBar(
+              nextText: S.of(context).continueLabel,
+              prevText: S.of(context).goBack,
+              onNextPressed: () {
+                context.go(
+                  AppRouter.generationScreen,
+                  extra: widget.config,
+                );
+              },
+              onPrevPressed: () {
+                context.go(
+                  AppRouter.procedureSelectionScreen,
+                  extra: widget.config.branchConfig,
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

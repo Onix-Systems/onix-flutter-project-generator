@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/data_components_screen_v2.dart';
+import 'package:onix_flutter_bricks/presentation/screen/edit_project_screen/edit_project_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/figma_styles_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/generation_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/platforms_screen.dart';
@@ -29,6 +30,7 @@ class AppRouter {
   static const _swaggerParserScreen = '/swagger_parser';
   static const _summaryScreen = '/summary';
   static const _generationScreen = '/generation';
+  static const _editProjectScreen = '/edit_project';
   //{consts end}
 
   static final AppRouter _instance = AppRouter._privateConstructor();
@@ -45,6 +47,7 @@ class AppRouter {
   static String get swaggerParserScreen => _swaggerParserScreen;
   static String get summaryScreen => _summaryScreen;
   static String get generationScreen => _generationScreen;
+  static String get editProjectScreen => _editProjectScreen;
 
   //{getters end}
 
@@ -135,6 +138,13 @@ class AppRouter {
             extra: state.extra as GenerationScreenExtra,
           ),
         ),
+        GoRoute(
+          path: _editProjectScreen,
+          name: 'EditProjectScreen',
+          builder: (context, state) => EditProjectScreen(
+            config: state.extra as Config,
+          ),
+        )
         //{routes end}
       ],
     );
