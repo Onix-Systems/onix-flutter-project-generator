@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/data_components_screen_v2.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_screen.dart';
+import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 
 class EditProjectScreen extends StatefulWidget {
@@ -34,13 +36,6 @@ class _EditProjectScreenState extends State<EditProjectScreen>
     return Material(
       child: Column(
         children: [
-          TabBar(
-            controller: _tabController,
-            tabs: const [
-              Tab(text: 'Screens'),
-              Tab(text: 'Data Components'),
-            ],
-          ),
           Expanded(
             child: TabBarView(
               controller: _tabController,
@@ -51,22 +46,37 @@ class _EditProjectScreenState extends State<EditProjectScreen>
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 16, right: 16),
-            child: NavigationButtonBar(
-              nextText: S.of(context).continueLabel,
-              prevText: S.of(context).goBack,
-              onNextPressed: () {
-                context.go(
-                  AppRouter.generationScreen,
-                  extra: widget.config,
-                );
-              },
-              onPrevPressed: () {
-                context.go(
-                  AppRouter.procedureSelectionScreen,
-                  extra: widget.config.branchConfig,
-                );
-              },
+            padding:
+                const EdgeInsets.only(top: 10, bottom: 16, right: 16, left: 16),
+            child: Row(
+              children: [
+                AppFilledButton(
+                  label: 'Screens',
+                  onPressed: () => _tabController.animateTo(0),
+                ),
+                const Gap(10),
+                AppFilledButton(
+                  label: 'DataComponents',
+                  onPressed: () => _tabController.animateTo(1),
+                ),
+                const Spacer(),
+                NavigationButtonBar(
+                  nextText: S.of(context).continueLabel,
+                  prevText: S.of(context).goBack,
+                  onNextPressed: () {
+                    context.go(
+                      AppRouter.generationScreen,
+                      extra: widget.config,
+                    );
+                  },
+                  onPrevPressed: () {
+                    context.go(
+                      AppRouter.procedureSelectionScreen,
+                      extra: widget.config.branchConfig,
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ],

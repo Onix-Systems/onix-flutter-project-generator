@@ -118,7 +118,7 @@ class _DataComponentsScreenState extends BaseState<
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
-                          color: context.appColors.controlColor,
+                          color: context.appColors.fadedColor,
                         ),
                       ),
                       child: Material(
