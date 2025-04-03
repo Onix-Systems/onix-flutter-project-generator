@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProjectSettingsScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -38,7 +38,7 @@ mixin _$ProjectSettingsScreenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -57,7 +57,7 @@ mixin _$ProjectSettingsScreenEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -207,10 +207,6 @@ abstract class _$$ProjectSettingsScreenEventInitImplCopyWith<$Res> {
           _$ProjectSettingsScreenEventInitImpl value,
           $Res Function(_$ProjectSettingsScreenEventInitImpl) then) =
       __$$ProjectSettingsScreenEventInitImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Config config});
-
-  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -225,69 +221,33 @@ class __$$ProjectSettingsScreenEventInitImplCopyWithImpl<$Res>
 
   /// Create a copy of ProjectSettingsScreenEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? config = null,
-  }) {
-    return _then(_$ProjectSettingsScreenEventInitImpl(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
-    ));
-  }
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ConfigCopyWith<$Res> get config {
-    return $ConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$ProjectSettingsScreenEventInitImpl
     implements ProjectSettingsScreenEventInit {
-  const _$ProjectSettingsScreenEventInitImpl({required this.config});
-
-  @override
-  final Config config;
+  const _$ProjectSettingsScreenEventInitImpl();
 
   @override
   String toString() {
-    return 'ProjectSettingsScreenEvent.init(config: $config)';
+    return 'ProjectSettingsScreenEvent.init()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectSettingsScreenEventInitImpl &&
-            (identical(other.config, config) || other.config == config));
+            other is _$ProjectSettingsScreenEventInitImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config);
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProjectSettingsScreenEventInitImplCopyWith<
-          _$ProjectSettingsScreenEventInitImpl>
-      get copyWith => __$$ProjectSettingsScreenEventInitImplCopyWithImpl<
-          _$ProjectSettingsScreenEventInitImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -304,13 +264,13 @@ class _$ProjectSettingsScreenEventInitImpl
     required TResult Function() sentryChange,
     required TResult Function(ArchType arch) archChange,
   }) {
-    return init(config);
+    return init();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -326,13 +286,13 @@ class _$ProjectSettingsScreenEventInitImpl
     TResult? Function()? sentryChange,
     TResult? Function(ArchType arch)? archChange,
   }) {
-    return init?.call(config);
+    return init?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -350,7 +310,7 @@ class _$ProjectSettingsScreenEventInitImpl
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(config);
+      return init();
     }
     return orElse();
   }
@@ -471,17 +431,8 @@ class _$ProjectSettingsScreenEventInitImpl
 
 abstract class ProjectSettingsScreenEventInit
     implements ProjectSettingsScreenEvent {
-  const factory ProjectSettingsScreenEventInit({required final Config config}) =
+  const factory ProjectSettingsScreenEventInit() =
       _$ProjectSettingsScreenEventInitImpl;
-
-  Config get config;
-
-  /// Create a copy of ProjectSettingsScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProjectSettingsScreenEventInitImplCopyWith<
-          _$ProjectSettingsScreenEventInitImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -530,7 +481,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -553,7 +504,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -575,7 +526,7 @@ class _$ProjectSettingsScreenEventFlavorizeChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -793,7 +744,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -816,7 +767,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -838,7 +789,7 @@ class _$ProjectSettingsScreenEventFlavorsChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -1077,7 +1028,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -1100,7 +1051,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -1122,7 +1073,7 @@ class _$ProjectSettingsScreenEventGenerateSigningKeyChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -1363,7 +1314,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -1386,7 +1337,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -1408,7 +1359,7 @@ class _$ProjectSettingsScreenEventSigningVarsChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -1607,7 +1558,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -1630,7 +1581,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -1652,7 +1603,7 @@ class _$ProjectSettingsScreenEventUseSonarChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -1841,7 +1792,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -1864,7 +1815,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -1886,7 +1837,7 @@ class _$ProjectSettingsScreenEventGraphQLChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -2110,7 +2061,7 @@ class _$ProjectSettingsScreenEventStateManagerChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -2133,7 +2084,7 @@ class _$ProjectSettingsScreenEventStateManagerChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -2155,7 +2106,7 @@ class _$ProjectSettingsScreenEventStateManagerChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -2354,7 +2305,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -2377,7 +2328,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -2399,7 +2350,7 @@ class _$ProjectSettingsScreenEventRouterChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -2591,7 +2542,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -2614,7 +2565,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -2636,7 +2587,7 @@ class _$ProjectSettingsScreenEventLocalizationChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -2825,7 +2776,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -2848,7 +2799,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -2870,7 +2821,7 @@ class _$ProjectSettingsScreenEventThemingChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -3059,7 +3010,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -3082,7 +3033,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -3104,7 +3055,7 @@ class _$ProjectSettingsScreenEventFirebaseChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -3294,7 +3245,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -3317,7 +3268,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -3339,7 +3290,7 @@ class _$ProjectSettingsScreenEventScreenUtilChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -3528,7 +3479,7 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -3551,7 +3502,7 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -3573,7 +3524,7 @@ class _$ProjectSettingsScreenEventSentryChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -3790,7 +3741,7 @@ class _$ProjectSettingsScreenEventArchChangeImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function() flavorizeChange,
     required TResult Function(String flavors) flavorsChange,
     required TResult Function(bool generateSigningKey) generateSigningKeyChange,
@@ -3813,7 +3764,7 @@ class _$ProjectSettingsScreenEventArchChangeImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function()? flavorizeChange,
     TResult? Function(String flavors)? flavorsChange,
     TResult? Function(bool generateSigningKey)? generateSigningKeyChange,
@@ -3835,7 +3786,7 @@ class _$ProjectSettingsScreenEventArchChangeImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function()? flavorizeChange,
     TResult Function(String flavors)? flavorsChange,
     TResult Function(bool generateSigningKey)? generateSigningKeyChange,

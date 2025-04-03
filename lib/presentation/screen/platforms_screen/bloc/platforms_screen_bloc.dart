@@ -8,8 +8,9 @@ class PlatformsScreenBloc extends BaseBloc<PlatformsScreenEvent,
     PlatformsScreenState, PlatformsScreenSR> {
   final ConfigService _configService;
 
-  PlatformsScreenBloc(this._configService)
-      : super(const PlatformsScreenStateData(config: Config())) {
+  PlatformsScreenBloc({required ConfigService configService})
+      : _configService = configService,
+        super(const PlatformsScreenStateData(config: Config())) {
     on<PlatformsScreenEventInit>(_onInit);
     on<PlatformsScreenEventOnPlatformsChange>(_onPlatformsChange);
   }
@@ -50,12 +51,15 @@ class PlatformsScreenBloc extends BaseBloc<PlatformsScreenEvent,
           linux: !state.config.platformsList.linux,
         );
     }
+
+    _configService.updateWith(
+      platformsList: copiedPlatforms,
+      screenUtil: !copiedPlatforms.webOnly && state.config.screenUtil,
+    );
+
     emit(
       state.copyWith(
-        config: state.config.copyWith(
-          platformsList: copiedPlatforms,
-          screenUtil: !copiedPlatforms.webOnly && state.config.screenUtil,
-        ),
+        config: _configService.config,
       ),
     );
   }

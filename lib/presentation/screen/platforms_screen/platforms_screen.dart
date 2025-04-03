@@ -38,12 +38,11 @@ class _PlatformsScreenState extends BaseState<PlatformsScreenState,
       child: SizedBox.expand(
         child: blocBuilder(
           builder: (context, state) {
-            final config = state.config;
             return Stack(
               children: [
                 Positioned.fill(
                   child: PlatformScreenBody(
-                    config: state.config,
+                    platformsList: state.config.platformsList,
                     onAction: (platform) {
                       blocOf(context).add(
                         PlatformsScreenEvent.onPlatformsChange(item: platform),
@@ -61,22 +60,11 @@ class _PlatformsScreenState extends BaseState<PlatformsScreenState,
                     onNextPressed: () {
                       context.go(
                         AppRouter.projectSettingsScreen,
-                        extra: config.copyWith(
-                          platformsList: config.platformsList,
-                          flavorize:
-                              !config.platformsList.webOnly && config.flavorize,
-                          flavors: config.platformsList.webOnly
-                              ? ''
-                              : config.flavors,
-                          generateSigningKey: !config.platformsList.webOnly &&
-                              config.generateSigningKey,
-                        ),
                       );
                     },
                     onPrevPressed: () {
                       context.go(
                         AppRouter.projectNameScreen,
-                        extra: config,
                       );
                     },
                   ),

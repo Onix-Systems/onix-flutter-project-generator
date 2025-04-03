@@ -7,7 +7,6 @@ import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/add_screen_dialog.dart';
@@ -19,10 +18,7 @@ import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 
 class ScreensScreen extends StatefulWidget {
-  final Config config;
-
   const ScreensScreen({
-    required this.config,
     super.key,
   });
 
@@ -82,7 +78,7 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
 
   @override
   void onBlocCreated(BuildContext context, ScreensScreenBloc bloc) {
-    bloc.add(ScreensScreenEventInit(config: widget.config));
+    bloc.add(const ScreensScreenEventInit());
     super.onBlocCreated(context, bloc);
   }
 
@@ -170,13 +166,11 @@ class _ScreensScreenState extends BaseState<ScreensScreenState,
                 onNextPressed: () {
                   context.go(
                     AppRouter.stylesScreen,
-                    extra: state.config,
                   );
                 },
                 onPrevPressed: () {
                   context.go(
                     AppRouter.projectSettingsScreen,
-                    extra: state.config,
                   );
                 },
               ),

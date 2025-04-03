@@ -16,15 +16,16 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
   final GetBranchesProcessUseCase _getBranchesProcessUseCase;
   final ConfigService _configService;
 
-  ProjectNameScreenBloc(
-    this._getBranchesProcessUseCase,
-    this._configService,
-  ) : super(const ProjectNameScreenState.data(config: Config())) {
+  ProjectNameScreenBloc({
+    required GetBranchesProcessUseCase getBranchesProcessUseCase,
+    required ConfigService configService,
+  })  : _configService = configService,
+        _getBranchesProcessUseCase = getBranchesProcessUseCase,
+        super(const ProjectNameScreenState.data(config: Config())) {
     on<ProjectNameScreenEventInit>(_onInit);
     on<ProjectNameScreenEventProjectNameChanged>(_onProjectNameChanged);
     on<ProjectNameScreenEventOrganizationChanged>(_onOrganizationChanged);
     on<ProjectNameScreenEventBranchChanged>(_onBranchChanged);
-    on<ProjectNameScreenEventOnNext>(_onNext);
   }
 
   Future<void> _onInit(
@@ -50,24 +51,14 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     ProjectNameScreenEventProjectNameChanged event,
     Emitter<ProjectNameScreenState> emit,
   ) async {
-    if (event.projectName.isEmpty) {
-      emit(
-        state.copyWith(
-          config: state.config.copyWith(
-            projectName: event.projectName,
-          ),
-          isValidProjectName: false,
-        ),
-      );
-      return;
-    }
+    _configService.updateWith(
+      projectName: event.projectName,
+    );
 
     emit(
       state.copyWith(
         isValidProjectName: _isValidProjectName(event.projectName),
-        config: state.config.copyWith(
-          projectName: event.projectName,
-        ),
+        config: _configService.config,
       ),
     );
   }
@@ -76,23 +67,14 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     ProjectNameScreenEventOrganizationChanged event,
     Emitter<ProjectNameScreenState> emit,
   ) {
-    if (event.organization.isEmpty) {
-      emit(
-        state.copyWith(
-          isValidOrganizationName: false,
-          config: state.config.copyWith(
-            organization: event.organization,
-          ),
-        ),
-      );
-    }
+    _configService.updateWith(
+      organization: event.organization,
+    );
 
     emit(
       state.copyWith(
         isValidOrganizationName: _isValidOrganizationName(event.organization),
-        config: state.config.copyWith(
-          organization: event.organization,
-        ),
+        config: _configService.config,
       ),
     );
   }
@@ -101,14 +83,16 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
     ProjectNameScreenEventBranchChanged event,
     Emitter<ProjectNameScreenState> emit,
   ) {
+    _configService.updateWith(
+      branchConfig: state.config.branchConfig.copyWith(
+        branch: event.newBranch,
+      ),
+    );
+
     emit(
       state.copyWith(
         branches: state.branches.toList(),
-        config: state.config.copyWith(
-          branchConfig: state.config.branchConfig.copyWith(
-            branch: event.newBranch,
-          ),
-        ),
+        config: _configService.config,
       ),
     );
   }
@@ -119,15 +103,6 @@ class ProjectNameScreenBloc extends BaseBloc<ProjectNameScreenEvent,
             .existsSync();
     final isValidName = ProjectNameValidator.isValidName(projectName);
     return projectName.isNotEmpty && !projectExists && isValidName;
-  }
-
-  FutureOr<void> _onNext(
-    ProjectNameScreenEventOnNext event,
-    Emitter<ProjectNameScreenState> emit,
-  ) {
-    _configService.config = state.config;
-
-    addSr(const ProjectNameScreenSROnNext());
   }
 
   bool _isValidOrganizationName(String organization) =>

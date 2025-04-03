@@ -6,7 +6,6 @@ import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/widgets/left_part.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/widgets/right_part.dart';
@@ -14,10 +13,7 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_butto
 import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 
 class ProjectSettingsScreen extends StatefulWidget {
-  final Config config;
-
   const ProjectSettingsScreen({
-    required this.config,
     super.key,
   });
 
@@ -53,8 +49,7 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
 
   @override
   void onBlocCreated(BuildContext context, ProjectSettingsScreenBloc bloc) {
-    bloc.add(ProjectSettingsScreenEvent.init(config: widget.config));
-    _flavorsController.text = widget.config.flavors;
+    bloc.add(const ProjectSettingsScreenEvent.init());
     super.onBlocCreated(context, bloc);
   }
 
@@ -63,7 +58,9 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
     ProjectSettingsScreenSR singleResult,
   ) {
     singleResult.when(
-      loadFinished: () {},
+      loadFinished: () {
+        _flavorsController.text = blocOf(context).state.config.flavors;
+      },
     );
   }
 

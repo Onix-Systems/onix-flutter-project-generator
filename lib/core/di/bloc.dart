@@ -44,7 +44,6 @@ import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_scre
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc.dart';
-import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/figma_styles_dialog/bloc/figma_styles_dialog_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summary_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bloc/swagger_parser_screen_bloc.dart';
@@ -53,71 +52,82 @@ void registerBloc(GetIt getIt) {
   getIt
     ..registerFactory<GenerationScreenBloc>(
       () => GenerationScreenBloc(
-        getIt.get<ConfigService>(),
-        getIt.get<GenerateDocumentationUseCase>(),
-        getIt.get<GenerateScreensUseCase>(),
-        getIt.get<AddOutputMessageUseCase>(),
-        getIt.get<RunProcessUseCase>(),
-        getIt.get<RunOsaScriptProcessUseCase>(),
-        getIt.get<GenerateSigningConfigUseCase>(),
-        getIt.get<GenerateStylesUseCase>(),
-        getIt.get<GetGenerationOutputStream>(),
-        getIt.get<GenerateFastlaneFilesUseCase>(),
-        getIt.get<CreateSwaggerComponentsUseCase>(),
-        getIt.get<GenerateGitCliffFilesUseCase>(),
-        getIt.get<GetSwaggerComponentsUseCase>(),
+        configService: getIt.get<ConfigService>(),
+        generateDocumentationUseCase: getIt.get<GenerateDocumentationUseCase>(),
+        generateFastlaneFilesUseCase: getIt.get<GenerateFastlaneFilesUseCase>(),
+        generateGitCliffFilesUseCase: getIt.get<GenerateGitCliffFilesUseCase>(),
+        generateScreensUseCase: getIt.get<GenerateScreensUseCase>(),
+        generateStylesUseCase: getIt.get<GenerateStylesUseCase>(),
+        addOutputMessageUseCase: getIt.get<AddOutputMessageUseCase>(),
+        getGenerationOutputStream: getIt.get<GetGenerationOutputStream>(),
+        runProcessUseCase: getIt.get<RunProcessUseCase>(),
+        runOsaScriptProcessUseCase: getIt.get<RunOsaScriptProcessUseCase>(),
+        createSwaggerComponentsUseCase:
+            getIt.get<CreateSwaggerComponentsUseCase>(),
+        generateSigningConfigUseCase: getIt.get<GenerateSigningConfigUseCase>(),
+        getSwaggerComponentsUseCase: getIt.get<GetSwaggerComponentsUseCase>(),
       ),
     )
-    ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)
+    ..registerFactory<SummaryScreenBloc>(
+      () => SummaryScreenBloc(
+        screenRepository: getIt.get<ScreenRepository>(),
+        configService: getIt.get<ConfigService>(),
+      ),
+    )
     ..registerFactory<SwaggerParserScreenBloc>(
       () => SwaggerParserScreenBloc(
-        getIt.get<FetchSwaggerDataUseCase>(),
-        getIt.get<ClearSwaggerComponentsUseCase>(),
+        fetchSwaggerDataUseCase: getIt.get<FetchSwaggerDataUseCase>(),
+        clearSwaggerComponentsUseCase:
+            getIt.get<ClearSwaggerComponentsUseCase>(),
+        configService: getIt.get<ConfigService>(),
       ),
     )
-    ..registerFactory<ScreensScreenBloc>(ScreensScreenBloc.new)
+    ..registerFactory<ScreensScreenBloc>(
+      () => ScreensScreenBloc(
+        configService: getIt.get<ConfigService>(),
+        screenRepository: getIt.get<ScreenRepository>(),
+      ),
+    )
     ..registerFactory<FigmaStylesScreenBloc>(
       () => FigmaStylesScreenBloc(
-        getIt.get<GetFigmaStylesUseCase>(),
-      ),
-    )
-    ..registerFactory<FigmaStylesDialogBloc>(
-      () => FigmaStylesDialogBloc(
-        getIt.get<GetFigmaStylesUseCase>(),
+        getFigmaStylesUseCase: getIt.get<GetFigmaStylesUseCase>(),
+        configService: getIt.get<ConfigService>(),
       ),
     )
     ..registerFactory<ProjectSettingsScreenBloc>(
       () => ProjectSettingsScreenBloc(
         screenRepository: getIt.get<ScreenRepository>(),
+        configService: getIt.get<ConfigService>(),
       ),
     )
     ..registerFactory<PlatformsScreenBloc>(
       () => PlatformsScreenBloc(
-        getIt.get<ConfigService>(),
+        configService: getIt.get<ConfigService>(),
       ),
     )
     ..registerFactory<ProjectNameScreenBloc>(
       () => ProjectNameScreenBloc(
-        getIt.get<GetBranchesProcessUseCase>(),
-        getIt.get<ConfigService>(),
+        getBranchesProcessUseCase: getIt.get<GetBranchesProcessUseCase>(),
+        configService: getIt.get<ConfigService>(),
       ),
     )
     ..registerFactory<SplashScreenBloc>(
       () => SplashScreenBloc(
-        getIt.get<ConfigService>(),
+        configService: getIt.get<ConfigService>(),
       ),
     )
     ..registerFactory<ProcedureSelectionScreenBloc>(
       () => ProcedureSelectionScreenBloc(
-        getIt.get<ConfigService>(),
-        getIt.get<GenerateSigningConfigUseCase>(),
-        getIt.get<GenerateFlavorsUseCase>(),
-        getIt.get<GetSigningFingerprintUseCase>(),
-        getIt.get<ClearSwaggerComponentsUseCase>(),
-        getIt.get<ClearScreensUseCase>(),
-        getIt.get<GetGenerationOutputStream>(),
-        getIt.get<ClearOutputUseCase>(),
-        getIt.get<RunProcessUseCase>(),
+        configService: getIt.get<ConfigService>(),
+        generateSigningConfigUseCase: getIt.get<GenerateSigningConfigUseCase>(),
+        generateFlavorsUseCase: getIt.get<GenerateFlavorsUseCase>(),
+        getSigningFingerprintUseCase: getIt.get<GetSigningFingerprintUseCase>(),
+        clearSwaggerComponentsUseCase:
+            getIt.get<ClearSwaggerComponentsUseCase>(),
+        clearScreensUseCase: getIt.get<ClearScreensUseCase>(),
+        getGenerationOutputStream: getIt.get<GetGenerationOutputStream>(),
+        clearOutputUseCase: getIt.get<ClearOutputUseCase>(),
+        runProcessUseCase: getIt.get<RunProcessUseCase>(),
       ),
     )
     ..registerFactory<DataComponentsScreenV2Bloc>(
@@ -128,6 +138,7 @@ void registerBloc(GetIt getIt) {
         editSourceNameUseCase: getIt.get<EditSourceNameUseCase>(),
         deleteDataObjectComponentUseCase: getIt.get<DeleteComponentUseCase>(),
         deleteSourceRequestUseCase: getIt.get<DeleteSourceRequestUseCase>(),
+        configService: getIt.get<ConfigService>(),
       ),
     )
     ..registerFactory<ComponentDialogCubit>(

@@ -6,8 +6,6 @@ import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc/figma_styles_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/widgets/styles_widget.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -16,14 +14,7 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_butto
 import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 
 class FigmaStylesScreen extends StatefulWidget {
-  final ValueChanged<List<AppStyle>>? onContinue;
-  final ValueChanged<List<AppStyle>>? onBack;
-  final Config config;
-
   const FigmaStylesScreen({
-    required this.config,
-    this.onContinue,
-    this.onBack,
     super.key,
   });
 
@@ -55,7 +46,7 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
 
   @override
   void onBlocCreated(BuildContext context, FigmaStylesScreenBloc bloc) {
-    bloc.add(FigmaStylesScreenEventInit(config: widget.config));
+    bloc.add(const FigmaStylesScreenEventInit());
     super.onBlocCreated(context, bloc);
   }
 
@@ -160,24 +151,14 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
   }
 
   void _onContinue(BuildContext context, FigmaStylesScreenState state) {
-    widget.config.projectExists
-        ? widget.onContinue?.call(state.config.styles)
-        : context.go(
-            AppRouter.swaggerParserScreen,
-            extra: widget.config.copyWith(
-              styles: state.config.styles,
-            ),
-          );
+    context.go(
+      AppRouter.swaggerParserScreen,
+    );
   }
 
   void _onBack(BuildContext context, FigmaStylesScreenState state) {
-    state.config.projectExists
-        ? widget.onBack?.call(state.config.styles)
-        : context.go(
-            AppRouter.screensScreen,
-            extra: widget.config.copyWith(
-              styles: state.config.styles,
-            ),
-          );
+    context.go(
+      AppRouter.screensScreen,
+    );
   }
 }

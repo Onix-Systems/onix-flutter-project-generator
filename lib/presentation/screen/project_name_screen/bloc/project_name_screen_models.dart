@@ -18,15 +18,11 @@ class ProjectNameScreenEvent with _$ProjectNameScreenEvent {
   const factory ProjectNameScreenEvent.branchChanged({
     required String newBranch,
   }) = ProjectNameScreenEventBranchChanged;
-
-  const factory ProjectNameScreenEvent.onNext() = ProjectNameScreenEventOnNext;
 }
 
 @freezed
 class ProjectNameScreenSR with _$ProjectNameScreenSR {
   const factory ProjectNameScreenSR.init() = ProjectNameScreenSRStub;
-
-  const factory ProjectNameScreenSR.onNext() = ProjectNameScreenSROnNext;
 }
 
 @freezed

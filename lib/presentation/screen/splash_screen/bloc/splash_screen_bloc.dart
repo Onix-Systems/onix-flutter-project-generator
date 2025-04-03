@@ -15,8 +15,9 @@ class SplashScreenBloc
     extends BaseBloc<SplashScreenEvent, SplashScreenState, SplashScreenSR> {
   final ConfigService _configService;
 
-  SplashScreenBloc(this._configService)
-      : super(const SplashScreenState.data()) {
+  SplashScreenBloc({required ConfigService configService})
+      : _configService = configService,
+        super(const SplashScreenState.data()) {
     on<SplashScreenEventInit>(_onInit);
     on<SplashScreenEventOnAnimationFinished>(_onAnimationFinished);
     add(const SplashScreenEvent.init());
@@ -80,7 +81,7 @@ class SplashScreenBloc
       }
     }
 
-    _configService.config = _configService.config.copyWith(
+    _configService.updateWith(
       branchConfig: BranchConfig(
         branch: 'release-$localVersion',
         localVersion: localVersion,

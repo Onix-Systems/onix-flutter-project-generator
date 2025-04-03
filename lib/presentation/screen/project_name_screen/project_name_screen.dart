@@ -67,11 +67,6 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
         projectNameController.text = blocOf(context).state.config.projectName;
         organizationController.text = blocOf(context).state.config.organization;
       },
-      onNext: () {
-        context.go(
-          AppRouter.platformsScreen,
-        );
-      },
     );
   }
 
@@ -246,8 +241,8 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
         ),
       ),
       onOk: () {
-        blocOf(context).add(
-          const ProjectNameScreenEvent.onNext(),
+        context.go(
+          AppRouter.platformsScreen,
         );
       },
     );

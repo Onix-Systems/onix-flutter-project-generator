@@ -5,7 +5,6 @@ import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bloc/swagger_parser_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -16,10 +15,7 @@ import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class SwaggerParserScreen extends StatefulWidget {
-  final Config config;
-
   const SwaggerParserScreen({
-    required this.config,
     super.key,
   });
 
@@ -37,8 +33,7 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
 
   @override
   void onBlocCreated(BuildContext context, SwaggerParserScreenBloc bloc) {
-    bloc.add(SwaggerParserScreenEvent.init(config: widget.config));
-    _urlController.text = widget.config.swaggerUrl;
+    bloc.add(const SwaggerParserScreenEvent.init());
     super.onBlocCreated(context, bloc);
   }
 
@@ -104,6 +99,9 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
   void onSR(BuildContext context, SwaggerParserScreenSR sr) {
     super.onSR(context, sr);
     sr.when(
+      init: () {
+        _urlController.text = blocOf(context).state.config.swaggerUrl;
+      },
       onContinue: () {
         _urlController.clear();
         _onContinue(context, blocOf(context).state);
@@ -158,27 +156,13 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
   }
 
   void _onContinue(BuildContext context, SwaggerParserScreenState state) {
-    state.config.projectExists
-        ? context.pop(
-            widget.config.copyWith(
-              swaggerUrl: state.config.swaggerUrl,
-            ),
-          )
-        : context.go(
-            AppRouter.dataComponentsScreen,
-            extra: state.config,
-          );
+    context.go(
+      AppRouter.dataComponentsScreen,
+    );
   }
 
   void _onBack(BuildContext context, SwaggerParserScreenState state) =>
-      state.config.projectExists
-          ? context.pop(
-              widget.config.copyWith(
-                swaggerUrl: state.config.swaggerUrl,
-              ),
-            )
-          : context.go(
-              AppRouter.stylesScreen,
-              extra: state.config,
-            );
+      context.go(
+        AppRouter.stylesScreen,
+      );
 }

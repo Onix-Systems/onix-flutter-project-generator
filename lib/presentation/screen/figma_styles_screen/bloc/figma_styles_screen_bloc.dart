@@ -4,15 +4,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/service/config_service/config_service.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/get_figma_styles_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/bloc/figma_styles_screen_bloc_imports.dart';
 
 class FigmaStylesScreenBloc extends BaseBloc<FigmaStylesScreenEvent,
     FigmaStylesScreenState, FigmaStylesScreenSR> {
+  final ConfigService _configService;
   final GetFigmaStylesUseCase _getFigmaStylesUseCase;
 
-  FigmaStylesScreenBloc(this._getFigmaStylesUseCase)
-      : super(const FigmaStylesScreenStateData(config: Config())) {
+  Config get _config => _configService.config;
+
+  FigmaStylesScreenBloc({
+    required GetFigmaStylesUseCase getFigmaStylesUseCase,
+    required ConfigService configService,
+  })  : _configService = configService,
+        _getFigmaStylesUseCase = getFigmaStylesUseCase,
+        super(const FigmaStylesScreenStateData(config: Config())) {
     on<FigmaStylesScreenEventInit>(_onInit);
     on<FigmaStylesScreenEventOnGetStyles>(_onGetStyles);
     on<FigmaStylesScreenEventOnClear>(_onClear);
@@ -24,7 +32,7 @@ class FigmaStylesScreenBloc extends BaseBloc<FigmaStylesScreenEvent,
   ) {
     emit(
       state.copyWith(
-        config: event.config,
+        config: _config,
       ),
     );
   }
@@ -65,11 +73,13 @@ class FigmaStylesScreenBloc extends BaseBloc<FigmaStylesScreenEvent,
         return;
       }
 
+      _configService.updateWith(
+        styles: styles,
+      );
+
       emit(
         state.copyWith(
-          config: state.config.copyWith(
-            styles: styles,
-          ),
+          config: _config,
         ),
       );
     } catch (e) {
@@ -83,11 +93,13 @@ class FigmaStylesScreenBloc extends BaseBloc<FigmaStylesScreenEvent,
     FigmaStylesScreenEventOnClear event,
     Emitter<FigmaStylesScreenState> emit,
   ) {
+    _configService.updateWith(
+      styles: [],
+    );
+
     emit(
       state.copyWith(
-        config: state.config.copyWith(
-          styles: [],
-        ),
+        config: _config,
       ),
     );
   }

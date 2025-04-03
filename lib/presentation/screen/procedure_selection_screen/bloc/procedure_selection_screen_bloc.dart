@@ -38,19 +38,28 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
   final ClearOutputUseCase _clearOutputUseCase;
   final RunProcessUseCase _runProcessUseCase;
 
-  Config get config => _configService.config;
+  Config get _config => _configService.config;
 
-  ProcedureSelectionScreenBloc(
-    this._configService,
-    this._generateSigningConfigUseCase,
-    this._generateFlavorsUseCase,
-    this._getSigningFingerprintUseCase,
-    this._clearSwaggerComponentsUseCase,
-    this._clearScreensUseCase,
-    this._getGenerationOutputStream,
-    this._clearOutputUseCase,
-    this._runProcessUseCase,
-  ) : super(
+  ProcedureSelectionScreenBloc({
+    required ConfigService configService,
+    required GenerateSigningConfigUseCase generateSigningConfigUseCase,
+    required GenerateFlavorsUseCase generateFlavorsUseCase,
+    required GetSigningFingerprintUseCase getSigningFingerprintUseCase,
+    required ClearSwaggerComponentsUseCase clearSwaggerComponentsUseCase,
+    required ClearScreensUseCase clearScreensUseCase,
+    required GetGenerationOutputStream getGenerationOutputStream,
+    required ClearOutputUseCase clearOutputUseCase,
+    required RunProcessUseCase runProcessUseCase,
+  })  : _configService = configService,
+        _generateSigningConfigUseCase = generateSigningConfigUseCase,
+        _generateFlavorsUseCase = generateFlavorsUseCase,
+        _getSigningFingerprintUseCase = getSigningFingerprintUseCase,
+        _clearSwaggerComponentsUseCase = clearSwaggerComponentsUseCase,
+        _clearScreensUseCase = clearScreensUseCase,
+        _getGenerationOutputStream = getGenerationOutputStream,
+        _clearOutputUseCase = clearOutputUseCase,
+        _runProcessUseCase = runProcessUseCase,
+        super(
           const ProcedureSelectionScreenStateData(
             branchConfig: BranchConfig(),
           ),
@@ -88,7 +97,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     ProcedureSelectionScreenEventOnNewProject event,
     Emitter<ProcedureSelectionScreenState> emit,
   ) async {
-    _configService.config = config.copyWith(
+    _configService.updateWith(
       projectPath: event.projectPath,
     );
 
@@ -113,9 +122,10 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
 
     screenRepository.addAll(screens: loadedConfig.screens);
 
-    _configService.config = loadedConfig.copyWith(
+    _configService.updateWith(
+      newConfig: loadedConfig,
       projectPath: projectPath,
-      branchConfig: config.branchConfig,
+      branchConfig: _config.branchConfig,
     );
 
     addSr(const ProcedureSelectionScreenSR.loadFinished());
@@ -144,7 +154,11 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
       return true;
     }
 
-    final buildGradle = File('$projectFolder/android/app/build.gradle');
+    final buildGradle =
+        File('$projectFolder/android/app/build.gradle').existsSync()
+            ? File('$projectFolder/android/app/build.gradle')
+            : File('$projectFolder/android/app/build.gradle.kts');
+
     final buildGradleContent = await buildGradle.readAsString();
 
     final signingConfigExists = buildGradleContent.contains('''
@@ -165,19 +179,21 @@ signingConfigs {
   ) async {
     showProgress();
 
-    final signingPassword = _configService.getSigningPassword(
-      ignoreSetting: true,
-    );
+    final signingPassword = event.signingVars.last.isEmpty
+        ? _configService.getSigningPassword(ignoreSetting: true)
+        : event.signingVars.last;
+
+    final signingVars = event.signingVars.toList()..last = signingPassword;
 
     final result = await _generateSigningConfigUseCase(
       params: SingingGeneratorParams(
         projectFolder: event.directory.path,
-        signingVars: event.signingVars,
-        signingPassword: signingPassword,
+        signingVars: signingVars,
         separateFromBrick: true,
         overwrite: event.overwrite,
       ),
     );
+
     await hideProgress();
     if (result.success) {
       final fingerprints = await _getSigningFingerprintUseCase(

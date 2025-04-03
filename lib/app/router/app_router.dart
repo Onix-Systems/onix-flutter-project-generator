@@ -85,51 +85,37 @@ class AppRouter {
         GoRoute(
           path: _projectSettingsScreen,
           name: 'ProjectSettingsScreen',
-          builder: (context, state) => ProjectSettingsScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const ProjectSettingsScreen(),
         ),
         GoRoute(
           path: _screensScreen,
           name: 'ScreensScreen',
-          builder: (context, state) => ScreensScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const ScreensScreen(),
         ),
         GoRoute(
           path: _stylesScreen,
           name: 'StylesScreen',
-          builder: (context, state) => FigmaStylesScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const FigmaStylesScreen(),
         ),
         GoRoute(
           path: _dataComponentsScreen,
           name: 'DataComponentsScreen',
-          builder: (context, state) => DataComponentsScreenV2(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const DataComponentsScreenV2(),
         ),
         GoRoute(
           path: _swaggerParserScreen,
           name: 'SwaggerParserScreen',
-          builder: (context, state) => SwaggerParserScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const SwaggerParserScreen(),
         ),
         GoRoute(
           path: _summaryScreen,
           name: 'SummaryScreen',
-          builder: (context, state) => SummaryScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const SummaryScreen(),
         ),
         GoRoute(
           path: _generationScreen,
           name: 'GenerationScreen',
-          builder: (context, state) => GenerationScreen(
-            extra: state.extra as GenerationScreenExtra,
-          ),
+          builder: (context, state) => const GenerationScreen(),
         ),
         GoRoute(
           path: _editProjectScreen,
