@@ -3,17 +3,13 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/data_components_screen_v2.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_screen.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 
 class EditProjectScreen extends StatefulWidget {
-  final Config config;
-
   const EditProjectScreen({
-    required this.config,
     super.key,
   });
 
@@ -71,7 +67,6 @@ class _EditProjectScreenState extends State<EditProjectScreen>
                   onPrevPressed: () {
                     context.go(
                       AppRouter.procedureSelectionScreen,
-                      extra: widget.config.branchConfig,
                     );
                   },
                 ),

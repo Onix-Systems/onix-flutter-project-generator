@@ -126,6 +126,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
       newConfig: loadedConfig,
       projectPath: projectPath,
       branchConfig: _config.branchConfig,
+      projectExists: true,
     );
 
     addSr(const ProcedureSelectionScreenSR.loadFinished());

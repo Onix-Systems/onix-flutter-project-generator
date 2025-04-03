@@ -93,6 +93,7 @@ class ConfigService {
           screen.exists = true;
           return screen;
         }).toSet(),
+        projectExists: true,
       ),
       configPath: '$projectPath/.gen_config.json',
     );

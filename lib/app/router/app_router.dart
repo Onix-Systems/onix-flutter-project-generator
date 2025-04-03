@@ -1,6 +1,5 @@
 //@formatter:off
 import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/data_components_screen_v2.dart';
 import 'package:onix_flutter_bricks/presentation/screen/edit_project_screen/edit_project_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/figma_styles_screen.dart';
@@ -120,9 +119,7 @@ class AppRouter {
         GoRoute(
           path: _editProjectScreen,
           name: 'EditProjectScreen',
-          builder: (context, state) => EditProjectScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const EditProjectScreen(),
         )
         //{routes end}
       ],
