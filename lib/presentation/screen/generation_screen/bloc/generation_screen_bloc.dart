@@ -54,7 +54,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   final AddOutputMessageUseCase _addOutputMessageUseCase;
   final GetGenerationOutputStream _getGenerationOutputStream;
 
-  final GetSwaggerComponentsUseCase _getSwaggerComponentsUseCase;
+  final GetComponentsUseCase _getSwaggerComponentsUseCase;
 
   GenerationScreenBloc({
     required ConfigService configService,
@@ -69,7 +69,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     required GenerateFastlaneFilesUseCase generateFastlaneFilesUseCase,
     required CreateSwaggerComponentsUseCase createSwaggerComponentsUseCase,
     required GenerateGitCliffFilesUseCase generateGitCliffFilesUseCase,
-    required GetSwaggerComponentsUseCase getSwaggerComponentsUseCase,
+    required GetComponentsUseCase getSwaggerComponentsUseCase,
   })  : _configService = configService,
         _generateDocumentationUseCase = generateDocumentationUseCase,
         _generateScreensUseCase = generateScreensUseCase,

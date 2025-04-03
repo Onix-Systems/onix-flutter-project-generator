@@ -21,7 +21,7 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v
 
 class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     DataComponentsScreenV2State, DataComponentsScreenV2SR> {
-  final GetSwaggerComponentsUseCase _getSwaggerComponentsUseCase;
+  final GetComponentsUseCase _getSwaggerComponentsUseCase;
   final AddSourceUseCase _addSourceUseCase;
   final DeleteSourceUseCase _deleteSourceUseCase;
   final EditSourceNameUseCase _editSourceNameUseCase;
@@ -30,7 +30,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
   final ConfigService _configService;
 
   DataComponentsScreenV2Bloc({
-    required GetSwaggerComponentsUseCase getSwaggerComponentsUseCase,
+    required GetComponentsUseCase getSwaggerComponentsUseCase,
     required AddSourceUseCase addSourceUseCase,
     required DeleteSourceUseCase deleteSourceUseCase,
     required EditSourceNameUseCase editSourceNameUseCase,
@@ -152,7 +152,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       return;
     }
 
-    add(DataComponentsScreenV2IInit());
+    add(const DataComponentsScreenV2IInit());
   }
 
   Future<void> _onEditSourceName(
@@ -173,7 +173,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       return;
     }
 
-    add(DataComponentsScreenV2IInit());
+    add(const DataComponentsScreenV2IInit());
   }
 
   Future<void> _onDeleteSource(
@@ -189,7 +189,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       return;
     }
 
-    add(DataComponentsScreenV2IInit());
+    add(const DataComponentsScreenV2IInit());
   }
 
   Future<void> _onDeleteComponent(
@@ -205,7 +205,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       return;
     }
 
-    add(DataComponentsScreenV2IInit());
+    add(const DataComponentsScreenV2IInit());
   }
 
   Future<void> _onDeleteRequest(
@@ -252,6 +252,6 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       _deleteComponentUseCase(component: bodyComponent);
     }
 
-    add(DataComponentsScreenV2IInit());
+    add(const DataComponentsScreenV2IInit());
   }
 }

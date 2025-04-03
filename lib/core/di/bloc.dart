@@ -28,6 +28,7 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_request_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_components_from_json_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
@@ -65,7 +66,7 @@ void registerBloc(GetIt getIt) {
         createSwaggerComponentsUseCase:
             getIt.get<CreateSwaggerComponentsUseCase>(),
         generateSigningConfigUseCase: getIt.get<GenerateSigningConfigUseCase>(),
-        getSwaggerComponentsUseCase: getIt.get<GetSwaggerComponentsUseCase>(),
+        getSwaggerComponentsUseCase: getIt.get<GetComponentsUseCase>(),
       ),
     )
     ..registerFactory<SummaryScreenBloc>(
@@ -128,11 +129,13 @@ void registerBloc(GetIt getIt) {
         getGenerationOutputStream: getIt.get<GetGenerationOutputStream>(),
         clearOutputUseCase: getIt.get<ClearOutputUseCase>(),
         runProcessUseCase: getIt.get<RunProcessUseCase>(),
+        fetchComponentsFromJsonUseCase:
+            getIt.get<FetchComponentsFromJsonUseCase>(),
       ),
     )
     ..registerFactory<DataComponentsScreenV2Bloc>(
       () => DataComponentsScreenV2Bloc(
-        getSwaggerComponentsUseCase: getIt.get<GetSwaggerComponentsUseCase>(),
+        getSwaggerComponentsUseCase: getIt.get<GetComponentsUseCase>(),
         addSourceUseCase: getIt.get<AddSourceUseCase>(),
         deleteSourceUseCase: getIt.get<DeleteSourceUseCase>(),
         editSourceNameUseCase: getIt.get<EditSourceNameUseCase>(),
@@ -145,13 +148,13 @@ void registerBloc(GetIt getIt) {
       () => ComponentDialogCubit(
         addDataObjectComponentUseCase: getIt.get<AddComponentUseCase>(),
         editDataObjectComponentUseCase: getIt.get<EditComponentUseCase>(),
-        getSwaggerComponentsUseCase: getIt.get<GetSwaggerComponentsUseCase>(),
+        getSwaggerComponentsUseCase: getIt.get<GetComponentsUseCase>(),
         isComponentExistsUseCase: getIt.get<IsComponentExistsUseCase>(),
       ),
     )
     ..registerFactory<AddRequestDialogCubit>(
       () => AddRequestDialogCubit(
-        getSwaggerComponentsUseCase: getIt.get<GetSwaggerComponentsUseCase>(),
+        getSwaggerComponentsUseCase: getIt.get<GetComponentsUseCase>(),
         addSourceRequestUseCase: getIt.get<AddSourceRequestUseCase>(),
         editSourceRequestUseCase: getIt.get<EditSourceRequestUseCase>(),
         addComponentUseCase: getIt.get<AddComponentUseCase>(),
@@ -162,7 +165,7 @@ void registerBloc(GetIt getIt) {
     ..registerFactory<AddRequestParamsDialogCubit>(
       () => AddRequestParamsDialogCubit(
         getComponentByNameUseCase: getIt.get<GetComponentByNameUseCase>(),
-        getSwaggerComponentsUseCase: getIt.get<GetSwaggerComponentsUseCase>(),
+        getSwaggerComponentsUseCase: getIt.get<GetComponentsUseCase>(),
       ),
     )
     ..registerFactory<ClassFromJsonDialogCubit>(ClassFromJsonDialogCubit.new);

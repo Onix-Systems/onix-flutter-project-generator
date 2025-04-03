@@ -14,12 +14,14 @@ class SourceComponent {
   final List<RequestComponent> requests;
   final ArchType arch;
   final bool fromSwagger;
+  final bool unmodifiable;
 
   SourceComponent({
     required String name,
     required this.requests,
     required this.arch,
     this.fromSwagger = true,
+    this.unmodifiable = false,
   }) : name = name.pascalCase;
 
   SourceComponent copyWith({
@@ -27,12 +29,14 @@ class SourceComponent {
     List<RequestComponent>? requests,
     ArchType? arch,
     bool? fromSwagger,
+    bool? unmodifiable,
   }) {
     return SourceComponent(
       name: name ?? this.name,
       requests: requests ?? this.requests,
       arch: arch ?? this.arch,
       fromSwagger: fromSwagger ?? this.fromSwagger,
+      unmodifiable: unmodifiable ?? this.unmodifiable,
     );
   }
 
@@ -568,6 +572,7 @@ class SourceComponent {
           .toList(),
       arch: ArchType.clean,
       fromSwagger: json['fromSwagger'] as bool? ?? true,
+      unmodifiable: true,
     );
   }
 

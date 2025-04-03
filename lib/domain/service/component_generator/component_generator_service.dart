@@ -63,6 +63,8 @@ class ComponentGeneratorService
         );
       }
 
+      addedDataComponents.addAll(params.components.dataObjects);
+
       final addedComponentsDistinct = addedDataComponents.distinct();
 
       await _createEntities(
@@ -299,7 +301,7 @@ class ComponentGeneratorService
       final mapperRawPath = e.getObjectMapperFilePath(arch);
       final mapperFolder = '$projectLibFolder/$mapperRawFolder';
       final mapperPath = '$projectLibFolder/$mapperRawPath';
-      await _createFolders(mapperFolder, '_createMappersEntities');
+
       final requestRawFilePath =
           e.fileReference.getFileImportName(DataFileType.request, arch);
       final responseRawFilePath =
@@ -309,6 +311,7 @@ class ComponentGeneratorService
       final isRequestFileExist = File(requestFilePath).existsSync();
       final isResponseFileExist = File(responseFilePath).existsSync();
       if (isRequestFileExist || isResponseFileExist) {
+        await _createFolders(mapperFolder, '_createMappersEntities');
         final mapperBody = e.getMapperBody(
           projectName: projectName,
           createEntityToRequestMapper: isRequestFileExist,

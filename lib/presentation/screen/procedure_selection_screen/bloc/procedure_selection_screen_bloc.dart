@@ -21,6 +21,7 @@ import 'package:onix_flutter_bricks/domain/usecase/process/get_signing_fingerpri
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/screen/clear_screens_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_components_from_json_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
 
@@ -37,6 +38,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
   final GetGenerationOutputStream _getGenerationOutputStream;
   final ClearOutputUseCase _clearOutputUseCase;
   final RunProcessUseCase _runProcessUseCase;
+  final FetchComponentsFromJsonUseCase _fetchComponentsFromJsonUseCase;
 
   Config get _config => _configService.config;
 
@@ -50,6 +52,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     required GetGenerationOutputStream getGenerationOutputStream,
     required ClearOutputUseCase clearOutputUseCase,
     required RunProcessUseCase runProcessUseCase,
+    required FetchComponentsFromJsonUseCase fetchComponentsFromJsonUseCase,
   })  : _configService = configService,
         _generateSigningConfigUseCase = generateSigningConfigUseCase,
         _generateFlavorsUseCase = generateFlavorsUseCase,
@@ -59,6 +62,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
         _getGenerationOutputStream = getGenerationOutputStream,
         _clearOutputUseCase = clearOutputUseCase,
         _runProcessUseCase = runProcessUseCase,
+        _fetchComponentsFromJsonUseCase = fetchComponentsFromJsonUseCase,
         super(
           const ProcedureSelectionScreenStateData(
             branchConfig: BranchConfig(),
@@ -121,6 +125,8 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     final projectPath = event.projectURI.replaceAll('/$projectName', '');
 
     screenRepository.addAll(screens: loadedConfig.screens);
+
+    await _fetchComponentsFromJsonUseCase(event.projectURI);
 
     _configService.updateWith(
       newConfig: loadedConfig,

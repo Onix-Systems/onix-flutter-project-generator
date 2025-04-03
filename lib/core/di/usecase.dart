@@ -35,6 +35,7 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_request_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_components_from_json_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
@@ -120,8 +121,8 @@ void registerUseCases(GetIt getIt) {
         getIt.get<ComponentGeneratorService>(),
       ),
     )
-    ..registerFactory<GetSwaggerComponentsUseCase>(
-      () => GetSwaggerComponentsUseCase(
+    ..registerFactory<GetComponentsUseCase>(
+      () => GetComponentsUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     )
@@ -193,6 +194,11 @@ void registerUseCases(GetIt getIt) {
     )
     ..registerFactory<DeleteSourceRequestUseCase>(
       () => DeleteSourceRequestUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<FetchComponentsFromJsonUseCase>(
+      () => FetchComponentsFromJsonUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     );

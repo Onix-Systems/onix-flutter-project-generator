@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/extension/logger_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
@@ -84,6 +87,42 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       return Result.success(components);
     } catch (e, s) {
       logger.crash(error: e, stackTrace: s, reason: 'fetchSwaggerData');
+      return const Result.error(
+        failure: SwaggerParserFailureFailedToParse(),
+      );
+    }
+  }
+
+  @override
+  Future<Result<Components>> getComponentsFromConfig({
+    required String projectPath,
+  }) async {
+    try {
+      clearComponents(empty: true);
+
+      final componentsFile = File('$projectPath/data_components.json');
+
+      if (!componentsFile.existsSync()) {
+        return const Result.error(
+          failure: SwaggerParserFailureNotFound(
+            'data_components.json',
+          ),
+        );
+      }
+
+      final componentsString = await componentsFile.readAsString();
+
+      final componentsJson = jsonDecode(componentsString);
+
+      _components = Components.fromJson(componentsJson);
+
+      return Result.success(components);
+    } catch (e, s) {
+      logger.crash(
+        error: e,
+        stackTrace: s,
+        reason: 'fetchComponentsFromConfig',
+      );
       return const Result.error(
         failure: SwaggerParserFailureFailedToParse(),
       );
