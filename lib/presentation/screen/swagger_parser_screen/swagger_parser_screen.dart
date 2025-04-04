@@ -130,7 +130,7 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: widget.modal ? MainAxisSize.min : MainAxisSize.max,
           children: [
-            if (!widget.modal) const Spacer(),
+            if (!widget.modal) const Spacer() else const Gap(20),
             Text(
               S.of(context).swaggerParserPrompt,
               textAlign: TextAlign.center,
@@ -148,7 +148,7 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
                 expanded: true,
               ),
             ),
-            if (!widget.modal) const Spacer() else const Gap(20),
+            const Spacer(),
             NavigationButtonBar(
               showIcons: !widget.modal,
               nextText:

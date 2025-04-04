@@ -602,7 +602,6 @@ class DataObjectComponent extends Component {
           .map((e) => DataVariableComponent.fromJson(e))
           .toList(),
       unmodifiable: true,
-      fromSwagger: false,
     );
   }
 }

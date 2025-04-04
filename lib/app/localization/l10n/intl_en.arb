@@ -191,5 +191,6 @@
   "requestAlreadyExistsError": "Such request already exists",
   "addChildren": "Add children?",
   "addChildrenContent": "Class depends on {children} that do not exist.\nGenerate them?",
-  "jsonParserEmptyValueFailure": "Value of '{name}' is empty. Either remove '{name}' or add value."
+  "jsonParserEmptyValueFailure": "Value of '{name}' is empty. Either remove '{name}' or add value.",
+  "parseSwaggerFile": "Parse Swagger file"
 }

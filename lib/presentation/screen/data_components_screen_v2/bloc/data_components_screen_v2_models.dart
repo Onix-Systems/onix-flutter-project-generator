@@ -47,5 +47,6 @@ class DataComponentsScreenV2State with _$DataComponentsScreenV2State {
   const factory DataComponentsScreenV2State.data({
     required Components components,
     @Default(false) bool projectExists,
+    @Default(false) bool swaggerUrlExists,
   }) = DataComponentsScreenV2StateData;
 }

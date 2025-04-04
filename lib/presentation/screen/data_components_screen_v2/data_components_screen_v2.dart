@@ -14,6 +14,7 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/add_edit_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/delete_request_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/swagger_parser_screen.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
@@ -60,6 +61,17 @@ class _DataComponentsScreenState extends BaseState<
       navigationBar: TitleBar(
         title: S.of(context).dataComponents,
         actions: [
+          blocBuilder(
+            builder: (context, state) {
+              if (!state.swaggerUrlExists) {
+                return AppFilledButton(
+                  onPressed: () => _showSwaggerParserModal(context),
+                  label: S.of(context).parseSwaggerFile,
+                );
+              }
+              return const SizedBox();
+            },
+          ),
           AppFilledButton(
             label: S.of(context).addSource,
             icon: Icons.add,
@@ -268,6 +280,29 @@ class _DataComponentsScreenState extends BaseState<
             sourceName: sourceName,
           ),
         );
+      },
+    );
+  }
+
+  Future<void> _showSwaggerParserModal(BuildContext context) {
+    return showCupertinoModalPopup(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: SizedBox(
+            height: 250,
+            width: 600,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: const SwaggerParserScreen(modal: true)),
+          ),
+        );
+      },
+    ).then(
+      (_) {
+        if (context.mounted) {
+          _refresh(context);
+        }
       },
     );
   }

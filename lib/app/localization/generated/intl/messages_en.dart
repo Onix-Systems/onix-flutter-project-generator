@@ -242,6 +242,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "overwrite": MessageLookupByLibrary.simpleMessage("Overwrite"),
         "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Failed to Parse Swagger Components. Please try again or contact support if issue not resolved."),
+        "parseSwaggerFile":
+            MessageLookupByLibrary.simpleMessage("Parse Swagger file"),
         "pasteJsonHere":
             MessageLookupByLibrary.simpleMessage("Paste JSON here"),
         "path": MessageLookupByLibrary.simpleMessage("Path"),

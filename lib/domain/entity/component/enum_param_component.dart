@@ -58,7 +58,6 @@ class EnumParamComponent extends Component {
             .toList(),
       ),
       unmodifiable: true,
-      fromSwagger: false,
     );
   }
 }

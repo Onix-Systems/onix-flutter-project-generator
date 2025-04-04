@@ -62,6 +62,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     Emitter<DataComponentsScreenV2State> emit,
   ) {
     final projectExists = _configService.config.projectExists;
+    final swaggerUrl = _configService.config.swaggerUrl;
 
     final components = _getSwaggerComponentsUseCase();
 
@@ -69,6 +70,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       state.copyWith(
         components: components,
         projectExists: projectExists,
+        swaggerUrlExists: swaggerUrl.isNotEmpty,
       ),
     );
   }

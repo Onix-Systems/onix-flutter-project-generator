@@ -1969,6 +1969,16 @@ class S {
       args: [name],
     );
   }
+
+  /// `Parse Swagger file`
+  String get parseSwaggerFile {
+    return Intl.message(
+      'Parse Swagger file',
+      name: 'parseSwaggerFile',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

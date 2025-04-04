@@ -1504,19 +1504,26 @@ abstract class _Error implements DataComponentsScreenV2SR {
 mixin _$DataComponentsScreenV2State {
   Components get components => throw _privateConstructorUsedError;
   bool get projectExists => throw _privateConstructorUsedError;
+  bool get swaggerUrlExists => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Components components, bool projectExists) data,
+    required TResult Function(
+            Components components, bool projectExists, bool swaggerUrlExists)
+        data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Components components, bool projectExists)? data,
+    TResult? Function(
+            Components components, bool projectExists, bool swaggerUrlExists)?
+        data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Components components, bool projectExists)? data,
+    TResult Function(
+            Components components, bool projectExists, bool swaggerUrlExists)?
+        data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1552,7 +1559,7 @@ abstract class $DataComponentsScreenV2StateCopyWith<$Res> {
       _$DataComponentsScreenV2StateCopyWithImpl<$Res,
           DataComponentsScreenV2State>;
   @useResult
-  $Res call({Components components, bool projectExists});
+  $Res call({Components components, bool projectExists, bool swaggerUrlExists});
 
   $ComponentsCopyWith<$Res> get components;
 }
@@ -1575,6 +1582,7 @@ class _$DataComponentsScreenV2StateCopyWithImpl<$Res,
   $Res call({
     Object? components = null,
     Object? projectExists = null,
+    Object? swaggerUrlExists = null,
   }) {
     return _then(_value.copyWith(
       components: null == components
@@ -1584,6 +1592,10 @@ class _$DataComponentsScreenV2StateCopyWithImpl<$Res,
       projectExists: null == projectExists
           ? _value.projectExists
           : projectExists // ignore: cast_nullable_to_non_nullable
+              as bool,
+      swaggerUrlExists: null == swaggerUrlExists
+          ? _value.swaggerUrlExists
+          : swaggerUrlExists // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -1608,7 +1620,7 @@ abstract class _$$DataComponentsScreenV2StateDataImplCopyWith<$Res>
       __$$DataComponentsScreenV2StateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Components components, bool projectExists});
+  $Res call({Components components, bool projectExists, bool swaggerUrlExists});
 
   @override
   $ComponentsCopyWith<$Res> get components;
@@ -1631,6 +1643,7 @@ class __$$DataComponentsScreenV2StateDataImplCopyWithImpl<$Res>
   $Res call({
     Object? components = null,
     Object? projectExists = null,
+    Object? swaggerUrlExists = null,
   }) {
     return _then(_$DataComponentsScreenV2StateDataImpl(
       components: null == components
@@ -1641,6 +1654,10 @@ class __$$DataComponentsScreenV2StateDataImplCopyWithImpl<$Res>
           ? _value.projectExists
           : projectExists // ignore: cast_nullable_to_non_nullable
               as bool,
+      swaggerUrlExists: null == swaggerUrlExists
+          ? _value.swaggerUrlExists
+          : swaggerUrlExists // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1650,17 +1667,22 @@ class __$$DataComponentsScreenV2StateDataImplCopyWithImpl<$Res>
 class _$DataComponentsScreenV2StateDataImpl
     implements DataComponentsScreenV2StateData {
   const _$DataComponentsScreenV2StateDataImpl(
-      {required this.components, this.projectExists = false});
+      {required this.components,
+      this.projectExists = false,
+      this.swaggerUrlExists = false});
 
   @override
   final Components components;
   @override
   @JsonKey()
   final bool projectExists;
+  @override
+  @JsonKey()
+  final bool swaggerUrlExists;
 
   @override
   String toString() {
-    return 'DataComponentsScreenV2State.data(components: $components, projectExists: $projectExists)';
+    return 'DataComponentsScreenV2State.data(components: $components, projectExists: $projectExists, swaggerUrlExists: $swaggerUrlExists)';
   }
 
   @override
@@ -1671,11 +1693,14 @@ class _$DataComponentsScreenV2StateDataImpl
             (identical(other.components, components) ||
                 other.components == components) &&
             (identical(other.projectExists, projectExists) ||
-                other.projectExists == projectExists));
+                other.projectExists == projectExists) &&
+            (identical(other.swaggerUrlExists, swaggerUrlExists) ||
+                other.swaggerUrlExists == swaggerUrlExists));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, components, projectExists);
+  int get hashCode =>
+      Object.hash(runtimeType, components, projectExists, swaggerUrlExists);
 
   /// Create a copy of DataComponentsScreenV2State
   /// with the given fields replaced by the non-null parameter values.
@@ -1690,27 +1715,33 @@ class _$DataComponentsScreenV2StateDataImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Components components, bool projectExists) data,
+    required TResult Function(
+            Components components, bool projectExists, bool swaggerUrlExists)
+        data,
   }) {
-    return data(components, projectExists);
+    return data(components, projectExists, swaggerUrlExists);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Components components, bool projectExists)? data,
+    TResult? Function(
+            Components components, bool projectExists, bool swaggerUrlExists)?
+        data,
   }) {
-    return data?.call(components, projectExists);
+    return data?.call(components, projectExists, swaggerUrlExists);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Components components, bool projectExists)? data,
+    TResult Function(
+            Components components, bool projectExists, bool swaggerUrlExists)?
+        data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(components, projectExists);
+      return data(components, projectExists, swaggerUrlExists);
     }
     return orElse();
   }
@@ -1748,12 +1779,15 @@ abstract class DataComponentsScreenV2StateData
     implements DataComponentsScreenV2State {
   const factory DataComponentsScreenV2StateData(
       {required final Components components,
-      final bool projectExists}) = _$DataComponentsScreenV2StateDataImpl;
+      final bool projectExists,
+      final bool swaggerUrlExists}) = _$DataComponentsScreenV2StateDataImpl;
 
   @override
   Components get components;
   @override
   bool get projectExists;
+  @override
+  bool get swaggerUrlExists;
 
   /// Create a copy of DataComponentsScreenV2State
   /// with the given fields replaced by the non-null parameter values.
