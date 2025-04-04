@@ -100,6 +100,8 @@ sealed class SwaggerType {
               .map((e) => SwaggerType.fromJson(e))
               .toList(),
         );
+      case 'OperationStatus':
+        return SwaggerOperationDefault();
       case 'SwaggerVariable':
       default:
         return SwaggerVariable(
