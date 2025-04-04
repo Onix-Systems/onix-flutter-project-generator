@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
@@ -7,6 +8,7 @@ import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/domain/service/config_service/config_service.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/data_components_screen_v2.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/screens_screen.dart';
+import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/swagger_parser_screen.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 
@@ -33,7 +35,7 @@ class _EditProjectScreenState extends State<EditProjectScreen>
       vsync: this,
     );
 
-    _tabController.addListener(tabListener);
+    _tabController.addListener(_tabListener);
   }
 
   @override
@@ -67,7 +69,7 @@ class _EditProjectScreenState extends State<EditProjectScreen>
                 const Spacer(),
                 if (_tabController.index == 1 && _swaggerUrl.isEmpty)
                   AppFilledButton(
-                    onPressed: () {},
+                    onPressed: () => _showSwaggerParserModal(context),
                     label: S.of(context).importApi,
                   ),
                 const Spacer(),
@@ -93,15 +95,30 @@ class _EditProjectScreenState extends State<EditProjectScreen>
     );
   }
 
-  void tabListener() {
+  void _tabListener() {
     if (_tabController.indexIsChanging) {
       setState(() {});
     }
   }
 
+  Future<void> _showSwaggerParserModal(BuildContext context) {
+    return showCupertinoModalPopup(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: SizedBox(
+            height: 300,
+            width: 600,
+            child: SwaggerParserScreen(modal: true),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   void dispose() {
-    _tabController.removeListener(tabListener);
+    _tabController.removeListener(_tabListener);
     super.dispose();
   }
 }

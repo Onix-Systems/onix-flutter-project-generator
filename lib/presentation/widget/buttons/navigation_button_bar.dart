@@ -10,6 +10,7 @@ class NavigationButtonBar extends StatelessWidget {
   final bool isActive;
   final FocusNode? focusNode;
   final IconData? nextIcon;
+  final bool showIcons;
 
   const NavigationButtonBar({
     required this.nextText,
@@ -19,6 +20,7 @@ class NavigationButtonBar extends StatelessWidget {
     this.isActive = true,
     this.focusNode,
     this.nextIcon,
+    this.showIcons = true,
     super.key,
   });
 
@@ -29,7 +31,7 @@ class NavigationButtonBar extends StatelessWidget {
       children: [
         AppFilledButton(
           label: prevText,
-          icon: Icons.arrow_back_ios_rounded,
+          icon: showIcons ? Icons.arrow_back_ios_rounded : null,
           onPressed: onPrevPressed,
         ),
         const Gap(10),
@@ -37,7 +39,7 @@ class NavigationButtonBar extends StatelessWidget {
           focusNode: focusNode,
           active: isActive,
           label: nextText,
-          icon: nextIcon ?? Icons.arrow_forward_ios_rounded,
+          icon: showIcons ? nextIcon ?? Icons.arrow_forward_ios_rounded : null,
           iconLeft: false,
           onPressed: onNextPressed,
         ),

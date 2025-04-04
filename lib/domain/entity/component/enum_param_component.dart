@@ -12,6 +12,7 @@ class EnumParamComponent extends Component {
     required String name,
     required this.type,
     super.fromSwagger = true,
+    super.unmodifiable,
   }) : super(name: name.pascalCase);
 
   String getFolderPath(String projectRoot, ArchType arch) =>
@@ -44,7 +45,6 @@ class EnumParamComponent extends Component {
     return {
       'name': name,
       'type': type.toJson(),
-      'fromSwagger': true,
     };
   }
 
@@ -57,6 +57,8 @@ class EnumParamComponent extends Component {
             .map((e) => e as String)
             .toList(),
       ),
+      unmodifiable: true,
+      fromSwagger: false,
     );
   }
 }

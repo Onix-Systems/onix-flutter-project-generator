@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
@@ -15,7 +16,10 @@ import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class SwaggerParserScreen extends StatefulWidget {
+  final bool modal;
+
   const SwaggerParserScreen({
+    this.modal = false,
     super.key,
   });
 
@@ -84,14 +88,20 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
   @override
   Widget buildWidget(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: TitleBar(
-        title: S.of(context).importApi,
-      ),
-      child: SizedBox.expand(
-        child: blocBuilder(
-          builder: _buildMainContainer,
-        ),
-      ),
+      navigationBar: widget.modal
+          ? null
+          : TitleBar(
+              title: S.of(context).importApi,
+            ),
+      child: widget.modal
+          ? blocBuilder(
+              builder: _buildMainContainer,
+            )
+          : SizedBox.expand(
+              child: blocBuilder(
+                builder: _buildMainContainer,
+              ),
+            ),
     );
   }
 
@@ -118,8 +128,9 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
         padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: widget.modal ? MainAxisSize.min : MainAxisSize.max,
           children: [
-            const Spacer(),
+            if (!widget.modal) const Spacer(),
             Text(
               S.of(context).swaggerParserPrompt,
               textAlign: TextAlign.center,
@@ -137,10 +148,13 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
                 expanded: true,
               ),
             ),
-            const Spacer(),
+            if (!widget.modal) const Spacer() else const Gap(20),
             NavigationButtonBar(
-              nextText: S.of(context).continueLabel,
-              prevText: S.of(context).goBack,
+              showIcons: !widget.modal,
+              nextText:
+                  widget.modal ? S.of(context).ok : S.of(context).continueLabel,
+              prevText:
+                  widget.modal ? S.of(context).cancel : S.of(context).goBack,
               onNextPressed: () => _processSwaggerParser(context),
               onPrevPressed: () => _onBack(context, state),
             ),
@@ -156,13 +170,18 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
   }
 
   void _onContinue(BuildContext context, SwaggerParserScreenState state) {
-    context.go(
-      AppRouter.dataComponentsScreen,
-    );
+    widget.modal
+        ? context.pop()
+        : context.go(
+            AppRouter.dataComponentsScreen,
+          );
   }
 
-  void _onBack(BuildContext context, SwaggerParserScreenState state) =>
-      context.go(
-        AppRouter.stylesScreen,
-      );
+  void _onBack(BuildContext context, SwaggerParserScreenState state) {
+    widget.modal
+        ? context.pop()
+        : context.go(
+            AppRouter.stylesScreen,
+          );
+  }
 }

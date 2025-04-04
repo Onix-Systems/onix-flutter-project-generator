@@ -140,7 +140,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     final swaggerComponents = [..._components.dataObjects, ..._components.enums]
         .where(
-          (element) => element.fromSwagger,
+          (element) => element.fromSwagger && !element.unmodifiable,
         )
         .toList();
 

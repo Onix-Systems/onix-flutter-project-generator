@@ -25,6 +25,7 @@ class DataObjectComponent extends Component {
     required this.fileReference,
     required this.variables,
     super.fromSwagger = true,
+    super.unmodifiable,
   }) : super(name: name.pascalCase);
 
   String getFilePath(DataFileType type, ArchType arch) =>
@@ -600,6 +601,8 @@ class DataObjectComponent extends Component {
       variables: (json['variables'] as List<dynamic>)
           .map((e) => DataVariableComponent.fromJson(e))
           .toList(),
+      unmodifiable: true,
+      fromSwagger: false,
     );
   }
 }

@@ -323,7 +323,7 @@ class SwaggerEnum extends SwaggerType {
 
   Map<String, dynamic> getJson() {
     return {
-      'name': name,
+      'name': getTypeDeclaration(DataFileType.entity),
       'enumValues': enumValues,
     };
   }

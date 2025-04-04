@@ -560,7 +560,6 @@ class SourceComponent {
     return {
       'name': name,
       'requests': requests.map((e) => e.toJson()).toList(),
-      'fromSwagger': true,
     };
   }
 
@@ -571,7 +570,7 @@ class SourceComponent {
           .map((e) => RequestComponent.fromJson(e))
           .toList(),
       arch: ArchType.clean,
-      fromSwagger: json['fromSwagger'] as bool? ?? true,
+      fromSwagger: false,
       unmodifiable: true,
     );
   }
