@@ -81,7 +81,7 @@ class RequestComponent with _$RequestComponent {
     }
 
     ///Build regular declaration
-    return "static const  _${operationId.camelCase} = '$path';";
+    return "static const _${operationId.camelCase} = '$path';";
   }
 
   ///Create declaration for request in source interface

@@ -63,7 +63,7 @@ class _DataComponentsScreenState extends BaseState<
         actions: [
           blocBuilder(
             builder: (context, state) {
-              if (!state.swaggerUrlExists) {
+              if (state.projectExists && !state.swaggerUrlExists) {
                 return AppFilledButton(
                   onPressed: () => _showSwaggerParserModal(context),
                   label: S.of(context).parseSwaggerFile,
