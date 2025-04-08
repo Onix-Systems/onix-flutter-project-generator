@@ -54,8 +54,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   final AddOutputMessageUseCase _addOutputMessageUseCase;
   final GetGenerationOutputStream _getGenerationOutputStream;
 
-  final GetComponentsUseCase _getSwaggerComponentsUseCase;
-
   GenerationScreenBloc({
     required ConfigService configService,
     required GenerateDocumentationUseCase generateDocumentationUseCase,
@@ -69,7 +67,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
     required GenerateFastlaneFilesUseCase generateFastlaneFilesUseCase,
     required CreateSwaggerComponentsUseCase createSwaggerComponentsUseCase,
     required GenerateGitCliffFilesUseCase generateGitCliffFilesUseCase,
-    required GetComponentsUseCase getSwaggerComponentsUseCase,
   })  : _configService = configService,
         _generateDocumentationUseCase = generateDocumentationUseCase,
         _generateScreensUseCase = generateScreensUseCase,
@@ -82,7 +79,6 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         _createSwaggerComponentsUseCase = createSwaggerComponentsUseCase,
         _generateGitCliffFilesUseCase = generateGitCliffFilesUseCase,
         _getGenerationOutputStream = getGenerationOutputStream,
-        _getSwaggerComponentsUseCase = getSwaggerComponentsUseCase,
         super(const GenerationScreenStateData()) {
     on<GenerationScreenEventInit>(_onInit);
     on<GenerationScreenEventGenerateProject>(_onGenerateProject);
@@ -95,12 +91,9 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
   ) async {
     final outputStream = await _getGenerationOutputStream();
 
-    final components = _getSwaggerComponentsUseCase();
-
     emit(
       state.copyWith(
         outputStream: outputStream,
-        components: components,
       ),
     );
     add(const GenerationScreenEventGenerateProject());

@@ -605,29 +605,26 @@ abstract class _StubSR implements GenerationScreenSR {
 
 /// @nodoc
 mixin _$GenerationScreenState {
-  Components? get components => throw _privateConstructorUsedError;
   GeneratingState get generatingState => throw _privateConstructorUsedError;
   Stream<List<OutputLine>>? get outputStream =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            Components? components,
-            GeneratingState generatingState,
+    required TResult Function(GeneratingState generatingState,
             Stream<List<OutputLine>>? outputStream)
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Components? components, GeneratingState generatingState,
+    TResult? Function(GeneratingState generatingState,
             Stream<List<OutputLine>>? outputStream)?
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Components? components, GeneratingState generatingState,
+    TResult Function(GeneratingState generatingState,
             Stream<List<OutputLine>>? outputStream)?
         data,
     required TResult orElse(),
@@ -664,11 +661,8 @@ abstract class $GenerationScreenStateCopyWith<$Res> {
       _$GenerationScreenStateCopyWithImpl<$Res, GenerationScreenState>;
   @useResult
   $Res call(
-      {Components? components,
-      GeneratingState generatingState,
+      {GeneratingState generatingState,
       Stream<List<OutputLine>>? outputStream});
-
-  $ComponentsCopyWith<$Res>? get components;
 }
 
 /// @nodoc
@@ -687,15 +681,10 @@ class _$GenerationScreenStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? components = freezed,
     Object? generatingState = null,
     Object? outputStream = freezed,
   }) {
     return _then(_value.copyWith(
-      components: freezed == components
-          ? _value.components
-          : components // ignore: cast_nullable_to_non_nullable
-              as Components?,
       generatingState: null == generatingState
           ? _value.generatingState
           : generatingState // ignore: cast_nullable_to_non_nullable
@@ -705,20 +694,6 @@ class _$GenerationScreenStateCopyWithImpl<$Res,
           : outputStream // ignore: cast_nullable_to_non_nullable
               as Stream<List<OutputLine>>?,
     ) as $Val);
-  }
-
-  /// Create a copy of GenerationScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ComponentsCopyWith<$Res>? get components {
-    if (_value.components == null) {
-      return null;
-    }
-
-    return $ComponentsCopyWith<$Res>(_value.components!, (value) {
-      return _then(_value.copyWith(components: value) as $Val);
-    });
   }
 }
 
@@ -732,12 +707,8 @@ abstract class _$$GenerationScreenStateDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Components? components,
-      GeneratingState generatingState,
+      {GeneratingState generatingState,
       Stream<List<OutputLine>>? outputStream});
-
-  @override
-  $ComponentsCopyWith<$Res>? get components;
 }
 
 /// @nodoc
@@ -755,15 +726,10 @@ class __$$GenerationScreenStateDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? components = freezed,
     Object? generatingState = null,
     Object? outputStream = freezed,
   }) {
     return _then(_$GenerationScreenStateDataImpl(
-      components: freezed == components
-          ? _value.components
-          : components // ignore: cast_nullable_to_non_nullable
-              as Components?,
       generatingState: null == generatingState
           ? _value.generatingState
           : generatingState // ignore: cast_nullable_to_non_nullable
@@ -780,12 +746,8 @@ class __$$GenerationScreenStateDataImplCopyWithImpl<$Res>
 
 class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
   const _$GenerationScreenStateDataImpl(
-      {this.components,
-      this.generatingState = GeneratingState.init,
-      this.outputStream});
+      {this.generatingState = GeneratingState.init, this.outputStream});
 
-  @override
-  final Components? components;
   @override
   @JsonKey()
   final GeneratingState generatingState;
@@ -794,7 +756,7 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
 
   @override
   String toString() {
-    return 'GenerationScreenState.data(components: $components, generatingState: $generatingState, outputStream: $outputStream)';
+    return 'GenerationScreenState.data(generatingState: $generatingState, outputStream: $outputStream)';
   }
 
   @override
@@ -802,8 +764,6 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenerationScreenStateDataImpl &&
-            (identical(other.components, components) ||
-                other.components == components) &&
             (identical(other.generatingState, generatingState) ||
                 other.generatingState == generatingState) &&
             (identical(other.outputStream, outputStream) ||
@@ -811,8 +771,7 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, components, generatingState, outputStream);
+  int get hashCode => Object.hash(runtimeType, generatingState, outputStream);
 
   /// Create a copy of GenerationScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -826,35 +785,33 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            Components? components,
-            GeneratingState generatingState,
+    required TResult Function(GeneratingState generatingState,
             Stream<List<OutputLine>>? outputStream)
         data,
   }) {
-    return data(components, generatingState, outputStream);
+    return data(generatingState, outputStream);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Components? components, GeneratingState generatingState,
+    TResult? Function(GeneratingState generatingState,
             Stream<List<OutputLine>>? outputStream)?
         data,
   }) {
-    return data?.call(components, generatingState, outputStream);
+    return data?.call(generatingState, outputStream);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Components? components, GeneratingState generatingState,
+    TResult Function(GeneratingState generatingState,
             Stream<List<OutputLine>>? outputStream)?
         data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(components, generatingState, outputStream);
+      return data(generatingState, outputStream);
     }
     return orElse();
   }
@@ -890,13 +847,10 @@ class _$GenerationScreenStateDataImpl implements GenerationScreenStateData {
 
 abstract class GenerationScreenStateData implements GenerationScreenState {
   const factory GenerationScreenStateData(
-          {final Components? components,
-          final GeneratingState generatingState,
+          {final GeneratingState generatingState,
           final Stream<List<OutputLine>>? outputStream}) =
       _$GenerationScreenStateDataImpl;
 
-  @override
-  Components? get components;
   @override
   GeneratingState get generatingState;
   @override

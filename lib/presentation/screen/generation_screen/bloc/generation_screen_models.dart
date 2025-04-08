@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/output_line.dart';
 
 part 'generation_screen_models.freezed.dart';
@@ -22,7 +21,6 @@ class GenerationScreenSR with _$GenerationScreenSR {
 @freezed
 class GenerationScreenState with _$GenerationScreenState {
   const factory GenerationScreenState.data({
-    Components? components,
     @Default(GeneratingState.init) GeneratingState generatingState,
     Stream<List<OutputLine>>? outputStream,
   }) = GenerationScreenStateData;
