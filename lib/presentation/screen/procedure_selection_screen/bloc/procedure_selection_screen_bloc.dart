@@ -10,6 +10,7 @@ import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 import 'package:onix_flutter_bricks/domain/service/config_service/config_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/signing_generator/params/signing_generator_params.dart';
@@ -132,7 +133,8 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
 
     await _fetchComponentsFromJsonUseCase(event.projectURI);
 
-    _configService.initialScreens = loadedConfig.screens;
+    _configService.initialScreens =
+        loadedConfig.screens.map(Screen.copyOf).toSet();
     _configService.initialComponents = _getComponentsUseCase();
 
     _configService.updateWith(

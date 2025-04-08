@@ -121,13 +121,15 @@ class ScreensScreenBloc
     );
 
     //TODO: Check if this is correct
-    _configService.screensModified.value = _screenRepository.screens
-        .difference(_configService.initialScreens)
-        .isNotEmpty;
+    _configService.screensModified.value = _configService.initialScreens
+            .firstWhere((screen) => screen.initial)
+            .name !=
+        event.screen.name;
 
     emit(
       state.copyWith(
         config: _config,
+        stateUpdate: state.stateUpdate + 1,
       ),
     );
   }
