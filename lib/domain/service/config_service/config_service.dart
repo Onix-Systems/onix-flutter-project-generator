@@ -2,11 +2,13 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/core/di/source.dart';
 import 'package:onix_flutter_bricks/domain/entity/app_styles/app_styles.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.dart';
@@ -21,7 +23,23 @@ import 'package:recase/recase.dart';
 class ConfigService {
   Config _config = Config.empty();
 
+  final ValueNotifier<bool> projectModified = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> screensModified = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> componentsModified = ValueNotifier<bool>(false);
+
+  Set<Screen> initialScreens = {};
+  Components initialComponents = Components.empty();
+
   Config get config => _config;
+
+  ConfigService() {
+    screensModified.addListener(() {
+      projectModified.value = screensModified.value || componentsModified.value;
+    });
+    componentsModified.addListener(() {
+      projectModified.value = screensModified.value || componentsModified.value;
+    });
+  }
 
   void updateWith({
     Config? newConfig,
@@ -84,6 +102,8 @@ class ConfigService {
     _config = Config.empty().copyWith(
       branchConfig: config.branchConfig,
     );
+    screensModified.value = false;
+    componentsModified.value = false;
   }
 
   Future<void> saveConfigFile({required String projectPath}) async {

@@ -1207,20 +1207,19 @@ abstract class _WrongNameError implements ScreensScreenSR {
 /// @nodoc
 mixin _$ScreensScreenState {
   Config get config => throw _privateConstructorUsedError;
-  int get stateUpdate => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config, int stateUpdate) data,
+    required TResult Function(Config config) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, int stateUpdate)? data,
+    TResult? Function(Config config)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, int stateUpdate)? data,
+    TResult Function(Config config)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1254,7 +1253,7 @@ abstract class $ScreensScreenStateCopyWith<$Res> {
           ScreensScreenState value, $Res Function(ScreensScreenState) then) =
       _$ScreensScreenStateCopyWithImpl<$Res, ScreensScreenState>;
   @useResult
-  $Res call({Config config, int stateUpdate});
+  $Res call({Config config});
 
   $ConfigCopyWith<$Res> get config;
 }
@@ -1275,17 +1274,12 @@ class _$ScreensScreenStateCopyWithImpl<$Res, $Val extends ScreensScreenState>
   @override
   $Res call({
     Object? config = null,
-    Object? stateUpdate = null,
   }) {
     return _then(_value.copyWith(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
-      stateUpdate: null == stateUpdate
-          ? _value.stateUpdate
-          : stateUpdate // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 
@@ -1309,7 +1303,7 @@ abstract class _$$ScreensScreenStateDataImplCopyWith<$Res>
       __$$ScreensScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Config config, int stateUpdate});
+  $Res call({Config config});
 
   @override
   $ConfigCopyWith<$Res> get config;
@@ -1330,17 +1324,12 @@ class __$$ScreensScreenStateDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? config = null,
-    Object? stateUpdate = null,
   }) {
     return _then(_$ScreensScreenStateDataImpl(
       config: null == config
           ? _value.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
-      stateUpdate: null == stateUpdate
-          ? _value.stateUpdate
-          : stateUpdate // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -1348,18 +1337,14 @@ class __$$ScreensScreenStateDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ScreensScreenStateDataImpl implements ScreensScreenStateData {
-  const _$ScreensScreenStateDataImpl(
-      {required this.config, this.stateUpdate = 0});
+  const _$ScreensScreenStateDataImpl({required this.config});
 
   @override
   final Config config;
-  @override
-  @JsonKey()
-  final int stateUpdate;
 
   @override
   String toString() {
-    return 'ScreensScreenState.data(config: $config, stateUpdate: $stateUpdate)';
+    return 'ScreensScreenState.data(config: $config)';
   }
 
   @override
@@ -1367,13 +1352,11 @@ class _$ScreensScreenStateDataImpl implements ScreensScreenStateData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScreensScreenStateDataImpl &&
-            (identical(other.config, config) || other.config == config) &&
-            (identical(other.stateUpdate, stateUpdate) ||
-                other.stateUpdate == stateUpdate));
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config, stateUpdate);
+  int get hashCode => Object.hash(runtimeType, config);
 
   /// Create a copy of ScreensScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -1387,27 +1370,27 @@ class _$ScreensScreenStateDataImpl implements ScreensScreenStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config, int stateUpdate) data,
+    required TResult Function(Config config) data,
   }) {
-    return data(config, stateUpdate);
+    return data(config);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, int stateUpdate)? data,
+    TResult? Function(Config config)? data,
   }) {
-    return data?.call(config, stateUpdate);
+    return data?.call(config);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, int stateUpdate)? data,
+    TResult Function(Config config)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(config, stateUpdate);
+      return data(config);
     }
     return orElse();
   }
@@ -1442,14 +1425,11 @@ class _$ScreensScreenStateDataImpl implements ScreensScreenStateData {
 }
 
 abstract class ScreensScreenStateData implements ScreensScreenState {
-  const factory ScreensScreenStateData(
-      {required final Config config,
-      final int stateUpdate}) = _$ScreensScreenStateDataImpl;
+  const factory ScreensScreenStateData({required final Config config}) =
+      _$ScreensScreenStateDataImpl;
 
   @override
   Config get config;
-  @override
-  int get stateUpdate;
 
   /// Create a copy of ScreensScreenState
   /// with the given fields replaced by the non-null parameter values.

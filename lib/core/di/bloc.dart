@@ -133,6 +133,7 @@ void registerBloc(GetIt getIt) {
         runProcessUseCase: getIt.get<RunProcessUseCase>(),
         fetchComponentsFromJsonUseCase:
             getIt.get<FetchComponentsFromJsonUseCase>(),
+        getComponentsUseCase: getIt.get<GetComponentsUseCase>(),
       ),
     )
     ..registerFactory<DataComponentsScreenV2Bloc>(

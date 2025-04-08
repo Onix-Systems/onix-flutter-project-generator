@@ -22,6 +22,7 @@ import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.d
 import 'package:onix_flutter_bricks/domain/usecase/screen/clear_screens_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_components_from_json_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
 
@@ -39,6 +40,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
   final ClearOutputUseCase _clearOutputUseCase;
   final RunProcessUseCase _runProcessUseCase;
   final FetchComponentsFromJsonUseCase _fetchComponentsFromJsonUseCase;
+  final GetComponentsUseCase _getComponentsUseCase;
 
   Config get _config => _configService.config;
 
@@ -53,6 +55,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     required ClearOutputUseCase clearOutputUseCase,
     required RunProcessUseCase runProcessUseCase,
     required FetchComponentsFromJsonUseCase fetchComponentsFromJsonUseCase,
+    required GetComponentsUseCase getComponentsUseCase,
   })  : _configService = configService,
         _generateSigningConfigUseCase = generateSigningConfigUseCase,
         _generateFlavorsUseCase = generateFlavorsUseCase,
@@ -63,6 +66,7 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
         _clearOutputUseCase = clearOutputUseCase,
         _runProcessUseCase = runProcessUseCase,
         _fetchComponentsFromJsonUseCase = fetchComponentsFromJsonUseCase,
+        _getComponentsUseCase = getComponentsUseCase,
         super(
           const ProcedureSelectionScreenStateData(
             branchConfig: BranchConfig(),
@@ -127,6 +131,9 @@ class ProcedureSelectionScreenBloc extends BaseBloc<
     screenRepository.addAll(screens: loadedConfig.screens);
 
     await _fetchComponentsFromJsonUseCase(event.projectURI);
+
+    _configService.initialScreens = loadedConfig.screens;
+    _configService.initialComponents = _getComponentsUseCase();
 
     _configService.updateWith(
       newConfig: loadedConfig,

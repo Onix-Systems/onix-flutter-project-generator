@@ -36,6 +36,5 @@ class ScreensScreenSR with _$ScreensScreenSR {
 class ScreensScreenState with _$ScreensScreenState {
   const factory ScreensScreenState.data({
     required Config config,
-    @Default(0) int stateUpdate,
   }) = ScreensScreenStateData;
 }

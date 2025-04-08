@@ -60,6 +60,8 @@ class ScreensScreenBloc
         screens: _screenRepository.screens,
       );
 
+      _configService.screensModified.value = true;
+
       emit(
         state.copyWith(
           config: _config,
@@ -73,9 +75,15 @@ class ScreensScreenBloc
     Emitter<ScreensScreenState> emit,
   ) {
     _screenRepository.removeScreen(screenName: event.screenName);
+
     _configService.updateWith(
       screens: _screenRepository.screens,
     );
+
+    _configService.screensModified.value = _screenRepository.screens
+        .difference(_configService.initialScreens)
+        .isNotEmpty;
+
     emit(
       state.copyWith(
         config: _config,
@@ -91,6 +99,7 @@ class ScreensScreenBloc
     _configService.updateWith(
       screens: _screenRepository.screens,
     );
+
     emit(
       state.copyWith(
         config: _config,
@@ -111,9 +120,13 @@ class ScreensScreenBloc
       screens: _screenRepository.screens,
     );
 
+    //TODO: Check if this is correct
+    _configService.screensModified.value = _screenRepository.screens
+        .difference(_configService.initialScreens)
+        .isNotEmpty;
+
     emit(
       state.copyWith(
-        stateUpdate: state.stateUpdate + 1,
         config: _config,
       ),
     );

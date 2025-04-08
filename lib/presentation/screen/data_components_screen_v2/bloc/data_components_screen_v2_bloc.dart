@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,6 +66,9 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     final swaggerUrl = _configService.config.swaggerUrl;
 
     final components = _getSwaggerComponentsUseCase();
+
+    _configService.componentsModified.value = jsonEncode(components.toJson()) !=
+        jsonEncode(_configService.initialComponents.toJson());
 
     emit(
       state.copyWith(
