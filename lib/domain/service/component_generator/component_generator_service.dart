@@ -52,6 +52,7 @@ class ComponentGeneratorService
           sourceObjects,
           params.components.dataObjects,
           params.arch,
+          params.projectExists,
         );
         addedDataComponents.addAll(createdComponents);
 
@@ -73,6 +74,7 @@ class ComponentGeneratorService
         addedComponentsDistinct,
         params.arch,
         params.components.enums,
+        params.projectExists,
       );
 
       return '';
@@ -354,6 +356,7 @@ class ComponentGeneratorService
     List<DataObjectReference> references,
     List<DataObjectComponent> components,
     ArchType arch,
+    bool projectExists,
   ) async {
     ///List of components was created
     final addedDataComponents = List<DataObjectComponent>.empty(growable: true);
@@ -385,6 +388,7 @@ class ComponentGeneratorService
       final objectAdditionResult = await _createFile(
         filePath: filePath,
         fileBody: body,
+        overwrite: projectExists,
       );
 
       if (objectAdditionResult == FileOperationResult.created) {
@@ -406,6 +410,7 @@ class ComponentGeneratorService
           innerReferences,
           components,
           arch,
+          projectExists,
         );
         addedDataComponents.addAll(createdInnerObjects);
       }
@@ -419,6 +424,7 @@ class ComponentGeneratorService
     List<DataObjectComponent> addedDataComponents,
     ArchType arch,
     List<EnumParamComponent> enums,
+    bool projectExists,
   ) async {
     for (final e in addedDataComponents) {
       ///Create Entities
@@ -438,7 +444,11 @@ class ComponentGeneratorService
         arch,
       );
 
-      await _createFile(filePath: entityPath, fileBody: entityBody);
+      await _createFile(
+        filePath: entityPath,
+        fileBody: entityBody,
+        overwrite: projectExists,
+      );
     }
     for (final e in addedDataComponents) {
       ///Create mappers
@@ -591,6 +601,7 @@ class ComponentGeneratorService
   Future<FileOperationResult> _createFile({
     required String filePath,
     required String fileBody,
+    bool overwrite = false,
   }) async {
     final file = File(filePath);
 
@@ -598,10 +609,12 @@ class ComponentGeneratorService
       final isAlreadyExist = file.existsSync();
       if (isAlreadyExist) {
         logger.i('File already exists: $filePath');
-        return FileOperationResult.alreadyExists;
+        if (!overwrite) {
+          return FileOperationResult.alreadyExists;
+        }
+      } else {
+        await file.create(recursive: true);
       }
-
-      await file.create(recursive: true);
       await file.writeAsString(fileBody);
       logger.i('File created: $filePath');
       return FileOperationResult.created;

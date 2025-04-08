@@ -18,6 +18,7 @@ class CreateSwaggerComponentsUseCase {
     required String projectName,
     required String projectRootPath,
     required ArchType arch,
+    bool projectExists = false,
   }) async {
     final components = _swaggerRepository.components;
     if (components == Components.empty()) {
@@ -29,6 +30,7 @@ class CreateSwaggerComponentsUseCase {
         projectRootPath: projectRootPath,
         arch: arch,
         components: components,
+        projectExists: projectExists,
       ),
     );
 

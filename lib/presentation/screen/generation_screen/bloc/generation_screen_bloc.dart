@@ -284,6 +284,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
       projectName: _config.projectName,
       projectRootPath: _config.projectRootPath,
       arch: _config.arch,
+      projectExists: _config.projectExists,
     );
 
     ///build project

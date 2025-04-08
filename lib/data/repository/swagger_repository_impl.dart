@@ -62,9 +62,9 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
                 oldName: component.name,
                 component: component,
               );
-            } else {
-              duplicates.add(component.name);
             }
+          } else {
+            duplicates.add(component.name);
           }
         }
       }

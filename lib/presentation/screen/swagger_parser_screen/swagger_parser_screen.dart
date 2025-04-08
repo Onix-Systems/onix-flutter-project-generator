@@ -165,8 +165,11 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
   }
 
   void _processSwaggerParser(BuildContext context) {
-    blocOf(context)
-        .add(SwaggerParserScreenEvent.parse(url: _urlController.text));
+    blocOf(context).add(
+      SwaggerParserScreenEvent.parse(
+        url: _urlController.text,
+      ),
+    );
   }
 
   void _onContinue(BuildContext context, SwaggerParserScreenState state) {
@@ -183,5 +186,11 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
         : context.go(
             AppRouter.stylesScreen,
           );
+  }
+
+  @override
+  void dispose() {
+    _urlController.dispose();
+    super.dispose();
   }
 }
