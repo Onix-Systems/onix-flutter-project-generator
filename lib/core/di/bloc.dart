@@ -67,7 +67,6 @@ void registerBloc(GetIt getIt) {
         createSwaggerComponentsUseCase:
             getIt.get<CreateSwaggerComponentsUseCase>(),
         generateSigningConfigUseCase: getIt.get<GenerateSigningConfigUseCase>(),
-        getSwaggerComponentsUseCase: getIt.get<GetComponentsUseCase>(),
       ),
     )
     ..registerFactory<SummaryScreenBloc>(
