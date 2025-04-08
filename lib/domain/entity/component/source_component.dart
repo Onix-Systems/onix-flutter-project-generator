@@ -556,6 +556,10 @@ class SourceComponent {
     return components;
   }
 
+  void mergeWith(SourceComponent other) {
+    requests.addAll(other.requests);
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'name': name,

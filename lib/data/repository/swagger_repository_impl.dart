@@ -62,10 +62,6 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
                 oldName: component.name,
                 component: component,
               );
-            } else {
-              logger.f(
-                'Duplicate component found: ${component.unmodifiable}. ',
-              );
             }
           } else {
             duplicates.add(component.name);
@@ -79,6 +75,27 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
             duplicates.map((e) => e).toList().join(', '),
           ),
         );
+      }
+
+      final sourcesToDelete = <SourceComponent>[];
+
+      for (final source in sources) {
+        final sourceExists = _isSourceExists(source.name);
+
+        if (sourceExists) {
+          final existingSource = _components.sources
+              .firstWhere((element) => element.name == source.name);
+
+          source.mergeWith(
+            existingSource,
+          );
+
+          sourcesToDelete.add(existingSource);
+        }
+      }
+
+      for (final source in sourcesToDelete) {
+        removeSource(source.name);
       }
 
       _components = _components.copyWith(
