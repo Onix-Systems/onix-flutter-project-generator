@@ -62,6 +62,10 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
                 oldName: component.name,
                 component: component,
               );
+            } else {
+              logger.f(
+                'Duplicate component found: ${component.unmodifiable}. ',
+              );
             }
           } else {
             duplicates.add(component.name);
@@ -494,6 +498,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
             fileReference: dataObject.fileReference,
             variables: dataObjectVariables,
             fromSwagger: component.fromSwagger,
+            unmodifiable: dataObject.unmodifiable,
           ),
         );
       }
@@ -535,6 +540,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
           fileReference: dataObject.fileReference,
           variables: variables,
           fromSwagger: dataObject.fromSwagger,
+          unmodifiable: dataObject.unmodifiable,
         ),
       );
     }
@@ -664,6 +670,11 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
         _components.enums.any(
           (element) => element.name == dataObjectName,
         );
+  }
+
+  @override
+  void restoreComponents(Components components) {
+    _components = components;
   }
 
   bool _isSourceExists(String sourceName) {

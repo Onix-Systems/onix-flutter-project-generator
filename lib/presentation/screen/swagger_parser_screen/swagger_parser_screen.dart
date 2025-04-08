@@ -69,6 +69,11 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
             ),
           );
         },
+        onCancel: () {
+          blocOf(context).add(
+            const SwaggerParserScreenEventOnCancel(),
+          );
+        },
       );
     } else {
       Dialogs.showOkDialog(

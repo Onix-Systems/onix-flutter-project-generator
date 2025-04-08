@@ -388,7 +388,7 @@ class ComponentGeneratorService
       final objectAdditionResult = await _createFile(
         filePath: filePath,
         fileBody: body,
-        overwrite: projectExists,
+        overwrite: projectExists && dataObject.unmodifiable == false,
       );
 
       if (objectAdditionResult == FileOperationResult.created) {
@@ -447,7 +447,7 @@ class ComponentGeneratorService
       await _createFile(
         filePath: entityPath,
         fileBody: entityBody,
-        overwrite: projectExists,
+        overwrite: projectExists && e.unmodifiable == false,
       );
     }
     for (final e in addedDataComponents) {

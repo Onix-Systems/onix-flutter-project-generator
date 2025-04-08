@@ -33,6 +33,7 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_us
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/restore_components_use_case.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/bloc/data_components_screen_v2_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_cubit.dart';
@@ -78,6 +79,8 @@ void registerBloc(GetIt getIt) {
     ..registerFactory<SwaggerParserScreenBloc>(
       () => SwaggerParserScreenBloc(
         fetchSwaggerDataUseCase: getIt.get<FetchSwaggerDataUseCase>(),
+        getComponentsUseCase: getIt.get<GetComponentsUseCase>(),
+        restoreComponentsUseCase: getIt.get<RestoreComponentsUseCase>(),
         clearSwaggerComponentsUseCase:
             getIt.get<ClearSwaggerComponentsUseCase>(),
         configService: getIt.get<ConfigService>(),

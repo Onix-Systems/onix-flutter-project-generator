@@ -40,6 +40,7 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_us
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/restore_components_use_case.dart';
 
 void registerUseCases(GetIt getIt) {
   getIt
@@ -199,6 +200,11 @@ void registerUseCases(GetIt getIt) {
     )
     ..registerFactory<FetchComponentsFromJsonUseCase>(
       () => FetchComponentsFromJsonUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<RestoreComponentsUseCase>(
+      () => RestoreComponentsUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     );
