@@ -165,6 +165,13 @@ class ComponentGeneratorService
             (line) => line.trim().startsWith('static const _'),
           );
 
+      final newPathEndpoints = implementationBody.split('\n').where(
+            (line) =>
+                line.trim().startsWith('String _') &&
+                line.contains(r'/$') &&
+                line.contains('=>'),
+          );
+
       if (newRequests.isEmpty) {
         return;
       }
@@ -182,6 +189,7 @@ class ComponentGeneratorService
         fileBody: newContent,
         newImports: newImports.toList(),
         newEndpoints: newEndpoints.toList(),
+        newPathEndpoints: newPathEndpoints.toList(),
       );
     }
 
@@ -475,7 +483,11 @@ class ComponentGeneratorService
           enums: enums,
         );
 
-        await _createFile(filePath: mapperPath, fileBody: mapperBody);
+        await _createFile(
+          filePath: mapperPath,
+          fileBody: mapperBody,
+          overwrite: projectExists && e.unmodifiable == false,
+        );
       }
     }
   }
@@ -630,6 +642,7 @@ class ComponentGeneratorService
     List<String> newImports = const [],
     List<String> newEndpoints = const [],
     List<String> newMappers = const [],
+    List<String> newPathEndpoints = const [],
   }) async {
     final file = File(filePath);
 
@@ -638,50 +651,61 @@ class ComponentGeneratorService
 
       //Combine imports
       if (newImports.isNotEmpty) {
-        const condition = "import 'package:";
-        final existingImports = existingContent
-            .where((line) => line.startsWith(condition))
-            .toSet()
+        bool condition(String line) => line.startsWith("import 'package:");
+        final existingImports = existingContent.where(condition).toSet()
           ..addAll(newImports);
 
         existingContent
-          ..removeWhere((line) => line.startsWith(condition))
+          ..removeWhere(condition)
           ..insert(0, existingImports.toSet().join('\n'));
       }
 
       //Combine endpoints
       if (newEndpoints.isNotEmpty) {
-        const condition = 'static const _';
-        final endpointIndex = existingContent
-            .indexWhere((line) => line.trim().startsWith(condition));
+        bool condition(String line) => line.trim().startsWith('static const _');
+        final endpointIndex = existingContent.indexWhere(condition);
 
-        final existingEndpoints = existingContent
-            .where((line) => line.trim().startsWith(condition))
-            .map((line) => line.trim())
-            .toSet()
-          ..addAll(newEndpoints)
-          ..add('\n');
+        final existingEndpoints =
+            existingContent.where(condition).map((line) => line.trim()).toSet()
+              ..addAll(newEndpoints)
+              ..add('\n');
 
         existingContent
-          ..removeWhere((line) => line.trim().startsWith(condition))
+          ..removeWhere(condition)
+          ..insert(endpointIndex, existingEndpoints.toSet().join('\n'));
+      }
+
+      //Combine path endpoints
+      if (newPathEndpoints.isNotEmpty) {
+        bool condition(String line) =>
+            line.trim().startsWith('String _') &&
+            line.contains(r'/$') &&
+            line.contains('=>');
+
+        final endpointIndex = existingContent.indexWhere(condition);
+
+        final existingEndpoints =
+            existingContent.where(condition).map((line) => line.trim()).toSet()
+              ..addAll(newEndpoints)
+              ..add('\n');
+
+        existingContent
+          ..removeWhere(condition)
           ..insert(endpointIndex, existingEndpoints.toSet().join('\n'));
       }
 
       //Combine mappers
       if (newMappers.isNotEmpty) {
-        const condition = 'Mappers();';
-        final mapperIndex =
-            existingContent.indexWhere((line) => line.endsWith(condition));
+        bool condition(String line) => line.endsWith('Mappers();');
+        final mapperIndex = existingContent.indexWhere(condition);
 
-        final existingMappers = existingContent
-            .where((line) => line.endsWith(condition))
-            .map((line) => line.trim())
-            .toSet()
-          ..addAll(newMappers)
-          ..add('\n');
+        final existingMappers =
+            existingContent.where(condition).map((line) => line.trim()).toSet()
+              ..addAll(newMappers)
+              ..add('\n');
 
         existingContent
-          ..removeWhere((line) => line.endsWith(condition))
+          ..removeWhere(condition)
           ..insert(mapperIndex, existingMappers.toSet().join('\n'));
       }
 
