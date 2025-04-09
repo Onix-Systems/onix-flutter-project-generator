@@ -161,16 +161,9 @@ class ComponentGeneratorService
         (request) => !existingContent.contains(request.operationId.camelCase),
       );
 
-      final newEndpoints = implementationBody.split('\n').where(
-            (line) => line.trim().startsWith('static const _'),
-          );
-
-      final newPathEndpoints = implementationBody.split('\n').where(
-            (line) =>
-                line.trim().startsWith('String _') &&
-                line.contains(r'/$') &&
-                line.contains('=>'),
-          );
+      final newEndpoints = sourceComponent.requests.map(
+        (request) => request.getVariableDeclaration(),
+      );
 
       if (newRequests.isEmpty) {
         return;
@@ -189,7 +182,6 @@ class ComponentGeneratorService
         fileBody: newContent,
         newImports: newImports.toList(),
         newEndpoints: newEndpoints.toList(),
-        newPathEndpoints: newPathEndpoints.toList(),
       );
     }
 
@@ -642,56 +634,66 @@ class ComponentGeneratorService
     List<String> newImports = const [],
     List<String> newEndpoints = const [],
     List<String> newMappers = const [],
-    List<String> newPathEndpoints = const [],
   }) async {
     final file = File(filePath);
 
     try {
       final existingContent = await file.readAsLines();
 
+      //Conditions for identifying lines
+      bool importCondition(String line) => line.startsWith("import 'package:");
+
+      bool endpointCondition(String line) =>
+          line.trim().startsWith('static const _');
+
+      bool pathEndpointCondition(String line) =>
+          line.trim().startsWith('String _') &&
+          line.contains(r'/$') &&
+          line.contains('=>');
+
+      final firstEndpointIndex = existingContent.indexWhere(endpointCondition);
+
+      final afterClassIndex = existingContent.indexWhere(
+            (line) =>
+                line.trim().startsWith('class') &&
+                line.contains('implements') &&
+                line.contains('{'),
+          ) +
+          1;
+
       //Combine imports
       if (newImports.isNotEmpty) {
-        bool condition(String line) => line.startsWith("import 'package:");
-        final existingImports = existingContent.where(condition).toSet()
+        final existingImports = existingContent.where(importCondition).toSet()
           ..addAll(newImports);
 
         existingContent
-          ..removeWhere(condition)
+          ..removeWhere(importCondition)
           ..insert(0, existingImports.toSet().join('\n'));
       }
 
       //Combine endpoints
       if (newEndpoints.isNotEmpty) {
-        bool condition(String line) => line.trim().startsWith('static const _');
-        final endpointIndex = existingContent.indexWhere(condition);
-
-        final existingEndpoints =
-            existingContent.where(condition).map((line) => line.trim()).toSet()
-              ..addAll(newEndpoints)
-              ..add('\n');
-
-        existingContent
-          ..removeWhere(condition)
-          ..insert(endpointIndex, existingEndpoints.toSet().join('\n'));
-      }
-
-      //Combine path endpoints
-      if (newPathEndpoints.isNotEmpty) {
-        bool condition(String line) =>
-            line.trim().startsWith('String _') &&
-            line.contains(r'/$') &&
-            line.contains('=>');
-
-        final endpointIndex = existingContent.indexWhere(condition);
-
-        final existingEndpoints =
-            existingContent.where(condition).map((line) => line.trim()).toSet()
-              ..addAll(newEndpoints)
-              ..add('\n');
+        final existingEndpoints = existingContent
+            .where(endpointCondition)
+            .map((line) => line.trim())
+            .toList()
+          ..addAll(
+            existingContent
+                .where(pathEndpointCondition)
+                .map((line) => line.trim()),
+          )
+          ..addAll(newEndpoints);
 
         existingContent
-          ..removeWhere(condition)
-          ..insert(endpointIndex, existingEndpoints.toSet().join('\n'));
+          ..removeWhere(endpointCondition)
+          ..removeWhere(pathEndpointCondition)
+          ..insert(
+            firstEndpointIndex > 0 ? firstEndpointIndex : afterClassIndex,
+            existingEndpoints
+                .sorted((a, b) => a.compareTo(b))
+                .toSet()
+                .join('\n'),
+          );
       }
 
       //Combine mappers

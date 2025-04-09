@@ -348,51 +348,41 @@ class SourceComponent {
       ///Add path params imports
       if (request.pathParams.isNotEmpty) {
         for (final e in request.pathParams) {
-          if (e.isEnum) {
-            final import = getEnumImport(projectName, e.type);
-            if (!imports.contains(import)) {
-              imports.add(import);
-            }
-          } else {
-            final import = e.type
-                .getFullFileImport(projectName, DataFileType.request, arch);
-            if (import != null && !imports.contains(import)) {
-              imports.add(import);
-            }
-          }
+          _getImport(e, projectName, imports);
         }
       }
 
       ///Add query params imports
       if (request.queryParams.isNotEmpty) {
         for (final e in request.queryParams) {
-          if (e.isEnum) {
-            final import = getEnumImport(projectName, e.type);
-            if (!imports.contains(import)) {
-              imports.add(import);
-            }
-          } else {
-            final import = e.type
-                .getFullFileImport(projectName, DataFileType.request, arch);
-            if (import != null && !imports.contains(import)) {
-              imports.add(import);
-            }
-          }
+          _getImport(e, projectName, imports);
         }
       }
 
       ///Add multipart params imports
       if (request.multipartBody.isNotEmpty) {
         for (final e in request.multipartBody) {
-          final import =
-              e.type.getFullFileImport(projectName, DataFileType.request, arch);
-          if (import != null && !imports.contains(import)) {
-            imports.add(import);
-          }
+          _getImport(e, projectName, imports);
         }
       }
     }
     return imports.map((e) => e).join('\n');
+  }
+
+  void _getImport(
+    RequestParamComponent e,
+    String projectName,
+    Set<String> imports,
+  ) {
+    if (!e.isEnum &&
+        !(e.type is SwaggerArray &&
+            (e.type as SwaggerArray).itemType.type is SwaggerEnum)) {
+      final import =
+          e.type.getFullFileImport(projectName, DataFileType.request, arch);
+      if (import != null && !imports.contains(import)) {
+        imports.add(import);
+      }
+    }
   }
 
   String _buildRepositoryImports(String projectName, ArchType arch) {

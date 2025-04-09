@@ -26,6 +26,7 @@ sealed class RequestParamComponent {
     DataFileType fileType, {
     required bool isRequiredRequestBody,
     required bool forSource,
+    bool stripComma = false,
   }) {
     var requiredCopy = isRequired;
     if (isRequiredRequestBody) {
@@ -42,12 +43,12 @@ sealed class RequestParamComponent {
       }
 
       return '$requiredPrefix $paramType$requiredSuffix '
-          '${getNameDeclaration()},';
+          '${getNameDeclaration()}${stripComma ? '' : ','}';
     }
 
     final body =
         '$requiredPrefix ${type.getTypeDeclaration(fileType)}$requiredSuffix '
-        '${getNameDeclaration()},';
+        '${getNameDeclaration()}${stripComma ? '' : ','}';
 
     return body;
   }

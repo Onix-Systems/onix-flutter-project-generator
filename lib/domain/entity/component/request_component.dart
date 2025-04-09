@@ -64,9 +64,10 @@ class RequestComponent with _$RequestComponent {
             e.isEnum ? DataFileType.none : DataFileType.request,
             isRequiredRequestBody: true,
             forSource: true,
+            stripComma: true,
           );
         },
-      ).join('\n');
+      ).join(',\n');
       codeLines
           .add('String _${operationId.camelCase}({$paramsDeclaration}) =>');
 
@@ -77,7 +78,7 @@ class RequestComponent with _$RequestComponent {
         pathWithParams = pathWithParams.replaceAll('{${e.name}}', '\$$name');
       }
       codeLines.add("'$pathWithParams';");
-      return codeLines.join('\n');
+      return codeLines.join(' ');
     }
 
     ///Build regular declaration
@@ -194,9 +195,14 @@ class RequestComponent with _$RequestComponent {
           }
         }
       }
-      codeLines
-        ..add('}..removeWhere((key, value) => value == null);')
-        ..addNewLine();
+
+      if (queryParams.any((e) => !e.isRequired)) {
+        codeLines.add('}..removeWhere((key, value) => value == null);');
+      } else {
+        codeLines.add('};');
+      }
+
+      codeLines.addNewLine();
     }
 
     ///If create a new request
