@@ -1,4 +1,4 @@
-sonar.projectKey=ENTER_YOUR_SONAR_PROJECT_ID
+sonar.projectKey={ENTER YOUR SONAR PROJECT ID}
 sonar.qualitygate.wait=true
 sonar.exclusions=/android/**, /ios/**, /web/**, /build/**, **/*.freezed.dart, **/*.g.dart
 # Source code location.
@@ -11,7 +11,12 @@ sonar.sourceEncoding=UTF-8
 
 # Analyzer mode
 # Can be:
-# - flutter (flutter analyze) - default
-# - dart (dart analyze)
-# - legacy (dartanalyzer)
-sonar.flutter.analyzer.mode=flutter
+# - DETECT (attempt to detect automatically) - default
+# - MANUAL (an existing report needs to be provided)
+# - FLUTTER (flutter analyze)
+# - DART (dart analyze)
+# - DARTANALYZER (dartanalyzer)
+sonar.flutter.analyzer.mode=FLUTTER
+
+# Use existing options to perform dartanalyzer analysis
+sonar.dart.analyzer.options.override=false
