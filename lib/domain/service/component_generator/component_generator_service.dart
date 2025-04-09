@@ -745,6 +745,7 @@ class ComponentGeneratorService
           ..insert(mapperIndex, existingMappers.toSet().join('\n'));
       }
 
+      //TODO: fix this
       final closingBracketIndex = existingContentLines.lastIndexWhere(
         (line) => line.trim().contains('}'),
       );
