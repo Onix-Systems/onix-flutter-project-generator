@@ -108,18 +108,29 @@ class ComponentGeneratorService
 
     if (createSourceDeclarationResult == FileOperationResult.alreadyExists) {
       final codeLines = <String>[];
-      final newImports = declarationBody.split('\n').where(
-            (line) => line.startsWith("import 'package:"),
-          );
+
+      final declarationBodyLines = declarationBody.split('\n');
 
       final existingContent = File(declarationFilePath).readAsStringSync();
 
-      final newRequests = sourceComponent.requests.where(
-        (request) => !existingContent.contains(request.operationId.camelCase),
-      );
+      final newRequests = <RequestComponent>[];
+
+      for (final request in sourceComponent.requests) {
+        if (!existingContent.contains(request.operationId.camelCase)) {
+          newRequests.add(request);
+        }
+      }
 
       if (newRequests.isEmpty) {
         return;
+      }
+
+      final newImports = <String>[];
+
+      for (final line in declarationBodyLines) {
+        if (line.trim().startsWith("import 'package:")) {
+          newImports.add(line);
+        }
       }
 
       for (final request in newRequests) {
@@ -153,21 +164,29 @@ class ComponentGeneratorService
 
       final existingContent = File(implementationFilePath).readAsStringSync();
 
-      final newImports = implementationBody.split('\n').where(
-            (line) => line.startsWith("import 'package:"),
-          );
+      final newRequests = <RequestComponent>[];
 
-      final newRequests = sourceComponent.requests.where(
-        (request) => !existingContent.contains(request.operationId.camelCase),
-      );
-
-      final newEndpoints = sourceComponent.requests.map(
-        (request) => request.getVariableDeclaration(),
-      );
+      for (final request in sourceComponent.requests) {
+        if (!existingContent.contains(request.operationId.camelCase)) {
+          newRequests.add(request);
+        }
+      }
 
       if (newRequests.isEmpty) {
         return;
       }
+
+      final newImports = <String>[];
+
+      for (final line in implementationBody.split('\n')) {
+        if (line.trim().startsWith("import 'package:")) {
+          newImports.add(line);
+        }
+      }
+
+      final newEndpoints = sourceComponent.requests.map(
+        (request) => request.getVariableDeclaration(),
+      );
 
       for (final request in newRequests) {
         codeLines.add(
@@ -638,7 +657,17 @@ class ComponentGeneratorService
     final file = File(filePath);
 
     try {
-      final existingContent = await file.readAsLines();
+      final existingContent = await file.readAsString()
+        ..trim();
+
+      final rawContentLines = existingContent.split(';').toList();
+
+      final existingContentLines = rawContentLines
+          .map(
+            (line) =>
+                '${line.trim()}${line == rawContentLines.last ? '' : ';'}',
+          )
+          .toList();
 
       //Conditions for identifying lines
       bool importCondition(String line) => line.startsWith("import 'package:");
@@ -651,9 +680,22 @@ class ComponentGeneratorService
           line.contains(r'/$') &&
           line.contains('=>');
 
-      final firstEndpointIndex = existingContent.indexWhere(endpointCondition);
+      //Combine imports
+      if (newImports.isNotEmpty) {
+        final existingImports = existingContentLines
+            .where(importCondition)
+            .toSet()
+          ..addAll(newImports);
 
-      final afterClassIndex = existingContent.indexWhere(
+        existingContentLines
+          ..removeWhere(importCondition)
+          ..insert(0, existingImports.toSet().join('\n'));
+      }
+
+      final firstEndpointIndex =
+          existingContentLines.indexWhere(endpointCondition);
+
+      final afterClassIndex = existingContentLines.indexWhere(
             (line) =>
                 line.trim().startsWith('class') &&
                 line.contains('implements') &&
@@ -661,30 +703,20 @@ class ComponentGeneratorService
           ) +
           1;
 
-      //Combine imports
-      if (newImports.isNotEmpty) {
-        final existingImports = existingContent.where(importCondition).toSet()
-          ..addAll(newImports);
-
-        existingContent
-          ..removeWhere(importCondition)
-          ..insert(0, existingImports.toSet().join('\n'));
-      }
-
       //Combine endpoints
       if (newEndpoints.isNotEmpty) {
-        final existingEndpoints = existingContent
+        final existingEndpoints = existingContentLines
             .where(endpointCondition)
             .map((line) => line.trim())
             .toList()
           ..addAll(
-            existingContent
+            existingContentLines
                 .where(pathEndpointCondition)
                 .map((line) => line.trim()),
           )
           ..addAll(newEndpoints);
 
-        existingContent
+        existingContentLines
           ..removeWhere(endpointCondition)
           ..removeWhere(pathEndpointCondition)
           ..insert(
@@ -699,23 +731,27 @@ class ComponentGeneratorService
       //Combine mappers
       if (newMappers.isNotEmpty) {
         bool condition(String line) => line.endsWith('Mappers();');
-        final mapperIndex = existingContent.indexWhere(condition);
+        final mapperIndex = existingContentLines.indexWhere(condition);
 
-        final existingMappers =
-            existingContent.where(condition).map((line) => line.trim()).toSet()
-              ..addAll(newMappers)
-              ..add('\n');
+        final existingMappers = existingContentLines
+            .where(condition)
+            .map((line) => line.trim())
+            .toSet()
+          ..addAll(newMappers)
+          ..add('\n');
 
-        existingContent
+        existingContentLines
           ..removeWhere(condition)
           ..insert(mapperIndex, existingMappers.toSet().join('\n'));
       }
 
-      final closingBracketIndex = existingContent.lastIndexOf('}');
+      final closingBracketIndex = existingContentLines.lastIndexWhere(
+        (line) => line.trim().contains('}'),
+      );
 
-      existingContent.insert(closingBracketIndex, fileBody);
+      existingContentLines.insert(closingBracketIndex, fileBody);
 
-      final resultFileBody = existingContent.join('\n');
+      final resultFileBody = existingContentLines.join('\n');
 
       await file.writeAsString(resultFileBody);
       logger.i('File updated: $filePath');
