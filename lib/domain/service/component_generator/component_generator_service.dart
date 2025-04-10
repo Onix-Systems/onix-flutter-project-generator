@@ -745,12 +745,20 @@ class ComponentGeneratorService
           ..insert(mapperIndex, existingMappers.toSet().join('\n'));
       }
 
-      //TODO: fix this
       final closingBracketIndex = existingContentLines.lastIndexWhere(
         (line) => line.trim().contains('}'),
       );
 
-      existingContentLines.insert(closingBracketIndex, fileBody);
+      final closingBracketLineParts =
+          existingContentLines[closingBracketIndex].split('');
+
+      closingBracketLineParts.insert(
+        closingBracketLineParts.lastIndexWhere((line) => line == '}'),
+        fileBody,
+      );
+
+      existingContentLines[closingBracketIndex] =
+          closingBracketLineParts.join();
 
       final resultFileBody = existingContentLines.join('\n');
 
