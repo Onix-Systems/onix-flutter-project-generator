@@ -14,13 +14,14 @@ import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/component_generator/file_mixin.dart';
+import 'package:onix_flutter_bricks/domain/service/component_generator/file_operation_result.dart';
 import 'package:onix_flutter_bricks/domain/service/component_generator/params/component_generator_params.dart';
 import 'package:recase/recase.dart';
 
 class ComponentGeneratorService
-    implements BaseGenerationService<String, ComponentGeneratorParams> {
-  const ComponentGeneratorService();
-
+    extends BaseGenerationService<String, ComponentGeneratorParams>
+    with FileMixin {
   @override
   Future<String> generate(ComponentGeneratorParams params) async {
     try {
@@ -92,7 +93,7 @@ class ComponentGeneratorService
   ) async {
     final projectLibFolder = '$projectRootPath/lib';
     final rawFolder = sourceComponent.getFolderPath(projectLibFolder);
-    await _createFolders(rawFolder, '_createSource');
+    await createFolders(rawFolder, '_createSource');
 
     ///Create declaration
     final declarationFilePath =
@@ -101,50 +102,17 @@ class ComponentGeneratorService
     final declarationBody =
         sourceComponent.getSourceDeclarationBody(projectName);
 
-    final createSourceDeclarationResult = await _createFile(
+    final createSourceDeclarationResult = await createFile(
       filePath: declarationFilePath,
       fileBody: declarationBody,
     );
 
     if (createSourceDeclarationResult == FileOperationResult.alreadyExists) {
-      final codeLines = <String>[];
-
-      final declarationBodyLines = declarationBody.split('\n');
-
-      final existingContent = File(declarationFilePath).readAsStringSync();
-
-      final newRequests = <RequestComponent>[];
-
-      for (final request in sourceComponent.requests) {
-        if (!existingContent.contains(request.operationId.camelCase)) {
-          newRequests.add(request);
-        }
-      }
-
-      if (newRequests.isEmpty) {
-        return;
-      }
-
-      final newImports = <String>[];
-
-      for (final line in declarationBodyLines) {
-        if (line.trim().startsWith("import 'package:")) {
-          newImports.add(line);
-        }
-      }
-
-      for (final request in newRequests) {
-        codeLines.add(
-          request.getRequestDeclaration(),
-        );
-      }
-
-      final newContent = codeLines.join('\n\n');
-
-      await _modifyFile(
+      await modifyFile(
         filePath: declarationFilePath,
-        fileBody: newContent,
-        newImports: newImports.toList(),
+        body: declarationBody,
+        sourceComponent: sourceComponent,
+        dataType: DataType.source,
       );
     }
 
@@ -154,53 +122,17 @@ class ComponentGeneratorService
 
     final implementationBody =
         sourceComponent.getSourceImplementationBody(projectName);
-    final createSourceImplementationResult = await _createFile(
+    final createSourceImplementationResult = await createFile(
       filePath: implementationFilePath,
       fileBody: implementationBody,
     );
 
     if (createSourceImplementationResult == FileOperationResult.alreadyExists) {
-      final codeLines = <String>[];
-
-      final existingContent = File(implementationFilePath).readAsStringSync();
-
-      final newRequests = <RequestComponent>[];
-
-      for (final request in sourceComponent.requests) {
-        if (!existingContent.contains(request.operationId.camelCase)) {
-          newRequests.add(request);
-        }
-      }
-
-      if (newRequests.isEmpty) {
-        return;
-      }
-
-      final newImports = <String>[];
-
-      for (final line in implementationBody.split('\n')) {
-        if (line.trim().startsWith("import 'package:")) {
-          newImports.add(line);
-        }
-      }
-
-      final newEndpoints = sourceComponent.requests.map(
-        (request) => request.getVariableDeclaration(),
-      );
-
-      for (final request in newRequests) {
-        codeLines.add(
-          request.getRequestBody(),
-        );
-      }
-
-      final newContent = codeLines.join('\n\n');
-
-      await _modifyFile(
+      await modifyFile(
         filePath: implementationFilePath,
-        fileBody: newContent,
-        newImports: newImports.toList(),
-        newEndpoints: newEndpoints.toList(),
+        body: implementationBody,
+        sourceComponent: sourceComponent,
+        dataType: DataType.sourceImpl,
       );
     }
 
@@ -243,46 +175,24 @@ class ComponentGeneratorService
         sourceComponent.getRepositoryDeclarationFolderPath(
       projectLibFolder,
     );
-    await _createFolders(repoDeclarationFolder, '_createSource');
+    await createFolders(repoDeclarationFolder, '_createSource');
 
     final repoDeclarationFilePath =
         sourceComponent.getRepoDeclarationFilePath(projectLibFolder);
 
     final repoDeclarationBody =
         sourceComponent.getRepoDeclarationBody(projectName, arch);
-    final createRepoDeclarationResult = await _createFile(
+    final createRepoDeclarationResult = await createFile(
       filePath: repoDeclarationFilePath,
       fileBody: repoDeclarationBody,
     );
 
     if (createRepoDeclarationResult == FileOperationResult.alreadyExists) {
-      final codeLines = <String>[];
-      final newImports = repoDeclarationBody.split('\n').where(
-            (line) => line.startsWith("import 'package:"),
-          );
-
-      final existingContent = File(repoDeclarationFilePath).readAsStringSync();
-
-      final newRequests = sourceComponent.requests.where(
-        (request) => !existingContent.contains(request.operationId.camelCase),
-      );
-
-      if (newRequests.isEmpty) {
-        return;
-      }
-
-      for (final request in newRequests) {
-        codeLines.add(
-          request.getRepoDeclarationBody(),
-        );
-      }
-
-      final newContent = codeLines.join('\n\n');
-
-      await _modifyFile(
+      await modifyFile(
         filePath: repoDeclarationFilePath,
-        fileBody: newContent,
-        newImports: newImports.toList(),
+        body: repoDeclarationBody,
+        sourceComponent: sourceComponent,
+        dataType: DataType.repo,
       );
     }
 
@@ -290,7 +200,7 @@ class ComponentGeneratorService
     final repoImplFolder = sourceComponent.getRepositoryImplFolderPath(
       projectLibFolder,
     );
-    await _createFolders(repoImplFolder, '_createRepoImpl');
+    await createFolders(repoImplFolder, '_createRepoImpl');
 
     final repoImplFilePath =
         sourceComponent.getRepoImplementationFilePath(projectLibFolder);
@@ -300,41 +210,14 @@ class ComponentGeneratorService
       arch,
     );
     final createRepoImplementationResult =
-        await _createFile(filePath: repoImplFilePath, fileBody: repoImplBody);
+        await createFile(filePath: repoImplFilePath, fileBody: repoImplBody);
 
     if (createRepoImplementationResult == FileOperationResult.alreadyExists) {
-      final codeLines = <String>[];
-      final newImports = repoImplBody.split('\n').where(
-            (line) => line.startsWith("import 'package:"),
-          );
-
-      final existingContent = File(repoImplFilePath).readAsStringSync();
-
-      final newRequests = sourceComponent.requests.where(
-        (request) => !existingContent.contains(request.operationId.camelCase),
-      );
-
-      final newMappers = repoImplBody.split('\n').where(
-            (line) => line.endsWith('Mappers();'),
-          );
-
-      if (newRequests.isEmpty) {
-        return;
-      }
-
-      for (final request in newRequests) {
-        codeLines.add(
-          request.getRepoImplementationBody(sourceComponent.name.camelCase),
-        );
-      }
-
-      final newContent = codeLines.join('\n\n');
-
-      await _modifyFile(
+      await modifyFile(
         filePath: repoImplFilePath,
-        fileBody: newContent,
-        newImports: newImports.toList(),
-        newMappers: newMappers.toList(),
+        body: repoImplBody,
+        sourceComponent: sourceComponent,
+        dataType: DataType.repoImpl,
       );
     }
 
@@ -397,14 +280,14 @@ class ComponentGeneratorService
       }
       final fileFolder = '$projectLibFolder/$fileRawFolder';
       final filePath = '$projectLibFolder/$fileRawPath';
-      await _createFolders(fileFolder, '_createObjects');
+      await createFolders(fileFolder, '_createObjects');
 
       final body = dataObject.getObjectBody(
         projectName,
         e.type,
         arch,
       );
-      final objectAdditionResult = await _createFile(
+      final objectAdditionResult = await createFile(
         filePath: filePath,
         fileBody: body,
         overwrite: projectExists && dataObject.unmodifiable == false,
@@ -455,7 +338,7 @@ class ComponentGeneratorService
       }
       final entityFolder = '$projectLibFolder/$entityRawFolder';
       final entityPath = '$projectLibFolder/$entityRawPath';
-      await _createFolders(entityFolder, '_createEntities');
+      await createFolders(entityFolder, '_createEntities');
 
       final entityBody = e.getObjectBody(
         projectName,
@@ -463,7 +346,7 @@ class ComponentGeneratorService
         arch,
       );
 
-      await _createFile(
+      await createFile(
         filePath: entityPath,
         fileBody: entityBody,
         overwrite: projectExists && e.unmodifiable == false,
@@ -485,7 +368,7 @@ class ComponentGeneratorService
       final isRequestFileExist = File(requestFilePath).existsSync();
       final isResponseFileExist = File(responseFilePath).existsSync();
       if (isRequestFileExist || isResponseFileExist) {
-        await _createFolders(mapperFolder, '_createMappersEntities');
+        await createFolders(mapperFolder, '_createMappersEntities');
         final mapperBody = e.getMapperBody(
           projectName: projectName,
           createEntityToRequestMapper: isRequestFileExist,
@@ -494,7 +377,7 @@ class ComponentGeneratorService
           enums: enums,
         );
 
-        await _createFile(
+        await createFile(
           filePath: mapperPath,
           fileBody: mapperBody,
           overwrite: projectExists && e.unmodifiable == false,
@@ -527,11 +410,11 @@ class ComponentGeneratorService
 
     for (final e in enumsCopy) {
       final folderPath = e.getFolderPath(projectLibFolder, arch);
-      await _createFolders(folderPath, '_createEnums');
+      await createFolders(folderPath, '_createEnums');
       final filePath = e.getFilePath(projectLibFolder, arch);
 
       final body = e.getEnumFileBody();
-      await _createFile(filePath: filePath, fileBody: body);
+      await createFile(filePath: filePath, fileBody: body);
     }
   }
 
@@ -596,11 +479,11 @@ class ComponentGeneratorService
 
     for (final e in enumsCopy) {
       final folderPath = e.getFolderPath(projectLibFolder, arch);
-      await _createFolders(folderPath, '_createRequestEnums');
+      await createFolders(folderPath, '_createRequestEnums');
       final filePath = e.getFilePath(projectLibFolder, arch);
 
       final body = e.getEnumFileBody();
-      await _createFile(filePath: filePath, fileBody: body);
+      await createFile(filePath: filePath, fileBody: body);
     }
   }
 
@@ -620,179 +503,4 @@ class ComponentGeneratorService
     }
     return innerReferences;
   }
-
-  Future<FileOperationResult> _createFile({
-    required String filePath,
-    required String fileBody,
-    bool overwrite = false,
-  }) async {
-    final file = File(filePath);
-
-    try {
-      final isAlreadyExist = file.existsSync();
-      if (isAlreadyExist) {
-        logger.i('File already exists: $filePath');
-        if (!overwrite) {
-          return FileOperationResult.alreadyExists;
-        }
-      } else {
-        await file.create(recursive: true);
-      }
-      await file.writeAsString(fileBody);
-      logger.i('File created: $filePath');
-      return FileOperationResult.created;
-    } catch (e) {
-      logger.crash(error: e, stackTrace: StackTrace.current);
-      return FileOperationResult.error;
-    }
-  }
-
-  Future<bool> _modifyFile({
-    required String filePath,
-    required String fileBody,
-    List<String> newImports = const [],
-    List<String> newEndpoints = const [],
-    List<String> newMappers = const [],
-  }) async {
-    final file = File(filePath);
-
-    try {
-      final existingContent = await file.readAsString()
-        ..trim();
-
-      final rawContentLines = existingContent.split(';').toList();
-
-      final existingContentLines = rawContentLines
-          .map(
-            (line) =>
-                '${line.trim()}${line == rawContentLines.last ? '' : ';'}',
-          )
-          .toList();
-
-      //Conditions for identifying lines
-      bool importCondition(String line) => line.startsWith("import 'package:");
-
-      bool endpointCondition(String line) =>
-          line.trim().startsWith('static const _');
-
-      bool pathEndpointCondition(String line) =>
-          line.trim().startsWith('String _') &&
-          line.contains(r'/$') &&
-          line.contains('=>');
-
-      //Combine imports
-      if (newImports.isNotEmpty) {
-        final existingImports = existingContentLines
-            .where(importCondition)
-            .toSet()
-          ..addAll(newImports);
-
-        existingContentLines
-          ..removeWhere(importCondition)
-          ..insert(0, existingImports.toSet().join('\n'));
-      }
-
-      final firstEndpointIndex =
-          existingContentLines.indexWhere(endpointCondition);
-
-      final afterClassIndex = existingContentLines.indexWhere(
-            (line) =>
-                line.trim().startsWith('class') &&
-                line.contains('implements') &&
-                line.contains('{'),
-          ) +
-          1;
-
-      //Combine endpoints
-      if (newEndpoints.isNotEmpty) {
-        final existingEndpoints = existingContentLines
-            .where(endpointCondition)
-            .map((line) => line.trim())
-            .toList()
-          ..addAll(
-            existingContentLines
-                .where(pathEndpointCondition)
-                .map((line) => line.trim()),
-          )
-          ..addAll(newEndpoints);
-
-        existingContentLines
-          ..removeWhere(endpointCondition)
-          ..removeWhere(pathEndpointCondition)
-          ..insert(
-            firstEndpointIndex > 0 ? firstEndpointIndex : afterClassIndex,
-            existingEndpoints
-                .sorted((a, b) => a.compareTo(b))
-                .toSet()
-                .join('\n'),
-          );
-      }
-
-      //Combine mappers
-      if (newMappers.isNotEmpty) {
-        bool condition(String line) => line.endsWith('Mappers();');
-        final mapperIndex = existingContentLines.indexWhere(condition);
-
-        final existingMappers = existingContentLines
-            .where(condition)
-            .map((line) => line.trim())
-            .toSet()
-          ..addAll(newMappers)
-          ..add('\n');
-
-        existingContentLines
-          ..removeWhere(condition)
-          ..insert(mapperIndex, existingMappers.toSet().join('\n'));
-      }
-
-      final closingBracketIndex = existingContentLines.lastIndexWhere(
-        (line) => line.trim().contains('}'),
-      );
-
-      final closingBracketLineParts =
-          existingContentLines[closingBracketIndex].split('');
-
-      closingBracketLineParts.insert(
-        closingBracketLineParts.lastIndexWhere((line) => line == '}'),
-        fileBody,
-      );
-
-      existingContentLines[closingBracketIndex] =
-          closingBracketLineParts.join();
-
-      final resultFileBody = existingContentLines.join('\n');
-
-      await file.writeAsString(resultFileBody);
-      logger.i('File updated: $filePath');
-
-      return true;
-    } catch (e) {
-      logger.crash(error: e, stackTrace: StackTrace.current);
-      return false;
-    }
-  }
-
-  Future<void> _createFolders(
-    String path,
-    String methodCaller,
-  ) async {
-    try {
-      final directory = Directory(path);
-      if (directory.existsSync()) {
-        logger.i('$methodCaller. Directory already exists: $path');
-      } else {
-        await directory.create(recursive: true);
-        logger.i('$methodCaller. Directory created: $path');
-      }
-    } catch (e) {
-      logger.crash(error: e, stackTrace: StackTrace.current);
-    }
-  }
-}
-
-enum FileOperationResult {
-  created,
-  modified,
-  alreadyExists,
-  error,
 }

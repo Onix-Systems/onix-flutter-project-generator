@@ -25,7 +25,7 @@ void registerAppServices(GetIt getIt) {
     )
     ..registerLazySingleton<FastlaneService>(() => const FastlaneService())
     ..registerLazySingleton<ComponentGeneratorService>(
-      () => const ComponentGeneratorService(),
+      ComponentGeneratorService.new,
     )
     ..registerLazySingleton<GitCliffService>(() => const GitCliffService())
     ..registerSingleton<ConfigService>(ConfigService());
