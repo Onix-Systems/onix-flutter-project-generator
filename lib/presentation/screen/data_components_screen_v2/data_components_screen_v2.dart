@@ -8,13 +8,13 @@ import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/bloc/data_components_screen_v2_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/data_components_content.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/add_edit_component_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_source_dialog.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/delete_request_dialog.dart';
+import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/swagger_parser_screen.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
@@ -23,14 +23,7 @@ import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class DataComponentsScreenV2 extends StatefulWidget {
-  final Config config;
-  final VoidCallback? onGenerate;
-  final VoidCallback? onBack;
-
   const DataComponentsScreenV2({
-    required this.config,
-    this.onBack,
-    this.onGenerate,
     super.key,
   });
 
@@ -49,7 +42,7 @@ class _DataComponentsScreenState extends BaseState<
 
   @override
   void onBlocCreated(BuildContext context, DataComponentsScreenV2Bloc bloc) {
-    bloc.add(DataComponentsScreenV2Event.init(config: widget.config));
+    bloc.add(const DataComponentsScreenV2Event.init());
     super.onBlocCreated(context, bloc);
   }
 
@@ -68,6 +61,17 @@ class _DataComponentsScreenState extends BaseState<
       navigationBar: TitleBar(
         title: S.of(context).dataComponents,
         actions: [
+          blocBuilder(
+            builder: (context, state) {
+              if (state.projectExists && !state.swaggerUrlExists) {
+                return AppFilledButton(
+                  onPressed: () => _showSwaggerParserModal(context),
+                  label: S.of(context).parseSwaggerFile,
+                );
+              }
+              return const SizedBox();
+            },
+          ),
           AppFilledButton(
             label: S.of(context).addSource,
             icon: Icons.add,
@@ -122,7 +126,7 @@ class _DataComponentsScreenState extends BaseState<
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
-                          color: context.appColors.controlColor,
+                          color: context.appColors.fadedColor,
                         ),
                       ),
                       child: Material(
@@ -215,17 +219,21 @@ class _DataComponentsScreenState extends BaseState<
                       ),
                     ),
                   ),
-                const Delimiter.height(10),
-                NavigationButtonBar(
-                  nextText: S.of(context).continueLabel,
-                  prevText: S.of(context).goBack,
-                  onNextPressed: () {
-                    _onContinue(context, state);
-                  },
-                  onPrevPressed: () {
-                    _onBack(context, state);
-                  },
-                ),
+                if (!state.projectExists) ...[
+                  const Delimiter.height(10),
+                  NavigationButtonBar(
+                    nextText: S.of(context).continueLabel,
+                    prevText: S.of(context).goBack,
+                    onNextPressed: () {
+                      context.go(AppRouter.summaryScreen);
+                    },
+                    onPrevPressed: () {
+                      context.go(
+                        AppRouter.swaggerParserScreen,
+                      );
+                    },
+                  ),
+                ],
               ],
             ),
           );
@@ -254,25 +262,8 @@ class _DataComponentsScreenState extends BaseState<
     );
   }
 
-  void _onBack(BuildContext context, DataComponentsScreenV2State state) {
-    state.config.projectExists
-        ? widget.onBack?.call()
-        : context.go(
-            AppRouter.swaggerParserScreen,
-            extra: widget.config,
-          );
-  }
-
-  void _onContinue(BuildContext context, DataComponentsScreenV2State state) {
-    state.config.projectExists
-        ? widget.onGenerate?.call()
-        : context.go(AppRouter.summaryScreen, extra: widget.config);
-  }
-
   void _refresh(BuildContext context) => blocOf(context).add(
-        DataComponentsScreenV2Event.init(
-          config: blocOf(context).state.config,
-        ),
+        const DataComponentsScreenV2Event.init(),
       );
 
   void _showDeleteSourceDialog(
@@ -289,6 +280,29 @@ class _DataComponentsScreenState extends BaseState<
             sourceName: sourceName,
           ),
         );
+      },
+    );
+  }
+
+  Future<void> _showSwaggerParserModal(BuildContext context) {
+    return showCupertinoModalPopup(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: SizedBox(
+            height: 250,
+            width: 600,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: const SwaggerParserScreen(modal: true)),
+          ),
+        );
+      },
+    ).then(
+      (_) {
+        if (context.mounted) {
+          _refresh(context);
+        }
       },
     );
   }

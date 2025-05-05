@@ -5,9 +5,7 @@ part 'summary_screen_models.freezed.dart';
 
 @freezed
 class SummaryScreenEvent with _$SummaryScreenEvent {
-  const factory SummaryScreenEvent.init({
-    required Config config,
-  }) = SummaryScreenEventInit;
+  const factory SummaryScreenEvent.init() = SummaryScreenEventInit;
 }
 
 @freezed

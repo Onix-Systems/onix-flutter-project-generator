@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_bricks/app/router/app_router.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/bloc/platforms_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/widgets/platform_checkbox.dart';
-import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
-
-typedef OnPlatformChanged = void Function(AvailablePlatforms platforms);
 
 class PlatformScreenBody extends StatelessWidget {
-  final Config config;
-  final OnPlatformChanged onAction;
+  final PlatformsList platformsList;
+  final ValueChanged<AvailablePlatforms> onAction;
 
   const PlatformScreenBody({
-    required this.config,
+    required this.platformsList,
     required this.onAction,
     super.key,
   });
@@ -44,7 +38,6 @@ class PlatformScreenBody extends StatelessWidget {
                 assetPath: platform.asset,
                 initialValue: _getPlatformState(
                   context,
-                  config: config,
                   platform: platform,
                 ),
                 onAction: () => onAction(platform),
@@ -52,33 +45,6 @@ class PlatformScreenBody extends StatelessWidget {
             },
           ),
           const Spacer(),
-          Align(
-            alignment: Alignment.centerRight,
-            child: NavigationButtonBar(
-              nextText: S.of(context).continueLabel,
-              prevText: S.of(context).goBack,
-              isActive: config.platformsList.selected,
-              onNextPressed: () {
-                context.go(
-                  AppRouter.projectSettingsScreen,
-                  extra: config.copyWith(
-                    platformsList: config.platformsList,
-                    flavorize:
-                        !config.platformsList.webOnly && config.flavorize,
-                    flavors: config.platformsList.webOnly ? '' : config.flavors,
-                    generateSigningKey: !config.platformsList.webOnly &&
-                        config.generateSigningKey,
-                  ),
-                );
-              },
-              onPrevPressed: () {
-                context.go(
-                  AppRouter.projectNameScreen,
-                  extra: config,
-                );
-              },
-            ),
-          ),
         ],
       ),
     );
@@ -87,15 +53,13 @@ class PlatformScreenBody extends StatelessWidget {
   bool _getPlatformState(
     BuildContext context, {
     required AvailablePlatforms platform,
-    required Config config,
   }) {
     return switch (platform) {
-      AvailablePlatforms.mobile =>
-        config.platformsList.android && config.platformsList.ios,
-      AvailablePlatforms.web => config.platformsList.web,
-      AvailablePlatforms.windows => config.platformsList.windows,
-      AvailablePlatforms.macos => config.platformsList.macos,
-      AvailablePlatforms.linux => config.platformsList.linux,
+      AvailablePlatforms.mobile => platformsList.android && platformsList.ios,
+      AvailablePlatforms.web => platformsList.web,
+      AvailablePlatforms.windows => platformsList.windows,
+      AvailablePlatforms.macos => platformsList.macos,
+      AvailablePlatforms.linux => platformsList.linux,
     };
   }
 }

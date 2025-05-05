@@ -8,8 +8,6 @@ import 'package:onix_flutter_bricks/app/app_consts.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
-import 'package:onix_flutter_bricks/presentation/screen/generation_screen/generation_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summary_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_cell.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/widgets/summary_styles_cell.dart';
@@ -18,10 +16,7 @@ import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 import 'package:recase/recase.dart';
 
 class SummaryScreen extends StatefulWidget {
-  final Config config;
-
   const SummaryScreen({
-    required this.config,
     super.key,
   });
 
@@ -48,7 +43,7 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
 
   @override
   void onBlocCreated(BuildContext context, SummaryScreenBloc bloc) {
-    bloc.add(SummaryScreenEventInit(config: widget.config));
+    bloc.add(const SummaryScreenEventInit());
     super.onBlocCreated(context, bloc);
   }
 
@@ -174,21 +169,16 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
               onNextPressed: () {
                 context.go(
                   AppRouter.generationScreen,
-                  extra: GenerationScreenExtra(
-                    config: state.config,
-                  ),
                 );
               },
               onPrevPressed: () {
                 //While data components edit is not implemented
                 state.config.projectExists
                     ? context.go(
-                        AppRouter.screensScreen,
-                        extra: state.config,
+                        AppRouter.editProjectScreen,
                       )
                     : context.go(
                         AppRouter.dataComponentsScreen,
-                        extra: state.config,
                       );
               },
             ),

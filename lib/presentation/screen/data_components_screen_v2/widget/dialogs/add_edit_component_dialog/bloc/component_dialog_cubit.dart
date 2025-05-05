@@ -21,13 +21,13 @@ class ComponentDialogCubit
     extends BaseCubit<ComponentDialogState, ComponentDialogSR> {
   final AddComponentUseCase _addDataObjectComponentUseCase;
   final EditComponentUseCase _editDataObjectComponentUseCase;
-  final GetSwaggerComponentsUseCase _getSwaggerComponentsUseCase;
+  final GetComponentsUseCase _getSwaggerComponentsUseCase;
   final IsComponentExistsUseCase _isComponentExistsUseCase;
 
   ComponentDialogCubit({
     required AddComponentUseCase addDataObjectComponentUseCase,
     required EditComponentUseCase editDataObjectComponentUseCase,
-    required GetSwaggerComponentsUseCase getSwaggerComponentsUseCase,
+    required GetComponentsUseCase getSwaggerComponentsUseCase,
     required IsComponentExistsUseCase isComponentExistsUseCase,
   })  : _addDataObjectComponentUseCase = addDataObjectComponentUseCase,
         _editDataObjectComponentUseCase = editDataObjectComponentUseCase,

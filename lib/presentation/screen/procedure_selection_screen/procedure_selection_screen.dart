@@ -12,7 +12,6 @@ import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
 import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/json_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/signing_failure.dart';
 import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_screen/bloc/procedure_selection_screen_bloc_imports.dart';
@@ -32,10 +31,7 @@ import 'package:onix_flutter_bricks/util/extension/failure_dialog_extension.dart
 import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class ProcedureSelectionScreen extends StatefulWidget {
-  final BranchConfig branchConfig;
-
   const ProcedureSelectionScreen({
-    required this.branchConfig,
     super.key,
   });
 
@@ -55,10 +51,8 @@ class _ProcedureSelectionScreenState extends BaseState<
 
   @override
   void onBlocCreated(BuildContext context, ProcedureSelectionScreenBloc bloc) {
-    bloc.add(
-      ProcedureSelectionScreenEventInit(branchConfig: widget.branchConfig),
-    );
     super.onBlocCreated(context, bloc);
+    bloc.add(const ProcedureSelectionScreenEventInit());
   }
 
   @override
@@ -114,7 +108,6 @@ class _ProcedureSelectionScreenState extends BaseState<
               Positioned.fill(
                 child: FlavorizrOutput(
                   isGenerating: state.isGenerating,
-                  config: state.config,
                   onOpenAndroidStudio: () {
                     blocOf(context).add(
                       const ProcedureSelectionScreenEventOpenProjectInStudio(),
@@ -244,10 +237,10 @@ class _ProcedureSelectionScreenState extends BaseState<
           right: 10,
           bottom: 10,
           child: Text(
-            (state.config.branchConfig.localVersion.isNotEmpty &&
-                    state.config.branchConfig.remoteVersion.isNotEmpty)
-                ? 'v${state.config.branchConfig.localVersion} '
-                    '(Remote: v${state.config.branchConfig.remoteVersion})'
+            (state.branchConfig.localVersion.isNotEmpty &&
+                    state.branchConfig.remoteVersion.isNotEmpty)
+                ? 'v${state.branchConfig.localVersion} '
+                    '(Remote: v${state.branchConfig.remoteVersion})'
                 : '',
             style: context.appTextStyles.fs18?.copyWith(
               decoration: TextDecoration.none,
@@ -278,10 +271,6 @@ class _ProcedureSelectionScreenState extends BaseState<
       ),
       onNewProject: () => context.go(
         AppRouter.projectNameScreen,
-        extra: blocOf(context)
-            .state
-            .config
-            .copyWith(projectPath: blocOf(context).state.config.projectPath),
       ),
       onAndroidSigningCreated: (fingerprints) {
         showCupertinoDialog(
@@ -293,8 +282,7 @@ class _ProcedureSelectionScreenState extends BaseState<
       },
       loadFinished: () {
         context.go(
-          AppRouter.screensScreen,
-          extra: blocOf(context).state.config,
+          AppRouter.editProjectScreen,
         );
       },
     );

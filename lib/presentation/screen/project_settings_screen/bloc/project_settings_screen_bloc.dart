@@ -6,6 +6,7 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/domain/entity/state_management/project_state_manager.dart';
 import 'package:onix_flutter_bricks/domain/entity/state_management/state_management_variant.dart';
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
+import 'package:onix_flutter_bricks/domain/service/config_service/config_service.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/enum/project_localization.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
@@ -14,10 +15,15 @@ import 'package:onix_flutter_bricks/util/enum/project_theming.dart';
 class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenState, ProjectSettingsScreenSR> {
   final ScreenRepository _screenRepository;
+  final ConfigService _configService;
+
+  Config get _config => _configService.config;
 
   ProjectSettingsScreenBloc({
     required ScreenRepository screenRepository,
+    required ConfigService configService,
   })  : _screenRepository = screenRepository,
+        _configService = configService,
         super(const ProjectSettingsScreenStateData(config: Config())) {
     on<ProjectSettingsScreenEventInit>(_onInit);
     on<ProjectSettingsScreenEventFlavorizeChange>(_onFlavorizeChange);
@@ -44,18 +50,23 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
   ) {
     emit(
       state.copyWith(
-        config: event.config,
+        config: _configService.config,
       ),
     );
+    addSr(const ProjectSettingsScreenSR.loadFinished());
   }
 
   void _onFlavorizeChange(
     ProjectSettingsScreenEventFlavorizeChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    _configService.updateWith(
+      flavorize: !state.config.flavorize,
+    );
+
     emit(
       state.copyWith(
-        config: state.config.copyWith(flavorize: !state.config.flavorize),
+        config: _config,
       ),
     );
   }
@@ -64,11 +75,13 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventFlavorsChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    _configService.updateWith(
+      flavors: event.flavors.trim(),
+    );
+
     emit(
       state.copyWith(
-        config: state.config.copyWith(
-          flavors: event.flavors.trim(),
-        ),
+        config: _config,
       ),
     );
   }
@@ -77,10 +90,13 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventGenerateSigningKeyChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    _configService.updateWith(
+      generateSigningKey: event.generateSigningKey,
+    );
+
     emit(
       state.copyWith(
-        config:
-            state.config.copyWith(generateSigningKey: event.generateSigningKey),
+        config: _config,
       ),
     );
   }
@@ -89,9 +105,12 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventSigningVarsChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    _configService.updateWith(
+      signingVars: event.signingVars,
+    );
     emit(
       state.copyWith(
-        config: state.config.copyWith(signingVars: event.signingVars),
+        config: _config,
       ),
     );
   }
@@ -100,9 +119,12 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventUseSonarChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    _configService.updateWith(
+      useSonar: !state.config.useSonar,
+    );
     emit(
       state.copyWith(
-        config: state.config.copyWith(useSonar: !state.config.useSonar),
+        config: _config,
       ),
     );
   }
@@ -111,9 +133,12 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventGraphQLChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    _configService.updateWith(
+      graphql: !state.config.graphql,
+    );
     emit(
       state.copyWith(
-        config: state.config.copyWith(graphql: !state.config.graphql),
+        config: _config,
       ),
     );
   }
@@ -141,23 +166,27 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
         ..empty()
         ..addAll(screens: screens);
 
+      _configService.updateWith(
+        stateManager: event.stateManager,
+        screens: screens,
+      );
+
       emit(
         state.copyWith(
-          config: state.config.copyWith(
-            stateManager: event.stateManager,
-            screens: screens,
-          ),
+          config: _config,
         ),
       );
 
       return;
     }
 
+    _configService.updateWith(
+      stateManager: event.stateManager,
+    );
+
     emit(
       state.copyWith(
-        config: state.config.copyWith(
-          stateManager: event.stateManager,
-        ),
+        config: _config,
       ),
     );
   }
@@ -166,13 +195,14 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventRouterChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    _configService.updateWith(
+      router: state.config.router == ProjectRouter.goRouter
+          ? ProjectRouter.autoRouter
+          : ProjectRouter.goRouter,
+    );
     emit(
       state.copyWith(
-        config: state.config.copyWith(
-          router: state.config.router == ProjectRouter.goRouter
-              ? ProjectRouter.autoRouter
-              : ProjectRouter.goRouter,
-        ),
+        config: _config,
       ),
     );
   }
@@ -181,13 +211,14 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventLocalizationChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    _configService.updateWith(
+      localization: state.config.localization == ProjectLocalization.intl
+          ? ProjectLocalization.flutterGen
+          : ProjectLocalization.intl,
+    );
     emit(
       state.copyWith(
-        config: state.config.copyWith(
-          localization: state.config.localization == ProjectLocalization.intl
-              ? ProjectLocalization.flutterGen
-              : ProjectLocalization.intl,
-        ),
+        config: _config,
       ),
     );
   }
@@ -196,13 +227,14 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventThemingChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    _configService.updateWith(
+      theming: state.config.theming == ProjectTheming.manual
+          ? ProjectTheming.themeTailor
+          : ProjectTheming.manual,
+    );
     emit(
       state.copyWith(
-        config: state.config.copyWith(
-          theming: state.config.theming == ProjectTheming.themeTailor
-              ? ProjectTheming.manual
-              : ProjectTheming.themeTailor,
-        ),
+        config: _config,
       ),
     );
   }
@@ -211,9 +243,12 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventFirebaseChange event,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    _configService.updateWith(
+      firebaseAuth: !state.config.firebaseAuth,
+    );
     emit(
       state.copyWith(
-        config: state.config.copyWith(firebaseAuth: !state.config.firebaseAuth),
+        config: _config,
       ),
     );
   }
@@ -222,12 +257,13 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventScreenUtilChange _,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    _configService.updateWith(
+      screenUtil:
+          !state.config.platformsList.webOnly && !state.config.screenUtil,
+    );
     emit(
       state.copyWith(
-        config: state.config.copyWith(
-          screenUtil:
-              !state.config.platformsList.webOnly && !state.config.screenUtil,
-        ),
+        config: _config,
       ),
     );
   }
@@ -236,11 +272,12 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
     ProjectSettingsScreenEventSentryChange _,
     Emitter<ProjectSettingsScreenState> emit,
   ) {
+    _configService.updateWith(
+      sentry: !state.config.sentry,
+    );
     emit(
       state.copyWith(
-        config: state.config.copyWith(
-          sentry: !state.config.sentry,
-        ),
+        config: _config,
       ),
     );
   }
@@ -262,13 +299,14 @@ class ProjectSettingsScreenBloc extends BaseBloc<ProjectSettingsScreenEvent,
         ),
       );
     }
+    _configService.updateWith(
+      arch: event.arch,
+      stateManager: stateManager,
+    );
 
     emit(
       state.copyWith(
-        config: state.config.copyWith(
-          arch: event.arch,
-          stateManager: stateManager,
-        ),
+        config: _config,
       ),
     );
   }

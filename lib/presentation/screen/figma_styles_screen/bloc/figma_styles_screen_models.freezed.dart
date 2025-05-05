@@ -18,21 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$FigmaStylesScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function(String figmaId, String token) onGetStyles,
     required TResult Function() onClear,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function(String figmaId, String token)? onGetStyles,
     TResult? Function()? onClear,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function(String figmaId, String token)? onGetStyles,
     TResult Function()? onClear,
     required TResult orElse(),
@@ -91,10 +91,6 @@ abstract class _$$FigmaStylesScreenEventInitImplCopyWith<$Res> {
           _$FigmaStylesScreenEventInitImpl value,
           $Res Function(_$FigmaStylesScreenEventInitImpl) then) =
       __$$FigmaStylesScreenEventInitImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Config config});
-
-  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -109,93 +105,58 @@ class __$$FigmaStylesScreenEventInitImplCopyWithImpl<$Res>
 
   /// Create a copy of FigmaStylesScreenEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? config = null,
-  }) {
-    return _then(_$FigmaStylesScreenEventInitImpl(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
-    ));
-  }
-
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ConfigCopyWith<$Res> get config {
-    return $ConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$FigmaStylesScreenEventInitImpl implements FigmaStylesScreenEventInit {
-  const _$FigmaStylesScreenEventInitImpl({required this.config});
-
-  @override
-  final Config config;
+  const _$FigmaStylesScreenEventInitImpl();
 
   @override
   String toString() {
-    return 'FigmaStylesScreenEvent.init(config: $config)';
+    return 'FigmaStylesScreenEvent.init()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FigmaStylesScreenEventInitImpl &&
-            (identical(other.config, config) || other.config == config));
+            other is _$FigmaStylesScreenEventInitImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config);
-
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FigmaStylesScreenEventInitImplCopyWith<_$FigmaStylesScreenEventInitImpl>
-      get copyWith => __$$FigmaStylesScreenEventInitImplCopyWithImpl<
-          _$FigmaStylesScreenEventInitImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function(String figmaId, String token) onGetStyles,
     required TResult Function() onClear,
   }) {
-    return init(config);
+    return init();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function(String figmaId, String token)? onGetStyles,
     TResult? Function()? onClear,
   }) {
-    return init?.call(config);
+    return init?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function(String figmaId, String token)? onGetStyles,
     TResult Function()? onClear,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(config);
+      return init();
     }
     return orElse();
   }
@@ -237,16 +198,7 @@ class _$FigmaStylesScreenEventInitImpl implements FigmaStylesScreenEventInit {
 }
 
 abstract class FigmaStylesScreenEventInit implements FigmaStylesScreenEvent {
-  const factory FigmaStylesScreenEventInit({required final Config config}) =
-      _$FigmaStylesScreenEventInitImpl;
-
-  Config get config;
-
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FigmaStylesScreenEventInitImplCopyWith<_$FigmaStylesScreenEventInitImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  const factory FigmaStylesScreenEventInit() = _$FigmaStylesScreenEventInitImpl;
 }
 
 /// @nodoc
@@ -332,7 +284,7 @@ class _$FigmaStylesScreenEventOnGetStylesImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function(String figmaId, String token) onGetStyles,
     required TResult Function() onClear,
   }) {
@@ -342,7 +294,7 @@ class _$FigmaStylesScreenEventOnGetStylesImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function(String figmaId, String token)? onGetStyles,
     TResult? Function()? onClear,
   }) {
@@ -352,7 +304,7 @@ class _$FigmaStylesScreenEventOnGetStylesImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function(String figmaId, String token)? onGetStyles,
     TResult Function()? onClear,
     required TResult orElse(),
@@ -462,7 +414,7 @@ class _$FigmaStylesScreenEventOnClearImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
     required TResult Function(String figmaId, String token) onGetStyles,
     required TResult Function() onClear,
   }) {
@@ -472,7 +424,7 @@ class _$FigmaStylesScreenEventOnClearImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
     TResult? Function(String figmaId, String token)? onGetStyles,
     TResult? Function()? onClear,
   }) {
@@ -482,7 +434,7 @@ class _$FigmaStylesScreenEventOnClearImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     TResult Function(String figmaId, String token)? onGetStyles,
     TResult Function()? onClear,
     required TResult orElse(),

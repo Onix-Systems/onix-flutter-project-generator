@@ -10,7 +10,7 @@ import 'package:recase/recase.dart';
 
 part 'request_component.freezed.dart';
 
-@freezed
+@Freezed(toJson: false, fromJson: false, toStringOverride: false)
 class RequestComponent with _$RequestComponent {
   const RequestComponent._();
 
@@ -64,9 +64,10 @@ class RequestComponent with _$RequestComponent {
             e.isEnum ? DataFileType.none : DataFileType.request,
             isRequiredRequestBody: true,
             forSource: true,
+            stripComma: true,
           );
         },
-      ).join('\n');
+      ).join(',\n');
       codeLines
           .add('String _${operationId.camelCase}({$paramsDeclaration}) =>');
 
@@ -77,11 +78,11 @@ class RequestComponent with _$RequestComponent {
         pathWithParams = pathWithParams.replaceAll('{${e.name}}', '\$$name');
       }
       codeLines.add("'$pathWithParams';");
-      return codeLines.join('\n');
+      return codeLines.join(' ');
     }
 
     ///Build regular declaration
-    return "static const  _${operationId.camelCase} = '$path';";
+    return "static const _${operationId.camelCase} = '$path';";
   }
 
   ///Create declaration for request in source interface
@@ -194,9 +195,14 @@ class RequestComponent with _$RequestComponent {
           }
         }
       }
-      codeLines
-        ..add('}..removeWhere((key, value) => value == null);')
-        ..addNewLine();
+
+      if (queryParams.any((e) => !e.isRequired)) {
+        codeLines.add('}..removeWhere((key, value) => value == null);');
+      } else {
+        codeLines.add('};');
+      }
+
+      codeLines.addNewLine();
     }
 
     ///If create a new request
@@ -542,5 +548,51 @@ class RequestComponent with _$RequestComponent {
     }
 
     return formattedArray;
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'operationId': operationId,
+      'path': path,
+      'type': type.name,
+      'description': description,
+      'requestBody': requestBody?.toJson(),
+      'multipartBody': multipartBody.map((e) => e.toJson()).toList(),
+      'queryParams': queryParams.map((e) => e.toJson()).toList(),
+      'pathParams': pathParams.map((e) => e.toJson()).toList(),
+      'response': response.toJson(),
+      'fromSwagger': fromSwagger,
+    };
+  }
+
+  factory RequestComponent.fromJson(Map<String, dynamic> json) {
+    return RequestComponent(
+      operationId: json['operationId'],
+      path: json['path'],
+      type: SwaggerPathRequestType.fromString(json['type'] as String),
+      description: json['description'],
+      requestBody: json['requestBody'] != null
+          ? RequestBodyComponent.fromJson(
+              json['requestBody'] as Map<String, dynamic>,
+            )
+          : null,
+      multipartBody: (json['multipartBody'] as List<dynamic>)
+          .map((e) => RequestMultipartComponent.fromJson(e))
+          .toList(),
+      queryParams: (json['queryParams'] as List<dynamic>)
+          .map((e) => RequestQueryComponent.fromJson(e))
+          .toList(),
+      pathParams: (json['pathParams'] as List<dynamic>)
+          .map((e) => RequestPathComponent.fromJson(e))
+          .toList(),
+      response: ResponseParamComponent.fromJson(
+        json['response'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  @override
+  String toString() {
+    return 'RequestComponent(operationId: $operationId, path: $path, type: $type, description: $description, requestBody: $requestBody, multipartBody: $multipartBody, queryParams: $queryParams, pathParams: $pathParams, response: $response, fromSwagger: $fromSwagger)';
   }
 }

@@ -1,6 +1,7 @@
 import 'package:onix_flutter_bricks/app/util/enum/data_file_type.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/base_swagger_model_variable_response.dart';
+import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:recase/recase.dart';
 
@@ -37,6 +38,77 @@ sealed class SwaggerType {
     if (importName == null) return null;
     return "import 'package:$projectName/$importName';";
   }
+
+  Map<String, dynamic> toJson() {
+    var object = <String, dynamic>{};
+
+    switch (runtimeType) {
+      case SwaggerVariable:
+        object = (this as SwaggerVariable).getJson();
+      case SwaggerReference:
+        object = (this as SwaggerReference).getJson();
+      case SwaggerArray:
+        object = (this as SwaggerArray).getJson();
+      case SwaggerEnum:
+        object = (this as SwaggerEnum).getJson();
+      case SwaggerFile:
+        object = (this as SwaggerFile).getJson();
+      case SwaggerAllOf:
+        object = (this as SwaggerAllOf).getJson();
+      case SwaggerOperationDefault:
+      default:
+        object = (this as SwaggerOperationDefault).getJson();
+    }
+
+    return {
+      'type': runtimeType.toString(),
+      ...object,
+    };
+  }
+
+  factory SwaggerType.fromJson(Map<String, dynamic> json) {
+    final type = json['type'] as String;
+
+    switch (type) {
+      case 'SwaggerReference':
+        return SwaggerReference(
+          json['reference'] as String,
+        );
+      case 'SwaggerArray':
+        return SwaggerArray(
+          SwaggerModelVariableResponseV3(
+            name: json['itemType']['name'] as String,
+            type: SwaggerType.fromJson(
+              json['itemType']['type'] as Map<String, dynamic>,
+            ),
+            isRequired: json['itemType']['isRequired'] as bool,
+          ),
+        );
+      case 'SwaggerEnum':
+        return SwaggerEnum(
+          json['name'] as String,
+          (json['enumValues'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+        );
+      case 'SwaggerFile':
+        return SwaggerFile(from: json['from'] as String);
+      case 'SwaggerAllOf':
+        return SwaggerAllOf(
+          name: json['name'] as String,
+          parameters: (json['parameters'] as List<dynamic>)
+              .map((e) => SwaggerType.fromJson(e))
+              .toList(),
+        );
+      case 'OperationStatus':
+        return SwaggerOperationDefault();
+      case 'SwaggerVariable':
+      default:
+        return SwaggerVariable(
+          json['type'] as String,
+        );
+    }
+  }
 }
 
 class SwaggerVariable extends SwaggerType {
@@ -69,6 +141,12 @@ class SwaggerVariable extends SwaggerType {
   @override
   String? getDefaultReturnType(DataFileType fileType) =>
       type.getDefaultPrimitiveTypeClosure();
+
+  Map<String, dynamic> getJson() {
+    return {
+      'type': type,
+    };
+  }
 }
 
 class SwaggerReference extends SwaggerType {
@@ -136,6 +214,12 @@ class SwaggerReference extends SwaggerType {
   @override
   String? getDefaultReturnType(DataFileType fileType) =>
       '${getTypeDeclaration(fileType)}.empty()';
+
+  Map<String, dynamic> getJson() {
+    return {
+      'reference': reference,
+    };
+  }
 }
 
 class SwaggerArray extends SwaggerType {
@@ -185,6 +269,12 @@ class SwaggerArray extends SwaggerType {
 
   @override
   String? getDefaultReturnType(DataFileType fileType) => '[]';
+
+  Map<String, dynamic> getJson() {
+    return {
+      'itemType': itemType.toJson(),
+    };
+  }
 }
 
 class SwaggerEnum extends SwaggerType {
@@ -230,6 +320,13 @@ class SwaggerEnum extends SwaggerType {
   @override
   String? getDefaultReturnType(DataFileType fileType) =>
       '${getTypeDeclaration(fileType)}.${enumValues.first.camelCase}';
+
+  Map<String, dynamic> getJson() {
+    return {
+      'name': getTypeDeclaration(DataFileType.entity),
+      'enumValues': enumValues,
+    };
+  }
 }
 
 class SwaggerOperationDefault extends SwaggerType {
@@ -270,6 +367,12 @@ class SwaggerOperationDefault extends SwaggerType {
     if (importName == null) return null;
     return "import 'package:$importName';";
   }
+
+  Map<String, dynamic> getJson() {
+    return {
+      'type': type,
+    };
+  }
 }
 
 class SwaggerFile extends SwaggerType {
@@ -299,6 +402,12 @@ class SwaggerFile extends SwaggerType {
 
   @override
   String? getDefaultReturnType(DataFileType fileType) => null;
+
+  Map<String, dynamic> getJson() {
+    return {
+      'type': 'string',
+    };
+  }
 }
 
 class SwaggerAllOf extends SwaggerType {
@@ -336,4 +445,11 @@ class SwaggerAllOf extends SwaggerType {
 
   @override
   String getTypeDeclaration(DataFileType fileType) => name;
+
+  Map<String, dynamic> getJson() {
+    return {
+      'name': name,
+      'parameters': parameters.map((e) => e.toJson()).toList(),
+    };
+  }
 }

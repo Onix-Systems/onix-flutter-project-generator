@@ -12,6 +12,7 @@ class EnumParamComponent extends Component {
     required String name,
     required this.type,
     super.fromSwagger = true,
+    super.unmodifiable,
   }) : super(name: name.pascalCase);
 
   String getFolderPath(String projectRoot, ArchType arch) =>
@@ -38,5 +39,25 @@ class EnumParamComponent extends Component {
         '${'  ' * level}{${type.enumValues.map((e) => e).join(', ')}}';
 
     return variablesString;
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type.toJson(),
+    };
+  }
+
+  factory EnumParamComponent.fromJson(Map<String, dynamic> json) {
+    return EnumParamComponent(
+      name: json['name'] as String,
+      type: SwaggerEnum(
+        json['type']['name'] as String,
+        (json['type']['enumValues'] as List<dynamic>)
+            .map((e) => e as String)
+            .toList(),
+      ),
+      unmodifiable: true,
+    );
   }
 }

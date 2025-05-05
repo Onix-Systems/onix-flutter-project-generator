@@ -7,9 +7,8 @@ part 'project_settings_screen_models.freezed.dart';
 
 @freezed
 class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
-  const factory ProjectSettingsScreenEvent.init({
-    required Config config,
-  }) = ProjectSettingsScreenEventInit;
+  const factory ProjectSettingsScreenEvent.init() =
+      ProjectSettingsScreenEventInit;
 
   const factory ProjectSettingsScreenEvent.flavorizeChange() =
       ProjectSettingsScreenEventFlavorizeChange;

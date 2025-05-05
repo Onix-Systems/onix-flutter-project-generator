@@ -43,20 +43,22 @@ class SourceItem extends StatelessWidget {
                 source.name.titleCase,
                 style: context.appTextStyles.fs22,
               ),
-              const Spacer(),
-              IconButton(
-                onPressed: onNameEdit,
-                icon: const Icon(
-                  CupertinoIcons.pencil,
+              if (!source.unmodifiable) ...[
+                const Spacer(),
+                IconButton(
+                  onPressed: onNameEdit,
+                  icon: const Icon(
+                    CupertinoIcons.pencil,
+                  ),
                 ),
-              ),
-              IconButton(
-                onPressed: onSourceDelete,
-                icon: Icon(
-                  CupertinoIcons.delete,
-                  color: context.appColors.alarmColor,
+                IconButton(
+                  onPressed: onSourceDelete,
+                  icon: Icon(
+                    CupertinoIcons.delete,
+                    color: context.appColors.alarmColor,
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
         ),

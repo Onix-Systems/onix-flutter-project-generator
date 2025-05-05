@@ -20,7 +20,7 @@ import 'package:onix_flutter_core/onix_flutter_core.dart';
 
 class AddRequestDialogCubit
     extends BaseCubit<AddRequestDialogState, AddRequestDialogSR> {
-  final GetSwaggerComponentsUseCase _getSwaggerComponentsUseCase;
+  final GetComponentsUseCase _getSwaggerComponentsUseCase;
   final AddSourceRequestUseCase _addSourceRequestUseCase;
   final EditSourceRequestUseCase _editSourceRequestUseCase;
   final AddComponentUseCase _addComponentUseCase;
@@ -28,7 +28,7 @@ class AddRequestDialogCubit
   final IsComponentExistsUseCase _isComponentExistsUseCase;
 
   AddRequestDialogCubit({
-    required GetSwaggerComponentsUseCase getSwaggerComponentsUseCase,
+    required GetComponentsUseCase getSwaggerComponentsUseCase,
     required AddSourceRequestUseCase addSourceRequestUseCase,
     required EditSourceRequestUseCase editSourceRequestUseCase,
     required AddComponentUseCase addComponentUseCase,

@@ -35,36 +35,38 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_request_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_components_from_json_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/restore_components_use_case.dart';
 
 void registerUseCases(GetIt getIt) {
   getIt
     ..registerFactory<AddOutputMessageUseCase>(
       () => AddOutputMessageUseCase(
-        GetIt.I.get<OutputService>(),
+        getIt.get<OutputService>(),
       ),
     )
     ..registerFactory<GenerateDocumentationUseCase>(
       () => GenerateDocumentationUseCase(
-        GetIt.I.get<OutputService>(),
-        GetIt.I.get<DocsService>(),
+        getIt.get<OutputService>(),
+        getIt.get<DocsService>(),
       ),
     )
     ..registerFactory<GenerateScreensUseCase>(
       () => GenerateScreensUseCase(
-        GetIt.I.get<OutputService>(),
-        GetIt.I.get<ScreenRepository>(),
+        getIt.get<OutputService>(),
+        getIt.get<ScreenRepository>(),
       ),
     )
     ..registerFactory<RunProcessUseCase>(
-      () => RunProcessUseCase(GetIt.I.get<OutputService>()),
+      () => RunProcessUseCase(getIt.get<OutputService>()),
     )
     ..registerFactory<RunOsaScriptProcessUseCase>(
       () => RunOsaScriptProcessUseCase(
-        GetIt.I.get<AddOutputMessageUseCase>(),
+        getIt.get<AddOutputMessageUseCase>(),
       ),
     )
     ..registerFactory<GetBranchesProcessUseCase>(
@@ -72,32 +74,32 @@ void registerUseCases(GetIt getIt) {
     )
     ..registerFactory<GetFigmaStylesUseCase>(
       () => GetFigmaStylesUseCase(
-        GetIt.I.get<FigmaService>(),
+        getIt.get<FigmaService>(),
       ),
     )
     ..registerFactory<GenerateSigningConfigUseCase>(
       () => GenerateSigningConfigUseCase(
-        GetIt.I.get<FileGeneratorService>(),
+        getIt.get<FileGeneratorService>(),
       ),
     )
     ..registerFactory<GenerateFlavorsUseCase>(
       () => GenerateFlavorsUseCase(
-        GetIt.I.get<FileGeneratorService>(),
+        getIt.get<FileGeneratorService>(),
       ),
     )
     ..registerFactory<GenerateStylesUseCase>(
       () => GenerateStylesUseCase(
-        GetIt.I.get<FileGeneratorService>(),
+        getIt.get<FileGeneratorService>(),
       ),
     )
     ..registerFactory<GetGenerationOutputStream>(
       () => GetGenerationOutputStream(
-        GetIt.I.get<OutputService>(),
+        getIt.get<OutputService>(),
       ),
     )
     ..registerFactory<ClearOutputUseCase>(
       () => ClearOutputUseCase(
-        GetIt.I.get<OutputService>(),
+        getIt.get<OutputService>(),
       ),
     )
     ..registerFactory<GenerateFastlaneFilesUseCase>(
@@ -120,8 +122,8 @@ void registerUseCases(GetIt getIt) {
         getIt.get<ComponentGeneratorService>(),
       ),
     )
-    ..registerFactory<GetSwaggerComponentsUseCase>(
-      () => GetSwaggerComponentsUseCase(
+    ..registerFactory<GetComponentsUseCase>(
+      () => GetComponentsUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     )
@@ -193,6 +195,16 @@ void registerUseCases(GetIt getIt) {
     )
     ..registerFactory<DeleteSourceRequestUseCase>(
       () => DeleteSourceRequestUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<FetchComponentsFromJsonUseCase>(
+      () => FetchComponentsFromJsonUseCase(
+        getIt.get<SwaggerRepository>(),
+      ),
+    )
+    ..registerFactory<RestoreComponentsUseCase>(
+      () => RestoreComponentsUseCase(
         getIt.get<SwaggerRepository>(),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
+import 'package:onix_flutter_bricks/domain/service/config_service/config_service.dart';
 import 'package:onix_flutter_bricks/domain/usecase/docs_generation/generate_documentation_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/fastlane/generate_fastlane_files_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/file_generation/generate_flavors_usecase.dart';
@@ -27,10 +28,12 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_data_object_use_
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/edit_source_request_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/empty_swagger_components_usecase.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_components_from_json_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/fetch_swagger_data_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
+import 'package:onix_flutter_bricks/domain/usecase/swagger/restore_components_use_case.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/bloc/data_components_screen_v2_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_edit_component_dialog/bloc/component_dialog_cubit.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_cubit.dart';
@@ -43,7 +46,6 @@ import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_scre
 import 'package:onix_flutter_bricks/presentation/screen/project_name_screen/bloc/project_name_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/project_settings_screen/bloc/project_settings_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc.dart';
-import 'package:onix_flutter_bricks/presentation/screen/screens_screen/widgets/figma_styles_dialog/bloc/figma_styles_dialog_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/splash_screen/bloc/splash_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/summary_screen/bloc/summary_screen_bloc.dart';
 import 'package:onix_flutter_bricks/presentation/screen/swagger_parser_screen/bloc/swagger_parser_screen_bloc.dart';
@@ -52,93 +54,121 @@ void registerBloc(GetIt getIt) {
   getIt
     ..registerFactory<GenerationScreenBloc>(
       () => GenerationScreenBloc(
-        GetIt.I.get<GenerateDocumentationUseCase>(),
-        GetIt.I.get<GenerateScreensUseCase>(),
-        GetIt.I.get<AddOutputMessageUseCase>(),
-        GetIt.I.get<RunProcessUseCase>(),
-        GetIt.I.get<RunOsaScriptProcessUseCase>(),
-        GetIt.I.get<GenerateSigningConfigUseCase>(),
-        GetIt.I.get<GenerateStylesUseCase>(),
-        GetIt.I.get<GetGenerationOutputStream>(),
-        GetIt.I.get<GenerateFastlaneFilesUseCase>(),
-        GetIt.I.get<CreateSwaggerComponentsUseCase>(),
-        GetIt.I.get<GenerateGitCliffFilesUseCase>(),
+        configService: getIt.get<ConfigService>(),
+        generateDocumentationUseCase: getIt.get<GenerateDocumentationUseCase>(),
+        generateFastlaneFilesUseCase: getIt.get<GenerateFastlaneFilesUseCase>(),
+        generateGitCliffFilesUseCase: getIt.get<GenerateGitCliffFilesUseCase>(),
+        generateScreensUseCase: getIt.get<GenerateScreensUseCase>(),
+        generateStylesUseCase: getIt.get<GenerateStylesUseCase>(),
+        addOutputMessageUseCase: getIt.get<AddOutputMessageUseCase>(),
+        getGenerationOutputStream: getIt.get<GetGenerationOutputStream>(),
+        runProcessUseCase: getIt.get<RunProcessUseCase>(),
+        runOsaScriptProcessUseCase: getIt.get<RunOsaScriptProcessUseCase>(),
+        createSwaggerComponentsUseCase:
+            getIt.get<CreateSwaggerComponentsUseCase>(),
+        generateSigningConfigUseCase: getIt.get<GenerateSigningConfigUseCase>(),
       ),
     )
-    ..registerFactory<SummaryScreenBloc>(SummaryScreenBloc.new)
+    ..registerFactory<SummaryScreenBloc>(
+      () => SummaryScreenBloc(
+        screenRepository: getIt.get<ScreenRepository>(),
+        configService: getIt.get<ConfigService>(),
+      ),
+    )
     ..registerFactory<SwaggerParserScreenBloc>(
       () => SwaggerParserScreenBloc(
-        GetIt.I.get<FetchSwaggerDataUseCase>(),
-        GetIt.I.get<ClearSwaggerComponentsUseCase>(),
+        fetchSwaggerDataUseCase: getIt.get<FetchSwaggerDataUseCase>(),
+        getComponentsUseCase: getIt.get<GetComponentsUseCase>(),
+        restoreComponentsUseCase: getIt.get<RestoreComponentsUseCase>(),
+        clearSwaggerComponentsUseCase:
+            getIt.get<ClearSwaggerComponentsUseCase>(),
+        configService: getIt.get<ConfigService>(),
       ),
     )
-    ..registerFactory<ScreensScreenBloc>(ScreensScreenBloc.new)
+    ..registerFactory<ScreensScreenBloc>(
+      () => ScreensScreenBloc(
+        configService: getIt.get<ConfigService>(),
+        screenRepository: getIt.get<ScreenRepository>(),
+      ),
+    )
     ..registerFactory<FigmaStylesScreenBloc>(
       () => FigmaStylesScreenBloc(
-        GetIt.I.get<GetFigmaStylesUseCase>(),
-      ),
-    )
-    ..registerFactory<FigmaStylesDialogBloc>(
-      () => FigmaStylesDialogBloc(
-        GetIt.I.get<GetFigmaStylesUseCase>(),
+        getFigmaStylesUseCase: getIt.get<GetFigmaStylesUseCase>(),
+        configService: getIt.get<ConfigService>(),
       ),
     )
     ..registerFactory<ProjectSettingsScreenBloc>(
       () => ProjectSettingsScreenBloc(
-        screenRepository: GetIt.I.get<ScreenRepository>(),
+        screenRepository: getIt.get<ScreenRepository>(),
+        configService: getIt.get<ConfigService>(),
       ),
     )
-    ..registerFactory<PlatformsScreenBloc>(PlatformsScreenBloc.new)
+    ..registerFactory<PlatformsScreenBloc>(
+      () => PlatformsScreenBloc(
+        configService: getIt.get<ConfigService>(),
+      ),
+    )
     ..registerFactory<ProjectNameScreenBloc>(
       () => ProjectNameScreenBloc(
-        GetIt.I.get<GetBranchesProcessUseCase>(),
+        getBranchesProcessUseCase: getIt.get<GetBranchesProcessUseCase>(),
+        configService: getIt.get<ConfigService>(),
       ),
     )
-    ..registerFactory<SplashScreenBloc>(SplashScreenBloc.new)
+    ..registerFactory<SplashScreenBloc>(
+      () => SplashScreenBloc(
+        configService: getIt.get<ConfigService>(),
+      ),
+    )
     ..registerFactory<ProcedureSelectionScreenBloc>(
       () => ProcedureSelectionScreenBloc(
-        GetIt.I.get<GenerateSigningConfigUseCase>(),
-        GetIt.I.get<GenerateFlavorsUseCase>(),
-        GetIt.I.get<GetSigningFingerprintUseCase>(),
-        GetIt.I.get<ClearSwaggerComponentsUseCase>(),
-        GetIt.I.get<ClearScreensUseCase>(),
-        GetIt.I.get<GetGenerationOutputStream>(),
-        GetIt.I.get<ClearOutputUseCase>(),
-        GetIt.I.get<RunProcessUseCase>(),
+        configService: getIt.get<ConfigService>(),
+        generateSigningConfigUseCase: getIt.get<GenerateSigningConfigUseCase>(),
+        generateFlavorsUseCase: getIt.get<GenerateFlavorsUseCase>(),
+        getSigningFingerprintUseCase: getIt.get<GetSigningFingerprintUseCase>(),
+        clearSwaggerComponentsUseCase:
+            getIt.get<ClearSwaggerComponentsUseCase>(),
+        clearScreensUseCase: getIt.get<ClearScreensUseCase>(),
+        getGenerationOutputStream: getIt.get<GetGenerationOutputStream>(),
+        clearOutputUseCase: getIt.get<ClearOutputUseCase>(),
+        runProcessUseCase: getIt.get<RunProcessUseCase>(),
+        fetchComponentsFromJsonUseCase:
+            getIt.get<FetchComponentsFromJsonUseCase>(),
+        getComponentsUseCase: getIt.get<GetComponentsUseCase>(),
       ),
     )
     ..registerFactory<DataComponentsScreenV2Bloc>(
       () => DataComponentsScreenV2Bloc(
-        getSwaggerComponentsUseCase: GetIt.I.get<GetSwaggerComponentsUseCase>(),
-        addSourceUseCase: GetIt.I.get<AddSourceUseCase>(),
-        deleteSourceUseCase: GetIt.I.get<DeleteSourceUseCase>(),
-        editSourceNameUseCase: GetIt.I.get<EditSourceNameUseCase>(),
-        deleteDataObjectComponentUseCase: GetIt.I.get<DeleteComponentUseCase>(),
-        deleteSourceRequestUseCase: GetIt.I.get<DeleteSourceRequestUseCase>(),
+        getSwaggerComponentsUseCase: getIt.get<GetComponentsUseCase>(),
+        addSourceUseCase: getIt.get<AddSourceUseCase>(),
+        deleteSourceUseCase: getIt.get<DeleteSourceUseCase>(),
+        editSourceNameUseCase: getIt.get<EditSourceNameUseCase>(),
+        deleteDataObjectComponentUseCase: getIt.get<DeleteComponentUseCase>(),
+        deleteSourceRequestUseCase: getIt.get<DeleteSourceRequestUseCase>(),
+        configService: getIt.get<ConfigService>(),
       ),
     )
     ..registerFactory<ComponentDialogCubit>(
       () => ComponentDialogCubit(
-        addDataObjectComponentUseCase: GetIt.I.get<AddComponentUseCase>(),
-        editDataObjectComponentUseCase: GetIt.I.get<EditComponentUseCase>(),
-        getSwaggerComponentsUseCase: GetIt.I.get<GetSwaggerComponentsUseCase>(),
-        isComponentExistsUseCase: GetIt.I.get<IsComponentExistsUseCase>(),
+        addDataObjectComponentUseCase: getIt.get<AddComponentUseCase>(),
+        editDataObjectComponentUseCase: getIt.get<EditComponentUseCase>(),
+        getSwaggerComponentsUseCase: getIt.get<GetComponentsUseCase>(),
+        isComponentExistsUseCase: getIt.get<IsComponentExistsUseCase>(),
       ),
     )
     ..registerFactory<AddRequestDialogCubit>(
       () => AddRequestDialogCubit(
-        getSwaggerComponentsUseCase: GetIt.I.get<GetSwaggerComponentsUseCase>(),
-        addSourceRequestUseCase: GetIt.I.get<AddSourceRequestUseCase>(),
-        editSourceRequestUseCase: GetIt.I.get<EditSourceRequestUseCase>(),
-        addComponentUseCase: GetIt.I.get<AddComponentUseCase>(),
-        getComponentByNameUseCase: GetIt.I.get<GetComponentByNameUseCase>(),
-        isComponentExistsUseCase: GetIt.I.get<IsComponentExistsUseCase>(),
+        getSwaggerComponentsUseCase: getIt.get<GetComponentsUseCase>(),
+        addSourceRequestUseCase: getIt.get<AddSourceRequestUseCase>(),
+        editSourceRequestUseCase: getIt.get<EditSourceRequestUseCase>(),
+        addComponentUseCase: getIt.get<AddComponentUseCase>(),
+        getComponentByNameUseCase: getIt.get<GetComponentByNameUseCase>(),
+        isComponentExistsUseCase: getIt.get<IsComponentExistsUseCase>(),
       ),
     )
     ..registerFactory<AddRequestParamsDialogCubit>(
       () => AddRequestParamsDialogCubit(
-        getComponentByNameUseCase: GetIt.I.get<GetComponentByNameUseCase>(),
-        getSwaggerComponentsUseCase: GetIt.I.get<GetSwaggerComponentsUseCase>(),
+        getComponentByNameUseCase: getIt.get<GetComponentByNameUseCase>(),
+        getSwaggerComponentsUseCase: getIt.get<GetComponentsUseCase>(),
       ),
     )
     ..registerFactory<ClassFromJsonDialogCubit>(ClassFromJsonDialogCubit.new);

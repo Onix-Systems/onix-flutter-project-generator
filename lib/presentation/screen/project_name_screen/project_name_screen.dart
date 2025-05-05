@@ -19,10 +19,7 @@ import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 import 'package:onix_flutter_bricks/presentation/widget/tooltip_wrapper.dart';
 
 class ProjectNameScreen extends StatefulWidget {
-  final Config config;
-
   const ProjectNameScreen({
-    required this.config,
     super.key,
   });
 
@@ -43,19 +40,33 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
 
   @override
   void onBlocCreated(BuildContext context, ProjectNameScreenBloc bloc) {
-    bloc.add(ProjectNameScreenEvent.init(config: widget.config));
-    projectNameController.text = widget.config.projectName;
-    organizationController.text = widget.config.organization;
+    bloc.add(const ProjectNameScreenEvent.init());
     super.onBlocCreated(context, bloc);
   }
 
   @override
   Widget buildWidget(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: TitleBar(title: S.of(context).enterProjectName),
-      child: SizedBox.expand(
-        child: blocBuilder(builder: _buildMainContainer),
+    return srObserver(
+      context: context,
+      child: CupertinoPageScaffold(
+        navigationBar: TitleBar(title: S.of(context).enterProjectName),
+        child: SizedBox.expand(
+          child: blocBuilder(builder: _buildMainContainer),
+        ),
       ),
+      onSR: _onSR,
+    );
+  }
+
+  void _onSR(
+    BuildContext context,
+    ProjectNameScreenSR sr,
+  ) {
+    sr.when(
+      init: () {
+        projectNameController.text = blocOf(context).state.config.projectName;
+        organizationController.text = blocOf(context).state.config.organization;
+      },
     );
   }
 
@@ -84,7 +95,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
                         projectName: projectNameController.text,
                       ),
                     ),
-                    onEditingComplete: () => _nextFocus(state),
+                    onEditingComplete: () => _nextFocus(state.config),
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(
                         AppConsts.projectNameInputRegExp,
@@ -112,7 +123,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
                         organization: organizationController.text,
                       ),
                     ),
-                    onEditingComplete: () => _nextFocus(state),
+                    onEditingComplete: () => _nextFocus(state.config),
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(
                         AppConsts.organizationInputRegExp,
@@ -164,7 +175,6 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
               onPrevPressed: () {
                 context.go(
                   AppRouter.procedureSelectionScreen,
-                  extra: widget.config.branchConfig,
                 );
               },
             ),
@@ -174,11 +184,10 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
     );
   }
 
-  void _nextFocus(ProjectNameScreenState state) {
-    if (state.config.projectName.isNotEmpty &&
-        state.config.organization.isNotEmpty) {
+  void _nextFocus(Config config) {
+    if (config.projectName.isNotEmpty && config.organization.isNotEmpty) {
       nextFocusNode.requestFocus();
-    } else if (state.config.projectName.isEmpty) {
+    } else if (config.projectName.isEmpty) {
       projectNameFocusNode.requestFocus();
     } else {
       organizationFocusNode.requestFocus();
@@ -203,7 +212,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
           ),
           children: <TextSpan>[
             TextSpan(
-              text: blocOf(context).state.config.projectName,
+              text: config.projectName,
               style: context.appTextStyles.fs18?.copyWith(
                 color: context.appColors.textColor,
                 fontSize: 16,
@@ -216,7 +225,7 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
               ),
             ),
             TextSpan(
-              text: blocOf(context).state.config.organization,
+              text: config.organization,
               style: context.appTextStyles.fs18?.copyWith(
                 color: context.appColors.textColor,
                 fontSize: 16,
@@ -234,7 +243,6 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
       onOk: () {
         context.go(
           AppRouter.platformsScreen,
-          extra: config,
         );
       },
     );

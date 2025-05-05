@@ -7,11 +7,13 @@ class ComponentGeneratorParams implements BaseGenerationParams {
   final String projectRootPath;
   final ArchType arch;
   final Components components;
+  final bool projectExists;
 
   const ComponentGeneratorParams({
     required this.projectName,
     required this.projectRootPath,
     required this.arch,
     required this.components,
+    this.projectExists = false,
   });
 }

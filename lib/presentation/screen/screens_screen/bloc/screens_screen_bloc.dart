@@ -2,13 +2,24 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/di/repository.dart';
 import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/repository/screen_repository.dart';
+import 'package:onix_flutter_bricks/domain/service/config_service/config_service.dart';
 import 'package:onix_flutter_bricks/presentation/screen/screens_screen/bloc/screens_screen_bloc_imports.dart';
 
 class ScreensScreenBloc
     extends BaseBloc<ScreensScreenEvent, ScreensScreenState, ScreensScreenSR> {
-  ScreensScreenBloc() : super(const ScreensScreenStateData(config: Config())) {
+  final ConfigService _configService;
+  final ScreenRepository _screenRepository;
+
+  Config get _config => _configService.config;
+
+  ScreensScreenBloc({
+    required ConfigService configService,
+    required ScreenRepository screenRepository,
+  })  : _configService = configService,
+        _screenRepository = screenRepository,
+        super(const ScreensScreenStateData(config: Config())) {
     on<ScreensScreenEventInit>(_onInit);
     on<ScreensScreenEventOnScreenAdd>(_onScreenAdd);
     on<ScreensScreenEventOnScreenDelete>(_onScreenDelete);
@@ -20,11 +31,13 @@ class ScreensScreenBloc
     ScreensScreenEventInit event,
     Emitter<ScreensScreenState> emit,
   ) {
+    _configService.updateWith(
+      screens: _screenRepository.screens,
+    );
+
     emit(
       state.copyWith(
-        config: event.config.copyWith(
-          screens: screenRepository.screens,
-        ),
+        config: _config,
       ),
     );
   }
@@ -33,7 +46,7 @@ class ScreensScreenBloc
     ScreensScreenEventOnScreenAdd event,
     Emitter<ScreensScreenState> emit,
   ) {
-    if (screenRepository.exists(screenName: event.screen.name)) {
+    if (_screenRepository.exists(screenName: event.screen.name)) {
       addSr(const ScreensScreenSR.existsError());
     } else {
       if (event.screen.name.isEmpty) {
@@ -41,11 +54,17 @@ class ScreensScreenBloc
         return;
       }
 
-      screenRepository.addScreen(screen: event.screen);
+      _screenRepository.addScreen(screen: event.screen);
+
+      _configService.updateWith(
+        screens: _screenRepository.screens,
+      );
+
+      _configService.screensModified.value = true;
 
       emit(
         state.copyWith(
-          config: state.config.copyWith(screens: screenRepository.screens),
+          config: _config,
         ),
       );
     }
@@ -55,10 +74,19 @@ class ScreensScreenBloc
     ScreensScreenEventOnScreenDelete event,
     Emitter<ScreensScreenState> emit,
   ) {
-    screenRepository.removeScreen(screenName: event.screenName);
+    _screenRepository.removeScreen(screenName: event.screenName);
+
+    _configService.updateWith(
+      screens: _screenRepository.screens,
+    );
+
+    _configService.screensModified.value = _screenRepository.screens
+        .difference(_configService.initialScreens)
+        .isNotEmpty;
+
     emit(
       state.copyWith(
-        config: state.config.copyWith(screens: screenRepository.screens),
+        config: _config,
       ),
     );
   }
@@ -67,12 +95,14 @@ class ScreensScreenBloc
     ScreensScreenEventOnScreenModify event,
     Emitter<ScreensScreenState> emit,
   ) {
-    screenRepository.modifyScreen(event.screen, event.oldName);
+    _screenRepository.modifyScreen(event.screen, event.oldName);
+    _configService.updateWith(
+      screens: _screenRepository.screens,
+    );
+
     emit(
       state.copyWith(
-        config: state.config.copyWith(
-          screens: screenRepository.screens,
-        ),
+        config: _config,
       ),
     );
   }
@@ -83,16 +113,23 @@ class ScreensScreenBloc
   ) {
     final oldInitial = state.config.screens.firstWhere((e) => e.initial)
       ..initial = false;
-    screenRepository.modifyScreen(oldInitial, oldInitial.name);
+    _screenRepository.modifyScreen(oldInitial, oldInitial.name);
     event.screen.initial = true;
-    screenRepository.modifyScreen(event.screen, event.screen.name);
+    _screenRepository.modifyScreen(event.screen, event.screen.name);
+    _configService.updateWith(
+      screens: _screenRepository.screens,
+    );
+
+    //TODO: Check if this is correct
+    _configService.screensModified.value = _configService.initialScreens
+            .firstWhere((screen) => screen.initial)
+            .name !=
+        event.screen.name;
 
     emit(
       state.copyWith(
+        config: _config,
         stateUpdate: state.stateUpdate + 1,
-        config: state.config.copyWith(
-          screens: screenRepository.screens,
-        ),
       ),
     );
   }

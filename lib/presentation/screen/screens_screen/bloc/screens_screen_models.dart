@@ -6,9 +6,7 @@ part 'screens_screen_models.freezed.dart';
 
 @freezed
 class ScreensScreenEvent with _$ScreensScreenEvent {
-  const factory ScreensScreenEvent.init({
-    required Config config,
-  }) = ScreensScreenEventInit;
+  const factory ScreensScreenEvent.init() = ScreensScreenEventInit;
 
   const factory ScreensScreenEvent.onScreenAdd({
     required Screen screen,

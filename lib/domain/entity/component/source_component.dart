@@ -14,12 +14,14 @@ class SourceComponent {
   final List<RequestComponent> requests;
   final ArchType arch;
   final bool fromSwagger;
+  final bool unmodifiable;
 
   SourceComponent({
     required String name,
     required this.requests,
     required this.arch,
     this.fromSwagger = true,
+    this.unmodifiable = false,
   }) : name = name.pascalCase;
 
   SourceComponent copyWith({
@@ -27,12 +29,14 @@ class SourceComponent {
     List<RequestComponent>? requests,
     ArchType? arch,
     bool? fromSwagger,
+    bool? unmodifiable,
   }) {
     return SourceComponent(
       name: name ?? this.name,
       requests: requests ?? this.requests,
       arch: arch ?? this.arch,
       fromSwagger: fromSwagger ?? this.fromSwagger,
+      unmodifiable: unmodifiable ?? this.unmodifiable,
     );
   }
 
@@ -344,51 +348,41 @@ class SourceComponent {
       ///Add path params imports
       if (request.pathParams.isNotEmpty) {
         for (final e in request.pathParams) {
-          if (e.isEnum) {
-            final import = getEnumImport(projectName, e.type);
-            if (!imports.contains(import)) {
-              imports.add(import);
-            }
-          } else {
-            final import = e.type
-                .getFullFileImport(projectName, DataFileType.request, arch);
-            if (import != null && !imports.contains(import)) {
-              imports.add(import);
-            }
-          }
+          _getImport(e, projectName, imports);
         }
       }
 
       ///Add query params imports
       if (request.queryParams.isNotEmpty) {
         for (final e in request.queryParams) {
-          if (e.isEnum) {
-            final import = getEnumImport(projectName, e.type);
-            if (!imports.contains(import)) {
-              imports.add(import);
-            }
-          } else {
-            final import = e.type
-                .getFullFileImport(projectName, DataFileType.request, arch);
-            if (import != null && !imports.contains(import)) {
-              imports.add(import);
-            }
-          }
+          _getImport(e, projectName, imports);
         }
       }
 
       ///Add multipart params imports
       if (request.multipartBody.isNotEmpty) {
         for (final e in request.multipartBody) {
-          final import =
-              e.type.getFullFileImport(projectName, DataFileType.request, arch);
-          if (import != null && !imports.contains(import)) {
-            imports.add(import);
-          }
+          _getImport(e, projectName, imports);
         }
       }
     }
     return imports.map((e) => e).join('\n');
+  }
+
+  void _getImport(
+    RequestParamComponent e,
+    String projectName,
+    Set<String> imports,
+  ) {
+    if (!e.isEnum &&
+        !(e.type is SwaggerArray &&
+            (e.type as SwaggerArray).itemType.type is SwaggerEnum)) {
+      final import =
+          e.type.getFullFileImport(projectName, DataFileType.request, arch);
+      if (import != null && !imports.contains(import)) {
+        imports.add(import);
+      }
+    }
   }
 
   String _buildRepositoryImports(String projectName, ArchType arch) {
@@ -550,5 +544,33 @@ class SourceComponent {
       }
     }
     return components;
+  }
+
+  void mergeWith(SourceComponent other) {
+    requests.addAll(other.requests);
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'requests': requests.map((e) => e.toJson()).toList(),
+    };
+  }
+
+  factory SourceComponent.fromJson(Map<String, dynamic> json) {
+    return SourceComponent(
+      name: json['name'] as String,
+      requests: (json['requests'] as List<dynamic>)
+          .map((e) => RequestComponent.fromJson(e))
+          .toList(),
+      arch: ArchType.clean,
+      fromSwagger: false,
+      unmodifiable: true,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'SourceComponent(name: $name, requests: $requests, arch: $arch, fromSwagger: $fromSwagger)';
   }
 }

@@ -1,8 +1,7 @@
 //@formatter:off
 import 'package:go_router/go_router.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/branch_config.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/data_components_screen_v2.dart';
+import 'package:onix_flutter_bricks/presentation/screen/edit_project_screen/edit_project_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/figma_styles_screen/figma_styles_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/generation_screen.dart';
 import 'package:onix_flutter_bricks/presentation/screen/platforms_screen/platforms_screen.dart';
@@ -29,6 +28,7 @@ class AppRouter {
   static const _swaggerParserScreen = '/swagger_parser';
   static const _summaryScreen = '/summary';
   static const _generationScreen = '/generation';
+  static const _editProjectScreen = '/edit_project';
   //{consts end}
 
   static final AppRouter _instance = AppRouter._privateConstructor();
@@ -45,6 +45,7 @@ class AppRouter {
   static String get swaggerParserScreen => _swaggerParserScreen;
   static String get summaryScreen => _summaryScreen;
   static String get generationScreen => _generationScreen;
+  static String get editProjectScreen => _editProjectScreen;
 
   //{getters end}
 
@@ -68,73 +69,58 @@ class AppRouter {
         GoRoute(
           path: _projectNameScreen,
           name: 'ProjectNameScreen',
-          builder: (context, state) => ProjectNameScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const ProjectNameScreen(),
         ),
         GoRoute(
           path: _procedureSelectionScreen,
           name: 'ProcedureSelectionScreen',
-          builder: (context, state) => ProcedureSelectionScreen(
-            branchConfig: state.extra as BranchConfig,
-          ),
+          builder: (context, state) => const ProcedureSelectionScreen(),
         ),
         GoRoute(
           path: _platformsScreen,
           name: 'PlatformsScreen',
-          builder: (context, state) => PlatformsScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const PlatformsScreen(),
         ),
         GoRoute(
           path: _projectSettingsScreen,
           name: 'ProjectSettingsScreen',
-          builder: (context, state) => ProjectSettingsScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const ProjectSettingsScreen(),
         ),
         GoRoute(
           path: _screensScreen,
           name: 'ScreensScreen',
-          builder: (context, state) => ScreensScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const ScreensScreen(),
         ),
         GoRoute(
           path: _stylesScreen,
           name: 'StylesScreen',
-          builder: (context, state) => FigmaStylesScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const FigmaStylesScreen(),
         ),
         GoRoute(
           path: _dataComponentsScreen,
           name: 'DataComponentsScreen',
-          builder: (context, state) => DataComponentsScreenV2(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const DataComponentsScreenV2(),
         ),
         GoRoute(
           path: _swaggerParserScreen,
           name: 'SwaggerParserScreen',
-          builder: (context, state) => SwaggerParserScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const SwaggerParserScreen(),
         ),
         GoRoute(
           path: _summaryScreen,
           name: 'SummaryScreen',
-          builder: (context, state) => SummaryScreen(
-            config: state.extra as Config,
-          ),
+          builder: (context, state) => const SummaryScreen(),
         ),
         GoRoute(
           path: _generationScreen,
           name: 'GenerationScreen',
-          builder: (context, state) => GenerationScreen(
-            extra: state.extra as GenerationScreenExtra,
-          ),
+          builder: (context, state) => const GenerationScreen(),
         ),
+        GoRoute(
+          path: _editProjectScreen,
+          name: 'EditProjectScreen',
+          builder: (context, state) => const EditProjectScreen(),
+        )
         //{routes end}
       ],
     );

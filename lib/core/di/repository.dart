@@ -17,12 +17,12 @@ void registerRepositories(GetIt getIt) {
     )
     ..registerLazySingleton<FigmaRepository>(
       () => FigmaRepositoryImpl(
-        figmaRemoteDataSource: GetIt.I.get<FigmaRemoteDataSource>(),
+        figmaRemoteDataSource: getIt.get<FigmaRemoteDataSource>(),
       ),
     )
     ..registerLazySingleton<SwaggerRepository>(
       () => SwaggerRepositoryImpl(
-        GetIt.I.get<SwaggerRemoteSource>(),
+        getIt.get<SwaggerRemoteSource>(),
       ),
     ); //{repositories end}
 }

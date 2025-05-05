@@ -3,17 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
 import 'package:onix_flutter_bricks/app/router/app_router.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 
 class GenerationControls extends StatelessWidget {
   final VoidCallback onOpenAndroidStudio;
   final VoidCallback? onClose;
-  final Config config;
 
   const GenerationControls({
     required this.onOpenAndroidStudio,
-    required this.config,
     this.onClose,
     super.key,
   });
@@ -56,7 +53,6 @@ class GenerationControls extends StatelessWidget {
   void _onCloseGeneration(BuildContext context) {
     context.go(
       AppRouter.procedureSelectionScreen,
-      extra: config.branchConfig,
     );
   }
 }

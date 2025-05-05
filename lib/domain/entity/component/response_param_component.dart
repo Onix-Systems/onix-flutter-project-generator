@@ -3,7 +3,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 
 part 'response_param_component.freezed.dart';
 
-@freezed
+@Freezed(toJson: false, fromJson: false)
 class ResponseParamComponent with _$ResponseParamComponent {
   const ResponseParamComponent._();
 
@@ -25,6 +25,25 @@ class ResponseParamComponent with _$ResponseParamComponent {
     return copyWith(
       type: type ?? SwaggerOperationDefault(),
       isEnum: type is SwaggerEnum,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type.toJson(),
+      'isRequired': isRequired,
+      'isEnum': isEnum,
+    };
+  }
+
+  factory ResponseParamComponent.fromJson(Map<String, dynamic> json) {
+    return ResponseParamComponent(
+      name: json['name'] as String,
+      type: SwaggerType.fromJson(json['type'] as Map<String, dynamic>),
+      isRequired: json['isRequired'] as bool,
+      isEnum: json['isEnum'] as bool? ?? false,
+      fromSwagger: json['fromSwagger'] as bool? ?? true,
     );
   }
 }

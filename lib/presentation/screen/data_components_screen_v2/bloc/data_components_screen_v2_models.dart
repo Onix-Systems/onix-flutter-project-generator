@@ -2,15 +2,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 
 part 'data_components_screen_v2_models.freezed.dart';
 
 @freezed
 class DataComponentsScreenV2Event with _$DataComponentsScreenV2Event {
-  const factory DataComponentsScreenV2Event.init({
-    required Config config,
-  }) = DataComponentsScreenV2IInit;
+  const factory DataComponentsScreenV2Event.init() =
+      DataComponentsScreenV2IInit;
 
   const factory DataComponentsScreenV2Event.addSource({
     required String sourceName,
@@ -47,7 +45,8 @@ class DataComponentsScreenV2SR with _$DataComponentsScreenV2SR {
 @freezed
 class DataComponentsScreenV2State with _$DataComponentsScreenV2State {
   const factory DataComponentsScreenV2State.data({
-    required Config config,
     required Components components,
+    @Default(false) bool projectExists,
+    @Default(false) bool swaggerUrlExists,
   }) = DataComponentsScreenV2StateData;
 }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +10,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/response_param_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
+import 'package:onix_flutter_bricks/domain/service/config_service/config_service.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/add_source_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_data_object_use_case.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/delete_source_request_use_case.dart';
@@ -21,29 +22,31 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v
 
 class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     DataComponentsScreenV2State, DataComponentsScreenV2SR> {
-  final GetSwaggerComponentsUseCase _getSwaggerComponentsUseCase;
+  final GetComponentsUseCase _getSwaggerComponentsUseCase;
   final AddSourceUseCase _addSourceUseCase;
   final DeleteSourceUseCase _deleteSourceUseCase;
   final EditSourceNameUseCase _editSourceNameUseCase;
   final DeleteComponentUseCase _deleteComponentUseCase;
   final DeleteSourceRequestUseCase _deleteSourceRequestUseCase;
+  final ConfigService _configService;
 
   DataComponentsScreenV2Bloc({
-    required GetSwaggerComponentsUseCase getSwaggerComponentsUseCase,
+    required GetComponentsUseCase getSwaggerComponentsUseCase,
     required AddSourceUseCase addSourceUseCase,
     required DeleteSourceUseCase deleteSourceUseCase,
     required EditSourceNameUseCase editSourceNameUseCase,
     required DeleteComponentUseCase deleteDataObjectComponentUseCase,
     required DeleteSourceRequestUseCase deleteSourceRequestUseCase,
+    required ConfigService configService,
   })  : _getSwaggerComponentsUseCase = getSwaggerComponentsUseCase,
         _addSourceUseCase = addSourceUseCase,
         _deleteSourceUseCase = deleteSourceUseCase,
         _editSourceNameUseCase = editSourceNameUseCase,
         _deleteComponentUseCase = deleteDataObjectComponentUseCase,
         _deleteSourceRequestUseCase = deleteSourceRequestUseCase,
+        _configService = configService,
         super(
           DataComponentsScreenV2StateData(
-            config: const Config(),
             components: Components.empty(),
           ),
         ) {
@@ -59,12 +62,19 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     DataComponentsScreenV2IInit event,
     Emitter<DataComponentsScreenV2State> emit,
   ) {
+    final projectExists = _configService.config.projectExists;
+    final swaggerUrl = _configService.config.swaggerUrl;
+
     final components = _getSwaggerComponentsUseCase();
+
+    _configService.componentsModified.value = jsonEncode(components.toJson()) !=
+        jsonEncode(_configService.initialComponents.toJson());
 
     emit(
       state.copyWith(
-        config: event.config,
         components: components,
+        projectExists: projectExists,
+        swaggerUrlExists: swaggerUrl.isNotEmpty,
       ),
     );
   }
@@ -140,7 +150,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
   ) async {
     final result = _addSourceUseCase(
       sourceName: event.sourceName,
-      arch: state.config.arch,
+      arch: _configService.config.arch,
     );
 
     if (result.isError) {
@@ -148,7 +158,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       return;
     }
 
-    add(DataComponentsScreenV2IInit(config: state.config));
+    add(const DataComponentsScreenV2IInit());
   }
 
   Future<void> _onEditSourceName(
@@ -169,7 +179,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       return;
     }
 
-    add(DataComponentsScreenV2IInit(config: state.config));
+    add(const DataComponentsScreenV2IInit());
   }
 
   Future<void> _onDeleteSource(
@@ -185,7 +195,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       return;
     }
 
-    add(DataComponentsScreenV2IInit(config: state.config));
+    add(const DataComponentsScreenV2IInit());
   }
 
   Future<void> _onDeleteComponent(
@@ -201,7 +211,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       return;
     }
 
-    add(DataComponentsScreenV2IInit(config: state.config));
+    add(const DataComponentsScreenV2IInit());
   }
 
   Future<void> _onDeleteRequest(
@@ -248,6 +258,6 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
       _deleteComponentUseCase(component: bodyComponent);
     }
 
-    add(DataComponentsScreenV2IInit(config: state.config));
+    add(const DataComponentsScreenV2IInit());
   }
 }

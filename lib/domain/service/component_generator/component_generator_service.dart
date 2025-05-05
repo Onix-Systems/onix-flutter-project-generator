@@ -14,13 +14,14 @@ import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
+import 'package:onix_flutter_bricks/domain/service/component_generator/file_mixin.dart';
+import 'package:onix_flutter_bricks/domain/service/component_generator/file_operation_result.dart';
 import 'package:onix_flutter_bricks/domain/service/component_generator/params/component_generator_params.dart';
 import 'package:recase/recase.dart';
 
 class ComponentGeneratorService
-    implements BaseGenerationService<String, ComponentGeneratorParams> {
-  const ComponentGeneratorService();
-
+    extends BaseGenerationService<String, ComponentGeneratorParams>
+    with FileMixin {
   @override
   Future<String> generate(ComponentGeneratorParams params) async {
     try {
@@ -52,6 +53,7 @@ class ComponentGeneratorService
           sourceObjects,
           params.components.dataObjects,
           params.arch,
+          params.projectExists,
         );
         addedDataComponents.addAll(createdComponents);
 
@@ -63,6 +65,8 @@ class ComponentGeneratorService
         );
       }
 
+      addedDataComponents.addAll(params.components.dataObjects);
+
       final addedComponentsDistinct = addedDataComponents.distinct();
 
       await _createEntities(
@@ -71,6 +75,7 @@ class ComponentGeneratorService
         addedComponentsDistinct,
         params.arch,
         params.components.enums,
+        params.projectExists,
       );
 
       return '';
@@ -88,7 +93,7 @@ class ComponentGeneratorService
   ) async {
     final projectLibFolder = '$projectRootPath/lib';
     final rawFolder = sourceComponent.getFolderPath(projectLibFolder);
-    await _createFolders(rawFolder, '_createSource');
+    await createFolders(rawFolder, '_createSource');
 
     ///Create declaration
     final declarationFilePath =
@@ -96,7 +101,20 @@ class ComponentGeneratorService
 
     final declarationBody =
         sourceComponent.getSourceDeclarationBody(projectName);
-    await _createFile(filePath: declarationFilePath, fileBody: declarationBody);
+
+    final createSourceDeclarationResult = await createFile(
+      filePath: declarationFilePath,
+      fileBody: declarationBody,
+    );
+
+    if (createSourceDeclarationResult == FileOperationResult.alreadyExists) {
+      await modifyFile(
+        filePath: declarationFilePath,
+        body: declarationBody,
+        sourceComponent: sourceComponent,
+        dataType: DataType.source,
+      );
+    }
 
     ///Create Implementation
     final implementationFilePath =
@@ -104,65 +122,85 @@ class ComponentGeneratorService
 
     final implementationBody =
         sourceComponent.getSourceImplementationBody(projectName);
-    await _createFile(
+    final createSourceImplementationResult = await createFile(
       filePath: implementationFilePath,
       fileBody: implementationBody,
     );
 
-    ///Create SL declarations
-    final sourceSLPath = '$projectRootPath/${arch.getDiPath()}/source.dart';
-    final sourceSlFile = File(sourceSLPath);
-    final slContent = await sourceSlFile.readAsString();
+    if (createSourceImplementationResult == FileOperationResult.alreadyExists) {
+      await modifyFile(
+        filePath: implementationFilePath,
+        body: implementationBody,
+        sourceComponent: sourceComponent,
+        dataType: DataType.sourceImpl,
+      );
+    }
 
-    ///SL Imports
-    final importLines = List<String>.empty(growable: true)
-      ..add(sourceComponent.getDeclarationImport(projectName))
-      ..add(sourceComponent.getImplementationImport(projectName))
-      ..add(SwaggerConst.swaggerSLImportsKey);
+    if (createSourceImplementationResult == FileOperationResult.created) {
+      ///Create SL declarations
+      final sourceSLPath = '$projectRootPath/${arch.getDiPath()}/source.dart';
+      final sourceSlFile = File(sourceSLPath);
+      final slContent = await sourceSlFile.readAsString();
 
-    ///SL Code
-    final className = sourceComponent.name.pascalCase;
-    final codeLines = List<String>.empty(growable: true)
-      ..add(
-        'getIt.registerSingleton<${className}Source>(${className}SourceImpl(',
-      )
-      ..add(
-        'getIt.get<ApiClient>(instanceName: DioConst.defaultApiClientName),',
-      )
-      ..add('getIt.get<RequestProcessor>(),')
-      ..add('),);')
-      ..add(SwaggerConst.swaggerSourceSLDeclarationKey);
+      ///SL Imports
+      final importLines = List<String>.empty(growable: true)
+        ..add(sourceComponent.getDeclarationImport(projectName))
+        ..add(sourceComponent.getImplementationImport(projectName))
+        ..add(SwaggerConst.swaggerSLImportsKey);
 
-    final imports = importLines.join('\n');
-    final code = codeLines.join('\n');
-    await sourceSlFile.writeAsString(
-      slContent
-          .replaceFirst(SwaggerConst.swaggerSLImportsKey, imports)
-          .replaceFirst(SwaggerConst.swaggerSourceSLDeclarationKey, code),
-    );
+      ///SL Code
+      final className = sourceComponent.name.pascalCase;
+      final codeLines = List<String>.empty(growable: true)
+        ..add(
+          'getIt.registerSingleton<${className}Source>(${className}SourceImpl(',
+        )
+        ..add(
+          'getIt.get<ApiClient>(instanceName: DioConst.defaultApiClientName),',
+        )
+        ..add('getIt.get<RequestProcessor>(),')
+        ..add('),);')
+        ..add(SwaggerConst.swaggerSourceSLDeclarationKey);
+
+      final imports = importLines.join('\n');
+      final code = codeLines.join('\n');
+      await sourceSlFile.writeAsString(
+        slContent
+            .replaceFirst(SwaggerConst.swaggerSLImportsKey, imports)
+            .replaceFirst(SwaggerConst.swaggerSourceSLDeclarationKey, code),
+      );
+    }
 
     ///Create repository declaration
     final repoDeclarationFolder =
         sourceComponent.getRepositoryDeclarationFolderPath(
       projectLibFolder,
     );
-    await _createFolders(repoDeclarationFolder, '_createSource');
+    await createFolders(repoDeclarationFolder, '_createSource');
 
     final repoDeclarationFilePath =
         sourceComponent.getRepoDeclarationFilePath(projectLibFolder);
 
     final repoDeclarationBody =
         sourceComponent.getRepoDeclarationBody(projectName, arch);
-    await _createFile(
+    final createRepoDeclarationResult = await createFile(
       filePath: repoDeclarationFilePath,
       fileBody: repoDeclarationBody,
     );
+
+    if (createRepoDeclarationResult == FileOperationResult.alreadyExists) {
+      await modifyFile(
+        filePath: repoDeclarationFilePath,
+        body: repoDeclarationBody,
+        sourceComponent: sourceComponent,
+        dataType: DataType.repo,
+      );
+    }
 
     ///Create repo implementation
     final repoImplFolder = sourceComponent.getRepositoryImplFolderPath(
       projectLibFolder,
     );
-    await _createFolders(repoImplFolder, '_createRepoImpl');
+    await createFolders(repoImplFolder, '_createRepoImpl');
 
     final repoImplFilePath =
         sourceComponent.getRepoImplementationFilePath(projectLibFolder);
@@ -171,35 +209,47 @@ class ComponentGeneratorService
       projectName,
       arch,
     );
-    await _createFile(filePath: repoImplFilePath, fileBody: repoImplBody);
+    final createRepoImplementationResult =
+        await createFile(filePath: repoImplFilePath, fileBody: repoImplBody);
 
-    ///Create repos SL declarations
-    final repoSLPath = '$projectRootPath/${arch.getDiPath()}/repository.dart';
-    final repoSlFile = File(repoSLPath);
-    final repoSlContent = await repoSlFile.readAsString();
+    if (createRepoImplementationResult == FileOperationResult.alreadyExists) {
+      await modifyFile(
+        filePath: repoImplFilePath,
+        body: repoImplBody,
+        sourceComponent: sourceComponent,
+        dataType: DataType.repoImpl,
+      );
+    }
 
-    ///SL Imports
-    final repoImportLines = List<String>.empty(growable: true)
-      ..add(sourceComponent.getDeclarationImport(projectName))
-      ..add(sourceComponent.getRepoDeclarationImport(projectName))
-      ..add(sourceComponent.getRepoImplementationImport(projectName))
-      ..add(SwaggerConst.swaggerSLImportsKey);
+    if (createRepoImplementationResult == FileOperationResult.created) {
+      ///Create repos SL declarations
+      final repoSLPath = '$projectRootPath/${arch.getDiPath()}/repository.dart';
+      final repoSlFile = File(repoSLPath);
+      final repoSlContent = await repoSlFile.readAsString();
 
-    final repoClassName = sourceComponent.name.pascalCase;
-    final repoSLCodeLines = List<String>.empty(growable: true)
-      ..add('getIt.registerLazySingleton<${repoClassName}Repository>(')
-      ..add(
-        '() => ${repoClassName}RepositoryImpl(getIt<${repoClassName}Source>(),),',
-      )
-      ..add(');')
-      ..add(SwaggerConst.swaggerRepoSLDeclarationKey);
-    final repoSLImports = repoImportLines.join('\n');
-    final repoSLCode = repoSLCodeLines.join('\n');
-    await repoSlFile.writeAsString(
-      repoSlContent
-          .replaceFirst(SwaggerConst.swaggerSLImportsKey, repoSLImports)
-          .replaceFirst(SwaggerConst.swaggerRepoSLDeclarationKey, repoSLCode),
-    );
+      ///SL Imports
+      final repoImportLines = List<String>.empty(growable: true)
+        ..add(sourceComponent.getDeclarationImport(projectName))
+        ..add(sourceComponent.getRepoDeclarationImport(projectName))
+        ..add(sourceComponent.getRepoImplementationImport(projectName))
+        ..add(SwaggerConst.swaggerSLImportsKey);
+
+      final repoClassName = sourceComponent.name.pascalCase;
+      final repoSLCodeLines = List<String>.empty(growable: true)
+        ..add('getIt.registerLazySingleton<${repoClassName}Repository>(')
+        ..add(
+          '() => ${repoClassName}RepositoryImpl(getIt<${repoClassName}Source>(),),',
+        )
+        ..add(');')
+        ..add(SwaggerConst.swaggerRepoSLDeclarationKey);
+      final repoSLImports = repoImportLines.join('\n');
+      final repoSLCode = repoSLCodeLines.join('\n');
+      await repoSlFile.writeAsString(
+        repoSlContent
+            .replaceFirst(SwaggerConst.swaggerSLImportsKey, repoSLImports)
+            .replaceFirst(SwaggerConst.swaggerRepoSLDeclarationKey, repoSLCode),
+      );
+    }
   }
 
   Future<List<DataObjectComponent>> _createObjects(
@@ -208,6 +258,7 @@ class ComponentGeneratorService
     List<DataObjectReference> references,
     List<DataObjectComponent> components,
     ArchType arch,
+    bool projectExists,
   ) async {
     ///List of components was created
     final addedDataComponents = List<DataObjectComponent>.empty(growable: true);
@@ -229,18 +280,20 @@ class ComponentGeneratorService
       }
       final fileFolder = '$projectLibFolder/$fileRawFolder';
       final filePath = '$projectLibFolder/$fileRawPath';
-      await _createFolders(fileFolder, '_createObjects');
+      await createFolders(fileFolder, '_createObjects');
 
       final body = dataObject.getObjectBody(
         projectName,
         e.type,
         arch,
       );
-      final objectAdded = await _createFile(
+      final objectAdditionResult = await createFile(
         filePath: filePath,
         fileBody: body,
+        overwrite: projectExists && dataObject.unmodifiable == false,
       );
-      if (objectAdded) {
+
+      if (objectAdditionResult == FileOperationResult.created) {
         addedDataComponents.add(dataObject);
       } else {
         continue;
@@ -259,6 +312,7 @@ class ComponentGeneratorService
           innerReferences,
           components,
           arch,
+          projectExists,
         );
         addedDataComponents.addAll(createdInnerObjects);
       }
@@ -272,6 +326,7 @@ class ComponentGeneratorService
     List<DataObjectComponent> addedDataComponents,
     ArchType arch,
     List<EnumParamComponent> enums,
+    bool projectExists,
   ) async {
     for (final e in addedDataComponents) {
       ///Create Entities
@@ -283,7 +338,7 @@ class ComponentGeneratorService
       }
       final entityFolder = '$projectLibFolder/$entityRawFolder';
       final entityPath = '$projectLibFolder/$entityRawPath';
-      await _createFolders(entityFolder, '_createEntities');
+      await createFolders(entityFolder, '_createEntities');
 
       final entityBody = e.getObjectBody(
         projectName,
@@ -291,7 +346,11 @@ class ComponentGeneratorService
         arch,
       );
 
-      await _createFile(filePath: entityPath, fileBody: entityBody);
+      await createFile(
+        filePath: entityPath,
+        fileBody: entityBody,
+        overwrite: projectExists && e.unmodifiable == false,
+      );
     }
     for (final e in addedDataComponents) {
       ///Create mappers
@@ -299,7 +358,7 @@ class ComponentGeneratorService
       final mapperRawPath = e.getObjectMapperFilePath(arch);
       final mapperFolder = '$projectLibFolder/$mapperRawFolder';
       final mapperPath = '$projectLibFolder/$mapperRawPath';
-      await _createFolders(mapperFolder, '_createMappersEntities');
+
       final requestRawFilePath =
           e.fileReference.getFileImportName(DataFileType.request, arch);
       final responseRawFilePath =
@@ -309,6 +368,7 @@ class ComponentGeneratorService
       final isRequestFileExist = File(requestFilePath).existsSync();
       final isResponseFileExist = File(responseFilePath).existsSync();
       if (isRequestFileExist || isResponseFileExist) {
+        await createFolders(mapperFolder, '_createMappersEntities');
         final mapperBody = e.getMapperBody(
           projectName: projectName,
           createEntityToRequestMapper: isRequestFileExist,
@@ -317,7 +377,11 @@ class ComponentGeneratorService
           enums: enums,
         );
 
-        await _createFile(filePath: mapperPath, fileBody: mapperBody);
+        await createFile(
+          filePath: mapperPath,
+          fileBody: mapperBody,
+          overwrite: projectExists && e.unmodifiable == false,
+        );
       }
     }
   }
@@ -346,11 +410,11 @@ class ComponentGeneratorService
 
     for (final e in enumsCopy) {
       final folderPath = e.getFolderPath(projectLibFolder, arch);
-      await _createFolders(folderPath, '_createEnums');
+      await createFolders(folderPath, '_createEnums');
       final filePath = e.getFilePath(projectLibFolder, arch);
 
       final body = e.getEnumFileBody();
-      await _createFile(filePath: filePath, fileBody: body);
+      await createFile(filePath: filePath, fileBody: body);
     }
   }
 
@@ -415,11 +479,11 @@ class ComponentGeneratorService
 
     for (final e in enumsCopy) {
       final folderPath = e.getFolderPath(projectLibFolder, arch);
-      await _createFolders(folderPath, '_createRequestEnums');
+      await createFolders(folderPath, '_createRequestEnums');
       final filePath = e.getFilePath(projectLibFolder, arch);
 
       final body = e.getEnumFileBody();
-      await _createFile(filePath: filePath, fileBody: body);
+      await createFile(filePath: filePath, fileBody: body);
     }
   }
 
@@ -438,43 +502,5 @@ class ComponentGeneratorService
       }
     }
     return innerReferences;
-  }
-
-  Future<bool> _createFile({
-    required String filePath,
-    required String fileBody,
-  }) async {
-    final file = File(filePath);
-    try {
-      final isAlreadyExist = file.existsSync();
-      if (isAlreadyExist) {
-        logger.i('File already exists: $filePath');
-        return false;
-      }
-      await file.create(recursive: true);
-      await file.writeAsString(fileBody);
-      logger.i('File created: $filePath');
-      return true;
-    } catch (e) {
-      logger.crash(error: e, stackTrace: StackTrace.current);
-      return false;
-    }
-  }
-
-  Future<void> _createFolders(
-    String path,
-    String methodCaller,
-  ) async {
-    try {
-      final directory = Directory(path);
-      if (directory.existsSync()) {
-        logger.i('$methodCaller. Directory already exists: $path');
-      } else {
-        await directory.create(recursive: true);
-        logger.i('$methodCaller. Directory created: $path');
-      }
-    } catch (e) {
-      logger.crash(error: e, stackTrace: StackTrace.current);
-    }
   }
 }

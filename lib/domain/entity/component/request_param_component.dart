@@ -26,6 +26,7 @@ sealed class RequestParamComponent {
     DataFileType fileType, {
     required bool isRequiredRequestBody,
     required bool forSource,
+    bool stripComma = false,
   }) {
     var requiredCopy = isRequired;
     if (isRequiredRequestBody) {
@@ -42,12 +43,12 @@ sealed class RequestParamComponent {
       }
 
       return '$requiredPrefix $paramType$requiredSuffix '
-          '${getNameDeclaration()},';
+          '${getNameDeclaration()}${stripComma ? '' : ','}';
     }
 
     final body =
         '$requiredPrefix ${type.getTypeDeclaration(fileType)}$requiredSuffix '
-        '${getNameDeclaration()},';
+        '${getNameDeclaration()}${stripComma ? '' : ','}';
 
     return body;
   }
@@ -114,6 +115,31 @@ class RequestBodyComponent extends RequestParamComponent {
     }
     return null;
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type.toJson(),
+      'isRequired': isRequired,
+      'fromSwagger': fromSwagger,
+      'isEnum': isEnum,
+    };
+  }
+
+  factory RequestBodyComponent.fromJson(Map<String, dynamic> json) {
+    return RequestBodyComponent(
+      name: json['name'] as String,
+      type: SwaggerType.fromJson(json['type'] as Map<String, dynamic>),
+      isRequired: json['isRequired'] as bool,
+      fromSwagger: json['fromSwagger'] as bool? ?? true,
+      isEnum: json['isEnum'] as bool? ?? false,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'RequestBodyComponent(name: $name, type: $type, isRequired: $isRequired, fromSwagger: $fromSwagger, isEnum: $isEnum)';
+  }
 }
 
 class RequestMultipartComponent extends RequestParamComponent {
@@ -147,6 +173,31 @@ class RequestMultipartComponent extends RequestParamComponent {
           ? component.type
           : (component as DataObjectComponent).fileReference,
     ) as RequestMultipartComponent;
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type.toJson(),
+      'isRequired': isRequired,
+      'fromSwagger': fromSwagger,
+      'isEnum': isEnum,
+    };
+  }
+
+  factory RequestMultipartComponent.fromJson(Map<String, dynamic> json) {
+    return RequestMultipartComponent(
+      name: json['name'] as String,
+      type: SwaggerType.fromJson(json['type'] as Map<String, dynamic>),
+      isRequired: json['isRequired'] as bool,
+      fromSwagger: json['fromSwagger'] as bool? ?? true,
+      isEnum: json['isEnum'] as bool? ?? false,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'RequestMultipartComponent(name: $name, type: $type, isRequired: $isRequired, fromSwagger: $fromSwagger, isEnum: $isEnum)';
   }
 }
 
@@ -182,6 +233,31 @@ class RequestQueryComponent extends RequestParamComponent {
           : (component as DataObjectComponent).fileReference,
     ) as RequestQueryComponent;
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type.toJson(),
+      'isRequired': isRequired,
+      'fromSwagger': fromSwagger,
+      'isEnum': isEnum,
+    };
+  }
+
+  factory RequestQueryComponent.fromJson(Map<String, dynamic> json) {
+    return RequestQueryComponent(
+      name: json['name'] as String,
+      type: SwaggerType.fromJson(json['type'] as Map<String, dynamic>),
+      isRequired: json['isRequired'] as bool,
+      fromSwagger: json['fromSwagger'] as bool? ?? true,
+      isEnum: json['isEnum'] as bool? ?? false,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'RequestQueryComponent(name: $name, type: $type, isRequired: $isRequired, fromSwagger: $fromSwagger, isEnum: $isEnum)';
+  }
 }
 
 class RequestPathComponent extends RequestParamComponent {
@@ -193,7 +269,29 @@ class RequestPathComponent extends RequestParamComponent {
     super.fromSwagger,
   });
 
-  //RequestPathComponent? updateComponentType(SwaggerType? type) {}
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type.toJson(),
+      'fromSwagger': fromSwagger,
+      'isEnum': isEnum,
+    };
+  }
+
+  factory RequestPathComponent.fromJson(Map<String, dynamic> json) {
+    return RequestPathComponent(
+      name: json['name'] as String,
+      type: SwaggerType.fromJson(json['type'] as Map<String, dynamic>),
+      isRequired: json['isRequired'] as bool? ?? true,
+      fromSwagger: json['fromSwagger'] as bool? ?? true,
+      isEnum: json['isEnum'] as bool? ?? false,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'RequestPathComponent(name: $name, type: $type, isRequired: $isRequired, fromSwagger: $fromSwagger, isEnum: $isEnum)';
+  }
 }
 
 extension RequestParamComponentExtension on RequestParamComponent {

@@ -1,12 +1,13 @@
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
 
-class GetComponentsUseCase {
+class RestoreComponentsUseCase {
   final SwaggerRepository _swaggerRepository;
 
-  const GetComponentsUseCase(this._swaggerRepository);
+  const RestoreComponentsUseCase(this._swaggerRepository);
 
-  Components call() {
-    return _swaggerRepository.components;
-  }
+  void call({
+    required Components components,
+  }) =>
+      _swaggerRepository.restoreComponents(components);
 }

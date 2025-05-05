@@ -249,6 +249,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "overwrite": MessageLookupByLibrary.simpleMessage("Перезаписати"),
         "parseErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Не вдалося отримати компоненти Swagger. Спробуйте знову або зв\'яжіться з підтримкою, якщо не вдається отримати компоненти."),
+        "parseSwaggerFile":
+            MessageLookupByLibrary.simpleMessage("Парсити Swagger файл"),
         "pasteJsonHere":
             MessageLookupByLibrary.simpleMessage("Вставте JSON сюди"),
         "path": MessageLookupByLibrary.simpleMessage("Шлях"),

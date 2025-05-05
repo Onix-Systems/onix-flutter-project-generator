@@ -10,7 +10,11 @@ import 'package:onix_flutter_core/onix_flutter_core.dart';
 mixin FlavorGeneratorUtilsMixin
     on BaseGenerationService<Result<int>, FlavorGeneratorParams> {
   Future<String> getOrg(String name) async {
-    final appBuildGradleFile = File('$name/android/app/build.gradle');
+    final appBuildGradleFile =
+        File('$name/android/app/build.gradle').existsSync()
+            ? File('$name/android/app/build.gradle')
+            : File('$name/android/app/build.gradle.kts');
+
     var pbxProjFile = File('$name/ios/Runner.xcodeproj/project.pbxproj');
 
     if (!pbxProjFile.existsSync()) {

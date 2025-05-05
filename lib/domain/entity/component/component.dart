@@ -4,10 +4,12 @@ import 'package:onix_flutter_bricks/domain/entity/component/enum_param_component
 abstract class Component {
   final String name;
   final bool fromSwagger;
+  final bool unmodifiable;
 
   Component({
     required this.name,
     required this.fromSwagger,
+    this.unmodifiable = false,
   });
 
   String getString({int level = 1});

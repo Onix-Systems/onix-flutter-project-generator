@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/extension/logger_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
@@ -74,6 +77,27 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
         );
       }
 
+      final sourcesToDelete = <SourceComponent>[];
+
+      for (final source in sources) {
+        final sourceExists = _isSourceExists(source.name);
+
+        if (sourceExists) {
+          final existingSource = _components.sources
+              .firstWhere((element) => element.name == source.name);
+
+          source.mergeWith(
+            existingSource,
+          );
+
+          sourcesToDelete.add(existingSource);
+        }
+      }
+
+      for (final source in sourcesToDelete) {
+        removeSource(source.name);
+      }
+
       _components = _components.copyWith(
         sources: [
           ..._components.sources,
@@ -91,6 +115,42 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }
 
   @override
+  Future<Result<Components>> getComponentsFromConfig({
+    required String projectPath,
+  }) async {
+    try {
+      clearComponents(empty: true);
+
+      final componentsFile = File('$projectPath/data_components.json');
+
+      if (!componentsFile.existsSync()) {
+        return const Result.error(
+          failure: SwaggerParserFailureNotFound(
+            'data_components.json',
+          ),
+        );
+      }
+
+      final componentsString = await componentsFile.readAsString();
+
+      final componentsJson = jsonDecode(componentsString);
+
+      _components = Components.fromJson(componentsJson);
+
+      return Result.success(components);
+    } catch (e, s) {
+      logger.crash(
+        error: e,
+        stackTrace: s,
+        reason: 'fetchComponentsFromConfig',
+      );
+      return const Result.error(
+        failure: SwaggerParserFailureFailedToParse(),
+      );
+    }
+  }
+
+  @override
   void clearComponents({
     bool empty = false,
   }) {
@@ -101,7 +161,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     final swaggerComponents = [..._components.dataObjects, ..._components.enums]
         .where(
-          (element) => element.fromSwagger,
+          (element) => element.fromSwagger && !element.unmodifiable,
         )
         .toList();
 
@@ -455,6 +515,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
             fileReference: dataObject.fileReference,
             variables: dataObjectVariables,
             fromSwagger: component.fromSwagger,
+            unmodifiable: dataObject.unmodifiable,
           ),
         );
       }
@@ -496,6 +557,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
           fileReference: dataObject.fileReference,
           variables: variables,
           fromSwagger: dataObject.fromSwagger,
+          unmodifiable: dataObject.unmodifiable,
         ),
       );
     }
@@ -625,6 +687,11 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
         _components.enums.any(
           (element) => element.name == dataObjectName,
         );
+  }
+
+  @override
+  void restoreComponents(Components components) {
+    _components = components;
   }
 
   bool _isSourceExists(String sourceName) {

@@ -25,6 +25,7 @@ class DataObjectComponent extends Component {
     required this.fileReference,
     required this.variables,
     super.fromSwagger = true,
+    super.unmodifiable,
   }) : super(name: name.pascalCase);
 
   String getFilePath(DataFileType type, ArchType arch) =>
@@ -581,5 +582,26 @@ class DataObjectComponent extends Component {
     result.add('${_tabs()});');
 
     return result.join('\n');
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'fileReference': fileReference.toJson(),
+      'variables': variables.map((e) => e.toJson()).toList(),
+    };
+  }
+
+  factory DataObjectComponent.fromJson(Map<String, dynamic> json) {
+    return DataObjectComponent(
+      name: json['name'] as String,
+      fileReference: SwaggerReference(
+        json['fileReference']['reference'] as String,
+      ),
+      variables: (json['variables'] as List<dynamic>)
+          .map((e) => DataVariableComponent.fromJson(e))
+          .toList(),
+      unmodifiable: true,
+    );
   }
 }

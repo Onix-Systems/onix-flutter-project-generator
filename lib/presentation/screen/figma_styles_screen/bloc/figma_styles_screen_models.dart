@@ -5,9 +5,7 @@ part 'figma_styles_screen_models.freezed.dart';
 
 @freezed
 class FigmaStylesScreenEvent with _$FigmaStylesScreenEvent {
-  const factory FigmaStylesScreenEvent.init({
-    required Config config,
-  }) = FigmaStylesScreenEventInit;
+  const factory FigmaStylesScreenEvent.init() = FigmaStylesScreenEventInit;
 
   const factory FigmaStylesScreenEvent.onGetStyles({
     required String figmaId,

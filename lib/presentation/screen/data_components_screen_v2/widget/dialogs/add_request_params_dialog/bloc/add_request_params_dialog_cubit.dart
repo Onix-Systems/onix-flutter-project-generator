@@ -13,11 +13,11 @@ import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v
 class AddRequestParamsDialogCubit
     extends BaseCubit<AddRequestParamsDialogState, AddRequestParamsDialogSR> {
   final GetComponentByNameUseCase _getComponentByNameUseCase;
-  final GetSwaggerComponentsUseCase _getSwaggerComponentsUseCase;
+  final GetComponentsUseCase _getSwaggerComponentsUseCase;
 
   AddRequestParamsDialogCubit({
     required GetComponentByNameUseCase getComponentByNameUseCase,
-    required GetSwaggerComponentsUseCase getSwaggerComponentsUseCase,
+    required GetComponentsUseCase getSwaggerComponentsUseCase,
   })  : _getComponentByNameUseCase = getComponentByNameUseCase,
         _getSwaggerComponentsUseCase = getSwaggerComponentsUseCase,
         super(const AddRequestParamsDialogState());

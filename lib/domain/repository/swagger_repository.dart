@@ -13,6 +13,10 @@ abstract interface class SwaggerRepository {
     bool? overwriteDuplicates,
   });
 
+  Future<Result<Components>> getComponentsFromConfig({
+    required String projectPath,
+  });
+
   void clearComponents({
     bool empty,
   });
@@ -63,4 +67,6 @@ abstract interface class SwaggerRepository {
   Result<OperationStatus> deleteComponent(
     Component component,
   );
+
+  void restoreComponents(Components components);
 }

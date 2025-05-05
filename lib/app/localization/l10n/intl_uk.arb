@@ -191,5 +191,6 @@
   "requestAlreadyExistsError": "Такий запит вже існує",
   "addChildren": "Додати залежності?",
   "addChildrenContent": "Клас залежить від {children} котрих ще не існує.\nЗгенерувати їх?",
-  "jsonParserEmptyValueFailure": "Значення '{name}' порожнє. Видаліть '{name}' або додайте значення."
+  "jsonParserEmptyValueFailure": "Значення '{name}' порожнє. Видаліть '{name}' або додайте значення.",
+  "parseSwaggerFile": "Парсити Swagger файл"
 }

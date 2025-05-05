@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onix_flutter_bricks/app/widget/common/misk.dart';
+import 'package:gap/gap.dart';
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 
 class NavigationButtonBar extends StatelessWidget {
@@ -10,6 +10,7 @@ class NavigationButtonBar extends StatelessWidget {
   final bool isActive;
   final FocusNode? focusNode;
   final IconData? nextIcon;
+  final bool showIcons;
 
   const NavigationButtonBar({
     required this.nextText,
@@ -19,6 +20,7 @@ class NavigationButtonBar extends StatelessWidget {
     this.isActive = true,
     this.focusNode,
     this.nextIcon,
+    this.showIcons = true,
     super.key,
   });
 
@@ -29,15 +31,15 @@ class NavigationButtonBar extends StatelessWidget {
       children: [
         AppFilledButton(
           label: prevText,
-          icon: Icons.arrow_back_ios_rounded,
+          icon: showIcons ? Icons.arrow_back_ios_rounded : null,
           onPressed: onPrevPressed,
         ),
-        const Delimiter.width(10),
+        const Gap(10),
         AppFilledButton(
           focusNode: focusNode,
           active: isActive,
           label: nextText,
-          icon: nextIcon ?? Icons.arrow_forward_ios_rounded,
+          icon: showIcons ? nextIcon ?? Icons.arrow_forward_ios_rounded : null,
           iconLeft: false,
           onPressed: onNextPressed,
         ),

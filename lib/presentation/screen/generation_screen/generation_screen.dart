@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
-import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/widget/generation_controls.dart';
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
@@ -9,10 +8,7 @@ import 'package:onix_flutter_bricks/presentation/widget/output_console.dart';
 import 'package:onix_flutter_bricks/util/stream_util.dart';
 
 class GenerationScreen extends StatefulWidget {
-  final GenerationScreenExtra extra;
-
   const GenerationScreen({
-    required this.extra,
     super.key,
   });
 
@@ -38,12 +34,7 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
 
   @override
   void onBlocCreated(BuildContext context, GenerationScreenBloc bloc) {
-    bloc.add(
-      GenerationScreenEvent.init(
-        config: widget.extra.config,
-        isModify: widget.extra.isModify,
-      ),
-    );
+    bloc.add(const GenerationScreenEvent.init());
     super.onBlocCreated(context, bloc);
   }
 
@@ -83,7 +74,6 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
                             blocOf(context)
                                 .add(const GenerationScreenEventOpenProject());
                           },
-                          config: state.config,
                         ),
                       ),
                   ],
@@ -95,14 +85,4 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
       ),
     );
   }
-}
-
-class GenerationScreenExtra {
-  final bool isModify;
-  final Config config;
-
-  const GenerationScreenExtra({
-    required this.config,
-    this.isModify = false,
-  });
 }

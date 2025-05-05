@@ -16,20 +16,19 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SummaryScreenEvent {
-  Config get config => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,12 +48,6 @@ mixin _$SummaryScreenEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  /// Create a copy of SummaryScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SummaryScreenEventCopyWith<SummaryScreenEvent> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -62,10 +55,6 @@ abstract class $SummaryScreenEventCopyWith<$Res> {
   factory $SummaryScreenEventCopyWith(
           SummaryScreenEvent value, $Res Function(SummaryScreenEvent) then) =
       _$SummaryScreenEventCopyWithImpl<$Res, SummaryScreenEvent>;
-  @useResult
-  $Res call({Config config});
-
-  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -80,43 +69,14 @@ class _$SummaryScreenEventCopyWithImpl<$Res, $Val extends SummaryScreenEvent>
 
   /// Create a copy of SummaryScreenEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? config = null,
-  }) {
-    return _then(_value.copyWith(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
-    ) as $Val);
-  }
-
-  /// Create a copy of SummaryScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ConfigCopyWith<$Res> get config {
-    return $ConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$SummaryScreenEventInitImplCopyWith<$Res>
-    implements $SummaryScreenEventCopyWith<$Res> {
+abstract class _$$SummaryScreenEventInitImplCopyWith<$Res> {
   factory _$$SummaryScreenEventInitImplCopyWith(
           _$SummaryScreenEventInitImpl value,
           $Res Function(_$SummaryScreenEventInitImpl) then) =
       __$$SummaryScreenEventInitImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Config config});
-
-  @override
-  $ConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -130,77 +90,52 @@ class __$$SummaryScreenEventInitImplCopyWithImpl<$Res>
 
   /// Create a copy of SummaryScreenEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? config = null,
-  }) {
-    return _then(_$SummaryScreenEventInitImpl(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$SummaryScreenEventInitImpl implements SummaryScreenEventInit {
-  const _$SummaryScreenEventInitImpl({required this.config});
-
-  @override
-  final Config config;
+  const _$SummaryScreenEventInitImpl();
 
   @override
   String toString() {
-    return 'SummaryScreenEvent.init(config: $config)';
+    return 'SummaryScreenEvent.init()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SummaryScreenEventInitImpl &&
-            (identical(other.config, config) || other.config == config));
+            other is _$SummaryScreenEventInitImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, config);
-
-  /// Create a copy of SummaryScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SummaryScreenEventInitImplCopyWith<_$SummaryScreenEventInitImpl>
-      get copyWith => __$$SummaryScreenEventInitImplCopyWithImpl<
-          _$SummaryScreenEventInitImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Config config) init,
+    required TResult Function() init,
   }) {
-    return init(config);
+    return init();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? init,
+    TResult? Function()? init,
   }) {
-    return init?.call(config);
+    return init?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? init,
+    TResult Function()? init,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(config);
+      return init();
     }
     return orElse();
   }
@@ -235,18 +170,7 @@ class _$SummaryScreenEventInitImpl implements SummaryScreenEventInit {
 }
 
 abstract class SummaryScreenEventInit implements SummaryScreenEvent {
-  const factory SummaryScreenEventInit({required final Config config}) =
-      _$SummaryScreenEventInitImpl;
-
-  @override
-  Config get config;
-
-  /// Create a copy of SummaryScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SummaryScreenEventInitImplCopyWith<_$SummaryScreenEventInitImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  const factory SummaryScreenEventInit() = _$SummaryScreenEventInitImpl;
 }
 
 /// @nodoc

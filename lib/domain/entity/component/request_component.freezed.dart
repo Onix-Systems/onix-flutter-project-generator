@@ -292,11 +292,6 @@ class _$RequestComponentImpl extends _RequestComponent {
   final bool fromSwagger;
 
   @override
-  String toString() {
-    return 'RequestComponent(operationId: $operationId, path: $path, type: $type, description: $description, requestBody: $requestBody, multipartBody: $multipartBody, queryParams: $queryParams, pathParams: $pathParams, response: $response, fromSwagger: $fromSwagger)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
