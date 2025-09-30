@@ -44,11 +44,11 @@ class Commands {
 
     if (kDebugMode) {
       final currentPath = Directory.current.path;
-      if (currentPath.isNotEmpty) {
+      if (Directory(currentPath).existsSync()) {
         brickPath = "'${currentPath.trim()}/bricks/flutter_${brickArch}_base'";
       } else {
         logger.e(
-          'Could not get current directory path, using default path.',
+          'Current directory $currentPath does not exist or is not accessible, using default path.',
         );
       }
     }
