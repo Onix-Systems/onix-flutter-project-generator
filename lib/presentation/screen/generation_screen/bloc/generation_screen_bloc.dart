@@ -23,7 +23,6 @@ import 'package:onix_flutter_bricks/domain/usecase/process/run_osascript_process
 import 'package:onix_flutter_bricks/domain/usecase/process/run_process_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/styles/generate_styles_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/create_swagger_components_usecase.dart';
-import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/presentation/screen/generation_screen/bloc/generation_screen_bloc_imports.dart';
 import 'package:onix_flutter_bricks/util/commands.dart';
 import 'package:onix_flutter_bricks/util/enum/project_router.dart';
