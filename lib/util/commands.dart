@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:onix_flutter_bricks/app/app_consts.dart';
-import 'package:onix_flutter_bricks/core/di/app.dart';
 
 class Commands {
   ///common commands
@@ -44,13 +43,7 @@ class Commands {
 
     if (kDebugMode) {
       final currentPath = Directory.current.path;
-      if (Directory(currentPath).existsSync()) {
-        brickPath = "'${currentPath.trim()}/bricks/flutter_${brickArch}_base'";
-      } else {
-        logger.e(
-          'Current directory $currentPath does not exist or is not accessible, using default path.',
-        );
-      }
+      brickPath = "'$currentPath/bricks/flutter_${brickArch}_base'";
     }
 
     return 'mason add -g flutter_${brickArch}_base --path $brickPath';
