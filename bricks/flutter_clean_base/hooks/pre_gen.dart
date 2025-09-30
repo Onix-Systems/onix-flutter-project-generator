@@ -21,10 +21,6 @@ void run(HookContext context) async {
       context.vars['platforms'].contains('macos')) {
     createArgs.addAll(['--project-name', name, '-t', 'app']);
 
-    if (context.vars['platforms'].contains('ios')) {
-      createArgs.addAll(['-i', 'swift']);
-    }
-
     if (context.vars['platforms'].contains('android')) {
       createArgs.addAll(['-a', 'kotlin']);
     }
