@@ -1,4 +1,4 @@
-import 'package:{{project_name}}/logger/app_logger.dart';
+import 'package:{{project_name}}/core/arch/logger/app_logger.dart';
 
 /// Extension methods for AppLogger to provide convenient logging patterns
 /// for common application scenarios and business logic tracking.

@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
-import 'package:{{project_name}}/logger/app_logger.dart';
-import 'package:{{project_name}}/logger/crashlytics_util.dart';
-import 'package:{{project_name}}/logger/logger_factory.dart';
+import 'package:{{project_name}}/core/arch/logger/app_logger.dart';
+import 'package:{{project_name}}/core/arch/logger/crashlytics_util.dart';
+import 'package:{{project_name}}/core/arch/logger/logger_factory.dart';
 
 AppLogger get logger => AppLoggerImpl.I;
 

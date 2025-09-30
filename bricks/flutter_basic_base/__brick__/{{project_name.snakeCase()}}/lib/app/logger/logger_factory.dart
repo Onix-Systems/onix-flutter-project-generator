@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
-import 'package:{{project_name}}/logger/app_console_log_output.dart';
-import 'package:{{project_name}}/logger/app_crashlytics_log_output.dart';
+import 'package:{{project_name}}/app/logger/app_console_log_output.dart';
+import 'package:{{project_name}}/app/logger/app_crashlytics_log_output.dart';
 
 /// Centralized factory for creating logger instances with different configurations.
 /// Provides both configuration settings and specialized logger creation methods.

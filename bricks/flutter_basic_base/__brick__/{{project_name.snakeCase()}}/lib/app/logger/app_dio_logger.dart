@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
-import 'package:{{project_name}}/logger/logger_factory.dart';
+import 'package:{{project_name}}/app/logger/logger_factory.dart';
 
 /// Specialized logger for Dio HTTP client operations.
 ///
