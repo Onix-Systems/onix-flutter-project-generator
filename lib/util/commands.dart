@@ -51,7 +51,7 @@ class Commands {
           path =
               "'${result.stdout.toString().trim()}/bricks/flutter_${brickArch}_base'";
         } else {
-          throw Exception(
+          logger.e(
             'Could not get current directory path, using default path.',
           );
         }
