@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:onix_flutter_bricks/app/app_consts.dart';
+import 'package:onix_flutter_bricks/core/di/app.dart';
 
 class Commands {
   ///common commands
@@ -42,9 +43,21 @@ class Commands {
         "$branchFolder/bricks/flutter_${brickArch}_base'";
 
     if (kDebugMode) {
-      final result = await Process.run('pwd', []);
-      path =
-          "'${result.stdout.toString().trim()}/bricks/flutter_${brickArch}_base'";
+      try {
+        final result = await Process.run('pwd', []);
+        if (result.exitCode == 0 &&
+            result.stdout != null &&
+            result.stdout.toString().trim().isNotEmpty) {
+          path =
+              "'${result.stdout.toString().trim()}/bricks/flutter_${brickArch}_base'";
+        } else {
+          throw Exception(
+            'Could not get current directory path, using default path.',
+          );
+        }
+      } catch (e) {
+        logger.e('Error getting current directory: $e');
+      }
     }
 
     return 'mason add -g flutter_${brickArch}_base --path $path';
