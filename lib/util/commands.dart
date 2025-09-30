@@ -32,11 +32,11 @@ class Commands {
   static String getMasonActivateCommand() =>
       'dart pub global activate mason_cli && mason cache clear';
 
-  static Future<String> getMasonAddBrickCommand({
+  static String getMasonAddBrickCommand({
     required String projectPath,
     required String masonBrickBranch,
     required String brickArch,
-  }) async {
+  }) {
     final branchFolder = masonBrickBranch.replaceAll('/', '-');
     var brickPath = "'$projectPath/bricks/onix-flutter-project-generator-"
         "$branchFolder/bricks/flutter_${brickArch}_base'";

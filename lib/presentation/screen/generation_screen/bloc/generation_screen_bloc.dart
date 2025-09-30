@@ -163,7 +163,7 @@ class GenerationScreenBloc extends BaseBloc<GenerationScreenEvent,
         workDir: _config.projectPath,
         commands: [
           Commands.getMasonActivateCommand(),
-          await Commands.getMasonAddBrickCommand(
+          Commands.getMasonAddBrickCommand(
             projectPath: _config.projectPath,
             masonBrickBranch: _config.branchConfig.branch,
             brickArch: _config.arch.name,
