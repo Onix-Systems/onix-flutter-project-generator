@@ -39,28 +39,21 @@ class Commands {
     required String brickArch,
   }) async {
     final branchFolder = masonBrickBranch.replaceAll('/', '-');
-    var path = "'$projectPath/bricks/onix-flutter-project-generator-"
+    var brickPath = "'$projectPath/bricks/onix-flutter-project-generator-"
         "$branchFolder/bricks/flutter_${brickArch}_base'";
 
     if (kDebugMode) {
-      try {
-        final result = await Process.run('pwd', []);
-        if (result.exitCode == 0 &&
-            result.stdout != null &&
-            result.stdout.toString().trim().isNotEmpty) {
-          path =
-              "'${result.stdout.toString().trim()}/bricks/flutter_${brickArch}_base'";
-        } else {
-          logger.e(
-            'Could not get current directory path, using default path.',
-          );
-        }
-      } catch (e) {
-        logger.e('Error getting current directory: $e');
+      final currentPath = Directory.current.path;
+      if (currentPath.isNotEmpty) {
+        brickPath = "'${currentPath.trim()}/bricks/flutter_${brickArch}_base'";
+      } else {
+        logger.e(
+          'Could not get current directory path, using default path.',
+        );
       }
     }
 
-    return 'mason add -g flutter_${brickArch}_base --path $path';
+    return 'mason add -g flutter_${brickArch}_base --path $brickPath';
   }
 
   static String getMasonMakeBrickCommand({required String brickArch}) =>
