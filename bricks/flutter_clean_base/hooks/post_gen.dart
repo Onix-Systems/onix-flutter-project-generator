@@ -79,8 +79,8 @@ void run(HookContext context) async {
     await Process.run('rm', ['dev.xml', 'prod.xml'],
         workingDirectory: '$name/.idea/runConfigurations');
 
-    var iconsProc = await Process.start('flutter',
-        ['pub', 'run', 'flutter_launcher_icons:main', '-f', 'pubspec.yaml'],
+    var iconsProc = await Process.start(
+        'dart', ['run', 'flutter_launcher_icons:main', '-f', 'pubspec.yaml'],
         workingDirectory: name);
 
     iconsProc.log();
@@ -96,7 +96,7 @@ void run(HookContext context) async {
 
   if (!context.vars['handLocalization']) {
     var localizationProcess = await Process.start(
-        'flutter', ['pub', 'run', 'intl_utils:generate'],
+        'dart', ['run', 'intl_utils:generate'],
         workingDirectory: name);
 
     localizationProcess.log();
@@ -110,7 +110,7 @@ void run(HookContext context) async {
   int formatCode = formatProcess.exitCode;
 
   var sorterProcess = await Process.start(
-      'flutter', ['pub', 'run', 'import_sorter:main', '--no-comments'],
+      'dart', ['run', 'import_sorter:main', '--no-comments'],
       workingDirectory: name);
 
   sorterProcess.log();
@@ -118,7 +118,7 @@ void run(HookContext context) async {
   int sorterCode = await sorterProcess.exitCode;
 
   var splashProcess = await Process.start(
-      'flutter', ['pub', 'run', 'flutter_native_splash:create'],
+      'dart', ['run', 'flutter_native_splash:create'],
       workingDirectory: name);
 
   splashProcess.log();
@@ -332,7 +332,7 @@ Future<void> flavorize(HookContext context) async {
   }
 
   var flavorizrProc = await Process.start(
-      'flutter', ['pub', 'run', 'flutter_flavorizr'],
+      'dart', ['run', 'flutter_flavorizr', '-f'],
       workingDirectory: name);
 
   flavorizrProc.log();

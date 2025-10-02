@@ -4,7 +4,7 @@ environment:
   sdk: ">=3.5.0 <4.0.0"
 
 dependencies:
-  mason: ^0.1.0
-  process_run: ^0.12.3+2
-  tint: ^2.0.0
+  mason: ^0.1.1
+  process_run: ^1.2.4
+  tint: ^2.0.1
   recase: ^4.1.0
