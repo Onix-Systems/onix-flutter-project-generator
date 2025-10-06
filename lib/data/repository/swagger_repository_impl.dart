@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/extension/logger_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
+import 'package:onix_flutter_bricks/core/arch/domain/result/result.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/mapper/swagger/swagger_mapper.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
@@ -21,7 +22,6 @@ import 'package:onix_flutter_bricks/domain/entity/component/source_component.dar
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
 import 'package:onix_flutter_core/onix_flutter_core.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class SwaggerRepositoryImpl implements SwaggerRepository {
   Components _components = Components.empty();

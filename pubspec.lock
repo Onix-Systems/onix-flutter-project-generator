@@ -735,7 +735,7 @@ packages:
     source: hosted
     version: "0.0.6-beta.4"
   onix_flutter_core_models:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: onix_flutter_core_models
       sha256: "625448f2c48597b08e506062239051c8427aa1c52aa32f36b484501e59e15396"

@@ -1,7 +1,7 @@
+import 'package:onix_flutter_bricks/core/arch/domain/result/result.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class FetchSwaggerDataUseCase {
   final SwaggerRepository _swaggerRepository;

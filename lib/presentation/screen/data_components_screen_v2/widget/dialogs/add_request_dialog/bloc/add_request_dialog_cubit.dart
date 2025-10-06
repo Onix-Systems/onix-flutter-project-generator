@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
+import 'package:onix_flutter_bricks/core/arch/domain/result/result.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
@@ -16,7 +17,6 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_models.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class AddRequestDialogCubit
     extends BaseCubit<AddRequestDialogState, AddRequestDialogSR> {
