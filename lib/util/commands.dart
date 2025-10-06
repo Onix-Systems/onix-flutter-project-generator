@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:onix_flutter_bricks/app/app_consts.dart';
 
 class Commands {
@@ -35,9 +38,15 @@ class Commands {
     required String brickArch,
   }) {
     final branchFolder = masonBrickBranch.replaceAll('/', '-');
-    return 'mason add -g flutter_${brickArch}_base --path '
-        "'$projectPath/bricks/onix-flutter-project-generator-"
+    var brickPath = "'$projectPath/bricks/onix-flutter-project-generator-"
         "$branchFolder/bricks/flutter_${brickArch}_base'";
+
+    if (kDebugMode) {
+      final currentPath = Directory.current.path;
+      brickPath = "'$currentPath/bricks/flutter_${brickArch}_base'";
+    }
+
+    return 'mason add -g flutter_${brickArch}_base --path $brickPath';
   }
 
   static String getMasonMakeBrickCommand({required String brickArch}) =>
