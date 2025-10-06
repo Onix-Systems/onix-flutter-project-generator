@@ -8,6 +8,12 @@ import 'package:tint/tint.dart';
 void run(HookContext context) async {
   'Creating flutter project...'.log();
 
+  var flutterDoctorProcess = await Process.start('flutter', ['doctor', '-v']);
+
+  flutterDoctorProcess.log();
+
+  await flutterDoctorProcess.exitCode;
+
   String name = context.vars['project_name_dirt'].toString().toSnakeCase;
   String org = context.vars['project_org'];
 
