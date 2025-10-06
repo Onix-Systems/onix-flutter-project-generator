@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bloc/onix_flutter_bloc.dart';
-import 'package:onix_flutter_bricks/core/arch/domain/result/result.dart';
+import 'package:onix_flutter_bricks/core/arch/result/result.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';

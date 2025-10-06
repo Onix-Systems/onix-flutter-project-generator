@@ -390,7 +390,7 @@ class SourceComponent {
     final imports = <String>{}
       ..add("import 'package:onix_flutter_core/onix_flutter_core.dart';")
       ..add(
-        "import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';",
+        "import 'package:onix_flutter_bricks/core/arch/result/result.dart';",
       )
       ..add(
         arch == ArchType.clean

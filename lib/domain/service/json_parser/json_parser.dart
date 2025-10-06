@@ -6,7 +6,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/json_parser_failure.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
+import 'package:onix_flutter_bricks/core/arch/result/result.dart';
 import 'package:recase/recase.dart';
 
 class JsonParser {

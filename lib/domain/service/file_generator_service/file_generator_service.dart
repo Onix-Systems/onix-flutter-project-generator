@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:onix_flutter_bricks/core/arch/result/result.dart';
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/flavor_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
@@ -10,7 +11,6 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/signin
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/params/styles_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/style_generator/styles_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 import 'package:recase/recase.dart';
 
 class FileGeneratorService {

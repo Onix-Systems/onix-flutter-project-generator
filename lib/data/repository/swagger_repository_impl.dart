@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:onix_flutter_bricks/app/extension/logger_extension.dart';
 import 'package:onix_flutter_bricks/app/util/extenstion/swagger_type_extension.dart';
-import 'package:onix_flutter_bricks/core/arch/domain/result/result.dart';
+import 'package:onix_flutter_bricks/core/arch/result/result.dart';
 import 'package:onix_flutter_bricks/core/di/app.dart';
 import 'package:onix_flutter_bricks/data/mapper/swagger/swagger_mapper.dart';
 import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_model_variable_response_v3.dart';

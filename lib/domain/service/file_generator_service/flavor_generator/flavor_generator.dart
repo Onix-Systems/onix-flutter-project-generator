@@ -12,7 +12,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/mixins/flavor_injector_mixin.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
+import 'package:onix_flutter_bricks/core/arch/result/result.dart';
 
 ///This class generates flavors for the project
 class FlavorGenerator

@@ -4,7 +4,7 @@ import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/flavor_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
+import 'package:onix_flutter_bricks/core/arch/result/result.dart';
 import 'package:recase/recase.dart';
 
 mixin FlavorInjectorMixin
